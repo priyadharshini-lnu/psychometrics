@@ -27,32 +27,32 @@ interface Props {
 }
 
 const { I18n } = window
-const localI18n = (code, params = {}) => I18n.t(`administration.assessor.modals.create_assessor.${code}`, params)
+const localI18n = (code, params = {}) => I18n.t(`admin.${code}`, params)
 
 const tableFields = [
   {
-    name: localI18n('sheet.subject_email'),
+    name: localI18n('subject_email'),
     key: 'subjectEmail',
   },
   {
-    name: localI18n('sheet.assessor_email'),
+    name: localI18n('assessor_email'),
     key: 'assessorEmail',
   },
   {
-    name: localI18n('sheet.assessor_first_name'),
+    name: localI18n('assessor_first_name'),
     key: 'assessorFirstName',
   },
   {
-    name: localI18n('sheet.assessor_last_name'),
+    name: localI18n('assessor_last_name'),
     key: 'assessorLastName',
   },
   {
-    name: localI18n('sheet.assessments'),
+    name: localI18n('assessments'),
     key: 'assessmentIds',
     type: 'MultiSelect',
     multiple: true,
     styles: { width: '200px' },
-    placeholder: localI18n('sheet.assessments_placeholder'),
+    placeholder: localI18n('assessments_placeholder'),
     values: ({ assessments }) => assessments.map(a => ({ key: a.id, value: a.name })),
   },
 ]
@@ -119,15 +119,15 @@ const AssessorFormModal: React.FC<Props & PropsFromRedux> = ({
   return (
     <Modal
       width={900}
-      title={localI18n('title')}
+      title={localI18n('assessor_create_assessor')}
       open
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>
-          {localI18n('cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button key="submit" type="primary" onClick={handleOk} loading={createAllInProgress}>
-          {localI18n('add')}
+          {I18n.t('shared.add')}
         </Button>,
       ]}
     >

@@ -29,6 +29,7 @@ import { downloadTextFile } from '~/utils/downloadTextFile'
 import { UnsupportedBrowser } from './UnsupportedBrowser'
 import VideoPlayer from './VideoPlayer'
 import MediaRecorder from '~/components/MediaRecorder'
+import { VideoPreview } from './VideoPreview'
 
 const connector = connect(
   (state, { model }) => ({
@@ -126,7 +127,6 @@ class SupportedVideoRecorder extends Component {
   renderVideoRecorder () {
     const {
       model,
-      type,
       mediaUrl,
       readOnly,
       markQuestionInProgress,
@@ -135,7 +135,7 @@ class SupportedVideoRecorder extends Component {
       mediaResponses,
       features,
     } = this.props
-    const { VideoRecorderComponent } = this
+
     const { showTranscription } = this.state
 
     if (readOnly) {
@@ -197,21 +197,12 @@ class SupportedVideoRecorder extends Component {
             isAssessmentTimedOut={isAssessmentTimedOut}
           />
         ) : (
-          <VideoRecorderComponent
+          <VideoPreview
             key={model.id}
-            model={model}
-            preview={type === 'preview_assessment'}
-            readOnly={readOnly}
+            questionId={model.id}
             maxDuration={model.props.duration}
-            mediaResponse={mediaResponses[0]}
-            mediaUrl={mediaUrl}
-            fitInFrame={model.props.fitInFrame}
-            trackerOptions={model.props.trackerOptions}
-            onSuccessUpload={this.successUpload}
-            onDeleteMedia={this.deleteMedia}
             markQuestionInProgress={markQuestionInProgress}
             removeQuestionInProgress={removeQuestionInProgress}
-            isAssessmentTimedOut={isAssessmentTimedOut}
           />
         )
         }

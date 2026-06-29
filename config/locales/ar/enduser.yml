@@ -36,6 +36,8 @@ ar:
     browser_not_compatible: متصفحك %{browser_name} غير متوافق مع هذه الحملة.
     browser_not_compatible_description: استخدم أحدث إصدارات من Chrome أو Firefox أو Safari أو Edge للحصول على أفضل تجربة.
     browser_not_compatible_detail: متصفحك %{browser_name} غير متوافق مع هذه الحملة. استخدم أحدث إصدارات من Chrome أو Firefox أو Safari أو Edge للحصول على أفضل تجربة.
+    browser_proctoring_description: أنت تستخدم متصفح «%{browser_name}»، والذي قد يكون به بعض القيود فيما يتعلق بميزات المراقبة المُفعَّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفح Chrome أو Edge
+    browser_proctoring_title: "%{browser_name} تم التعرف على المتصفح"
     browser_version_fix_description_first: حدّث متصفح %{browser_name} إلى الإصدار %{updated_version} أو أعلى لضمان التوافق
     browser_version_fix_title: الإصدار الحالي من %{browser_name} لا يلبي الحد الأدنى المطلوب (%{updated_version}) لهذه الحملة
     camera: الكاميرا
@@ -43,6 +45,7 @@ ar:
     camera_check: اختبار الكاميرا والميكروفون
     camera_check_abruptly_ended: تم إيقاف الكاميرا فجأة. يرجى تمكين الكاميرا وإعادة تشغيل الفحص.
     camera_check_description: تحقق من أن الكاميرا والميكروفون يعملان بشكل صحيح، ثم قم بتشغيل التسجيل للتأكد.
+    camera_check_failed: فشل التحقق من الفيديو
     camera_check_passed: اجتاز فحص الفيديو والصوت بنجاح
     camera_check_record_instruction: انقر على «تسجيل» واقرأ المقطع التالي بصوت عالٍ
     camera_test_step: خطوة اختبار الفيديو والصوت
@@ -69,6 +72,9 @@ ar:
     error_uploading_audio_detail: حدث خطأ أثناء تحميل الملف الصوتي
     error_uploading_video: حدث خطأ أثناء رفع الفيديو
     error_uploading_video_detail: حدث خطأ أثناء تحميل الفيديو
+    face_detection_error: حدث خطأ أثناء عملية التعرف على الوجه. يرجى التأكد من أن الكاميرا تعمل، ثم حاول مرة أخرى.
+    face_detection_failed: لم يتم التعرف على وجهك في تسجيل الفيديو. يرجى التأكد من أن الكاميرا غير مغطاة وأن وجهك ظاهر.
+    face_not_detected_warning: لم يتم الكشف عن أي وجه. يرجى التأكد من أن وجهك مرئي أمام الكاميرا.
     fail: يفشل
     file_submission_already_exists: لقد تلقينا إجابتك على هذا السؤال بالفعل. يرجى تحديث الصفحة، وإذا لم تتمكن من رؤية إجابتك السابقة، فيرجى الاتصال بالمسؤول.
     follow_these_steps: اتبع الخطوات التالية لحل المشكلات التي تم اكتشافها أثناء فحص النظام
@@ -162,6 +168,8 @@ ar:
     select_video_device: اختر جهاز الفيديو
     selected_count: مختارة %{count}
     skill_type: نوع المهارة
+    speech_verification_error: حدث خطأ أثناء التحقق من كلامك. يرجى المحاولة مرة أخرى.
+    speech_verification_failed: لم يتطابق كلامك مع العبارة المختبرة. يرجى المحاولة مرة أخرى ونطق العبارة بوضوح.
     start_campaign_message_proctored: هذه حملة تحت مراقبة، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_readiness_check: بدء التحقق من الجاهزية
@@ -186,10 +194,12 @@ ar:
       one: أنا أصرخ، أنت تصرخ، كلنا نصرخ من أجل الآيس كريم!
       seven: كل يوم هو بداية جديدة. قلها بصوت عالٍ وفخور!
       six: البيتزا أو المعكرونة؟ القرارات صعبة.
+      ten: أنا جاهز. هذا تسجيل تجريبي للتأكد من أن الميكروفون يعمل بشكل صحيح.
       three: اختبار، واحد اثنان ثلاثة، الصوت واضح قدر الإمكان!.
       two: يقفز الثعلب البني السريع فوق الكلب الكسول.
     system_check_audio_title: الرجاء التحدث وتكرار الجملة التالية 3 مرات
     system_check_complete: اكتمل فحص النظام
+    system_check_face_detection: اكتشاف الوجوه
     system_check_failed: فشل فحص النظام
     system_check_failed_description: يرجى حل المشكلات وإعادة تشغيل فحص النظام
     system_check_failed_message: فشلت بعض اختبارات النظام، يرجى مراجعة التفاصيل والمحاولة مرة أخرى
@@ -200,6 +210,7 @@ ar:
     system_check_retake: لا، أريد أن أستعيد
     system_check_run_again: تشغيل مرة أخرى
     system_check_session_not_found: لم يتم العثور على جلسة فحص النظام. يرجى بدء فحص نظام جديد.
+    system_check_speech_verification: التحقق من الكلام
     system_check_start_recording: بدء التسجيل
     system_check_stop_recording: توقف عن التسجيل
     system_check_test_message: سُررت بالتحدث معك
@@ -257,6 +268,10 @@ ar:
     video_overlay_label: اختر الميكروفون والكاميرا، وانقر على «تسجيل»، ثم اقرأ الرسالة التالية بمجرد الضغط على زر «تسجيل»
     video_overlay_message: اختر الميكروفون والكاميرا، وانقر على «تسجيل»، ثم اقرأ بصوت عالٍ الجملة التي تظهر في الأسفل.
     video_recorder_label: مسجل الفيديو
+    video_upload_failed_camera_access: يتعذر الوصول إلى الكاميرا أو الميكروفون. يرجى التحقق من أذونات جهازك ومحاولة مرة أخرى.
+    video_upload_failed_chunk_upload: فشل تحميل جزء من التسجيل. يرجى التحقق من اتصالك بالإنترنت ومحاولة التحميل مرة أخرى.
+    video_upload_failed_finalize: تم التقاط التسجيل ولكن تعذر حفظه. يرجى المحاولة مرة أخرى.
+    video_upload_failed_no_recording: لم يتم العثور على أي تسجيل لتحميله. يرجى إعادة التسجيل.
     view_details: عرض التفاصيل
     webgl_api_fix_description_first: تأكد من أن متصفحك يدعم WebGL وأنه مفعّل في الإعدادات
     webgl_api_fix_description_second: حدّث تعريفات برامج تشغيل الرسومات إلى أحدث إصدار

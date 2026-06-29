@@ -18,23 +18,28 @@ sk:
     assessment_id: Identifikačný kód hodnotenia
     assessment_list: Zoznam hodnotení
     assessment_name: Názov hodnotenia
+    assessor: Hodnotiteľ
     assessor_approved: Schválený posudzovateľ
     assessors_list: Zoznam hodnotiteľov
     asset_not_present: Aktívum nie je prítomné
     audio: Audio
     audio_devices: Zvukové zariadenia
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
+    auto_approved: Automaticky schválené
     back: Späť
     basic: Základný
+    bulk_download: Hromadné sťahovanie
     camera: Fotoaparát
     camera_preview: Tu sa zobrazí náhľad fotoaparátu
     campaign: Kampaň
     campaign_id: Identifikácia kampane
     cancel: Zrušiť
+    category: Kategória
     change_password: Zmeniť heslo
     clear_filters: Vymazať filtre
     client: Klient
     close: Zatvoriť
+    code: Kód
     collaborative_learning: Kolaboratívne učenie
     completed: Dokončené
     configurations: Konfigurácie
@@ -43,11 +48,13 @@ sk:
     controller: Ovládač
     cookie_notice: Oznámenie o súboroch cookie
     cookies_statement: Vyhlásenie o súboroch cookie
+    copied: Skopírované do schránky
     copied_successfully: Kopírovanie prebehlo úspešne
     copied_to_clipboard: Kopírované do schránky
     copy: Kopírovať
     create: Vytvoriť
     created_at: Vytvorené v
+    created_by: Vytvoril
     created_date: Dátum vytvorenia
     created_successfully: Úspešne vytvorené
     custom_acknowledgment_text: Vlastný text poďakovania
@@ -55,11 +62,14 @@ sk:
     custom_consent_text: Vlastný text súhlasu
     custom_consent_text_required: Pre rolu správcu údajov je potrebný vlastný text súhlasu.
     data_role: Úloha údajov
+    datasheet: Dátový hárok
     decline: Úpadok
+    default: Predvolené nastavenie
     delete: Odstrániť
     description: Popis
     desktop_or_laptop_recommended: Odporúča sa stolný počítač alebo notebook
     desktop_or_laptop_required: Požadovaný stolný počítač alebo notebook
+    dimension: Dimenzia
     disabled: Znevýhodnení
     discard: Zrušiť
     download: Stiahnuť
@@ -69,6 +79,7 @@ sk:
     edit: Upraviť
     edited: Nové
     email: E-mail
+    end_date: Dátum ukončenia
     ending_proctoring_session_msg: Toto je koniec testu. <p>Počkajte, prosím, kým uložíme vaše odpovede a presmerujeme vás späť na úvodnú stránku.</p>
     error: Chyba
     export: Vývoz
@@ -83,12 +94,18 @@ sk:
     generating: Generovanie
     group_question_max_validation_error: Každá skupina môže obsahovať najviac {{max}} položky.
     group_question_min_validation_error: Každá skupina musí obsahovať aspoň {{min}} položiek.
+    icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI môže robiť chyby. Prosím, buďte opatrní pri používaní odpovedí.
+    import: Import
+    inactive: Neaktívny
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
     last_name: Priezvisko
+    last_updated: Posledná aktualizácia
     learning_on_the_job_label: Učenie sa priamo v práci
     lets_start: Tak poďme na to!
+    linked_activities: Prepojené aktivity
+    linked_assessment: Prepojené hodnotenie
     loading: Načítava sa...
     login: Prihlásenie
     maintenance_in_hours: "%{hours} hodiny"
@@ -98,11 +115,13 @@ sk:
     maintenance_time_remaining: Zostávajúci čas
     maintenance_upcoming_description: Na stránke %{date} budeme vykonávať plánovanú údržbu, ktorá potrvá približne %{duration}, aby sme vám poskytli lepší zážitok. Počas tejto doby nebudete mať prístup k žiadnym prideleným úlohám ani ich nebudete môcť dokončiť. Ďakujeme za trpezlivosť.
     maintenance_upcoming_title: Nadchádzajúca údržba
+    manage: Spravujte stránku
     manage_cookies: Správa súborov cookie
     media_id: Identifikačný kód médií
     media_preview: Prehľad médií
     media_question_transcriptions: Prepisy otázok médií
     media_responses: Reakcie médií
+    meeting_link: Prepojenie na stretnutie
     microphones: Mikrofóny
     mobile_proctoring_disabled_instructions: Na pokračovanie v tomto hodnotení je potrebný stolný počítač alebo notebook. Prejdite na počítač, aby ste mohli aktivitu dokončiť.
     mobile_proctoring_enabled_instructions: Pre najlepší zážitok prejdite na stolný počítač alebo notebook, ak máte k dispozícii. V prípade potreby môžete pokračovať na mobilnom zariadení.
@@ -116,13 +135,17 @@ sk:
     new: Nové
     next: Ďalej
     no_audio_warning: Nebol zaznamenaný žiadny zvuk. Skontrolujte, či je mikrofón pripojený a funguje správne.
+    no_data_found: Nenašli sa žiadne údaje
     no_results_found: Nenašli sa žiadne výsledky
+    none: Žiadny
     not_requested: Ešte nebolo požiadané
     ok: Ok
     options: Možnosti
+    overview: Prehľad
     owner: Majiteľ
     pause: Pauza
     pending: Čaká na vybavenie
+    permissions: Oprávnenia
     play: Hrať
     policy_version: Verzia politiky
     policy_version_format: Povolené sú iba celé čísla
@@ -133,6 +156,7 @@ sk:
     proctoring_maintenance_active: Služba Proctoring je momentálne v údržbe z %{start_time} na %{end_time}. Skúste to znovu po ukončení údržby.
     proctoring_maintenance_upcoming: Služba Proctoring bude od %{start_time} do %{end_time} v údržbe.
     project: Projekt
+    publish: Publikovať
     question: Otázka
     question_id: ID otázky
     question_transcription_disabled: Pre túto otázku je prepis vypnutý.
@@ -146,20 +170,27 @@ sk:
     remove: Odstránenie stránky
     removed: Odstránený
     replace: Nahradiť
+    required: požadované
+    reset: Vynulovanie
     reset_password: Obnovenie hesla
     response_text: Text odpovede
     rte_paste_content_exceeds_char_limit: Text prekračuje limit znakov {{maxCharacterLimit}} a nie je možné ho vložiť.
     rte_paste_content_exceeds_word_limit: Text prekračuje limit slov {{maxWordLimit}} a nedá sa vložiť.
+    run: Bežať
     save: Uložiť
     saving_video: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
+    schedule_time: Naplánovať čas
     scoring_details: Podrobnosti o bodovaní
     search: Vyhľadávanie
     select_camera: Vyberte kameru
+    select_language: Výber jazyka
     select_microphone: Vyberte mikrofón
+    send: Odoslať
     send_email: Odoslať e-mail
     show_more: Zobraziť viac
     something_wrong: Niečo sa pokazilo. Obráťte sa na správcu.
     speakers: Prednášajúci
+    start_date: Dátum začiatku
     status: Stav
     status_unknown: Stav neznámy
     stop: Zastav
@@ -178,6 +209,7 @@ sk:
           one: 'Spolu: 1'
           other: 'Spolu: {{count}}'
           zero: 'Spolu: 0'
+    tags: Tagy
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
     tools: Náradie
     transcription: Prepis
@@ -189,11 +221,35 @@ sk:
     try_again: Skúste to znovu
     tte_terms_and_condition: Podmienky a ochrana osobných údajov
     type: Typ
+    unpublish: Zrušenie zverejnenia
     update: Aktualizácia
     update_failed: Aktualizácia sa nepodarila
     updated_at: Aktualizované dňa
+    updated_by: Aktualizoval
     updated_successfully: Úspešne aktualizované
+    upload: Nahrať
     user_report_pdf_url_not_generated: Odkaz na stiahnutie súboru PDF sa nepodarilo vygenerovať
+    user_reports_approval_status_pending_qc: Čaká na kontrolu kvality
+    user_reports_approval_status_qc_completed: Kontrola kvality bola dokončená
+    user_reports_assessment_name_not_completed_reason_template: Hodnotenie „%{names}“ nie je dokončené
+    user_reports_assessments_name_not_completed_reason_template: Hodnotenia %{names} nie sú vyplnené
+    user_reports_assessor_not_completed_reason_template: Formulár posudzovateľa %{names} nie je vyplnený
+    user_reports_assessors_not_completed_reason_template: Formuláre posudzovateľa %{names} nie sú vyplnené
+    user_reports_campaign_artifact_results_pending_reason_message: Výsledky artefaktov kampane nie sú pre tohto používateľa konečné
+    user_reports_campaign_scoring_pending_reason_message: Výsledky kampane pre tohto používateľa ešte nie sú konečné
+    user_reports_custom_upload_report_reason_message: Poskytovateľom správy je vlastné nahratie
+    user_reports_external_report_pending_reason_message: Čakáme na správu od poskytovateľa
+    user_reports_lead_assessor_not_completed_reason_template: Formulár hlavného hodnotiteľa %{names} nie je vyplnený
+    user_reports_lead_assessors_not_completed_reason_template: Formuláre hlavného hodnotiteľa %{names} nie sú vyplnené
+    user_reports_no_report_module_reason_message: Pre túto správu nebol nájdený žiadny modul správy
+    user_reports_not_prepared_reason_message: Správa ešte nie je vypracovaná
+    user_reports_pending_approval_reason_template: Stav schválenia je „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: Čaká sa na konečné schválenie hodnotenia umelej inteligencie
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Čaká sa na schválenie hodnotenia QC AI
+    user_reports_pending_qc_approval_reason_message: Čaká sa na schválenie správy o kontrole kvality
+    user_reports_qc_completed_approval_reason_message: Čaká sa na schválenie záverečnej správy
+    user_reports_report_generating_reason_message: Správa sa práve vytvára
+    user_reports_report_generation_failed_reason_message: Vytvorenie správy sa nepodarilo
     video: Video
     view: Zobraziť
     view_audio: Zobraziť zvuk

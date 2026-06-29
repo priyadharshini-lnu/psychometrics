@@ -28,13 +28,20 @@ module Utility
 
     def self.generate_strong_password(length = 0)
       length = [12, length].max
-      password = Devise.friendly_token.first(length - 4)
-      special_chars = ['@', '#', '$', '%', '^', '&', '*']
-      password += special_chars.sample
-      password += [*'0'..'9'].sample
-      password += [*'A'..'Z'].sample
-      password += [*'a'..'z'].sample
-      password.chars.shuffle.join
+      10.times do
+        password = Devise.friendly_token.first(length - 4)
+        special_chars = ['@', '#', '$', '%', '^', '&', '*']
+        password += special_chars.sample
+        password += [*'0'..'9'].sample
+        password += [*'A'..'Z'].sample
+        password += [*'a'..'z'].sample
+        password = password.chars.shuffle.join
+
+        return password unless has_repeated_substring?(password, max_occurrence: 3, min_substring_length: 1) ||
+                               has_repeated_substring?(password, max_occurrence: 2, min_substring_length: 3) ||
+                               has_sequence?(password)
+      end
+      password
     end
 
     def self.remove_csv_injection_marker(value)

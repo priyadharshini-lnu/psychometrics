@@ -11,7 +11,7 @@ export default function TitleBar ({ emailSchedules: { list, selectedId }, change
     <div className={styles.container}>
       <Message emailSchedules={list} changeSelected={changeSelected} selectedId={selectedId} />
       <div>
-        {I18n.t(`administration.threesixty_campaigns.email_templates.${selectedEmailSchedule.name}.description`)}
+        {I18n.t(`admin.${selectedEmailSchedule.name}_description`)}
       </div>
     </div>
   )
@@ -26,7 +26,7 @@ const Message = ({ emailSchedules, changeSelected, selectedId }) => {
         <Select className="mls" value={selectedId} onChange={changeSelected}>
           {emailSchedules.map(emailSchedule => (
             <Select.Option value={emailSchedule.id} key={emailSchedule.id}>
-              {I18n.t(`administration.threesixty_campaigns.email_templates.${emailSchedule.name}.name`)}
+              {I18n.t(`admin.${emailSchedule.name}_name`)}
             </Select.Option>
           ))}
         </Select>
@@ -34,5 +34,5 @@ const Message = ({ emailSchedules, changeSelected, selectedId }) => {
     )
   }
 
-  return <div>{I18n.t(`administration.threesixty_campaigns.email_templates.${emailSchedules[0].name}.name`)}</div>
+  return <div>{I18n.t(`admin.${emailSchedules[0].name}_name`)}</div>
 }

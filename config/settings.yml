@@ -54,6 +54,9 @@ hashids_length:
   default: 6
 saml_enforced_email_domains:
   - mercer.com
+data_reports:
+  user_access_review:
+    email_domains: <%= ENV.fetch('USER_ACCESS_REVIEW_EMAIL_DOMAINS', 'thetalententerprise.com,mercer.com,marsh.com').split(',').map(&:strip).reject(&:empty?) %>
 features:
   rails_log_to_json: <%= ENV.fetch('RAILS_LOG_TO_JSON', 'true') == 'true' %>
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
@@ -91,6 +94,7 @@ features:
   upload_bulk_assets_enabled: <%= ENV.fetch('UPLOAD_BULK_ASSETS_ENABLED', 'false') == 'true' %>
   ai_content_analysis_enabled: <%= ENV.fetch('AI_CONTENT_ANALYSIS_ENABLED', 'false') == 'true' %>
   client_admin_sso_enabled: <%= ENV.fetch('CLIENT_ADMIN_SSO_ENABLED', 'true') == 'true' %>
+  assessment_content_protection_enabled: <%= ENV.fetch('ASSESSMENT_CONTENT_PROTECTION_ENABLED', 'false') == 'true' %>
   client_scope_filter_disabled: <%= ENV.fetch('DISABLE_CLIENT_SCOPE_FILTER', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
@@ -2662,6 +2666,7 @@ ai_embedding_provider:
 ai_transcription_provider:
   provider: <%= ENV.fetch('TRANSCRIPTION_PROVIDER', 'oci') %>
   model: <%= ENV.fetch('TRANSCRIPTION_MODEL', 'WHISPER_LARGE_V3T') %>
+  real_time_provider: <%= ENV.fetch('AI_REAL_TIME_TRANSCRIPTION_PROVIDER', 'aws') %>
 
 # Default SMTP throttling limits used when a project has no SMTP setting
 smtp_default:

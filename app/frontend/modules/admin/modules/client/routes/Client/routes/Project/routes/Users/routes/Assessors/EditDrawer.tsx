@@ -68,7 +68,7 @@ const EditDrawerComponent: FC<Props> = ({
 
   if (assessor && assessor.permissions && assessor.permissions.edit === false) {
     message.error(
-      I18n.t('administration.project_users.no_edit_permission', {
+      I18n.t('admin.project_users_no_edit_permission', {
         name: `${assessor.firstName} ${assessor.lastName}`,
       }),
     )
@@ -90,7 +90,7 @@ const EditDrawerComponent: FC<Props> = ({
       <Row justify="space-between" align="middle" className="mb-4">
         <Col>
           <Typography.Title level={4}>
-            {I18n.t('administration.project_users.edit_assessor')}
+            {I18n.t('admin.project_users_edit_assessor')}
           </Typography.Title>
         </Col>
         <Col>
@@ -103,7 +103,7 @@ const EditDrawerComponent: FC<Props> = ({
                 loading={isUpdating}
                 disabled={isFetching}
               >
-                {I18n.t('administration.project_users.save')}
+                {I18n.t('shared.save')}
               </Button>
             )}
             <Button
@@ -111,7 +111,7 @@ const EditDrawerComponent: FC<Props> = ({
               form="edit_assessor_form"
               onClick={onClose}
             >
-              {I18n.t('administration.project_users.cancel')}
+              {I18n.t('shared.cancel')}
             </Button>
           </Space>
         </Col>
@@ -137,28 +137,28 @@ const EditDrawerComponent: FC<Props> = ({
           <Skeleton loading={isFetching} title>
             <Form.Item
               name="firstName"
-              label={I18n.t('administration.project_users.form_first_name')}
+              label={I18n.t('shared.first_name')}
             >
               <Input autoFocus />
             </Form.Item>
             <Form.Item
               name="lastName"
-              label={I18n.t('administration.project_users.form_last_name')}
+              label={I18n.t('shared.last_name')}
             >
               <Input />
             </Form.Item>
             <Form.Item
-              label={I18n.t('administration.project_users.column_email')}
+              label={I18n.t('shared.email')}
             >
               <Input value={assessor?.email} variant="borderless" />
             </Form.Item>
             <Form.Item
-              label={I18n.t('administration.project_users.column_created_at')}
+              label={I18n.t('admin.project_users_column_created_at')}
             >
               <Input value={assessor?.createdAt} variant="borderless" />
             </Form.Item>
             <Form.Item
-              label={I18n.t('administration.project_users.column_campaigns')}
+              label={I18n.t('admin.project_users_column_campaigns')}
             >
               <List
                 size="small"

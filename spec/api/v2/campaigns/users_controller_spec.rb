@@ -38,15 +38,11 @@ RSpec.describe Api::V2::Administration::Campaigns::UsersController, type: :reque
            relationship: Relationship.assessor_relationship, status: :completed, score_calculated: true)
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(assessor) }
 
   describe 'GET /api/v2/administration/campaigns/{campaign_id}/users/{user_id}/assessors_scores' do
     it 'returns assessor scores list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -59,8 +55,7 @@ RSpec.describe Api::V2::Administration::Campaigns::UsersController, type: :reque
     it 'returns campaign_scores_finalized as true when scores are finalized' do
       campaign_user.update!(campaign_scores_finalized: true)
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/assessors_scores"
 
       expect(response).to have_http_status(200)
       body = JSON.parse(response.body)
@@ -76,8 +71,7 @@ RSpec.describe Api::V2::Administration::Campaigns::UsersController, type: :reque
     it 'returns active IDP template' do
       sign_in(superadmin)
 
-      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/active_idp_template",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/users/#{user_id}/active_idp_template"
 
       expect(response).to have_http_status(200)
       active_idp_template = JSON.parse(response.body)['data']

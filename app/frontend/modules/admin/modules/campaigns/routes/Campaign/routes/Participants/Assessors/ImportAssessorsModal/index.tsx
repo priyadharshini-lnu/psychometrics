@@ -60,7 +60,7 @@ const ImportAssessorsModal: React.FC<OwnProps> = ({
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.assessor.modals.import.title')}
+      title={I18n.t('admin.assessor_modals_import_title')}
       open
       onCancel={close}
       footer={[
@@ -68,7 +68,7 @@ const ImportAssessorsModal: React.FC<OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -84,7 +84,7 @@ const ImportAssessorsModal: React.FC<OwnProps> = ({
         </Button>,
       ]}
     >
-      <p>{I18n.t('administration.assessor.modals.import.body')}</p>
+      <p>{I18n.t('admin.assessor_modals_import_body')}</p>
       {errors.length ? (
         <Alert
           message={false}

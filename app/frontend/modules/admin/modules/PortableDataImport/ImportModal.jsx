@@ -17,8 +17,8 @@ const ImportModal = (props) => {
     translations,
     isOpen = true,
     fileAccept = '.json',
-    fileLabel = I18n.t('administration.dimensions.import_modal.select_json'),
-    fileErrorMessage = I18n.t('administration.dimensions.import_modal.errors.file_error'),
+    fileLabel = I18n.t('admin.dimensions_import_modal_select_json'),
+    fileErrorMessage = I18n.t('admin.dimensions_import_modal_errors_file_error'),
     showMappableFields = true,
     skipValidation = false,
     sampleFilePath,
@@ -62,7 +62,7 @@ const ImportModal = (props) => {
 
   const columns = [
     {
-      title: I18n.t('administration.dimensions.import_modal.operation'),
+      title: I18n.t('admin.dimensions_import_modal_operation'),
       dataIndex: 'operation',
       key: 'operation',
       width: '5%',
@@ -73,12 +73,12 @@ const ImportModal = (props) => {
       ),
     },
     {
-      title: I18n.t('administration.dimensions.import_modal.field'),
+      title: I18n.t('admin.dimensions_import_modal_field'),
       dataIndex: 'field',
       key: 'field',
     },
     {
-      title: I18n.t('administration.dimensions.import_modal.before'),
+      title: I18n.t('admin.dimensions_import_modal_before'),
       dataIndex: 'oldValue',
       key: 'oldValue',
       width: '35%',
@@ -89,7 +89,7 @@ const ImportModal = (props) => {
       ),
     },
     {
-      title: I18n.t('administration.dimensions.import_modal.after'),
+      title: I18n.t('admin.dimensions_import_modal_after'),
       dataIndex: 'newValue',
       key: 'newValue',
       width: '35%',
@@ -145,7 +145,7 @@ const ImportModal = (props) => {
 
         validateImportFile(content)
       } catch (error) {
-        setErrors([I18n.t('administration.dimensions.import_modal.errors.processing_error'), error])
+        setErrors([I18n.t('admin.dimensions_import_modal_errors_processing_error'), error])
       }
     }
 
@@ -178,7 +178,7 @@ const ImportModal = (props) => {
         setIsValidating(false)
       })
       .catch((error) => {
-        setErrors([I18n.t('administration.dimensions.import_modal.error_occurred'), error])
+        setErrors([I18n.t('admin.dimensions_import_modal_error_occurred'), error])
         setIsValidating(false)
       })
   }
@@ -198,12 +198,12 @@ const ImportModal = (props) => {
     submitPromise
       .then(() => {
         setShow(false)
-        message.success(successMessage || I18n.t('administration.dimensions.import_modal.import_scheduled'))
+        message.success(successMessage || I18n.t('admin.dimensions_import_modal_import_scheduled'))
         if (onClose) onClose()
         setIsImporting(false)
       })
       .catch((error) => {
-        const defaultError = I18n.t('administration.dimensions.import_modal.error_occurred')
+        const defaultError = I18n.t('admin.dimensions_import_modal_error_occurred')
         const errorMessages = Array.isArray(error) ? error : [defaultError]
         setErrors(errorMessages)
         setIsImporting(false)
@@ -233,7 +233,7 @@ const ImportModal = (props) => {
       {sampleFilePath && (
         <div className="mbl" style={{ fontSize: '16px' }}>
           <a href={sampleFilePath} target="_blank" rel="noreferrer">
-            {sampleFileLabel || I18n.t('administration.dimensions.import_factors.sample_file')}
+            {sampleFileLabel || I18n.t('admin.dimensions_import_factors_sample_file')}
           </a>
         </div>
       )}
@@ -251,7 +251,7 @@ const ImportModal = (props) => {
       </Form.Item>
       {showFileErrorAlert && fileError && (
         <Alert
-          message={I18n.t('administration.dimensions.import_modal.error')}
+          message={I18n.t('admin.dimensions_import_modal_error')}
           description={fileError}
           type="error"
           showIcon
@@ -264,12 +264,12 @@ const ImportModal = (props) => {
   const renderMappableFields = () => (
     <Form.Item
       name="ownerId"
-      label={I18n.t('administration.dimensions.import_modal.owner_select')}
-      rules={[{ message: I18n.t('administration.dimensions.import_modal.owner_input_validation') }]}
+      label={I18n.t('admin.dimensions_import_modal_owner_select')}
+      rules={[{ message: I18n.t('admin.dimensions_import_modal_owner_input_validation') }]}
     >
       <Select
         showSearch
-        placeholder={I18n.t('administration.dimensions.import_modal.owner_select')}
+        placeholder={I18n.t('admin.dimensions_import_modal_owner_select')}
         onSearch={(value) => {
           fetchClients(value)
         }}
@@ -287,7 +287,7 @@ const ImportModal = (props) => {
   )
 
   const renderChangeLog = () => (
-    <Form.Item label={I18n.t('administration.dimensions.import_modal.change_log_input')}>
+    <Form.Item label={I18n.t('admin.dimensions_import_modal_change_log_input')}>
       <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
         <Table
           columns={columns}
@@ -301,7 +301,7 @@ const ImportModal = (props) => {
 
   const renderErrors = () => (
     <Alert
-      message={I18n.t('administration.dimensions.import_modal.error')}
+      message={I18n.t('admin.dimensions_import_modal_error')}
       description={(
         <div>
           {errors.map((error, index) => (

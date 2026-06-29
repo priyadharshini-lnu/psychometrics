@@ -73,7 +73,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
           <>
             <Row style={{ marginTop: 30 }}>
               <Col span={5}>
-                <label>{I18n.t('administration.projects.mettl_schedule_records.assessment_id')}</label>
+                <label>{I18n.t('admin.projects_mettl_schedule_records_assessment_id')}</label>
               </Col>
               <Col span={18}>
                 <Form.Item
@@ -105,7 +105,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
             </Row>
             <Row>
               <Col span={5}>
-                <label>{I18n.t('administration.projects.mettl_schedule_records.schedule_name')}</label>
+                <label>{I18n.t('admin.projects_mettl_schedule_records_schedule_name')}</label>
               </Col>
               <Col span={18}>
                 <Form.Item
@@ -128,7 +128,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                 </Form.Item>
               </Col>
               <Col span={18}>
-                <label>{I18n.t('administration.projects.mettl_schedule_records.secure_browser_enabled')}</label>
+                <label>{I18n.t('admin.projects_mettl_schedule_records_secure_browser_enabled')}</label>
               </Col>
             </Row>
 
@@ -147,7 +147,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                 </Form.Item>
               </Col>
               <Col span={18}>
-                <label>{I18n.t('administration.projects.mettl_schedule_records.visual_proctoring_enabled')}</label>
+                <label>{I18n.t('admin.projects_mettl_schedule_records_visual_proctoring_enabled')}</label>
               </Col>
             </Row>
 
@@ -165,7 +165,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                     </Form.Item>
                   </Col>
                   <Col span={14}>
-                    {I18n.t('administration.projects.mettl_schedule_records.candidate_screen_capture')}
+                    {I18n.t('admin.projects_mettl_schedule_records_candidate_screen_capture')}
                   </Col>
                 </Row>
 
@@ -182,7 +182,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                     </Form.Item>
                   </Col>
                   <Col span={14}>
-                    {I18n.t('administration.projects.mettl_schedule_records.candidate_authorization')}
+                    {I18n.t('admin.projects_mettl_schedule_records_candidate_authorization')}
                   </Col>
                 </Row>
               </>
@@ -202,7 +202,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                 </Form.Item>
               </Col>
               <Col span={18}>
-                <label>{I18n.t('administration.projects.mettl_schedule_records.web_proctoring_enabled')}</label>
+                <label>{I18n.t('admin.projects_mettl_schedule_records_web_proctoring_enabled')}</label>
               </Col>
             </Row>
 
@@ -220,7 +220,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                     </Form.Item>
                   </Col>
                   <Col span={14}>
-                    {I18n.t('administration.projects.mettl_schedule_records.show_remaining_counts')}
+                    {I18n.t('admin.projects_mettl_schedule_records_show_remaining_counts')}
                   </Col>
                 </Row>
 
@@ -237,7 +237,7 @@ export const AddEditMettlScheduleRecordModal: React.FC<Props> = ({
                     </Form.Item>
                   </Col>
                   <Col span={14}>
-                    {I18n.t('administration.projects.mettl_schedule_records.count')}
+                    {I18n.t('admin.projects_mettl_schedule_records_count')}
                   </Col>
                 </Row>
               </>

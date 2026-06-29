@@ -41,7 +41,7 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
     <ResourceFormModal
       resourceName="interview_questions"
       resource={interviewQuestion}
-      readableResourceName={I18n.t('administration.interview_questions.form.title')}
+      readableResourceName={I18n.t('admin.interview_questions_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -59,7 +59,7 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
         <>
           <Form.Item
             name="question"
-            label={I18n.t('administration.interview_questions.form.question')}
+            label={I18n.t('admin.interview_questions_form_question')}
             rules={[
               {
                 required: true,
@@ -70,7 +70,7 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('administration.interview_questions.form.description')}
+            label={I18n.t('shared.description')}
             rules={[
               {
                 required: true,
@@ -81,7 +81,7 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
           </Form.Item>
           <Form.Item
             name="questionType"
-            label={I18n.t('administration.interview_questions.form.question_type')}
+            label={I18n.t('admin.interview_questions_form_question_type')}
             rules={[
               {
                 required: true,
@@ -89,13 +89,13 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
             ]}
           >
             <Radio.Group>
-              <Radio value="audio">{I18n.t('administration.interview_questions.form.question_type_audio')}</Radio>
-              <Radio value="video">{I18n.t('administration.interview_questions.form.question_type_video')}</Radio>
+              <Radio value="audio">{I18n.t('admin.interview_questions_form_question_type_audio')}</Radio>
+              <Radio value="video">{I18n.t('admin.interview_questions_form_question_type_video')}</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
             name="timeLimit"
-            label={I18n.t('administration.interview_questions.form.time_limit')}
+            label={I18n.t('admin.interview_questions_form_time_limit')}
             rules={[
               {
                 required: true,
@@ -110,7 +110,7 @@ export const FormModal: React.FC<Props> = ({ close, interviewQuestion }) => {
             valuePropName="checked"
           >
             <Checkbox>
-              {I18n.t('administration.interview_questions.form.mandatory')}
+              {I18n.t('admin.interview_questions_form_mandatory')}
             </Checkbox>
           </Form.Item>
         </>

@@ -74,7 +74,7 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
       apiConfig: {},
       responseType: IntroMessageTR,
     }).then(() => {
-      message.success(I18n.t('administration.idp.intro_message_success'))
+      message.success(I18n.t('admin.idp_intro_message_success'))
       fetch()
     })
   }
@@ -103,7 +103,7 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
             <div className="display-flex justify-content-space-between mt8">
               <Form.Item
                 name="locale"
-                label={I18n.t('administration.idp.locales')}
+                label={I18n.t('admin.idp_locales')}
                 initialValue="en"
               >
                 <Select
@@ -142,7 +142,7 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
                         fontWeight: 600,
                       }}
                       >
-                        {I18n.t('administration.idp.reference_locale')}
+                        {I18n.t('admin.idp_reference_locale')}
                       </Typography.Text>
                       <Select
                         style={{ width: 150 }}
@@ -193,7 +193,7 @@ export const IntroMessageForm: FC<Props> = ({ idp, fetch }) => {
           type="primary"
           onClick={handleSubmit}
         >
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>
       </Space>
     </Form>

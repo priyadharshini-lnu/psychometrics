@@ -22,12 +22,12 @@ export const WorkshopList: React.FC = () => {
   const tabItems = [
     {
       key: 'campaigns',
-      label: I18n.t('admin.assessment_center_campaigns_tab'),
+      label: I18n.t('admin.campaigns_tab'),
       children: <CampaignsList />,
     },
     {
       key: 'participants',
-      label: I18n.t('admin.assessment_center_participants_tab'),
+      label: I18n.t('admin.participants_tab'),
       children: <ParticipantsList />,
     },
   ]

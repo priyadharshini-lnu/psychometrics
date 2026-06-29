@@ -219,6 +219,138 @@ RSpec.describe SystemCheckSessions::GetSystemCheckStatus do
       end
     end
 
+    context 'when video is required and face_detection_enabled' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: true, face_detection_enabled: true, minimum_face_detection_ratio: 85 },
+          audio: { required: false }
+        }
+      end
+
+      before do
+        allow_any_instance_of(Campaign).to receive(:face_detection_enabled?).and_return(true)
+        allow_any_instance_of(Campaign).to receive(:minimum_face_detection_ratio).and_return(85)
+        allow_any_instance_of(Campaign).to receive(:phrase_verification_enabled?).and_return(false)
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
+      end
+
+      context 'when face_detection_ratio meets the minimum' do
+        before do
+          create(:system_check_record, :video, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'face_detection_ratio' => 0.9 })
+        end
+
+        it 'returns is_valid true' do
+          expect(call_result[:is_valid]).to be true
+        end
+      end
+
+      context 'when face_detection_ratio is below the minimum' do
+        before do
+          create(:system_check_record, :video, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'face_detection_ratio' => 0.7 })
+        end
+
+        it 'returns is_valid false' do
+          expect(call_result[:is_valid]).to be false
+        end
+      end
+    end
+
+    context 'when video is required and phrase_verification_enabled' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: true, face_detection_enabled: false, phrase_verification_enabled: true },
+          audio: { required: false }
+        }
+      end
+
+      before do
+        allow_any_instance_of(Campaign).to receive(:face_detection_enabled?).and_return(false)
+        allow_any_instance_of(Campaign).to receive(:phrase_verification_enabled?).and_return(true)
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
+      end
+
+      context 'when phrase_matched is true' do
+        before do
+          create(:system_check_record, :video, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'phrase_matched' => true })
+        end
+
+        it 'returns is_valid true' do
+          expect(call_result[:is_valid]).to be true
+        end
+      end
+
+      context 'when phrase_matched is false' do
+        before do
+          create(:system_check_record, :video, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'phrase_matched' => false })
+        end
+
+        it 'returns is_valid false' do
+          expect(call_result[:is_valid]).to be false
+        end
+      end
+    end
+
+    context 'when audio is required and phrase_verification_enabled' do
+      let(:requirements) do
+        {
+          browser: { required: true },
+          network: { required: true, minimum_download_speed: 10, minimum_upload_speed: 5 },
+          video: { required: false },
+          audio: { required: true, phrase_verification_enabled: true }
+        }
+      end
+
+      before do
+        allow_any_instance_of(Campaign).to receive(:phrase_verification_enabled?).and_return(true)
+        create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
+        create(:system_check_record, :network, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'download_speed_mbps' => 15, 'upload_speed_mbps' => 10 })
+      end
+
+      context 'when phrase_matched is true' do
+        before do
+          create(:system_check_record, :audio, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'phrase_matched' => true })
+        end
+
+        it 'returns is_valid true' do
+          expect(call_result[:is_valid]).to be true
+        end
+      end
+
+      context 'when phrase_matched is false' do
+        before do
+          create(:system_check_record, :audio, system_check_session: system_check_session,
+                                               passed: true,
+                                               data: { 'phrase_matched' => false })
+        end
+
+        it 'returns is_valid false' do
+          expect(call_result[:is_valid]).to be false
+        end
+      end
+    end
+
     it 'always returns requirements' do
       expect(call_result[:requirements]).to eq(requirements)
     end

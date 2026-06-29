@@ -27,8 +27,8 @@ export const Users = () => {
   }
 
   const menuItems = [
-    { key: 'participants', label: I18n.t('administration.breadcrumbs.participants') },
-    { key: 'assessors', label: I18n.t('administration.breadcrumbs.assessors') },
+    { key: 'participants', label: I18n.t('admin.participants') },
+    { key: 'assessors', label: I18n.t('admin.assessors') },
   ]
 
   return (

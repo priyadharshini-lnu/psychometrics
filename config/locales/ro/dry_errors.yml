@@ -16,7 +16,7 @@ ro:
         assessment_exists: Setarea de aprobare a punctajului AI pentru această evaluare există deja.
         validates_admins: Administratorii nu au acces la campanie.
       already_assigned?: Nu se poate lega această evaluare - este deja atribuită la '%{linked_assessor_form_name}'.
-      already_invited: Acest utilizator există deja în centrul de evaluare pe care încercați să-l adăugați.
+      already_exists: Centrul de evaluare pe care încercați să îl adăugați există deja.
       assessor_assessment:
         already_added: Evaluarea evaluatorului a fost deja adăugată la campanie.
         lead_already_added: O singură evaluare a evaluatorului principal poate fi adăugată la campanie.

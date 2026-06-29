@@ -23,6 +23,9 @@ const EXPORT_RAW_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_RAW_FACTOR_RE
 const EXPORT_AI_FACTOR_SCORES = 'campaigns/userAssessments/EXPORT_AI_FACTOR_RESULTS'
 const EXPORT_EXTERNAL_RESULTS = 'campaigns/userAssessments/EXPORT_EXTERNAL_RESULTS'
 const EXPORT_OCCUPATIONS = 'campaigns/assessments/EXPORT_OCCUPATIONS'
+
+export const BULK_EXPORT_RAW_FACTOR_SCORES = 'campaigns/assessments/BULK_EXPORT_RAW_FACTOR_SCORES'
+export const BULK_EXPORT_NORM_FACTOR_SCORES = 'campaigns/assessments/BULK_EXPORT_NORM_FACTOR_SCORES'
 export const TOGGLE_REQUIRE_SCHEDULE = 'campaigns/assessments/TOGGLE_REQUIRE_SCHEDULE'
 export const TOGGLE_AUTO_ASSIGN = 'campaigns/assessments/TOGGLE_AUTO_ASSIGN'
 
@@ -364,6 +367,42 @@ export const exportOccupations = (campaignId: number, assessmentId: number) => (
   request: {
     method: 'post',
     url: `/administration/new_campaigns/${campaignId}/assessments/${assessmentId}/export_occupations`,
+    loader: true,
+  },
+})
+
+export const bulkExportRawFactorScores = (
+  campaignId: number,
+  body: {
+    assessmentIds: number[]
+    startDate: Date
+    endDate: Date
+    includeInactiveUsers?: boolean
+  },
+) => ({
+  type: BULK_EXPORT_RAW_FACTOR_SCORES,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/bulk_export_raw_factor_scores`,
+    body,
+    loader: true,
+  },
+})
+
+export const bulkExportNormFactorScores = (
+  campaignId: number,
+  body: {
+    assessmentIds: number[]
+    startDate: Date
+    endDate: Date
+    includeInactiveUsers?: boolean
+  },
+) => ({
+  type: BULK_EXPORT_NORM_FACTOR_SCORES,
+  request: {
+    method: 'post',
+    url: `/administration/new_campaigns/${campaignId}/assessments/bulk_export_norm_factor_scores`,
+    body,
     loader: true,
   },
 })

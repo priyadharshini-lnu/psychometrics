@@ -36,15 +36,15 @@ export const FactorsFilter: FC<Props> = ({
   return (
     <Resource.Filter
       name="filterable_fields"
-      placeholder={I18n.t('common.actions.search')}
+      placeholder={I18n.t('shared.search')}
     >
       <Button type="primary" disabled={tableLoading} onClick={handleCreateFactorsModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
       <Button disabled={tableLoading} onClick={importFactorsModal}>
         <ImportOutlined />
-        {I18n.t('administration.dimensions.import_factors.title')}
+        {I18n.t('admin.dimensions_import_factors_title')}
       </Button>
       <Button disabled={tableLoading} onClick={handleTranslationsModal}>
         <TranslationOutlined />

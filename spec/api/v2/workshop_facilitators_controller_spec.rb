@@ -5,9 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::WorkshopFacilitatorsController, type: :request do
   let!(:assessment) { create(:assessment, category: 'psychometric') }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /workshop_facilitators/search_managers' do
@@ -43,7 +40,7 @@ RSpec.describe Api::V2::Administration::WorkshopFacilitatorsController, type: :r
             campaign_id: campaign.id,
             search_term: search_term
           },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -87,7 +84,7 @@ RSpec.describe Api::V2::Administration::WorkshopFacilitatorsController, type: :r
             end_date_time: end_date_time,
             search_term: search_term
           },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']

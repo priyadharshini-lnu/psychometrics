@@ -74,7 +74,7 @@ export const MainReportComponent: FC<Props> = ({ userReport, reportId, fetchRepo
         ? <Skeleton key="skeleton" active /> : (
           <>
             <Button onClick={fetch} icon={<ReloadOutlined />}>
-              {I18n.t('administration.assessor.moderate_score.refresh')}
+              {I18n.t('admin.refresh')}
             </Button>
             <div ref={containerRef} className={styles.reportOuter} style={{ height: reportSize.height || 'auto' }}>
               <div ref={reportRef} className={styles.reportInner} style={{ transform: `scale(${scale})` }}>

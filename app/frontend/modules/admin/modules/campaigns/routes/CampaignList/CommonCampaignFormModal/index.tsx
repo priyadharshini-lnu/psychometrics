@@ -31,8 +31,8 @@ const format = 'YYYY-MM-DD HH:mm'
 const disabledDate = current => current && current < dayjs().startOf('day')
 
 const notices = {
-  active: I18n.t('administration.campaigns.form.active_notice'),
-  inactive: I18n.t('administration.campaigns.form.inactive_notice'),
+  active: I18n.t('admin.campaigns_form_active_notice'),
+  inactive: I18n.t('admin.campaigns_form_inactive_notice'),
 }
 
 const MAX_TAG_BATCH_SIZE = 100
@@ -85,7 +85,7 @@ const CommonCampaignFormModal: React.FC<Props> = ({
   return (
     <ResourceFormModal
       resourceName="campaign"
-      readableResourceName={I18n.t('administration.campaigns.form.campaign')}
+      readableResourceName={I18n.t('admin.campaigns_form_campaign')}
       resourceBaseUrl={`/administration/projects/${projectId}/new_campaigns`}
       resource={campaign}
       showSuccessMessages
@@ -101,52 +101,52 @@ const CommonCampaignFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.campaigns.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="common_campaign_name" />
           </Form.Item>
           <Form.Item
             name="status"
-            label={I18n.t('administration.campaigns.form.status')}
+            label={I18n.t('shared.status')}
             required
           >
             <Select>
               {_.map(STATUSES, (status: string) => (
                 <Option key={status} value={status}>
-                  {I18n.t(`administration.campaigns.filters.${status}`)}
+                  {I18n.t(`admin.campaigns_filters_${status}`)}
                 </Option>
               ))}
             </Select>
           </Form.Item>
           <Form.Item
             name="startDate"
-            label={I18n.t('administration.dates.start')}
+            label={I18n.t('admin.dates_start')}
           >
             <DatePicker showTime format={format} disabledDate={disabledDate} />
           </Form.Item>
           <Form.Item
             name="endDate"
-            label={I18n.t('administration.dates.end')}
+            label={I18n.t('admin.dates_end')}
           >
             <DatePicker showTime format={format} disabledDate={disabledDate} />
           </Form.Item>
           <Form.Item
             name="practiceCampaign"
             valuePropName="checked"
-            label={I18n.t('administration.campaigns.form.practice_campaign')}
+            label={I18n.t('admin.campaigns_form_practice_campaign')}
             extra={isEdit ? I18n.t('admin.only_editable_on_create') : ''}
           >
             <Switch disabled={isEdit} />
           </Form.Item>
           <Form.Item
             name="tagList"
-            label={I18n.t('common.column.tags')}
+            label={I18n.t('shared.tags')}
           >
             <Select
               mode="tags"
               style={{ width: '100%' }}
-              placeholder={I18n.t('common.column.tags')}
+              placeholder={I18n.t('shared.tags')}
               showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
               notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >

@@ -46,6 +46,8 @@ import { Schema as userIdpPlanSchema } from '~/modules/admin/modules/campaigns/c
 import { Schema as AiArtifactsSchema } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 import { Schema as factorsSchema } from '~/modules/admin/modules/campaigns/core/factors'
 import { Schema as blocksSchema } from '~/modules/admin/modules/QuestionCenter/core/blocks'
+import { Schema as applicationsSchema } from '~/modules/admin/modules/client/core/applications'
+import { Schema as publicKeysSchema } from '~/modules/admin/modules/client/core/publicKeys'
 
 export const Schema = {
   clients: clientSchema,
@@ -91,4 +93,6 @@ export const Schema = {
   factors: factorsSchema,
   questions: questionSchema,
   blocks: blocksSchema,
+  applications: applicationsSchema,
+  public_keys: publicKeysSchema,
 }

@@ -5,7 +5,8 @@ module Assessments
     class ImportForm < Rectify::Form
       mimic :assessment_question_import_form
 
-      ALLOWED_HEADERS = ['Block', 'Question', 'Question Property', 'Required Validation', 'Scoring'].freeze
+      ALLOWED_HEADERS = ['Block', 'Question', 'Question Property', 'Required Validation', 'Scoring',
+                         'AI Scoring Config'].freeze
 
       attribute :file, Object
       attribute :roo_excel, Object
@@ -90,10 +91,13 @@ module Assessments
           'Question' => %w[ID Name Type],
           'Question Property' => [
             'type', 'questionText', 'answersType', 'choicesTexts', 'scalePointsTexts', 'randomization.type',
-            'randomization.questions', 'notApplicable', 'notApplicableLabel'
+            'randomization.questions', 'notApplicable', 'notApplicableLabel',
+            'duration', 'maxTakes', 'scoreWithAIEnabled', 'enableTranscription',
+            'aiScoringModelAnswer', 'aiScoringKeywords'
           ],
           'Required Validation' => %w[Type],
-          'Scoring' => %w[Factors]
+          'Scoring' => %w[Factors],
+          'AI Scoring Config' => %w[what_to_look_for score_definitions]
         }
       end
 

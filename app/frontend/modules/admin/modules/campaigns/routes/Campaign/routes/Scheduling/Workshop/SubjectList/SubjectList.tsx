@@ -158,7 +158,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
             type="primary"
             onClick={() => setOpenForm(true)}
           >
-            {I18n.t('administration.scheduling.schedule_assessments')}
+            {I18n.t('admin.scheduling_schedule_assessments')}
           </Button>
         )}
         <Button
@@ -167,7 +167,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           onClick={() => setOpenSubjectForm(true)}
         >
           <PlusOutlined />
-          {I18n.t('administration.scheduling.add_subject')}
+          {I18n.t('admin.scheduling_add_subject')}
         </Button>
 
       </Resource.Filter>
@@ -186,7 +186,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
                   )}
                 />
               )}
-              {I18n.t('administration.scheduling.id')}
+              {I18n.t('shared.id')}
             </Space>
           )}
           id="id"
@@ -205,7 +205,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           )}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.columns.participants')}
+          title={I18n.t('admin.scheduling_columns_participants')}
           id="full_name"
           width="40%"
           render={({ user, id, campaignAssessmentGroupId }, record) => {
@@ -233,43 +233,43 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
           }}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.columns.prework')}
+          title={I18n.t('admin.scheduling_columns_prework')}
           id="preworks"
           minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.columns.activity')}
+          title={I18n.t('admin.scheduling_columns_activity')}
           id="workshopActivities"
           minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.columns.attendance')}
+          title={I18n.t('admin.scheduling_columns_attendance')}
           id="attended"
           render={subject => <ActiveSwitch subject={subject} />}
           minWidth={100}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.attendance_status.column_name')}
+          title={I18n.t('admin.scheduling_attendance_status_column_name')}
           id="attendanceStatus"
           render={(_, { attendanceStatus }) => (
             <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
-              {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+              {I18n.t(`admin.scheduling_attendance_status_${attendanceStatus}`)}
             </Tag>
           )}
           minWidth={150}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('administration.scheduling.columns.scheduling_status')}
+          title={I18n.t('admin.scheduling_columns_scheduling_status')}
           id="scheduling_status"
           render={(_, { schedulingStatus }) => (
             <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
-              {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
+              {I18n.t(`admin.scheduling_scheduling_statuses_${schedulingStatus}`)}
             </Tag>
           )}
           minWidth={150}
         />
         <Resource.Column<WorkshopSubject>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="actions"
           key="actions"
           render={subject => (
@@ -316,14 +316,14 @@ const getActionsMenuProps = ({
   const { resource } = useResourceContext<WorkshopSubject, BaseMeta & { permission: { remove: boolean } }>()
   const handleMarkCancel = () => {
     modal.confirm({
-      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      title: I18n.t('admin.scheduling_subjects_confirm_title'),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       width: 650,
       content: (
         <SafeHTML
           html={
-            I18n.t('administration.scheduling.subjects.confirm_message', { subject_email: subject?.user?.email })
+            I18n.t('admin.scheduling_subjects_confirm_message', { subject_email: subject?.user?.email })
           }
         />
       ),
@@ -336,7 +336,7 @@ const getActionsMenuProps = ({
           updateStore: true,
         }).then(() => {
           message.success(
-            I18n.t('administration.scheduling.subjects.mark_cancel_success', { subject_email: subject?.user?.email }),
+            I18n.t('admin.scheduling_subjects_mark_cancel_success', { subject_email: subject?.user?.email }),
           )
         }).catch(() => {
           message.error(I18n.t('common.errors.something_wrong'))
@@ -347,14 +347,14 @@ const getActionsMenuProps = ({
 
   const handleReEnroll = () => {
     modal.confirm({
-      title: I18n.t('administration.scheduling.subjects.confirm_title'),
+      title: I18n.t('admin.scheduling_subjects_confirm_title'),
       okText: I18n.t('common.text.ok'),
       cancelText: I18n.t('common.text.cancel'),
       width: 650,
       content: (
         <SafeHTML
           html={
-            I18n.t('administration.scheduling.subjects.re_enroll_confirm_message',
+            I18n.t('admin.scheduling_subjects_re_enroll_confirm_message',
               { subject_email: subject?.user?.email })
           }
         />
@@ -368,7 +368,7 @@ const getActionsMenuProps = ({
           updateStore: true,
         }).then(() => {
           message.success(
-            I18n.t('administration.scheduling.subjects.re_enroll_success', { subject_email: subject?.user?.email }),
+            I18n.t('admin.scheduling_subjects_re_enroll_success', { subject_email: subject?.user?.email }),
           )
         }).catch((errors) => {
           message.error(errors?.base[0]?.title || I18n.t('common.errors.something_wrong'))
@@ -386,7 +386,7 @@ const getActionsMenuProps = ({
     label: (
       <>
         <Button type="link" onClick={handleMarkCancel} className="ps-0">
-          {I18n.t('administration.scheduling.subjects.mark_cancel')}
+          {I18n.t('admin.scheduling_subjects_mark_cancel')}
         </Button>
       </>
     ),
@@ -398,7 +398,7 @@ const getActionsMenuProps = ({
     label: (
       <>
         <Button type="link" onClick={handleReEnroll} className="ps-0">
-          {I18n.t('administration.scheduling.subjects.re_enroll')}
+          {I18n.t('admin.scheduling_subjects_re_enroll')}
         </Button>
       </>
     ),
@@ -413,7 +413,7 @@ const getActionsMenuProps = ({
         target="_blank"
         className="ps-0 color-primary"
       >
-        {I18n.t('administration.administrators.list.actions.login')}
+        {I18n.t('admin.login')}
       </Button>
     ),
   })

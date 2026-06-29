@@ -36,6 +36,8 @@ fr:
     browser_not_compatible: La version de votre navigateur %{browser_name} n'est pas compatible avec cette campagne. Pour une expérience optimale, veuillez utiliser les dernières versions de Chrome, Firefox, Safari ou Edge.
     browser_not_compatible_description: Pour une expérience optimale, utilisez les dernières versions de Chrome, Firefox, Safari ou Edge.
     browser_not_compatible_detail: La version de votre navigateur %{browser_name} n'est pas compatible avec cette campagne. Pour une expérience optimale, veuillez utiliser les dernières versions de Chrome, Firefox, Safari ou Edge.
+    browser_proctoring_description: Vous utilisez le navigateur %{browser_name}, qui peut présenter certaines limitations concernant les fonctionnalités de surveillance activées pour cette campagne. Pour une expérience optimale, nous vous recommandons d'utiliser Chrome ou Edge.
+    browser_proctoring_title: "%{browser_name} Navigateur détecté"
     browser_version_fix_description_first: 'Utilisez un navigateur pris en charge : Chrome, Firefox, Edge ou Safari'
     browser_version_fix_title: La version de votre navigateur n'est pas prise en charge.
     camera: Vidéo et audio
@@ -43,6 +45,7 @@ fr:
     camera_check: Test de la caméra et du microphone
     camera_check_abruptly_ended: La caméra s'est éteinte brusquement. Veuillez activer votre caméra et relancer la vérification.
     camera_check_description: Vérifiez que votre caméra et votre microphone fonctionnent correctement pour l'enregistrement
+    camera_check_failed: Échec de la vérification vidéo
     camera_check_passed: Le test vidéo et audio s'est déroulé avec succès
     camera_check_record_instruction: Cliquez sur « Enregistrer » et lisez le passage suivant à haute voix
     camera_test_step: Étape de test vidéo et audio
@@ -69,6 +72,9 @@ fr:
     error_uploading_audio_detail: Une erreur s'est produite lors du téléchargement de votre fichier audio
     error_uploading_video: Erreur lors du téléchargement de la vidéo
     error_uploading_video_detail: Une erreur s'est produite lors du téléchargement de la vidéo
+    face_detection_error: Une erreur s'est produite lors de la détection des visages. Vérifiez que votre caméra fonctionne correctement, puis réessayez.
+    face_detection_failed: Aucun visage n'a été détecté dans l'enregistrement vidéo. Veuillez vous assurer que votre caméra n'est pas obstruée et que votre visage est bien visible.
+    face_not_detected_warning: Aucun visage détecté. Veuillez vous assurer que votre visage est bien visible par la caméra.
     fail: Échec
     file_submission_already_exists: Nous avons déjà reçu votre réponse à cette question. Veuillez actualiser la page et, si vous ne voyez toujours pas votre réponse précédente, veuillez contacter votre administrateur.
     follow_these_steps: Suivez ces étapes pour résoudre les problèmes détectés lors de la vérification du système
@@ -162,6 +168,8 @@ fr:
     select_video_device: Sélectionner un périphérique vidéo
     selected_count: Sélectionné
     skill_type: Type de compétence
+    speech_verification_error: Une erreur s'est produite lors de la vérification de votre discours. Veuillez réessayer.
+    speech_verification_failed: Ce que vous avez dit ne correspond pas à la phrase de test. Veuillez réessayer et prononcer la phrase clairement.
     start_campaign_message_proctored: Il s’agit d’une campagne surveillée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_campaign_message_timed: Il s’agit d’une campagne chronométrée, veuillez cliquer sur le bouton « %{buttonText} » pour lancer les activités.
     start_readiness_check: Lancer la vérification de l'état de préparation
@@ -186,10 +194,12 @@ fr:
       one: Je crie, tu cries, nous crions tous pour de la glace !
       seven: Chaque jour est un nouveau départ. Dites-le haut et fort !
       six: Pizza ou pâtes ? les décisions sont difficiles à prendre.
+      ten: Je suis prêt. Il s'agit d'un enregistrement test destiné à vérifier que mon micro fonctionne correctement.
       three: Test, un deux trois, le son est clair comme de l'eau de roche !
       two: Le renard brun et rapide saute par-dessus le chien paresseux.
     system_check_audio_title: Veuillez prononcer et répéter la phrase suivante trois fois.
     system_check_complete: Vérification du système terminée
+    system_check_face_detection: Détection des visages
     system_check_failed: Échec de la vérification du système
     system_check_failed_description: Veuillez résoudre ces problèmes, puis relancer les vérifications du système.
     system_check_failed_message: Certaines vérifications du système ont échoué. Veuillez consulter les détails et réessayer.
@@ -200,6 +210,7 @@ fr:
     system_check_retake: Non, je veux repasser
     system_check_run_again: Recommencer
     system_check_session_not_found: La session de vérification du système est introuvable. Veuillez lancer une nouvelle vérification du système.
+    system_check_speech_verification: Vérification de la voix
     system_check_start_recording: Démarrer l'enregistrement
     system_check_stop_recording: Arrêter l'enregistrement
     system_check_test_message: c'est un plaisir de parler avec vous
@@ -257,6 +268,10 @@ fr:
     video_overlay_label: Sélectionnez votre microphone et votre caméra, cliquez sur « Enregistrer », puis lisez le message suivant une fois que vous avez cliqué sur le bouton « Enregistrer »
     video_overlay_message: Choisissez votre microphone et votre caméra, cliquez sur « Enregistrer », puis lisez à voix haute la phrase qui s'affiche en bas de l'écran.
     video_recorder_label: Enregistreur vidéo
+    video_upload_failed_camera_access: Impossible d'accéder à votre caméra ou à votre microphone. Veuillez vérifier les autorisations de votre appareil, puis réessayez.
+    video_upload_failed_chunk_upload: Une partie de l'enregistrement n'a pas pu être mise en ligne. Veuillez vérifier votre connexion Internet et réessayer.
+    video_upload_failed_finalize: L'enregistrement a été capturé, mais n'a pas pu être sauvegardé. Veuillez réessayer.
+    video_upload_failed_no_recording: Aucun enregistrement n'a été trouvé à mettre en ligne. Veuillez réenregistrer.
     view_details: Voir les détails
     webgl_api_fix_description_first: Assurez-vous que votre navigateur prend en charge WebGL et que cette fonctionnalité est activée dans les paramètres
     webgl_api_fix_description_second: Mettez à jour vos pilotes graphiques vers la dernière version

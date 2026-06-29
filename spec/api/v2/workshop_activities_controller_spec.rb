@@ -10,9 +10,6 @@ RSpec.describe Api::V2::Administration::WorkshopActivitiesController, type: :req
   let(:workshop_id) { workshop.id }
   let!(:subject) { create(:workshop_subject, workshop: workshop) }
   let!(:assessor) { create(:assessor, campaign: campaign) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     completed = create(:user_assessment, campaign: campaign, subject: subject.user,
                        status: 2, evaluator: assessor.user)
@@ -33,7 +30,7 @@ RSpec.describe Api::V2::Administration::WorkshopActivitiesController, type: :req
   describe 'GET /campaigns/:campaign_id/workshops/:workshop_id/workshop_activities' do
     it 'fetches campaign Workshop Activity list' do
       get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_activities",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       activity_response = JSON.parse(response.body)['data'].first
       expect(activity_response).to have_relationship(:subject).

@@ -62,6 +62,8 @@ module Api
                  Campaign.find_by(id: campaign_id)&.client
                end
 
+      raise Geo::Exceptions::ClientNotFound unless client
+
       client.check_geo_restriction!
     end
   end

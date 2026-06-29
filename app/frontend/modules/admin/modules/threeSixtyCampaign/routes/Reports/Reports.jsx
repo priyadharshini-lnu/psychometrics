@@ -33,11 +33,11 @@ export default function Reports () {
           items={[
             {
               key: 'options',
-              label: I18n.t('administration.threesixty_campaigns.menu.report.menu.report_options.title'),
+              label: I18n.t('admin.threesixty_campaigns_menu_report_menu_report_options_title'),
             },
             {
               key: 'report_approval',
-              label: I18n.t('administration.threesixty_campaigns.menu.report.menu.report_approval.title'),
+              label: I18n.t('admin.threesixty_campaigns_menu_report_menu_report_approval_title'),
             },
           ]}
         />

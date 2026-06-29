@@ -16,13 +16,17 @@ module UserAssessments
       return broadcast :ok, true if campaign_assessment.nil? || campaign_assessment_group.nil?
 
       if campaign_assessment_group.previous_group_required? && campaign_assessment_group.position > 1
-        previous_group = CampaignAssessmentGroup.find_by(
-          campaign_id: campaign_id, position: campaign_assessment_group.position - 1
-        )
-        previous_group_assessment_ids = previous_group.campaign_assessments.pluck(:assessment_id)
-        previous_group_deemed_completed = !UserAssessment.self_assessment.deemed_incomplete.exists?(
-          campaign_id: campaign_id, subject_id: user_assessment.subject_id, assessment_id: previous_group_assessment_ids
-        )
+        previous_group_assessment_ids = CampaignAssessment.joins(:campaign_assessment_group).where(
+          campaign_id: campaign_id,
+          campaign_assessment_groups: { position: campaign_assessment_group.position - 1 }
+        ).pluck(:assessment_id)
+
+        previous_group_deemed_completed = previous_group_assessment_ids.empty? ||
+                                          !UserAssessment.self_assessment.deemed_incomplete.exists?(
+                                            campaign_id: campaign_id,
+                                            subject_id: user_assessment.subject_id,
+                                            assessment_id: previous_group_assessment_ids
+                                          )
       else
         previous_group_deemed_completed = true
       end

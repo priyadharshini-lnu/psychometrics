@@ -60,12 +60,12 @@ export default function ReportsLanguageSelectionModal ({
   return (
     <Modal
       width={768}
-      title={isDownload ? I18n.t('administration.reports_language_selection_modal.download')
-        : I18n.t('administration.reports_language_selection_modal.generate')}
+      title={isDownload ? I18n.t('admin.reports_language_selection_modal_download')
+        : I18n.t('admin.reports_language_selection_modal_generate')}
       open
       onCancel={close}
       footer={[
-        <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
+        <Button key="back" onClick={close}>{I18n.t('shared.cancel')}</Button>,
         <Button
           type="primary"
           key="submit"
@@ -74,12 +74,12 @@ export default function ReportsLanguageSelectionModal ({
           }}
           icon={isDownload ? <DownloadOutlined /> : <ThunderboltOutlined />}
         >
-          {isDownload ? I18n.t('user_reports.actions.download') : I18n.t('user_reports.actions.generate')}
+          {isDownload ? I18n.t('shared.download') : I18n.t('shared.generate')}
         </Button>,
       ]}
     >
       <Paragraph style={{ color: constants.DARK_GREY }} className="mb-4">
-        {I18n.t('administration.campaign_report.generate.modal.subtitle')}
+        {I18n.t('admin.campaign_report_generate_modal_subtitle')}
       </Paragraph>
       <Form
         name="basic"

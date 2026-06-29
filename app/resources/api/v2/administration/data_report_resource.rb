@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DataReportResource < Api::V2::Administration::BaseResource
-  attributes :name, :configuration, :updated_at
+  attributes :name, :configuration, :report_type, :scope, :updated_at
 
   has_one :owner, class_name: 'Client'
   has_one :last_updated_by, class_name: 'User'
 
-  ransack_filters %i[filterable_fields owner_id_eq]
+  ransack_filters %i[filterable_fields owner_id_eq scope_eq]
 
   def self.creatable_fields(_)
     super - %i[updated_at]

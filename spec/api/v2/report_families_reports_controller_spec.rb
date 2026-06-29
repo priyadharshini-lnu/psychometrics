@@ -6,9 +6,6 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
   let!(:superadmin) { create(:superadmin) }
   let(:report_family) { create(:report_family, name: 'bundle name') }
   let(:report_families_report) { create(:report_families_report, report_family:, report: create(:report)) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /report_families/:report_family_id/report_families_reports' do
@@ -18,7 +15,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
 
     it 'fetches report family report list' do
       get "/api/v2/administration/report_families/#{report_family.id}/report_families_reports/",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -51,7 +48,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
 
       post "/api/v2/administration/report_families/#{report_family.id}/report_families_reports",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       parsed_response = JSON.parse(response.body)['data']
@@ -91,7 +88,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
 
       post "/api/v2/administration/report_families/#{report_family.id}/report_families_reports/",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:unprocessable_entity)
       errors = JSON.parse(response.body)['errors']
@@ -103,7 +100,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
     it 'deletes a report families report' do
       delete "/api/v2/administration/report_families/#{report_family.id}/" \
              "report_families_reports/#{report_families_report.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')

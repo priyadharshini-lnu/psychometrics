@@ -2,17 +2,6 @@
 ja:
   administration:
     actions: 行動
-    active_record_audits:
-      action: アクション
-      audit_id: 監査ID
-      auditable_id: レコードID
-      auditable_type: レコードの種類
-      audited_changes: 監査による変更
-      new_diff:
-        parse_error: 新しい変更を含むJSONの解析に失敗しました。
-      old_diff:
-        parse_error: 古い変更を含むJSONの解析に失敗しました。
-      title: 監査による変更
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ ja:
           design: デザイン
           or: あるいは
     administrators:
-      drawers:
-        edit:
-          first_name_required: 姓は必須
-          last_name_required: 姓は必須
-        view:
-          first_name: 名前
-          last_name: 姓
-          title:
-            campaign_admin: キャンペーン管理者
-            client_admin: クライアント管理者
-            project_admin: プロジェクト管理者
       list:
         actions:
-          api_keys: APIキー
-          edit: 編集
-          export_admins_with_permissions: 管理者の役割と権限のエクスポート
-          export_success: 管理者エクスポートジョブは正常にスケジュールされました。 ステータスについては通知を確認してください。
-          login: ログイン
           spoof:
             login_successful: ログインに成功しました。
-          user_report_events: レポート 承認ログ
-        columns:
-          email: 電子メール
-      modals:
-        delete:
-          cancelText: キャンセル
-          okText: オッケー
-          title: 確認
-    ai_artifacts:
-      artifact_results: アーティファクトの結果
-      code: コード
-      export:
-        success_msg: 進行中のAIアーティファクトのエクスポート。通知の状況を確認してください。
-      export_ai_artifacts: AIアーティファクトのエクスポート
-      form:
-        add_assessment: 評価の追加
-        ai_assistant: AIアシスタント
-        assessments: 評価
-        campaign_factors: キャンペーン要因
-        configuration: 構成
-        datasheet: データシート
-        datasheet_columns: データシートの列
-        include_all_datasheet_columns: すべてのデータシート列を含める
-        no_assessment_selected: 評価はまだ追加されていません。「追加」をクリックして開始します。
-        questions_required: 少なくとも 1 つの質問を選択する必要があります
-        select_ai_assistant: AIアシスタントを選択
-        select_assessment: 評価の選択
-        select_campaign_factors: キャンペーンファクターの選択
-        select_datasheet_columns: データシートの列の選択
-        select_questions: 質問を選択
-        title: AIアーティファクト
-      generate: 生成する
-      generate_result_info_message: 結果が生成されていますので、ページを更新して更新された結果を確認してください。
-      generated_at_time: "%{time}で生成"
-      generated_value: 生成された価値
-      id: 身分証明書
-      import:
-        download_example_csv: サンプルCSVをダウンロード
-        info_msg: アップロードされたファイルはインポート待ちに入っています。通知の状況を確認してください。
-      import_action:
-        title: キャンペーンAIアーティファクトのインポート
-      import_ai_artifacts: AIアーティファクトのインポート
-      key: 鍵
-      name: 名前
-      parsed_dependencies:
-        help: 成果物結果の生成に AI アシスタントによって使用されるユーザーの解析された依存関係
-        title: 解析された依存関係
-        view: 解析された依存関係の表示
-      playground: 遊び場
-      playground_info: サンプルデータを使用して成果物をテストし、生成された結果をプレビューします。
-      playground_placeholder: テストデータの入力
-      raw: 生
-      tabs:
-        results: 業績
-        settings: 設定
-      test_generate: テスト生成
-      unsaved_changes: 未保存の変更が存在する場合は、フォームを送信して Playground から更新された応答を生成することを検討してください。
-      used_tokens:
-        input_tokens: 入力トークン
-        output_tokens: 出力トークン
-        title: トークンの使用
     ai_assistants:
-      actions:
-        create: AIアシスタントを作る
-        edit: AIアシスタントを編集する
-        playground: 遊び場
-      ai_assistants: AIアシスタント
-      ai_assistants_playground: AIアシスタント・プレイグラウンド
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ ja:
             no_datasheet_data: ユーザー %{email}に利用できるデータシートデータはありません
             user_not_found_in_datasheet: キャンペーン データシートにユーザーが見つかりません
       campaign_ai_artifacts: キャンペーン AI アーティファクト
-      column:
-        provider: プロバイダー
-      created_successfully: AIアシスタントが正常に作成されました。
       errors:
         cannot_delete_in_use: AI アシスタントの「%{name}」は使用中であるため、削除できません。
         development_actions_assistance_not_enabled: AI を活用した開発アクションの生成は利用できません。管理者にお問い合わせください。
         one_click_idp_assistance_not_enabled: AI を活用した IDP 支援は、現在のプランでは利用できません。管理者にお問い合わせください。
         platform_assistant_already_exists: プラットフォームにはタイプ %{type} のアシスタントが 1 人しか許可されていません。
-      form:
-        add_output_schema_key: 出力スキーマ・キーの追加
-        dependencies: 依存関係
-        description: 説明
-        enter_description: 説明を入力
-        enter_schema_key: スキーマ・キーを入力
-        key: キー
-        name: 名称
-        output_schema_keys: 出力スキーマ・キー
-        provider: プロバイダー
-        remove_output_schema_key: 出力スキーマ・キーの削除
-        schema_key_description_required: スキーマキーの説明は必須
-        schema_key_required: スキーマ・キーが必要
-        schema_key_type: キータイプ
-        schema_key_unique: スキーマ・キーは一意でなければならない
-        system_prompt: システムプロンプト
-        type: タイプ
-        user_prompt: ユーザープロンプト
-      revisions:
-        load: フォームにロード
-        name: 名前
-        system_prompt: システム仕様
-        title: AIアシスタントの改訂
-        user_prompt: ユーザープロンプト
-        version: バージョン
       selector:
         choose_artifact: AI アーティファクトを選択する
         choose_schema_key: スキーマキーの選択
         no_assistants_found: AI アシスタントが見つかりませんでした
         placeholder: AIアシスタントを選択
-      updated_successfully: AIアシスタントは正常に更新されました。
     any: " - どれでも "
     api:
       campaigns:
@@ -185,10 +62,6 @@ ja:
       users:
         form:
           campaign_ids_not_existing: すべてのキャンペーンIDが存在するわけではない
-    api_keys:
-      form:
-        description: 説明
-        title: APIキー
     assessment_builder:
       form:
         display_label: 表示ラベルの入力
@@ -196,108 +69,12 @@ ja:
         value: 価値
         value_required: 値が必要です
     assessment_center:
-      cancel_confirmation:
-        message: 本当にフォームの進行状況を破棄しますか？
-        title: 廃棄フォームの進捗状況
-      current: 現在
       invite:
-        add_invite: 招待を追加する
-        assessment_center: アセスメント・センター
-        back: バック
-        basic_info:
-          allow_preferred_language: 優先言語を許可する
-          assessment_centers: アセスメント・センター
-          assessment_centers_hint: 検索クエリー例「2023年8月10日午後8時6分
-          assessment_centers_placeholder: セレクト・アセスメント・センター
-          description: 複数の評価センターを選択して受験者に招待状を発行し、受験者はその中から1つのセンターを選択します。
-          neurodiversity: ニューロダイバーシティに関する質問を含む
-          preferred_language: 使用可能言語
-          required_error: 空っぽにはできない
-          title: 基本情報
-        center_group: アセスメント・センター・グループ
-        confirm_message: 招待状を本当に削除しますか？
-        confirm_message_with_title: タイトル「%{invite_title}」の招待を本当に削除しますか？
-        confirm_title: 確認
         exceeded_subjects_count: キャンペーンには %{users}件名があります。 招待ごとに追加できる件名は %{count}件名のみです。
-        id: 身分証明書
-        invites: 招待
-        name: 名前
-        name_placeholder: 招待名を入力
-        next: 次のページ
-        not_selected: 落選
-        requests: リクエスト
-        save: 保存して送信
-        send_invites:
-          add: 追加
-          add_description: 招待のタイトルと説明を多言語で翻訳できます。
-          add_language: 言語の追加
-          description: 説明
-          input_label: 言語の追加
-          input_placeholder: 追加言語の選択
-          invitation_title: 招待タイトル
-          title: 招待 (%{lang})
-        steps:
-          add_subjects: 主題の追加
-          basic_info: 基本情報
-          has_errors: エラーを含む
-          send_invitation: 招待状を送る
-        subjects:
-          cancel: キャンセル
-          count: "%{count} 科目"
-          csv_error: '行%{index}: 電子メール %{email} を持つユーザはこのキャンペーンに参加していません。'
-          csv_imported: "%{count} 件の科目をインポートしました"
-          description: 被写体を個別に検索して追加することも、csvファイルを一括アップロードすることもできます。
-          download: ダウンロード
-          file_example: サブジェクト情報をアップロードするためのサンプルファイルを参照してください。
-          import_from_campaign: キャンペーンからすべてを追加
-          import_title: 輸入対象
-          import_users: インポートユーザー
-          search_user: 検索対象
-          title: 対象
-          upload: アップロード
-          upload_csv: CSVアップロード
         subjects_count_added: 被験者の追加に成功
-        success:
-          continue: 続ける
-          message: 招待状を送るタスクはキューに入れられた。
-        success_message: 招待は正常に削除されました。
-        success_message_with_title: タイトル '%{invite_title}' の招待は正常に削除されました。
-        title: タイトル
-        workshop:
-          title: アセスメント・センター
-        workshop_list:
-          add: 追加
-          name: 名称
-          remove_confirm:
-            content: 名前 '%{name}' を持つアセスメント・センターを本当に削除しますか?
-            success: アセスメントセンターは正常に削除されました。
-            title: 確認
-      invite_request:
-        accept: 受け入れる
-        reason: 理由
-        reject: 却下
-        remove_confirm:
-          content: 本当に %{subjectName} から %{action} %{status} したいのですか？
-          success: "%{subjectName} からの %{status} は %{action} に成功しました"
-          title: "%{action} %{status}"
-        status: ステータス
-        subject_name: 件名
-        workshop_time: ワークショップの時間
-      past: 過去
-      steps:
-        basic_information: 基本情報
-        facilitators: ファシリテーター
-        invite_options: 招待オプション
-        invite_subjects: 被験者を招待する
-        send_invitations: 招待状を送る
-      success:
-        call_send_invitation: 招待状を送りますか？
-        ok: はい
-        skip: とりあえずスキップ
-        title: アセスメントセンター設置
-      upcoming: 今後の予定
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI採点の設定は、AudioResponse、VideoResponse、およびTextEntry タイプの質問にのみ追加できます。
         doesnt_have_header: "'%{sub_header}' はヘッダを持っていません。"
         invalid_headers: '以下のヘッダは無効です: %{headers}.'
         invalid_question: 無効な質問 ID
@@ -311,11 +88,7 @@ ja:
       successfully_scheduled: 質問 インポートが正常にスケジュールされました。
     assessments:
       assessment: 評価
-      assessment_report: アセスメント
       copy:
-        copy: コピー
-        copy_assessment: コピー査定
-        name: 名称
         successfully: 評価 "%{name}" は正常にコピーされました。
       create:
         successfully: アセスメント "%{name}" が正常に作成されました。
@@ -398,93 +171,10 @@ ja:
       update:
         successfully: アセスメント %{name} は正常に更新されました。
     assessor:
-      add_subject_modal:
-        assessment: 評価
-        mark_as_lead_assessor: 上記科目の主査としてマーク
-        subject: テーマ
-        subject_placeholder: 検索対象...
-        title: 件名の追加
-      assessments:
-        actions:
-          add_subject: 主題の追加
-          rescore: リスコア
-          reset: リセット評価
-          reset_progress: 進行状況のリセット
-        bulk_delete_confirmation: 本当に選択したレコードを削除したいのですか？
-        bulk_delete_successful: 評価者の評価が正常に削除されました
-        reset_confirmation: メール「%{subjectEmail}」で件名の評価をリセットしますか？
-        reset_progress_confirmation: メール「%{subjectEmail}」で件名の進行状況をリセットしますか？
-        reset_progress_successfully: 電子メール "%{subjectEmail}" を持つサブジェクトのリセットの進行に成功しました。
-        reset_successfully: 電子メール "%{subjectEmail}" による件名のリセット評価に成功しました。
-        subject_email: 件名 電子メール
-        subject_name: 件名
-      completed_at: 完成
-      count: "%{count}人の査定者"
-      create_assessor: アセッサーの追加
-      evaluations: 評価
       mailer:
         subject: 新たな評価対象を追加
-      modals:
-        create_assessor:
-          add: 追加
-          cancel: キャンセル
-          form:
-            add: 追加
-            add_lead_assessor: リード・アセッサとして追加
-            add_lead_assessor_hint: 最初にリード・アセッサーのフォームを追加してください。
-            assessments: アセスメント
-            assessor: アセッサ
-            assessor_placeholder: アセッサーの検索...
-            lead_assessment: 鉛アセスメント
-            subject: テーマ
-            subject_placeholder: 検索テーマ...
-          sheet:
-            assessments: アセスメント
-            assessments_placeholder: 選択
-            assessor_email: 査定者のEメール
-            assessor_first_name: アセッサー名
-            assessor_last_name: 査定者の姓
-            subject_email: 対象者のEメール
-          title: アセッサーの追加
-        import:
-          body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
-          title: インポートアセッサー
       moderate_score:
-        assessor_evaluations: アセッサー評価
-        main_report: 主要レポート
-        no_completed_assessments: 完了した査定はまだない
         no_results: 回答済みの質問はありません
-        other_reports: その他のレポート
-        overall_scoring: 総合得点
-        recordings: 録音
-        refresh: リフレッシュ
-        reports: レポート
-        reports_count: "%{count} 件のレポート"
-      overview: 概要
-      remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
-      statuses:
-        completed: 完成
-        not_completed: 未完成
-      toolbar:
-        export: 輸出アセッサ
-        import: インポートアセッサー
-        tools: ツール
-    assessor_assessment:
-      add: 追加
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: 評価を選択する
-      name: アセッサーの評価
-    assessor_campaigns:
-      statuses:
-        completed: 完成
-        in_progress: 進行中
-        not_started: 未着手
-    assessor_subjects:
-      statuses:
-        completed: 完成
-        in_progress: 進行中
-        not_started: 未着手
     assigns:
       create:
         successfully: アセスメントへの新規割り当てに成功
@@ -501,42 +191,6 @@ ja:
       edit:
         header: レポート課題の編集
     attention: 注意
-    audit_log:
-      action: アクション
-      audit_logs: 監査ログ
-      campaign: キャンペーン
-      client: クライアント
-      client_ip: クライアントIp
-      collapse_filters: 折りたたみフィルター
-      dashboard: ダッシュボード
-      date_presets:
-        last_30_days: 過去30日間
-        last_7_days: 直近7日間
-        last_month: 先月
-        last_week: 先週
-        today: 今日
-        yesterday: 昨日
-      date_range: 日付範囲
-      expand_filters: フィルタの拡大
-      failure_reason: 故障理由
-      interface: インターフェース
-      log_date: ログ日付
-      outcome: 成果
-      payload: ペイロード
-      project: プロジェクト
-      record_id: レコードID
-      request_id: リクエストID
-      reset: リセット
-      search: 検索
-      search_campaign: キャンペーンで検索
-      search_client: クライアントで検索
-      search_project: プロジェクトで検索
-      search_record: レコードIDで検索
-      search_user: ユーザーで検索
-      title: 監査ログ情報
-      type: レコードの種類
-      user: ユーザー
-      user_agent: ユーザーエージェント
     back: バック
     block_settings:
       modal:
@@ -749,20 +403,7 @@ ja:
           missing_user_reports: 'メールに関するユーザー報告の不足: %{emails}'
           no_file_found_in_extracted_zip: 解凍したZIPファイル内にファイルが見つかりません
           user_report_not_found: メールアドレス %{email} に対応するユーザーレポートが見つかりません
-      bulk_download:
-        data_range_error: 日付を選択してください
-        modal:
-          subtitle: 日付範囲を選択し、各レポートに必要な言語を選択します。
-      generate:
-        modal:
-          subtitle: 各レポートに必要な言語を選択
     campaign_templates:
-      campaign_templates: キャンペーンテンプレート
-      column:
-        assessment: 評価
-        campaign: キャンペーン
-        owner: オーナー
-        report: レポート
       copy:
         successfully: クライアント・テナンシー %{name} が正常にコピーされました。
       create:
@@ -773,16 +414,6 @@ ja:
         header: 編集クライアント
       errors:
         owner_invalid: テンプレートの所有者は、評価、レポート、および寸法の所有者と同じでなければならない。
-      form:
-        assessment: 評価
-        assessment_placeholder: 評価を選択する
-        name: 名称
-        name_placeholder: 名前を入力
-        owner: オーナー
-        owner_placeholder: オーナーの選択
-        report: レポート
-        report_placeholder: レポートを選択する
-        title: キャンペーンテンプレート
       image_fields:
         remove: 削除
       index:
@@ -797,10 +428,6 @@ ja:
         updated_at: 更新日
       new:
         header: 新規顧客
-      remove_confirm:
-        content: キャンペーン・テンプレート '%{name}' を本当に削除しますか？
-        success: キャンペーン・テンプレート '%{name}' は正常に削除されました。
-        title: キャンペーンテンプレートの削除
       resource:
         confirmations:
           delete:
@@ -816,7 +443,6 @@ ja:
       update:
         successfully: クライアント・テナンシー %{name} が正常に更新されました。
     campaigns:
-      actions: 管理
       assessment_reports:
         report_approval:
           allow_bulk_approve: 一括承認
@@ -866,148 +492,6 @@ ja:
       assessors:
         spoof:
           successfully: "%{name} としてログインしました"
-      convert_to_template: テンプレートに変換
-      copy: コピー
-      delete: 削除
-      edit: 編集
-      extend_time_success_message: キャンペーン・タイマーを%{minutes}分に延長
-      filters:
-        active: アクティブ
-        all: すべて
-        archived: アーカイブ
-        closed: クローズド
-        inactive: 活動休止中
-        status: ステータス
-      form:
-        active_notice: キャンペーンステータスは、選択した終了日にクローズに自動的に変更されます
-        campaign: キャンペーン
-        copy_factors: コピー係数
-        inactive_notice: キャンペーンのステータスは、選択した開始日に自動的にアクティブに変更されます
-        name: 名称
-        practice_campaign: 練習キャンペーン
-        status: ステータス
-      listing:
-        assessments: アセスメント
-        id: アイド
-        name: 名称
-        reports: レポート
-        status: ステータス
-        template: テンプレート
-        type: タイプ
-      menus:
-        add_common_campaign: 共通キャンペーンの追加
-        add_multi_rater_campaign: マルチ評価者キャンペーンを追加
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: キャンペーンテンプレート
-            factors: 要因
-          base_settings:
-            active: アクティブ
-            archive: アーカイブ
-            assessment: 評価
-            category: カテゴリ
-            closed: クローズド
-            default_assessment_language: 評価のデフォルト言語
-            default_report_language: 報告書のデフォルト言語
-            empty: 空
-            inactive: 活動休止中
-            name: 名称
-            normal: ノーマル
-            previous: 前へ
-            select_assessment_language: 評価言語の選択
-            select_report_language: レポート言語の選択
-            skill_rater: 技能評価者
-            standard: スタンダード
-            status: ステータス
-            type: タイプ
-          close:
-            content: Multi Rater Campaign Creatorを終了してもよろしいですか？ 保存されていないカスタマイズ作業は失われます。 決定を確認してください。
-            title: マルチ・レイター・キャンペーン・クリエーターを閉じる
-          instructions_creation:
-            empty: 空：空白のアンケートから始め、特定のニーズに応じてカスタマイズします。
-            previous: 前：出発点として以前の評価を選択し、修正を加える。
-            standard: 基準：一般的に使用される質問と指標を含む、あらかじめデザインされたテンプレートを使用する。
-            sub_title: キャンペーンの種類を選択してください。
-            title: マルチレイターキャンペーンクリエーターへようこそ！
-          instructions_customization:
-            sub_title: テンプレートと評価に含める要素を選択します。
-            title: 評価をカスタマイズする
-          no_factors:
-            description: 他の検索キーワードをお試しください。
-            title: 要因が見つからない
-          questions:
-            select_all: すべて選択
-            title: 質問と指標
-          search_factors:
-            description: お探しの要素を検索するには、3文字以上を入力してください。
-            title: 検索を開始する
-          success: マルチ評価者キャンペーンが正常に作成されました。
-          success_job: マルチレイターキャンペーン作成ジョブが正常にスケジュールされました。
-      options:
-        description:
-          name: 説明
-          save: 詳細を保存
-          save_success: 説明が正常に保存された
-        enable_video_call_recording: ビデオ通話録音を有効にする
-        fixed_time: 固定時間
-        instructions:
-          actions:
-            saved: 指示は正常に保存された
-          enable: 指示を有効にする
-          save: 保存方法
-        prework_required: 事前工事が完了していない場合は、センター予約を許可しないこと。
-        prework_required_for_invite: プレワーク完了時のみ招待メールを送信
-        proctoring:
-          enable: 試験監督を可能にする
-          identification: 識別
-          identifications:
-            face: 顔
-            face_and_passport: 顔とパスポート
-            passport: パスポート
-          integration_type: 統合
-          integration_types:
-            iframe: IFrame
-            ldb: ロックダウンブラウザ
-          proctoring_types:
-            offline: オフライン
-            online: オンライン
-          rule_types:
-            allow_absence_in_frame: フレーム内の欠席を認める
-            allow_to_use_books: 書籍の使用を許可する
-            allow_to_use_calculator: 電卓の使用を許可する
-            allow_to_use_excel: エクセルの使用を許可する
-            allow_to_use_human_assistant: 人間のアシスタントの使用を許可する
-            allow_to_use_messengers: メッセンジャーの使用を許可する
-            allow_to_use_paper: 紙の使用を許可する
-            allow_to_use_websites: ウェブサイトの利用許可
-            allow_voices: 声を許可する
-            allow_wrong_gaze_direction: 間違った視線方向を許可する
-          rules: ルール
-          trial: 試験監督
-          type: タイプ
-        show_watermark: 透かしを表示する
-        watermark_content: ウォーターマークコンテンツ
-        watermark_info: 内容を追加しない場合、デフォルトではユーザーのEメールがウォーターマークとして表示されます。 pipetext -<br/> {{id}} - 参加者ID </br>{{first_name}} - 参加者のファーストネーム。 </br>{{last_name}} - 参加者の姓 </br>{{email}} - 参加者のメールアドレス
-      pdf_password: PDFパスワード
-      types:
-        common: 共通
-        threesixty: マルチ・レイター
-      users:
-        add_user: ユーザー追加
-        completion_status: 完成状況
-        created_by: 作成者
-        email: 電子メール
-        filters:
-          all: すべて
-          anonymous: 匿名
-          identified: 特定
-        id: アイド
-        is_active: アクティブ
-        name: 名称
-        no_permission_message: を変更する権限がありません。
-        title: ユーザー
-        updated_by: 更新者
       validations:
         dates:
           end: 開始日以降であること
@@ -1016,32 +500,7 @@ ja:
         invalid_campaign_factor_codes: '以下のキャンペーンfactor_codesは無効です: %{codes}.'
         missing_headers: ヘッダーの欠落
         missing_users: '以下のメールは存在しません: %{emails}.'
-      import:
-        example_csv: サンプルcsvをダウンロード
-        success_msg: インポートは正常にアップロードされました。
-      modal:
-        title: 外部キャンペーンスコアのインポート
-    client_features:
-      client_features: クライアントの特徴
-      form:
-        ai_assistants: AIアシスタント
-        ai_assistants_disabled_by_client: AI アシスタントはクライアントによって無効になっています
-        ai_assisted_idp: AIアシストIDP
-        ai_assisted_idp_requires_ai_assistants: AI Assisted IDP では、AI アシスタント機能を有効にする必要があります
-        ai_content_analysis: AIコンテンツ分析
-        ai_content_analysis_disabled_by_client: AIコンテンツ分析はクライアントによって無効化されています
-        ai_translation: AI翻訳
-        ai_translation_disabled_by_client: クライアントによりAI翻訳が無効化されています
-        global_skills: グローバル・スキル
-        global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
-        idp: アイディーピー
-        idp_disabled_by_client: IDP はクライアントによって無効になっています
-        sms_notification: SMS通知
-        sms_notification_disabled_by_client: SMS 通知はクライアントによって無効になっています
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: パンくず
       archive:
         successfully: 成功裏に
       base:
@@ -1049,7 +508,6 @@ ja:
         archived: アーカイブ
         disable: アーカイブ
         enable: アーカイブ解除
-      clients: クライアント
       copy:
         successfully: クライアント・テナンシー '%{name}' が正常にコピーされました。
       create:
@@ -1069,392 +527,17 @@ ja:
       new:
         header: 新規顧客
       projects:
-        actions:
-          archive: アーカイブ
-          unarchive: アーカイブ解除
-        archive:
-          content: 本当に'%{project_name}'をアーカイブしますか？
-          success: プロジェクト '%{project_name}' は正常にアーカイブされました。
-          title: アーカイブ・プロジェクト
-        assign_assessments:
-          add_assessment: 評価の追加
-          assessments: アセスメント
-        assign_reports:
-          add_report: レポートを追加
-        campaigns:
-          archive:
-            successfully: キャンペーン '%{name}' は正常にアーカイブされました。
-          copy:
-            error: キャンペーン '%{name}' はコピーされませんでした。
-            successfully: キャンペーン '%{name}' は正常にコピーされました。
-          create:
-            successfully: キャンペーン '%{name}' が正常に作成されました。
-          destroy:
-            successfully: キャンペーン '%{name}' は正常に削除されました。
-          edit:
-            header: 編集キャンペーン
-          export:
-            assessments: アセスメント
-            assigned_user: 割り当てられたユーザー
-            completed_user: 完成したユーザー
-            created_at: 作成日
-            header:
-              actions: 行動
-              actual_usage: 使用実績
-              assessments: アセスメント
-              campaigns: キャンペーン
-              name: 名称
-              reports: レポート
-              sub_campaigns: サブキャンペーン
-              tests_allocated: 割り当てられたテスト
-              users: ユーザー
-            id: アイド
-            name: キャンペーン名
-            reports: レポート
-            updated_at: 更新日
-          index:
-            export: 輸出
-            new: 追加
-            title: キャンペーン
-          list:
-            assessments: アセスメント
-            assigned_user: 割り当てられたユーザー
-            completed_user: 完成したユーザー
-            created_at: 作成日
-            header:
-              actions: 行動
-              actual_usage: 使用実績
-              assessments: アセスメント
-              campaigns: キャンペーン
-              name: 名称
-              reports: レポート
-              sub_campaigns: サブキャンペーン
-              tests_allocated: 割り当てられたテスト
-              users: ユーザー
-            id: アイド
-            name: キャンペーン名
-            reports: レポート
-            updated_at: 更新日
-          new:
-            header: 新キャンペーン
-          resource:
-            sub_campaign:
-              create: 新しいサブキャンペーンを作成する
-            tooltips:
-              copy: コピーキャンペーン
-              create_report: 新しいレポートの追加
-              create_user: 新規ユーザーの追加
-              delete: キャンペーン削除
-              edit: 編集キャンペーン
-              export: 輸出
-          sidebar:
-            archive: アーカイブキャンペーン
-            copy: コピーキャンペーン
-            destroy: キャンペーン削除
-            disable: 無効
-            edit: 編集キャンペーン
-            enable: 有効にする
-            new: 新キャンペーン
-            title: キャンペーンのオプション
-            view_licenses: ライセンスを見る
-          sub_campaigns:
-            archive:
-              successfully: サブキャンペーン %{name} が正常にアーカイブされました。
-            copy:
-              error: サブ・キャンペーン %{name} がコピーされませんでした。
-              successfully: サブキャンペーン %{name} が正常にコピーされました。
-            create:
-              successfully: サブキャンペーン %{name} が正常に作成されました。
-            destroy:
-              successfully: サブキャンペーン %{name} は正常に削除されました。
-            edit:
-              header: サブキャンペーンの編集
-            export:
-              assessments: アセスメント
-              assigned_user: 割り当てられたユーザー
-              completed_user: 完成したユーザー
-              created_at: 作成日
-              header:
-                actions: 行動
-                actual_usage: 実際の使用
-                archive_status: アーカイブ
-                name: 名称
-                sub_campaign: サブキャンペーン
-                tests_allocated: 割り当てられたテスト
-                users: ユーザー
-              id: アイド
-              name: サブキャンペーン名
-              reports: レポート
-              updated_at: 更新日
-            header:
-              actions: 行動
-            index:
-              export: 輸出
-              new: 追加
-              title: サブキャンペーン
-            list:
-              assessments: アセスメント
-              assigned_user: 割り当てられたユーザー
-              completed_user: 完成したユーザー
-              created_at: 作成日
-              header:
-                actions: 行動
-                actual_usage: 実際の使用
-                archive_status: アーカイブ
-                name: 名称
-                sub_campaign: サブキャンペーン
-                tests_allocated: 割り当てられたテスト
-                users: ユーザー
-              id: アイド
-              name: サブキャンペーン名
-              reports: レポート
-              updated_at: 更新日
-            new:
-              header: 新サブキャンペーン
-            resource:
-              tooltips:
-                copy: コピー・サブキャンペーン
-                create_report: 新しいレポートの追加
-                create_user: 新規ユーザーの追加
-                delete: サブキャンペーンの削除
-                edit: サブキャンペーンの編集
-            sidebar:
-              archive: アーカイブ・サブキャンペーン
-              copy: コピー・サブキャンペーン
-              destroy: サブキャンペーンの削除
-              disable: 無効
-              edit: サブキャンペーンの編集
-              enable: 有効にする
-              new: 新サブキャンペーン
-              title: サブキャンペーンのオプション
-              view_licenses: ライセンスを見る
-            toggle_status:
-              successfully: サブキャンペーン %{name} が正常に更新されました。
-            update:
-              successfully: サブキャンペーン %{name} が正常に更新されました。
-          toggle_status:
-            successfully: キャンペーン %{name} が正常に更新されました。
-          update:
-            successfully: キャンペーン %{name} が正常に更新されました。
-        copy:
-          error: プロジェクト %{name} はコピーされませんでした。
-          successfully: プロジェクト %{name} が正常にコピーされました。
-        create:
-          successfully: プロジェクト %{name} が正常に作成されました。
-        destroy:
-          successfully: プロジェクト %{name} は正常に削除されました。
-        edit:
-          header: 編集プロジェクト
-        export:
-          2fa_enabled: 2FA 有効
-          actual_usage: 使用実績
-          admin: クライアント管理者
-          applicable_level: 適用レベル
-          archive_status: ステータス
-          assessments: アセスメント
-          assigned_user: 割り当てられたユーザー
-          completed_user: 完成したユーザー
-          created_at: 作成日
-          id: アイド
-          name: プロジェクト名
-          number: 番号
-          project_admin: プロジェクト管理者
-          reports: レポート
-          tests_allocated: 割り当てられたテスト
-          tte_admin: TTEプロジェクト・マネージャー
-          updated_at: 変更日
-          url: URL
-          users_count: ユーザー数
-        form:
-          2fa: 2要素認証
-          2fa_enable: 2要素認証を有効にする
-          applicable_levels:
-            campaign: キャンペーン終了レベル
-            project: プロジェクト終了レベル
-            sub_campaign: サブキャンペーン終了レベル
-          data_privacy: データプライバシー
-          enable_live_chat: ライブチャットを有効にする
-          enable_privacy_links: プライバシー・リンクを有効にする
-          live_chat_token: ライブ・チャット・トークン
-          optional: オプション
-          other_settings: その他の設定
-          privacy_link: プライバシーリンク
-          privacy_text: プライバシーテキスト
-          project_number: プロジェクト番号
-          webhook: ウェブフック
-          webhook_auth_enabled: ウェブフック認証を有効にする
-          webhook_password: パスワード
-          webhook_username: ユーザー名
-        header:
-          actions: 行動
-        index:
-          export: 輸出
-          new: 追加
-          title: プロジェクト
-          tooltips:
-            create: 作成
-            export: 輸出
-        list:
-          2fa_enabled: 2FA 有効
-          actual_usage: 使用実績
-          admin: クライアント管理者
-          applicable_level: 適用レベル
-          archive_status: ステータス
-          assessments: アセスメント
-          assigned_user: 割り当てられたユーザー
-          completed_user: 終了したユーザー
-          created_at: 作成日
-          id: アイド
-          name: プロジェクト名
-          number: 番号
-          project_admin: プロジェクト管理者
-          reports: レポート
-          tests_allocated: 割り当てられたテスト
-          tte_admin: TTEプロジェクト・マネージャー
-          updated_at: 変更日
-          url: URL
-          users_count: ユーザー数
-        new:
-          header: 新プロジェクト
-        resource:
-          add_assessment: 評価の追加
-          add_report: レポートを追加
-          assessments: アセスメント
-          tooltips:
-            copy: コピープロジェクト
-            create_admin: プロジェクト管理者の作成
-            create_report: 新しいレポートの追加
-            create_user: 新規ユーザーの追加
-            delete: プロジェクトの削除
-            edit: 編集プロジェクト
-        sidebar:
-          admins: プロジェクト管理者
-          archive: アーカイブ・プロジェクト
-          copy: コピープロジェクト
-          design: 編集デザイン
-          destroy: プロジェクトの削除
-          disable: 無効
-          edit: 編集プロジェクト
-          enable: 有効にする
-          new: 新プロジェクト
-          title: プロジェクトのオプション
-          view_licenses: ライセンスを見る
-        status:
-          active: アクティブ
-          archived: アーカイブ
         threesixty_campaigns:
-          base:
-            active: アクティブ
-            archived: アーカイブ
-            disable: アーカイブ
-            enable: アーカイブ解除
-          completion_statuses:
-            approved: 承認済み
-            completed: 完成
-            denied: 却下
-            in_progress: 進行中
-            not_started: 未着手
-          copy:
-            error: クライアント・テナンシー '%{name}' がコピーされませんでした。
-            successfully: クライアント・テナンシー '%{name}' が正常にコピーされました。
-          create:
-            successfully: クライアント・テナンシー '%{name}' が正常に作成されました。
-          designs:
-            form:
-              no_background: 背景はまだない
-              no_logo: ロゴはまだない
           destroy:
             error: サブジェクトまたは評価子の依存関係が存在するので、'%{name}' を削除できません。
-            successfully: クライアント・テナンシー '%{name}' は正常に削除されました。
-          edit:
-            header: 360キャンペーンを編集する
-          export:
-            admin: クライアント管理者
-            assessment: アセンション
-            client_admins: クライアント管理者
-            created_at: 作成日時
-            id: アイド
-            name: 名称
-            report: レポート
-            report_bundle: レポート・バンドル
-            status: ステータス
           index:
-            export: 輸出
-            new: 360キャンペーンを追加
             title: 360キャンペーン
-          license:
-            header: "%{name} - ライセンスの編集"
-          licenses:
-            update:
-              duplicate_licenses: ライセンスが重複している
-              successfully: ライセンスは正常に更新されました。
-          list:
-            admin: クライアント管理者
-            assessment: アセンション
-            client_admins: クライアント管理者
-            created_at: 作成日時
-            id: アイド
-            name: 名称
-            report: レポート
-            report_bundle: レポート・バンドル
-            status: ステータス
-            updated_at: 更新日
-          new:
-            header: 新しい360キャンペーン
           resource:
             confirmations:
               delete:
                 body: "<p>本当に削除しますか？</p> <p>このアクションは元に戻せません。 これにより、<strong>%{name}</strong>キャンペーン、サブキャンペーン、およびすべての関連付けが完全に削除されます。</p> <p>確認のため、<strong>%{name}と</strong>入力してください。</p>"
                 title: "<strong>%{name}</strong>を削除しますか?"
-              disable:
-                body:
-                  '0': "<p>本当にアーカイブしますか？</p> <p>すべてのキャンペーン、サブキャンペーン、ユーザーもアーカイブされます。</p>"
-                  '1': "<p>本当にアーカイブしますか？</p> <p>すべてのサブキャンペーンとユーザーもアーカイブされます。</p>"
-                  '2': "<p>本当にアーカイブしますか？</p> <p>すべてのユーザーもアーカイブされます</p>"
-                  '3': "<p>本当にアーカイブしますか？</p> <p>すべてのユーザーもアーカイブされます</p>"
-                title: アーカイブ<strong>%{name}</strong>?
-              enable:
-                body:
-                  '0': "<p>本当にアーカイブを解除したいのですか？</p>"
-                  '1': "<p>本当にアーカイブを解除したいのですか？</p>"
-                  '2': "<p>本当にアーカイブを解除したいのですか？</p>"
-                  '3': "<p>本当にアーカイブを解除したいのですか？</p>"
-                title: アーカイブ解除<strong>%{name}</strong>?
-            export_results: エクスポート結果
-            raw_results: 生の結果
-            tooltips:
-              campaigns:
-                delete: キャンペーン削除
-              copy: コピー・クライアント
-              create_admin: クライアント管理者の作成
-              delete: クライアント削除
-              disable: クライアントを無効にする
-              edit: 編集クライアント
-              enable: クライアントを有効にする
-          statistics:
-            index:
-              all_assessments: すべての評価
-              assessment_type: 評価タイプ
-              title: 統計
-          toggle_status:
-            successfully: クライアント・テナンシー %{name} が正常に更新されました。
-          update:
-            successfully: クライアント・テナンシー %{name} が正常に更新されました。
-          url: URL
-        toggle_status:
-          successfully: プロジェクト %{name} が正常に更新されました。
-        unarchive:
-          content: 本当に'%{project_name}'をアン・アーカイブしますか？
-          success: プロジェクト '%{project_name}' は正常にアーカイブ解除されました。
-          title: アナーカイブ・プロジェクト
-        update:
-          successfully: プロジェクト %{name} が正常に更新されました。
       registration_codes:
-        actions:
-          add_code: コードを追加
-        column:
-          code: コード
-          usage_stats: 使用統計
         errors:
           count_invalid: used_count = %{use_count} より小さくすることはできない。
           criteria: 英数字、ハイフン(-)、アンダースコア(_)のみを含むことができます。
@@ -1462,13 +545,6 @@ ja:
           incorrect_domain: ドメイン形式が正しくない。
           invalid_end_date: 開始日よりも大きくなければならない
           license_issue: ライセンスが足りない。
-        form:
-          active: アクティブ
-          code: コード
-          end_date: 終了日
-          name: 名称
-          start_date: 開始日
-          total_count: 総カウント数
       resource:
         confirmations:
           delete:
@@ -1484,25 +560,9 @@ ja:
         successfully: クライアント・テナンシー %{name} が正常に更新されました。
     close: 閉じる
     common:
-      add: 追加
-      back: バック
-      cancel: キャンセル
-      code: コード
-      disabled: ディアスブル
-      download_sample_file: サンプルファイルのダウンロード
       enabled: 有効
-      import:
-        failure_msg: ファイルのインポート中にエラーが発生しました。
-      instructions: 指示
       loading: 積載。。。
-      minute: 微細
-      name: 名前
-      next: 次のページ
-      reset: リセット
       save: セーブ
-      select_all: すべて選択
-      type: タイプ
-      unselect_all: すべて選択解除
     communication_settings: 設定
     communications:
       create:
@@ -1677,86 +737,19 @@ ja:
       input_duration:
         placeholder: 1d 2h 3m」と入力する。
     create: 作成
-    dashboard:
-      capacity_name: 容量名
-      choose_file_format: ファイル形式の選択
-      dashboard_types:
-        oracle_analytics: オラクル・アナリティクス
-        powerbi: パワービー
-      dashboards: ダッシュボード
-      export_dashboard_to_file: ダッシュボードをファイルにエクスポート
-      export_job_failure: エクスポートの開始に失敗しました
-      export_job_success: エクスポート作業を開始しました。完了すると通知されます。
-      get_started: スタート
-      initialize_msg: このキャンペーンのダッシュボードを初期化する
-      loading_failed: ダッシュボードの読み込みに失敗しました。
-      only_export_current_tab: 現在のタブのみエクスポート
-      pdf: PDF
-      pptx: PPTX
-      preview:
-        embed_token_error_description: 設定のデータセットとレポートIDが正しいか確認してください。
-        embed_token_error_title: Embed トークンを生成できません。
-      settings:
-        capacity_id: 容量ID
-        details: 詳細
-        refresh: リフレッシュ
-        workspace_id: ワークスペースID
-      tabs:
-        accesssheet: アクセスシート
-        accesssheet_setting: アクセスシートの設定
-        dashboard: ダッシュボード
-        settings: 設定
-    dashboard_form:
-      fields:
-        dataset_id: データセットID
-        enabled: 有効
-        image: 画像
-        project_path: プロジェクト・パス
-        refresh_interval: リフレッシュ間隔（分）
-        report_id: 報告書ID
-        visual_header_visibility: ビジュアルヘッダーの可視性
-      image_upload_failed: 画像のアップロードに失敗しました。
-      none: なし
-      refresh_success: データセットの更新が正常にスケジュールされました。
-      visual_header_visibility_options:
-        hide_all: すべて隠す
-        keep_original: オリジナルを保つ
-        show_all: すべて表示
-    data_exports_modal:
-      title: 日付範囲を選択
     data_reports:
-      columns:
-        created_at: 作成日時
-        created_by: 作成者
-        last_updated_by: 最終更新日
-        name: 名称
-        owner: オーナー
-        password: パスワード
-        status: ステータス
-        udpated_at: 最終更新日
-      configuration: 構成
       errors:
         factor_code_or_field_name_required: factor_codeまたはfield_nameが必要です
         factor_not_found: 評価対象外
         inclusion: '無効なタイプ、有効なタイプ: %{values}。'
         not_found: 見つからない
         not_owned: 顧客所有ではない
-      form:
-        name: データレポート
-      messages:
-        runed: データレポートが正常にスケジュール実行されました。
       validations:
         project_and_campaigns_not_allowed: project_idsとcampaign_idsは一緒に指定してはならない。
-        project_not_related_to_client: "%{project_id}はクライアントに属していません"
         project_or_campaign_required: project_idsまたはcampaign_idsが必要
         sections_required: セクションが必要
     datasheet:
       threesixty_warning: 360レポートのデータシート列をここからアップロードすることはできません。 360レポートのデータシート列は、このレポートがリンクされているキャンペーンからロードされます。
-    dates:
-      completed: 完成
-      end: 終了日
-      start: 開始日
-      started: で開始
     development_action_import:
       errors:
         blank_field: '行 %{row}: %{field} は空白にできません。'
@@ -1793,49 +786,11 @@ ja:
         successfully: 開発アクション "%{name}" が正常に作成されました。
       destroy:
         successfully: 開発アクション "%{name}" は正常に削除されました。
-      development_action_types:
-        course: コース
-        default: デフォルト
-      duration:
-        max_length: 1年を超えることはできません
-        min_length: 1分未満にすることはできません
       edit:
         header: 編集開発アクション
       export:
         details: ファイル詳細
-        failure_msg: 翻訳のエクスポート時のエラー
-        success_msg: 開発アクションのエクスポートが進行中です。 通知でステータスを確認してください。
         translation_details: 詳細
-      export_development_action_translations: プロジェクトに基づく開発行為翻訳
-      export_development_actions: プロジェクトに基づく開発アクション
-      form:
-        available_languages: 利用可能な言語
-        client_placeholder: クライアントの選択
-        course_image: コースイメージ
-        course_link: コースリンク
-        description: 説明
-        development_action_type: 開発アクションのタイプ
-        duration: 間隔
-        end_date: 終了日
-        learning_style: 学習スタイル
-        name: 名称
-        project_placeholder: プロジェクトを選択する
-        skills: スキル
-        skills_placeholder: スキルを選択する
-        start_date: 開始日
-        title: 開発アクション
-        upload: アップロード
-      global: グローバル開発はアクションか？
-      heading: 開発アクション
-      import:
-        download_example_csv: サンプルcsvをダウンロード
-        failure_msg: ファイルのインポート中にエラーが発生しました。
-        info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
-      import_action:
-        development_actions_title: インポート開発アクション
-        development_actions_translations_title: インポート 開発 アクション 翻訳
-      import_development_actions: 開発アクション
-      import_development_actions_translations: 開発アクション 翻訳
       learning_styles:
         cannot_be_blank: 空白は不可
         invalid: OJT、構造化された学習、他者からの学習のいずれかであること。
@@ -1869,32 +824,11 @@ ja:
       form:
         enable_innovation_styles: イノベーションのスタイルを可能にする
         enable_occupations: 職業を可能にする
-        name: 名前
-        title: 寸法
       import_factors:
         import: 輸入
         sample_file: サンプルファイル
         successfully: ディメンジョン %{name} に対してスケジュールされたインポート要因ジョブ。
         title: 輸入要因
-      import_modal:
-        after: その後
-        before: 前
-        cancel: キャンセル
-        change_log_input: 変更履歴
-        continue: 続ける
-        error: エラー
-        error_occurred: エラーが発生しました
-        errors:
-          file_error: 続行する前にJSONファイルを選択してください。
-          processing_error: エラー処理ファイル
-        field: フィールド
-        import: 輸入
-        import_dimension: 輸入寸法
-        import_scheduled: インポート予定
-        operation: オペレーション
-        owner_input_validation: オーナーを選択してください
-        owner_select: オーナーの選択
-        select_json: JSONファイルを選択
       import_translations:
         error: ディメンジョン %{name} の変換のインポート中にエラーが発生しました。
         successfully: ディメンジョン %{name} で予定されているインポート変換。
@@ -1918,7 +852,6 @@ ja:
         confirmations:
           delete:
             body: "<p>本当にこのディメンションを削除しますか？</p>\n"
-            message: 確認のため、以下の次元名をテキストボックスに入力してください
             title: "<strong>ディメンションを</strong>削除しますか？"
           toggle_status:
             body: "<p>本当にこのディメンションを%{status}にしますか？</p>\n"
@@ -1946,9 +879,6 @@ ja:
       update:
         successfully: "%{name}ディメンションが正常に更新されました"
     disable: 無効
-    document_titles:
-      project_assessors: アセッサ｜%{project}。
-      project_participants: 参加者｜%{project}。
     enable: 有効にする
     errors:
       csv_file_required: ファイルはCSVファイルでなければならない
@@ -1969,21 +899,6 @@ ja:
       edit:
         header: ファクター名の編集
       form:
-        components:
-          ExternalList:
-            add: 追加
-            table:
-              actions: 行動
-              jsonpath: JSONパス
-              type: タイプ
-              types:
-                norm_score: 標準スコア
-                percentage: パーセント
-                percentile: パーセンタイル・スコア
-                score: スコア
-                zscore: Zスコア
-            title: スコアのJSONパス
-        predicate: 述語
         scoring_strategies:
           custom_formula: カスタム・フォーミュラ
           external_score: 外部スコア
@@ -1995,15 +910,9 @@ ja:
           sub_factors_average: 要因の加重平均
           sub_factors_conditional_average: 要因の条件付き加重平均
           sub_factors_sum: 要因の加重和
-        scoring_strategies_tip: "<strong>質問 (平均):</strong>これは、ある要素に関連する質問がある場合の現在の採点方法のようなものです。 <br /> <br /><strong>質問 (合計):</strong>これは質問 (平均) のようなものですが、合計を使用します。 <br /> <br /><strong>他のファクターの質問（平均）</strong>：これは、ファクターにサブファクターがある場合の現在の採点方法と同じです。 <br /> <br /><strong>その他の要因の質問(合計):</strong>これはその他の要因(平均)と同じですが、合計を使用します。 <br /> <br /><strong>加重合計(Weighted Sum of Factors)：</strong>選択された他要素の得点に加重を乗じたものが加算される。"
-        scoring_strategy: 得点戦略
-        search_factors: 検索要素
-        use_sub_factor_norm_score: 因子規範スコアを使用
-        value: 値
       index:
         icon: アイコン
         new: 追加
-        precision: 精度
         scoring_strategies:
           custom_formula: カスタム・フォーミュラ
           external_score: 外部スコア
@@ -2061,10 +970,6 @@ ja:
         successfully: ファクターは正常に更新された。
       update:
         successfully: "%{name}ファクターが正常に更新されました"
-    genders:
-      female: 女性
-      male: 男性
-      not_set: 未設定
     grants:
       common:
         view: 表示
@@ -2074,100 +979,19 @@ ja:
           accesssheet_manage: アクセスシート管理
           accesssheet_settings: アクセスシートの設定
           accesssheet_view: アクセスシートビュー
-    header:
-      logout:
-        content: 作業を続けたい場合はキャンセルを押してください。現在のユーザーをログアウトするにはOKを押してください。
-        title: 本当にログアウトしたいですか?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: この評価はすでにユーザ %{email} によって割り当てられ、開始されているため、hogan 評価 %{assessment_name} に対して新しいレスポンスを追加することはできません。 このユーザに対して新しい hogan アカウントを作成することで、ユーザが評価を再受験できるようになります。
           short_error_message: hoganアセスメント%{assessment_name}はすでにユーザ%{email}によって割り当てられ、開始されているため、新しいレスポンスを追加できません。
     idp:
-      actions:
-        remove_confirm: テンプレートを削除するには、以下のテキストボックスに現在のテンプレート名を入力してください。
-        success: "%{idpName}は正常に削除されました。"
-      add_idp_template: IDPテンプレートの追加
-      ai_assistant: AIアシスタント
-      ai_assisted_idp_enabled: AIアシストIDP対応
-      ai_enabled: AI対応
-      ai_settings: AI設定
-      all: すべて
-      appearance: 外観
-      appearance_hint: 外観を変更するには、まずIDPテンプレートを保存して、これらの設定を有効にしてください。
-      appearance_success: アピアランス設定の保存に成功
-      background_image: 背景画像
-      behavioral_skills: 行動スキル
-      client_skills: クライアント・スキル
-      delete_skill: このスキルを削除してもよろしいですか？削除すると、関連するすべての開発アクションも削除されます。
-      delete_skill_msg: 本当にこのスキルを削除したいですか?削除すると関連する開発アクションもすべて削除されます。
-      details_updated: IDP詳細の更新に成功
       development_actions:
-        add_from_library: ライブラリから追加
-        completion: 完了
-        create_development_actions_with_ai: AI for を使用した開発アクションの作成
-        create_from_ai: AIから作成
-        create_my_own: 自分で作成する
-        custom: 習慣
-        date_range: 開始日 - 終了日
-        edit_plan_to_add_development_actions: 計画を編集し、開発アクションを追加します。
         errors:
           invalid_learning_style: "「%{learning_style}」は有効な学習スタイルではありません。有効なオプションは次のとおりです%{valid_styles}"
           learning_style_blank: 学習スタイルを空白にすることはできません
-        generate_by_ai: AIによる生成
-        generate_more: さらに生成
-        heading: スキル/開発アクション
-        manage_skills: スキルの管理
-        no_development_actions: 開発アクションはありません
-      document_ai_assistant: ドキュメント分析AIアシスタント
-      edit_template: IDPテンプレートの編集
-      enter_tag_or_skills_error: 少なくとも1つのタグまたはスキルを選択する
-      enter_template_description: 説明
-      enter_template_description_error: テンプレートの説明が必要です。
-      enter_template_name: 名称
-      enter_template_name_error: テンプレート名は必須
       errors:
-        cannot_update_progress_plan_completed: IDP計画が完了したため、進捗状況を更新できない
         skills_required_on_publishing: テンプレートを公開する前にスキルを選択してください。
         update: IDP テンプレートがすでにユーザ IDP プランに関連付けられているため、更新は許可されません。
-      fields:
-        approval_date: 承認日
-        assigned_data: 割り当てデータ
-        assigned_date: 担当日
-        completion_date: 完了日
-        current_job_role: 現在の職務
-        division: 部門
-        name: 名称
-        publish_date: 発行日
-        review_date: 審査日
-        target_job_role: ターゲット職種
-      fields_label: フィールド
-      global_skills: グローバル・スキル
-      idp: アイディーピー
-      idp_template: IDPテンプレートの追加
-      interview_questions: 面接の質問
-      interview_questions_updated: 面接の質問が正常に更新されました。
-      intro_message: 導入メッセージ
-      intro_message_hint: 紹介メッセージを変更するには、まず IDP テンプレートを保存してこれらの設定を有効にしてください。
-      intro_message_success: 紹介メッセージが正常に保存されました
-      locales: ロケール
-      logo_image: ロゴイメージ
-      logo_type:
-        both: マーサーとクライアントのロゴ
-        client_only: クライアントのロゴのみ
-        mercer_only: マーサーのロゴのみ
-        none: ロゴなし
-      logo_type_label: ロゴタイプ
-      no_interview_questions_selected: 面接の質問は選択されていません
-      no_reflection_questions_selected: 選択された振り返りの質問はありません
-      none: なし
-      one_click_idp_enabled: ワンクリックIDP有効
-      reference_locale: 参照ロケール
-      reflection_questions: 振り返りの質問
-      reflection_questions_hint: 振り返りの質問を変更するには、まず IDP テンプレートを保存して、これらの設定を有効にしてください。
-      reflection_questions_updated: リフレクション・クエスチョンが正常に更新されました。
-      remove: 削除
-      remove_skill: スキルの削除
       revert_skill_to_public:
         errors:
           skill_already_public: スキルは既に公開されています
@@ -2175,47 +999,11 @@ ja:
         success:
           base_message: スキル「%{skill_name}」がマネージャーに表示されるようになりました
           with_approval: "%{base_message} IDP プランが承認のために提出されている"
-      select_by_tags: タグで選ぶ
-      select_interview_question: 入力を開始して質問を検索して選択します
-      select_reflection_question: 検索するために入力を開始し、質問を選択する
-      select_skill_gap_report: スキル・ギャップ・レポートを選択
-      select_specific_skills: 特定のスキルを選択する
-      selected: 厳選された
-      self_rating: 自己評価を有効にする
-      show_reflections: ショー・リフレクションズ
-      skill_gap_report: スキル・ギャップ・レポート
-      skill_gap_report_ai_assistant: スキルギャップレポート分析アシスタント
-      skill_source_preference: スキルソース
-      skill_sources:
-        from_ai: 一般的なAI知識から
-        from_template: テンプレートとマッピングから
-      skills: スキル
       skills_privacy_messages:
         made_private: スキル「%{skill_name}」は非公開としてマークされており、マネージャーには非表示になります
         made_public: スキル「%{skill_name}」がマネージャーに表示されるようになりました
         skill_not_found: スキルが見つかりません
         unauthorized: このスキルを変更する権限がありません
-      skills_updated: IDPスキルの更新に成功
-      status:
-        draft: ドラフト
-        published: 出版
-      status_updated: IDPステータスの更新に成功
-      subtitle_text: 字幕テキスト
-      tab:
-        development_actions: 開発アクション
-        interview_questions: 面接の質問
-        reflection_questions: 振り返りの質問
-        settings: 設定
-        templates: テンプレート
-      technical_skills: テクニカル・スキル
-      template_details: テンプレート詳細
-      title_text: タイトルテキスト
-      update_interview_questions: 面接の質問を更新する
-      update_reflection_questions: アップデートに関する質問
-    idp_setting:
-      manager_approves_idp: マネージャーがIDPを承認
-      manager_can_edit_idp: マネージャーはIDPを編集できる
-      require_all_development_actions_complete: すべての開発行為の完了を要求する
     import: 輸入
     imports:
       assessments:
@@ -2285,10 +1073,6 @@ ja:
         successfully: ユーザーが正常にインポートされました
       new:
         header: インポートユーザー
-    individual_invite:
-      tabs:
-        assessment_center: アセスメント・センター
-        invitation_status: 招待状況
     innovation_styles:
       create:
         successfully: イノベーション・スタイル %{name} が正常に作成されました。
@@ -2297,7 +1081,6 @@ ja:
       edit:
         header: イノベーション・スタイルの編集
       form:
-        full_description: 詳細説明
         no_icon: アイコンなし
       index:
         new: 追加
@@ -2359,69 +1142,13 @@ ja:
       toggle_status:
         successfully: ファクターは正常に更新された。
     integrations:
-      actions:
-        add: 統合
-        back: 統合に戻る
-        load_mettl_catalog: ロードメーター・アセスメント・カタログ
-        load_microsite_catalog: マイクロサイト評価カタログを読み込む
-        load_skillvue_catalog: スキルビューアセスメントカタログを読み込む
-      columns:
-        active: アクティブ
-        details: 詳細
-        name: 統合名
-      details:
-        client_id: クライアントID
-        deployment_id: デプロイメントID
-        platform_access_token_url: プラットフォームアクセストークンURL
-        platform_authentication_request_url: プラットフォーム認証リクエストURL
-        platform_host_name: プラットフォームホスト名
-        platform_id: プラットフォームID
-        platform_public_keyset_url: プラットフォーム公開キーセットURL
-        provider: プロバイダー名
-        webhookUrl: ウェブフックURL
-        webhookUrls: ウェブフックURL
-      integrations: 統合
       load_mettl_success: ロードメトル評価ジョブが正常にキューイングされました。
       load_microsite_success: マイクロサイトの評価ジョブのキューへの登録に成功しました
       load_skillvue_success: ロードスキルビュー評価ジョブが正常にキューイングされました。
       modal:
-        hogan:
-          provider: プロバイダー
-          providers:
-            mercer: マーサー
-            phoenix: フェニックス
-        iiht:
-          password: パスワード
-          tenancy_name: テナント名
-          tenant_id: テナントID
-          user: ユーザー
-        mettl:
-          apiBaseUrl: APIエンドポイント
-          apiBaseUrlRequired: APIエンドポイントが必要です。
-          privateKey: プライベート・キー
-          privateKeyRequired: 秘密鍵が必要です。
-          publicKey: 公開鍵
-          publicKeyRequired: 公開鍵が必要です。
-          servers:
-            mettl_eu: ヨーロッパ
-            mettl_india: インド
         microsite:
           apiKey: APIキー
           apiKeyRequired: APIキーが必要です
-        skillvue:
-          apiKey: APIキー
-          apiKeyRequired: APIキーが必要です。
-        yoodli:
-          keyset_url: キーセットURL
-          launch_url: ローンチURL
-          login_url: ログインURL
-      names:
-        hogan: ホーガン
-        iiht: IIHT
-        mettl: メトTL
-        microsite: マイクロサイト
-        skillvue: スキルビュー
-        yoodli: ユードリ
       validations:
         iiht:
           tenancy_name_present: テナント名がすでに他のプロジェクトに存在する
@@ -2432,26 +1159,10 @@ ja:
           api_key_present: APIキーは他のプロジェクトにすでに存在しています
         skillvue:
           api_key_present: APIキーがすでに他のプロジェクトに存在する
-      view_all_schedules: すべてのMettlのスケジュールを見る
     interview_questions:
-      delete_confirmation: この面接の質問を削除してもよろしいですか?
-      description: 記述
       export:
-        action: 輸出面接の質問
         details: ファイルの詳細
-        failure_msg: ファイルのエクスポート中にエラーが発生しました。
-        success_msg: 面接の質問のエクスポートが進行中です。通知で状況をご確認ください。
-      form:
-        description: 記述
-        mandatory: 必須
-        question: 質問
-        question_type: 質問の種類
-        question_type_audio: オーディオ
-        question_type_video: ビデオ
-        time_limit: 制限時間(秒)
-        title: インタビューの質問
       import:
-        action: 面接の質問をインポートする
         errors:
           invalid_required_column_format: 無効な必須列値の形式%{row}
           invalid_required_type_format: 無効な QuestionType 列値の形式%{row}
@@ -2459,64 +1170,6 @@ ja:
           missing_description: 説明コンテンツの欠落%{row}
           missing_question: 質問コンテンツの欠落%{row}
           save_failed: 失敗した%{message}の保存
-        failure_msg: ファイルのインポート中にエラーが発生しました。
-        success_msg: 面接の質問のインポートが進行中です。通知で状況をご確認ください。
-      question: 質問
-    invited_subject:
-      add_btn: 主題の追加
-      assessment_center: アセスメントセンター
-      booked_at: で予約：
-      column:
-        invitation_status: 招待状況
-        participant: 参加者
-        scheduling_details: スケジュール詳細
-      remove_confirm:
-        content: メール '%{subjectEmail}' の件名を本当に削除しますか？
-        success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
-        title: 主題の削除
-      resend_invite:
-        content: 選択した件名に招待を再送信します。続行してもよろしいですか?
-        success: 招待状の再送信に成功しました。
-        title: 招待を再送信
-      statuses:
-        accepted: 受諾
-        cancelled: キャンセル
-        late_cancelled: レイト・キャンセル
-        late_rescheduled: レイト・リスケジュール
-        pending: 申請中
-        requested_cancellation: キャンセルのお申し出
-        requested_cancellation_rejected: キャンセル拒否
-        requested_rescheduling: リスケジュールのリクエスト
-        requested_rescheduling_rejected: リスケジュール却下
-        rescheduled: 予定変更
-        scheduled: 予定
-      subject: 対象
-    job_role:
-      are_you_sure_to_remove: 本当に外していいのか？
-      column:
-        job_group: 職務グループ
-        skill_name: スキル名
-      export:
-        failure_msg: 翻訳のエクスポート時のエラー
-        success_msg: 進行中の開発アクションをエクスポートする。
-      form:
-        code: コード
-        description: 説明
-        job_group: 職務グループ
-        name: 名称
-        title: 仕事の役割
-      import:
-        download_example_csv: サンプルcsvをダウンロード
-        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
-      import_action:
-        translations: 役割の翻訳をインポートする
-      job_role_details: 職務内容
-      translations: 職務の翻訳
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: 期待される能力レベル
-      form:
-        title: スキル・ジョブ・マッピング
     job_roles:
       export:
         translations:
@@ -2582,18 +1235,11 @@ ja:
     meta_title: 管理パネル
     navigation:
       approvals: 承認
-      audit_logs: 監査ログ
-      availability: 空室状況
       configuration: 構成
       content: コンテンツ
-      dashboard: ダッシュボード
       factors: 要因
       innovation_styles: イノベーションのスタイル
-      logout: ログアウト
       occupations: 職業
-      registration_codes: 登録コード
-      skills_taxonomy: スキル分類法
-      users: ユーザー
     no_data_found: データなし
     norms:
       copy:
@@ -2609,13 +1255,6 @@ ja:
         factors: 要因
         inplace_title: 値を入力
         title: ノーム・エディター
-      export:
-        success_msg: Normのエクスポートジョブは正常にスケジュールされました。 通知でステータスを確認してください。
-      import:
-        download_example_csv: サンプル規範CSV
-        select_file_validation: 送信する前に、オーナーとファイルを選択してください。
-        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
-        title: 規範の輸入
       index:
         import: 輸入
         new: 追加
@@ -2631,10 +1270,6 @@ ja:
         updated_by: 更新者
       new:
         header: 新基準
-      norms: 規範
-      remove:
-        confirm: テキストボックスに以下のノルム名を入力して確認する。
-        warning: 本当にノルム"%{name}"を削除したいのですか？
       resource:
         confirmations:
           delete:
@@ -2650,10 +1285,6 @@ ja:
           copy: コピー規範
           delete: ノーム削除
           edit: ノームの名前を変更
-      score_types:
-        five_scale: 5段階評価
-        norm_type: ノーマルタイプ
-        percentage: パーセント
       sidebar:
         copy: コピー規範
         destroy: ノーム削除
@@ -2661,7 +1292,6 @@ ja:
         editor: ノーム・エディター
         export: 輸出規範
         title: ノームのオプション
-      title: ノーム
       toggle_status:
         successfully: ノームのアップデートは成功した。
       update:
@@ -2677,12 +1307,8 @@ ja:
       edit:
         header: 編集職業
       form:
-        alternative_icon: 別のアイコン
-        color: 色
         hint:
           key_career_tracks: '"+"-リスト、"*"-太字 例： + *生物学* - いくつかの説明...'
-        indicative_roles_image: 役割のイメージ図
-        key_career_tracks_image: 主なキャリアパス（画像）
         no_icon: アイコンなし
       index:
         new: 追加
@@ -2744,49 +1370,15 @@ ja:
         successfully: ファクターは正常に更新された。
       update:
         successfully: ファクタ %{name} が正常に更新されました。
-    participants:
-      tabs:
-        assessors: アセッサ
-        sms_contacts: SMSコンタクト
-        subjects: 対象
     piped_text_modal:
-      assessment_center: アセスメント・センター
       assessment_id: アセスメントID
       campaign_id: キャンペーンID
       campaign_link: キャンペーンリンク
-      campaign_name: キャンペーン名
-      campaigns: キャンペーン
-      description: 説明
-      duration: 期間
-      end_time: 終了時間
-      insight_page_link: インサイトページリンク
-      insight_page_url: インサイトページURL
-      invite_title: タイトル
-      invites: 招待
       join_link: リンク
       magic_link: マジックリンク
       magic_url: マジックURL
-      platform_url_links: プラットフォームのURLとリンク
       profile_custom_field: プロフィール・カスタム・フィールド
-      project_name: プロジェクト名
-      projects: プロジェクト
-      report_name: レポート名
-      start_time: 開始時間
       text: テキスト
-      title: パイピング・テキストを追加する
-      user_reports: ユーザーレポート
-      users: ユーザー
-    proctoring_sessions:
-      columns:
-        comment: コメント
-        conclusion: 結論
-        links: リンク
-        score: スコア
-        session_id: セッションID
-      links:
-        report: レポート
-        review: レビュー
-      resource_name: 試験監督セッション
     products:
       copy:
         error: エラー
@@ -2799,9 +1391,6 @@ ja:
         create:
           invalid_format: レベル定義は定義の配列でなければならない。
           level_definition_must_match_level: は正確に%{expected}レベルを含んでいなければならないが、%{actual}は与えられた。
-          level_description_must_exist: レベルの説明を空白にすることはできません
-          level_name_must_exist: レベル名は空白にできない
-          must_be_unique: ユニークでなければならない
           proficiency_level_exists: このスキルとプロジェクトを持つProficiencyLevelがすでに存在する。
           proficiency_level_exists_for_default: デフォルトの熟練度はすでに終了している。
           proficiency_level_exists_for_type: このタイプの熟練度レベルはすでに存在する。
@@ -2809,24 +1398,9 @@ ja:
           skill_must_exist: 熟練度タイプ'by_skill'では、スキルが存在しなければならない。
       export:
         details: 詳細
-        failure_msg: 熟練度レベルのエクスポート時のエラー
-        success_msg: 進行中の開発アクションのエクスポート
         translations:
           details: 翻訳能力レベル
-      fields:
-        level: レベル
-        level_description: レベル説明
-        level_name: レベル名
-        proficiency_translations: 翻訳能力
-        proficiency_type: 熟練度タイプ
-        skill: スキル
-        skill_name: スキル名
-        skill_type: スキルの種類
-        title: 熟練度
       import:
-        actions:
-          proficiency: 輸入能力
-          translations: 輸入技能翻訳
         errors:
           by_skill_exists_id_missing: 行%{row_number}:スキル「%{name}」の習熟度レベルがすでに存在します。更新するには ID を入力してください。
           by_skill_missing: 行 %{row_number}：by_skill'タイプでは、プロジェクトとスキルが存在する必要があります。
@@ -2839,11 +1413,7 @@ ja:
           invalid_skill_type: '行%{row_number}: 無効なスキルタイプ "%{skill_type}".有効なタイプは%{valid_types}'
           missing_columns: '必須列がありません: %{fields}.'
           skill_not_found: 行 %{row_number}：無効または見つからないスキル
-        job_queued: 技能レベルのインポートジョブがキューに入れられました。
       translations:
-        export:
-          failure_msg: 翻訳のエクスポート時のエラー
-          success_msg: 進行中の開発アクションをエクスポートする。
         import:
           errors:
             invalid_csv_format: '無効な CSV 形式: %{message} です。'
@@ -2853,14 +1423,6 @@ ja:
             missing_required_columns: '必要な列がありません: %{columns}.'
             row_id_blank: 行 %{row}：IDを空白にすることはできません
             save_failed: 'スキルID %{id}の処理エラー: %{message}'
-      type:
-        by_skill: スキル別
-        by_skill_type: スキルタイプ別
-        default: デフォルト
-    profile:
-      change_password: パスワードの変更
-      details: 詳細
-      profile: プロフィール
     profiles:
       edit:
         success: プロフィールは正常に更新されました。
@@ -2868,331 +1430,21 @@ ja:
       update:
         edit:
           success: 成功
-    project:
-      tools:
-        workshop_status_export: ワークショップ状況エクスポート
-        workshop_status_export_success: ワークショップのステータス エクスポートは正常にスケジュールされました。
-    project_features:
-      project_features: プロジェクトの特徴
-    project_participants:
-      cancel: キャンセル
-      column_actions: 行動
-      column_campaigns: キャンペーン
-      column_createdAt: 作成日時
-      column_created_at: で作成された。
-      column_email: 電子メール
-      column_id: アイド
-      column_name: 名称
-      delete: 削除
-      edit: 編集
-      edit_participant: 編集参加者
-      filter_campaigns: キャンペーンなし
-      form_first_name: 名前
-      form_last_name: 姓
-      reset_password: パスワードのリセット
-      save: セーブ
-      search_user: 検索ユーザー
-      send_email: 電子メールを送信する
-    project_tabs:
-      assessments:
-        column:
-          name: 名称
-          normalize_factor_scores: 因子スコアを正規化する
-          user_result_validity_in_days: 結果の妥当性
-        delete:
-          content: 本当に評価 '%{name}' を削除しますか？
-          success: アセスメント '%{name}' は正常に削除されました。
-          title: 評価の削除
-        form:
-          assessment: 評価
-          assessment_placeholder: セレクト・アセスメント
-          assessment_required: 査定が必要
-          normalize_factor_scores: 因子スコアを正規化する
-          user_result_validity_in_days: 結果の有効期間（日
-        title: アセスメント
-      design: デザイン
-      general: 一般
-      privacy: プライバシー
-      profile: プロフィール
-      registration: 参加登録
-      webhooks:
-        actions:
-          delete:
-            key: 削除
-            label: 削除
-          edit:
-            key: エディット
-            label: 編集
-          send_test:
-            key: 送信テスト
-            label: 送信テスト
-        form:
-          acceptable_rate_limit:
-            label: リクエストの上限
-            request_per: リクエスト数
-          active:
-            label: アクティブ
-            name: アクティブ
-          assessments:
-            help_text: この選択は評価の生の応答イベントにのみ影響します。
-            label: 評価
-            placeholder: 評価を選択
-            required: 評価生データ応答イベントには、少なくとも1つの評価を選択する必要があります。
-          auth_type:
-            api_key:
-              label: APIキー
-              name: api_key
-              value: api_key_auth
-            api_key_header:
-              format_error: アルファベット、数字、アンダースコア、ハイフンのみが使用可能です。
-              label: APIキー・ヘッダ
-              name: apiKeyHeader
-            basic:
-              label: ベーシック
-              value: 基本認証
-            label: 認証タイプ
-            name: auth_type
-            no_auth:
-              label: なし
-              value: no_auth
-            oauth:
-              label: OAuth
-              value: OAuth
-          client_credentials:
-            label: クライアント資格情報
-            value: client_credentials
-          client_id:
-            label: クライアントID
-            name: oauth_client_id
-            required: クライアント ID が必要です
-          client_secret:
-            label: クライアントシークレット
-            name: oauth_client_secret
-            required: クライアントシークレットが必要です
-          description:
-            label: 説明
-            name: 記述
-          grant_type:
-            label: 助成金の種類
-            name: oauth_grant_type
-          include_locales:
-            label: 翻訳を含む
-            name: インクルード・ローカル
-          oauth_scope:
-            label: スコープ
-            name: oauth_scope
-            required: スコープは必須です
-          password:
-            label: パスワード
-            name: パスワード
-          token_url:
-            label: トークンURL
-            name: oauth_token_url
-            required: トークン URL は必須です
-          topics:
-            label: イベント
-            list:
-              assessment_assigned: 評価
-              assessment_completed: アセスメント完了
-              assessment_raw_response: 評価 生の回答
-              assessment_started: アセスメント開始
-              assessment_timeout: 評価タイムアウト
-              campaign_results_available: キャンペーン結果発表
-              campaign_user_assessment_summary: キャンペーンユーザー評価の概要
-              campaign_user_status: キャンペーン・ユーザーのステータス
-              report_available: 報告書あり
-              results_available: 結果あり
-              scheduling_cancelled: スケジューリング中止
-              scheduling_invited: 招待されたスケジューリング
-              scheduling_rescheduled: スケジュール変更
-              scheduling_scheduled: スケジューリング予定
-              workshop_attendance_status: ワークショップの出席状況
-          url:
-            label: URL
-            name: url
-          username:
-            label: ユーザー名
-            name: ユーザー名
-        remove_webhook:
-          content: "%{description}を削除しますか?"
-          title: 削除
-        title: ウェブフック
-    project_users:
-      cancel: キャンセル
-      change_password: パスワードの変更
-      column_actions: 行動
-      column_campaigns: キャンペーン
-      column_created_at: で作成された。
-      column_email: 電子メール
-      column_id: アイド
-      column_name: 名称
-      confirm_delete: はい、削除
-      confirm_send: はい。
-      delete: 削除
-      delete_error: 評価者 '%{name}' を削除できませんでした。 管理者に連絡してください。
-      delete_success: 査定者 '%{name}' は正常に削除されました。
-      edit: 編集
-      edit_assessor: 編集アセッサ
-      filter_campaigns: キャンペーンなし
-      form_first_name: 名前
-      form_last_name: 姓
-      modal_delete_content: 本当にアセッサー '%{name}' を削除しますか?
-      modal_delete_title: アセッサーの削除
-      modal_reset_email_content: パスワードリセットリンクを'%{email}'に送信しますか？
-      model_reset_email: 査定者のパスワードをリセットする
-      no_edit_permission: 評価者 '%{name}' を編集する権限がありません。
-      reset_mail_error: パスワードリセットリンクを '%{email}' に送信できませんでした。 管理者に連絡してください。
-      reset_mail_success: パスワード再設定リンクが '%{email}' に送信されました。
-      save: セーブ
-      search_accessor: 検索アクセサ
-      send_email: 電子メールを送信する
     projects:
-      addProject: プロジェクトの追加
-      assessment_settings:
-        search: 検索評価
       clients:
         confirmations:
           detach_from_project:
             body: ボディ
             title: タイトル
-      columns:
-        project_number: プロジェクト番号
-      design_settings:
-        alt_text_invalid: Altテキストにサポートされていない文字が含まれています。
-        alt_text_logo: ロゴ・アルトテキスト
-        alt_text_logo_required: Alt-Textロゴは必須
-        alt_text_long: 最大文字数の100文字を超える。
-        background_color: 背景色
-        background_label: 背景
-        background_overlay_label: 背景オーバーレイ
-        background_size: 背景サイズ
-        background_size_contain: コンテイン
-        background_size_cover: カバー
-        bg_upload: アップロード
-        client_logo_label: クライアント・ロゴ
-        contrast_ratio_warning: 注：この原色を使用すると、テキストを読みやすくするためのコントラスト比の要件に違反する可能性があります。
-        contrast_ratio_warning_lighter_color: 注意：この%{name}の色を使うと、テキストの読みやすさのためのコントラスト比の要件に違反する可能性があります。 もっと暗い色を使ってみてください。
-        copy_text: テキスト
-        dashed_button: 破線
-        default_button: デフォルト
-        error_color: エラーカラー
-        hover_options:
-          danger_item: 危険アイテム
-          first_menu_item: 第1メニュー
-        hover_text: ホバー・ミー
-        info_color: インフォ・カラー
-        link_text: リンク
-        logo_upload: アップロード
-        position_auto: オート
-        position_label: ログインボックスの位置
-        position_left: 左
-        position_right: 右
-        primary_button: プライマリー
-        primary_color: 原色
-        reset: リセット
-        sec_logo_label: セカンダリーロゴ
-        sec_logo_upload: アップロード
-        secondary_logo_alt_text: セカンダリーロゴ Alt-Text
-        secondary_logo_alt_text_required: セカンダリーAlt-Textロゴは必須
-        submenu_options:
-          option_one: オプション1
-          option_title: 項目 1
-          option_two: オプション2
-        success_color: サクセス・カラー
-        success_update: デザイン設定が正常に保存されました
-        tab_text_one: メニュー
-        tab_text_two: サブメニュー
-        text_danger: テキスト（危険）
-        text_success: テキスト（成功）
-        text_warning: テキスト(警告)
-        warning_color: 警告色
-      form:
-        name: 名称
-        project_number: プロジェクト番号
-        subdomain: サブドメイン
-        title: プロジェクト
-      general_settings:
-        live_chat: ライブチャットを有効にする
-        locales_label: ロケール
-        name_label: 名称
-        project_number_label: プロジェクト番号
-        save_changes: 変更を保存する
-        sub_domain_label: サブドメイン
-      mettl_schedule_records:
-        actions:
-          edit: 編集
-        add: スケジュール追加
-        assessment_id: アセスメントID
-        assessment_name: 評価名
-        candidate_authorization: 候補者認証を有効にする
-        candidate_screen_capture: 候補者の画面キャプチャを有効にする
-        count: 閲覧許容回数
-        created_at: 作成日時
-        schedule_id: スケジュールID
-        schedule_name: スケジュール名
-        search: 検索
-        secure_browser_enabled: セキュアブラウザを有効にする
-        settings: 設定
-        show_remaining_counts: 残り回数の表示を有効にする
-        visual_proctoring_enabled: ビジュアル・プロクターを有効にする
-        web_proctoring_enabled: ウェブ・プロテクターを有効にする
       privacy_settings:
-        disable_dp: さらなるデータ処理を許可しない
-        dp_consent: データ処理同意の有効化
-        dp_consent_custom: データ処理同意のカスタマイズ
-        dp_consent_version: 政策バージョン
         errors:
           cannot_disable_while_campaign_enabled: このプロジェクトの1つまたは複数のキャンペーンでビデオ通話録音が有効になっているため、無効にできません。
           min_retention: 1日未満にすることはできません
-          policy_version_format: 整数のみ使用可
-          required: 必須
-        mask_identity_for_examus: エグザムス・プロテクターのマスクデータ
-        mask_identity_for_hogan: ホーガンのマスクデータ
-        mask_identity_for_iiht: IIHTのマスクデータ
-        mask_identity_for_mettl: METTLのマスクデータ
-        mask_identity_for_mhs: MHS用マスクデータ
-        mask_identity_for_pearson: ピアソンのマスクデータ
-        mask_identity_for_saville: サヴィルのマスクデータ
-        mask_identity_for_skillvue: スキルビューのマスクデータ
-        mask_identity_for_yoodli: Yoodliのマスクデータ
-        privacy_link: プライバシー・リンクを有効にする
-        privacy_link_label: プライバシー・リンク
-        privacy_link_placeholder: プライバシーリンク
-        privacy_text: プライバシーテキスト
-        privacy_text_placeholder: プライバシーテキストを入力
-        video_call_recording: ビデオ通話の録音を許可する
-        video_call_recording_expiry_duration: ビデオ通話録画の保存期間（単位：日）
-        video_call_recording_scope: すべての新規キャンペーンでビデオ録画を有効にする
-      profile_settings:
-        form_fields:
-          enabled: 有効
-          half_size: ハーフサイズ
-          locked: ロック
-          name: 名称
-          remove: 削除
-          required: 必須
-          sort: ソート
-        month: 月
-        never: 決して
-        update_in: プロフィール更新の通知
-        year: 年
-      registration_settings:
-        hide_signup: 登録オプションを隠す
-        require_mobile_number: 携帯電話番号が必要
       users:
         confirmations:
           detach_from_project:
             body: ボディ
             title: タイトル
-      webhook_settings:
-        add: ウェブフックの追加
-        column_active: アクティブ
-        column_created_date: 作成日
-        column_description: 説明
-        column_manage: 管理
-        column_updated_date: 変更日
-        column_url: URL
-        search: ウェブフックを検索
     questions:
       copy:
         successfully: 質問 "%{name}" は正常にコピーされました。
@@ -3217,72 +1469,15 @@ ja:
       toggle_status:
         successfully: 無事に更新された。
     reflection_questions:
-      delete_confirmation: この「振り返り問題」を削除してもよろしいですか？
       export:
-        action: 輸出に関する質問
         details: ファイル詳細
-        failure_msg: ファイルのエクスポート中にエラーが発生しました。
-        success_msg: 振り返り問題のエクスポートが進行中です。通知で状況を確認してください。
-      form:
-        mandatory: 必須
-        max_words: 最大文字数
-        min_words: 最小文字数
-        question: 質問
-        title: リフレクション・クエスチョン
       import:
-        action: 輸入に関する質問
         errors:
           invalid_max_words_column_format: 無効な Maximum Words 列値形式 %{row}.
           invalid_min_words_column_format: 無効な最小単語列値形式 %{row}.
           invalid_required_column_format: 無効な必須列値形式 %{row}。
           missing_eng_question: 英語の質問内容の欠落 %{row}
           save_failed: 失敗した%{message}の保存
-        failure_msg: ファイルのインポート中にエラーが発生しました。
-        success_msg: リフレクション問題のインポートが進行中です。通知で状況を確認してください。
-      question: 質問
-    report_approval:
-      approval_statuses:
-        approved: 承認済み
-        change_requested: 変更要求
-        not_ready: 準備不足
-        pending_qc: QC申請中
-        qc_completed: QC完了
-        qc_in_progress: 進行中のQC
-      bulk_approve_success: "%{sent_for_approval}は承認のために送信されました。 %{approved}レポートは承認されました。 %{ignored}レポートはQCの変更/コメントにより手動承認が必要です。"
-      columns:
-        actions: 行動
-        approval_status: 承認状況
-        approved_by: 承認者
-        assessed_by: 評価者
-        campaign_name: キャンペーン名
-        qc_by: QC By
-        report_name: レポート名
-        subject_email: 件名 メール
-        user_email: ユーザーEメール
-        user_name: ユーザー名
-      dashboard: ダッシュボード
-      download: ダウンロード
-      report_approval_settings: レポート承認設定
-      report_approvals: レポートの承認
-      review: レビュー
-      saving_filters:
-        actions:
-          clear_filters: クリアフィルター
-          delete_filter: フィルターの削除
-          save_filter: セーブ
-          save_new_filter: 新しいフィルターとして保存
-          saved_filters: 保存されたフィルター
-        delete_saved_filters: フィルター削除
-        edit_filter_name: 保存されたフィルター名
-        error_while_deleting: 削除中のエラー
-        error_while_editing: 編集中のエラー
-        error_while_fetching: 何かが間違っている。
-        error_while_saving: フィルター保存時のエラー
-        filter_updated: フィルター更新
-        no_saved_filters: 保存されたフィルターはありません
-        save_filter: 保存されたフィルター
-        set_favorite: フィルターがお気に入りに設定されている
-      submit_or_approve_all: すべてを提出または承認する
     report_builder:
       campaign_factors:
         add_field: フィールドの追加
@@ -3417,22 +1612,6 @@ ja:
         title: レポートバンドルオプション
       update:
         successfully: レポート・バンドル %{name} が正常に更新されました。
-    report_review:
-      abort_qc: QCを中止する
-      approve: 承認
-      approve_changes: 変更を承認する
-      edit: 編集
-      remove_approval: 承認の削除
-      request_changes: 変更要求
-      review: レビュー
-      send_for_approve: 承認のための送信
-      statuses:
-        approved: 承認済み
-        change_requested: 変更要求
-        not_ready: 準備不足
-        pending_qc: QC申請中
-        qc_completed: QC完了
-        qc_in_progress: 進行中のQC
     report_settings:
       data_source_types:
         assessment: 査定
@@ -3456,9 +1635,6 @@ ja:
         title: 一括アップロードキャンペーンの要因
         upload_success: アップロード成功
       copy:
-        copy: コピー
-        copy_report: コピーレポート
-        name: 名称
         successfully: レポート '%{name}' が正常にコピーされました。
       create:
         successfully: レポート '%{name}' が正常に作成されました。
@@ -3466,15 +1642,6 @@ ja:
         successfully: レポート '%{name}' は正常に削除されました。
       edit:
         header: レポート名の編集
-      edit_default_language:
-        agreement: はい、デフォルトの言語が変わることの意味は理解しています。
-        title: デフォルト言語の編集
-        tooltip: デフォルト言語の編集
-        warning:
-          description_li_1: デフォルトの言語をRTL言語からLTR言語に、またはその逆に変更すると、レイアウトに影響します。
-          description_li_2: デフォルトの言語を変更すると、レポートの翻訳をやり直す必要があります。
-          description_li_3: この変更を行う前に、レポートの翻訳をダウンロードしてください。
-          title: 説明書をよくお読みください
       modals:
         remap_assessment:
           new_assessment_name: 新しい評価名
@@ -3484,10 +1651,6 @@ ja:
       new:
         header: レポートを選択
       preview:
-        comments: コメント
-        hide_resolved: 非表示 解決済み
-        history: 歴史
-        info_to_select_module: コメントするテキストモジュールを選択する
         title: プレビュー
       regenerate:
         successfully: レポートが正常に再生のために送信された
@@ -3517,425 +1680,17 @@ ja:
         successfully: レポートは正常に更新されました。
       update:
         successfully: レポート %{name} が正常に更新されました。
-    reports_language_selection_modal:
-      download: レポートダウンロード
-      generate: レポート作成
     resource:
       remove_confirm:
         message: 本当にこのリソースを削除しますか？
         title: リソースの削除
-    saml_settings:
-      after_signout_url: サインアウト後のURL
-      cert: 証明書
-      config_details:
-        acs_url: アサーション・コンシューマー・サービスURL
-        copied: コピーされた %{element}
-        issuer: エンティティID/発行者
-        title: 以下の情報でIdpを設定する。
-      email_pipetext: Pipetextにメールする
-      enabled: 有効
-      entity_id: エンティティID/発行者
-      name_identifier_format: 名前識別子
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent。
-      saml_setting: SAML 設定
-      save: 設定の保存
-      sso_service_url: SSOサービスURL
-      successfully_saved_msg: SAML 設定が正常に保存されました。
     save: セーブ
-    scheduling:
-      add_activity: アクティビティの追加
-      add_assessment_center: アセスメントセンターの追加
-      add_assessor_form:
-        assessment: 評価
-        assessor: アセッサ
-        schedule_time: スケジュール時間
-      add_subject: 件名の追加
-      assessment_center_form:
-        add_more: 追加
-        allow_late_cancellation_and_scheduling: レイト・キャンセルとスケジューリング
-        assessment_center_group: アセスメント・センター・グループ
-        assessment_center_group_placeholder: セレクト・アセスメント・センター・グループ
-        assessor_ids_label: アセッサ
-        back: バック
-        basic_info_panel:
-          description: 複数の日程を選択して、複数の評価センターを作成することもできます。
-          title: 基本情報
-        cancellation_lead_time_label: キャンセルのリードタイム
-        copy_hint: 上記のシート、センターマネージャー、アセッサー、ミーティングおよびリソースの設定を次のアセスメントセンターにコピーします。 コピー後、次に進む前に個々のアセスメントセンターに対してさらに変更を加えることができます。
-        copy_to_all: 他のアセスメント・センターへのコピー
-        create: 作成
-        dates_label: 日程
-        disable_cancellation_and_rescheduling: キャンセルと再スケジューリングを無効にする
-        duration_label: 期間
-        duration_max_error: 16時間を超えてはならない
-        duration_min_error: 15分以内
-        duration_placeholder: 例：4時間30分
-        manager_ids_label: センターマネージャー
-        meeting_link: ミーティングリンク
-        meetings_and_resources: ミーティング＆リソース
-        name_label: 名称
-        next: 次のページ
-        required_error: 必須
-        resources_panel:
-          description: ファシリテーターにアクセスさせたいリソースへのリンクを追加してください。
-          resource_name_placeholder: リソース名
-          resource_url_placeholder: リソースリンク
-          title: リソース
-          validation_error: 名前とURLの両方を入力するか、リソースを削除する
-        scheduling_lead_time_label: スケジューリングのリードタイム
-        seats_label: 座席
-        time_label: 時間
-        timezone_label: タイムゾーン
-        url_label: URL
-        video_call_type:
-          custom: カスタム
-          internal: 内部
-          none: なし
-        video_call_type_label: ビデオ通話の追加
-      attendance_status:
-        column_name: 出席状況
-        dropped_out: 落選
-        late: 遅い
-        no_show: ノーショー
-        no_status: ステータスなし
-        on_time: オンタイム
-      attended:
-        attended: 出席
-        not_attended: 不参加
-      campaign_participants: キャンペーン参加者
-      columns:
-        activity: アクティビティ
-        assessment_center_date_and_time: アセスメントセンターの日時
-        assessor: アセッサ
-        assessors: アセッサ
-        attendance: 出席
-        attended: 出席
-        booked_at: 予約済み
-        campaign_assessment_group: アセスメント・センター・グループ
-        campaign_name: キャンペーン名
-        duration: 期間
-        link_to_view_recordings: 録画を表示するためのリンク
-        managers: マネージャー
-        meeting_link: ミーティングリンク
-        name: 名称
-        participants: 参加者
-        prework: プレワーク
-        recording_date: 録音日
-        resource_link: リンク
-        resource_name: 名称
-        schedule_time: スケジュール時間
-        scheduling_status: スケジューリング状況
-        seats: 座席
-        serial_no: シリアル番号
-        start_time: 日時
-        subject: テーマ
-        title: タイトル
-        view_recording: 録画の表示
-      errors:
-        assessor_already_assigned: 別の評価または評価者を選択してください。
-        date_required: 日付を選択してください
-        invalid_url: 無効なURL形式
-        meeting_link_https: ミーティングのリンクは "https://"で始まること
-      id: 身分証明書
-      info:
-        allowed: 可
-        assessors: アセッサ
-        booked: 予約席
-        campaign_assessment_group: アセスメント・センター・グループ
-        cancellation_lead_time: キャンセル・リードタイム
-        cancellation_tooltip: ユーザーは%{date}まで予約をキャンセルできる。
-        date: 日時
-        duration: 期間
-        join_meeting: ジョイン・ルーム
-        late_cancellation_and_scheduling: レイト・キャンセルとスケジューリング
-        link: ミーティングリンク
-        managers: センターマネージャー
-        none: なし
-        not_allowed: 不可
-        recording_enabled: 録音が有効
-        remaining: 残席
-        scheduling_lead_time: リードタイムのスケジューリング
-        scheduling_tooltip: ユーザは%{date}までのスロットを予約できる。
-        search_placehoder: ID、Eメール、名前で検索
-        timezone: タイムゾーン
-        total_seats: 総座席数
-      resources:
-        confirm_message: リソース '%{resource_name}' を本当に削除しますか?
-        confirm_title: 要確認
-        create: リソースの作成
-        invalid_url: 無効なURLです。 httpまたはhttpsプロトコルを含む完全なURLを指定してください。
-        resource: リソース
-        successful_remove: アセスメント・センター・リソース %{resource_name} は正常に削除されました。
-      schedule_assessments: 査定スケジュール
-      scheduling_statuses:
-        cancelled: キャンセル
-        late_cancelled: レイト・キャンセル
-        late_rescheduled: レイト・リスケジュール
-        rescheduled: 予定変更
-        scheduled: 予定
-      search_participant: キャンペーン参加者の検索
-      status:
-        completed: 完成
-        dropped_out: 落選
-        in_progress: 進行中
-        late: 遅い
-        no_show: ノーショー
-        not_started: 未着手
-      status_change_modal:
-        content: 評価センターを閉鎖すると、参加者はセンターの活動に参加できなくなります。
-        title: 評価センターのステータスを変更する
-      subjects:
-        activities: 活動内容
-        add_assessor_form: アセッサーの追加フォーム
-        assessments: アセスメント
-        assessor_forms: 査定フォーム
-        confirm_message: |
-          'メール「%{subject_email}」を持つ対象者の参加をキャンセルしてもよろしいですか?
-          <br />
-          キャンセルとマークされると、この被験者はアセスメントセンターに参加できなくなります。'
-        confirm_title: 要確認
-        edit_assessor_form: アセッサーのフォームを編集する
-        form_title: 査定スケジュール
-        language: 言語
-        language_not_selected: 不採用
-        mark_cancel: マーク・キャンセル
-        mark_cancel_success: 電子メール %{subject_email} による件名の参加をキャンセルしました。
-        meeting_link_custom: カスタム
-        meeting_link_internal: 内部
-        meeting_link_none: なし
-        meeting_link_title: ミーティングリンク
-        no_change: 変更なし
-        override_existing: 既存のスケジュールを上書きする
-        preworks: プレワーク
-        re_enroll: 再登録
-        re_enroll_confirm_message: 件名を「%{subject_email} 」に変更しますか？
-        re_enroll_success: 電子メールでの再登録対象%{subject_email}.
-        schedule: スケジュール
-        unschedule: スケジュール解除
-      tabs:
-        activities: 活動内容
-        assessment_center: アセスメント・センター
-        invites: 招待
-        recordings: 録音
-        resources: リソース
-        subjects: 対象
     scoring:
-      action_prohibited: 禁止行為
-      active: アクティブ
-      actual_average: 実績平均
-      add_factor: ファクター追加
-      add_group: グループ追加
-      assessment: 評価
-      assessment_scoring_type: アセスメント採点タイプ
-      average: 平均
-      campaign_scoring_variables: キャンペーン・スコアリング変数
-      code: コード
-      desc: キャンペーン要因が %{n} 個の上限を超えました。 要因を追加することはできません。 先に進む前に既存の要因を確認し、管理してください。
-      description: 説明
-      dimension: 寸法
-      edit_factor: 編集係数
       export:
         details: キャンペーン採点
         factors: 輸出キャンペーンの要因
-      factor: ファクター
-      factor_group_removed_successfully: キャンペーンファクターグループは正常に削除されました
-      factor_removal_confirmation: 以下のテキストボックスにファクター名を入力して確認する。
-      factor_removed_successfully: キャンペーン・ファクターの削除に成功
-      factors_exported_successfully: エクスポートキャンペーン要因のジョブが正常にスケジュールされました
-      factors_imported_successfully: インポートキャンペーン要因のジョブが正常にスケジュールされました
-      final: 決勝
-      final_score_updated_successfully: 最終スコアの更新に成功
-      formula: フォーミュラ
-      get_started: スタート
-      id: アイド
-      import:
-        factors: インポート・キャンペーン要因
-      innovation_style_removal_confirmation: 確認のため、以下のテキストボックスに「イノベーション・スタイル」の名前を入力してください
-      name: 名称
-      no_groups: グループなし
-      occupation_removal_confirmation: 確認のため、以下の職業名をテキストボックスに入力してください
-      output_type: 出力タイプ
-      pattern_error: 使用できる文字は英数字、スペース、ダッシュのみです。
-      profile:
-        years: 年
-      public: パブリック
-      ranked: 順位
-      remove_all_campaign_factors:
-        confirmation: 以下のテキストボックスに現在のキャンペーン名を入力して確認する。
-        error: キャンペーン要因の削除に失敗
-        success: キャンペーン要因の削除に成功
-        title: キャンペーン要因を取り除く
-        warning: すべてのキャンペーンファクターと、関連するすべてのユーザーのスコアを削除しようとしています。 このアクションを実行してもよろしいですか？
-      remove_factor_group_confirmation_content: 本当に要因グループ '%{group_name}' を削除しますか?
-      remove_factor_group_confirmation_title: 因子グループを取り除く
-      required_error: 空っぽにはできない
-      save: セーブ
-      save_all: すべて保存
-      score_range: 得点範囲
-      score_types:
-        norm_score: ノーム・スコア
-        percentage: パーセント
-        percentile: パーセンタイル
-        score: スコア
-        zscore: Zスコア
-      scoring: 採点
-      scoring_description: キャンペーン・スコアリングにより、評価を横断したレポーティングが可能
-      select_all: すべての %{n} 個の被験者を選択する
-      select_assessment_first: アセスメント・ファーストを選択
-      select_factor: ファクター選択
-      show_weightages: 体重表示
-      subject: 対象
-      subject_list:
-        actions: 行動
-        bulk_mark_finalized: 一括マークが決定
-        bulk_mark_finalized_confirm: 選択したユーザーのスコアを確定すると、そのユーザーのキャンペーンファクターを使用したレポートが作成されます。 このまま進んでよろしいですか？
-        bulk_mark_not_finalized: バルクマーク未定
-        bulk_mark_not_finalized_confirm: 選択したユーザーからfinalizeを削除すると、そのユーザーのキャンペーンファクターを使用して生成されたレポートが削除されます。 先に進んでよろしいですか？
-        bulk_rescore: バルク・リスコア
-        bulk_rescore_confirm: 選択したユーザーを再スコアします。 このまま進んでよろしいですか？
-        calculated_date: 計算日
-        calculation_errors: 計算エラー
-        export: 輸出採点
-        export_success: エクスポートスコアのジョブは正常にスケジュールされました。
-        finalized: 最終決定
-        finalized_date: 最終決定日
-        import_external_scores: 外部スコアリングのインポート
-        mark_finalized: マーク確定
-        mark_finalized_confirm: ユーザー「%{email}」のスコアを確定すると、そのユーザーのキャンペーンファクターを使用したレポートが生成されます。 このまま進めてよろしいですか？
-        mark_not_finalized: マーク未定
-        mark_not_finalized_confirm: ユーザ'%{email}'からfinalizeを削除すると、そのユーザのキャンペーンファクタを使用して生成されたレポートが削除されます。 先に進んでよろしいですか？
-        push_webhook: プッシュ・ウェブフック
-        rank: 順位
-        rescore: リスコア
-        rescore_confirm: ユーザー'%{email}'を再スコアしてください。 本当に続行しますか？
-        tools: ツール
-      tabs:
-        settings: 設定
-        subject_scores: 課題スコア
-      type: タイプ
-      variables: 変数
-      weightages:
-        assessorForms: 査定フォーム
-        successful_update: ウェイトが正常に更新された
-        tools: ツール
-        weightages: ウエイト
-      weighted_average: 加重平均
-    scoring_approval:
-      approve_all: すべて承認
-      bulk_approve_success: "%{approved} スコア承認済み。"
-      review: レビュー
-      score_approvals: AIスコアリング承認
     search: 検索
-    security_setting:
-      180_days: 180日
-      30_days: 30日
-      365_days: 365日
-      90_days: 90日
-      attempts_to_lock: ロックの試み
-      auto_unlock_time: 自動ロック解除時間
-      disable_password_reuse: パスワードの再利用を無効にする
-      disallow_password_login: パスワードによるログインを許可しない
-      enable_login_with_magic_link: マジックリンクによるログインを有効にする
-      enable_recaptcha: reCAPTCHAを有効にする
-      enforce_password_policy: 次回サインイン時にパスワードポリシーを強制する
-      enforce_strong: 強力なパスワードの強制
-      expiration: パスワードの有効期限
-      lock_account: アカウントロック
-      magic_link_expiry_duration: マジックリンクの有効期限
-      min_length: 最小パスワード長
-      never: 決して
-      restrict_sequences: 連続した繰り返し文字を制限する
-      security: セキュリティ設定
-      send_unlock_email: ロック解除メールを送信する
-      session_timeout_duration: セッションタイムアウト時間
-      tfa_enabled: 二要素認証を有効にする
-    security_settings:
-      security_setting: セキュリティ設定
-    settings:
-      admin_roles:
-        confirm_message: 本当に管理者ロール '%{role_name}' を削除しますか?
-      siem:
-        description: 説明
-        destination_type: デスティネーション・タイプ
-        destination_types:
-          s3: S3
-          s3_compatible: S3対応
-        enabled: 有効
-        readable_resource_name: SIEMの設定
-        s3_access_key_id: アクセスキーID
-        s3_bucket_folder: S3バケットフォルダー
-        s3_bucket_name: S3バケット名
-        s3_endpoint: S3エンドポイント
-        s3_region: S3リージョン
-        s3_secret_access_key: シークレット・アクセス・キー
-        send_test_log: テストログの送信
-        send_test_log_error_message: テストログがバケットに送信されていません。
-        send_test_log_success_message: テストログがバケットに送信されました。
-      skill_aliases:
-        alias: 別名
-        confirm_message: スキルエイリアス '%{skill_alias}' を本当に削除しますか?
-        create: スキルエイリアスの追加
-        select_skill: スキル選択
-        skill: スキル
-        skill_alias: スキルエイリアス
-        successful_remove: スキル・エイリアス '%{skill_alias}' は正常に削除されました。
-      tabs:
-        admin_roles: 管理者の役割
-        feature_flags: フィーチャー・フラッグ
-        siem: シーイーエム
-        skill_aliases: スキルの別名
-    sheets:
-      column:
-        add_column: コラムの追加
-        not_allowed_for_dashboard_use: ダッシュボードで使用するカラムは64文字以下でなければなりません。
-        reorder: 再注文
-        save_order: 注文を保存する
-      drawers:
-        add_edit:
-          cancelText: キャンセル
-          markdown:
-            preview: プレビュー
-            title: マークダウン
-          save: セーブ
-          saving: 節約
-          success_message_add: 新記録追加
-          success_message_edit: 記録更新
-          title_add: シートレコードの追加
-          title_edit: シート行レコードの編集
-          validations:
-            required_email: 電子メールを入力してください
-        view:
-          campaign_title: キャンペーンレベルの記録
-          edit_button: 編集
-          project_title: プロジェクトレベルの記録
-          title: シート行の記録詳細
-      list:
-        header:
-          add_record: レコードの追加
-          search_record: レコード検索
-      modals:
-        delete_records:
-          cancelText: キャンセル
-          content: 選択した{{count}}レコードを本当に削除しますか？
-          okText: はい、削除
-          successMessage: "{count}}レコードは正常に削除されました。"
-          title: count}}レコードを削除する
-        remove_columns:
-          cancelText: キャンセル
-          content: 列 ({{columns}}) を削除すると、すべての行でその列のデータが削除されます。
-          okText: はい、削除
-          successMessage: "{count}}レコードが削除された"
-          title: 列の削除
-      tabs:
-        rows: 列
-        settings: 設定
     skills:
-      applicable_proficiency_levels: 該当する能力レベル
-      columns:
-        skill_group: スキルグループ
-        skill_type: スキルの種類
       errors:
         import:
           missing_fields_data: '行 %{line_number}：必須フィールドがありません: %{fields}'
@@ -3949,28 +1704,11 @@ ja:
           query_too_short: は必須で、3文字以上でなければならない。
       export:
         details: 詳細
-        failure_msg: 翻訳のエクスポート時のエラー
-        success_msg: 進行中の開発アクションをエクスポートする。
         translations:
           details: 技能翻訳
       form:
         client_placeholder: クライアントの選択
-        description: 説明
-        name: 名称
         project_placeholder: プロジェクトを選択する
-        skill_group: スキルグループ
-        skill_type: スキルタイプ
-        title: スキル
-      import:
-        download_example_csv: サンプルcsvをダウンロード
-        info_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
-        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
-      import_action:
-        skills_title: インポート・スキル
-        skills_translations_title: 輸入技能翻訳
-      skill_details: スキル詳細
-      skill_translations: 技能翻訳
-      title: スキル
       translations:
         import:
           errors:
@@ -3978,152 +1716,13 @@ ja:
             missing_columns: '必要な列がありません: %{columns}.'
             save_failed: 'スキル ID %{id} の処理エラー: %{message}。'
             skill_not_found: ID %{id} を持つスキルが見つかりません。
-      vector:
-        generate_embedding: 埋め込み生成
-        generate_embedding_failure_msg: スキル埋め込み生成ジョブのキューに入れませんでした。もう一度お試しください。
-        generate_embedding_success_msg: スキル埋め込み生成ジョブは成功裏にキューに入りました。通知の状況を確認してください。
-        label: ベクトルDB
-    sms_histories:
-      columns:
-        first_name: 名前
-        last_name: ラストネーム
-        mobile_no: 携帯番号
-        price: 価格
-        segment_length: セグメントの長さ
-        sent_at: 送信先
-      drawer:
-        title: SMS詳細
-      history: 歴史
-      statuses:
-        accepted: 受諾
-        delivered: 配信
-        failed: 失敗
-        queued: キュー入り
-        scheduled: 予定
-        sent: 送信済み
-        undelivered: 未着
     sms_invites:
-      actions:
-        add: SMSコンタクトの追加
-      columns:
-        created_at: 作成日時
-        created_by: 作成者
-        email: 電子メール
-        first_name: 名前
-        last_name: ラストネーム
-        mobile_no: 携帯番号
-      contacts: 連絡先
-      form_modal:
-        first_name: 名前
-        last_name: ラストネーム
-        locale: ロケール
-        mobile_no: 携帯電話番号
-        title: 招待メール
-      import:
-        download_example_csv: CSVダウンロード例
-        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。 通知でステータスを確認してください。
-        title: SMS招待インポート
       messages:
-        delete_confirm_text: 携帯電話番号%{mobile_no}のSMS招待を本当に削除しますか？
-        delete_success: SMS招待は正常に削除されました
         failed_to_sent_invite: 携帯電話番号 %{mobile_no} への招待の送信に失敗しました。
-      send_sms:
-        fields:
-          link_expiry: リンク有効期限
-          locale: ロケール
-          message: メッセージ
-          statuses: ステータス
-          users: ユーザー
-        modal:
-          btn_name: SMS送信
-          title: SMS送信
-        pipetext_details: |
-          "{{first_name}} - 受取人の姓
-          <br />
-          {{last_name}} - 受信者の姓
-          <br />
-          {{invite_url}} - 登録リンク"
-        segment_length_msg: このメッセージの推定セグメント数は %{segment_length} です。
-        segment_length_range_msg: このメッセージの推定セグメント数は %{min_segment_length} から %{max_segment_length} の間です。
-      statuses:
-        all: すべて
-        failed: 失敗
-        invited: 招待
-        not_invited: 招待されていない
-        registered: 登録済み
-      tools:
-        export: SMSの連絡先をエクスポート
-        import: SMSコンタクトのインポート
-        send_sms: SMS送信
-    sms_records:
-      columns:
-        id: アイド
-        message: メッセージ
     smtp_settings:
-      authentication: 認証
-      authentication_type: 認証タイプ
-      authentication_types:
-        cram_md5: クラムmd5
-        login: ログイン
-        plain: プレーン
-      enabled: 有効
-      encryption: 暗号化
-      encryption_types:
-        none: なし
-        ssl: SSL
-        tls: TLS
       errors:
         authentication_failed: ユーザー名またはパスワードが間違っている
         host_unreachable: ホストに接続できない。 ホスト、ポート、暗号化のいずれかが正しくない。
-      from_email: Eメールより
-      from_name: 名前から
-      host: ホスト
-      password: パスワード
-      port: ポート
-      send_test_email: テストメールの送信
-      smtp: SMTP
-      test_email_modal:
-        input_hint: テストメールが正常に送信されるまで、メール設定は保存されません。
-        input_placeholder: テスト用メールアドレス
-        title: テストメールアドレス
-      test_modal:
-        success_message: テストメールが %{email_id} に送信されました。
-        title: SMTP設定のテスト
-      update_success_msg: SMTP設定が正常に更新されました。
-      use_sender_verification: 送信者確認を使用する
-      user_name: ユーザー名
-    stats:
-      assessments:
-        active: アクティブ
-        columns:
-          assessment_name: 評価名
-          completed: 完成
-          id: 身分証明書
-          in_progress: 進行中
-          ineligible: 不適格
-          interrupted: 中断
-          not_started: 未着手
-          timed_out: タイムアウト
-        count: カウント
-        inactive: 非アクティブ
-        percentage: パーセント
-        title: アセスメント
-      top_metrics:
-        completed: 完成
-        in_progress: 進行中
-        interrupted: 中断
-        not_started: 未着手
-        timed_out: タイムアウト
-        users: ユーザー
-      users:
-        date_presets:
-          last_30_days: 過去30日間
-          last_7_days: 直近7日間
-          last_month: 先月
-          last_week: 先週
-          today: 今日
-          yesterday: 昨日
-        y_title: ユーザー数
     sub_factors:
       destroy:
         successfully: サブファクタ %{name} は正常に削除されました。
@@ -4233,18 +1832,7 @@ ja:
           one: 合計：1
           other: 合計：1
           zero: 合計：0
-      more_actions: より多くの行動
     taxonomy:
-      import:
-        description: Excelファイルをアップロードして、スキル分類体系をインポートまたは更新してください。これにより、新しいスキル、職務役割、習熟度レベルが追加されます。
-        download_example_file: 例題ファイルのダウンロード
-        drag_text: ファイルをこの領域にクリックまたはドラッグしてアップロードしてください
-        error_title: インポートに失敗しました
-        file_hint: ".xls および .xlsx ファイルをサポートします"
-        import_button: 輸入分類
-        success_msg: アップロードされたファイルはインポートのためにキューに入れられました。通知でステータスを確認してください。
-      import_action:
-        taxonomy: スキル分類法のインポート
       title: スキル分類法
     templates:
       blocks:
@@ -4337,187 +1925,9 @@ ja:
       convert_action:
         already_a_template: すでにテンプレート
         has_user_data: テンプレートに変換する前に、ツールドロップダウンから「すべての参加者をリセット」をクリックしてキャンペーンを手動でリセットしてください。
-      convert_template_modal:
-        cancel: キャンセル
-        confirm: 確認
-        convert:
-          success: テンプレートの変換に成功
-        convert_option: このキャンペーンをテンプレートに変換する
-        copy:
-          success: キャンペーンテンプレート作成ジョブは正常にスケジュールされました。
-        copy_option: このキャンペーンから新しいテンプレートを作成する
-        description: このキャンペーンからテンプレートを作成する方法を選択します。
-        failed: テンプレートの作成に失敗しました。
-        title: テンプレートに変換
-      email_templates:
-        approve_nomination:
-          description: このメッセージは、直属の部下による指名を承認する必要がある場合に、マネージャーに送信されます。
-          name: 指名の承認
-        approve_report:
-          description: このメッセージは、被験者のマネージャーが被験者のレポートを承認する準備ができたことを通知するために送信されます。
-          name: 報告書の承認
-        categories:
-          approvals: 承認
-          invitations: 招待状
-          reminders: 注意事項
-          report_ready: レポート準備
-        consolidated: 連結
-        custom_message:
-          description: このメッセージは、アセスメントに参加するすべての人に送ることができます。
-          name: カスタムメッセージ
-        days_repeated: 日間、繰り返し
-        evaluator_invite:
-          description: このメッセージは、評価者であるすべての参加者に送信されます。
-          name: 評価者招待
-        evaluator_reminder:
-          description: このメッセージは、評価者に保留中の評価を完了するよう促すために送信されます。
-          name: 評価者リマインダー
-          rule_description: 招待がスケジュールされたときに自動的にスケジューリングするルールを指定する
-          rule_name: 評価者リマインダー・ルール
-        from: より
-        manager_report_ready:
-          description: このメッセージは、対象者のレポートが作成されると、対象者のマネージャーに送信される。
-          name: マネージャー・レポート準備完了
-        nomination_denied:
-          description: このメッセージは、指名が拒否されたときに被験者に送信される。
-          name: 指名拒否
-        reply_to_email: メール返信
-        request_approval:
-          description: このメッセージは、被験者が承認を要求したときに管理者に送信されます。
-          name: 承認リクエスト
-        save: セーブ
-        schedule: スケジュール
-        schedule_email: スケジュールメール
-        schedule_email_title: スケジュールメール
-        schedule_time: スケジュール時間
-        send_test_email: テストメールの送信
-        subject: テーマ
-        subject_invite:
-          description: このメッセージは、被験者を評価に参加させるために送信される。
-          name: 件名 招待
-        subject_reminder:
-          description: アセスメントへの参加を促すメッセージを各参加者に送信
-          name: 件名 リマインダー
-          rule_description: 招待がスケジュールされたときに自動的にスケジューリングするルールを指定する
-          rule_name: 主題に関する注意事項
-        subject_report_ready:
-          description: このメッセージは、レポートの準備が整うと、対象者に送信されます。
-          name: 課題レポート作成
-        times: 回
-      instruction_templates:
-        evaluate_others:
-          description: このメッセージは、参加者がポータル内から他の参加者を評価する際に表示されます。
-          name: 他者を評価する
-        evaluate_self:
-          description: このメッセージは、被験者が自己評価を開始する際に表示される。
-          name: 評価者
-        evaluation_help:
-          description: ユーザー・ダッシュボードの評価カードに表示されるヘルプ・テキスト
-          name: 評価ヘルプ
-        evaluator_welcome:
-          description: このメッセージは「ウェルカムメッセージ」を上書きし、現在評価者として参加している参加者のみに表示されます。
-          name: 評価者歓迎
-        invite_evaluators:
-          description: このメッセージは、被験者が評価者の指名を開始する際に表示されます。
-          name: 評価者を招待する
-        nomination_help:
-          description: ユーザー・ダッシュボードの指名カードに表示されるヘルプ・テキスト
-          name: 推薦ヘルプ
-        report_help:
-          description: ユーザー・ダッシュボードのレポート・カードにヘルプ・テキストを表示
-          name: レポートヘルプ
-        welcome_message:
-          description: このメッセージは、被験者がログインして評価を開始するとき、またはタスクリストを表示するときに表示されます。
-          name: ウェルカムメッセージ
-      mail_history:
-        actions: 行動
-        date: 日付
-        download_details: ダウンロード詳細
-        emails_sent: 送信メール
-        recipient: 受取人
-        status: ステータス
-        subject: テーマ
-      manage:
-        assessment: 評価
-        dimension: 寸法
-        manage_relationships: 人間関係の管理...
-        report: レポート
-        title: 管理
-      menu:
-        actions: 行動
-        datasheet:
-          title: データシート
-        messages:
-          allow_subjects_to_send_reminders: 被験者が評価者にリマインダーを送信できるようにする
-          automatically_send_invites: 新しい評価者に自動的に招待状を送る
-          title: メッセージ
-        participants:
-          columns:
-            action: アクション
-            email: 電子メール
-            evaluations_completed: 完了した評価
-            evaluations_received: 受けた評価
-            is_subject: 対象
-            name: 名称
-          evaluators:
-            add_evaluators: 評価者の追加
-            import_evaluators: インポート・エバリュエーター
-            title: 評価者
-          managers:
-            title: マネージャー
-          options:
-            evaluator_options: 評価者オプション
-            global: グローバル・オプション
-            manager_options: マネージャーオプション
-            subject_options: 対象オプション
-            title: オプション
-          subjects:
-            add_subjects: 件名の追加
-            current_job_role: 現在の職務
-            email: Email
-            first_name: ファーストネーム
-            import_subjects: 輸入対象
-            last_name: ラストネーム
-            locale: ロケール
-            target_job_role: 目標職務
-            title: 対象
-          title: 参加者
-        report:
-          menu:
-            report_approval:
-              title: レポート承認設定
-            report_options:
-              title: レポートオプション
-          title: レポート
-      messages:
-        email_messages: Eメールメッセージ
-        factor_benchmark_scores_updated: ファクター・ベンチマーク・スコアの更新に成功
-        instruction_messages: 指導メッセージ
-        mail_history: メール履歴
-        options: オプション
       reports:
-        add_conditions: 条件追加
-        administrator_approves_reports: 管理者が報告書を承認
-        allow_manager_to_view_individual_responses: マネージャーが個々の回答を閲覧できるようにする
-        disable_report_download: レポートのダウンロードを無効にする
-        edit_email: Eメールを編集する
-        email_manager_when_report_is_ready_for_approval: レポートの承認準備が完了したら、マネージャーにEメールを送信
-        email_subject_when_report_becomes_available: レポートが入手可能になったら、件名に電子メールを送信
-        email_subjects_manager_when_available: レポートが入手可能になり次第、対象者のマネージャーにメールする
-        make_report_available_to_subject_when: 対象者に報告書を提出する：
-        manager_approves_reports: マネージャーが報告書を承認
-        manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
-        manager_cannot_access_subject_reports: マネージャーは要件を満たすまでレポートを見ることができない
-        report_access: レポート アクセス
-        report_approval: 報告書の承認
-        report_availability: 報告書入手可能性
         show:
           title: 課題レポート
-        subject_can_access_reports: 対象者はレポートにアクセスできる
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: ライセンスを無効にする
-    time_zone: タイムゾーン
-    tools: ツール
     translations:
       assessments:
         new:
@@ -4535,14 +1945,6 @@ ja:
         successfully: ユーザ %{name} が正常に作成されました。
       destroy:
         successfully: ユーザ %{name} は正常に削除されました。
-      list:
-        email: 電子メール
-      modals:
-        download_idp_reports:
-          error: IDP レポートの一括ダウンロード・ジョブのスケジュールに失敗しました。
-          include_reflective_questions: 反省的な質問を含む
-          success: IDP レポートの一括ダウンロード・ジョブが正常にスケジュールされました。
-          title: IDPレポートの一括ダウンロード
       new:
         header: 新規ユーザー
       reset_password:
@@ -4576,24 +1978,15 @@ ja:
         successfully: ユーザ %{name} は正常に更新されました。
       toggle_status:
         successfully: ユーザ %{name} は正常に更新されました。
-      toolbar:
-        title: ツール
       update:
         successfully: ユーザ %{name} は正常に更新されました。
       user: ユーザー
     webhook:
       connection_failure: webhook urlに接続できません。 webhook urlが正しいか確認してください。
-      delete_success: Webhookの設定が正常に削除されました
       request_failure: ステータス・コード %{http_status_code} でリクエストに失敗しました。
     workshop:
-      actions:
-        remove_workshop: ワークショップの撤去に成功
       errors:
         remove_workshop_failure: 削除しようとしているワークショップには、予定されている科目があります。 すべての科目をキャンセルとしてマークすることで、ワークショップを削除できます。
-      statuses:
-        closed: クローズド
-        open: オープン
     workshop_subjects:
       errors:
         update_assessor_for_failure: リンクされた対象アクティビティがないため、ミーティングの詳細を追加することはできません。
-    years: 年

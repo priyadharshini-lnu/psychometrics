@@ -16,7 +16,7 @@ ko:
         assessment_exists: 이 평가에 대한 AI 채점 승인 설정이 이미 존재합니다.
         validates_admins: 관리자는 캠페인에 접근할 수 없습니다.
       already_assigned?: 이 평가를 연결할 수 없습니다. 이 평가는 이미 '%{linked_assessor_form_name}'에 할당되어 있습니다.
-      already_invited: 이 사용자는 추가하려는 평가 센터에 이미 존재합니다.
+      already_exists: 추가하려는 평가 센터는 이미 존재합니다.
       assessor_assessment:
         already_added: 평가자 평가는 이미 캠페인에 추가되었습니다.
         lead_already_added: 캠페인에는 리드 평가자 평가를 하나만 추가할 수 있습니다.

@@ -7,12 +7,10 @@ RSpec.describe Api::V2::Administration::AI::AssistantsController, type: :request
   let!(:project) { create(:project, client: client) }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
   let!(:assistant) { create(:assistant, owner: client, model_id: 'azure-openai') }
   let!(:assistant_id) { assistant.id }
   let(:headers) do
     {
-      'Authorization' => "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}",
       'Content-Type' => 'application/vnd.api+json'
     }
   end

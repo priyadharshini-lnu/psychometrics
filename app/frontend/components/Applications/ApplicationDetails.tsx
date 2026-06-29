@@ -1,0 +1,148 @@
+import React, { useEffect, useState } from 'react'
+import { Tabs, Spin } from 'antd'
+import { connect } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { RootState } from 'modules/admin/core/rootReducers'
+import { useResources } from '~/hooks/useResources'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
+import {
+  Application,
+  ApplicationTR,
+} from '~/modules/admin/modules/client/core/applications'
+import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { User } from '~/modules/admin/modules/client/core/users'
+import { ApplicationOverview, ApplicationAPIKeys, ApplicationPublicKeys } from '~/components/Applications'
+import { ApplicationPermissions } from './ApplicationPermissions'
+import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
+
+const { I18n } = window
+
+type PermissionsConfig = {
+  role: AdminTypes
+  scopeFilter: Record<string, string>
+}
+
+type Props = {
+  currentUser: User
+  applicationId: string
+  baseUrl: string
+  permissionsConfig: PermissionsConfig
+}
+
+const connecter = connect(
+  (state: RootState) => ({
+    currentUser: getCurrentUser(state),
+  }),
+  {},
+)
+
+const ApplicationDetailsComponent: React.FC<Props> = ({
+  currentUser,
+  applicationId,
+  baseUrl,
+  permissionsConfig,
+}) => {
+  const { pathname } = useLocation()
+  const navigate = useNavigate()
+
+  const {
+    fetchSingle,
+    getResource,
+    memberAction,
+    isLoading,
+  } = useResources<Application, BaseMeta>('applications', {
+    responseType: ApplicationTR,
+  })
+
+  const application = getResource(applicationId)
+
+  useEffect(() => {
+    if (applicationId) {
+      fetchSingle({ id: applicationId })
+    }
+  }, [applicationId])
+
+  const [isTogglingStatus, setIsTogglingStatus] = useState(false)
+
+  const handleToggleDisabled = async (checked: boolean) => {
+    setIsTogglingStatus(true)
+    try {
+      await memberAction({
+        id: applicationId,
+        action: checked ? 'activate' : 'deactivate',
+        method: 'post',
+        updateStore: true,
+        responseType: ApplicationTR,
+      })
+    } finally {
+      setIsTogglingStatus(false)
+    }
+  }
+
+  const getActiveTab = (): string => {
+    if (pathname.includes('/api_keys')) return 'api_keys'
+    if (pathname.includes('/public_keys')) return 'public_keys'
+    if (pathname.includes('/permissions')) return 'permissions'
+    return 'overview'
+  }
+
+  const handleTabChange = (key: string) => {
+    if (key === 'overview') {
+      navigate(baseUrl)
+    } else {
+      navigate(`${baseUrl}/${key}`)
+    }
+  }
+
+  const tabItems = [
+    ...(isSuperAdmin(currentUser)
+      ? [
+        {
+          key: 'overview',
+          label: I18n.t('shared.overview'),
+          children: application ? (
+            <ApplicationOverview
+              application={application}
+              isTogglingStatus={isTogglingStatus}
+              onToggleDisabled={handleToggleDisabled}
+            />
+          ) : null,
+        },
+        {
+          key: 'api_keys',
+          label: I18n.t('admin.api_keys'),
+          children: <ApplicationAPIKeys applicationId={applicationId} />,
+        },
+        {
+          key: 'public_keys',
+          label: I18n.t('admin.public_keys'),
+          children: <ApplicationPublicKeys applicationId={applicationId} />,
+        },
+        {
+          key: 'permissions',
+          label: I18n.t('shared.permissions'),
+          children: (
+            <ApplicationPermissions
+              applicationId={applicationId}
+              role={permissionsConfig.role}
+              scopeFilter={permissionsConfig.scopeFilter}
+            />
+          ),
+        },
+      ]
+      : []),
+  ]
+
+  return (
+    <Spin spinning={isLoading(`fetch@${applicationId}`) && !application}>
+      <Tabs
+        activeKey={getActiveTab()}
+        items={tabItems}
+        onChange={handleTabChange}
+        tabBarStyle={{ padding: '0 20px' }}
+      />
+    </Spin>
+  )
+}
+
+export const ApplicationDetails = connecter(ApplicationDetailsComponent)

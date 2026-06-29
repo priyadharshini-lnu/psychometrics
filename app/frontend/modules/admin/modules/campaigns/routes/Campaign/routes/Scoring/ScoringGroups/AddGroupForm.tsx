@@ -25,13 +25,13 @@ export const AddGroupForm: FC<AddGroupFormProps> = ({ open, onClose, addGroup })
     <Drawer
       destroyOnHidden
       closeIcon={<DirectionalNavigateBackIcon />}
-      title={I18n.t('administration.scoring.add_group')}
+      title={I18n.t('admin.scoring_add_group')}
       open={open}
       onClose={onClose}
     >
-      <GroupForm addGroup={addGroup} nameLabel={I18n.t('administration.scoring.name')} onFormFinish={handleFormFinish}>
+      <GroupForm addGroup={addGroup} nameLabel={I18n.t('shared.name')} onFormFinish={handleFormFinish}>
         <Form.Item>
-          <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
+          <Button type="primary" htmlType="submit">{I18n.t('shared.save')}</Button>
         </Form.Item>
       </GroupForm>
     </Drawer>
@@ -73,8 +73,8 @@ export const GroupForm:FC<GroupFormProps> = ({
         colon: false,
         layout: 'vertical',
         validateMessages: {
-          required: I18n.t('administration.scoring.required_error'),
-          pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
+          required: I18n.t('admin.scoring_required_error'),
+          pattern: { mismatch: I18n.t('admin.scoring_pattern_error') },
         },
         requiredMark: false,
         onBlur: () => { onBlur && onBlur(form) },

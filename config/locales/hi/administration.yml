@@ -2,17 +2,6 @@
 hi:
   administration:
     actions: क्रियाएँ
-    active_record_audits:
-      action: कार्रवाई
-      audit_id: ऑडिट आईडी
-      auditable_id: रिकॉर्ड आईडी
-      auditable_type: रिकॉर्ड का प्रकार
-      audited_changes: ऑडिट किए गए परिवर्तन
-      new_diff:
-        parse_error: नई परिवर्तनों के साथ JSON पार्स करने में असफल
-      old_diff:
-        parse_error: पुराने परिवर्तनों के साथ JSON पार्स करने में विफल
-      title: ऑडिट किए गए परिवर्तन
     administrator:
       sessions:
         errors:
@@ -27,94 +16,11 @@ hi:
           design: डिज़ाइन
           or: या
     administrators:
-      drawers:
-        edit:
-          first_name_required: पहला नाम अनिवार्य है।
-          last_name_required: अंतिम नाम अनिवार्य है
-        view:
-          first_name: पहला नाम
-          last_name: उपनाम
-          title:
-            campaign_admin: अभियान प्रशासक
-            client_admin: क्लाइंट एडमिन
-            project_admin: परियोजना प्रशासक
       list:
         actions:
-          api_keys: एपीआई कुंजी
-          edit: संपादित करें
-          export_admins_with_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
-          export_success: प्रशासन निर्यात कार्य सफलतापूर्वक निर्धारित हो गया है। कृपया स्थिति के लिए अपनी अधिसूचना देखें।
-          login: लॉगिन
           spoof:
             login_successful: लॉगिन सफल।
-          user_report_events: अनुमोदन लॉग रिपोर्ट
-        columns:
-          email: ईमेल
-      modals:
-        delete:
-          cancelText: रद्द करें
-          okText: ठीक है
-          title: पुष्टि करें
-    ai_artifacts:
-      artifact_results: आर्टिफैक्ट परिणाम
-      code: कोड
-      export:
-        success_msg: AI आर्टिफैक्ट्स का निर्यात प्रगति पर है। कृपया सूचनाओं में स्थिति देखें।
-      export_ai_artifacts: एआई कलाकृतियों का निर्यात करें
-      form:
-        add_assessment: मूल्यांकन जोड़ें
-        ai_assistant: एआई सहायक
-        assessments: मूल्यांकन
-        campaign_factors: अभियान कारक
-        configuration: संरचना
-        datasheet: डेटाशीट
-        datasheet_columns: डेटाशीट स्तंभ
-        include_all_datasheet_columns: सभी डेटाशीट स्तंभ शामिल करें
-        no_assessment_selected: अभी तक कोई आकलन नहीं जोड़ा गया है। शुरू करने के लिए "Add" पर क्लिक करें।
-        questions_required: कम से कम एक प्रश्न चुनना अनिवार्य है।
-        select_ai_assistant: AI सहायक चुनें
-        select_assessment: मूल्यांकन चुनें
-        select_campaign_factors: चुनाव अभियान के कारक चुनें
-        select_datasheet_columns: डेटाशीट स्तंभ चुनें
-        select_questions: चुनिंदा प्रश्न
-        title: एआई कलाकृति
-      generate: उत्पन्न करें
-      generate_result_info_message: परिणाम तैयार हो रहे हैं, कृपया अपडेटेड परिणाम देखने के लिए पेज रिफ्रेश करें।
-      generated_at_time: "%{time} पर उत्पन्न"
-      generated_value: उत्पन्न मूल्य
-      id: आईडी
-      import:
-        download_example_csv: उदाहरण CSV डाउनलोड करें
-        info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-      import_action:
-        title: अभियान अभियान एआई कलाकृतियाँ आयात करें
-      import_ai_artifacts: AI कलाकृतियों को आयात करें
-      key: मुख्य
-      name: नाम
-      parsed_dependencies:
-        help: आर्टिफैक्ट परिणामों के निर्माण के लिए AI सहायक द्वारा उपयोग किए गए उपयोगकर्ता की पार्स की गई निर्भरताएँ
-        title: विश्लेषित निर्भरताएँ
-        view: पार्स की गई निर्भरताएँ देखें
-      playground: खेल का मैदान
-      playground_info: उत्पन्न परिणामों का पूर्वावलोकन करने के लिए अपने आर्टिफैक्ट को नमूना डेटा के साथ परीक्षण करें।
-      playground_placeholder: परीक्षण डेटा दर्ज करें
-      raw: कच्चा
-      tabs:
-        results: परिणाम
-        settings: सेटिंग्स
-      test_generate: परीक्षण उत्पन्न करें
-      unsaved_changes: अनसहेजीकृत परिवर्तन मौजूद हैं, प्लेग्राउंड से अद्यतन प्रतिक्रिया उत्पन्न करने के लिए फॉर्म सबमिट करने पर विचार करें।
-      used_tokens:
-        input_tokens: इनपुट टोकन
-        output_tokens: आउटपुट टोकन
-        title: टोकन उपयोग
     ai_assistants:
-      actions:
-        create: एआई सहायक बनाएँ
-        edit: एआई सहायक संपादित करें
-        playground: खेल का मैदान
-      ai_assistants: एआई सहायक
-      ai_assistants_playground: एआई सहायक खेलमैदान
       artifacts:
         parsers:
           assessment:
@@ -138,45 +44,16 @@ hi:
             no_datasheet_data: उपयोगकर्ता %{email} के लिए कोई डेटाशीट डेटा उपलब्ध नहीं है।
             user_not_found_in_datasheet: अभियान डेटाशीट में उपयोगकर्ता नहीं मिला।
       campaign_ai_artifacts: अभियान एआई कलाकृतियाँ
-      column:
-        provider: प्रदाता
-      created_successfully: एआई असिस्टेंट सफलतापूर्वक बनाया गया।
       errors:
         cannot_delete_in_use: AI असिस्टेंट '%{name}' को हटाया नहीं जा सकता क्योंकि इसका उपयोग हो रहा है।
         development_actions_assistance_not_enabled: एआई-संचालित विकास क्रियाओं का निर्माण उपलब्ध नहीं है। कृपया प्रशासक से संपर्क करें।
         one_click_idp_assistance_not_enabled: आपकी वर्तमान योजना में एआई-संचालित आईडीपी सहायता उपलब्ध नहीं है। कृपया व्यवस्थापक से संपर्क करें।
         platform_assistant_already_exists: प्लेटफ़ॉर्म पर केवल %{type} प्रकार का 1 सहायक ही अनुमत है।
-      form:
-        add_output_schema_key: आउटपुट स्कीमा कुंजी जोड़ें
-        dependencies: निर्भरताएँ
-        description: विवरण
-        enter_description: विवरण दर्ज करें
-        enter_schema_key: स्कीमा कुंजी दर्ज करें
-        key: मुख्य
-        name: नाम
-        output_schema_keys: आउटपुट स्कीमा कुंजियाँ
-        provider: प्रदाता
-        remove_output_schema_key: आउटपुट स्कीमा कुंजी हटाएँ
-        schema_key_description_required: स्कीमा कुंजी विवरण आवश्यक है।
-        schema_key_required: स्कीमा कुंजी आवश्यक है
-        schema_key_type: कुंजी का प्रकार
-        schema_key_unique: स्कीमा कुंजियाँ अद्वितीय होनी चाहिए।
-        system_prompt: प्रणाली संकेत
-        type: प्रकार
-        user_prompt: उपयोगकर्ता संकेत
-      revisions:
-        load: आकार में लोड करें
-        name: नाम
-        system_prompt: सिस्टम प्रॉम्प्ट
-        title: एआई सहायक के संशोधन
-        user_prompt: उपयोगकर्ता संकेत
-        version: संस्करण
       selector:
         choose_artifact: AI कलाकृति चुनें
         choose_schema_key: स्कीमा कुंजी चुनें
         no_assistants_found: कोई एआई सहायक नहीं मिला
         placeholder: AI सहायक चुनें
-      updated_successfully: एआई असिस्टेंट सफलतापूर्वक अपडेट हो गया।
     any: " - कोई - "
     api:
       campaigns:
@@ -185,10 +62,6 @@ hi:
       users:
         form:
           campaign_ids_not_existing: सभी अभियान आईडी मौजूद नहीं हैं।
-    api_keys:
-      form:
-        description: विवरण
-        title: एपीआई कुंजी
     assessment_builder:
       form:
         display_label: प्रदर्शन लेबल दर्ज करें
@@ -196,108 +69,12 @@ hi:
         value: मूल्य
         value_required: मूल्य आवश्यक है
     assessment_center:
-      cancel_confirmation:
-        message: क्या आप निश्चित हैं कि आप फॉर्म की प्रगति को हटाना चाहते हैं?
-        title: प्रगति फ़ॉर्म को त्यागें
-      current: वर्तमान
       invite:
-        add_invite: नमंत्रण जोड़ें
-        assessment_center: मूल्यांकन केंद्र
-        back: वापस
-        basic_info:
-          allow_preferred_language: पसंदीदा भाषा की अनुमति दें
-          assessment_centers: मूल्यांकन केंद्र
-          assessment_centers_hint: खोज क्वेरी का उदाहरण '10 अगस्त 2023, रात 8:06'
-          assessment_centers_placeholder: मूल्यांकन केंद्र चुनें
-          description: कई मूल्यांकन केंद्रों का चयन करके उम्मीदवारों को निमंत्रण भेजें। उम्मीदवार फिर उपलब्ध केंद्रों में से एक केंद्र चुनेंगे।
-          neurodiversity: न्यूरोडाइवर्सिटी प्रश्न शामिल करें
-          preferred_language: अनुमत भाषाएँ
-          required_error: खाली नहीं हो सकता
-          title: मूलभूत जानकारी
-        center_group: मूल्यांकन केंद्र समूह
-        confirm_message: क्या आप सुनिश्चित हैं कि आप निमंत्रण हटाना चाहते हैं?
-        confirm_message_with_title: क्या आप '%{invite_title}' शीर्षक वाले निमंत्रण को हटाना चाहते हैं?
-        confirm_title: पुष्टि करें
         exceeded_subjects_count: अभियान में %{users} विषय हैं। आप प्रति निमंत्रण केवल %{count} विषय जोड़ सकते हैं।
-        id: आईडी
-        invites: आमंत्रण
-        name: नाम
-        name_placeholder: आमंत्रण का नाम दर्ज करें
-        next: अगला
-        not_selected: चयनित नहीं
-        requests: अनुरोध
-        save: सहेजें और भेजें
-        send_invites:
-          add: जोड़ें
-          add_description: आप निमंत्रण का शीर्षक और विवरण कई भाषाओं में अनुवाद कर सकते हैं।
-          add_language: भाषा जोड़ें
-          description: विवरण
-          input_label: अतिरिक्त भाषा जोड़ें
-          input_placeholder: अतिरिक्त भाषा चुनें
-          invitation_title: आमंत्रण शीर्षक
-          title: आमंत्रण (%{lang})
-        steps:
-          add_subjects: विषय जोड़ें
-          basic_info: मूल जानकारी
-          has_errors: त्रुटियाँ हैं
-          send_invitation: निमंत्रण भेजें
-        subjects:
-          cancel: रद्द करें
-          count: "%{count} विषय"
-          csv_error: "%{index} पंक्ति: ईमेल %{email} वाला उपयोगकर्ता इस अभियान में नहीं है"
-          csv_imported: "%{count} आयातित विषय"
-          description: आप विषयों को खोजकर एक-एक करके जोड़ सकते हैं या CSV फ़ाइल को थोक में अपलोड कर सकते हैं।
-          download: डाउनलोड
-          file_example: विषय-वस्तु की जानकारी अपलोड करने के लिए उदाहरण फ़ाइल देखें।
-          import_from_campaign: अभियान से सभी जोड़ें
-          import_title: विषय आयात करें
-          import_users: उपयोगकर्ताओं को आयात करें
-          search_user: विषयों की खोज
-          title: विषय
-          upload: अपलोड
-          upload_csv: CSV अपलोड करें
         subjects_count_added: विषय सफलतापूर्वक जोड़े गए
-        success:
-          continue: जारी रखें
-          message: निमंत्रण भेजने का कार्य कतार में रखा गया है; उपयोगकर्ताओं को वे शीघ्र ही प्राप्त होंगे।
-        success_message: आमंत्रण सफलतापूर्वक हटा दिया गया।
-        success_message_with_title: शीर्षक '%{invite_title}' वाला निमंत्रण सफलतापूर्वक हटा दिया गया।
-        title: शीर्षक
-        workshop:
-          title: मूल्यांकन केंद्र
-        workshop_list:
-          add: जोड़ें
-          name: नाम
-          remove_confirm:
-            content: क्या आप '%{name}' नामक मूल्यांकन केंद्र को हटाना चाहते हैं?
-            success: मूल्यांकन केंद्र को सफलतापूर्वक हटा दिया गया।
-            title: पुष्टि करें
-      invite_request:
-        accept: स्वीकार करें
-        reason: कारण
-        reject: अस्वीकार करें
-        remove_confirm:
-          content: क्या आप सुनिश्चित हैं कि आप %{subjectName} से %{action}%{status} करना चाहते हैं?
-          success: "%{status} %{subjectName} से %{action} सफलतापूर्वक था।"
-          title: "%{action} %{status}"
-        status: स्थिति
-        subject_name: विषय नाम
-        workshop_time: कार्यशाला का समय
-      past: बीता हुआ समय
-      steps:
-        basic_information: मूलभूत जानकारी
-        facilitators: सहायक
-        invite_options: आमंत्रण विकल्प
-        invite_subjects: विषयों को आमंत्रित करें
-        send_invitations: निमंत्रण भेजें
-      success:
-        call_send_invitation: क्या आप निमंत्रण भेजना चाहेंगे?
-        ok: हाँ
-        skip: अभी छोड़ें
-        title: मूल्यांकन केंद्र बनाए गए
-      upcoming: आने वाला
     assessment_question_import:
       errors:
+        ai_scoring_not_allowed: AI स्कोरिंग कॉन्फ़िगरेशन केवल ऑडियोरिस्पॉन्स, वीडियोरिस्पॉन्स और टेक्स्टएंट्री प्रकार के प्रश्नों के लिए ही जोड़ा जा सकता है।
         doesnt_have_header: "'%{sub_header}' में हेडर नहीं है।"
         invalid_headers: 'निम्नलिखित हेडर अमान्य हैं: %{headers}'
         invalid_question: अमान्य प्रश्न आईडी
@@ -311,11 +88,7 @@ hi:
       successfully_scheduled: प्रश्न आयात सफलतापूर्वक निर्धारित किया गया।
     assessments:
       assessment: मूल्यांकन
-      assessment_report: मूल्यांकन
       copy:
-        copy: प्रतिलिपि
-        copy_assessment: मूल्यांकन की प्रतिलिपि
-        name: नाम
         successfully: मूल्यांकन "%{name}" सफलतापूर्वक कॉपी किया गया।
       create:
         successfully: मूल्यांकन "%{name}" सफलतापूर्वक बनाया गया।
@@ -404,93 +177,10 @@ hi:
       update:
         successfully: मूल्यांकन %{name} सफलतापूर्वक अपडेट किया गया।
     assessor:
-      add_subject_modal:
-        assessment: मूल्यांकन
-        mark_as_lead_assessor: उपरोक्त विषय के लिए प्रमुख मूल्यांकनकर्ता के रूप में चिह्नित करें।
-        subject: विषय
-        subject_placeholder: विषय खोजें..
-        title: विषय जोड़ें
-      assessments:
-        actions:
-          add_subject: विषय जोड़ें
-          rescore: पुनः स्कोर
-          reset: मूल्यांकन रीसेट
-          reset_progress: प्रगति रीसेट करें
-        bulk_delete_confirmation: क्या आप सुनिश्चित हैं कि आप चयनित रिकॉर्ड्स को हटाना चाहते हैं?
-        bulk_delete_successful: मूल्यांकनकर्ता के मूल्यांकन सफलतापूर्वक हटा दिए गए।
-        reset_confirmation: क्या आप "%{subjectEmail}" ईमेल वाले विषय के लिए मूल्यांकन रीसेट करना चाहते हैं?
-        reset_progress_confirmation: क्या आप सुनिश्चित हैं कि आप "%{subjectEmail}" ईमेल वाले विषय के लिए प्रगति रीसेट करना चाहते हैं?
-        reset_progress_successfully: ईमेल "%{subjectEmail}" के साथ विषय के लिए प्रगति रीसेट सफल रही।
-        reset_successfully: ईमेल "%{subjectEmail}" वाले विषय के लिए मूल्यांकन रीसेट सफल रहा।
-        subject_email: विषय ईमेल
-        subject_name: विषय नाम
-      completed_at: पर पूरा किया गया
-      count: "%{count} मूल्यांकनकर्ता"
-      create_assessor: मूल्यांकनकर्ता जोड़ें
-      evaluations: मूल्यांकन
       mailer:
         subject: आपके मूल्यांकन के लिए नए विषय जोड़े गए हैं।
-      modals:
-        create_assessor:
-          add: जोड़ें
-          cancel: रद्द करें
-          form:
-            add: जोड़ें
-            add_lead_assessor: मुख्य मूल्यांकनकर्ता के रूप में जोड़ें
-            add_lead_assessor_hint: कृपया पहले लीड असेसर फॉर्म जोड़ें।
-            assessments: मूल्यांकन
-            assessor: मूल्यांकनकर्ता
-            assessor_placeholder: आकलनकर्ता खोजें...
-            lead_assessment: लीड मूल्यांकन
-            subject: विषय
-            subject_placeholder: विषय खोजें...
-          sheet:
-            assessments: मूल्यांकन
-            assessments_placeholder: चुनें
-            assessor_email: मूल्यांकनकर्ता का ईमेल
-            assessor_first_name: आकलनकर्ता का पहला नाम
-            assessor_last_name: मूल्यांकनकर्ता का अंतिम नाम
-            subject_email: विषय का ईमेल
-          title: मूल्यांकनकर्ता जोड़ें
-        import:
-          body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
-          title: आयात मूल्यांकनकर्ता
       moderate_score:
-        assessor_evaluations: मूल्यांकनकर्ता मूल्यांकन
-        main_report: मुख्य रिपोर्ट
-        no_completed_assessments: अभी तक कोई पूर्ण मूल्यांकन नहीं हुए हैं।
         no_results: कोई भी उत्तरित प्रश्न नहीं हैं।
-        other_reports: अन्य रिपोर्टें
-        overall_scoring: कुल स्कोरिंग
-        recordings: रिकॉर्डिंग्स
-        refresh: ताज़ा करें
-        reports: रिपोर्टें
-        reports_count: "%{count} रिपोर्टें"
-      overview: अवलोकन
-      remove_confirmation: क्या आप सुनिश्चित हैं कि आप इस अभियान से %{email} ईमेल वाले आकलनकर्ता को हटाना चाहते हैं?
-      statuses:
-        completed: पूर्ण
-        not_completed: पूर्ण नहीं
-      toolbar:
-        export: निर्यात आकलनकर्ता
-        import: आयात मूल्यांकनकर्ता
-        tools: उपकरण
-    assessor_assessment:
-      add: जोड़ें
-      modals:
-        add_assessor_assessment:
-          assessment_placeholder: एक मूल्यांकन चुनें
-      name: मूल्यांकनकर्ता मूल्यांकन
-    assessor_campaigns:
-      statuses:
-        completed: पूर्ण
-        in_progress: प्रगति में
-        not_started: शुरू नहीं किया
-    assessor_subjects:
-      statuses:
-        completed: पूर्ण
-        in_progress: प्रगति में
-        not_started: शुरू नहीं किया
     assigns:
       create:
         successfully: मूल्यांकन के लिए नया असाइनमेंट सफलतापूर्वक बनाया गया।
@@ -507,42 +197,6 @@ hi:
       edit:
         header: रिपोर्ट असाइनमेंट संपादित करें
     attention: ध्यान
-    audit_log:
-      action: कार्रवाई
-      audit_logs: ऑडिट लॉग्स
-      campaign: अभियान
-      client: ग्राहक
-      client_ip: क्लाइंट आईपी
-      collapse_filters: फ़िल्टर बंद करें
-      dashboard: डैशबोर्ड
-      date_presets:
-        last_30_days: पिछले 30 दिन
-        last_7_days: पिछले 7 दिन
-        last_month: पिछले महीने
-        last_week: पिछले सप्ताह
-        today: आज
-        yesterday: कल
-      date_range: दिनांक सीमा
-      expand_filters: फ़िल्टर विस्तार करें
-      failure_reason: विफलता का कारण
-      interface: अंतरफलक
-      log_date: प्रवेश तिथि
-      outcome: परिणाम
-      payload: पेलोड
-      project: परियोजना
-      record_id: रिकॉर्ड आईडी
-      request_id: अनुरोध आईडी
-      reset: पुनः आरंभ करें
-      search: खोजें
-      search_campaign: अभियान द्वारा खोजें
-      search_client: ग्राहक के अनुसार खोजें
-      search_project: परियोजना द्वारा खोजें
-      search_record: रिकॉर्ड आईडी द्वारा खोजें
-      search_user: उपयोगकर्ता द्वारा खोजें
-      title: ऑडिट लॉग जानकारी
-      type: रिकॉर्ड का प्रकार
-      user: उपयोगकर्ता
-      user_agent: उपयोगकर्ता एजेंट
     back: वापस
     block_settings:
       modal:
@@ -759,20 +413,7 @@ hi:
           missing_user_reports: 'ईमेल के लिए उपयोगकर्ता रिपोर्ट्स अनुपस्थित हैं: %{emails}'
           no_file_found_in_extracted_zip: अनज़िप की गई ज़िप में कोई फ़ाइल नहीं मिली।
           user_report_not_found: 'ईमेल: %{email} के लिए उपयोगकर्ता रिपोर्ट नहीं मिली।'
-      bulk_download:
-        data_range_error: कृपया दिनांक सीमा चुनें
-        modal:
-          subtitle: दिनांक सीमा चुनें और फिर प्रत्येक रिपोर्ट के लिए आवश्यक भाषा चुनें।
-      generate:
-        modal:
-          subtitle: प्रत्येक रिपोर्ट के लिए आवश्यक भाषा चुनें
     campaign_templates:
-      campaign_templates: अभियान टेम्पलेट्स
-      column:
-        assessment: मूल्यांकन
-        campaign: अभियान
-        owner: मालिक
-        report: रिपोर्ट
       copy:
         successfully: क्लाइंट टेनेन्सी%{name} सफलतापूर्वक कॉपी हो गई।
       create:
@@ -783,16 +424,6 @@ hi:
         header: क्लाइंट संपादित करें
       errors:
         owner_invalid: टेम्पलेट का मालिक मूल्यांकन, रिपोर्ट और आयाम के मालिकों के समान होना चाहिए।
-      form:
-        assessment: मूल्यांकन
-        assessment_placeholder: एक मूल्यांकन चुनें
-        name: नाम
-        name_placeholder: नाम दर्ज करें
-        owner: मालिक
-        owner_placeholder: एक मालिक चुनें
-        report: रिपोर्ट
-        report_placeholder: एक रिपोर्ट चुनें
-        title: अभियान टेम्पलेट
       image_fields:
         remove: हटाएँ
       index:
@@ -807,10 +438,6 @@ hi:
         updated_at: अद्यतन तिथि
       new:
         header: नया ग्राहक
-      remove_confirm:
-        content: क्या आप '%{name}' अभियान टेम्पलेट को हटाना चाहते हैं?
-        success: अभियान टेम्पलेट '%{name}' को सफलतापूर्वक हटा दिया गया।
-        title: अभियान टेम्पलेट हटाएँ
       resource:
         confirmations:
           delete:
@@ -828,7 +455,6 @@ hi:
       update:
         successfully: क्लाइंट टेनेन्सी%{name} को सफलतापूर्वक अपडेट किया गया।
     campaigns:
-      actions: प्रबंध करें
       assessment_reports:
         report_approval:
           allow_bulk_approve: थोक अनुमोदन की अनुमति दें
@@ -878,148 +504,6 @@ hi:
       assessors:
         spoof:
           successfully: आप सफलतापूर्वक %{name} के रूप में लॉगिन हो गए।
-      convert_to_template: टेम्पलेट में बदलें
-      copy: प्रतिलिपि
-      delete: मिटायें
-      edit: संपादित करें
-      extend_time_success_message: अभियान टाइमर %{minutes} मिनट तक बढ़ाया गया।
-      filters:
-        active: सक्रिय
-        all: सभी
-        archived: संचित
-        closed: बंद
-        inactive: निष्क्रिय
-        status: स्थिति
-      form:
-        active_notice: चयनित समाप्ति तिथि और समय पर अभियान की स्थिति स्वचालित रूप से बंद में बदल जाएगी।
-        campaign: अभियान
-        copy_factors: प्रतिलिपि कारक
-        inactive_notice: चयनित प्रारंभ तिथि और समय पर अभियान की स्थिति स्वचालित रूप से सक्रिय हो जाएगी।
-        name: नाम
-        practice_campaign: अभियान का अभ्यास
-        status: स्थिति
-      listing:
-        assessments: मूल्यांकन
-        id: आईडी
-        name: नाम
-        reports: रिपोर्टें
-        status: स्थिति
-        template: नमूना
-        type: प्रकार
-      menus:
-        add_common_campaign: सामान्य अभियान जोड़ें
-        add_multi_rater_campaign: मल्टी रेटर अभियान जोड़ें
-      modals:
-        create_threesixity:
-          advance_settings:
-            campaign_template: अभियान टेम्पलेट
-            factors: तत्व
-          base_settings:
-            active: सक्रिय
-            archive: संग्रह
-            assessment: मूल्यांकन
-            category: श्रेणी
-            closed: बंद
-            default_assessment_language: मूल्यांकन की पूर्वनिर्धारित भाषा
-            default_report_language: डिफ़ॉल्ट भाषा रिपोर्ट करें
-            empty: खाली
-            inactive: निष्क्रिय
-            name: नाम
-            normal: सामान्य
-            previous: पिछला
-            select_assessment_language: मूल्यांकन भाषा चुनें
-            select_report_language: रिपोर्ट की भाषा चुनें
-            skill_rater: कौशल मूल्यांकनकर्ता
-            standard: मानक
-            status: स्थिति
-            type: प्रकार
-          close:
-            content: क्या आप वास्तव में मल्टी रेटर कैंपेन क्रिएटर बंद करना चाहते हैं? कोई भी बिना सहेजी गई अनुकूलन कार्य खो जाएगा। कृपया अपना निर्णय पुष्टि करें।
-            title: मल्टी रेटर अभियान निर्माता बंद करें?
-          instructions_creation:
-            empty: 'खाली: एक खाली सर्वेक्षण से शुरू करें और इसे अपनी विशिष्ट आवश्यकताओं के अनुसार अनुकूलित करें।'
-            previous: 'पिछला: एक पिछली मूल्यांकन को आरंभ बिंदु के रूप में चुनें और उसमें संशोधन करें।'
-            standard: 'मानक: सामान्यतः प्रयुक्त प्रश्नों और संकेतकों के साथ एक पूर्व-निर्मित टेम्पलेट का उपयोग करें।'
-            sub_title: कृपया वह अभियान प्रकार चुनें जिसे आप बनाना चाहते हैं।
-            title: मल्टी रेटर कैंपेन क्रिएटर में आपका स्वागत है!
-          instructions_customization:
-            sub_title: मूल्यांकन में शामिल किए जाने वाले टेम्पलेट और कारकों का चयन करें।
-            title: अपने मूल्यांकन को अनुकूलित करें!
-          no_factors:
-            description: कृपया कुछ अन्य खोज कीवर्ड आज़माएँ।
-            title: कोई कारक नहीं मिला
-          questions:
-            select_all: सभी चुनें
-            title: प्रश्न और संकेतक
-          search_factors:
-            description: कृपया आप जिन कारकों की तलाश कर रहे हैं उन्हें खोजने के लिए कम से कम 3 अक्षर दर्ज करें।
-            title: अपनी खोज शुरू करें
-          success: मल्टी रेटर अभियान सफलतापूर्वक बनाया गया।
-          success_job: मल्टी रेटर अभियान निर्माण का कार्य सफलतापूर्वक अनुसूचित किया गया।
-      options:
-        description:
-          name: विवरण
-          save: विवरण सहेजें
-          save_success: विवरण सफलतापूर्वक सहेजा गया
-        enable_video_call_recording: वीडियो कॉल रिकॉर्डिंग सक्षम करें
-        fixed_time: निश्चित समय
-        instructions:
-          actions:
-            saved: निर्देश सफलतापूर्वक सहेजे गए
-          enable: निर्देश सक्षम करें
-          save: निर्देश सहेजें
-        prework_required: यदि पूर्व कार्य पूरे नहीं हुए हैं तो केंद्र बुकिंग की अनुमति न दें।
-        prework_required_for_invite: केवल तब निमंत्रण ईमेल भेजें जब प्री-वर्क पूरा हो गया हो।
-        proctoring:
-          enable: प्रॉक्टरिंग सक्षम करें
-          identification: पहचान
-          identifications:
-            face: चेहरा
-            face_and_passport: चेहरा और पासपोर्ट
-            passport: पासपोर्ट
-          integration_type: एकीकरण
-          integration_types:
-            iframe: आईफ्रेम
-            ldb: लॉकडाउन ब्राउज़र
-          proctoring_types:
-            offline: ऑफ़लाइन
-            online: ऑनलाइन
-          rule_types:
-            allow_absence_in_frame: फ़्रेम में अनुपस्थिति की अनुमति दें
-            allow_to_use_books: पुस्तकों का उपयोग करने की अनुमति दें
-            allow_to_use_calculator: कैलकुलेटर का उपयोग करने की अनुमति दें
-            allow_to_use_excel: एक्सेल का उपयोग करने की अनुमति दें
-            allow_to_use_human_assistant: मानव सहायक का उपयोग करने की अनुमति दें
-            allow_to_use_messengers: मैसेंजर का उपयोग करने की अनुमति दें
-            allow_to_use_paper: पेपर का उपयोग करने की अनुमति दें
-            allow_to_use_websites: वेबसाइटों का उपयोग करने की अनुमति दें
-            allow_voices: आवाज़ों को अनुमति दें
-            allow_wrong_gaze_direction: गलत दृष्टि दिशा की अनुमति दें
-          rules: नियम
-          trial: प्रॉक्टोरिंग परीक्षण
-          type: प्रकार
-        show_watermark: वाटरमार्क दिखाएँ
-        watermark_content: वाटरमार्क सामग्री
-        watermark_info: यदि आप कोई सामग्री नहीं जोड़ते हैं, तो डिफ़ॉल्ट रूप से उपयोगकर्ता का ईमेल वॉटरमार्क के रूप में दिखाई देगा। आप निम्नलिखित pipetext में से कोई भी उपयोग कर सकते हैं -<br/> {{id}} - प्रतिभागी आईडी </br> {{first_name}} - प्रतिभागी का पहला नाम </br> {{last_name}} - प्रतिभागी का अंतिम नाम </br> {{email}} - प्रतिभागी का ईमेल
-      pdf_password: पीडीएफ पासवर्ड
-      types:
-        common: सामान्य
-        threesixty: बहु मूल्यांकनकर्ता
-      users:
-        add_user: उपयोगकर्ता जोड़ें
-        completion_status: पूर्णता की स्थिति
-        created_by: द्वारा निर्मित
-        email: ईमेल
-        filters:
-          all: सभी
-          anonymous: गुमनाम
-          identified: पहचाना गया
-        id: आईडी
-        is_active: सक्रिय
-        name: नाम
-        no_permission_message: आपके पास संशोधित करने की अनुमति नहीं है।
-        title: उपयोगकर्ता
-        updated_by: द्वारा अद्यतन
       validations:
         dates:
           end: शुरुआत की तारीख के बाद होना चाहिए
@@ -1028,32 +512,7 @@ hi:
         invalid_campaign_factor_codes: 'निम्नलिखित अभियान फैक्टर कोड अमान्य हैं: %{codes}'
         missing_headers: अनुपस्थित हेडर
         missing_users: 'निम्नलिखित ईमेल मौजूद नहीं हैं: %{emails}'
-      import:
-        example_csv: उदाहरण सीएसवी डाउनलोड करें
-        success_msg: आयात सफलतापूर्वक अपलोड हो गया।
-      modal:
-        title: बाहरी अभियान स्कोर आयात करें
-    client_features:
-      client_features: ग्राहक सुविधाएँ
-      form:
-        ai_assistants: एआई सहायक
-        ai_assistants_disabled_by_client: एआई सहायक ग्राहक द्वारा अक्षम कर दिए गए हैं।
-        ai_assisted_idp: एआई-सहायित आईडीपी
-        ai_assisted_idp_requires_ai_assistants: एआई-सहायक आईडीपी के लिए एआई सहायक सुविधा सक्षम होना आवश्यक है।
-        ai_content_analysis: एआई सामग्री विश्लेषण
-        ai_content_analysis_disabled_by_client: क्लाइंट द्वारा एआई सामग्री विश्लेषण अक्षम कर दिया गया है।
-        ai_translation: एआई अनुवाद
-        ai_translation_disabled_by_client: AI अनुवाद ग्राहक द्वारा अक्षम कर दिए गए हैं।
-        global_skills: वैश्विक कौशल
-        global_skills_disabled_by_client: ग्लोबल स्किल्स क्लाइंट द्वारा अक्षम किया गया है।
-        idp: आईडीपी
-        idp_disabled_by_client: IDP क्लाइंट द्वारा अक्षम किया गया है।
-        sms_notification: एसएमएस सूचना
-        sms_notification_disabled_by_client: एसएमएस सूचना क्लाइंट द्वारा अक्षम की गई है।
     clients:
-      api_keys:
-        init_breadcrumbs:
-          breadcrumb: ब्रेडक्रम्ब
       archive:
         successfully: सफलतापूर्वक
       base:
@@ -1061,7 +520,6 @@ hi:
         archived: संचित
         disable: संग्रह
         enable: अनआर्काइव
-      clients: ग्राहक
       copy:
         successfully: क्लाइंट टेनेन्सी '%{name}' सफलतापूर्वक कॉपी हो गई।
       create:
@@ -1083,392 +541,17 @@ hi:
       new:
         header: नया ग्राहक
       projects:
-        actions:
-          archive: संग्रह
-          unarchive: अनआर्काइव
-        archive:
-          content: क्या आप '%{project_name}' को संग्रहीत करना चाहते हैं?
-          success: परियोजना '%{project_name}' को सफलतापूर्वक संग्रहीत किया गया।
-          title: आर्काइव प्रोजेक्ट
-        assign_assessments:
-          add_assessment: मूल्यांकन जोड़ें
-          assessments: मूल्यांकन
-        assign_reports:
-          add_report: रिपोर्ट जोड़ें
-        campaigns:
-          archive:
-            successfully: अभियान '%{name}' को सफलतापूर्वक संग्रहीत किया गया।
-          copy:
-            error: अभियान '%{name}' की प्रतिलिपि नहीं बनाई गई।
-            successfully: अभियान '%{name}' सफलतापूर्वक कॉपी हो गया।
-          create:
-            successfully: अभियान '%{name}' सफलतापूर्वक बनाया गया।
-          destroy:
-            successfully: अभियान '%{name}' सफलतापूर्वक हटा दिया गया।
-          edit:
-            header: अभियान संपादित करें
-          export:
-            assessments: मूल्यांकन
-            assigned_user: नियुक्त उपयोगकर्ता
-            completed_user: पूर्ण उपयोगकर्ता
-            created_at: निर्मित तिथि
-            header:
-              actions: क्रियाएँ
-              actual_usage: वास्तविक उपयोग
-              assessments: मूल्यांकन
-              campaigns: अभियान
-              name: नाम
-              reports: रिपोर्टें
-              sub_campaigns: उप-अभियानों
-              tests_allocated: परीक्षण आवंटित
-              users: उपयोगकर्ता
-            id: आईडी
-            name: अभियान का नाम
-            reports: रिपोर्टें
-            updated_at: अद्यतन तिथि
-          index:
-            export: निर्यात
-            new: जोड़ें
-            title: अभियान
-          list:
-            assessments: मूल्यांकन
-            assigned_user: नियुक्त उपयोगकर्ता
-            completed_user: पूर्ण उपयोगकर्ता
-            created_at: निर्मित तिथि
-            header:
-              actions: क्रियाएँ
-              actual_usage: वास्तविक उपयोग
-              assessments: मूल्यांकन
-              campaigns: अभियान
-              name: नाम
-              reports: रिपोर्टें
-              sub_campaigns: उप-अभियानों
-              tests_allocated: परीक्षण आवंटित
-              users: उपयोगकर्ता
-            id: आईडी
-            name: अभियान का नाम
-            reports: रिपोर्टें
-            updated_at: अद्यतन तिथि
-          new:
-            header: नई मुहिम
-          resource:
-            sub_campaign:
-              create: नई उप-अभियान बनाएँ
-            tooltips:
-              copy: अभियान की प्रतिलिपि
-              create_report: नई रिपोर्ट जोड़ें
-              create_user: नया उपयोगकर्ता जोड़ें
-              delete: अभियान हटाएँ
-              edit: अभियान संपादित करें
-              export: निर्यात
-          sidebar:
-            archive: अभियान संग्रह
-            copy: अभियान की प्रतिलिपि
-            destroy: अभियान हटाएँ
-            disable: अक्षम करें
-            edit: अभियान संपादित करें
-            enable: सक्षम करें
-            new: नई मुहिम
-            title: अभियान के विकल्प
-            view_licenses: लाइसेंस देखें
-          sub_campaigns:
-            archive:
-              successfully: उप-अभियान %{name} सफलतापूर्वक संग्रहीत किया गया।
-            copy:
-              error: उप-अभियान %{name} की प्रतिलिपि नहीं बनाई गई थी।
-              successfully: उप-अभियान %{name} सफलतापूर्वक कॉपी किया गया।
-            create:
-              successfully: उप-अभियान %{name} सफलतापूर्वक बनाया गया।
-            destroy:
-              successfully: उप-अभियान %{name} सफलतापूर्वक हटा दिया गया।
-            edit:
-              header: उप-अभियान संपादित करें
-            export:
-              assessments: मूल्यांकन
-              assigned_user: नियुक्त उपयोगकर्ता
-              completed_user: पूर्ण उपयोगकर्ता
-              created_at: निर्मित तिथि
-              header:
-                actions: क्रियाएँ
-                actual_usage: वास्तविक उपयोग
-                archive_status: संग्रह स्थिति
-                name: नाम
-                sub_campaign: उप-अभियानों
-                tests_allocated: आवंटित परीक्षण
-                users: उपयोगकर्ता
-              id: आईडी
-              name: उप-अभियान का नाम
-              reports: रिपोर्टें
-              updated_at: अद्यतन तिथि
-            header:
-              actions: क्रियाएँ
-            index:
-              export: निर्यात
-              new: जोड़ें
-              title: उप अभियान
-            list:
-              assessments: मूल्यांकन
-              assigned_user: नियुक्त उपयोगकर्ता
-              completed_user: पूर्ण उपयोगकर्ता
-              created_at: निर्मित तिथि
-              header:
-                actions: क्रियाएँ
-                actual_usage: वास्तविक उपयोग
-                archive_status: संग्रह स्थिति
-                name: नाम
-                sub_campaign: उप-अभियानों
-                tests_allocated: आवंटित परीक्षण
-                users: उपयोगकर्ता
-              id: आईडी
-              name: उप-अभियान का नाम
-              reports: रिपोर्टें
-              updated_at: अद्यतन तिथि
-            new:
-              header: नई उप-अभियान
-            resource:
-              tooltips:
-                copy: उप-अभियान की प्रतिलिपि बनाएँ
-                create_report: नई रिपोर्ट जोड़ें
-                create_user: नया उपयोगकर्ता जोड़ें
-                delete: उप अभियान हटाएँ
-                edit: उप अभियान संपादित करें
-            sidebar:
-              archive: संग्रह उप-अभियान
-              copy: उप-अभियान की प्रतिलिपि बनाएँ
-              destroy: उप-अभियान हटाएँ
-              disable: अक्षम करें
-              edit: उप-अभियान संपादित करें
-              enable: सक्षम करें
-              new: नई उप-अभियान
-              title: उप-अभियान के विकल्प
-              view_licenses: लाइसेंस देखें
-            toggle_status:
-              successfully: उप-अभियान %{name} को सफलतापूर्वक अपडेट किया गया।
-            update:
-              successfully: उप-अभियान %{name} को सफलतापूर्वक अपडेट किया गया।
-          toggle_status:
-            successfully: अभियान %{name} सफलतापूर्वक अपडेट किया गया।
-          update:
-            successfully: अभियान %{name} सफलतापूर्वक अपडेट किया गया।
-        copy:
-          error: परियोजना %{name} की प्रतिलिपि नहीं बनाई गई थी।
-          successfully: परियोजना %{name} सफलतापूर्वक कॉपी की गई।
-        create:
-          successfully: परियोजना %{name} सफलतापूर्वक बनाई गई।
-        destroy:
-          successfully: परियोजना %{name} सफलतापूर्वक हटा दी गई।
-        edit:
-          header: परियोजना संपादित करें
-        export:
-          2fa_enabled: 2FA सक्षम
-          actual_usage: वास्तविक उपयोग
-          admin: क्लाइंट एडमिन
-          applicable_level: लागू स्तर
-          archive_status: स्थिति
-          assessments: मूल्यांकन
-          assigned_user: नियुक्त उपयोगकर्ता
-          completed_user: पूर्ण उपयोगकर्ता
-          created_at: निर्मित तिथि
-          id: आईडी
-          name: परियोजना का नाम
-          number: संख्या
-          project_admin: परियोजना प्रशासक
-          reports: रिपोर्टें
-          tests_allocated: आवंटित परीक्षण
-          tte_admin: टीटीई परियोजना प्रबंधक
-          updated_at: संशोधित तिथि
-          url: यूआरएल
-          users_count: उपयोगकर्ताओं की संख्या
-        form:
-          2fa: 2-कारक प्रमाणीकरण
-          2fa_enable: 2-कारक प्रमाणीकरण सक्षम करें
-          applicable_levels:
-            campaign: अभियान समाप्ति स्तर
-            project: परियोजना अंतिम स्तर
-            sub_campaign: उप-अभियान अंत स्तर
-          data_privacy: डेटा गोपनीयता
-          enable_live_chat: लाइव चैट सक्षम करें
-          enable_privacy_links: गोपनीयता लिंक सक्षम करें
-          live_chat_token: लाइव चैट टोकन
-          optional: वैकल्पिक
-          other_settings: अन्य सेटिंग्स
-          privacy_link: गोपनीयता लिंक
-          privacy_text: गोपनीयता पाठ
-          project_number: परियोजना संख्या
-          webhook: वेबहूक
-          webhook_auth_enabled: वेबहुक प्रमाणीकरण सक्षम करें
-          webhook_password: पासवर्ड
-          webhook_username: उपयोगकर्ता नाम
-        header:
-          actions: क्रियाएँ
-        index:
-          export: निर्यात
-          new: जोड़ें
-          title: परियोजनाएँ
-          tooltips:
-            create: बनाएँ
-            export: निर्यात
-        list:
-          2fa_enabled: 2FA सक्षम
-          actual_usage: वास्तविक उपयोग
-          admin: क्लाइंट एडमिन
-          applicable_level: लागू स्तर
-          archive_status: स्थिति
-          assessments: मूल्यांकन
-          assigned_user: नियुक्त उपयोगकर्ता
-          completed_user: पूर्ण उपयोगकर्ता
-          created_at: निर्मित तिथि
-          id: आईडी
-          name: परियोजना का नाम
-          number: संख्या
-          project_admin: परियोजना प्रशासक
-          reports: रिपोर्टें
-          tests_allocated: आवंटित परीक्षण
-          tte_admin: टीटीई परियोजना प्रबंधक
-          updated_at: संशोधित तिथि
-          url: यूआरएल
-          users_count: उपयोगकर्ताओं की संख्या
-        new:
-          header: नया प्रोजेक्ट
-        resource:
-          add_assessment: मूल्यांकन जोड़ें
-          add_report: रिपोर्ट जोड़ें
-          assessments: मूल्यांकन
-          tooltips:
-            copy: परियोजना की प्रतिलिपि बनाएँ
-            create_admin: परियोजना प्रशासक बनाएँ
-            create_report: नई रिपोर्ट जोड़ें
-            create_user: नया उपयोगकर्ता जोड़ें
-            delete: परियोजना हटाएँ
-            edit: परियोजना संपादित करें
-        sidebar:
-          admins: परियोजना प्रशासक
-          archive: आर्काइव प्रोजेक्ट
-          copy: परियोजना की प्रतिलिपि बनाएँ
-          design: डिज़ाइन संपादित करें
-          destroy: परियोजना हटाएँ
-          disable: अक्षम करें
-          edit: परियोजना संपादित करें
-          enable: सक्षम करें
-          new: नया प्रोजेक्ट
-          title: परियोजना के विकल्प
-          view_licenses: लाइसेंस देखें
-        status:
-          active: सक्रिय
-          archived: संचित
         threesixty_campaigns:
-          base:
-            active: सक्रिय
-            archived: संचित
-            disable: संग्रह
-            enable: अनआर्काइव
-          completion_statuses:
-            approved: स्वीकृत
-            completed: पूर्ण
-            denied: अस्वीकृत
-            in_progress: प्रगति में
-            not_started: शुरू नहीं हुआ
-          copy:
-            error: क्लाइंट टेनेन्सी '%{name}' कॉपी नहीं की गई।
-            successfully: क्लाइंट टेनेन्सी '%{name}' सफलतापूर्वक कॉपी हो गई।
-          create:
-            successfully: क्लाइंट टेनेन्सी '%{name}' सफलतापूर्वक बनाई गई।
-          designs:
-            form:
-              no_background: अभी तक कोई पृष्ठभूमि नहीं
-              no_logo: अभी तक कोई लोगो नहीं
           destroy:
             error: विषयों या मूल्यांकनकर्ताओं के कुछ आश्रित संघटन मौजूद होने के कारण '%{name}' को हटाया नहीं जा सकता।
-            successfully: क्लाइंट टेनेन्सी '%{name}' सफलतापूर्वक हटा दी गई।
-          edit:
-            header: 360 अभियान संपादित करें
-          export:
-            admin: क्लाइंट एडमिन
-            assessment: मूल्यांकन
-            client_admins: क्लाइंट एडमिन
-            created_at: पर बनाया गया
-            id: आईडी
-            name: नाम
-            report: रिपोर्ट
-            report_bundle: रिपोर्ट बंडल
-            status: स्थिति
           index:
-            export: निर्यात
-            new: 360 अभियान जोड़ें
             title: 360 अभियान
-          license:
-            header: "%{name} - लाइसेंस संपादित करें"
-          licenses:
-            update:
-              duplicate_licenses: आपके पास डुप्लिकेट लाइसेंस हैं।
-              successfully: लाइसेंस सफलतापूर्वक अपडेट हो गए
-          list:
-            admin: क्लाइंट एडमिन
-            assessment: मूल्यांकन
-            client_admins: क्लाइंट एडमिन
-            created_at: पर बनाया गया
-            id: आईडी
-            name: नाम
-            report: रिपोर्ट
-            report_bundle: रिपोर्ट बंडल
-            status: स्थिति
-            updated_at: अद्यतन तिथि
-          new:
-            header: नई 360 अभियान
           resource:
             confirmations:
               delete:
                 body: क्या आप वास्तव में हटाना चाहते हैं? इस कार्रवाई को वापस नहीं लिया जा सकता। यह %{name} अभियान, उप-अभियानों और सभी संघों को स्थायी रूप से हटा देगा। पुष्टि करने के लिए कृपया %{name} टाइप करें।
                 title: क्या %{name} को हटा दें?
-              disable:
-                body:
-                  '0': क्या आप वास्तव में आर्काइव करना चाहते हैं? सभी अभियान, उप-अभियान और उपयोगकर्ता भी आर्काइव हो जाएँगे।
-                  '1': क्या आप वास्तव में आर्काइव करना चाहते हैं? सभी उप-अभियानों और उपयोगकर्ताओं को भी आर्काइव कर दिया जाएगा।
-                  '2': क्या आप वास्तव में संग्रहीत करना चाहते हैं? सभी उपयोगकर्ता भी संग्रहीत कर दिए जाएँगे।
-                  '3': क्या आप वास्तव में संग्रहीत करना चाहते हैं? सभी उपयोगकर्ता भी संग्रहीत कर दिए जाएँगे।
-                title: संग्रह %{name} ?
-              enable:
-                body:
-                  '0': क्या आप वास्तव में अनआर्काइव करना चाहते हैं?
-                  '1': क्या आप वास्तव में अनआर्काइव करना चाहते हैं?
-                  '2': क्या आप वास्तव में अनआर्काइव करना चाहते हैं?
-                  '3': क्या आप वास्तव में अनआर्काइव करना चाहते हैं?
-                title: अनआर्काइव %{name}?
-            export_results: परिणाम निर्यात करें
-            raw_results: कच्चे परिणाम
-            tooltips:
-              campaigns:
-                delete: अभियान हटाएँ
-              copy: क्लाइंट की प्रतिलिपि
-              create_admin: क्लाइंट एडमिन बनाएँ
-              delete: क्लाइंट हटाएँ
-              disable: क्लाइंट अक्षम करें
-              edit: क्लाइंट संपादित करें
-              enable: क्लाइंट सक्षम करें
-          statistics:
-            index:
-              all_assessments: सभी मूल्यांकन
-              assessment_type: मूल्यांकन का प्रकार
-              title: सांख्यिकी
-          toggle_status:
-            successfully: क्लाइंट टेनेन्सी%{name} को सफलतापूर्वक अपडेट किया गया।
-          update:
-            successfully: क्लाइंट टेनेन्सी %{name} सफलतापूर्वक अपडेट हो गई।
-          url: यूआरएल
-        toggle_status:
-          successfully: परियोजना %{name} को सफलतापूर्वक अपडेट किया गया।
-        unarchive:
-          content: क्या आप '%{project_name}' को अनआर्काइव करना चाहते हैं?
-          success: परियोजना '%{project_name}' को सफलतापूर्वक अनआर्काइव किया गया।
-          title: परियोजना को अनआर्काइव करें
-        update:
-          successfully: परियोजना %{name} को सफलतापूर्वक अपडेट किया गया।
       registration_codes:
-        actions:
-          add_code: कोड जोड़ें
-        column:
-          code: कोड
-          usage_stats: उपयोग आँकड़े
         errors:
           count_invalid: used_count से कम नहीं हो सकता = %{use_count}
           criteria: केवल अल्फान्यूमेरिक वर्ण, हाइफ़न (-) और अंडरस्कोर (_) ही हो सकते हैं।
@@ -1476,13 +559,6 @@ hi:
           incorrect_domain: ग़लत डोमेन प्रारूप।
           invalid_end_date: शुरुआत की तारीख से अधिक होना चाहिए
           license_issue: पर्याप्त लाइसेंस नहीं हैं।
-        form:
-          active: सक्रिय
-          code: कोड
-          end_date: अंतिम तिथि
-          name: नाम
-          start_date: आरंभ तिथि
-          total_count: कुल संख्या
       resource:
         confirmations:
           delete:
@@ -1498,25 +574,9 @@ hi:
         successfully: क्लाइंट टेनेन्सी %{name} सफलतापूर्वक अपडेट हो गई।
     close: बंद करें
     common:
-      add: जोड़ें
-      back: वापस
-      cancel: रद्द करें
-      code: कोड
-      disabled: अक्षम
-      download_sample_file: नमूना फ़ाइल डाउनलोड करें
       enabled: सक्षम
-      import:
-        failure_msg: फ़ाइल आयात करते समय त्रुटि।
-      instructions: निर्देश
       loading: लोड हो रहा है...
-      minute: एक मिनट
-      name: नाम
-      next: अगला
-      reset: पुनः आरंभ करें
       save: बचाएँ
-      select_all: सभी चुनें
-      type: प्रकार
-      unselect_all: सभी को असलेक्ट करें
     communication_settings: सेटिंग्स
     communications:
       create:
@@ -1695,86 +755,19 @@ hi:
       input_duration:
         placeholder: "'1d 2h 3m' के रूप में दर्ज करें"
     create: बनाएँ
-    dashboard:
-      capacity_name: क्षमता का नाम
-      choose_file_format: फ़ाइल प्रारूप चुनें
-      dashboard_types:
-        oracle_analytics: ओरेकल एनालिटिक्स
-        powerbi: पावरबाई
-      dashboards: डैशबोर्ड
-      export_dashboard_to_file: फ़ाइल में डैशबोर्ड निर्यात करें
-      export_job_failure: निर्यात शुरू करने में असफल
-      export_job_success: निर्यात कार्य शुरू हो गया है। पूरा होने पर आपको सूचित कर दिया जाएगा।
-      get_started: शुरू करें
-      initialize_msg: इस अभियान के लिए एक डैशबोर्ड प्रारंभ करें
-      loading_failed: डैशबोर्ड लोड करने में विफलता।
-      only_export_current_tab: केवल वर्तमान टैब निर्यात करें
-      pdf: पीडीएफ
-      pptx: पीपीटीएक्स
-      preview:
-        embed_token_error_description: कृपया जांचें कि सेटिंग्स में डेटासेट और रिपोर्ट आईडी सही हैं।
-        embed_token_error_title: एम्बेड टोकन उत्पन्न करने में असमर्थ।
-      settings:
-        capacity_id: क्षमता आईडी
-        details: विवरण
-        refresh: ताज़ा करें
-        workspace_id: कार्यक्षेत्र आईडी
-      tabs:
-        accesssheet: एक्सेसशीट
-        accesssheet_setting: एक्सेसशीट सेटिंग्स
-        dashboard: डैशबोर्ड
-        settings: सेटिंग्स
-    dashboard_form:
-      fields:
-        dataset_id: डेटासेट आईडी
-        enabled: सक्षम
-        image: छवि
-        project_path: परियोजना पथ
-        refresh_interval: ताज़ाकरण अंतराल (मिनट)
-        report_id: रिपोर्ट आईडी
-        visual_header_visibility: दृश्य शीर्षक दृश्यता
-      image_upload_failed: छवि अपलोड विफल हो गया।
-      none: कोई नहीं
-      refresh_success: डेटासेट का रिफ्रेश सफलतापूर्वक निर्धारित हो गया।
-      visual_header_visibility_options:
-        hide_all: सब छुपाएँ
-        keep_original: मूल रखें
-        show_all: सभी दिखाएँ
-    data_exports_modal:
-      title: दिनांक सीमा चुनें
     data_reports:
-      columns:
-        created_at: पर बनाया गया
-        created_by: द्वारा निर्मित
-        last_updated_by: द्वारा अंतिम अपडेट
-        name: नाम
-        owner: मालिक
-        password: पासवर्ड
-        status: स्थिति
-        udpated_at: 'अंतिम अपडेट:'
-      configuration: संरचना
       errors:
         factor_code_or_field_name_required: factor_code या field_name अनिवार्य है।
         factor_not_found: मूल्यांकन के दायरे में नहीं मिला
         inclusion: 'अमान्य प्रकार, मान्य प्रकार: %{values}'
         not_found: नहीं मिला
         not_owned: ग्राहक के स्वामित्व में नहीं
-      form:
-        name: डेटा रिपोर्ट
-      messages:
-        runed: डेटा रिपोर्ट को सफलतापूर्वक चलाने के लिए अनुसूचित किया गया।
       validations:
         project_and_campaigns_not_allowed: project_ids और campaign_ids को एक साथ निर्दिष्ट नहीं किया जाना चाहिए।
-        project_not_related_to_client: "%{project_id} ग्राहक का नहीं है"
         project_or_campaign_required: project_ids या campaign_ids आवश्यक है।
         sections_required: अनुभाग आवश्यक है
     datasheet:
       threesixty_warning: आप यहाँ से 360 रिपोर्ट के लिए डेटाशीट कॉलम अपलोड नहीं कर सकते। 360 रिपोर्ट के डेटाशीट कॉलम उस अभियान से लोड होते हैं जिससे यह रिपोर्ट जुड़ी हुई है।
-    dates:
-      completed: पर पूरा किया गया
-      end: अंतिम तिथि
-      start: आरंभ तिथि
-      started: शुरू किया
     development_action_import:
       errors:
         blank_field: 'पंक्ति%{row}: %{field} खाली नहीं हो सकता'
@@ -1811,49 +804,11 @@ hi:
         successfully: विकास कार्य "%{name}" सफलतापूर्वक बनाया गया।
       destroy:
         successfully: विकास कार्रवाई "%{name}" सफलतापूर्वक हटा दी गई।
-      development_action_types:
-        course: पाठ्यक्रम
-        default: डिफ़ॉल्ट
-      duration:
-        max_length: 1 वर्ष से अधिक नहीं हो सकता
-        min_length: 1 मिनट से कम नहीं हो सकता
       edit:
         header: विकास कार्रवाई संपादित करें
       export:
         details: फ़ाइल विवरण
-        failure_msg: अनुवादों को निर्यात करते समय त्रुटि
-        success_msg: प्रगति में विकास क्रियाकलापों का निर्यात हो रहा है। कृपया सूचनाओं में स्थिति देखें।
         translation_details: विवरण
-      export_development_action_translations: विकास कार्रवाई अनुवाद
-      export_development_actions: विकास कार्यवाही
-      form:
-        available_languages: उपलब्ध भाषाएँ
-        client_placeholder: एक क्लाइंट चुनें
-        course_image: कोर्स छवि
-        course_link: कोर्स लिंक
-        description: विवरण
-        development_action_type: विकास कार्रवाई का प्रकार
-        duration: अवधि
-        end_date: अंतिम तिथि
-        learning_style: सीखने की शैली
-        name: नाम
-        project_placeholder: एक परियोजना चुनें
-        skills: कौशल
-        skills_placeholder: कौशल चुनें
-        start_date: आरंभ तिथि
-        title: विकास कार्य
-        upload: अपलोड
-      global: क्या वैश्विक विकास कार्रवाई है?
-      heading: विकास कार्यवाही
-      import:
-        download_example_csv: उदाहरण सीएसवी डाउनलोड करें
-        failure_msg: फ़ाइल आयात करते समय त्रुटि।
-        info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-      import_action:
-        development_actions_title: आयात विकास क्रियाएँ
-        development_actions_translations_title: विकास कार्रवाइयों के अनुवाद आयात करें
-      import_development_actions: विकास कार्यवाही
-      import_development_actions_translations: विकास कार्यों के अनुवाद
       learning_styles:
         cannot_be_blank: खाली नहीं हो सकता
         invalid: यह on_the_job, structured_learning, learning_from_others में से एक होना चाहिए।
@@ -1891,32 +846,11 @@ hi:
       form:
         enable_innovation_styles: नवाचार शैलियों को सक्षम करें
         enable_occupations: व्यवसाय सक्षम करें
-        name: नाम
-        title: आयाम
       import_factors:
         import: आयात
         sample_file: नमूना फ़ाइल
         successfully: "%{name} आयाम के लिए शेड्यूल की गई कारकों की नौकरी आयात करें।"
         title: आयातक कारक
-      import_modal:
-        after: के बाद
-        before: पहले
-        cancel: रद्द करें
-        change_log_input: परिवर्तन सूची
-        continue: जारी रखें
-        error: त्रुटि
-        error_occurred: एक त्रुटि हुई
-        errors:
-          file_error: कृपया जारी रखने से पहले एक JSON फ़ाइल चुनें।
-          processing_error: फ़ाइल संसाधित करने में त्रुटि
-        field: क्षेत्र
-        import: आयात
-        import_dimension: आयाम आयात करें
-        import_scheduled: आयात निर्धारित
-        operation: संचालन
-        owner_input_validation: कृपया एक मालिक चुनें
-        owner_select: एक मालिक चुनें
-        select_json: JSON फ़ाइल चुनें
       import_translations:
         error: "%{name} आयाम के लिए अनुवाद आयात करते समय त्रुटि।"
         successfully: आयाम %{name} के लिए निर्धारित अनुवाद आयात करें।
@@ -1942,7 +876,6 @@ hi:
             body: 'क्या आप इस डायमेंशन को हटाना चाहते हैं?
 
               '
-            message: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए आयाम का नाम दर्ज करें।
             title: डिमेन्शन हटाएँ?
           toggle_status:
             body: 'क्या आप इस डायमेंशन को %{status} करना चाहते हैं?
@@ -1972,9 +905,6 @@ hi:
       update:
         successfully: "%{name} आयाम सफलतापूर्वक अपडेट हो गया"
     disable: अक्षम करें
-    document_titles:
-      project_assessors: मूल्यांकनकर्ता | %{project}
-      project_participants: प्रतिभागी | %{project}
     enable: सक्षम करें
     errors:
       csv_file_required: फ़ाइल CSV फ़ाइल होनी चाहिए।
@@ -1995,21 +925,6 @@ hi:
       edit:
         header: कारक नाम संपादित करें
       form:
-        components:
-          ExternalList:
-            add: जोड़ें
-            table:
-              actions: क्रियाएँ
-              jsonpath: जेएसओएन पाथ
-              type: प्रकार
-              types:
-                norm_score: मानकीकृत स्कोर
-                percentage: प्रतिशत
-                percentile: प्रतिशतक स्कोर
-                score: स्कोर
-                zscore: Z स्कोर
-            title: स्कोर के लिए JSON पथ
-        predicate: क्रियापद
         scoring_strategies:
           custom_formula: अनुकूलित सूत्र
           external_score: बाहरी स्कोर
@@ -2021,15 +936,9 @@ hi:
           sub_factors_average: तत्त्वों का भारित औसत
           sub_factors_conditional_average: कारकों का सशर्त भारित औसत
           sub_factors_sum: गुणकों का भारित योग
-        scoring_strategies_tip: " **प्रश्न (औसत):** यह वर्तमान स्कोरिंग विधि के समान है जब प्रश्न किसी कारक से जुड़े होते हैं। <br /> <br /> प्रश्न (SUM): यह प्रश्न (औसत) की तरह है, लेकिन SUM का उपयोग करता है <br /> <br /> अन्य कारकों के प्रश्न (औसत): यह वर्तमान स्कोरिंग विधि की तरह है जब किसी कारक के लिए उप-कारक होते हैं, केवल अंतर वज़न का जोड़ है। <br /> <br /> अन्य कारकों के प्रश्न (SUM): यह अन्य कारक (औसत) के समान है, लेकिन SUM का उपयोग करता है <br /> <br /> कारकों का भारित योग: यहां चयनित अन्य कारकों के स्कोर को उनके भारों से गुणा करके जोड़ा जाता है।"
-        scoring_strategy: स्कोरिंग रणनीति
-        search_factors: खोज कारक
-        use_sub_factor_norm_score: कारक मानक स्कोर का उपयोग करें
-        value: मूल्य
       index:
         icon: चिह्न
         new: जोड़ें
-        precision: सूक्ष्मता
         scoring_strategies:
           custom_formula: अनुकूलित सूत्र
           external_score: बाहरी स्कोर
@@ -2091,10 +1000,6 @@ hi:
         successfully: कारक सफलतापूर्वक अपडेट हो गया।
       update:
         successfully: "%{name} कारक सफलतापूर्वक अपडेट हो गया।"
-    genders:
-      female: स्त्री
-      male: पुरुष
-      not_set: सेट नहीं किया गया
     grants:
       common:
         view: देखें
@@ -2104,100 +1009,19 @@ hi:
           accesssheet_manage: एक्सेसशीट प्रबंधित करें
           accesssheet_settings: एक्सेसशीट सेटिंग्स
           accesssheet_view: एक्सेसशीट दृश्य
-    header:
-      logout:
-        content: यदि आप काम जारी रखना चाहते हैं तो रद्द दबाएँ। वर्तमान उपयोगकर्ता से लॉगआउट करने के लिए ठीक दबाएँ।
-        title: क्या आप वास्तव में लॉगआउट करना चाहते हैं?
     hogan:
       errors:
         new_assessment_response_not_allowed:
           detailed_error_message: नया उत्तर Hogan मूल्यांकन %{assessment_name} के लिए नहीं जोड़ा जा सकता क्योंकि यह मूल्यांकन पहले से ही उपयोगकर्ता %{email} द्वारा असाइन और शुरू किया जा चुका है। आप इस उपयोगकर्ता के लिए नया Hogan खाता बना सकते हैं, जिससे वह मूल्यांकन फिर से दे सकेगा।
           short_error_message: होगन असेसमेंट %{assessment_name} के लिए नया उत्तर नहीं जोड़ा जा सकता क्योंकि यह असेसमेंट पहले से ही उपयोगकर्ता %{email} द्वारा असाइन और शुरू किया जा चुका है।
     idp:
-      actions:
-        remove_confirm: टेम्प्लेट हटाने के लिए नीचे टेक्स्ट बॉक्स में वर्तमान टेम्प्लेट का नाम दर्ज करें।
-        success: "%{idpName} सफलतापूर्वक हटा दिया गया।"
-      add_idp_template: IDP टेम्पलेट जोड़ें
-      ai_assistant: एआई सहायक
-      ai_assisted_idp_enabled: एआई-सहायित आईडीपी सक्षम
-      ai_enabled: एआई सक्षम
-      ai_settings: एआई सेटिंग्स
-      all: सभी
-      appearance: दृश्यमानता
-      appearance_hint: दिखावट बदलने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
-      appearance_success: दिखाई सेटिंग्स सफलतापूर्वक सहेजी गईं
-      background_image: पृष्ठभूमि छवि
-      behavioral_skills: व्यवहारिक कौशल
-      client_skills: ग्राहक कौशल
-      delete_skill: क्या आप निश्चित हैं कि आप इस कौशल को हटाना चाहते हैं? इसे हटाने से संबंधित सभी विकास क्रियाएँ भी हटा दी जाएँगी।
-      delete_skill_msg: क्या आप निश्चित हैं कि आप इस कौशल को हटाना चाहते हैं? इसे हटाने से संबंधित सभी विकास क्रियाएँ भी हटा दी जाएँगी।
-      details_updated: आईडीपी विवरण सफलतापूर्वक अपडेट किया गया
       development_actions:
-        add_from_library: पुस्तकालय से जोड़ें
-        completion: पूर्णता
-        create_development_actions_with_ai: AI के लिए विकास क्रियाएँ बनाएँ
-        create_from_ai: एआई से बनाएँ
-        create_my_own: अपना खुद का बनाएँ
-        custom: अनुकूलित
-        date_range: शुरुआत की तारीख - समाप्ति की तारीख
-        edit_plan_to_add_development_actions: विकास कार्य जोड़ने के लिए योजना संपादित करें।
         errors:
           invalid_learning_style: "'%{learning_style}' एक मान्य सीखने की शैली नहीं है। मान्य विकल्प हैं: %{valid_styles}"
           learning_style_blank: सीखने की शैली खाली नहीं हो सकती
-        generate_by_ai: एआई द्वारा उत्पन्न
-        generate_more: और उत्पन्न करें
-        heading: कौशल/विकास कार्यवाही
-        manage_skills: कौशल प्रबंधित करें
-        no_development_actions: आपके पास कोई विकास कार्य नहीं हैं।
-      document_ai_assistant: दस्तावेज़ विश्लेषण एआई सहायक
-      edit_template: IDP टेम्पलेट संपादित करें
-      enter_tag_or_skills_error: कम से कम एक टैग या कौशल चुनें।
-      enter_template_description: विवरण
-      enter_template_description_error: टेम्पलेट विवरण आवश्यक है।
-      enter_template_name: नाम
-      enter_template_name_error: टेम्पलेट का नाम अनिवार्य है।
       errors:
-        cannot_update_progress_plan_completed: प्रगति अपडेट नहीं की जा सकती क्योंकि IDP योजना पूरी हो चुकी है।
         skills_required_on_publishing: कृपया टेम्पलेट प्रकाशित करने से पहले कौशल चुनें।
         update: अपडेट की अनुमति नहीं है क्योंकि IDP टेम्पलेट पहले से ही एक उपयोगकर्ता IDP योजना से जुड़ा हुआ है।
-      fields:
-        approval_date: अनुमोदन तिथि
-        assigned_data: नियुक्त डेटा
-        assigned_date: नियुक्त तिथि
-        completion_date: पूर्णता तिथि
-        current_job_role: वर्तमान नौकरी की भूमिका
-        division: विभाग
-        name: नाम
-        publish_date: प्रकाशन तिथि
-        review_date: समीक्षा तिथि
-        target_job_role: लक्षित नौकरी की भूमिका
-      fields_label: क्षेत्र
-      global_skills: वैश्विक कौशल
-      idp: आईडीपी
-      idp_template: IDP टेम्पलेट जोड़ें
-      interview_questions: साक्षात्कार प्रश्न
-      interview_questions_updated: साक्षात्कार प्रश्न सफलतापूर्वक अपडेट किए गए।
-      intro_message: परिचय संदेश
-      intro_message_hint: प्रारंभिक संदेश को संशोधित करने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
-      intro_message_success: परिचय संदेश सफलतापूर्वक सहेजा गया
-      locales: स्थानीय क्षेत्र
-      logo_image: लोगो छवि
-      logo_type:
-        both: मर्सर और क्लाइंट लोगो
-        client_only: केवल क्लाइंट का लोगो
-        mercer_only: केवल मर्सर लोगो
-        none: लोगो के बिना
-      logo_type_label: लोगो का प्रकार
-      no_interview_questions_selected: चयनित कोई साक्षात्कार प्रश्न नहीं
-      no_reflection_questions_selected: कोई प्रतिबिंब प्रश्न चयनित नहीं
-      none: कोई नहीं
-      one_click_idp_enabled: एक क्लिक आईडीपी सक्षम
-      reference_locale: संदर्भ स्थल
-      reflection_questions: चिंतन प्रश्न
-      reflection_questions_hint: प्रतिबिंब प्रश्नों को संशोधित करने के लिए, कृपया इन सेटिंग्स को सक्षम करने हेतु पहले IDP टेम्पलेट को सहेजें।
-      reflection_questions_updated: प्रतिबिंब प्रश्न सफलतापूर्वक अपडेट किए गए।
-      remove: हटाएँ
-      remove_skill: कौशल हटाएँ
       revert_skill_to_public:
         errors:
           skill_already_public: कौशल पहले से ही सार्वजनिक है।
@@ -2205,47 +1029,11 @@ hi:
         success:
           base_message: कौशल '%{skill_name}' अब आपके प्रबंधक को दिखाई दे रहा है।
           with_approval: "%{base_message} और आपका आईडीपी योजना अनुमोदन के लिए प्रस्तुत कर दी गई है।"
-      select_by_tags: टैग द्वारा चुनें
-      select_interview_question: खोजने के लिए टाइप करना शुरू करें और प्रश्न चुनें।
-      select_reflection_question: खोजने के लिए टाइप करना शुरू करें और प्रश्न चुनें।
-      select_skill_gap_report: कौशल अंतर रिपोर्ट चुनें
-      select_specific_skills: विशिष्ट कौशल चुनें
-      selected: चयनित
-      self_rating: स्व-मूल्यांकन सक्षम करें
-      show_reflections: प्रतिबिंब दिखाएँ
-      skill_gap_report: कौशल अंतराल रिपोर्ट
-      skill_gap_report_ai_assistant: कौशल अंतराल रिपोर्ट विश्लेषण सहायक
-      skill_source_preference: कौशल स्रोत
-      skill_sources:
-        from_ai: सामान्य एआई ज्ञान से
-        from_template: टेम्पलेट और मैपिंग्स से
-      skills: कौशल
       skills_privacy_messages:
         made_private: कौशल '%{skill_name}' को निजी के रूप में चिह्नित किया गया है और यह आपके प्रबंधक से छिपा रहेगा।
         made_public: कौशल '%{skill_name}' अब आपके प्रबंधक को दिखाई दे रहा है।
         skill_not_found: कौशल नहीं मिला
         unauthorized: इस कौशल को संशोधित करने की अनुमति नहीं है
-      skills_updated: IDP कौशल सफलतापूर्वक अपडेट हो गए
-      status:
-        draft: मसौदा
-        published: प्रकाशित
-      status_updated: आईडीपी स्थिति सफलतापूर्वक अपडेट हो गई
-      subtitle_text: उपशीर्षक पाठ
-      tab:
-        development_actions: विकास कार्यवाही
-        interview_questions: साक्षात्कार प्रश्न
-        reflection_questions: चिंतन प्रश्न
-        settings: सेटिंग्स
-        templates: टेम्पलेट्स
-      technical_skills: तकनीकी कौशल
-      template_details: टेम्पलेट विवरण
-      title_text: शीर्षक पाठ
-      update_interview_questions: साक्षात्कार के प्रश्नों को अपडेट करें
-      update_reflection_questions: पुनर्विचार प्रश्न अपडेट करें
-    idp_setting:
-      manager_approves_idp: प्रबंधक आईडीपी को मंजूरी देता है
-      manager_can_edit_idp: प्रबंधक आईडीपी संपादित कर सकता है।
-      require_all_development_actions_complete: सभी विकास कार्यों को पूरा करना आवश्यक है।
     import: आयात
     imports:
       assessments:
@@ -2315,10 +1103,6 @@ hi:
         successfully: उपयोगकर्ताओं को सफलतापूर्वक आयात किया गया।
       new:
         header: उपयोगकर्ताओं को आयात करें
-    individual_invite:
-      tabs:
-        assessment_center: मूल्यांकन केंद्र
-        invitation_status: आमंत्रण स्थिति
     innovation_styles:
       create:
         successfully: "%{name} नामक नवाचार शैली सफलतापूर्वक बनाई गई।"
@@ -2327,7 +1111,6 @@ hi:
       edit:
         header: नवाचार शैली संपादित करें
       form:
-        full_description: पूर्ण विवरण
         no_icon: कोई आइकन नहीं
       index:
         new: जोड़ें
@@ -2391,69 +1174,13 @@ hi:
       toggle_status:
         successfully: कारक सफलतापूर्वक अपडेट हो गया।
     integrations:
-      actions:
-        add: एकीकरण
-        back: एकीकरण पर वापस
-        load_mettl_catalog: Mettl मूल्यांकन कैटलॉग लोड करें
-        load_microsite_catalog: माइक्रोसाइट मूल्यांकन कैटलॉग लोड करें
-        load_skillvue_catalog: स्किलव्यू मूल्यांकन सूची लोड करें
-      columns:
-        active: सक्रिय
-        details: विवरण
-        name: एकीकरण नाम
-      details:
-        client_id: क्लाइंट आईडी
-        deployment_id: तैनाती आईडी
-        platform_access_token_url: प्लेटफ़ॉर्म एक्सेस टोकन यूआरएल
-        platform_authentication_request_url: प्लेटफ़ॉर्म प्रमाणीकरण अनुरोध यूआरएल
-        platform_host_name: प्लेटफ़ॉर्म होस्ट नाम
-        platform_id: प्लेटफ़ॉर्म आईडी
-        platform_public_keyset_url: प्लेटफ़ॉर्म सार्वजनिक कुंजी सेट URL
-        provider: प्रदाता का नाम
-        webhookUrl: वेबहुक यूआरएल
-        webhookUrls: वेबहुक यूआरएल
-      integrations: एकीकरण
       load_mettl_success: लोड मेटल असेसमेंट्स जॉब सफलतापूर्वक कतारबद्ध हो गया है।
       load_microsite_success: माइक्रोसाइट मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
       load_skillvue_success: स्किलव्यू मूल्यांकन कार्य सफलतापूर्वक कतारबद्ध हो गया है।
       modal:
-        hogan:
-          provider: प्रदाता
-          providers:
-            mercer: मर्सर
-            phoenix: फीनिक्स
-        iiht:
-          password: पासवर्ड
-          tenancy_name: किरायेदारी का नाम
-          tenant_id: किरायेदार आईडी
-          user: उपयोगकर्ता
-        mettl:
-          apiBaseUrl: एपीआई एंडपॉइंट
-          apiBaseUrlRequired: एपीआई एंडपॉइंट आवश्यक है।
-          privateKey: निजी कुंजी
-          privateKeyRequired: निजी कुंजी आवश्यक है।
-          publicKey: सार्वजनिक कुंजी
-          publicKeyRequired: सार्वजनिक कुंजी आवश्यक है।
-          servers:
-            mettl_eu: यूरोप
-            mettl_india: भारत
         microsite:
           apiKey: एपीआई कुंजी
           apiKeyRequired: एपीआई कुंजी आवश्यक है
-        skillvue:
-          apiKey: एपीआई कुंजी
-          apiKeyRequired: एपीआई कुंजी आवश्यक है
-        yoodli:
-          keyset_url: कीसेट यूआरएल
-          launch_url: लॉन्च यूआरएल
-          login_url: लॉगिन यूआरएल
-      names:
-        hogan: होगन
-        iiht: आईआईएचटी
-        mettl: मेट्टल
-        microsite: माइक्रोसाइट
-        skillvue: स्किलव्यू
-        yoodli: यूडली
       validations:
         iiht:
           tenancy_name_present: किरायेदारी का नाम पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
@@ -2464,26 +1191,10 @@ hi:
           api_key_present: एपीआई कुंजी पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
         skillvue:
           api_key_present: एपीआई कुंजी पहले से ही दूसरे प्रोजेक्ट में मौजूद है।
-      view_all_schedules: सभी Mettl शेड्यूल देखें
     interview_questions:
-      delete_confirmation: क्या आप इस साक्षात्कार प्रश्न को हटाना चाहते हैं?
-      description: विवरण
       export:
-        action: निर्यात साक्षात्कार प्रश्न
         details: फ़ाइल विवरण
-        failure_msg: फ़ाइल निर्यात करते समय त्रुटि।
-        success_msg: साक्षात्कार प्रश्न निर्यात करने की प्रक्रिया चल रही है। कृपया सूचनाओं में स्थिति देखें।
-      form:
-        description: विवरण
-        mandatory: अनिवार्य
-        question: प्रश्न
-        question_type: प्रश्न का प्रकार
-        question_type_audio: ऑडियो
-        question_type_video: वीडियो
-        time_limit: समय सीमा (सेकंड)
-        title: साक्षात्कार प्रश्न
       import:
-        action: साक्षात्कार प्रश्न आयात करें
         errors:
           invalid_required_column_format: अमान्य अनिवार्य स्तंभ मान प्रारूप %{row}
           invalid_required_type_format: अमान्य QuestionType स्तंभ मान प्रारूप %{row}
@@ -2491,64 +1202,6 @@ hi:
           missing_description: वर्णन सामग्री अनुपस्थित %{row}
           missing_question: गायब प्रश्न सामग्री %{row}
           save_failed: बचाव असफल %{message}
-        failure_msg: फ़ाइल आयात करते समय त्रुटि।
-        success_msg: साक्षात्कार प्रश्न आयात हो रहे हैं। कृपया सूचनाओं में स्थिति देखें।
-      question: प्रश्न
-    invited_subject:
-      add_btn: विषय जोड़ें
-      assessment_center: 'मूल्यांकन केंद्र:'
-      booked_at: 'बुक किया गया:'
-      column:
-        invitation_status: आमंत्रण स्थिति
-        participant: प्रतिभागी
-        scheduling_details: अनुसूचीकरण विवरण
-      remove_confirm:
-        content: क्या आप '%{subjectEmail}' ईमेल वाले विषय को हटाना चाहते हैं?
-        success: ईमेल '%{subjectEmail}' वाला विषय सफलतापूर्वक हटा दिया गया।
-        title: विषय हटाएँ
-      resend_invite:
-        content: चयनित प्राप्तकर्ताओं को निमंत्रण फिर से भेजें। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-        success: निवेश आमंत्रण सफलतापूर्वक पुनः भेजे गए।
-        title: आमंत्रण फिर से भेजें
-      statuses:
-        accepted: स्वीकार्य
-        cancelled: रद्द
-        late_cancelled: देर से रद्द
-        late_rescheduled: देर से पुनर्निर्धारित
-        pending: लंबित
-        requested_cancellation: रद्दीकरण का अनुरोध
-        requested_cancellation_rejected: रद्दीकरण अस्वीकार कर दिया गया
-        requested_rescheduling: अनुरोधित पुनर्निर्धारण
-        requested_rescheduling_rejected: पुनः निर्धारित करने का अनुरोध अस्वीकार कर दिया गया
-        rescheduled: पुनर्निर्धारित
-        scheduled: निर्धारित
-      subject: विषय
-    job_role:
-      are_you_sure_to_remove: क्या आप हटाने के लिए निश्चित हैं?
-      column:
-        job_group: नौकरी समूह
-        skill_name: कौशल का नाम
-      export:
-        failure_msg: अनुवादों को निर्यात करते समय त्रुटि
-        success_msg: प्रगति में विकास क्रियाओं का निर्यात कर रहा है।
-      form:
-        code: कोड
-        description: विवरण
-        job_group: नौकरी समूह
-        name: नाम
-        title: भूमिका
-      import:
-        download_example_csv: उदाहरण सीएसवी डाउनलोड करें
-        success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-      import_action:
-        translations: नौकरी भूमिका अनुवाद आयात करें
-      job_role_details: भूमिका विवरण
-      translations: नौकरी भूमिका अनुवाद
-    job_role_skill_mapping:
-      column:
-        expected_proficiency_level: अपेक्षित प्रवीणता स्तर
-      form:
-        title: कौशल नौकरी मिलान
     job_roles:
       export:
         translations:
@@ -2616,18 +1269,11 @@ hi:
     meta_title: प्रशासन पैनल
     navigation:
       approvals: अनुमोदन
-      audit_logs: ऑडिट लॉग्स
-      availability: उपलब्धता
       configuration: संरचना
       content: सामग्री
-      dashboard: डैशबोर्ड
       factors: तत्व
       innovation_styles: नवाचार शैलियाँ
-      logout: लॉगआउट
       occupations: व्यवसाय
-      registration_codes: पंजीकरण कोड
-      skills_taxonomy: कौशल वर्गीकरण
-      users: उपयोगकर्ता
     no_data_found: कोई डेटा नहीं मिला
     norms:
       copy:
@@ -2643,13 +1289,6 @@ hi:
         factors: तत्व
         inplace_title: मूल्य दर्ज करें
         title: नॉर्म संपादक
-      export:
-        success_msg: नॉर्म एक्सपोर्ट जॉब सफलतापूर्वक निर्धारित हो गया है। कृपया सूचनाओं में स्थिति देखें।
-      import:
-        download_example_csv: उदाहरण सीएसवी डाउनलोड करें
-        select_file_validation: कृपया सबमिट करने से पहले एक मालिक और एक फ़ाइल चुनें।
-        success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-        title: मानदंड आयात
       index:
         import: आयात
         new: जोड़ें
@@ -2665,10 +1304,6 @@ hi:
         updated_by: द्वारा अद्यतन
       new:
         header: नया सामान्य
-      norms: मानदंड
-      remove:
-        confirm: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए नियम का नाम दर्ज करें।
-        warning: क्या आप वास्तव में सामान्य "%{name}" को हटाना चाहते हैं?
       resource:
         confirmations:
           delete:
@@ -2688,10 +1323,6 @@ hi:
           copy: नॉर्म की प्रतिलिपि
           delete: नॉर्म को हटाएँ
           edit: नॉर्म का नाम बदलें
-      score_types:
-        five_scale: पाँच स्केल
-        norm_type: नॉर्म प्रकार
-        percentage: प्रतिशत
       sidebar:
         copy: नॉर्म की प्रतिलिपि
         destroy: नॉर्म को हटाएँ
@@ -2699,7 +1330,6 @@ hi:
         editor: नॉर्म संपादक
         export: निर्यात मानक
         title: नॉर्म के विकल्प
-      title: नॉर्म
       toggle_status:
         successfully: नॉर्म सफलतापूर्वक अपडेट हो गया।
       update:
@@ -2715,12 +1345,8 @@ hi:
       edit:
         header: व्यवसाय संपादित करें
       form:
-        alternative_icon: वैकल्पिक आइकन
-        color: रंग
         hint:
           key_career_tracks: '"+" - सूची, "*" - बोल्ड। उदाहरण: + *जीवविज्ञान* - कुछ विवरण...'
-        indicative_roles_image: संकेतात्मक भूमिकाओं की छवि
-        key_career_tracks_image: मुख्य करियर मार्गों की छवि
         no_icon: कोई आइकन नहीं
       index:
         new: जोड़ें
@@ -2784,49 +1410,15 @@ hi:
         successfully: कारक सफलतापूर्वक अपडेट हो गया।
       update:
         successfully: कारक %{name} को सफलतापूर्वक अपडेट किया गया।
-    participants:
-      tabs:
-        assessors: मूल्यांकनकर्ता
-        sms_contacts: एसएमएस संपर्क
-        subjects: विषय
     piped_text_modal:
-      assessment_center: मूल्यांकन केंद्र
       assessment_id: मूल्यांकन आईडी
       campaign_id: अभियान आईडी
       campaign_link: अभियान लिंक
-      campaign_name: अभियान का नाम
-      campaigns: अभियान
-      description: विवरण
-      duration: अवधि
-      end_time: अंत समय
-      insight_page_link: अंतर्दृष्टि पृष्ठ लिंक
-      insight_page_url: अंतर्दृष्टि पृष्ठ URL
-      invite_title: शीर्षक
-      invites: आमंत्रण
       join_link: लिंक में शामिल हों
       magic_link: मैजिक लिंक
       magic_url: मैजिक यूआरएल
-      platform_url_links: प्लेटफ़ॉर्म यूआरएल और लिंक
       profile_custom_field: प्रोफ़ाइल कस्टम फ़ील्ड
-      project_name: परियोजना का नाम
-      projects: परियोजनाएँ
-      report_name: रिपोर्ट का नाम
-      start_time: शुरुआत का समय
       text: पाठ
-      title: पाइप्ड टेक्स्ट जोड़ें
-      user_reports: उपयोगकर्ता रिपोर्टें
-      users: उपयोगकर्ता
-    proctoring_sessions:
-      columns:
-        comment: टिप्पणी
-        conclusion: निष्कर्ष
-        links: लिंक
-        score: स्कोर
-        session_id: सत्र आईडी
-      links:
-        report: रिपोर्ट
-        review: समीक्षा
-      resource_name: प्रॉक्टरिंग सत्र
     products:
       copy:
         error: त्रुटि
@@ -2839,9 +1431,6 @@ hi:
         create:
           invalid_format: स्तर परिभाषा परिभाषाओं की एक ऐरे होनी चाहिए।
           level_definition_must_match_level: में ठीक %{expected} स्तर होने चाहिए, लेकिन %{actual} दिए गए थे।
-          level_description_must_exist: स्तर का विवरण खाली नहीं हो सकता।
-          level_name_must_exist: स्तर का नाम खाली नहीं हो सकता
-          must_be_unique: अद्वितीय होना चाहिए
           proficiency_level_exists: इस कौशल और परियोजना के साथ एक प्रवीणता स्तर पहले से ही मौजूद है।
           proficiency_level_exists_for_default: डिफ़ॉल्ट के लिए एक प्रवीणता स्तर पहले से ही मौजूद है।
           proficiency_level_exists_for_type: इस प्रकार के लिए एक प्रवीणता स्तर पहले से ही मौजूद है।
@@ -2849,24 +1438,9 @@ hi:
           skill_must_exist: प्रवीणता_प्रकार 'by_skill' के लिए कौशल मौजूद होना चाहिए।
       export:
         details: विवरण
-        failure_msg: प्रवीणता स्तरों को निर्यात करते समय त्रुटि
-        success_msg: प्रगति में विकास क्रियाओं का निर्यात
         translations:
           details: प्रवीणता स्तर अनुवाद
-      fields:
-        level: स्तर
-        level_description: स्तर का विवरण
-        level_name: स्तर का नाम
-        proficiency_translations: प्रवीणता अनुवाद
-        proficiency_type: प्रवीणता प्रकार
-        skill: कौशल
-        skill_name: कौशल का नाम
-        skill_type: कौशल का प्रकार
-        title: निपुणता
       import:
-        actions:
-          proficiency: आयात दक्षता
-          translations: प्रोफ़िशिएंसी अनुवाद आयात करें
         errors:
           by_skill_exists_id_missing: 'पंक्ति %{row_number}: कौशल ''%{name}'' के लिए एक प्रवीणता स्तर पहले से मौजूद है। कृपया इसे अपडेट करने के लिए आईडी प्रदान करें।'
           by_skill_missing: "%{row_number} पंक्ति: 'by_skill' प्रकार के लिए प्रोजेक्ट और स्किल का होना अनिवार्य है।"
@@ -2879,11 +1453,7 @@ hi:
           invalid_skill_type: 'पंक्ति%{row_number}: अमान्य कौशल प्रकार "%{skill_type}"। मान्य प्रकार हैं: %{valid_types}'
           missing_columns: 'आवश्यक कॉलम अनुपस्थित हैं: %{fields}'
           skill_not_found: "%{row_number} पंक्ति: अमान्य या अनुपस्थित कौशल"
-        job_queued: प्रोफिशिएंसी स्तर आयात जॉब कतारबद्ध कर दिया गया है।
       translations:
-        export:
-          failure_msg: अनुवादों को निर्यात करते समय त्रुटि
-          success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
         import:
           errors:
             invalid_csv_format: 'अमान्य CSV प्रारूप: %{message}'
@@ -2893,14 +1463,6 @@ hi:
             missing_required_columns: 'आवश्यक कॉलम अनुपस्थित हैं: %{columns}'
             row_id_blank: "%{row} पंक्ति: आईडी खाली नहीं हो सकती"
             save_failed: 'Skill ID %{id} को संसाधित करने में त्रुटि: %{message}'
-      type:
-        by_skill: कौशल द्वारा
-        by_skill_type: कौशल प्रकार के अनुसार
-        default: डिफ़ॉल्ट
-    profile:
-      change_password: पासवर्ड बदलें
-      details: विवरण
-      profile: प्रोफ़ाइल
     profiles:
       edit:
         success: प्रोफ़ाइल सफलतापूर्वक अपडेट हो गई।
@@ -2908,331 +1470,21 @@ hi:
       update:
         edit:
           success: प्रोफ़ाइल सफलतापूर्वक अपडेट हो गई।
-    project:
-      tools:
-        workshop_status_export: कार्यशाला स्थिति निर्यात
-        workshop_status_export_success: कार्यशाला स्थिति निर्यात सफलतापूर्वक निर्धारित किया गया।
-    project_features:
-      project_features: परियोजना की विशेषताएँ
-    project_participants:
-      cancel: रद्द करें
-      column_actions: क्रियाएँ
-      column_campaigns: अभियान
-      column_createdAt: पर बनाया गया
-      column_created_at: में बनाया गया
-      column_email: ईमेल
-      column_id: आईडी
-      column_name: नाम
-      delete: मिटायें
-      edit: संपादित करें
-      edit_participant: प्रतिभागी संपादित करें
-      filter_campaigns: कोई अभियान नहीं
-      form_first_name: पहला नाम
-      form_last_name: उपनाम
-      reset_password: पासवर्ड रीसेट करें
-      save: बचाएँ
-      search_user: उपयोगकर्ता खोजें
-      send_email: ईमेल भेजें
-    project_tabs:
-      assessments:
-        column:
-          name: नाम
-          normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
-          user_result_validity_in_days: परिणाम वैधता
-        delete:
-          content: क्या आप '%{name}' मूल्यांकन को हटाना चाहते हैं?
-          success: मूल्यांकन '%{name}' सफलतापूर्वक हटा दिया गया।
-          title: मूल्यांकन हटाएँ
-        form:
-          assessment: मूल्यांकन
-          assessment_placeholder: मूल्यांकन चुनें
-          assessment_required: मूल्यांकन आवश्यक है
-          normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
-          user_result_validity_in_days: दिनों में परिणाम वैधता
-        title: मूल्यांकन
-      design: डिज़ाइन
-      general: सामान्य
-      privacy: गोपनीयता
-      profile: प्रोफ़ाइल
-      registration: पंजीकरण
-      webhooks:
-        actions:
-          delete:
-            key: मिटायें
-            label: मिटायें
-          edit:
-            key: संपादित करें
-            label: संपादित करें
-          send_test:
-            key: परीक्षण भेजें
-            label: परीक्षण भेजें
-        form:
-          acceptable_rate_limit:
-            label: स्वीकार्य अनुरोध सीमा
-            request_per: प्रति अनुरोध
-          active:
-            label: सक्रिय
-            name: सक्रिय
-          assessments:
-            help_text: यह चयन केवल मूल्यांकन कच्चा प्रतिक्रिया घटना को प्रभावित करता है।
-            label: मूल्यांकन
-            placeholder: चयनित आकलन
-            required: मूल्यांकन कच्चे प्रतिक्रिया कार्यक्रम के लिए कम से कम एक मूल्यांकन का चयन करना अनिवार्य है।
-          auth_type:
-            api_key:
-              label: एपीआई कुंजी
-              name: एपीआई कुंजी
-              value: एपीआई कुंजी प्रमाणीकरण
-            api_key_header:
-              format_error: केवल अक्षर, अंक, अंडरस्कोर और हाइफ़न की अनुमति है।
-              label: एपीआई कुंजी हेडर
-              name: एपीआई कुंजी हेडर
-            basic:
-              label: मूलभूत
-              value: मूल प्रमाणीकरण
-            label: लेख का प्रकार
-            name: प्रामाणिकता प्रकार
-            no_auth:
-              label: कोई नहीं
-              value: प्रमाणीकरण नहीं
-            oauth:
-              label: ओएथ
-              value: ओथ
-          client_credentials:
-            label: क्लाइंट क्रेडेंशियल्स
-            value: क्लाइंट प्रमाण-पत्र
-          client_id:
-            label: क्लाइंट आईडी
-            name: ओएथ_क्लाइंट_आईडी
-            required: क्लाइंट आईडी आवश्यक है।
-          client_secret:
-            label: ग्राहक रहस्य
-            name: ओएथ_क्लाइंट_सीक्रेट
-            required: क्लाइंट सीक्रेट आवश्यक है
-          description:
-            label: विवरण
-            name: विवरण
-          grant_type:
-            label: अनुदान का प्रकार
-            name: ओएथ_ग्रांट_टाइप
-          include_locales:
-            label: अनुवाद शामिल करें
-            name: लोकलाइज़ेशन शामिल करें
-          oauth_scope:
-            label: दायरा
-            name: ओथ_स्कोप
-            required: दायरा आवश्यक है
-          password:
-            label: पासवर्ड
-            name: पासवर्ड
-          token_url:
-            label: टोकन यूआरएल
-            name: ओएथ_टोकन_यूआरएल
-            required: टोकन URL आवश्यक है।
-          topics:
-            label: कार्यक्रम
-            list:
-              assessment_assigned: मूल्यांकन सौंपा गया
-              assessment_completed: मूल्यांकन पूरा हुआ
-              assessment_raw_response: मूल्यांकन कच्चा उत्तर
-              assessment_started: मूल्यांकन शुरू
-              assessment_timeout: मूल्यांकन टाइमआउट
-              campaign_results_available: अभियान के परिणाम उपलब्ध हैं
-              campaign_user_assessment_summary: अभियान उपयोगकर्ता मूल्यांकन सारांश
-              campaign_user_status: अभियान उपयोगकर्ता स्थिति
-              report_available: रिपोर्ट उपलब्ध
-              results_available: परिणाम उपलब्ध
-              scheduling_cancelled: अनुसूचीकरण रद्द
-              scheduling_invited: आमंत्रित शेड्यूलिंग
-              scheduling_rescheduled: अनुसूचीकरण पुनर्निर्धारित
-              scheduling_scheduled: निर्धारित अनुसूचीकरण
-              workshop_attendance_status: कार्यशाला उपस्थिति स्थिति
-          url:
-            label: यूआरएल
-            name: यूआरएल
-          username:
-            label: उपयोगकर्ता नाम
-            name: उपयोगकर्ता नाम
-        remove_webhook:
-          content: "%{description} हटाएँ?"
-          title: मिटायें
-        title: वेबहूक्स
-    project_users:
-      cancel: रद्द करें
-      change_password: पासवर्ड बदलें
-      column_actions: क्रियाएँ
-      column_campaigns: अभियान
-      column_created_at: में बनाया गया
-      column_email: ईमेल
-      column_id: आईडी
-      column_name: नाम
-      confirm_delete: हाँ, हटाएँ
-      confirm_send: हाँ, भेजें
-      delete: मिटायें
-      delete_error: मूल्यांकनकर्ता '%{name}' को हटाया नहीं जा सका। कृपया अपने व्यवस्थापक से संपर्क करें।
-      delete_success: मूल्यांकनकर्ता '%{name}' को सफलतापूर्वक हटा दिया गया।
-      edit: संपादित करें
-      edit_assessor: मूल्यांकनकर्ता संपादित करें
-      filter_campaigns: बिना अभियानों के
-      form_first_name: पहला नाम
-      form_last_name: उपनाम
-      modal_delete_content: क्या आप आकलनकर्ता '%{name}' को हटाना चाहते हैं?
-      modal_delete_title: मूल्यांकनकर्ता हटाएँ
-      modal_reset_email_content: क्या आप सुनिश्चित हैं कि आप '%{email}' पर पासवर्ड रीसेट लिंक भेजना चाहते हैं?
-      model_reset_email: मूल्यांकनकर्ता का पासवर्ड रीसेट करें
-      no_edit_permission: आपके पास आकलनकर्ता '%{name}' को संपादित करने की अनुमति नहीं है।
-      reset_mail_error: "'%{email}' पर पासवर्ड रीसेट लिंक नहीं भेजा जा सका। कृपया अपने व्यवस्थापक से संपर्क करें।"
-      reset_mail_success: पासवर्ड रीसेट लिंक सफलतापूर्वक '%{email}' पर भेजा गया।
-      save: बचाएँ
-      search_accessor: एक्सेसर खोजें
-      send_email: ईमेल भेजें
     projects:
-      addProject: परियोजना जोड़ें
-      assessment_settings:
-        search: मूल्यांकन खोजें
       clients:
         confirmations:
           detach_from_project:
             body: शरीर
             title: शीर्षक
-      columns:
-        project_number: परियोजना संख्या
-      design_settings:
-        alt_text_invalid: वैकल्पिक पाठ में असमर्थित वर्ण हैं।
-        alt_text_logo: लोगो वैकल्पिक पाठ
-        alt_text_logo_required: वैकल्पिक पाठ लोगो आवश्यक है।
-        alt_text_long: 100 अक्षरों की अधिकतम सीमा से अधिक है।
-        background_color: पृष्ठभूमि का रंग
-        background_label: पृष्ठभूमि
-        background_overlay_label: पृष्ठभूमि ओवरले
-        background_size: पृष्ठभूमि आकार
-        background_size_contain: नियंत्रित करना
-        background_size_cover: आवरण
-        bg_upload: अपलोड
-        client_logo_label: ग्राहक लोगो
-        contrast_ratio_warning: 'नोट: इस प्राथमिक रंग का उपयोग करने से पाठ की पठनीयता के लिए आवश्यक कंट्रास्ट अनुपात की आवश्यकता का उल्लंघन हो सकता है।'
-        contrast_ratio_warning_lighter_color: 'नोट: इस %{name} रंग का उपयोग करने से पाठ की पठनीयता के लिए आवश्यक कंट्रास्ट अनुपात की पूर्ति नहीं हो सकती। कृपया गहरा रंग उपयोग करें।'
-        copy_text: पाठ
-        dashed_button: डैश किया हुआ
-        default_button: डिफ़ॉल्ट
-        error_color: त्रुटि का रंग
-        hover_options:
-          danger_item: खतरनाक वस्तु
-          first_menu_item: पहला मेनू आइटम
-        hover_text: मुझ पर होवर करो
-        info_color: जानकारी का रंग
-        link_text: लिंक
-        logo_upload: अपलोड
-        position_auto: स्वचालित
-        position_label: लॉगिन बॉक्स की स्थिति
-        position_left: बायाँ
-        position_right: सही
-        primary_button: प्राथमिक
-        primary_color: प्राथमिक रंग
-        reset: पुनः आरंभ करें
-        sec_logo_label: द्वितीयक लोगो
-        sec_logo_upload: अपलोड
-        secondary_logo_alt_text: द्वितीयक लोगो वैकल्पिक पाठ
-        secondary_logo_alt_text_required: द्वितीयक वैकल्पिक-टेक्स्ट लोगो आवश्यक है।
-        submenu_options:
-          option_one: विकल्प 1
-          option_title: आइटम 1
-          option_two: विकल्प 2
-        success_color: सफलता का रंग
-        success_update: डिज़ाइन सेटिंग्स सफलतापूर्वक सहेजी गईं
-        tab_text_one: मेनू
-        tab_text_two: उपमेनू
-        text_danger: पाठ (खतरा)
-        text_success: टेक्स्ट (सफलता)
-        text_warning: टेक्स्ट (चेतावनी)
-        warning_color: चेतावनी रंग
-      form:
-        name: नाम
-        project_number: परियोजना संख्या
-        subdomain: उप-डोमेन
-        title: परियोजना
-      general_settings:
-        live_chat: लाइव चैट सक्षम करें
-        locales_label: स्थानीय क्षेत्र
-        name_label: नाम
-        project_number_label: परियोजना संख्या
-        save_changes: बदलाव सहेजें
-        sub_domain_label: उप डोमेन
-      mettl_schedule_records:
-        actions:
-          edit: संपादित करें
-        add: अनुसूची जोड़ें
-        assessment_id: मूल्यांकन आईडी
-        assessment_name: मूल्यांकन का नाम
-        candidate_authorization: उम्मीदवार प्राधिकरण सक्षम करें
-        candidate_screen_capture: उम्मीदवार स्क्रीन कैप्चर सक्षम करें
-        count: ब्राउज़िंग सहिष्णुता गणना
-        created_at: पर बनाया गया
-        schedule_id: अनुसूची आईडी
-        schedule_name: अनुसूची का नाम
-        search: खोजें
-        secure_browser_enabled: सुरक्षित ब्राउज़र सक्षम करें
-        settings: सेटिंग्स
-        show_remaining_counts: शेष संख्या दिखाने की सुविधा सक्षम करें
-        visual_proctoring_enabled: दृश्य निगरानी सक्षम करें
-        web_proctoring_enabled: वेब प्रॉक्टरिंग सक्षम करें
       privacy_settings:
-        disable_dp: आगे डेटा प्रसंस्करण की अनुमति न दें
-        dp_consent: डेटा प्रसंस्करण सहमति सक्षम करें
-        dp_consent_custom: डेटा प्रसंस्करण की सहमति अनुकूलित करें
-        dp_consent_version: नीति संस्करण
         errors:
           cannot_disable_while_campaign_enabled: वीडियो कॉल रिकॉर्डिंग को अक्षम नहीं किया जा सकता क्योंकि यह इस परियोजना में एक या अधिक अभियानों के लिए सक्षम है।
           min_retention: 1 दिन से कम नहीं हो सकता
-          policy_version_format: केवल पूर्ण संख्याएँ ही अनुमत हैं।
-          required: आवश्यक
-        mask_identity_for_examus: एग्ज़ामस प्रॉक्टरिंग के लिए मास्क डेटा
-        mask_identity_for_hogan: होगन के लिए मास्क डेटा
-        mask_identity_for_iiht: आईआईएचटी के लिए मास्क डेटा
-        mask_identity_for_mettl: METTL के लिए मास्क डेटा
-        mask_identity_for_mhs: MHS के लिए मास्क डेटा
-        mask_identity_for_pearson: पियर्सन के लिए मास्क डेटा
-        mask_identity_for_saville: सैविल के लिए मास्क डेटा
-        mask_identity_for_skillvue: स्किलव्यू के लिए मास्क डेटा
-        mask_identity_for_yoodli: यूडल के लिए मास्क डेटा
-        privacy_link: गोपनीयता लिंक सक्षम करें
-        privacy_link_label: गोपनीयता लिंक
-        privacy_link_placeholder: गोपनीयता लिंक दर्ज करें
-        privacy_text: गोपनीयता पाठ
-        privacy_text_placeholder: गोपनीयता पाठ दर्ज करें
-        video_call_recording: वीडियो कॉल रिकॉर्डिंग की अनुमति दें
-        video_call_recording_expiry_duration: वीडियो कॉल रिकॉर्डिंग्स के लिए प्रतिधारण अवधि (दिनों में)
-        video_call_recording_scope: सभी नए अभियानों के लिए वीडियो रिकॉर्डिंग सक्षम करें
-      profile_settings:
-        form_fields:
-          enabled: सक्षम
-          half_size: आधा आकार
-          locked: ताला लगा
-          name: नाम
-          remove: हटाएँ
-          required: आवश्यक
-          sort: क्रमबद्ध करें
-        month: महीना
-        never: कभी नहीं
-        update_in: में प्रोफ़ाइल अपडेट की सूचना दें
-        year: वर्ष
-      registration_settings:
-        hide_signup: साइन अप विकल्प छिपाएँ
-        require_mobile_number: मोबाइल नंबर आवश्यक है
       users:
         confirmations:
           detach_from_project:
             body: शरीर
             title: शीर्षक
-      webhook_settings:
-        add: वेबहुक जोड़ें
-        column_active: सक्रिय
-        column_created_date: निर्मित तिथि
-        column_description: विवरण
-        column_manage: प्रबंध करें
-        column_updated_date: संशोधित तिथि
-        column_url: यूआरएल
-        search: वेबहूक खोजें
     questions:
       copy:
         successfully: प्रश्न "%{name}" सफलतापूर्वक कॉपी किया गया।
@@ -3261,72 +1513,15 @@ hi:
       toggle_status:
         successfully: सफलतापूर्वक अपडेट किया गया।
     reflection_questions:
-      delete_confirmation: क्या आप इस प्रतिबिंब प्रश्न को हटाना चाहते हैं?
       export:
-        action: निर्यात प्रतिबिंब प्रश्न
         details: फ़ाइल विवरण
-        failure_msg: फ़ाइल निर्यात करते समय त्रुटि।
-        success_msg: प्रतिकृति प्रश्न निर्यात करना प्रगति पर है। कृपया सूचनाओं में स्थिति देखें।
-      form:
-        mandatory: अनिवार्य
-        max_words: अधिकतम शब्द
-        min_words: न्यूनतम शब्द
-        question: प्रश्न
-        title: चिंतन प्रश्न
       import:
-        action: प्रतिबिंब प्रश्न आयात करें
         errors:
           invalid_max_words_column_format: अमान्य अधिकतम शब्द स्तंभ मान प्रारूप %{row}
           invalid_min_words_column_format: अमान्य न्यूनतम शब्द स्तंभ मान प्रारूप %{row}
           invalid_required_column_format: अमान्य अनिवार्य स्तंभ मान प्रारूप %{row}
           missing_eng_question: अंग्रेजी प्रश्न सामग्री अनुपस्थित %{row}
           save_failed: बचाव असफल %{message}
-        failure_msg: फ़ाइल आयात करते समय त्रुटि।
-        success_msg: प्रतिबिंब प्रश्न आयात करना प्रगति पर है। कृपया सूचनाओं में स्थिति देखें।
-      question: प्रश्न
-    report_approval:
-      approval_statuses:
-        approved: स्वीकृत
-        change_requested: बदलाव का अनुरोध
-        not_ready: तैयार नहीं
-        pending_qc: QC लंबित
-        qc_completed: QC पूरा
-        qc_in_progress: गुणवत्ता नियंत्रण प्रगति पर
-      bulk_approve_success: "%{sent_for_approval} मंजूरी के लिए भेजा गया। %{approved} की रिपोर्टें स्वीकृत। %{ignored} की रिपोर्टों को QC परिवर्तनों/टिप्पणियों के कारण मैनुअल अनुमोदन की आवश्यकता है।"
-      columns:
-        actions: क्रियाएँ
-        approval_status: अनुमोदन स्थिति
-        approved_by: द्वारा अनुमोदित
-        assessed_by: द्वारा आकलित
-        campaign_name: अभियान का नाम
-        qc_by: द्वारा QC
-        report_name: रिपोर्ट का नाम
-        subject_email: विषय ईमेल
-        user_email: उपयोगकर्ता ईमेल
-        user_name: उपयोगकर्ता नाम
-      dashboard: डैशबोर्ड
-      download: डाउनलोड
-      report_approval_settings: रिपोर्ट अनुमोदन सेटिंग्स
-      report_approvals: रिपोर्ट अनुमोदन
-      review: समीक्षा
-      saving_filters:
-        actions:
-          clear_filters: फ़िल्टर साफ़ करें
-          delete_filter: फ़िल्टर हटाएँ
-          save_filter: बचाएँ
-          save_new_filter: नए फ़िल्टर के रूप में सहेजें
-          saved_filters: सहेजे गए फ़िल्टर
-        delete_saved_filters: मिटाये गए फ़िल्टर
-        edit_filter_name: फ़िल्टर का नाम सहेजा गया
-        error_while_deleting: मिटाने के दौरान त्रुटि
-        error_while_editing: संपादन के दौरान त्रुटि
-        error_while_fetching: कुछ गलत हो गया, फिर से प्रयास करें।
-        error_while_saving: फ़िल्टर सहेजते समय त्रुटि
-        filter_updated: फ़िल्टर अपडेट किया गया
-        no_saved_filters: कोई सहेजे गए फ़िल्टर नहीं हैं।
-        save_filter: सहेजा गया फ़िल्टर
-        set_favorite: फ़िल्टर को पसंदीदा के रूप में सेट किया गया है।
-      submit_or_approve_all: सभी जमा करें या अनुमोदित करें
     report_builder:
       campaign_factors:
         add_field: क्षेत्र जोड़ें
@@ -3467,22 +1662,6 @@ hi:
         title: रिपोर्ट बंडल के विकल्प
       update:
         successfully: रिपोर्ट बंडल %{name} सफलतापूर्वक अपडेट किया गया।
-    report_review:
-      abort_qc: QC रद्द करें
-      approve: अनुमोदित करें
-      approve_changes: बदलावों को अनुमोदित करें
-      edit: संपादित करें
-      remove_approval: अनुमोदन हटाएँ
-      request_changes: बदलाव का अनुरोध करें
-      review: समीक्षा
-      send_for_approve: मंज़ूरी के लिए भेजें
-      statuses:
-        approved: स्वीकृत
-        change_requested: मांगी गई परिवर्तन
-        not_ready: तैयार नहीं
-        pending_qc: QC लंबित
-        qc_completed: QC पूरा
-        qc_in_progress: गुणवत्ता नियंत्रण प्रगति पर
     report_settings:
       data_source_types:
         assessment: मूल्यांकन
@@ -3506,9 +1685,6 @@ hi:
         title: थोक अपलोड अभियान कारक
         upload_success: सफलतापूर्वक अपलोड किया गया
       copy:
-        copy: प्रतिलिपि
-        copy_report: रिपोर्ट कॉपी करें
-        name: नाम
         successfully: रिपोर्ट '%{name}' सफलतापूर्वक कॉपी हो गई।
       create:
         successfully: रिपोर्ट '%{name}' सफलतापूर्वक बनाई गई।
@@ -3516,15 +1692,6 @@ hi:
         successfully: रिपोर्ट '%{name}' सफलतापूर्वक हटा दी गई।
       edit:
         header: रिपोर्ट का नाम संपादित करें
-      edit_default_language:
-        agreement: हाँ, मैं डिफ़ॉल्ट भाषा परिवर्तन के निहितार्थों को समझता हूँ।
-        title: डिफ़ॉल्ट भाषा संपादित करें
-        tooltip: डिफ़ॉल्ट भाषा संपादित करें
-        warning:
-          description_li_1: डिफ़ॉल्ट भाषा को RTL से LTR में या इसके विपरीत बदलने से लेआउट प्रभावित होगा।
-          description_li_2: यदि आप डिफ़ॉल्ट भाषा बदलते हैं तो आपको रिपोर्ट अनुवादों पर फिर से काम करना होगा।
-          description_li_3: इस परिवर्तन को करने से पहले रिपोर्ट अनुवादों की एक प्रति डाउनलोड करें।
-          title: कृपया निर्देशों को ध्यानपूर्वक पढ़ें।
       modals:
         remap_assessment:
           new_assessment_name: नया मूल्यांकन नाम
@@ -3534,10 +1701,6 @@ hi:
       new:
         header: रिपोर्ट चुनें
       preview:
-        comments: टिप्पणियाँ
-        hide_resolved: समाधानित छिपाएँ
-        history: इतिहास
-        info_to_select_module: टिप्पणी करने के लिए एक टेक्स्ट मॉड्यूल चुनें
         title: पूर्वावलोकन
       regenerate:
         successfully: रिपोर्ट पुनर्जनन के लिए सफलतापूर्वक भेजी गई।
@@ -3575,425 +1738,17 @@ hi:
         successfully: रिपोर्ट सफलतापूर्वक अपडेट हो गई।
       update:
         successfully: रिपोर्ट %{name} सफलतापूर्वक अपडेट की गई।
-    reports_language_selection_modal:
-      download: रिपोर्ट डाउनलोड
-      generate: रिपोर्ट उत्पन्न करें
     resource:
       remove_confirm:
         message: क्या आप इस संसाधन को हटाना चाहते हैं?
         title: संसाधन हटाएँ
-    saml_settings:
-      after_signout_url: साइनआउट यूआरएल के बाद
-      cert: प्रमाणपत्र
-      config_details:
-        acs_url: दावा उपभोक्ता सेवा यूआरएल
-        copied: "%{element} से कॉपी किया गया"
-        issuer: इकाई आईडी/जारीकर्ता
-        title: निम्नलिखित जानकारी के साथ Idp कॉन्फ़िगर करें
-      email_pipetext: ईमेल पिपेटटेक्स्ट
-      enabled: सक्षम
-      entity_id: इकाई आईडी/जारीकर्ता
-      name_identifier_format: नाम पहचानकर्ता
-      name_identifier_formats:
-        email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
-        persistent: स्थायी
-      saml_setting: SAML सेटिंग
-      save: सेटिंग सहेजें
-      sso_service_url: एसएसओ सेवा यूआरएल
-      successfully_saved_msg: SAML सेटिंग सफलतापूर्वक सहेजी गई।
     save: बचाएँ
-    scheduling:
-      add_activity: गतिविधि जोड़ें
-      add_assessment_center: मूल्यांकन केंद्र जोड़ें
-      add_assessor_form:
-        assessment: मूल्यांकन
-        assessor: मूल्यांकनकर्ता
-        schedule_time: समय निर्धारित करें
-      add_subject: विषय जोड़ें
-      assessment_center_form:
-        add_more: और जोड़ें
-        allow_late_cancellation_and_scheduling: देर से रद्दीकरण और शेड्यूलिंग की अनुमति दें
-        assessment_center_group: मूल्यांकन केंद्र समूह
-        assessment_center_group_placeholder: मूल्यांकन केंद्र समूह चुनें
-        assessor_ids_label: मूल्यांकनकर्ता
-        back: वापस
-        basic_info_panel:
-          description: कृपया नीचे अनुसूची की जानकारी दर्ज करें। आप कई तिथियाँ चुनकर कई मूल्यांकन केंद्र भी बना सकते हैं।
-          title: मूलभूत जानकारी
-        cancellation_lead_time_label: रद्दीकरण के लिए अग्रिम समय
-        copy_hint: उपरोक्त सीटें, केंद्र प्रबंधक, मूल्यांकनकर्ता और बैठकें एवं संसाधन कॉन्फ़िगरेशन को निम्नलिखित मूल्यांकन केंद्रों में कॉपी करता है। कॉपी करने के बाद, आगे बढ़ने से पहले आप प्रत्येक मूल्यांकन केंद्र में और बदलाव कर सकते हैं।
-        copy_to_all: अन्य मूल्यांकन केंद्रों को प्रतिलिपि भेजें
-        create: बनाएँ
-        dates_label: तिथियाँ
-        disable_cancellation_and_rescheduling: रद्दीकरण और पुनःनिर्धारण अक्षम करें
-        duration_label: अवधि
-        duration_max_error: 16 घंटे से अधिक नहीं हो सकता
-        duration_min_error: 15 मिनट से कम नहीं हो सकता
-        duration_placeholder: उदा. 4 घंटे 30 मिनट
-        manager_ids_label: केंद्र प्रबंधक
-        meeting_link: मीटिंग लिंक
-        meetings_and_resources: बैठकें और संसाधन
-        name_label: नाम
-        next: अगला
-        required_error: आवश्यक
-        resources_panel:
-          description: वे संसाधन जिनकी लिंक आप चाहेंगे कि सुविधाकर्ताओं के पास हो, उन्हें जोड़ें।
-          resource_name_placeholder: संसाधन का नाम
-          resource_url_placeholder: संसाधन लिंक
-          title: संसाधन
-          validation_error: नाम और URL दोनों दर्ज करें या संसाधन हटाएँ
-        scheduling_lead_time_label: अनुसूचीकरण के लिए अग्रिम समय
-        seats_label: सीटें
-        time_label: समय
-        timezone_label: समय क्षेत्र
-        url_label: यूआरएल
-        video_call_type:
-          custom: अनुकूलित
-          internal: आंतरिक
-          none: कोई नहीं
-        video_call_type_label: वीडियो कॉल जोड़ें
-      attendance_status:
-        column_name: उपस्थिति की स्थिति
-        dropped_out: छोड़ दिया
-        late: देर से
-        no_show: नहीं आया
-        no_status: कोई स्थिति नहीं
-        on_time: समय पर
-      attended:
-        attended: उपस्थित
-        not_attended: उपस्थित नहीं
-      campaign_participants: अभियान प्रतिभागी
-      columns:
-        activity: गतिविधि
-        assessment_center_date_and_time: मूल्यांकन केंद्र की तिथि और समय
-        assessor: मूल्यांकनकर्ता
-        assessors: मूल्यांकनकर्ता
-        attendance: उपस्थिति
-        attended: उपस्थित
-        booked_at: के पास बुक
-        campaign_assessment_group: मूल्यांकन केंद्र समूह
-        campaign_name: अभियान का नाम
-        duration: अवधि
-        link_to_view_recordings: रिकॉर्डिंग देखने का लिंक
-        managers: प्रबंधक
-        meeting_link: मीटिंग लिंक
-        name: नाम
-        participants: प्रतिभागी
-        prework: पूर्व तैयारी
-        recording_date: रिकॉर्डिंग की तारीख
-        resource_link: लिंक
-        resource_name: नाम
-        schedule_time: समय निर्धारित करें
-        scheduling_status: अनुसूचीकरण की स्थिति
-        seats: सीटें
-        serial_no: क्रम संख्या
-        start_time: दिनांक और समय
-        subject: विषय
-        title: शीर्षक
-        view_recording: रिकॉर्डिंग देखें
-      errors:
-        assessor_already_assigned: इस मूल्यांकन के लिए आकलनकर्ता पहले से ही नियुक्त है। कृपया कोई अन्य मूल्यांकन या आकलनकर्ता चुनें।
-        date_required: कृपया एक तारीख चुनें
-        invalid_url: अमान्य यूआरएल प्रारूप
-        meeting_link_https: मीटिंग लिंक "https://" से शुरू होना चाहिए।
-      id: आईडी
-      info:
-        allowed: अनुमत
-        assessors: मूल्यांकनकर्ता
-        booked: सीटें बुक
-        campaign_assessment_group: मूल्यांकन केंद्र समूह
-        cancellation_lead_time: रद्दीकरण अग्रिम समय
-        cancellation_tooltip: उपयोगकर्ता %{date} तक बुकिंग रद्द कर सकेगा।
-        date: दिनांक और समय
-        duration: अवधि
-        join_meeting: कमरे में शामिल हों
-        late_cancellation_and_scheduling: देर से रद्दीकरण और समय-निर्धारण
-        link: मीटिंग लिंक
-        managers: केंद्र प्रबंधक
-        none: कोई नहीं
-        not_allowed: अनुमति नहीं है
-        recording_enabled: रिकॉर्डिंग सक्षम
-        remaining: शेष सीटें
-        scheduling_lead_time: अनुसूचीकरण अग्रिम समय
-        scheduling_tooltip: उपयोगकर्ता %{date} तक एक स्लॉट बुक कर सकेगा।
-        search_placehoder: आईडी, ईमेल या नाम से खोजें
-        timezone: समय क्षेत्र
-        total_seats: कुल सीटें
-      resources:
-        confirm_message: क्या आप '%{resource_name}' संसाधन को हटाना चाहते हैं?
-        confirm_title: पुष्टि आवश्यक है
-        create: संसाधन बनाएँ
-        invalid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
-        resource: संसाधन
-        successful_remove: मूल्यांकन केंद्र संसाधन %{resource_name} को सफलतापूर्वक हटा दिया गया।
-      schedule_assessments: मूल्यांकन अनुसूची करें
-      scheduling_statuses:
-        cancelled: रद्द
-        late_cancelled: देर से रद्द
-        late_rescheduled: देर से पुनर्निर्धारित
-        rescheduled: पुनर्निर्धारित
-        scheduled: निर्धारित
-      search_participant: अभियान प्रतिभागियों को खोजें
-      status:
-        completed: पूर्ण
-        dropped_out: छोड़ दिया
-        in_progress: प्रगति में
-        late: देर से
-        no_show: नहीं आया
-        not_started: शुरू नहीं हुआ
-      status_change_modal:
-        content: एक बार जब आप मूल्यांकन केंद्र बंद कर देंगे, तो प्रतिभागी किसी भी केंद्र गतिविधि में भाग नहीं ले पाएंगे।
-        title: मूल्यांकन केंद्र की स्थिति बदलें
-      subjects:
-        activities: गतिविधियाँ
-        add_assessor_form: मूल्यांकनकर्ता फॉर्म जोड़ें
-        assessments: मूल्यांकन
-        assessor_forms: मूल्यांकनकर्ता प्रपत्र
-        confirm_message: |
-          क्या आप '%{subject_email}' ईमेल वाले विषय की भागीदारी रद्द करना चाहते हैं?
-          <br />
-          एक बार रद्द कर दिए जाने पर, यह विषय मूल्यांकन केंद्र में भाग नहीं ले पाएगा।
-        confirm_title: पुष्टि आवश्यक है
-        edit_assessor_form: मूल्यांकनकर्ता फ़ॉर्म संपादित करें
-        form_title: मूल्यांकन अनुसूची करें
-        language: भाषा
-        language_not_selected: चयनित नहीं
-        mark_cancel: मार्क रद्द करें
-        mark_cancel_success: "%{subject_email} ईमेल वाले विषय की भागीदारी रद्द कर दी गई।"
-        meeting_link_custom: अनुकूलित
-        meeting_link_internal: आंतरिक
-        meeting_link_none: कोई नहीं
-        meeting_link_title: मीटिंग लिंक
-        no_change: कोई बदलाव नहीं
-        override_existing: विषयों के लिए मौजूदा अनुसूचियों को ओवरराइड करें
-        preworks: पूर्व तैयारी
-        re_enroll: पुनः नामांकन
-        re_enroll_confirm_message: क्या आप सुनिश्चित हैं कि आप विषय को '%{subject_email}' ईमेल के साथ पुनः नामांकित करना चाहते हैं?
-        re_enroll_success: ईमेल %{subject_email} के साथ पुनः नामांकित विषय।
-        schedule: समय-सारणी
-        unschedule: अनशेड्यूल
-      tabs:
-        activities: गतिविधियाँ
-        assessment_center: मूल्यांकन केंद्र
-        invites: आमंत्रण
-        recordings: रिकॉर्डिंग्स
-        resources: संसाधन
-        subjects: विषय
     scoring:
-      action_prohibited: कार्रवाई निषिद्ध
-      active: सक्रिय
-      actual_average: वास्तविक औसत
-      add_factor: जोड़ें कारक
-      add_group: समूह जोड़ें
-      assessment: मूल्यांकन
-      assessment_scoring_type: मूल्यांकन स्कोरिंग प्रकार
-      average: औसत
-      campaign_scoring_variables: अभियान स्कोरिंग चर
-      code: कोड
-      desc: आपने %{n} अभियान कारकों की अधिकतम सीमा पार कर ली है। अतिरिक्त कारक नहीं जोड़े जा सकते। कृपया आगे बढ़ने से पहले अपने मौजूदा कारकों की समीक्षा करें और उनका प्रबंधन करें।
-      description: विवरण
-      dimension: आयाम
-      edit_factor: संपादन कारक
       export:
         details: अभियान स्कोरिंग
         factors: निर्यात अभियान कारक
-      factor: कारक
-      factor_group_removed_successfully: Campaign Factor समूह को सफलतापूर्वक हटा दिया गया।
-      factor_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए फैक्टर का नाम दर्ज करें।
-      factor_removed_successfully: Campaign Factor सफलतापूर्वक हटा दिया गया
-      factors_exported_successfully: एक्सपोर्ट अभियान कारक का कार्य सफलतापूर्वक निर्धारित किया गया था
-      factors_imported_successfully: अभियान कारक आयात का कार्य सफलतापूर्वक निर्धारित किया गया।
-      final: अंतिम
-      final_score_updated_successfully: अंतिम स्कोर सफलतापूर्वक अपडेट हो गया।
-      formula: सूत्र
-      get_started: शुरू करें
-      id: आईडी
-      import:
-        factors: अभियान कारक आयात करें
-      innovation_style_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में नवाचार शैली का नाम दर्ज करें।
-      name: नाम
-      no_groups: कोई समूह उपस्थित नहीं है
-      occupation_removal_confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में व्यवसाय का नाम दर्ज करें।
-      output_type: आउटपुट प्रकार
-      pattern_error: केवल अल्फान्यूमेरिक वर्ण, रिक्त स्थान और डैश की अनुमति है।
-      profile:
-        years: वर्ष
-      public: सार्वजनिक
-      ranked: रैंक किया गया
-      remove_all_campaign_factors:
-        confirmation: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में वर्तमान अभियान का नाम दर्ज करें।
-        error: अभियान कारक असफल हटाते हैं
-        success: अभियान कारक सफलतापूर्वक हटा दिए गए
-        title: अभियान के कारक हटाएँ
-        warning: आप सभी कैंपेन फैक्टर और उपयोगकर्ताओं के सभी संबंधित स्कोर हटाने वाले हैं। क्या आप इस कार्रवाई को करने के लिए निश्चित हैं?
-      remove_factor_group_confirmation_content: क्या आप निश्चित हैं कि आप कारक समूह '%{group_name}' को हटाना चाहते हैं?
-      remove_factor_group_confirmation_title: कारक समूह हटाएँ
-      required_error: खाली नहीं हो सकता
-      save: बचाएँ
-      save_all: सभी सहेजें
-      score_range: अंक सीमा
-      score_types:
-        norm_score: मानक स्कोर
-        percentage: प्रतिशत
-        percentile: प्रतिशतक
-        score: स्कोर
-        zscore: Z स्कोर
-      scoring: स्कोरिंग
-      scoring_description: अभियान स्कोरिंग विभिन्न मूल्यांकनों में रिपोर्टिंग की अनुमति देता है।
-      select_all: सभी %{n} विषय चुनें
-      select_assessment_first: पहले मूल्यांकन चुनें
-      select_factor: कारक चुनें
-      show_weightages: वज़न दिखाएँ
-      subject: विषय
-      subject_list:
-        actions: क्रियाएँ
-        bulk_mark_finalized: थोक चिह्न अंतिम रूप दिया गया
-        bulk_mark_finalized_confirm: चयनित उपयोगकर्ताओं के लिए स्कोर अंतिम रूप से निर्धारित करने पर वह रिपोर्ट तैयार होगी जो उपयोगकर्ताओं के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-        bulk_mark_not_finalized: थोक चिह्न अंतिम नहीं है
-        bulk_mark_not_finalized_confirm: चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने से वह उत्पन्न रिपोर्ट हटा दी जाएगी जो उपयोगकर्ताओं के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-        bulk_rescore: थोक पुनः स्कोर
-        bulk_rescore_confirm: चयनित उपयोगकर्ताओं का पुनः स्कोरिंग किया जा रहा है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-        calculated_date: गणना की गई तिथि
-        calculation_errors: गणना त्रुटियाँ
-        export: निर्यात स्कोरिंग्स
-        export_success: एक्सपोर्ट स्कोर्स जॉब सफलतापूर्वक निर्धारित किया गया था
-        finalized: अंतिम रूप दिया गया
-        finalized_date: अंतिम तिथि
-        import_external_scores: बाहरी स्कोरिंग आयात करें
-        mark_finalized: मार्क अंतिम रूप दिया गया
-        mark_finalized_confirm: उपयोगकर्ता '%{email}' के लिए स्कोर अंतिम रूप देने पर वह रिपोर्ट तैयार होगी जो उपयोगकर्ता के लिए अभियान कारक का उपयोग करती है। क्या आप सुनिश्चित हैं कि आप आगे बढ़ना चाहते हैं?
-        mark_not_finalized: चिह्न अंतिम नहीं
-        mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए अभियान कारक का उपयोग करने वाली उत्पन्न रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
-        push_webhook: पुश वेबहुक्स
-        rank: रैंक
-        rescore: पुनः स्कोर
-        rescore_confirm: उपयोगकर्ता '%{email}' का पुनः स्कोरिंग किया जा रहा है। क्या आप सुनिश्चित हैं कि आप जारी रखना चाहते हैं?
-        tools: उपकरण
-      tabs:
-        settings: सेटिंग्स
-        subject_scores: विषय स्कोर
-      type: प्रकार
-      variables: चर
-      weightages:
-        assessorForms: मूल्यांकनकर्ता प्रपत्र
-        successful_update: वज़न सफलतापूर्वक अपडेट किए गए
-        tools: उपकरण
-        weightages: भार
-      weighted_average: भारित औसत
-    scoring_approval:
-      approve_all: सभी को अनुमोदित करें
-      bulk_approve_success: "%{approved} स्कोर स्वीकृत।"
-      review: समीक्षा
-      score_approvals: एआई स्कोरिंग अनुमोदन
     search: खोजें
-    security_setting:
-      180_days: १८० दिन
-      30_days: 30 दिन
-      365_days: 365 दिन
-      90_days: 90 दिन
-      attempts_to_lock: ताला लगाने के प्रयास
-      auto_unlock_time: स्वचालित अनलॉक समय
-      disable_password_reuse: 'पासवर्ड के पुन: उपयोग को अक्षम करें'
-      disallow_password_login: पासवर्ड लॉगिन की अनुमति न दें
-      enable_login_with_magic_link: मैजिक लिंक से लॉगिन सक्षम करें
-      enable_recaptcha: reCAPTCHA सक्षम करें
-      enforce_password_policy: अगली साइन-इन पर पासवर्ड नीति लागू करें
-      enforce_strong: मजबूत पासवर्ड लागू करें
-      expiration: पासवर्ड समाप्ति
-      lock_account: खाता लॉक करें
-      magic_link_expiry_duration: मैजिक लिंक समाप्ति अवधि
-      min_length: न्यूनतम पासवर्ड लंबाई
-      never: कभी नहीं
-      restrict_sequences: क्रमिक और दोहराए जाने वाले अक्षरों को प्रतिबंधित करें
-      security: सुरक्षा सेटिंग्स
-      send_unlock_email: अनलॉक ईमेल भेजें
-      session_timeout_duration: सत्र समाप्ति अवधि
-      tfa_enabled: दो-चरणीय प्रमाणीकरण सक्षम करें
-    security_settings:
-      security_setting: सुरक्षा सेटिंग
-    settings:
-      admin_roles:
-        confirm_message: क्या आप '%{role_name}' नामक एडमिन भूमिका को हटाना चाहते हैं?
-      siem:
-        description: विवरण
-        destination_type: गंतव्य का प्रकार
-        destination_types:
-          s3: एस3
-          s3_compatible: S3 संगत
-        enabled: सक्षम
-        readable_resource_name: एसआईईएम सेटिंग्स
-        s3_access_key_id: एक्सेस की आईडी
-        s3_bucket_folder: S3 बकेट फ़ोल्डर
-        s3_bucket_name: S3 बकेट नाम
-        s3_endpoint: S3 एंडपॉइंट
-        s3_region: S3 क्षेत्र
-        s3_secret_access_key: गोपनीय पहुँच कुंजी
-        send_test_log: परीक्षण लॉग भेजें
-        send_test_log_error_message: टेस्ट लॉग आपके बकेट में नहीं भेजा गया है, अपनी सेटिंग्स जांचें।
-        send_test_log_success_message: टेस्ट लॉग सफलतापूर्वक आपके बकेट में भेज दिया गया है।
-      skill_aliases:
-        alias: उपनाम
-        confirm_message: क्या आप '%{skill_alias}' नामक कौशल उपनाम को हटाना चाहते हैं?
-        create: कौशल उपनाम जोड़ें
-        select_skill: कौशल चुनें
-        skill: कौशल
-        skill_alias: कौशल उपनाम
-        successful_remove: कौशल '%{skill_alias}' को सफलतापूर्वक हटा दिया गया।
-      tabs:
-        admin_roles: प्रशासन भूमिकाएँ
-        feature_flags: फ़ीचर फ़्लैग्स
-        siem: एसआईईएम
-        skill_aliases: कौशल उपनाम
-    sheets:
-      column:
-        add_column: कॉलम जोड़ें
-        not_allowed_for_dashboard_use: डैशबोर्ड में उपयोग किए जाने वाले कॉलम की लंबाई 64 वर्णों से कम होनी चाहिए।
-        reorder: दोबारा ऑर्डर करें
-        save_order: ऑर्डर सहेजें
-      drawers:
-        add_edit:
-          cancelText: रद्द करें
-          markdown:
-            preview: पूर्वावलोकन
-            title: मार्कडाउन
-          save: बचाएँ
-          saving: बचत
-          success_message_add: नया रिकॉर्ड जोड़ा गया
-          success_message_edit: रिकॉर्ड अपडेट किया गया
-          title_add: शीट रिकॉर्ड जोड़ें
-          title_edit: शीट पंक्ति रिकॉर्ड संपादित करें
-          validations:
-            required_email: कृपया ईमेल दर्ज करें
-        view:
-          campaign_title: अभियान स्तर का रिकॉर्ड
-          edit_button: संपादित करें
-          project_title: परियोजना स्तर का रिकॉर्ड
-          title: शीट रो रिकॉर्ड विवरण
-      list:
-        header:
-          add_record: रिकॉर्ड जोड़ें
-          search_record: रिकॉर्ड खोजें
-      modals:
-        delete_records:
-          cancelText: रद्द करें
-          content: क्या आप सुनिश्चित हैं कि आप चयनित {{count}} रिकॉर्ड्स को हटाना चाहते हैं?
-          okText: हाँ, हटाएँ
-          successMessage: "{{count}} रिकॉर्ड सफलतापूर्वक हटा दिए गए।"
-          title: "{{count}} रिकॉर्ड हटाएँ"
-        remove_columns:
-          cancelText: रद्द करें
-          content: एक कॉलम ({{columns}}) को हटाने से सभी पंक्तियों के लिए इस कॉलम का डेटा हटा दिया जाएगा।
-          okText: हाँ, हटाएँ
-          successMessage: "{{count}} रिकॉर्ड हटाए गए"
-          title: स्तंभ हटाएँ
-      tabs:
-        rows: कतारें
-        settings: सेटिंग्स
     skills:
-      applicable_proficiency_levels: लागू दक्षता स्तर
-      columns:
-        skill_group: कौशल समूह
-        skill_type: कौशल का प्रकार
       errors:
         import:
           missing_fields_data: 'लाइन %{line_number}: आवश्यक फ़ील्ड्स अनुपस्थित हैं: %{fields}'
@@ -4007,28 +1762,11 @@ hi:
           query_too_short: आवश्यक है और 3 अक्षरों से अधिक लंबा होना चाहिए।
       export:
         details: विवरण
-        failure_msg: अनुवादों को निर्यात करते समय त्रुटि
-        success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
         translations:
           details: कौशल अनुवाद
       form:
         client_placeholder: एक क्लाइंट चुनें
-        description: विवरण
-        name: नाम
         project_placeholder: एक परियोजना चुनें
-        skill_group: कौशल समूह
-        skill_type: कौशल का प्रकार
-        title: कौशल
-      import:
-        download_example_csv: उदाहरण सीएसवी डाउनलोड करें
-        info_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-        success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-      import_action:
-        skills_title: कौशल आयात करें
-        skills_translations_title: कौशल अनुवाद आयात करें
-      skill_details: कौशल विवरण
-      skill_translations: कौशल अनुवाद
-      title: कौशल
       translations:
         import:
           errors:
@@ -4036,152 +1774,13 @@ hi:
             missing_columns: 'आवश्यक कॉलम अनुपस्थित हैं: %{columns}'
             save_failed: 'Skill ID %{id} को संसाधित करने में त्रुटि: %{message}'
             skill_not_found: आईडी %{id} के साथ कौशल नहीं मिला
-      vector:
-        generate_embedding: एम्बेडिंग उत्पन्न करें
-        generate_embedding_failure_msg: कौशल एम्बेडिंग जनरेशन जॉब को कतारबद्ध करने में विफल। कृपया फिर से प्रयास करें।
-        generate_embedding_success_msg: स्किल एम्बेडिंग जनरेशन जॉब सफलतापूर्वक कतारबद्ध हो गया है। कृपया सूचनाओं में स्थिति देखें।
-        label: वेक्टर डेटाबेस
-    sms_histories:
-      columns:
-        first_name: पहला नाम
-        last_name: आखिरी नाम
-        mobile_no: मोबाइल नंबर
-        price: कीमत
-        segment_length: खंड की लंबाई
-        sent_at: भेजा गया
-      drawer:
-        title: एसएमएस विवरण
-      history: इतिहास
-      statuses:
-        accepted: स्वीकार्य
-        delivered: पहुँचा दिया गया
-        failed: असफल
-        queued: कतार में
-        scheduled: निर्धारित
-        sent: भेजा गया
-        undelivered: अनपहुँचा
     sms_invites:
-      actions:
-        add: एसएमएस संपर्क जोड़ें
-      columns:
-        created_at: पर बनाया गया
-        created_by: द्वारा निर्मित
-        email: ईमेल
-        first_name: पहला नाम
-        last_name: आखिरी नाम
-        mobile_no: मोबाइल नंबर
-      contacts: संपर्क
-      form_modal:
-        first_name: पहला नाम
-        last_name: आखिरी नाम
-        locale: स्थान
-        mobile_no: मोबाइल नंबर
-        title: एसएमएस निमंत्रण
-      import:
-        download_example_csv: उदाहरण CSV डाउनलोड करें
-        success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-        title: एसएमएस निमंत्रण आयात
       messages:
-        delete_confirm_text: क्या आप सुनिश्चित हैं कि आप मोबाइल नंबर %{mobile_no} से एसएमएस निमंत्रण हटाना चाहते हैं?
-        delete_success: एसएमएस निमंत्रण सफलतापूर्वक हटा दिया गया।
         failed_to_sent_invite: "%{mobile_no} पर निमंत्रण भेजने में विफल।"
-      send_sms:
-        fields:
-          link_expiry: लिंक समाप्ति
-          locale: स्थान
-          message: संदेश
-          statuses: स्थितियाँ
-          users: उपयोगकर्ता
-        modal:
-          btn_name: एसएमएस भेजें
-          title: एसएमएस भेजें
-        pipetext_details: |
-          {{{first_name}}} - प्राप्तकर्ता का पहला नाम
-          <br />
-          {{{last_name}}} - प्राप्तकर्ता का अंतिम नाम
-          <br />
-          {{{invite_url}}} - पंजीकरण लिंक
-        segment_length_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{segment_length} है।
-        segment_length_range_msg: इस संदेश के लिए अनुमानित सेगमेंटों की संख्या %{min_segment_length} और %{max_segment_length} के बीच है।
-      statuses:
-        all: सभी
-        failed: असफल
-        invited: आमंत्रित
-        not_invited: आमंत्रित नहीं किया गया
-        registered: पंजीकृत
-      tools:
-        export: एसएमएस संपर्कों का निर्यात करें
-        import: एसएमएस संपर्क आयात करें
-        send_sms: एसएमएस भेजें
-    sms_records:
-      columns:
-        id: आईडी
-        message: संदेश
     smtp_settings:
-      authentication: प्रमाणीकरण
-      authentication_type: प्रमाणीकरण प्रकार
-      authentication_types:
-        cram_md5: क्रैम एमडी5
-        login: लॉगिन
-        plain: सादा
-      enabled: सक्षम
-      encryption: एन्क्रिप्शन
-      encryption_types:
-        none: कोई नहीं
-        ssl: एसएसएल
-        tls: टीएलएस
       errors:
         authentication_failed: उपयोगकर्ता नाम या पासवर्ड गलत है।
         host_unreachable: होस्ट से कनेक्ट नहीं हो सका। होस्ट, पोर्ट या एन्क्रिप्शन में से कोई एक गलत है।
-      from_email: ईमेल से
-      from_name: नाम से
-      host: मेज़बान
-      password: पासवर्ड
-      port: बंदरगाह
-      send_test_email: परीक्षण ईमेल भेजें
-      smtp: एसएमटीपी
-      test_email_modal:
-        input_hint: जब तक परीक्षण ईमेल सफलतापूर्वक भेजा नहीं जाता, आपकी ईमेल सेटिंग सहेजी नहीं जाएगी।
-        input_placeholder: परीक्षण ईमेल आईडी
-        title: परीक्षण ईमेल आईडी
-      test_modal:
-        success_message: "%{email_id} पर ईमेल परीक्षण भेजा गया।"
-        title: एसएमटीपी सेटिंग का परीक्षण करें
-      update_success_msg: SMTP सेटिंग सफलतापूर्वक अपडेट हो गई।
-      use_sender_verification: प्रेषक सत्यापन का उपयोग करें
-      user_name: उपयोगकर्ता नाम
-    stats:
-      assessments:
-        active: सक्रिय
-        columns:
-          assessment_name: मूल्यांकन का नाम
-          completed: पूर्ण
-          id: आईडी
-          in_progress: प्रगति में
-          ineligible: अयोग्य
-          interrupted: बाधित
-          not_started: शुरू नहीं हुआ
-          timed_out: समय समाप्त
-        count: गिनती
-        inactive: निष्क्रिय
-        percentage: प्रतिशत
-        title: मूल्यांकन
-      top_metrics:
-        completed: पूर्ण
-        in_progress: प्रगति में
-        interrupted: बाधित
-        not_started: शुरू नहीं किया
-        timed_out: समय समाप्त
-        users: उपयोगकर्ता
-      users:
-        date_presets:
-          last_30_days: पिछले 30 दिन
-          last_7_days: पिछले 7 दिन
-          last_month: पिछले महीने
-          last_week: पिछले सप्ताह
-          today: आज
-          yesterday: कल
-        y_title: उपयोगकर्ताओं की संख्या
     sub_factors:
       destroy:
         successfully: उप-कारक %{name} को सफलतापूर्वक हटा दिया गया।
@@ -4293,18 +1892,7 @@ hi:
           one: 'कुल : 1'
           other: 'कुल : {{count}}'
           zero: 'कुल : 0'
-      more_actions: अधिक क्रियाएँ
     taxonomy:
-      import:
-        description: अपनी स्किल्स टैक्सोनॉमी को इम्पोर्ट या अपडेट करने के लिए एक एक्सेल फ़ाइल अपलोड करें। इससे नए कौशल, नौकरी की भूमिकाएँ और प्रवीणता स्तर जुड़ेंगे।
-        download_example_file: उदाहरण फ़ाइल डाउनलोड करें
-        drag_text: अपलोड करने के लिए इस क्षेत्र में फ़ाइल पर क्लिक करें या उसे ड्रैग करें।
-        error_title: आयात विफल
-        file_hint: ".xls और .xlsx फ़ाइलों का समर्थन करता है"
-        import_button: टैक्सोनॉमी आयात करें
-        success_msg: अपलोड की गई फ़ाइल आयात के लिए कतार में रखी गई है। कृपया सूचनाओं में स्थिति देखें।
-      import_action:
-        taxonomy: कौशल वर्गीकरण आयात करें
       title: कौशल वर्गीकरण
     templates:
       blocks:
@@ -4397,187 +1985,9 @@ hi:
       convert_action:
         already_a_template: पहले से ही एक टेम्पलेट
         has_user_data: कृपया टेम्पलेट में बदलने से पहले टूल्स ड्रॉपडाउन से "सभी प्रतिभागियों को रीसेट करें" पर क्लिक करके अभियान को मैन्युअली रीसेट करें।
-      convert_template_modal:
-        cancel: रद्द करें
-        confirm: पुष्टि करें
-        convert:
-          success: टेम्पलेट सफलतापूर्वक परिवर्तित हो गया।
-        convert_option: इस अभियान को एक टेम्पलेट में बदलें।
-        copy:
-          success: अभियान टेम्पलेट निर्माण का कार्य सफलतापूर्वक निर्धारित हो गया है, कृपया स्थिति के लिए अपनी सूचनाएं जांचें।
-        copy_option: इस अभियान से एक नया टेम्पलेट बनाएँ
-        description: इस अभियान से टेम्पलेट बनाने का तरीका चुनें।
-        failed: टेम्पलेट निर्माण विफल हो गया।
-        title: टेम्पलेट में बदलें
-      email_templates:
-        approve_nomination:
-          description: यह संदेश एक प्रबंधक को तब भेजा जाता है जब किसी प्रत्यक्ष अधीनस्थ द्वारा की गई नामांकन को अनुमोदित करने की आवश्यकता होती है।
-          name: नामांकन अनुमोदित करें
-        approve_report:
-          description: यह संदेश विषय के प्रबंधक को भेजा जाता है ताकि उन्हें सूचित किया जा सके कि विषय की रिपोर्ट अनुमोदन के लिए तैयार है।
-          name: रिपोर्ट को अनुमोदित करें
-        categories:
-          approvals: अनुमोदन
-          invitations: आमंत्रण
-          reminders: स्मरणपत्र
-          report_ready: रिपोर्ट तैयार
-        consolidated: समेकित
-        custom_message:
-          description: यह संदेश मूल्यांकन में भाग लेने वाले किसी भी व्यक्ति को भेजा जा सकता है।
-          name: अनुकूलित संदेश
-        days_repeated: दिन, दोहराया गया
-        evaluator_invite:
-          description: यह संदेश सभी मूल्यांकनकर्ताओं को भेजा जाएगा।
-          name: मूल्यांकनकर्ता निमंत्रण
-        evaluator_reminder:
-          description: यह संदेश मूल्यांकनकर्ताओं को लंबित मूल्यांकन पूरे करने की याद दिलाने के लिए भेजा जाएगा।
-          name: मूल्यांकनकर्ता अनुस्मारक
-          rule_description: जब कोई निमंत्रण निर्धारित किया जाता है, तब स्वचालित रूप से अनुसूचीकरण के लिए नियम निर्दिष्ट करें।
-          rule_name: मूल्यांकनकर्ता अनुस्मारक नियम
-        from: से
-        manager_report_ready:
-          description: एक विषय की रिपोर्ट तैयार होने पर यह संदेश उसके प्रबंधक को भेजा जाता है।
-          name: प्रबंधक रिपोर्ट तैयार
-        nomination_denied:
-          description: नामांकन अस्वीकार होने पर यह संदेश विषयों को भेजा जाता है।
-          name: नामांकन अस्वीकृत
-        reply_to_email: ईमेल का जवाब दें
-        request_approval:
-          description: यह संदेश प्रबंधकों को तब भेजा जाता है जब कोई विषय अनुमोदन का अनुरोध करता है।
-          name: अनुमोदन का अनुरोध करें
-        save: बचाएँ
-        schedule: समय-सारणी
-        schedule_email: ईमेल अनुसूची करें
-        schedule_email_title: ईमेल अनुसूची करें
-        schedule_time: समय निर्धारित करें
-        send_test_email: परीक्षण ईमेल भेजें
-        subject: विषय
-        subject_invite:
-          description: यह संदेश विषयों को मूल्यांकन में भाग लेने के लिए आमंत्रित करने हेतु भेजा जाएगा।
-          name: 'विषय: निमंत्रण'
-        subject_reminder:
-          description: प्रत्येक प्रतिभागी को मूल्यांकन में भाग लेने की याद दिलाने के लिए संदेश भेजा गया।
-          name: 'विषय: अनुस्मारक'
-          rule_description: जब कोई निमंत्रण निर्धारित किया जाता है, तब स्वचालित रूप से अनुसूचीकरण के लिए नियम निर्दिष्ट करें।
-          rule_name: 'विषय: अनुस्मारक नियम'
-        subject_report_ready:
-          description: यह संदेश किसी विषय को तब भेजा जाता है जब उनकी रिपोर्ट तैयार हो जाती है।
-          name: विषय रिपोर्ट तैयार
-        times: बार
-      instruction_templates:
-        evaluate_others:
-          description: यह संदेश तब प्रदर्शित होगा जब प्रतिभागी पोर्टल के भीतर दूसरों का मूल्यांकन कर रहे होंगे।
-          name: दूसरों का मूल्यांकन करें
-        evaluate_self:
-          description: यह संदेश प्रतिभागियों को तब प्रदर्शित किया जाएगा जब वे अपना आत्म-मूल्यांकन शुरू करेंगे।
-          name: मूल्यांकनकर्ता स्वयं
-        evaluation_help:
-          description: उपयोगकर्ता के डैशबोर्ड पर मूल्यांकन कार्ड पर प्रदर्शित सहायता पाठ
-          name: मूल्यांकन सहायता
-        evaluator_welcome:
-          description: यह संदेश "स्वागत संदेश" को ओवरराइड कर देगा और केवल मूल्यांकनकर्ता के रूप में भाग ले रहे प्रतिभागियों को प्रदर्शित किया जाएगा।
-          name: मूल्यांकनकर्ता स्वागत है
-        invite_evaluators:
-          description: यह संदेश विषयों को तब प्रदर्शित किया जाएगा जब वे मूल्यांकनकर्ताओं का नामांकन शुरू करेंगे।
-          name: मूल्यांकनकर्ताओं को आमंत्रित करें
-        nomination_help:
-          description: उपयोगकर्ता के डैशबोर्ड पर नामांकन कार्ड पर प्रदर्शित सहायता पाठ
-          name: नामांकन सहायता
-        report_help:
-          description: उपयोगकर्ता के डैशबोर्ड पर रिपोर्ट कार्ड पर प्रदर्शित सहायता पाठ
-          name: रिपोर्ट सहायता
-        welcome_message:
-          description: यह संदेश प्रतिभागियों को तब दिखाया जाएगा जब वे मूल्यांकन शुरू करने या अपनी कार्य सूची देखने के लिए लॉग इन करेंगे।
-          name: स्वागत संदेश
-      mail_history:
-        actions: क्रियाएँ
-        date: दिनांक
-        download_details: डाउनलोड विवरण
-        emails_sent: भेजे गए ईमेल
-        recipient: प्राप्तकर्ता
-        status: स्थिति
-        subject: विषय
-      manage:
-        assessment: मूल्यांकन
-        dimension: आयाम
-        manage_relationships: रिश्तों का प्रबंधन करें...
-        report: रिपोर्ट
-        title: प्रबंध करें
-      menu:
-        actions: क्रियाएँ
-        datasheet:
-          title: डेटाशीट
-        messages:
-          allow_subjects_to_send_reminders: विषयों को मूल्यांकनकर्ताओं को अनुस्मारक भेजने की अनुमति दें
-          automatically_send_invites: नए मूल्यांकनकर्ताओं को स्वचालित रूप से निमंत्रण भेजें
-          title: संदेश
-        participants:
-          columns:
-            action: कार्रवाई
-            email: ईमेल
-            evaluations_completed: मूल्यांकन पूरे हुए
-            evaluations_received: प्राप्त मूल्यांकन
-            is_subject: क्या विषय है
-            name: नाम
-          evaluators:
-            add_evaluators: मूल्यांकनकर्ताओं को जोड़ें
-            import_evaluators: आयात मूल्यांकनकर्ता
-            title: मूल्यांकनकर्ता
-          managers:
-            title: प्रबंधक
-          options:
-            evaluator_options: मूल्यांकनकर्ता विकल्प
-            global: वैश्विक विकल्प
-            manager_options: प्रबंधक विकल्प
-            subject_options: विषय विकल्प
-            title: विकल्प
-          subjects:
-            add_subjects: विषय जोड़ें
-            current_job_role: वर्तमान नौकरी की भूमिका
-            email: ईमेल
-            first_name: पहला नाम
-            import_subjects: विषय आयात करें
-            last_name: आखिरी नाम
-            locale: स्थान
-            target_job_role: लक्षित नौकरी की भूमिका
-            title: विषय
-          title: प्रतिभागी
-        report:
-          menu:
-            report_approval:
-              title: रिपोर्ट अनुमोदन सेटिंग्स
-            report_options:
-              title: रिपोर्ट विकल्प
-          title: रिपोर्ट
-      messages:
-        email_messages: ईमेल संदेश
-        factor_benchmark_scores_updated: फैक्टर बेंचमार्क स्कोर सफलतापूर्वक अपडेट किए गए
-        instruction_messages: निर्देश संदेश
-        mail_history: मेल इतिहास
-        options: विकल्प
       reports:
-        add_conditions: शर्तें जोड़ें
-        administrator_approves_reports: प्रशासक रिपोर्टों को अनुमोदित करता है।
-        allow_manager_to_view_individual_responses: प्रबंधक को व्यक्तिगत प्रतिक्रियाएँ देखने की अनुमति दें
-        disable_report_download: रिपोर्ट डाउनलोड अक्षम करें
-        edit_email: ईमेल संपादित करें
-        email_manager_when_report_is_ready_for_approval: जब रिपोर्ट अनुमोदन के लिए तैयार हो, तो प्रबंधक को ईमेल करें।
-        email_subject_when_report_becomes_available: रिपोर्ट उपलब्ध होने पर ईमेल का विषय
-        email_subjects_manager_when_available: जब रिपोर्ट उपलब्ध हो जाए तो ईमेल विषय के प्रबंधक को भेजें।
-        make_report_available_to_subject_when: 'रिपोर्ट विषय को तब उपलब्ध कराएं जब:'
-        manager_approves_reports: प्रबंधक रिपोर्टों को मंजूरी देता है
-        manager_can_access_subject_reports: प्रबंधक विषय रिपोर्टों तक पहुँच सकता है।
-        manager_cannot_access_subject_reports: जब तक आवश्यकताएँ पूरी नहीं हो जातीं, प्रबंधक रिपोर्ट नहीं देख सकता।
-        report_access: रिपोर्ट पहुँच
-        report_approval: रिपोर्ट अनुमोदन
-        report_availability: उपलब्धता रिपोर्ट
         show:
           title: विषय रिपोर्ट
-        subject_can_access_reports: विषय अपनी रिपोर्टों तक पहुँच सकता है।
-      reset_campaign_confirmation:
-        mark_licenses_as_deactivated: मार्क लाइसेंसों को निष्क्रिय के रूप में चिह्नित करता है
-    time_zone: समय क्षेत्र
-    tools: उपकरण
     translations:
       assessments:
         new:
@@ -4595,14 +2005,6 @@ hi:
         successfully: उपयोगकर्ता %{name} सफलतापूर्वक बनाया गया।
       destroy:
         successfully: उपयोगकर्ता %{name} को सफलतापूर्वक हटा दिया गया।
-      list:
-        email: ईमेल
-      modals:
-        download_idp_reports:
-          error: बल्क डाउनलोड IDP रिपोर्ट्स जॉब शेड्यूल करने में असफल रहा।
-          include_reflective_questions: प्रतिबिंबित प्रश्न शामिल करें
-          success: IDP रिपोर्ट्स को थोक डाउनलोड करने का कार्य सफलतापूर्वक निर्धारित किया गया।
-          title: IDP रिपोर्ट्स थोक में डाउनलोड करें
       new:
         header: नया उपयोगकर्ता
       reset_password:
@@ -4648,24 +2050,15 @@ hi:
         successfully: उपयोगकर्ता %{name} को सफलतापूर्वक अपडेट किया गया।
       toggle_status:
         successfully: उपयोगकर्ता %{name} को सफलतापूर्वक अपडेट किया गया।
-      toolbar:
-        title: उपकरण
       update:
         successfully: उपयोगकर्ता %{name} को सफलतापूर्वक अपडेट किया गया।
       user: उपयोगकर्ता
     webhook:
       connection_failure: वेबहुक यूआरएल से कनेक्ट नहीं हो पा रहा है। कृपया सत्यापित करें कि वेबहुक यूआरएल सही है।
-      delete_success: वेबहुक सेटिंग्स सफलतापूर्वक हटा दी गईं
       request_failure: अनुरोध स्थिति कोड %{http_status_code} के साथ विफल हो गया।
     workshop:
-      actions:
-        remove_workshop: कार्यशाला सफलतापूर्वक हटा दी गई
       errors:
         remove_workshop_failure: आप जिस कार्यशाला को हटाने का प्रयास कर रहे हैं, उसमें निर्धारित विषय हैं। आप सभी विषयों को रद्द के रूप में चिह्नित करके कार्यशाला को हटा सकते हैं।
-      statuses:
-        closed: बंद
-        open: खोलें
     workshop_subjects:
       errors:
         update_assessor_for_failure: मीटिंग का विवरण नहीं जोड़ा जा सकता क्योंकि कोई संबंधित विषय गतिविधि नहीं है।
-    years: वर्ष

@@ -137,7 +137,7 @@ const Manage: React.FC<Props> = ({
     <div>
       <Row justify="space-between">
         <Col span={4} className="pls">
-          <h3>{I18n.t('administration.reports.name')}</h3>
+          <h3>{I18n.t('admin.reports')}</h3>
         </Col>
         <div>
           <div className={styles.newReportButton}>
@@ -152,7 +152,7 @@ const Manage: React.FC<Props> = ({
                     disabled={_.isEmpty(selectedIds) || bulkDownloadInProgress}
                     loading={bulkDownloadInProgress}
                   >
-                    <span>{I18n.t('campaign_report.actions.bulk_download')}</span>
+                    <span>{I18n.t('shared.bulk_download')}</span>
                   </Button>
                 </>
               )}
@@ -171,7 +171,7 @@ const Manage: React.FC<Props> = ({
                     disabled={_.isEmpty(selectedIds) || regenerateInProgress}
                     loading={regenerateInProgress}
                   >
-                    <span>{I18n.t('user_reports.actions.generate')}</span>
+                    <span>{I18n.t('shared.generate')}</span>
                   </Button>
                 </>
               )}
@@ -184,7 +184,7 @@ const Manage: React.FC<Props> = ({
                   }
                 >
                   <PlusOutlined />
-                  <span>{I18n.t('reports.actions.add')}</span>
+                  <span>{I18n.t('admin.add_report')}</span>
                 </Button>
               )}
             </Space>
@@ -194,7 +194,6 @@ const Manage: React.FC<Props> = ({
       <div>
         <ReportList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('administration.assessments.assessment_report')}</h3>
         <AssessmentList />
 
         <div className={styles.tableDivider} />
@@ -202,7 +201,7 @@ const Manage: React.FC<Props> = ({
         <Row justify="space-between" className="pm">
           <Col span={8} className="pls">
             <h3>
-              {I18n.t('campaigns.assessments_and_reports.assessor_assessments')}
+              {I18n.t('admin.assessor_assessments')}
             </h3>
           </Col>
 
@@ -219,7 +218,7 @@ const Manage: React.FC<Props> = ({
               >
                 <PlusOutlined />
                 <span>
-                  {I18n.t('administration.assessor_assessment.add')}
+                  {I18n.t('shared.add')}
                 </span>
               </Button>
             )}
@@ -230,7 +229,7 @@ const Manage: React.FC<Props> = ({
         {campaignPermissions.viewAssessors && otherAsessorAssessments.length > 0 && (
           <>
             <div className={styles.tableDivider} />
-            <h3>{I18n.t('campaigns.assessments_and_reports.other_assessor_assessments')}</h3>
+            <h3>{I18n.t('admin.other_assessor_assessments')}</h3>
             <OtherAssessorAssessmentList />
           </>
         )}
@@ -238,7 +237,7 @@ const Manage: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         {otherReports.total > 0 && (
           <>
-            <h3>{I18n.t('campaigns.assessments_and_reports.other_reports')}</h3>
+            <h3>{I18n.t('admin.other_reports')}</h3>
             <OtherReportList />
           </>
         )}
@@ -246,7 +245,7 @@ const Manage: React.FC<Props> = ({
         <div className={styles.tableDivider} />
         {otherAssessments.total > 0 && (
           <>
-            <h3>{I18n.t('campaigns.assessments_and_reports.other_assessments')}</h3>
+            <h3>{I18n.t('admin.other_assessments')}</h3>
             <OtherAssessmentList />
           </>
         )}

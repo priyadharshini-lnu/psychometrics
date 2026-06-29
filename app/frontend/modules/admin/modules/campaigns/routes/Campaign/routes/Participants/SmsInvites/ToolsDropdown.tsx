@@ -25,7 +25,7 @@ export const ToolsDropdown: React.FC<Props> = ({ campaignId, openModal, permissi
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.assessor.toolbar.tools')}</span>
+        <span>{I18n.t('shared.tools')}</span>
         <DownOutlined />
       </Button>
     )}
@@ -44,17 +44,17 @@ const getMenuProps = ({
     key: 'export',
     label: (
       <a href={`/administration/new_campaigns/${campaignId}/sms_invites.csv`}>
-        {I18n.t('administration.sms_invites.tools.export')}
+        {I18n.t('admin.sms_invites_tools_export')}
       </a>
     ),
   })
   permissions.import && menuItems.push({
     key: 'import',
-    label: I18n.t('administration.sms_invites.tools.import'),
+    label: I18n.t('admin.sms_invites_tools_import'),
   })
   permissions.sendSms && menuItems.push({
     key: 'sendSms',
-    label: I18n.t('administration.sms_invites.tools.send_sms'),
+    label: I18n.t('admin.sms_invites_tools_send_sms'),
   })
 
   const handleMenuClick = ({ key }) => {

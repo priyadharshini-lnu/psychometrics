@@ -42,8 +42,8 @@ export const ModelAnswerModal: FC<Props> = ({
       title={<Typography.Title level={4}>{I18n.t('admin.configure_model_answer_title')}</Typography.Title>}
       onCancel={onClose}
       onOk={handleOk}
-      okText={I18n.t('admin.save')}
-      cancelText={I18n.t('admin.cancel')}
+      okText={I18n.t('shared.save')}
+      cancelText={I18n.t('shared.cancel')}
       width={600}
     >
       <Typography.Title level={5}>{I18n.t('admin.model_answer')}</Typography.Title>

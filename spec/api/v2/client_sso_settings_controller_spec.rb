@@ -6,9 +6,7 @@ RSpec.describe Api::V2::Administration::ClientSsoSettingsController, type: :requ
   let!(:client) { create(:tenancy) }
   let!(:client_sso_setting) { client.client_sso_setting }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-  let(:headers) { { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' } }
+  let(:headers) { { 'Content-Type' => 'application/vnd.api+json' } }
 
   before { sign_in(superadmin) }
 

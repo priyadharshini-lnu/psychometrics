@@ -7,21 +7,26 @@ module Assessments
         'TextEntry' => Assessments::QuestionsImport::QuestionPropertyForm::TextEntry,
         'MultipleChoice' => Assessments::QuestionsImport::QuestionPropertyForm::MultipleChoice,
         'MatrixTable' => Assessments::QuestionsImport::QuestionPropertyForm::MatrixTable,
-        'StaticContent' => Assessments::QuestionsImport::QuestionPropertyForm::StaticContent
+        'StaticContent' => Assessments::QuestionsImport::QuestionPropertyForm::StaticContent,
+        'AudioResponse' => Assessments::QuestionsImport::QuestionPropertyForm::AudioResponse,
+        'VideoResponse' => Assessments::QuestionsImport::QuestionPropertyForm::VideoResponse
       }.freeze
       SCORING_ALLOWED_QUESTION_TYPES = %w[MultipleChoice MatrixTable].freeze
+      AI_SCORING_ALLOWED_QUESTION_TYPES = %w[TextEntry AudioResponse VideoResponse].freeze
 
       attribute :block, Hash, default: {}
       attribute :question, Hash, default: {}
       attribute :question_property, Hash, default: {}
       attribute :required_validation, Hash, default: {}
       attribute :scoring, Hash, default: {}
+      attribute :ai_scoring_config, Hash, default: {}
 
       validate :validate_block
       validate :validate_question
       validate :validate_question_property
       validate :validate_required_validation
       validate :validate_scoring
+      validate :validate_ai_scoring_config
 
       delegate :assessment, to: :context
 
@@ -86,6 +91,29 @@ module Assessments
           errors.add(
             :base,
             I18n.t('administration.assessment_question_import.errors.invalid_scores', factor_name: factor_name)
+          )
+        end
+      end
+
+      def validate_ai_scoring_config
+        return if ai_scoring_config.blank?
+
+        unavailable_factors = ai_scoring_config.keys - (context.allowed_factor_names || [])
+        if unavailable_factors.present?
+          errors.add(
+            :base,
+            I18n.t(
+              'administration.assessment_question_import.errors.unavailable_factors',
+              unavailable_factor_names: Utility::String.join_into_sentence(unavailable_factors)
+            )
+          )
+          return
+        end
+
+        unless AI_SCORING_ALLOWED_QUESTION_TYPES.include?(question['type'])
+          errors.add(
+            :base,
+            I18n.t('administration.assessment_question_import.errors.ai_scoring_not_allowed')
           )
         end
       end

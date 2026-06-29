@@ -93,7 +93,7 @@ const AvailabilityListing = () => {
         crumbs={[
           {
             link: () => '/admin/user_availability',
-            label: () => I18n.t('administration.navigation.availability'),
+            label: () => I18n.t('admin.availability'),
           },
         ]}
       />

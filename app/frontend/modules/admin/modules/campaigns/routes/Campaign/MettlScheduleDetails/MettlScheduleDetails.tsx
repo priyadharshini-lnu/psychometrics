@@ -11,24 +11,24 @@ const MettlScheduleDetails: React.FC<Props> = ({
   mettlScheduleRecord,
 }) => (
   <List size="small">
-    <Divider>{I18n.t('administration.projects.mettl_schedule_records.settings')}</Divider>
+    <Divider>{I18n.t('admin.projects_mettl_schedule_records_settings')}</Divider>
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.secure_browser_enabled')}
+        {I18n.t('admin.projects_mettl_schedule_records_secure_browser_enabled')}
       </label>
       <Switch checked={mettlScheduleRecord.secureBrowserEnabled} disabled />
     </List.Item>
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.visual_proctoring_enabled')}
+        {I18n.t('admin.projects_mettl_schedule_records_visual_proctoring_enabled')}
       </label>
       <Switch checked={mettlScheduleRecord.visualProctoringSettings?.enabled} disabled />
     </List.Item>
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.candidate_authorization')}
+        {I18n.t('admin.projects_mettl_schedule_records_candidate_authorization')}
       </label>
       <Switch
         checked={mettlScheduleRecord.visualProctoringSettings?.candidateAuthorization}
@@ -38,7 +38,7 @@ const MettlScheduleDetails: React.FC<Props> = ({
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.candidate_screen_capture')}
+        {I18n.t('admin.projects_mettl_schedule_records_candidate_screen_capture')}
       </label>
       <Switch
         checked={mettlScheduleRecord.visualProctoringSettings?.candidateScreenCapture}
@@ -48,21 +48,21 @@ const MettlScheduleDetails: React.FC<Props> = ({
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.web_proctoring_enabled')}
+        {I18n.t('admin.projects_mettl_schedule_records_web_proctoring_enabled')}
       </label>
       <Switch checked={mettlScheduleRecord.webProctoringSettings?.enabled} disabled />
     </List.Item>
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.show_remaining_counts')}
+        {I18n.t('admin.projects_mettl_schedule_records_show_remaining_counts')}
       </label>
       <Switch checked={mettlScheduleRecord.webProctoringSettings?.showRemainingCounts} disabled />
     </List.Item>
 
     <List.Item>
       <label style={{ fontWeight: 'normal' }}>
-        {I18n.t('administration.projects.mettl_schedule_records.count')}
+        {I18n.t('admin.projects_mettl_schedule_records_count')}
       </label>
       {mettlScheduleRecord.webProctoringSettings?.showRemainingCounts
         ? mettlScheduleRecord.webProctoringSettings?.count : ''}

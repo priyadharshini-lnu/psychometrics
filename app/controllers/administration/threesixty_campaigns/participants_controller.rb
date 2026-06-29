@@ -42,21 +42,20 @@ module Administration
       def spoof
         user = User.find(params[:id])
         audit! :sign_in_as, user, payload: { sign_in_as: user.email }
+
         if user.is?(:superadmin, :project_admin)
           siem_log_impersonation_event(user, 'Admin')
-          impersonate_as_admin(user)
+          spoof_admin_routing(user, client: threesixty_campaign.project.parent, fallback_redirect_url: admin_path)
         else
-          spoof_token = impersonate_as_end_user(user)
           siem_log_impersonation_event(user, 'End User')
+          spoof_token = impersonate_as_end_user(user)
           redirect_url = root_url(
             domain: Settings.domain,
             subdomain: threesixty_campaign.project.try(:subdomain),
             spoof_token: spoof_token
           )
+          redirect_to redirect_url, allow_other_host: true
         end
-        redirect_url ||= admin_path
-        # flash.now[:success] = t('.successfully', name: user.decorate.display_name)
-        redirect_to redirect_url, allow_other_host: true
       end
 
       def destroy

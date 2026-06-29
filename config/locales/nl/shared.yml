@@ -18,23 +18,28 @@ nl:
     assessment_id: Beoordelings-ID
     assessment_list: Beoordelingslijst
     assessment_name: Naam van de beoordeling
+    assessor: Assessor
     assessor_approved: Beoordelaar goedgekeurd
     assessors_list: Lijst van beoordelaars
     asset_not_present: Asset niet aanwezig
     audio: Audio
     audio_devices: Audioapparatuur
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
+    auto_approved: Automatisch goedgekeurd
     back: Terug
     basic: Basisch
+    bulk_download: Bulk downloaden
     camera: Camera
     camera_preview: Hier verschijnt het voorbeeld van de camera
     campaign: Campagne
     campaign_id: Campagne-ID
     cancel: Annuleren
+    category: Categorie
     change_password: Wachtwoord wijzigen
     clear_filters: Filters wissen
     client: Klant
     close: Sluiten
+    code: Code
     collaborative_learning: Samenwerkend leren
     completed: Voltooid
     configurations: Configuraties
@@ -43,11 +48,13 @@ nl:
     controller: Controller
     cookie_notice: Kennisgeving inzake cookies
     cookies_statement: Cookiesverklaring
+    copied: Gekopieerd naar klembord
     copied_successfully: Geslaagd gekopieerd
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
     create: Maken
     created_at: Gemaakt op
+    created_by: Gemaakt door
     created_date: Datum aangemaakt
     created_successfully: Succesvol aangemaakt
     custom_acknowledgment_text: Aangepaste bedanktekst
@@ -55,11 +62,14 @@ nl:
     custom_consent_text: Aangepaste toestemmingstekst
     custom_consent_text_required: Aangepaste toestemmingstekst is vereist voor de gegevensrol van de verwerkingsverantwoordelijke
     data_role: Gegevensrol
+    datasheet: Gegevensblad
     decline: Neergang
+    default: Standaard
     delete: Verwijderen
     description: Beschrijving
     desktop_or_laptop_recommended: Desktop of laptop aanbevolen
     desktop_or_laptop_required: Desktop of laptop vereist
+    dimension: Afmeting
     disabled: Gehandicapt
     discard: Verwijderen
     download: Downloaden
@@ -69,6 +79,7 @@ nl:
     edit: Bewerk
     edited: Nieuw
     email: E-mail
+    end_date: Einddatum
     ending_proctoring_session_msg: We ronden de toezichtsessie af. <p>Even geduld a.u.b. terwijl we uw antwoorden opslaan en u terugleiden naar de startpagina.</p>
     error: Fout
     export: Exporteer
@@ -83,12 +94,18 @@ nl:
     generating: Genereren
     group_question_max_validation_error: Elke groep kan maximaal {{max}} item(s) bevatten.
     group_question_min_validation_error: Elke groep moet minstens {{min}} items(en) bevatten.
+    icon: Pictogram
     id: ID
     idp_ai_assistant_disclaimer: De AI-assistent van de Lighthouse IDP kan fouten maken. Wees alsjeblieft voorzichtig met het gebruik van de reacties.
+    import: Importeren
+    inactive: Inactief
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     last_name: Achternaam
+    last_updated: Laatst bijgewerkt
     learning_on_the_job_label: Leren op de werkvloer
     lets_start: Laten we beginnen!
+    linked_activities: Gekoppelde activiteiten
+    linked_assessment: Gekoppelde beoordeling
     loading: Bezig met laden...
     login: Inloggen
     maintenance_in_hours: "%{hours} uren"
@@ -98,11 +115,13 @@ nl:
     maintenance_time_remaining: Resterende tijd
     maintenance_upcoming_description: We voeren gepland onderhoud uit op %{date} gedurende ongeveer %{duration} om uw ervaring te verbeteren. Gedurende deze periode kunt u geen toegang krijgen tot toegewezen taken en deze ook niet voltooien. Wij danken u voor uw geduld.
     maintenance_upcoming_title: Aankomend onderhoud
+    manage: Beheer
     manage_cookies: Cookies beheren
     media_id: Media-ID
     media_preview: Media Preview
     media_question_transcriptions: Transcripties van vragen van de media
     media_responses: Reacties in de media
+    meeting_link: Bijeenkomst Link
     microphones: Microfoons
     mobile_proctoring_disabled_instructions: Voor deze beoordeling is een desktop of laptop nodig. Ga naar een computer om de activiteit te voltooien.
     mobile_proctoring_enabled_instructions: Voor de beste ervaring raden we u aan om over te schakelen naar een desktop of laptop als u die beschikbaar heeft. Indien nodig kunt u doorgaan op uw mobiele apparaat.
@@ -116,13 +135,17 @@ nl:
     new: Nieuw
     next: Volgende
     no_audio_warning: Er is geen geluid gedetecteerd. Controleer of uw microfoon is aangesloten en goed werkt.
+    no_data_found: Geen gegevens gevonden
     no_results_found: Geen resultaten gevonden
+    none: Geen
     not_requested: Nog niet aangevraagd
     ok: Ok
     options: Opties
+    overview: Overzicht
     owner: Eigenaar
     pause: Pauze
     pending: In behandeling
+    permissions: Rechten
     play: Spelen
     policy_version: Beleidsversie
     policy_version_format: Alleen hele getallen zijn toegestaan.
@@ -133,6 +156,7 @@ nl:
     proctoring_maintenance_active: Proctoring wordt momenteel onderhouden van %{start_time} naar %{end_time}. Probeer het opnieuw na de onderhoudsperiode.
     proctoring_maintenance_upcoming: Proctoring zal worden onderhouden van %{start_time} tot %{end_time}.
     project: Project
+    publish: Publiceer
     question: Vraag
     question_id: Vraag-ID
     question_transcription_disabled: Transcriptie is uitgeschakeld voor deze vraag.
@@ -146,20 +170,27 @@ nl:
     remove: Verwijder
     removed: Verwijderd
     replace: Vervangen
+    required: vereist
+    reset: Reset
     reset_password: Wachtwoord opnieuw instellen
     response_text: Antwoordtekst
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
+    run: Ren
     save: Sla
     saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
+    schedule_time: Tijd plannen
     scoring_details: Scoredetails
     search: Zoek op
     select_camera: Kies een camera
+    select_language: Selecteer taal
     select_microphone: Kies een microfoon
+    send: Stuur
     send_email: Stuur e-mail
     show_more: Laat meer zien
     something_wrong: Er is iets misgegaan. Neem contact op met uw beheerder.
     speakers: Sprekers
+    start_date: Startdatum
     status: Status
     status_unknown: Status onbekend
     stop: Stop
@@ -178,6 +209,7 @@ nl:
           one: 'Totaal : 1'
           other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
+    tags: Tags
     terms_conditions_privacy: Privacyverklaring
     tools: Gereedschap
     transcription: Transcriptie
@@ -189,11 +221,35 @@ nl:
     try_again: Probeer het opnieuw
     tte_terms_and_condition: Voorwaarden en privacy
     type: Type
+    unpublish: Verwijder
     update: Update
     update_failed: Update mislukt
     updated_at: Bijgewerkt op
+    updated_by: Bijgewerkt door
     updated_successfully: Succesvol bijgewerkt
+    upload: Uploaden
     user_report_pdf_url_not_generated: De downloadlink voor de PDF kon niet worden gegenereerd
+    user_reports_approval_status_pending_qc: In afwachting van kwaliteitscontrole
+    user_reports_approval_status_qc_completed: Kwaliteitscontrole voltooid
+    user_reports_assessment_name_not_completed_reason_template: De beoordeling %{names} is nog niet voltooid
+    user_reports_assessments_name_not_completed_reason_template: De beoordelingen %{names} zijn nog niet afgerond
+    user_reports_assessor_not_completed_reason_template: Het beoordelaarsformulier %{names} is niet ingevuld
+    user_reports_assessors_not_completed_reason_template: De formulieren voor de beoordelaar %{names} zijn niet ingevuld
+    user_reports_campaign_artifact_results_pending_reason_message: De resultaten van de campagne-artefacten zijn voor deze gebruiker nog niet definitief
+    user_reports_campaign_scoring_pending_reason_message: De campagnescores voor deze gebruiker zijn nog niet definitief
+    user_reports_custom_upload_report_reason_message: De bron van het rapport is een aangepaste upload
+    user_reports_external_report_pending_reason_message: In afwachting van het rapport van de dienstverlener
+    user_reports_lead_assessor_not_completed_reason_template: Het formulier voor de hoofdbeoordelaar %{names} is niet ingevuld
+    user_reports_lead_assessors_not_completed_reason_template: De formulieren voor de hoofdbeoordelaar %{names} zijn niet ingevuld
+    user_reports_no_report_module_reason_message: Er is geen rapportmodule gevonden voor dit rapport
+    user_reports_not_prepared_reason_message: Het rapport is nog niet opgesteld
+    user_reports_pending_approval_reason_template: De goedkeuringsstatus is '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: In afwachting van definitieve goedkeuring van de AI-score
+    user_reports_pending_qc_ai_scoring_approval_reason_message: In afwachting van goedkeuring van de QC AI-score
+    user_reports_pending_qc_approval_reason_message: In afwachting van goedkeuring van het kwaliteitscontrolerapport
+    user_reports_qc_completed_approval_reason_message: In afwachting van goedkeuring van het eindrapport
+    user_reports_report_generating_reason_message: Het rapport wordt gegenereerd
+    user_reports_report_generation_failed_reason_message: Het genereren van het rapport is mislukt
     video: Video
     view: Bekijken
     view_audio: Audio bekijken

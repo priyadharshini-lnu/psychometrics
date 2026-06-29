@@ -36,6 +36,8 @@ vi:
     browser_not_compatible: Trình duyệt của bạn %{browser_name} không tương thích với chiến dịch này. Vui lòng sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
     browser_not_compatible_description: Hãy sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
     browser_not_compatible_detail: Trình duyệt của bạn %{browser_name} không tương thích với chiến dịch này. Vui lòng sử dụng các phiên bản mới nhất của Chrome, Firefox, Safari hoặc Edge để có trải nghiệm tốt nhất.
+    browser_proctoring_description: Bạn đang sử dụng trình duyệt%{browser_name}, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng giám sát được kích hoạt cho chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng Chrome hoặc Edge
+    browser_proctoring_title: "%{browser_name} Đã phát hiện trình duyệt"
     browser_version_fix_description_first: 'Hãy sử dụng trình duyệt được hỗ trợ: Chrome, Firefox, Edge hoặc Safari'
     browser_version_fix_title: Phiên bản trình duyệt của bạn không được hỗ trợ.
     camera: Video và Âm thanh
@@ -43,6 +45,7 @@ vi:
     camera_check: Kiểm tra camera và micrô
     camera_check_abruptly_ended: Camera đã bị tắt đột ngột. Vui lòng bật camera và thực hiện lại quá trình kiểm tra.
     camera_check_description: Hãy kiểm tra xem camera và micrô của bạn có hoạt động bình thường để ghi âm không
+    camera_check_failed: Không kiểm tra được video
     camera_check_passed: Kiểm tra video và âm thanh đã hoàn tất thành công
     camera_check_record_instruction: Nhấn nút Ghi âm và đọc to đoạn văn sau đây
     camera_test_step: Bước kiểm tra video và âm thanh
@@ -69,6 +72,9 @@ vi:
     error_uploading_audio_detail: Đã xảy ra lỗi khi tải lên tệp âm thanh của bạn
     error_uploading_video: Lỗi khi tải video lên
     error_uploading_video_detail: Đã xảy ra lỗi trong quá trình tải video lên
+    face_detection_error: Đã xảy ra lỗi trong quá trình nhận diện khuôn mặt. Vui lòng kiểm tra xem camera của bạn có hoạt động bình thường không và thử lại.
+    face_detection_failed: Không phát hiện thấy khuôn mặt trong đoạn video. Vui lòng đảm bảo camera không bị che khuất và khuôn mặt của bạn phải nhìn thấy rõ.
+    face_not_detected_warning: Không phát hiện khuôn mặt. Vui lòng đảm bảo khuôn mặt của bạn nằm trong tầm nhìn của camera.
     fail: Thất bại
     file_submission_already_exists: Chúng tôi đã nhận được câu trả lời của bạn cho câu hỏi này. Vui lòng làm mới trang; nếu vẫn không thấy câu trả lời trước đó, xin vui lòng liên hệ với quản trị viên.
     follow_these_steps: Hãy làm theo các bước sau để khắc phục các sự cố được phát hiện trong quá trình kiểm tra hệ thống
@@ -162,6 +168,8 @@ vi:
     select_video_device: Chọn thiết bị video
     selected_count: Đã chọn
     skill_type: Loại kỹ năng
+    speech_verification_error: Đã xảy ra lỗi trong quá trình xác minh giọng nói của bạn. Vui lòng thử lại.
+    speech_verification_failed: Câu nói của bạn không khớp với cụm từ kiểm tra. Vui lòng thử lại và phát âm cụm từ đó một cách rõ ràng.
     start_campaign_message_proctored: Đây là một chiến dịch có giám sát, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
@@ -186,10 +194,12 @@ vi:
       one: Tôi hét lên, bạn hét lên, tất cả chúng ta đều hét lên vì kem!
       seven: Mỗi ngày là một khởi đầu mới. Hãy nói to và tự hào nhé!
       six: Pizza hay mì ống? Quyết định thật khó khăn.
+      ten: Tôi đã sẵn sàng. Đây là bản ghi thử để kiểm tra xem micro của tôi có hoạt động bình thường không.
       three: Kiểm tra, một hai ba, âm thanh rõ ràng nhất có thể!.
       two: Con cáo nâu nhanh nhẹn nhảy qua con chó lười.
     system_check_audio_title: Hãy nói và lặp lại câu sau 3 lần.
     system_check_complete: Hoàn tất kiểm tra hệ thống
+    system_check_face_detection: Nhận diện khuôn mặt
     system_check_failed: Kiểm tra hệ thống không thành công
     system_check_failed_description: Vui lòng khắc phục các sự cố và chạy lại các kiểm tra hệ thống.
     system_check_failed_message: Một số kiểm tra hệ thống đã không thành công. Vui lòng xem lại chi tiết và thử lại.
@@ -200,6 +210,7 @@ vi:
     system_check_retake: Không, tôi muốn thi lại
     system_check_run_again: Chạy lại
     system_check_session_not_found: Không tìm thấy phiên kiểm tra hệ thống. Vui lòng bắt đầu một phiên kiểm tra hệ thống mới.
+    system_check_speech_verification: Xác thực giọng nói
     system_check_start_recording: Bắt đầu ghi âm
     system_check_stop_recording: Dừng ghi âm
     system_check_test_message: rất vui khi được nói chuyện với bạn
@@ -257,6 +268,10 @@ vi:
     video_overlay_label: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc thông báo sau khi bạn nhấn nút Ghi âm
     video_overlay_message: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc to câu xuất hiện ở phía dưới.
     video_recorder_label: Máy quay video
+    video_upload_failed_camera_access: Không thể truy cập vào camera hoặc micrô của bạn. Vui lòng kiểm tra quyền truy cập trên thiết bị của bạn và thử lại.
+    video_upload_failed_chunk_upload: Một phần của bản ghi âm không tải lên được. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.
+    video_upload_failed_finalize: Quá trình ghi âm đã được thực hiện nhưng không thể lưu lại. Vui lòng thử lại.
+    video_upload_failed_no_recording: Không tìm thấy bản ghi âm nào để tải lên. Vui lòng ghi âm lại.
     view_details: Xem chi tiết
     webgl_api_fix_description_first: Hãy đảm bảo rằng trình duyệt của bạn hỗ trợ WebGL và tính năng này đã được bật trong phần cài đặt
     webgl_api_fix_description_second: Cập nhật trình điều khiển đồ họa của bạn lên phiên bản mới nhất

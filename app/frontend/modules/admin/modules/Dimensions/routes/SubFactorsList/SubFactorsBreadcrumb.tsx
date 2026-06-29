@@ -20,12 +20,12 @@ const RESOURCE_CONFIG: Record<ResourceType, {
   factorsLabelKey: string
 }> = {
   occupations: {
-    titleKey: 'administration.occupations.index.title',
-    factorsLabelKey: 'administration.navigation.factors',
+    titleKey: 'admin.occupations_index_title',
+    factorsLabelKey: 'admin.navigation_factors',
   },
   innovation_styles: {
-    titleKey: 'administration.innovation_styles.index.title',
-    factorsLabelKey: 'administration.navigation.factors',
+    titleKey: 'admin.innovation_styles_index_title',
+    factorsLabelKey: 'admin.navigation_factors',
   },
 }
 
@@ -77,8 +77,8 @@ export const SubFactorsBreadcrumb: React.FC = () => {
 
   const crumbs = useMemo(() => {
     const baseCrumbs: BreadcrumbItem[] = [
-      { link: () => '/admin', label: () => I18n.t('users.dashboard') },
-      { link: () => '/admin/dimensions', label: () => I18n.t('administration.dimensions.index.title') },
+      { link: () => '/admin', label: () => I18n.t('admin.dashboard') },
+      { link: () => '/admin/dimensions', label: () => I18n.t('admin.dimensions_index_title') },
     ]
 
     if (dimension) {

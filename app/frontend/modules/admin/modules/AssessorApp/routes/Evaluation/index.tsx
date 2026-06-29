@@ -118,7 +118,7 @@ const Evaluation: FC<Props> = ({
   const assessorTabItems: TabsProps['items'] = [
     {
       key: 'overview',
-      label: I18n.t('administration.assessor.overview'),
+      label: I18n.t('admin.assessor_overview'),
       children: <Overview userInfo={userInfo} />,
     },
     ...compact(sortedAssessorAssesments.map(({ assessments, id }) => {

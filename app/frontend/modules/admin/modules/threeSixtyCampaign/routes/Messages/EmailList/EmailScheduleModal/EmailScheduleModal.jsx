@@ -83,13 +83,13 @@ export default function EmailScheduleModal ({
   return (
     <Modal
       width={800}
-      title={I18n.t('administration.threesixty_campaigns.email_templates.schedule_email_title')}
+      title={I18n.t('admin.schedule_email_title')}
       open
       onCancel={closeModal}
       bodyStyle={{ padding: '0px' }}
       footer={[
         <Button key="back" onClick={closeModal}>
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -99,7 +99,7 @@ export default function EmailScheduleModal ({
           loading={loading}
         >
           <CheckOutlined />
-          {I18n.t('administration.threesixty_campaigns.email_templates.schedule')}
+          {I18n.t('admin.schedule')}
         </Button>,
       ]}
     >
@@ -124,7 +124,7 @@ export default function EmailScheduleModal ({
         />
 
         <Input
-          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
+          addonBefore={I18n.t('admin.from')}
           value={emailSchedule.from}
           className={cs(['mbm', styles.smallWidthInput])}
           name="from"
@@ -132,7 +132,7 @@ export default function EmailScheduleModal ({
         />
 
         <Input
-          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
+          addonBefore={I18n.t('admin.reply_to_email')}
           value={emailSchedule.replyToEmail}
           className={cs(['mbm', styles.smallWidthInput])}
           name="replyToEmail"
@@ -140,7 +140,7 @@ export default function EmailScheduleModal ({
         />
 
         <Input
-          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+          addonBefore={I18n.t('admin.subject')}
           value={emailSchedule.subject}
           className="mbm"
           name="subject"
@@ -174,7 +174,7 @@ function ConsolidatedSwitch ({ emailTemplate, update }) {
         onChange={update}
       />
       {'  '}
-      <span>{I18n.t('administration.threesixty_campaigns.email_templates.consolidated')}</span>
+      <span>{I18n.t('admin.consolidated')}</span>
     </div>
   )
 }

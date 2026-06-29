@@ -173,7 +173,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
     if (selectedWorkshops.length === 0) {
       form.setFields([{
         name: 'workshops',
-        errors: [I18n.t('administration.assessment_center.invite.basic_info.required_error')],
+        errors: [I18n.t('admin.invite_basic_info_required_error')],
       }])
       return
     }
@@ -187,8 +187,8 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   return (
     <div>
       <Panel
-        title={I18n.t('administration.assessment_center.invite.basic_info.title')}
-        description={I18n.t('administration.assessment_center.invite.basic_info.description')}
+        title={I18n.t('admin.invite_basic_info_title')}
+        description={I18n.t('admin.invite_basic_info_description')}
       >
         <Row>
           <Col sm={24} md={12} lg={8}>
@@ -196,20 +196,20 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
               layout="vertical"
               form={form}
               validateMessages={{
-                required: I18n.t('administration.assessment_center.invite.basic_info.required_error'),
+                required: I18n.t('admin.invite_basic_info_required_error'),
               }}
               onFinish={handleFormFinish}
               requiredMark={false}
             >
               <Form.Item
                 name="campaignAssessmentGroupId"
-                label={I18n.t('administration.scheduling.assessment_center_form.assessment_center_group')}
+                label={I18n.t('admin.assessment_center_group')}
                 rules={[{ required: true }]}
               >
                 <Select
                   disabled={workshops && (workshops.length > 0)}
                   placeholder={
-                    I18n.t('administration.scheduling.assessment_center_form.assessment_center_group_placeholder')}
+                    I18n.t('admin.assessment_center_group_placeholder')}
                   onChange={handleAssessmentGroupChange}
                 >
                   {_.map(assessmentCenterGroups, (assessmentCenterGroup: AssessmentCenterGroup) => (
@@ -221,7 +221,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
               </Form.Item>
               <Form.Item
                 name="workshops"
-                label={I18n.t('administration.assessment_center.invite.basic_info.assessment_centers')}
+                label={I18n.t('admin.invite_basic_info_assessment_centers')}
               >
                 <Row gutter={[16, 16]}>
                   {errors?.workshopIds && (
@@ -235,7 +235,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                   )}
                   <Col span={24}>
                     <div className={styles.hint}>
-                      {I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_hint')}
+                      {I18n.t('admin.invite_basic_info_assessment_centers_hint')}
                     </div>
                     <Select
                       disabled={workshops && (workshops.length > 0)}
@@ -248,7 +248,7 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                         },
                       }}
                       placeholder={
-                        I18n.t('administration.assessment_center.invite.basic_info.assessment_centers_placeholder')
+                        I18n.t('admin.invite_basic_info_assessment_centers_placeholder')
                       }
                       options={assessmentCenters.map(workshop => ({
                         label: workshop.name, value: workshop.id,
@@ -276,14 +276,14 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                     onChange={checked => changePreferredLang(checked)}
                     checked={preferredLang}
                   />
-                  {I18n.t('administration.assessment_center.invite.basic_info.allow_preferred_language')}
+                  {I18n.t('admin.invite_basic_info_allow_preferred_language')}
                 </Space>
               </Form.Item>
               {preferredLang
               && (
                 <Form.Item
                   name="languagesAllowed"
-                  label={I18n.t('administration.assessment_center.invite.basic_info.preferred_language')}
+                  label={I18n.t('admin.invite_basic_info_preferred_language')}
                   rules={[{ required: true }]}
                 >
                   <Select
@@ -306,15 +306,15 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                     onChange={checked => changeNeuroDiversityOption(checked)}
                     checked={allowNeurodiversityOption}
                   />
-                  {I18n.t('administration.assessment_center.invite.basic_info.neurodiversity')}
+                  {I18n.t('admin.invite_basic_info_neurodiversity')}
                 </Space>
               </Form.Item>
               <Form.Item
-                label={I18n.t('administration.assessment_center.invite.name')}
+                label={I18n.t('shared.name')}
                 name="name"
               >
                 <Input
-                  placeholder={I18n.t('administration.assessment_center.invite.name_placeholder')}
+                  placeholder={I18n.t('admin.invite_name_placeholder')}
                 />
               </Form.Item>
             </Form>
@@ -326,12 +326,12 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
           {
             onCancel && (
               <Button onClick={handleCancel}>
-                {I18n.t('common.actions.cancel')}
+                {I18n.t('shared.cancel')}
               </Button>
             )
           }
-          {prev && <Button onClick={prev}>{I18n.t('administration.assessment_center.invite.back')}</Button>}
-          <Button type="primary" onClick={handleNext}>{I18n.t('administration.assessment_center.invite.next')}</Button>
+          {prev && <Button onClick={prev}>{I18n.t('shared.back')}</Button>}
+          <Button type="primary" onClick={handleNext}>{I18n.t('shared.next')}</Button>
         </Space>
       </div>
     </div>

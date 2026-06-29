@@ -88,7 +88,7 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'prework',
       width: '10%',
       render: () => (
-        <ActivityCell label={I18n.t('admin.assessment_center_prework')}>
+        <ActivityCell label={I18n.t('admin.prework')}>
           {subject.preworks || '-'}
         </ActivityCell>
       ),
@@ -97,7 +97,7 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'name',
       width: '20%',
       render: (activity: WorkshopActivity) => (
-        <ActivityCell label={I18n.t('admin.assessment_center_activity')}>
+        <ActivityCell label={I18n.t('admin.activity')}>
           {activity.name || '-'}
         </ActivityCell>
       ),
@@ -106,7 +106,7 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'evaluator',
       width: '15%',
       render: (activity: WorkshopActivity) => (
-        <ActivityCell label={I18n.t('admin.assessment_center_assessor')}>
+        <ActivityCell label={I18n.t('admin.assessor')}>
           {activity.evaluator ? (
             <Row gutter={[8, 0]} align="middle">
               <Col>
@@ -126,7 +126,7 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'dateTime',
       width: '15%',
       render: () => (
-        <ActivityCell label={I18n.t('admin.assessment_center_date_and_time')}>
+        <ActivityCell label={I18n.t('admin.date_and_time')}>
           {subject.workshopStartTime
             ? <DateTimeWithZone dateString={subject.workshopStartTime} format="lll" />
             : '-'}
@@ -137,7 +137,7 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'scheduleTime',
       width: '15%',
       render: (activity: WorkshopActivity) => (
-        <ActivityCell label={I18n.t('admin.assessment_center_schedule_time')}>
+        <ActivityCell label={I18n.t('admin.schedule_time')}>
           {activity.scheduleTime ? dayjs(activity.scheduleTime).format('HH:mm') : '-'}
         </ActivityCell>
       ),
@@ -146,9 +146,9 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'status',
       width: '10%',
       render: (activity: WorkshopActivity) => (
-        <ActivityCell label={I18n.t('common.column.status')}>
+        <ActivityCell label={I18n.t('shared.status')}>
           <Tag key={activity.status} color={COMPLETED_STATUS[activity.status || 'not_started']}>
-            {I18n.t(`administration.scheduling.status.${activity.status}`)}
+            {I18n.t(`admin.scheduling_status_${activity.status}`)}
           </Tag>
         </ActivityCell>
       ),
@@ -157,11 +157,11 @@ const ActivitiesExpandedRow: React.FC<{ subject: ParticipantSubject }> = ({ subj
       key: 'linkedSubjectMeetingLink',
       width: '15%',
       render: (activity: WorkshopActivity) => (
-        <ActivityCell label={I18n.t('admin.assessment_center_meeting_link')}>
+        <ActivityCell label={I18n.t('admin.meeting_link')}>
           {activity.linkedSubjectMeetingLink ? (
             <Space>
               <a href={activity.linkedSubjectMeetingLink} target="_blank" rel="noreferrer">
-                {I18n.t('administration.scheduling.info.join_meeting')}
+                {I18n.t('admin.scheduling_info_join_meeting')}
               </a>
               <CopyToClipboard
                 text={activity.linkedSubjectMeetingLink}
@@ -209,13 +209,13 @@ const DateFilters = () => {
         value={filter}
       >
         <Radio.Button value="current">
-          {I18n.t('administration.assessment_center.current')}
+          {I18n.t('admin.current')}
         </Radio.Button>
         <Radio.Button value="upcoming">
-          {I18n.t('administration.assessment_center.upcoming')}
+          {I18n.t('admin.upcoming')}
         </Radio.Button>
         <Radio.Button value="past">
-          {I18n.t('administration.assessment_center.past')}
+          {I18n.t('admin.past')}
         </Radio.Button>
       </Radio.Group>
     </div>
@@ -306,7 +306,7 @@ const ParticipantsTable: React.FC = () => {
         )}
       />
       <Resource.Column<ParticipantSubject>
-        title={I18n.t('administration.scheduling.columns.campaign_name')}
+        title={I18n.t('admin.scheduling_columns_campaign_name')}
         id="campaign_id"
         width={200}
         filters={filterOptions?.campaigns?.map(c => ({ text: c.name, value: String(c.id) }))}
@@ -324,32 +324,32 @@ const ParticipantsTable: React.FC = () => {
         render={(_, { workshopName }) => workshopName}
       />
       <Resource.Column<ParticipantSubject>
-        title={I18n.t('admin.assessment_center_attendance')}
+        title={I18n.t('admin.attendance')}
         id="attended"
         render={subject => <ActiveSwitch subject={subject} />}
         width={100}
       />
       <Resource.Column<ParticipantSubject>
-        title={I18n.t('admin.assessment_center_attendance_status')}
+        title={I18n.t('admin.attendance_status')}
         id="attendance_status"
         width={100}
         filters={filterOptions?.attendanceStatuses?.map(s => ({ text: s.label, value: s.value }))}
         filteredValue={getFilteredValue('attendance_status_in')}
         render={(_, { attendanceStatus }) => (
           <Tag color={ATTENDANCE_TAG_COLORS[attendanceStatus]}>
-            {I18n.t(`administration.scheduling.attendance_status.${attendanceStatus}`)}
+            {I18n.t(`admin.scheduling_attendance_status_${attendanceStatus}`)}
           </Tag>
         )}
       />
       <Resource.Column<ParticipantSubject>
-        title={I18n.t('admin.assessment_center_scheduling_status')}
+        title={I18n.t('admin.scheduling_status')}
         id="scheduling_status"
         width={100}
         filters={filterOptions?.schedulingStatuses?.map(s => ({ text: s.label, value: s.value }))}
         filteredValue={getFilteredValue('scheduling_status_in')}
         render={(_, { schedulingStatus }) => (
           <Tag color={SCHEDULING_STATUS_TO_TAG_COLOR[schedulingStatus]}>
-            {I18n.t(`administration.scheduling.scheduling_statuses.${schedulingStatus}`)}
+            {I18n.t(`admin.scheduling_scheduling_statuses_${schedulingStatus}`)}
           </Tag>
         )}
       />
@@ -386,7 +386,7 @@ export const ParticipantsList: React.FC = () => {
     <Resource config={config} name="workshop_subjects">
       <Resource.Filter
         hideSearch={false}
-        placeholder={I18n.t('admin.assessment_center_search_participants')}
+        placeholder={I18n.t('admin.search_participants')}
         name="user_full_name_or_user_email_cont"
       />
       <DateFilters />

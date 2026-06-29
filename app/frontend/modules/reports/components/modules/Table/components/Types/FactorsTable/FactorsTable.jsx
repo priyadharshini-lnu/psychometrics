@@ -299,7 +299,7 @@ class FactorsTable extends Component {
 
   renderFactors () {
     const { model, module, assessments } = this.props
-    const { fontFamily } = module.props.style
+    const { fontFamily, fontColor } = module.props.style
     const benchmarkScores = assessments?.[model.assessment_id]?.factor_benchmark_scores || []
 
     return (
@@ -438,9 +438,9 @@ class FactorsTable extends Component {
                   </div>
                 )}
                 {(showName || showDescription || showStrengthsBlindspots || (showScore && scorePosition === 'block')) && (
-                  <div className={styles.content}>
+                  <div style={{ color: fontColor }} className={styles.content}>
                     {showName && (
-                      <div className={styles.strength}>
+                      <div className={styles.strength} style={{ color: fontColor }}>
                         {_.isEmpty(conditionTitle) ? I18nStore.tFactor(factor, 'alias') : conditionTitle}
                       </div>
                     )}
@@ -451,7 +451,7 @@ class FactorsTable extends Component {
                       </ReactMarkdown>
                     )}
                     {showStrengthsBlindspots && (
-                      <div className={cs(styles.strengthsBlindspots, 'mt8')}>
+                      <div style={{ color: fontColor || '#7B7B7B' }} className={cs(styles.strengthsBlindspots, 'mt8')}>
                         <ReactMarkdown className={styles.strengths}>
                           {conditionStrengths}
                         </ReactMarkdown>

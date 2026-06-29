@@ -54,17 +54,17 @@ const RecordingsTable = () => {
       <Resource.Filter hideSearch name="" />
       <Resource.Table pagination>
         <Resource.Column
-          title={I18n.t('administration.scheduling.columns.serial_no')}
+          title={I18n.t('admin.scheduling_columns_serial_no')}
           id="id"
           width="3%"
         />
         <Resource.Column
-          title={I18n.t('administration.scheduling.columns.recording_date')}
+          title={I18n.t('admin.scheduling_columns_recording_date')}
           id="recording_date"
           width="5%"
         />
         <Resource.Column
-          title={I18n.t('administration.scheduling.columns.assessor')}
+          title={I18n.t('admin.scheduling_columns_assessor')}
           id="assessors"
           width="5%"
           render={({ assessors }) => {
@@ -86,7 +86,7 @@ const RecordingsTable = () => {
           }}
         />
         <Resource.Column
-          title={I18n.t('administration.scheduling.columns.participants')}
+          title={I18n.t('admin.scheduling_columns_participants')}
           id="participants"
           width="5%"
           render={({ participants }) => {
@@ -108,7 +108,7 @@ const RecordingsTable = () => {
           }}
         />
         <Resource.Column
-          title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
+          title={I18n.t('admin.scheduling_columns_link_to_view_recordings')}
           id="recording_url"
           width="5%"
           render={({ recordingUrl, recordingDate, id }) => {
@@ -148,7 +148,7 @@ const RecordingsTable = () => {
                   icon={<DownloadOutlined />}
                   type="link"
                 >
-                  {I18n.t('common.text.download')}
+                  {I18n.t('shared.download')}
                 </Button>
               </div>
             )

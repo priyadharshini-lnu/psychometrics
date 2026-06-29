@@ -125,10 +125,10 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
 
   const handleCancel = () => {
     modal.confirm({
-      title: I18n.t('administration.assessment_center.cancel_confirmation.title'),
-      content: I18n.t('administration.assessment_center.cancel_confirmation.message'),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+      title: I18n.t('admin.cancel_confirmation_title'),
+      content: I18n.t('admin.cancel_confirmation_message'),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => routeUtils.moveTo(navigate, prefixPath, '/assessment_center'),
     })
   }
@@ -142,19 +142,19 @@ export const AssessmentCenterFormComponent = ({ workshop }) => {
             current={step}
             items={[
               {
-                title: I18n.t('administration.assessment_center.steps.basic_information'),
+                title: I18n.t('admin.steps_basic_information'),
               },
               {
-                title: I18n.t('administration.assessment_center.steps.facilitators'),
+                title: I18n.t('admin.steps_facilitators'),
               },
               {
-                title: I18n.t('administration.assessment_center.steps.invite_subjects'),
+                title: I18n.t('admin.steps_invite_subjects'),
               },
               {
-                title: I18n.t('administration.assessment_center.steps.invite_options'),
+                title: I18n.t('admin.steps_invite_options'),
               },
               {
-                title: I18n.t('administration.assessment_center.steps.send_invitations'),
+                title: I18n.t('admin.steps_send_invitations'),
               },
             ]}
           />

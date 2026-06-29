@@ -124,10 +124,10 @@ function Profile ({
         crumbs={[
           {
             link: () => '/admin/profile',
-            label: () => I18n.t('administration.profile.profile'),
+            label: () => I18n.t('admin.profile'),
           },
           {
-            label: () => I18n.t('administration.profile.details'),
+            label: () => I18n.t('admin.profile_details'),
           },
         ]}
       />
@@ -192,7 +192,7 @@ function Profile ({
                       <Col xs={24} sm={24} md={12}>
                         <Form.Item
                           name="firstName"
-                          label={I18n.t('profile.first_name')}
+                          label={I18n.t('shared.first_name')}
                           hasFeedback
                           help={errors?.firstName?.title}
                           validateStatus={errors?.firstName ? 'error' : ''}
@@ -204,7 +204,7 @@ function Profile ({
                       <Col xs={24} sm={24} md={12}>
                         <Form.Item
                           name="lastName"
-                          label={I18n.t('profile.last_name')}
+                          label={I18n.t('shared.last_name')}
                           hasFeedback
                           help={errors?.lastName?.title}
                           validateStatus={errors?.lastName ? 'error' : ''}
@@ -214,7 +214,7 @@ function Profile ({
                         </Form.Item>
                       </Col>
                     </Row>
-                    <Form.Item name="email" label={I18n.t('profile.email')}>
+                    <Form.Item name="email" label={I18n.t('shared.email')}>
                       <Input size="large" disabled />
                     </Form.Item>
                     <Form.Item
@@ -265,7 +265,7 @@ function Profile ({
                         className={styles.actionButton}
                         loading={profileUpdateInProgress}
                       >
-                        {I18n.t('profile.update')}
+                        {I18n.t('shared.update')}
                       </Button>
                     </Space>
                   </Form>

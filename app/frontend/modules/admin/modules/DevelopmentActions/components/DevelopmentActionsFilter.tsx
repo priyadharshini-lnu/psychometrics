@@ -27,7 +27,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.development_actions.import.info_msg'))
+      message.info(I18n.t('admin.development_actions_import_info_msg'))
     })
       .catch((error) => {
         failureCallback(error)
@@ -39,10 +39,10 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
 
     resource.uploadFileAction(action, data).then(() => {
       successCallback()
-      message.info(I18n.t('administration.development_actions.import.info_msg'))
+      message.info(I18n.t('admin.development_actions_import_info_msg'))
     })
       .catch((error) => {
-        message.error(I18n.t('administration.development_actions.import.failure_msg'))
+        message.error(I18n.t('admin.development_actions_import_failure_msg'))
         failureCallback(error)
       })
   }
@@ -53,10 +53,10 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.development_actions.export.success_msg'))
+      message.info(I18n.t('admin.development_actions_export_success_msg'))
     })
       .catch(() => {
-        message.error(I18n.t('administration.development_actions.export.failure_msg'))
+        message.error(I18n.t('admin.development_actions_export_failure_msg'))
       })
   }
 
@@ -66,9 +66,9 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.development_actions.export.success_msg'))
+      message.info(I18n.t('admin.development_actions_export_success_msg'))
     }).catch(() => {
-      message.error(I18n.t('administration.development_actions.export.failure_msg'))
+      message.error(I18n.t('admin.development_actions_export_failure_msg'))
     })
   }
 
@@ -77,7 +77,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionImport,
         csvFilePath: '/example_csv/development-actions-sample.csv',
-        title: I18n.t('administration.development_actions.import_action.development_actions_title'),
+        title: I18n.t('admin.development_actions_import_action_development_actions_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobal,
       })
     }
@@ -86,7 +86,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
       openModal('DevelopmentActionsImportModal', {
         handleImport: handleDevelopmentActionTranslationsImport,
         csvFilePath: '/example_csv/development-action-translations-sample.csv',
-        title: I18n.t('administration.development_actions.import_action.development_actions_translations_title'),
+        title: I18n.t('admin.development_actions_import_action_development_actions_translations_title'),
         allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
       })
     }
@@ -111,10 +111,10 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         body: {},
         responseType: t.literal('ok'),
       }).then(() => {
-        message.info(I18n.t('administration.development_actions.export.success_msg'))
+        message.info(I18n.t('admin.development_actions_export_success_msg'))
       })
         .catch(() => {
-          message.error(I18n.t('administration.development_actions.export.failure_msg'))
+          message.error(I18n.t('admin.development_actions_export_failure_msg'))
         })
     }
 
@@ -125,10 +125,10 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         body: {},
         responseType: t.literal('ok'),
       }).then(() => {
-        message.info(I18n.t('administration.development_actions.export.success_msg'))
+        message.info(I18n.t('admin.development_actions_export_success_msg'))
       })
         .catch(() => {
-          message.error(I18n.t('administration.development_actions.export.failure_msg'))
+          message.error(I18n.t('admin.development_actions_export_failure_msg'))
         })
     }
   }
@@ -147,7 +147,7 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
         resource.meta.permissions?.create && (
           <Button type="primary" disabled={tableLoading} onClick={handleCreateDevelopmentActionModal}>
             <PlusOutlined />
-            {I18n.t('common.actions.create')}
+            {I18n.t('shared.create')}
           </Button>
         )
       }

@@ -87,9 +87,9 @@ export const DefaultFields: React.FC<Props> = ({
       dataSource={fields}
       rowKey="position"
     >
-      <Column title={I18n.t('administration.projects.profile_settings.form_fields.name')} dataIndex="name" />
+      <Column title={I18n.t('shared.name')} dataIndex="name" />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.enabled')}
+        title={I18n.t('admin.projects_profile_settings_form_fields_enabled')}
         dataIndex="enabled"
         render={(_, row: Field) => (row.showEnabled ? (
           <Checkbox
@@ -101,7 +101,7 @@ export const DefaultFields: React.FC<Props> = ({
         }
       />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.required')}
+        title={I18n.t('shared.required')}
         dataIndex="required"
         render={(_, row:Field) => (
           <Checkbox
@@ -112,7 +112,7 @@ export const DefaultFields: React.FC<Props> = ({
         )}
       />
       <Column
-        title={I18n.t('administration.projects.profile_settings.form_fields.locked')}
+        title={I18n.t('admin.projects_profile_settings_form_fields_locked')}
         dataIndex="locked"
         render={(_, row:Field) => (
           <Checkbox onChange={() => changeLocked(row)} checked={lockedFields[row.index]} />

@@ -622,6 +622,7 @@ sr-Cyrl:
         roles:
           campaign_admin: Администратор кампање
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           manager: Менаџер
           member: Корисник
           project_admin: Администратор пројекта
@@ -727,6 +728,7 @@ sr-Cyrl:
           admins:
             admin: Администраторског
             campaign_admin: Администратор кампање
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
@@ -736,6 +738,7 @@ sr-Cyrl:
           campaign_admin: Администратор кампање
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           iiht: ИИХТ
           manager: Менаџер
@@ -850,6 +853,7 @@ sr-Cyrl:
       operations:
         add_campaign_reports: Додајте извештаје о кампањи
         assessment_norm_export: Извоз нормираних резултата
+        assessment_raw_ai_factor_export: Извоз сирих факторских оцена вештачке интелигенције
         assessment_raw_factor_export: Рав фактор Резултати Извоз
         assessment_raw_result_export: Рав Резултати Извоз
         assessment_scoring_export: Бодовање Резултати Извоз
@@ -859,6 +863,8 @@ sr-Cyrl:
         bulk_download_idp_reports: Булк Довнлоад ИДП извештаје
         bulk_download_reports: Извештаји о масовном преузимању
         bulk_download_user_reports: Булк Довнлоад Усер Репортс
+        bulk_export_norm_factor_scores: Масовни извоз резултата норм-фактора
+        bulk_export_raw_factor_scores: Масовни извоз резултата фактора сировог
         bulk_generate_user_campaign_ai_artifact_results: Булк Генерате Цампаигн АИ Артифацт Резултати
         bulk_regenerate_reports: Регенеришите извештаје о кампањи
         bulk_regenerate_threesixty_reports: Регенеришите тришекдесет предметних извештаја
@@ -871,10 +877,12 @@ sr-Cyrl:
         completion_status_export: Завршетак статуса Извоз
         copy_as_template_or_campaign: Копирај кампању као шаблон
         copy_dimension: Копирај димензију
+        copy_report: Копирај извештај
         create_threesixty_campaign: Креирајте кампању Тхреесиxтy
         data_report_export: Извоз извештаја о подацима
         export_admin_with_permissions: Извоз администратора са дозволама
         export_assessment_questions: Питања за процену извоза
+        export_audit_logs: Извези логове ревизије
         export_campaign_ai_artifacts: Извозна кампања АИ артефаката
         export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
         export_campaign_datasheet: Радни лист кампање за извоз
@@ -964,6 +972,8 @@ sr-Cyrl:
       errors:
         no_plans: Није пронађен активан ИДП планови
     close: Затворите
+    copy_report:
+      failed: Извештај копије није успео
     details: Детаље
     errors: Грешке
     invalid_job: Ово обавештење одговара избрисаном запису
@@ -1013,6 +1023,7 @@ sr-Cyrl:
       evaluate: Процените
       export: Извоз
       export_normed: Резултати нормираних фактора
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Сирово (са етикетама)
       export_raw_scores: Резултати сировог фактора
       export_raw_without_labels: Сирово (без етикета)
@@ -1424,6 +1435,7 @@ sr-Cyrl:
       export_external: Спољних
       export_normed: Резултати нормираних фактора
       export_occupations: Занимања
+      export_raw_ai_scores: Сирови АИ фактор резултати
       export_raw_labels: Сирово (са етикетама)
       export_raw_scores: Резултати сировог фактора
       export_raw_without_labels: Сирово (без етикета)
@@ -1448,6 +1460,7 @@ sr-Cyrl:
       external_user_id: Скиллвуе ИД кандидата
       id: ИД процене кампање
       locales: Локализације
+      microsite_assessment_url: URL за процену микросајта
       microsite_error_message: Порука о грешци
       microsite_participant_id: ИД учесника микросајта
       microsite_registration_status: Статус регистрације
@@ -1476,6 +1489,7 @@ sr-Cyrl:
       no_participants_selected: Молимо вас да изаберете најмање једног учесника да бисте наставили.
       norm_results_export_scheduled: Процена Нормирани резултати извоз посао је успешно заказан
       normalize_factor_scores_scheduled: Нормализација фактор резултата посао је успешно заказан.
+      raw_ai_factor_export_scheduled: Задатак за извоз процене сировог АИ фактора је успешно заказан
       raw_factor_export_scheduled: Процена Рав фактор извоз посао је успешно заказан
       raw_results_export_scheduled: Процена Рав Резултати извоз посао је успешно заказан
       scoring_results_export_scheduled: Процена Резултати бодовања Извозни посао је успешно заказан
@@ -1646,7 +1660,6 @@ sr-Cyrl:
     details:
       additional_time: Додатно време
       assessment_center: Центар за процену
-      assessment_center_invites: Позивнице за процену
       completed_at: Завршен у
       completion_status: Статус завршетка
       hogan_id: Хоган ИД
@@ -1676,11 +1689,6 @@ sr-Cyrl:
     modals:
       remove: Да ли сте сигурни да желите да уклоните корисника са е-поштом 'ИНТЕРПОЛАТИОН_ВАР_0' из ове кампање?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Процене процењивача
-      other_assessments: Остале процене
-      other_assessor_assessments: Остале процене процењивача
-      other_reports: Остали извештаји
     card:
       duration: Трајање
       starts_in: 'Почиње за:'
@@ -1751,23 +1759,19 @@ sr-Cyrl:
       insert: Уметни
       'no': Не
       ok: У реду
-      publish: Објави
       reject: Одбаци
       remove: Уклони
       reset: Ресетуј
       resolve: Решити
       restore: Врати
       return_to_home: Повратак на почетну адресу
-      run: Трчати
       save: Сачувај
       schedule: Распоред
       search: Претрага
-      send: Пошаљи
       sign_in: Упиши се
       start: Почетак
       submit: Пошаљи
       unarchive: Врати из архиве
-      unpublish: Повуци објаву
       unresolve: Нерешено
       update: Ажурирање
       upload: Отпреми
@@ -1780,20 +1784,14 @@ sr-Cyrl:
     column:
       action: Акција
       active: Активни
-      ai_assistant: АИ помоћник
-      allow_multiple_responses: Дозволите више одговора
       approval_notification_list: Обавештење о одобрењу Листа корисника
       approvers_list: Одобраватељи Особа списак
-      assessment: Процена
       assessment_name: Име процене
       assessments: Процене
-      assessor: Саветник
       category: Категорија
       client: Клијент
-      code: Шифру
       created_at: Направљено у
       created_by: Аутор
-      created_date: Датум креирања
       default_language: Подразумевани језик
       description: Опис
       details: Детаље
@@ -1811,11 +1809,8 @@ sr-Cyrl:
         scoring: Бодовање ЈСОН
       key: Кључ
       last_name: Презиме
-      linked_activities: Повезане активности
       linked_assessment: Повезана процена
-      meeting_link: Линк за састанак
       modified_by: Измењено од стране
-      modified_date: Датум измене
       name: Име
       owner: Власник
       package_id: ИД пакета
@@ -1831,7 +1826,6 @@ sr-Cyrl:
       scheduling: Планирање
       skills: Вељтине
       status: Статус
-      tags: Ознаке
       timing: Тајминг
       token: Симбол
       type: Тип
@@ -1843,15 +1837,12 @@ sr-Cyrl:
     messages:
       leave_message: Да ли сте сигурни да желите да напустите ову страницу? Сви несачувани одговори које имате ће бити изгубљени.
     model:
-      admins: Администратори
       assessment: Процена
       assessments: Процене
       campaigns: Кампање
       completion_statuses: Статуси завршетка
-      datasheet: Мапа сајта
       report: Извештај
       reports: Извештаји
-      sms_contact: СМС контакт
       threesixty_campaign: Тришекдесет резултата кампање
     status:
       completed: Довршено
@@ -2149,6 +2140,7 @@ sr-Cyrl:
     invalid_token: Дошло је до грешке. Поново учитајте страницу и покушајте поново.
     max_regeneration_limit: Максимална граница регенерације прекорачена, обратите се својој администрацији.
     messages:
+      content_type_invalid: неважећи тип садржаја
       data_report_blank: Извештај о подацима не постоји
       password_complexity:
         digit:
@@ -2968,9 +2960,7 @@ sr-Cyrl:
   languages_localized:
     sl: Словеншчина
   license_usage:
-    active: Активан
     campaign_name: Име кампање
-    inactive: Неактиван
     status_updated_at: Последње ажурирање статуса
     status_updated_by: Последње ажурирао
     subject_email: Предмет е-поште
@@ -3486,12 +3476,14 @@ sr-Cyrl:
           admin: Администраторског
           admins:
             admin: Администраторског
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
           agile: Окретан
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           manager: Менаџер
           member: Корисник
@@ -3625,6 +3617,7 @@ sr-Cyrl:
         roles:
           campaign_admin: Администратор кампање
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           manager: Менаџер
           member: Корисник
           project_admin: Администратор пројекта
@@ -3695,12 +3688,14 @@ sr-Cyrl:
           admin: Администраторског
           admins:
             admin: Администраторског
+            client_assessor: Клијент процењивач
             project_admin: Администратор пројекта
             regular: Администратор клијента
             superadmin: Супер Администратор
           agile: Окретан
           case_study: Студија случаја
           client_admin: Администратор клијента
+          client_assessor: Клијент процењивач
           hogan: Хоган
           manager: Менаџер
           member: Корисник
@@ -3971,7 +3966,6 @@ sr-Cyrl:
       with_time_zone: "%д %б %Y %И:%М %п %:з"
       workshop_date: "%е %Б %Y, %л:%М %п %:з"
   universal_links:
-    active: Активни
     allow_multiple_respones: Дозволите корисницима да пошаљу више одговора
     png: Билтен
     regenerate_link: Регенеришите везу
@@ -4160,6 +4154,7 @@ sr-Cyrl:
       campaign_assessor: Процењивач кампање
       campaign_user: Корисник кампање
       client_admin: Администратор клијента
+      client_assessor: Клијент процењивач
       project_admin: Администратор пројекта
       superadmin: Супер Администратор
     superadmins: Супер Администратори

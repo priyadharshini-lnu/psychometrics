@@ -18,7 +18,7 @@ export const RemoveCampaignFactorModal: React.FC<Props> = ({
 }) => {
   const handleOnConfirm = () => {
     removeCampaignFactor(factor.id).then(() => {
-      message.success(I18n.t('administration.scoring.factor_removed_successfully'))
+      message.success(I18n.t('admin.scoring_factor_removed_successfully'))
       fetchAndUpdateFactors()
       close()
     })
@@ -28,7 +28,7 @@ export const RemoveCampaignFactorModal: React.FC<Props> = ({
     <AnswerableConfirmationModal
       requiredAnswer={factor.name}
       warningMessage={warningMessage}
-      confirmationMessage={I18n.t('administration.scoring.factor_removal_confirmation')}
+      confirmationMessage={I18n.t('admin.scoring_factor_removal_confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
       alertType="error"

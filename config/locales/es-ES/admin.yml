@@ -2,15 +2,42 @@
 es-ES:
   admin:
     accept_na_values: Aceptar valores N/A
+    acceptable_rate_limit_label: Límite de solicitud aceptable
+    acceptable_rate_limit_request_per: solicitudes por
     actions: Acciones
+    actions_add_code: Añadir código
+    actions_archive: Archivar
+    actions_playground: Patio de recreo
+    actions_unarchive: Sacar del archivo
+    active: Activo
+    active_label: Activo
+    active_name: Activo
+    active_record_audits_audit_id: ID de auditoría
+    active_record_audits_auditable_id: ID de registro
+    active_record_audits_auditable_type: Tipo de registro
+    active_record_audits_audited_changes: Cambios auditados
+    active_record_audits_new_diff_parse_error: Error al analizar JSON con nuevos cambios
+    active_record_audits_old_diff_parse_error: Error al analizar JSON con cambios antiguos
+    active_record_audits_title: Cambios auditados
+    activity: Actividad
+    activity_period: Período de actividad
     add_admin: Añadir admin
     add_admin_role: Añadir función de administrador
+    add_btn: Añadir tema
     add_campaign_admin: Añadir administrador de campaña
     add_client_admin: Añadir Client Admin
+    add_conditions: Añadir condiciones
+    add_evaluators: Añadir evaluadores
     add_indicator: Añadir indicador
+    add_lead_assessor: Añadir como evaluador principal
+    add_lead_assessor_hint: Por favor, añada primero el formulario del asesor principal
+    add_more: Más información
     add_new_folder: Añadir nueva carpeta
+    add_output_schema_key: Añadir clave de esquema de salida
     add_project: Añadir proyecto
     add_project_admin: Añadir administrador de proyecto
+    add_report: Añadir informe
+    add_subjects: Añadir temas
     add_threesixty_campaign_admin: Añadir administrador de campaña
     add_word_count: Añadir recuento de palabras
     admin_approval_required: Reporte para %{user} requiere aprobación de administrador antes de descargarla
@@ -20,24 +47,15 @@ es-ES:
     admin_role_deleted: La función de administrador '%{role_name}' se ha eliminado correctamente.
     admin_roles: Funciones administrativas
     admin_updated_successfully: Admin '%{name}' se ha actualizado correctamente
-    admins: Admins
+    administrator_approves_reports: El administrador aprueba los informes
+    administrators_list_columns_email: Correo electrónico
+    admins: Administradores
     advanced: Avanzado
+    advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
     agile: AGIL
     ai_artifact_result_generation_admin_job_failed: No se puede generar el artefacto «%{artifact_name}» para el usuario «%{user_email}».
     ai_artifact_result_stale: El resultado puede estar desactualizado, ya que las dependencias del artefacto de IA han cambiado desde que se generó el último resultado. Considere la posibilidad de volver a generar el artefacto con las últimas dependencias.
     ai_artifacts: Artefactos de IA
-    ai_artifacts_finalized_at: Finalizado el
-    ai_artifacts_generate_result_confirm: La generación de resultados del artefacto para el usuario «%{email}» eliminará el informe existente que depende de este artefacto de IA. ¿Desea continuar?
-    ai_artifacts_generate_results: Generar resultados
-    ai_artifacts_mark_finalized: Marcado como finalizado
-    ai_artifacts_mark_finalized_bulk_confirm: Al finalizar los resultados de los artefactos para todos los usuarios seleccionados, se generarán los informes que utilizan artefactos de IA. ¿Desea continuar?
-    ai_artifacts_mark_finalized_confirm: Al finalizar los resultados del artefacto para el usuario «%{email}», se generará el informe que utiliza el artefacto de IA para dicho usuario. ¿Desea continuar?
-    ai_artifacts_mark_not_finalized: La calificación aún no es definitiva
-    ai_artifacts_mark_not_finalized_bulk_confirm: Si eliminas la finalización de todos los usuarios seleccionados, se eliminarán los informes generados que utilizan artefactos de IA. ¿Estás seguro de que quieres continuar?
-    ai_artifacts_mark_not_finalized_confirm: Si eliminas la finalización del usuario «%{email}», se eliminará el informe generado que utiliza el artefacto de IA para ese usuario. ¿Estás seguro de que deseas continuar?
-    ai_artifacts_output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
-    ai_artifacts_results_export: Exportar resultados
-    ai_artifacts_results_export_job_scheduled: La exportación de resultados de AI Artifacts se ha programado correctamente.
     ai_assistant: Asistente de IA
     ai_assistant_model_id_label: ID del modelo
     ai_assistant_model_label: Modelo
@@ -46,21 +64,14 @@ es-ES:
     ai_assistant_required: El asistente de IA es obligatorio
     ai_assistant_select_dependencies: Seleccionar dependencias
     ai_assistants: Asistentes de IA
-    ai_assistants_advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
-    ai_assistants_campaign_id_placeholder: Introduce el ID de campaña
-    ai_assistants_cannot_change_type_when_in_use: No se puede cambiar el tipo del asistente de IA «%{name}» porque está en uso actualmente.
-    ai_assistants_no_rendered_output: No hay salida renderizada disponible
-    ai_assistants_provider_change_confirm_title: "¿Cambiar de proveedor?"
-    ai_assistants_provider_previously_used_warning: Este asistente ha generado resultados anteriormente con «%{from}». Cambiar a «%{to}» podría alterar el comportamiento del asistente en futuras solicitudes de generación.
-    ai_assistants_render_button: Plantilla de renderizado
-    ai_assistants_rendered_prompt: Prompt renderizado
-    ai_assistants_template_and_campaign_required: Por favor, proporciona tanto la plantilla como el ID de campaña
-    ai_assistants_template_render_failed: No se ha podido renderizar la plantilla
-    ai_assistants_test_render: Renderizado de prueba
-    ai_assistants_test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
-    ai_assistants_type_locked_tooltip: Este asistente está actualmente en uso y no es posible cambiar su tipo.
+    ai_assistants_disabled_by_client: El cliente deshabilita AI Assistants
+    ai_assistants_playground: Asistente de inteligencia artificial
+    ai_assisted_idp: IDP asistido por IA
     ai_assisted_idp_disabled_by_client: El IDP asistido por IA está desactivado por el cliente.
     ai_assisted_idp_feature_disabled: La función de desplazados internos asistidos por IA ha sido deshabilitada para este proyecto.
+    ai_assisted_idp_requires_ai_assistants: El IDP asistido por IA requiere que la función de asistentes de IA esté habilitada
+    ai_content_analysis: Análisis de contenido con IA
+    ai_content_analysis_disabled_by_client: El análisis de contenido de IA está desactivado por el cliente.
     ai_idp_assistant_configure_dependencies: Configurar dependencias de IA
     ai_idp_assistant_configure_dependencies_description: Configure a qué datos de dependencia puede acceder el asistente de IA del IDP como contexto. Esto solo se aplica cuando el asistente está configurado para aceptar dependencias.
     ai_idp_assistant_dependencies_updated: Dependencias actualizadas correctamente
@@ -69,28 +80,7 @@ es-ES:
     ai_score_approval_no_answer: No se proporciona respuesta para esta pregunta.
     ai_score_approval_no_transcription: No hay transcripción disponible para esta pregunta.
     ai_scored: Puntuación de IA
-    ai_scoring_appoval_approve_all_questions: Aprobar todas las preguntas
-    ai_scoring_appoval_approve_question: Aprobar pregunta
-    ai_scoring_appoval_back: Restablecer puntuación
-    ai_scoring_appoval_change_reason: Motivo del cambio
-    ai_scoring_appoval_change_score: puntuación modificada
-    ai_scoring_appoval_change_score_log: Registro de puntuación de cambios
-    ai_scoring_appoval_discard_all_questions: Restablecer todas las preguntas
-    ai_scoring_appoval_discard_all_questions_description: Esto restablecerá todas las puntuaciones de todas las preguntas y borrará cualquier modificación. Esta acción no se puede deshacer. ¿Está seguro?
-    ai_scoring_appoval_discard_all_questions_title: "¿Restablecer todas las puntuaciones de las preguntas?"
-    ai_scoring_appoval_discard_question: Restablecer puntuaciones de preguntas
-    ai_scoring_appoval_discard_question_confirm_description: Esto restablecerá todas las puntuaciones de esta pregunta y borrará cualquier modificación. ¿Está seguro?
-    ai_scoring_appoval_discard_question_confirm_title: "¿Restablecer las puntuaciones de las preguntas?"
-    ai_scoring_appoval_discarded_changes: cambios descartados
-    ai_scoring_appoval_evidence_from_transcript: Pruebas de la transcripción
-    ai_scoring_appoval_new_score: Nueva puntuación
     ai_scoring_appoval_next: Siguiente pregunta
-    ai_scoring_appoval_rationale: Fundamento
-    ai_scoring_appoval_reason_for_changes: Motivo de los cambios
-    ai_scoring_appoval_reset_score: Restablecer puntuación
-    ai_scoring_appoval_reset_score_description: La puntuación volverá al valor original de la IA.
-    ai_scoring_appoval_responses: Respuestas de IA
-    ai_scoring_appoval_score_not_applicable: Puntuación no aplicable
     ai_scoring_approval: Aprobación de puntuación de IA
     ai_scoring_approval_digest_mailer_access_link_intro: 'Puede acceder a las aprobaciones de puntuación a través del siguiente enlace:'
     ai_scoring_approval_digest_mailer_approved_body_intro: Se han aprobado las siguientes puntuaciones.
@@ -113,62 +103,177 @@ es-ES:
     ai_scoring_refresh_score_confirm_description: Esto volverá a ejecutar la puntuación de IA para esta evaluación utilizando la configuración más reciente. ¿Estás seguro?
     ai_scoring_refresh_score_confirm_title: "¿Actualizar las puntuaciones de IA?"
     ai_scoring_rescore_queued: Se ha puesto en cola la reevaluación mediante IA. Actualiza la página dentro de unos instantes.
-    ai_translation: Traducción con IA
+    ai_translation: Traducciones con IA
+    ai_translation_disabled_by_client: Las traducciones con IA están desactivadas por el cliente.
     all_corner_rounded: Todas las esquinas redondeadas
     allow_ai_rescoring: Permitir la reevaluación mediante IA
     allow_continue_with_warning_system_check: Permitir a los usuarios continuar a pesar de las advertencias cuando falla la comprobación del sistema
+    allow_late_cancellation_and_scheduling: Permitir la cancelación tardía y la programación
+    allow_manager_to_view_individual_responses: Permitir al gestor ver las respuestas individuales
+    allow_multiple_responses: Permitir respuestas múltiples
+    allow_subjects_to_send_reminders: Permitir que los sujetos envíen recordatorios a los evaluadores
+    alt_text_invalid: El texto alternativo contiene caracteres no admitidos.
+    alt_text_logo: Texto alternativo del logotipo
+    alt_text_logo_required: El logotipo Alt-Text es obligatorio
+    alt_text_long: Supera el límite máximo de 100 caracteres.
     api_keys: Claves API
+    api_keys_form_title: clave api
+    application: Solicitud
+    application_add: Añadir solicitud
+    application_name: Nombre de la aplicación
+    application_name_already_taken: Ya existe para este cliente
+    application_name_format_hint: Solo se permiten letras y números, con un único espacio entre palabras
+    applications: Aplicaciones
     apply_to_existing_users: Aplicar este cambio a los usuarios existentes en esta campaña.
+    approve_all_questions: Aprobar todas las preguntas
+    approve_nomination_description: Este mensaje se envía a un directivo cuando debe aprobarse una candidatura presentada por un subordinado directo
+    approve_nomination_name: Aprobar el nombramiento
+    approve_question: Aprobar pregunta
+    approve_report_description: Este mensaje se envía al responsable del asunto para notificarle que el informe del asunto está listo para su aprobación
+    approve_report_name: Aprobar informe
+    archive: Archivar
+    archive_content: ¿Está seguro de que desea archivar "%{project_name}"?
+    archive_success: El proyecto '%{project_name}' se ha archivado correctamente.
+    archive_title: Proyecto de archivo
+    artifact_results: Resultados de artefactos
     assessment: Evaluación
-    assessment_center_activity: Actividad
-    assessment_center_assessor: Asesor
-    assessment_center_attendance: Asistencia
-    assessment_center_attendance_status: Estado de asistencia
-    assessment_center_campaigns_tab: Campañas
-    assessment_center_date_and_time: Fecha y hora
-    assessment_center_join_room: Entrar en la sala
-    assessment_center_meeting_link: Enlace a la reunión
-    assessment_center_participants_tab: Participantes
-    assessment_center_prework: Trabajo previo
-    assessment_center_schedule_time: Reservar hora
-    assessment_center_scheduling_status: Estado de la programación
-    assessment_center_search_participants: Buscar participantes...
+    assessment_center: 'Centro de evaluación:'
+    assessment_center_group: Grupo del Assessment Center
+    assessment_center_group_placeholder: Seleccionar grupo del centro de evaluación
+    assessment_center_invites: Convocatorias del Centro de Evaluación
+    assessment_ids: Números de identificación de evaluación
+    assessment_placeholder: Seleccione Evaluación
     assessment_question_not_supported: Este tipo de pregunta no está disponible actualmente.
+    assessment_required: Se requiere evaluación
     assessments: Evaluaciones
+    assessments_assessment_report: Evaluaciones
+    assessments_copy: Copiar
     assessments_copy_as_microsite: Copiar como evaluación del micrositio
+    assessments_copy_assessment: Copia Evaluación
+    assessments_help_text: Esta selección solo afecta al evento «Respuesta sin procesar de la evaluación».
+    assessments_label: Evaluaciones
     assessments_not_mhs: Todas las evaluaciones deben ser del tipo MHS.
+    assessments_placeholder: Seleccionar evaluaciones
     assessments_reports: Evaluaciones e informes
+    assessments_required: Se debe seleccionar al menos una evaluación para el evento Respuesta sin procesar de la evaluación.
+    assessor: Asesor
+    assessor_add_subject_modal_assessment: Evaluación
+    assessor_add_subject_modal_mark_as_lead_assessor: Marcar como evaluador principal de la asignatura anterior
+    assessor_add_subject_modal_subject: Asunto
+    assessor_add_subject_modal_subject_placeholder: Buscar tema..
+    assessor_add_subject_modal_title: Añadir tema
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Seleccione una evaluación
+    assessor_assessment_name: Evaluador Evaluación
+    assessor_assessments: Evaluaciones del evaluador
+    assessor_assessments_actions_add_subject: Añadir tema
+    assessor_assessments_actions_rescore: Recalificar
+    assessor_assessments_actions_reset: Restablecer evaluación
+    assessor_assessments_actions_reset_progress: Restablecer progreso
+    assessor_assessments_bulk_delete_confirmation: "¿Está seguro de que desea eliminar los registros seleccionados?"
+    assessor_assessments_bulk_delete_successful: Las evaluaciones de los asesores se han eliminado correctamente
+    assessor_assessments_reset_confirmation: ¿Está seguro de que desea restablecer la evaluación para el asunto con el correo electrónico "%{subjectEmail}"?
+    assessor_assessments_reset_progress_confirmation: ¿Está seguro de que desea restablecer el progreso para el asunto con el correo electrónico "%{subjectEmail}"?
+    assessor_assessments_reset_progress_successfully: El proceso de restablecimiento del asunto con el correo electrónico "%{subjectEmail}" se ha realizado correctamente.
+    assessor_assessments_reset_successfully: La evaluación de restablecimiento del asunto con el correo electrónico "%{subjectEmail}" se ha realizado correctamente.
+    assessor_assessments_subject_email: Asunto correo electrónico
+    assessor_assessments_subject_name: Nombre del sujeto
+    assessor_campaigns_statuses_completed: Completado/a
+    assessor_campaigns_statuses_in_progress: En curso
+    assessor_campaigns_statuses_not_started: No iniciado
+    assessor_completed_at: Completado en
+    assessor_count: Asesores
+    assessor_create_assessor: Añadir asesor
     assessor_dashboard: Panel de control del evaluador
+    assessor_email: Correo electrónico del asesor
+    assessor_evaluations: Evaluaciones de asesores
+    assessor_first_name: Nombre del asesor
     assessor_form: Formulario para evaluadores
-    assessor_workshops: Assessment Center
+    assessor_ids_label: Asesores
+    assessor_last_name: Apellido del asesor
+    assessor_modals_import_body: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
+    assessor_modals_import_title: Evaluadores de importaciones
+    assessor_overview: Visión general
+    assessor_placeholder: Buscar Asesor...
+    assessor_remove_confirmation: "¿Está seguro de que desea eliminar al asesor con correo electrónico %{email} de esta campaña?"
+    assessor_statuses_completed: Completado/a
+    assessor_statuses_not_completed: No completado/a
+    assessor_subjects_statuses_completed: Completado/a
+    assessor_subjects_statuses_in_progress: En curso
+    assessor_subjects_statuses_not_started: No iniciado
+    assessor_toolbar_export: Asesores de exportación
+    assessor_toolbar_import: Evaluadores de importaciones
+    assessor_workshops: Centro de evaluación
     assessors: Asesores
     assistant_toolbar_failed: No se ha podido generar una salida válida tras varios intentos.
     assistant_toolbar_not_a_valid_operation: Operación desconocida %{operation}.
     assistant_validation_failed: No se ha podido generar una salida válida tras múltiples intentos.
+    attendance: Asistencia
+    attendance_status: Estado de asistencia
     audit_log_impersonated_by: Interpretado por
+    audit_log_title: Información del registro de auditoría
+    audit_log_type: Tipo de registro
     audit_logs: Registros de auditoría
+    audit_logs_export_failed: No se ha podido programar la tarea de exportación. Inténtalo de nuevo.
+    audit_logs_export_queued: La tarea de exportación se ha programado correctamente.
     audit_reports: Informes de auditoría
+    auth_type_api_key_header_format_error: Sólo se permiten letras, números, guiones bajos y guiones.
+    auth_type_api_key_header_label: Cabecera de clave API
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: clave api
+    auth_type_api_key_name: clave_api
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: Básico
+    auth_type_basic_value: autenticidad_básica
+    auth_type_label: Tipo de autorización
+    auth_type_name: tipo_aut
+    auth_type_no_auth_label: Ninguno
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Esta puntuación se modera automáticamente y no se puede modificar
     auto_placeholder: Automóvil
+    automatically_send_invites: Envío automático de invitaciones a nuevos evaluadores
     availability: Disponibilidad
-    available_languages: Informe disponible en idiomas
+    available_languages: Idiomas disponibles
     average: Media
+    back: Restablecer puntuación
     back_to_main: Menú principal
+    background_color: Color de fondo
+    background_label: Fondo
+    background_overlay_label: Superposición de fondo
+    background_size: Tamaño del fondo
+    background_size_contain: Contiene
+    background_size_cover: Portada
+    basic_info_panel_description: También puede seleccionar varias fechas para crear varios centros de evaluación.
+    basic_info_panel_title: Información básica
     block_editor_add_question: Añadir pregunta
     block_editor_question_randomization: Aleatorización de las preguntas
     block_options: Opciones de bloque
     block_settings: Configuración del bloque
     blocks_new_button: Nuevo bloque
     blocks_title: Bloques
+    booked_at: 'Reservado en:'
+    breadcrumbs_norms_editor: Norma Editor
+    bulk_assessment_download_date_range_required: Selecciona un intervalo de fechas
+    bulk_assessment_download_export_type: Tipo de exportación
+    bulk_assessment_download_export_type_required: Selecciona el tipo de exportación
+    bulk_assessment_download_help_text: 'Nota: Si las evaluaciones están vinculadas a diferentes dimensiones, el archivo xslx descargado contendrá hojas independientes para cada dimensión.'
+    bulk_assessment_download_modal_subtitle: Selecciona un intervalo de fechas y un tipo de exportación y, a continuación, exporta las evaluaciones seleccionadas.
+    bulk_assessment_download_no_data_found: No se han encontrado datos para el intervalo de fechas y las evaluaciones seleccionados. Inténtalo con otro intervalo de fechas o con otras evaluaciones.
+    bulk_assessment_download_norm_factor_scores: Puntuaciones normalizadas
+    bulk_assessment_download_raw_factor_scores: Puntuaciones brutas de los factores
     bulk_assets_modal_choose_csv: Seleccionar archivo CSV
     bulk_assets_modal_choose_zip: Seleccionar archivo ZIP
     bulk_assets_modal_not_csv_file_error: Solo se permiten archivos CSV para la carga de CSV. Cargue un archivo CSV válido.
     bulk_assets_modal_subtitle: 'Por favor, suba <b>un archivo CSV</b> (con los encabezados: user_email, file_name) y <b>un archivo ZIP</b> (que contenga archivos PDF que coincidan con los nombres de archivo del CSV). El archivo ZIP debe tener un tamaño inferior a %{max_file_size} MB.'
     bulk_assets_modal_title: Subir archivos CSV y ZIP
+    bulk_export_assessments_file: Archivo de exportación de liquidaciones masivas
+    bulk_export_invalid_params: Parámetros de exportación masiva no válidos
     bulk_upload_ai_artifacts: Artefactos de IA de subida masiva
+    campaign: Campaña
+    campaign_admin: Administración
     campaign_ai_artifact_updated_successfully: Artefactos de IA de campaña actualizados con éxito
     campaign_ai_artifacts_instruction_templating_tooltip: Puedes utilizar instrucciones avanzadas mediante plantillas de comandos con la sintaxis de plantillas Liquid y las variables disponibles. Consulta la documentación para obtener más detalles.
-    campaign_ai_artifacts_results_export_details: Los artefactos de IA de la campaña generaron resultados.
     campaign_assessment_actions_disable_caching: Desactivar la caché de evaluación
     campaign_assessment_actions_enable_caching: Habilitar la caché de evaluación
     campaign_assessment_column_caching_enabled: Caché de evaluación habilitada
@@ -201,71 +306,230 @@ es-ES:
     campaign_assessment_modals_enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
     campaign_assessment_modals_enable_caching_title: "¿Habilitar la caché de evaluaciones?"
     campaign_factors: Factores de campaña
+    campaign_id_placeholder: Introduce el ID de campaña
     campaign_name: Nombre de la campaña
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: Identificador del informe externo
-          language_id: Identificador de idioma
-          norm: Norma
-          norm_id: N.º de norma
-          suitability_id: Código de idoneidad
-        labels:
-          assessment_ids: Números de identificación de evaluación
-          available_languages: Idiomas disponibles
-          campaign_report_id: N.º de informe de campaña
-          check_details: Ver detalles
-          default_language: Idioma predeterminado
-          external_settings: Configuración externa
-          provider: Proveedor
-          report_pdf_status: Estado del informe en PDF
-          user_report_id: N.º de informe de usuario
+    campaign_report_generate_modal_subtitle: Seleccione el idioma deseado para cada informe
+    campaign_report_id: N.º de informe de campaña
+    campaign_results_export_details: Los artefactos de IA de la campaña generaron resultados.
     campaign_templates: Plantillas de campaña
+    campaign_templates_campaign_templates: Plantillas de campaña
+    campaign_templates_column_assessment: Evaluación
+    campaign_templates_column_campaign: Campaña
+    campaign_templates_column_owner: Propietario
+    campaign_templates_column_report: Informe
+    campaign_templates_form_assessment: Evaluación
+    campaign_templates_form_assessment_placeholder: Seleccione una evaluación
+    campaign_templates_form_name_placeholder: Introduzca el nombre
+    campaign_templates_form_owner: Propietario
+    campaign_templates_form_owner_placeholder: Seleccione un propietario
+    campaign_templates_form_report: Informe
+    campaign_templates_form_report_placeholder: Seleccione un informe
+    campaign_templates_form_title: Plantilla de campaña
+    campaign_templates_remove_confirm_content: "¿Está seguro de que desea eliminar la plantilla de campaña '%{name}'?"
+    campaign_templates_remove_confirm_success: Se ha eliminado correctamente la plantilla de campaña "%{name}".
+    campaign_templates_remove_confirm_title: Eliminar plantilla de campaña
     campaign_user_job_roles_cannot_be_same: El puesto de trabajo objetivo debe ser diferente del puesto de trabajo actual.
     campaigns: Campañas
+    campaigns_convert_to_template: Convertir a plantilla
+    campaigns_extend_time_success_message: Temporizador de campaña ampliado a %{minutes} minutos
+    campaigns_external_scores_import_modal_title: Importar puntuaciones de campañas externas
+    campaigns_filters_active: Activo
+    campaigns_filters_all: Todos
+    campaigns_filters_archived: Archivado
+    campaigns_filters_closed: Cerrado
+    campaigns_filters_inactive: Inactivo
+    campaigns_filters_status: Estado
+    campaigns_form_active_notice: El estado de la campaña cambiará automáticamente a cerrado en la fecha de finalización seleccionada
+    campaigns_form_campaign: Campaña
+    campaigns_form_copy_factors: Copiar factores
+    campaigns_form_inactive_notice: El estado de la campaña cambiará automáticamente a activo en la fecha de inicio seleccionada
+    campaigns_form_practice_campaign: Campaña práctica
+    campaigns_listing_assessments: Evaluaciones
+    campaigns_listing_reports: Informes
+    campaigns_listing_template: Plantilla
+    campaigns_menus_add_common_campaign: Añadir campaña común
+    campaigns_menus_add_multi_rater_campaign: Añadir campaña de evaluación múltiple
+    campaigns_pdf_password: Contraseña PDF
+    campaigns_tab: Campañas
+    campaigns_types_common: Común
+    campaigns_types_threesixty: Calificador múltiple
+    campaigns_users_add_user: Añadir usuario
+    campaigns_users_completion_status: Estado de finalización
+    campaigns_users_created_by: Creado por
+    campaigns_users_filters_all: Todos
+    campaigns_users_filters_anonymous: Anónimo
+    campaigns_users_filters_identified: Identificado
+    campaigns_users_is_active: Activo
+    campaigns_users_no_permission_message: No tiene permiso para modificar
+    campaigns_users_title: Usuarios
+    campaigns_users_updated_by: Actualizado por
     cancel: Cancelar
+    cancel_confirmation_message: "¿Estás seguro de que quieres descartar el progreso del formulario?"
+    cancel_confirmation_title: Formulario de descarte Progreso
     cancellation_and_rescheduling_disabled: La cancelación y reprogramación están desactivadas.
+    cancellation_lead_time_label: Plazo de anulación
+    cannot_change_type_when_in_use: No se puede cambiar el tipo del asistente de IA «%{name}» porque está en uso actualmente.
     captcha: Verificación mediante Captcha
     case_study: Casos prácticos
     casual: Informal
+    categories_approvals: Aprobaciones
+    categories_invitations: Invitaciones
+    categories_reminders: Recordatorios
+    categories_report_ready: Informe listo
+    category: Categoría
     cell_save_msg: Los cambios válidos se guardan automáticamente al salir de la celda tras editarlos.
+    change_reason: Motivo del cambio
+    change_score: puntuación modificada
+    change_score_log: Registro de puntuación de cambios
     characters: personajes
     chat_instructions_success: Las instrucciones del chat se han guardado correctamente
+    check_details: Ver detalles
     children_factor_type: Tipo de factor infantil
     client: Arrendamiento de clientes
+    client_admin: Administración de clientes
     client_admins: Administradores de clientes
+    client_credentials_label: Credenciales de cliente
+    client_credentials_value: client_credentials
+    client_features: Características del cliente
+    client_id_label: ID de cliente
+    client_id_name: oauth_client_id
+    client_id_required: Se requiere el ID del cliente
+    client_ids: ID de cliente
+    client_ip: Ip del cliente
+    client_logo_label: Logotipo del cliente
+    client_secret_label: Secreto de cliente
+    client_secret_name: oauth_client_secret
+    client_secret_required: Se requiere secreto de cliente
     client_selection_instruction: Selecciona un cliente para acceder al panel de administración.
     client_selection_sign_out: Cerrar sesión
     client_selection_title: Seleccionar cliente
     clients: Clientes
     clients_search_placeholder: Buscar cliente
+    closed: Cerrado
     code_required: Se requiere código
+    collapse_filters: Colapsar filtros
+    column_code: Código
+    column_invitation_status: Estado de la invitación
+    column_participant: Participante
+    column_provider: Proveedor
+    column_scheduling_details: Detalles de la programación
+    column_usage_stats: Estadísticas de uso
     common: Evaluación TTE
     common_assessment: Evaluación TTE
+    common_disabled: Desactivado
+    common_download_sample_file: Descargar archivo de muestra
+    common_enabled: Activado
+    common_import_failure_msg: Error al importar el archivo.
+    common_minute: minuto
+    common_select_all: Seleccionar todo
+    common_type: Tipo
+    common_unselect_all: Deseleccionar todo
     communication_center: Centro de comunicaciones
     communications: Comunicaciones
+    communications_form_insert_piped_text: Insertar texto
     completed: Completado
     completed_tooltip: Todos los evaluadores han presentado la evaluación
+    components_input_duration_placeholder: Introducir como '1d 2h 3m'
     concise: Conciso
+    confidence_interval: Intervalo de confianza
+    confidence_interval_update_success: Intervalo de confianza actualizado correctamente
+    configuration: Configuración
     configure_model_answer_title: Configurar la respuesta modelo y las palabras clave
     confirm_remove_admin: "¿Está seguro de que desea eliminar el usuario administrador con el correo electrónico '%{email}'?"
     confirmation_required: Se requiere confirmación
     confirmation_required_details: "¿Estás seguro de que quieres eliminar el archivo «%{resource_name}» de la carpeta «%{resource}»?"
+    consolidated: Consolidado
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: Copiado
     copied_url_success: La URL se ha copiado correctamente en el portapapeles
     copy_ai_artifacts: Copiar artefactos de IA
+    copy_hint: Copia la configuración anterior de Asientos, Administradores de centros, Evaluadores y Reuniones y recursos a los siguientes Centros de evaluación. Después de copiar, puede realizar más cambios en los Centros de evaluación individuales antes de continuar.
     copy_image_url: Copiar la URL de la imagen
+    copy_report_scheduled: Se ha programado la tarea de copia del informe.
+    copy_text: Texto
+    copy_to_all: Copia a otros Centros de Evaluación
     copy_url: Copiar URL
     country: País
+    course: Curso
+    create_ai_assistants: Crear asistente de IA
     create_client: Crear cliente
     create_indicator: Crear indicador
-    current_job_role: Puesto actual
+    create_level_description_must_exist: La descripción del nivel no puede estar en blanco
+    create_level_name_must_exist: El nombre del nivel no puede estar en blanco
+    create_must_be_unique: Debe ser único
+    created_successfully: AI Assistant se ha creado correctamente.
+    current: Actual
+    current_job_role: Rol actual del trabajo
+    custom_formula: Fórmula personalizada
+    custom_message_description: Este mensaje puede enviarse a cualquier persona que participe en la evaluación
+    custom_message_name: Mensaje personalizado
     custom_upload: Carga personalizada
     dashboard: Cuadro de mandos
+    dashboard_capacity_name: Capacidad Nombre
+    dashboard_choose_file_format: Elegir formato de archivo
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: Cuadros de mando
+    dashboard_export_dashboard_to_file: Exportar el cuadro de mandos a un archivo
+    dashboard_export_job_failure: Error al iniciar la exportación
+    dashboard_export_job_success: Trabajo de exportación iniciado. Se le notificará cuando finalice.
+    dashboard_form_image_upload_failed: Error al cargar la imagen.
+    dashboard_form_none: Ninguno
+    dashboard_form_refresh_success: Actualización del conjunto de datos programada con éxito.
+    dashboard_get_started: Comenzar
+    dashboard_initialize_msg: Inicializar un panel para esta campaña
+    dashboard_loading_failed: Error al cargar el panel de control.
+    dashboard_only_export_current_tab: Exportar sólo la pestaña actual
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: Compruebe si el conjunto de datos y el ID de informe de la configuración son correctos.
+    dashboard_preview_embed_token_error_title: No se ha podido generar el token Embed.
+    dashboard_settings_capacity_id: Capacidad ID
+    dashboard_settings_details: Detalles
+    dashboard_settings_refresh: Actualizar
+    dashboard_settings_workspace_id: ID de espacio de trabajo
+    dashboard_tabs_accesssheet: Hoja de acceso
+    dashboard_tabs_accesssheet_setting: Configuración de la hoja de acceso
+    dashboard_tabs_settings: Ajustes
     dashboards: Cuadros de mando
+    dashed_button: Dashed
+    data_exports_modal_title: Seleccione el intervalo de fechas
+    data_range_error: Seleccione un intervalo de fechas
     data_reports: Informes de datos
+    data_reports_columns_created_at: Creado/a el
+    data_reports_columns_created_by: Creado por
+    data_reports_columns_last_updated_by: Última actualización
+    data_reports_columns_password: Contraseña
+    data_reports_columns_udpated_at: Última actualización
+    data_reports_configuration: Configuración
+    data_reports_form_name: Informe de datos
+    data_reports_messages_runed: El informe de datos se ha programado correctamente
+    dataset_id: ID. del conjunto de datos
     datasheet: Hoja de datos
+    date_and_time: Fecha y hora
+    date_presets_last_30_days: Últimos 30 días
+    date_presets_last_6_months: Últimos 6 meses
+    date_presets_last_7_days: Últimos 7 días
+    date_presets_last_month: Último mes
+    date_presets_last_week: Última semana
+    date_presets_last_year: El año pasado
+    date_presets_today: Hoy
+    date_presets_yesterday: Ayer
+    date_range: Intervalo de fechas
+    date_range_required: Es obligatorio indicar un intervalo de fechas
+    dates_completed: Completado en
+    dates_end: Fecha final
+    dates_label: Fechas
+    dates_start: Fecha de inicio
+    dates_started: Comenzó en
+    days_repeated: días, repetidos
     declined: Disminuido
+    default: Por defecto
+    default_assessment_language: Evaluación de la lengua por defecto
+    default_button: Por defecto
+    default_language: Idioma por defecto
+    default_report_language: Idioma por defecto del informe
     define_max_score_text: Defina una puntuación de %{maxScore} (puntuación máxima).
     define_min_score_text: Defina una puntuación de %{minScore} (puntuación mínima).
     define_optional_score_range_text: Define las puntuaciones %{minScore} a %{maxScore} (opcional)
@@ -273,10 +537,40 @@ es-ES:
     definition: Definición
     delete_ok_text: Sí, eliminar
     denied: Negado
+    dependencies: Dependencias
     description: Descripción
+    description_name: Descripción
+    description_save: Salvar Descripción
+    description_save_success: Descripción guardada correctamente
     descriptive_text: Texto descriptivo
     development_actions: Acciones de desarrollo
+    development_actions_duration_max_length: No puede ser mayor de 1 año
+    development_actions_duration_min_length: No puede ser menos de 1 minuto
+    development_actions_export_development_action_translations: Acción de desarrollo Traducciones basadas en el proyecto
+    development_actions_export_development_actions: Acciones de desarrollo
+    development_actions_export_failure_msg: Error al exportar traducciones
+    development_actions_export_success_msg: Exportación de las acciones de desarrollo en curso. Por favor, compruebe el estado en las notificaciones.
+    development_actions_form_available_languages: Idiomas disponibles
+    development_actions_form_client_placeholder: Seleccione un cliente
+    development_actions_form_course_image: Imagen del curso
+    development_actions_form_course_link: Enlace al curso
+    development_actions_form_development_action_type: Tipo de acción de desarrollo
+    development_actions_form_duration: Duración
+    development_actions_form_learning_style: Estilo de aprendizaje
+    development_actions_form_project_placeholder: Seleccione un proyecto
+    development_actions_form_skills: Habilidades
+    development_actions_form_skills_placeholder: Seleccionar habilidades
     development_actions_form_tags: Etiquetas
+    development_actions_form_title: Acción de desarrollo
+    development_actions_global: "¿Es el desarrollo global una acción?"
+    development_actions_heading: Acciones de desarrollo
+    development_actions_import_action_development_actions_title: Importar acciones de desarrollo
+    development_actions_import_action_development_actions_translations_title: Importar Acciones de Desarrollo Traducciones
+    development_actions_import_development_actions: Acciones de desarrollo
+    development_actions_import_development_actions_translations: Acciones de desarrollo Traducciones
+    development_actions_import_download_example_csv: Muestra de normas CSV
+    development_actions_import_failure_msg: Error al importar el archivo.
+    development_actions_import_info_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
     digest_delivery_mode:
       form_label: Modo de entrega del resumen
       immediate: 'Inmediato: enviar cada vez que haya un envío masivo.'
@@ -297,16 +591,68 @@ es-ES:
       wednesday: Miércoles
     dimension_translations_export_scheduled: Exportar las traducciones programadas para la dimensión «%{name}».
     dimensions: Dimensiones
+    dimensions_destroy_successfully: La dimensión %{name} se ha eliminado correctamente.
+    dimensions_export_json_successfully: Exportando JSON programado para la dimensión %{name}.
+    dimensions_form_enable_innovation_styles: Permitir estilos de innovación
+    dimensions_form_enable_occupations: Habilitar ocupaciones
+    dimensions_form_title: Dimensiones
+    dimensions_import_factors_sample_file: Archivo de muestra
+    dimensions_import_factors_title: Factores de importación
+    dimensions_import_modal_after: En
+    dimensions_import_modal_before: Antes de
+    dimensions_import_modal_change_log_input: Registro de cambios
+    dimensions_import_modal_error: Error
+    dimensions_import_modal_error_occurred: Se ha producido un error
+    dimensions_import_modal_errors_file_error: Seleccione un archivo JSON antes de continuar.
+    dimensions_import_modal_errors_processing_error: Fichero de tratamiento de errores
+    dimensions_import_modal_field: Campo
+    dimensions_import_modal_import_dimension: Importar dimensión
+    dimensions_import_modal_import_scheduled: Importación programada
+    dimensions_import_modal_operation: Operación
+    dimensions_import_modal_owner_input_validation: Seleccione un propietario
+    dimensions_import_modal_owner_select: Seleccione un propietario
+    dimensions_import_modal_select_json: Seleccionar archivo JSON
+    dimensions_index_title: Dimensiones
+    dimensions_resource_confirmations_delete_body: "<p>¿Estás seguro de que quieres borrar esta Dimensión?</p>\n"
+    dimensions_resource_confirmations_delete_message: Introduzca el nombre de la dimensión que se indica a continuación en el cuadro de texto para confirmar
+    dimensions_resource_tooltips_export_json: Exportar JSON para importar en otra plataforma
+    dimensions_translations_export: Exportar todo
+    dimensions_translations_header: Traducciones de factores
+    disable_caching_content: "¿Estás seguro de que quieres desactivar la caché para esta evaluación?"
+    disable_caching_successfully: La caché ha sido deshabilitada para esta evaluación.
+    disable_caching_title: "¿Desactivar la caché de evaluaciones?"
+    disable_cancellation_and_rescheduling: Desactivar la cancelación y reprogramación
+    disable_dp: No permitir el tratamiento de datos
     disable_proctoring: Desactivar la supervisión
+    disable_report_download: Desactivar la descarga de informes
     disallow_lead_assessor_moderation: Desactivar la moderación del evaluador principal
     disallow_lead_assessor_moderation_info: La puntuación se calculará automáticamente a partir de todos los formularios enviados por los evaluadores, y el evaluador principal no podrá modificarla desde la pantalla de moderación.
+    discard_all_questions: Restablecer todas las preguntas
+    discard_all_questions_description: Esto restablecerá todas las puntuaciones de todas las preguntas y borrará cualquier modificación. Esta acción no se puede deshacer. ¿Está seguro?
+    discard_all_questions_title: "¿Restablecer todas las puntuaciones de las preguntas?"
+    discard_question: Restablecer puntuaciones de preguntas
+    discard_question_confirm_description: Esto restablecerá todas las puntuaciones de esta pregunta y borrará cualquier modificación. ¿Está seguro?
+    discard_question_confirm_title: "¿Restablecer las puntuaciones de las preguntas?"
+    discarded_changes: cambios descartados
+    document_titles_project_assessors: Evaluadores | %{project}
+    document_titles_project_participants: Participantes | %{project}
     done: Hecho
     done_tooltip: No se puede enviar más evaluación para este usuario, ya que la evaluación de este usuario se marca como realizada por %{marked_by}
     download_bulk_asset_download_example_csv: Descargar ejemplo CSV.
+    download_example_csv: Muestra de normas CSV
+    dp_consent: Habilitar el consentimiento para el tratamiento de datos
+    dp_consent_custom: Personalizar el consentimiento para el tratamiento de datos
+    dp_consent_version: Versión política
     duration: Duración
+    duration_label: Duración
+    duration_max_error: No puede ser superior a 16 horas
+    duration_min_error: No puede ser inferior a 15 minutos
     duration_must_be_positive: La duración debe ser positiva
+    duration_placeholder: Por ejemplo, 4h 30m
+    edit_ai_assistants: Editar Asistente AI
     edit_campaign_admin: Editar administración de campaña
     edit_client_admin: Editar Client Admin
+    edit_email: Editar correo electrónico
     edit_folder: Editar carpeta
     edit_indicator: Editar indicador
     edit_job_roles: Editar funciones laborales
@@ -315,35 +661,106 @@ es-ES:
     edit_permission_denied: No tienes permiso para editar el '%{name}' de administrador
     edit_project_admin: Editar Admin del proyecto
     edit_threesixty_campaign_admin: Editar administración de campaña
+    email_manager_when_report_is_ready_for_approval: Enviar un correo electrónico al gestor cuando el informe esté listo para su aprobación
+    email_messages: Mensajes de correo electrónico
+    email_subject_when_report_becomes_available: Asunto del correo electrónico cuando el informe esté disponible
+    email_subjects_manager_when_available: Enviar un correo electrónico al responsable del sujeto cuando el informe esté disponible
     empty: Vacío
     empty_csv_file: El archivo CSV no contiene ningún dato.
+    enable_caching_content: "¿Estás seguro de que quieres activar el caché para esta evaluación?"
+    enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
+    enable_caching_title: "¿Habilitar la caché de evaluaciones?"
     enable_enhance_with_ai_client_level: Habilite la función Mejorar con IA a nivel de cliente.
+    enable_face_detection: Activar la detección de rostros
     enable_maintenance: Habilitar mantenimiento
     enable_mobile_proctoring: Habilitar supervisión móvil
+    enable_phrase_verification: Activar la verificación por frase
     enable_system_check: Habilitar la comprobación del sistema
     enable_transcription: Habilitar transcripción
     enable_transcription_msg: Habilita la transcripción para utilizar la puntuación de IA en preguntas de respuesta de vídeo/audio.
+    enable_video_call_recording: Activar la grabación de videollamadas
+    enabled: Activado
     end: fin
     end_time: Hora de finalización
     end_time_must_be_after_start_time: La hora de finalización debe ser posterior a la hora de inicio.
     enhance_with_ai: Mejora con IA
     enhance_with_ai_requires_ai_assistants: Para mejorar con IA, es necesario habilitar la función Asistentes de IA.
+    enter_client_ids: Introduce los ID de cliente
     enter_description: Introducir descripción
     enter_name: Introduzca el nombre
+    enter_project_ids: Introduce los ID de los proyectos
     enter_question_id: Introduce el ID de la pregunta
+    enter_report_ids: Introduce los ID de los informes
+    enter_schema_key: Introducir clave de esquema
     error: Error
+    error_color: Error Color
+    errors_csv_file_required: El archivo debe ser un archivo CSV
+    errors_error_msg: Si el problema persiste, póngase en contacto con su administrador
+    errors_min_retention: No puede ser inferior a 1 día
+    errors_policy_version_format: Sólo se admiten números enteros
+    errors_required: obligatorio
     estimated_tokens: fichas (estimadas)
+    evaluate_others_description: Este mensaje se mostrará cuando los participantes estén evaluando a otros desde dentro del portal
+    evaluate_others_name: Evaluar a los demás
+    evaluate_self_description: Este mensaje se mostrará a los sujetos cuando comiencen su autoevaluación
+    evaluate_self_name: Autoevaluador
+    evaluation_help_description: Texto de ayuda en la ficha de evaluación del panel de control del usuario
+    evaluation_help_name: Ayuda con la evaluación
     evaluation_status: Estado de evaluación
     evaluation_status_not_done: El estado de la evaluación no está 'Hecho' para uno o más sujetos seleccionados. Por favor, asegúrese de que todos los usuarios seleccionados hayan completado las evaluaciones o marquen como hechos.
+    evaluations_completed: Evaluaciones realizadas
+    evaluations_received: Evaluaciones recibidas
+    evaluator_invite_description: Este mensaje se enviará a todos los participantes que sean evaluadores
+    evaluator_invite_name: Invitación de evaluadores
+    evaluator_reminder_description: Este mensaje se enviará para recordar a los evaluadores que deben completar las evaluaciones pendientes
+    evaluator_reminder_name: Recordatorio para el evaluador
+    evaluator_reminder_rule_description: Especificar reglas para programar automáticamente cuando se programa una invitación
+    evaluator_reminder_rule_name: Reglas para recordar al evaluador
+    evaluator_welcome_description: Este mensaje anulará el "Mensaje de bienvenida" y se mostrará únicamente a los participantes que en ese momento estén participando como evaluadores.
+    evaluator_welcome_name: Bienvenida al evaluador
+    evaluators_title: Evaluadores
+    evidence_from_transcript: Pruebas de la transcripción
+    expand_filters: Ampliar filtros
     export_admin_roles_permissions: Exportación de funciones y permisos de administrador
+    export_admins_with_permissions: Exportación de funciones y permisos de administrador
+    export_ai_artifacts: Exportar artefactos de IA
     export_campaigns_queued: Se han puesto en cola las tareas de exportación. Comprueba tus notificaciones para ver los enlaces de descarga.
     export_compact_completion_status: Compacto
     export_completion_status: Estado de finalización de la exportación
     export_completion_statuses_scheduled: El trabajo de exportación de estados de finalización se programó correctamente.
     export_detailed_completion_status: Detallado
+    export_failure_msg: Error al exportar niveles de competencia
+    export_success: El trabajo de exportación de Admin se ha programado correctamente. Compruebe el estado en su notificación.
+    export_success_msg: Exportación de acciones de desarrollo en curso
+    export_to_csv: Exportar a CSV
+    export_with_inactive_users: Exportar con usuarios inactivos
+    external_report_id: Identificador del informe externo
+    external_score: Puntuación externa
+    external_settings: Configuración externa
+    factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
     factor_feedback: Retroalimentación de factores
     factor_selection: Selección de factores
     factors: Factores
+    factors_form_components_ExternalList_table_jsonpath: Ruta JSON
+    factors_form_components_ExternalList_table_types_norm_score: Puntuación normalizada
+    factors_form_components_ExternalList_table_types_percentage: Porcentaje
+    factors_form_components_ExternalList_table_types_percentile: Puntuación percentil
+    factors_form_components_ExternalList_table_types_score: Puntuación
+    factors_form_components_ExternalList_table_types_zscore: Puntuación Z
+    factors_form_components_ExternalList_title: Rutas JSON para puntuaciones
+    factors_form_predicate: Predicado
+    factors_form_scoring_strategies_custom_formula: Fórmula personalizada
+    factors_form_scoring_strategies_tip: "<strong>preguntas (Media):</strong> Es como el método de puntuación actual cuando hay preguntas vinculadas a un factor. <br /> <br />preguntas <strong>(SUMA):</strong> Es como Preguntas (Media), pero utilizando SUMA <br /> <br /><strong>preguntas de Otros</strong> Factores <strong>(Promedio):</strong> Es como el método de puntuación actual cuando hay subfactores para un factor, el único cambio es la adición de peso. <br /> <br /><strong>preguntas de</strong> otros factores <strong>(SUM):</strong> Es como Otros factores (Promedio), pero utilizando SUM <br /> <br /><strong>suma ponderada de factores</strong>: Aquí se multiplican las puntuaciones de los otros factores seleccionados por sus pesos y se suman."
+    factors_form_scoring_strategy: Estrategia de puntuación
+    factors_form_search_factors: Factores de búsqueda
+    factors_form_use_sub_factor_norm_score: Utilizar la puntuación de la norma Factores
+    factors_form_value: Valor
+    factors_index_precision: Precisión
+    factors_index_scoring_strategy: Estrategia de puntuación
+    factors_index_sub_factors: Subfactores
+    factors_index_title: Factores
+    factors_resource_confirmations_delete_body: "<p>¿Estás seguro de que quieres borrar este Factor?</p>\n"
+    failure_reason: Motivo del fallo
     feature_ai_assistants_description: Habilite los asistentes con tecnología de inteligencia artificial para mejorar la experiencia del usuario.
     feature_ai_assisted_idp_description: Utilizar la IA para ayudar con las recomendaciones del Plan de Desarrollo Individual.
     feature_ai_content_analysis_description: Habilitar el análisis de contenido basado en IA para las evaluaciones.
@@ -358,25 +775,96 @@ es-ES:
     feature_idp_description: Habilitar la planificación del desarrollo individual para los participantes.
     feature_not_available: Esta función no está disponible
     feature_sms_notification_description: Habilita las notificaciones por SMS para invitaciones y recordatorios de campañas.
+    fields_level: Nivel
+    fields_level_description: Descripción del nivel
+    fields_level_name: Nivel Nombre
+    fields_proficiency_translations: Traducciones especializadas
+    fields_proficiency_type: Tipo de competencia
+    fields_skill: Habilidad
+    fields_skill_name: Nombre de la habilidad
+    fields_skill_type: Tipo de habilidad
     file_size_must_be_less_than_mb: El archivo {{name}} supera el tamaño máximo de {{max_size_mb}} MB
     file_upload_failed: No se ha podido subir {{name}}
     fill_empty_score_msg: Rellena todas las puntuaciones finales antes de guardar.
+    filter_by_client: Filtrar por cliente
+    filter_by_client_help: Selecciona un cliente para cargar sus proyectos
     final_score_empty_err_msg: La puntuación final de %{factor_name} no puede estar vacía.
     final_score_empty_msg: La cuenta final no puede estar vacía.
+    finalized_at: Finalizado el
+    fingerprint: Huella dactilar
+    first_name_required: El nombre es obligatorio
     fix_grammar: Corregir gramática
+    fixed_time: Tiempo fijo
+    form_active: Activo
+    form_add_assessment: Agregar evaluación
+    form_ai_assistant: Asistente de IA
+    form_assessment_required: Se requiere evaluación
+    form_assessments: Evaluaciones
+    form_campaign_factors: Factores de campaña
+    form_code: Código
+    form_configuration: Configuración
+    form_datasheet: Ficha de datos
+    form_datasheet_columns: Columnas de hoja de datos
+    form_end_date: Fecha final
+    form_include_all_datasheet_columns: Incluir todas las columnas de la hoja de datos
+    form_name: Nombre
+    form_no_assessment_selected: Aún no se han añadido evaluaciones. Haga clic en "Agregar" para comenzar.
+    form_questions_required: Se debe seleccionar al menos una pregunta
+    form_select_ai_assistant: Seleccione Asistente de IA
+    form_select_assessment: Seleccione Evaluación
+    form_select_campaign_factors: Seleccionar factores de campaña
+    form_select_datasheet_columns: Seleccionar columnas de hoja de datos
+    form_select_questions: Seleccionar preguntas
+    form_start_date: Fecha de inicio
+    form_title: Artefacto de IA
+    form_total_count: Recuento total
     formal: Formal
-    from: De
+    from: En
+    genders_female: Mujer
+    genders_male: Hombre
+    genders_not_set: No fijado
+    generate: Genere
+    generate_result_confirm: La generación de resultados del artefacto para el usuario «%{email}» eliminará el informe existente que depende de este artefacto de IA. ¿Desea continuar?
+    generate_result_info_message: Se están generando resultados, actualice la página para ver los resultados actualizados.
+    generate_results: Generar resultados
     generate_transcription: Generar transcripción
+    generated_at_time: Generado en %{time}
+    generated_value: Valor generado
+    global_skills: Habilidades globales
+    global_skills_disabled_by_client: El cliente desactiva Global Skills
+    grant_type_label: Tipo de subvención
+    grant_type_name: oauth_grant_type
     graphic: Gráfico
     graphic_slider: Control deslizante de imágenes
     handoff_client_mismatch: El token de autenticación no es válido para este cliente
     handoff_invalid_token: Token de autenticación no válido o caducado
     handoff_token_expired: El token de autenticación ha caducado o ya se ha utilizado
     handoff_user_disabled: Tu cuenta está desactivada
+    has_api_keys: Dispone de claves API
+    has_public_keys: Tiene claves públicas
+    header_logout_content: Pulsa Cancelar si quieres seguir trabajando. Pulsa Aceptar para cerrar sesión con el usuario actual.
+    header_logout_title: "¿Estás seguro de que quieres cerrar sesión?"
+    hide_all: Ocultar todo
     hide_middle_scores: Ocultar puntuaciones intermedias
     high: Alto
     hogan: Hogan
     hogan_assessment: Evaluación de Hogan
+    hogan_provider: Proveedor
+    hogan_providers_mercer: Mercer
+    hogan_providers_phoenix: Phoenix
+    hover_options_danger_item: Objeto peligroso
+    hover_options_first_menu_item: 1er punto del menú
+    hover_text: Pásame por encima
+    idp: PDI
+    idp_actions_remove_confirm: Introduzca el nombre de la plantilla actual en el cuadro de texto para eliminarla
+    idp_actions_success: "%{idpName} se ha eliminado correctamente."
+    idp_add_idp_template: Añadir plantilla IDP
+    idp_ai_assistant: Asistente de IA
+    idp_ai_assisted_idp_enabled: PDI asistido por IA
+    idp_ai_enabled: Inteligencia Artificial
+    idp_ai_settings: Ajustes AI
+    idp_all: Todos
+    idp_appearance: Apariencia
     idp_appearance_body: Cuerpo
     idp_appearance_color: Color
     idp_appearance_cover: Portada
@@ -387,6 +875,7 @@ es-ES:
     idp_appearance_guideline_position_second: Segunda página (después de la portada)
     idp_appearance_guideline_position_second_last: Penúltima página (antes de la última)
     idp_appearance_guidelines: Directrices
+    idp_appearance_hint: Para modificar la apariencia, guarde primero la plantilla IDP para habilitar estos ajustes.
     idp_appearance_idp_skills: Competencias de IDP
     idp_appearance_last: Último
     idp_appearance_per_page_font_settings: Configuración de fuentes por página
@@ -399,20 +888,136 @@ es-ES:
     idp_appearance_show_guidelines: Mostrar la página de directrices
     idp_appearance_size: Tamaño
     idp_appearance_subtitle: Subtítulo
+    idp_appearance_success: Ajustes de apariencia guardados correctamente
     idp_appearance_title: Título
+    idp_background_image: Imagen de fondo
+    idp_behavioral_skills: Habilidades conductuales
+    idp_client_skills: Competencias de los clientes
+    idp_delete_skill: "¿Estás seguro de que quieres eliminar la habilidad porque también eliminará todas las acciones de desarrollo conectadas?"
+    idp_delete_skill_msg: "¿Estás seguro de que quieres borrar esta habilidad? Eliminarlo también eliminará todas las acciones de desarrollo relacionadas."
+    idp_details_updated: Datos del PDI actualizados correctamente
+    idp_development_actions_add_from_library: Agregar desde la biblioteca
+    idp_development_actions_completion: Finalización
+    idp_development_actions_create_development_actions_with_ai: Crear acciones de desarrollo con IA para
+    idp_development_actions_create_from_ai: Crear desde IA
+    idp_development_actions_create_my_own: Crear Mi Propio
+    idp_development_actions_custom: Personalizado
+    idp_development_actions_date_range: Fecha de Inicio - Fecha de Finalización
+    idp_development_actions_edit_plan_to_add_development_actions: Edite Plan y agregue Acciones de Desarrollo.
+    idp_development_actions_errors_invalid_learning_style: "«%{learning_style}» no es un estilo de aprendizaje válido. Las opciones válidas son: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: El estilo de aprendizaje no puede estar en blanco
+    idp_development_actions_generate_by_ai: Generar por IA
+    idp_development_actions_generate_more: Generar Más
+    idp_development_actions_heading: Acciones de Desarrollo
+    idp_development_actions_manage_skills: Gestionar Habilidades
+    idp_development_actions_no_development_actions: No hay acciones de desarrollo
+    idp_disabled_by_client: El cliente deshabilita el IDP
+    idp_document_ai_assistant: Asistente de IA de análisis de documentos
+    idp_edit_template: Editar plantilla IDP
+    idp_enter_tag_or_skills_error: Selecciona al menos una etiqueta o habilidad
+    idp_enter_template_description_error: La descripción de la plantilla es obligatoria.
+    idp_enter_template_name_error: El nombre de la plantilla es obligatorio
+    idp_errors_cannot_update_progress_plan_completed: No se puede actualizar el progreso porque el plan IDP ya se ha completado
+    idp_errors_skills_required_on_publishing: Elija habilidades antes de publicar una plantilla.
+    idp_errors_update: Actualización no permitida porque la plantilla IDP ya está asociada a un plan IDP de usuario.
+    idp_fields_approval_date: Fecha de aprobación
+    idp_fields_assigned_data: Datos asignados
+    idp_fields_assigned_date: Fecha Asignada
+    idp_fields_completion_date: Fecha de Finalización
+    idp_fields_current_job_role: Puesto actual
+    idp_fields_division: División
+    idp_fields_label: Campos
+    idp_fields_name: Nombre
+    idp_fields_publish_date: Fecha de Publicación
+    idp_fields_review_date: Fecha de Revisión
+    idp_fields_target_job_role: Puesto objetivo
+    idp_global_skills: Habilidades globales
+    idp_idp: PDI
+    idp_idp_template: Añadir plantilla IDP
+    idp_interview_questions: Preguntas de la entrevista
+    idp_interview_questions_updated: Preguntas de la entrevista actualizadas con éxito.
+    idp_intro_message: Mensaje de introducción
+    idp_intro_message_hint: Para modificar el mensaje de introducción, primero guarde la plantilla IDP para habilitar estas configuraciones.
+    idp_intro_message_success: Mensaje de introducción guardado exitosamente
+    idp_locales: Lugar
+    idp_logo_image: Imagen del logotipo
+    idp_logo_type_both: Logotipos de Mercer y de los clientes
+    idp_logo_type_client_only: Sólo logotipo del cliente
+    idp_logo_type_label: Tipo de logotipo
+    idp_logo_type_mercer_only: Sólo logotipo Mercer
+    idp_logo_type_none: Sin logotipos
+    idp_no_interview_questions_selected: No se seleccionaron preguntas de entrevista
+    idp_no_reflection_questions_selected: No se han seleccionado preguntas de reflexión
+    idp_none: Ninguno
+    idp_one_click_idp_enabled: IDP con un clic activado
     idp_plan_reset_success: El plan se ha reiniciado con éxito
+    idp_reference_locale: Localidad de referencia
+    idp_reflection_questions: Preguntas de reflexión
+    idp_reflection_questions_hint: Para modificar las preguntas de reflexión, guarde primero la plantilla IDP para habilitar estos ajustes.
+    idp_reflection_questions_updated: Preguntas de reflexión actualizadas correctamente.
+    idp_remove_skill: Eliminar habilidad
+    idp_revert_skill_to_public_errors_skill_already_public: La habilidad ya es pública
+    idp_revert_skill_to_public_errors_skill_not_found: Habilidad no encontrada
+    idp_revert_skill_to_public_success_base_message: La habilidad '%{skill_name}' ahora es visible para su gerente
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} y tu plan de IDP ya se ha presentado para su aprobación"
+    idp_select_by_tags: Seleccionar por etiquetas
+    idp_select_interview_question: Comience a escribir para buscar y seleccionar la pregunta
+    idp_select_reflection_question: Comience a escribir para buscar y seleccionar la pregunta
+    idp_select_skill_gap_report: Seleccionar el informe sobre las carencias de competencias
+    idp_select_specific_skills: Seleccionar competencias específicas
+    idp_selected: Selección
+    idp_self_rating: Activar la autoclasificación
+    idp_setting_manager_approves_idp: El Director aprueba el PDI
+    idp_setting_manager_can_edit_idp: El administrador puede editar el PDI
+    idp_setting_require_all_development_actions_complete: Exigir que se completen todas las acciones de desarrollo
+    idp_show_reflections: Mostrar reflexiones
+    idp_skill_gap_report: Informe sobre el déficit de cualificaciones
+    idp_skill_gap_report_ai_assistant: Asistente de análisis de informes de brechas de habilidades
+    idp_skill_source_preference: Fuente de habilidades
+    idp_skill_sources_from_ai: De conocimientos generales de IA
+    idp_skill_sources_from_template: De plantilla y mapeos
+    idp_skills: Habilidades
+    idp_skills_privacy_messages_made_private: La habilidad "%{skill_name}" se ha marcado como privada y se ocultará a su gerente
+    idp_skills_privacy_messages_made_public: La habilidad '%{skill_name}' ahora es visible para su gerente
+    idp_skills_privacy_messages_skill_not_found: Habilidad no encontrada
+    idp_skills_privacy_messages_unauthorized: No se permite modificar esta aptitud
+    idp_skills_updated: Competencias del PDI actualizadas con éxito
+    idp_status_draft: Borrador
+    idp_status_published: Publicado en
+    idp_status_updated: Estado del PDI actualizado correctamente
+    idp_subtitle_text: Texto del subtítulo
+    idp_tab_development_actions: Acciones de desarrollo
+    idp_tab_interview_questions: Preguntas de la entrevista
+    idp_tab_reflection_questions: Preguntas de reflexión
+    idp_tab_settings: Ajustes
+    idp_tab_templates: Plantillas
+    idp_technical_skills: Competencias técnicas
+    idp_template_details: Detalles de la plantilla
     idp_templates: Plantillas de PDI
+    idp_title_text: Texto del título
+    idp_update_interview_questions: Actualizar preguntas de la entrevista
+    idp_update_reflection_questions: Preguntas de reflexión sobre la actualización
     iiht: IIHT
     iiht_assessment: Evaluación del IIHT
+    iiht_password: Contraseña
+    iiht_tenancy_name: Nombre del arrendatario
+    iiht_tenant_id: Identificación del inquilino
+    iiht_user: Usuario
+    image: Imagen
+    import_action_title: Importar artefactos de IA de campañas
+    import_actions_proficiency: Capacidad de importación
+    import_actions_translations: Importar Traducciones Proficiency
     import_ai_artifacts: Importar artefactos de IA
     import_csv_assessment_group_error: "%{index} de fila: el usuario con el correo electrónico %{email} ya ha sido invitado a «%{workshopInviteName}»."
     import_csv_error: 'Fila %{index}: usuario con correo electrónico %{email} no está en esta campaña'
     import_csv_parsing_error: 'Error de análisis CSV: %{message}'
     import_description: Importar usuarios desde un archivo CSV. Cada fila debe contener una dirección de correo electrónico.
+    import_download_example_csv: Muestra de normas CSV
     import_download_sample: Descargar ejemplo de CSV
     import_error: Importación fallida. Por favor, inténtalo de nuevo.
     import_error_saving_data: 'Datos de guardado de errores para %{email}: %{message}'
     import_errors_title: Errores de importación
+    import_evaluators: Importar evaluadores
     import_external_scoring_action: Importación de Puntuación Externa
     import_external_scoring_body: Consulta la función de Exportar para extraer una plantilla que pueda usarse para importar aquí.
     import_external_scoring_data_description: Importación de datos externos de puntuación para la evaluación y campaña especificadas
@@ -420,20 +1025,177 @@ es-ES:
     import_external_scoring_success_msg: La importación se subió correctamente
     import_external_scoring_upload: Subir
     import_file_required: Por favor, selecciona un archivo CSV para subir.
+    import_info_msg: El archivo subido ha sido puesto en cola para su importación. Por favor, revisa el estado en las notificaciones.
+    import_job_queued: Se ha puesto en cola un trabajo de importación de niveles de competencia
     import_queued_success: El trabajo de importación de sujetos se programó con éxito. Por favor, consulta tu notificación para ver el estado.
     import_sample_file_label: 'Archivo de ejemplo:'
     import_scenario_id_mismatch: 'Desajuste de ID de escenario para %{email}: %{expected_id} esperado, pero CSV contiene diferentes IDs de escenario'
+    import_subjects: Temas de importación
+    import_success_msg: La importación se ha cargado correctamente
     import_successfully_saved: Salvé con éxito resultados externos para %{email} con %{goals_count} objetivos
     import_title: Temas importados de CSV
     import_upload: Subir
     import_users: Importar usuarios
+    inactive: Inactivo
+    include_locales_label: Incluir traducciones
+    include_locales_name: incluir_locales
+    index_title: Proyectos
+    individual_invite_tabs_assessment_center: Centro de Evaluación
+    individual_invite_tabs_invitation_status: Estado de la invitación
+    info_color: Info Color
+    innovation_styles_form_full_description: Descripción completa
+    innovation_styles_index_title: Estilos de innovación
+    innovation_styles_list_position: Posición
+    innovation_styles_resource_confirmations_delete_body: "<p>¿Está seguro de que desea eliminar este estilo de innovación?</p>\n"
+    instruction_messages: Mensajes de instrucciones
+    instructions: Instrucciones
+    instructions_actions_saved: Instrucciones guardadas correctamente
+    instructions_enable: Habilitar instrucciones
+    instructions_save: Salvar instrucciones
+    integrations_actions_add: Integraciones
+    integrations_actions_back: Volver a Integraciones
+    integrations_actions_load_mettl_catalog: Catálogo de evaluación Load Mettl
+    integrations_actions_load_microsite_catalog: Cargar el catálogo de evaluación de micrositios
+    integrations_actions_load_skillvue_catalog: Cargar el catálogo de evaluación Skillvue
+    integrations_columns_active: Activo
+    integrations_columns_details: Detalles
+    integrations_columns_name: Nombre de la integración
+    integrations_details_client_id: ID de cliente
+    integrations_details_deployment_id: ID de despliegue
+    integrations_details_platform_access_token_url: URL del token de acceso a la plataforma
+    integrations_details_platform_authentication_request_url: URL de solicitud de autenticación de plataforma
+    integrations_details_platform_host_name: Nombre del host de la plataforma
+    integrations_details_platform_id: ID de plataforma
+    integrations_details_platform_public_keyset_url: URL del conjunto público de claves de la plataforma
+    integrations_details_provider: Nombre del proveedor
+    integrations_details_webhookUrl: URL del webhook
+    integrations_details_webhookUrls: URL de webhooks
+    integrations_integrations: Integraciones
+    integrations_load_mettl_success: El trabajo de evaluación de métricas de carga se ha puesto en cola con éxito
+    integrations_load_microsite_success: La tarea de evaluar los micrositios se ha añadido correctamente a la cola
+    integrations_load_skillvue_success: El trabajo de carga de evaluaciones de skillvue se ha puesto en cola con éxito
+    integrations_names_hogan: Hogan
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: Mettl
+    integrations_names_microsite: Micrositio
+    integrations_names_skillvue: Skillvue
+    integrations_names_yoodli: Yoodli
+    integrations_view_all_schedules: Ver todos los horarios de Mettl
+    interface: Interfaz
     internal: Interno
+    interview_questions_delete_confirmation: "¿Estás seguro de que quieres eliminar esta pregunta de la entrevista?"
+    interview_questions_export_action: Preguntas de la entrevista de exportación
+    interview_questions_export_failure_msg: Error al exportar el archivo.
+    interview_questions_export_success_msg: Exportación de preguntas de entrevista en curso. Por favor, comprueba el estado en las notificaciones.
+    interview_questions_form_mandatory: Obligatorio
+    interview_questions_form_question: Pregunta
+    interview_questions_form_question_type: Tipo de pregunta
+    interview_questions_form_question_type_audio: Audio
+    interview_questions_form_question_type_video: Vídeo
+    interview_questions_form_time_limit: Límite de tiempo (seg)
+    interview_questions_form_title: Pregunta de la entrevista
+    interview_questions_import_action: Importar preguntas de la entrevista
+    interview_questions_import_failure_msg: Error al importar el archivo.
+    interview_questions_import_success_msg: Importación de preguntas de entrevista en curso. Por favor, comprueba el estado en las notificaciones.
+    interview_questions_question: Pregunta
+    invalid_client_ids: ID de cliente no válidos
+    invalid_confidence_interval: confidence_interval debe ser 0 o 1
     invalid_csv_header: CSV contiene cabeceras inválidas.
+    invalid_json: La configuración no es un JSON válido
+    invalid_leadership_bar: leadership_bar debe ser 0 o 1
+    invalid_norm_option: La opción Norm debe estar entre 0 y 3.
+    invalid_project_ids: 'ID de proyecto no válidos: %{ids}'
     invalid_question_ids: 'Números de identificación de preguntas que no se encuentran en esta evaluación: %{ids}'
+    invalid_report_ids: ID de informe no válidos
+    invite_add_invite: Añadir invitación
+    invite_assessment_center: Centro de evaluación
+    invite_basic_info_allow_preferred_language: Permitir idioma preferido
+    invite_basic_info_assessment_centers: Centros de evaluación
+    invite_basic_info_assessment_centers_hint: Ejemplo de búsqueda "10 de agosto de 2023, 20:06"
+    invite_basic_info_assessment_centers_placeholder: Seleccionar centros de evaluación
+    invite_basic_info_description: Envíe invitaciones a los candidatos seleccionando varios centros de evaluación. A continuación, los candidatos elegirán un único centro de entre los disponibles.
+    invite_basic_info_neurodiversity: Incluir la cuestión de la neurodiversidad
+    invite_basic_info_preferred_language: Lenguas permitidas
+    invite_basic_info_required_error: No puede estar vacío
+    invite_basic_info_title: Información básica
+    invite_center_group: Grupo del Assessment Center
+    invite_confirm_message: "¿Seguro que quieres borrar una invitación?"
+    invite_confirm_message_with_title: ¿Está seguro de que desea eliminar la invitación con el título "%{invite_title}"?
+    invite_evaluators_description: Este mensaje se mostrará a los sujetos cuando empiecen a designar evaluadores
+    invite_evaluators_name: Invitar a evaluadores
+    invite_invites: Invitaciones
+    invite_name_placeholder: Ingrese el nombre de la invitación
+    invite_not_selected: No seleccionado
+    invite_request_accept: Aceptar
+    invite_request_reason: Motivo
+    invite_request_reject: Rechazar
+    invite_request_remove_confirm_content: "¿Estás seguro de que quieres %{action} %{status} de %{subjectName}?"
+    invite_request_remove_confirm_success: "%{status} La dirección %{subjectName} fue redirigida correctamente a %{action}."
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: Nombre del sujeto
+    invite_request_workshop_time: Hora del taller
+    invite_requests: Solicitudes
+    invite_save: Salvar y enviar
+    invite_send_invites_add_description: Puedes traducir el título y la descripción de la invitación a varios idiomas
+    invite_send_invites_add_language: Añadir idioma
+    invite_send_invites_input_label: Añadir idioma adicional
+    invite_send_invites_input_placeholder: Seleccionar idioma adicional
+    invite_send_invites_invitation_title: Título de la invitación
+    invite_send_invites_title: Invitación (%{lang})
+    invite_steps_add_subjects: Añadir temas
+    invite_steps_basic_info: Información básica
+    invite_steps_has_errors: contiene errores
+    invite_steps_send_invitation: Enviar invitación
+    invite_subjects_count: Temas
+    invite_subjects_csv_error: 'Fila «%{index}»: el usuario con la dirección de correo electrónico %{email} no figura en esta campaña'
+    invite_subjects_csv_imported: "%{count} sujetos importados"
+    invite_subjects_description: Puede añadir temas individualmente mediante búsquedas o cargar en bloque un archivo csv.
+    invite_subjects_download: Descargar
+    invite_subjects_file_example: Consulte el archivo de ejemplo para cargar la información de los sujetos.
+    invite_subjects_import_from_campaign: Añadir todo desde campaña
+    invite_subjects_import_title: Temas de importación
+    invite_subjects_import_users: Importar usuarios
+    invite_subjects_search_user: Buscar temas
+    invite_subjects_title: Temas
+    invite_subjects_upload_csv: Cargar CSV
+    invite_success_message: La invitación se ha eliminado correctamente.
+    invite_success_message_with_title: La invitación con el título '%{invite_title}' se ha eliminado correctamente.
+    invite_title: Título
+    invite_workshop_list_remove_confirm_content: ¿Está seguro de que desea eliminar el centro de evaluación con el nombre "%{name}"?
+    invite_workshop_list_remove_confirm_success: Assessment Center se ha eliminado correctamente.
+    invite_workshop_list_remove_confirm_title: Confirmar
+    invite_workshop_title: Centros de evaluación
+    is_subject: Es Asunto
+    job_role_are_you_sure_to_remove: "¿Estás seguro de quitarlo?"
+    job_role_column_job_group: Grupo de trabajo
+    job_role_column_skill_name: Nombre de la habilidad
+    job_role_export_failure_msg: Error al exportar traducciones
+    job_role_export_success_msg: Exportación de acciones de desarrollo en curso.
+    job_role_form_code: Código
+    job_role_form_description: Descripción
+    job_role_form_job_group: Grupo de trabajo
+    job_role_form_name: Nombre
+    job_role_form_title: Rol de trabajo
+    job_role_import_action_translations: Importar traducciones de funciones
+    job_role_import_download_example_csv: Muestra de normas CSV
+    job_role_import_success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    job_role_job_role_details: Detalles del puesto
+    job_role_skill_mapping_column_expected_proficiency_level: Nivel de competencia esperado
+    job_role_skill_mapping_form_title: Asignación
+    job_role_translations: Traducciones de funciones
     job_roles: Roles de trabajo
+    join_room: Entrar en la sala
+    keep_original: Conservar original
+    key: Clave
+    key_id: ID de clave
     keywords: Palabras clave
     keywords_placeholder: Introduzca las palabras clave separadas por comas.
+    language_id: Identificador de idioma
+    last_name_required: Apellido obligatorio
+    lead_assessment: Evaluación del plomo
     lead_assessor_form: Formulario del asesor principal
+    leadership_bar: Barra de liderazgo
+    leadership_bar_update_success: Barra de liderazgo actualizada correctamente
     learning_from_others: Aprendizaje colaborativo [20]
     level: Nivel
     level_apply: Aplicar
@@ -446,22 +1208,63 @@ es-ES:
     lighthouse_logo_alt_text: Logotipo del faro
     lighthouse_question: Pregunta sobre el faro
     lighthouse_question_id: ID de la pregunta de Lighthouse
+    link_text: Enlace
     linked_assessments: Evaluaciones relacionadas
+    locale: Local
+    log_date: Fecha de registro
     logged_in: Iniciado sesión
+    login: Iniciar sesión
     low: Bajo
+    mail_history: Historia del correo
+    main_report: Informe principal
     maintenance: Mantenimiento
     maintenance_settings: Configuración de mantenimiento
     maintenance_settings_description: Gestionar las ventanas y la configuración de mantenimiento del sistema.
+    make_report_available_to_subject_when: 'Poner el informe a disposición del sujeto cuando:'
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
+    manager_approves_reports: El Director aprueba los informes
+    manager_can_access_subject_reports: El gestor puede acceder a los informes temáticos
+    manager_cannot_access_subject_reports: El gestor no puede ver el informe hasta que se cumplan los requisitos
+    manager_ids_label: Directores de centro
+    manager_report_ready_description: Este mensaje se envía al responsable de un asunto una vez que el informe del asunto está listo
+    manager_report_ready_name: Informe de gestión listo
+    managers_title: Gerentes
+    mark_finalized: Marcado como finalizado
+    mark_finalized_bulk_confirm: Al finalizar los resultados de los artefactos para todos los usuarios seleccionados, se generarán los informes que utilizan artefactos de IA. ¿Desea continuar?
+    mark_finalized_confirm: Al finalizar los resultados del artefacto para el usuario «%{email}», se generará el informe que utiliza el artefacto de IA para dicho usuario. ¿Desea continuar?
+    mark_licenses_as_deactivated: Marcar licencias como desactivadas
+    mark_not_finalized: La calificación aún no es definitiva
+    mark_not_finalized_bulk_confirm: Si eliminas la finalización de todos los usuarios seleccionados, se eliminarán los informes generados que utilizan artefactos de IA. ¿Estás seguro de que quieres continuar?
+    mark_not_finalized_confirm: Si eliminas la finalización del usuario «%{email}», se eliminará el informe generado que utiliza el artefacto de IA para ese usuario. ¿Estás seguro de que deseas continuar?
+    mask_identity_for_examus: Datos de la máscara de Examus Proctoring
+    mask_identity_for_hogan: Datos de la máscara de Hogan
+    mask_identity_for_iiht: Datos de la máscara del IIHT
+    mask_identity_for_mettl: Datos de la máscara METTL
+    mask_identity_for_mhs: Datos de máscara para MHS
+    mask_identity_for_pearson: Datos de la máscara de Pearson
+    mask_identity_for_saville: Datos de la máscara de Saville
+    mask_identity_for_skillvue: Datos de la máscara Skillvue
+    mask_identity_for_yoodli: Datos de máscara para Yoodli
     max_value: Valor máximo
     mean: Media
     media_files_label: Archivos
     media_library: Biblioteca multimedia
     media_library_page_title: Biblioteca multimedia - Panel de control - Mercer Lighthouse
     meeting: Reunión
+    meeting_link: Enlace a la reunión
+    meetings_and_resources: Reuniones y recursos
     messages: Mensajes
+    meta_title: Panel de administración
     mettl: METTL
+    mettl_apiBaseUrl: Punto final de la API
+    mettl_apiBaseUrlRequired: Se requiere un punto final de API.
     mettl_assessment: Evaluación de Mettl
+    mettl_privateKey: Clave privada
+    mettl_privateKeyRequired: Se requiere la clave privada.
+    mettl_publicKey: Clave pública
+    mettl_publicKeyRequired: Se requiere la clave pública.
+    mettl_servers_mettl_eu: Europa
+    mettl_servers_mettl_india: India
     mhs: MHS
     mhs_assessment: Evaluación MHS
     mhs_assessment_name: Nombre de la evaluación de MHS
@@ -477,24 +1280,75 @@ es-ES:
     min_value: Valor mínimo
     minimum_10_words: Mínimo 10 palabras
     minimum_download_speed: Velocidad mínima de descarga (en Mbps)
+    minimum_face_detection_ratio: Índice mínimo de detección de rostros
     minimum_system_check_validity: El tiempo mínimo de validez de la comprobación del sistema de la campaña debe ser de 15 minutos
     minimum_upload_speed: Velocidad mínima de subida (en Mbps)
     missing_min_max_values: Se requieren valores mínimos y máximos.
+    modal_convert_option: Convertir esta campaña en una plantilla
+    modal_convert_success: Plantilla convertida correctamente
+    modal_copy_option: Crear una nueva plantilla a partir de esta campaña
+    modal_copy_success: El trabajo de creación de plantilla de campaña se ha programado correctamente, compruebe el estado en sus notificaciones.
+    modal_description: Elija cómo desea crear una plantilla a partir de esta campaña.
+    modal_failed: Error en la creación de la plantilla.
+    modal_subtitle: Seleccione un intervalo de fechas y, a continuación, el idioma deseado para cada informe.
+    modal_title: Convertir a plantilla
     model_answer: Respuesta modelo
     model_answer_placeholder: Introduzca la respuesta modelo para la puntuación de IA.
     must_be_a_valid_url: URL no válida. Introduce la URL completa con el protocolo http o https.
     name: Nombre
     name_max_length: El nombre no puede superar los %{length} caracteres.
     name_required: Se requiere el nombre
+    navigation_audit_logs: Registros de auditoría
+    navigation_factors: Factores
+    navigation_innovation_styles: Estilos de innovación
+    navigation_logout: Cerrar sesión
+    navigation_occupations: Ocupaciones
+    navigation_registration_codes: Códigos de registro
+    navigation_skills_taxonomy: Taxonomía de competencias
+    navigation_users: Usuarios
     new_folder: Nueva carpeta
+    new_score: Nueva puntuación
+    no_assessments_found: ID de auditoría
     no_client_access: No tienes acceso a este cliente
     no_clients_found: No se han encontrado clientes
+    no_completed_assessments: Aún no hay valoraciones realizadas
     no_file_selected: No se selecciona ningún archivo
     no_notifications: Sin notificaciones
     no_question_mappings: No hay asignaciones de preguntas disponibles
+    no_rendered_output: No hay salida renderizada disponible
     no_status: Sin estado
+    nomination_denied_description: Este mensaje se envía a los sujetos cuando se deniega una candidatura
+    nomination_denied_name: Nominación denegada
+    nomination_help_description: Texto de ayuda en la tarjeta de nominación del panel de control del usuario
+    nomination_help_name: Ayuda con la propuesta
+    norm: Norma
     norm_editor_numeric_value_error: Solo se admiten valores numéricos (enteros o decimales).
+    norm_id: Norma ID
+    norm_option: Opción Norm
+    norm_option_form_select: Seleccionar opción Norm
+    norm_option_update_success: Opción Norm actualizada correctamente
+    norm_region: Región normal
+    norm_region_form_select: Seleccionar región normal
+    norm_region_update_success: Región Norm actualizada correctamente
+    normal: Normal
+    normalize_factor_scores: Normalizar las puntuaciones de los factores
     norms: Normas
+    norms_copy_successfully: La norma "%{name}" se ha copiado correctamente.
+    norms_export_success_msg: El trabajo de exportación de normas se ha programado correctamente. Compruebe el estado en las notificaciones.
+    norms_import_download_example_csv: Muestra de normas CSV
+    norms_import_select_file_validation: Por favor, seleccione un propietario y un archivo antes de enviar.
+    norms_import_success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    norms_import_title: Importación de normas
+    norms_index_import: Importar
+    norms_remove_confirm: Introduzca el nombre de la norma en el cuadro de texto para confirmar
+    norms_remove_warning: ¿Estás seguro de que quieres borrar la norma "%{name}"
+    norms_score_types_five_scale: Escala de cinco
+    norms_score_types_norm_type: Tipo de norma
+    norms_score_types_percentage: Porcentaje
+    norms_sidebar_copy: Copiar Norma
+    norms_sidebar_editor: Norma Editor
+    norms_sidebar_export: Norma de exportación
+    norms_title: Norma
     not_completed: No completado
     not_completed_tooltip: "%{completed} se asignan evaluadores, pero solo %{submitted} han completado las evaluaciones"
     notes: Notas
@@ -503,16 +1357,51 @@ es-ES:
     notification_bell_icon_alt_text: Icono de campana de notificación
     notifications: Notificaciones
     number: Número
+    oauth_scope_label: Alcance
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: Se requiere alcance
     occupations: Ocupaciones
+    occupations_factors_list_condition: Condición
+    occupations_factors_list_position: Posición
+    occupations_factors_list_weight: Peso
+    occupations_form_alternative_icon: Icono alternativo
+    occupations_form_color: Color
+    occupations_form_indicative_roles_image: Imagen ilustrativa de los roles
+    occupations_form_key_career_tracks_image: Imagen de las principales trayectorias profesionales
+    occupations_index_title: Ocupaciones
+    occupations_resource_confirmations_delete_body: "<p>¿Estás seguro de que quieres borrar esta ocupación?</p>\n"
     on_the_job: En el trabajo [70]
     only_editable_on_create: Esta opción solo se puede editar durante la creación.
     options: Opciones
+    options_evaluator_options: Opciones del evaluador
+    options_global: Opciones globales
+    options_manager_options: Opciones de gestión
+    options_subject_options: Opciones temáticas
+    options_title: Opciones
     organisational: AGIL
     original_text: Texto original
+    other_assessments: Otras evaluaciones
+    other_assessor_assessments: Otras evaluaciones
+    other_reports: Otros informes
     others: Otros
+    outcome: Resultado
+    output_schema_key_constraint: La clave debe comenzar con una letra minúscula y solo puede contener letras minúsculas, números y guiones bajos
+    output_schema_keys: Claves del esquema de salida
     overall: En general
     overall_score: Puntuación global
+    overall_scoring: Puntuación global
+    parsed_dependencies_help: Dependencias analizadas para el usuario utilizado por AI Assistant para la generación de resultados de artefactos
+    parsed_dependencies_title: Dependencias analizadas
+    parsed_dependencies_view: Ver dependencias analizadas
     participants: Participantes
+    participants_tab: Participantes
+    participants_tabs_assessors: Asesores
+    participants_tabs_sms_contacts: Contactos SMS
+    participants_tabs_subjects: Temas
+    password_label: Contraseña
+    password_name: Contraseña
+    past: Anterior
+    payload: Carga útil
     pearson: Pearson
     pearson_assessment: Evaluación Pearson
     permissions:
@@ -710,7 +1599,7 @@ es-ES:
           view: Ver
         messages:
           email: Correo electrónico
-          instructions: Instrucciones
+          instructions: ID de auditoría
           options: Opciones
           title: Mensajes
         norms:
@@ -825,7 +1714,7 @@ es-ES:
         view: Ver
       messages:
         email: Correo electrónico
-        instructions: Instrucciones
+        instructions: ID de auditoría
         options: Opciones
         title: Mensajes
       norms:
@@ -940,27 +1829,221 @@ es-ES:
         view: Ver
         view_recordings: Ver grabaciones
     permissions_360_campaigns: Permisos específicos para campañas 360
+    permissions_updated: Los permisos se han actualizado correctamente
     piped_text: Texto canalizado
+    piped_text_modal_assessment_center: Centro de Evaluación
+    piped_text_modal_campaign_link: Enlace a la campaña
+    piped_text_modal_campaign_name: Nombre de la campaña
+    piped_text_modal_campaigns: Campañas
+    piped_text_modal_duration: Duración
+    piped_text_modal_end_time: Hora de finalización
+    piped_text_modal_insight_page_link: Enlace a la página Insight
+    piped_text_modal_insight_page_url: URL de la página Insight
+    piped_text_modal_invite_title: Título
+    piped_text_modal_invites: Invitaciones
+    piped_text_modal_magic_link: Enlace mágico
+    piped_text_modal_magic_url: URL mágica
+    piped_text_modal_platform_url_links: Url y enlaces de la plataforma
+    piped_text_modal_project_name: Nombre del proyecto
+    piped_text_modal_projects: Proyectos
+    piped_text_modal_report_name: Nombre del informe
+    piped_text_modal_start_time: Hora de inicio
+    piped_text_modal_title: Añadir texto
+    piped_text_modal_user_reports: Informes de usuarios
+    piped_text_modal_users: Usuarios
+    playground: Patio de recreo
+    playground_info: Pruebe el artefacto con datos de muestra para obtener una vista previa de los resultados generados.
+    playground_placeholder: Introducir datos de prueba
+    position_auto: Auto
+    position_label: Posición de la casilla de inicio de sesión
+    position_left: izquierda
+    position_right: Derecha
     precision: Precisión
+    preview_report: Vista previa del informe
+    previous: Anterior
+    prework: Trabajo previo
+    prework_required: No permitir la reserva del centro si no se han completado los trabajos previos
+    prework_required_for_invite: Enviar invitación por correo electrónico sólo cuando se haya completado el trabajo previo
+    primary_button: Principal
+    primary_color: Color principal
     privacy: Privacidad
+    privacy_link: Activar enlace de privacidad
+    privacy_link_label: Privacidad
+    privacy_link_placeholder: Introducir enlace de privacidad
+    privacy_text: Texto de privacidad
+    privacy_text_placeholder: Introducir texto de privacidad
     proctoring: Supervisión
+    proctoring_allow_on_assessment_center: Permitir la supervisión en el centro de evaluación
+    proctoring_enable: Habilitar la verificación
     proctoring_errors_timed_only: La supervisión selectiva solo se puede activar en las evaluaciones cronometradas.
     proctoring_fixed_time_required: Activa «Tiempo fijo» para seleccionar esta opción
+    proctoring_identification: Identificación
+    proctoring_identifications:
+      face: Cara
+      face_and_passport: Cara y pasaporte
+      passport: Pasaporte
+    proctoring_integration_type: Integración
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: Navegador de bloqueo
     proctoring_mode_all: Habilitar la supervisión en todas las evaluaciones
     proctoring_mode_all_except_ac: Habilitar la supervisión en todas las evaluaciones, excepto en el centro de evaluación
+    proctoring_rule_types_allow_absence_in_frame: Permitir la ausencia en el marco
+    proctoring_rule_types_allow_to_use_books: Permitir el uso de libros
+    proctoring_rule_types_allow_to_use_calculator: Permitir el uso de la calculadora
+    proctoring_rule_types_allow_to_use_excel: Permitir el uso de Excel
+    proctoring_rule_types_allow_to_use_human_assistant: Permitir el uso de asistentes humanos
+    proctoring_rule_types_allow_to_use_messengers: Permitir el uso de mensajeros
+    proctoring_rule_types_allow_to_use_paper: Permitir el uso de papel
+    proctoring_rule_types_allow_to_use_websites: Permitir el uso de sitios web
+    proctoring_rule_types_allow_voices: Permitir voces
+    proctoring_rule_types_allow_wrong_gaze_direction: Permitir una dirección errónea de la mirada
+    proctoring_rules: Reglas
+    proctoring_sessions_columns_comment: Comentario
+    proctoring_sessions_columns_completed_at: Completado en
+    proctoring_sessions_columns_conclusion: Conclusión
+    proctoring_sessions_columns_links: Enlaces
+    proctoring_sessions_columns_score: Puntuación
+    proctoring_sessions_columns_session_id: ID de sesión
+    proctoring_sessions_columns_started_at: Comenzó en
+    proctoring_sessions_links_report: Informe
+    proctoring_sessions_links_review: Consulte
+    proctoring_sessions_resource_name: Sesiones de evaluación
     proctoring_settings: Configuración de la supervisión
+    proctoring_trial: Prueba de control
+    proctoring_type: Tipo
+    proctoring_types:
+      offline: Fuera de línea
+      online: En línea
     professional: Profesional
     proficiency: Competencia
     proficiency_level: Claves API
     proficiency_levels: Niveles de competencia
+    proficiency_levels_fields_title: Dominio
+    profile: Perfil
+    profile_change_password: Cambiar contraseña
     profile_details: Detalles del perfil
+    project: Proyecto
+    project_admin: Administrador del proyecto
     project_admins: Administradores de proyectos
+    project_assessor: Evaluador de proyectos
+    project_features: Características del proyecto
+    project_ids: Números de identificación de los proyectos
+    project_ids_required: "«project_ids» es obligatorio para este tipo de informe"
+    project_licenses: Licencias de proyectos
     project_manager: Responsable de proyecto
+    project_not_related_to_client: El proyecto «%{project_id}» no pertenece al cliente.
     project_number: Número de proyecto
+    project_participants_column_campaigns: Campañas
+    project_participants_column_createdAt: Creado/a el
+    project_participants_column_created_at: Creado/a el
+    project_participants_edit_participant: Editar participante
+    project_participants_filter_campaigns: Sin campañas
+    project_participants_search_user: Buscar usuario
+    project_participants_send_email: Enviar correo electrónico
+    project_path: Trayectoria del proyecto
     project_settings: Configuración del proyecto
+    project_tabs_assessments_column_normalize_factor_scores: Normalizar las puntuaciones de los factores
+    project_tabs_assessments_column_user_result_validity_in_days: Validez de los resultados
+    project_tabs_assessments_delete_content: ¿Estás seguro de que quieres borrar la evaluación "%{name}"?
+    project_tabs_assessments_delete_success: La evaluación "%{name}" se ha eliminado correctamente.
+    project_tabs_assessments_delete_title: Suprimir evaluación
+    project_tabs_assessments_title: Evaluaciones
+    project_tabs_design: Diseño
+    project_tabs_general: General
+    project_tabs_privacy: Privacidad
+    project_tabs_profile: Perfil
+    project_tabs_registration: Inscripción
+    project_tabs_webhooks_actions_delete_key: Borrar
+    project_tabs_webhooks_actions_edit_key: Editar
+    project_tabs_webhooks_actions_send_test_key: enviar_prueba
+    project_tabs_webhooks_actions_send_test_label: Enviar prueba
+    project_tabs_webhooks_remove_webhook_content: "¿Borrar %{description}?"
+    project_tabs_webhooks_title: Webhooks
+    project_tools_workshop_status_export: Exportación del estado del taller
+    project_tools_workshop_status_export_success: Estado del taller La exportación se ha programado correctamente.
+    project_users_change_password: Cambiar contraseña
+    project_users_column_campaigns: Campañas
+    project_users_column_created_at: Creado/a el
+    project_users_confirm_delete: Sí, borrar
+    project_users_confirm_send: Sí, enviar
+    project_users_delete_error: No se ha podido eliminar el evaluador '%{name}'. Póngase en contacto con su administrador.
+    project_users_delete_success: El evaluador "%{name}" se ha eliminado correctamente.
+    project_users_edit_assessor: Editar evaluador
+    project_users_filter_campaigns: Sin campañas
+    project_users_modal_delete_content: ¿Está seguro de que desea eliminar al asesor "%{name}"?
+    project_users_modal_delete_title: Suprimir evaluador
+    project_users_modal_reset_email_content: "¿Estás seguro de que quieres enviar el enlace de restablecimiento de contraseña a '%{email}'?"
+    project_users_model_reset_email: Restablecer la contraseña del evaluador
+    project_users_no_edit_permission: No tiene permiso para editar al asesor '%{name}'
+    project_users_reset_mail_error: No se ha podido enviar el enlace de restablecimiento de contraseña a '%{email}'. Ponte en contacto con tu administrador.
+    project_users_reset_mail_success: Enlace de restablecimiento de contraseña enviado correctamente a "%{email}"
+    project_users_search_accessor: Accesores de búsqueda
+    project_users_send_email: Enviar correo electrónico
     projects: Proyectos
+    projects_addProject: Añadir proyecto
+    projects_assessment_settings_search: Evaluación de la búsqueda
+    projects_columns_project_number: Número de proyecto
+    projects_form_project_number: Número de proyecto
+    projects_form_subdomain: Subdominio
+    projects_form_title: Proyecto
+    projects_general_settings_live_chat: Activar el chat en directo
+    projects_general_settings_locales_label: Lugar
+    projects_general_settings_project_number_label: Número de proyecto
+    projects_general_settings_save_changes: Salvar cambios
+    projects_general_settings_sub_domain_label: Subdominio
+    projects_mettl_schedule_records_add: Añadir horario
+    projects_mettl_schedule_records_assessment_id: Identificación de la evaluación
+    projects_mettl_schedule_records_assessment_name: Nombre de la evaluación
+    projects_mettl_schedule_records_candidate_authorization: Activar la autorización de candidatos
+    projects_mettl_schedule_records_candidate_screen_capture: Activar la captura de pantalla del candidato
+    projects_mettl_schedule_records_count: Recuento de tolerancias de navegación
+    projects_mettl_schedule_records_created_at: Creado/a el
+    projects_mettl_schedule_records_schedule_id: Horario ID
+    projects_mettl_schedule_records_schedule_name: Horario Nombre
+    projects_mettl_schedule_records_secure_browser_enabled: Activar navegador seguro
+    projects_mettl_schedule_records_settings: Ajustes
+    projects_mettl_schedule_records_show_remaining_counts: Activar la visualización del recuento restante
+    projects_mettl_schedule_records_visual_proctoring_enabled: Activar el control visual
+    projects_mettl_schedule_records_web_proctoring_enabled: Activar Web Proctoring
+    projects_profile_settings_form_fields_enabled: Activado
+    projects_profile_settings_form_fields_half_size: Media talla
+    projects_profile_settings_form_fields_locked: Bloqueado
+    projects_profile_settings_form_fields_sort: Ordenar
+    projects_profile_settings_month: Mes
+    projects_profile_settings_never: Nunca
+    projects_profile_settings_update_in: Notificar actualización de perfil en
+    projects_profile_settings_year: Año
+    projects_registration_settings_hide_signup: Ocultar la opción Registrarse
+    projects_registration_settings_require_mobile_number: Requerir número de móvil
+    projects_webhook_settings_add: Añadir Webhook
+    projects_webhook_settings_column_active: Activo
+    projects_webhook_settings_column_created_date: Fecha de creación
+    projects_webhook_settings_column_description: Descripción
+    projects_webhook_settings_column_updated_date: Fecha de modificación
+    projects_webhook_settings_column_url: URL
+    projects_webhook_settings_search: Buscar en Webhoook
     prompt: Solicitud
+    provider: Proveedor
+    provider_change_confirm_title: "¿Cambiar de proveedor?"
+    provider_previously_used_warning: Este asistente ha generado resultados anteriormente con «%{from}». Cambiar a «%{to}» podría alterar el comportamiento del asistente en futuras solicitudes de generación.
     psychometric: Psicométrico
+    public_key: Clave pública
+    public_key_add: Añadir clave pública
+    public_key_cannot_be_changed: No se puede modificar una vez creado
+    public_key_copy_private_key: Copiar clave privada
+    public_key_created: La clave pública se ha creado correctamente
+    public_key_generate: Generar un par de claves
+    public_key_generate_button: Generar un par de claves RSA
+    public_key_generate_info: Se generará un par de claves RSA de 2048 bits. Solo se almacenará la clave pública. Copia y guarda de forma segura la clave privada, ya que no volverá a mostrarse.
+    public_key_invalid_format: Debe ser una clave pública RSA válida en formato PEM
+    public_key_must_be_public: Debe ser una clave pública, no una clave privada.
+    public_key_paste_placeholder: Pega aquí tu clave pública RSA en formato PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Clave pública (PEM)
+    public_key_private_key_copied: Clave privada copiada en el portapapeles
+    public_key_private_key_label: Clave privada (PEM)
+    public_key_private_key_warning: Esta será la única ocasión en la que se podrá ver la clave privada. Cópiala ahora y guárdala en un lugar seguro.
+    public_keys: Claves públicas
     question_center: Centro de preguntas
     question_center_page_title: Centro de preguntas - Panel de control - Mercer Lighthouse
     question_editor_change_type: Cambiar tipo
@@ -987,11 +2070,33 @@ es-ES:
     question_type_video_response: Respuesta en vídeo
     questions: Preguntas
     questions_new_button: Nueva pregunta
+    questions_percentage: Preguntas (SUM / MAX Total)
+    questions_sum: Preguntas (SUM)
     questions_title: Pregunta
     questions_type: Tipo
     range_min_max: RANGE %{min} - %{max}
+    rationale: Fundamento
+    raw: CRUDO
+    reason_for_changes: Motivo de los cambios
     recents: Últimas publicaciones
+    record_id: ID de registro
+    recordings: Grabaciones
     reflection_questions: Preguntas de reflexión
+    reflection_questions_delete_confirmation: "¿Está seguro de que desea eliminar esta pregunta de reflexión?"
+    reflection_questions_export_action: Preguntas de reflexión sobre la exportación
+    reflection_questions_export_failure_msg: Error al exportar el archivo.
+    reflection_questions_export_success_msg: Exportación de preguntas de reflexión en curso. Compruebe el estado en las notificaciones.
+    reflection_questions_form_mandatory: Obligatorio
+    reflection_questions_form_max_words: Máximo de palabras
+    reflection_questions_form_min_words: Palabras mínimas
+    reflection_questions_form_question: Pregunta
+    reflection_questions_form_title: Pregunta de reflexión
+    reflection_questions_import_action: Preguntas de reflexión sobre la importación
+    reflection_questions_import_failure_msg: Error al importar el archivo.
+    reflection_questions_import_success_msg: Importación de preguntas de reflexión en curso. Compruebe el estado en las notificaciones.
+    reflection_questions_question: Pregunta
+    refresh: Actualizar
+    refresh_interval: Intervalo de actualización (minutos)
     regenerate_transcriptions_action: Regenerar transcripciones
     regenerate_transcriptions_confirm_content: "¿Estás seguro de que quieres volver a generar las transcripciones de esta evaluación? Esto volverá a procesar todas las transcripciones incompletas."
     regenerate_transcriptions_confirm_title: Regenerar transcripciones
@@ -999,33 +2104,174 @@ es-ES:
     registration_codes: Códigos de registro
     registration_settings: Ajustes de registro
     remove_children_to_change_type: Eliminar todos los hijos para cambiar el tipo
+    remove_confirm_content: ¿Está seguro de que desea eliminar el asunto con el correo electrónico "%{subjectEmail}"?
+    remove_confirm_success: El asunto con el correo electrónico "%{subjectEmail}" se ha eliminado correctamente.
+    remove_confirm_title: Eliminar asunto
     remove_confirmation: "¿Estás seguro de que quieres eliminar este elemento?"
+    remove_output_schema_key: Eliminar clave de esquema de salida
     remove_successfully: El elemento multimedia se ha eliminado correctamente.
+    render_button: Plantilla de renderizado
+    rendered_prompt: Prompt renderizado
+    reply_to_email: Responder al correo electrónico
+    report_access: Acceso a los informes
     report_alias_save_confirmation: Si desea guardar TODOS los cambios en Report Builder y también en Aliases, haga clic en el botón «GUARDAR». La página se actualizará y los cambios se aplicarán correctamente.
+    report_approval: Aprobación del informe
+    report_approval_allow_bulk_approve: Permitir aprobación masiva
+    report_approval_allow_qc_bulk_submit: Permitir el envío masivo de QC
+    report_approval_approval_statuses_approved: Aprobado/a
+    report_approval_approval_statuses_change_requested: Cambio solicitado
+    report_approval_approval_statuses_not_ready: No está listo
+    report_approval_approval_statuses_pending_qc: Pendiente de control de calidad
+    report_approval_approval_statuses_qc_completed: Control de calidad finalizado
+    report_approval_approval_statuses_qc_in_progress: Control de calidad en curso
+    report_approval_approvers: Aprobadores
+    report_approval_approvers_can_edit: Los aprobadores pueden editar
+    report_approval_approvers_not_required: Aprobadores No necesarios
+    report_approval_bulk_approve_success: "%{sent_for_approval} enviado para aprobación. %{approved} informes aprobados. %{ignored} informes que requieren aprobación manual debido a cambios/comentarios de control de calidad."
+    report_approval_columns_approval_status: Estado de Aprobación
+    report_approval_columns_approved_by: Aprobado por
+    report_approval_columns_assessed_by: Evaluado por
+    report_approval_columns_campaign_name: Nombre de la campaña
+    report_approval_columns_qc_by: Revisado por
+    report_approval_columns_report_name: Nombre del informe
+    report_approval_columns_subject_email: Asunto correo electrónico
+    report_approval_columns_user_email: Correo electrónico del usuario
+    report_approval_columns_user_name: Nombre de usuario
+    report_approval_digest_delivery_mode_form_label: Modo de entrega de resumen
+    report_approval_digest_frequency_daily: Diario
+    report_approval_digest_frequency_form_label: Frecuencia de digestión
+    report_approval_digest_frequency_weekdays: Días entre semana
+    report_approval_digest_frequency_weekly: Semanal
+    report_approval_digest_time: Tiempo de resumen
+    report_approval_digest_timezone: Zona horaria de resumen
+    report_approval_digest_weekdays_form_label: Resumen Día(s) de la semana
+    report_approval_digest_weekdays_friday: Viernes
+    report_approval_digest_weekdays_monday: Lunes
+    report_approval_digest_weekdays_saturday: Sábado
+    report_approval_digest_weekdays_sunday: Domingo
+    report_approval_digest_weekdays_thursday: Jueves
+    report_approval_digest_weekdays_tuesday: Martes
+    report_approval_digest_weekdays_wednesday: Miércoles
+    report_approval_do_not_send_notifications: No enviar notificaciones
+    report_approval_modal_title: Configuración de la aprobación de informes
+    report_approval_notification_users: Notificación de aprobación Usuarios
+    report_approval_qc_users: Usuarios de QC
+    report_approval_remove_modal_success: 'La configuración de aprobación para el id de informe: %{reportId} se ha eliminado correctamente'
+    report_approval_remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el id de informe: %{reportId}?"
+    report_approval_report: Informe
+    report_approval_review: Consulte
+    report_approval_saving_filters_actions_clear_filters: Limpiar filtros
+    report_approval_saving_filters_actions_delete_filter: Borrar filtro
+    report_approval_saving_filters_actions_save_new_filter: Salvar como nuevo filtro
+    report_approval_saving_filters_actions_saved_filters: Filtros guardados
+    report_approval_saving_filters_delete_saved_filters: Filtro eliminado
+    report_approval_saving_filters_edit_filter_name: Nombre del filtro guardado
+    report_approval_saving_filters_error_while_deleting: Error al borrar
+    report_approval_saving_filters_error_while_editing: Error de edición
+    report_approval_saving_filters_error_while_fetching: Algo salió mal, inténtelo de nuevo
+    report_approval_saving_filters_error_while_saving: Error al Salvar el filtro
+    report_approval_saving_filters_filter_updated: Filtro actualizado
+    report_approval_saving_filters_no_saved_filters: No hay filtros guardados
+    report_approval_saving_filters_save_filter: Filtro guardado
+    report_approval_saving_filters_set_favorite: El filtro se ha establecido como favorito
+    report_approval_send_digest_emails: Enviar correos electrónicos de resumen
+    report_approval_settings: Configuración de la aprobación de informes
+    report_approval_submit_or_approve_all: Enviar o aprobar todo
     report_approvals: Aprobación de informes
+    report_availability: Disponibilidad del informe
     report_condition_not_met: Necesita %{required} %{relationship} evaluación(es), pero solo tiene %{actual}
     report_conditions_not_met_detailed: El informe para %{user} no cumple las condiciones de disponibilidad. %{conditions}
     report_denied: El informe de %{user} ha sido denegado
+    report_help_description: Texto de ayuda mostrado en el boletín de calificaciones del panel de control del usuario
+    report_help_name: Ayuda con los informes
+    report_id: Informe ID
+    report_ids: Identificadores de informe
+    report_ids_required: Es obligatorio indicar los números de identificación de los informes
     report_name: Nombre del informe
     report_no_evaluations: No hay disponible el informe para %{user} - no se han recibido evaluaciones.
     report_not_generated: Informe para %{user} cumple las condiciones de disponibilidad pero aún no se ha generado. Por favor, genera el informe primero.
     report_on_hold: El informe para %{user} está actualmente en pausa
+    report_pdf_status: Estado del informe en PDF
+    report_review_abort_qc: Abortar QC
+    report_review_approve: Aprobar
+    report_review_approve_changes: Aprobar cambios
+    report_review_edit: Editar
+    report_review_remove_approval: Retirar aprobación
+    report_review_request_changes: Solicitar cambios
+    report_review_review: Consulte
+    report_review_send_for_approve: Enviar para aprobación
+    report_review_statuses_approved: Aprobado/a
+    report_review_statuses_change_requested: Cambios solicitados
+    report_review_statuses_not_ready: No está listo
+    report_review_statuses_pending_qc: Pendiente de control de calidad
+    report_review_statuses_qc_completed: Control de calidad finalizado
+    report_review_statuses_qc_in_progress: Control de calidad en curso
     report_status: Estado del informe
+    report_type: Tipo de informe
+    report_types:
+      active_clients_projects: Clientes y proyectos en curso
+      client_assessment_counts: La valoración del cliente es importante
+      hogan_usage_report: Uso de la evaluación Hogan
+      json_data_report: Informe de datos JSON
+      pearson_usage_report: Uso de las evaluaciones de Pearson
+      report_usage_summary: Resumen de uso del informe
+      saville_usage_report: Uso de la evaluación de Saville
+      user_created_dates: Fechas creadas por el usuario
+      user_reports_export: Exportación de informes de usuarios
     reports: Informes
+    reports_copy_copy: Copiar
+    reports_copy_copy_report: Copiar informe
+    reports_count: Informes
+    reports_edit_default_language_agreement: Sí, entiendo las implicaciones del cambio de idioma por defecto.
+    reports_edit_default_language_title: Editar idioma por defecto
+    reports_edit_default_language_tooltip: Editar idioma por defecto
+    reports_edit_default_language_warning_description_li_1: Cambiar el idioma por defecto de RTL a LTR o viceversa afectará al diseño.
+    reports_edit_default_language_warning_description_li_2: Si cambia el idioma por defecto, tendrá que volver a traducir los informes.
+    reports_edit_default_language_warning_description_li_3: Descargue una copia de las traducciones del informe antes de realizar este cambio.
+    reports_edit_default_language_warning_title: Lea atentamente las instrucciones
+    reports_language_selection_modal_download: Descargar informe
+    reports_language_selection_modal_generate: Generación de informes
     reports_limit_exceeded: La descarga masiva está limitada a 1000 archivos de informe. Si has seleccionado muchos idiomas, por favor redúcelo.
     reports_not_found: No se encontraron informes. Por favor, genera los informes antes de descargarlos.
+    reports_preview_comments: Comentarios
+    reports_preview_hide_resolved: Ocultar Resuelto
+    reports_preview_history: Historia
+    reports_preview_info_to_select_module: Seleccione un módulo de texto para comentar
+    request_approval_description: Este mensaje se envía a los gestores cuando un asunto solicita aprobación
+    request_approval_name: Solicitud de aprobación
+    request_id: ID de solicitud
+    required_error: obligatorio
     rescore_responses_content: Esto recalculará las puntuaciones de las respuestas de este alumno. Habilita Permitir recalcular puntuación con IA para reevaluar las respuestas utilizando IA para las preguntas puntuadas con IA.
+    resend_invite_content: Reenviar invitación a los sujetos seleccionados. ¿Estás seguro de que quieres continuar?
+    resend_invite_success: Las invitaciones se reenvían correctamente.
+    resend_invite_title: Reenviar invitación
     reset_idp_plan: Plan de Reinicio
     reset_idp_plan_confirmation: "¿Estás seguro de que quieres reiniciar el plan?"
     reset_idp_plan_title: Plan de Reinicio
+    reset_score: Restablecer puntuación
+    reset_score_description: La puntuación volverá al valor original de la IA.
+    resources_panel_description: Añade los enlaces a los recursos a los que quieras que tengan acceso los facilitadores.
+    resources_panel_resource_name_placeholder: Nombre del recurso
+    resources_panel_resource_url_placeholder: Enlace de recursos
+    resources_panel_title: Recursos
+    resources_panel_validation_error: Introduzca tanto el nombre como la URL o elimine el recurso
     response_meta: Respuesta Meta
+    responses: Respuestas de IA
     result: Resultado
     results: Resultados
+    results_export: Exportar resultados
+    results_export_job_scheduled: La exportación de resultados de AI Artifacts se ha programado correctamente.
+    revisions_load: Cargar para formar
+    revisions_system_prompt: Propiedad del sistema
+    revisions_title: Revisiones de AI Assistant
+    revisions_user_prompt: Pregunta al usuario
+    revisions_version: Versión
     role: Rol
     role_campaign_admin: Administrador de la campaña
     role_client_admin: Administración de clientes
     role_project_admin: Administrador del proyecto
     role_superadmin: Superadministrador
+    run: Correr
     saml_idp_certificate_available: Disponible (haz clic para copiar)
     saml_idp_certificate_label: Certificado
     saml_idp_entity_id_label: ID de entidad/Emisor
@@ -1075,6 +2321,23 @@ es-ES:
     saml_service_provider_updated_date: Fecha de actualización
     saml_service_providers: Proveedores de servicios
     saml_settings: Configuración SAML
+    saml_settings_after_signout_url: Después de firmar Url
+    saml_settings_cert: Certificado
+    saml_settings_config_details_acs_url: URL del servicio al consumidor de aserciones
+    saml_settings_config_details_copied: Copiado %{element}
+    saml_settings_config_details_issuer: Entidad ID/Emisor
+    saml_settings_config_details_title: Configurar Idp con la siguiente información
+    saml_settings_email_pipetext: Envíe un correo electrónico a Pipetext
+    saml_settings_enabled: Activado
+    saml_settings_enforced: Aplicar SAML
+    saml_settings_entity_id: Entidad ID/Emisor
+    saml_settings_name_identifier_format: Nombre Identificador
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistente
+    saml_settings_saml: SAML
+    saml_settings_save: Salvar configuración
+    saml_settings_sso_service_url: Url del servicio SSO
+    saml_settings_successfully_saved_msg: La configuración SAML se ha guardado correctamente.
     save: Guardar
     save_assessment_for_scoring_management: Guarde la evaluación antes de comenzar con la puntuación.
     save_block: Guardar bloque
@@ -1093,7 +2356,139 @@ es-ES:
       user_full_name_cont: Nombre de usuario
     saville: Saville
     saville_assessment: Evaluación Saville
+    schedule: Horario
+    schedule_email: Programar correo electrónico
+    schedule_email_title: Programar correo electrónico
+    schedule_time: Reservar hora
     scheduling: Programación
+    scheduling_add_activity: Añadir actividad
+    scheduling_add_assessment_center: Añadir centro de evaluación
+    scheduling_add_assessor_form_assessment: Evaluación
+    scheduling_add_assessor_form_assessor: Asesor
+    scheduling_add_assessor_form_schedule_time: Horario
+    scheduling_add_subject: Añadir tema
+    scheduling_attendance_status_column_name: Estado de asistencia
+    scheduling_attendance_status_dropped_out: Abandono
+    scheduling_attendance_status_late: Tarde
+    scheduling_attendance_status_no_show: No Show
+    scheduling_attendance_status_no_status: Sin estado
+    scheduling_attendance_status_on_time: A tiempo
+    scheduling_attended_attended: Asistió a
+    scheduling_attended_not_attended: Sin asistencia
+    scheduling_campaign_participants: Participantes en la campaña
+    scheduling_columns_activity: Actividad
+    scheduling_columns_assessment_center_date_and_time: Fecha y hora del centro de evaluación
+    scheduling_columns_assessor: Asesor
+    scheduling_columns_assessors: Asesores
+    scheduling_columns_attendance: Asistencia
+    scheduling_columns_attended: Asistió a
+    scheduling_columns_booked_at: Reservado en
+    scheduling_columns_campaign_assessment_group: Grupo del Assessment Center
+    scheduling_columns_campaign_name: Nombre de la campaña
+    scheduling_columns_duration: Duración
+    scheduling_columns_link_to_view_recordings: Enlace para ver grabaciones
+    scheduling_columns_managers: Gerentes
+    scheduling_columns_meeting_link: Enlace a la reunión
+    scheduling_columns_participants: Participantes
+    scheduling_columns_prework: Trabajo previo
+    scheduling_columns_recording_date: Fecha de grabación
+    scheduling_columns_resource_link: Enlace
+    scheduling_columns_schedule_time: Horario
+    scheduling_columns_scheduling_status: Estado de la programación
+    scheduling_columns_seats: Asientos
+    scheduling_columns_serial_no: Número de serie
+    scheduling_columns_start_time: Fecha y hora
+    scheduling_columns_subject: Asunto
+    scheduling_columns_title: Título
+    scheduling_columns_view_recording: Ver grabación
+    scheduling_errors_assessor_already_assigned: Evaluador ya asignado a esta evaluación. Por favor, seleccione otra evaluación o evaluador.
+    scheduling_errors_date_required: Seleccione una fecha
+    scheduling_errors_invalid_url: Formato de URL no válido
+    scheduling_errors_meeting_link_https: El enlace a la reunión debe empezar por "https://"
+    scheduling_info_allowed: Permitido
+    scheduling_info_assessors: Asesores
+    scheduling_info_booked: Plazas reservadas
+    scheduling_info_campaign_assessment_group: Grupo del Assessment Center
+    scheduling_info_cancellation_lead_time: Plazo de cancelación
+    scheduling_info_cancellation_tooltip: El usuario podrá cancelar la reserva hasta %{date}
+    scheduling_info_date: Fecha y hora
+    scheduling_info_duration: Duración
+    scheduling_info_join_meeting: Unirse a la sala
+    scheduling_info_late_cancellation_and_scheduling: Cancelación tardía y programación
+    scheduling_info_link: Enlace a la reunión
+    scheduling_info_managers: Directores de centro
+    scheduling_info_none: Ninguno
+    scheduling_info_not_allowed: No permitido
+    scheduling_info_recording_enabled: Grabación habilitada
+    scheduling_info_remaining: Plazas restantes
+    scheduling_info_scheduling_lead_time: Plazos de programación
+    scheduling_info_scheduling_tooltip: El usuario podrá reservar una franja horaria hasta %{date}
+    scheduling_info_search_placehoder: Búsqueda por ID, correo electrónico o nombre
+    scheduling_info_timezone: Zona horaria
+    scheduling_info_total_seats: Plazas totales
+    scheduling_lead_time_label: Plazo de programación
+    scheduling_resources_confirm_message: "¿Está seguro de que desea eliminar el recurso '%{resource_name}'?"
+    scheduling_resources_confirm_title: Se requiere confirmación
+    scheduling_resources_create: Crear recurso
+    scheduling_resources_invalid_url: URL no válida. Especifique la url completa con el protocolo http o https.
+    scheduling_resources_resource: Recursos
+    scheduling_resources_successful_remove: El recurso %{resource_name} del Centro de evaluación se ha eliminado correctamente.
+    scheduling_schedule_assessments: Programar las evaluaciones
+    scheduling_scheduling_statuses_cancelled: Cancelado
+    scheduling_scheduling_statuses_late_cancelled: Cancelado con retraso
+    scheduling_scheduling_statuses_late_rescheduled: Reprogramado tarde
+    scheduling_scheduling_statuses_rescheduled: Reprogramado
+    scheduling_scheduling_statuses_scheduled: Programado
+    scheduling_search_participant: Buscar participantes en la campaña
+    scheduling_status: Estado de la programación
+    scheduling_status_change_modal_content: Una vez que cierre el centro de evaluación, los participantes no podrán participar en ninguna actividad del centro.
+    scheduling_status_change_modal_title: Cambiar el estado del centro de evaluación
+    scheduling_status_completed: Completado/a
+    scheduling_status_dropped_out: Abandono
+    scheduling_status_in_progress: En curso
+    scheduling_status_late: Tarde
+    scheduling_status_no_show: No Show
+    scheduling_status_not_started: No iniciado
+    scheduling_subjects_activities: Actividades
+    scheduling_subjects_add_assessor_form: Añadir formulario de asesor
+    scheduling_subjects_assessments: Evaluaciones
+    scheduling_subjects_assessor_forms: Formularios para asesores
+    scheduling_subjects_confirm_message: |
+      "¿Está seguro de que desea cancelar la participación del sujeto con el correo electrónico '%{subject_email}'?
+      <br />
+      una vez marcado como cancelado, este sujeto no podrá participar en el centro de evaluación."
+    scheduling_subjects_confirm_title: Se requiere confirmación
+    scheduling_subjects_edit_assessor_form: Editar el formulario del evaluador
+    scheduling_subjects_form_title: Programar las evaluaciones
+    scheduling_subjects_language: Idioma
+    scheduling_subjects_language_not_selected: No seleccionado
+    scheduling_subjects_mark_cancel: Mark Cancelar
+    scheduling_subjects_mark_cancel_success: Cancelada participación de sujeto con email %{subject_email}.
+    scheduling_subjects_meeting_link_custom: Personalizado
+    scheduling_subjects_meeting_link_internal: Interno
+    scheduling_subjects_meeting_link_none: Ninguno
+    scheduling_subjects_meeting_link_title: Enlace a la reunión
+    scheduling_subjects_no_change: Sin cambios
+    scheduling_subjects_override_existing: Anular los horarios existentes para las asignaturas
+    scheduling_subjects_preworks: Trabajo previo
+    scheduling_subjects_re_enroll: Vuelva a inscribirse
+    scheduling_subjects_re_enroll_confirm_message: "¿Está seguro de que desea volver a inscribir el asunto con el correo electrónico '%{subject_email}'?"
+    scheduling_subjects_re_enroll_success: Asunto reinscrito con correo electrónico %{subject_email}.
+    scheduling_subjects_schedule: Horario
+    scheduling_subjects_unschedule: Desprogramar
+    scheduling_tabs_activities: Actividades
+    scheduling_tabs_assessment_center: Assessment Center
+    scheduling_tabs_invites: Invitaciones
+    scheduling_tabs_recordings: Grabaciones
+    scheduling_tabs_resources: Recursos
+    scheduling_tabs_subjects: Temas
+    schema_key_description_required: La descripción de la clave del esquema es obligatoria
+    schema_key_required: La clave de esquema es obligatoria
+    schema_key_type: Tipo de llave
+    schema_key_unique: Las claves del esquema deben ser únicas
+    scope: Ámbito de aplicación
+    scope_client: Cliente
+    scope_global: Global
     score: Puntuación
     score_approval_not_allowed_to_approve: No está permitido aprobar esta puntuación.
     score_approval_not_allowed_to_discard: No está permitido descartar esta puntuación.
@@ -1102,56 +2497,347 @@ es-ES:
     score_max: Puntuación máxima
     score_min: Puntuación mínima
     score_must_be_in_between_min_and_max: La puntuación debe estar entre %{min} y %{max}.
+    score_not_applicable: Puntuación no aplicable
     score_range_info: 'Rango de puntuación: %{min} - %{max}'
     score_with_ai: Anota con IA
     scores_finalized: Las puntuaciones ya son definitivas y no se pueden modificar
     scoring: Puntuación
+    scoring_action_prohibited: Acción prohibida
+    scoring_active: Activo
+    scoring_actual_average: Real Media
+    scoring_add_factor: Factor de adición
+    scoring_add_group: Añadir grupo
     scoring_approval_add_settings: Añadir ajustes
     scoring_approval_allow_bulk_approve: Permitir aprobación masiva
     scoring_approval_allow_bulk_approve_scores: Permitir la aprobación masiva de puntuaciones
     scoring_approval_allow_one_level_approve: Permitir aprobación de un nivel
+    scoring_approval_approve_all: Aprobar todo
     scoring_approval_approver_users: Usuarios aprobadores
     scoring_approval_approvers: Aprobadores
     scoring_approval_assessment: Evaluación
     scoring_approval_assessor_users: Usuarios evaluadores
+    scoring_approval_bulk_approve_success: "%{approved} puntuaciones aprobadas."
     scoring_approval_do_not_send_notifications: No enviar notificaciones
     scoring_approval_modal_title: Configuración de aprobación de puntuación
     scoring_approval_notification_users: Usuarios de la notificación de aprobación
     scoring_approval_remove_modal_success: 'La configuración de aprobación para el ID de evaluación: %{assessmentId} se ha eliminado correctamente.'
     scoring_approval_remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el ID de evaluación: %{assessmentId}?"
+    scoring_approval_review: Consulte
+    scoring_approval_score_approvals: Aprobaciones de puntuación de IA
+    scoring_assessment: Evaluación
+    scoring_assessment_scoring_type: Tipo de evaluación
+    scoring_average: Media
+    scoring_campaign_scoring_variables: Variables de puntuación de la campaña
+    scoring_desc: Ha superado el límite máximo de %{n} factores de campaña. No se pueden añadir factores adicionales. Revise y gestione los factores existentes antes de continuar.
+    scoring_dimension: Dimensión
+    scoring_edit_factor: Factor de edición
+    scoring_export_factors: Factores de la campaña de exportación
+    scoring_factor: Factor
+    scoring_factor_group_removed_successfully: El grupo Campaign Factor se ha eliminado correctamente
+    scoring_factor_removal_confirmation: Introduzca el nombre del factor en el cuadro de texto para confirmar
+    scoring_factor_removed_successfully: El factor de campaña se ha eliminado correctamente
+    scoring_factors_exported_successfully: El trabajo de exportación de factores de campaña se ha programado correctamente
+    scoring_factors_imported_successfully: El trabajo de importación de factores de campaña se ha programado correctamente
+    scoring_final: Final
+    scoring_final_score_updated_successfully: La puntuación final se ha actualizado correctamente
+    scoring_formula: Fórmula
+    scoring_get_started: Comenzar
+    scoring_import_factors: Factores de la campaña de importación
+    scoring_innovation_style_removal_confirmation: Introduce el nombre del estilo de innovación que se indica a continuación en el cuadro de texto para confirmar
+    scoring_no_groups: No hay grupos presentes
+    scoring_occupation_removal_confirmation: Introduce el nombre de la profesión que aparece a continuación en el cuadro de texto para confirmar
+    scoring_output_type: Tipo de salida
+    scoring_pattern_error: Sólo se admiten caracteres alfanuméricos, espacios y guiones.
+    scoring_profile_years: Años
+    scoring_public: Público
+    scoring_ranked: Clasificado
+    scoring_remove_all_campaign_factors_confirmation: Introduzca el nombre de la campaña actual en el cuadro de texto para confirmar
+    scoring_remove_all_campaign_factors_error: Campaña Factores de eliminación fallida
+    scoring_remove_all_campaign_factors_success: Factores de campaña eliminados con éxito
+    scoring_remove_all_campaign_factors_title: Eliminar factores de campaña
+    scoring_remove_all_campaign_factors_warning: Estás a punto de eliminar todo el factor de campaña y todas las puntuaciones asociadas de los usuarios. ¿Estás seguro de que quieres realizar esta acción?
+    scoring_remove_factor_group_confirmation_content: ¿Está seguro de que desea eliminar el grupo de factores "%{group_name}"?
+    scoring_remove_factor_group_confirmation_title: Eliminar grupo de factores
+    scoring_required_error: No puede estar vacío
+    scoring_save_all: Salvar todo
+    scoring_score_range: Rango de puntuación
+    scoring_score_types_norm_score: Puntuación normal
+    scoring_score_types_percentage: Porcentaje
+    scoring_score_types_percentile: Percentil
+    scoring_score_types_score: Puntuación
+    scoring_score_types_zscore: Puntuación Z
+    scoring_scoring: Puntuación
+    scoring_scoring_description: La puntuación de las campañas permite elaborar informes de todas las evaluaciones
+    scoring_select_all: Seleccionar todos los %{n} sujetos
+    scoring_select_assessment_first: Seleccione Evaluación primero
+    scoring_select_factor: Seleccionar factor
+    scoring_show_weightages: Mostrar pesos
+    scoring_subject: Asunto
+    scoring_subject_list_bulk_mark_finalized: Marca a granel finalizada
+    scoring_subject_list_bulk_mark_finalized_confirm: Al finalizar la puntuación de los usuarios seleccionados se generará el informe que utiliza el factor de campaña para los usuarios. ¿Está seguro de que desea continuar?
+    scoring_subject_list_bulk_mark_not_finalized: Marca a granel no finalizada
+    scoring_subject_list_bulk_mark_not_finalized_confirm: La eliminación de finalizar de los usuarios seleccionados eliminará el informe generado que utiliza el factor de campaña para los usuarios. ¿Está seguro de que desea continuar?
+    scoring_subject_list_bulk_rescore: Revalorización masiva
+    scoring_subject_list_bulk_rescore_confirm: Rescate de los usuarios seleccionados. ¿Está seguro de que desea continuar?
+    scoring_subject_list_calculated_date: Fecha calculada
+    scoring_subject_list_calculation_errors: Errores de cálculo
+    scoring_subject_list_export: Exportaciones
+    scoring_subject_list_export_success: El trabajo de exportación de puntuaciones se ha programado correctamente
+    scoring_subject_list_finalized: Finalizado
+    scoring_subject_list_finalized_date: Fecha de finalización
+    scoring_subject_list_import_external_scores: Importar scorings externos
+    scoring_subject_list_mark_finalized: Marca Finalizada
+    scoring_subject_list_mark_finalized_confirm: Al finalizar la puntuación para el usuario '%{email}' se generará el informe que utiliza el factor de campaña para el usuario. ¿Está seguro de que desea continuar?
+    scoring_subject_list_mark_not_finalized: Marca no finalizada
+    scoring_subject_list_mark_not_finalized_confirm: Al eliminar finalize del usuario '%{email}' se eliminará el informe generado que utiliza el factor de campaña para el usuario. ¿Está seguro de que desea continuar?
+    scoring_subject_list_push_webhook: Push webhooks
+    scoring_subject_list_rank: Puesto
+    scoring_subject_list_rescore: Rescore
+    scoring_subject_list_rescore_confirm: Rescatando el usuario '%{email}' ¿Seguro que quieres continuar?
     scoring_supported_only_for_ai_questions: Solo se permite puntuar las preguntas habilitadas para IA del factor seleccionado actualmente.
+    scoring_tabs_settings: Ajustes
+    scoring_tabs_subject_scores: Puntuación por materias
     scoring_value_info: La puntuación debe estar entre %{min} y %{max}.
     scoring_value_out_of_range_err_msg: La puntuación de «%{factor_name}» debe estar entre %{min} y %{max}.
+    scoring_variables: Variables
+    scoring_weightages_assessorForms: Formularios para asesores
+    scoring_weightages_successful_update: Las ponderaciones se han actualizado correctamente
+    scoring_weightages_weightages: Ponderaciones
+    scoring_weighted_average: Media ponderada
     search_admins: Buscar administradores
+    search_campaign: Búsqueda por campaña
+    search_client: Buscar por cliente
     search_job_role: Buscar puesto de trabajo
+    search_participants: Buscar participantes...
+    search_project: Búsqueda por proyecto
+    search_record: Búsqueda por ID de registro
+    search_user: Búsqueda por usuario
+    seats_label: Asientos
+    sec_logo_label: Logo secundario
+    secondary_logo_alt_text: Logotipo secundario Alt-Text
+    secondary_logo_alt_text_required: Logotipo secundario Alt-Text obligatorio
+    security_setting_180_days: 180 días
+    security_setting_30_days: 30 días
+    security_setting_365_days: 365 días
+    security_setting_90_days: 90 días
+    security_setting_attempts_to_lock: Intentos de bloqueo
+    security_setting_auto_unlock_time: Tiempo de desbloqueo automático
+    security_setting_disable_password_reuse: Desactivar la reutilización de contraseñas
+    security_setting_disallow_password_login: No permitir el acceso con contraseña
+    security_setting_enable_login_with_magic_link: Habilitar inicio de sesión con enlace mágico
+    security_setting_enable_recaptcha: Activar reCAPTCHA
+    security_setting_enforce_password_policy: Aplicar la política de contraseñas en el siguiente inicio de sesión
+    security_setting_enforce_strong: Imponer una contraseña segura
+    security_setting_expiration: Caducidad de la contraseña
+    security_setting_lock_account: Bloquear cuenta
+    security_setting_magic_link_expiry_duration: Duración de la expiración del enlace mágico
+    security_setting_min_length: Longitud mínima de la contraseña
+    security_setting_never: Nunca
+    security_setting_restrict_sequences: Restringir los caracteres secuenciales y repetitivos
+    security_setting_security: Ajustes de seguridad
+    security_setting_send_unlock_email: Enviar correo electrónico de desbloqueo
+    security_setting_session_timeout_duration: Duración del tiempo de espera de la sesión
+    security_setting_tfa_enabled: Activar la autenticación de dos factores
+    security_settings_security_setting: Configuración de seguridad
     select_admin_role: Seleccione el rol de administrador
+    select_assessment_language: Seleccionar idioma de evaluación
+    select_client: Seleccionar cliente
     select_end_time: Seleccionar hora de finalización
     select_language_to_translate: Seleccione el idioma para traducir.
     select_level: Seleccionar nivel
+    select_project_ids_required: Selecciona los «project_ids» necesarios
+    select_projects: Proyectos destacados
+    select_projects_required: Selecciona al menos un proyecto
     select_question: Buscar una pregunta por nombre o ID
+    select_report_ids_required: Selecciona los «report_ids» necesarios
+    select_report_language: Seleccione el idioma del informe
+    select_report_type: Seleccionar tipo de informe
     select_start_time: Seleccionar hora de inicio
     selective_proctoring: Supervisión selectiva
     send_email: Enviar correo electrónico
+    send_test_email: Enviar correo de prueba
     set_min_max_scores_warning: Establezca las puntuaciones mínima y máxima para este factor a fin de configurar la puntuación de la IA.
     settings: Ajustes
+    settings_admin_roles_confirm_message: "¿Estás seguro de que quieres eliminar el rol de administrador '%{role_name}'?"
     settings_saved_successfully: La configuración se ha guardado correctamente
+    settings_siem_destination_type: Tipo de destino
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: Compatible con S3
+    settings_siem_enabled: Activado
+    settings_siem_readable_resource_name: Configuración SIEM
+    settings_siem_s3_access_key_id: Clave de acceso ID
+    settings_siem_s3_bucket_folder: Carpeta de cubos S3
+    settings_siem_s3_bucket_name: Nombre del cubo S3
+    settings_siem_s3_endpoint: Punto final S3
+    settings_siem_s3_region: Región S3
+    settings_siem_s3_secret_access_key: Clave de acceso secreta
+    settings_siem_send_test_log: Enviar registro de pruebas
+    settings_siem_send_test_log_error_message: El registro de prueba no se ha enviado a su cubo, compruebe su configuración
+    settings_siem_send_test_log_success_message: El registro de prueba se ha enviado correctamente a su cubo
+    settings_skill_aliases_alias: Alias
+    settings_skill_aliases_confirm_message: "¿Estás seguro de que quieres eliminar el alias de habilidad '%{skill_alias}'?"
+    settings_skill_aliases_create: Añadir alias de habilidad
+    settings_skill_aliases_select_skill: Seleccionar habilidad
+    settings_skill_aliases_skill: Habilidad
+    settings_skill_aliases_skill_alias: Habilidad Alias
+    settings_skill_aliases_successful_remove: El alias de habilidad '%{skill_alias}' se ha eliminado correctamente.
+    settings_tabs_admin_roles: Funciones administrativas
+    settings_tabs_feature_flags: Banderas de características
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: Alias de habilidades
+    sheets_column_add_column: Añadir columna
+    sheets_column_not_allowed_for_dashboard_use: Para que la columna se utilice en el cuadro de mandos, debe tener menos de 64 caracteres
+    sheets_column_reorder: Reordenar
+    sheets_column_save_order: Salvar pedido
+    sheets_drawers_add_edit_cancelText: Cancelar
+    sheets_drawers_add_edit_markdown_preview: Vista previa
+    sheets_drawers_add_edit_markdown_title: Markdown
+    sheets_drawers_add_edit_save: Salvar
+    sheets_drawers_add_edit_saving: Salvar
+    sheets_drawers_add_edit_success_message_add: Nuevo registro añadido
+    sheets_drawers_add_edit_success_message_edit: Registro actualizado
+    sheets_drawers_add_edit_title_add: Añadir registro de hoja
+    sheets_drawers_add_edit_title_edit: Editar registro de fila de hoja
+    sheets_drawers_add_edit_validations_required_email: Introduzca su dirección de correo electrónico
+    sheets_drawers_view_campaign_title: Registro a nivel de campaña
+    sheets_drawers_view_project_title: Registro a nivel de proyecto
+    sheets_drawers_view_title: Detalles del registro de filas de hojas
+    sheets_list_header_add_record: Añadir registro
+    sheets_list_header_search_record: Buscar registros
+    sheets_modals_delete_records_cancelText: Cancelar
+    sheets_modals_delete_records_content: "¿Está seguro de que desea eliminar los registros {{count}} seleccionados?"
+    sheets_modals_delete_records_okText: Sí, borrar
+    sheets_modals_delete_records_successMessage: "{{cuenta}} registros eliminados correctamente."
+    sheets_modals_delete_records_title: Borrar {{cuenta}} registros
+    sheets_modals_remove_columns_cancelText: Cancelar
+    sheets_modals_remove_columns_content: La eliminación de una columna ({{columns}}) eliminará los datos de esta columna para todas las filas
+    sheets_modals_remove_columns_okText: Sí, borrar
+    sheets_modals_remove_columns_successMessage: "{{cuenta}} registros eliminados"
+    sheets_modals_remove_columns_title: Borrar columnas
+    sheets_tabs_rows: Filas
+    sheets_tabs_settings: Ajustes
+    show_all: Mostrar todo
     show_all_assessment_responses: Mostrar todas las respuestas de la evaluación
     show_middle_scores: Mostrar más puntuaciones de «%{count}» (opcional)...
     show_original: Mostrar original
     show_submenu: Mostrar submenú
     show_translated: Mostrar traducido
+    show_watermark: Mostrar marca de agua
+    sidebar_title: Opciones del proyecto
     siem: SIEM
     simulation: Simulación
     simulation_assessment: Evaluación de la simulación
     skill_aliases: Alias de habilidades
+    skill_rater: Evaluador de competencias
     skills: Habilidades
+    skills_applicable_proficiency_levels: Niveles de competencia aplicables
+    skills_columns_skill_group: Grupo de competencias
+    skills_columns_skill_type: Tipo de habilidad
+    skills_export_failure_msg: Error al exportar traducciones
+    skills_export_success_msg: Exportación de acciones de desarrollo en curso.
+    skills_form_skill_group: Grupo de competencias
+    skills_form_skill_type: Tipo de habilidad
+    skills_form_title: Habilidad
+    skills_import_action_skills_title: Habilidades de importación
+    skills_import_action_skills_translations_title: Importación de traducciones especializadas
+    skills_import_download_example_csv: Muestra de normas CSV
+    skills_import_info_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    skills_import_success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    skills_skill_details: Más información
+    skills_skill_translations: Traducción de competencias
     skills_taxonomy: Taxonomía de competencias
+    skills_title: Habilidades
+    skills_vector_generate_embedding: Generar incrustación
+    skills_vector_generate_embedding_failure_msg: No se pudo poner en cola el trabajo de generación de incrustación de habilidades. Por favor, inténtalo de nuevo.
+    skills_vector_generate_embedding_success_msg: El trabajo de generación de incrustación de habilidades se ha puesto en cola con éxito. Por favor, revisa el estado en las notificaciones.
+    skills_vector_label: Vector DB
     skillvue: Skillvue
+    skillvue_apiKey: clave api
+    skillvue_apiKeyRequired: Se necesita la clave API
     skillvue_assessment: Evaluación de habilidades
     skip_assessment_level_checks: Omitir las comprobaciones del sistema de niveles de evaluación
     slot_name: Nombre de la tragamonedas
+    sms_contact: Contacto SMS
     sms_histories: Historias de SMS
+    sms_histories_columns_mobile_no: Nº de móvil
+    sms_histories_columns_price: Precio
+    sms_histories_columns_segment_length: Longitud del segmento
+    sms_histories_columns_sent_at: Enviado a
+    sms_histories_drawer_title: Detalles del SMS
+    sms_histories_history: Historia
+    sms_histories_statuses_accepted: Aceptado
+    sms_histories_statuses_delivered: Entregado
+    sms_histories_statuses_failed: Fallido
+    sms_histories_statuses_queued: En cola
+    sms_histories_statuses_scheduled: Programado
+    sms_histories_statuses_sent: Enviado
+    sms_histories_statuses_undelivered: No entregado/a
     sms_invites: Invitaciones por SMS
+    sms_invites_actions_add: Añadir contacto SMS
+    sms_invites_columns_created_at: Creado/a el
+    sms_invites_columns_created_by: Creado por
+    sms_invites_columns_mobile_no: Nº de móvil
+    sms_invites_contacts: Contactos
+    sms_invites_form_modal_locale: Local
+    sms_invites_form_modal_mobile_no: Nº de móvil
+    sms_invites_form_modal_title: Invitación por SMS
+    sms_invites_import_download_example_csv: Muestra de normas CSV
+    sms_invites_import_success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    sms_invites_import_title: Importación de invitaciones por SMS
+    sms_invites_messages_delete_confirm_text: "¿Estás seguro de que quieres eliminar la invitación por SMS con el número de móvil %{mobile_no}?"
+    sms_invites_messages_delete_success: La invitación SMS se ha eliminado correctamente
+    sms_invites_send_sms_fields_link_expiry: Expiración del enlace
+    sms_invites_send_sms_fields_locale: Local
+    sms_invites_send_sms_fields_message: Mensaje
+    sms_invites_send_sms_fields_statuses: Estados
+    sms_invites_send_sms_fields_users: Usuarios
+    sms_invites_send_sms_modal_btn_name: Enviar SMS
+    sms_invites_send_sms_modal_title: Enviar SMS
+    sms_invites_send_sms_pipetext_details: |
+      "{{{first_name}} - Nombre del destinatario
+       <br />
+      {{{last_name}} - Apellido del destinatario
+      <br />
+      {{{invite_url}}} - Enlace de registro"
+    sms_invites_send_sms_segment_length_msg: El número estimado de segmentos para este mensaje es %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: El número estimado de segmentos para este mensaje está entre %{min_segment_length} y %{max_segment_length}.
+    sms_invites_statuses_all: Todos
+    sms_invites_statuses_failed: Fallido
+    sms_invites_statuses_invited: Invitado
+    sms_invites_statuses_not_invited: No invitados
+    sms_invites_statuses_registered: Registrado
+    sms_invites_tools_export: Exportar contactos SMS
+    sms_invites_tools_import: Importar contactos SMS
+    sms_invites_tools_send_sms: Enviar SMS
+    sms_notification: Notificación por SMS
+    sms_notification_disabled_by_client: El cliente deshabilita la notificación por SMS
+    sms_records_columns_message: Mensaje
+    smtp_settings: Configuración SMTP
+    smtp_settings_authentication: Autenticación
+    smtp_settings_authentication_type: Tipo de autenticación
+    smtp_settings_authentication_types_cram_md5: cram md5
+    smtp_settings_authentication_types_login: Iniciar sesión
+    smtp_settings_authentication_types_plain: Llano
+    smtp_settings_enabled: Activado
+    smtp_settings_encryption: Cifrado
+    smtp_settings_encryption_types_none: Ninguno
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Del correo electrónico
+    smtp_settings_from_name: Del nombre
+    smtp_settings_host: Anfitrión
+    smtp_settings_password: Contraseña
+    smtp_settings_port: Puerto
+    smtp_settings_send_test_email: Enviar correo de prueba
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Su configuración de correo electrónico no se guardará hasta que el correo electrónico de prueba se haya enviado correctamente.
+    smtp_settings_test_email_modal_input_placeholder: ID. de correo electrónico de prueba
+    smtp_settings_test_email_modal_title: ID. de correo electrónico de prueba
+    smtp_settings_test_modal_success_message: Email de prueba enviado a %{email_id}.
+    smtp_settings_test_modal_title: Prueba de configuración SMTP
+    smtp_settings_update_success_msg: La configuración SMTP se ha actualizado correctamente.
+    smtp_settings_use_sender_verification: Utilizar la verificación del remitente
+    smtp_settings_user_name: Nombre de usuario
     specialty_questions: Preguntas específicas
     sso_email_mismatch: Has iniciado sesión en una cuenta diferente en el proveedor de identidad. Cierra la sesión en el proveedor de identidad e inténtalo de nuevo.
     sso_enforced: Aplicar el inicio de sesión único (SSO)
@@ -1183,30 +2869,167 @@ es-ES:
     sso_settings_slo_url: URL del servicio SLO
     sso_settings_sso_url: URL del servicio SSO
     sso_settings_tab: SSO
+    standard: Estándar
     standard_deviation: Desviación estándar
     standard_questions: Preguntas habituales
     start: inicio
     start_time: Hora de inicio
     static_content: Contenido estático
     stats: Estadísticas
+    stats_assessments_active: Activo
+    stats_assessments_columns_assessment_name: Nombre de la evaluación
+    stats_assessments_columns_completed: Completado/a
+    stats_assessments_columns_in_progress: En curso
+    stats_assessments_columns_ineligible: No subvencionable
+    stats_assessments_columns_interrupted: Interrumpido
+    stats_assessments_columns_not_started: No iniciado
+    stats_assessments_columns_timed_out: Fuera de plazo
+    stats_assessments_count: Recuento
+    stats_assessments_inactive: Inactivo
+    stats_assessments_percentage: Porcentaje
+    stats_assessments_title: Evaluaciones
+    stats_top_metrics_completed: Completado/a
+    stats_top_metrics_in_progress: En curso
+    stats_top_metrics_interrupted: Interrumpido
+    stats_top_metrics_not_started: No iniciado
+    stats_top_metrics_timed_out: Fuera de plazo
+    stats_top_metrics_users: Usuarios
+    stats_users_date_presets_last_30_days: Últimos 30 días
+    stats_users_date_presets_last_7_days: Últimos 7 días
+    stats_users_date_presets_last_month: Último mes
+    stats_users_date_presets_last_week: Última semana
+    stats_users_date_presets_today: Hoy
+    stats_users_date_presets_yesterday: Ayer
+    stats_users_y_title: Número de usuarios
+    status_active: Activo
+    status_archived: Archivado
     status_details: Detalles de estado
+    statuses_accepted: Aceptado
+    statuses_cancelled: Cancelado
+    statuses_late_cancelled: Cancelado con retraso
+    statuses_late_rescheduled: Reprogramado tarde
+    statuses_pending: Pendiente
+    statuses_requested_cancellation: Anulación solicitada
+    statuses_requested_cancellation_rejected: Anulación Rechazada
+    statuses_requested_rescheduling: Reprogramación solicitada
+    statuses_requested_rescheduling_rejected: Reprogramación Rechazada
+    statuses_rescheduled: Reprogramado
+    statuses_scheduled: Programado
+    steps_basic_information: Información básica
+    steps_facilitators: Facilitadores
+    steps_invite_options: Opciones de invitación
+    steps_invite_subjects: Invitar a sujetos
+    steps_send_invitations: Enviar invitaciones
     structured_learning: Aprendizaje formal [10]
+    sub_factor_questions: Preguntas de otros factores (Media)
+    sub_factor_questions_sum: Preguntas de otros factores (SUM)
+    sub_factors_average: Media ponderada de los factores
+    sub_factors_conditional_average: Media ponderada condicional de los factores
+    sub_factors_sum: Suma ponderada de factores
     subdomain: Subdominio
     subdomain_admin_keyword: No se puede utilizar el patrón de subdominio de administrador reservado
     subdomain_invalid_format: Formato de subdominio incorrecto.
     subdomain_reserved: El subdominio %{value} está reservado
     subdomain_too_long_max_32: El subdominio es demasiado largo (el máximo es de 32 caracteres)
+    subject: Asunto
+    subject_can_access_reports: El sujeto puede acceder a sus informes
+    subject_email: Correo electrónico del sujeto
+    subject_invite_description: Este mensaje se enviará para invitar a los sujetos a participar en la evaluación
+    subject_invite_name: Asunto Invitación
     subject_part_of_other_invite: El destinatario con la dirección de correo electrónico %{user_email} ya ha sido invitado a «%{workshop_invite_name}».
+    subject_placeholder: Buscar Asunto...
+    subject_reminder_description: Mensaje enviado a cada participante para recordarle que debe participar en la evaluación
+    subject_reminder_name: Recordatorio de asunto
+    subject_reminder_rule_description: Especificar reglas para programar automáticamente cuando se programa una invitación
+    subject_reminder_rule_name: Normas de recordatorio de materias
+    subject_report_ready_description: Este mensaje se envía a un sujeto una vez que su informe está listo
+    subject_report_ready_name: Informe temático listo
+    subjects_title: Temas
+    submenu_options_option_one: Opción 1
+    submenu_options_option_title: Tema 1
+    submenu_options_option_two: Opción 2
+    success_call_send_invitation: "¿Quiere enviar las invitaciones?"
+    success_color: Éxito Color
+    success_ok: Sí
+    success_skip: Saltar por ahora
+    success_title: Creación de centros de evaluación
+    success_update: Los ajustes de diseño se han guardado correctamente
+    suitability_id: Código de idoneidad
     superadmin_use_root_domain: Los superadministradores deben iniciar sesión a través del dominio principal
     switch_client: Cambiar de cliente
-    target_job_role: Puesto de trabajo objetivo
+    system_prompt: Indicación del sistema
+    tab_text_one: Menú
+    tab_text_two: Submenú
+    table_more_actions: Más acciones
+    tabs_results: Resultados
+    tabs_settings: Ajustes
+    target_job_role: Puesto objetivo
+    taxonomy_import_action_taxonomy: Importar taxonomía de competencias
+    taxonomy_import_description: Sube un archivo Excel para importar o actualizar tu taxonomía de habilidades. Esto añadirá nuevas habilidades, puestos de trabajo y niveles de competencia.
+    taxonomy_import_download_example_file: Descargar archivo de ejemplo
+    taxonomy_import_drag_text: Haga clic o arrastre el archivo a esta área para cargarlo.
+    taxonomy_import_error_title: Error al importar
+    taxonomy_import_file_hint: Admite archivos .xls y .xlsx.
+    taxonomy_import_import_button: Importar taxonomía
+    taxonomy_import_success_msg: El archivo cargado se ha puesto en cola para su importación. Compruebe el estado en las notificaciones.
+    taxonomy_title: Taxonomía de competencias
+    template_and_campaign_required: Por favor, proporciona tanto la plantilla como el ID de campaña
+    template_render_failed: No se ha podido renderizar la plantilla
+    test_generate: Generación de prueba
+    test_render: Renderizado de prueba
+    test_render_tooltip: Prueba tu plantilla de prompts con datos de campaña para comprobar qué se enviará al asistente de IA.
+    text_danger: Texto(peligro)
+    text_success: Texto (éxito)
+    text_warning: Texto(advertencia)
     this_field_is_required: Este campo es obligatorio.
+    threesixity_advance_settings_campaign_template: Plantilla de campaña
+    threesixity_advance_settings_factors: Factores
+    threesixity_close_content: "¿Está seguro de que desea cerrar el Creador de Campañas Multi-Rater? Cualquier trabajo de personalización no guardado se perderá. Por favor, confirme su decisión."
+    threesixity_close_title: "¿Cerrar el Creador de Campañas Multi-Rater?"
+    threesixity_instructions_creation_empty: 'Vacío: Empieza con una encuesta en blanco y personalízala según tus necesidades específicas.'
+    threesixity_instructions_creation_previous: 'Anterior: Selecciona una evaluación anterior como punto de partida y realiza modificaciones.'
+    threesixity_instructions_creation_standard: 'Norma: Utiliza una plantilla prediseñada con preguntas e indicadores de uso habitual.'
+    threesixity_instructions_creation_sub_title: Seleccione el tipo de campaña que desea crear.
+    threesixity_instructions_creation_title: "¡Bienvenido al Creador de Campañas Multi-Rater!"
+    threesixity_instructions_customization_sub_title: Seleccione la plantilla y los factores que deben incluirse en la evaluación.
+    threesixity_instructions_customization_title: Personalice su evaluación
+    threesixity_no_factors_description: Pruebe con otras palabras clave de búsqueda.
+    threesixity_no_factors_title: No se han encontrado factores
+    threesixity_questions_select_all: Seleccionar todo
+    threesixity_questions_title: Preguntas e indicadores
+    threesixity_search_factors_description: Introduzca al menos 3 caracteres para encontrar los factores que busca.
+    threesixity_search_factors_title: Iniciar la búsqueda
+    threesixity_success: Se ha creado correctamente la Campaña de Evaluadores Múltiples.
+    threesixity_success_job: Se ha programado con éxito la creación de una campaña de calificación múltiple.
     threesixty: Campaña 360
+    threesixty_campaigns_mail_history_date: Fecha
+    threesixty_campaigns_mail_history_download_details: Descargar detalles
+    threesixty_campaigns_mail_history_emails_sent: Correos electrónicos enviados
+    threesixty_campaigns_mail_history_recipient: Destinatario
+    threesixty_campaigns_mail_history_subject: Asunto
+    threesixty_campaigns_manage_assessment: Evaluación
+    threesixty_campaigns_manage_dimension: Dimensiones
+    threesixty_campaigns_manage_manage_relationships: Gestionar las relaciones...
+    threesixty_campaigns_manage_report: Informe
+    threesixty_campaigns_menu_datasheet_title: Ficha de datos
+    threesixty_campaigns_menu_messages_title: Mensajes
+    threesixty_campaigns_menu_participants_title: Participantes
+    threesixty_campaigns_menu_report_menu_report_approval_title: Configuración de la aprobación de informes
+    threesixty_campaigns_menu_report_menu_report_options_title: Opciones de informe
+    threesixty_campaigns_menu_report_title: Informe
+    time_label: Tiempo
+    time_zone: Huso horario
     timed_label: 'Fecha y hora: %{time_text}'
     timelines: Cronologías
+    times: veces
     timezone: Zona horaria
+    timezone_label: Zona horaria
     timing: Momento oportuno
+    title: Mensajes
     to: A
+    token_url_label: Token URL
+    token_url_name: oauth_token_url
+    token_url_required: Se requiere la URL del token
     tone: Tono
     toolbar_ai_insight: Perspectiva sobre la IA
     toolbar_ai_suggestion: Sugerencia de IA
@@ -1215,6 +3038,22 @@ es-ES:
     toolbar_text_replaced: "¡Texto sustituido!"
     toolbar_what_changed_and_why: Qué cambió y por qué
     tools: Herramientas
+    topics_label: Eventos
+    topics_list_assessment_assigned: Evaluación asignada
+    topics_list_assessment_completed: Evaluación finalizada
+    topics_list_assessment_raw_response: Evaluación Respuesta sin procesar
+    topics_list_assessment_started: Evaluación iniciada
+    topics_list_assessment_timeout: Tiempo de evaluación
+    topics_list_campaign_results_available: Resultados de la campaña disponibles
+    topics_list_campaign_user_assessment_summary: Resumen de evaluación del usuario de la campaña
+    topics_list_campaign_user_status: Estado del usuario de la campaña
+    topics_list_report_available: Informe disponible
+    topics_list_results_available: Resultados disponibles
+    topics_list_scheduling_cancelled: Programación cancelada
+    topics_list_scheduling_invited: Programación Invitados
+    topics_list_scheduling_rescheduled: Programación Reprogramada
+    topics_list_scheduling_scheduled: Programación Programación
+    topics_list_workshop_attendance_status: Estado de asistencia al taller
     transcription_record_not_found: No se ha encontrado el registro de transcripción.
     transcription_schedule_failed: No se ha podido programar el trabajo de transcripción.
     transcription_scheduled: El trabajo de transcripción está programado. Cierre la ventana modal y compruebe el estado de la notificación.
@@ -1227,32 +3066,84 @@ es-ES:
     translation_assistant_not_configured: Asistente de traducción no configurado
     translations:
       title: Traducciones
+    translations_export_failure_msg: Error al exportar traducciones
+    translations_export_success_msg: Exportación de acciones de desarrollo en curso.
+    tte: TTE
+    type_by_skill: Por habilidad
+    type_by_skill_type: Por tipo de competencia
+    type_default: Por defecto
+    type_locked_tooltip: Este asistente está actualmente en uso y no es posible cambiar su tipo.
+    unarchive_content: "¿Estás seguro de que quieres desarchivar '%{project_name}'?"
+    unarchive_success: El proyecto "%{project_name}" se ha desarchivado correctamente.
+    unarchive_title: Proyecto Unarchive
+    unsaved_changes: Los cambios no guardados están presentes, considere enviar un formulario para generar una respuesta actualizada desde Playground.
+    upcoming: Próximamente
     update_success: "%{readableResourceName} se ha actualizado correctamente"
+    updated_successfully: AI Assistant se ha actualizado correctamente.
     upload: Subir
     upload_media: Subir archivos multimedia
     upload_required: Añade al menos un archivo para subirlo
     upload_success: Subido con éxito
+    url_label: URL
+    url_name: URL
+    used_tokens_input_tokens: Tokens de entrada
+    used_tokens_output_tokens: Tokens de salida
+    used_tokens_title: Uso de tokens
+    user: Usuario
+    user_agent: Agente de usuario
+    user_prompt: Pregunta al usuario
     user_report_events: Informe de usuario Eventos
+    user_report_id: N.º de informe de usuario
+    user_result_validity_in_days: Validez del resultado en días
+    username_label: Nombre de usuario
+    username_name: Nombre de usuario
     users: Usuarios
+    users_modals_download_idp_reports_error: No se ha podido programar el trabajo de descarga masiva de informes IDP.
+    users_modals_download_idp_reports_include_reflective_questions: Incluir preguntas reflexivas
+    users_modals_download_idp_reports_success: La tarea Descarga masiva de informes de IDP se ha programado correctamente.
+    users_modals_download_idp_reports_title: Descargar en masa los informes de IDP
+    users_user: Usuario
     validation_error: Rellene todos los campos obligatorios.
     validity: Validez
     very_high: Muy alto
     very_low: Muy bajo
+    video_call_recording: Permitir la grabación de videollamadas
+    video_call_recording_expiry_duration: Periodo de conservación de las grabaciones de videollamadas (en días)
+    video_call_recording_scope: Activar la grabación de vídeo para todas las nuevas campañas
+    video_call_type_custom: Personalizado
+    video_call_type_internal: Interno
+    video_call_type_label: Añadir videollamada
+    video_call_type_none: Ninguno
     view_licenses: Ver licencias
+    visual_header_visibility: Visibilidad de la cabecera
     wait_for_upload_completion: Por favor, espere a que se complete la carga de todos los archivos
     waiting: Espera
+    warning_color: Advertencia Color
+    watermark_content: Marca de agua Contenido
+    watermark_info: Si no añade ningún contenido, el correo electrónico del usuario aparecerá por defecto como marca de agua. Puede utilizar cualquiera de los siguientes pipetext -<br/> {{id}} - ID del participante </br>{{first_name}} - Nombre del participante </br>{{last_name}} - Apellido del participante </br>{{email}} - Correo electrónico del participante
+    webhook_delete_success: La configuración del webhook se ha eliminado correctamente
     weight: Peso
+    welcome_message_description: Este mensaje se mostrará a los participantes cuando se conecten para iniciar la evaluación o ver su lista de tareas
+    welcome_message_name: Mensaje de bienvenida
     what_to_look_for: Qué buscar
     what_to_look_for_placeholder: Evidencia de comportamientos, acciones o resultados que demuestran este factor.
     words: Palabras
+    workshop_actions_remove_workshop: Taller retirado con éxito
+    workshop_statuses_closed: Cerrado
+    workshop_statuses_open: Abrir
     workshops: Talleres
     writing_assistant_not_configured: Asistente de escritura no configurado
     x_axis_interval_label: Intervalo del eje X
     y_axis_interval_label: Intervalo del eje Y
     year: País
+    year_range: Intervalo de años
+    years: Años
     yoodli: Yoodli
     yoodli_activity_id: ID de actividad Yoodli
     yoodli_assessment: Evaluación de Yoodli
     yoodli_email_id: ID de correo electrónico del candidato Yoodli
     yoodli_external_assessment_id: ID de evaluación Yoodli
+    yoodli_keyset_url: URL del conjunto de claves
+    yoodli_launch_url: URL de lanzamiento
+    yoodli_login_url: URL de inicio de sesión
     you_are_here: Estás aquí

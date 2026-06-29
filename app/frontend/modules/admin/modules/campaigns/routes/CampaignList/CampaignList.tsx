@@ -117,7 +117,7 @@ const CampaignListComponent: React.FC<Props> = ({
     openModal('PDFPasswordModal', { projectId, campaignId })
   }
 
-  const displayableType = (type: string) => I18n.t(`administration.campaigns.types.${type}`)
+  const displayableType = (type: string) => I18n.t(`admin.campaigns_types_${type}`)
 
   return (
     <div>
@@ -166,7 +166,7 @@ const CampaignListComponent: React.FC<Props> = ({
             sticky={{ offsetHeader: 50 }}
           >
             <Column
-              title={I18n.t('administration.campaigns.listing.id')}
+              title={I18n.t('shared.id')}
               dataIndex="id"
               fixed={windowWidth > 800 ? 'left' : undefined}
               key="id"
@@ -175,7 +175,7 @@ const CampaignListComponent: React.FC<Props> = ({
               width={100}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.name')}
+              title={I18n.t('shared.name')}
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
@@ -188,7 +188,7 @@ const CampaignListComponent: React.FC<Props> = ({
                     <div>
                       {isTemplate && (
                         <Tag color="gold">
-                          {I18n.t('administration.campaigns.listing.template')}
+                          {I18n.t('admin.campaigns_listing_template')}
                         </Tag>
                       )}
                       {tagList?.map((tag: string) => (
@@ -201,7 +201,7 @@ const CampaignListComponent: React.FC<Props> = ({
               minWidth={150}
             />
             <Column
-              title={I18n.t('administration.dates.start')}
+              title={I18n.t('admin.dates_start')}
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
@@ -213,7 +213,7 @@ const CampaignListComponent: React.FC<Props> = ({
               minWidth={150}
             />
             <Column
-              title={I18n.t('administration.dates.end')}
+              title={I18n.t('admin.dates_end')}
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
@@ -224,22 +224,22 @@ const CampaignListComponent: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.status')}
+              title={I18n.t('shared.status')}
               key="status"
               render={({ status }) => (
                 <div style={{ minWidth: 100 }}>
-                  {I18n.t(`administration.campaigns.filters.${status}`)}
+                  {I18n.t(`admin.campaigns_filters_${status}`)}
                 </div>
               )}
               filterMultiple={false}
               filters={map(STATUSES, status => ({
-                text: I18n.t(`administration.campaigns.filters.${status}`),
+                text: I18n.t(`admin.campaigns_filters_${status}`),
                 value: status,
               }))}
               filteredValue={getFilteredValue('statusEq')}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.type')}
+              title={I18n.t('shared.type')}
               key="type"
               render={({ type }) => (
                 <div style={{ minWidth: 100 }}>
@@ -254,7 +254,7 @@ const CampaignListComponent: React.FC<Props> = ({
               filteredValue={getFilteredValue('type')}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.assessments')}
+              title={I18n.t('admin.campaigns_listing_assessments')}
               key="assessments"
               render={({ assessments }) => (
                 <div style={{ minWidth: 150 }}>
@@ -263,7 +263,7 @@ const CampaignListComponent: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.reports')}
+              title={I18n.t('admin.campaigns_listing_reports')}
               key="reports"
               render={({ reports }) => (
                 <div style={{ minWidth: 150 }}>
@@ -272,7 +272,7 @@ const CampaignListComponent: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.campaigns.actions')}
+              title={I18n.t('shared.actions')}
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
               width={100}
@@ -387,25 +387,25 @@ const getActionsMenuProps = ({
   const menuItems: MenuItem[] = []
   permissions.edit && menuItems.push({
     key: 'edit',
-    label: I18n.t('administration.campaigns.edit'),
+    label: I18n.t('shared.edit'),
   })
   permissions.copy && !campaign.isThreesixty && menuItems.push({
     key: 'copy',
-    label: I18n.t('administration.campaigns.copy'),
+    label: I18n.t('shared.copy'),
   })
   permissions.delete && menuItems.push({
     key: 'delete',
-    label: I18n.t('administration.campaigns.delete'),
+    label: I18n.t('shared.delete'),
   })
 
   permissions.pdfPassword && menuItems.push({
     key: 'pdfPassword',
-    label: I18n.t('administration.campaigns.pdf_password'),
+    label: I18n.t('admin.campaigns_pdf_password'),
   })
 
   campaign.isThreesixty && !campaign.isTemplate && permissions.convertToTemplate && menuItems.push({
     key: 'convert_to_template',
-    label: I18n.t('administration.campaigns.convert_to_template'),
+    label: I18n.t('admin.campaigns_convert_to_template'),
   })
 
   const handleMenuClick = ({ key }) => {

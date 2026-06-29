@@ -79,18 +79,18 @@ const DetailsDrawerComponent: FC<Props> = ({
               <Space>
                 {permissions?.edit && (
                   <Button type="primary" onClick={() => handleEdit(admin?.id)}>
-                    {I18n.t('administration.administrators.list.actions.edit')}
+                    {I18n.t('shared.edit')}
                   </Button>
                 )}
-                <Button onClick={handleClose}>Close</Button>
+                <Button onClick={handleClose}>{I18n.t('shared.close')}</Button>
               </Space>
             )}
             title={I18n.t(
-              `administration.administrators.drawers.view.title.${adminType}`,
+              `admin.${adminType}`,
             )}
           >
             <Descriptions.Item
-              label={I18n.t('administration.administrators.drawers.view.first_name')}
+              label={I18n.t('shared.first_name')}
               key="name"
               className="va-t w-30"
               labelStyle={{ width: '40%' }}
@@ -99,14 +99,14 @@ const DetailsDrawerComponent: FC<Props> = ({
               {admin?.firstName ?? ''}
             </Descriptions.Item>
             <Descriptions.Item
-              label={I18n.t('administration.administrators.drawers.view.last_name')}
+              label={I18n.t('shared.last_name')}
               key="name"
             >
               {admin?.lastName ?? ''}
             </Descriptions.Item>
             {admin?.email && (
               <Descriptions.Item
-                label={I18n.t('administration.administrators.list.columns.email')}
+                label={I18n.t('shared.email')}
                 key="email"
               >
                 {admin.email}

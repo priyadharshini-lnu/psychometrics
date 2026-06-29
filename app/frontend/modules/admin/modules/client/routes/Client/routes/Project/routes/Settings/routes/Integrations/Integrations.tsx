@@ -71,21 +71,21 @@ const IntegrationsComponent: React.FC<Props> = ({
   const handleMettlLoad = () => {
     loadMettlAssessments(projectId)
       .then(() => {
-        message.success(I18n.t('administration.integrations.load_mettl_success'))
+        message.success(I18n.t('admin.integrations_load_mettl_success'))
       })
   }
 
   const handleSkillvueLoad = () => {
     loadSkillvueAssessments(projectId)
       .then(() => {
-        message.success(I18n.t('administration.integrations.load_skillvue_success'))
+        message.success(I18n.t('admin.integrations_load_skillvue_success'))
       })
   }
 
   const handleMicrositeLoad = () => {
     loadMicrositeAssessments(projectId)
       .then(() => {
-        message.success(I18n.t('administration.integrations.load_microsite_success'))
+        message.success(I18n.t('admin.integrations_load_microsite_success'))
       })
   }
 
@@ -100,7 +100,7 @@ const IntegrationsComponent: React.FC<Props> = ({
             style={{ marginRight: '10px' }}
             onClick={() => openModal('IntegrationFormModal')}
           >
-            {I18n.t('administration.integrations.actions.add')}
+            {I18n.t('admin.integrations_actions_add')}
           </Button>
 
           <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }}>
@@ -112,11 +112,11 @@ const IntegrationsComponent: React.FC<Props> = ({
               )}
             />
             <Column
-              title={I18n.t('administration.integrations.columns.name')}
-              render={({ name }) => I18n.t(`administration.integrations.names.${name}`)}
+              title={I18n.t('admin.integrations_columns_name')}
+              render={({ name }) => I18n.t(`admin.integrations_names_${name}`)}
             />
             <Column
-              title={I18n.t('administration.integrations.columns.details')}
+              title={I18n.t('admin.integrations_columns_details')}
               render={({
                 name,
                 mettlIntegrationDetails,
@@ -129,7 +129,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                   return (
                     <>
                       <b>
-                        {I18n.t('administration.integrations.details.provider')}
+                        {I18n.t('admin.integrations_details_provider')}
                         :
                       </b>
                       <div>
@@ -149,7 +149,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                   return (
                     <>
                       <b>
-                        {I18n.t('administration.integrations.details.webhookUrls')}
+                        {I18n.t('admin.integrations_details_webhookUrls')}
                         :
                       </b>
                       <div>
@@ -180,7 +180,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                   return (
                     <>
                       <b>
-                        {I18n.t('administration.integrations.details.webhookUrls')}
+                        {I18n.t('admin.integrations_details_webhookUrls')}
                         :
                       </b>
                       <div>
@@ -211,7 +211,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                   return (
                     <>
                       <b>
-                        {I18n.t('administration.integrations.details.webhookUrl')}
+                        {I18n.t('admin.integrations_details_webhookUrl')}
                         :
                       </b>
                       <div>
@@ -238,7 +238,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                     <>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.platform_id')}
+                          {I18n.t('admin.integrations_details_platform_id')}
                           :
                         </b>
                         {' '}
@@ -252,7 +252,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.client_id')}
+                          {I18n.t('admin.integrations_details_client_id')}
                           :
                         </b>
                         {' '}
@@ -266,7 +266,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.deployment_id')}
+                          {I18n.t('admin.integrations_details_deployment_id')}
                           :
                         </b>
                         {' '}
@@ -280,7 +280,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.platform_public_keyset_url')}
+                          {I18n.t('admin.integrations_details_platform_public_keyset_url')}
                           :
                         </b>
                         {' '}
@@ -294,7 +294,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.platform_access_token_url')}
+                          {I18n.t('admin.integrations_details_platform_access_token_url')}
                           :
                         </b>
                         {' '}
@@ -308,7 +308,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.platform_authentication_request_url')}
+                          {I18n.t('admin.integrations_details_platform_authentication_request_url')}
                           :
                         </b>
                         {' '}
@@ -322,7 +322,7 @@ const IntegrationsComponent: React.FC<Props> = ({
                       </div>
                       <div>
                         <b>
-                          {I18n.t('administration.integrations.details.platform_host_name')}
+                          {I18n.t('admin.integrations_details_platform_host_name')}
                           :
                         </b>
                         {' '}
@@ -342,16 +342,16 @@ const IntegrationsComponent: React.FC<Props> = ({
               }}
             />
             <Column
-              title={I18n.t('common.column.action')}
+              title={I18n.t('shared.action')}
               fixed={windowWidth > 800 ? 'right' : undefined}
               render={integration => (
                 <Space size="middle">
                   {integration.name === 'mettl' && (
                     <>
-                      <Tooltip title={I18n.t('administration.integrations.actions.load_mettl_catalog')}>
+                      <Tooltip title={I18n.t('admin.integrations_actions_load_mettl_catalog')}>
                         <span><SyncOutlined onClick={handleMettlLoad} /></span>
                       </Tooltip>
-                      <Tooltip title={I18n.t('administration.integrations.view_all_schedules')}>
+                      <Tooltip title={I18n.t('admin.integrations_view_all_schedules')}>
                         <span>
                           <EyeOutlined onClick={() => handleTabChange('integrations/mettl_schedule_records')} />
                         </span>
@@ -360,22 +360,22 @@ const IntegrationsComponent: React.FC<Props> = ({
                   )}
                   {integration.name === 'skillvue' && (
                     <>
-                      <Tooltip title={I18n.t('administration.integrations.actions.load_skillvue_catalog')}>
+                      <Tooltip title={I18n.t('admin.integrations_actions_load_skillvue_catalog')}>
                         <span><SyncOutlined onClick={handleSkillvueLoad} /></span>
                       </Tooltip>
                     </>
                   )}
                   {integration.name === 'microsite' && (
                     <>
-                      <Tooltip title={I18n.t('administration.integrations.actions.load_microsite_catalog')}>
+                      <Tooltip title={I18n.t('admin.integrations_actions_load_microsite_catalog')}>
                         <span><SyncOutlined onClick={handleMicrositeLoad} /></span>
                       </Tooltip>
                     </>
                   )}
-                  <Tooltip title={I18n.t('common.actions.edit')}>
+                  <Tooltip title={I18n.t('shared.edit')}>
                     <span><EditOutlined onClick={() => openModal('IntegrationFormModal', { integration })} /></span>
                   </Tooltip>
-                  <Tooltip title={I18n.t('common.actions.delete')}>
+                  <Tooltip title={I18n.t('shared.delete')}>
                     <span>
                       {isDeleteRequestInProgress ? <LoadingOutlined />
                         : <DeleteOutlined onClick={() => remove(projectId, integration.id)} />}

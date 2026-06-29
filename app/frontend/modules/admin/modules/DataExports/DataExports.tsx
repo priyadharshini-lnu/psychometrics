@@ -80,12 +80,12 @@ const DataExportsComponent:FC<Props> = ({
   const dataSource = [
     {
       key: '1',
-      name: I18n.t('administration.administrators.list.actions.export_admins_with_permissions'),
+      name: I18n.t('admin.export_admins_with_permissions'),
       dataType: exportDataTypes.adminPermissions,
     },
     {
       key: '2',
-      name: I18n.t('administration.administrators.list.actions.user_report_events'),
+      name: I18n.t('admin.user_report_events'),
       dataType: exportDataTypes.userReportEvents,
     },
   ]
@@ -148,7 +148,7 @@ const DataExportsComponent:FC<Props> = ({
       method: 'post',
       body,
       responseType: t.literal('ok'),
-    }).then(() => message.success(I18n.t('administration.administrators.list.actions.export_success')))
+    }).then(() => message.success(I18n.t('admin.export_success')))
   }
 
   const handleUserReportEventDownload = (startDate, endDate) => {
@@ -168,18 +168,18 @@ const DataExportsComponent:FC<Props> = ({
       responseType: t.literal('ok'),
     }).then(() => {
       setShowDateModal(false)
-      message.success(I18n.t('administration.administrators.list.actions.export_success'))
+      message.success(I18n.t('admin.export_success'))
     })
   }
 
   const columns = [
     {
-      title: I18n.t('common.column.name'),
+      title: I18n.t('shared.name'),
       dataIndex: 'name',
       key: 'name',
     },
     {
-      title: I18n.t('common.column.action'),
+      title: I18n.t('shared.action'),
       dataIndex: 'dataType',
       key: 'actions',
       render: value => (
@@ -214,7 +214,7 @@ const DataExportsComponent:FC<Props> = ({
             showTime={false}
             dateFormat={DATE_FORMAT}
             initialRange={initialRange}
-            modalTitle={I18n.t('administration.data_exports_modal.title')}
+            modalTitle={I18n.t('admin.data_exports_modal_title')}
           />
         </Col>
       </Row>

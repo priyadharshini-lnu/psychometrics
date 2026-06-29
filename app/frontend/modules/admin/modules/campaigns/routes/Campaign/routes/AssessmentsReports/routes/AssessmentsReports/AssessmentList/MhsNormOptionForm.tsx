@@ -55,7 +55,7 @@ export const MhsNormOptionForm: FC<Props> = ({
     }
     updateMhsNormOption(campaignId, assessment.id, payload)
       .then(() => {
-        message.success(I18n.t('admin.campaign_assessment_mhs_norm_option_update_success'))
+        message.success(I18n.t('admin.norm_option_update_success'))
       })
       .catch((err) => {
         message.error(err)
@@ -79,7 +79,7 @@ export const MhsNormOptionForm: FC<Props> = ({
           className="va-t w-30"
           labelStyle={{ width: '40%' }}
           contentStyle={{ width: '60%' }}
-          label={I18n.t('admin.campaign_assessment_mhs_norm_option')}
+          label={I18n.t('admin.norm_option')}
         >
           <span>{selectedNormOption.label}</span>
           {permissions?.updateMhsNormOption && (
@@ -93,7 +93,7 @@ export const MhsNormOptionForm: FC<Props> = ({
         </Descriptions.Item>
       </Descriptions>
       <Modal
-        title={I18n.t('admin.campaign_assessment_mhs_norm_option')}
+        title={I18n.t('admin.norm_option')}
         open={modalVisible}
         getContainer={false}
         closable={false}
@@ -109,7 +109,7 @@ export const MhsNormOptionForm: FC<Props> = ({
         <div className="mt-4 mb-6">
           <Select
             value={selectedNormOption.value}
-            placeholder={I18n.t('admin.campaign_assessment_mhs_norm_option_form_select')}
+            placeholder={I18n.t('admin.norm_option_form_select')}
             onChange={(val) => {
               const option = mhsNormOptions.find(o => o.value === val)
               setSelectedNormOption(option || { label: '', value: 0 })

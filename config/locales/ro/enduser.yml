@@ -36,6 +36,8 @@ ro:
     browser_not_compatible: Browserul dvs. %{browser_name} nu este compatibil cu această campanie. Pentru o experiență optimă, utilizați cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge.
     browser_not_compatible_description: Folosește cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge pentru o experiență optimă.
     browser_not_compatible_detail: Browserul dvs. %{browser_name} nu este compatibil cu această campanie. Pentru o experiență optimă, utilizați cele mai recente versiuni ale browserelor Chrome, Firefox, Safari sau Edge.
+    browser_proctoring_description: Utilizați un browser d%{browser_name}, care ar putea prezenta anumite limitări în ceea ce privește funcțiile de supraveghere activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați Chrome sau Edge
+    browser_proctoring_title: "%{browser_name} Browser detectat"
     browser_version_fix_description_first: 'Folosește un browser compatibil: Chrome, Firefox, Edge sau Safari'
     browser_version_fix_title: Versiunea browserului dumneavoastră nu este acceptată.
     camera: Video și audio
@@ -43,6 +45,7 @@ ro:
     camera_check: Testare cameră și microfon
     camera_check_abruptly_ended: Camera s-a oprit brusc. Vă rugăm să activați camera și să repetați verificarea.
     camera_check_description: Verificați dacă camera și microfonul funcționează corect pentru înregistrare
+    camera_check_failed: Verificarea videoclipului a eșuat
     camera_check_passed: Verificarea sunetului și a imaginii s-a încheiat cu succes
     camera_check_record_instruction: Dă clic pe „Înregistrare” și citește cu voce tare următorul fragment
     camera_test_step: Etapa de testare video și audio
@@ -69,6 +72,9 @@ ro:
     error_uploading_audio_detail: A apărut o eroare la încărcarea fișierului audio
     error_uploading_video: Eroare la încărcarea videoclipului
     error_uploading_video_detail: A apărut o eroare în timpul încărcării videoclipului
+    face_detection_error: A apărut o eroare în timpul detectării feței. Asigură-te că camera funcționează și încearcă din nou.
+    face_detection_failed: Nu s-a detectat nicio față în înregistrarea video. Asigură-te că camera nu este acoperită și că fața ta este vizibilă.
+    face_not_detected_warning: Nu s-a detectat nicio față. Asigurați-vă că fața dumneavoastră este vizibilă pentru cameră.
     fail: Eșec
     file_submission_already_exists: Am primit deja răspunsul dumneavoastră la această întrebare. Vă rugăm să reîmprospătați pagina și, dacă tot nu vedeți răspunsul anterior, vă rugăm să contactați administratorul.
     follow_these_steps: Urmați acești pași pentru a remedia problemele detectate în timpul verificării sistemului
@@ -162,6 +168,8 @@ ro:
     select_video_device: Selectează dispozitivul video
     selected_count: Selectat
     skill_type: Tip de abilitate
+    speech_verification_error: A apărut o eroare în timpul verificării discursului dumneavoastră. Vă rugăm să încercați din nou.
+    speech_verification_failed: Discursul dumneavoastră nu a corespuns frazei de test. Vă rugăm să încercați din nou și să rostiți fraza clar.
     start_campaign_message_proctored: Aceasta este o campanie supravegheată, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_readiness_check: Începe verificarea pregătirii
@@ -186,10 +194,12 @@ ro:
       one: Eu strig, tu strigi, toți strigăm după înghețată!
       seven: Fiecare zi este un nou început. Spune-o tare și mândru!
       six: Pizza sau paste? Deciziile sunt dificile.
+      ten: Sunt gata. Aceasta este o înregistrare de test pentru a verifica dacă microfonul meu funcționează corect.
       three: Testare, unu doi trei, sunetul este cât se poate de clar!.
       two: Vulpea maro iute sare peste câinele leneș.
     system_check_audio_title: Vă rugăm să vorbiți și să repetați următoarea propoziție de 3 ori.
     system_check_complete: Verificarea sistemului s-a încheiat
+    system_check_face_detection: Detectarea feței
     system_check_failed: Verificarea sistemului a eșuat
     system_check_failed_description: Vă rugăm să remediați problemele și să rulați din nou verificările de sistem.
     system_check_failed_message: Unele verificări ale sistemului au eșuat. Te rugăm să verifici detaliile și să încerci din nou.
@@ -200,6 +210,7 @@ ro:
     system_check_retake: Nu, vreau să reiau
     system_check_run_again: Aleargă din nou
     system_check_session_not_found: Nu s-a găsit nicio sesiune de verificare a sistemului. Vă rugăm să începeți o nouă verificare a sistemului.
+    system_check_speech_verification: Verificarea vorbirii
     system_check_start_recording: Începeți înregistrarea
     system_check_stop_recording: Opriți înregistrarea
     system_check_test_message: mă bucur să vorbesc cu tine
@@ -257,6 +268,10 @@ ro:
     video_overlay_label: Alegeți microfonul și camera, faceți clic pe „Înregistrare”, apoi citiți mesajul următor după ce ați apăsat butonul „Înregistrare”
     video_overlay_message: Alege microfonul și camera, apasă pe „Înregistrare”, apoi citește cu voce tare propoziția care apare în partea de jos.
     video_recorder_label: Aparat de înregistrare video
+    video_upload_failed_camera_access: Nu se poate accesa camera sau microfonul. Vă rugăm să verificați permisiunile dispozitivului și să încercați din nou.
+    video_upload_failed_chunk_upload: O parte din înregistrare nu s-a încărcat. Vă rugăm să verificați conexiunea la internet și să încercați din nou.
+    video_upload_failed_finalize: Înregistrarea a fost realizată, dar nu a putut fi salvată. Vă rugăm să încercați din nou.
+    video_upload_failed_no_recording: Nu s-a găsit nicio înregistrare care să poată fi încărcată. Vă rugăm să înregistrați din nou.
     view_details: Vezi detalii
     webgl_api_fix_description_first: Asigură-te că browserul tău acceptă WebGL și că această funcție este activată în setări
     webgl_api_fix_description_second: Actualizați driverele grafice la cea mai recentă versiune

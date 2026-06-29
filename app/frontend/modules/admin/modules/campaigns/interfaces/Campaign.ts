@@ -97,4 +97,7 @@ export interface CampaignOptions {
   calculatedMinimumUploadSpeed: number;
   calculatedMinimumDownloadSpeed: number;
   allowContinueWithWarning: boolean;
+  faceDetectionEnabled: boolean
+  minimumFaceDetectionRatio: number
+  phraseVerificationEnabled: boolean
 }

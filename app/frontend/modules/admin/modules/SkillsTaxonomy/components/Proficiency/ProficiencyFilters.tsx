@@ -31,7 +31,7 @@ export const ProficiencyFilters: React.FC<Props> = ({
     resource.uploadFileAction(action, data)
       .then(() => {
         successCallback()
-        message.info(I18n.t('administration.proficiency_levels.import.job_queued'))
+        message.info(I18n.t('admin.import_job_queued'))
       })
       .catch((error) => {
         failureCallback(error)
@@ -47,7 +47,7 @@ export const ProficiencyFilters: React.FC<Props> = ({
     resource.uploadFileAction(action, data)
       .then(() => {
         successCallback()
-        message.info(I18n.t('administration.proficiency_levels.import.job_queued'))
+        message.info(I18n.t('admin.import_job_queued'))
       })
       .catch((error) => {
         failureCallback(error)
@@ -64,9 +64,9 @@ export const ProficiencyFilters: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.proficiency_levels.export.success_msg'))
+      message.info(I18n.t('admin.export_success_msg'))
     }).catch(() => {
-      message.error(I18n.t('administration.proficiency_levels.export.failure_msg'))
+      message.error(I18n.t('admin.export_failure_msg'))
     })
   }
 
@@ -80,9 +80,9 @@ export const ProficiencyFilters: React.FC<Props> = ({
       method: 'post',
       responseType: t.literal('ok'),
     }).then(() => {
-      message.info(I18n.t('administration.proficiency_levels.translations.export.success_msg'))
+      message.info(I18n.t('admin.translations_export_success_msg'))
     }).catch(() => {
-      message.error(I18n.t('administration.proficiency_levels.translations.export.failure_msg'))
+      message.error(I18n.t('admin.translations_export_failure_msg'))
     })
   }
 
@@ -91,7 +91,7 @@ export const ProficiencyFilters: React.FC<Props> = ({
       case 'import_proficiency':
         openModal('ProficiencyImportModal', {
           handleImport: handleProficiencyImport,
-          title: I18n.t('administration.proficiency_levels.import.actions.proficiency'),
+          title: I18n.t('admin.import_actions_proficiency'),
           csvFilePath: '/example_csv/proficiency-sample.csv',
           allowGlobalImport: resource.meta.permissions?.importGlobal,
         })
@@ -99,7 +99,7 @@ export const ProficiencyFilters: React.FC<Props> = ({
       case 'import_translations':
         openModal('ProficiencyImportModal', {
           handleImport: handleTranslationsImport,
-          title: I18n.t('administration.proficiency_levels.import.actions.translations'),
+          title: I18n.t('admin.import_actions_translations'),
           allowGlobalImport: resource.meta.permissions?.importGlobalTranslations,
         })
         break
@@ -124,7 +124,7 @@ export const ProficiencyFilters: React.FC<Props> = ({
       />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateMappingModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
     </Resource.Filter>
   )

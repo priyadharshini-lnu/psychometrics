@@ -116,7 +116,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
     }))
 
     if (isSuperAdmin(currentUser)) {
-      clientsOptions.unshift({ label: I18n.t('administration.tte'), value: null })
+      clientsOptions.unshift({ label: I18n.t('admin.tte'), value: null })
     }
     return clientsOptions
   }
@@ -147,7 +147,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
         <Spin spinning={isSubmitting}>
           <Form.Item
             name="name"
-            label={I18n.t('common.column.name')}
+            label={I18n.t('shared.name')}
             required={isCreatingFolder}
             rules={[
               {
@@ -170,7 +170,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
           {showOwnerField && (
             <Form.Item
               name="ownerId"
-              label={I18n.t('common.column.owner')}
+              label={I18n.t('shared.owner')}
               initialValue={library?.owner?.id || ' '}
               rules={[
                 {
@@ -194,7 +194,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
 
           <Form.Item
             name="description"
-            label={I18n.t('common.column.description')}
+            label={I18n.t('shared.description')}
           >
             <Input.TextArea name="description" />
           </Form.Item>
@@ -227,7 +227,7 @@ export const MediaLibraryFormModal: React.FC<Props> = ({
                   onRemove={handleRemoveFile}
                 >
                   <Button icon={<UploadOutlined />}>
-                    {I18n.t('admin.upload')}
+                    {I18n.t('shared.upload')}
                   </Button>
                 </Upload>
               </Form.Item>

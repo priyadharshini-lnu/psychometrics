@@ -18,23 +18,28 @@ th:
     assessment_id: รหัสการประเมิน
     assessment_list: รายการประเมิน
     assessment_name: ชื่อการประเมิน
+    assessor: ผู้ประเมิน
     assessor_approved: ผู้ประเมินอนุมัติ
     assessors_list: รายชื่อผู้ประเมิน
     asset_not_present: ไม่มีสินทรัพย์
     audio: เสียง
     audio_devices: อุปกรณ์เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
+    auto_approved: อนุมัติโดยอัตโนมัติ
     back: กลับ
     basic: พื้นฐาน
+    bulk_download: ดาวน์โหลดจำนวนมาก
     camera: กล้อง
     camera_preview: ตัวอย่างภาพจากกล้องจะแสดงที่นี่
     campaign: แคมเปญ
     campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
+    category: หมวดหมู่
     change_password: เปลี่ยนรหัสผ่าน
     clear_filters: เคลียร์ตัวกรอง
     client: ลูกค้า
     close: ปิด
+    code: รหัส
     collaborative_learning: การเรียนรู้ร่วมกัน
     completed: เสร็จสมบูรณ์
     configurations: การกำหนดค่า
@@ -43,11 +48,13 @@ th:
     controller: คอนโทรลเลอร์
     cookie_notice: ประกาศเกี่ยวกับคุกกี้
     cookies_statement: นโยบายการใช้คุกกี้
+    copied: คัดลอกไปยังคลิปบอร์ด
     copied_successfully: คัดลอกสำเร็จ
     copied_to_clipboard: คัดลอกไปยังคลิปบอร์ด
     copy: คัดลอก
     create: สร้าง
     created_at: สร้างเมื่อ
+    created_by: สร้างโดย
     created_date: วันที่สร้าง
     created_successfully: สร้างสำเร็จแล้ว
     custom_acknowledgment_text: ข้อความยืนยันการรับทราบแบบกำหนดเอง
@@ -55,11 +62,14 @@ th:
     custom_consent_text: ข้อความยินยอมที่กำหนดเอง
     custom_consent_text_required: จำเป็นต้องมีข้อความยินยอมที่กำหนดเองสำหรับบทบาทผู้ควบคุมข้อมูล
     data_role: บทบาทด้านข้อมูล
+    datasheet: เอกสารข้อมูล
     decline: ปฏิเสธ
+    default: ค่าเริ่มต้น
     delete: ลบ
     description: คำอธิบาย
     desktop_or_laptop_recommended: แนะนำใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
     desktop_or_laptop_required: จำเป็นต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อป
+    dimension: มิติ
     disabled: ผู้พิการ
     discard: ทิ้ง
     download: ดาวน์โหลด
@@ -69,6 +79,7 @@ th:
     edit: แก้ไข
     edited: ใหม่
     email: อีเมล
+    end_date: วันที่สิ้นสุด
     ending_proctoring_session_msg: เรากำลังจะสิ้นสุดการตรวจสอบการสอบ <p>กรุณารอขณะที่เราบันทึกคำตอบของคุณและนำคุณกลับไปยังหน้าแรก</p>
     error: ข้อผิดพลาด
     export: ส่งออก
@@ -83,12 +94,18 @@ th:
     generating: การสร้าง
     group_question_max_validation_error: แต่ละกลุ่มสามารถมีไอเท็มได้สูงสุด {{max}} รายการ
     group_question_min_validation_error: แต่ละกลุ่มต้องมีอย่างน้อย {{min}} รายการ
+    icon: ไอคอน
     id: รหัส
     idp_ai_assistant_disclaimer: ผู้ช่วย Lighthouse AI IDP สามารถทําผิดพลาดได้ โปรดใช้ความระมัดระวังขณะใช้คําตอบ
+    import: นําเข้า
+    inactive: เกียจคร้าน
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     last_name: นามสกุล
+    last_updated: อัพเดทล่าสุด
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
     lets_start: มาเริ่มกันเลย!
+    linked_activities: กิจกรรมที่เชื่อมโยง
+    linked_assessment: การประเมินแบบเชื่อมโยง
     loading: กำลังโหลด...
     login: เข้าสู่ระบบ
     maintenance_in_hours: "%{hours} ชั่วโมง"
@@ -98,11 +115,13 @@ th:
     maintenance_time_remaining: เวลาที่เหลืออยู่
     maintenance_upcoming_description: เราจะทำการบำรุงรักษาตามกำหนดเวลาที่ %{date} เป็นเวลาประมาณ %{duration} เพื่อปรับปรุงประสบการณ์การใช้งานของคุณ ในระหว่างนี้ คุณจะไม่สามารถเข้าถึงหรือดำเนินการงานที่ได้รับมอบหมายใดๆ ได้ เราขอขอบคุณสำหรับความอดทนของคุณ
     maintenance_upcoming_title: การบำรุงรักษาที่กำลังจะมาถึง
+    manage: การจัดการ
     manage_cookies: จัดการคุกกี้
     media_id: รหัสสื่อ
     media_preview: การพรีวิวสื่อ
     media_question_transcriptions: ถอดความคำถามจากสื่อ
     media_responses: การตอบสนองของสื่อ
+    meeting_link: ลิงค์การประชุม
     microphones: ไมโครโฟน
     mobile_proctoring_disabled_instructions: การประเมินนี้ต้องใช้คอมพิวเตอร์ตั้งโต๊ะหรือแล็ปท็อปเพื่อดำเนินการต่อ กรุณาเปลี่ยนไปใช้คอมพิวเตอร์เพื่อทำกิจกรรมให้เสร็จสมบูรณ์
     mobile_proctoring_enabled_instructions: เพื่อประสบการณ์ที่ดีที่สุด กรุณาเปลี่ยนไปใช้เดสก์ท็อปหรือแล็ปท็อปหากคุณมีอยู่ คุณสามารถใช้โทรศัพท์มือถือของคุณต่อไปได้หากจำเป็น
@@ -116,13 +135,17 @@ th:
     new: ใหม่
     next: ถัดไป
     no_audio_warning: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
+    no_data_found: ไม่พบข้อมูล
     no_results_found: ไม่พบผลลัพธ์
+    none: ไม่มีใคร
     not_requested: ยังไม่ได้ร้องขอ
     ok: ตกลง
     options: ตัวเลือก
+    overview: ภาพรวม
     owner: เจ้าของ
     pause: หยุดชั่วคราว
     pending: รอดำเนินการ
+    permissions: สิทธิ์การใช้งาน
     play: เล่น
     policy_version: นโยบายเวอร์ชัน
     policy_version_format: อนุญาตเฉพาะจำนวนเต็มเท่านั้น
@@ -133,6 +156,7 @@ th:
     proctoring_maintenance_active: การคุมสอบกำลังอยู่ในระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time} กรุณาลองอีกครั้งหลังจากช่วงเวลาการบำรุงรักษา
     proctoring_maintenance_upcoming: การคุมสอบจะอยู่ระหว่างการบำรุงรักษาตั้งแต่เวลา %{start_time} ถึง %{end_time}
     project: โครงการ
+    publish: เผยแพร่
     question: คำถาม
     question_id: รหัสคำถาม
     question_transcription_disabled: การถอดเสียงถูกปิดใช้งานสำหรับคำถามนี้
@@ -146,20 +170,27 @@ th:
     remove: เอาออก
     removed: ถูก เอา ออก
     replace: แทนที่
+    required: ต้องกรอกข้อมูล
+    reset: รี เซ็ต
     reset_password: รีเซ็ตรหัสผ่าน
     response_text: ข้อความตอบกลับ
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
+    run: วิ่ง
     save: บันทึก
     saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
+    schedule_time: กําหนดเวลา
     scoring_details: รายละเอียดการให้คะแนน
     search: ค้นหา
     select_camera: เลือกกล้อง
+    select_language: เลือกภาษา
     select_microphone: เลือกไมโครโฟน
+    send: ส่ง
     send_email: ส่งอีเมล
     show_more: แสดงเพิ่มเติม
     something_wrong: มีบางอย่างผิดพลาด ติดต่อผู้ดูแลระบบ
     speakers: ผู้พูด
+    start_date: วันที่เริ่มต้น
     status: สถานะ
     status_unknown: ไม่ทราบสถานะ
     stop: หยุด
@@ -178,6 +209,7 @@ th:
           one: 'ทั้งหมด : 1'
           other: 'ทั้งหมด: {{count}}'
           zero: 'รวม: 0'
+    tags: แท็ก
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ
     transcription: การถอดเสียง
@@ -189,11 +221,35 @@ th:
     try_again: ลองอีกครั้ง
     tte_terms_and_condition: เงื่อนไขและความเป็นส่วนตัว
     type: ประเภท
+    unpublish: เผยแพร่
     update: อัปเดต
     update_failed: การอัปเดตล้มเหลว
     updated_at: อัปเดตเมื่อ
+    updated_by: อัปเดตโดย
     updated_successfully: อัปเดตสำเร็จ
+    upload: อัปโหลด
     user_report_pdf_url_not_generated: ไม่สามารถสร้างลิงก์ดาวน์โหลด PDF ได้
+    user_reports_approval_status_pending_qc: อยู่ระหว่างการตรวจสอบคุณภาพ
+    user_reports_approval_status_qc_completed: QC เสร็จสิ้น
+    user_reports_assessment_name_not_completed_reason_template: การประเมินผล %{names} ยังไม่เสร็จสมบูรณ์
+    user_reports_assessments_name_not_completed_reason_template: การประเมินผล %{names} ไม่ได้รับการดำเนินการ
+    user_reports_assessor_not_completed_reason_template: แบบฟอร์มผู้ประเมิน %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_assessors_not_completed_reason_template: แบบฟอร์มผู้ประเมิน %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_campaign_artifact_results_pending_reason_message: ผลลัพธ์ของแคมเปญยังไม่เสร็จสมบูรณ์สำหรับผู้ใช้รายนี้
+    user_reports_campaign_scoring_pending_reason_message: คะแนนแคมเปญยังไม่สมบูรณ์สำหรับผู้ใช้รายนี้
+    user_reports_custom_upload_report_reason_message: ผู้ให้บริการรายงานคือการอัปโหลดที่กำหนดเอง
+    user_reports_external_report_pending_reason_message: กำลังรอรายงานจากผู้ให้บริการ
+    user_reports_lead_assessor_not_completed_reason_template: แบบฟอร์มผู้ประเมินหลัก %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_lead_assessors_not_completed_reason_template: แบบฟอร์มผู้ประเมินหลัก %{names} ยังไม่ได้รับการกรอกข้อมูล
+    user_reports_no_report_module_reason_message: ไม่พบโมดูลรายงานสำหรับรายงานนี้
+    user_reports_not_prepared_reason_message: รายงานยังไม่ได้จัดทำ
+    user_reports_pending_approval_reason_template: สถานะการอนุมัติคือ '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: อยู่ระหว่างการอนุมัติคะแนน AI ขั้นสุดท้าย
+    user_reports_pending_qc_ai_scoring_approval_reason_message: กำลังรอการอนุมัติคะแนนจาก QC AI
+    user_reports_pending_qc_approval_reason_message: รอการอนุมัติรายงาน QC
+    user_reports_qc_completed_approval_reason_message: อยู่ระหว่างการอนุมัติรายงานฉบับสมบูรณ์
+    user_reports_report_generating_reason_message: กำลังสร้างรายงาน
+    user_reports_report_generation_failed_reason_message: การสร้างรายงานล้มเหลว
     video: วิดีโอ
     view: มุมมอง
     view_audio: ดูเสียง

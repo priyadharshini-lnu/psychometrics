@@ -18,23 +18,28 @@ vi:
     assessment_id: Mã đánh giá
     assessment_list: Danh sách đánh giá
     assessment_name: Tên đánh giá
+    assessor: Giám định viên
     assessor_approved: Được phê duyệt bởi chuyên gia đánh giá
     assessors_list: Danh sách các đánh giá viên
     asset_not_present: Tài sản không có sẵn
     audio: Âm thanh
     audio_devices: Thiết bị âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
+    auto_approved: Tự động phê duyệt
     back: Quay lại
     basic: Cơ bản
+    bulk_download: Tải xuống hàng loạt
     camera: Máy ảnh
     camera_preview: Bản xem trước của máy ảnh sẽ xuất hiện ở đây
     campaign: Chiến dịch
     campaign_id: ID chiến dịch
     cancel: Hủy bỏ
+    category: Loại
     change_password: Thay đổi mật khẩu
     clear_filters: Xóa bộ lọc
     client: Khách hàng
     close: Đóng
+    code: Mã số
     collaborative_learning: Học tập hợp tác
     completed: Hoàn thành
     configurations: Cấu hình
@@ -43,11 +48,13 @@ vi:
     controller: Bộ điều khiển
     cookie_notice: Thông báo về cookie
     cookies_statement: Thông báo về Cookie
+    copied: Đã sao chép vào khay nhớ tạm
     copied_successfully: Đã sao chép thành công
     copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
     create: Tạo
     created_at: Được tạo ra tại
+    created_by: Tạo bởi
     created_date: Ngày tạo
     created_successfully: Đã tạo thành công
     custom_acknowledgment_text: Nội dung lời cảm ơn tùy chỉnh
@@ -55,11 +62,14 @@ vi:
     custom_consent_text: Nội dung đồng ý tùy chỉnh
     custom_consent_text_required: Văn bản đồng ý tùy chỉnh là bắt buộc cho vai trò dữ liệu của bộ điều khiển.
     data_role: Vai trò dữ liệu
+    datasheet: Bảng dữ liệu
     decline: Suy giảm
+    default: Mặc định
     delete: Xóa
     description: Sự miêu tả
     desktop_or_laptop_recommended: Máy tính để bàn hoặc laptop được khuyến nghị
     desktop_or_laptop_required: Máy tính để bàn hoặc laptop là bắt buộc.
+    dimension: Kích thước
     disabled: Người khuyết tật
     discard: Bỏ đi
     download: Tải xuống
@@ -69,6 +79,7 @@ vi:
     edit: Biên tập
     edited: Mới
     email: E-mail
+    end_date: Ngày kết thúc
     ending_proctoring_session_msg: Chúng tôi đang kết thúc phiên giám sát. <p>Vui lòng chờ trong giây lát để chúng tôi lưu lại câu trả lời của bạn và chuyển hướng trở lại trang chủ.</p>
     error: Lỗi
     export: Xuất khẩu
@@ -83,12 +94,18 @@ vi:
     generating: Tạo ra
     group_question_max_validation_error: Mỗi nhóm có thể chứa tối đa {{max}} (các) mục.
     group_question_min_validation_error: Mỗi nhóm cần chứa ít nhất {{min}} (các) mục.
+    icon: Biểu tượng
     id: ID
     idp_ai_assistant_disclaimer: Trợ lý IDP AI của Lighthouse có thể mắc sai lầm. Hãy cẩn thận khi sử dụng các câu trả lời.
+    import: Nhập khẩu
+    inactive: Không hoạt động
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     last_name: Họ
+    last_updated: Cập nhật lần cuối
     learning_on_the_job_label: Học tập trong công việc
     lets_start: Hãy bắt đầu nào!
+    linked_activities: Hoạt động liên kết
+    linked_assessment: Đánh giá liên kết
     loading: Đang tải...
     login: Đăng nhập
     maintenance_in_hours: "%{hours} giờ"
@@ -98,11 +115,13 @@ vi:
     maintenance_time_remaining: Thời gian còn lại
     maintenance_upcoming_description: Chúng tôi sẽ tiến hành bảo trì định kỳ trên %{date} trong khoảng thời gian %{duration} để nâng cao trải nghiệm của bạn. Trong thời gian này, bạn sẽ không thể truy cập hoặc hoàn thành bất kỳ tác vụ nào được giao. Chúng tôi xin cảm ơn sự thông cảm của bạn.
     maintenance_upcoming_title: Bảo trì sắp tới
+    manage: Quản lý
     manage_cookies: Quản lý cookie
     media_id: Mã định danh phương tiện truyền thông
     media_preview: Xem trước truyền thông
     media_question_transcriptions: Bản ghi chép câu hỏi của truyền thông
     media_responses: Phản ứng của truyền thông
+    meeting_link: Liên kết cuộc họp
     microphones: Loa
     mobile_proctoring_disabled_instructions: Đánh giá này yêu cầu sử dụng máy tính để bàn hoặc laptop để tiếp tục. Vui lòng chuyển sang máy tính để hoàn thành hoạt động.
     mobile_proctoring_enabled_instructions: Để có trải nghiệm tốt nhất, vui lòng chuyển sang sử dụng máy tính để bàn hoặc laptop nếu bạn có sẵn. Bạn có thể tiếp tục sử dụng thiết bị di động nếu cần thiết.
@@ -116,13 +135,17 @@ vi:
     new: Mới
     next: Tiếp theo
     no_audio_warning: Không phát hiện âm thanh. Vui lòng kiểm tra xem micro của bạn đã được kết nối và hoạt động bình thường chưa.
+    no_data_found: Không tìm thấy dữ liệu
     no_results_found: Không tìm thấy kết quả nào.
+    none: Không ai
     not_requested: Chưa được yêu cầu
     ok: Được rồi
     options: Tùy chọn
+    overview: Tổng quan
     owner: Chủ sở hữu
     pause: Tạm dừng
     pending: Đang chờ xử lý
+    permissions: Quyền truy cập
     play: Chơi
     policy_version: Phiên bản chính sách
     policy_version_format: Chỉ cho phép các số nguyên.
@@ -133,6 +156,7 @@ vi:
     proctoring_maintenance_active: Hệ thống giám sát thi (Proctoring) hiện đang được bảo trì từ %{start_time} đến %{end_time}. Vui lòng thử lại sau khi quá trình bảo trì kết thúc.
     proctoring_maintenance_upcoming: Hệ thống giám sát thi sẽ được bảo trì từ %{start_time} đến %{end_time}.
     project: Dự án
+    publish: Xuất bản
     question: Câu hỏi
     question_id: ID câu hỏi
     question_transcription_disabled: Chức năng chuyển đổi văn bản đã bị vô hiệu hóa cho câu hỏi này.
@@ -146,20 +170,27 @@ vi:
     remove: Di dời
     removed: Gỡ bỏ
     replace: Thay thế
+    required: yêu cầu
+    reset: Reset
     reset_password: Đặt lại mật khẩu
     response_text: Nội dung phản hồi
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
+    run: Chạy
     save: Cứu
     saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
+    schedule_time: Lịch trình thời gian
     scoring_details: Chi tiết điểm số
     search: Tìm kiếm
     select_camera: Chọn máy ảnh
+    select_language: Chọn ngôn ngữ
     select_microphone: Chọn micro
+    send: Gửi
     send_email: Gửi email
     show_more: Hiển thị nhiều hơn
     something_wrong: Có điều gì đó không ổn. Liên hệ với quản trị viên của bạn.
     speakers: Diễn giả
+    start_date: Ngày bắt đầu
     status: Trạng thái
     status_unknown: Trạng thái không xác định
     stop: Dừng lại
@@ -178,6 +209,7 @@ vi:
           one: 'Tổng cộng: 1'
           other: 'Tổng cộng: {{count}}'
           zero: 'Tổng cộng: 0'
+    tags: Tags
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
     tools: Công cụ
     transcription: Phiên âm
@@ -189,11 +221,35 @@ vi:
     try_again: Thử lại
     tte_terms_and_condition: Điều khoản &amp; Quyền riêng tư
     type: Kiểu
+    unpublish: Hủy đăng
     update: Cập nhật
     update_failed: Cập nhật không thành công
     updated_at: Cập nhật vào
+    updated_by: Cập nhật bởi
     updated_successfully: Đã cập nhật thành công
+    upload: Tải lên
     user_report_pdf_url_not_generated: Không thể tạo liên kết tải xuống PDF
+    user_reports_approval_status_pending_qc: Đang chờ kiểm tra chất lượng
+    user_reports_approval_status_qc_completed: Đã hoàn tất kiểm tra chất lượng
+    user_reports_assessment_name_not_completed_reason_template: Chưa hoàn thành bài đánh giá “%{names}”
+    user_reports_assessments_name_not_completed_reason_template: Các bài đánh giá tại %{names} chưa được hoàn thành
+    user_reports_assessor_not_completed_reason_template: Mẫu đơn của người thẩm định %{names} chưa được điền đầy đủ
+    user_reports_assessors_not_completed_reason_template: Các biểu mẫu của Thẩm định viên %{names} chưa được điền đầy đủ
+    user_reports_campaign_artifact_results_pending_reason_message: Kết quả vật phẩm chiến dịch của người dùng này vẫn chưa được xác định chính thức
+    user_reports_campaign_scoring_pending_reason_message: Điểm chiến dịch của người dùng này chưa được xác định chính thức
+    user_reports_custom_upload_report_reason_message: Nguồn báo cáo là tệp tải lên tùy chỉnh
+    user_reports_external_report_pending_reason_message: Đang chờ báo cáo từ nhà cung cấp
+    user_reports_lead_assessor_not_completed_reason_template: Mẫu đơn của chuyên gia đánh giá chính tại %{names} chưa được điền đầy đủ
+    user_reports_lead_assessors_not_completed_reason_template: Các biểu mẫu dành cho chuyên gia đánh giá chính %{names} chưa được điền đầy đủ
+    user_reports_no_report_module_reason_message: Không tìm thấy mô-đun báo cáo nào cho báo cáo này
+    user_reports_not_prepared_reason_message: Báo cáo vẫn chưa được hoàn thành
+    user_reports_pending_approval_reason_template: Trạng thái phê duyệt là “%{status}”
+    user_reports_pending_final_ai_scoring_approval_reason_message: Đang chờ phê duyệt điểm số AI cuối cùng
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Đang chờ phê duyệt điểm số AI từ bộ phận Kiểm soát Chất lượng
+    user_reports_pending_qc_approval_reason_message: Đang chờ phê duyệt báo cáo kiểm soát chất lượng
+    user_reports_qc_completed_approval_reason_message: Đang chờ phê duyệt báo cáo cuối cùng
+    user_reports_report_generating_reason_message: Báo cáo đang được tạo
+    user_reports_report_generation_failed_reason_message: Không thể tạo báo cáo
     video: Video
     view: Xem
     view_audio: Xem video âm thanh

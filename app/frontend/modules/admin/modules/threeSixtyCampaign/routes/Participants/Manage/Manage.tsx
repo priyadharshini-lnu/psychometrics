@@ -59,7 +59,7 @@ export const ManageComponent: React.FC<Props> = ({
       <Button>
         <ToolOutlined />
         <span>
-          {I18n.t('administration.threesixty_campaigns.manage.title')}
+          {I18n.t('shared.manage')}
         </span>
         <DownOutlined />
       </Button>
@@ -75,26 +75,26 @@ const getMenuProps = ({
       key: 'dimension',
       label: (
         <a href={`/administration/dimensions/${dimensionId}/factors`}>
-          {I18n.t('administration.threesixty_campaigns.manage.dimension')}
+          {I18n.t('admin.threesixty_campaigns_manage_dimension')}
         </a>),
     },
     campaignPermissions.editReport && {
       key: 'report',
       label: (
         <a href={`/administration/reports/${reportId}`}>
-          {I18n.t('administration.threesixty_campaigns.manage.report')}
+          {I18n.t('admin.threesixty_campaigns_manage_report')}
         </a>),
     },
     campaignPermissions.editAssessment && {
       key: 'assessment',
       label: (
         <a href={`/administration/assessments/${assessmentId}`}>
-          {I18n.t('administration.threesixty_campaigns.manage.assessment')}
+          {I18n.t('admin.threesixty_campaigns_manage_assessment')}
         </a>),
     },
     campaignPermissions.manageRelationships && {
       key: 'manage_relationship',
-      label: I18n.t('administration.threesixty_campaigns.manage.manage_relationships'),
+      label: I18n.t('admin.threesixty_campaigns_manage_manage_relationships'),
     },
     { type: 'divider' },
     (campaignPermissions.manageFactorBenchmarkScores || campaignPermissions.viewFactorBenchmarkScores) && {

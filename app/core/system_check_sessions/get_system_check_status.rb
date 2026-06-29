@@ -86,6 +86,13 @@ module SystemCheckSessions
       video_record = latest_records['video']
       return UNSATISFIED unless video_record&.passed?
 
+      return UNSATISFIED if campaign.face_detection_enabled? &&
+                            !video_record.meets_face_detection_requirements?(
+                              minimum_ratio: campaign.minimum_face_detection_ratio / 100.0
+                            )
+      return UNSATISFIED if campaign.phrase_verification_enabled? &&
+                            !video_record.data&.dig('phrase_matched')
+
       SATISFIED
     end
 
@@ -95,6 +102,9 @@ module SystemCheckSessions
 
       audio_record = latest_records['audio']
       return UNSATISFIED unless audio_record&.passed?
+
+      return UNSATISFIED if campaign.phrase_verification_enabled? &&
+                            !audio_record.data&.dig('phrase_matched')
 
       SATISFIED
     end

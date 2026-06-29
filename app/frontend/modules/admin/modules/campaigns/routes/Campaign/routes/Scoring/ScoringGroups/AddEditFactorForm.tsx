@@ -54,11 +54,11 @@ const factorTypes = [
 ]
 
 const assessmentScoreTypes = [
-  { label: I18n.t('administration.scoring.score_types.norm_score'), value: 'norm_score' },
-  { label: I18n.t('administration.scoring.score_types.score'), value: 'score' },
-  { label: I18n.t('administration.scoring.score_types.zscore'), value: 'zscore' },
-  { label: I18n.t('administration.scoring.score_types.percentile'), value: 'percentile' },
-  { label: I18n.t('administration.scoring.score_types.percentage'), value: 'percentage' },
+  { label: I18n.t('admin.scoring_score_types_norm_score'), value: 'norm_score' },
+  { label: I18n.t('admin.scoring_score_types_score'), value: 'score' },
+  { label: I18n.t('admin.scoring_score_types_zscore'), value: 'zscore' },
+  { label: I18n.t('admin.scoring_score_types_percentile'), value: 'percentile' },
+  { label: I18n.t('admin.scoring_score_types_percentage'), value: 'percentage' },
 ]
 
 interface Assessment {
@@ -179,7 +179,7 @@ export const AddEditFactorForm: FC<Props> = ({
     <Fragment key="assessment">
       <Form.Item
         name="assessment_id"
-        label={I18n.t('administration.scoring.assessment')}
+        label={I18n.t('admin.scoring_assessment')}
       >
         <Select
           showSearch={{
@@ -210,7 +210,7 @@ export const AddEditFactorForm: FC<Props> = ({
       </Form.Item>
       <Form.Item
         name="factor_id"
-        label={I18n.t('administration.scoring.factor')}
+        label={I18n.t('admin.scoring_factor')}
       >
         <Select
           disabled={!dimensionId}
@@ -226,8 +226,8 @@ export const AddEditFactorForm: FC<Props> = ({
             }),
           }}
           placeholder={!dimensionId
-            ? I18n.t('administration.scoring.select_assessment_first')
-            : I18n.t('administration.scoring.select_factor')}
+            ? I18n.t('admin.scoring_select_assessment_first')
+            : I18n.t('admin.scoring_select_factor')}
           notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
           allowClear
           options={getFactors().map(factor => ({
@@ -236,7 +236,7 @@ export const AddEditFactorForm: FC<Props> = ({
           }))}
         />
       </Form.Item>
-      <Form.Item name="assessmentScoreType" label={I18n.t('administration.scoring.assessment_scoring_type')}>
+      <Form.Item name="assessmentScoreType" label={I18n.t('admin.scoring_assessment_scoring_type')}>
         <Select options={assessmentScoreTypes} />
       </Form.Item>
     </Fragment>
@@ -245,7 +245,7 @@ export const AddEditFactorForm: FC<Props> = ({
   if (factorType === 'assessor_scoring') {
     formFieldBasedOnFactorType = (
       <Fragment key="assessor_scoring">
-        <Form.Item name="dimension_id" label={I18n.t('administration.scoring.dimension')}>
+        <Form.Item name="dimension_id" label={I18n.t('admin.scoring_dimension')}>
           <Select
             showSearch={{
               filterOption: false,
@@ -279,7 +279,7 @@ export const AddEditFactorForm: FC<Props> = ({
         </Form.Item>
         <Form.Item
           name="factor_id"
-          label={I18n.t('administration.scoring.factor')}
+          label={I18n.t('admin.scoring_factor')}
         >
           <Select
             disabled={!dimensionId}
@@ -295,8 +295,8 @@ export const AddEditFactorForm: FC<Props> = ({
               }),
             }}
             placeholder={!dimensionId
-              ? I18n.t('administration.scoring.select_assessment_first')
-              : I18n.t('administration.scoring.select_factor')}
+              ? I18n.t('admin.scoring_select_assessment_first')
+              : I18n.t('admin.scoring_select_factor')}
             notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             allowClear
             options={getFactors().map(factor => ({
@@ -305,7 +305,7 @@ export const AddEditFactorForm: FC<Props> = ({
             }))}
           />
         </Form.Item>
-        <Form.Item name="assessmentScoreType" label={I18n.t('administration.scoring.assessment_scoring_type')}>
+        <Form.Item name="assessmentScoreType" label={I18n.t('admin.scoring_assessment_scoring_type')}>
           <Select options={assessmentScoreTypes} />
         </Form.Item>
         {outputType === 'numeric'
@@ -353,7 +353,7 @@ export const AddEditFactorForm: FC<Props> = ({
   if (factorType === 'formula') {
     formFieldBasedOnFactorType = (
       <>
-        <Form.Item name="formula" label={I18n.t('administration.scoring.formula')}>
+        <Form.Item name="formula" label={I18n.t('admin.scoring_formula')}>
           <LuaEditor />
         </Form.Item>
       </>
@@ -406,7 +406,7 @@ export const AddEditFactorForm: FC<Props> = ({
               className="ml-auto"
               onClick={() => editFactors?.(form)}
             >
-              {I18n.t('administration.scoring.save_all')}
+              {I18n.t('admin.scoring_save_all')}
             </Button>
           ) : null}
         </div>
@@ -442,8 +442,8 @@ export const AddEditFactorForm: FC<Props> = ({
               preserve: false,
               initialValues,
               validateMessages: {
-                required: I18n.t('administration.scoring.required_error'),
-                pattern: { mismatch: I18n.t('administration.scoring.pattern_error') },
+                required: I18n.t('admin.scoring_required_error'),
+                pattern: { mismatch: I18n.t('admin.scoring_pattern_error') },
               },
             }}
             scrollToFirstError
@@ -462,7 +462,7 @@ export const AddEditFactorForm: FC<Props> = ({
               <>
                 <Form.Item
                   name="name"
-                  label={I18n.t('administration.scoring.name')}
+                  label={I18n.t('shared.name')}
                   rules={[{
                     required: true,
                     whitespace: true,
@@ -471,7 +471,7 @@ export const AddEditFactorForm: FC<Props> = ({
                 >
                   <Input maxLength={64} name="campaign_factor_name" />
                 </Form.Item>
-                <Form.Item name="code" label={I18n.t('administration.scoring.code')}>
+                <Form.Item name="code" label={I18n.t('shared.code')}>
                   <Input
                     maxLength={64}
                     onInput={(e) => {
@@ -482,10 +482,10 @@ export const AddEditFactorForm: FC<Props> = ({
                     }}
                   />
                 </Form.Item>
-                <Form.Item name="description" label={I18n.t('administration.scoring.description')}>
+                <Form.Item name="description" label={I18n.t('shared.description')}>
                   <Input.TextArea />
                 </Form.Item>
-                <Form.Item name="outputType" label={I18n.t('administration.scoring.output_type')}>
+                <Form.Item name="outputType" label={I18n.t('admin.scoring_output_type')}>
                   <Select defaultValue="numeric">
                     {['numeric', 'string'].map(
                       value => <Select.Option key={value} value={value}>{value}</Select.Option>,
@@ -494,7 +494,7 @@ export const AddEditFactorForm: FC<Props> = ({
                 </Form.Item>
                 <Form.Item
                   name="factorType"
-                  label={I18n.t('administration.scoring.type')}
+                  label={I18n.t('shared.type')}
                 >
                   <Select disabled={!isNew}>
                     {factorTypes.map(type => (
@@ -506,7 +506,7 @@ export const AddEditFactorForm: FC<Props> = ({
                 </Form.Item>
                 {formFieldBasedOnFactorType}
                 <Form.Item
-                  label={I18n.t('administration.scoring.public')}
+                  label={I18n.t('admin.scoring_public')}
                   name="publicVisibility"
                   valuePropName="checked"
                 >
@@ -514,13 +514,13 @@ export const AddEditFactorForm: FC<Props> = ({
                 </Form.Item>
                 {outputType === 'numeric'
                   ? (
-                    <Form.Item label={I18n.t('administration.scoring.ranked')} name="ranked" valuePropName="checked">
+                    <Form.Item label={I18n.t('admin.scoring_ranked')} name="ranked" valuePropName="checked">
                       <Switch />
                     </Form.Item>
                   ) : null
             }
                 <Form.Item>
-                  <Button type="primary" htmlType="submit">{I18n.t('administration.scoring.save')}</Button>
+                  <Button type="primary" htmlType="submit">{I18n.t('shared.save')}</Button>
                 </Form.Item>
               </>
             )}

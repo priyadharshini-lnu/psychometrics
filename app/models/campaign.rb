@@ -231,6 +231,18 @@ class Campaign < ApplicationRecord
     system_check_option('minimum_download_speed')
   end
 
+  def face_detection_enabled?
+    system_check_option('face_detection_enabled', default: false)
+  end
+
+  def minimum_face_detection_ratio
+    system_check_option('minimum_face_detection_ratio', default: 85)
+  end
+
+  def phrase_verification_enabled?
+    system_check_option('phrase_verification_enabled', default: false)
+  end
+
   def calculated_minimum_download_speed(campaign_user = nil)
     SystemCheckSessions::MinimumSpeedCalculator.call!(campaign_user: campaign_user, campaign: self)[:download]
   end

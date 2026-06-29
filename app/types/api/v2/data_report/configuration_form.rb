@@ -24,11 +24,12 @@ module Api::V2::DataReport
       if data['project_ids'].present?
         projects = Project.where(id: data['project_ids'])
         projects.each do |project|
+          next if context[:client_id].nil?
           next if project.tte_id == context[:client_id]
 
           errors.add(
             :configuration,
-            I18n.t('administration.data_reports.validations.project_not_related_to_client', { project_id: project.id })
+            I18n.t('admin.project_not_related_to_client', { project_id: project.id })
           )
         end
       end

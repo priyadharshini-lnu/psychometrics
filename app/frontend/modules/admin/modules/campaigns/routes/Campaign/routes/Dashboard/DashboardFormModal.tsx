@@ -60,21 +60,21 @@ export const DashboardFormModal: React.FC<Props> = ({
         <>
           <Form.Item
             name="dashboard_type"
-            label={I18n.t('common.column.type')}
+            label={I18n.t('shared.type')}
             rules={[{ required: true }]}
           >
             <Select>
               <Select.Option value="powerbi">
-                {I18n.t('administration.dashboard.dashboard_types.powerbi')}
+                {I18n.t('admin.dashboard_dashboard_types_powerbi')}
               </Select.Option>
               <Select.Option value="oracle_analytics">
-                {I18n.t('administration.dashboard.dashboard_types.oracle_analytics')}
+                {I18n.t('admin.dashboard_dashboard_types_oracle_analytics')}
               </Select.Option>
             </Select>
           </Form.Item>
           <Form.Item
             name="name"
-            label={I18n.t('common.column.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input name="dashboard_name" />
@@ -83,7 +83,7 @@ export const DashboardFormModal: React.FC<Props> = ({
           {form.getFieldValue('dashboard_type') === 'powerbi' && (
             <Form.Item
               name="capacityId"
-              label={I18n.t('administration.dashboard.capacity_name')}
+              label={I18n.t('admin.dashboard_capacity_name')}
               rules={[{ required: true }]}
             >
               <Select loading={!capacitiesRequestSuccessful}>

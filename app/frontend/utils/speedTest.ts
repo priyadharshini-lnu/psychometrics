@@ -369,10 +369,6 @@ export async function runTimedUploadTest (options: TimedTestOptions = {}): Promi
 }
 
 export async function runTimedSpeedTest (options: TimedTestOptions = {}): Promise<TimedSpeedTestResult> {
-  const downloadResult = await runTimedDownloadTest(options)
-
-  const uploadResult = await runTimedUploadTest(options)
-
   const latencyResult = await testLatency(DEFAULT_LATENCY_SAMPLES, (progress) => {
     options.onProgress?.({
       elapsedSeconds: 0,
@@ -382,6 +378,10 @@ export async function runTimedSpeedTest (options: TimedTestOptions = {}): Promis
       ...progress,
     })
   })
+
+  const downloadResult = await runTimedDownloadTest(options)
+
+  const uploadResult = await runTimedUploadTest(options)
 
   const totalDuration = downloadResult.durationSeconds + uploadResult.durationSeconds
 

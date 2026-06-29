@@ -16,15 +16,11 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
     )
   end
   let(:factor_id) { campaign_factor.id.to_s }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/campaigns/:campaign_id/campaign_factors' do
     it 'fetches campaign factor list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors"
 
       expect(response).to have_http_status(:ok)
       cf = JSON.parse(response.body)['data'].first
@@ -53,7 +49,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       cf = JSON.parse(response.body)['data']
@@ -84,7 +80,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
 
       patch "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/#{factor_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       cf = JSON.parse(response.body)['data']
@@ -100,7 +96,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
   describe 'DELETE /api/v2/administration/campaigns/:campaign_id/campaign_factors/:factor_id' do
     it 'deletes campaign factor' do
       delete "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/#{factor_id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')
@@ -130,7 +126,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/update_positions",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)['data']
@@ -151,7 +147,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
   describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors/remove_all' do
     it 'removes all campaign factors' do
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/remove_all",
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(campaign.campaign_factors).to be_empty
@@ -164,8 +160,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
       campaign_factor = create(:campaign_factor, campaign: campaign)
 
       get "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/validate_campaign_factor_deletion",
-          params: { id: campaign_factor.id },
-          headers: { 'Authorization' => authorization }
+          params: { id: campaign_factor.id }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(
@@ -181,8 +176,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
       )
 
       post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import",
-           params: { file: file },
-           headers: { 'Authorization' => authorization }
+           params: { file: file }
 
       expect(AdminJobRecord.exists?(operation: 'import_campaign_factors')).to be_truthy
     end
@@ -193,8 +187,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
       )
 
       post "/api/v2/administration/campaigns/#{campaign.id}/campaign_factors/import",
-           params: { file: file },
-           headers: { 'Authorization' => authorization }
+           params: { file: file }
 
       expect(response).to have_http_status(422)
     end
@@ -222,7 +215,7 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
 
       post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors/bulk_update",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       campaign_factor1.reload

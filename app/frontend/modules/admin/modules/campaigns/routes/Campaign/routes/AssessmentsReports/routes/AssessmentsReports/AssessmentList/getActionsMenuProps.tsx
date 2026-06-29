@@ -186,7 +186,10 @@ export const getActionsMenuProps = ({
   const importGroupItems: MenuItem[] = [
     { key: 'import_raw', label: I18n.t('campaign_assessment.actions.import_raw') },
     { key: 'import_scoring', label: I18n.t('campaign_assessment.actions.import_scoring') },
-    { key: 'import_external_scoring', label: I18n.t('admin.import_external_scoring_action') },
+    ...(permissions.importExternalScoring ? [{
+      key: 'import_external_scoring',
+      label: I18n.t('admin.import_external_scoring_action'),
+    }] : []),
   ]
 
   const rescoreMenuItems:MenuItem[] = [

@@ -36,6 +36,8 @@ es-ES:
     browser_not_compatible: Tu navegador %{browser_name} no es compatible con esta campaña. Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
     browser_not_compatible_description: Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
     browser_not_compatible_detail: Tu navegador %{browser_name} no es compatible con esta campaña. Utiliza las últimas versiones de Chrome, Firefox, Safari o Edge para disfrutar de la mejor experiencia.
+    browser_proctoring_description: Estás utilizando un navegad%{browser_name}, que puede presentar ciertas limitaciones en cuanto a las funciones de supervisión habilitadas para esta campaña. Para disfrutar de la mejor experiencia, te recomendamos que utilices Chrome o Edge.
+    browser_proctoring_title: "%{browser_name} Navegador detectado"
     browser_version_fix_description_first: 'Utiliza un navegador compatible: Chrome, Firefox, Edge o Safari'
     browser_version_fix_title: Tu versión del navegador no es compatible.
     camera: Vídeo y audio
@@ -43,6 +45,7 @@ es-ES:
     camera_check: Prueba de cámara y micrófono
     camera_check_abruptly_ended: La cámara se ha apagado de forma repentina. Activa la cámara y vuelve a realizar la comprobación.
     camera_check_description: Comprueba que la cámara y el micrófono funcionen correctamente para la grabación
+    camera_check_failed: Error en la comprobación del vídeo
     camera_check_passed: La comprobación de vídeo y audio se ha realizado correctamente
     camera_check_record_instruction: Haz clic en «Grabar» y lee en voz alta el siguiente texto
     camera_test_step: Paso de prueba de vídeo y audio
@@ -69,6 +72,9 @@ es-ES:
     error_uploading_audio_detail: Se ha producido un error al subir tu archivo de audio
     error_uploading_video: Error al subir el vídeo
     error_uploading_video_detail: Se ha producido un error al subir el vídeo
+    face_detection_error: Se ha producido un error durante la detección de rostros. Comprueba que la cámara funciona correctamente e inténtalo de nuevo.
+    face_detection_failed: No se ha detectado ningún rostro en la grabación de vídeo. Asegúrate de que la cámara no esté tapada y de que se te vea la cara.
+    face_not_detected_warning: No se ha detectado ningún rostro. Asegúrate de que tu rostro esté visible para la cámara.
     fail: Fallo
     file_submission_already_exists: Ya tenemos tu respuesta a esta pregunta. Actualiza la página y, si sigues sin ver tu respuesta anterior, ponte en contacto con tu administrador.
     follow_these_steps: Sigue estos pasos para resolver los problemas detectados durante la comprobación del sistema
@@ -162,6 +168,8 @@ es-ES:
     select_video_device: Seleccionar dispositivo de vídeo
     selected_count: Selección
     skill_type: Tipo de habilidad
+    speech_verification_error: Se ha producido un error al verificar tu voz. Inténtalo de nuevo.
+    speech_verification_failed: Lo que has dicho no coincide con la frase de prueba. Inténtalo de nuevo y pronuncia la frase con claridad.
     start_campaign_message_proctored: Esta es una campaña supervisada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_campaign_message_timed: Esta es una campaña cronometrada, por favor haz clic en el botón '%{buttonText}' para iniciar las actividades.
     start_readiness_check: Iniciar comprobación de preparación
@@ -186,10 +194,12 @@ es-ES:
       one: Yo grito, tú gritas, ¡todos gritamos por un helado!
       seven: Cada día es un nuevo comienzo. ¡Dilo alto y orgulloso!
       six: "¿Pizza o pasta? Las decisiones son difíciles."
+      ten: Estoy listo. Esta es una grabación de prueba para comprobar que mi micrófono funciona correctamente.
       three: Probando, uno dos tres, ¡el sonido es clarísimo!.
       two: El zorro marrón rápido salta sobre el perro perezoso.
     system_check_audio_title: Hable y repita 3 veces las siguientes frases.
     system_check_complete: Comprobación del sistema completada
+    system_check_face_detection: Detección de rostros
     system_check_failed: Error en la comprobación del sistema
     system_check_failed_description: Por favor, solucione los problemas y vuelva a ejecutar las comprobaciones del sistema.
     system_check_failed_message: Algunas comprobaciones del sistema han fallado. Revisa los detalles e inténtalo de nuevo.
@@ -200,6 +210,7 @@ es-ES:
     system_check_retake: No, quiero retomar
     system_check_run_again: Corre otra vez
     system_check_session_not_found: No se ha encontrado ninguna sesión de comprobación del sistema. Inicie una nueva comprobación del sistema.
+    system_check_speech_verification: Verificación de la voz
     system_check_start_recording: Iniciar grabación
     system_check_stop_recording: Detener la grabación
     system_check_test_message: es un placer hablar con usted
@@ -257,6 +268,10 @@ es-ES:
     video_overlay_label: Selecciona el micrófono y la cámara, haz clic en «Grabar» y, a continuación, lee el siguiente mensaje una vez que hayas pulsado el botón «Grabar».
     video_overlay_message: Selecciona el micrófono y la cámara, haz clic en «Grabar» y, a continuación, lee en voz alta la frase que aparece en la parte inferior.
     video_recorder_label: Grabadora de vídeo
+    video_upload_failed_camera_access: No se puede acceder a tu cámara ni a tu micrófono. Comprueba los permisos de tu dispositivo e inténtalo de nuevo.
+    video_upload_failed_chunk_upload: No se ha podido subir una parte de la grabación. Comprueba tu conexión a Internet e inténtalo de nuevo.
+    video_upload_failed_finalize: Se ha realizado la grabación, pero no se ha podido guardar. Inténtalo de nuevo.
+    video_upload_failed_no_recording: No se ha encontrado ninguna grabación para subir. Por favor, vuelve a grabarla.
     view_details: Ver detalles
     webgl_api_fix_description_first: Asegúrate de que tu navegador sea compatible con WebGL y de que esté activado en la configuración
     webgl_api_fix_description_second: Actualiza los controladores gráficos a la última versión

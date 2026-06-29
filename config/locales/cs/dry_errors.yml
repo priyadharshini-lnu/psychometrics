@@ -16,7 +16,7 @@ cs:
         assessment_exists: Nastavení schválení AI skóre pro toto hodnocení již existuje.
         validates_admins: Správci nemají přístup ke kampani.
       already_assigned?: Toto hodnocení nelze propojit - je již přiřazeno k '%{linked_assessor_form_name}'.
-      already_invited: Tento uživatel již existuje v hodnotícím centru, které se pokoušíte přidat.
+      already_exists: Hodnotící centrum, které se pokoušíte přidat, již existuje.
       assessor_assessment:
         already_added: Assessor Assessment již byl přidán do kampaně.
         lead_already_added: Do kampaně lze přidat pouze jedno hodnocení hlavního hodnotitele.

@@ -18,23 +18,28 @@ ko:
     assessment_id: 평가 ID
     assessment_list: 평가 목록
     assessment_name: 평가명
+    assessor: 평가자
     assessor_approved: 심사관 승인
     assessors_list: 평가자 명단
     asset_not_present: 자산이 존재하지 않습니다
     audio: 오디오
     audio_devices: 오디오 장치
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
+    auto_approved: 자동 승인
     back: 뒤로
     basic: 기초의
+    bulk_download: 대량 다운로드
     camera: 카메라
     camera_preview: 카메라 미리보기가 여기에 표시됩니다
     campaign: 캠페인
     campaign_id: 캠페인 ID
     cancel: 취소
+    category: 카테고리
     change_password: 비밀번호 변경
     clear_filters: 필터 지우기
     client: 클라이언트
     close: 닫기
+    code: 코드
     collaborative_learning: 협력 학습
     completed: 완료됨
     configurations: 구성
@@ -43,11 +48,13 @@ ko:
     controller: 컨트롤러
     cookie_notice: 쿠키 안내
     cookies_statement: 쿠키 정책
+    copied: 클립보드에 복사
     copied_successfully: 복사되었습니다
     copied_to_clipboard: 클립보드에 복사됨
     copy: 복사
     create: 만들기
     created_at: 만든 곳
+    created_by: 만든 사람
     created_date: 생성 날짜
     created_successfully: 성공적으로 생성되었습니다
     custom_acknowledgment_text: 사용자 지정 감사 메시지
@@ -55,11 +62,14 @@ ko:
     custom_consent_text: 사용자 지정 동의 텍스트
     custom_consent_text_required: 컨트롤러 데이터 역할에 대한 사용자 지정 동의 텍스트가 필요합니다.
     data_role: 데이터 역할
+    datasheet: 데이터시트
     decline: 쇠퇴
+    default: 기본값
     delete: 삭제
     description: 묘사
     desktop_or_laptop_recommended: 데스크톱 또는 노트북 권장
     desktop_or_laptop_required: 데스크톱 또는 노트북 필요
+    dimension: 차원
     disabled: 비활성화됨
     discard: 취소
     download: 다운로드
@@ -69,6 +79,7 @@ ko:
     edit: 편집
     edited: 새로 만들기
     email: 이메일
+    end_date: 종료 날짜
     ending_proctoring_session_msg: 감독 세션을 종료합니다. <p>응답 내용을 저장하고 홈페이지로 돌아가는 동안 잠시만 기다려 주십시오.</p>
     error: 오류
     export: 내보내기
@@ -83,12 +94,18 @@ ko:
     generating: 생성
     group_question_max_validation_error: 각 그룹은 최대 {{max}} 항목까지 포함할 수 있습니다.
     group_question_min_validation_error: 각 그룹은 최소 {{min}} 항목(들)을 포함해야 합니다.
+    icon: 아이콘
     id: ID
     idp_ai_assistant_disclaimer: 라이트하우스 AI IDP 어시스턴트는 실수를 할 수 있습니다. 답변을 사용할 때 조심해 주세요.
+    import: 가져오기
+    inactive: 비활성
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     last_name: 성
+    last_updated: 마지막 업데이트
     learning_on_the_job_label: 현장에서 배우기
     lets_start: 그럼 시작해 볼까요!
+    linked_activities: 연계 활동
+    linked_assessment: 연계 평가
     loading: 로딩 중...
     login: 로그인
     maintenance_in_hours: "%{hours} 시간"
@@ -98,11 +115,13 @@ ko:
     maintenance_time_remaining: 남은 시간
     maintenance_upcoming_description: "%{date}에서 사용자 경험을 개선하기 위해 예정된 유지보수를 약 %{duration} 동안 진행할 예정입니다. 이 기간 동안 할당된 작업을 확인하거나 완료할 수 없습니다. 양해 부탁드립니다."
     maintenance_upcoming_title: 예정된 점검
+    manage: 관리
     manage_cookies: 쿠키 관리
     media_id: 미디어 ID
     media_preview: 미디어 프리뷰
     media_question_transcriptions: 미디어 질문 전문
     media_responses: 미디어 반응
+    meeting_link: 미팅 링크
     microphones: 마이크
     mobile_proctoring_disabled_instructions: 이 평가를 계속하려면 데스크톱 또는 노트북이 필요합니다. 활동을 완료하려면 컴퓨터로 전환해 주세요.
     mobile_proctoring_enabled_instructions: 최상의 경험을 위해 사용 가능한 데스크톱이나 노트북으로 전환해 주십시오. 필요한 경우 모바일 기기에서 계속 이용하실 수 있습니다.
@@ -116,13 +135,17 @@ ko:
     new: 새로 만들기
     next: 다음
     no_audio_warning: 오디오가 감지되지 않았습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
+    no_data_found: 데이터를 찾을 수 없습니다
     no_results_found: 검색 결과 없음
+    none: 없음
     not_requested: 아직 요청되지 않음
     ok: 확인
     options: 옵션
+    overview: 개요
     owner: 소유자
     pause: 일시 정지
     pending: 보류 중
+    permissions: 권한
     play: 재생
     policy_version: 정책 버전
     policy_version_format: 정수만 허용됩니다
@@ -133,6 +156,7 @@ ko:
     proctoring_maintenance_active: 프로크터링 서비스는 현재 %{start_time}에서 %{end_time}으로 이전 중입니다. 유지보수 기간이 끝난 후 다시 시도해 주십시오.
     proctoring_maintenance_upcoming: "%{start_time}부터 %{end_time}까지 감독 서비스가 유지보수 중입니다."
     project: 프로젝트
+    publish: 게시
     question: 질문
     question_id: 질문 ID
     question_transcription_disabled: 이 질문에 대해서는 음성 인식 기능이 비활성화되었습니다.
@@ -146,20 +170,27 @@ ko:
     remove: 제거
     removed: 제거됨
     replace: 교체
+    required: 필수
+    reset: 초기화
     reset_password: 비밀번호 재설정
     response_text: 응답 텍스트
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
+    run: 실행
     save: 저장
     saving_video: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
+    schedule_time: 스케줄 시간
     scoring_details: 점수 내역
     search: 검색
     select_camera: 카메라 선택
+    select_language: 언어 선택
     select_microphone: 마이크 선택
+    send: 보내기
     send_email: 이메일 보내기
     show_more: 더 보기
     something_wrong: 문제가 발생했습니다. 관리자에게 문의하세요.
     speakers: 연사
+    start_date: 시작 날짜
     status: 상태
     status_unknown: 상태 미상
     stop: 중지
@@ -178,6 +209,7 @@ ko:
           one: '합계 : 1'
           other: '합계 : {{count}}'
           zero: '합계 : 0'
+    tags: 태그
     terms_conditions_privacy: 개인정보 처리방침
     tools: 도구
     transcription: 전사
@@ -189,11 +221,35 @@ ko:
     try_again: 다시 시도해 보세요
     tte_terms_and_condition: 약관 및 개인정보 보호
     type: 유형
+    unpublish: 게시 취소
     update: 업데이트
     update_failed: 업데이트에 실패했습니다
     updated_at: '업데이트됨:'
+    updated_by: '업데이트:'
     updated_successfully: 성공적으로 업데이트되었습니다
+    upload: 업로드
     user_report_pdf_url_not_generated: PDF 다운로드 링크를 생성할 수 없습니다
+    user_reports_approval_status_pending_qc: 품질 검사 대기 중
+    user_reports_approval_status_qc_completed: 품질 검사 완료
+    user_reports_assessment_name_not_completed_reason_template: 평가%{names}가 완료되지 않았습니다.
+    user_reports_assessments_name_not_completed_reason_template: "%{names}의 평가가 완료되지 않았습니다."
+    user_reports_assessor_not_completed_reason_template: "%{names} 평가서 양식이 작성되지 않았습니다."
+    user_reports_assessors_not_completed_reason_template: 평가자 양식%{names}이 작성되지 않았습니다.
+    user_reports_campaign_artifact_results_pending_reason_message: 이 사용자의 캠페인 아티팩트 결과는 아직 확정되지 않았습니다.
+    user_reports_campaign_scoring_pending_reason_message: 이 사용자의 캠페인 점수는 아직 확정되지 않았습니다.
+    user_reports_custom_upload_report_reason_message: 보고서 제공자는 사용자 지정 업로드입니다.
+    user_reports_external_report_pending_reason_message: 서비스 제공업체의 보고서를 기다리고 있습니다
+    user_reports_lead_assessor_not_completed_reason_template: "%{names}의 수석 평가자 양식이 작성되지 않았습니다."
+    user_reports_lead_assessors_not_completed_reason_template: 주 평가자 양식%{names}이 작성되지 않았습니다.
+    user_reports_no_report_module_reason_message: 이 보고서에 해당하는 보고서 모듈을 찾을 수 없습니다.
+    user_reports_not_prepared_reason_message: 보고서는 아직 작성되지 않았습니다.
+    user_reports_pending_approval_reason_template: 승인 상태는 ‘%{status}’입니다.
+    user_reports_pending_final_ai_scoring_approval_reason_message: AI 점수 산정 최종 승인 대기 중
+    user_reports_pending_qc_ai_scoring_approval_reason_message: QC AI 점수 산정 승인 대기 중
+    user_reports_pending_qc_approval_reason_message: 품질 검사 보고서 승인 대기 중
+    user_reports_qc_completed_approval_reason_message: 최종 보고서 승인 대기 중
+    user_reports_report_generating_reason_message: 보고서가 생성 중입니다
+    user_reports_report_generation_failed_reason_message: 보고서 생성에 실패했습니다.
     video: 영상
     view: 보기
     view_audio: 오디오 보기

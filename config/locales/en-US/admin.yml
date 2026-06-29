@@ -2,15 +2,42 @@
 en-US:
   admin:
     accept_na_values: Accept N/A values
+    acceptable_rate_limit_label: Acceptable request limit
+    acceptable_rate_limit_request_per: requests per
     actions: Actions
+    actions_add_code: Add Code
+    actions_archive: Archive
+    actions_playground: Playground
+    actions_unarchive: Unarchive
+    active: Active
+    active_label: Active
+    active_name: Active
+    active_record_audits_audit_id: Audit ID
+    active_record_audits_auditable_id: Record ID
+    active_record_audits_auditable_type: Record Type
+    active_record_audits_audited_changes: Audited Changes
+    active_record_audits_new_diff_parse_error: Failed to parse JSON with new changes
+    active_record_audits_old_diff_parse_error: Failed to parse JSON with old changes
+    active_record_audits_title: Audited Changes
+    activity: Activity
+    activity_period: Activity Period
     add_admin: Add admin
     add_admin_role: Add Admin Role
+    add_btn: Add subject
     add_campaign_admin: Add Campaign Admin
     add_client_admin: Add Client Admin
+    add_conditions: Add Conditions
+    add_evaluators: Add Evaluators
     add_indicator: Add Indicator
+    add_lead_assessor: Add as Lead Assessor
+    add_lead_assessor_hint: Please, add Lead Assessor Form first
+    add_more: Add More
     add_new_folder: Add New Folder
+    add_output_schema_key: Add Output Schema Key
     add_project: Add Project
     add_project_admin: Add Project Admin
+    add_report: Add Report
+    add_subjects: Add Subjects
     add_threesixty_campaign_admin: Add Campaign Admin
     add_word_count: Add Word Count
     admin_approval_required: Report for %{user} requires admin approval before download
@@ -20,24 +47,15 @@ en-US:
     admin_role_deleted: Admin role '%{role_name}' was deleted successfully.
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
+    administrator_approves_reports: Administrator approves reports
+    administrators_list_columns_email: Email
     admins: Admins
     advanced: Advanced
+    advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
     agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
-    ai_artifacts_finalized_at: Finalized At
-    ai_artifacts_generate_result_confirm: Generating artifact results for user '%{email}' will remove the existing report which depends on this AI artifact. Are you sure you want to proceed?
-    ai_artifacts_generate_results: Generate Results
-    ai_artifacts_mark_finalized: Mark Finalized
-    ai_artifacts_mark_finalized_bulk_confirm: Finalizing artifact results for all selected users will generate the reports which use AI artifacts. Are you sure you want to proceed?
-    ai_artifacts_mark_finalized_confirm: Finalizing artifact results for user '%{email}' will generate the report which uses AI artifact for the user. Are you sure you want to proceed?
-    ai_artifacts_mark_not_finalized: Mark Not Finalized
-    ai_artifacts_mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
-    ai_artifacts_mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
-    ai_artifacts_output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
-    ai_artifacts_results_export: Export Results
-    ai_artifacts_results_export_job_scheduled: AI Artifacts results export job was scheduled successfully
     ai_assistant: AI Assistant
     ai_assistant_model_id_label: Model ID
     ai_assistant_model_label: Model
@@ -46,21 +64,14 @@ en-US:
     ai_assistant_required: AI Assistant is required
     ai_assistant_select_dependencies: Select dependencies
     ai_assistants: AI Assistants
-    ai_assistants_advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
-    ai_assistants_campaign_id_placeholder: Enter campaign ID
-    ai_assistants_cannot_change_type_when_in_use: Cannot change the type of AI Assistant '%{name}' because it is currently in use.
-    ai_assistants_no_rendered_output: No rendered output available
-    ai_assistants_provider_change_confirm_title: Change Provider?
-    ai_assistants_provider_previously_used_warning: This assistant has previously generated results with "%{from}". Changing to "%{to}" may alter the assistant's behaviour for future generation requests.
-    ai_assistants_render_button: Render Template
-    ai_assistants_rendered_prompt: Rendered Prompt
-    ai_assistants_template_and_campaign_required: Please provide both template and campaign ID
-    ai_assistants_template_render_failed: Failed to render template
-    ai_assistants_test_render: Test Render
-    ai_assistants_test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
-    ai_assistants_type_locked_tooltip: This assistant is currently in use and its type cannot be changed.
+    ai_assistants_disabled_by_client: AI Assistants is disabled by client
+    ai_assistants_playground: AI Assistant Playground
+    ai_assisted_idp: AI Assisted IDP
     ai_assisted_idp_disabled_by_client: AI Assisted IDP is disabled by client
     ai_assisted_idp_feature_disabled: AI Assisted IDP feature has been disabled for this project.
+    ai_assisted_idp_requires_ai_assistants: AI Assisted IDP requires AI Assistants feature to be enabled
+    ai_content_analysis: AI Content Analysis
+    ai_content_analysis_disabled_by_client: AI Content Analysis is disabled by client
     ai_idp_assistant_configure_dependencies: Configure AI Dependencies
     ai_idp_assistant_configure_dependencies_description: Configure which dependency data the IDP AI Assistant can access as context. This only applies when the assistant is configured to accept dependencies.
     ai_idp_assistant_dependencies_updated: Dependencies updated successfully
@@ -69,28 +80,7 @@ en-US:
     ai_score_approval_no_answer: Answer is not provided for this question
     ai_score_approval_no_transcription: Transcription is not available for this question
     ai_scored: AI scored
-    ai_scoring_appoval_approve_all_questions: Approve All Questions
-    ai_scoring_appoval_approve_question: Approve Question
-    ai_scoring_appoval_back: Reset Score
-    ai_scoring_appoval_change_reason: Change reason
-    ai_scoring_appoval_change_score: changed score
-    ai_scoring_appoval_change_score_log: Change Score Log
-    ai_scoring_appoval_discard_all_questions: Reset All Questions
-    ai_scoring_appoval_discard_all_questions_description: This will reset all scores for all questions and clear any overrides. This action cannot be undone. Are you sure?
-    ai_scoring_appoval_discard_all_questions_title: Reset All Question Scores?
-    ai_scoring_appoval_discard_question: Reset Question Scores
-    ai_scoring_appoval_discard_question_confirm_description: This will reset all scores for this question and clear any overrides. Are you sure?
-    ai_scoring_appoval_discard_question_confirm_title: Reset Question Scores?
-    ai_scoring_appoval_discarded_changes: discarded changes
-    ai_scoring_appoval_evidence_from_transcript: Evidence from Transcript
-    ai_scoring_appoval_new_score: New Score
     ai_scoring_appoval_next: Next Question
-    ai_scoring_appoval_rationale: Rationale
-    ai_scoring_appoval_reason_for_changes: Reason for changes
-    ai_scoring_appoval_reset_score: Reset Score
-    ai_scoring_appoval_reset_score_description: The score will be reverted to the original AI value.
-    ai_scoring_appoval_responses: AI Responses
-    ai_scoring_appoval_score_not_applicable: Score not applicable
     ai_scoring_approval: AI Scoring Approval
     ai_scoring_approval_digest_mailer_access_link_intro: 'You can access the scoring approvals via the following link:'
     ai_scoring_approval_digest_mailer_approved_body_intro: The following scorings have been approved.
@@ -113,62 +103,177 @@ en-US:
     ai_scoring_refresh_score_confirm_description: This will re-run AI scoring for this assessment using the latest configuration. Are you sure?
     ai_scoring_refresh_score_confirm_title: Refresh AI Scores?
     ai_scoring_rescore_queued: AI rescoring has been queued. Please refresh after a few moments.
-    ai_translation: AI Translation
+    ai_translation: AI Translations
+    ai_translation_disabled_by_client: AI Translations is disabled by client
     all_corner_rounded: All corner rounded
     allow_ai_rescoring: Allow AI Rescoring
     allow_continue_with_warning_system_check: Allow users to continue with warnings when system check fails
+    allow_late_cancellation_and_scheduling: Allow late cancellation and scheduling
+    allow_manager_to_view_individual_responses: Allow Manager to view individual responses
+    allow_multiple_responses: Allow multiple responses
+    allow_subjects_to_send_reminders: Allow subjects to send reminders to evaluators
+    alt_text_invalid: Alt Text contains unsupported characters.
+    alt_text_logo: Logo Alt-Text
+    alt_text_logo_required: Alt-Text Logo is Required
+    alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
+    api_keys_form_title: api key
+    application: Application
+    application_add: Add Application
+    application_name: Application Name
+    application_name_already_taken: Already exists for this client
+    application_name_format_hint: Only letters and numbers are allowed, with a single space between words
+    applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
+    approve_all_questions: Approve All Questions
+    approve_nomination_description: This message is sent to a manager when a nomination, made by a direct report, needs to be approved
+    approve_nomination_name: Approve Nomination
+    approve_question: Approve Question
+    approve_report_description: This message is sent to a subject's manager to notify them that the subjects report is ready for approval
+    approve_report_name: Approve Report
+    archive: Archive
+    archive_content: Are you sure you want to archive '%{project_name}'?
+    archive_success: Project '%{project_name}' was archived successfully.
+    archive_title: Archive Project
+    artifact_results: Artifact Results
     assessment: Assessment
-    assessment_center_activity: Activity
-    assessment_center_assessor: Assessor
-    assessment_center_attendance: Attendance
-    assessment_center_attendance_status: Attendance status
-    assessment_center_campaigns_tab: Campaigns
-    assessment_center_date_and_time: Date & Time
-    assessment_center_join_room: Join Room
-    assessment_center_meeting_link: Meeting Link
-    assessment_center_participants_tab: Participants
-    assessment_center_prework: Prework
-    assessment_center_schedule_time: Schedule Time
-    assessment_center_scheduling_status: Scheduling status
-    assessment_center_search_participants: Search Participants...
+    assessment_center: 'Assessment center:'
+    assessment_center_group: Assessment Center Group
+    assessment_center_group_placeholder: Select Assessment Center Group
+    assessment_center_invites: Assessment Center Invites
+    assessment_ids: Assessment IDs
+    assessment_placeholder: Select Assessment
     assessment_question_not_supported: This question type is not currently supported.
+    assessment_required: Assessment is required
     assessments: Assessments
+    assessments_assessment_report: Assessments
+    assessments_copy: Copy
     assessments_copy_as_microsite: Copy as Microsite Assessment
+    assessments_copy_assessment: Copy Assessment
+    assessments_help_text: This selection only affects the Assessment Raw Response event.
+    assessments_label: Assessments
     assessments_not_mhs: All Assessment must be a MHS type
+    assessments_placeholder: Select Assessments
     assessments_reports: Assessments & Reports
+    assessments_required: At least one assessment must be selected for Assessment Raw Response event.
+    assessor: Assessor
+    assessor_add_subject_modal_assessment: Assessment
+    assessor_add_subject_modal_mark_as_lead_assessor: Mark as lead assesor for above subject
+    assessor_add_subject_modal_subject: Subject
+    assessor_add_subject_modal_subject_placeholder: Search subject..
+    assessor_add_subject_modal_title: Add subject
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Select an Assessment
+    assessor_assessment_name: Assessor Assessment
+    assessor_assessments: Assessor Assessments
+    assessor_assessments_actions_add_subject: Add subject
+    assessor_assessments_actions_rescore: Rescore
+    assessor_assessments_actions_reset: Reset Evaluation
+    assessor_assessments_actions_reset_progress: Reset Progress
+    assessor_assessments_bulk_delete_confirmation: Are you sure you wan to delete selected records?
+    assessor_assessments_bulk_delete_successful: Assessor assessments was deleted successfully
+    assessor_assessments_reset_confirmation: Are you sure you want to reset evaluation for subject with email "%{subjectEmail}"?
+    assessor_assessments_reset_progress_confirmation: Are you sure you want to reset progress for subject with email "%{subjectEmail}"?
+    assessor_assessments_reset_progress_successfully: Reset progress for the subject with the email "%{subjectEmail}" was successful.
+    assessor_assessments_reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
+    assessor_assessments_subject_email: Subject email
+    assessor_assessments_subject_name: Subject name
+    assessor_campaigns_statuses_completed: Completed
+    assessor_campaigns_statuses_in_progress: In Progress
+    assessor_campaigns_statuses_not_started: Not Started
+    assessor_completed_at: Completed At
+    assessor_count: Assessors
+    assessor_create_assessor: Add Assessor
     assessor_dashboard: Assessor Dashboard
+    assessor_email: Assessor's Email
+    assessor_evaluations: Assessor Evaluations
+    assessor_first_name: Assessor's First Name
     assessor_form: Assessor Form
+    assessor_ids_label: Assessors
+    assessor_last_name: Assessor's Last Name
+    assessor_modals_import_body: Refer to the Export functionality to extract a template that can be used to Import here.
+    assessor_modals_import_title: Import Assessors
+    assessor_overview: Overview
+    assessor_placeholder: Search Assessor...
+    assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+    assessor_statuses_completed: Completed
+    assessor_statuses_not_completed: Not Completed
+    assessor_subjects_statuses_completed: Completed
+    assessor_subjects_statuses_in_progress: In Progress
+    assessor_subjects_statuses_not_started: Not Started
+    assessor_toolbar_export: Export Assessors
+    assessor_toolbar_import: Import Assessors
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
     assistant_toolbar_not_a_valid_operation: Unknown operation %{operation}.
     assistant_validation_failed: Failed to generate valid output after multiple attempts
+    attendance: Attendance
+    attendance_status: Attendance status
     audit_log_impersonated_by: Impersonated By
+    audit_log_title: Audit Log Info
+    audit_log_type: Record Type
     audit_logs: Audit Logs
+    audit_logs_export_failed: Failed to schedule export job. Please try again.
+    audit_logs_export_queued: Export job has been scheduled successfully.
     audit_reports: Audit Reports
+    auth_type_api_key_header_format_error: Only letters, numbers, underscores and hyphens are allowed
+    auth_type_api_key_header_label: API Key Header
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: api key
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: Basic
+    auth_type_basic_value: basic_auth
+    auth_type_label: Auth Type
+    auth_type_name: auth_type
+    auth_type_no_auth_label: None
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: This score is auto moderated and can't be changed
     auto_placeholder: Auto
+    automatically_send_invites: Automatically send invites to new evaluators
     availability: Availability
-    available_languages: Report Available in Languages
+    available_languages: Available Languages
     average: Average
+    back: Reset Score
     back_to_main: Main Menu
+    background_color: Background Color
+    background_label: Background
+    background_overlay_label: Background Overlay
+    background_size: Background Size
+    background_size_contain: Contain
+    background_size_cover: Cover
+    basic_info_panel_description: Please enter the schedule information below. You can also select multiple dates to create multiple assessment centers.
+    basic_info_panel_title: Basic Information
     block_editor_add_question: Add Question
     block_editor_question_randomization: Question Randomization
     block_options: Block Options
     block_settings: Block Settings
     blocks_new_button: New Block
     blocks_title: Blocks
+    booked_at: 'Booked At:'
+    breadcrumbs_norms_editor: Norm Editor
+    bulk_assessment_download_date_range_required: Please select date range
+    bulk_assessment_download_export_type: Export type
+    bulk_assessment_download_export_type_required: Please select export type
+    bulk_assessment_download_help_text: 'Note: If assessments are linked to different dimensions, downloaded xslx file will contain separate sheets for each dimension.'
+    bulk_assessment_download_modal_subtitle: Select a date range and export type, then export selected assessments.
+    bulk_assessment_download_no_data_found: For the chosen date range and assessments, no data found. Please try with different date range or assessments.
+    bulk_assessment_download_norm_factor_scores: Norm factor scores
+    bulk_assessment_download_raw_factor_scores: Raw factor scores
     bulk_assets_modal_choose_csv: Choose CSV File
     bulk_assets_modal_choose_zip: Choose ZIP File
     bulk_assets_modal_not_csv_file_error: Only CSV files are allowed for CSV upload. Please upload a valid CSV file.
     bulk_assets_modal_subtitle: 'Please upload <b>one CSV</b> file (with headers: user_email, file_name) and <b>one ZIP</b> file (containing PDF files matching the file names from csv). Zip file must be under %{max_file_size} MB.'
     bulk_assets_modal_title: Upload CSV and ZIP files
+    bulk_export_assessments_file: Bulk assessments export file
+    bulk_export_invalid_params: Invalid bulk export parameters
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
+    campaign: Campaign
+    campaign_admin: Campaign Admin
     campaign_ai_artifact_updated_successfully: Campaign AI artifacts updated successfully
     campaign_ai_artifacts_instruction_templating_tooltip: You can use advanced instructions using prompt templating with liquid template syntax and available variables. Refer to documentation for more details.
-    campaign_ai_artifacts_results_export_details: Campaign AI artifacts generated results
     campaign_assessment_actions_disable_caching: Disable Assessment Caching
     campaign_assessment_actions_enable_caching: Enable Assessment Caching
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
@@ -201,71 +306,230 @@ en-US:
     campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
     campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
     campaign_factors: Campaign Factors
+    campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: External Report ID
-          language_id: Language ID
-          norm: Norm
-          norm_id: Norm ID
-          suitability_id: Suitability ID
-        labels:
-          assessment_ids: Assessment IDs
-          available_languages: Available Languages
-          campaign_report_id: Campaign Report ID
-          check_details: Check details
-          default_language: Default Language
-          external_settings: External Settings
-          provider: Provider
-          report_pdf_status: Report PDF Status
-          user_report_id: User Report ID
+    campaign_report_generate_modal_subtitle: Select the required language for each report
+    campaign_report_id: Campaign Report ID
+    campaign_results_export_details: Campaign AI artifacts generated results
     campaign_templates: Campaign Templates
+    campaign_templates_campaign_templates: Campaign Templates
+    campaign_templates_column_assessment: Assessment
+    campaign_templates_column_campaign: Campaign
+    campaign_templates_column_owner: Owner
+    campaign_templates_column_report: Report
+    campaign_templates_form_assessment: Assessment
+    campaign_templates_form_assessment_placeholder: Select an assessment
+    campaign_templates_form_name_placeholder: Enter name
+    campaign_templates_form_owner: Owner
+    campaign_templates_form_owner_placeholder: Select an owner
+    campaign_templates_form_report: Report
+    campaign_templates_form_report_placeholder: Select a report
+    campaign_templates_form_title: Campaign Template
+    campaign_templates_remove_confirm_content: Are you sure you want to remove the campaign template '%{name}'?
+    campaign_templates_remove_confirm_success: Campaing template '%{name}'' was successfully removed.
+    campaign_templates_remove_confirm_title: Remove Campaign Template
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
     campaigns: Campaigns
+    campaigns_convert_to_template: Convert to Template
+    campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes
+    campaigns_external_scores_import_modal_title: Import External Campaign Scores
+    campaigns_filters_active: Active
+    campaigns_filters_all: All
+    campaigns_filters_archived: Archived
+    campaigns_filters_closed: Closed
+    campaigns_filters_inactive: Inactive
+    campaigns_filters_status: Status
+    campaigns_form_active_notice: Campaign status will automatically change to closed on the selected end date & time
+    campaigns_form_campaign: Campaign
+    campaigns_form_copy_factors: Copy Factors
+    campaigns_form_inactive_notice: Campaign status will automatically change to active on the selected start date & time
+    campaigns_form_practice_campaign: Practice Campaign
+    campaigns_listing_assessments: Assessments
+    campaigns_listing_reports: Reports
+    campaigns_listing_template: Template
+    campaigns_menus_add_common_campaign: Add Common Campaign
+    campaigns_menus_add_multi_rater_campaign: Add Multi Rater Campaign
+    campaigns_pdf_password: PDF Password
+    campaigns_tab: Campaigns
+    campaigns_types_common: Common
+    campaigns_types_threesixty: Multi Rater
+    campaigns_users_add_user: Add User
+    campaigns_users_completion_status: Completion status
+    campaigns_users_created_by: Created By
+    campaigns_users_filters_all: All
+    campaigns_users_filters_anonymous: Anonymous
+    campaigns_users_filters_identified: Identified
+    campaigns_users_is_active: Active
+    campaigns_users_no_permission_message: You do not have permission to modify
+    campaigns_users_title: Users
+    campaigns_users_updated_by: Updated by
     cancel: Cancel
+    cancel_confirmation_message: Are you sure you want to discard the form progress?
+    cancel_confirmation_title: Discard Form Progress
     cancellation_and_rescheduling_disabled: Cancellation and Rescheduling is disabled
+    cancellation_lead_time_label: Lead time for cancellation
+    cannot_change_type_when_in_use: Cannot change the type of AI Assistant '%{name}' because it is currently in use.
     captcha: Captcha Verification
     case_study: Case Studies
     casual: Casual
+    categories_approvals: Approvals
+    categories_invitations: Invitations
+    categories_reminders: Reminders
+    categories_report_ready: Report Ready
+    category: Category
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
+    change_reason: Change reason
+    change_score: changed score
+    change_score_log: Change Score Log
     characters: characters
     chat_instructions_success: Chat Instructions were saved successfully
+    check_details: Check details
     children_factor_type: Children Factor Type
     client: Client Tenancy
+    client_admin: Client Admin
     client_admins: Client Admins
+    client_credentials_label: Client Credentials
+    client_credentials_value: client_credentials
+    client_features: Client Features
+    client_id_label: Client ID
+    client_id_name: oauth_client_id
+    client_id_required: Client ID is required
+    client_ids: Client IDs
+    client_ip: Client Ip
+    client_logo_label: Client logo
+    client_secret_label: Client Secret
+    client_secret_name: oauth_client_secret
+    client_secret_required: Client secret is required
     client_selection_instruction: Select a client to continue to the administration panel.
     client_selection_sign_out: Sign Out
     client_selection_title: Select Client
     clients: Client Tenancies
     clients_search_placeholder: Search Client
+    closed: Closed
     code_required: Code is required
+    collapse_filters: Collapse Filters
+    column_code: Code
+    column_invitation_status: Invitation Status
+    column_participant: Participant
+    column_provider: Provider
+    column_scheduling_details: Scheduling Details
+    column_usage_stats: Usage stats
     common: TTE Assessment
     common_assessment: TTE Assessment
+    common_disabled: Diasbled
+    common_download_sample_file: Download Sample File
+    common_enabled: Enabled
+    common_import_failure_msg: Error while importing file.
+    common_minute: minute
+    common_select_all: Select all
+    common_type: Type
+    common_unselect_all: Unselect all
     communication_center: Communication Center
     communications: Communications
+    communications_form_insert_piped_text: Insert Piped Text
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    components_input_duration_placeholder: Enter as '1d 2h 3m'
     concise: Concise
+    confidence_interval: Confidence Interval
+    confidence_interval_update_success: Confidence interval updated successfully
+    configuration: Configuration
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
     confirmation_required: Confirmation Required
     confirmation_required_details: Are you sure you want to delete the %{resource} "%{resource_name}"?
+    consolidated: Consolidated
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: Copied
     copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
+    copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
+    copy_report_scheduled: Report copy job has been scheduled.
+    copy_text: Text
+    copy_to_all: Copy to other Assessment Centers
     copy_url: Copy URL
     country: Country
+    course: Course
+    create_ai_assistants: Create AI Assistant
     create_client: Create Client
     create_indicator: Create Indicator
+    create_level_description_must_exist: Level description can't be blank
+    create_level_name_must_exist: Level name can't be blank
+    create_must_be_unique: Must be unique
+    created_successfully: AI Assistant was created successfully.
+    current: Current
     current_job_role: Current Job Role
+    custom_formula: Custom Formula
+    custom_message_description: This message can be sent to anyone participating in the assessment
+    custom_message_name: Custom Message
     custom_upload: Custom Upload
     dashboard: Dashboard
+    dashboard_capacity_name: Capacity Name
+    dashboard_choose_file_format: Choose file format
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: Dashboards
+    dashboard_export_dashboard_to_file: Export Dashboard to file
+    dashboard_export_job_failure: Failed to start export
+    dashboard_export_job_success: Export job started. You will be notified when it completes.
+    dashboard_form_image_upload_failed: Image upload failed.
+    dashboard_form_none: None
+    dashboard_form_refresh_success: Refresh of dataset scheduled successfully.
+    dashboard_get_started: Get Started
+    dashboard_initialize_msg: Initialize a Dashboard for this Campaign
+    dashboard_loading_failed: Dashboard loading failed.
+    dashboard_only_export_current_tab: Only Export Current Tab
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: Please check if Dataset and Report ID in settings is correct.
+    dashboard_preview_embed_token_error_title: Unable to generate Embed token.
+    dashboard_settings_capacity_id: Capacity ID
+    dashboard_settings_details: Details
+    dashboard_settings_refresh: Refresh
+    dashboard_settings_workspace_id: Workspace id
+    dashboard_tabs_accesssheet: Accesssheet
+    dashboard_tabs_accesssheet_setting: Accesssheet Settings
+    dashboard_tabs_settings: Settings
     dashboards: Dashboards
+    dashed_button: Dashed
+    data_exports_modal_title: Select date range
+    data_range_error: Please select date range
     data_reports: Data Reports
+    data_reports_columns_created_at: Created At
+    data_reports_columns_created_by: Created By
+    data_reports_columns_last_updated_by: Last updated by
+    data_reports_columns_password: Password
+    data_reports_columns_udpated_at: Last Updated At
+    data_reports_configuration: Configuration
+    data_reports_form_name: Data Report
+    data_reports_messages_runed: The data report was successfully scheduled to run
+    dataset_id: Dataset ID
     datasheet: Datasheet
+    date_and_time: Date & Time
+    date_presets_last_30_days: Last 30 days
+    date_presets_last_6_months: Last 6 months
+    date_presets_last_7_days: Last 7 days
+    date_presets_last_month: Last Month
+    date_presets_last_week: Last Week
+    date_presets_last_year: Last year
+    date_presets_today: Today
+    date_presets_yesterday: Yesterday
+    date_range: Date Range
+    date_range_required: Date range is required
+    dates_completed: Completed At
+    dates_end: End date
+    dates_label: Dates
+    dates_start: Start date
+    dates_started: Started At
+    days_repeated: days, repeated
     declined: Declined
+    default: Default
+    default_assessment_language: Assessment default language
+    default_button: Default
+    default_language: Default Language
+    default_report_language: Report default language
     define_max_score_text: Define a score of %{maxScore} (maximum score)
     define_min_score_text: Define a score of %{minScore} (minimum score)
     define_optional_score_range_text: Define scores %{minScore} to %{maxScore} (optional)
@@ -273,10 +537,40 @@ en-US:
     definition: Definition
     delete_ok_text: Yes, Delete
     denied: Denied
+    dependencies: Dependencies
     description: Description
+    description_name: Description
+    description_save: Save Description
+    description_save_success: Description saved successfully
     descriptive_text: Descriptive Text
     development_actions: Development Actions
+    development_actions_duration_max_length: Cannot be greater than 1 year
+    development_actions_duration_min_length: Cannot be less than 1 minute
+    development_actions_export_development_action_translations: Development Action Translations
+    development_actions_export_development_actions: Development Actions
+    development_actions_export_failure_msg: Error while exporting translations
+    development_actions_export_success_msg: Exporting development actions in progress. Please check the status in the notifications.
+    development_actions_form_available_languages: Available Languages
+    development_actions_form_client_placeholder: Select a Client
+    development_actions_form_course_image: Course Image
+    development_actions_form_course_link: Course Link
+    development_actions_form_development_action_type: Development Action Type
+    development_actions_form_duration: Duration
+    development_actions_form_learning_style: Learning Style
+    development_actions_form_project_placeholder: Select a Project
+    development_actions_form_skills: Skills
+    development_actions_form_skills_placeholder: Select skills
     development_actions_form_tags: Tags
+    development_actions_form_title: Development Action
+    development_actions_global: Is Global Development Action?
+    development_actions_heading: Development Actions
+    development_actions_import_action_development_actions_title: Import Development Actions
+    development_actions_import_action_development_actions_translations_title: Import Development Actions Translations
+    development_actions_import_development_actions: Development Actions
+    development_actions_import_development_actions_translations: Development Actions Translations
+    development_actions_import_download_example_csv: Download Example csv
+    development_actions_import_failure_msg: Error while importing file.
+    development_actions_import_info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
     digest_delivery_mode:
       form_label: Digest Delivery Mode
       immediate: Immediate - Send whenever there is a bulk submission
@@ -297,16 +591,68 @@ en-US:
       wednesday: Wednesday
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
+    dimensions_destroy_successfully: Dimension %{name} was deleted successfully.
+    dimensions_export_json_successfully: Exporting JSON scheduled for dimension %{name}.
+    dimensions_form_enable_innovation_styles: Enable Innovation Styles
+    dimensions_form_enable_occupations: Enable Occupations
+    dimensions_form_title: Dimensions
+    dimensions_import_factors_sample_file: Sample File
+    dimensions_import_factors_title: Import Factors
+    dimensions_import_modal_after: After
+    dimensions_import_modal_before: Before
+    dimensions_import_modal_change_log_input: Change Log
+    dimensions_import_modal_error: Error
+    dimensions_import_modal_error_occurred: An Error occurred
+    dimensions_import_modal_errors_file_error: Please select a JSON file before continuing.
+    dimensions_import_modal_errors_processing_error: Error processing file
+    dimensions_import_modal_field: Field
+    dimensions_import_modal_import_dimension: Import Dimension
+    dimensions_import_modal_import_scheduled: Import scheduled
+    dimensions_import_modal_operation: Operation
+    dimensions_import_modal_owner_input_validation: Please select an owner
+    dimensions_import_modal_owner_select: Select an owner
+    dimensions_import_modal_select_json: Select JSON file
+    dimensions_index_title: Dimensions
+    dimensions_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Dimension?</p>\n"
+    dimensions_resource_confirmations_delete_message: Enter dimension name given below in text box to confirm
+    dimensions_resource_tooltips_export_json: Export JSON to import in other platform
+    dimensions_translations_export: Export All
+    dimensions_translations_header: Factor translations
+    disable_caching_content: Are you sure you want to disable caching for this assessment?
+    disable_caching_successfully: Caching has been disabled for this assessment.
+    disable_caching_title: Disable Assessment Caching?
+    disable_cancellation_and_rescheduling: Disable cancellation and rescheduling
+    disable_dp: Don't allow further data processing
     disable_proctoring: Disable Proctoring
+    disable_report_download: Disable report download
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
+    discard_all_questions: Reset All Questions
+    discard_all_questions_description: This will reset all scores for all questions and clear any overrides. This action cannot be undone. Are you sure?
+    discard_all_questions_title: Reset All Question Scores?
+    discard_question: Reset Question Scores
+    discard_question_confirm_description: This will reset all scores for this question and clear any overrides. Are you sure?
+    discard_question_confirm_title: Reset Question Scores?
+    discarded_changes: discarded changes
+    document_titles_project_assessors: Assessors | %{project}
+    document_titles_project_participants: Participants | %{project}
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
     download_bulk_asset_download_example_csv: Download Example CSV.
+    download_example_csv: Download Example csv
+    dp_consent: Enable data processing consent
+    dp_consent_custom: Customise Data Processing consent
+    dp_consent_version: Policy Version
     duration: Duration
+    duration_label: Duration
+    duration_max_error: Cannot be greater than 16 hours
+    duration_min_error: Cannot be less than 15 minutes
     duration_must_be_positive: Duration must be positive
+    duration_placeholder: E.g. 4h 30m
+    edit_ai_assistants: Edit AI Assistant
     edit_campaign_admin: Edit Campaign Admin
     edit_client_admin: Edit Client Admin
+    edit_email: Edit email
     edit_folder: Edit Folder
     edit_indicator: Edit Indicator
     edit_job_roles: Edit Job Roles
@@ -315,35 +661,106 @@ en-US:
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
+    email_manager_when_report_is_ready_for_approval: Email Manager when report is ready for approval
+    email_messages: Email Messages
+    email_subject_when_report_becomes_available: Email subject when report becomes available
+    email_subjects_manager_when_available: Email subject's manager when report becomes available
     empty: Empty
     empty_csv_file: CSV file does not contain any data.
+    enable_caching_content: Are you sure you want to enable caching for this assessment?
+    enable_caching_successfully: Caching has been enabled for this assessment.
+    enable_caching_title: Enable Assessment Caching?
     enable_enhance_with_ai_client_level: Please enable Enhance with AI feature at client level
+    enable_face_detection: Enable Face Detection
     enable_maintenance: Enable Maintenance
     enable_mobile_proctoring: Enable Mobile Proctoring
+    enable_phrase_verification: Enable Phrase Verification
     enable_system_check: Enable System Check
     enable_transcription: Enable Transcription
     enable_transcription_msg: Enable Transcription to use AI scoring on video/audio response questions.
+    enable_video_call_recording: Enable Video Call Recording
+    enabled: Enabled
     end: end
     end_time: End Time
     end_time_must_be_after_start_time: End time must be after start time
     enhance_with_ai: Enhance with AI
     enhance_with_ai_requires_ai_assistants: Enhance with AI requires AI Assistants feature to be enabled
+    enter_client_ids: Enter client IDs
     enter_description: Enter description
     enter_name: Enter name
+    enter_project_ids: Enter project IDs
     enter_question_id: Enter Question ID
+    enter_report_ids: Enter report IDs
+    enter_schema_key: Enter Schema Key
     error: Error
+    error_color: Error Color
+    errors_csv_file_required: File must be a CSV file
+    errors_error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
+    errors_min_retention: Cannot be less than 1 day
+    errors_policy_version_format: Only whole numbers are allowed
+    errors_required: Audit ID
     estimated_tokens: tokens (estimated)
+    evaluate_others_description: This message will be displayed when participants are evaluating others from inside the portal
+    evaluate_others_name: Evaluate Others
+    evaluate_self_description: This message will be displayed to subjects when they begin their self-evaluation
+    evaluate_self_name: Evaluator Self
+    evaluation_help_description: Help text displayed on evaluation card on user's dashboard
+    evaluation_help_name: Evaluation help
     evaluation_status: Evaluation Status
     evaluation_status_not_done: Evaluation status is not 'Done' for one or more selected subjects. Please ensure all selected users have completed evaluations or mark as done.
+    evaluations_completed: Evaluations Completed
+    evaluations_received: Evaluations Received
+    evaluator_invite_description: This message will be sent to all participants that are evaluators
+    evaluator_invite_name: Evaluator Invite
+    evaluator_reminder_description: This message will be sent to remind evaluators to complete pending evaluations
+    evaluator_reminder_name: Evaluator Reminder
+    evaluator_reminder_rule_description: Specify rules for automatically scheduling when an invitation is scheduled
+    evaluator_reminder_rule_name: Evaluator Reminder Rules
+    evaluator_welcome_description: This message will override the "Welcome Message" and be displayed to participants who are currently participating as evaluators only.
+    evaluator_welcome_name: Evaluator welcome
+    evaluators_title: Evaluators
+    evidence_from_transcript: Evidence from Transcript
+    expand_filters: Expand Filters
     export_admin_roles_permissions: Admin Roles and Permissions export
+    export_admins_with_permissions: Admin Roles and Permissions export
+    export_ai_artifacts: Export AI Artifacts
     export_campaigns_queued: Export jobs have been queued. Check your notifications for download links.
     export_compact_completion_status: Compact
     export_completion_status: Export Completion Status
     export_completion_statuses_scheduled: Completion Statuses export job was scheduled successfully
     export_detailed_completion_status: Detailed
+    export_failure_msg: Error while exporting proficiency levels
+    export_success: Admin export job was scheduled successfully. Please check your notification for status.
+    export_success_msg: Exporting development actions in progress
+    export_to_csv: Export to CSV
+    export_with_inactive_users: Export with inactive users
+    external_report_id: External Report ID
+    external_score: External Score
+    external_settings: External Settings
+    factor_benchmark_scores_updated: Factor Benchmark Scores updated successfully
     factor_feedback: Factor Feedback
     factor_selection: Factor Selection
     factors: Factors
+    factors_form_components_ExternalList_table_jsonpath: JSON Path
+    factors_form_components_ExternalList_table_types_norm_score: Normed Score
+    factors_form_components_ExternalList_table_types_percentage: Percentage
+    factors_form_components_ExternalList_table_types_percentile: Percentile Score
+    factors_form_components_ExternalList_table_types_score: Score
+    factors_form_components_ExternalList_table_types_zscore: Z Score
+    factors_form_components_ExternalList_title: JSON Paths for Scores
+    factors_form_predicate: Predicate
+    factors_form_scoring_strategies_custom_formula: Custom Formula
+    factors_form_scoring_strategies_tip: " <strong>Questions (Average):</strong> This is like current scoring method when there are questions linked to a factor. <br /> <br /> <strong>Questions (SUM):</strong> This is like Questions (Average), but using SUM <br /> <br /> <strong>Questions of Other Factors (Average):</strong> This is like current scoring method when there are sub-factors for a factor, only change is the addition of weight. <br /> <br /> <strong>Questions of Other Factors (SUM):</strong> This is like Other Factors (Average), but using SUM <br /> <br /> <strong>Weighted Sum of Factors:</strong> Here the scores of the selected other factors are multiplied by their weights are added."
+    factors_form_scoring_strategy: Scoring strategy
+    factors_form_search_factors: Search factors
+    factors_form_use_sub_factor_norm_score: Use Factors norm score
+    factors_form_value: Value
+    factors_index_precision: Precision
+    factors_index_scoring_strategy: Scoring strategy
+    factors_index_sub_factors: Sub factors / Indicators
+    factors_index_title: Factors
+    factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    failure_reason: Failure Reason
     feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
     feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
     feature_ai_content_analysis_description: Enable AI-powered content analysis for assessments
@@ -358,25 +775,96 @@ en-US:
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
+    fields_level: Level
+    fields_level_description: Level Description
+    fields_level_name: Level Name
+    fields_proficiency_translations: Proficiency Translations
+    fields_proficiency_type: Proficiency Type
+    fields_skill: Skill
+    fields_skill_name: Skill Name
+    fields_skill_type: Skill Type
     file_size_must_be_less_than_mb: File {{name}} exceeds the maximum size of {{max_size_mb}} MB
     file_upload_failed: Failed to upload {{name}}
     fill_empty_score_msg: Fill all the final scores before saving.
+    filter_by_client: Filter by Client
+    filter_by_client_help: Select a client to load its projects
     final_score_empty_err_msg: Final score of %{factor_name} cannot be empty.
     final_score_empty_msg: Final score cannot be empty.
+    finalized_at: Finalized At
+    fingerprint: Fingerprint
+    first_name_required: First name is required
     fix_grammar: Fix Grammar
+    fixed_time: Fixed Time
+    form_active: Active
+    form_add_assessment: Add Assessment
+    form_ai_assistant: AI Assistant
+    form_assessment_required: Assessment is required
+    form_assessments: Assessments
+    form_campaign_factors: Campaign Factors
+    form_code: Code
+    form_configuration: Configuration
+    form_datasheet: Datasheet
+    form_datasheet_columns: Datasheet Columns
+    form_end_date: End date
+    form_include_all_datasheet_columns: Include All Datasheet Columns
+    form_name: Name
+    form_no_assessment_selected: No assessments added yet. Click "Add" to get started.
+    form_questions_required: At least one question must be selected
+    form_select_ai_assistant: Select AI Assistant
+    form_select_assessment: Select Assessment
+    form_select_campaign_factors: Select Campaign Factors
+    form_select_datasheet_columns: Select Datasheet Columns
+    form_select_questions: Select Questions
+    form_start_date: Start date
+    form_title: AI Artifact
+    form_total_count: Total Count
     formal: Formal
     from: From
+    genders_female: Female
+    genders_male: Male
+    genders_not_set: Not set
+    generate: Generate
+    generate_result_confirm: Generating artifact results for user '%{email}' will remove the existing report which depends on this AI artifact. Are you sure you want to proceed?
+    generate_result_info_message: Results are being generated, please refresh the page to see the updated results.
+    generate_results: Generate Results
     generate_transcription: Generate Transcription
+    generated_at_time: Generated at %{time}
+    generated_value: Generated Value
+    global_skills: Global Skills
+    global_skills_disabled_by_client: Global Skills is disabled by client
+    grant_type_label: Grant Type
+    grant_type_name: oauth_grant_type
     graphic: Graphic
     graphic_slider: Graphic Slider
     handoff_client_mismatch: Authentication token is not valid for this client
     handoff_invalid_token: Invalid or expired authentication token
     handoff_token_expired: Authentication token has expired or already been used
     handoff_user_disabled: Your account is disabled
+    has_api_keys: Has API Keys
+    has_public_keys: Has Public Keys
+    header_logout_content: Press Cancel if you want to continue work. Press Ok to logout current user.
+    header_logout_title: Are you sure you want to logout.
+    hide_all: Hide All
     hide_middle_scores: Hide middle scores
     high: High
     hogan: Hogan
     hogan_assessment: Hogan Assessment
+    hogan_provider: Provider
+    hogan_providers_mercer: Mercer
+    hogan_providers_phoenix: Phoenix
+    hover_options_danger_item: Danger item
+    hover_options_first_menu_item: 1st menu item
+    hover_text: Hover me
+    idp: IDP
+    idp_actions_remove_confirm: Enter current template name given below in text box to remove template
+    idp_actions_success: "%{idpName} was removed successfully."
+    idp_add_idp_template: Add IDP Template
+    idp_ai_assistant: AI Assistant
+    idp_ai_assisted_idp_enabled: AI Assisted IDP Enabled
+    idp_ai_enabled: AI Enabled
+    idp_ai_settings: AI Settings
+    idp_all: All
+    idp_appearance: Appearance
     idp_appearance_body: Body
     idp_appearance_color: Color
     idp_appearance_cover: Cover
@@ -387,6 +875,7 @@ en-US:
     idp_appearance_guideline_position_second: Second page (after Cover)
     idp_appearance_guideline_position_second_last: Second last page (before Last)
     idp_appearance_guidelines: Guidelines
+    idp_appearance_hint: To modify the appearance, please save the IDP template first to enable these settings.
     idp_appearance_idp_skills: IDP Skills
     idp_appearance_last: Last
     idp_appearance_per_page_font_settings: Per-Page Font Settings
@@ -399,20 +888,136 @@ en-US:
     idp_appearance_show_guidelines: Show Guidelines Page
     idp_appearance_size: Size
     idp_appearance_subtitle: Subtitle
+    idp_appearance_success: Appearance settings saved successfully
     idp_appearance_title: Title
+    idp_background_image: Background image
+    idp_behavioral_skills: Behavioral Skills
+    idp_client_skills: Client Skills
+    idp_delete_skill: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+    idp_delete_skill_msg: Are you sure you want to delete this skill? Deleting it will also remove all related development actions.
+    idp_details_updated: IDP Details updated successfully
+    idp_development_actions_add_from_library: Add from Library
+    idp_development_actions_completion: Completion
+    idp_development_actions_create_development_actions_with_ai: Preparing development actions for
+    idp_development_actions_create_from_ai: Create from AI
+    idp_development_actions_create_my_own: Create My Own
+    idp_development_actions_custom: Custom
+    idp_development_actions_date_range: Start Date - End Date
+    idp_development_actions_edit_plan_to_add_development_actions: Edit Plan to add Development Actions.
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' is not a valid learning style. Valid options are: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: Learning style can't be blank
+    idp_development_actions_generate_by_ai: Generate by AI
+    idp_development_actions_generate_more: Generate More
+    idp_development_actions_heading: Development Actions
+    idp_development_actions_manage_skills: Manage Skills
+    idp_development_actions_no_development_actions: No development actions
+    idp_disabled_by_client: IDP is disabled by client
+    idp_document_ai_assistant: Document Analysis AI Assistant
+    idp_edit_template: Edit IDP Template
+    idp_enter_tag_or_skills_error: Select at least one tag or skill
+    idp_enter_template_description_error: Template description is required.
+    idp_enter_template_name_error: Template name is required
+    idp_errors_cannot_update_progress_plan_completed: Cannot update progress because the IDP plan has been completed
+    idp_errors_skills_required_on_publishing: Please choose skills before publishing a template.
+    idp_errors_update: Update not allowed because the IDP template is already associated with a user IDP plan.
+    idp_fields_approval_date: Approval Date
+    idp_fields_assigned_data: Assigned Data
+    idp_fields_assigned_date: Assigned Date
+    idp_fields_completion_date: Completion Date
+    idp_fields_current_job_role: Current Job Role
+    idp_fields_division: Division
+    idp_fields_label: Fields
+    idp_fields_name: Name
+    idp_fields_publish_date: Publish Date
+    idp_fields_review_date: Review Date
+    idp_fields_target_job_role: Target Job Role
+    idp_global_skills: Global Skills
+    idp_idp: IDP
+    idp_idp_template: Add IDP Template
+    idp_interview_questions: Interview Questions
+    idp_interview_questions_updated: Interview Questions updated successfully.
+    idp_intro_message: Intro Message
+    idp_intro_message_hint: To modify the intro message, please save the IDP template first to enable these settings.
+    idp_intro_message_success: Intro message saved successfully
+    idp_locales: Locales
+    idp_logo_image: Logo image
+    idp_logo_type_both: Mercer and Client logos
+    idp_logo_type_client_only: Client logo only
+    idp_logo_type_label: Logo Type
+    idp_logo_type_mercer_only: Mercer logo only
+    idp_logo_type_none: Without logos
+    idp_no_interview_questions_selected: No Interview Questions selected
+    idp_no_reflection_questions_selected: No Reflection Questions selected
+    idp_none: None
+    idp_one_click_idp_enabled: One Click IDP Enabled
     idp_plan_reset_success: Plan has been reset successfully
+    idp_reference_locale: Reference Locale
+    idp_reflection_questions: Reflection Questions
+    idp_reflection_questions_hint: To modify the reflection questions, please save the IDP template first to enable these settings.
+    idp_reflection_questions_updated: Reflection Questions updated successfully.
+    idp_remove_skill: Remove Skill
+    idp_revert_skill_to_public_errors_skill_already_public: Skill is already public
+    idp_revert_skill_to_public_errors_skill_not_found: Skill not found
+    idp_revert_skill_to_public_success_base_message: Skill '%{skill_name}' is now visible to your manager
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} and your IDP plan has been submitted for approval"
+    idp_select_by_tags: Select by Tags
+    idp_select_interview_question: Start typing to search and select question
+    idp_select_reflection_question: Start typing to search and select question
+    idp_select_skill_gap_report: Select skill gap report
+    idp_select_specific_skills: Select Specific Skills
+    idp_selected: Selected
+    idp_self_rating: Enable Self Rating
+    idp_setting_manager_approves_idp: Manager approves IDP
+    idp_setting_manager_can_edit_idp: Manager can edit IDP
+    idp_setting_require_all_development_actions_complete: Require all development actions complete
+    idp_show_reflections: Show Reflections
+    idp_skill_gap_report: Skill Gap Report
+    idp_skill_gap_report_ai_assistant: Skill Gap Report Analysis Assistant
+    idp_skill_source_preference: Skill Source
+    idp_skill_sources_from_ai: From General AI Knowledge
+    idp_skill_sources_from_template: From Template & Mappings
+    idp_skills: Skills
+    idp_skills_privacy_messages_made_private: Skill '%{skill_name}' has been marked as private and will be hidden from your manager
+    idp_skills_privacy_messages_made_public: Skill '%{skill_name}' is now visible to your manager
+    idp_skills_privacy_messages_skill_not_found: Skill not found
+    idp_skills_privacy_messages_unauthorized: Unauthorized to modify this skill
+    idp_skills_updated: IDP Skills updated successfully
+    idp_status_draft: Draft
+    idp_status_published: Published
+    idp_status_updated: IDP Status updated successfully
+    idp_subtitle_text: Subtitle text
+    idp_tab_development_actions: Development Actions
+    idp_tab_interview_questions: Interview Questions
+    idp_tab_reflection_questions: Reflection Questions
+    idp_tab_settings: Settings
+    idp_tab_templates: Templates
+    idp_technical_skills: Technical Skills
+    idp_template_details: Template Details
     idp_templates: IDP Templates
+    idp_title_text: Title text
+    idp_update_interview_questions: Update Interview Questions
+    idp_update_reflection_questions: Update Reflection Questions
     iiht: IIHT
     iiht_assessment: IIHT Assessment
+    iiht_password: Password
+    iiht_tenancy_name: Tenancy name
+    iiht_tenant_id: Tenant ID
+    iiht_user: User
+    image: Image
+    import_action_title: Import Campaign AI Artifacts
+    import_actions_proficiency: Import Proficiency
+    import_actions_translations: Import Proficiency Translations
     import_ai_artifacts: Import AI Artifacts
     import_csv_assessment_group_error: 'Row %{index}: user with email %{email} is already invited to ''%{workshopInviteName}'''
     import_csv_error: 'Row %{index}: user with email %{email} is not in this campaign'
     import_csv_parsing_error: 'CSV parsing error: %{message}'
     import_description: Import users from a CSV file. Each row must contain an email address.
+    import_download_example_csv: Download Example csv
     import_download_sample: Download example CSV
     import_error: Import failed. Please try again.
     import_error_saving_data: 'Error saving data for %{email}: %{message}'
     import_errors_title: Import Errors
+    import_evaluators: Import Evaluators
     import_external_scoring_action: Import External Scoring
     import_external_scoring_body: Refer to the Export functionality to extract a template that can be used to Import here.
     import_external_scoring_data_description: Importing external scoring data for the specified assessment and campaign
@@ -420,20 +1025,177 @@ en-US:
     import_external_scoring_success_msg: Import was uploaded successfully
     import_external_scoring_upload: Upload
     import_file_required: Please select a CSV file to upload.
+    import_info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    import_job_queued: Proficiency levels import job has been queued
     import_queued_success: Subjects import job was scheduled successfully. Please check your notification for status.
     import_sample_file_label: 'Sample file:'
     import_scenario_id_mismatch: 'Scenario ID mismatch for %{email}: Expected %{expected_id}, but CSV contains different scenario IDs'
+    import_subjects: Import Subjects
+    import_success_msg: Import was uploaded successfully
     import_successfully_saved: Successfully saved external results for %{email} with %{goals_count} goals
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    inactive: Inactive
+    include_locales_label: Include Translations
+    include_locales_name: include_locales
+    index_title: Projects
+    individual_invite_tabs_assessment_center: Assessment Center
+    individual_invite_tabs_invitation_status: Invitation Status
+    info_color: Info Color
+    innovation_styles_form_full_description: Full Description
+    innovation_styles_index_title: Innovation Styles
+    innovation_styles_list_position: Position
+    innovation_styles_resource_confirmations_delete_body: "<p>Are you sure you want to delete this innovation style?</p>\n"
+    instruction_messages: Instruction Messages
+    instructions: Instructions
+    instructions_actions_saved: Instructions saved successfully
+    instructions_enable: Enable Instructions
+    instructions_save: Save Instructions
+    integrations_actions_add: Integrations
+    integrations_actions_back: Back to Integrations
+    integrations_actions_load_mettl_catalog: Load Mettl Assessment Catalog
+    integrations_actions_load_microsite_catalog: Load Microsite Assessment Catalog
+    integrations_actions_load_skillvue_catalog: Load Skillvue Assessment Catalog
+    integrations_columns_active: Active
+    integrations_columns_details: Details
+    integrations_columns_name: Integration Name
+    integrations_details_client_id: Client ID
+    integrations_details_deployment_id: Deployment ID
+    integrations_details_platform_access_token_url: Platform Access Token URL
+    integrations_details_platform_authentication_request_url: Platform Authentication Request URL
+    integrations_details_platform_host_name: Platform Host Name
+    integrations_details_platform_id: Platform ID
+    integrations_details_platform_public_keyset_url: Platform Public Keyset URL
+    integrations_details_provider: Provider Name
+    integrations_details_webhookUrl: Webhook URL
+    integrations_details_webhookUrls: Webhook URLs
+    integrations_integrations: Integrations
+    integrations_load_mettl_success: Load mettl assessments job is successfully enqueued
+    integrations_load_microsite_success: Load microsite assessments job is successfully enqueued
+    integrations_load_skillvue_success: Load skillvue assessments job is successfully enqueued
+    integrations_names_hogan: Hogan
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: Mettl
+    integrations_names_microsite: Microsite
+    integrations_names_skillvue: Skillvue
+    integrations_names_yoodli: Yoodli
+    integrations_view_all_schedules: View All Mettl Schedules
+    interface: Interface
     internal: Internal
+    interview_questions_delete_confirmation: Are you sure you want to delete this Interview Question?
+    interview_questions_export_action: Export Interview Questions
+    interview_questions_export_failure_msg: Error while exporting file.
+    interview_questions_export_success_msg: Exporting Interview Questions in progress. Please check the status in the notifications.
+    interview_questions_form_mandatory: Mandatory
+    interview_questions_form_question: Question
+    interview_questions_form_question_type: Question Type
+    interview_questions_form_question_type_audio: Audio
+    interview_questions_form_question_type_video: Video
+    interview_questions_form_time_limit: Time Limit (sec)
+    interview_questions_form_title: Interview Question
+    interview_questions_import_action: Import Interview Questions
+    interview_questions_import_failure_msg: Error while importing file.
+    interview_questions_import_success_msg: Importing Interview Questions in progress. Please check the status in the notifications.
+    interview_questions_question: Question
+    invalid_client_ids: Invalid client IDs
+    invalid_confidence_interval: confidence_interval must be 0 or 1
     invalid_csv_header: CSV file contains invalid headers.
+    invalid_json: configuration is not valid JSON
+    invalid_leadership_bar: leadership_bar must be 0 or 1
+    invalid_norm_option: Norm Option must be between 0 and 3
+    invalid_project_ids: 'Invalid project IDs: %{ids}'
     invalid_question_ids: 'Question IDs not found in this assessment: %{ids}'
+    invalid_report_ids: Invalid Report IDs
+    invite_add_invite: Add Invite
+    invite_assessment_center: Assessment Center
+    invite_basic_info_allow_preferred_language: Allow Preferred Language
+    invite_basic_info_assessment_centers: Assessment Centers
+    invite_basic_info_assessment_centers_hint: Search query example '10th August 2023, 8:06 pm'
+    invite_basic_info_assessment_centers_placeholder: Select Assessments Centers
+    invite_basic_info_description: Issue invitations to candidates by selecting multiple assessment centers. Candidates will then choose a single center from those available.
+    invite_basic_info_neurodiversity: Include neurodiversity question
+    invite_basic_info_preferred_language: Allowed Languages
+    invite_basic_info_required_error: Can't be empty
+    invite_basic_info_title: Basic Information
+    invite_center_group: Assessment Center Group
+    invite_confirm_message: Are you sure you want to delete an invitation?
+    invite_confirm_message_with_title: Are you sure you want to remove the Invite with title '%{invite_title}'?
+    invite_evaluators_description: This message will be displayed to subjects when they begin nominating evaluators
+    invite_evaluators_name: Invite Evaluators
+    invite_invites: Invites
+    invite_name_placeholder: Enter invite name
+    invite_not_selected: Not selected
+    invite_request_accept: Accept
+    invite_request_reason: Reason
+    invite_request_reject: Reject
+    invite_request_remove_confirm_content: Are you sure you want to %{action} %{status} from %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} from %{subjectName} was %{action} successfully."
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: Subject name
+    invite_request_workshop_time: Workshop Time
+    invite_requests: Requests
+    invite_save: Save & Send
+    invite_send_invites_add_description: You can translate the invite title and description in multiple languages
+    invite_send_invites_add_language: Add Language
+    invite_send_invites_input_label: Add Additional Language
+    invite_send_invites_input_placeholder: Select additional language
+    invite_send_invites_invitation_title: Invitation Title
+    invite_send_invites_title: Invitation (%{lang})
+    invite_steps_add_subjects: Add Subjects
+    invite_steps_basic_info: Basic Info
+    invite_steps_has_errors: contains errors
+    invite_steps_send_invitation: Send invitation
+    invite_subjects_count: Subjects
+    invite_subjects_csv_error: 'Row%{index}: user with email %{email} is not in this campaign'
+    invite_subjects_csv_imported: "%{count} subjects imported"
+    invite_subjects_description: You can add subjects individually by searching or bulk upload a csv file.
+    invite_subjects_download: Download
+    invite_subjects_file_example: Refere to example file to upload subjecs information.
+    invite_subjects_import_from_campaign: Add all from campaign
+    invite_subjects_import_title: Import Subjects
+    invite_subjects_import_users: Import Users
+    invite_subjects_search_user: Search subjects
+    invite_subjects_title: Subjects
+    invite_subjects_upload_csv: Upload CSV
+    invite_success_message: The task of sending the invitations has been queued; users will receive them shortly.
+    invite_success_message_with_title: Invitation with title '%{invite_title}' was removed successfully.
+    invite_title: Title
+    invite_workshop_list_remove_confirm_content: Are you sure you want to remove Assessment Center with name '%{name}'?
+    invite_workshop_list_remove_confirm_success: Assessment Center was removed successfully.
+    invite_workshop_list_remove_confirm_title: Confirm
+    invite_workshop_title: Assessment Centers
+    is_subject: Is Subject
+    job_role_are_you_sure_to_remove: Are you sure to remove?
+    job_role_column_job_group: Job Group
+    job_role_column_skill_name: Skill Name
+    job_role_export_failure_msg: Error while exporting translations
+    job_role_export_success_msg: Exporting development actions in progress.
+    job_role_form_code: Code
+    job_role_form_description: Description
+    job_role_form_job_group: Job Group
+    job_role_form_name: Name
+    job_role_form_title: Job Role
+    job_role_import_action_translations: Import Job Role Translations
+    job_role_import_download_example_csv: Download Example csv
+    job_role_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    job_role_job_role_details: Job Role Details
+    job_role_skill_mapping_column_expected_proficiency_level: Expected Proficiency Level
+    job_role_skill_mapping_form_title: Skill Job Mapping
+    job_role_translations: Job Role Translations
     job_roles: Job Roles
+    join_room: Join Room
+    keep_original: Keep Original
+    key: Key
+    key_id: Key ID
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
+    language_id: Language ID
+    last_name_required: Last name is required
+    lead_assessment: Lead Assessment
     lead_assessor_form: Lead Assessor Form
+    leadership_bar: Leadership Bar
+    leadership_bar_update_success: Leadership Bar updated successfully
     learning_from_others: Collaborative Learning [20]
     level: Level
     level_apply: Apply
@@ -446,22 +1208,63 @@ en-US:
     lighthouse_logo_alt_text: Lighthouse logo
     lighthouse_question: Lighthouse Question
     lighthouse_question_id: Lighthouse Question ID
-    linked_assessments: Linked Assessments
+    link_text: Link
+    linked_assessments: Linked assessments
+    locale: Locale
+    log_date: Log Date
     logged_in: Logged in
+    login: Login
     low: Low
+    mail_history: Mail History
+    main_report: Main Report
     maintenance: Maintenance
     maintenance_settings: Maintenance Settings
     maintenance_settings_description: Manage system maintenance windows and settings
+    make_report_available_to_subject_when: 'Make report available to subject when:'
     manager_approval_required: Report for %{user} requires manager approval before download
+    manager_approves_reports: Manager approves reports
+    manager_can_access_subject_reports: Manager can access subject reports
+    manager_cannot_access_subject_reports: Manager cannot see report until requirements are met
+    manager_ids_label: Center Managers
+    manager_report_ready_description: This message is sent to a subject's manager once the subject's report is ready
+    manager_report_ready_name: Manager Report Ready
+    managers_title: Managers
+    mark_finalized: Mark Finalized
+    mark_finalized_bulk_confirm: Finalizing artifact results for all selected users will generate the reports which use AI artifacts. Are you sure you want to proceed?
+    mark_finalized_confirm: Finalizing artifact results for user '%{email}' will generate the report which uses AI artifact for the user. Are you sure you want to proceed?
+    mark_licenses_as_deactivated: Mark licenses as deactivated
+    mark_not_finalized: Mark Not Finalized
+    mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
+    mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
+    mask_identity_for_examus: Mask data for Examus Proctoring
+    mask_identity_for_hogan: Mask data for Hogan
+    mask_identity_for_iiht: Mask data for IIHT
+    mask_identity_for_mettl: Mask data for METTL
+    mask_identity_for_mhs: Mask data for MHS
+    mask_identity_for_pearson: Mask data for Pearson
+    mask_identity_for_saville: Mask data for Saville
+    mask_identity_for_skillvue: Mask data for Skillvue
+    mask_identity_for_yoodli: Mask data for Yoodli
     max_value: Max value
     mean: Mean
     media_files_label: Files
     media_library: Media Library
     media_library_page_title: Media Library - Dashboard - Mercer Lighthouse
     meeting: Meeting
+    meeting_link: Meeting Link
+    meetings_and_resources: Meetings & Resources
     messages: Messages
+    meta_title: Administration panel
     mettl: METTL
+    mettl_apiBaseUrl: API Endpoint
+    mettl_apiBaseUrlRequired: API Endpoint is required.
     mettl_assessment: Mettl Assessment
+    mettl_privateKey: Private Key
+    mettl_privateKeyRequired: Private key is required.
+    mettl_publicKey: Public Key
+    mettl_publicKeyRequired: Public key is required.
+    mettl_servers_mettl_eu: Europe
+    mettl_servers_mettl_india: India
     mhs: MHS
     mhs_assessment: MHS Assessment
     mhs_assessment_name: MHS Assessment Name
@@ -477,24 +1280,75 @@ en-US:
     min_value: Min value
     minimum_10_words: Minimum 10 words
     minimum_download_speed: Minimum Download Speed (in Mbps)
+    minimum_face_detection_ratio: Minimum Face Detection Ratio
     minimum_system_check_validity: Minimum Campaign level System Check validity should be 15 minutes
     minimum_upload_speed: Minimum Upload Speed (in Mbps)
     missing_min_max_values: Minimum and Maximum values are required.
+    modal_convert_option: Convert this campaign into a template
+    modal_convert_success: Template successfully converted
+    modal_copy_option: Create a new template from this campaign
+    modal_copy_success: Campaign template creation job was scheduled successfully, please check your notifications for status.
+    modal_description: Choose how you want to create a template from this campaign.
+    modal_failed: Template creation failed.
+    modal_subtitle: Select a date range and then select required language for each report
+    modal_title: Convert to Template
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
     must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
     name_required: Name is required
+    navigation_audit_logs: Audit Logs
+    navigation_factors: Factors
+    navigation_innovation_styles: Innovation Styles
+    navigation_logout: Logout
+    navigation_occupations: Occupations
+    navigation_registration_codes: Registration Codes
+    navigation_skills_taxonomy: Skills Taxonomy
+    navigation_users: Users
     new_folder: New folder
+    new_score: New Score
+    no_assessments_found: Audit ID
     no_client_access: You do not have access to this client
     no_clients_found: No clients found
+    no_completed_assessments: There are no completed assessments yet
     no_file_selected: No file selected
     no_notifications: No Notifications
     no_question_mappings: No question mappings available
+    no_rendered_output: No rendered output available
     no_status: No Status
+    nomination_denied_description: This message is sent to subjects when a nomination is denied
+    nomination_denied_name: Nomination Denied
+    nomination_help_description: Help text displayed on nomination card on user's dashboard
+    nomination_help_name: Nomination help
+    norm: Norm
     norm_editor_numeric_value_error: Only numeric values are allowed (integers or decimals).
+    norm_id: Norm ID
+    norm_option: Norm Option
+    norm_option_form_select: Select Norm Option
+    norm_option_update_success: Norm Option updated successfully
+    norm_region: Norm Region
+    norm_region_form_select: Select Norm Region
+    norm_region_update_success: Norm Region updated successfully
+    normal: Normal
+    normalize_factor_scores: Normalize Factor Scores
     norms: Norms
+    norms_copy_successfully: Norm "%{name}" was copied successfully.
+    norms_export_success_msg: Norm export job scheduled successfully. Please check the status in the notifications.
+    norms_import_download_example_csv: Download Example csv
+    norms_import_select_file_validation: Please select an owner and a file before submitting.
+    norms_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    norms_import_title: Norms import
+    norms_index_import: Import
+    norms_remove_confirm: Enter norm name given below in text box to confirm
+    norms_remove_warning: Are you sure you want to delete the norm "%{name}"
+    norms_score_types_five_scale: Five scale
+    norms_score_types_norm_type: Norm type
+    norms_score_types_percentage: Percentage
+    norms_sidebar_copy: Copy Norm
+    norms_sidebar_editor: Norm Editor
+    norms_sidebar_export: Export Norm
+    norms_title: Norm
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
     notes: Notes
@@ -503,16 +1357,51 @@ en-US:
     notification_bell_icon_alt_text: Notification Bell Icon
     notifications: Notifications
     number: Number
+    oauth_scope_label: Scope
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: Scope is required
     occupations: Occupations
+    occupations_factors_list_condition: Condition
+    occupations_factors_list_position: Position
+    occupations_factors_list_weight: Weight
+    occupations_form_alternative_icon: Alternative icon
+    occupations_form_color: Color
+    occupations_form_indicative_roles_image: Indicative roles image
+    occupations_form_key_career_tracks_image: Key career tracks image
+    occupations_index_title: Occupations
+    occupations_resource_confirmations_delete_body: "<p>Are you sure you want to delete this occupation?</p>\n"
     on_the_job: On the Job [70]
     only_editable_on_create: This option is editable only while creating.
     options: Options
+    options_evaluator_options: Evaluator Options
+    options_global: Global Options
+    options_manager_options: Manager Options
+    options_subject_options: Subject Options
+    options_title: Options
     organisational: AGILE
     original_text: Original Text
+    other_assessments: Other Assessments
+    other_assessor_assessments: Other Assessor Assessments
+    other_reports: Other Reports
     others: Others
+    outcome: Outcome
+    output_schema_key_constraint: Key must start with a lowercase letter and can only contain lowercase letters, numbers, and underscores
+    output_schema_keys: Output Schema Keys
     overall: Overall
     overall_score: Overall Score
+    overall_scoring: Overall Scoring
+    parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
+    parsed_dependencies_title: Parsed Dependencies
+    parsed_dependencies_view: View Parsed Dependencies
     participants: Participants
+    participants_tab: Participants
+    participants_tabs_assessors: Assessors
+    participants_tabs_sms_contacts: SMS Contacts
+    participants_tabs_subjects: Subjects
+    password_label: Password
+    password_name: Password
+    past: Past
+    payload: Payload
     pearson: Pearson
     pearson_assessment: Pearson Assessment
     permissions:
@@ -710,7 +1599,7 @@ en-US:
           view: View
         messages:
           email: Email
-          instructions: Instructions
+          instructions: Audit ID
           options: Options
           title: Messages
         norms:
@@ -825,7 +1714,7 @@ en-US:
         view: View
       messages:
         email: Email
-        instructions: Instructions
+        instructions: Audit ID
         options: Options
         title: Messages
       norms:
@@ -940,27 +1829,221 @@ en-US:
         view: View
         view_recordings: View Recordings
     permissions_360_campaigns: Permissions specific to 360 campaigns
+    permissions_updated: Permissions updated successfully
     piped_text: Piped Text
+    piped_text_modal_assessment_center: Assessment Center
+    piped_text_modal_campaign_link: Campaign Link
+    piped_text_modal_campaign_name: Campaign name
+    piped_text_modal_campaigns: Campaigns
+    piped_text_modal_duration: Duration
+    piped_text_modal_end_time: End time
+    piped_text_modal_insight_page_link: Insight Page Link
+    piped_text_modal_insight_page_url: Insight Page URL
+    piped_text_modal_invite_title: Title
+    piped_text_modal_invites: Invites
+    piped_text_modal_magic_link: Magic Link
+    piped_text_modal_magic_url: Magic URL
+    piped_text_modal_platform_url_links: Platform Url and Links
+    piped_text_modal_project_name: Project name
+    piped_text_modal_projects: Projects
+    piped_text_modal_report_name: Report name
+    piped_text_modal_start_time: Start time
+    piped_text_modal_title: Add Piped Text
+    piped_text_modal_user_reports: User Reports
+    piped_text_modal_users: Users
+    playground: Playground
+    playground_info: Test your artifact with sample data to preview generated results.
+    playground_placeholder: Enter test data
+    position_auto: Auto
+    position_label: Login Box Position
+    position_left: left
+    position_right: Right
     precision: Precision
+    preview_report: Preview Report
+    previous: Previous
+    prework: Prework
+    prework_required: Do not allow center booking if preworks are not completed
+    prework_required_for_invite: Send invite email only when Pre-Work is completed
+    primary_button: Primary
+    primary_color: Primary Color
     privacy: Privacy
+    privacy_link: Enable Privacy Link
+    privacy_link_label: Privacy link
+    privacy_link_placeholder: Enter Privacy Link
+    privacy_text: Privacy text
+    privacy_text_placeholder: Enter Privacy Text
     proctoring: Proctoring
+    proctoring_allow_on_assessment_center: Allow proctoring on assessment center
+    proctoring_enable: Enable Proctoring
     proctoring_errors_timed_only: Selective proctoring can only be enabled for timed assessments.
     proctoring_fixed_time_required: Enable Fixed Time to select this option
+    proctoring_identification: Identification
+    proctoring_identifications:
+      face: Face
+      face_and_passport: Face and Passport
+      passport: Passport
+    proctoring_integration_type: Integration
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: Lockdown Browser
     proctoring_mode_all: Enable Proctoring on all assessments
     proctoring_mode_all_except_ac: Enable Proctoring on all assessments except assessment center
+    proctoring_rule_types_allow_absence_in_frame: Allow absense in frame
+    proctoring_rule_types_allow_to_use_books: Allow to use Books
+    proctoring_rule_types_allow_to_use_calculator: Allow to use calculator
+    proctoring_rule_types_allow_to_use_excel: Allow to use Excel
+    proctoring_rule_types_allow_to_use_human_assistant: Allow to use human assistant
+    proctoring_rule_types_allow_to_use_messengers: Allow to use messengers
+    proctoring_rule_types_allow_to_use_paper: Allow to use Paper
+    proctoring_rule_types_allow_to_use_websites: Allow to use Websites
+    proctoring_rule_types_allow_voices: Allow Voices
+    proctoring_rule_types_allow_wrong_gaze_direction: Allow wrong gaze direction
+    proctoring_rules: Rules
+    proctoring_sessions_columns_comment: Comment
+    proctoring_sessions_columns_completed_at: Completed At
+    proctoring_sessions_columns_conclusion: Conclusion
+    proctoring_sessions_columns_links: Links
+    proctoring_sessions_columns_score: Score
+    proctoring_sessions_columns_session_id: Session ID
+    proctoring_sessions_columns_started_at: Started At
+    proctoring_sessions_links_report: Report
+    proctoring_sessions_links_review: Review
+    proctoring_sessions_resource_name: Proctoring Sessions
     proctoring_settings: Proctoring Settings
+    proctoring_trial: Proctoring Trial
+    proctoring_type: Type
+    proctoring_types:
+      offline: Offline
+      online: Online
     professional: Professional
     proficiency: Proficiency
     proficiency_level: API keys
     proficiency_levels: Proficiency Levels
+    proficiency_levels_fields_title: Proficiency
+    profile: Profile
+    profile_change_password: Change Password
     profile_details: Details
+    project: Project
+    project_admin: Project Admin
     project_admins: Project Admins
+    project_assessor: Project Assessor
+    project_features: Project Features
+    project_ids: Project IDs
+    project_ids_required: project_ids is required for this report type
+    project_licenses: Project Licenses
     project_manager: Project Manager
+    project_not_related_to_client: project '%{project_id}' does not belong to the client
     project_number: Project Number
+    project_participants_column_campaigns: Campaigns
+    project_participants_column_createdAt: Created At
+    project_participants_column_created_at: Created At
+    project_participants_edit_participant: Edit participant
+    project_participants_filter_campaigns: No campaigns
+    project_participants_search_user: Search user
+    project_participants_send_email: Send email
+    project_path: Project Path
     project_settings: Project Settings
+    project_tabs_assessments_column_normalize_factor_scores: Normalize Factor Scores
+    project_tabs_assessments_column_user_result_validity_in_days: Result Validity
+    project_tabs_assessments_delete_content: Are you sure you want to delete assessment '%{name}'?
+    project_tabs_assessments_delete_success: Assessment '%{name}' was deleted successfully.
+    project_tabs_assessments_delete_title: Delete Assessment
+    project_tabs_assessments_title: Assessments
+    project_tabs_design: Design
+    project_tabs_general: General
+    project_tabs_privacy: Privacy
+    project_tabs_profile: Profile
+    project_tabs_registration: Registration
+    project_tabs_webhooks_actions_delete_key: Delete
+    project_tabs_webhooks_actions_edit_key: Edit
+    project_tabs_webhooks_actions_send_test_key: send_test
+    project_tabs_webhooks_actions_send_test_label: Send Test
+    project_tabs_webhooks_remove_webhook_content: Delete %{description}?
+    project_tabs_webhooks_title: Webhooks
+    project_tools_workshop_status_export: Workshop Status Export
+    project_tools_workshop_status_export_success: Workshop Status Export was scheduled successfully.
+    project_users_change_password: Change Password
+    project_users_column_campaigns: Campaigns
+    project_users_column_created_at: Created At
+    project_users_confirm_delete: Yes, delete
+    project_users_confirm_send: Yes, send
+    project_users_delete_error: Could not delete assessor '%{name}'. Please contact your administrator.
+    project_users_delete_success: Assessor '%{name}' was deleted successfully.
+    project_users_edit_assessor: Edit assessor
+    project_users_filter_campaigns: With no campaigns
+    project_users_modal_delete_content: Are you sure you want to delete assessor '%{name}'?
+    project_users_modal_delete_title: Delete assessor
+    project_users_modal_reset_email_content: Are you sure you want send password reset link to '%{email}'?
+    project_users_model_reset_email: Reset assessor's password
+    project_users_no_edit_permission: You do not have permission to edit assessor '%{name}'
+    project_users_reset_mail_error: Could not send reset password link to '%{email}'. Please contact your administrator.
+    project_users_reset_mail_success: Reset password link successfully sent to '%{email}'
+    project_users_search_accessor: Search accessors
+    project_users_send_email: Send email
     projects: Projects
+    projects_addProject: Add Project
+    projects_assessment_settings_search: Search Assessment
+    projects_columns_project_number: Project Number
+    projects_form_project_number: Project Number
+    projects_form_subdomain: Subdomain
+    projects_form_title: Project
+    projects_general_settings_live_chat: Enable Live Chat
+    projects_general_settings_locales_label: Locales
+    projects_general_settings_project_number_label: Project Number
+    projects_general_settings_save_changes: Save Changes
+    projects_general_settings_sub_domain_label: Sub Domain
+    projects_mettl_schedule_records_add: Add Schedule
+    projects_mettl_schedule_records_assessment_id: Assessment ID
+    projects_mettl_schedule_records_assessment_name: Assessment Name
+    projects_mettl_schedule_records_candidate_authorization: Enable Candidate Authorization
+    projects_mettl_schedule_records_candidate_screen_capture: Enable Candidate Screen Capture
+    projects_mettl_schedule_records_count: Browsing tolerance count
+    projects_mettl_schedule_records_created_at: Created At
+    projects_mettl_schedule_records_schedule_id: Schedule ID
+    projects_mettl_schedule_records_schedule_name: Schedule Name
+    projects_mettl_schedule_records_secure_browser_enabled: Enable Secure Browser
+    projects_mettl_schedule_records_settings: Settings
+    projects_mettl_schedule_records_show_remaining_counts: Enable Showing Remaining Count
+    projects_mettl_schedule_records_visual_proctoring_enabled: Enable Visual Proctoring
+    projects_mettl_schedule_records_web_proctoring_enabled: Enable Web Proctoring
+    projects_profile_settings_form_fields_enabled: Enabled
+    projects_profile_settings_form_fields_half_size: Half Size
+    projects_profile_settings_form_fields_locked: Locked
+    projects_profile_settings_form_fields_sort: Sort
+    projects_profile_settings_month: Month
+    projects_profile_settings_never: Never
+    projects_profile_settings_update_in: Notify Profile Update in
+    projects_profile_settings_year: Year
+    projects_registration_settings_hide_signup: Hide Sign up option
+    projects_registration_settings_require_mobile_number: Require Mobile Number
+    projects_webhook_settings_add: Add Webhook
+    projects_webhook_settings_column_active: Active
+    projects_webhook_settings_column_created_date: Created Date
+    projects_webhook_settings_column_description: Description
+    projects_webhook_settings_column_updated_date: Modified Date
+    projects_webhook_settings_column_url: URL
+    projects_webhook_settings_search: Search Webhoook
     prompt: Prompt
+    provider: Provider
+    provider_change_confirm_title: Change Provider?
+    provider_previously_used_warning: This assistant has previously generated results with "%{from}". Changing to "%{to}" may alter the assistant's behaviour for future generation requests.
     psychometric: Psychometric
+    public_key: Public Key
+    public_key_add: Add Public Key
+    public_key_cannot_be_changed: cannot be changed after creation
+    public_key_copy_private_key: Copy Private Key
+    public_key_created: Public key created successfully
+    public_key_generate: Generate Key Pair
+    public_key_generate_button: Generate RSA Key Pair
+    public_key_generate_info: Will generate a 2048-bit RSA key pair. Only the public key will be stored. Copy and securely store the private key — it will not be shown again.
+    public_key_invalid_format: must be a valid RSA public key in PEM format
+    public_key_must_be_public: must be a public key, not a private key
+    public_key_paste_placeholder: Paste your RSA public key in PEM format here (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Public Key (PEM)
+    public_key_private_key_copied: Private key copied to clipboard
+    public_key_private_key_label: Private Key (PEM)
+    public_key_private_key_warning: This is the only time the private key will be visible. Copy it now and store it securely.
+    public_keys: Public Keys
     question_center: Question Center
     question_center_page_title: Question Center - Dashboard - Mercer Lighthouse
     question_editor_change_type: Change type
@@ -987,11 +2070,33 @@ en-US:
     question_type_video_response: Video Response
     questions: Questions
     questions_new_button: New Question
+    questions_percentage: Questions (SUM / MAX Total)
+    questions_sum: Questions (SUM)
     questions_title: Question
     questions_type: Type
     range_min_max: RANGE %{min} - %{max}
+    rationale: Rationale
+    raw: RAW
+    reason_for_changes: Reason for changes
     recents: Recents
+    record_id: Record ID
+    recordings: Recordings
     reflection_questions: Reflection Questions
+    reflection_questions_delete_confirmation: Are you sure you want to delete this Reflection Question?
+    reflection_questions_export_action: Export Reflection Questions
+    reflection_questions_export_failure_msg: Error while exporting file.
+    reflection_questions_export_success_msg: Exporting Reflection Questions in progress. Please check the status in the notifications.
+    reflection_questions_form_mandatory: Mandatory
+    reflection_questions_form_max_words: Maximum words
+    reflection_questions_form_min_words: Minimum words
+    reflection_questions_form_question: Question
+    reflection_questions_form_title: Reflection Question
+    reflection_questions_import_action: Import Reflection Questions
+    reflection_questions_import_failure_msg: Error while importing file.
+    reflection_questions_import_success_msg: Importing Reflection Questions in progress. Please check the status in the notifications.
+    reflection_questions_question: Question
+    refresh: Refresh
+    refresh_interval: Refresh Interval (minutes)
     regenerate_transcriptions_action: Regenerate Transcriptions
     regenerate_transcriptions_confirm_content: Are you sure you want to regenerate transcriptions for this assessment? This will re-process all incomplete transcriptions.
     regenerate_transcriptions_confirm_title: Regenerate Transcriptions
@@ -999,33 +2104,174 @@ en-US:
     registration_codes: Registration codes
     registration_settings: Registration Settings
     remove_children_to_change_type: Remove all children to change type
+    remove_confirm_content: Are you sure you want to remove the subject with email '%{subjectEmail}'?
+    remove_confirm_success: Subject with email '%{subjectEmail}'' was successfully removed.
+    remove_confirm_title: Remove subject
     remove_confirmation: Are you sure you want to remove this item?
+    remove_output_schema_key: Remove Output Schema Key
     remove_successfully: Media Item was removed successfully.
+    render_button: Render Template
+    rendered_prompt: Rendered Prompt
+    reply_to_email: Reply to email
+    report_access: Report Access
     report_alias_save_confirmation: If you wish to save ALL changes in Report Builder and also in Aliases, please click 'SAVE' button. The page will be reloaded and your changes will be successfully applied.
+    report_approval: Report Approval
+    report_approval_allow_bulk_approve: Allow Bulk Approve
+    report_approval_allow_qc_bulk_submit: Allow QC Bulk Submit
+    report_approval_approval_statuses_approved: Approved
+    report_approval_approval_statuses_change_requested: Change Requested
+    report_approval_approval_statuses_not_ready: Not Ready
+    report_approval_approval_statuses_pending_qc: Pending QC
+    report_approval_approval_statuses_qc_completed: QC Completed
+    report_approval_approval_statuses_qc_in_progress: QC in Progress
+    report_approval_approvers: Approvers
+    report_approval_approvers_can_edit: Approvers Can Edit
+    report_approval_approvers_not_required: Approvers Not Required
+    report_approval_bulk_approve_success: "%{sent_for_approval} sent for approval. %{approved} reports approved. %{ignored} reports require manual approval due to QC changes/comments."
+    report_approval_columns_approval_status: Approval Status
+    report_approval_columns_approved_by: Approved By
+    report_approval_columns_assessed_by: Assessed By
+    report_approval_columns_campaign_name: Campaign name
+    report_approval_columns_qc_by: QC By
+    report_approval_columns_report_name: Report name
+    report_approval_columns_subject_email: Subject email
+    report_approval_columns_user_email: User Email
+    report_approval_columns_user_name: User Name
+    report_approval_digest_delivery_mode_form_label: Digest Delivery Mode
+    report_approval_digest_frequency_daily: Daily
+    report_approval_digest_frequency_form_label: Digest Frequency
+    report_approval_digest_frequency_weekdays: Weekdays
+    report_approval_digest_frequency_weekly: Weekly
+    report_approval_digest_time: Digest Time
+    report_approval_digest_timezone: Digest Timezone
+    report_approval_digest_weekdays_form_label: Digest Weekdays(s)
+    report_approval_digest_weekdays_friday: Friday
+    report_approval_digest_weekdays_monday: Monday
+    report_approval_digest_weekdays_saturday: Saturday
+    report_approval_digest_weekdays_sunday: Sunday
+    report_approval_digest_weekdays_thursday: Thursday
+    report_approval_digest_weekdays_tuesday: Tuesday
+    report_approval_digest_weekdays_wednesday: Wednesday
+    report_approval_do_not_send_notifications: Do not send emails to users[QC, Approvers & Approval notification]
+    report_approval_modal_title: Report Approval Settings
+    report_approval_notification_users: Approval Notification Users
+    report_approval_qc_users: QC Users
+    report_approval_remove_modal_success: 'Approval setting for report id: %{reportId} was deleted successfully '
+    report_approval_remove_modal_text: 'Are you sure you want to delete this setting for report id: %{reportId}?'
+    report_approval_report: Report
+    report_approval_review: Review
+    report_approval_saving_filters_actions_clear_filters: Clear Filters
+    report_approval_saving_filters_actions_delete_filter: Delete Filter
+    report_approval_saving_filters_actions_save_new_filter: Save as new Filter
+    report_approval_saving_filters_actions_saved_filters: Saved Filters
+    report_approval_saving_filters_delete_saved_filters: Filter Deleted
+    report_approval_saving_filters_edit_filter_name: Filter Name saved
+    report_approval_saving_filters_error_while_deleting: Error While deleting
+    report_approval_saving_filters_error_while_editing: Error while editing
+    report_approval_saving_filters_error_while_fetching: Something went wrong , try again
+    report_approval_saving_filters_error_while_saving: Error while saving filter
+    report_approval_saving_filters_filter_updated: Filter updated
+    report_approval_saving_filters_no_saved_filters: There are no saved filters
+    report_approval_saving_filters_save_filter: Filter Saved
+    report_approval_saving_filters_set_favorite: Filter has been set as favorite
+    report_approval_send_digest_emails: Send Digest Emails
+    report_approval_settings: Report Approval Settings
+    report_approval_submit_or_approve_all: Submit or Approve All
     report_approvals: Report Approvals
+    report_availability: Report Availability
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
     report_denied: Report for %{user} has been denied
+    report_help_description: Help text displayed on report card on user's dashboard
+    report_help_name: Reports help
+    report_id: Report ID
+    report_ids: Report IDs
+    report_ids_required: Report IDs are required
     report_name: Report Name
     report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
     report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
     report_on_hold: Report for %{user} is currently on hold
+    report_pdf_status: Report PDF Status
+    report_review_abort_qc: Abort QC
+    report_review_approve: Approve
+    report_review_approve_changes: Approve Changes
+    report_review_edit: Edit
+    report_review_remove_approval: Remove Approval
+    report_review_request_changes: Request Changes
+    report_review_review: Review
+    report_review_send_for_approve: Send for Approval
+    report_review_statuses_approved: Approved
+    report_review_statuses_change_requested: Changes Requested
+    report_review_statuses_not_ready: Not Ready
+    report_review_statuses_pending_qc: Pending QC
+    report_review_statuses_qc_completed: QC Completed
+    report_review_statuses_qc_in_progress: QC in Progress
     report_status: Report Status
+    report_type: Report Type
+    report_types:
+      active_clients_projects: Active Clients & Projects
+      client_assessment_counts: Client Assessment Counts
+      hogan_usage_report: Hogan Assessment Usage
+      json_data_report: JSON Data Report
+      pearson_usage_report: Pearson Assessment Usage
+      report_usage_summary: Report Usage Summary
+      saville_usage_report: Saville Assessment Usage
+      user_created_dates: User Created Dates
+      user_reports_export: User Reports Export
     reports: Reports
+    reports_copy_copy: Copy
+    reports_copy_copy_report: Copy Report
+    reports_count: Reports
+    reports_edit_default_language_agreement: Yes, I understand the implications of default language change.
+    reports_edit_default_language_title: Edit Default Language
+    reports_edit_default_language_tooltip: Edit Default Language
+    reports_edit_default_language_warning_description_li_1: Changing the default language from RTL to LTR language or vice versa will affect the layout.
+    reports_edit_default_language_warning_description_li_2: You would have to rework on report translations if you change the default language.
+    reports_edit_default_language_warning_description_li_3: Download a copy of report translations before making this change.
+    reports_edit_default_language_warning_title: Please read instructions carefully
+    reports_language_selection_modal_download: Report download
+    reports_language_selection_modal_generate: Report generate
     reports_limit_exceeded: Bulk download is limited to 1000 report files. If you have selected many languages, please reduce it.
     reports_not_found: No reports found. Please generate the reports before downloading.
+    reports_preview_comments: Comments
+    reports_preview_hide_resolved: Hide Resolved
+    reports_preview_history: History
+    reports_preview_info_to_select_module: Select a text module to comment
+    request_approval_description: This message is sent to managers when a subject requests approval
+    request_approval_name: Request Approval
+    request_id: Request ID
+    required_error: Audit ID
     rescore_responses_content: This will recalculate the scores for this subjects responses. Enable Allow AI Rescoring to re-evaluate responses using AI for Score with AI questions.
+    resend_invite_content: Resend invite to the selected subjects. Are you sure you want to proceed?
+    resend_invite_success: Invitations successfully resent.
+    resend_invite_title: Resend Invite
     reset_idp_plan: Reset Plan
     reset_idp_plan_confirmation: Are you sure you want to reset the plan?
     reset_idp_plan_title: Reset Plan
+    reset_score: Reset Score
+    reset_score_description: The score will be reverted to the original AI value.
+    resources_panel_description: Add the links to any resources you would like the facilitators to have access to.
+    resources_panel_resource_name_placeholder: Resource Name
+    resources_panel_resource_url_placeholder: Resource Link
+    resources_panel_title: Resources
+    resources_panel_validation_error: Enter both Name and URL or remove the resource
     response_meta: Response Meta
+    responses: AI Responses
     result: Result
     results: Results
+    results_export: Export Results
+    results_export_job_scheduled: AI Artifacts results export job was scheduled successfully
+    revisions_load: Load to form
+    revisions_system_prompt: System Propmpt
+    revisions_title: Revisions of AI Assistant
+    revisions_user_prompt: User Prompt
+    revisions_version: Version
     role: Role
     role_campaign_admin: Campaign Admin
     role_client_admin: Client Admin
     role_project_admin: Project Admin
     role_superadmin: Super Admin
+    run: Run
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -1075,6 +2321,23 @@ en-US:
     saml_service_provider_updated_date: Updated Date
     saml_service_providers: Service Providers
     saml_settings: SAML Settings
+    saml_settings_after_signout_url: After Signout Url
+    saml_settings_cert: Certificate
+    saml_settings_config_details_acs_url: Assertion Consumer Service URL
+    saml_settings_config_details_copied: Copied %{element}
+    saml_settings_config_details_issuer: Entity ID/Issuer
+    saml_settings_config_details_title: Configure Idp with following info
+    saml_settings_email_pipetext: Email Pipetext
+    saml_settings_enabled: Enabled
+    saml_settings_enforced: Enforce SAML
+    saml_settings_entity_id: Entity ID/Issuer
+    saml_settings_name_identifier_format: Name Identifier
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    saml_settings_saml: SAML
+    saml_settings_save: Save Setting
+    saml_settings_sso_service_url: SSO Service Url
+    saml_settings_successfully_saved_msg: SAML Setting was saved successfully.
     save: Save
     save_assessment_for_scoring_management: Save Assessment before getting started with Scoring.
     save_block: Save Block
@@ -1093,7 +2356,139 @@ en-US:
       user_full_name_cont: User Name
     saville: Saville
     saville_assessment: Saville Assessment
+    schedule: Schedule
+    schedule_email: Schedule Email
+    schedule_email_title: Schedule Email
+    schedule_time: Schedule Time
     scheduling: Scheduling
+    scheduling_add_activity: Add Activity
+    scheduling_add_assessment_center: Add Assessment Center
+    scheduling_add_assessor_form_assessment: Assessment
+    scheduling_add_assessor_form_assessor: Assessor
+    scheduling_add_assessor_form_schedule_time: Schedule Time
+    scheduling_add_subject: Add subject
+    scheduling_attendance_status_column_name: Attendance status
+    scheduling_attendance_status_dropped_out: Dropped Out
+    scheduling_attendance_status_late: Late
+    scheduling_attendance_status_no_show: No Show
+    scheduling_attendance_status_no_status: No Status
+    scheduling_attendance_status_on_time: On Time
+    scheduling_attended_attended: Attended
+    scheduling_attended_not_attended: Not Attended
+    scheduling_campaign_participants: Campaign participants
+    scheduling_columns_activity: Activity
+    scheduling_columns_assessment_center_date_and_time: Assessment center date and time
+    scheduling_columns_assessor: Assessor
+    scheduling_columns_assessors: Assessors
+    scheduling_columns_attendance: Attendance
+    scheduling_columns_attended: Attended
+    scheduling_columns_booked_at: Booked At
+    scheduling_columns_campaign_assessment_group: Assessment Center Group
+    scheduling_columns_campaign_name: Campaign name
+    scheduling_columns_duration: Duration
+    scheduling_columns_link_to_view_recordings: Link to view recordings
+    scheduling_columns_managers: Managers
+    scheduling_columns_meeting_link: Meeting Link
+    scheduling_columns_participants: Participants
+    scheduling_columns_prework: Prework
+    scheduling_columns_recording_date: Recording Date
+    scheduling_columns_resource_link: Link
+    scheduling_columns_schedule_time: Schedule Time
+    scheduling_columns_scheduling_status: Scheduling status
+    scheduling_columns_seats: Seats
+    scheduling_columns_serial_no: Serial No
+    scheduling_columns_start_time: Date & Time
+    scheduling_columns_subject: Subject
+    scheduling_columns_title: Title
+    scheduling_columns_view_recording: View Recording
+    scheduling_errors_assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
+    scheduling_errors_date_required: Please select a date
+    scheduling_errors_invalid_url: Invalid URL format
+    scheduling_errors_meeting_link_https: Meeting link must start with "https://"
+    scheduling_info_allowed: Allowed
+    scheduling_info_assessors: Assessors
+    scheduling_info_booked: Seats Booked
+    scheduling_info_campaign_assessment_group: Assessment Center Group
+    scheduling_info_cancellation_lead_time: Cancellation Lead Time
+    scheduling_info_cancellation_tooltip: User would be able to cancel the booking till %{date}
+    scheduling_info_date: Date & Time
+    scheduling_info_duration: Duration
+    scheduling_info_join_meeting: Join Room
+    scheduling_info_late_cancellation_and_scheduling: Late cancellation and scheduling
+    scheduling_info_link: Meeting Link
+    scheduling_info_managers: Center Managers
+    scheduling_info_none: None
+    scheduling_info_not_allowed: Not Allowed
+    scheduling_info_recording_enabled: Recording Enabled
+    scheduling_info_remaining: Seats Remaining
+    scheduling_info_scheduling_lead_time: Scheduling Lead Time
+    scheduling_info_scheduling_tooltip: User would be able to book a slot till %{date}
+    scheduling_info_search_placehoder: Search by id, email or name
+    scheduling_info_timezone: Timezone
+    scheduling_info_total_seats: Total Seats
+    scheduling_lead_time_label: Lead time for scheduling
+    scheduling_resources_confirm_message: Are you sure you want to delete the resource '%{resource_name}'?
+    scheduling_resources_confirm_title: Confirmation required
+    scheduling_resources_create: Create Resource
+    scheduling_resources_invalid_url: Invalid URL. Specify the complete url with http or https protocol in it.
+    scheduling_resources_resource: Resource
+    scheduling_resources_successful_remove: Assessment Center resource %{resource_name} was deleted successfully.
+    scheduling_schedule_assessments: Schedule Assessments
+    scheduling_scheduling_statuses_cancelled: Cancelled
+    scheduling_scheduling_statuses_late_cancelled: Late Cancelled
+    scheduling_scheduling_statuses_late_rescheduled: Late Rescheduled
+    scheduling_scheduling_statuses_rescheduled: Rescheduled
+    scheduling_scheduling_statuses_scheduled: Scheduled
+    scheduling_search_participant: Search campaign participants
+    scheduling_status: Scheduling status
+    scheduling_status_change_modal_content: Once you close the assessment center, participants will not be able to participate in any center activities.
+    scheduling_status_change_modal_title: Change assessment center status
+    scheduling_status_completed: Completed
+    scheduling_status_dropped_out: Dropped Out
+    scheduling_status_in_progress: In Progress
+    scheduling_status_late: Late
+    scheduling_status_no_show: No Show
+    scheduling_status_not_started: Not Started
+    scheduling_subjects_activities: Activities
+    scheduling_subjects_add_assessor_form: Add Assessor Form
+    scheduling_subjects_assessments: Assessments
+    scheduling_subjects_assessor_forms: Assessor Forms
+    scheduling_subjects_confirm_message: |-
+      Are you sure you want to cancel the participation of the subject with the email '%{subject_email}'?
+      <br />
+      Once marked as cancelled, this subject will not be able to participate in the assessment center.
+    scheduling_subjects_confirm_title: Confirmation required
+    scheduling_subjects_edit_assessor_form: Edit Assessor Form
+    scheduling_subjects_form_title: Schedule Assessments
+    scheduling_subjects_language: Language
+    scheduling_subjects_language_not_selected: Not selected
+    scheduling_subjects_mark_cancel: Mark Cancel
+    scheduling_subjects_mark_cancel_success: Cancelled participation of subject with email %{subject_email}.
+    scheduling_subjects_meeting_link_custom: Custom
+    scheduling_subjects_meeting_link_internal: Internal
+    scheduling_subjects_meeting_link_none: None
+    scheduling_subjects_meeting_link_title: Meeting Link
+    scheduling_subjects_no_change: No Change
+    scheduling_subjects_override_existing: Override existing schedules for subjects
+    scheduling_subjects_preworks: Prework
+    scheduling_subjects_re_enroll: Re-Enroll
+    scheduling_subjects_re_enroll_confirm_message: Are you sure you want to re-enroll the subject with the email '%{subject_email}'?
+    scheduling_subjects_re_enroll_success: Re-enrolled subject with email %{subject_email}.
+    scheduling_subjects_schedule: Schedule
+    scheduling_subjects_unschedule: Unschedule
+    scheduling_tabs_activities: Activities
+    scheduling_tabs_assessment_center: Assessment Center
+    scheduling_tabs_invites: Invites
+    scheduling_tabs_recordings: Recordings
+    scheduling_tabs_resources: Resources
+    scheduling_tabs_subjects: Subjects
+    schema_key_description_required: Schema Key Description is required
+    schema_key_required: Schema Key is required
+    schema_key_type: Key Type
+    schema_key_unique: Schema Keys should be unique
+    scope: Scope
+    scope_client: Client
+    scope_global: Global
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_approval_not_allowed_to_discard: You are not allowed to discard this score.
@@ -1102,56 +2497,347 @@ en-US:
     score_max: Score Max
     score_min: Score Min
     score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
+    score_not_applicable: Score not applicable
     score_range_info: 'Score Range: %{min} - %{max}'
     score_with_ai: Score with AI
     scores_finalized: Scores are finalized and can’t be changed
     scoring: Scoring
+    scoring_action_prohibited: Action Prohibited
+    scoring_active: Active
+    scoring_actual_average: Actual Average
+    scoring_add_factor: Add Factor
+    scoring_add_group: Add Group
     scoring_approval_add_settings: Add settings
     scoring_approval_allow_bulk_approve: Allow Bulk Approve
     scoring_approval_allow_bulk_approve_scores: Allow Bulk Approve Scores
     scoring_approval_allow_one_level_approve: Allow One Level Approve
+    scoring_approval_approve_all: Approve All
     scoring_approval_approver_users: Approver Users
     scoring_approval_approvers: Approvers
     scoring_approval_assessment: Assessment
     scoring_approval_assessor_users: Assessor Users
+    scoring_approval_bulk_approve_success: "%{approved} scores approved."
     scoring_approval_do_not_send_notifications: Do Not Send Notifications
     scoring_approval_modal_title: Scoring Approval Settings
     scoring_approval_notification_users: Approval Notification Users
     scoring_approval_remove_modal_success: 'Approval setting for assessment id: %{assessmentId} was deleted successfully'
     scoring_approval_remove_modal_text: 'Are you sure you want to delete this setting for assessment id: %{assessmentId}?'
+    scoring_approval_review: Review
+    scoring_approval_score_approvals: AI Scoring Approvals
+    scoring_assessment: Assessment
+    scoring_assessment_scoring_type: Assessment Scoring Type
+    scoring_average: Average
+    scoring_campaign_scoring_variables: Campaign Scoring Variables
+    scoring_desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
+    scoring_dimension: Dimension
+    scoring_edit_factor: Edit Factor
+    scoring_export_factors: Export Campaign Factors
+    scoring_factor: Factor
+    scoring_factor_group_removed_successfully: Campaign Factor group was removed successfully
+    scoring_factor_removal_confirmation: Enter factor name given below in text box to confirm
+    scoring_factor_removed_successfully: Campaign Factor was removed successfully
+    scoring_factors_exported_successfully: Export campaign factors job was scheduled successfully
+    scoring_factors_imported_successfully: Import campaign factors job was scheduled successfully
+    scoring_final: Final
+    scoring_final_score_updated_successfully: Final score was updated successfully
+    scoring_formula: Formula
+    scoring_get_started: Get Started
+    scoring_import_factors: Import Campaign Factors
+    scoring_innovation_style_removal_confirmation: Enter innovation style name given below in text box to confirm
+    scoring_no_groups: No groups present
+    scoring_occupation_removal_confirmation: Enter occupation name given below in text box to confirm
+    scoring_output_type: Output Type
+    scoring_pattern_error: Only alphanumeric characters, spaces and dashes are allowed.
+    scoring_profile_years: Years
+    scoring_public: Public
+    scoring_ranked: Ranked
+    scoring_remove_all_campaign_factors_confirmation: Enter current campaign name given below in text box to confirm
+    scoring_remove_all_campaign_factors_error: Campaign Factors remove failed
+    scoring_remove_all_campaign_factors_success: Campaign Factors removed successfully
+    scoring_remove_all_campaign_factors_title: Remove campaign factors
+    scoring_remove_all_campaign_factors_warning: Your are about to delete all campaign factor and all associated scores for the users. Are you sure you want to perform this action?
+    scoring_remove_factor_group_confirmation_content: Are you sure you want to remove the factor group '%{group_name}'?
+    scoring_remove_factor_group_confirmation_title: Remove Factor Group
+    scoring_required_error: Can't be empty
+    scoring_save_all: Save All
+    scoring_score_range: Score Range
+    scoring_score_types_norm_score: Norm Score
+    scoring_score_types_percentage: Percentage
+    scoring_score_types_percentile: Percentile
+    scoring_score_types_score: Score
+    scoring_score_types_zscore: Z Score
+    scoring_scoring: Scoring
+    scoring_scoring_description: Campaign Scoring allows reporting across assessments
+    scoring_select_all: Select all %{n} subjects
+    scoring_select_assessment_first: Select Assessment First
+    scoring_select_factor: Select Factor
+    scoring_show_weightages: Show Weightages
+    scoring_subject: Subject
+    scoring_subject_list_bulk_mark_finalized: Bulk Mark Finalized
+    scoring_subject_list_bulk_mark_finalized_confirm: Finalizing score for selected users will generate the report which uses campaign factor for the users. Are you sure you want to proceed?
+    scoring_subject_list_bulk_mark_not_finalized: Bulk Mark Not Finalized
+    scoring_subject_list_bulk_mark_not_finalized_confirm: Removing finalize from the selected users will remove the generated report which uses campaign factor for the users. Are you sure you want to proceed?
+    scoring_subject_list_bulk_rescore: Bulk Rescore
+    scoring_subject_list_bulk_rescore_confirm: Rescoring the selected users. Are you sure you want to proceed?
+    scoring_subject_list_calculated_date: Calculated Date
+    scoring_subject_list_calculation_errors: Calculation Errors
+    scoring_subject_list_export: Export Scorings
+    scoring_subject_list_export_success: Export scores job was scheduled successfully
+    scoring_subject_list_finalized: Finalized
+    scoring_subject_list_finalized_date: Finalized Date
+    scoring_subject_list_import_external_scores: Import External Scorings
+    scoring_subject_list_mark_finalized: Mark Finalized
+    scoring_subject_list_mark_finalized_confirm: Finalizing score for user '%{email}' will generate the report which uses campaign factor for the user. Are you sure you want to proceed?
+    scoring_subject_list_mark_not_finalized: Mark Not Finalized
+    scoring_subject_list_mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses campaign factor for the user. Are you sure you want to proceed?
+    scoring_subject_list_push_webhook: Push webhooks
+    scoring_subject_list_rank: Rank
+    scoring_subject_list_rescore: Rescore
+    scoring_subject_list_rescore_confirm: Rescoring the user '%{email}'. Are you sure you want to proceed?
     scoring_supported_only_for_ai_questions: Scoring is allowed only on AI enabled questions for currently selected factor.
+    scoring_tabs_settings: Settings
+    scoring_tabs_subject_scores: Subject Scores
     scoring_value_info: Score must be between %{min} and %{max}.
     scoring_value_out_of_range_err_msg: Score for %{factor_name} must be between %{min} and %{max}.
+    scoring_variables: Variables
+    scoring_weightages_assessorForms: Assessor Forms
+    scoring_weightages_successful_update: Weightages were updated successfully
+    scoring_weightages_weightages: Weightages
+    scoring_weighted_average: Weighted Average
     search_admins: Search admins
+    search_campaign: Search by Campaign
+    search_client: Search by Client
     search_job_role: Search job role
+    search_participants: Search Participants...
+    search_project: Search by Project
+    search_record: Search by Record ID
+    search_user: Search by User
+    seats_label: Seats
+    sec_logo_label: Secondary Logo
+    secondary_logo_alt_text: Secondary Logo Alt-Text
+    secondary_logo_alt_text_required: Secondary Alt-Text Logo is Required
+    security_setting_180_days: 180 Days
+    security_setting_30_days: 30 Days
+    security_setting_365_days: 365 Days
+    security_setting_90_days: 90 Days
+    security_setting_attempts_to_lock: Attempts to lock
+    security_setting_auto_unlock_time: Auto unlock time
+    security_setting_disable_password_reuse: Disable password reuse
+    security_setting_disallow_password_login: Disallow password login
+    security_setting_enable_login_with_magic_link: Enable Login with magic link
+    security_setting_enable_recaptcha: Enable reCAPTCHA
+    security_setting_enforce_password_policy: Enforce password policy at next sign-in
+    security_setting_enforce_strong: Enforce strong password
+    security_setting_expiration: Password expiration
+    security_setting_lock_account: Lock account
+    security_setting_magic_link_expiry_duration: Magic link expiration duration
+    security_setting_min_length: Minimum password length
+    security_setting_never: Never
+    security_setting_restrict_sequences: Restrict sequential and repetitive characters
+    security_setting_security: Security Settings
+    security_setting_send_unlock_email: Send unlock email
+    security_setting_session_timeout_duration: Session Timeout Duration
+    security_setting_tfa_enabled: Enable Two Factor Authentication
+    security_settings_security_setting: Security setting
     select_admin_role: Select admin role
+    select_assessment_language: Select assessment language
+    select_client: Select Client
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level
+    select_project_ids_required: Select project_ids required
+    select_projects: Select Projects
+    select_projects_required: Please select at least one project
     select_question: Search question by name or ID
+    select_report_ids_required: Select report_ids required
+    select_report_language: Select report language
+    select_report_type: Select Report Type
     select_start_time: Select Start Time
     selective_proctoring: Selective Proctoring
     send_email: Send email
+    send_test_email: Send Test Email
     set_min_max_scores_warning: Please set minimum and maximum scores for this factor to configure AI scoring.
     settings: Settings
+    settings_admin_roles_confirm_message: Are you sure you want to delete admin role '%{role_name}'?
     settings_saved_successfully: Settings saved successfully
+    settings_siem_destination_type: Destination Type
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: S3 Compatible
+    settings_siem_enabled: Enabled
+    settings_siem_readable_resource_name: SIEM settings
+    settings_siem_s3_access_key_id: Access Key ID
+    settings_siem_s3_bucket_folder: S3 Bucket Folder
+    settings_siem_s3_bucket_name: S3 Bucket Name
+    settings_siem_s3_endpoint: S3 Endpoint
+    settings_siem_s3_region: S3 Region
+    settings_siem_s3_secret_access_key: Secret Access Key
+    settings_siem_send_test_log: Send Test Log
+    settings_siem_send_test_log_error_message: Test log has not been sent to your bucket, check your settings
+    settings_siem_send_test_log_success_message: Test log has been successfully sent to your bucket
+    settings_skill_aliases_alias: Alias
+    settings_skill_aliases_confirm_message: Are you sure you want to delete skill alias '%{skill_alias}'?
+    settings_skill_aliases_create: Add Skill Alias
+    settings_skill_aliases_select_skill: Select Skill
+    settings_skill_aliases_skill: Skill
+    settings_skill_aliases_skill_alias: Skill Alias
+    settings_skill_aliases_successful_remove: Skill alias '%{skill_alias}' was deleted successfully.
+    settings_tabs_admin_roles: Admin Roles
+    settings_tabs_feature_flags: Feature Flags
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: Skill Aliases
+    sheets_column_add_column: Add Column
+    sheets_column_not_allowed_for_dashboard_use: For column to be used in dashboard it should be less than 64 characters
+    sheets_column_reorder: Reorder
+    sheets_column_save_order: Save order
+    sheets_drawers_add_edit_cancelText: Cancel
+    sheets_drawers_add_edit_markdown_preview: Preview
+    sheets_drawers_add_edit_markdown_title: Markdown
+    sheets_drawers_add_edit_save: Save
+    sheets_drawers_add_edit_saving: Saving
+    sheets_drawers_add_edit_success_message_add: New record added
+    sheets_drawers_add_edit_success_message_edit: Record updated
+    sheets_drawers_add_edit_title_add: Add Sheet record
+    sheets_drawers_add_edit_title_edit: Edit Sheet Row record
+    sheets_drawers_add_edit_validations_required_email: Please enter email
+    sheets_drawers_view_campaign_title: Campaign level record
+    sheets_drawers_view_project_title: Project level record
+    sheets_drawers_view_title: Sheet Row record details
+    sheets_list_header_add_record: Add record
+    sheets_list_header_search_record: Search records
+    sheets_modals_delete_records_cancelText: Cancel
+    sheets_modals_delete_records_content: Are you sure you want to delete the selected {{count}} records?
+    sheets_modals_delete_records_okText: Yes, delete
+    sheets_modals_delete_records_successMessage: "{{count}} records were deleted successfully."
+    sheets_modals_delete_records_title: Delete {{count}} records
+    sheets_modals_remove_columns_cancelText: Cancel
+    sheets_modals_remove_columns_content: Deleting a column ({{columns}}) will remove the data in this column for all rows
+    sheets_modals_remove_columns_okText: Yes, delete
+    sheets_modals_remove_columns_successMessage: "{{count}} records deleted"
+    sheets_modals_remove_columns_title: Delete columns
+    sheets_tabs_rows: Rows
+    sheets_tabs_settings: Settings
+    show_all: Show All
     show_all_assessment_responses: Show All Assessment Responses
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu
     show_translated: Show Translated
+    show_watermark: Show watermark
+    sidebar_title: Project's options
     siem: SIEM
     simulation: Simulation
     simulation_assessment: Simulation Assessment
     skill_aliases: Skill Aliases
+    skill_rater: Skill Rater
     skills: Skills
+    skills_applicable_proficiency_levels: Applicable Proficiency Levels
+    skills_columns_skill_group: Skill Group
+    skills_columns_skill_type: Skill Type
+    skills_export_failure_msg: Error while exporting translations
+    skills_export_success_msg: Exporting development actions in progress.
+    skills_form_skill_group: Skill Group
+    skills_form_skill_type: Skill Type
+    skills_form_title: Skill
+    skills_import_action_skills_title: Import Skills
+    skills_import_action_skills_translations_title: Import Skills Translations
+    skills_import_download_example_csv: Download Example csv
+    skills_import_info_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    skills_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    skills_skill_details: Skill Details
+    skills_skill_translations: Skills Translations
     skills_taxonomy: Skills Taxonomy
+    skills_title: Skills
+    skills_vector_generate_embedding: Generate Embedding
+    skills_vector_generate_embedding_failure_msg: Failed to queue skill embedding generation job. Please try again.
+    skills_vector_generate_embedding_success_msg: Skill embedding generation job has been queued successfully. Please check the status in the notifications.
+    skills_vector_label: Vector DB
     skillvue: Skillvue
+    skillvue_apiKey: api key
+    skillvue_apiKeyRequired: API key is required
     skillvue_assessment: Skillvue Assessment
     skip_assessment_level_checks: Skip Assessment-Level System Checks
     slot_name: Slot Name
+    sms_contact: SMS Contact
     sms_histories: SMS Histories
+    sms_histories_columns_mobile_no: Mobile No
+    sms_histories_columns_price: Price
+    sms_histories_columns_segment_length: Segment Length
+    sms_histories_columns_sent_at: Sent At
+    sms_histories_drawer_title: SMS Details
+    sms_histories_history: History
+    sms_histories_statuses_accepted: Accepted
+    sms_histories_statuses_delivered: Delivered
+    sms_histories_statuses_failed: Failed
+    sms_histories_statuses_queued: Queued
+    sms_histories_statuses_scheduled: Scheduled
+    sms_histories_statuses_sent: Sent
+    sms_histories_statuses_undelivered: Undelivered
     sms_invites: SMS Invites
+    sms_invites_actions_add: Add SMS Contact
+    sms_invites_columns_created_at: Created At
+    sms_invites_columns_created_by: Created By
+    sms_invites_columns_mobile_no: Mobile No
+    sms_invites_contacts: Contacts
+    sms_invites_form_modal_locale: Locale
+    sms_invites_form_modal_mobile_no: Mobile No
+    sms_invites_form_modal_title: Sms Invite
+    sms_invites_import_download_example_csv: Download Example csv
+    sms_invites_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    sms_invites_import_title: SMS Invite import
+    sms_invites_messages_delete_confirm_text: Are you sure you want to remove SMS Invite with mobile number %{mobile_no}?
+    sms_invites_messages_delete_success: SMS Invite was deleted successfully
+    sms_invites_send_sms_fields_link_expiry: Link Expiry
+    sms_invites_send_sms_fields_locale: Locale
+    sms_invites_send_sms_fields_message: Message
+    sms_invites_send_sms_fields_statuses: Statuses
+    sms_invites_send_sms_fields_users: Users
+    sms_invites_send_sms_modal_btn_name: Send SMS
+    sms_invites_send_sms_modal_title: Send SMS
+    sms_invites_send_sms_pipetext_details: |-
+      {{{first_name}}} - Recipient First Name
+      <br />
+      {{{last_name}}} - Recipient Last Name
+      <br />
+      {{{invite_url}}} - Registration Link
+    sms_invites_send_sms_segment_length_msg: Estimated number of segments for this message is %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: Estimated number of segments for this message is between %{min_segment_length} and %{max_segment_length}.
+    sms_invites_statuses_all: All
+    sms_invites_statuses_failed: Failed
+    sms_invites_statuses_invited: Invited
+    sms_invites_statuses_not_invited: Not Invited
+    sms_invites_statuses_registered: Registered
+    sms_invites_tools_export: Export SMS Contacts
+    sms_invites_tools_import: Import SMS Contacts
+    sms_invites_tools_send_sms: Send SMS
+    sms_notification: SMS Notification
+    sms_notification_disabled_by_client: SMS Notification is disabled by client
+    sms_records_columns_message: Message
+    smtp_settings: SMTP settings
+    smtp_settings_authentication: Authentication
+    smtp_settings_authentication_type: Authentication Type
+    smtp_settings_authentication_types_cram_md5: cram md5
+    smtp_settings_authentication_types_login: Login
+    smtp_settings_authentication_types_plain: Plain
+    smtp_settings_enabled: Enabled
+    smtp_settings_encryption: Encryption
+    smtp_settings_encryption_types_none: None
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: From email
+    smtp_settings_from_name: From name
+    smtp_settings_host: Host
+    smtp_settings_password: Password
+    smtp_settings_port: Port
+    smtp_settings_send_test_email: Send Test Email
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Your email setting will not saved until test email was sent successfully.
+    smtp_settings_test_email_modal_input_placeholder: Test Email ID
+    smtp_settings_test_email_modal_title: Test Email ID
+    smtp_settings_test_modal_success_message: Test Email sent to %{email_id}.
+    smtp_settings_test_modal_title: Test SMTP setting
+    smtp_settings_update_success_msg: SMTP setting was updated successfully.
+    smtp_settings_use_sender_verification: Use sender verification
+    smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
     sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
     sso_enforced: Enforce SSO
@@ -1183,30 +2869,167 @@ en-US:
     sso_settings_slo_url: SLO Service URL
     sso_settings_sso_url: SSO Service URL
     sso_settings_tab: SSO
+    standard: Standard
     standard_deviation: Standard Deviation
     standard_questions: Standard Questions
     start: start
     start_time: Start Time
     static_content: Static Content
     stats: Stats
+    stats_assessments_active: Active
+    stats_assessments_columns_assessment_name: Assessment Name
+    stats_assessments_columns_completed: Completed
+    stats_assessments_columns_in_progress: In Progress
+    stats_assessments_columns_ineligible: Ineligible
+    stats_assessments_columns_interrupted: Interrupted
+    stats_assessments_columns_not_started: Not Started
+    stats_assessments_columns_timed_out: Timed Out
+    stats_assessments_count: Count
+    stats_assessments_inactive: Inactive
+    stats_assessments_percentage: Percentage
+    stats_assessments_title: Assessments
+    stats_top_metrics_completed: Completed
+    stats_top_metrics_in_progress: In Progress
+    stats_top_metrics_interrupted: Interrupted
+    stats_top_metrics_not_started: Not Started
+    stats_top_metrics_timed_out: Timed Out
+    stats_top_metrics_users: Users
+    stats_users_date_presets_last_30_days: Last 30 days
+    stats_users_date_presets_last_7_days: Last 7 days
+    stats_users_date_presets_last_month: Last Month
+    stats_users_date_presets_last_week: Last Week
+    stats_users_date_presets_today: Today
+    stats_users_date_presets_yesterday: Yesterday
+    stats_users_y_title: Number of Users
+    status_active: Active
+    status_archived: Archived
     status_details: Status Details
+    statuses_accepted: Accepted
+    statuses_cancelled: Cancelled
+    statuses_late_cancelled: Late Cancelled
+    statuses_late_rescheduled: Late Rescheduled
+    statuses_pending: Pending
+    statuses_requested_cancellation: Requested Cancellation
+    statuses_requested_cancellation_rejected: Cancellation Rejected
+    statuses_requested_rescheduling: Requested Rescheduling
+    statuses_requested_rescheduling_rejected: Rescheduling Rejected
+    statuses_rescheduled: Rescheduled
+    statuses_scheduled: Scheduled
+    steps_basic_information: Basic Information
+    steps_facilitators: Facilitators
+    steps_invite_options: Invite Options
+    steps_invite_subjects: Invite Subjects
+    steps_send_invitations: Send Invitations
     structured_learning: Formal Learning [10]
+    sub_factor_questions: Questions of other Factors (Average)
+    sub_factor_questions_sum: Questions of other Factors (SUM)
+    sub_factors_average: Weighted Average of Factors
+    sub_factors_conditional_average: Conditional Weighted Average of Factors
+    sub_factors_sum: Weighted Sum of Factors
     subdomain: Subdomain
     subdomain_admin_keyword: cannot use reserved admin subdomain pattern
     subdomain_invalid_format: Wrong subdomain format.
     subdomain_reserved: Subdomain %{value} is reserved
     subdomain_too_long_max_32: Subdomain is too long (maximum is 32 characters)
+    subject: Subject
+    subject_can_access_reports: Subject can access their reports
+    subject_email: Subject's Email
+    subject_invite_description: This message will be sent to invite subjects to participate in the assessment
+    subject_invite_name: Subject Invite
     subject_part_of_other_invite: Subject with email %{user_email} is already invited to '%{workshop_invite_name}'
+    subject_placeholder: Search Subject...
+    subject_reminder_description: Message sent to each participant to remind them to participate in the assessment
+    subject_reminder_name: Subject Reminder
+    subject_reminder_rule_description: Specify rules for automatically scheduling when an invitation is scheduled
+    subject_reminder_rule_name: Subject Reminder Rules
+    subject_report_ready_description: This message is sent to a subject once their report is ready
+    subject_report_ready_name: Subject Report Ready
+    subjects_title: Subjects
+    submenu_options_option_one: Option 1
+    submenu_options_option_title: Item 1
+    submenu_options_option_two: Option 2
+    success_call_send_invitation: Would you like to send the invites?
+    success_color: Success Color
+    success_ok: 'true'
+    success_skip: Skip for now
+    success_title: Assessment centers created
+    success_update: Design Settings were saved successfully
+    suitability_id: Suitability ID
     superadmin_use_root_domain: Super administrators must sign in through the main domain
     switch_client: Switch Client
+    system_prompt: System Prompt
+    tab_text_one: Menu
+    tab_text_two: Submenu
+    table_more_actions: More actions
+    tabs_results: Results
+    tabs_settings: Settings
     target_job_role: Target Job Role
+    taxonomy_import_action_taxonomy: Import Taxonomy
+    taxonomy_import_description: Upload an Excel file to import or update your skills taxonomy. This will add new skills, job roles, and proficiency levels.
+    taxonomy_import_download_example_file: Download Example File
+    taxonomy_import_drag_text: Click or drag file to this area to upload
+    taxonomy_import_error_title: Import Failed
+    taxonomy_import_file_hint: Supports .xls and .xlsx files
+    taxonomy_import_import_button: Import Taxonomy
+    taxonomy_import_success_msg: The uploaded file has been queued for import. Please check the status in the notifications.
+    taxonomy_title: Skills Taxonomy
+    template_and_campaign_required: Please provide both template and campaign ID
+    template_render_failed: Failed to render template
+    test_generate: Test Generate
+    test_render: Test Render
+    test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
+    text_danger: Text(danger)
+    text_success: Text (success)
+    text_warning: Text(warning)
     this_field_is_required: This field is required
+    threesixity_advance_settings_campaign_template: Campaign Template
+    threesixity_advance_settings_factors: Factors
+    threesixity_close_content: Are you sure you want to close the Multi Rater Campaign Creator? Any unsaved customization work will be lost. Please confirm your decision.
+    threesixity_close_title: Close Multi Rater Campaign Creator?
+    threesixity_instructions_creation_empty: 'Empty: Start with a blank survey and customize it according to your specific needs.'
+    threesixity_instructions_creation_previous: 'Previous: Select a previous assessment as a starting point and make modifications.'
+    threesixity_instructions_creation_standard: 'Standard: Use a pre-designed template with commonly used questions & indicators.'
+    threesixity_instructions_creation_sub_title: Please select the type of campaign you would like to create.
+    threesixity_instructions_creation_title: Welcome to the Multi Rater Campaign Creator!
+    threesixity_instructions_customization_sub_title: Select the template and factors to be included in the assessment.
+    threesixity_instructions_customization_title: Customize your assessment!
+    threesixity_no_factors_description: Please try some other search keywords.
+    threesixity_no_factors_title: No Factors Found
+    threesixity_questions_select_all: Select all
+    threesixity_questions_title: Questions and Indicators
+    threesixity_search_factors_description: Please enter at least 3 characters to find the factors you're looking for.
+    threesixity_search_factors_title: Begin Your Search
+    threesixity_success: Multi Rater Campaign was successfully created.
+    threesixity_success_job: Multi Rater Campaign creation job was successfully scheduled.
     threesixty: 360 Campaign
+    threesixty_campaigns_mail_history_date: Date
+    threesixty_campaigns_mail_history_download_details: Download Details
+    threesixty_campaigns_mail_history_emails_sent: Emails Sent
+    threesixty_campaigns_mail_history_recipient: Recipient
+    threesixty_campaigns_mail_history_subject: Subject
+    threesixty_campaigns_manage_assessment: Assessment
+    threesixty_campaigns_manage_dimension: Dimensions
+    threesixty_campaigns_manage_manage_relationships: Manage Relationships...
+    threesixty_campaigns_manage_report: Report
+    threesixty_campaigns_menu_datasheet_title: Datasheet
+    threesixty_campaigns_menu_messages_title: Messages
+    threesixty_campaigns_menu_participants_title: Participants
+    threesixty_campaigns_menu_report_menu_report_approval_title: Report Approval Settings
+    threesixty_campaigns_menu_report_menu_report_options_title: Report Options
+    threesixty_campaigns_menu_report_title: Report
+    time_label: Time
+    time_zone: Time Zone
     timed_label: 'Timed: %{time_text}'
     timelines: Timelines
+    times: times
     timezone: TimeZone
+    timezone_label: Timezone
     timing: Timing
+    title: Mesaje
     to: To
+    token_url_label: Token URL
+    token_url_name: oauth_token_url
+    token_url_required: Token URL is required
     tone: Tone
     toolbar_ai_insight: AI Insight
     toolbar_ai_suggestion: AI Suggestion
@@ -1215,6 +3038,22 @@ en-US:
     toolbar_text_replaced: Text replaced!
     toolbar_what_changed_and_why: What Changed & Why
     tools: Tools
+    topics_label: Events
+    topics_list_assessment_assigned: Assessment Assigned
+    topics_list_assessment_completed: Assessment Completed
+    topics_list_assessment_raw_response: Assessment Raw Response
+    topics_list_assessment_started: Assessment Started
+    topics_list_assessment_timeout: Assessment Timeout
+    topics_list_campaign_results_available: Campaign Results Available
+    topics_list_campaign_user_assessment_summary: Campaign User Assessment Summary
+    topics_list_campaign_user_status: Campaign User Status
+    topics_list_report_available: Report Available
+    topics_list_results_available: Results Available
+    topics_list_scheduling_cancelled: Scheduling Cancelled
+    topics_list_scheduling_invited: Scheduling Invited
+    topics_list_scheduling_rescheduled: Scheduling Rescheduled
+    topics_list_scheduling_scheduled: Scheduling Scheduled
+    topics_list_workshop_attendance_status: Workshop Attendance Status
     transcription_record_not_found: Transcription record not found
     transcription_schedule_failed: Failed to schedule transcription job
     transcription_scheduled: Transcription job is scheduled. Please close the modal and check notification status.
@@ -1227,32 +3066,84 @@ en-US:
     translation_assistant_not_configured: Translation Assistant not configured
     translations:
       title: Translations
+    translations_export_failure_msg: Error while exporting translations
+    translations_export_success_msg: Exporting development actions in progress.
+    tte: TTE
+    type_by_skill: By Skill
+    type_by_skill_type: By Skill Type
+    type_default: Default
+    type_locked_tooltip: This assistant is currently in use and its type cannot be changed.
+    unarchive_content: Are you sure you want to unarchive '%{project_name}'?
+    unarchive_success: Project '%{project_name}'' was successfully unarchived.
+    unarchive_title: Unarchive Project
+    unsaved_changes: Unsaved changes are present, consider submitting form to generate updated response from Playground.
+    upcoming: Upcoming
     update_success: "%{readableResourceName} was updated successfully"
+    updated_successfully: AI Assistant was updated successfully.
     upload: Upload
     upload_media: Upload Media
     upload_required: Please add at least one file to upload
     upload_success: Uploaded successfully
+    url_label: URL
+    url_name: URL
+    used_tokens_input_tokens: Input Tokens
+    used_tokens_output_tokens: Output Tokens
+    used_tokens_title: Token usage
+    user: User
+    user_agent: User Agent
+    user_prompt: User Prompt
     user_report_events: Report Approval logs
+    user_report_id: User Report ID
+    user_result_validity_in_days: Result Validity in Days
+    username_label: User Name
+    username_name: Username
     users: Users
+    users_modals_download_idp_reports_error: Failed to schedule Bulk Download IDP Reports job failed.
+    users_modals_download_idp_reports_include_reflective_questions: Include Reflective Questions
+    users_modals_download_idp_reports_success: Bulk Download IDP Reports job was scheduled successfully.
+    users_modals_download_idp_reports_title: Bulk Download IDP Reports
+    users_user: User
     validation_error: Please fill in all required fields
     validity: Validity
     very_high: Very High
     very_low: Very Low
+    video_call_recording: Allow video call recording
+    video_call_recording_expiry_duration: Retention period for video call recordings (in days)
+    video_call_recording_scope: Enable video recording for all new campaigns
+    video_call_type_custom: Custom
+    video_call_type_internal: Internal
+    video_call_type_label: Add Video Call
+    video_call_type_none: None
     view_licenses: View Licenses
+    visual_header_visibility: Visual Header Visibility
     wait_for_upload_completion: Please wait for all files to finish uploading
     waiting: Waiting
+    warning_color: Warning Color
+    watermark_content: Watermark Content
+    watermark_info: If you don't add any content, by default email of user would appear as water mark. You can use any of following pipetext -<br/> {{id}} - Participant id </br> {{first_name}} - Participant first name </br> {{last_name}} - Participant last name </br> {{email}} - Participant email
+    webhook_delete_success: Webhook settings was deleted successfully
     weight: Weight
+    welcome_message_description: This message will be displayed to subjects when they log in to begin the assessment or view their task list
+    welcome_message_name: Welcome Message
     what_to_look_for: What to Look For
     what_to_look_for_placeholder: Evidence of behaviors, actions, or outcomes that demonstrate this factor
     words: Words
+    workshop_actions_remove_workshop: Workshop Removed Successfully
+    workshop_statuses_closed: Closed
+    workshop_statuses_open: Open
     workshops: Workshops
     writing_assistant_not_configured: Writing Assistant not configured
     x_axis_interval_label: X-Axis Interval
     y_axis_interval_label: Y-Axis Interval
     year: Year
+    year_range: Year Range
+    years: Years
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
     yoodli_assessment: Yoodli Assessment
     yoodli_email_id: Yoodli Candidate Email ID
     yoodli_external_assessment_id: Yoodli Assessment ID
+    yoodli_keyset_url: Keyset URL
+    yoodli_launch_url: Launch URL
+    yoodli_login_url: Login URL
     you_are_here: You are here

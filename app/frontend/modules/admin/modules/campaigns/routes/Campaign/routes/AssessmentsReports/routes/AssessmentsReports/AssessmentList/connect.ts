@@ -13,7 +13,8 @@ import {
   updateMettlSchedule, normalizeFactorScores, updateContentVariation, UPDATE_CONTENT_VARIATION, UPDATE_METTL_SCHEDULE,
   updatePearsonVariation, toggleAssessmentCaching, updateMhsConfidenceInterval, updateMhsLeadershipBar,
   updateMhsNormRegion, updateMhsNormOption, regenerateTranscriptions, updateProctoringSettings,
-  UPDATE_PROCTORING_SETTINGS,
+  UPDATE_PROCTORING_SETTINGS, bulkExportRawFactorScores, bulkExportNormFactorScores,
+  BULK_EXPORT_RAW_FACTOR_SCORES, BULK_EXPORT_NORM_FACTOR_SCORES,
 } from '~/modules/admin/modules/campaigns/core/assessments/actions'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -28,6 +29,8 @@ const connecter = connect(
     loadingUpdateContentVariation: isRequestInProgress(state, UPDATE_CONTENT_VARIATION),
     loadingUpdateMettlSchedule: isRequestInProgress(state, UPDATE_METTL_SCHEDULE),
     loadingUpdateProctoringSettings: isRequestInProgress(state, UPDATE_PROCTORING_SETTINGS),
+    bulkExportRawFactorScoresLoading: isRequestInProgress(state, BULK_EXPORT_RAW_FACTOR_SCORES),
+    bulkExportNormFactorScoresLoading: isRequestInProgress(state, BULK_EXPORT_NORM_FACTOR_SCORES),
   }),
   {
     openModal,
@@ -57,6 +60,8 @@ const connecter = connect(
     updateMhsNormOption,
     toggleAssessmentCaching,
     updateProctoringSettings,
+    bulkExportRawFactorScores,
+    bulkExportNormFactorScores,
     fetchCampaignOptions,
   },
 )

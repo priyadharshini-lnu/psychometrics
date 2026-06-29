@@ -622,6 +622,7 @@ ro:
         roles:
           campaign_admin: Administratorul campaniei
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           manager: Manager
           member: Utilizator
           project_admin: Administrator de proiect
@@ -727,6 +728,7 @@ ro:
           admins:
             admin: Admin
             campaign_admin: Administratorul campaniei
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
@@ -736,6 +738,7 @@ ro:
           campaign_admin: Administratorul campaniei
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -850,6 +853,7 @@ ro:
       operations:
         add_campaign_reports: Adaugă rapoarte de campanie
         assessment_norm_export: Exportul rezultatelor normate
+        assessment_raw_ai_factor_export: Export scoruri brute ale factorului AI
         assessment_raw_factor_export: Exportul scorurilor factorului brut
         assessment_raw_result_export: Exportul rezultatelor brute
         assessment_scoring_export: Exportul rezultatelor punctajului
@@ -859,6 +863,8 @@ ro:
         bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
         bulk_download_reports: Rapoarte de descărcare în bloc
         bulk_download_user_reports: Descărcați în bloc rapoartele utilizatorilor
+        bulk_export_norm_factor_scores: Exportare scoruri factor normă în bloc
+        bulk_export_raw_factor_scores: Export în bloc al scorurilor factorilor bruti
         bulk_generate_user_campaign_ai_artifact_results: Generați în bloc rezultate ale artefactelor AI ale campaniei
         bulk_regenerate_reports: Regenerarea rapoartelor de campanie
         bulk_regenerate_threesixty_reports: Regenerarea rapoartelor Three6ty Subject
@@ -871,10 +877,12 @@ ro:
         completion_status_export: Exportul stării de finalizare
         copy_as_template_or_campaign: Copiați campania ca șablon
         copy_dimension: Copiere parametru
+        copy_report: Copiere raport
         create_threesixty_campaign: Creați campania Threesixty
         data_report_export: Exportul raportului de date
         export_admin_with_permissions: Exportați administratorul cu permisiuni
         export_assessment_questions: Întrebări de evaluare a exporturilor
+        export_audit_logs: Exportarea jurnalelor de audit
         export_campaign_ai_artifacts: Artefacte AI din campaniile de export
         export_campaign_ai_artifacts_results: Exportați rezultatele campaniei AI Artifacts
         export_campaign_datasheet: Fișă tehnică a campaniei de export
@@ -964,6 +972,8 @@ ro:
       errors:
         no_plans: Nu s-au găsit planuri IDP active
     close: Închide
+    copy_report:
+      failed: Copierea raportului a eșuat
     details: Detalii
     errors: Erori
     invalid_job: Această notificare corespunde înregistrării șterse
@@ -1013,6 +1023,7 @@ ro:
       evaluate: Evalua
       export: Exportați
       export_normed: Scoruri factoriale normate
+      export_raw_ai_scores: Scoruri brute ale factorului AI
       export_raw_labels: Raw (cu etichete)
       export_raw_scores: Scorurile factorului brut
       export_raw_without_labels: Raw (fără etichete)
@@ -1430,6 +1441,7 @@ ro:
       export_external: Extern
       export_normed: Scoruri factoriale normate
       export_occupations: Ocupaţii
+      export_raw_ai_scores: Scoruri brute ale factorului AI
       export_raw_labels: Raw (cu etichete)
       export_raw_scores: Scorurile factorului brut
       export_raw_without_labels: Raw (fără etichete)
@@ -1454,6 +1466,7 @@ ro:
       external_user_id: ID candidat Skillvue
       id: ID de evaluare a campaniei
       locales: Localizări
+      microsite_assessment_url: URL-ul microsite-ului de evaluare
       microsite_error_message: Mesaj de eroare
       microsite_participant_id: ID participant microsite
       microsite_registration_status: Starea înregistrării
@@ -1482,6 +1495,7 @@ ro:
       no_participants_selected: Vă rugăm să selectați cel puțin un participant pentru a continua.
       norm_results_export_scheduled: Lucrarea de export Rezultate normalizate de evaluare a fost programată cu succes
       normalize_factor_scores_scheduled: Normalizarea scorurilor factorilor a fost programată cu succes.
+      raw_ai_factor_export_scheduled: Sarcina de export a factorului AI brut de evaluare a fost programată cu succes
       raw_factor_export_scheduled: Evaluarea activității de export Raw Factor a fost programată cu succes
       raw_results_export_scheduled: Activitatea de export Rezultate brute de evaluare a fost programată cu succes
       scoring_results_export_scheduled: Lucrarea de export a rezultatelor scorului de evaluare a fost programată cu succes
@@ -1652,7 +1666,6 @@ ro:
     details:
       additional_time: Timp suplimentar
       assessment_center: Centrul de evaluare
-      assessment_center_invites: Invitații la centrul de evaluare
       completed_at: Finalizat la
       completion_status: Starea de finalizare
       hogan_id: Hogan ID
@@ -1682,11 +1695,6 @@ ro:
     modals:
       remove: Sigur doriți să eliminați utilizatorul cu e-mail "%{email}" din această campanie?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Evaluările evaluatorului
-      other_assessments: Alte evaluări
-      other_assessor_assessments: Alte evaluări ale evaluatorului
-      other_reports: Alte rapoarte
     card:
       duration: Durată
       starts_in: 'Începe în:'
@@ -1757,23 +1765,19 @@ ro:
       insert: Insera
       'no': Nu
       ok: OK
-      publish: Publicare
       reject: Respinge
       remove: Eliminați
       reset: Resetare
       resolve: Rezolvați
       restore: Restaurare
       return_to_home: Înapoi la Acasă
-      run: Alerga
       save: Salvați
       schedule: Orar
       search: Căutare
-      send: Trimiteți
       sign_in: Conectează-te
       start: Start
       submit: Prezinte
       unarchive: Dezarhivare
-      unpublish: Nepublicați
       unresolve: Nerezolvat
       update: Actualizați
       upload: Încărcare
@@ -1786,20 +1790,14 @@ ro:
     column:
       action: Acțiuni
       active: Active
-      ai_assistant: Asistent AI
-      allow_multiple_responses: Permiteți mai multe răspunsuri
       approval_notification_list: Lista de utilizatori de notificare de aprobare
       approvers_list: Lista de aprobatori
-      assessment: Evaluare
       assessment_name: Numele evaluării
       assessments: Evaluări
-      assessor: Evaluator
       category: Categorie
       client: Client
-      code: Cod
       created_at: Creat la
       created_by: Creat de
-      created_date: Data creării
       default_language: Limba implicită
       description: Descriere
       details: Detalii
@@ -1817,11 +1815,8 @@ ro:
         scoring: Scor JSON
       key: Cheie
       last_name: Nume de familie
-      linked_activities: Activități legate
       linked_assessment: Evaluare legată
-      meeting_link: Link întâlnire
       modified_by: Modificat de
-      modified_date: Data modificării
       name: Nume
       owner: Proprietar
       package_id: ID-ul pachetului
@@ -1837,7 +1832,6 @@ ro:
       scheduling: Programarea
       skills: Aptitudini
       status: Statut
-      tags: Tags
       timing: Calendarul
       token: Simbol
       type: Tip
@@ -1849,15 +1843,12 @@ ro:
     messages:
       leave_message: Sunteți sigur că doriți să părăsiți această pagină? Orice răspuns nesalvat pe care îl aveți se va pierde.
     model:
-      admins: Administratori
       assessment: Evaluare
       assessments: Evaluări
       campaigns: Campanii
       completion_statuses: Statusuri de finalizare
-      datasheet: Fișă tehnică
       report: Raport
       reports: Rapoarte
-      sms_contact: SMS Contact
       threesixty_campaign: Treișaizeci de scoruri de campanie
     status:
       completed: Completat
@@ -2155,6 +2146,7 @@ ro:
     invalid_token: Ceva nu a mers bine. Vă rugăm să reîncărcați pagina și să încercați din nou.
     max_regeneration_limit: Limita maximă de regenerare depășită, contactați administrația.
     messages:
+      content_type_invalid: tip de conținut nevalid
       data_report_blank: Raportul de date nu există
       password_complexity:
         digit:
@@ -2974,9 +2966,7 @@ ro:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Active
     campaign_name: Numele campaniei
-    inactive: Inactivă
     status_updated_at: Ultima actualizare de stare
     status_updated_by: Ultima actualizare de către
     subject_email: Subiectul e-mailului
@@ -3492,12 +3482,14 @@ ro:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
           agile: AGIL
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           manager: Manager
           member: Utilizator
@@ -3631,6 +3623,7 @@ ro:
         roles:
           campaign_admin: Administratorul campaniei
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           manager: Manager
           member: Utilizator
           project_admin: Administrator de proiect
@@ -3701,12 +3694,14 @@ ro:
           admin: Admin
           admins:
             admin: Admin
+            client_assessor: Evaluator de clienți
             project_admin: Administrator de proiect
             regular: Administrator client
             superadmin: Super Admin
           agile: AGIL
           case_study: Studiu de caz
           client_admin: Administrator client
+          client_assessor: Evaluator de clienți
           hogan: Hogan
           manager: Manager
           member: Utilizator
@@ -3980,7 +3975,6 @@ ro:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Active
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
     png: PNG
     regenerate_link: Regenerați linkul
@@ -4169,6 +4163,7 @@ ro:
       campaign_assessor: Evaluator de campanie
       campaign_user: Utilizator campanie
       client_admin: Administrator client
+      client_assessor: Evaluator de clienți
       project_admin: Administrator de proiect
       superadmin: Super Admin
     superadmins: Super administratori

@@ -257,4 +257,15 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '.not_application scope' do
+    it 'excludes application users from results' do
+      regular_admin = create(:client_admin)
+      application_user = create(:application_user)
+
+      results = User.not_application
+      expect(results).to include(regular_admin)
+      expect(results).not_to include(application_user)
+    end
+  end
 end

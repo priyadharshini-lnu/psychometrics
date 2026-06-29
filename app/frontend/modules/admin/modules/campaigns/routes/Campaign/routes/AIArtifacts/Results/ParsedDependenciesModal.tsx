@@ -20,9 +20,9 @@ const ParsedDependenciesModal: React.FC<ParsedDependenciesModalProps> = ({
   <Modal
     title={(
       <span>
-        {I18n.t('administration.ai_artifacts.parsed_dependencies.title')}
+        {I18n.t('admin.parsed_dependencies_title')}
         {' '}
-        <Tooltip title={I18n.t('administration.ai_artifacts.parsed_dependencies.help')}>
+        <Tooltip title={I18n.t('admin.parsed_dependencies_help')}>
           <span><InfoCircleOutlined style={{ color: '#1890ff' }} /></span>
         </Tooltip>
       </span>
@@ -37,14 +37,14 @@ const ParsedDependenciesModal: React.FC<ParsedDependenciesModalProps> = ({
           }
           navigator.clipboard.writeText(content)
           message.info(I18n.t('user_assessment.drawer.copied', {
-            name: I18n.t('administration.ai_artifacts.parsed_dependencies.title'),
+            name: I18n.t('admin.parsed_dependencies_title'),
           }))
         }}
       >
-        {I18n.t('common.actions.copy')}
+        {I18n.t('shared.copy')}
       </Button>,
       <Button onClick={onClose}>
-        {I18n.t('common.actions.close')}
+        {I18n.t('shared.close')}
       </Button>,
     ]}
     width={800}
@@ -61,7 +61,7 @@ const ParsedDependenciesModal: React.FC<ParsedDependenciesModalProps> = ({
       fontFamily: 'monospace',
     }}
     >
-      {content || I18n.t('administration.no_data_found')}
+      {content || I18n.t('shared.no_data_found')}
     </pre>
   </Modal>
 )

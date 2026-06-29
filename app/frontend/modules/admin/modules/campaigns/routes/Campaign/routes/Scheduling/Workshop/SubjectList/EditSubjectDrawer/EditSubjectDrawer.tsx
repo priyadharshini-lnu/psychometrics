@@ -318,21 +318,21 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
       </Col>
       <Col span={3}>
         <Space size="small" align="end" orientation="vertical">
-          <Text type="secondary">{I18n.t('administration.scheduling.subjects.language')}</Text>
+          <Text type="secondary">{I18n.t('admin.scheduling_subjects_language')}</Text>
           <Text className="flex-end">
-            {workshopSubject?.language || I18n.t('administration.scheduling.subjects.language_not_selected')}
+            {workshopSubject?.language || I18n.t('admin.scheduling_subjects_language_not_selected')}
           </Text>
         </Space>
       </Col>
       <Col span={3}>
         <Space size="small" align="end" orientation="vertical">
-          <Text type="secondary">{I18n.t('administration.scheduling.subjects.preworks')}</Text>
+          <Text type="secondary">{I18n.t('admin.scheduling_subjects_preworks')}</Text>
           <Text className="flex-end">{workshopSubject?.preworks}</Text>
         </Space>
       </Col>
       <Col span={6}>
         <Space size="small" align="end" orientation="vertical">
-          <Text type="secondary">{I18n.t('administration.scheduling.subjects.activities')}</Text>
+          <Text type="secondary">{I18n.t('admin.scheduling_subjects_activities')}</Text>
           <Text className="flex-end">{workshopSubject?.workshopActivities}</Text>
         </Space>
       </Col>
@@ -371,7 +371,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
             <InputDuration
               value=""
               onChange={() => {}}
-              placeholder={I18n.t('administration.scheduling.assessment_center_form.duration_placeholder')}
+              placeholder={I18n.t('admin.duration_placeholder')}
             />
           </Form.Item>
         ) : null}
@@ -383,7 +383,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
     <FullWidthSkeleton active rows={1} height="50" />
   ) : (
     <Button type="primary" onClick={handleSaveData}>
-      {I18n.t('administration.common.save')}
+      {I18n.t('shared.save')}
     </Button>
   )
 
@@ -409,7 +409,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
                 rootClassName="mb-0"
                 level={5}
               >
-                {I18n.t('administration.scheduling.subjects.assessments')}
+                {I18n.t('admin.scheduling_subjects_assessments')}
               </Title>
               <UserAssessmentList
                 assessments={assessments}
@@ -419,7 +419,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
                 rootClassName="mb-0"
                 level={5}
               >
-                {I18n.t('administration.scheduling.subjects.assessor_forms')}
+                {I18n.t('admin.scheduling_subjects_assessor_forms')}
               </Title>
               {errors?.base && errors.base.length > 0 && (
                 <Alert
@@ -436,7 +436,7 @@ export const EditSubjectDrawerComponent: FC<Props> = ({
               />
               <Button onClick={() => handleOpenAssignAssessorFormModal()}>
                 <PlusOutlined />
-                {I18n.t('administration.scheduling.subjects.add_assessor_form')}
+                {I18n.t('admin.scheduling_subjects_add_assessor_form')}
               </Button>
             </Space>
           </>

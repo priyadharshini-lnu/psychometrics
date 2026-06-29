@@ -38,7 +38,7 @@ export default function ConvertOrCopyTemplateModal ({
       method: 'post',
       action: 'convert_to_template',
     })
-    message.success(I18n.t('administration.threesixty_campaigns.convert_template_modal.convert.success'))
+    message.success(I18n.t('admin.modal_convert_success'))
   }
 
   const handleCopyAsTemplate = async () => {
@@ -47,7 +47,7 @@ export default function ConvertOrCopyTemplateModal ({
       method: 'post',
       action: 'copy_as_template',
     })
-    message.success(I18n.t('administration.threesixty_campaigns.convert_template_modal.copy.success'))
+    message.success(I18n.t('admin.modal_copy_success'))
   }
 
   const onConfirm = async (mode: 'convert' | 'copy') => {
@@ -66,7 +66,7 @@ export default function ConvertOrCopyTemplateModal ({
       await onConfirm(mode)
       close()
     } catch (err) {
-      setError(err?.base?.[0]?.title || I18n.t('administration.threesixty_campaigns.convert_template_modal.failed'))
+      setError(err?.base?.[0]?.title || I18n.t('admin.modal_failed'))
     } finally {
       setIsSubmitting(false)
     }
@@ -77,10 +77,10 @@ export default function ConvertOrCopyTemplateModal ({
       width={600}
       open={visible}
       onCancel={close}
-      title={I18n.t('administration.threesixty_campaigns.convert_template_modal.title')}
+      title={I18n.t('admin.modal_title')}
       footer={[
         <Button key="cancel" onClick={close}>
-          {I18n.t('administration.threesixty_campaigns.convert_template_modal.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="confirm"
@@ -88,13 +88,13 @@ export default function ConvertOrCopyTemplateModal ({
           onClick={handleSubmit}
           loading={isSubmitting}
         >
-          {I18n.t('administration.threesixty_campaigns.convert_template_modal.confirm')}
+          {I18n.t('shared.confirm')}
         </Button>,
       ]}
     >
       <Space orientation="vertical" size="middle">
         <Paragraph>
-          {I18n.t('administration.threesixty_campaigns.convert_template_modal.description')}
+          {I18n.t('admin.modal_description')}
         </Paragraph>
       </Space>
 
@@ -108,12 +108,12 @@ export default function ConvertOrCopyTemplateModal ({
         <Space orientation="vertical" size={8}>
           <Radio value="convert">
             <Text strong>
-              {I18n.t('administration.threesixty_campaigns.convert_template_modal.convert_option')}
+              {I18n.t('admin.modal_convert_option')}
             </Text>
           </Radio>
           <Radio value="copy">
             <Text strong>
-              {I18n.t('administration.threesixty_campaigns.convert_template_modal.copy_option')}
+              {I18n.t('admin.modal_copy_option')}
             </Text>
           </Radio>
         </Space>

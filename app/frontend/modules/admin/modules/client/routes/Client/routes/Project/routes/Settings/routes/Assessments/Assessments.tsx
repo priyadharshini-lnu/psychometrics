@@ -80,18 +80,18 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
 
   const removeAssessment = (projectAssessment: ProjectAssessment) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.assessments.delete.title'),
+      title: I18n.t('admin.project_tabs_assessments_delete_title'),
       content: I18n.t(
-        'administration.project_tabs.assessments.delete.content',
+        'admin.project_tabs_assessments_delete_content',
         {
           name: projectAssessment.assessment.name,
         },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
-      cancelText: I18n.t('administration.administrators.modals.delete.cancelText'),
+      okText: I18n.t('admin.administrators_modals_delete_okText'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => removeResource(projectAssessment.id).then(() => {
         message.success(
-          I18n.t('administration.project_tabs.assessments.delete.success', {
+          I18n.t('admin.project_tabs_assessments_delete_success', {
             name: projectAssessment.assessment.name,
           }),
         )
@@ -111,14 +111,14 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         pagination={false}
       >
         <Column
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex={['assessment', 'id']}
           key="assessment.id"
           sorter
           sortOrder={getSortOrder('assessment.id')}
         />
         <Column
-          title={I18n.t('administration.project_tabs.assessments.column.normalize_factor_scores')}
+          title={I18n.t('admin.project_tabs_assessments_column_normalize_factor_scores')}
           key="normalize_factor_scores"
           render={assessment => (
             <Switch
@@ -128,34 +128,34 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           )}
         />
         <Column
-          title={I18n.t('administration.project_tabs.assessments.column.user_result_validity_in_days')}
+          title={I18n.t('admin.project_tabs_assessments_column_user_result_validity_in_days')}
           dataIndex="userResultValidityInDays"
           key="userResultValidityInDays"
           render={value => (value === null ? 'N/A' : `${value} days`)}
         />
         <Column
-          title={I18n.t('administration.project_tabs.assessments.column.name')}
+          title={I18n.t('shared.name')}
           dataIndex={['assessment', 'name']}
           key="assessment.name"
           sorter
           sortOrder={getSortOrder('assessment.name')}
         />
         <Column
-          title={I18n.t('common.column.created_date')}
+          title={I18n.t('shared.created_date')}
           dataIndex="createdAt"
           key="createdAt"
           sorter
           sortOrder={getSortOrder('createdAt')}
         />
         <Column
-          title={I18n.t('common.column.modified_date')}
+          title={I18n.t('shared.modified_date')}
           dataIndex="updatedAt"
           key="updatedAt"
           sorter
           sortOrder={getSortOrder('updatedAt')}
         />
         <Column
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           key="actions"
           render={projectAssessment => (
             <ConditionalDropdown
@@ -178,7 +178,7 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   const Filter = (
     <Space>
       <Input.Search
-        placeholder={I18n.t('administration.projects.assessment_settings.search')}
+        placeholder={I18n.t('admin.projects_assessment_settings_search')}
         value={getFilteredValue('filterable_fields')}
         onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
@@ -236,11 +236,11 @@ const getActionMenuProps = ({
   const menuItems: MenuItem[] = [
     {
       key: 'edit',
-      label: I18n.t('common.actions.edit'),
+      label: I18n.t('shared.edit'),
     },
     {
       key: 'delete',
-      label: I18n.t('common.actions.delete'),
+      label: I18n.t('shared.delete'),
     },
   ]
 

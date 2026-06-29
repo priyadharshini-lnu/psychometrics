@@ -16,7 +16,7 @@ hr:
         assessment_exists: Postavka za odobrenje AI ocjenjivanja za ovu procjenu već postoji.
         validates_admins: Administratori nemaju pristup kampanji.
       already_assigned?: Ne mogu povezati ovu procjenu - već je dodijeljena '%{linked_assessor_form_name}'.
-      already_invited: Taj korisnik već postoji u centru za procjenu koji pokušavate dodati.
+      already_exists: Centar za procjenu koji pokušavate dodati već postoji.
       assessor_assessment:
         already_added: Procjena procjenitelja već je dodana u kampanju.
         lead_already_added: Kampanji se može dodati samo jedna procjena vodećeg procjenitelja.

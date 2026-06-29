@@ -14,7 +14,6 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { WorkshopAddFormModal } from './WorkshopAddFormModal'
-import { formatWorkshopDate } from '~/utils/workshop'
 import { useResources } from '~/hooks/useResources'
 
 
@@ -34,7 +33,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           trackUrl: true,
           responseType: WorkshopShortTR,
           apiConfig: {
-            fields: { workshops: ['id', 'start_time'] },
+            fields: { workshops: ['id', 'start_time', 'name'] },
           },
         }}
         name="workshops"
@@ -43,20 +42,20 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           <Button type="primary" onClick={() => openModal('WorkshopAddFormModal')}>
             <PlusOutlined />
             {' '}
-            {I18n.t('administration.assessment_center.invite.workshop_list.add')}
+            {I18n.t('shared.add')}
           </Button>
         </Resource.Filter>
         <Resource.Table pagination>
           <Resource.Column<WorkshopShort>
-            title={I18n.t('administration.assessment_center.invite.workshop_list.name')}
-            id="startTime"
+            title={I18n.t('shared.name')}
+            id="name"
             sorter
             width="90%"
-            render={(_, { startTime }) => formatWorkshopDate(startTime)}
+            render={(_, { name }) => name}
           />
           <Resource.Column<WorkshopShort>
             id="remove"
-            title={I18n.t('common.actions.remove')}
+            title={I18n.t('shared.remove')}
             render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
             width={100}
           />
@@ -77,14 +76,14 @@ const RemoveWorkshop: React.FC<{ workshop: WorkshopShort, campaignId:string, inv
 
   const { resource } = useResourceContext<WorkshopShort>()
 
-  const removeWorkshop = ({ id, startTime }: WorkshopShort) => {
+  const removeWorkshop = ({ id, name }: WorkshopShort) => {
     modal.confirm({
-      title: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.title'),
-      content: I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.content',
-        { name: formatWorkshopDate(startTime) }),
+      title: I18n.t('shared.confirm'),
+      content: I18n.t('admin.invite_workshop_list_remove_confirm_content',
+        { name }),
       onOk: () => {
         removeRelationships('workshops', [id]).then(() => {
-          message.success(I18n.t('administration.assessment_center.invite.workshop_list.remove_confirm.success'))
+          message.success(I18n.t('admin.invite_workshop_list_remove_confirm_success'))
           resource.setData(resource.data.filter(r => r.id !== id))
         })
       },

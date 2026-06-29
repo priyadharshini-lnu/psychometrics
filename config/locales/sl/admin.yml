@@ -2,15 +2,42 @@
 sl:
   admin:
     accept_na_values: Sprejmi vrednosti N/A
+    acceptable_rate_limit_label: Sprejemljiva omejitev zahtev
+    acceptable_rate_limit_request_per: zahteve na
     actions: Ukrepi
+    actions_add_code: Dodajte kodo
+    actions_archive: Arhiv
+    actions_playground: Igrišče
+    actions_unarchive: Odprava arhiviranja
+    active: Aktivni
+    active_label: Aktivni
+    active_name: Aktivni
+    active_record_audits_audit_id: ID revizije
+    active_record_audits_auditable_id: ID zapisa
+    active_record_audits_auditable_type: Vrsta zapisa
+    active_record_audits_audited_changes: Revidirane spremembe
+    active_record_audits_new_diff_parse_error: Ni bilo mogoče razčleniti JSON z novimi spremembami
+    active_record_audits_old_diff_parse_error: Ni bilo mogoče razčleniti JSON s starimi spremembami
+    active_record_audits_title: Revidirane spremembe
+    activity: Dejavnost
+    activity_period: Obdobje dejavnosti
     add_admin: Dodajanje skrbnika
     add_admin_role: Dodajanje skrbniške vloge
+    add_btn: Dodajanje zadeve
     add_campaign_admin: Dodajanje skrbnika oglaševalske akcije
     add_client_admin: Dodajanje skrbnika odjemalca
+    add_conditions: Dodajanje pogojev
+    add_evaluators: Dodajanje ocenjevalcev
     add_indicator: Dodaj indikator
+    add_lead_assessor: Dodaj kot vodilnega ocenjevalca
+    add_lead_assessor_hint: Prosimo, najprej dodajte obrazec za glavnega ocenjevalca
+    add_more: Dodaj več
     add_new_folder: Dodaj novo mapo
+    add_output_schema_key: Dodajanje ključa izhodne sheme
     add_project: Dodajanje projekta
     add_project_admin: Dodajanje skrbnika projekta
+    add_report: Dodajte poročilo
+    add_subjects: Dodajanje predmetov
     add_threesixty_campaign_admin: Dodajanje skrbnika oglaševalske akcije
     add_word_count: Dodaj število besed
     admin_approval_required: Poročilo za %{user} zahteva odobritev administratorja pred prenosom
@@ -20,24 +47,15 @@ sl:
     admin_role_deleted: Skrbniška vloga »%{role_name}« je bila uspešno izbrisana.
     admin_roles: Skrbniške vloge
     admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
+    administrator_approves_reports: Upravitelj odobri poročila
+    administrators_list_columns_email: E-pošta
     admins: Skrbniki
     advanced: Napredno
+    advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
     agile: AGILE
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
-    ai_artifacts_finalized_at: Dokončano dne
-    ai_artifacts_generate_result_confirm: Ustvarjanje rezultatov artefakta za uporabnika »%{email}« bo odstranilo obstoječe poročilo, ki je odvisno od tega AI-artefakta. Ali ste prepričani, da želite nadaljevati?
-    ai_artifacts_generate_results: Ustvarjanje rezultatov
-    ai_artifacts_mark_finalized: Označi kot dokončano
-    ai_artifacts_mark_finalized_bulk_confirm: Ob dokončnem oblikovanju rezultatov artefaktov za vse izbrane uporabnike bodo ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
-    ai_artifacts_mark_finalized_confirm: Ob dokončanju rezultatov artefakta za uporabnika »%{email}« se bo ustvarilo poročilo, ki uporablja umetno inteligenco za tega uporabnika. Ali res želite nadaljevati?
-    ai_artifacts_mark_not_finalized: Oznaka ni dokončna
-    ai_artifacts_mark_not_finalized_bulk_confirm: Če iz vseh izbranih uporabnikov odstranite status »finalize«, bodo odstranjena tudi ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
-    ai_artifacts_mark_not_finalized_confirm: Če iz uporabnika »%{email}« odstranite oznako »finalize«, bo to povzročilo odstranitev ustvarjenega poročila, ki uporablja AI-artefakt za tega uporabnika. Ali ste prepričani, da želite nadaljevati?
-    ai_artifacts_output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
-    ai_artifacts_results_export: Izvoz rezultatov
-    ai_artifacts_results_export_job_scheduled: Izvoz rezultatov AI Artifacts je bil uspešno načrtovan.
     ai_assistant: Pomočnik AI
     ai_assistant_model_id_label: ID modela
     ai_assistant_model_label: Model
@@ -46,21 +64,14 @@ sl:
     ai_assistant_required: Obvezen je AI Assistant
     ai_assistant_select_dependencies: Izberite odvisnosti
     ai_assistants: Pomočniki za umetno inteligenco
-    ai_assistants_advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
-    ai_assistants_campaign_id_placeholder: Vnesite ID kampanje
-    ai_assistants_cannot_change_type_when_in_use: Vrste AI-pomočnika »%{name}« ni mogoče spremeniti, ker je trenutno v uporabi.
-    ai_assistants_no_rendered_output: Na voljo ni prikazanih izhodov
-    ai_assistants_provider_change_confirm_title: Želite zamenjati ponudnika?
-    ai_assistants_provider_previously_used_warning: Ta pomočnik je doslej ustvarjal rezultate z »%{from}«. Prehod na »%{to}« lahko spremeni delovanje pomočnika pri prihodnjih zahtevah za ustvarjanje.
-    ai_assistants_render_button: Predloga za upodabljanje
-    ai_assistants_rendered_prompt: Upodobljen poziv
-    ai_assistants_template_and_campaign_required: Prosimo, navedite tako predlogo kot ID kampanje
-    ai_assistants_template_render_failed: Predloga ni uspela izrisati
-    ai_assistants_test_render: Testni upodabljanje
-    ai_assistants_test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
-    ai_assistants_type_locked_tooltip: Ta pomočnik je trenutno v uporabi in njegovega tipa ni mogoče spremeniti.
+    ai_assistants_disabled_by_client: Odjemalec onemogoči AI Assistants
+    ai_assistants_playground: Igrišče pomočnika AI
+    ai_assisted_idp: IDP s pomočjo AI
     ai_assisted_idp_disabled_by_client: AI Assisted IDP je onemogočen s strani stranke
     ai_assisted_idp_feature_disabled: Funkcija AI Assisted IDP je bila za ta projekt onemogočena.
+    ai_assisted_idp_requires_ai_assistants: AI Assisted IDP zahteva, da je omogočena funkcija AI Assistants
+    ai_content_analysis: Analiza vsebine z umetno inteligenco
+    ai_content_analysis_disabled_by_client: Analiza vsebine AI je onemogočena s strani stranke
     ai_idp_assistant_configure_dependencies: Konfigurirajte odvisnosti AI
     ai_idp_assistant_configure_dependencies_description: Konfigurirajte, do katerih podatkov o odvisnostih ima IDP AI Assistant dostop kot kontekst. To velja samo, če je pomočnik konfiguriran tako, da sprejema odvisnosti.
     ai_idp_assistant_dependencies_updated: Odvisnosti so bile uspešno posodobljene.
@@ -69,28 +80,7 @@ sl:
     ai_score_approval_no_answer: Odgovor na to vprašanje ni na voljo.
     ai_score_approval_no_transcription: Za to vprašanje transkripcija ni na voljo.
     ai_scored: AI je dosegel
-    ai_scoring_appoval_approve_all_questions: Odobri vsa vprašanja
-    ai_scoring_appoval_approve_question: Odobri vprašanje
-    ai_scoring_appoval_back: Ponastavi rezultat
-    ai_scoring_appoval_change_reason: Razlog za spremembo
-    ai_scoring_appoval_change_score: spremenjena ocena
-    ai_scoring_appoval_change_score_log: Dnevnik sprememb
-    ai_scoring_appoval_discard_all_questions: Ponastavi vsa vprašanja
-    ai_scoring_appoval_discard_all_questions_description: S tem boste ponastavili vse ocene za vsa vprašanja in izbrisali vse prekrivanja. Te akcije ni mogoče razveljaviti. Ste prepričani?
-    ai_scoring_appoval_discard_all_questions_title: Ponastaviti vse ocene vprašanj?
-    ai_scoring_appoval_discard_question: Ponastavi ocene vprašanj
-    ai_scoring_appoval_discard_question_confirm_description: S tem boste ponastavili vse ocene za to vprašanje in izbrisali vse prekrivanja. Ste prepričani?
-    ai_scoring_appoval_discard_question_confirm_title: Ponastaviti ocene vprašanj?
-    ai_scoring_appoval_discarded_changes: zavrnjene spremembe
-    ai_scoring_appoval_evidence_from_transcript: Dokazi iz prepisa
-    ai_scoring_appoval_new_score: Nova ocena
     ai_scoring_appoval_next: Naslednje vprašanje
-    ai_scoring_appoval_rationale: Utemeljitev
-    ai_scoring_appoval_reason_for_changes: Razlog za spremembe
-    ai_scoring_appoval_reset_score: Ponastavi rezultat
-    ai_scoring_appoval_reset_score_description: Rezultat bo vrnjen na prvotno vrednost AI.
-    ai_scoring_appoval_responses: Odgovori AI
-    ai_scoring_appoval_score_not_applicable: Rezultat ni veljaven
     ai_scoring_approval: Odobritev AI točkovanja
     ai_scoring_approval_digest_mailer_access_link_intro: 'Do odobritev ocen lahko dostopate prek naslednje povezave:'
     ai_scoring_approval_digest_mailer_approved_body_intro: Odobreni so bili naslednji rezultati.
@@ -113,62 +103,177 @@ sl:
     ai_scoring_refresh_score_confirm_description: S tem se bo ponovno izvedlo ocenjevanje z umetno inteligenco za to oceno, in sicer z najnovejšo konfiguracijo. Ste prepričani?
     ai_scoring_refresh_score_confirm_title: Osvežiti ocene AI?
     ai_scoring_rescore_queued: Ponovno ocenjevanje z umetno inteligenco je bilo dodano v čakalno vrsto. Prosimo, po nekaj trenutkih osvežite stran.
-    ai_translation: Prevod z umetno inteligenco
+    ai_translation: Prevodi z umetno inteligenco
+    ai_translation_disabled_by_client: AI prevajanje je onemogočeno s strani stranke
     all_corner_rounded: Vsi koti so zaobljeni
     allow_ai_rescoring: Dovoli ponovno ocenjevanje AI
     allow_continue_with_warning_system_check: Uporabnikom omogoči, da nadaljujejo kljub opozorilom, če sistemski pregled ni uspešen
+    allow_late_cancellation_and_scheduling: Omogočanje pozne odpovedi in načrtovanja
+    allow_manager_to_view_individual_responses: Upravitelju omogočite ogled posameznih odgovorov
+    allow_multiple_responses: Omogočanje več odgovorov
+    allow_subjects_to_send_reminders: omogočiti subjektom, da ocenjevalcem pošljejo opomnike.
+    alt_text_invalid: Nadomestno besedilo vsebuje nepodprte znake.
+    alt_text_logo: Nadomestno besedilo logotipa
+    alt_text_logo_required: Logotip nadomestnega besedila je obvezen
+    alt_text_long: Preseže največjo omejitev 100 znakov.
     api_keys: Ključi API-ja
+    api_keys_form_title: Ključ API-ja
+    application: Uporaba
+    application_add: Dodaj aplikacijo
+    application_name: Ime aplikacije
+    application_name_already_taken: Za tega stranko že obstaja
+    application_name_format_hint: Dovoljene so le črke in številke, med besedami pa je dovoljena le ena preslednica
+    applications: Uporaba
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
+    approve_all_questions: Odobri vsa vprašanja
+    approve_nomination_description: To sporočilo se pošlje vodji, ko je treba odobriti nominacijo, ki jo opravi neposredni podrejeni
+    approve_nomination_name: Odobri nominacijo
+    approve_question: Odobri vprašanje
+    approve_report_description: To sporočilo je poslano vodji subjekta, da ga obvesti, da je poročilo o predmetih pripravljeno za odobritev
+    approve_report_name: Odobrite poročilo
+    archive: Arhiv
+    archive_content: Ali ste prepričani, da želite arhivirati '%{project_name}'?
+    archive_success: Projekt '%{project_name}' je bil uspešno arhiviran.
+    archive_title: Arhivski projekt
+    artifact_results: Rezultati artefaktov
     assessment: Ocena
-    assessment_center_activity: Dejavnost
-    assessment_center_assessor: ocenjevalec
-    assessment_center_attendance: Prisotnost
-    assessment_center_attendance_status: Stanje prisotnosti
-    assessment_center_campaigns_tab: Kampanje
-    assessment_center_date_and_time: Datum in ura
-    assessment_center_join_room: Pridruži se sobi
-    assessment_center_meeting_link: Povezava do sestanka
-    assessment_center_participants_tab: Udeleženci
-    assessment_center_prework: Priprava
-    assessment_center_schedule_time: Časovni razpored
-    assessment_center_scheduling_status: Stanje načrtovanja
-    assessment_center_search_participants: Iskanje udeležencev...
+    assessment_center: 'Ocenjevalni center:'
+    assessment_center_group: Skupina ocenjevalnih centrov
+    assessment_center_group_placeholder: Izberite skupino ocenjevalnega središča
+    assessment_center_invites: Vabila v ocenjevalni center
+    assessment_ids: Identifikacijske številke ocen
+    assessment_placeholder: Izberite Ocenjevanje
     assessment_question_not_supported: Ta vrsta vprašanja trenutno ni podprta.
+    assessment_required: Ocena je potrebna
     assessments: Ocenjevanja
+    assessments_assessment_report: Ocenjevanja
+    assessments_copy: Kopiraj
     assessments_copy_as_microsite: Kopiraj kot ocenjevanje mikrostrani
+    assessments_copy_assessment: Ocena kopije
+    assessments_help_text: Ta izbira vpliva samo na dogodek Ocena surovega odgovora.
+    assessments_label: Ocenjevanja
     assessments_not_mhs: Vse ocene morajo biti tipa MHS.
+    assessments_placeholder: Izberite ocene
     assessments_reports: Ocenjevanja in poročila
+    assessments_required: Za dogodek Ocena surovega odgovora je treba izbrati vsaj eno oceno.
+    assessor: Ocenjevalec
+    assessor_add_subject_modal_assessment: Ocenjevanje
+    assessor_add_subject_modal_mark_as_lead_assessor: Označite kot vodilnega ocenjevalca za zgornjo temo
+    assessor_add_subject_modal_subject: Zadeva
+    assessor_add_subject_modal_subject_placeholder: Zadeva iskanja..
+    assessor_add_subject_modal_title: Dodajanje zadeve
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Izberite oceno
+    assessor_assessment_name: Ocenjevanje ocenjevalca
+    assessor_assessments: Ocenjevanje ocenjevalcev
+    assessor_assessments_actions_add_subject: Dodajanje zadeve
+    assessor_assessments_actions_rescore: Ponovna ocena
+    assessor_assessments_actions_reset: Ponastavi ocenjevanje
+    assessor_assessments_actions_reset_progress: Ponastavitev napredka
+    assessor_assessments_bulk_delete_confirmation: Ali ste prepričani, da želite izbrisati izbrane zapise?
+    assessor_assessments_bulk_delete_successful: Ocenjevanja ocenjevalcev so bile uspešno izbrisane
+    assessor_assessments_reset_confirmation: Ali ste prepričani, da želite ponastaviti ocenjevanje za zadevo z e-poštnim sporočilom "%{subjectEmail}"?
+    assessor_assessments_reset_progress_confirmation: Ali ste prepričani, da želite ponastaviti napredek za zadevo z e-poštnim sporočilom "%{subjectEmail}"?
+    assessor_assessments_reset_progress_successfully: Ponastavitev napredka za zadevo z e-poštnim sporočilom »%{subjectEmail}« je bila uspešna.
+    assessor_assessments_reset_successfully: Ponastavitev ocene za zadevo z e-poštnim sporočilom »%{subjectEmail}« je bila uspešna.
+    assessor_assessments_subject_email: Zadevni e-poštni naslov
+    assessor_assessments_subject_name: Ime zadeve
+    assessor_campaigns_statuses_completed: Zaključeno
+    assessor_campaigns_statuses_in_progress: V teku
+    assessor_campaigns_statuses_not_started: Ni začeto
+    assessor_completed_at: Zaključek ob
+    assessor_count: Ocenjevalcev
+    assessor_create_assessor: Dodajanje ocenjevalca
     assessor_dashboard: Nadzorna plošča ocenjevalca
+    assessor_email: E-poštni naslov ocenjevalca
+    assessor_evaluations: Ocenjevanje ocenjevalcev
+    assessor_first_name: Ime ocenjevalca
     assessor_form: Obrazec ocenjevalca
+    assessor_ids_label: Ocenjevalcev
+    assessor_last_name: Priimek ocenjevalca
+    assessor_modals_import_body: Oglejte si funkcijo izvoza, da izvlečete predlogo, ki jo lahko uporabite za uvoz tukaj.
+    assessor_modals_import_title: Ocenjevalci uvoza
+    assessor_overview: Pregled
+    assessor_placeholder: Iskanje ocenjevalca ...
+    assessor_remove_confirmation: Ali ste prepričani, da želite odstraniti ocenjevalca z e-poštnim naslovom %{email} iz te kampanje?
+    assessor_statuses_completed: Zaključeno
+    assessor_statuses_not_completed: Ni zaključeno
+    assessor_subjects_statuses_completed: Zaključeno
+    assessor_subjects_statuses_in_progress: V teku
+    assessor_subjects_statuses_not_started: Ni začeto
+    assessor_toolbar_export: Ocenjevalci izvoza
+    assessor_toolbar_import: Ocenjevalci uvoza
     assessor_workshops: Ocenjevalni center
     assessors: Ocenjevalcev
     assistant_toolbar_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
     assistant_toolbar_not_a_valid_operation: Neznana operacija %{operation}.
     assistant_validation_failed: Po več poskusih ni bilo mogoče ustvariti veljavnega izhoda.
+    attendance: Prisotnost
+    attendance_status: Stanje prisotnosti
     audit_log_impersonated_by: V vlogi
+    audit_log_title: Informacije o dnevniku nadzora
+    audit_log_type: Vrsta zapisa
     audit_logs: Dnevniki nadzora
+    audit_logs_export_failed: Načrtovanje naloge izvoza ni uspelo. Poskusite znova.
+    audit_logs_export_queued: Izvozno opravilo je bilo uspešno načrtovano.
     audit_reports: Revizijska poročila
+    auth_type_api_key_header_format_error: Dovoljene so samo črke, številke, podčrtaji in vezaji
+    auth_type_api_key_header_label: Glava ključa API
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: Ključ API-ja
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: Osnoven
+    auth_type_basic_value: basic_auth
+    auth_type_label: Vrsta preverjanja pristnosti
+    auth_type_name: auth_type
+    auth_type_no_auth_label: Nobena
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: Ta ocena je avtomatsko potrjena in je ni mogoče spremeniti
     auto_placeholder: Avto
+    automatically_send_invites: Samodejno pošiljanje povabil novim ocenjevalcem
     availability: Razpoložljivost
-    available_languages: Poročilo je na voljo v jezikih
+    available_languages: Razpoložljivi jeziki
     average: Povprečje
+    back: Ponastavi rezultat
     back_to_main: Glavni meni
+    background_color: Barva ozadja
+    background_label: Ozadje
+    background_overlay_label: Prekrivna plast ozadja
+    background_size: Velikost ozadja
+    background_size_contain: Vsebovati
+    background_size_cover: Kriti
+    basic_info_panel_description: Prosimo, vnesite spodnje informacije o urniku. Izberete lahko tudi več datumov, da ustvarite več ocenjevalnih centrov.
+    basic_info_panel_title: Osnovne informacije
     block_editor_add_question: Dodaj vprašanje
     block_editor_question_randomization: Naključno razvrščanje vprašanj
     block_options: Možnosti blokiranja
     block_settings: Nastavitve blokov
     blocks_new_button: Nov blok
     blocks_title: Bloki
+    booked_at: 'Rezervirano na:'
+    breadcrumbs_norms_editor: Urejevalnik norm
+    bulk_assessment_download_date_range_required: Izberite časovno obdobje
+    bulk_assessment_download_export_type: Vrsta izvoza
+    bulk_assessment_download_export_type_required: Izberite vrsto izvoza
+    bulk_assessment_download_help_text: 'Opomba: Če so ocene povezane z različnimi dimenzijami, bo prenesena datoteka xslx vsebovala ločene liste za vsako dimenzijo.'
+    bulk_assessment_download_modal_subtitle: Izberite časovno obdobje in vrsto izvoza, nato pa izvozite izbrane ocene.
+    bulk_assessment_download_no_data_found: Za izbrano časovno obdobje in ocene ni bilo najdenih podatkov. Poskusite z drugim časovnim obdobjem ali drugimi ocenami.
+    bulk_assessment_download_norm_factor_scores: Ocene normativnega faktorja
+    bulk_assessment_download_raw_factor_scores: Surove faktorne ocene
     bulk_assets_modal_choose_csv: Izberite CSV datoteko
     bulk_assets_modal_choose_zip: Izberite ZIP datoteko
     bulk_assets_modal_not_csv_file_error: Za nalaganje CSV datotek so dovoljene samo CSV datoteke. Naložite veljavno CSV datoteko.
     bulk_assets_modal_subtitle: 'Prosimo, naložite <b>eno CSV</b> datoteko (z naslovi: user_email, file_name) in <b>eno ZIP</b> datoteko (ki vsebuje PDF datoteke, ki ustrezajo imenom datotek iz csv). Zip datoteka mora biti manjša od %{max_file_size} MB.'
     bulk_assets_modal_title: Naložite CSV in ZIP datoteke
+    bulk_export_assessments_file: Datoteka za izvoz množičnih ocen
+    bulk_export_invalid_params: Neveljavni parametri za izvoz v večjem obsegu
     bulk_upload_ai_artifacts: Artefakti umetne inteligence za množično nalaganje
+    campaign: Kampanja
+    campaign_admin: Skrbnik oglaševalske akcije
     campaign_ai_artifact_updated_successfully: Artefakti AI kampanje so uspešno posodobljeni
     campaign_ai_artifacts_instruction_templating_tooltip: Uporabite lahko napredna navodila z uporabo predlog za ukazno vrstico, ki temeljijo na sintaksi Liquid in razpoložljivih spremenljivkah. Za več podrobnosti si oglejte dokumentacijo.
-    campaign_ai_artifacts_results_export_details: Rezultati, ki so jih ustvarili artefakti kampanje AI
     campaign_assessment_actions_disable_caching: Onemogoči predpomnjenje ocenjevanja
     campaign_assessment_actions_enable_caching: Omogočite predpomnjenje ocenjevanja
     campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
@@ -201,71 +306,230 @@ sl:
     campaign_assessment_modals_enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
     campaign_assessment_modals_enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
     campaign_factors: Dejavniki oglaševalske akcije
+    campaign_id_placeholder: Vnesite ID kampanje
     campaign_name: Ime kampanje
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: ID zunanjega poročila
-          language_id: ID jezika
-          norm: Norma
-          norm_id: Številka standarda
-          suitability_id: ID primernosti
-        labels:
-          assessment_ids: Identifikacijske številke ocen
-          available_languages: Razpoložljivi jeziki
-          campaign_report_id: Številka poročila o kampanji
-          check_details: Preveri podrobnosti
-          default_language: Privzeti jezik
-          external_settings: Zunanje nastavitve
-          provider: Ponudnik
-          report_pdf_status: Poročilo o stanju v obliki PDF
-          user_report_id: ID poročila uporabnika
+    campaign_report_generate_modal_subtitle: Izberite zahtevani jezik za vsako poročilo
+    campaign_report_id: Številka poročila o kampanji
+    campaign_results_export_details: Rezultati, ki so jih ustvarili artefakti kampanje AI
     campaign_templates: Predloge oglaševalskih akcij
+    campaign_templates_campaign_templates: Predloge oglaševalskih akcij
+    campaign_templates_column_assessment: Ocenjevanje
+    campaign_templates_column_campaign: Kampanja
+    campaign_templates_column_owner: Lastnik
+    campaign_templates_column_report: Poročilo
+    campaign_templates_form_assessment: Ocenjevanje
+    campaign_templates_form_assessment_placeholder: Izberite oceno
+    campaign_templates_form_name_placeholder: Vnesite ime
+    campaign_templates_form_owner: Lastnik
+    campaign_templates_form_owner_placeholder: Izberite lastnika
+    campaign_templates_form_report: Poročilo
+    campaign_templates_form_report_placeholder: Izbiranje poročila
+    campaign_templates_form_title: Predloga oglaševalske akcije
+    campaign_templates_remove_confirm_content: Ali ste prepričani, da želite odstraniti predlogo oglaševalske akcije »%{name}«?
+    campaign_templates_remove_confirm_success: Predloga kampanje '%{name}'' je bila uspešno odstranjena.
+    campaign_templates_remove_confirm_title: Odstranjevanje predloge oglaševalske akcije
     campaign_user_job_roles_cannot_be_same: Ciljna delovna vloga mora biti drugačna od trenutne delovne vloge.
     campaigns: Kampanje
+    campaigns_convert_to_template: Pretvori v predlogo
+    campaigns_extend_time_success_message: Časovnik oglaševalske akcije podaljšan na %{minutes} minut
+    campaigns_external_scores_import_modal_title: Uvoz ocen zunanjih oglaševalskih akcij
+    campaigns_filters_active: Aktivni
+    campaigns_filters_all: Prikaže vse
+    campaigns_filters_archived: Arhivirani
+    campaigns_filters_closed: Zaprt
+    campaigns_filters_inactive: Neaktiven
+    campaigns_filters_status: Stanje
+    campaigns_form_active_notice: Status kampanje se bo samodejno spremenil v zaprto na izbrani končni datum
+    campaigns_form_campaign: Kampanja
+    campaigns_form_copy_factors: Faktorji kopiranja
+    campaigns_form_inactive_notice: Status kampanje se bo samodejno spremenil v aktivni na izbrani datum začetka
+    campaigns_form_practice_campaign: Vadbena kampanja
+    campaigns_listing_assessments: Ocenjevanja
+    campaigns_listing_reports: Poročila
+    campaigns_listing_template: Predloga
+    campaigns_menus_add_common_campaign: Dodajanje skupne oglaševalske akcije
+    campaigns_menus_add_multi_rater_campaign: Dodajanje oglaševalske akcije z več ocenjevalci
+    campaigns_pdf_password: Geslo PDF
+    campaigns_tab: Kampanje
+    campaigns_types_common: Običajno
+    campaigns_types_threesixty: Več ocenjevalcev
+    campaigns_users_add_user: Dodaj uporabnika
+    campaigns_users_completion_status: Status dokončanja
+    campaigns_users_created_by: Ustvaril
+    campaigns_users_filters_all: Prikaže vse
+    campaigns_users_filters_anonymous: Anonimni
+    campaigns_users_filters_identified: Opredeljeni
+    campaigns_users_is_active: Aktivni
+    campaigns_users_no_permission_message: Nimate dovoljenja za spreminjanje
+    campaigns_users_title: Uporabniki
+    campaigns_users_updated_by: Posodobil
     cancel: Prekliči
+    cancel_confirmation_message: Ali ste prepričani, da želite zavreči napredek obrazca?
+    cancel_confirmation_title: Zavrzi napredek obrazca
     cancellation_and_rescheduling_disabled: Preklic in sprememba termina sta onemogočena.
+    cancellation_lead_time_label: Čas za preklic
+    cannot_change_type_when_in_use: Vrste AI-pomočnika »%{name}« ni mogoče spremeniti, ker je trenutno v uporabi.
     captcha: Preverjanje s Captcha
     case_study: Študija primera
     casual: Površno
+    categories_approvals: Odobritve
+    categories_invitations: Vabila
+    categories_reminders: Opomnike
+    categories_report_ready: Pripravljeno poročilo
+    category: Kategorija
     cell_save_msg: Veljavne spremembe se samodejno shranijo, ko po urejanju zapustite celico.
+    change_reason: Razlog za spremembo
+    change_score: spremenjena ocena
+    change_score_log: Dnevnik sprememb
     characters: znaki
     chat_instructions_success: Navodila za klepet so bila uspešno shranjena
+    check_details: Preveri podrobnosti
     children_factor_type: Tip otroškega faktorja
     client: Najem stranke
+    client_admin: Skrbnik odjemalca
     client_admins: Skrbniki odjemalcev
+    client_credentials_label: Poverilnice odjemalca
+    client_credentials_value: client_credentials
+    client_features: Funkcije odjemalca
+    client_id_label: ID naročnika
+    client_id_name: oauth_client_id
+    client_id_required: Potrebna je identifikacijska številka stranke
+    client_ids: ID-ji strank
+    client_ip: IP stranke
+    client_logo_label: Logotip stranke
+    client_secret_label: Skrivnost stranke
+    client_secret_name: oauth_client_secret
+    client_secret_required: Skrivnost odjemalca je obvezna
     client_selection_instruction: Izberite stranko, da nadaljujete v nadzorno ploščo.
     client_selection_sign_out: Odjavi se
     client_selection_title: Izberi stranko
     clients: Spletno okolje naročnika
     clients_search_placeholder: Iskanje stranke
+    closed: Zaprt
     code_required: Potrebna je koda
+    collapse_filters: Strnitev filtrov
+    column_code: Koda
+    column_invitation_status: Status povabila
+    column_participant: Udeleženec
+    column_provider: Ponudnik
+    column_scheduling_details: Podrobnosti o načrtovanju
+    column_usage_stats: Statistika uporabe
     common: Ocena TTE
     common_assessment: Ocena TTE
+    common_disabled: Onemogočeno
+    common_download_sample_file: Prenesite vzorčno datoteko
+    common_enabled: Omogočeno
+    common_import_failure_msg: Napaka pri uvozu datoteke.
+    common_minute: minuta
+    common_select_all: Izberi vse
+    common_type: Vrsta
+    common_unselect_all: Počisti izbiro vseh
     communication_center: Komunikacijsko središče
     communications: Komunikacije
+    communications_form_insert_piped_text: Vstavljanje cevastega besedila
     completed: Dokončan
     completed_tooltip: Vsi ocenjevalci so oddali oceno
+    components_input_duration_placeholder: Vpišite kot "1d 2h 3m"
     concise: Kratek
+    confidence_interval: Interval zaupanja
+    confidence_interval_update_success: Zaupanjski interval je bil uspešno posodobljen.
+    configuration: Konfiguracija
     configure_model_answer_title: Konfigurirajte vzorčni odgovor in ključne besede
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
     confirmation_required: Potrebna je potrditev
     confirmation_required_details: Ali ste prepričani, da želite izbrisati datoteko »%{resource_name}« iz mape »%{resource}«?
+    consolidated: Konsolidirani
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: Kopirano
     copied_url_success: URL je bil uspešno kopiran v odložišče
     copy_ai_artifacts: Kopiraj AI-ustvarjene artefakte
+    copy_hint: Kopira zgornje konfiguracije sedežev, vodij centrov, ocenjevalcev ter sestankov in virov v naslednje ocenjevalne centre. Po kopiranju lahko pred nadaljevanjem naredite nadaljnje spremembe v posameznih ocenjevalnih centrih.
     copy_image_url: Kopiraj URL slike
+    copy_report_scheduled: Naloga za kopiranje poročila je bila načrtovana.
+    copy_text: Besedilno sporočilo
+    copy_to_all: Kopirajte v druge ocenjevalne centre
     copy_url: Kopiraj URL
     country: Država
+    course: Tečaj
+    create_ai_assistants: Ustvarite pomočnika AI
     create_client: Ustvari odjemalca
     create_indicator: Ustvari indikator
+    create_level_description_must_exist: Opis ravni ne sme biti prazen
+    create_level_name_must_exist: Ime ravni ne more biti prazno
+    create_must_be_unique: Mora biti edinstven
+    created_successfully: Pomočnik umetne inteligence je bil uspešno ustvarjen.
+    current: Sedanji
     current_job_role: Trenutna delovna vloga
+    custom_formula: Formula po meri
+    custom_message_description: To sporočilo lahko pošljete vsem, ki sodelujejo v ocenjevanju
+    custom_message_name: Sporočilo po meri
     custom_upload: Nalaganje po meri
     dashboard: Nadzorna plošča
+    dashboard_capacity_name: Ime zmogljivosti
+    dashboard_choose_file_format: Izberite obliko zapisa datoteke
+    dashboard_dashboard_types_oracle_analytics: Oracle Analytics
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: Namizij
+    dashboard_export_dashboard_to_file: Izvozi nadzorno ploščo v datoteko
+    dashboard_export_job_failure: Izvažanja ni bilo mogoče začeti
+    dashboard_export_job_success: Delo izvoza se je začelo. Ko bo končana, boste obveščeni.
+    dashboard_form_image_upload_failed: Nalaganje slik ni uspelo.
+    dashboard_form_none: Nobena
+    dashboard_form_refresh_success: Osvežitev nabora podatkov je bila uspešno načrtovana.
+    dashboard_get_started: Začnite
+    dashboard_initialize_msg: Inicializacija nadzorne plošče za to oglaševalsko akcijo
+    dashboard_loading_failed: Nalaganje armaturne plošče ni uspelo.
+    dashboard_only_export_current_tab: Izvozi samo trenutni zavihek
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: Preverite, ali sta nabor podatkov in ID poročila v nastavitvah pravilna.
+    dashboard_preview_embed_token_error_title: Žetonu za vdelavo ni mogoče ustvariti.
+    dashboard_settings_capacity_id: ID zmogljivosti
+    dashboard_settings_details: Podrobnosti
+    dashboard_settings_refresh: Osvežiti
+    dashboard_settings_workspace_id: ID delovnega prostora
+    dashboard_tabs_accesssheet: Dostopni list
+    dashboard_tabs_accesssheet_setting: Nastavitve dostopnega lista
+    dashboard_tabs_settings: Nastavitve
     dashboards: Namizij
+    dashed_button: Črtkano
+    data_exports_modal_title: Izbira časovnega obdobja
+    data_range_error: Prosimo, izberite razpon datumov
     data_reports: Poročila o podatkih
+    data_reports_columns_created_at: Ustvarjeno
+    data_reports_columns_created_by: Ustvaril
+    data_reports_columns_last_updated_by: Nazadnje posodobil
+    data_reports_columns_password: Geslo
+    data_reports_columns_udpated_at: Nazadnje posodobljeno na
+    data_reports_configuration: Konfiguracijo
+    data_reports_form_name: Poročilo o podatkih
+    data_reports_messages_runed: Poročilo o podatkih je bilo uspešno načrtovano za zagon
+    dataset_id: ID nabora podatkov
     datasheet: Podatkovni list
+    date_and_time: Datum in ura
+    date_presets_last_30_days: Zadnjih 30 dni
+    date_presets_last_6_months: Zadnjih 6 mesecev
+    date_presets_last_7_days: Zadnjih 7 dni
+    date_presets_last_month: Prejšnji mesec
+    date_presets_last_week: Prejšnji teden
+    date_presets_last_year: Lani
+    date_presets_today: Danes
+    date_presets_yesterday: Včeraj
+    date_range: Časovno obdobje
+    date_range_required: Območje datumov je obvezno
+    dates_completed: Zaključek ob
+    dates_end: Datum zaključka
+    dates_label: Datumi
+    dates_start: Datum začetka
+    dates_started: Začetek
+    days_repeated: dnevi, ponavljajoče se
     declined: Zmanjšala
+    default: Privzeto
+    default_assessment_language: Privzet jezik ocenjevanja
+    default_button: Privzeto
+    default_language: Privzeti jezik
+    default_report_language: Privzet jezik poročila
     define_max_score_text: Določite oceno »%{maxScore}« (najvišja ocena)
     define_min_score_text: Določite oceno „%{minScore}“ (minimalna ocena)
     define_optional_score_range_text: Opredelite ocene %{minScore} do %{maxScore} (neobvezno)
@@ -273,10 +537,40 @@ sl:
     definition: Opredelitev
     delete_ok_text: Da, Izbriši
     denied: Zavrnjen
+    dependencies: Odvisnosti
     description: Opis
+    description_name: Opis
+    description_save: Shrani opis
+    description_save_success: Opis je bil uspešno shranjen
     descriptive_text: Opisno besedilo
     development_actions: Razvojni ukrepi
+    development_actions_duration_max_length: Ne sme biti daljši od 1 leta
+    development_actions_duration_min_length: Ne sme biti krajši od 1 minute
+    development_actions_export_development_action_translations: Prevodi razvojnih ukrepov
+    development_actions_export_development_actions: Razvojni ukrepi
+    development_actions_export_failure_msg: Napaka pri izvažanju prevodov
+    development_actions_export_success_msg: Izvoz razvojnih ukrepov v teku. Preverite stanje v obvestilih.
+    development_actions_form_available_languages: Razpoložljivi jeziki
+    development_actions_form_client_placeholder: Izberite odjemalca
+    development_actions_form_course_image: Slika tečaja
+    development_actions_form_course_link: Povezava do tečaja
+    development_actions_form_development_action_type: Vrsta razvojnega ukrepa
+    development_actions_form_duration: Trajanje
+    development_actions_form_learning_style: Slog učenja
+    development_actions_form_project_placeholder: Izberite projekt
+    development_actions_form_skills: Spretnosti
+    development_actions_form_skills_placeholder: Izberite spretnosti
     development_actions_form_tags: Oznake
+    development_actions_form_title: Razvojni ukrepi
+    development_actions_global: Ali je globalno razvojno ukrepanje?
+    development_actions_heading: Razvojni ukrepi
+    development_actions_import_action_development_actions_title: Uvoz razvojnih ukrepov
+    development_actions_import_action_development_actions_translations_title: Uvoz prevodov razvojnih dejanj
+    development_actions_import_development_actions: Razvojni ukrepi
+    development_actions_import_development_actions_translations: Prevodi razvojnih akcij
+    development_actions_import_download_example_csv: Prenesite primer csv
+    development_actions_import_failure_msg: Napaka pri uvozu datoteke.
+    development_actions_import_info_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
     digest_delivery_mode:
       form_label: Način dostave prebavnega sistema
       immediate: Takojšnje - Pošlji, kadar koli pride do množičnega pošiljanja
@@ -297,16 +591,68 @@ sl:
       wednesday: sreda
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
+    dimensions_destroy_successfully: Dimenzija %{name} je bila uspešno izbrisana.
+    dimensions_export_json_successfully: Izvoz JSON, predviden za dimenzijo %{name}.
+    dimensions_form_enable_innovation_styles: Omogočanje inovacijskih stilov
+    dimensions_form_enable_occupations: Omogočite poklice
+    dimensions_form_title: Dimenzije
+    dimensions_import_factors_sample_file: Vzorčna datoteka
+    dimensions_import_factors_title: Dejavniki uvoza
+    dimensions_import_modal_after: Po spletni strani
+    dimensions_import_modal_before: Pred
+    dimensions_import_modal_change_log_input: Dnevnik sprememb
+    dimensions_import_modal_error: Napaka
+    dimensions_import_modal_error_occurred: Prišlo je do napake
+    dimensions_import_modal_errors_file_error: Pred nadaljevanjem izberite datoteko JSON.
+    dimensions_import_modal_errors_processing_error: Napaka pri obdelavi datoteke
+    dimensions_import_modal_field: Polje
+    dimensions_import_modal_import_dimension: Uvozna razsežnost
+    dimensions_import_modal_import_scheduled: Načrtovani uvoz
+    dimensions_import_modal_operation: Operacija
+    dimensions_import_modal_owner_input_validation: Prosimo, izberite lastnika
+    dimensions_import_modal_owner_select: Izberite lastnika
+    dimensions_import_modal_select_json: Izberite datoteko JSON
+    dimensions_index_title: Dimenzije
+    dimensions_resource_confirmations_delete_body: "<p>Ali ste prepričani, da želite izbrisati to dimenzijo?</p>\n"
+    dimensions_resource_confirmations_delete_message: Vnesite ime dimenzije, navedeno spodaj, v tekstovno polje, da potrdite
+    dimensions_resource_tooltips_export_json: Izvoz JSON za uvoz na drugo platformo
+    dimensions_translations_export: Izvozi vse
+    dimensions_translations_header: Prevodi faktorjev
+    disable_caching_content: Ste prepričani, da želite onemogočiti predpomnjenje za to oceno?
+    disable_caching_successfully: Za to oceno je bilo predpomnjenje onemogočeno.
+    disable_caching_title: Onemogočiti predpomnjenje ocenjevanja?
+    disable_cancellation_and_rescheduling: Onemogočanje odpovedi in ponovnega načrtovanja
+    disable_dp: Ne dovoli nadaljnje obdelave podatkov
     disable_proctoring: Onemogoči nadzor
+    disable_report_download: Onemogočite prenos poročila
     disallow_lead_assessor_moderation: Onemogoči moderiranje glavnega ocenjevalca
     disallow_lead_assessor_moderation_info: Ocena se bo samodejno izračunala na podlagi vseh predloženih obrazcev ocenjevalcev, glavni ocenjevalec pa je ne more spremeniti na zaslonu za pregled.
+    discard_all_questions: Ponastavi vsa vprašanja
+    discard_all_questions_description: S tem boste ponastavili vse ocene za vsa vprašanja in izbrisali vse prekrivanja. Te akcije ni mogoče razveljaviti. Ste prepričani?
+    discard_all_questions_title: Ponastaviti vse ocene vprašanj?
+    discard_question: Ponastavi ocene vprašanj
+    discard_question_confirm_description: S tem boste ponastavili vse ocene za to vprašanje in izbrisali vse prekrivanja. Ste prepričani?
+    discard_question_confirm_title: Ponastaviti ocene vprašanj?
+    discarded_changes: zavrnjene spremembe
+    document_titles_project_assessors: Ocenjevalci | %{project}
+    document_titles_project_participants: Udeleženci | %{project}
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
+    download_example_csv: Prenesite primer csv
+    dp_consent: Omogočite soglasje za obdelavo podatkov
+    dp_consent_custom: Prilagodite soglasje za obdelavo podatkov
+    dp_consent_version: Različica pravilnika
     duration: Trajanje
+    duration_label: Trajanje
+    duration_max_error: Ne sme biti daljši od 16 ur
+    duration_min_error: Ne sme biti krajše od 15 minut
     duration_must_be_positive: Trajanje mora biti pozitivno
+    duration_placeholder: Npr. 4 ure 30 m
+    edit_ai_assistants: Urejanje pomočnika AI
     edit_campaign_admin: Urejanje skrbnika oglaševalske akcije
     edit_client_admin: Urejanje skrbnika odjemalca
+    edit_email: Urejanje e-pošte
     edit_folder: Uredi mapo
     edit_indicator: Uredi indikator
     edit_job_roles: Uredi delovna mesta
@@ -315,35 +661,106 @@ sl:
     edit_permission_denied: Nimate dovoljenja za urejanje administratorskega '%{name}'
     edit_project_admin: Urejanje skrbnika projekta
     edit_threesixty_campaign_admin: Urejanje skrbnika oglaševalske akcije
+    email_manager_when_report_is_ready_for_approval: e-poštno sporočilo upravitelja, ko je poročilo pripravljeno za odobritev
+    email_messages: E-poštna sporočila
+    email_subject_when_report_becomes_available: Predmet e-pošte, ko bo poročilo na voljo
+    email_subjects_manager_when_available: Pošljite e-pošto vodji subjekta, ko bo poročilo na voljo
     empty: Prazno
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    enable_caching_content: Ste prepričani, da želite omogočiti predpomnjenje za to oceno?
+    enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
+    enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
     enable_enhance_with_ai_client_level: Omogočite funkcijo Izboljšaj z AI na ravni odjemalca.
+    enable_face_detection: Omogoči zaznavanje obrazov
     enable_maintenance: Omogoči vzdrževanje
     enable_mobile_proctoring: Omogoči mobilno nadzorovanje
+    enable_phrase_verification: Omogoči preverjanje fraz
     enable_system_check: Omogoči preverjanje sistema
     enable_transcription: Omogoči prepis
     enable_transcription_msg: Omogoči Transcription, da uporabi AI ocenjevanje pri vprašanjih z odgovori v obliki videa/avdio.
+    enable_video_call_recording: Omogočanje snemanja video klicev
+    enabled: Omogočeno
     end: konec
     end_time: Konec časa
     end_time_must_be_after_start_time: Končni čas mora biti po začetnem času.
     enhance_with_ai: Izboljšajte z umetno inteligenco
     enhance_with_ai_requires_ai_assistants: Za izboljšanje z umetno inteligenco je treba omogočiti funkcijo AI Assistants.
+    enter_client_ids: Vnesite identifikacijske številke strank
     enter_description: Vnesite opis
     enter_name: Vnesite ime
+    enter_project_ids: Vnesite identifikacijske številke projektov
     enter_question_id: Vnesite ID vprašanja
+    enter_report_ids: Vnesite identifikacijske številke poročil
+    enter_schema_key: Vnesite ključ sheme
     error: Napaka
+    error_color: Barva napake
+    errors_csv_file_required: Datoteka mora biti datoteka CSV
+    errors_error_msg: Nekaj je šlo narobe. Osvežite stran in če težave še vedno ne morete, se obrnite na skrbnika
+    errors_min_retention: Ne sme biti krajši od 1 dneva
+    errors_policy_version_format: Dovoljene so samo cele številke
+    errors_required: obvezno
     estimated_tokens: žetoni (ocena)
+    evaluate_others_description: To sporočilo bo prikazano, ko bodo udeleženci ocenjevali druge znotraj portala
+    evaluate_others_name: Ocenite druge
+    evaluate_self_description: To sporočilo bo prikazano subjektom, ko bodo začeli samoevalvacijo
+    evaluate_self_name: Ocenjevalec sam
+    evaluation_help_description: Besedilo pomoči, prikazano na kartici za ocenjevanje na nadzorni plošči uporabnika
+    evaluation_help_name: Pomoč pri ocenjevanju
     evaluation_status: Status ocenjevanja
     evaluation_status_not_done: Status ocenjevanja ni 'končan' za enega ali več izbranih predmetov. Prosimo, poskrbite, da so vsi izbrani uporabniki opravili ocene ali označili kot opravljeno.
+    evaluations_completed: Zaključena vrednotenja
+    evaluations_received: Prejete ocene
+    evaluator_invite_description: To sporočilo bo poslano vsem udeležencem, ki so ocenjevalci
+    evaluator_invite_name: Povabilo ocenjevalca
+    evaluator_reminder_description: To sporočilo bo poslano, da opomni ocenjevalce, naj dokončajo čakajoče ocene
+    evaluator_reminder_name: Opomnik ocenjevalca
+    evaluator_reminder_rule_description: Določanje pravil za samodejno načrtovanje, ko je povabilo načrtovano
+    evaluator_reminder_rule_name: Pravila opomnika ocenjevalca
+    evaluator_welcome_description: To sporočilo bo preglasilo »Pozdravno sporočilo« in bo prikazano samo udeležencem, ki trenutno sodelujejo kot ocenjevalci.
+    evaluator_welcome_name: Ocenjevalec dobrodošel
+    evaluators_title: Ocenjevalci
+    evidence_from_transcript: Dokazi iz prepisa
+    expand_filters: Razširi filtre
     export_admin_roles_permissions: Izvoz skrbniških vlog in dovoljenj
+    export_admins_with_permissions: Izvoz skrbniških vlog in dovoljenj
+    export_ai_artifacts: Izvozni artefakti umetne inteligence
     export_campaigns_queued: Naloge za izvoz so bile dodane v čakalno vrsto. V obvestilih preverite povezave za prenos.
     export_compact_completion_status: Kompakten
     export_completion_status: Stanje zaključka izvoza
     export_completion_statuses_scheduled: Izvoz stanja dokončanja je bil uspešno načrtovan.
     export_detailed_completion_status: Podrobno
+    export_failure_msg: Napaka pri izvažanju ravni strokovnosti
+    export_success: Skrbniško izvozno opravilo je bilo uspešno načrtovano. Preverite stanje obvestila.
+    export_success_msg: Izvoz razvojnih ukrepov v teku
+    export_to_csv: Izvoz v CSV
+    export_with_inactive_users: Izvoz z neaktivnimi uporabniki
+    external_report_id: ID zunanjega poročila
+    external_score: Zunanja ocena
+    external_settings: Zunanje nastavitve
+    factor_benchmark_scores_updated: Rezultati Factor Benchmark so bili uspešno posodobljeni
     factor_feedback: Povratne informacije o faktorjih
     factor_selection: Izbira dejavnikov
     factors: Dejavniki
+    factors_form_components_ExternalList_table_jsonpath: Pot JSON
+    factors_form_components_ExternalList_table_types_norm_score: Normirana partitura
+    factors_form_components_ExternalList_table_types_percentage: Odstotek
+    factors_form_components_ExternalList_table_types_percentile: Ocena percentila
+    factors_form_components_ExternalList_table_types_score: Partitura
+    factors_form_components_ExternalList_table_types_zscore: Ocena Z
+    factors_form_components_ExternalList_title: JSON poti za rezultate
+    factors_form_predicate: Predikat
+    factors_form_scoring_strategies_custom_formula: Formula po meri
+    factors_form_scoring_strategies_tip: "<strong>Vprašanja (povprečje):</strong> To je kot trenutna metoda točkovanja, ko obstajajo vprašanja, povezana z dejavnikom.<br /> <br /><strong>Vprašanja (SUM):</strong> To je podobno vprašanjem (povprečje), vendar z uporabo funkcije SUM<br /> <br /><strong>Vprašanja drugih dejavnikov (povprečje):</strong> To je kot trenutna metoda točkovanja, ko obstajajo podfaktorji za faktor, edina sprememba je seštevanje teže.<br /> <br /><strong>Vprašanja drugih dejavnikov (SUM):</strong> To je podobno kot drugi dejavniki (povprečje), vendar z uporabo funkcije SUM<br /> <br /><strong>Tehtana vsota dejavnikov:</strong> Tu se seštejejo rezultati izbranih drugih dejavnikov z njihovimi utežmi."
+    factors_form_scoring_strategy: Strategija točkovanja
+    factors_form_search_factors: Dejavniki iskanja
+    factors_form_use_sub_factor_norm_score: Uporaba normativne ocene faktorjev
+    factors_form_value: Vrednost
+    factors_index_precision: Natančnost
+    factors_index_scoring_strategy: Strategija točkovanja
+    factors_index_sub_factors: Poddejavniki
+    factors_index_title: Dejavniki
+    factors_resource_confirmations_delete_body: "<p>Ali ste prepričani, da želite izbrisati ta faktor?</p>\n"
+    failure_reason: Razlog za neuspeh
     feature_ai_assistants_description: Omogočite pomočnike na podlagi umetne inteligence za izboljšano uporabniško izkušnjo
     feature_ai_assisted_idp_description: Uporabite umetno inteligenco za pomoč pri priporočilih za individualno razvojno načrtovanje.
     feature_ai_content_analysis_description: Omogoči analizo vsebin na podlagi umetne inteligence za ocenjevanje
@@ -358,25 +775,96 @@ sl:
     feature_idp_description: Omogočite individualno načrtovanje razvoja za udeležence
     feature_not_available: Ta funkcija ni na voljo
     feature_sms_notification_description: Omogoči SMS obvestila za vabila in opomnike kampanj
+    fields_level: Raven
+    fields_level_description: Opis ravni
+    fields_level_name: Ime ravni
+    fields_proficiency_translations: Strokovni prevodi
+    fields_proficiency_type: Vrsta strokovnosti
+    fields_skill: Spretnost
+    fields_skill_name: Ime spretnosti
+    fields_skill_type: Vrsta spretnosti
     file_size_must_be_less_than_mb: Datoteka {{name}} presega največjo dovoljeno velikost {{max_size_mb}} MB
     file_upload_failed: Naložitev {{name}} ni uspela
     fill_empty_score_msg: Pred shranjevanjem izpolnite vse končne rezultate.
+    filter_by_client: Filtriraj po naročniku
+    filter_by_client_help: Izberite stranko, da naložite njene projekte
     final_score_empty_err_msg: Končni rezultat igre »%{factor_name}« ne sme biti prazen.
     final_score_empty_msg: Končni račun ne sme biti prazen.
+    finalized_at: Dokončano dne
+    fingerprint: Prstni odtis
+    first_name_required: Ime je obvezno
     fix_grammar: Popravi slovnico
+    fixed_time: Fiksni čas
+    form_active: Aktivni
+    form_add_assessment: Dodajanje ocene
+    form_ai_assistant: Pomočnik za umetno inteligenco
+    form_assessment_required: Ocena je potrebna
+    form_assessments: Ocenjevanja
+    form_campaign_factors: Dejavniki oglaševalske akcije
+    form_code: Koda
+    form_configuration: Konfiguracijo
+    form_datasheet: Podatkovni list
+    form_datasheet_columns: Stolpci podatkovnega lista
+    form_end_date: Datum zaključka
+    form_include_all_datasheet_columns: Vključi vse stolpce podatkovnega lista
+    form_name: Ime
+    form_no_assessment_selected: Ocene še niso dodane. Za začetek kliknite »Dodaj«.
+    form_questions_required: Izbrati je treba vsaj eno vprašanje
+    form_select_ai_assistant: Izberite pomočnika AI
+    form_select_assessment: Izberite Ocenjevanje
+    form_select_campaign_factors: Izberite dejavnike oglaševalske akcije
+    form_select_datasheet_columns: Izberite stolpce podatkovnega lista
+    form_select_questions: Izberite vprašanja
+    form_start_date: Datum začetka
+    form_title: Artefakt umetne inteligence
+    form_total_count: Skupno število
     formal: Formalno
     from: Od
+    genders_female: Ženska
+    genders_male: Moški
+    genders_not_set: Ni nastavljeno
+    generate: Ustvari
+    generate_result_confirm: Ustvarjanje rezultatov artefakta za uporabnika »%{email}« bo odstranilo obstoječe poročilo, ki je odvisno od tega AI-artefakta. Ali ste prepričani, da želite nadaljevati?
+    generate_result_info_message: Rezultati se ustvarjajo, prosimo, osvežite stran, da si ogledate posodobljene rezultate.
+    generate_results: Ustvarjanje rezultatov
     generate_transcription: Ustvari transkripcijo
+    generated_at_time: Ustvarjeno ob %{time}
+    generated_value: Ustvarjena vrednost
+    global_skills: Globalne spretnosti
+    global_skills_disabled_by_client: Global Skills je onemogočen po stranki
+    grant_type_label: Vrsta nepovratnih sredstev
+    grant_type_name: oauth_grant_type
     graphic: Grafika
     graphic_slider: Grafični drsnik
     handoff_client_mismatch: Preveritveni žeton za tega odjemalca ni veljaven
     handoff_invalid_token: Neveljaven ali potekel avtentifikacijski žeton
     handoff_token_expired: Potrditveni žeton je potekel ali je bil že uporabljen
     handoff_user_disabled: Vaš račun je onemogočen
+    has_api_keys: Ima API-ključe
+    has_public_keys: Ima javne ključe
+    header_logout_content: Pritisnite Prekliči, če želite nadaljevati z delom. Pritisni Ok za odjavo trenutnega uporabnika.
+    header_logout_title: Si prepričan, da želiš odjaviti se?
+    hide_all: Skrij vse
     hide_middle_scores: Skrij srednje ocene
     high: Visoko
     hogan: Hogan
     hogan_assessment: Ocena Hogana
+    hogan_provider: Ponudnik
+    hogan_providers_mercer: Mercer
+    hogan_providers_phoenix: Feniks
+    hover_options_danger_item: Nevaren element
+    hover_options_first_menu_item: 1. element menija
+    hover_text: Hover me
+    idp: IDP
+    idp_actions_remove_confirm: Vnesite trenutno ime predloge, ki je navedeno spodaj v besedilno polje, da odstranite predlogo
+    idp_actions_success: "%{idpName} je bil uspešno odstranjen."
+    idp_add_idp_template: Dodaj predlogo IDP
+    idp_ai_assistant: Pomočnik za umetno inteligenco
+    idp_ai_assisted_idp_enabled: Omogočeno IDP s pomočjo umetne inteligence
+    idp_ai_enabled: Omogočena umetna inteligenca
+    idp_ai_settings: Nastavitve umetne inteligence
+    idp_all: Prikaže vse
+    idp_appearance: Videz
     idp_appearance_body: Besedilo
     idp_appearance_color: Barva
     idp_appearance_cover: Naslovnica
@@ -387,6 +875,7 @@ sl:
     idp_appearance_guideline_position_second: Druga stran (za naslovnico)
     idp_appearance_guideline_position_second_last: Predzadnja stran (pred zadnjo)
     idp_appearance_guidelines: Smernice
+    idp_appearance_hint: Če želite spremeniti videz, najprej shranite predlogo IDP, da omogočite te nastavitve.
     idp_appearance_idp_skills: Veščine notranje razseljenih oseb
     idp_appearance_last: Zadnji
     idp_appearance_per_page_font_settings: Nastavitve pisave za posamezno stran
@@ -399,20 +888,136 @@ sl:
     idp_appearance_show_guidelines: Prikaži stran s smernicami
     idp_appearance_size: Velikost
     idp_appearance_subtitle: Podnaslov
+    idp_appearance_success: Uspešno shranjene nastavitve videza
     idp_appearance_title: Naslov
+    idp_background_image: Slika za ozadje
+    idp_behavioral_skills: Vedenjske spretnosti
+    idp_client_skills: Spretnosti strank
+    idp_delete_skill: Ali ste prepričani, da želite izbrisati spretnost, ker bo izbrisala tudi vsa povezana razvojna dejanja?
+    idp_delete_skill_msg: Si prepričan, da želiš izbrisati to veščino? Brisanje ga bo prav tako odstranilo vse povezane razvojne akcije.
+    idp_details_updated: Podrobnosti IDP uspešno posodobljene
+    idp_development_actions_add_from_library: Dodajanje iz knjižnice
+    idp_development_actions_completion: Zaključku
+    idp_development_actions_create_development_actions_with_ai: Ustvarite razvojne ukrepe z umetno inteligenco za
+    idp_development_actions_create_from_ai: Ustvarjanje iz umetne inteligence
+    idp_development_actions_create_my_own: Ustvari svoje
+    idp_development_actions_custom: Običaj
+    idp_development_actions_date_range: Začetni datum - končni datum
+    idp_development_actions_edit_plan_to_add_development_actions: Uredi načrt in dodaj razvojna dejanja.
+    idp_development_actions_errors_invalid_learning_style: "»%{learning_style}« ni veljaven učni stil. Veljavne možnosti so: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: Slog učenja ne more biti prazen
+    idp_development_actions_generate_by_ai: Generirajte z umetno inteligenco
+    idp_development_actions_generate_more: Ustvarite več
+    idp_development_actions_heading: Razvojni ukrepi
+    idp_development_actions_manage_skills: Upravljanje spretnosti
+    idp_development_actions_no_development_actions: Brez razvojnih ukrepov
+    idp_disabled_by_client: IDP je onemogočen s strani odjemalca
+    idp_document_ai_assistant: Pomočnik AI za analizo dokumentov
+    idp_edit_template: Uredi predlogo IDP
+    idp_enter_tag_or_skills_error: Izberite vsaj eno oznako ali spretnost
+    idp_enter_template_description_error: Opis predloge je potreben.
+    idp_enter_template_name_error: Ime predloge je obvezno
+    idp_errors_cannot_update_progress_plan_completed: Napredka ni mogoče posodobiti, ker je bil načrt IDP dokončan
+    idp_errors_skills_required_on_publishing: Pred objavo predloge izberite veščine.
+    idp_errors_update: Posodobitev ni dovoljena, ker je predloga IDP že povezana s paketom IDP uporabnika. Spremembe videza so bile shranjene.
+    idp_fields_approval_date: Datum odobritve
+    idp_fields_assigned_data: Dodeljeni podatki
+    idp_fields_assigned_date: Dodeljeni datum
+    idp_fields_completion_date: Datum zaključka
+    idp_fields_current_job_role: Trenutna delovna vloga
+    idp_fields_division: Deljenje
+    idp_fields_label: Polja
+    idp_fields_name: Ime
+    idp_fields_publish_date: Datum objave
+    idp_fields_review_date: Datum pregleda
+    idp_fields_target_job_role: Ciljna delovna vloga
+    idp_global_skills: Globalne spretnosti
+    idp_idp: IDP
+    idp_idp_template: Dodaj predlogo IDP
+    idp_interview_questions: Vprašanja za intervju
+    idp_interview_questions_updated: Vprašanja za intervju so bila uspešno posodobljena.
+    idp_intro_message: Uvodno sporočilo
+    idp_intro_message_hint: Če želite spremeniti uvodno sporočilo, najprej shranite predlogo IDP, da omogočite te nastavitve.
+    idp_intro_message_success: Uspešno shranjeno uvodno sporočilo
+    idp_locales: Lokalizacije
+    idp_logo_image: Slika logotipa
+    idp_logo_type_both: Logotipi Mercer in Client
+    idp_logo_type_client_only: Samo logotip stranke
+    idp_logo_type_label: Vrsta logotipa
+    idp_logo_type_mercer_only: Samo logotip Mercer
+    idp_logo_type_none: Brez logotipov
+    idp_no_interview_questions_selected: Vprašanja za intervju niso bila izbrana
+    idp_no_reflection_questions_selected: Vprašanja za razmislek niso bila izbrana
+    idp_none: Nobena
+    idp_one_click_idp_enabled: Omogočen IDP z enim klikom
     idp_plan_reset_success: Načrt je bil uspešno ponastavljen
+    idp_reference_locale: Referenčna območna območja
+    idp_reflection_questions: Vprašanja za razmislek
+    idp_reflection_questions_hint: Če želite spremeniti vprašanja za razmislek, najprej shranite predlogo IDP, da omogočite te nastavitve.
+    idp_reflection_questions_updated: Vprašanja za razmislek so bila uspešno posodobljena.
+    idp_remove_skill: Odstrani spretnost
+    idp_revert_skill_to_public_errors_skill_already_public: Spretnost je že javna
+    idp_revert_skill_to_public_errors_skill_not_found: Spretnosti ni mogoče najti
+    idp_revert_skill_to_public_success_base_message: Spretnost »%{skill_name}« je zdaj vidna vašemu vodji
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} in vaš načrt IDP je bil predložen v odobritev"
+    idp_select_by_tags: Izberi po oznakah
+    idp_select_interview_question: Začnite tipkati za iskanje in izbiro vprašanja
+    idp_select_reflection_question: Začnite tipkati za iskanje in izbiro vprašanja
+    idp_select_skill_gap_report: Izberite poročilo o vrzeli v znanju in spretnostih
+    idp_select_specific_skills: Izberite posebne spretnosti
+    idp_selected: Izbrane
+    idp_self_rating: Omogoči samoocenjevanje
+    idp_setting_manager_approves_idp: Upravitelj odobri IDP
+    idp_setting_manager_can_edit_idp: Upravitelj lahko ureja IDP
+    idp_setting_require_all_development_actions_complete: Zahtevajte dokončanje vseh razvojnih ukrepov
+    idp_show_reflections: Pokaži odseve
+    idp_skill_gap_report: Poročilo o vrzeli v znanju in spretnostih
+    idp_skill_gap_report_ai_assistant: Pomočnik za analizo poročila o vrzeli v spretnostih
+    idp_skill_source_preference: Vir spretnosti
+    idp_skill_sources_from_ai: Iz splošnega znanja o umetni inteligenci
+    idp_skill_sources_from_template: Iz predloge in preslikav
+    idp_skills: Spretnosti
+    idp_skills_privacy_messages_made_private: Spretnost »%{skill_name}« je bila označena kot zasebna in bo skrita pred vašim upraviteljem
+    idp_skills_privacy_messages_made_public: Spretnost »%{skill_name}« je zdaj vidna vašemu vodji
+    idp_skills_privacy_messages_skill_not_found: Spretnosti ni mogoče najti
+    idp_skills_privacy_messages_unauthorized: Nepooblaščeno spreminjanje te spretnosti
+    idp_skills_updated: Uspešno posodobljene spretnosti IDP
+    idp_status_draft: Osnutek
+    idp_status_published: Objavljeno
+    idp_status_updated: Status IDP uspešno posodobljen
+    idp_subtitle_text: Besedilo podnapisa
+    idp_tab_development_actions: Razvojni ukrepi
+    idp_tab_interview_questions: Vprašanja za intervju
+    idp_tab_reflection_questions: Vprašanja za razmislek
+    idp_tab_settings: Nastavitve
+    idp_tab_templates: Predloge
+    idp_technical_skills: Tehnične spretnosti
+    idp_template_details: Podrobnosti predloge
     idp_templates: Predloge IDP
+    idp_title_text: Besedilo naslova
+    idp_update_interview_questions: Posodobite vprašanja za intervju
+    idp_update_reflection_questions: Posodabljanje vprašanj za razmislek
     iiht: IIHT
     iiht_assessment: Ocena IIHT
+    iiht_password: Geslo
+    iiht_tenancy_name: Ime najemnika
+    iiht_tenant_id: ID najemnika
+    iiht_user: Uporabnik
+    image: Podoba
+    import_action_title: Artefakti umetne inteligence za uvozno kampanjo
+    import_actions_proficiency: Znanje uvoza
+    import_actions_translations: Uvoz prevodov strokovnosti
     import_ai_artifacts: Uvoz AI artefaktov
     import_csv_assessment_group_error: "%{index} vrstica: uporabnik z e-poštnim naslovom %{email} je že povabljen v skupino „%{workshopInviteName}“."
     import_csv_error: 'Vrstica %{index}: uporabnik z e-poštnim %{email} ni v tej kampanji'
     import_csv_parsing_error: 'Napaka pri analizi CSV: %{message}'
     import_description: Uvozite uporabnike iz CSV datoteke. Vsaka vrstica mora vsebovati e-poštni naslov.
+    import_download_example_csv: Prenesite primer csv
     import_download_sample: Prenesi primer CSV
     import_error: Uvoz ni uspel. Prosim, poskusite znova.
     import_error_saving_data: 'Shranjevanje podatkov o napakah za %{email}: %{message}'
     import_errors_title: Napake pri uvozu
+    import_evaluators: Ocenjevalci uvoza
     import_external_scoring_action: Uvoz zunanjega točkovanja
     import_external_scoring_body: Tukaj si oglejte funkcionalnost Izvoz, da izvlečete predlogo, ki jo lahko uporabite za uvoz.
     import_external_scoring_data_description: Uvoz zunanjih podatkov o ocenjevanju za določeno oceno in kampanjo
@@ -420,20 +1025,177 @@ sl:
     import_external_scoring_success_msg: Uvoz je bil uspešno naložen
     import_external_scoring_upload: Upload
     import_file_required: Prosimo, izberite CSV datoteko za nalaganje.
+    import_info_msg: Naložena datoteka je bila v vrsti za uvoz. Prosimo, preverite status v obvestilih.
+    import_job_queued: Uvozno delo ravni strokovnosti je bilo v čakalni vrsti
     import_queued_success: Naloga uvoza subjektov je bila uspešno načrtovana. Prosimo, preverite svoje obvestilo za status.
     import_sample_file_label: 'Vzorčna datoteka:'
     import_scenario_id_mismatch: 'Neujemanje ID scenarija za %{email}: Pričakovano %{expected_id}, vendar CSV vsebuje različne ID-je scenarijev'
+    import_subjects: Uvoz zadev
+    import_success_msg: Uvoz je bil uspešno naložen
     import_successfully_saved: Uspešno shranjujem zunanje rezultate za %{email} z %{goals_count} cilji
     import_title: Uvoz subjektov iz CSV
     import_upload: Upload
     import_users: Uvoz uporabnikov
+    inactive: Neaktiven
+    include_locales_label: Vključi prevode
+    include_locales_name: include_locales
+    index_title: Projekti
+    individual_invite_tabs_assessment_center: Ocenjevalni center
+    individual_invite_tabs_invitation_status: Status povabila
+    info_color: Barva informacij
+    innovation_styles_form_full_description: Celoten opis
+    innovation_styles_index_title: Inovativni slogi
+    innovation_styles_list_position: Položaj
+    innovation_styles_resource_confirmations_delete_body: "<p>Ste prepričani, da želite izbrisati ta slog inovacije?</p>\n"
+    instruction_messages: Sporočila z navodili
+    instructions: Navodila
+    instructions_actions_saved: Navodila so bila uspešno shranjena
+    instructions_enable: Navodila za omogočanje
+    instructions_save: Shrani navodila
+    integrations_actions_add: Integracije
+    integrations_actions_back: Nazaj na Integracije
+    integrations_actions_load_mettl_catalog: Katalog ocenjevanja Load Mettl
+    integrations_actions_load_microsite_catalog: Naloži katalog ocen mikrospletnih strani
+    integrations_actions_load_skillvue_catalog: Katalog ocenjevanja Load Skillvue
+    integrations_columns_active: Aktivni
+    integrations_columns_details: Podrobnosti
+    integrations_columns_name: Ime integracije
+    integrations_details_client_id: ID naročnika
+    integrations_details_deployment_id: ID namestitve
+    integrations_details_platform_access_token_url: Platform Access Token URL
+    integrations_details_platform_authentication_request_url: URL za zahtevo za avtentikacijo platforme
+    integrations_details_platform_host_name: Ime gostitelja platforme
+    integrations_details_platform_id: ID platforme
+    integrations_details_platform_public_keyset_url: Javni URL nabora ključev platforme
+    integrations_details_provider: Ime ponudnika
+    integrations_details_webhookUrl: URL spletnega kavlja
+    integrations_details_webhookUrls: URL-ji spletnih kavljev
+    integrations_integrations: Integracije
+    integrations_load_mettl_success: Delo nalaganja mettl ocenjevanja je uspešno uvrščeno v čakalno vrsto
+    integrations_load_microsite_success: Naloga za ocenjevanje mikrospletnih strani je bila uspešno dodana v čakalno vrsto
+    integrations_load_skillvue_success: Delo ocenjevanja spretnosti nalaganja je uspešno uvrščeno v čakalno vrsto
+    integrations_names_hogan: Hogan
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: Mettl
+    integrations_names_microsite: Mikrospletna stran
+    integrations_names_skillvue: Skillvue
+    integrations_names_yoodli: Yoodli
+    integrations_view_all_schedules: Oglejte si vse urnike Mettl
+    interface: Vmesnik
     internal: Notranji
+    interview_questions_delete_confirmation: Ali ste prepričani, da želite izbrisati to vprašanje za intervju?
+    interview_questions_export_action: Izvoz vprašanj za intervju
+    interview_questions_export_failure_msg: Napaka pri izvozu datoteke.
+    interview_questions_export_success_msg: Izvoz vprašanj za intervju v teku. Prosimo, preverite stanje v obvestilih.
+    interview_questions_form_mandatory: Obvezno
+    interview_questions_form_question: Vprašanje
+    interview_questions_form_question_type: Vrsta vprašanja
+    interview_questions_form_question_type_audio: Avdio
+    interview_questions_form_question_type_video: Video
+    interview_questions_form_time_limit: Časovna omejitev (s)
+    interview_questions_form_title: Vprašanje za intervju
+    interview_questions_import_action: Uvoz vprašanj za intervju
+    interview_questions_import_failure_msg: Napaka pri uvozu datoteke.
+    interview_questions_import_success_msg: Uvoz vprašanj za intervju v teku. Prosimo, preverite stanje v obvestilih.
+    interview_questions_question: Vprašanje
+    invalid_client_ids: Neveljavne identifikacijske številke strank
+    invalid_confidence_interval: interval zaupanja mora biti 0 ali 1
     invalid_csv_header: CSV datoteka vsebuje neveljavne glave.
+    invalid_json: konfiguracija ni veljaven JSON
+    invalid_leadership_bar: vodstvena_palica mora biti 0 ali 1
+    invalid_norm_option: Norm Option mora biti med 0 in 3.
+    invalid_project_ids: 'Neveljavne identifikacijske številke projektov: %{ids}'
     invalid_question_ids: 'ID-ji vprašanj, ki jih v tej oceni ni: %{ids}'
+    invalid_report_ids: Neveljavne identifikacijske številke poročil
+    invite_add_invite: Dodaj povabilo
+    invite_assessment_center: Ocenjevalni center
+    invite_basic_info_allow_preferred_language: Dovoli želeni jezik
+    invite_basic_info_assessment_centers: Ocenjevalni centri
+    invite_basic_info_assessment_centers_hint: Primer iskalne poizvedbe "10. avgust 2023, 20:06"
+    invite_basic_info_assessment_centers_placeholder: Izberite centre za ocenjevanje
+    invite_basic_info_description: Kandidatom pošljite vabila tako, da izberete več ocenjevalnih centrov. Kandidati bodo nato izbrali en sam center med razpoložljivimi.
+    invite_basic_info_neurodiversity: Vključite vprašanje nevrodiverzitete
+    invite_basic_info_preferred_language: Dovoljeni jeziki
+    invite_basic_info_required_error: Ne more biti prazen
+    invite_basic_info_title: Osnovne informacije
+    invite_center_group: Skupina ocenjevalnih centrov
+    invite_confirm_message: Ali ste prepričani, da želite izbrisati povabilo?
+    invite_confirm_message_with_title: Ali ste prepričani, da želite odstraniti povabilo z naslovom »%{invite_title}«?
+    invite_evaluators_description: To sporočilo bo prikazano subjektom, ko bodo začeli imenovati ocenjevalce
+    invite_evaluators_name: Povabite ocenjevalce
+    invite_invites: Povabila
+    invite_name_placeholder: Vnesite ime povabila
+    invite_not_selected: Ni izbrano
+    invite_request_accept: Sprejmi
+    invite_request_reason: Razlog
+    invite_request_reject: Zavrne
+    invite_request_remove_confirm_content: Ali ste prepričani, da želite %{action} %{status} iz %{subjectName}?
+    invite_request_remove_confirm_success: "%{status} iz %{subjectName} je bil %{action} uspešno."
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: Ime zadeve
+    invite_request_workshop_time: Čas delavnice
+    invite_requests: Zahteve
+    invite_save: Shrani in pošlji
+    invite_send_invites_add_description: Naslov in opis povabila lahko prevedete v več jezikov
+    invite_send_invites_add_language: Dodajanje jezika
+    invite_send_invites_input_label: Dodajanje dodatnega jezika
+    invite_send_invites_input_placeholder: Izberite dodaten jezik
+    invite_send_invites_invitation_title: Naslov povabila
+    invite_send_invites_title: Povabilo (%{lang})
+    invite_steps_add_subjects: Dodajanje predmetov
+    invite_steps_basic_info: Osnovne informacije
+    invite_steps_has_errors: vsebuje napake
+    invite_steps_send_invitation: Pošlji povabilo
+    invite_subjects_count: Subjekti
+    invite_subjects_csv_error: "%{index} v vrstici: uporabnik z e-poštnim naslovom %{email} ni vključen v to kampanjo"
+    invite_subjects_csv_imported: "%{count} uvoženih predmetov"
+    invite_subjects_description: Zadeve lahko dodate posebej, tako da poiščete ali množično naložite datoteko CSV.
+    invite_subjects_download: Prenesi
+    invite_subjects_file_example: Sklicujte se na vzorčno datoteko za nalaganje informacij o predmetih.
+    invite_subjects_import_from_campaign: Dodaj vse iz oglaševalske akcije
+    invite_subjects_import_title: Uvoz zadev
+    invite_subjects_import_users: Uvoz uporabnikov
+    invite_subjects_search_user: Iskanje zadev
+    invite_subjects_title: Subjekti
+    invite_subjects_upload_csv: Naložite datoteko CSV
+    invite_success_message: Povabilo je bilo uspešno odstranjeno.
+    invite_success_message_with_title: Povabilo z naslovom »%{invite_title}« je bilo uspešno odstranjeno.
+    invite_title: Naslov
+    invite_workshop_list_remove_confirm_content: Ali želite odstraniti ocenjevalni center z imenom »%{name}«?
+    invite_workshop_list_remove_confirm_success: Ocenjevalni center je bil uspešno odstranjen.
+    invite_workshop_list_remove_confirm_title: Potrdi
+    invite_workshop_title: Ocenjevalni centri
+    is_subject: Je predmet
+    job_role_are_you_sure_to_remove: Ali ste prepričani, da ga odstranite?
+    job_role_column_job_group: Delovna skupina
+    job_role_column_skill_name: Ime spretnosti
+    job_role_export_failure_msg: Napaka pri izvažanju prevodov
+    job_role_export_success_msg: Izvoz razvojnih ukrepov v teku.
+    job_role_form_code: Koda
+    job_role_form_description: Opis
+    job_role_form_job_group: Delovna skupina
+    job_role_form_name: Ime
+    job_role_form_title: Delovna vloga
+    job_role_import_action_translations: Uvoz prevodov delovnih vlog
+    job_role_import_download_example_csv: Prenesite primer csv
+    job_role_import_success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    job_role_job_role_details: Podrobnosti o delovni vlogi
+    job_role_skill_mapping_column_expected_proficiency_level: Pričakovana raven strokovnosti
+    job_role_skill_mapping_form_title: Skill Job Mapping
+    job_role_translations: Prevodi delovnih mest
     job_roles: Delovna mesta
+    join_room: Pridruži se sobi
+    keep_original: Ohrani izvirnik
+    key: Ključ
+    key_id: ID ključa
     keywords: Ključne besede
     keywords_placeholder: Vnesite ključne besede, ločene z vejicami.
+    language_id: ID jezika
+    last_name_required: Priimek je obvezen
+    lead_assessment: Ocenjevanje svinca
     lead_assessor_form: Obrazec glavni ocenjevalec
+    leadership_bar: Vodstvena palica
+    leadership_bar_update_success: Vodstvena vrstica uspešno posodobljena
     learning_from_others: Sodelovalno učenje [20]
     level: Raven
     level_apply: Prijavi se
@@ -446,22 +1208,63 @@ sl:
     lighthouse_logo_alt_text: Logotip svetilnika
     lighthouse_question: Ključno vprašanje
     lighthouse_question_id: ID vprašanja Lighthouse
+    link_text: Povezava
     linked_assessments: Povezane ocene
+    locale: Locale
+    log_date: Datum dnevnika
     logged_in: Prijavljen
+    login: Prijava
     low: Nizka
+    mail_history: Zgodovina pošte
+    main_report: Glavno poročilo
     maintenance: Vzdrževanje
     maintenance_settings: Nastavitve vzdrževanja
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
+    make_report_available_to_subject_when: 'Poročilo dajte na voljo subjektu, ko:'
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
+    manager_approves_reports: Vodja odobri poročila
+    manager_can_access_subject_reports: Upravitelj lahko dostopa do poročil o predmetih
+    manager_cannot_access_subject_reports: Upravitelj ne more videti poročila, dokler niso izpolnjene zahteve
+    manager_ids_label: Vodje centrov
+    manager_report_ready_description: To sporočilo je poslano vodji subjekta, ko je poročilo subjekta pripravljeno
+    manager_report_ready_name: Pripravljeno poročilo upravitelja
+    managers_title: Upravljavci
+    mark_finalized: Označi kot dokončano
+    mark_finalized_bulk_confirm: Ob dokončnem oblikovanju rezultatov artefaktov za vse izbrane uporabnike bodo ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
+    mark_finalized_confirm: Ob dokončanju rezultatov artefakta za uporabnika »%{email}« se bo ustvarilo poročilo, ki uporablja umetno inteligenco za tega uporabnika. Ali res želite nadaljevati?
+    mark_licenses_as_deactivated: Označite licence kot deaktivirane
+    mark_not_finalized: Oznaka ni dokončna
+    mark_not_finalized_bulk_confirm: Če iz vseh izbranih uporabnikov odstranite status »finalize«, bodo odstranjena tudi ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
+    mark_not_finalized_confirm: Če iz uporabnika »%{email}« odstranite oznako »finalize«, bo to povzročilo odstranitev ustvarjenega poročila, ki uporablja AI-artefakt za tega uporabnika. Ali ste prepričani, da želite nadaljevati?
+    mask_identity_for_examus: Podatki o maski za Examus Proctoring
+    mask_identity_for_hogan: Podatki o maski za Hogana
+    mask_identity_for_iiht: Podatki o maski za IIHT
+    mask_identity_for_mettl: Podatki maske za METTL
+    mask_identity_for_mhs: Podatki o maskah za MHS
+    mask_identity_for_pearson: Podatki o maski za Pearson
+    mask_identity_for_saville: Podatki o maski za Saville
+    mask_identity_for_skillvue: Podatki o maski za Skillvue
+    mask_identity_for_yoodli: Podatki o maski za Yoodli
     max_value: Največja vrednost
     mean: Povprečje
     media_files_label: Datoteke
     media_library: Medijska knjižnica
     media_library_page_title: Medijska knjižnica – Nadzorna plošča – Mercer Lighthouse
     meeting: Srečanje
+    meeting_link: Povezava do srečanja
+    meetings_and_resources: Srečanja in viri
     messages: Sporočila
+    meta_title: Upravna plošča
     mettl: METTL
+    mettl_apiBaseUrl: Končna točka API-ja
+    mettl_apiBaseUrlRequired: Končna točka API-ja je obvezna.
     mettl_assessment: Ocena Mettl
+    mettl_privateKey: Zasebni ključ
+    mettl_privateKeyRequired: Potrebujete zasebni ključ.
+    mettl_publicKey: Javni ključ
+    mettl_publicKeyRequired: Potreben je javni ključ.
+    mettl_servers_mettl_eu: Evropa
+    mettl_servers_mettl_india: Indija
     mhs: MHS
     mhs_assessment: Ocena MHS
     mhs_assessment_name: Ime ocene MHS
@@ -477,24 +1280,75 @@ sl:
     min_value: Najmanjša vrednost
     minimum_10_words: Najmanj 10 besed
     minimum_download_speed: Najmanjša hitrost prenosa (v Mbps)
+    minimum_face_detection_ratio: Najmanjši delež zaznave obrazov
     minimum_system_check_validity: Najkrajši čas veljavnosti preverjanja sistema v okviru kampanje mora biti 15 minut
     minimum_upload_speed: Najmanjša hitrost prenosa (v Mbps)
     missing_min_max_values: Zahtevane so minimalne in maksimalne vrednosti.
+    modal_convert_option: Pretvarjanje te kampanje v predlogo
+    modal_convert_success: Predloga je bila uspešno pretvorjena
+    modal_copy_option: Ustvarite novo predlogo iz te kampanje
+    modal_copy_success: Delo za ustvarjanje predloge za kampanjo je bilo uspešno načrtovano, preverite stanje v obvestilih.
+    modal_description: Izberite, kako želite ustvariti predlogo iz te kampanje.
+    modal_failed: Ustvarjanje predloge ni uspelo.
+    modal_subtitle: Izberite razpon datumov in nato za vsako poročilo izberite zahtevani jezik.
+    modal_title: Pretvori v predlogo
     model_answer: Vzorec odgovora
     model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
     must_be_a_valid_url: Neveljaven URL. Vnesite popoln URL z vključenim protokolom http ali https
     name: Ime
     name_max_length: Ime ne sme biti daljše od %{length} znakov.
     name_required: Ime je potrebno
+    navigation_audit_logs: Dnevniki nadzora
+    navigation_factors: Dejavniki
+    navigation_innovation_styles: Inovativni slogi
+    navigation_logout: Odjava
+    navigation_occupations: Poklicev
+    navigation_registration_codes: Registracijske kode
+    navigation_skills_taxonomy: Taksonomija spretnosti
+    navigation_users: Uporabniki
     new_folder: Nova mapa
+    new_score: Nova ocena
+    no_assessments_found: ID revizije
     no_client_access: Nimate dostopa do tega stranke
     no_clients_found: Ni bilo najdenih strank
+    no_completed_assessments: Ocen še ni zaključenih
     no_file_selected: Izbrana ni bila izbrana datoteka
     no_notifications: Brez obvestil
     no_question_mappings: Na voljo ni nobenih preslikav vprašanj
+    no_rendered_output: Na voljo ni prikazanih izhodov
     no_status: Brez statusa
+    nomination_denied_description: To sporočilo je poslano subjektom, ko je nominacija zavrnjena
+    nomination_denied_name: Nominacija zavrnjena
+    nomination_help_description: Besedilo pomoči, prikazano na kartici za nominacijo na nadzorni plošči uporabnika
+    nomination_help_name: Pomoč pri nominaciji
+    norm: Norma
     norm_editor_numeric_value_error: Dovoljene so le številčne vrednosti (cela števila ali decimalna števila).
+    norm_id: ID norma
+    norm_option: Normativna možnost
+    norm_option_form_select: Izberite možnost Norm
+    norm_option_update_success: Norm Option uspešno posodobljen
+    norm_region: Norm Regija
+    norm_region_form_select: Izberite normativno regijo
+    norm_region_update_success: Regija Norm uspešno posodobljena
+    normal: Normalno
+    normalize_factor_scores: Normalizirajte rezultate faktorjev
     norms: Norme
+    norms_copy_successfully: Norma »%{name}« je bila uspešno kopirana.
+    norms_export_success_msg: Naloga izvoza norm je bila uspešno načrtovana. Preverite stanje v obvestilih.
+    norms_import_download_example_csv: Prenesite primer csv
+    norms_import_select_file_validation: Pred oddajo izberite lastnika in datoteko.
+    norms_import_success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    norms_import_title: Uvoz norm
+    norms_index_import: Uvoz
+    norms_remove_confirm: Za potrditev vnesite spodaj navedeno ime norme v besedilno polje
+    norms_remove_warning: Ali ste prepričani, da želite izbrisati normo "%{name}"
+    norms_score_types_five_scale: Pet lestvic
+    norms_score_types_norm_type: Vrsta norme
+    norms_score_types_percentage: Odstotek
+    norms_sidebar_copy: Kopiraj normo
+    norms_sidebar_editor: Urejevalnik norm
+    norms_sidebar_export: Izvozna norma
+    norms_title: Norma
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
     notes: Opombe
@@ -503,16 +1357,51 @@ sl:
     notification_bell_icon_alt_text: Ikona zvonca za obvestila
     notifications: Obvestila
     number: Številka
+    oauth_scope_label: Obseg
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: Obseg je potreben
     occupations: Poklicev
+    occupations_factors_list_condition: Pogoj
+    occupations_factors_list_position: Položaj
+    occupations_factors_list_weight: Teža
+    occupations_form_alternative_icon: Nadomestna ikona
+    occupations_form_color: Barva
+    occupations_form_indicative_roles_image: Primer slike vlog
+    occupations_form_key_career_tracks_image: Slika ključnih poklicnih poti
+    occupations_index_title: Poklicev
+    occupations_resource_confirmations_delete_body: "<p>Ste prepričani, da želite izbrisati ta poklic?</p>\n"
     on_the_job: Na delovnem mestu [70]
     only_editable_on_create: Ta možnost je urejljiva samo med ustvarjanjem.
     options: Možnosti
+    options_evaluator_options: Možnosti ocenjevalca
+    options_global: Globalne možnosti
+    options_manager_options: Možnosti upravitelja
+    options_subject_options: Možnosti predmeta
+    options_title: Možnosti
     organisational: AGILE
     original_text: Izvirno besedilo
+    other_assessments: Druga ocenjevanja
+    other_assessor_assessments: Druga ocenjevanja ocenjevalcev
+    other_reports: Druga poročila
     others: Ostali
+    outcome: Rezultat
+    output_schema_key_constraint: Ključ mora začeti z majhno črko in lahko vsebuje le male črke, številke in podčrte
+    output_schema_keys: Ključi izhodne sheme
     overall: Na splošno
     overall_score: Skupna ocena
+    overall_scoring: Skupno točkovanje
+    parsed_dependencies_help: Razčlenjene odvisnosti za uporabnika, ki ga uporablja AI Assistant za generiranje rezultatov artefaktov
+    parsed_dependencies_title: Razčlenjene odvisnosti
+    parsed_dependencies_view: Ogled razčlenjenih odvisnosti
     participants: Udeleženci
+    participants_tab: Udeleženci
+    participants_tabs_assessors: Ocenjevalcev
+    participants_tabs_sms_contacts: SMS stiki
+    participants_tabs_subjects: Subjekti
+    password_label: Geslo
+    password_name: Geslo
+    past: Preteklost
+    payload: Tovora
     pearson: Pearson
     pearson_assessment: Pearsonova ocena
     permissions:
@@ -710,7 +1599,7 @@ sl:
           view: Pogled
         messages:
           email: E-pošta
-          instructions: Navodila
+          instructions: ID revizije
           options: Možnosti
           title: Sporočila
         norms:
@@ -825,7 +1714,7 @@ sl:
         view: Pogled
       messages:
         email: E-pošta
-        instructions: Navodila
+        instructions: ID revizije
         options: Možnosti
         title: Sporočila
       norms:
@@ -940,27 +1829,221 @@ sl:
         view: Pogled
         view_recordings: Ogled posnetkov
     permissions_360_campaigns: Dovoljenja za oglaševalske akcije 360
+    permissions_updated: Dovoljenja so bila uspešno posodobljena
     piped_text: Besedilo v cevi
+    piped_text_modal_assessment_center: Ocenjevalni center
+    piped_text_modal_campaign_link: Povezava do kampanje
+    piped_text_modal_campaign_name: Ime kampanje
+    piped_text_modal_campaigns: Kampanje
+    piped_text_modal_duration: Trajanje
+    piped_text_modal_end_time: Končni čas
+    piped_text_modal_insight_page_link: Povezava do strani »Vpogled«
+    piped_text_modal_insight_page_url: URL strani z vpogledi
+    piped_text_modal_invite_title: Naslov
+    piped_text_modal_invites: Povabila
+    piped_text_modal_magic_link: Čarobna povezava
+    piped_text_modal_magic_url: Čarobni URL
+    piped_text_modal_platform_url_links: Platforma Url in povezave
+    piped_text_modal_project_name: Ime projekta
+    piped_text_modal_projects: Projekti
+    piped_text_modal_report_name: Ime poročila
+    piped_text_modal_start_time: Čas začetka
+    piped_text_modal_title: Dodajanje besedila v cevi
+    piped_text_modal_user_reports: Poročila uporabnikov
+    piped_text_modal_users: Uporabniki
+    playground: Igrišče
+    playground_info: Preskusite artefakt z vzorčnimi podatki za predogled ustvarjenih rezultatov.
+    playground_placeholder: Vnos testnih podatkov
+    position_auto: Auto
+    position_label: Položaj polja za prijavo
+    position_left: Levo
+    position_right: Desno
     precision: Natančnost
+    preview_report: Predogled poročila
+    previous: Prejšnji
+    prework: Priprava
+    prework_required: Ne dovolite rezervacije centra, če preddela niso zaključena
+    prework_required_for_invite: Pošljite e-poštno sporočilo s povabilom le, ko je preddelo končano
+    primary_button: Osnovni
+    primary_color: Primarna barva
     privacy: Zasebnost
+    privacy_link: Omogoči povezavo do zasebnosti
+    privacy_link_label: Povezava do zasebnosti
+    privacy_link_placeholder: Vnesite povezavo za zasebnost
+    privacy_text: Besedilo o zasebnosti
+    privacy_text_placeholder: Vnesite besedilo zasebnosti
     proctoring: Nadzorovanje
+    proctoring_allow_on_assessment_center: Omogoči nadzor pri ocenjevalnem centru
+    proctoring_enable: Omogoči nadzorovanje
     proctoring_errors_timed_only: Selektivno nadzorovanje je mogoče omogočiti le pri časovno omejenih ocenjevanjih.
     proctoring_fixed_time_required: Omogoči fiksni čas, da izberete to možnost
+    proctoring_identification: Identifikacijo
+    proctoring_identifications:
+      face: Obraz
+      face_and_passport: Obraz in potni list
+      passport: Potni list
+    proctoring_integration_type: Integracija
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: Brskalnik za zaklepanje
     proctoring_mode_all: Omogoči nadzor pri vseh ocenjevanjih
     proctoring_mode_all_except_ac: Omogoči nadzor pri vseh ocenjevanjih, razen v ocenjevalnem centru
+    proctoring_rule_types_allow_absence_in_frame: Dovoli absense v okvirju
+    proctoring_rule_types_allow_to_use_books: Dovoli uporabo knjig
+    proctoring_rule_types_allow_to_use_calculator: Dovolite uporabo kalkulatorja
+    proctoring_rule_types_allow_to_use_excel: Dovolite uporabo Excela
+    proctoring_rule_types_allow_to_use_human_assistant: Dovolite uporabo človeškega pomočnika
+    proctoring_rule_types_allow_to_use_messengers: Dovolite uporabo sporočil
+    proctoring_rule_types_allow_to_use_paper: Dovoli uporabo papirja
+    proctoring_rule_types_allow_to_use_websites: Dovoli uporabo spletnih mest
+    proctoring_rule_types_allow_voices: Dovoli glasove
+    proctoring_rule_types_allow_wrong_gaze_direction: Dovoli napačno smer pogleda
+    proctoring_rules: Pravila
+    proctoring_sessions_columns_comment: Komentar
+    proctoring_sessions_columns_completed_at: Zaključek ob
+    proctoring_sessions_columns_conclusion: Sklep
+    proctoring_sessions_columns_links: Povezave
+    proctoring_sessions_columns_score: Partitura
+    proctoring_sessions_columns_session_id: ID seje
+    proctoring_sessions_columns_started_at: Začetek
+    proctoring_sessions_links_report: Poročilo
+    proctoring_sessions_links_review: Pregled
+    proctoring_sessions_resource_name: Nadzorne seje
     proctoring_settings: Nastavitve nadzora
+    proctoring_trial: Sojenje nadzora
+    proctoring_type: Vrsta
+    proctoring_types:
+      offline: Offline
+      online: Dosegljiv
     professional: Profesionalni
     proficiency: Usposobljenost
     proficiency_level: Ključi API-ja
     proficiency_levels: Ravni strokovnosti
+    proficiency_levels_fields_title: Znanje
+    profile: Profil
+    profile_change_password: Spremenite geslo
     profile_details: Podrobnosti profila
+    project: Projekt
+    project_admin: Skrbnik projekta
     project_admins: Skrbniki projekta
+    project_assessor: Ocenjevalec projekta
+    project_features: Značilnosti projekta
+    project_ids: Identifikacijske številke projektov
+    project_ids_required: Za to vrsto poročila je obvezno polje »project_ids«
+    project_licenses: Licence za projekte
     project_manager: Vodja projekta
+    project_not_related_to_client: Projekt »%{project_id}« ne pripada naročniku
     project_number: Številka projekta
+    project_participants_column_campaigns: Kampanje
+    project_participants_column_createdAt: Ustvarjeno
+    project_participants_column_created_at: Ustvarjeno
+    project_participants_edit_participant: Urejanje udeleženca
+    project_participants_filter_campaigns: Brez oglaševalskih akcij
+    project_participants_search_user: Iskanje uporabnika
+    project_participants_send_email: Pošlji e-pošto
+    project_path: Pot projekta
     project_settings: Nastavitve projekta
+    project_tabs_assessments_column_normalize_factor_scores: Normalizirajte rezultate faktorjev
+    project_tabs_assessments_column_user_result_validity_in_days: Veljavnost rezultata
+    project_tabs_assessments_delete_content: Ali ste prepričani, da želite izbrisati oceno '%{name}'?
+    project_tabs_assessments_delete_success: Ocena »%{name}« je bila uspešno izbrisana.
+    project_tabs_assessments_delete_title: Izbriši oceno
+    project_tabs_assessments_title: Ocenjevanja
+    project_tabs_design: Dizajn
+    project_tabs_general: Splošno
+    project_tabs_privacy: Zasebnost
+    project_tabs_profile: Profil
+    project_tabs_registration: Registracija
+    project_tabs_webhooks_actions_delete_key: Izbriši
+    project_tabs_webhooks_actions_edit_key: Uredi
+    project_tabs_webhooks_actions_send_test_key: send_test
+    project_tabs_webhooks_actions_send_test_label: Pošlji test
+    project_tabs_webhooks_remove_webhook_content: Izbrisati %{description}?
+    project_tabs_webhooks_title: Spletni kavlji
+    project_tools_workshop_status_export: Izvoz statusa delavnice
+    project_tools_workshop_status_export_success: Izvoz statusa delavnice je bil uspešno načrtovan.
+    project_users_change_password: Spremenite geslo
+    project_users_column_campaigns: Kampanje
+    project_users_column_created_at: Ustvarjeno
+    project_users_confirm_delete: Da, izbriši
+    project_users_confirm_send: Da, pošlji
+    project_users_delete_error: Ocenjevalca ni bilo mogoče izbrisati '%{name}'. Obrnite se na skrbnika.
+    project_users_delete_success: Ocenjevalec '%{name}' je bil uspešno izbrisan.
+    project_users_edit_assessor: Uredi ocenjevalca
+    project_users_filter_campaigns: Brez oglaševalskih akcij
+    project_users_modal_delete_content: Ali ste prepričani, da želite izbrisati ocenjevalca '%{name}'?
+    project_users_modal_delete_title: Izbriši ocenjevalca
+    project_users_modal_reset_email_content: Ali ste prepričani, da želite poslati povezavo za ponastavitev gesla na '%{email}'?
+    project_users_model_reset_email: Ponastavitev gesla ocenjevalca
+    project_users_no_edit_permission: Nimate dovoljenja za urejanje ocenjevalca '%{name}'
+    project_users_reset_mail_error: Povezave za ponastavitev gesla ni bilo mogoče poslati na »%{email}«. Obrnite se na skrbnika.
+    project_users_reset_mail_success: Povezava za ponastavitev gesla je bila uspešno poslana na »%{email}«
+    project_users_search_accessor: Dostopni uporabniki iskanja
+    project_users_send_email: Pošlji e-pošto
     projects: Projekti
+    projects_addProject: Dodajanje projekta
+    projects_assessment_settings_search: Ocena iskanja
+    projects_columns_project_number: Številka projekta
+    projects_form_project_number: Številka projekta
+    projects_form_subdomain: Poddomena
+    projects_form_title: Projekt
+    projects_general_settings_live_chat: Omogočanje klepeta v živo
+    projects_general_settings_locales_label: Lokalizacije
+    projects_general_settings_project_number_label: Številka projekta
+    projects_general_settings_save_changes: Shranjevanje sprememb
+    projects_general_settings_sub_domain_label: Poddomena
+    projects_mettl_schedule_records_add: Dodaj urnik
+    projects_mettl_schedule_records_assessment_id: ID ocenjevanja
+    projects_mettl_schedule_records_assessment_name: Ime ocenjevanja
+    projects_mettl_schedule_records_candidate_authorization: Omogoči avtorizacijo kandidatov
+    projects_mettl_schedule_records_candidate_screen_capture: Omogoči zajem zaslona kandidata
+    projects_mettl_schedule_records_count: Število toleranc brskanja
+    projects_mettl_schedule_records_created_at: Ustvarjeno
+    projects_mettl_schedule_records_schedule_id: ID razporeda
+    projects_mettl_schedule_records_schedule_name: Ime razporeda
+    projects_mettl_schedule_records_secure_browser_enabled: Omogoči varen brskalnik
+    projects_mettl_schedule_records_settings: Nastavitve
+    projects_mettl_schedule_records_show_remaining_counts: Omogoči prikaz preostalega števila
+    projects_mettl_schedule_records_visual_proctoring_enabled: Omogočanje vizualnega nadzora
+    projects_mettl_schedule_records_web_proctoring_enabled: Omogočite spletno nadzorovanje
+    projects_profile_settings_form_fields_enabled: Omogočeno
+    projects_profile_settings_form_fields_half_size: Polovična velikost
+    projects_profile_settings_form_fields_locked: Zaklenjena
+    projects_profile_settings_form_fields_sort: Razvrstiti
+    projects_profile_settings_month: Mesec
+    projects_profile_settings_never: Nikoli
+    projects_profile_settings_update_in: Obvesti o posodobitvi profila v
+    projects_profile_settings_year: Leto
+    projects_registration_settings_hide_signup: Skrij možnost prijave
+    projects_registration_settings_require_mobile_number: Zahtevaj številko mobilnega telefona
+    projects_webhook_settings_add: Dodajanje spletnega kavlja
+    projects_webhook_settings_column_active: Aktivni
+    projects_webhook_settings_column_created_date: Ustvarjeno dne
+    projects_webhook_settings_column_description: Opis
+    projects_webhook_settings_column_updated_date: Datum spremembe
+    projects_webhook_settings_column_url: Spletni naslov
+    projects_webhook_settings_search: Iskanje spletnega mesta
     prompt: Spodbuda
+    provider: Ponudnik
+    provider_change_confirm_title: Želite zamenjati ponudnika?
+    provider_previously_used_warning: Ta pomočnik je doslej ustvarjal rezultate z »%{from}«. Prehod na »%{to}« lahko spremeni delovanje pomočnika pri prihodnjih zahtevah za ustvarjanje.
     psychometric: Psihometrični
+    public_key: Javni ključ
+    public_key_add: Dodaj javni ključ
+    public_key_cannot_be_changed: po ustvarjanju ga ni mogoče spremeniti
+    public_key_copy_private_key: Kopiraj zasebni ključ
+    public_key_created: Javni ključ je bil uspešno ustvarjen
+    public_key_generate: Ustvari par ključev
+    public_key_generate_button: Ustvari par ključev RSA
+    public_key_generate_info: Sistem bo ustvaril par 2048-bitnih RSA ključev. Shranjen bo le javni ključ. Zasebni ključ kopirajte in ga varno shranite – ne bo se več prikazal.
+    public_key_invalid_format: mora biti veljaven javni ključ RSA v formatu PEM
+    public_key_must_be_public: mora biti javni ključ, ne pa zasebni ključ
+    public_key_paste_placeholder: Tukaj vnesite svoj javni RSA ključ v formatu PEM (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: Javni ključ (PEM)
+    public_key_private_key_copied: Zasebni ključ je bil kopiran v odložišče
+    public_key_private_key_label: Zasebni ključ (PEM)
+    public_key_private_key_warning: To je edini trenutek, ko bo zasebni ključ viden. Kopirajte ga zdaj in ga varno shranite.
+    public_keys: Javni ključi
     question_center: Središče za vprašanja
     question_center_page_title: Center za vprašanja – Nadzorna plošča – Mercer Lighthouse
     question_editor_change_type: Spremeni vrsto
@@ -987,11 +2070,33 @@ sl:
     question_type_video_response: Odgovor v obliki videa
     questions: Vprašanja
     questions_new_button: Novo vprašanje
+    questions_percentage: Vprašanja (SUM / MAX skupaj)
+    questions_sum: Vprašanja (SUM)
     questions_title: Vprašanje
     questions_type: Vrsta
     range_min_max: RANGE %{min} - %{max}
+    rationale: Utemeljitev
+    raw: SUROV
+    reason_for_changes: Razlog za spremembe
     recents: Zadnje
+    record_id: ID zapisa
+    recordings: Posnetkov
     reflection_questions: Vprašanja za razmislek
+    reflection_questions_delete_confirmation: Ali ste prepričani, da želite izbrisati to vprašanje za razmislek?
+    reflection_questions_export_action: Izvoz vprašanj za razmislek
+    reflection_questions_export_failure_msg: Napaka pri izvozu datoteke.
+    reflection_questions_export_success_msg: Izvažanje vprašanj za razmislek v teku. Preverite stanje v obvestilih.
+    reflection_questions_form_mandatory: Obvezno
+    reflection_questions_form_max_words: Največ besed
+    reflection_questions_form_min_words: Najmanjše število besed
+    reflection_questions_form_question: Vprašanje
+    reflection_questions_form_title: Vprašanje za razmislek
+    reflection_questions_import_action: Uvoz vprašanj za razmislek
+    reflection_questions_import_failure_msg: Napaka pri uvozu datoteke.
+    reflection_questions_import_success_msg: Uvoz vprašanj za razmislek v teku. Preverite stanje v obvestilih.
+    reflection_questions_question: Vprašanje
+    refresh: Osvežiti
+    refresh_interval: Interval osveževanja (minute)
     regenerate_transcriptions_action: Obnovi prepise
     regenerate_transcriptions_confirm_content: Ali ste prepričani, da želite ponovno ustvariti prepise za to ocenjevanje? S tem se bodo ponovno obdelali vsi nepopolni prepisi.
     regenerate_transcriptions_confirm_title: Obnovi prepise
@@ -999,33 +2104,174 @@ sl:
     registration_codes: Registracijske kode
     registration_settings: Nastavitve registracije
     remove_children_to_change_type: Odstrani vse otroke, da spremeniš tip
+    remove_confirm_content: Ali ste prepričani, da želite odstraniti zadevo z e-poštnim sporočilom »%{subjectEmail}«?
+    remove_confirm_success: Zadeva z e-poštnim naslovom »%{subjectEmail}« je bila uspešno odstranjena.
+    remove_confirm_title: Odstranite osebo
     remove_confirmation: Ali ste prepričani, da želite ta element odstraniti?
+    remove_output_schema_key: Odstranitev ključa izhodne sheme
     remove_successfully: Medijska datoteka je bila uspešno odstranjena.
+    render_button: Predloga za upodabljanje
+    rendered_prompt: Upodobljen poziv
+    reply_to_email: Odgovarjanje na e-pošto
+    report_access: Dostop do poročila
     report_alias_save_confirmation: Če želite shraniti VSE spremembe v Report Builderju in tudi v Aliasih, kliknite gumb »SHRANI«. Stran se bo ponovno naložila in vaše spremembe bodo uspešno shranjene.
+    report_approval: Odobritev poročila
+    report_approval_allow_bulk_approve: Dovoli odobritev v velikem obsegu
+    report_approval_allow_qc_bulk_submit: Dovoli pošiljanje QC v velikem obsegu
+    report_approval_approval_statuses_approved: Odobreno
+    report_approval_approval_statuses_change_requested: Zahtevana sprememba
+    report_approval_approval_statuses_not_ready: Ni pripravljeno
+    report_approval_approval_statuses_pending_qc: Čakanje na preverjanje kakovosti
+    report_approval_approval_statuses_qc_completed: QC zaključen
+    report_approval_approval_statuses_qc_in_progress: Poteka preverjanje kakovosti
+    report_approval_approvers: Potrjevalce
+    report_approval_approvers_can_edit: Potrjevalci lahko urejajo
+    report_approval_approvers_not_required: Odobritve niso potrebne
+    report_approval_bulk_approve_success: "%{sent_for_approval} poslano v odobritev. %{approved} poročil odobrenih. %{ignored} poročila zahtevajo ročno odobritev zaradi sprememb/komentarjev QC."
+    report_approval_columns_approval_status: Status odobritve
+    report_approval_columns_approved_by: Odobril
+    report_approval_columns_assessed_by: Ocenjeno s strani
+    report_approval_columns_campaign_name: Ime kampanje
+    report_approval_columns_qc_by: Izvajalec preverjanja kakovosti
+    report_approval_columns_report_name: Ime poročila
+    report_approval_columns_subject_email: Zadevni e-poštni naslov
+    report_approval_columns_user_email: Uporabniški e-poštni naslov
+    report_approval_columns_user_name: Uporabniško ime
+    report_approval_digest_delivery_mode_form_label: Način dostave povzetka
+    report_approval_digest_frequency_daily: Dnevno
+    report_approval_digest_frequency_form_label: Pogostost izvlečka
+    report_approval_digest_frequency_weekdays: Delavniki
+    report_approval_digest_frequency_weekly: Tedenski
+    report_approval_digest_time: Čas povzetka
+    report_approval_digest_timezone: Časovni pas povzetka
+    report_approval_digest_weekdays_form_label: Digest Delovni dnevi
+    report_approval_digest_weekdays_friday: Petek
+    report_approval_digest_weekdays_monday: Ponedeljek
+    report_approval_digest_weekdays_saturday: Sobota
+    report_approval_digest_weekdays_sunday: Nedelja
+    report_approval_digest_weekdays_thursday: Četrtek
+    report_approval_digest_weekdays_tuesday: Torek
+    report_approval_digest_weekdays_wednesday: Sreda
+    report_approval_do_not_send_notifications: Ne pošiljajte e-poštnih sporočil uporabnikom[QC, potrditve in obvestilo o odobritvi]
+    report_approval_modal_title: Nastavitve odobritve poročila
+    report_approval_notification_users: Uporabniki obvestila o odobritvi
+    report_approval_qc_users: Uporabniki QC
+    report_approval_remove_modal_success: 'Nastavitev odobritve za ID poročila: %{reportId} je bil uspešno izbrisan '
+    report_approval_remove_modal_text: 'Ali želite izbrisati to nastavitev za ID poročila: %{reportId}?'
+    report_approval_report: Poročilo
+    report_approval_review: Pregled
+    report_approval_saving_filters_actions_clear_filters: Počisti filtre
+    report_approval_saving_filters_actions_delete_filter: Izbriši filter
+    report_approval_saving_filters_actions_save_new_filter: Shrani kot nov filter
+    report_approval_saving_filters_actions_saved_filters: Shranjeni filtri
+    report_approval_saving_filters_delete_saved_filters: Filter je izbrisan
+    report_approval_saving_filters_edit_filter_name: Ime filtra je shranjeno
+    report_approval_saving_filters_error_while_deleting: Napaka pri brisanju
+    report_approval_saving_filters_error_while_editing: Napaka pri urejanju
+    report_approval_saving_filters_error_while_fetching: Kaj je šlo narobe, poskusite znova
+    report_approval_saving_filters_error_while_saving: Napaka pri shranjevanju filtra
+    report_approval_saving_filters_filter_updated: Posodobljen filter
+    report_approval_saving_filters_no_saved_filters: Ni shranjenih filtrov
+    report_approval_saving_filters_save_filter: Filter shranjen
+    report_approval_saving_filters_set_favorite: Filter je nastavljen kot priljubljen
+    report_approval_send_digest_emails: Pošljite e-poštna sporočila s povzetkom
+    report_approval_settings: Nastavitve odobritve poročila
+    report_approval_submit_or_approve_all: Pošlji ali potrdi vse
     report_approvals: Odobritve poročil
+    report_availability: Razpoložljivost poročila
     report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
     report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
     report_denied: Poročilo za %{user} je bilo zavrnjeno
+    report_help_description: Besedilo pomoči, prikazano na kartici poročila na nadzorni plošči uporabnika
+    report_help_name: Pomoč pri poročilih
+    report_id: ID poročila
+    report_ids: ID-ji poročil
+    report_ids_required: ID-ji poročil so obvezni
     report_name: Ime poročila
     report_no_evaluations: Poročilo za %{user} ni na voljo – ocen niso bile prejete.
     report_not_generated: Poročilo za %{user} izpolnjuje pogoje razpoložljivosti, vendar še ni bilo ustvarjeno. Prosimo, najprej ustvarite poročilo.
     report_on_hold: Poročilo za %{user} je trenutno na čakanju
+    report_pdf_status: Poročilo o stanju v obliki PDF
+    report_review_abort_qc: Prekinitev QC
+    report_review_approve: Odobriti
+    report_review_approve_changes: Odobritev sprememb
+    report_review_edit: Uredi
+    report_review_remove_approval: Odstranjevanje odobritve
+    report_review_request_changes: Zahtevajte spremembe
+    report_review_review: Pregled
+    report_review_send_for_approve: Pošlji v odobritev
+    report_review_statuses_approved: Odobreno
+    report_review_statuses_change_requested: Zahtevane spremembe
+    report_review_statuses_not_ready: Ni pripravljeno
+    report_review_statuses_pending_qc: Čakanje na preverjanje kakovosti
+    report_review_statuses_qc_completed: QC zaključen
+    report_review_statuses_qc_in_progress: Poteka preverjanje kakovosti
     report_status: Status poročila
+    report_type: Vrsta poročila
+    report_types:
+      active_clients_projects: Aktivne stranke in projekti
+      client_assessment_counts: Ocena stranke je pomembna
+      hogan_usage_report: Uporaba ocenjevalnega orodja Hogan
+      json_data_report: Poročilo o podatkih v formatu JSON
+      pearson_usage_report: Uporaba ocenjevalnih orodij podjetja Pearson
+      report_usage_summary: Povzetek uporabe poročila
+      saville_usage_report: Uporaba ocenjevalnega sistema Saville
+      user_created_dates: Datumi, ki jih je ustvaril uporabnik
+      user_reports_export: Izvoz poročil uporabnikov
     reports: Poročila
+    reports_copy_copy: Kopiraj
+    reports_copy_copy_report: Kopiraj poročilo
+    reports_count: Poročila
+    reports_edit_default_language_agreement: Da, razumem posledice spremembe privzetega jezika.
+    reports_edit_default_language_title: Urejanje privzetega jezika
+    reports_edit_default_language_tooltip: Urejanje privzetega jezika
+    reports_edit_default_language_warning_description_li_1: Sprememba privzetega jezika z RTL v LTR jezik ali obratno bo vplivala na postavitev.
+    reports_edit_default_language_warning_description_li_2: Če bi spremenili privzeti jezik, bi morali znova prevesti poročila.
+    reports_edit_default_language_warning_description_li_3: Pred spremembo prenesite kopijo prevoda poročila.
+    reports_edit_default_language_warning_title: Pozorno preberite navodila
+    reports_language_selection_modal_download: Prenos poročila
+    reports_language_selection_modal_generate: Ustvarjanje poročila
     reports_limit_exceeded: Množični prenos je omejen na 1000 poročil. Če ste izbrali veliko jezikov, jih prosim zmanjšajte.
     reports_not_found: Ni bilo najdenih poročil. Pred prenosom prosimo ustvarite poročila.
+    reports_preview_comments: Pripombe
+    reports_preview_hide_resolved: Skrij rešeno
+    reports_preview_history: Zgodovina
+    reports_preview_info_to_select_module: Izberite besedilni modul, ki ga želite komentirati
+    request_approval_description: To sporočilo je poslano upraviteljem, ko zadeva zahteva odobritev
+    request_approval_name: Zahtevajte odobritev
+    request_id: ID zahteve
+    required_error: obvezno
     rescore_responses_content: S tem se bodo ponovno izračunale ocene za odgovore na ta vprašanja. Omogočite možnost »Dovoli ponovno ocenjevanje z AI«, da se odgovori ponovno ocenijo z uporabo AI za vprašanja »Oceni z AI«.
+    resend_invite_content: Znova pošljite povabilo izbranim predmetom. Ste prepričani, da želite nadaljevati?
+    resend_invite_success: Vabila so uspešno poslana.
+    resend_invite_title: Znova pošlji povabilo
     reset_idp_plan: Načrt za ponastavitev
     reset_idp_plan_confirmation: Ste prepričani, da želite ponastaviti načrt?
     reset_idp_plan_title: Načrt za ponastavitev
+    reset_score: Ponastavi rezultat
+    reset_score_description: Rezultat bo vrnjen na prvotno vrednost AI.
+    resources_panel_description: Dodajte povezave do vseh virov, za katere želite, da imajo moderatorji dostop.
+    resources_panel_resource_name_placeholder: Ime vira
+    resources_panel_resource_url_placeholder: Povezava do virov
+    resources_panel_title: Sredstva
+    resources_panel_validation_error: Vnesite ime in URL ali odstranite vir
     response_meta: Odgovor Meta
+    responses: Odgovori AI
     result: Rezultat
     results: Rezultati
+    results_export: Izvoz rezultatov
+    results_export_job_scheduled: Izvoz rezultatov AI Artifacts je bil uspešno načrtovan.
+    revisions_load: Naložite v obrazec
+    revisions_system_prompt: Sistemski propmpt
+    revisions_title: Revizije AI Assistant
+    revisions_user_prompt: Poziv uporabnika
+    revisions_version: Različica
     role: Vloga
     role_campaign_admin: Upravitelj kampanje
     role_client_admin: Upravljanje strank
     role_project_admin: Upravitelj projekta
     role_superadmin: Super administrator
+    run: Teči
     saml_idp_certificate_available: Na voljo (kliknite za kopiranje)
     saml_idp_certificate_label: Potrdilo
     saml_idp_entity_id_label: ID subjekta/izdajatelj
@@ -1075,6 +2321,23 @@ sl:
     saml_service_provider_updated_date: Datum posodobitve
     saml_service_providers: Ponudniki storitev
     saml_settings: SAML nastavitve
+    saml_settings_after_signout_url: URL po odjavi
+    saml_settings_cert: Potrdilo
+    saml_settings_config_details_acs_url: URL storitve za potrošnike za potrditev
+    saml_settings_config_details_copied: Kopirano %{element}
+    saml_settings_config_details_issuer: ID subjekta/izdajatelj
+    saml_settings_config_details_title: Konfiguriranje IDP-ja z naslednjimi informacijami
+    saml_settings_email_pipetext: Pošljite e-poštno besedilo cevi
+    saml_settings_enabled: Omogočeno
+    saml_settings_enforced: Uveljavljanje SAML
+    saml_settings_entity_id: ID subjekta/izdajatelj
+    saml_settings_name_identifier_format: Identifikator imena
+    saml_settings_name_identifier_formats_email: urn:oasis:imena:tc:SAML:1.1:nameid-format:e-poštni naslov
+    saml_settings_name_identifier_formats_persistent: urn:oasis:imena:tc:SAML:2.0:nameid-format:trajni
+    saml_settings_saml: SAML
+    saml_settings_save: Shrani nastavitev
+    saml_settings_sso_service_url: URL storitve enotne prijave
+    saml_settings_successfully_saved_msg: Nastavitev SAML je bila uspešno shranjena.
     save: Shrani
     save_assessment_for_scoring_management: Shranite oceno, preden začnete z ocenjevanjem.
     save_block: Shrani blok
@@ -1093,7 +2356,136 @@ sl:
       user_full_name_cont: Uporabniško ime
     saville: Saville
     saville_assessment: Ocena Saville
+    schedule: Načrtuj
+    schedule_email: Načrtovanje e-pošte
+    schedule_email_title: Načrtovanje e-pošte
+    schedule_time: Časovni razpored
     scheduling: Razporejanje
+    scheduling_add_activity: Dodajanje dejavnosti
+    scheduling_add_assessment_center: Dodajte ocenjevalni center
+    scheduling_add_assessor_form_assessment: Ocenjevanje
+    scheduling_add_assessor_form_assessor: Ocenjevalec
+    scheduling_add_assessor_form_schedule_time: Urnik časa
+    scheduling_add_subject: Dodajanje zadeve
+    scheduling_attendance_status_column_name: Status prisotnosti
+    scheduling_attendance_status_dropped_out: Izpadli
+    scheduling_attendance_status_late: Pozno
+    scheduling_attendance_status_no_show: Ni predstavitve
+    scheduling_attendance_status_no_status: Brez statusa
+    scheduling_attendance_status_on_time: Pravočasno
+    scheduling_attended_attended: Udeležili
+    scheduling_attended_not_attended: Ni se udeležil
+    scheduling_campaign_participants: Udeleženci kampanje
+    scheduling_columns_activity: Dejavnost
+    scheduling_columns_assessment_center_date_and_time: Datum in čas ocenjevalnega centra
+    scheduling_columns_assessor: Ocenjevalec
+    scheduling_columns_assessors: Ocenjevalcev
+    scheduling_columns_attendance: Udeležba
+    scheduling_columns_attended: Udeležili
+    scheduling_columns_booked_at: Rezervirano na
+    scheduling_columns_campaign_assessment_group: Skupina ocenjevalnih centrov
+    scheduling_columns_campaign_name: Ime kampanje
+    scheduling_columns_duration: Trajanje
+    scheduling_columns_link_to_view_recordings: Povezava za ogled posnetkov
+    scheduling_columns_managers: Upravljavci
+    scheduling_columns_meeting_link: Povezava do srečanja
+    scheduling_columns_participants: Udeleženci
+    scheduling_columns_prework: Priprava
+    scheduling_columns_recording_date: Datum snemanja
+    scheduling_columns_resource_link: Povezava
+    scheduling_columns_schedule_time: Urnik časa
+    scheduling_columns_scheduling_status: Status načrtovanja
+    scheduling_columns_seats: Sedežev
+    scheduling_columns_serial_no: Zaporedna št.
+    scheduling_columns_start_time: Datum in ura
+    scheduling_columns_subject: Zadeva
+    scheduling_columns_title: Naslov
+    scheduling_columns_view_recording: Ogled posnetka
+    scheduling_errors_assessor_already_assigned: Ocenjevalec, ki je že dodeljen tej oceni. Izberite drugega ocenjevalca ali ocenjevalca.
+    scheduling_errors_date_required: Prosimo, izberite datum
+    scheduling_errors_invalid_url: Neveljavna oblika URL-ja
+    scheduling_errors_meeting_link_https: Povezava do srečanja se mora začeti z »https://«
+    scheduling_info_allowed: Dovoljeno
+    scheduling_info_assessors: Ocenjevalcev
+    scheduling_info_booked: Rezervirani sedeži
+    scheduling_info_campaign_assessment_group: Skupina ocenjevalnih centrov
+    scheduling_info_cancellation_lead_time: Čas preklica
+    scheduling_info_cancellation_tooltip: Uporabnik lahko rezervacijo prekliče do %{date}
+    scheduling_info_date: Datum in ura
+    scheduling_info_duration: Trajanje
+    scheduling_info_join_meeting: Pridruži se sobi
+    scheduling_info_late_cancellation_and_scheduling: Pozna odpoved in načrtovanje
+    scheduling_info_link: Povezava do srečanja
+    scheduling_info_managers: Vodje centrov
+    scheduling_info_none: Nobena
+    scheduling_info_not_allowed: Ni dovoljeno
+    scheduling_info_recording_enabled: Snemanje omogočeno
+    scheduling_info_remaining: Preostali sedeži
+    scheduling_info_scheduling_lead_time: Načrtovanje časa izvedbe
+    scheduling_info_scheduling_tooltip: Uporabnik bi lahko rezerviral termin do %{date}
+    scheduling_info_search_placehoder: Iskanje po ID-ju, e-poštnem naslovu ali imenu
+    scheduling_info_timezone: Časovni pas
+    scheduling_info_total_seats: Skupno število sedežev
+    scheduling_lead_time_label: Čas načrtovanja
+    scheduling_resources_confirm_message: Ali ste prepričani, da želite izbrisati vir »%{resource_name}«?
+    scheduling_resources_confirm_title: Potrebna je potrditev
+    scheduling_resources_create: Ustvari vir
+    scheduling_resources_invalid_url: Neveljaven URL. Določite celoten URL s protokolom http ali https.
+    scheduling_resources_resource: Sredstvo
+    scheduling_resources_successful_remove: Vir ocenjevalnega centra %{resource_name} je bil uspešno izbrisan.
+    scheduling_schedule_assessments: Načrtovanje ocenjevanja
+    scheduling_scheduling_statuses_cancelled: Preklicana
+    scheduling_scheduling_statuses_late_cancelled: Pozno preklicano
+    scheduling_scheduling_statuses_late_rescheduled: Pozno prestavljeno
+    scheduling_scheduling_statuses_rescheduled: Prestavljeno
+    scheduling_scheduling_statuses_scheduled: Načrtovano
+    scheduling_search_participant: Udeleženci iskalne kampanje
+    scheduling_status: Stanje načrtovanja
+    scheduling_status_change_modal_content: Ko zaprete ocenjevalni center, udeleženci ne bodo mogli sodelovati v nobeni dejavnosti centra.
+    scheduling_status_change_modal_title: Spreminjanje stanja ocenjevalnega središča
+    scheduling_status_completed: Zaključeno
+    scheduling_status_dropped_out: Izpadli
+    scheduling_status_in_progress: V teku
+    scheduling_status_late: Pozno
+    scheduling_status_no_show: Ni predstavitve
+    scheduling_status_not_started: Ni začeto
+    scheduling_subjects_activities: Dejavnosti
+    scheduling_subjects_add_assessor_form: Dodaj obrazec ocenjevalca
+    scheduling_subjects_assessments: Ocenjevanja
+    scheduling_subjects_assessor_forms: Obrazci ocenjevalca
+    scheduling_subjects_confirm_message: Ali ste prepričani, da želite preklicati sodelovanje subjekta z e-poštnim sporočilom "%{subject_email}"?<br />Ko bo ta subjekt označen kot odpovedan, ne bo mogel sodelovati v ocenjevalnem centru.
+    scheduling_subjects_confirm_title: Potrebna je potrditev
+    scheduling_subjects_edit_assessor_form: Uredi obrazec ocenjevalca
+    scheduling_subjects_form_title: Načrtovanje ocenjevanja
+    scheduling_subjects_language: Jezik
+    scheduling_subjects_language_not_selected: Ni izbrano
+    scheduling_subjects_mark_cancel: Mark Cancel
+    scheduling_subjects_mark_cancel_success: Preklicana udeležba subjekta z e-poštnim sporočilom %{subject_email}.
+    scheduling_subjects_meeting_link_custom: Običaj
+    scheduling_subjects_meeting_link_internal: Notranji
+    scheduling_subjects_meeting_link_none: Nobena
+    scheduling_subjects_meeting_link_title: Povezava do srečanja
+    scheduling_subjects_no_change: Brez sprememb
+    scheduling_subjects_override_existing: Preglasitev obstoječih urnikov za predmete
+    scheduling_subjects_preworks: Priprava
+    scheduling_subjects_re_enroll: Ponovni vpis
+    scheduling_subjects_re_enroll_confirm_message: Ali ste prepričani, da želite ponovno vpisati predmet z e-pošto '%{subject_email}'?
+    scheduling_subjects_re_enroll_success: Ponovno vpisan predmet z e-pošto %{subject_email}.
+    scheduling_subjects_schedule: Načrtuj
+    scheduling_subjects_unschedule: Prekliči razpored
+    scheduling_tabs_activities: Dejavnosti
+    scheduling_tabs_assessment_center: Ocenjevalni center
+    scheduling_tabs_invites: Povabila
+    scheduling_tabs_recordings: Posnetkov
+    scheduling_tabs_resources: Sredstva
+    scheduling_tabs_subjects: Subjekti
+    schema_key_description_required: Ključ sheme Opis je obvezen
+    schema_key_required: Ključ sheme je obvezen
+    schema_key_type: Vrsta ključa
+    schema_key_unique: Ključi sheme morajo biti edinstveni.
+    scope: Področje uporabe
+    scope_client: Stranka
+    scope_global: Globalno
     score: Rezultat
     score_approval_not_allowed_to_approve: Te ocene ne smete odobriti.
     score_approval_not_allowed_to_discard: Te ocene ne smete zavreči.
@@ -1102,56 +2494,342 @@ sl:
     score_max: Najvišji rezultat
     score_min: Rezultat Min
     score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
+    score_not_applicable: Rezultat ni veljaven
     score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
     score_with_ai: Zmagajte z umetno inteligenco
     scores_finalized: Rezultati so dokončni in jih ni mogoče spremeniti
     scoring: Točkovanja
+    scoring_action_prohibited: Aktivnost prepovedano
+    scoring_active: Aktivni
+    scoring_actual_average: Dejansko povprečje
+    scoring_add_factor: Dodajanje faktorja
+    scoring_add_group: Dodajanje skupine
     scoring_approval_add_settings: Dodaj nastavitve
     scoring_approval_allow_bulk_approve: Dovoli množično odobritev
     scoring_approval_allow_bulk_approve_scores: Dovoli množično odobravanje ocen
     scoring_approval_allow_one_level_approve: Dovoli eno stopnjo odobritve
+    scoring_approval_approve_all: Odobrite vse
     scoring_approval_approver_users: Potrjevalci
     scoring_approval_approvers: Odobritelji
     scoring_approval_assessment: Ocena
     scoring_approval_assessor_users: Uporabniki ocenjevalcev
+    scoring_approval_bulk_approve_success: "%{approved} odobreni rezultati."
     scoring_approval_do_not_send_notifications: Ne pošiljaj obvestil
     scoring_approval_modal_title: Nastavitve odobritve točkovanja
     scoring_approval_notification_users: Uporabniki obvestil o odobritvi
     scoring_approval_remove_modal_success: 'Nastavitev odobritve za identifikacijsko številko ocene: %{assessmentId} je bila uspešno izbrisana.'
     scoring_approval_remove_modal_text: 'Ali ste prepričani, da želite izbrisati to nastavitev za identifikacijsko številko ocene: %{assessmentId}?'
+    scoring_approval_review: Pregled
+    scoring_approval_score_approvals: Odobritve AI točkovanja
+    scoring_assessment: Ocenjevanje
+    scoring_assessment_scoring_type: Vrsta točkovanja ocenjevanja
+    scoring_average: Povprečen
+    scoring_campaign_scoring_variables: Spremenljivke ocenjevanja oglaševalske akcije
+    scoring_desc: Prekoračili ste najvišjo omejitev %{n} faktorjev oglaševalske akcije. Dodatnih dejavnikov ni mogoče dodati. Pred nadaljevanjem preglejte in upravljajte obstoječe dejavnike.
+    scoring_dimension: Dimenzija
+    scoring_edit_factor: Faktor urejanja
+    scoring_export_factors: Dejavniki izvozne oglaševalske akcije
+    scoring_factor: Dejavnik
+    scoring_factor_group_removed_successfully: Skupina Faktor oglaševalske akcije je bila uspešno odstranjena
+    scoring_factor_removal_confirmation: Za potrditev vnesite spodaj navedeno ime faktorja v besedilno polje
+    scoring_factor_removed_successfully: Faktor oglaševalske akcije je bil uspešno odstranjen
+    scoring_factors_exported_successfully: Opravilo Dejavniki izvoza oglaševalske akcije je bilo uspešno načrtovano
+    scoring_factors_imported_successfully: Opravilo uvoza dejavnikov oglaševalske akcije je bilo uspešno načrtovano
+    scoring_final: Končni
+    scoring_final_score_updated_successfully: Končni rezultat je bil uspešno posodobljen
+    scoring_formula: Formula
+    scoring_get_started: Začnite
+    scoring_import_factors: Uvoz dejavnikov oglaševalske akcije
+    scoring_innovation_style_removal_confirmation: Vnesite ime sloga inovacije, navedeno spodaj, v polje za vnos besedila, da potrdite
+    scoring_no_groups: Ni prisotnih skupin
+    scoring_occupation_removal_confirmation: Vnesite ime poklica, navedeno spodaj, v polje za vnos besedila, da potrdite
+    scoring_output_type: Vrsta izhoda
+    scoring_pattern_error: Dovoljeni so samo alfanumerični znaki, presledki in pomišljaji.
+    scoring_profile_years: Let
+    scoring_public: Javnost
+    scoring_ranked: Razvrščeni
+    scoring_remove_all_campaign_factors_confirmation: Za potrditev vnesite trenutno ime oglaševalske akcije, navedeno spodaj v besedilno polje
+    scoring_remove_all_campaign_factors_error: Odstranjevanje dejavnikov oglaševalske akcije ni uspelo
+    scoring_remove_all_campaign_factors_success: Dejavniki oglaševalske akcije so bili uspešno odstranjeni
+    scoring_remove_all_campaign_factors_title: Odstranjevanje dejavnikov oglaševalske akcije
+    scoring_remove_all_campaign_factors_warning: Kmalu boste izbrisali vse faktorje oglaševalske akcije in vse povezane ocene za uporabnike. Ali ste prepričani, da želite izvesti to dejanje?
+    scoring_remove_factor_group_confirmation_content: Ali ste prepričani, da želite odstraniti skupino faktorjev '%{group_name}'?
+    scoring_remove_factor_group_confirmation_title: Odstrani skupino faktorjev
+    scoring_required_error: Ne more biti prazen
+    scoring_save_all: Shrani vse
+    scoring_score_range: Razpon rezultatov
+    scoring_score_types_norm_score: Norm ocena
+    scoring_score_types_percentage: Odstotek
+    scoring_score_types_percentile: Percentil
+    scoring_score_types_score: Partitura
+    scoring_score_types_zscore: Ocena Z
+    scoring_scoring: Točkovanja
+    scoring_scoring_description: Ocenjevanje oglaševalske akcije omogoča poročanje med ocenjevanji
+    scoring_select_all: Izbira vseh %{n} predmetov
+    scoring_select_assessment_first: Najprej izberite ocenjevanje
+    scoring_select_factor: Izberite faktor
+    scoring_show_weightages: Pokaži uteži
+    scoring_subject: Zadeva
+    scoring_subject_list_bulk_mark_finalized: Dokončanoa oznaka v velikem obsegu
+    scoring_subject_list_bulk_mark_finalized_confirm: Dokončanoje ocene za izbrane uporabnike bo ustvarilo poročilo, ki uporablja faktor oglaševalske akcije za uporabnike. Ste prepričani, da želite nadaljevati?
+    scoring_subject_list_bulk_mark_not_finalized: Oznaka v velikem obsegu ni dokončana
+    scoring_subject_list_bulk_mark_not_finalized_confirm: Če izbranim uporabnikom odstranite dokončanje, boste odstranili ustvarjeno poročilo, ki uporablja faktor oglaševalske akcije za uporabnike. Ste prepričani, da želite nadaljevati?
+    scoring_subject_list_bulk_rescore: Množično vnovično ocenjevanje
+    scoring_subject_list_bulk_rescore_confirm: Ponovno ocenjevanje izbranih uporabnikov. Ste prepričani, da želite nadaljevati?
+    scoring_subject_list_calculated_date: Izračunani datum
+    scoring_subject_list_calculation_errors: Napake pri izračunu
+    scoring_subject_list_export: Izvozni scorings
+    scoring_subject_list_export_success: Izvoz rezultatov je bilo uspešno načrtovano
+    scoring_subject_list_finalized: Dokončanoa
+    scoring_subject_list_finalized_date: Datum zaključka
+    scoring_subject_list_import_external_scores: Uvoz zunanjih scoringov
+    scoring_subject_list_mark_finalized: Označi dokončano
+    scoring_subject_list_mark_finalized_confirm: Dokončanoje ocene za uporabnika »%{email}« bo ustvarilo poročilo, ki uporablja faktor oglaševalske akcije za uporabnika. Ste prepričani, da želite nadaljevati?
+    scoring_subject_list_mark_not_finalized: Označi ni dokončano
+    scoring_subject_list_mark_not_finalized_confirm: Če uporabniku odstranite »%{email}«, boste odstranili ustvarjeno poročilo, ki uporablja faktor oglaševalske akcije za uporabnika. Ste prepričani, da želite nadaljevati?
+    scoring_subject_list_push_webhook: Potisni spletni kavlji
+    scoring_subject_list_rank: Uvrstitev
+    scoring_subject_list_rescore: Ponovna ocena
+    scoring_subject_list_rescore_confirm: Ponovno ocenjevanje uporabnika '%{email}'. Ste prepričani, da želite nadaljevati?
     scoring_supported_only_for_ai_questions: Točkovanje je dovoljeno samo za vprašanja z umetno inteligenco za trenutno izbrani dejavnik.
+    scoring_tabs_settings: Nastavitve
+    scoring_tabs_subject_scores: Ocenjevanja predmetov
     scoring_value_info: Rezultat mora biti med %{min} in %{max}.
     scoring_value_out_of_range_err_msg: Ocena za %{factor_name} mora biti med %{min} in %{max}.
+    scoring_variables: Spremenljivke
+    scoring_weightages_assessorForms: Obrazci ocenjevalca
+    scoring_weightages_successful_update: Uteži so bile uspešno posodobljene
+    scoring_weightages_weightages: Uteži
+    scoring_weighted_average: Tehtano povprečje
     search_admins: Skrbniki za iskanje
+    search_campaign: Iskanje po oglaševalski akciji
+    search_client: Iskanje po odjemalcu
     search_job_role: Iskanje delovnega mesta
+    search_participants: Iskanje udeležencev...
+    search_project: Iskanje po projektu
+    search_record: Iskanje po ID-ju zapisa
+    search_user: Iskanje po uporabniku
+    seats_label: Sedežev
+    sec_logo_label: Sekundarni logotip
+    secondary_logo_alt_text: Nadomestno besedilo sekundarnega logotipa
+    secondary_logo_alt_text_required: Zahtevan je sekundarni logotip nadomestnega besedila
+    security_setting_180_days: 180 dni
+    security_setting_30_days: 30 dni
+    security_setting_365_days: 365 dni
+    security_setting_90_days: 90 dni
+    security_setting_attempts_to_lock: Poskusi zaklepanja
+    security_setting_auto_unlock_time: Čas samodejnega odklepanja
+    security_setting_disable_password_reuse: Onemogoči vnovično uporabo gesla
+    security_setting_disallow_password_login: Ne dovoli prijavo z geslom
+    security_setting_enable_login_with_magic_link: Omogoči prijavo s čarobno povezavo
+    security_setting_enable_recaptcha: Omogočite reCAPTCHA
+    security_setting_enforce_password_policy: Uveljavitev pravilnika o gesli ob naslednji prijavi
+    security_setting_enforce_strong: Uveljavite močno geslo
+    security_setting_expiration: Potek gesla
+    security_setting_lock_account: Zakleni račun
+    security_setting_magic_link_expiry_duration: Trajanje poteka čarobne povezave
+    security_setting_min_length: Najmanjša dolžina gesla
+    security_setting_never: Nikoli
+    security_setting_restrict_sequences: Omejitev zaporednih in ponavljajočih se znakov
+    security_setting_security: Varnostne nastavitve
+    security_setting_send_unlock_email: Pošiljanje e-pošte za odklepanje
+    security_setting_session_timeout_duration: Časovna omejitev seje – trajanje
+    security_setting_tfa_enabled: Omogočite dvofaktorsko preverjanje pristnosti
+    security_settings_security_setting: Varnostna nastavitev
     select_admin_role: Izberite skrbniško vlogo
+    select_assessment_language: Izberite jezik ocenjevanja
+    select_client: Izberi stranko
     select_end_time: Izberite čas zaključka
     select_language_to_translate: Izberite jezik za prevajanje
     select_level: Izberite raven
+    select_project_ids_required: Izberite zahtevane ID-je projektov
+    select_projects: Izbrani projekti
+    select_projects_required: Izberite vsaj en projekt
     select_question: Iskanje vprašanja po imenu ali ID-ju
+    select_report_ids_required: Izberite potrebne ID-je poročil
+    select_report_language: Izberite jezik poročila
+    select_report_type: Izberite vrsto poročila
     select_start_time: Izberite čas začetka
     selective_proctoring: Selektivno nadzorovanje
     send_email: Pošlji e-pošto
+    send_test_email: Pošlji testno e-poštno sporočilo
     set_min_max_scores_warning: Za konfiguracijo AI-ocenjevanja nastavite minimalno in maksimalno število točk za ta dejavnik.
     settings: Nastavitve
+    settings_admin_roles_confirm_message: Ali ste prepričani, da želite izbrisati skrbniško vlogo '%{role_name}'?
     settings_saved_successfully: Nastavitve so bile uspešno shranjene
+    settings_siem_destination_type: Vrsta cilja
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: Združljivo s S3
+    settings_siem_enabled: Omogočeno
+    settings_siem_readable_resource_name: Nastavitve SIEM
+    settings_siem_s3_access_key_id: ID ključa za dostop
+    settings_siem_s3_bucket_folder: Mapa vedra S3
+    settings_siem_s3_bucket_name: Ime vedra S3
+    settings_siem_s3_endpoint: Končna točka S3
+    settings_siem_s3_region: Regija S3
+    settings_siem_s3_secret_access_key: Skrivni ključ za dostop
+    settings_siem_send_test_log: Pošlji dnevnik preskušanja
+    settings_siem_send_test_log_error_message: Testni dnevnik ni bil poslan v vaše vedro, preverite nastavitve
+    settings_siem_send_test_log_success_message: Testni dnevnik je bil uspešno poslan v vaše vedro
+    settings_skill_aliases_alias: Vzdevek
+    settings_skill_aliases_confirm_message: Ali ste prepričani, da želite izbrisati vzdevek spretnosti '%{skill_alias}'?
+    settings_skill_aliases_create: Dodajanje vzdevka spretnosti
+    settings_skill_aliases_select_skill: Izberite spretnost
+    settings_skill_aliases_skill: Spretnost
+    settings_skill_aliases_skill_alias: Vzdevek spretnosti
+    settings_skill_aliases_successful_remove: Vzdevek spretnosti '%{skill_alias}' je bil uspešno izbrisan.
+    settings_tabs_admin_roles: Skrbniške vloge
+    settings_tabs_feature_flags: Zastavice funkcij
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: Vzdevki spretnosti
+    sheets_column_add_column: Dodaj stolpec
+    sheets_column_not_allowed_for_dashboard_use: Za stolpec, ki ga želite uporabiti na nadzorni plošči, mora biti krajši od 64 znakov
+    sheets_column_reorder: Preuredite
+    sheets_column_save_order: Shrani naročilo
+    sheets_drawers_add_edit_cancelText: Prekliči
+    sheets_drawers_add_edit_markdown_preview: Predogled
+    sheets_drawers_add_edit_markdown_title: Markdown
+    sheets_drawers_add_edit_save: Shrani
+    sheets_drawers_add_edit_saving: Shranjevanje
+    sheets_drawers_add_edit_success_message_add: Dodan nov zapis
+    sheets_drawers_add_edit_success_message_edit: Zapis posodobljen
+    sheets_drawers_add_edit_title_add: Dodajanje zapisa lista
+    sheets_drawers_add_edit_title_edit: Urejanje zapisa vrstice lista
+    sheets_drawers_add_edit_validations_required_email: Prosimo, vnesite e-poštni naslov
+    sheets_drawers_view_campaign_title: Zapis na ravni oglaševalske akcije
+    sheets_drawers_view_project_title: Zapis na ravni projekta
+    sheets_drawers_view_title: Podrobnosti zapisa vrstice lista
+    sheets_list_header_add_record: Dodajanje zapisa
+    sheets_list_header_search_record: Iskanje po zapisih
+    sheets_modals_delete_records_cancelText: Prekliči
+    sheets_modals_delete_records_content: Ali ste prepričani, da želite izbrisati izbrane zapise {{count}}?
+    sheets_modals_delete_records_okText: Da, izbriši
+    sheets_modals_delete_records_successMessage: "{{count}} zapisi so bili uspešno izbrisani."
+    sheets_modals_delete_records_title: Brisanje zapisov {{count}}
+    sheets_modals_remove_columns_cancelText: Prekliči
+    sheets_modals_remove_columns_content: Če izbrišete stolpec ({{columns}}), odstranite podatke v tem stolpcu za vse vrstice
+    sheets_modals_remove_columns_okText: Da, izbriši
+    sheets_modals_remove_columns_successMessage: "{{count}} izbrisani zapisi"
+    sheets_modals_remove_columns_title: Brisanje stolpcev
+    sheets_tabs_rows: Vrstice
+    sheets_tabs_settings: Nastavitve
+    show_all: Pokaži vse
     show_all_assessment_responses: Pokaži vse odgovore na oceno
     show_middle_scores: Pokaži več rezultatov za %{count} (neobvezno)...
     show_original: Pokaži izvirnik
     show_submenu: Pokaži podmeni
     show_translated: Pokaži prevedeno
+    show_watermark: Pokaži vodni žig
+    sidebar_title: Možnosti projekta
     siem: SIEM
     simulation: Simulacija
     simulation_assessment: Ocena Simulation
     skill_aliases: Vzdevki spretnosti
+    skill_rater: Ocenjevalec spretnosti
     skills: Spretnosti
+    skills_applicable_proficiency_levels: Veljavne ravni strokovnosti
+    skills_columns_skill_group: Skupina spretnosti
+    skills_columns_skill_type: Vrsta spretnosti
+    skills_export_failure_msg: Napaka pri izvažanju prevodov
+    skills_export_success_msg: Izvoz razvojnih ukrepov v teku.
+    skills_form_skill_group: Skupina spretnosti
+    skills_form_skill_type: Vrsta spretnosti
+    skills_form_title: Spretnost
+    skills_import_action_skills_title: Uvozne spretnosti
+    skills_import_action_skills_translations_title: Uvoz prevodov spretnosti
+    skills_import_download_example_csv: Prenesite primer csv
+    skills_import_info_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    skills_import_success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    skills_skill_details: Podrobnosti o spretnostih
+    skills_skill_translations: Spretnosti Prevodi
     skills_taxonomy: Taksonomija spretnosti
+    skills_title: Spretnosti
+    skills_vector_generate_embedding: Generiranje vdelave
+    skills_vector_generate_embedding_failure_msg: Nisem uspel v vrsti za generiranje veščin v vrsti. Prosim, poskusite znova.
+    skills_vector_generate_embedding_success_msg: Delo za generiranje veščin je bilo uspešno uvrščeno v čakalno vrsto. Prosimo, preverite status v obvestilih.
+    skills_vector_label: Vector DB
     skillvue: Skillvue
+    skillvue_apiKey: Ključ API-ja
+    skillvue_apiKeyRequired: Potreben je ključ API
     skillvue_assessment: Ocena Skillvue
     skip_assessment_level_checks: Preskoči preverjanje sistema na ravni ocenjevanja
     slot_name: Ime reže
+    sms_contact: SMS stik
     sms_histories: Zgodovina sporočil SMS
+    sms_histories_columns_mobile_no: Mobilni telefon Št
+    sms_histories_columns_price: Cena
+    sms_histories_columns_segment_length: Dolžina segmenta
+    sms_histories_columns_sent_at: Poslano na
+    sms_histories_drawer_title: Podrobnosti o sporočilu SMS
+    sms_histories_history: Zgodovina
+    sms_histories_statuses_accepted: Sprejeta
+    sms_histories_statuses_delivered: Dostavljena
+    sms_histories_statuses_failed: Ni uspela
+    sms_histories_statuses_queued: V čakalni vrsti
+    sms_histories_statuses_scheduled: Načrtovano
+    sms_histories_statuses_sent: Poslal
+    sms_histories_statuses_undelivered: Nedostavljeno
     sms_invites: SMS vabila
+    sms_invites_actions_add: Dodajanje stika SMS
+    sms_invites_columns_created_at: Ustvarjeno
+    sms_invites_columns_created_by: Ustvaril
+    sms_invites_columns_mobile_no: Mobilni telefon Št
+    sms_invites_contacts: Stike
+    sms_invites_form_modal_locale: Locale
+    sms_invites_form_modal_mobile_no: Mobilni telefon Št
+    sms_invites_form_modal_title: SMS povabilo
+    sms_invites_import_download_example_csv: Prenesite primer csv
+    sms_invites_import_success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    sms_invites_import_title: SMS Uvoz povabila
+    sms_invites_messages_delete_confirm_text: Ali ste prepričani, da želite odstraniti SMS povabilo s številko mobilnega telefona %{mobile_no}?
+    sms_invites_messages_delete_success: SMS povabilo je bilo uspešno izbrisano
+    sms_invites_send_sms_fields_link_expiry: Potek povezave
+    sms_invites_send_sms_fields_locale: Locale
+    sms_invites_send_sms_fields_message: Sporočilo
+    sms_invites_send_sms_fields_statuses: Statusi
+    sms_invites_send_sms_fields_users: Uporabniki
+    sms_invites_send_sms_modal_btn_name: Pošlji SMS
+    sms_invites_send_sms_modal_title: Pošlji SMS
+    sms_invites_send_sms_pipetext_details: "{{{first_name}}} - Ime prejemnika<br />{{{last_name}}} - Priimek prejemnika<br />{{{invite_url}}} - Povezava za registracijo"
+    sms_invites_send_sms_segment_length_msg: Ocenjeno število odsekov za to sporočilo je %{segment_length}.
+    sms_invites_send_sms_segment_length_range_msg: Ocenjeno število segmentov za to sporočilo je med %{min_segment_length} in %{max_segment_length}.
+    sms_invites_statuses_all: Prikaže vse
+    sms_invites_statuses_failed: Ni uspela
+    sms_invites_statuses_invited: Povabil
+    sms_invites_statuses_not_invited: Ni povabljen
+    sms_invites_statuses_registered: Registrirana
+    sms_invites_tools_export: Izvoz stikov SMS
+    sms_invites_tools_import: Uvoz stikov SMS
+    sms_invites_tools_send_sms: Pošlji SMS
+    sms_notification: SMS obvestilo
+    sms_notification_disabled_by_client: Odjemalec onemogoči obvestilo SMS
+    sms_records_columns_message: Sporočilo
+    smtp_settings: Nastavitve SMTP
+    smtp_settings_authentication: Preverjanje pristnosti
+    smtp_settings_authentication_type: Vrsta preverjanja pristnosti
+    smtp_settings_authentication_types_cram_md5: Cram MD5
+    smtp_settings_authentication_types_login: Prijava
+    smtp_settings_authentication_types_plain: Ravnina
+    smtp_settings_enabled: Omogočeno
+    smtp_settings_encryption: Šifriranje
+    smtp_settings_encryption_types_none: Nobena
+    smtp_settings_encryption_types_ssl: Protokol SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: Iz e-pošte
+    smtp_settings_from_name: Iz imena
+    smtp_settings_host: Gostitelj
+    smtp_settings_password: Geslo
+    smtp_settings_port: Luka
+    smtp_settings_send_test_email: Pošlji testno e-poštno sporočilo
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: Nastavitev e-pošte se ne bo shranila, dokler preskusno e-poštno sporočilo ne bo uspešno poslano.
+    smtp_settings_test_email_modal_input_placeholder: Preskusni e-poštni ID
+    smtp_settings_test_email_modal_title: Preskusni e-poštni ID
+    smtp_settings_test_modal_success_message: Preskusno e-poštno sporočilo, poslano na %{email_id}.
+    smtp_settings_test_modal_title: Preskus nastavitve SMTP
+    smtp_settings_update_success_msg: Nastavitev SMTP je bila uspešno posodobljena.
+    smtp_settings_use_sender_verification: Uporaba preverjanja pošiljatelja
+    smtp_settings_user_name: Uporabniško ime
     specialty_questions: Posebna vprašanja
     sso_email_mismatch: Pri ponudniku identitete ste prijavljeni v drug račun. Odjavite se iz ponudnika identitete in poskusite znova.
     sso_enforced: Uveljavitev SSO
@@ -1183,30 +2861,167 @@ sl:
     sso_settings_slo_url: URL storitve SLO
     sso_settings_sso_url: URL storitve SSO
     sso_settings_tab: SSO
+    standard: Standard
     standard_deviation: Standardni odmik
     standard_questions: Standardna vprašanja
     start: začetek
     start_time: Začetek
     static_content: Statična vsebina
     stats: Statistika
+    stats_assessments_active: Aktivni
+    stats_assessments_columns_assessment_name: Ime ocenjevanja
+    stats_assessments_columns_completed: Zaključeno
+    stats_assessments_columns_in_progress: V teku
+    stats_assessments_columns_ineligible: Neupravičeno
+    stats_assessments_columns_interrupted: Prekinjeno
+    stats_assessments_columns_not_started: Ni začeto
+    stats_assessments_columns_timed_out: Čas za izvedbo je potekel
+    stats_assessments_count: Število
+    stats_assessments_inactive: Neaktiven
+    stats_assessments_percentage: Odstotek
+    stats_assessments_title: Ocenjevanja
+    stats_top_metrics_completed: Zaključeno
+    stats_top_metrics_in_progress: V teku
+    stats_top_metrics_interrupted: Prekinjeno
+    stats_top_metrics_not_started: Ni začeto
+    stats_top_metrics_timed_out: Čas za izvedbo je potekel
+    stats_top_metrics_users: Uporabniki
+    stats_users_date_presets_last_30_days: Zadnjih 30 dni
+    stats_users_date_presets_last_7_days: Zadnjih 7 dni
+    stats_users_date_presets_last_month: Prejšnji mesec
+    stats_users_date_presets_last_week: Prejšnji teden
+    stats_users_date_presets_today: Danes
+    stats_users_date_presets_yesterday: Včeraj
+    stats_users_y_title: Število uporabnikov
+    status_active: Aktivni
+    status_archived: Arhivirani
     status_details: Podrobnosti o statusu
+    statuses_accepted: Sprejeta
+    statuses_cancelled: Preklicana
+    statuses_late_cancelled: Pozno preklicano
+    statuses_late_rescheduled: Pozno prestavljeno
+    statuses_pending: Do
+    statuses_requested_cancellation: Zahtevana odpoved
+    statuses_requested_cancellation_rejected: Preklic zavrnjen
+    statuses_requested_rescheduling: Zahtevana sprememba termina
+    statuses_requested_rescheduling_rejected: Prerazporeditev zavrnjena
+    statuses_rescheduled: Prestavljeno
+    statuses_scheduled: Načrtovano
+    steps_basic_information: Osnovne informacije
+    steps_facilitators: Moderatorji
+    steps_invite_options: Možnosti povabila
+    steps_invite_subjects: Povabite predmete
+    steps_send_invitations: Pošiljanje vabil
     structured_learning: Formalno učenje [10]
+    sub_factor_questions: Vprašanja drugih dejavnikov (povprečje)
+    sub_factor_questions_sum: Vprašanja drugih dejavnikov (SUM)
+    sub_factors_average: Tehtano povprečje dejavnikov
+    sub_factors_conditional_average: Pogojno tehtano povprečje dejavnikov
+    sub_factors_sum: Tehtana vsota dejavnikov
     subdomain: Poddomena
     subdomain_admin_keyword: ne morem uporabiti vzorca za rezervirano poddomensko ime za administratorja
     subdomain_invalid_format: Nepravilen format poddomene.
     subdomain_reserved: Poddomena %{value} je rezervirana
     subdomain_too_long_max_32: Poddomena je predolga (največ 32 znakov)
+    subject: Zadeva
+    subject_can_access_reports: Subjekt lahko dostopa do svojih poročil
+    subject_email: E-poštni naslov subjekta
+    subject_invite_description: To sporočilo bo poslano za povabilo udeležencev k sodelovanju pri ocenjevanju
+    subject_invite_name: Zadevno povabilo
     subject_part_of_other_invite: Oseba z e-poštnim naslovom %{user_email} je že povabljena na »%{workshop_invite_name}«.
+    subject_placeholder: Zadeva iskanja ...
+    subject_reminder_description: Sporočilo, poslano vsakemu udeležencu, da ga opomni na sodelovanje pri ocenjevanju
+    subject_reminder_name: Opomnik za zadevo
+    subject_reminder_rule_description: Določanje pravil za samodejno načrtovanje, ko je povabilo načrtovano
+    subject_reminder_rule_name: Pravila za opomnike za zadevo
+    subject_report_ready_description: To sporočilo je poslano zadevi, ko je poročilo pripravljeno
+    subject_report_ready_name: Pripravljeno poročilo o zadevi
+    subjects_title: Subjekti
+    submenu_options_option_one: Možnost 1
+    submenu_options_option_title: Postavka 1
+    submenu_options_option_two: Možnost 2
+    success_call_send_invitation: Želite poslati vabila?
+    success_color: Barva uspeha
+    success_ok: Da
+    success_skip: Preskoči za zdaj
+    success_title: Ustvarjeni ocenjevalni centri
+    success_update: Nastavitve načrta so bile uspešno shranjene
+    suitability_id: ID primernosti
     superadmin_use_root_domain: Superupravitelji se morajo prijaviti prek glavne domene
     switch_client: Preklop na odjemalca
+    system_prompt: Sistemski poziv
+    tab_text_one: Meni
+    tab_text_two: Podmenu
+    table_more_actions: Več dejanj
+    tabs_results: Rezultati
+    tabs_settings: Nastavitve
     target_job_role: Ciljna delovna vloga
+    taxonomy_import_action_taxonomy: Uvozna taksonomija
+    taxonomy_import_description: Naložite Excelovo datoteko, da uvozite ali posodobite svojo taksonomijo znanj. S tem boste dodali nova znanja, delovna mesta in stopnje usposobljenosti.
+    taxonomy_import_download_example_file: Prenesite vzorčno datoteko
+    taxonomy_import_drag_text: Kliknite ali povlecite datoteko v to območje, da jo naložite.
+    taxonomy_import_error_title: Uvoz ni uspel
+    taxonomy_import_file_hint: Podpira datoteke .xls in .xlsx
+    taxonomy_import_import_button: Uvoz taksonomije
+    taxonomy_import_success_msg: Naložena datoteka je bila uvrščena v čakalno vrsto za uvoz. Preverite stanje v obvestilih.
+    taxonomy_title: Taksonomija spretnosti
+    template_and_campaign_required: Prosimo, navedite tako predlogo kot ID kampanje
+    template_render_failed: Predloga ni uspela izrisati
+    test_generate: Testno generiranje
+    test_render: Testni upodabljanje
+    test_render_tooltip: Preizkusite predlogo za poziv s podatki o kampanji, da preverite, kaj bo poslano AI asistentu.
+    text_danger: Besedilo(nevarnost)
+    text_success: Besedilo (uspeh)
+    text_warning: Besedilo(opozorilo)
     this_field_is_required: To polje je obvezno
+    threesixity_advance_settings_campaign_template: Predloga oglaševalske akcije
+    threesixity_advance_settings_factors: Dejavniki
+    threesixity_close_content: Ali ste prepričani, da želite zapreti ustvarjalca oglaševalskih akcij Multi Rater? Vsa neshranjena prilagoditvena dela bodo izgubljena. Prosimo, potrdite svojo odločitev.
+    threesixity_close_title: Zaprite ustvarjalca kampanje Multi Rater?
+    threesixity_instructions_creation_empty: 'Prazno: Začnite s prazno anketo in jo prilagodite svojim posebnim potrebam.'
+    threesixity_instructions_creation_previous: 'Prejšnje: Izberite prejšnjo oceno kot izhodišče in jo prilagodite.'
+    threesixity_instructions_creation_standard: 'Standard: Uporabite vnaprej pripravljeno predlogo s pogosto uporabljanimi vprašanji in kazalniki.'
+    threesixity_instructions_creation_sub_title: Izberite vrsto oglaševalske akcije, ki jo želite ustvariti.
+    threesixity_instructions_creation_title: Dobrodošli v ustvarjalcu kampanje Multi Rater!
+    threesixity_instructions_customization_sub_title: Izberite predlogo in dejavnike, ki jih želite vključiti v ocenjevanje.
+    threesixity_instructions_customization_title: Prilagodite svojo oceno!
+    threesixity_no_factors_description: Poskusite nekatere druge ključne besede za iskanje.
+    threesixity_no_factors_title: Ni najdenih dejavnikov
+    threesixity_questions_select_all: Izberi vse
+    threesixity_questions_title: Vprašanja in kazalniki
+    threesixity_search_factors_description: Vnesite vsaj 3 znake, da najdete dejavnike, ki jih iščete.
+    threesixity_search_factors_title: Začnite iskati
+    threesixity_success: Uspešno je bila ustvarjena kampanja Multi Rater.
+    threesixity_success_job: Uspešno je bilo načrtovano delovno mesto za ustvarjanje kampanje Multi Rater.
     threesixty: Kampanja 360
+    threesixty_campaigns_mail_history_date: Datum
+    threesixty_campaigns_mail_history_download_details: Podrobnosti za prenos
+    threesixty_campaigns_mail_history_emails_sent: Poslana e-pošta
+    threesixty_campaigns_mail_history_recipient: Prejemnik
+    threesixty_campaigns_mail_history_subject: Zadeva
+    threesixty_campaigns_manage_assessment: Ocenjevanje
+    threesixty_campaigns_manage_dimension: Dimenzije
+    threesixty_campaigns_manage_manage_relationships: Upravljanje odnosov ...
+    threesixty_campaigns_manage_report: Poročilo
+    threesixty_campaigns_menu_datasheet_title: Podatkovni list
+    threesixty_campaigns_menu_messages_title: Sporočila
+    threesixty_campaigns_menu_participants_title: Udeleženci
+    threesixty_campaigns_menu_report_menu_report_approval_title: Nastavitve odobritve poročila
+    threesixty_campaigns_menu_report_menu_report_options_title: Možnosti poročila
+    threesixty_campaigns_menu_report_title: Poročilo
+    time_label: Čas
+    time_zone: Časovni pas
     timed_label: 'Časovno omejeno: %{time_text}'
     timelines: Časovni razporedi
+    times: Krat
     timezone: Časovni pas
+    timezone_label: Časovni pas
     timing: Časovni razpored
+    title: Sporočila
     to: Za
+    token_url_label: URL žetona
+    token_url_name: oauth_token_url
+    token_url_required: URL žetona je obvezen
     tone: Ton
     toolbar_ai_insight: Vpogled v umetno inteligenco
     toolbar_ai_suggestion: Predlog AI
@@ -1215,6 +3030,22 @@ sl:
     toolbar_text_replaced: Besedilo zamenjano!
     toolbar_what_changed_and_why: Kaj se je spremenilo in zakaj
     tools: Orodja
+    topics_label: Dogodkov
+    topics_list_assessment_assigned: Dodeljena ocena
+    topics_list_assessment_completed: Ocena zaključena
+    topics_list_assessment_raw_response: Ocena surovega odgovora
+    topics_list_assessment_started: Ocenjevanje se je začelo
+    topics_list_assessment_timeout: Časovna omejitev ocenjevanja
+    topics_list_campaign_results_available: Rezultati oglaševalske akcije so na voljo
+    topics_list_campaign_user_assessment_summary: Povzetek ocene uporabnika kampanje
+    topics_list_campaign_user_status: Status uporabnika oglaševalske akcije
+    topics_list_report_available: Poročilo je na voljo
+    topics_list_results_available: Rezultati so na voljo
+    topics_list_scheduling_cancelled: Razporejanje preklicano
+    topics_list_scheduling_invited: Razporejanje vabljenih
+    topics_list_scheduling_rescheduled: Razporejanje prestavljenega časa
+    topics_list_scheduling_scheduled: Načrtovanje načrtovanja
+    topics_list_workshop_attendance_status: Status udelezbe na delavnici
     transcription_record_not_found: Zapis transkripcije ni bil najden
     transcription_schedule_failed: Naloga za prepis ni bila uspešno načrtovana
     transcription_scheduled: Prepisovanje je načrtovano. Zaprite okno in preverite stanje obvestila.
@@ -1227,32 +3058,84 @@ sl:
     translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
     translations:
       title: Prevodi
+    translations_export_failure_msg: Napaka pri izvažanju prevodov
+    translations_export_success_msg: Izvoz razvojnih ukrepov v teku.
+    tte: TTE
+    type_by_skill: S spretnostjo
+    type_by_skill_type: Po vrsti spretnosti
+    type_default: Privzeto
+    type_locked_tooltip: Ta pomočnik je trenutno v uporabi in njegovega tipa ni mogoče spremeniti.
+    unarchive_content: Ali ste prepričani, da želite obnoviti arhiviranje '%{project_name}'?
+    unarchive_success: Projekt '%{project_name}'' je bil uspešno nearhiviran.
+    unarchive_title: Razveljavi arhiviranje projekta
+    unsaved_changes: Neshranjene spremembe so prisotne, razmislite o pošiljanju obrazca za ustvarjanje posodobljenega odgovora iz Playground.
+    upcoming: Prihajajoči
     update_success: "%{readableResourceName} je bil uspešno posodobljen"
+    updated_successfully: Pomočnik umetne inteligence je bil uspešno posodobljen.
     upload: Naloži
     upload_media: Naloži datoteko
     upload_required: Prosimo, dodajte vsaj eno datoteko za prenos
     upload_success: Uspešno naloženo
+    url_label: Spletni naslov
+    url_name: Spletni naslov
+    used_tokens_input_tokens: Vhodni žetoni
+    used_tokens_output_tokens: Izhodni žetoni
+    used_tokens_title: Uporaba žetonov
+    user: Uporabnik
+    user_agent: Uporabniški posrednik
+    user_prompt: Poziv uporabnika
     user_report_events: Dogodki uporabniškega poročila
+    user_report_id: ID poročila uporabnika
+    user_result_validity_in_days: Veljavnost rezultata v dnevih
+    username_label: Uporabniško ime
+    username_name: Uporabniško ime
     users: Uporabniki
+    users_modals_download_idp_reports_error: Ni bilo mogoče načrtovati opravila Prenos poročil IDP v velikem obsegu ni uspelo.
+    users_modals_download_idp_reports_include_reflective_questions: Vključite refleksivna vprašanja
+    users_modals_download_idp_reports_success: Opravilo Prenos poročil IDP v velikem obsegu je bilo uspešno načrtovano.
+    users_modals_download_idp_reports_title: Množični prenos poročil IDP
+    users_user: Uporabnik
     validation_error: Izpolnite vsa obvezna polja
     validity: Veljavnost
     very_high: Zelo visoka
     very_low: Zelo nizka
+    video_call_recording: Omogočanje snemanja video klicev
+    video_call_recording_expiry_duration: Obdobje hranjenja posnetkov video klicev (v dneh)
+    video_call_recording_scope: Omogočite snemanje videoposnetkov za vse nove kampanje
+    video_call_type_custom: Običaj
+    video_call_type_internal: Notranji
+    video_call_type_label: Dodajanje videoklica
+    video_call_type_none: Nobena
     view_licenses: Ogled licenc
+    visual_header_visibility: Vidnost vizualne glave
     wait_for_upload_completion: Počakajte, da se prenos vseh datotek zaključi
     waiting: Čaka
+    warning_color: Opozorilna barva
+    watermark_content: Vsebina vodnega žiga
+    watermark_info: Če ne dodate nobene vsebine, se privzeto e-poštni naslov uporabnika prikaže kot vodni žig. Uporabite lahko katero koli od naslednjih cevi -<br> {{id}} – ID udeleženca </br> {{first_name}} - Ime udeleženca <br> {{last_name}} - Priimek udeleženca </br> {{email}} - E-poštni naslov udeleženca
+    webhook_delete_success: Nastavitve spletnega kavlja so bile uspešno izbrisane
     weight: Teža
+    welcome_message_description: To sporočilo bo prikazano subjektom, ko se prijavijo, da začnejo ocenjevanje ali si ogledajo svoj seznam opravil
+    welcome_message_name: Pozdravno sporočilo
     what_to_look_for: Kaj iskati
     what_to_look_for_placeholder: Dokazi o vedenju, dejanjih ali rezultatih, ki kažejo na ta dejavnik
     words: Besede
+    workshop_actions_remove_workshop: Delavnica je bila uspešno odstranjena
+    workshop_statuses_closed: Zaprt
+    workshop_statuses_open: Odprt
     workshops: Delavnice
     writing_assistant_not_configured: Pomočnik za pisanje ni nastavljen
     x_axis_interval_label: Interval osi X
     y_axis_interval_label: Interval osi Y
     year: Država
+    year_range: Obdobje
+    years: Let
     yoodli: Yoodli
     yoodli_activity_id: Yoodli Activity ID
     yoodli_assessment: Yoodlijeva ocena
     yoodli_email_id: E-poštni ID kandidata Yoodli
     yoodli_external_assessment_id: Yoodli Assessment ID
+    yoodli_keyset_url: URL nabora ključev
+    yoodli_launch_url: Zagon URL
+    yoodli_login_url: URL za prijavo
     you_are_here: Trenutno ste tukaj

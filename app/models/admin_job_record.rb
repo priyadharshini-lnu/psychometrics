@@ -124,6 +124,9 @@ class AdminJobRecord < ApplicationRecord
     rescore_ai_scoring: 98,
     regenerate_assessment_transcriptions: 99,
     copy_report: 100,
+    bulk_export_raw_factor_scores: 101,
+    bulk_export_norm_factor_scores: 102,
+    export_audit_logs: 103,
     assessment_raw_ai_factor_export: 104
   }
 

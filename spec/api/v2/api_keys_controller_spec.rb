@@ -4,17 +4,15 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::ApiKeysController, type: :request do
   let!(:superadmin) { create(:superadmin) }
-  let!(:user) { create(:client_admin) }
-  let!(:user_api_key) { create(:api_key, user: user) }
-  let(:user_id) { user.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
+  let!(:application_user) { create(:application_user) }
+  let!(:user_api_key) { create(:api_key, user: application_user) }
+  let(:user_id) { application_user.id }
 
   before { sign_in(superadmin) }
 
   describe 'GET /users/:user_id/api_keys' do
     it 'returns API keys list' do
-      get "/api/v2/administration/users/#{user_id}/api_keys", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/users/#{user_id}/api_keys"
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)
@@ -36,7 +34,7 @@ RSpec.describe Api::V2::Administration::ApiKeysController, type: :request do
       }
 
       post "/api/v2/administration/users/#{user_id}/api_keys", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       api_key_response = JSON.parse(response.body)['data']
@@ -57,7 +55,7 @@ headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.
       }
 
       patch "/api/v2/administration/users/#{user_id}/api_keys/#{user_api_key.id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       api_key_response = JSON.parse(response.body)['data']

@@ -65,10 +65,10 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
           crumbs={[
             {
               link: () => '/admin',
-              label: () => I18n.t('users.dashboard'),
+              label: () => I18n.t('admin.dashboard'),
             },
             {
-              label: () => I18n.t('administration.development_actions.heading'),
+              label: () => I18n.t('admin.development_actions_heading'),
             },
           ]}
         />

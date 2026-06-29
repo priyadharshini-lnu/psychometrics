@@ -45,7 +45,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
 
     importSmsInvites(campaignId, data)
       .then(() => {
-        message.info(I18n.t('administration.sms_invites.import.success_msg'))
+        message.info(I18n.t('admin.sms_invites_import_success_msg'))
         close()
       })
       .catch(setErrors)
@@ -54,7 +54,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.sms_invites.import.title')}
+      title={I18n.t('admin.sms_invites_import_title')}
       open
       onCancel={close}
       footer={[
@@ -62,7 +62,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -74,7 +74,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
           }
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>,
       ]}
     >
@@ -84,7 +84,7 @@ const ImportModalComponent: React.FC<OwnProps> = ({
           target="blank"
         >
           <CloudDownloadOutlined />
-          <span className="mls">{I18n.t('administration.sms_invites.import.download_example_csv')}</span>
+          <span className="mls">{I18n.t('admin.sms_invites_import_download_example_csv')}</span>
         </a>
       </div>
       {errors.length ? (

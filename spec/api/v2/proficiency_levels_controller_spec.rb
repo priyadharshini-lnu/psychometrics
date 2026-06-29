@@ -9,9 +9,6 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
   let!(:project) { create(:project) }
   let!(:skill) { create(:skill, project: Project.find(project.id), name: 'Ruby Programming') }
   let!(:proficiency_level) { create(:proficiency_level, project: Project.find(project.id), skill: skill) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'POST /export' do
@@ -20,7 +17,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
       post '/api/v2/administration/proficiency_levels/export',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq('ok')
@@ -32,7 +29,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
       post '/api/v2/administration/proficiency_levels/export',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('export_proficiency_levels')
@@ -45,7 +42,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
       post '/api/v2/administration/proficiency_levels/export_translations',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq('ok')
@@ -59,8 +56,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
       file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv', original_filename: 'test.csv')
 
       post '/api/v2/administration/proficiency_levels/import_translations',
-           params: { project_id: project.id, file: file },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id, file: file }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq('ok')
@@ -69,8 +65,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
     it 'returns error for invalid file' do
       post '/api/v2/administration/proficiency_levels/import_translations',
-           params: { project_id: project.id },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id }
 
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
@@ -84,8 +79,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
       file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv', original_filename: 'test.csv')
 
       post '/api/v2/administration/proficiency_levels/import',
-           params: { project_id: project.id, file: file },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id, file: file }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq('ok')
@@ -97,8 +91,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
       file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv', original_filename: 'test.csv')
 
       post '/api/v2/administration/proficiency_levels/import',
-           params: { project_id: project.id, file: file, ignore_duplicates: 'true' },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id, file: file, ignore_duplicates: 'true' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('import_proficiency_levels')
@@ -110,8 +103,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
       file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv', original_filename: 'test.csv')
 
       post '/api/v2/administration/proficiency_levels/import',
-           params: { project_id: project.id, file: file },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id, file: file }
 
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
@@ -120,8 +112,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
     it 'returns error for missing file' do
       post '/api/v2/administration/proficiency_levels/import',
-           params: { project_id: project.id },
-           headers: { 'Authorization' => authorization }
+           params: { project_id: project.id }
 
       expect(response).to have_http_status(:unprocessable_entity)
       json_response = JSON.parse(response.body)
@@ -138,7 +129,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
       get '/api/v2/administration/proficiency_levels/skill_proficiency',
           params: { skill_id: skill.id },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq(expected_proficiency)
@@ -150,7 +141,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
 
       get '/api/v2/administration/proficiency_levels/skill_proficiency',
           params: { skill_id: skill.id },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq([])
@@ -159,7 +150,7 @@ RSpec.describe Api::V2::Administration::ProficiencyLevelsController, type: :requ
     it 'returns 404 for non-existent skill' do
       get '/api/v2/administration/proficiency_levels/skill_proficiency',
           params: { skill_id: 999_999 },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:not_found)
       json_response = JSON.parse(response.body)

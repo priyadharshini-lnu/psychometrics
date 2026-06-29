@@ -3,8 +3,39 @@
 module Administration
   module Campaigns
     class AssessmentsController < Administration::Projects::BaseController # rubocop:disable Metrics/ClassLength
-      before_action :set_resource, except: [:other]
+      before_action :set_resource, except: %i[other bulk_export_raw_factor_scores bulk_export_norm_factor_scores]
+      before_action :set_bulk_assessments, only: %i[bulk_export_raw_factor_scores bulk_export_norm_factor_scores]
       before_action :pundit_authorize
+
+      def bulk_export_raw_factor_scores
+        return render_bulk_export_validation_errors unless bulk_export_valid?
+
+        audit! :bulk_export_raw_factor_scores, campaign, campaign: campaign,
+               payload: bulk_export_payload
+
+        AdminJob.call(
+          :bulk_export_raw_factor_scores,
+          bulk_export_payload,
+          current_user
+        )
+
+        head :ok
+      end
+
+      def bulk_export_norm_factor_scores
+        return render_bulk_export_validation_errors unless bulk_export_valid?
+
+        audit! :bulk_export_norm_factor_scores, campaign, campaign: campaign,
+               payload: bulk_export_payload
+
+        AdminJob.call(
+          :bulk_export_norm_factor_scores,
+          bulk_export_payload,
+          current_user
+        )
+
+        head :ok
+      end
 
       def export_raw_results
         with_labels = params[:with_labels]&.to_s == 'true'
@@ -416,12 +447,68 @@ module Administration
       end
 
       def pundit_authorize
+        if bulk_export_action?
+          authorize(
+            CampaignAssessment,
+            nil,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          )
+
+          return
+        end
+
         authorize(
           campaign_assessment || assessment,
           nil,
           project_id: campaign.project_id,
           campaign_id: campaign.id
         )
+      end
+
+      def bulk_export_action?
+        action_name.in?(%w[bulk_export_raw_factor_scores bulk_export_norm_factor_scores])
+      end
+
+      def set_bulk_assessments
+        @bulk_assessments = campaign.assessments.where(id: selected_assessment_ids)
+      end
+
+      def selected_assessment_ids
+        Array(params[:assessment_ids]).map(&:to_i).uniq
+      end
+
+      def bulk_export_valid?
+        selected_assessment_ids.any? &&
+          start_date.present? &&
+          end_date.present? &&
+          @bulk_assessments.size == selected_assessment_ids.size
+      end
+
+      def render_bulk_export_validation_errors
+        render json: { errors: I18n.t('admin.bulk_export_invalid_params') }, status: :unprocessable_entity
+      end
+
+      def start_date
+        @start_date ||= Time.zone.parse(params[:start_date].to_s)
+      rescue ArgumentError, TypeError
+        nil
+      end
+
+      def end_date
+        @end_date ||= Time.zone.parse(params[:end_date].to_s)
+      rescue ArgumentError, TypeError
+        nil
+      end
+
+      def bulk_export_payload
+        {
+          campaign_id: campaign.id,
+          assessment_ids: selected_assessment_ids,
+          start_date: start_date&.iso8601,
+          end_date: end_date&.iso8601,
+          include_inactive_users: include_inactive_users
+        }
       end
 
       def import_params

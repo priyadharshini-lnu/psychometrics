@@ -35,12 +35,26 @@ RSpec.describe Administration::Campaigns::AdminsController, type: :controller do
   after(:each) { sign_out(current_user) }
 
   describe 'GET spoof' do
-    it 'sign_in assessor and redirects to assessors_dashboard_path' do
-      expect(controller).to receive(:sign_in).with(campaign_admin_membership.user, skip_session_limitable: true)
+    context 'when client admin SSO is enabled' do
+      it 'redirects via an SSO handoff' do
+        get :spoof, params: { new_campaign_id: campaign_admin_membership.campaign_id, id: campaign_admin_membership.id }
 
-      get :spoof, params: { new_campaign_id: campaign_admin_membership.campaign_id, id: campaign_admin_membership.id }
+        expect(response.location).to include('handoff_token=')
+      end
+    end
 
-      expect(response).to redirect_to(admin_path)
+    context 'when client admin SSO is disabled' do
+      before do
+        allow(AdminSubdomain).to receive(:client_admin_sso_enabled?).and_return(false)
+      end
+
+      it 'falls back to root-domain impersonation and redirects to admin_path' do
+        expect(controller).to receive(:sign_in).with(campaign_admin_membership.user, skip_session_limitable: true)
+
+        get :spoof, params: { new_campaign_id: campaign_admin_membership.campaign_id, id: campaign_admin_membership.id }
+
+        expect(response).to redirect_to(admin_path)
+      end
     end
   end
 

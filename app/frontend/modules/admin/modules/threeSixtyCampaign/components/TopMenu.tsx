@@ -57,7 +57,7 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
   const menuItems: MenuItem[] = [{
     key: 'participants',
     icon: <UserOutlined />,
-    label: I18n.t('administration.threesixty_campaigns.menu.participants.title'),
+    label: I18n.t('admin.threesixty_campaigns_menu_participants_title'),
   }]
   if (campaignPermissions.accessEmailMessages
     || campaignPermissions.accessMessagesOptions
@@ -65,18 +65,18 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     menuItems.push({
       key: 'messages',
       icon: <MessageOutlined />,
-      label: I18n.t('administration.threesixty_campaigns.menu.messages.title'),
+      label: I18n.t('admin.threesixty_campaigns_menu_messages_title'),
     })
   }
   campaignPermissions.editReportOptions && menuItems.push({
     key: 'reports',
     icon: <PieChartOutlined />,
-    label: I18n.t('administration.threesixty_campaigns.menu.report.title'),
+    label: I18n.t('admin.threesixty_campaigns_menu_report_title'),
   })
   campaignPermissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
     icon: <DatabaseOutlined />,
-    label: I18n.t('administration.threesixty_campaigns.menu.datasheet.title'),
+    label: I18n.t('admin.threesixty_campaigns_menu_datasheet_title'),
   })
 
   campaignPermissions.viewAIArtifacts && menuItems.push({
@@ -87,7 +87,7 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
 
   campaignPermissions.manageAdmins && menuItems.push({
     key: 'admins',
-    label: I18n.t('common.model.admins'),
+    label: I18n.t('admin.admins'),
     icon: <SolutionOutlined />,
   })
 

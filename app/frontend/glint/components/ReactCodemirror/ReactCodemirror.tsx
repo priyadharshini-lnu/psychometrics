@@ -28,6 +28,7 @@ interface ReactCodemirrorProps {
   className?: string
   height?: string
   maxHeight?: string
+  minHeight?: string
   onEditorReady?: (view: EditorView) => void
   autocomplete?: boolean
   search?: boolean
@@ -44,6 +45,7 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
   className,
   height,
   maxHeight,
+  minHeight,
   onEditorReady,
   autocomplete = false,
   search = false,
@@ -99,7 +101,7 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
       extensions.push(languageExtension)
     }
 
-    const themeExtension = buildThemeExtension(height, maxHeight)
+    const themeExtension = buildThemeExtension(height, maxHeight, minHeight)
     extensions.push(themeExtension)
 
     extensions.push(syntaxHighlighting(defaultHighlightStyle, { fallback: true }))
@@ -113,7 +115,7 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
     )
 
     return extensions
-  }, [lineNumbers, lineWrapping, foldGutter, autocomplete, search, readOnly, mode, height, maxHeight])
+  }, [lineNumbers, lineWrapping, foldGutter, autocomplete, search, readOnly, mode, height, maxHeight, minHeight])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -173,7 +175,7 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
   return <div ref={containerRef} className={containerClassName} />
 }
 
-function buildThemeExtension (height?: string, maxHeight?: string) {
+function buildThemeExtension (height?: string, maxHeight?: string, minHeight?: string) {
   const editorStyles: Record<string, string> = {}
 
   if (height) {
@@ -181,6 +183,9 @@ function buildThemeExtension (height?: string, maxHeight?: string) {
   }
   if (maxHeight) {
     editorStyles.maxHeight = maxHeight
+  }
+  if (minHeight) {
+    editorStyles.minHeight = minHeight
   }
 
   return EditorView.theme({

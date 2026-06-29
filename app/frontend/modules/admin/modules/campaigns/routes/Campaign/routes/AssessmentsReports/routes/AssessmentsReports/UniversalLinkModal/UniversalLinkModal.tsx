@@ -47,7 +47,7 @@ const UniversalLinkModal: React.FC<Props> = ({
 
   const regenerate = () => {
     modal.confirm({
-      title: I18n.t('administration.administrators.modals.delete.title'),
+      title: I18n.t('shared.confirm'),
       content: 'Are you sure? This will make the existing URL unusable.',
       onOk: async () => {
         regenerateUniversalLink(campaignId, id).then(() => {
@@ -115,7 +115,7 @@ const UniversalLinkModal: React.FC<Props> = ({
           <div className={styles.checkbox}>
             <Switch onChange={() => setActive(!active)} checked={active} />
             {' '}
-            {I18n.t('universal_links.active')}
+            {I18n.t('shared.active')}
           </div>
         </div>
       </div>

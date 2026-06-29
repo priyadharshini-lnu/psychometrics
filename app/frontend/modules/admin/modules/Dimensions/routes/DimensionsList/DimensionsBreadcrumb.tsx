@@ -16,10 +16,10 @@ export const DimensionsBreadcrumb: React.FC = () => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('users.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
-            label: () => I18n.t('administration.dimensions.index.title'),
+            label: () => I18n.t('admin.dimensions_index_title'),
           },
         ]}
       />

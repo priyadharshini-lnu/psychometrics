@@ -16,6 +16,8 @@ module Administration
           required(:update_mettl_schedule).filled(:bool?)
           required(:update_content_variation).filled(:bool?)
           required(:update_simulation_time_extension).filled(:bool?)
+          required(:toggle_require_scheduling).filled(:bool?)
+          required(:toggle_prework).filled(:bool?)
           required(:rescore_response).filled(:bool?)
           required(:rescore_ai_response).filled(:bool?)
           required(:remove).filled(:bool?)

@@ -99,9 +99,10 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('common.column.require_scheduling')}
             key="requireScheduling"
-            render={({ requireScheduling, id }) => (
+            render={({ requireScheduling, id, permissions }) => (
               <Switch
                 checked={requireScheduling}
+                disabled={!permissions?.toggleRequireScheduling}
                 onChange={() => {
                   toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
                 }}
@@ -111,9 +112,10 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.prework')}
             key="category"
-            render={({ id, prework }) => (
+            render={({ id, prework, permissions }) => (
               <Switch
                 checked={prework}
+                disabled={!permissions?.togglePrework}
                 onChange={checked => togglePrework(parsedCampaignId, id, checked)}
               />
             )}

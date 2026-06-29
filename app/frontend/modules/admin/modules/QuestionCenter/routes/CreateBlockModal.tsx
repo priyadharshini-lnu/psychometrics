@@ -42,7 +42,7 @@ const CreateBlockModal: React.FC<CreateBlockModalProps> = ({
     }))
 
     if (isSuperAdmin(currentUser)) {
-      clientsOptions.unshift({ label: I18n.t('administration.tte'), value: null })
+      clientsOptions.unshift({ label: I18n.t('admin.tte'), value: null })
     }
     return clientsOptions
   }

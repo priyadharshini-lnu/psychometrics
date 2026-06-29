@@ -84,7 +84,7 @@ const AssessorsComponent: FC<Props> = ({
   const { modal, message } = App.useApp()
 
   useDocumentTitle(
-    I18n.t('administration.document_titles.project_assessors', {
+    I18n.t('admin.document_titles_project_assessors', {
       project: projectName || projectId,
     }),
   )
@@ -132,23 +132,23 @@ const AssessorsComponent: FC<Props> = ({
     const name = `${assessor?.firstName ?? ''} ${assessor?.lastName ?? ''}`
 
     modal.confirm({
-      title: I18n.t('administration.project_users.modal_delete_title'),
-      content: I18n.t('administration.project_users.modal_delete_content', {
+      title: I18n.t('admin.project_users_modal_delete_title'),
+      content: I18n.t('admin.project_users_modal_delete_content', {
         name,
       }),
-      okText: I18n.t('administration.project_users.confirm_delete'),
-      cancelText: I18n.t('administration.project_users.cancel'),
+      okText: I18n.t('admin.project_users_confirm_delete'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         try {
           await removeAssessor(projectId, id)
           message.success(
-            I18n.t('administration.project_users.delete_success', {
+            I18n.t('admin.project_users_delete_success', {
               name,
             }),
           )
         } catch (error) {
           message.error(
-            I18n.t('administration.project_users.delete_error', {
+            I18n.t('admin.project_users_delete_error', {
               name,
             }),
           )
@@ -162,23 +162,23 @@ const AssessorsComponent: FC<Props> = ({
     const email = assessor?.email ?? ''
 
     modal.confirm({
-      title: I18n.t('administration.project_users.model_reset_email'),
+      title: I18n.t('admin.project_users_model_reset_email'),
       content: I18n.t(
-        'administration.project_users.modal_reset_email_content',
+        'admin.project_users_modal_reset_email_content',
         { email },
       ),
-      okText: I18n.t('administration.project_users.confirm_send'),
-      cancelText: I18n.t('administration.project_users.cancel'),
+      okText: I18n.t('admin.project_users_confirm_send'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: async () => {
         try {
           await resetAssessorPassword(projectId, id)
 
           message.success(
-            I18n.t('administration.project_users.reset_mail_success', { email }),
+            I18n.t('admin.project_users_reset_mail_success', { email }),
           )
         } catch (error) {
           message.error(
-            I18n.t('administration.project_users.reset_mail_error', { email }),
+            I18n.t('admin.project_users_reset_mail_error', { email }),
           )
         }
       },
@@ -209,7 +209,7 @@ const AssessorsComponent: FC<Props> = ({
         </Col>
         <Col>
           <Input.Search
-            placeholder={I18n.t('administration.project_users.search_accessor')}
+            placeholder={I18n.t('admin.project_users_search_accessor')}
             value={filters.filterableFields}
             onChange={handleSearchInput}
           />
@@ -227,14 +227,14 @@ const AssessorsComponent: FC<Props> = ({
             <Table.Column
               key="userId"
               dataIndex="userId"
-              title={I18n.t('administration.project_users.column_id')}
+              title={I18n.t('shared.id')}
               sorter
               sortOrder={getSortOrder('userId')}
             />
             <Table.Column
               key="name"
               dataIndex="name"
-              title={I18n.t('administration.project_users.column_name')}
+              title={I18n.t('shared.name')}
               render={(_: string, { firstName, lastName }: Assessor) => (
                 <>{`${firstName} ${lastName}`}</>
               )}
@@ -244,13 +244,13 @@ const AssessorsComponent: FC<Props> = ({
             <Table.Column
               key="email"
               dataIndex="email"
-              title={I18n.t('administration.project_users.column_email')}
+              title={I18n.t('shared.email')}
               sorter
               sortOrder={getSortOrder('email')}
             />
             <Table.Column
               key="campaigns"
-              title={I18n.t('administration.project_users.column_campaigns')}
+              title={I18n.t('admin.project_users_column_campaigns')}
               render={(_: string, { campaigns }: Assessor) => {
                 const campaignTags = campaigns.map(campaign => ({
                   title: campaign.name,
@@ -261,7 +261,7 @@ const AssessorsComponent: FC<Props> = ({
               }}
               filters={[
                 {
-                  text: I18n.t('administration.project_users.filter_campaigns'),
+                  text: I18n.t('admin.project_users_filter_campaigns'),
                   value: 'no_campaigns',
                 },
               ]}
@@ -270,14 +270,14 @@ const AssessorsComponent: FC<Props> = ({
             <Table.Column
               key="createdAt"
               dataIndex="createdAt"
-              title={I18n.t('administration.project_users.column_created_at')}
+              title={I18n.t('admin.project_users_column_created_at')}
               sorter
               sortOrder={getSortOrder('createdAt')}
             />
             <Table.Column
               key="actions"
               dataIndex="actions"
-              title={I18n.t('administration.project_users.column_actions')}
+              title={I18n.t('shared.actions')}
               render={(_: string, { id, email, permissions }: Assessor) => (
                 <ActionsMenu
                   id={id}

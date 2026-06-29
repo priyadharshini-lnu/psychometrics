@@ -11,7 +11,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::EmailTemplatesController, ty
   end
   let(:current_user) { create(:superadmin) }
 
-  before(:each) { login_user(current_user) }
+  before(:each) { sign_in(current_user) }
   after(:each) { sign_out(current_user) }
 
   it 'show locales for a certain template' do

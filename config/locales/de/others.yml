@@ -622,6 +622,7 @@ de:
         roles:
           campaign_admin: Kampagnenverwaltung
           client_admin: Kunde Verwaltung
+          client_assessor: Kundenbetreuer
           manager: Manager
           member: Benutzer
           project_admin: Projektverwaltung
@@ -727,6 +728,7 @@ de:
           admins:
             admin: Verwaltung
             campaign_admin: Kampagnenverwaltung
+            client_assessor: Kundenbetreuer
             project_admin: Projektverwaltung
             regular: Kunde Verwaltung
             superadmin: Super Verwalter
@@ -736,6 +738,7 @@ de:
           campaign_admin: Kampagnenverwaltung
           case_study: Fallstudie
           client_admin: Kunde Verwaltung
+          client_assessor: Kundenbetreuer
           hogan: Hogan
           iiht: IIHT
           manager: Manager
@@ -850,6 +853,7 @@ de:
       operations:
         add_campaign_reports: Kampagnenberichte hinzufügen
         assessment_norm_export: Export von normierten Ergebnissen
+        assessment_raw_ai_factor_export: Export der Rohwerte des KI-Faktors
         assessment_raw_factor_export: Raw Factor Scores Export
         assessment_raw_result_export: Export von Rohergebnissen
         assessment_scoring_export: Export der Bewertungsergebnisse
@@ -859,6 +863,8 @@ de:
         bulk_download_idp_reports: Massendownload von IDP-Berichten
         bulk_download_reports: Bulk Download Berichte
         bulk_download_user_reports: Bulk-Download von Benutzerberichten
+        bulk_export_norm_factor_scores: Export von Normfaktorbewertungen in großen Mengen
+        bulk_export_raw_factor_scores: Export von Rohfaktorwerten in großen Mengen
         bulk_generate_user_campaign_ai_artifact_results: Massengenerierung von KI-Artefaktergebnissen für Kampagnen
         bulk_regenerate_reports: Kampagnenberichte neu generieren
         bulk_regenerate_threesixty_reports: Dreißig Themenberichte neu generieren
@@ -871,10 +877,12 @@ de:
         completion_status_export: Fertigstellungsstatus Export
         copy_as_template_or_campaign: Kampagne als Vorlage kopieren
         copy_dimension: Dimension kopieren
+        copy_report: Bericht kopieren
         create_threesixty_campaign: Threesixty-Kampagne erstellen
         data_report_export: Export von Datenberichten
         export_admin_with_permissions: Admin mit Berechtigungen exportieren
         export_assessment_questions: Fragen zur Exportbewertung
+        export_audit_logs: Export von Prüfprotokollen
         export_campaign_ai_artifacts: Export-Kampagnen-KI-Artefakte
         export_campaign_ai_artifacts_results: Exportieren Sie die Ergebnisse der KI-Artefakte der Kampagne
         export_campaign_datasheet: Datenblatt zur Exportkampagne
@@ -964,6 +972,8 @@ de:
       errors:
         no_plans: Keine aktiven IDP-Pläne gefunden
     close: Schließen Sie
+    copy_report:
+      failed: Das Kopieren des Berichts ist fehlgeschlagen
     details: Einzelheiten
     errors: Fehler
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
@@ -1013,6 +1023,7 @@ de:
       evaluate: Bewerten Sie
       export: Exportieren
       export_normed: Genormte Faktor-Scores
+      export_raw_ai_scores: Rohwerte des KI-Faktors
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Roh (ohne Etiketten)
@@ -1444,6 +1455,7 @@ de:
       export_external: Extern
       export_normed: Normierte Faktorwerte
       export_occupations: Berufe
+      export_raw_ai_scores: Rohwerte des KI-Faktors
       export_raw_labels: Roh (mit Etiketten)
       export_raw_scores: Raw Factor Scores
       export_raw_without_labels: Roh (ohne Etiketten)
@@ -1468,6 +1480,7 @@ de:
       external_user_id: Skillvue-Kandidaten-ID
       id: ID der Kampagnenbewertung
       locales: Lokalitäten
+      microsite_assessment_url: URL zur Bewertung der Microsite
       microsite_error_message: Fehlermeldung
       microsite_participant_id: Teilnehmer-ID der Microsite
       microsite_registration_status: Registrierungsstatus
@@ -1496,6 +1509,7 @@ de:
       no_participants_selected: Bitte wählen Sie mindestens einen Teilnehmer aus, um fortzufahren.
       norm_results_export_scheduled: Exportauftrag für genormte Bewertungsergebnisse wurde erfolgreich geplant
       normalize_factor_scores_scheduled: Der Auftrag zur Normalisierung der Faktorwerte wurde erfolgreich geplant.
+      raw_ai_factor_export_scheduled: Der Exportauftrag für den „Assessment Raw AI Factor“ wurde erfolgreich geplant.
       raw_factor_export_scheduled: Bewertung Raw Factor-Exportauftrag wurde erfolgreich geplant
       raw_results_export_scheduled: Exportauftrag für Bewertungsrohdaten wurde erfolgreich geplant
       scoring_results_export_scheduled: Bewertungsergebnisse Exportauftrag wurde erfolgreich geplant
@@ -1666,7 +1680,6 @@ de:
     details:
       additional_time: Zusätzliche Zeit
       assessment_center: Assessment Center
-      assessment_center_invites: Assessment Center Einladungen
       completed_at: Abgeschlossen am
       completion_status: Status der Fertigstellung
       hogan_id: Hogan ID
@@ -1696,11 +1709,6 @@ de:
     modals:
       remove: Sind Sie sicher, dass Sie den Benutzer mit der E-Mail-Adresse '%{email}' aus dieser Kampagne entfernen möchten?
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: Assessor Beurteilungen
-      other_assessments: Andere Beurteilungen
-      other_assessor_assessments: Andere Assessor-Bewertungen
-      other_reports: Andere Berichte
     card:
       duration: Dauer
       starts_in: 'Beginnt in:'
@@ -1771,23 +1779,19 @@ de:
       insert: Einfügen
       'no': Nein
       ok: OK
-      publish: veröffentlichen.
       reject: Ablehnen
       remove: Entfernen
       reset: Rücksetzen
       resolve: Beschließen
       restore: Wiederherstellen
       return_to_home: Zurück zur Startseite
-      run: Ausführen
       save: sparen
       schedule: Zeitplan
       search: Suchen
-      send: Schicken
       sign_in: Anmelden
       start: Starten
       submit: Einreichen
       unarchive: Dearchivieren
-      unpublish: Unveröffentlicht
       unresolve: Unresolve
       update: Aktualisieren
       upload: Hochladen
@@ -1800,20 +1804,14 @@ de:
     column:
       action: Aktion
       active: Aktiv
-      ai_assistant: KI-Assistent
-      allow_multiple_responses: Mehrere Antworten zulassen
       approval_notification_list: Benutzerliste für Genehmigungsbenachrichtigungen
       approvers_list: Liste der Genehmiger
-      assessment: Bewertung
       assessment_name: Bewertung Name
       assessments: Beurteilungen
-      assessor: Assessor
       category: Kategorie
       client: Kunde
-      code: Code
       created_at: Erstellt am
       created_by: Erstellt von
-      created_date: Erstellt am
       default_language: Standardsprache
       description: Beschreibung
       details: Einzelheiten
@@ -1831,11 +1829,8 @@ de:
         scoring: Bewertung von JSON
       key: Schlüssel
       last_name: Nachname
-      linked_activities: Verknüpfte Aktivitäten
       linked_assessment: Verknüpfte Bewertung
-      meeting_link: Sitzung Link
       modified_by: Geändert von
-      modified_date: Geändertes Datum
       name: Name
       owner: Eigentümer
       package_id: Paket-ID
@@ -1851,7 +1846,6 @@ de:
       scheduling: Terminplanung
       skills: Fertigkeiten
       status: Status
-      tags: Tags
       timing: Timing
       token: Token
       type: Typ
@@ -1863,15 +1857,12 @@ de:
     messages:
       leave_message: Sind Sie sicher, dass Sie diese Seite verlassen wollen? Alle ungespeicherten Antworten, die Sie haben, werden verloren gehen.
     model:
-      admins: Admins
       assessment: Bewertung
       assessments: Beurteilungen
       campaigns: Kampagnen
       completion_statuses: Status der Fertigstellung
-      datasheet: Datenblatt
       report: Bericht
       reports: Berichte
-      sms_contact: SMS-Kontakt
       threesixty_campaign: Threesixty-Kampagne punktet
     status:
       completed: Abgeschlossen
@@ -2142,6 +2133,7 @@ de:
     invalid_token: Bitte laden Sie die Seite neu und versuchen Sie es noch einmal.
     max_regeneration_limit: Maximale Regenerationsgrenze überschritten, wenden Sie sich an Ihre Verwaltung.
     messages:
+      content_type_invalid: Ungültiger Inhaltstyp
       data_report_blank: Datenbericht existiert nicht
       password_complexity:
         digit:
@@ -2961,9 +2953,7 @@ de:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: Aktiv
     campaign_name: Name der Kampagne
-    inactive: Inaktiv
     status_updated_at: Letzte Statusaktualisierung
     status_updated_by: Zuletzt aktualisiert von
     subject_email: 'Betreff: E-Mail'
@@ -3479,12 +3469,14 @@ de:
           admin: Verwaltung
           admins:
             admin: Verwaltung
+            client_assessor: Kundenbetreuer
             project_admin: Projektverwaltung
             regular: Kunde Verwaltung
             superadmin: Super Verwalter
           agile: AGILE
           case_study: Fallstudie
           client_admin: Kunde Verwaltung
+          client_assessor: Kundenbetreuer
           hogan: Hogan
           manager: Manager
           member: Benutzer
@@ -3618,6 +3610,7 @@ de:
         roles:
           campaign_admin: Kampagnenverwaltung
           client_admin: Kunde Verwaltung
+          client_assessor: Kundenbetreuer
           manager: Manager
           member: Benutzer
           project_admin: Projektverwaltung
@@ -3688,12 +3681,14 @@ de:
           admin: Verwaltung
           admins:
             admin: Verwaltung
+            client_assessor: Kundenbetreuer
             project_admin: Projektverwaltung
             regular: Kunde Verwaltung
             superadmin: Super Verwalter
           agile: AGILE
           case_study: Fallstudie
           client_admin: Kunde Verwaltung
+          client_assessor: Kundenbetreuer
           hogan: Hogan
           manager: Manager
           member: Benutzer
@@ -3967,7 +3962,6 @@ de:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: Aktiv
     allow_multiple_respones: Erlauben Sie Benutzern, mehrere Antworten zu übermitteln
     png: PNG
     regenerate_link: Link regenerieren
@@ -4156,6 +4150,7 @@ de:
       campaign_assessor: Kampagnen-Beisitzer
       campaign_user: Kampagne Benutzer
       client_admin: Kunde Verwaltung
+      client_assessor: Kundenbetreuer
       project_admin: Projektverwaltung
       superadmin: Super Verwalter
     superadmins: Super-Admins

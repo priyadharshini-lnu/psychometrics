@@ -36,16 +36,16 @@ export const HoganForm: React.FC<OwnProps> = ({ integration }) => {
     <>
       <Form.Item
         name="provider"
-        label={I18n.t('administration.integrations.modal.hogan.provider')}
+        label={I18n.t('admin.hogan_provider')}
         rules={[{
           required: true,
-          message: I18n.t('administration.integrations.modal.hogan.providerRequired'),
+          message: I18n.t('admin.hogan_providerRequired'),
         }]}
       >
         <Select className="w-100">
           {hoganProviders.map(name => (
             <Option key={name} value={name}>
-              {I18n.t(`administration.integrations.modal.hogan.providers.${name}`)}
+              {I18n.t(`admin.hogan_providers_${name}`)}
             </Option>
           ))}
         </Select>

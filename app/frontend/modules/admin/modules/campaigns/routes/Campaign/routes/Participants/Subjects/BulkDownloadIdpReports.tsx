@@ -43,20 +43,20 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
   const handleUpdate = (params) => {
     dispatch(bulkDownloadIdpReports(campaignId, params)).then((response) => {
       if (response.error) {
-        message.error(I18n.t('administration.users.modals.download_idp_reports.error'))
+        message.error(I18n.t('admin.users_modals_download_idp_reports_error'))
       } else {
-        message.success(I18n.t('administration.users.modals.download_idp_reports.success'))
+        message.success(I18n.t('admin.users_modals_download_idp_reports_success'))
         close()
       }
     }).catch((r) => {
-      message.error(r?.[0] || I18n.t('administration.users.modals.download_idp_reports.error'))
+      message.error(r?.[0] || I18n.t('admin.users_modals_download_idp_reports_error'))
     })
   }
 
   return (
     <Modal
       width={700}
-      title={I18n.t('administration.users.modals.download_idp_reports.title')}
+      title={I18n.t('admin.users_modals_download_idp_reports_title')}
       open
       onCancel={close}
       footer={[
@@ -64,7 +64,7 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -74,7 +74,7 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
           }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.send')}
+          {I18n.t('shared.send')}
         </Button>,
       ]}
     >
@@ -92,13 +92,13 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
               label: I18n.t(`languages_localized.${locale}`),
               value: locale,
             }))}
-            placeholder={I18n.t('campaign.language.title')}
+            placeholder={I18n.t('shared.select_language')}
           />
         </Form.Item>
         {allowReflectionQuestions && (
           <Form.Item name="includeReflectiveQuestions" valuePropName="checked">
             <Checkbox>
-              {I18n.t('administration.users.modals.download_idp_reports.include_reflective_questions')}
+              {I18n.t('admin.users_modals_download_idp_reports_include_reflective_questions')}
             </Checkbox>
           </Form.Item>
         )}

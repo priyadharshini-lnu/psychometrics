@@ -20,7 +20,7 @@ export const ToolsDropdown: React.FC<Props> = ({
     innerElement={(
       <Button>
         <ToolOutlined />
-        <span>{I18n.t('administration.tools')}</span>
+        <span>{I18n.t('admin.tools')}</span>
         <DownOutlined />
       </Button>
       )}
@@ -34,28 +34,28 @@ const getMenuProps = ({ onClick }: Props): MenuProps => {
   const importMenuItems:MenuItem[] = [
     {
       key: 'import_translations',
-      label: I18n.t('administration.job_role.translations'),
+      label: I18n.t('admin.job_role_translations'),
     },
   ]
 
   const exportMenuItems:MenuItem[] = [
     {
       key: 'export_translations',
-      label: I18n.t('administration.job_role.translations'),
+      label: I18n.t('admin.job_role_translations'),
     },
   ]
 
   menuItems.push({
     type: 'group',
     key: 'import_group',
-    label: I18n.t('common.actions.import'),
+    label: I18n.t('shared.import'),
     children: importMenuItems,
   })
 
   menuItems.push({
     type: 'group',
     key: 'export_group',
-    label: I18n.t('common.actions.export'),
+    label: I18n.t('shared.export'),
     children: exportMenuItems,
   })
 

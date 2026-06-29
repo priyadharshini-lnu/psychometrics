@@ -30,10 +30,10 @@ export const SettingsFilter: React.FC<Props> = ({
       responseType: t.literal('ok'),
     })
       .then(() => {
-        message.info(I18n.t('administration.ai_artifacts.export.success_msg'))
+        message.info(I18n.t('admin.export_success_msg'))
       })
       .catch(() => {
-        message.error(I18n.t('administration.ai_artifacts.export.failure_msg'))
+        message.error(I18n.t('admin.export_failure_msg'))
       })
   }
 
@@ -44,7 +44,7 @@ export const SettingsFilter: React.FC<Props> = ({
     resource.uploadFileAction(action, data)
       .then(() => {
         successCallback()
-        message.info(I18n.t('administration.ai_artifacts.import.info_msg'))
+        message.info(I18n.t('admin.import_info_msg'))
       })
       .catch((error) => {
         failureCallback(error)
@@ -56,7 +56,7 @@ export const SettingsFilter: React.FC<Props> = ({
       dispatch(openModal('AIArtifactsImportModal', {
         handleImport: handleAIArtifactsImport,
         csvFilePath: '/example_csv/ai-artifacts-sample.csv',
-        title: I18n.t('administration.ai_artifacts.import_action.title'),
+        title: I18n.t('admin.import_action_title'),
       }))
     }
 
@@ -76,7 +76,7 @@ export const SettingsFilter: React.FC<Props> = ({
       {permissions.create ? (
         <Button type="primary" disabled={tableLoading} onClick={() => onCreateAIArtifact()}>
           <PlusOutlined />
-          {I18n.t('common.actions.create')}
+          {I18n.t('shared.create')}
         </Button>
       ) : null}
     </Resource.Filter>

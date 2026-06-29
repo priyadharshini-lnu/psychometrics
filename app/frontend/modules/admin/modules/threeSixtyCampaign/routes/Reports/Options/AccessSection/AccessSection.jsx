@@ -16,25 +16,25 @@ export default function AccessSection ({
   const disable = !campaignReportPermissions.manageReportsOptions
 
   return (
-    <OptionSection label={I18n.t('administration.threesixty_campaigns.reports.report_access')}>
+    <OptionSection label={I18n.t('admin.report_access')}>
       <ExpandableOption
-        label={I18n.t('administration.threesixty_campaigns.reports.subject_can_access_reports')}
+        label={I18n.t('admin.subject_can_access_reports')}
         {...parametersForSwitch('selfCanAccess')}
         disabled={disable}
       >
         <ExpandableOption
-          label={I18n.t('administration.threesixty_campaigns.reports.disable_report_download')}
+          label={I18n.t('admin.disable_report_download')}
           type="checkbox"
           {...parametersForSwitch('disableDownloadReport')}
         />
       </ExpandableOption>
       <ExpandableOption
-        label={I18n.t('administration.threesixty_campaigns.reports.manager_can_access_subject_reports')}
+        label={I18n.t('admin.manager_can_access_subject_reports')}
         {...parametersForSwitch('managerCanAccess')}
         disabled={disable}
       >
         <ExpandableOption
-          label={I18n.t('administration.threesixty_campaigns.reports.manager_cannot_access_subject_reports')}
+          label={I18n.t('admin.manager_cannot_access_subject_reports')}
           {...parametersForSwitch('managerCannotSeeReportUntilRequirementsAreMet')}
           type="checkbox"
           disabled={disable}

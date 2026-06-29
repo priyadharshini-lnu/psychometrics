@@ -38,11 +38,11 @@ export const ActionsMenu: FC<Props> = ({
       })
     }
     innerElement={(
-      <Tooltip title={I18n.t('administration.table.more_actions')}>
+      <Tooltip title={I18n.t('admin.table_more_actions')}>
         <Button
           id={`menu-button_campaign-admins-${id}`}
           type="link"
-          aria-label={I18n.t('administration.table.more_actions')}
+          aria-label={I18n.t('admin.table_more_actions')}
           aria-controls={`menu_campaign-admins-${id}`}
           aria-haspopup
         >
@@ -71,7 +71,7 @@ const getActionMenuProps = ({
           target="_blank"
           rel="noopener noreferrer"
         >
-          {I18n.t('common.actions.export')}
+          {I18n.t('shared.export')}
         </a>
       ),
     },

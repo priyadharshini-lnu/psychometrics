@@ -58,8 +58,8 @@ export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false 
 
   const handleLogout = () => {
     Modal.confirm({
-      title: I18n.t('administration.header.logout.title'),
-      content: I18n.t('administration.header.logout.content'),
+      title: I18n.t('admin.header_logout_title'),
+      content: I18n.t('admin.header_logout_content'),
       onOk () {
         window.location.href = '/administration/sign_out'
       },
@@ -105,7 +105,7 @@ export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false 
     ] : []),
     {
       key: 'logout',
-      label: I18n.t('administration.navigation.logout'),
+      label: I18n.t('admin.navigation_logout'),
       icon: <LogoutOutlined aria-hidden="true" />,
       onClick: handleLogout,
     },

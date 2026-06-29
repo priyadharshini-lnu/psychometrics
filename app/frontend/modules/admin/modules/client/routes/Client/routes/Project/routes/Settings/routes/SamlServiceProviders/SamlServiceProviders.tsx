@@ -178,7 +178,7 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         />
         <Column
           key="name"
-          title={I18n.t('admin.saml_service_provider_name')}
+          title={I18n.t('shared.name')}
           dataIndex="name"
           sorter
           sortOrder={getSortOrder('name')}
@@ -359,7 +359,7 @@ const getActionsMenuProps = ({
     },
     {
       key: 'delete',
-      label: I18n.t('admin.saml_service_provider_action_delete_label'),
+      label: I18n.t('shared.delete'),
     },
   ] as MenuItem[]
 

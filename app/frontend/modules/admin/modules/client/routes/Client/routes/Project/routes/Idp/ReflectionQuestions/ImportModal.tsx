@@ -58,7 +58,7 @@ export const ImportModal: React.FC<OwnProps> = ({
           key="back"
           onClick={close}
         >
-          {I18n.t('common.actions.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -69,7 +69,7 @@ export const ImportModal: React.FC<OwnProps> = ({
           }}
         >
           {loading ? <LoadingOutlined /> : <CheckOutlined />}
-          {I18n.t('common.actions.update')}
+          {I18n.t('shared.update')}
         </Button>,
       ]}
     >
@@ -82,7 +82,7 @@ export const ImportModal: React.FC<OwnProps> = ({
           download="import_reflection_questions_sample.csv"
           icon={<CloudDownloadOutlined />}
         >
-          {I18n.t('administration.common.download_sample_file')}
+          {I18n.t('admin.common_download_sample_file')}
         </Button>
       </div>
       {errors.length ? (

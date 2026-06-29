@@ -36,6 +36,8 @@ hi:
     browser_not_compatible: आपका ब्राउज़र %{browser_name} इस अभियान के साथ संगत नहीं है। सर्वोत्तम अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
     browser_not_compatible_description: बेहतरीन अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
     browser_not_compatible_detail: आपका ब्राउज़र %{browser_name} इस अभियान के साथ संगत नहीं है। सर्वोत्तम अनुभव के लिए Chrome, Firefox, Safari या Edge के नवीनतम संस्करणों का उपयोग करें।
+    browser_proctoring_description: आप %{browser_name} ब्राउज़र का उपयोग कर रहे हैं, जिसमें इस अभियान के लिए सक्षम प्रॉक्टोरिंग सुविधाओं के संबंध में कुछ सीमाएँ हो सकती हैं। सर्वोत्तम अनुभव के लिए, हम Chrome या Edge का उपयोग करने की सलाह देते हैं।
+    browser_proctoring_title: "%{browser_name} ब्राउज़र का पता चला"
     browser_version_fix_description_first: 'समर्थित ब्राउज़र का उपयोग करें: Chrome, Firefox, Edge, या Safari'
     browser_version_fix_title: आपका ब्राउज़र संस्करण समर्थित नहीं है।
     camera: वीडियो और ऑडियो
@@ -43,6 +45,7 @@ hi:
     camera_check: कैमरा और माइक्रोफ़ोन परीक्षण
     camera_check_abruptly_ended: कैमरा अचानक बंद हो गया। कृपया अपना कैमरा चालू करें और जाँच को फिर से चलाएँ।
     camera_check_description: रिकॉर्डिंग के लिए अपने कैमरे और माइक्रोफोन की सही से काम कर रहे हैं, यह सत्यापित करें।
+    camera_check_failed: वीडियो जांच विफल
     camera_check_passed: वीडियो और ऑडियो जाँच सफलतापूर्वक पूरी हो गई।
     camera_check_record_instruction: रिकॉर्ड पर क्लिक करें और निम्नलिखित अंश को ज़ोर से पढ़ें।
     camera_test_step: वीडियो और ऑडियो परीक्षण चरण
@@ -69,6 +72,9 @@ hi:
     error_uploading_audio_detail: आपका ऑडियो अपलोड करते समय एक त्रुटि हुई।
     error_uploading_video: वीडियो अपलोड करने में त्रुटि
     error_uploading_video_detail: वीडियो अपलोड करते समय कोई त्रुटि हुई।
+    face_detection_error: चेहरा पहचान के दौरान एक त्रुटि हुई। कृपया सुनिश्चित करें कि आपका कैमरा काम कर रहा है और फिर से प्रयास करें।
+    face_detection_failed: वीडियो रिकॉर्डिंग में चेहरा पता नहीं चला। कृपया सुनिश्चित करें कि आपका कैमरा खुला हो और आपका चेहरा दिखाई दे।
+    face_not_detected_warning: चेहरा नहीं मिला। कृपया सुनिश्चित करें कि आपका चेहरा कैमरे में दिखाई दे।
     fail: असफल
     file_submission_already_exists: हमारे पास इस प्रश्न के लिए आपका उत्तर पहले से ही है। कृपया पेज रिफ्रेश करें और यदि आप अभी भी अपना पिछला उत्तर नहीं देख पा रहे हैं, तो कृपया अपने व्यवस्थापक से संपर्क करें।
     follow_these_steps: सिस्टम जाँच के दौरान पाए गए मुद्दों को हल करने के लिए इन चरणों का पालन करें।
@@ -162,6 +168,8 @@ hi:
     select_video_device: वीडियो डिवाइस चुनें
     selected_count: "%{count} चयनित"
     skill_type: कौशल का प्रकार
+    speech_verification_error: आपकी वाणी सत्यापित करते समय एक त्रुटि हुई। कृपया फिर से प्रयास करें।
+    speech_verification_failed: आपकी बोली परीक्षण वाक्यांश से मेल नहीं खा रही है। कृपया फिर से प्रयास करें और वाक्यांश को स्पष्ट रूप से बोलें।
     start_campaign_message_proctored: यह एक पर्यवेक्षित अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_campaign_message_timed: यह एक समयबद्ध अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_readiness_check: तैयारी जाँच शुरू करें
@@ -186,10 +194,12 @@ hi:
       one: मैं चिल्लाता हूँ, तुम चिल्लाते हो, हम सब आइसक्रीम के लिए चिल्लाते हैं!
       seven: हर दिन एक नई शुरुआत है। इसे ज़ोर से और गर्व के साथ कहो!
       six: पिज़्ज़ा या पास्ता? निर्णय लेना मुश्किल है।
+      ten: मैं तैयार हूँ। यह एक परीक्षण रिकॉर्डिंग है ताकि यह पुष्टि हो सके कि मेरा माइक्रोफ़ोन ठीक से काम कर रहा है।
       three: परीक्षण, एक दो तीन, आवाज़ जितनी साफ़ हो सकती है, उतनी ही साफ़ है!
       two: तेज़ भूरा लोमड़ी सुस्त कुत्ते पर कूदता है।
     system_check_audio_title: कृपया बोलें और निम्नलिखित वाक्य को तीन बार दोहराएँ।
     system_check_complete: सिस्टम जाँच पूरी
+    system_check_face_detection: चेहरा पहचान
     system_check_failed: सिस्टम जाँच विफल
     system_check_failed_description: कृपया समस्याओं को हल करें और सिस्टम जाँच दोबारा चलाएँ।
     system_check_failed_message: कुछ सिस्टम जाँचें विफल हो गईं। कृपया विवरणों की समीक्षा करें और फिर से प्रयास करें।
@@ -200,6 +210,7 @@ hi:
     system_check_retake: नहीं, मैं दोबारा लेना चाहता हूँ।
     system_check_run_again: फिर से दौड़ो
     system_check_session_not_found: सिस्टम चेक सत्र नहीं मिला। कृपया एक नया सिस्टम चेक शुरू करें।
+    system_check_speech_verification: भाषण सत्यापन
     system_check_start_recording: रिकॉर्डिंग शुरू करें
     system_check_stop_recording: रिकॉर्डिंग बंद करें
     system_check_test_message: आपसे बात करके बहुत अच्छा लगा।
@@ -257,6 +268,10 @@ hi:
     video_overlay_label: अपना माइक्रोफ़ोन और कैमरा चुनें, रिकॉर्ड पर क्लिक करें, फिर रिकॉर्ड बटन दबाते ही निम्नलिखित संदेश पढ़ें।
     video_overlay_message: अपना माइक्रोफ़ोन और कैमरा चुनें, रिकॉर्ड पर क्लिक करें, फिर नीचे दिख रहे वाक्य को ज़ोर से पढ़ें।
     video_recorder_label: वीडियो रिकॉर्डर
+    video_upload_failed_camera_access: आपके कैमरा या माइक्रोफ़ोन तक पहुँच नहीं मिल पा रही है। कृपया अपने डिवाइस की अनुमतियाँ जाँचें और फिर से प्रयास करें।
+    video_upload_failed_chunk_upload: रिकॉर्डिंग का एक हिस्सा अपलोड नहीं हो सका। कृपया अपना इंटरनेट कनेक्शन जांचें और फिर से प्रयास करें।
+    video_upload_failed_finalize: रिकॉर्डिंग कैप्चर हो गई, लेकिन सहेजी नहीं जा सकी। कृपया फिर से प्रयास करें।
+    video_upload_failed_no_recording: अपलोड करने के लिए कोई रिकॉर्डिंग नहीं मिली। कृपया फिर से रिकॉर्ड करें।
     view_details: विवरण देखें
     webgl_api_fix_description_first: सुनिश्चित करें कि आपका ब्राउज़र WebGL का समर्थन करता है और यह सेटिंग्स में सक्षम है।
     webgl_api_fix_description_second: अपने ग्राफिक्स ड्राइवरों को नवीनतम संस्करण में अपडेट करें।

@@ -65,7 +65,7 @@ const Compose = ({ selected, disabled, onSend }) => {
   return (
     <div className={styles.compose}>
       <div className={styles.hint}>
-        {selected ? selected.name : I18n.t('administration.reports.preview.info_to_select_module')}
+        {selected ? selected.name : I18n.t('admin.reports_preview_info_to_select_module')}
       </div>
       <Input
         disabled={disabled}
@@ -73,7 +73,7 @@ const Compose = ({ selected, disabled, onSend }) => {
         onChange={e => setValue(e.currentTarget.value)}
         onKeyUp={keydown}
         suffix={disabled ? (
-          <Tooltip title={I18n.t('administration.reports.preview.info_to_select_module')}>
+          <Tooltip title={I18n.t('admin.reports_preview_info_to_select_module')}>
             <span><SendOutlined className={styles.send} /></span>
           </Tooltip>
         ) : (
@@ -164,7 +164,7 @@ function Comments ({
     <div className={styles.comments}>
       <div className={styles.filters}>
         <Space>
-          <span>{I18n.t('administration.reports.preview.hide_resolved')}</span>
+          <span>{I18n.t('admin.reports_preview_hide_resolved')}</span>
           <Switch checked={hideResolved} onChange={() => setHideResolved(!hideResolved)} />
         </Space>
       </div>

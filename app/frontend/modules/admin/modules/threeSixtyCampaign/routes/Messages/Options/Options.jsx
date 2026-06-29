@@ -24,12 +24,12 @@ function Options ({
     <div className={styles.container}>
       <OptionSection>
         <Option
-          label={I18n.t('administration.threesixty_campaigns.menu.messages.allow_subjects_to_send_reminders')}
+          label={I18n.t('admin.allow_subjects_to_send_reminders')}
           {...parametersForSwitch('subjectCanSendReminder')}
         />
 
         <Option
-          label={I18n.t('administration.threesixty_campaigns.menu.messages.automatically_send_invites')}
+          label={I18n.t('admin.automatically_send_invites')}
           {...parametersForSwitch('sendInviteToNewEvaluator')}
         />
       </OptionSection>

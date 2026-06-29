@@ -18,23 +18,28 @@ id:
     assessment_id: Nomor Identifikasi Penilaian
     assessment_list: Daftar Penilaian
     assessment_name: Nama Penilaian
+    assessor: Penilai
     assessor_approved: Disetujui oleh Penilai
     assessors_list: Daftar Penilai
     asset_not_present: Aset tidak tersedia
     audio: Audio
     audio_devices: Perangkat Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
+    auto_approved: Disetujui Otomatis
     back: Kembali
     basic: Dasar
+    bulk_download: Unduh Massal
     camera: Kamera
     camera_preview: Pratinjau kamera akan muncul di sini
     campaign: Kampanye
     campaign_id: ID Kampanye
     cancel: Batal
+    category: Kategori
     change_password: Ubah Kata Sandi
     clear_filters: Hapus Filter
     client: Klien
     close: Tutup
+    code: Kode
     collaborative_learning: Pembelajaran Kolaboratif
     completed: Selesai
     configurations: Konfigurasi
@@ -43,11 +48,13 @@ id:
     controller: Pengendali
     cookie_notice: Pemberitahuan tentang Cookie
     cookies_statement: Pernyataan tentang Cookie
+    copied: Disalin ke clipboard
     copied_successfully: Telah disalin dengan sukses
     copied_to_clipboard: Disalin ke clipboard
     copy: Salin
     create: Buat
     created_at: Dibuat di
+    created_by: Dibuat oleh
     created_date: Tanggal Dibuat
     created_successfully: Telah berhasil dibuat
     custom_acknowledgment_text: Teks Ucapan Terima Kasih yang Disesuaikan
@@ -55,11 +62,14 @@ id:
     custom_consent_text: Teks Persetujuan Khusus
     custom_consent_text_required: Teks persetujuan khusus diperlukan untuk peran data pengontrol.
     data_role: Peran Data
+    datasheet: Lembar data
     decline: Penurunan
+    default: Default
     delete: Hapus
     description: Deskripsi
     desktop_or_laptop_recommended: Desktop atau Laptop yang Direkomendasikan
     desktop_or_laptop_required: Diperlukan komputer desktop atau laptop.
+    dimension: Dimensi
     disabled: Cacat
     discard: Buang
     download: Unduh
@@ -69,6 +79,7 @@ id:
     edit: Sunting
     edited: Baru
     email: Email
+    end_date: Tanggal akhir
     ending_proctoring_session_msg: Kami akan mengakhiri sesi pengawasan ini. <p>Mohon tunggu sebentar sementara kami menyimpan jawaban Anda dan mengalihkan Anda kembali ke halaman beranda.</p>
     error: Kesalahan
     export: Ekspor
@@ -83,12 +94,18 @@ id:
     generating: Pembangkitan
     group_question_max_validation_error: Setiap grup dapat berisi paling banyak item {{max}}.
     group_question_min_validation_error: Setiap grup harus berisi setidaknya {{min}} item.
+    icon: Ikon
     id: ID
     idp_ai_assistant_disclaimer: Asisten IDP Lighthouse AI dapat membuat kesalahan. Harap berhati-hati saat menggunakan tanggapan.
+    import: Mengimpor
+    inactive: Aktif
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     last_name: Nama belakang
+    last_updated: Terakhir Diperbarui
     learning_on_the_job_label: Belajar di Tempat Kerja
     lets_start: Ayo mulai!
+    linked_activities: Aktivitas Tertaut
+    linked_assessment: Penilaian Tertaut
     loading: Muat...
     login: Masuk
     maintenance_in_hours: "%{hours} jam"
@@ -98,11 +115,13 @@ id:
     maintenance_time_remaining: Sisa Waktu
     maintenance_upcoming_description: Kami akan melakukan pemeliharaan terjadwal pada %{date} selama sekitar %{duration} untuk meningkatkan pengalaman Anda. Selama periode ini, Anda tidak akan dapat mengakses atau menyelesaikan tugas yang telah ditugaskan. Kami menghargai kesabaran Anda.
     maintenance_upcoming_title: Pemeliharaan Mendatang
+    manage: Kelola
     manage_cookies: Kelola Cookie
     media_id: Media ID
     media_preview: Pratinjau Media
     media_question_transcriptions: Transkrip Pertanyaan Media
     media_responses: Tanggapan Media
+    meeting_link: Tautan Rapat
     microphones: Mikrofon
     mobile_proctoring_disabled_instructions: Penilaian ini memerlukan komputer desktop atau laptop untuk dilanjutkan. Silakan beralih ke komputer untuk menyelesaikan aktivitas ini.
     mobile_proctoring_enabled_instructions: Untuk pengalaman terbaik, silakan beralih ke komputer desktop atau laptop jika Anda memiliki yang tersedia. Anda dapat melanjutkan menggunakan perangkat seluler jika diperlukan.
@@ -116,13 +135,17 @@ id:
     new: Baru
     next: Selanjutnya
     no_audio_warning: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda terhubung dan berfungsi dengan baik.
+    no_data_found: Tidak ada data yang ditemukan
     no_results_found: Tidak ditemukan hasil
+    none: Tidak
     not_requested: Belum Diminta
     ok: Ok
     options: Pilihan
+    overview: Gambaran Umum
     owner: Pemilik
     pause: Jeda
     pending: Menunggu
+    permissions: Izin
     play: Mainkan
     policy_version: Versi Kebijakan
     policy_version_format: Hanya bilangan bulat yang diperbolehkan.
@@ -133,6 +156,7 @@ id:
     proctoring_maintenance_active: Layanan Proctoring saat ini sedang dalam pemeliharaan dari %{start_time} ke %{end_time}. Silakan coba lagi setelah periode pemeliharaan selesai.
     proctoring_maintenance_upcoming: Pengawasan ujian akan dalam tahap pemeliharaan dari %{start_time} hingga %{end_time}.
     project: Proyek
+    publish: Menerbitkan
     question: Pertanyaan
     question_id: ID Pertanyaan
     question_transcription_disabled: Transkripsi dinonaktifkan untuk pertanyaan ini.
@@ -146,20 +170,27 @@ id:
     remove: Menghapus
     removed: Dihapus
     replace: Ganti
+    required: diperlukan
+    reset: Reset
     reset_password: Atur Ulang Kata Sandi
     response_text: Teks Tanggapan
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
+    run: Lari
     save: Simpan
     saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
+    schedule_time: Jadwal Waktu
     scoring_details: Rincian Skor
     search: Pencarian
     select_camera: Pilih Kamera
+    select_language: Pilih bahasa
     select_microphone: Pilih Mikrofon
+    send: Kirim
     send_email: Kirim email
     show_more: Tampilkan Lebih Banyak
     something_wrong: Ada yang tidak beres. Hubungi administrator Anda.
     speakers: Pembicara
+    start_date: Tanggal mulai
     status: Status
     status_unknown: Status Tidak Diketahui
     stop: Berhenti
@@ -178,6 +209,7 @@ id:
           one: 'Jumlah : 1'
           other: 'Jumlah : {{count}}'
           zero: 'Total : 0'
+    tags: Tags
     terms_conditions_privacy: Pernyataan Privasi
     tools: Perkakas
     transcription: Transkripsi
@@ -189,11 +221,35 @@ id:
     try_again: Coba Lagi
     tte_terms_and_condition: Ketentuan & Privasi
     type: Jenis
+    unpublish: Batalkan penerbitan
     update: Memperbarui
     update_failed: Pembaruan gagal
     updated_at: Diperbarui pada
+    updated_by: Diperbarui oleh
     updated_successfully: Pembaruan berhasil
+    upload: Unggah
     user_report_pdf_url_not_generated: Tautan unduhan PDF tidak dapat dibuat
+    user_reports_approval_status_pending_qc: Menunggu QC
+    user_reports_approval_status_qc_completed: Pemeriksaan kualitas telah selesai
+    user_reports_assessment_name_not_completed_reason_template: Penilaian %{names} belum diselesaikan
+    user_reports_assessments_name_not_completed_reason_template: Penilaian %{names} belum diselesaikan
+    user_reports_assessor_not_completed_reason_template: Formulir Penilai %{names} belum diisi
+    user_reports_assessors_not_completed_reason_template: Formulir penilai %{names} belum diisi
+    user_reports_campaign_artifact_results_pending_reason_message: Hasil artefak kampanye belum final untuk pengguna ini
+    user_reports_campaign_scoring_pending_reason_message: Skor kampanye untuk pengguna ini belum final
+    user_reports_custom_upload_report_reason_message: Penyedia laporan adalah unggahan khusus
+    user_reports_external_report_pending_reason_message: Menunggu laporan dari penyedia layanan
+    user_reports_lead_assessor_not_completed_reason_template: Formulir penilai utama %{names} belum diisi
+    user_reports_lead_assessors_not_completed_reason_template: Formulir penilai utama %{names} belum diisi
+    user_reports_no_report_module_reason_message: Tidak ditemukan modul laporan untuk laporan ini
+    user_reports_not_prepared_reason_message: Laporan tersebut belum disusun
+    user_reports_pending_approval_reason_template: Status persetujuan adalah '%{status}'
+    user_reports_pending_final_ai_scoring_approval_reason_message: Masih menunggu persetujuan akhir penilaian AI
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Menunggu persetujuan penilaian AI oleh QC
+    user_reports_pending_qc_approval_reason_message: Menunggu persetujuan laporan QC
+    user_reports_qc_completed_approval_reason_message: Menunggu persetujuan laporan akhir
+    user_reports_report_generating_reason_message: Laporan sedang dibuat
+    user_reports_report_generation_failed_reason_message: Pembuatan laporan gagal
     video: Video
     view: Lihat
     view_audio: Lihat Audio

@@ -151,12 +151,12 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
             <>
               <Form.Item name="privacyConsent" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.dp_consent')}
+                  {I18n.t('admin.dp_consent')}
                 </Checkbox>
               </Form.Item>
               <Form.Item name="customPrivacyConsent" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.dp_consent_custom')}
+                  {I18n.t('admin.dp_consent_custom')}
                 </Checkbox>
               </Form.Item>
               {enableCustomPolicy && (
@@ -200,12 +200,12 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                   <Col span={24}>
                     <Form.Item
                       name="customPrivacyPolicyVersion"
-                      label={I18n.t('administration.projects.privacy_settings.dp_consent_version')}
+                      label={I18n.t('admin.dp_consent_version')}
                       rules={[
                         { required: true },
                         {
                           pattern: new RegExp(/^[0-9]+$/),
-                          message: I18n.t('administration.projects.privacy_settings.errors.policy_version_format'),
+                          message: I18n.t('admin.errors_policy_version_format'),
                         },
                       ]}
                     >
@@ -216,33 +216,33 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
               )}
               <Form.Item name="disableDataProcessing" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.disable_dp')}
+                  {I18n.t('admin.disable_dp')}
                 </Checkbox>
               </Form.Item>
               <Form.Item name="enablePrivacyLink" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.privacy_link')}
+                  {I18n.t('admin.privacy_link')}
                 </Checkbox>
               </Form.Item>
               <Form.Item
                 name="privacyLinkText"
-                label={I18n.t('administration.projects.privacy_settings.privacy_text')}
+                label={I18n.t('admin.privacy_text')}
                 hidden={!enablePrivacyLink}
               >
                 <Input
                   placeholder={
-                    I18n.t('administration.projects.privacy_settings.privacy_text_placeholder')
+                    I18n.t('admin.privacy_text_placeholder')
                   }
                 />
               </Form.Item>
               <Form.Item
                 name="privacyLinkUrl"
-                label={I18n.t('administration.projects.privacy_settings.privacy_link_label')}
+                label={I18n.t('admin.privacy_link_label')}
                 hidden={!enablePrivacyLink}
               >
                 <Input
                   placeholder={
-                    I18n.t('administration.projects.privacy_settings.privacy_link_placeholder')
+                    I18n.t('admin.privacy_link_placeholder')
                   }
                 />
               </Form.Item>
@@ -251,61 +251,61 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                 name="maskIdentityForPearson"
                 labelAlign="left"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_pearson')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_pearson')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForSaville"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_saville')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_saville')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForHogan"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_hogan')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_hogan')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForIiht"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_iiht')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_iiht')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForExamus"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_examus')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_examus')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForMettl"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_mettl')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_mettl')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForSkillvue"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_skillvue')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_skillvue')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForYoodli"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_yoodli')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_yoodli')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForExamus"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_examus')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_examus')}</Checkbox>
               </Form.Item>
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForMhs"
               >
-                <Checkbox>{I18n.t('administration.projects.privacy_settings.mask_identity_for_mhs')}</Checkbox>
+                <Checkbox>{I18n.t('admin.mask_identity_for_mhs')}</Checkbox>
               </Form.Item>
               {!features?.disableMeetingRecording && (
                 <>
@@ -314,7 +314,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                     valuePropName="checked"
                   >
                     <Checkbox>
-                      {I18n.t('administration.projects.privacy_settings.video_call_recording')}
+                      {I18n.t('admin.video_call_recording')}
                     </Checkbox>
                   </Form.Item>
                   {allowVideoCallRecording && (
@@ -324,27 +324,27 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                         valuePropName="checked"
                       >
                         <Checkbox>
-                          {I18n.t('administration.projects.privacy_settings.video_call_recording_scope')}
+                          {I18n.t('admin.video_call_recording_scope')}
                         </Checkbox>
                       </Form.Item>
                       <Form.Item
                         name="videoCallRecordingExpiryInSeconds"
-                        label={I18n.t('administration.projects.privacy_settings.video_call_recording_expiry_duration')}
+                        label={I18n.t('admin.video_call_recording_expiry_duration')}
                         rules={[
                           {
                             validator: durationValidator({
                               minMinutes: MIN_RETENTION_MINUTES,
                               maxMinutes: Number.MAX_SAFE_INTEGER,
                               minError: I18n.t(
-                                'administration.projects.privacy_settings.errors.min_retention',
+                                'admin.errors_min_retention',
                               ),
                               maxError: '',
-                              requiredError: I18n.t('administration.projects.privacy_settings.errors.required'),
+                              requiredError: I18n.t('admin.errors_required'),
                             }),
                           },
                         ]}
                       >
-                        <InputDuration placeholder={I18n.t('administration.components.input_duration.placeholder')} />
+                        <InputDuration placeholder={I18n.t('admin.components_input_duration_placeholder')} />
                       </Form.Item>
                     </div>
                   )
@@ -357,7 +357,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                 className="mb-16"
                 loading={isLoading(`update@${privacySetting.id}`)}
               >
-                {I18n.t('administration.save')}
+                {I18n.t('shared.save')}
               </Button>
             </>
           )}

@@ -11,8 +11,6 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
   let!(:workshop2) { create(:workshop, campaign: campaign) }
   let!(:workshop_invite) { create(:workshop_invite, campaign_assessment_group: campaign_assessment_group) }
   let!(:workshop_invite_id) { workshop_invite.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:user1) { create(:user, email: 'user1@test.test') }
   let!(:campaign_assessment_group) { create(:campaign_assessment_group, campaign: campaign) }
 
@@ -23,7 +21,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
   describe 'GET /campaigns/:campaign_id/workshop_invites' do
     it 'fetches Workshop list' do
       get "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       workshops = JSON.parse(response.body)
       workshop_response = workshops['data'].find { |c| c['id'] == workshop_invite.id.to_s }
@@ -59,7 +57,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
 
       post "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       workshop_invite_response = JSON.parse(response.body)['data']
       expect(workshop_invite_response).to have_key('id')
@@ -82,7 +80,7 @@ RSpec.describe Api::V2::Administration::WorkshopInvitesController, type: :reques
   describe 'DELETE /campaigns/:campaign_id/workshop_invites/:workshop_invite_id' do
     it 'deletes Workshop Invite' do
       delete "/api/v2/administration/campaigns/#{campaign_id}/workshop_invites/#{workshop_invite_id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(WorkshopInvite.exists?(id: workshop_invite_id)).to be_falsey
     end

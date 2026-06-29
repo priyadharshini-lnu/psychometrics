@@ -85,7 +85,7 @@ const ParticipantsComponent: FC<Props> = ({
   ) as string
 
   useDocumentTitle(
-    I18n.t('administration.document_titles.project_participants', {
+    I18n.t('admin.document_titles_project_participants', {
       project: projectName || projectId,
     }),
   )
@@ -130,23 +130,23 @@ const ParticipantsComponent: FC<Props> = ({
     }`
 
     modal.confirm({
-      title: I18n.t('administration.project_users.modal_delete_title'),
-      content: I18n.t('administration.project_users.modal_delete_content', {
+      title: I18n.t('admin.project_users_modal_delete_title'),
+      content: I18n.t('admin.project_users_modal_delete_content', {
         name,
       }),
-      okText: I18n.t('administration.project_users.confirm_delete'),
-      cancelText: I18n.t('administration.project_users.cancel'),
+      okText: I18n.t('admin.project_users_confirm_delete'),
+      cancelText: I18n.t('admin.project_users_cancel'),
       onOk: async () => {
         try {
           await removeParticipant(projectId, id)
           message.success(
-            I18n.t('administration.project_users.delete_success', {
+            I18n.t('admin.project_users_delete_success', {
               name,
             }),
           )
         } catch (error) {
           message.error(
-            I18n.t('administration.project_users.delete_error', {
+            I18n.t('admin.project_users_delete_error', {
               name,
             }),
           )
@@ -162,23 +162,23 @@ const ParticipantsComponent: FC<Props> = ({
     const email = participant?.email ?? ''
 
     modal.confirm({
-      title: I18n.t('administration.project_users.model_reset_email'),
+      title: I18n.t('admin.project_users_model_reset_email'),
       content: I18n.t(
-        'administration.project_users.modal_reset_email_content',
+        'admin.project_users_modal_reset_email_content',
         { email },
       ),
-      okText: I18n.t('administration.project_users.confirm_send'),
-      cancelText: I18n.t('administration.project_users.cancel'),
+      okText: I18n.t('admin.project_users_confirm_send'),
+      cancelText: I18n.t('admin.project_users_cancel'),
       onOk: async () => {
         try {
           await resetParticipantPassword(projectId, id)
 
           message.success(
-            I18n.t('administration.project_users.reset_mail_success', { email }),
+            I18n.t('admin.project_users_reset_mail_success', { email }),
           )
         } catch (error) {
           message.error(
-            I18n.t('administration.project_users.reset_mail_error', { email }),
+            I18n.t('admin.project_users_reset_mail_error', { email }),
           )
         }
       },
@@ -226,7 +226,7 @@ const ParticipantsComponent: FC<Props> = ({
           <Space>
             <Input.Search
               placeholder={I18n.t(
-                'administration.project_participants.search_user',
+                'admin.project_participants_search_user',
               )}
               value={filters.filterableFields}
               onChange={handleSearchInput}
@@ -246,14 +246,14 @@ const ParticipantsComponent: FC<Props> = ({
             <Table.Column
               key="userId"
               dataIndex="userId"
-              title={I18n.t('administration.project_participants.column_id')}
+              title={I18n.t('shared.id')}
               sorter
               sortOrder={getSortOrder('userId')}
             />
             <Table.Column
               key="name"
               dataIndex="name"
-              title={I18n.t('administration.project_participants.column_name')}
+              title={I18n.t('shared.name')}
               render={(_: string, { firstName, lastName }: Participant) => (
                 <>{`${firstName} ${lastName}`}</>
               )}
@@ -263,20 +263,20 @@ const ParticipantsComponent: FC<Props> = ({
             <Table.Column
               key="email"
               dataIndex="email"
-              title={I18n.t('administration.project_participants.column_email')}
+              title={I18n.t('shared.email')}
               sorter
               sortOrder={getSortOrder('email')}
             />
             <Table.Column
               key="campaigns"
               title={I18n.t(
-                'administration.project_participants.column_campaigns',
+                'admin.project_participants_column_campaigns',
               )}
               render={renderCampaigns}
               filters={[
                 {
                   text: I18n.t(
-                    'administration.project_participants.filter_campaigns',
+                    'admin.project_participants_filter_campaigns',
                   ),
                   value: 'no_campaigns',
                 },
@@ -287,7 +287,7 @@ const ParticipantsComponent: FC<Props> = ({
               key="createdAt"
               dataIndex="createdAt"
               title={I18n.t(
-                'administration.project_participants.column_createdAt',
+                'admin.project_participants_column_createdAt',
               )}
               sorter
               sortOrder={getSortOrder('createdAt')}
@@ -296,7 +296,7 @@ const ParticipantsComponent: FC<Props> = ({
               key="actions"
               dataIndex="actions"
               title={I18n.t(
-                'administration.project_participants.column_actions',
+                'shared.actions',
               )}
               render={(_: string, { id, email, permissions }: Participant) => (
                 <ActionsMenu

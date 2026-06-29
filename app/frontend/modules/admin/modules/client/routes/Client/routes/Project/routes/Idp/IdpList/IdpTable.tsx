@@ -45,7 +45,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
 
   const publish = (idp: Idp, status) => {
     resource.updateResource({ id: idp.id, status }).then(() => {
-      message.success(I18n.t('administration.idp.status_updated'))
+      message.success(I18n.t('admin.idp_status_updated'))
     }).catch((error) => {
       message.error(error?.skillsId?.title || error?.base?.[0]?.title)
     })
@@ -56,7 +56,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
       <IdpFilter openModal={() => openModal('IDPTemplateForm', { projectId, clientId, aiAssistedIdpFeatureEnabled })} />
       <Resource.Table pagination>
         <Resource.Column<Idp>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           dataIndex="id"
           id="id"
           width={100}
@@ -64,37 +64,37 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
           sortOrder={getSortOrder('id')}
         />
         <Resource.Column<Idp>
-          title={`${I18n.t('common.column.name')}`}
+          title={`${I18n.t('shared.name')}`}
           id="name"
           render={item => <Link to={`/admin/projects/${projectId}/idp/templates/${item.id}`}>{item?.name}</Link>}
           sorter
         />
 
         <Resource.Column<Idp>
-          title={`${I18n.t('common.column.description')}`}
+          title={`${I18n.t('shared.description')}`}
           id="description"
           render={item => item?.description}
           sorter
         />
 
         <Resource.Column<Idp>
-          title={`${I18n.t('administration.idp.skill_gap_report')}`}
+          title={`${I18n.t('admin.idp_skill_gap_report')}`}
           id="description"
           render={item => item?.report?.name}
         />
 
         <Resource.Column<Idp>
-          title={`${I18n.t('common.column.status')}`}
+          title={`${I18n.t('shared.status')}`}
           id="published"
           render={item => (
             <Space>
-              {I18n.t(`administration.idp.status.${item.status}`)}
+              {I18n.t(`admin.idp_status_${item.status}`)}
             </Space>
           )}
         />
 
         <Resource.Column<Idp>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           width={100}
           render={idp => (
@@ -138,14 +138,14 @@ const getActionMenuProps = ({
   publish,
 }: ActionMenuData): MenuProps => {
   const menuItems = [
-    idp.meta?.permissions?.edit && { key: 'edit', label: I18n.t('common.actions.edit') },
+    idp.meta?.permissions?.edit && { key: 'edit', label: I18n.t('shared.edit') },
     idp.meta?.permissions?.publish && idp.status === 'draft' ? {
-      key: 'publish', label: I18n.t('common.actions.publish'),
+      key: 'publish', label: I18n.t('shared.publish'),
     } : null,
     idp.meta?.permissions?.unpublish && idp.status === 'published' ? {
-      key: 'unpublish', label: I18n.t('common.actions.unpublish'),
+      key: 'unpublish', label: I18n.t('shared.unpublish'),
     } : null,
-    idp.meta?.permissions?.remove && { key: 'remove', label: I18n.t('common.actions.remove') },
+    idp.meta?.permissions?.remove && { key: 'remove', label: I18n.t('shared.remove') },
   ]
 
   const handleMenuClick = ({ key }) => {

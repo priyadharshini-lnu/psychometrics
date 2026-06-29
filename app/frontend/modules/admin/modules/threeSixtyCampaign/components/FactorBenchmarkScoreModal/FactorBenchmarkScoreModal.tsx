@@ -110,7 +110,7 @@ export default function FactorBenchmarkScoreModal ({
     }).then((response) => {
       if (response === 'ok') {
         message.success(
-          I18n.t('administration.threesixty_campaigns.messages.factor_benchmark_scores_updated'),
+          I18n.t('admin.factor_benchmark_scores_updated'),
         )
         close()
       }
@@ -141,7 +141,7 @@ export default function FactorBenchmarkScoreModal ({
       onCancel={handleOnCancel}
       footer={canManage && [
         <Button key="back" onClick={handleOnCancel}>
-          {I18n.t('threesixty.cancel')}
+          {I18n.t('shared.cancel')}
         </Button>,
         <Button
           key="submit"
@@ -150,7 +150,7 @@ export default function FactorBenchmarkScoreModal ({
           disabled={scoresLoading('post/bulk_create')}
           onClick={handleSave}
         >
-          {I18n.t('threesixty.save')}
+          {I18n.t('shared.save')}
         </Button>,
       ]}
     >

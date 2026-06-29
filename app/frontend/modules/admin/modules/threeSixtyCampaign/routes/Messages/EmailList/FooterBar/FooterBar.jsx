@@ -20,10 +20,10 @@ export default function FooterBar ({ emailTemplate, addReminderRule, removeAllRe
     <div className={styles.container}>
       <div className={styles.titleContainer}>
         <div className={styles.title}>
-          {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_name`)}
+          {I18n.t(`admin.${emailTemplate.name}_rule_name`)}
         </div>
         <div>
-          {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_description`)}
+          {I18n.t(`admin.${emailTemplate.name}_rule_description`)}
         </div>
       </div>
       <div className={styles.switchContainer}>

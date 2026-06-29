@@ -203,7 +203,7 @@ export default function Form (props) {
               })}
               checked={resource.use_sub_factor_norm_score}
             >
-              {I18n.t('administration.factors.form.use_sub_factor_norm_score')}
+              {I18n.t('admin.factors_form_use_sub_factor_norm_score')}
             </Checkbox>
           </div>
         )
@@ -262,7 +262,7 @@ export default function Form (props) {
             initialValues={{ custom_formula: resource.custom_formula }}
           >
             <AntForm.Item
-              label={I18n.t('administration.factors.form.scoring_strategies.custom_formula')}
+              label={I18n.t('admin.factors_form_scoring_strategies_custom_formula')}
               name="custom_formula"
               className="mtm"
             >

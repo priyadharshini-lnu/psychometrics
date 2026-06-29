@@ -2,7 +2,6 @@ import { lazy } from 'react'
 import RouteList from '~/components/RouteList'
 
 const UserList = lazy(() => import('./UserList'))
-const APIKeysList = lazy(() => import('./APIKeysList'))
 
 const RegularUserList = () => <UserList userTab="Users::Regular" />
 const AdminUserList = () => <UserList userTab="Users::Admin" />
@@ -26,10 +25,6 @@ export const routes = [
   {
     path: '/global-assessors',
     component: <GlobalAssessorUserList />,
-  },
-  {
-    path: '/admins/:adminId/api_keys',
-    component: <APIKeysList />,
   },
 ]
 

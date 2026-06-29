@@ -127,6 +127,64 @@ RSpec.describe Administration::Campaigns::AssessmentsController, type: :controll
     end
   end
 
+  describe '[POST] bulk_export_raw_factor_scores' do
+    let(:start_time) { Time.zone.parse('2026-01-01 00:00:00') }
+    let(:end_time) { Time.zone.parse('2026-01-31 23:59:59') }
+
+    it 'schedules bulk raw factor score export job with payload' do
+      expect(AdminJob).to receive(:call).with(
+        :bulk_export_raw_factor_scores,
+        {
+          campaign_id: campaign.id,
+          assessment_ids: [assessment.id],
+          start_date: start_time.iso8601,
+          end_date: end_time.iso8601,
+          include_inactive_users: true
+        },
+        current_user
+      )
+
+      post :bulk_export_raw_factor_scores, params: {
+        new_campaign_id: campaign.id,
+        assessment_ids: [assessment.id],
+        start_date: start_time.iso8601,
+        end_date: end_time.iso8601,
+        include_inactive_users: 'true'
+      }, as: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe '[POST] bulk_export_norm_factor_scores' do
+    let(:start_time) { Time.zone.parse('2026-02-01 00:00:00') }
+    let(:end_time) { Time.zone.parse('2026-02-28 23:59:59') }
+
+    it 'schedules bulk norm factor score export job with payload' do
+      expect(AdminJob).to receive(:call).with(
+        :bulk_export_norm_factor_scores,
+        {
+          campaign_id: campaign.id,
+          assessment_ids: [assessment.id],
+          start_date: start_time.iso8601,
+          end_date: end_time.iso8601,
+          include_inactive_users: false
+        },
+        current_user
+      )
+
+      post :bulk_export_norm_factor_scores, params: {
+        new_campaign_id: campaign.id,
+        assessment_ids: [assessment.id],
+        start_date: start_time.iso8601,
+        end_date: end_time.iso8601,
+        include_inactive_users: 'false'
+      }, as: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe 'DELETE' do
     it 'removes campaign_assessment' do
       expect do

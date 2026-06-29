@@ -61,7 +61,8 @@ unless Rails.env.test?
         'https://*.osano.com', 'https://consent-reporting.trustarc.com', 'https://consent.trustarc.com',
         'https://*.sentry.io',
         'wss://*.amazonaws.com:8443', Settings.oac.base_embed_url, Settings.secrets.s3_compatible_storage.endpoint,
-        'https://www.google.com', 'https://www.gstatic.com', 'https://svc.webspellchecker.net'
+        'https://www.google.com', 'https://www.gstatic.com', 'https://svc.webspellchecker.net',
+        'wss://*.oci.oraclecloud.com'
       ].compact
       connect_src << Settings.agile_config.asset_url if Settings.agile_config.asset_url.present?
       connect_src << ENV.fetch('ASSET_HOST', nil) if ENV.fetch('ASSET_HOST', nil).present?
@@ -72,6 +73,7 @@ unless Rails.env.test?
         "https://#{Settings.secrets.s3_compatible_storage.private_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
         Settings.secrets.s3_compatible_storage.endpoint
       ].compact
+      object_src << ENV.fetch('CLOUDFRONT_DOMAIN', nil) if ENV.fetch('CLOUDFRONT_DOMAIN', nil).present?
 
       policy.worker_src :self, :blob
       policy.default_src :self

@@ -31,7 +31,7 @@ export const DashboardList = () => {
 
   return (
     <div className="p-6">
-      <h3>{I18n.t('administration.dashboard.dashboards')}</h3>
+      <h3>{I18n.t('admin.dashboards')}</h3>
       <Row>
         {data.map(dashboard => (
           <Col xl={6} md={8} sm={12} xs={24} key={dashboard.id} className={styles.cardContainer}>

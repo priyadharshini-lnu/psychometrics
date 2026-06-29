@@ -61,7 +61,7 @@ const RemoveColumnsComponent: FC<Props> = ({
   const handleBatchDelete = async (): Promise<void> => {
     await removeColumns(parentResourceType, parentResourceId, sheetType, selectedRowKeys)
     message.success(
-      I18n.t('administration.sheets.modals.remove_columns.successMessage',
+      I18n.t('admin.sheets_modals_remove_columns_successMessage',
         { count: selectedCount, columns: selectedRowKeys.join(', ') }),
     )
     setSelectedRowKeys([])
@@ -69,18 +69,18 @@ const RemoveColumnsComponent: FC<Props> = ({
 
   const openConfirmModalForDelete = (): void => {
     modal.confirm({
-      title: I18n.t('administration.sheets.modals.remove_columns.title', {
+      title: I18n.t('admin.sheets_modals_remove_columns_title', {
         count: selectedCount,
       }),
       content: I18n.t(
-        'administration.sheets.modals.remove_columns.content',
+        'admin.sheets_modals_remove_columns_content',
         { count: selectedCount, columns: selectedRowKeys.join(', ') },
       ),
       icon: <ExclamationCircleOutlined />,
-      okText: I18n.t('administration.sheets.modals.remove_columns.okText'),
+      okText: I18n.t('admin.sheets_modals_remove_columns_okText'),
       okType: 'danger',
       cancelText: I18n.t(
-        'administration.sheets.modals.remove_columns.cancelText',
+        'admin.sheets_modals_remove_columns_cancelText',
       ),
       onOk: handleBatchDelete,
     })

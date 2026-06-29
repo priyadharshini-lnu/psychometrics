@@ -117,38 +117,38 @@ export const Client: FC<Props> = ({ currentUser }) => {
     {
       key: 'projects',
       icon: <ShopOutlined />,
-      label: I18n.t('administration.breadcrumbs.projects'),
+      label: I18n.t('admin.projects'),
     },
   ]
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'admins',
     icon: <UserOutlined />,
-    label: I18n.t('administration.breadcrumbs.client_admins'),
+    label: I18n.t('admin.client_admins'),
   })
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'settings',
     icon: <SettingOutlined />,
-    label: I18n.t('administration.breadcrumbs.settings'),
+    label: I18n.t('admin.settings'),
   })
 
   client?.meta.permissions.viewDataReports && menuItems.push({
     key: 'data_reports',
     icon: <DatabaseOutlined />,
-    label: I18n.t('administration.breadcrumbs.data_reports'),
+    label: I18n.t('admin.data_reports'),
   })
 
   client?.meta.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ExportOutlined />,
-    label: I18n.t('administration.breadcrumbs.audit_reports'),
+    label: I18n.t('admin.audit_reports'),
   })
   client?.meta.permissions.viewLicenses && menuItems.push(
     {
       key: 'licenses',
       icon: <SolutionOutlined />,
-      label: I18n.t('administration.breadcrumbs.licenses'),
+      label: I18n.t('admin.licenses'),
     },
   )
 
@@ -164,7 +164,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
         crumbs={[
           {
             link: window.PsyGlobalState?.clientContextData ? undefined : () => '/admin',
-            label: () => I18n.t('administration.clients.clients'),
+            label: () => I18n.t('admin.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

@@ -26,8 +26,8 @@ export const RemoveFactorModal: React.FC<Props> = ({ close, factor }) => {
   return (
     <AnswerableConfirmationModal
       requiredAnswer={name || ''}
-      warningMessage={<SafeHTML html={I18n.t('administration.factors.resource.confirmations.delete.body')} />}
-      confirmationMessage={I18n.t('administration.scoring.factor_removal_confirmation')}
+      warningMessage={<SafeHTML html={I18n.t('admin.factors_resource_confirmations_delete_body')} />}
+      confirmationMessage={I18n.t('admin.scoring_factor_removal_confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
     />

@@ -85,7 +85,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
     <ResourceFormModal
       resourceName="skills"
       resource={skill}
-      readableResourceName={I18n.t('administration.skills.form.title')}
+      readableResourceName={I18n.t('admin.skills_form_title')}
       showSuccessMessages
       close={close}
       storeManager={{ form }}
@@ -103,20 +103,20 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
         <>
           <Form.Item
             name="name"
-            label={I18n.t('administration.skills.form.name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true }]}
           >
             <Input />
           </Form.Item>
           <Form.Item
             name="description"
-            label={I18n.t('administration.skills.form.description')}
+            label={I18n.t('shared.description')}
           >
             <Input.TextArea />
           </Form.Item>
           <Form.Item
             name="skillType"
-            label={I18n.t('administration.skills.form.skill_type')}
+            label={I18n.t('admin.skills_form_skill_type')}
           >
             <Select
               filterOption={false}
@@ -130,7 +130,7 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           </Form.Item>
           <Form.Item
             name="skillGroupId"
-            label={I18n.t('administration.skills.form.skill_group')}
+            label={I18n.t('admin.skills_form_skill_group')}
           >
             <Select
               showSearch={{ filterOption: false, onSearch: debouncedFetchSkillGroups }}
@@ -146,12 +146,12 @@ export const SkillsFormModal: React.FC<Props> = ({ close, skill }) => {
           </Form.Item>
           <Form.Item
             name="tagList"
-            label={I18n.t('common.column.tags')}
+            label={I18n.t('shared.tags')}
           >
             <Select
               mode="tags"
               style={{ width: '100%' }}
-              placeholder={I18n.t('common.column.tags')}
+              placeholder={I18n.t('shared.tags')}
               showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
               notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >

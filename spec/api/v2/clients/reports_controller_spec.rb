@@ -6,9 +6,6 @@ RSpec.describe Api::V2::Administration::Clients::ReportsController, type: :reque
   let(:client_id) { client.id }
   let!(:report) { create(:report) }
   let!(:superadmin) { create(:superadmin) }
-  let(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before(:each) do
     sign_in(superadmin)
   end
@@ -32,7 +29,7 @@ RSpec.describe Api::V2::Administration::Clients::ReportsController, type: :reque
 
     it 'returns reports list part of the common license' do
       get "/api/v2/administration/clients/#{client_id}/reports",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expected_reports = client.licenses.map { |l| l.report_family.reports.map(&:name) }.flatten
@@ -46,7 +43,7 @@ RSpec.describe Api::V2::Administration::Clients::ReportsController, type: :reque
 
       get "/api/v2/administration/clients/#{client_id}/reports",
           params: { 'filter[name_cont]' => query },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expected_reports = ['Example Report', 'Example Report2']

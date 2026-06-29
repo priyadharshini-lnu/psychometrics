@@ -19,9 +19,9 @@ const DateFilters = () => {
         onChange={e => resource.changeFilter('date_filter', e.target.value)}
         value={filter}
       >
-        <Radio.Button value="current">{I18n.t('administration.assessment_center.current')}</Radio.Button>
-        <Radio.Button value="upcoming">{I18n.t('administration.assessment_center.upcoming')}</Radio.Button>
-        <Radio.Button value="past">{I18n.t('administration.assessment_center.past')}</Radio.Button>
+        <Radio.Button value="current">{I18n.t('admin.current')}</Radio.Button>
+        <Radio.Button value="upcoming">{I18n.t('admin.upcoming')}</Radio.Button>
+        <Radio.Button value="past">{I18n.t('admin.past')}</Radio.Button>
       </Radio.Group>
     </div>
   )
@@ -71,7 +71,7 @@ export const CampaignsList: React.FC = () => {
           )}
         />
         <Resource.Column<Workshop>
-          title={I18n.t('administration.scheduling.columns.start_time')}
+          title={I18n.t('admin.scheduling_columns_start_time')}
           id="startTime"
           width="15%"
           render={(_, { startTime }) => <DateTimeWithZone dateString={startTime} format="lll" />}
@@ -83,13 +83,13 @@ export const CampaignsList: React.FC = () => {
           render={(_, { name }) => name}
         />
         <Resource.Column<Workshop>
-          title={I18n.t('administration.scheduling.columns.duration')}
+          title={I18n.t('admin.scheduling_columns_duration')}
           id="duration"
           width="10%"
           render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
         />
         <Resource.Column<Workshop>
-          title={I18n.t('administration.scheduling.columns.campaign_name')}
+          title={I18n.t('admin.scheduling_columns_campaign_name')}
           id="campaignName"
           render={(_, { campaign }) => campaign.name}
           width="10%"

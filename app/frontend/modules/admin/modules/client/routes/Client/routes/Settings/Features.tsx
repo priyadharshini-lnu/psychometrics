@@ -148,7 +148,7 @@ export const Features: React.FC = () => {
         : (
           <ResourceForm
             resourceName="client_features"
-            readableResourceName={I18n.t('administration.client_features.client_features')}
+            readableResourceName={I18n.t('admin.client_features')}
             resource={features}
             storeManager={{ form }}
             request={{ updateResource }}
@@ -172,7 +172,7 @@ export const Features: React.FC = () => {
                   >
                     <FeatureToggle
                       name="aiAssistants"
-                      label={I18n.t('administration.client_features.form.ai_assistants')}
+                      label={I18n.t('admin.ai_assistants')}
                       tooltip={I18n.t('admin.feature_ai_assistants_description')}
                       isLast={!aiAssistants}
                     />
@@ -185,7 +185,7 @@ export const Features: React.FC = () => {
                     >
                       <FeatureToggle
                         name="aiAssistedIdp"
-                        label={I18n.t('administration.client_features.form.ai_assisted_idp')}
+                        label={I18n.t('admin.ai_assisted_idp')}
                         tooltip={I18n.t('admin.feature_ai_assisted_idp_description')}
                       />
                       <FeatureToggle
@@ -195,12 +195,12 @@ export const Features: React.FC = () => {
                       />
                       <FeatureToggle
                         name="aiTranslation"
-                        label={I18n.t('administration.client_features.form.ai_translation')}
+                        label={I18n.t('admin.ai_translation')}
                         tooltip={I18n.t('admin.feature_ai_translation_description')}
                       />
                       <FeatureToggle
                         name="aiContentAnalysis"
-                        label={I18n.t('administration.client_features.form.ai_content_analysis')}
+                        label={I18n.t('admin.ai_content_analysis')}
                         tooltip={I18n.t('admin.feature_ai_content_analysis_description')}
                         isLast
                       />
@@ -215,7 +215,7 @@ export const Features: React.FC = () => {
                   >
                     <FeatureToggle
                       name="smsNotification"
-                      label={I18n.t('administration.client_features.form.sms_notification')}
+                      label={I18n.t('admin.sms_notification')}
                       tooltip={I18n.t('admin.feature_sms_notification_description')}
                       isLast
                     />
@@ -227,12 +227,12 @@ export const Features: React.FC = () => {
                   >
                     <FeatureToggle
                       name="idp"
-                      label={I18n.t('administration.client_features.form.idp')}
+                      label={I18n.t('admin.idp')}
                       tooltip={I18n.t('admin.feature_idp_description')}
                     />
                     <FeatureToggle
                       name="globalSkills"
-                      label={I18n.t('administration.client_features.form.global_skills')}
+                      label={I18n.t('admin.global_skills')}
                       tooltip={I18n.t('admin.feature_global_skills_description')}
                       isLast
                     />
@@ -246,7 +246,7 @@ export const Features: React.FC = () => {
                     size="large"
                     loading={isLoading(`update@${featuresData[0]?.id}`)}
                   >
-                    {I18n.t('common.actions.update')}
+                    {I18n.t('shared.update')}
                   </Button>
                 </Col>
               </Row>

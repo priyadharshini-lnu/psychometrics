@@ -93,6 +93,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/taxonomy')) {
       return ['taxonomy']
     }
+    if (pathname.includes('/licenses')) {
+      return ['licenses']
+    }
     return undefined
   }
 
@@ -105,32 +108,34 @@ const Project: FC<Props> = ({
     const [primaryTab] = primaryLevelTab
     switch (primaryTab) {
       case 'new_campaigns':
-        return I18n.t('common.model.campaigns')
+        return I18n.t('admin.campaigns')
       case 'admins':
-        return I18n.t('administration.breadcrumbs.admins')
+        return I18n.t('admin.admins')
       case 'users': {
         if (pathname.includes('participants')) {
-          return I18n.t('administration.breadcrumbs.participants')
+          return I18n.t('admin.participants')
         }
         if (pathname.includes('assessors')) {
-          return I18n.t('administration.breadcrumbs.assessors')
+          return I18n.t('admin.assessors')
         }
-        return I18n.t('administration.breadcrumbs.users')
+        return I18n.t('admin.users')
       }
       case 'datasheet':
-        return I18n.t('common.model.datasheet')
+        return I18n.t('shared.datasheet')
       case 'settings': {
         if (pathname.includes('smtp')) {
-          return I18n.t('administration.breadcrumbs.smtp_settings')
+          return I18n.t('admin.smtp_settings')
         }
-        return I18n.t('administration.breadcrumbs.settings')
+        return I18n.t('admin.settings')
       }
       case 'audit_reports':
-        return I18n.t('administration.breadcrumbs.audit_reports')
+        return I18n.t('admin.audit_reports')
       case 'idp':
-        return I18n.t('administration.idp.idp')
+        return I18n.t('admin.idp_idp')
       case 'taxonomy':
-        return I18n.t('administration.taxonomy.title')
+        return I18n.t('admin.taxonomy_title')
+      case 'licenses':
+        return I18n.t('admin.project_licenses')
       default:
         return ''
     }
@@ -159,34 +164,34 @@ const Project: FC<Props> = ({
     {
       key: 'new_campaigns',
       icon: <ShopOutlined />,
-      label: I18n.t('common.model.campaigns'),
+      label: I18n.t('admin.campaigns'),
     },
   ]
   currentUser.permissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
     icon: <DatabaseOutlined />,
-    label: I18n.t('common.model.datasheet'),
+    label: I18n.t('shared.datasheet'),
   })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
     icon: <UserOutlined />,
-    label: I18n.t('administration.breadcrumbs.project_admins'),
+    label: I18n.t('admin.project_admins'),
   })
   canShowSettingsTab() && menuItems.push({
     key: 'settings',
     icon: <SettingOutlined />,
-    label: I18n.t('administration.breadcrumbs.settings'),
+    label: I18n.t('admin.settings'),
   })
   currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ExportOutlined />,
-    label: I18n.t('administration.breadcrumbs.audit_reports'),
+    label: I18n.t('admin.audit_reports'),
   })
 
   idpEnabled && canShowIdpTab() && menuItems.push({
     key: 'idp',
     icon: <CrownOutlined />,
-    label: I18n.t('administration.idp.idp'),
+    label: I18n.t('admin.idp_idp'),
   })
 
   if ((idpEnabled || skillRaterEnabled) && currentUser.permissions.accessProjectTaxonomy) {
@@ -194,7 +199,7 @@ const Project: FC<Props> = ({
       {
         key: 'taxonomy',
         icon: <ApartmentOutlined />,
-        label: I18n.t('administration.taxonomy.title'),
+        label: I18n.t('admin.taxonomy_title'),
       },
     )
   }
@@ -203,7 +208,7 @@ const Project: FC<Props> = ({
     menuItems.push({
       key: 'licenses',
       icon: <SolutionOutlined />,
-      label: I18n.t('administration.breadcrumbs.licenses'),
+      label: I18n.t('admin.licenses'),
     })
   }
 
@@ -220,7 +225,7 @@ const Project: FC<Props> = ({
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.clients.clients'),
+            label: () => I18n.t('admin.clients'),
           },
           {
             link: state => `/admin/clients/${state.client.id}/projects`,

@@ -21,21 +21,21 @@ export const FactorsImportModal: React.FC<Props> = ({ close }) => {
 
   return (
     <ImportModal
-      title={I18n.t('administration.dimensions.import_factors.title')}
+      title={I18n.t('admin.dimensions_import_factors_title')}
       validateEndpoint=""
       importEndpoint=""
       translations={{
-        cancel: I18n.t('administration.close'),
-        import: I18n.t('administration.dimensions.import_factors.import'),
+        cancel: I18n.t('shared.close'),
+        import: I18n.t('shared.import'),
       }}
       fileAccept=".csv"
-      fileLabel={I18n.t('administration.dimensions.import_factors.title')}
-      fileErrorMessage={I18n.t('administration.errors.csv_file_required')}
+      fileLabel={I18n.t('admin.dimensions_import_factors_title')}
+      fileErrorMessage={I18n.t('admin.errors_csv_file_required')}
       showMappableFields={false}
       skipValidation
       sampleFilePath="/example_csv/factors.csv"
-      sampleFileLabel={I18n.t('administration.dimensions.import_factors.sample_file')}
-      successMessage={I18n.t('administration.dimensions.import_modal.import_scheduled')}
+      sampleFileLabel={I18n.t('admin.dimensions_import_factors_sample_file')}
+      successMessage={I18n.t('admin.dimensions_import_modal_import_scheduled')}
       submitFileImport={submitFileImport}
       onClose={close}
     />

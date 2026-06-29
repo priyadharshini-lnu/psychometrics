@@ -53,6 +53,7 @@ export const WorkshopTR = t.type({
 export const WorkshopShortTR = t.type({
   id: t.string,
   startTime: t.string,
+  name: t.string,
 })
 
 export const WorkshopCreateResponseTR = t.array(t.type({

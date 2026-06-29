@@ -76,11 +76,11 @@ export default function DownloadReportsModal ({
   return (
     <Modal
       width={768}
-      title={I18n.t('campaign_report.actions.bulk_download')}
+      title={I18n.t('shared.bulk_download')}
       open
       onCancel={close}
       footer={[
-        <Button key="back" onClick={close}>{I18n.t('common.actions.cancel')}</Button>,
+        <Button key="back" onClick={close}>{I18n.t('shared.cancel')}</Button>,
         <Button
           type="primary"
           key="submit"
@@ -88,12 +88,12 @@ export default function DownloadReportsModal ({
             form.submit()
           }}
         >
-          {I18n.t('common.actions.export')}
+          {I18n.t('shared.export')}
         </Button>,
       ]}
     >
       <Paragraph style={{ color: constants.DARK_GREY }} className="mb-4">
-        {I18n.t('administration.campaign_report.bulk_download.modal.subtitle')}
+        {I18n.t('admin.modal_subtitle')}
       </Paragraph>
       <Form
         name="basic"
@@ -110,13 +110,13 @@ export default function DownloadReportsModal ({
             style={{ flex: '0 0 auto' }}
             rules={[{
               required: true,
-              message: I18n.t('administration.campaign_report.bulk_download.data_range_error'),
+              message: I18n.t('admin.data_range_error'),
             }]}
           >
             <DatePicker.RangePicker
               format={dateFormat}
-              placeholder={[I18n.t('glint.schedule_availability.start_date'),
-                I18n.t('glint.schedule_availability.end_date')]}
+              placeholder={[I18n.t('shared.start_date'),
+                I18n.t('shared.end_date')]}
               style={{ width: '100%' }}
               allowClear={false}
               disabledDate={disabledFutureDate}
@@ -162,7 +162,7 @@ export default function DownloadReportsModal ({
                             <GlobalOutlined style={{ color: constants.DEFAULT_PRIMARY_COLOR }} />
                             {I18n.t(`languages.${report.effectiveDefaultLanguage}`)}
                           </Flex>
-                          <Tag color={constants.DEFAULT_PRIMARY_COLOR}>Default</Tag>
+                          <Tag color={constants.DEFAULT_PRIMARY_COLOR}>{I18n.t('shared.default')}</Tag>
                         </Flex>
                       </Select.Option>
                     ) : null}
@@ -186,7 +186,7 @@ export default function DownloadReportsModal ({
             <Checkbox
               className="mt-5"
             >
-              {I18n.t('user.modals.exports.include_inactive_users')}
+              {I18n.t('admin.export_with_inactive_users')}
             </Checkbox>
           </Form.Item>
         </Flex>

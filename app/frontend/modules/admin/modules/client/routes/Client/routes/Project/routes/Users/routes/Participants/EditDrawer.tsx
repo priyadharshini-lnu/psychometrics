@@ -57,7 +57,7 @@ const EditDrawerComponent: FC<Props> = ({
 
   if (participant && participant.permissions && participant.permissions.edit === false) {
     message.error(
-      I18n.t('administration.project_users.no_edit_permission', {
+      I18n.t('admin.project_users_no_edit_permission', {
         name: `${participant.firstName} ${participant.lastName}`,
       }),
     )
@@ -79,7 +79,7 @@ const EditDrawerComponent: FC<Props> = ({
       <Row justify="space-between" align="middle" className="mb-4">
         <Col>
           <Typography.Title level={4}>
-            {I18n.t('administration.project_participants.edit_participant')}
+            {I18n.t('admin.project_participants_edit_participant')}
           </Typography.Title>
         </Col>
         <Col>
@@ -92,11 +92,11 @@ const EditDrawerComponent: FC<Props> = ({
                 loading={isUpdating}
                 disabled={isFetching}
               >
-                {I18n.t('administration.project_participants.save')}
+                {I18n.t('shared.save')}
               </Button>
             )}
             <Button htmlType="reset" form="edit_participant_form" onClick={onClose}>
-              {I18n.t('administration.project_participants.cancel')}
+              {I18n.t('shared.cancel')}
             </Button>
           </Space>
         </Col>
@@ -121,19 +121,19 @@ const EditDrawerComponent: FC<Props> = ({
       >
         {() => (
           <Skeleton loading={isFetching} active title>
-            <Form.Item name="firstName" label={I18n.t('administration.project_participants.form_first_name')}>
+            <Form.Item name="firstName" label={I18n.t('shared.first_name')}>
               <Input autoFocus />
             </Form.Item>
-            <Form.Item name="lastName" label={I18n.t('administration.project_participants.form_last_name')}>
+            <Form.Item name="lastName" label={I18n.t('shared.last_name')}>
               <Input />
             </Form.Item>
-            <Form.Item name="email" label={I18n.t('administration.project_participants.column_email')}>
+            <Form.Item name="email" label={I18n.t('shared.email')}>
               <Input />
             </Form.Item>
-            <Form.Item label={I18n.t('administration.project_participants.column_created_at')}>
+            <Form.Item label={I18n.t('admin.project_participants_column_created_at')}>
               <Input value={participant?.createdAt} variant="borderless" />
             </Form.Item>
-            <Form.Item name="campaigns" label={I18n.t('administration.project_participants.column_campaigns')}>
+            <Form.Item name="campaigns" label={I18n.t('admin.project_participants_column_campaigns')}>
               <List
                 size="small"
                 split={false}

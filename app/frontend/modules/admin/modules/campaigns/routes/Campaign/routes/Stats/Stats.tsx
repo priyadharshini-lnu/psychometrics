@@ -126,7 +126,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.users')}
+              title={I18n.t('admin.stats_top_metrics_users')}
               value={users.total}
             />
           </Card>
@@ -134,7 +134,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.not_started')}
+              title={I18n.t('admin.stats_top_metrics_not_started')}
               value={users.not_started || 0}
               styles={{ content: { color: COLORS.not_started } }}
             />
@@ -143,7 +143,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.in_progress')}
+              title={I18n.t('admin.stats_top_metrics_in_progress')}
               value={users.in_progress || 0}
               styles={{ content: { color: COLORS.in_progress } }}
             />
@@ -152,7 +152,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.completed')}
+              title={I18n.t('admin.stats_top_metrics_completed')}
               value={users.completed || 0}
               styles={{ content: { color: COLORS.completed } }}
             />
@@ -161,7 +161,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.interrupted')}
+              title={I18n.t('admin.stats_top_metrics_interrupted')}
               value={users.interrupted || 0}
               styles={{ content: { color: COLORS.interrupted } }}
             />
@@ -170,7 +170,7 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={4}>
           <Card size="small">
             <Statistic
-              title={I18n.t('administration.stats.top_metrics.timed_out')}
+              title={I18n.t('admin.stats_top_metrics_timed_out')}
               value={users.timed_out || 0}
               styles={{ content: { color: COLORS.timed_out } }}
             />
@@ -184,8 +184,8 @@ const StatsComponent: React.FC<Props> = ({
               value={status}
               onChange={value => setStatus(value.length ? value : [true])}
               options={[
-                { value: true, label: I18n.t('administration.stats.assessments.active') },
-                { value: false, label: I18n.t('administration.stats.assessments.inactive') },
+                { value: true, label: I18n.t('admin.stats_assessments_active') },
+                { value: false, label: I18n.t('admin.stats_assessments_inactive') },
               ]}
               className={styles.statusSelect}
             />
@@ -260,12 +260,12 @@ const StatsComponent: React.FC<Props> = ({
         <Col span={24}>
           <Row justify="space-between">
             <Col>
-              <Title level={3}>{I18n.t('administration.stats.assessments.title')}</Title>
+              <Title level={3}>{I18n.t('admin.stats_assessments_title')}</Title>
             </Col>
             <Col className={styles.statsType}>
               <Radio.Group onChange={onChangeStatsType} defaultValue={statsType} size="small">
-                <Radio.Button value="percentage">{I18n.t('administration.stats.assessments.percentage')}</Radio.Button>
-                <Radio.Button value="count">{I18n.t('administration.stats.assessments.count')}</Radio.Button>
+                <Radio.Button value="percentage">{I18n.t('admin.stats_assessments_percentage')}</Radio.Button>
+                <Radio.Button value="count">{I18n.t('admin.stats_assessments_count')}</Radio.Button>
               </Radio.Group>
             </Col>
           </Row>
@@ -276,17 +276,17 @@ const StatsComponent: React.FC<Props> = ({
             pagination={false}
           >
             <Column
-              title={I18n.t('administration.stats.assessments.columns.id')}
+              title={I18n.t('shared.id')}
               dataIndex="id"
               key="id"
             />
             <Column
-              title={I18n.t('administration.stats.assessments.columns.assessment_name')}
+              title={I18n.t('admin.stats_assessments_columns_assessment_name')}
               key="name"
               dataIndex="name"
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.not_started')}
+              title={I18n.t('admin.stats_assessments_columns_not_started')}
               key="not_started"
               dataIndex="not_started"
               render={
@@ -301,7 +301,7 @@ const StatsComponent: React.FC<Props> = ({
               }
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.in_progress')}
+              title={I18n.t('admin.stats_assessments_columns_in_progress')}
               key="in_progress"
               dataIndex="in_progress"
               render={
@@ -316,7 +316,7 @@ const StatsComponent: React.FC<Props> = ({
               }
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.completed')}
+              title={I18n.t('admin.stats_assessments_columns_completed')}
               key="completed"
               dataIndex="completed"
               render={
@@ -331,7 +331,7 @@ const StatsComponent: React.FC<Props> = ({
               }
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.interrupted')}
+              title={I18n.t('admin.stats_assessments_columns_interrupted')}
               key="interrupted"
               dataIndex="interrupted"
               render={
@@ -346,7 +346,7 @@ const StatsComponent: React.FC<Props> = ({
               }
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.timed_out')}
+              title={I18n.t('admin.stats_assessments_columns_timed_out')}
               key="timed_out"
               dataIndex="timed_out"
               render={
@@ -361,7 +361,7 @@ const StatsComponent: React.FC<Props> = ({
               }
             />
             <Column<AssesmentStats>
-              title={I18n.t('administration.stats.assessments.columns.ineligible')}
+              title={I18n.t('admin.stats_assessments_columns_ineligible')}
               key="ineligible"
               dataIndex="ineligible"
               render={

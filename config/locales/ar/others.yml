@@ -622,6 +622,7 @@ ar:
         roles:
           campaign_admin: مسؤول الحملة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           manager: مدير
           member: مستخدم
           project_admin: مسؤول المشروع
@@ -727,6 +728,7 @@ ar:
           admins:
             admin: المشرف
             campaign_admin: مسؤول الحملة
+            client_assessor: مُقيِّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
@@ -736,6 +738,7 @@ ar:
           campaign_admin: مسؤول الحملة
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           iiht: IIHT
           manager: مدير
@@ -850,6 +853,7 @@ ar:
       operations:
         add_campaign_reports: إضافة تقارير الحملة
         assessment_norm_export: تصدير النتائج المعيارية
+        assessment_raw_ai_factor_export: تصدير درجات عامل الذكاء الاصطناعي الأولية
         assessment_raw_factor_export: تصدير درجات العامل الخام
         assessment_raw_result_export: تصدير النتائج الأولية
         assessment_scoring_export: تصدير نتائج التسجيل
@@ -859,6 +863,8 @@ ar:
         bulk_download_idp_reports: تنزيل تقارير IDP بالمجمع
         bulk_download_reports: تقارير التنزيل الجماعي
         bulk_download_user_reports: تنزيل تقارير المستخدم بالجملة
+        bulk_export_norm_factor_scores: تصدير درجات عامل المعيار الإجمالية
+        bulk_export_raw_factor_scores: تصدير درجات العوامل الأولية بالجملة
         bulk_generate_user_campaign_ai_artifact_results: الإنشاء المجمع لنتائج الذكاء الاصطناعي للحملة
         bulk_regenerate_reports: إعادة إنشاء تقارير الحملة
         bulk_regenerate_threesixty_reports: إعادة إنشاء تقارير موضوع Threesixty
@@ -871,10 +877,12 @@ ar:
         completion_status_export: تصدير حالة الإنجاز
         copy_as_template_or_campaign: نسخ الحملة كقالب
         copy_dimension: أبعاد النسخ
+        copy_report: نسخ التقرير
         create_threesixty_campaign: إنشاء حملة Threesixty
         data_report_export: تصدير تقرير البيانات
         export_admin_with_permissions: تصدير المسؤول مع الأذونات
         export_assessment_questions: أسئلة تقييم التصدير
+        export_audit_logs: تصدير سجلات التدقيق
         export_campaign_ai_artifacts: قطع أثرية لحملة التصدير الذكاء الاصطناعي
         export_campaign_ai_artifacts_results: تصدير نتائج حملة AI Artifacts
         export_campaign_datasheet: ورقة بيانات حملة التصدير
@@ -964,6 +972,8 @@ ar:
       errors:
         no_plans: لم يتم العثور على خطط آي دي بي نشطة
     close: غلق
+    copy_report:
+      failed: فشل نسخ التقرير
     details: التفاصيل
     errors: اخطاء
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
@@ -1013,6 +1023,7 @@ ar:
       evaluate: تقييم
       export: التصدير
       export_normed: درجات العامل المعياري
+      export_raw_ai_scores: الدرجات الأولية لعامل الذكاء الاصطناعي
       export_raw_labels: خام (مع ملصقات)
       export_raw_scores: درجات العامل الخام
       export_raw_without_labels: خام (بدون ملصقات)
@@ -1443,6 +1454,7 @@ ar:
       export_external: خارجي
       export_normed: درجات العامل المعياري
       export_occupations: مهن
+      export_raw_ai_scores: الدرجات الأولية لعامل الذكاء الاصطناعي
       export_raw_labels: خام (مع ملصقات)
       export_raw_scores: درجات العامل الخام
       export_raw_without_labels: خام (بدون ملصقات)
@@ -1467,6 +1479,7 @@ ar:
       external_user_id: هوية المرشح سكيلفيو
       id: معرف تقييم الحملة
       locales: لغات
+      microsite_assessment_url: رابط تقييم الموقع المصغر
       microsite_error_message: رسالة خطأ
       microsite_participant_id: رقم تعريف المشارك في الموقع المصغر
       microsite_registration_status: حالة التسجيل
@@ -1495,6 +1508,7 @@ ar:
       no_participants_selected: يرجى تحديد مشارك واحد على الأقل للمتابعة.
       norm_results_export_scheduled: تمت جدولة مهمة تصدير النتائج المعيارية للتقييم بنجاح
       normalize_factor_scores_scheduled: تمت جدولة وظيفة تطبيع درجات العامل بنجاح.
+      raw_ai_factor_export_scheduled: تم جدولة مهمة تصدير «عامل الذكاء الاصطناعي الخام» بنجاح
       raw_factor_export_scheduled: تم جدولة مهمة تصدير العامل الخام للتقييم بنجاح
       raw_results_export_scheduled: تمت جدولة مهمة تصدير النتائج الأولية للتقييم بنجاح
       scoring_results_export_scheduled: تمت جدولة مهمة تصدير نتائج تسجيل التقييم بنجاح
@@ -1665,7 +1679,6 @@ ar:
     details:
       additional_time: وقت إضافي
       assessment_center: مركز التقييم
-      assessment_center_invites: مركز التقييم يدعو
       completed_at: تم الانتهاء في
       completion_status: حالة الإنجاز
       hogan_id: هوجان معرف
@@ -1695,11 +1708,6 @@ ar:
     modals:
       remove: هل أنت متأكد من أنك تريد إزالة مستخدم يحمل رسالة إلكترونية "%{email}" من هذه الحملة؟
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: تقييمات المقيم
-      other_assessments: تقييمات أخرى
-      other_assessor_assessments: تقييمات المقيمين الأخرى
-      other_reports: تقارير أخرى
     card:
       duration: المدة الزمنية
       starts_in: 'يبدأ في:'
@@ -1770,23 +1778,19 @@ ar:
       insert: أدخل
       'no': لا
       ok: موافق
-      publish: النشر
       reject: رفض
       remove: إزالة
       reset: إعادة
       resolve: حل
       restore: استرجاع
       return_to_home: العودة إلى المنزل
-      run: ركض
       save: حفظ
       schedule: جدول
       search: بحث
-      send: إرسال
       sign_in: تسجيل الدخول
       start: ابدأ
       submit: إرسال
       unarchive: أخرج من الأرشيف
-      unpublish: إلغاء النشر
       unresolve: إلغاء الحل
       update: تحديث
       upload: تحميل
@@ -1799,20 +1803,14 @@ ar:
     column:
       action: نشاط
       active: نشط
-      ai_assistant: مساعد الذكاء الاصطناعي
-      allow_multiple_responses: السماح بردود متعددة
       approval_notification_list: قائمة مستخدمي إشعار الموافقة
       approvers_list: قائمة الموافقين
-      assessment: تقييم
       assessment_name: اسم التقييم
       assessments: تقييمات
-      assessor: مقيم
       category: فئة
       client: عميل
-      code: الرمز
       created_at: تم إنشاؤها في
       created_by: تم إنشاؤه بواسطة
-      created_date: تاريخ الإنشاء
       default_language: اللغة الافتراضية
       description: وصف
       details: التفاصيل
@@ -1830,11 +1828,8 @@ ar:
         scoring: تسجيل JSON
       key: مفتاح
       last_name: اسم العائلة
-      linked_activities: الأنشطة المرتبطة
       linked_assessment: التقييم المرتبط
-      meeting_link: رابط الاجتماع
       modified_by: تم التعديل بواسطة
-      modified_date: تاريخ التعديل
       name: اسم
       owner: مالك
       package_id: معرف الحزمة
@@ -1850,7 +1845,6 @@ ar:
       scheduling: جدوله
       skills: المهارات
       status: حالة
-      tags: العلامات
       timing: توقيت
       token: رمز مميز
       type: نوع
@@ -1862,15 +1856,12 @@ ar:
     messages:
       leave_message: هل أنت متأكد من أنك تريد مغادرة هذه الصفحة؟ ستفقد أي إجابات غير محفوظة لديك.
     model:
-      admins: المسؤولون
       assessment: تقييم
       assessments: التقييمات
       campaigns: الحملات
       completion_statuses: حالات الإنجاز
-      datasheet: ورقة البيانات
       report: تقرير
       reports: التقييم
-      sms_contact: الاتصال بالرسائل النصية القصيرة
       threesixty_campaign: درجات حملة Threesixty
     status:
       completed: اكمال
@@ -2168,6 +2159,7 @@ ar:
     invalid_token: هناك خطأ ما. يرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
     max_regeneration_limit: تجاوز الحد الأقصى للتجديد ، اتصل بإدارتك.
     messages:
+      content_type_invalid: نوع محتوى غير صالح
       data_report_blank: تقرير البيانات غير موجود
       password_complexity:
         digit:
@@ -2987,9 +2979,7 @@ ar:
   languages_localized:
     sl: Slovenščina
   license_usage:
-    active: نشط
     campaign_name: اسم الحملة
-    inactive: كسلان
     status_updated_at: آخر تحديث للحالة
     status_updated_by: آخر تحديث بواسطة
     subject_email: البريد الإلكتروني للموضوع
@@ -3505,12 +3495,14 @@ ar:
           admin: المشرف
           admins:
             admin: المشرف
+            client_assessor: مُقيّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
           agile: رشيق
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           manager: مدير
           member: مستخدم
@@ -3644,6 +3636,7 @@ ar:
         roles:
           campaign_admin: مسؤول الحملة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           manager: مدير
           member: مستخدم
           project_admin: مسؤول المشروع
@@ -3714,12 +3707,14 @@ ar:
           admin: المشرف
           admins:
             admin: المشرف
+            client_assessor: مُقيِّم العملاء
             project_admin: مسؤول المشروع
             regular: مسؤول العميل
             superadmin: المشرف المتميز
           agile: رشيق
           case_study: دراسة حالة
           client_admin: مسؤول العميل
+          client_assessor: مُقيِّم العملاء
           hogan: هوجان
           manager: مدير
           member: مستخدم
@@ -3993,7 +3988,6 @@ ar:
       with_time_zone: "%d %b %Y %I:%M %p %:Z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: نشط
     allow_multiple_respones: السماح للمستخدمين بإرسال ردود متعددة
     png: بابوا غينيا الجديدة
     regenerate_link: إعادة إنشاء الرابط
@@ -4182,6 +4176,7 @@ ar:
       campaign_assessor: مقيم الحملة
       campaign_user: مستخدم الحملة
       client_admin: مسؤول العميل
+      client_assessor: مُقيِّم العملاء
       project_admin: مسؤول المشروع
       superadmin: المشرف المتميز
     superadmins: المشرفون المتميزون

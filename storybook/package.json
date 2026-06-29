@@ -25,6 +25,7 @@
   },
   "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
   "dependencies": {
+    "@babel/core": "7.29.6",
     "@babel/eslint-plugin": "^7.14.5",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",
@@ -39,8 +40,12 @@
     "vite-tsconfig-paths": "^4.3.1"
   },
   "resolutions": {
+    "@babel/core": "7.29.6",
+    "esbuild": "0.28.1",
     "jackspeak": "2.1.1",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.0",
+    "ws": "8.21.0",
+    "qs": "6.15.2"
   },
   "eslintConfig": {
     "extends": [

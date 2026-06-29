@@ -17,7 +17,7 @@ export const RemoveDimensionModal: React.FC<Props> = ({ close, dimension }) => {
   const { id, name } = dimension
 
   const handleOnConfirm = () => removeResource(id).then(() => {
-    message.info(I18n.t('administration.dimensions.destroy.successfully', { name }))
+    message.info(I18n.t('admin.dimensions_destroy_successfully', { name }))
     close()
   }).catch((error) => {
     message.error(error)
@@ -26,8 +26,8 @@ export const RemoveDimensionModal: React.FC<Props> = ({ close, dimension }) => {
   return (
     <AnswerableConfirmationModal
       requiredAnswer={name}
-      warningMessage={<SafeHTML html={I18n.t('administration.dimensions.resource.confirmations.delete.body')} />}
-      confirmationMessage={I18n.t('administration.dimensions.resource.confirmations.delete.message')}
+      warningMessage={<SafeHTML html={I18n.t('admin.dimensions_resource_confirmations_delete_body')} />}
+      confirmationMessage={I18n.t('admin.dimensions_resource_confirmations_delete_message')}
       onConfirm={handleOnConfirm}
       onCancel={close}
     />

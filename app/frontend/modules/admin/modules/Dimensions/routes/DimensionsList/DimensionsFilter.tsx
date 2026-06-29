@@ -28,16 +28,16 @@ export const DimensionsFilter: FC<Props> = ({
   return (
     <Resource.Filter
       name="filterable_fields"
-      placeholder={I18n.t('common.actions.search')}
+      placeholder={I18n.t('shared.search')}
     >
       <Button type="primary" disabled={tableLoading} onClick={handleCreateDimensionModal}>
         <PlusOutlined />
-        {I18n.t('common.actions.create')}
+        {I18n.t('shared.create')}
       </Button>
 
       <Button disabled={tableLoading} onClick={handleImportDimensionModal}>
         <ImportOutlined />
-        {I18n.t('administration.dimensions.import_modal.import_dimension')}
+        {I18n.t('admin.dimensions_import_modal_import_dimension')}
       </Button>
     </Resource.Filter>
   )

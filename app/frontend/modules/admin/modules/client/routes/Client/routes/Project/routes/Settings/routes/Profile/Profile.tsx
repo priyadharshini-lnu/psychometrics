@@ -136,29 +136,29 @@ export const Profile: React.FC<{}> = () => {
           onFinish={onFinish}
           initialValues={profileSettings}
         >
-          <Form.Item name="updateIn" label={I18n.t('administration.projects.profile_settings.update_in')}>
+          <Form.Item name="updateIn" label={I18n.t('admin.projects_profile_settings_update_in')}>
             <Select
               onChange={(value:string) => (setData([{ ...profileSettings, updateIn: value }]))}
               options={[
                 {
                   value: null,
-                  label: I18n.t('administration.projects.profile_settings.never'),
+                  label: I18n.t('admin.projects_profile_settings_never'),
                 },
                 {
                   value: '1',
-                  label: I18n.t('administration.projects.profile_settings.month', { count: 1 }),
+                  label: I18n.t('admin.projects_profile_settings_month', { count: 1 }),
                 },
                 {
                   value: '3',
-                  label: I18n.t('administration.projects.profile_settings.month', { count: 3 }),
+                  label: I18n.t('admin.projects_profile_settings_month', { count: 3 }),
                 },
                 {
                   value: '6',
-                  label: I18n.t('administration.projects.profile_settings.month', { count: 6 }),
+                  label: I18n.t('admin.projects_profile_settings_month', { count: 6 }),
                 },
                 {
                   value: '12',
-                  label: `1 ${I18n.t('administration.projects.profile_settings.year')}`,
+                  label: `1 ${I18n.t('admin.projects_profile_settings_year')}`,
                 },
               ]}
             />
@@ -182,7 +182,7 @@ export const Profile: React.FC<{}> = () => {
           />
           <Row className={styles.footer}>
             <Button type="primary" htmlType="submit" className="mb-16" loading={isSaving}>
-              {I18n.t('administration.save')}
+              {I18n.t('shared.save')}
             </Button>
           </Row>
         </Form>

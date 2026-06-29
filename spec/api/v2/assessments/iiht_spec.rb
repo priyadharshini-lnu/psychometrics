@@ -13,8 +13,6 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
   let(:assessments_response) do
     [{ 'assessmentIdNumber' => 'fake_id', 'name' => 'testName', 'description' => 'description1' }]
   end
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let(:relations) do
     {
       dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
@@ -23,7 +21,7 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
     }
   end
 
-  before(:each) { login_user(superadmin) }
+  before(:each) { sign_in(superadmin) }
   after(:each) { sign_out(superadmin) }
   before do
     allow(Iiht::GetAssessments).to receive(:call!).and_return(assessments_response)

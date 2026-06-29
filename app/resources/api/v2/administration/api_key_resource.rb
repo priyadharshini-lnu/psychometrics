@@ -4,6 +4,9 @@ class Api::V2::Administration::ApiKeyResource < Api::V2::Administration::BaseRes
   attributes :key, :token, :disabled, :created_at, :updated_at, :created_by_id, :updated_by_id, :description
   before_create :assign_key_and_token
 
+  audit_log_for :create, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }
+  audit_log_for :update, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }
+
   before_create do
     @model.created_by_id = context[:user].id
   end

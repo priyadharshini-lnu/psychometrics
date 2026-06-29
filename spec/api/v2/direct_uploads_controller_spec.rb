@@ -4,9 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request do
   let(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     sign_in(superadmin)
     allow(Settings.secrets.s3_compatible_storage).to receive(:[]).with(:public_bucket).and_return('test-bucket')
@@ -31,7 +28,6 @@ RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request 
       expect do
         post '/api/v2/administration/direct_uploads',
              params: params,
-             headers: { 'Authorization' => authorization },
              as: :json
       end.to change(TemporaryUpload, :count).by(1)
 
@@ -62,10 +58,6 @@ RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request 
     let!(:membership_grant) do
       create(:membership_grants, membership: client_admin_membership, data: { 'libraries' => %w[manage view] })
     end
-    let!(:client_admin_api_key) { create(:api_key, user: client_admin_user) }
-    let(:client_admin_authorization) do
-      "Basic #{Base64.strict_encode64("#{client_admin_api_key.key}:#{client_admin_api_key.token}")}"
-    end
 
     let(:params) do
       {
@@ -81,11 +73,14 @@ RSpec.describe Api::V2::Administration::DirectUploadsController, type: :request 
       }
     end
 
+    before do
+      sign_in(client_admin_user)
+    end
+
     it 'allows client_admin to upload media to their client' do
       expect do
         post '/api/v2/administration/direct_uploads',
              params: params,
-             headers: { 'Authorization' => client_admin_authorization },
              as: :json
       end.to change(TemporaryUpload, :count).by(1)
 

@@ -86,7 +86,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
     onSelect(values)
   }
 
-  const revisionName = revision => `${I18n.t('administration.ai_assistants.revisions.version')
+  const revisionName = revision => `${I18n.t('admin.revisions_version')
   } ${
     revision.version
   } - ${
@@ -106,7 +106,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
               loading={showDiff?.id === revision.id && !computedDiffs}
               onClick={() => setShowDiff(revision)}
             />
-            <Tooltip title={I18n.t('administration.ai_assistants.revisions.load')}>
+            <Tooltip title={I18n.t('admin.revisions_load')}>
               <Button icon={<ReloadOutlined />} onClick={() => editRevision(revision)} />
             </Tooltip>
           </Flex>
@@ -115,7 +115,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
       <Modal
         open={!!showDiff}
-        okText={I18n.t('administration.ai_assistants.revisions.load')}
+        okText={I18n.t('admin.revisions_load')}
         onOk={() => { editRevision(showDiff); setShowDiff(null) }}
         onCancel={() => setShowDiff(null)}
         closable
@@ -127,7 +127,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
           <>
             {computedDiffs?.name
               && (
-                <Card title={I18n.t('administration.ai_assistants.revisions.name')}>
+                <Card title={I18n.t('shared.name')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
                     html={computedDiffs.name}
@@ -138,7 +138,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
             {computedDiffs?.userPrompt
               && (
-                <Card title={I18n.t('administration.ai_assistants.revisions.user_prompt')}>
+                <Card title={I18n.t('admin.revisions_user_prompt')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
                     html={computedDiffs.userPrompt}
@@ -149,7 +149,7 @@ export const AiAssistantRevisions: React.FC<Props> = ({ aiAssistantId, onSelect 
 
             {computedDiffs?.systemPrompt
               && (
-                <Card title={I18n.t('administration.ai_assistants.revisions.system_prompt')}>
+                <Card title={I18n.t('admin.revisions_system_prompt')}>
                   <SafeHTML
                     className={cs(styles.editor, { [styles.diff]: showDiff })}
                     html={computedDiffs.systemPrompt}

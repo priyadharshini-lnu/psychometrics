@@ -28,7 +28,7 @@ export const SubjectPipedTextButton: React.FC<Props> = ({ communicationKind, onI
           type="link"
           onClick={openModal}
         >
-          {I18n.t('administration.communications.form.insert_piped_text')}
+          {I18n.t('admin.communications_form_insert_piped_text')}
         </Button>
       </Tooltip>
 

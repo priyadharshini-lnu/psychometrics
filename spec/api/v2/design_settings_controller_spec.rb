@@ -6,16 +6,13 @@ RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
   let!(:project) { create(:project) }
   let!(:design_setting) { project.design_setting }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/design_settings' do
     it 'returns design settings' do
       get '/api/v2/administration/design_settings',
           params: { 'filter[project_id_eq]' => project.id },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data'].first
@@ -39,7 +36,7 @@ RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
 
         patch "/api/v2/administration/design_settings/#{design_setting.id}",
               params: body.to_json,
-              headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+              headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:ok)
         data = JSON.parse(response.body)['data']
@@ -64,7 +61,7 @@ RSpec.describe Api::V2::Administration::DashboardsController, type: :request do
 
         patch "/api/v2/administration/design_settings/#{design_setting.id}",
               params: body.to_json,
-              headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+              headers: { 'Content-Type' => 'application/vnd.api+json' }
 
         expect(response).to have_http_status(:unprocessable_entity)
         errors = JSON.parse(response.body)['errors']

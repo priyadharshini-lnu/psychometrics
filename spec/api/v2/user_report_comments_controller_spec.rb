@@ -6,9 +6,6 @@ RSpec.describe Api::V2::Administration::UserReportCommentsController, type: :req
   let!(:superadmin) { create(:superadmin) }
   let(:user_report) { create(:user_report) }
   let!(:user_report_id) { user_report.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /api/v2/administration/user_reports/:user_report_id/user_report_comments' do
@@ -19,7 +16,7 @@ RSpec.describe Api::V2::Administration::UserReportCommentsController, type: :req
       other_user_report_comment = create(:user_report_comment)
 
       get "/api/v2/administration/user_reports/#{user_report_id}/user_report_comments",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -53,7 +50,7 @@ RSpec.describe Api::V2::Administration::UserReportCommentsController, type: :req
 
       post "/api/v2/administration/user_reports/#{user_report_id}/user_report_comments",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       data = JSON.parse(response.body)['data']
@@ -79,7 +76,7 @@ creator: superadmin)
 
       patch "/api/v2/administration/user_reports/#{user_report_id}/user_report_comments/#{user_report_comment.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -94,7 +91,7 @@ creator: superadmin)
 creator: superadmin)
 
       delete "/api/v2/administration/user_reports/#{user_report_id}/user_report_comments/#{user_report_comment.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       ur = UserReportComment.find_by(id: user_report_comment.id)

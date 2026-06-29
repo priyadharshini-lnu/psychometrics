@@ -24,16 +24,16 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
 
   const handleJobRoleDeletion = (jobRole: JobRole) => {
     modal.confirm({
-      title: I18n.t('administration.project_tabs.webhooks.remove_webhook.title'),
+      title: I18n.t('shared.delete'),
       content: I18n.t(
-        'administration.project_tabs.webhooks.remove_webhook.content',
+        'admin.project_tabs_webhooks_remove_webhook_content',
         {
           description: jobRole.name,
         },
       ),
-      okText: I18n.t('administration.administrators.modals.delete.okText'),
+      okText: I18n.t('shared.ok'),
       cancelText: I18n.t(
-        'administration.administrators.modals.delete.cancelText',
+        'shared.cancel',
       ),
       onOk: async () => {
         resource.removeResource(jobRole.id).then(() => {
@@ -50,7 +50,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
     <>
       <Resource.Table pagination>
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={jobRole => (
@@ -59,7 +59,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
           width={200}
         />
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           render={(_, jobRole) => (
             <Typography.Link onClick={() => setJobRoleDetails(jobRole)}>
@@ -71,7 +71,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
         />
 
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.code')}
+          title={I18n.t('shared.code')}
           id="code"
           render={(_, jobRole) => (
             <div>
@@ -83,7 +83,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
         />
 
         <Resource.Column<JobRole>
-          title={I18n.t('administration.job_role.column.job_group')}
+          title={I18n.t('admin.job_role_column_job_group')}
           id="jobGroupId"
           render={jobRole => <Typography.Text>{jobRole.jobGroup?.name}</Typography.Text>}
           minWidth={150}
@@ -91,14 +91,14 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
         />
 
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.updated_at')}
+          title={I18n.t('shared.last_updated')}
           id="updatedAt"
           width={200}
           sorter
         />
 
         <Resource.Column<JobRole>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, jobRole) => (
             <Dropdown
@@ -139,12 +139,12 @@ const getActionsMenuProps = ({ jobRole, onDelete, openModal }: ActionMenuData):M
   const menuItems = [
     jobRole && {
       key: 'edit',
-      label: I18n.t('common.actions.edit'),
+      label: I18n.t('shared.edit'),
       onClick: () => openModal(jobRole),
     },
     jobRole && {
       key: 'delete',
-      label: I18n.t('common.actions.delete'),
+      label: I18n.t('shared.delete'),
       onClick: () => onDelete(jobRole),
       danger: true,
     },

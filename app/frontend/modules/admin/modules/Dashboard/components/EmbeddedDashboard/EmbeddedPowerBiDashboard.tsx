@@ -115,8 +115,8 @@ export const EmbeddedPowerBiDashboard: React.FC<Props> = ({
         {_.isNil(embedToken) && (
           <Result
             status="error"
-            title={I18n.t('administration.dashboard.preview.embed_token_error_title')}
-            subTitle={I18n.t('administration.dashboard.preview.embed_token_error_description')}
+            title={I18n.t('admin.dashboard_preview_embed_token_error_title')}
+            subTitle={I18n.t('admin.dashboard_preview_embed_token_error_description')}
           />
         )}
       </div>

@@ -16,7 +16,7 @@ export default function ManagerSection ({
 
   return (
     <OptionSection
-      label={I18n.t('administration.threesixty_campaigns.menu.participants.options.evaluator_options')}
+      label={I18n.t('admin.options_evaluator_options')}
     >
       <ExpandableOption
         label={I18n.t('threesixty.options.evaluator.allow_evaluators_to_decline_nomination')}

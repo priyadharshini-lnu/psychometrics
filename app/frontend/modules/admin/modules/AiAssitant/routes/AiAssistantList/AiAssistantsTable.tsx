@@ -64,7 +64,7 @@ export const AiAssistantsTable = () => {
     <>
       <Resource.Table pagination>
         <Resource.Column<AiAssistant>
-          title={I18n.t('common.column.id')}
+          title={I18n.t('shared.id')}
           id="id"
           sorter
           render={aiAssistant => (
@@ -73,14 +73,14 @@ export const AiAssistantsTable = () => {
           width={100}
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('common.column.name')}
+          title={I18n.t('shared.name')}
           id="name"
           render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
           sorter
           width={200}
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('common.column.description')}
+          title={I18n.t('shared.description')}
           id="description"
           render={aiAssistant => (
             <Typography.Paragraph
@@ -98,7 +98,7 @@ export const AiAssistantsTable = () => {
           sorter
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('administration.common.type')}
+          title={I18n.t('admin.common_type')}
           id="assistant_type"
           render={aiAssistant => <Typography.Text>{ASSISTANT_TYPES[aiAssistant.assistantType]?.name}</Typography.Text>}
           sorter
@@ -108,7 +108,7 @@ export const AiAssistantsTable = () => {
   }
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('administration.ai_assistants.column.provider')}
+          title={I18n.t('admin.column_provider')}
           id="model_id"
           render={
             aiAssistant => (availableAiProviders.find(provider => provider.model_id === aiAssistant.modelId)?.name)
@@ -119,7 +119,7 @@ export const AiAssistantsTable = () => {
           filteredValue={resource.getFilteredValue('model_id_in') as string[]}
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('administration.ai_assistants.form.system_prompt')}
+          title={I18n.t('admin.system_prompt')}
           id="system_prompt"
           render={aiAssistant => (
             <div>
@@ -135,7 +135,7 @@ export const AiAssistantsTable = () => {
                   size="small"
                   onClick={() => handleShowPrompt(
                     aiAssistant.systemPrompt,
-                    `${aiAssistant.name} - ${I18n.t('administration.ai_assistants.form.system_prompt')}`,
+                    `${aiAssistant.name} - ${I18n.t('admin.system_prompt')}`,
                   )}
                   className="p-0"
                   style={{ fontSize: '12px' }}
@@ -149,7 +149,7 @@ export const AiAssistantsTable = () => {
           sorter
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('administration.ai_assistants.form.user_prompt')}
+          title={I18n.t('admin.user_prompt')}
           id="user_prompt"
           render={aiAssistant => (
             <div>
@@ -165,7 +165,7 @@ export const AiAssistantsTable = () => {
                   size="small"
                   onClick={() => handleShowPrompt(
                     aiAssistant.userPrompt,
-                    `${aiAssistant.name} - ${I18n.t('administration.ai_assistants.form.user_prompt')}`,
+                    `${aiAssistant.name} - ${I18n.t('admin.user_prompt')}`,
                   )}
                   className="p-0"
                   style={{ fontSize: '12px' }}
@@ -179,7 +179,7 @@ export const AiAssistantsTable = () => {
           sorter
         />
         <Resource.Column<AiAssistant>
-          title={I18n.t('common.column.action')}
+          title={I18n.t('shared.action')}
           id="action"
           render={(_, aiAssistant) => (
             <Dropdown
@@ -273,7 +273,7 @@ const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
           onClick={() => navigate(`${aiAssistant.id}/edit/`)}
           className="ps-0"
         >
-          {I18n.t('common.actions.edit')}
+          {I18n.t('shared.edit')}
         </Button>),
     },
     {
@@ -284,7 +284,7 @@ const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
           className="ps-0"
           onClick={() => navigate(`${aiAssistant.id}/playground/`)}
         >
-          {I18n.t('administration.ai_assistants.actions.playground')}
+          {I18n.t('admin.actions_playground')}
         </Button>
       ),
     },
@@ -296,7 +296,7 @@ const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
           className="ps-0"
           onClick={handleDelete}
         >
-          {I18n.t('common.actions.delete')}
+          {I18n.t('shared.delete')}
         </Button>
       ),
     },

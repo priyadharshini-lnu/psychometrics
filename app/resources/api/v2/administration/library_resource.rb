@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::LibraryResource < Api::V2::Administration::BaseResource
-  attributes :id, :name, :type, :description, :type, :created_at,
+  attributes :name, :type, :description, :type, :created_at,
              :file_is_image, :owner_id, :parent_id, :file_url, :file_icon_url
 
   has_one :owner, class_name: 'Client'

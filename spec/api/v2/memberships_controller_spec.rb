@@ -5,9 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let(:client_admin) { create(:client_admin_membership) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /memberships/' do
@@ -20,7 +17,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
             'filter[with_role]' => 'client_admin',
             'query[include_resource_meta]' => 'true'
           },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       response_data = JSON.parse(response.body)
@@ -45,7 +42,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
   describe 'GET /memberships/{membership_id}' do
     it 'Membership' do
       get "/api/v2/administration/memberships/#{client_admin.id}",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       membership_response = JSON.parse(response.body)['data']
@@ -80,7 +77,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
 
       post '/api/v2/administration/memberships/',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       membership_response = JSON.parse(response.body)['data']
@@ -115,7 +112,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
 
       patch "/api/v2/administration/memberships/#{client_admin.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       membership_response = JSON.parse(response.body)['data']
@@ -139,7 +136,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
 
       post '/api/v2/administration/memberships/export',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
@@ -159,7 +156,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
                }
              }
            }.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')
@@ -179,7 +176,7 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
                }
              }
            }.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+           headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       expect(AdminJobRecord.last.operation).to eq('export_admin_with_permissions')

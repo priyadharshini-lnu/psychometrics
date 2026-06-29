@@ -36,6 +36,8 @@ zh-HK:
     browser_not_compatible: 您当前使用的浏览器（%{browser_name}）不支持此活动。请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
     browser_not_compatible_description: 请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
     browser_not_compatible_detail: 您当前使用的浏览器（%{browser_name}）不支持此活动。请使用最新版本的 Chrome、Firefox、Safari 或 Edge 浏览器，以获得最佳体验。
+    browser_proctoring_description: 您正在使用%{browser_name}浏览器，该浏览器在启用本次活动监考功能方面可能存在某些限制。为了获得最佳体验，我们建议您使用Chrome或Edge浏览器。
+    browser_proctoring_title: "%{browser_name} 已检测到浏览器"
     browser_version_fix_description_first: 请使用支持的浏览器：Chrome、Firefox、Edge 或 Safari
     browser_version_fix_title: 您的浏览器版本不受支持。
     camera: 视频和音频
@@ -43,6 +45,7 @@ zh-HK:
     camera_check: 摄像头和麦克风测试
     camera_check_abruptly_ended: 摄像头突然关闭。请打开摄像头并重新运行检测。
     camera_check_description: 请确认您的摄像头和麦克风能否正常工作，以便进行录制
+    camera_check_failed: 视频验证失败
     camera_check_passed: 视频和音频测试已成功通过
     camera_check_record_instruction: 点击“录制”，然后大声朗读以下段落
     camera_test_step: 视频和音频测试步骤
@@ -69,6 +72,9 @@ zh-HK:
     error_uploading_audio_detail: 上传音频时发生错误
     error_uploading_video: 上传视频时出错
     error_uploading_video_detail: 上传视频时出现了一些错误
+    face_detection_error: 面部检测过程中发生错误。请确保您的摄像头正常工作，然后重试。
+    face_detection_failed: 视频中未检测到人脸。请确保摄像头未被遮挡，且您的面部清晰可见。
+    face_not_detected_warning: 未检测到面部。请确保您的面部处于摄像头视野范围内。
     fail: 失败
     file_submission_already_exists: 我们已经收到了您对此问题的提交。请刷新页面，如果仍然看不到之前的提交内容，请联系您的管理员。
     follow_these_steps: 请按照以下步骤解决系统检查中发现的问题
@@ -162,6 +168,8 @@ zh-HK:
     select_video_device: 选择视频设备
     selected_count: "%{count} 选定"
     skill_type: 技能类型
+    speech_verification_error: 在验证您的语音时发生错误。请重试。
+    speech_verification_failed: 您的语音与测试短语不符。请重试，并清晰地说出该短语。
     start_campaign_message_proctored: 这是一项监考活动，请点击“%{buttonText}”按钮开始活动。
     start_campaign_message_timed: 这是一项限时活动，请点击“%{buttonText}”按钮开始参与。
     start_readiness_check: 开始就绪检查
@@ -186,10 +194,12 @@ zh-HK:
       one: 我尖叫，你尖叫，我們都為冰淇淋尖叫！
       seven: 每天都是新的開始，大聲自豪地說出來！
       six: 披薩還是義大利麵？
+      ten: 我准备好了。这是一段测试录音，用于确认我的麦克风是否工作正常。
       three: 測試，一二三，聲音清晰可辨！。
       two: 敏捷的棕狐跳過了懶狗。
     system_check_audio_title: 請讀出並重複以下句子 3 次。
     system_check_complete: 系统检查完成
+    system_check_face_detection: 人脸检测
     system_check_failed: 系统检查失败
     system_check_failed_description: 请解决这些问题，然后重新运行系统检查。
     system_check_failed_message: 某些系统检查未通过。请查看详细信息并重试。
@@ -200,6 +210,7 @@ zh-HK:
     system_check_retake: 不，我要重考
     system_check_run_again: 再跑一次
     system_check_session_not_found: 未找到系统检查会话。请启动新的系统检查。
+    system_check_speech_verification: 语音验证
     system_check_start_recording: 開始錄音
     system_check_stop_recording: 停止錄影
     system_check_test_message: 很高興與您交談
@@ -257,6 +268,10 @@ zh-HK:
     video_overlay_label: 选择麦克风和摄像头，点击“录制”，然后在点击“录制”按钮后朗读以下内容
     video_overlay_message: 选择麦克风和摄像头，点击“录制”，然后大声朗读屏幕底部的句子。
     video_recorder_label: 视频录像机
+    video_upload_failed_camera_access: 无法访问您的摄像头或麦克风。请检查设备权限，然后重试。
+    video_upload_failed_chunk_upload: 部分录音未能上传。请检查您的网络连接，然后重试。
+    video_upload_failed_finalize: 已捕获录制内容，但无法保存。请重试。
+    video_upload_failed_no_recording: 未找到要上传的录音。请重新录制。
     view_details: 查看详情
     webgl_api_fix_description_first: 请确保您的浏览器支持 WebGL，并且已在设置中启用该功能
     webgl_api_fix_description_second: 将显卡驱动程序更新至最新版本

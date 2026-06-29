@@ -62,7 +62,7 @@ export const Privacy: React.FC = () => {
             <>
               <Form.Item name="disableDataProcessing" valuePropName="checked">
                 <Checkbox>
-                  {I18n.t('administration.projects.privacy_settings.disable_dp')}
+                  {I18n.t('admin.disable_dp')}
                 </Checkbox>
               </Form.Item>
               <Button
@@ -71,7 +71,7 @@ export const Privacy: React.FC = () => {
                 className="mb-16"
                 loading={isLoading(`update@${privacySetting.id}`)}
               >
-                {I18n.t('administration.save')}
+                {I18n.t('shared.save')}
               </Button>
             </>
           )}

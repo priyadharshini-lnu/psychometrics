@@ -99,16 +99,16 @@ const SmsInvitesComponent: React.FC<Props> = ({
 
   const handleDelete = (smsInvite: SmsInvite) => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
-      content: I18n.t('administration.sms_invites.messages.delete_confirm_text', { mobile_no: smsInvite.mobileNo }),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      content: I18n.t('admin.sms_invites_messages_delete_confirm_text', { mobile_no: smsInvite.mobileNo }),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         remove(campaignId, smsInvite.id).then(() => {
-          message.success(I18n.t('administration.sms_invites.messages.delete_success'))
+          message.success(I18n.t('admin.sms_invites_messages_delete_success'))
         })
       },
     })
@@ -119,26 +119,26 @@ const SmsInvitesComponent: React.FC<Props> = ({
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('common.model.sms_contact')}`}</span>
+          <span className="mlm">{`${total} ${I18n.t('admin.sms_contact')}`}</span>
         </Col>
         <Space>
           <Select
-            defaultValue={I18n.t('administration.sms_invites.statuses.all')}
-            value={filters.statusEq || I18n.t('administration.sms_invites.statuses.all')}
+            defaultValue={I18n.t('admin.sms_invites_statuses_all')}
+            value={filters.statusEq || I18n.t('admin.sms_invites_statuses_all')}
             className={styles.statusFilter}
             onChange={handleUserTypeFilterChange}
           >
             <Option value="all" key="all">
-              {I18n.t('administration.sms_invites.statuses.all')}
+              {I18n.t('admin.sms_invites_statuses_all')}
             </Option>
             {STATUSES.map(status => (
               <Option value={status} key={status}>
-                {I18n.t(`administration.sms_invites.statuses.${status}`)}
+                {I18n.t(`admin.sms_invites_statuses_${status}`)}
               </Option>
             ))}
           </Select>
           <Search
-            placeholder={I18n.t('common.actions.search')}
+            placeholder={I18n.t('shared.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
@@ -148,7 +148,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
           {permissions.create && (
             <Button type="primary" onClick={() => openModal('SmsInviteFormModal', { campaignId })}>
               <PlusOutlined />
-              <span>{I18n.t('administration.sms_invites.actions.add')}</span>
+              <span>{I18n.t('admin.sms_invites_actions_add')}</span>
             </Button>
           )}
         </Space>
@@ -164,55 +164,55 @@ const SmsInvitesComponent: React.FC<Props> = ({
             pagination={false}
           >
             <Column
-              title={I18n.t('common.column.id')}
+              title={I18n.t('shared.id')}
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
               dataIndex="id"
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.first_name')}
+              title={I18n.t('shared.first_name')}
               key="firstName"
               dataIndex="firstName"
               sorter
               sortOrder={getSortOrder('firstName')}
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.last_name')}
+              title={I18n.t('shared.last_name')}
               key="lastName"
               dataIndex="lastName"
               sorter
               sortOrder={getSortOrder('lastName')}
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.mobile_no')}
+              title={I18n.t('admin.sms_invites_columns_mobile_no')}
               key="mobileNo"
               dataIndex="mobileNo"
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.email')}
+              title={I18n.t('shared.email')}
               key="email"
               dataIndex="email"
             />
             <Column
-              title={I18n.t('common.column.status')}
+              title={I18n.t('shared.status')}
               key="status"
-              render={({ status }) => I18n.t(`administration.sms_invites.statuses.${status}`)}
+              render={({ status }) => I18n.t(`admin.sms_invites_statuses_${status}`)}
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.created_at')}
+              title={I18n.t('admin.sms_invites_columns_created_at')}
               key="createdAt"
               dataIndex="createdAt"
               sorter
               sortOrder={getSortOrder('createdAt')}
             />
             <Column
-              title={I18n.t('administration.sms_invites.columns.created_by')}
+              title={I18n.t('admin.sms_invites_columns_created_by')}
               key="createdBy"
               dataIndex="createdBy"
             />
             <Column
-              title={I18n.t('common.column.action')}
+              title={I18n.t('shared.action')}
               key="action"
               render={smsInvite => (
                 <ConditionalDropdown
@@ -253,11 +253,11 @@ const getActionsMenuProps = ({ onEdit, onRemove, permissions }): MenuProps => {
   const menuItems:MenuItem[] = []
   permissions.update && menuItems.push({
     key: 'edit',
-    label: I18n.t('common.actions.edit'),
+    label: I18n.t('shared.edit'),
   })
   permissions.destroy && menuItems.push({
     key: 'remove',
-    label: I18n.t('common.actions.remove'),
+    label: I18n.t('shared.remove'),
   })
 
   const handleMenuClick = ({ key }) => {

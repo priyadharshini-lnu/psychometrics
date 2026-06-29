@@ -27,6 +27,7 @@ module Administration
         required(:allow_caching).filled(:bool?)
         required(:permissions).hash do
           required(:import_results).filled(:bool?)
+          optional(:import_external_scoring).filled(:bool?)
           required(:export_raw_results).filled(:bool?)
           required(:export_scoring_results).filled(:bool?)
           required(:export_raw_factor_scores).filled(:bool?)

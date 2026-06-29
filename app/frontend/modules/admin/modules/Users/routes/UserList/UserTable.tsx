@@ -5,12 +5,9 @@ import {
 } from 'antd'
 import { ConnectedProps, connect } from 'react-redux'
 import _ from 'lodash'
-import { Admin } from 'modules/admin/modules/client/core/admin'
-import { useNavigate } from 'react-router-dom'
 import {
   LockOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { isSuperAdmin } from '~/core/currentUser'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { User } from '~/modules/admin/modules/client/core/users'
 import { ConfirmationModal } from '~/glint'
@@ -36,30 +33,30 @@ export const UserTableComponent: React.FC<Props> = ({
 }) => (
   <Resource.Table pagination>
     <Resource.Column<User>
-      title={I18n.t('common.column.id')}
+      title={I18n.t('shared.id')}
       id="id"
       sorter
       render={user => <Button type="link" onClick={() => openDrawer(user)}>{user.id}</Button>}
     />
     <Resource.Column<User>
       id="disabled"
-      title={I18n.t('common.column.active')}
+      title={I18n.t('shared.active')}
       render={user => <ActiveSwitch user={user} />}
     />
     <Resource.Column<User>
-      title={I18n.t('common.column.first_name')}
+      title={I18n.t('shared.first_name')}
       id="first_name"
       width={300}
       sorter
     />
     <Resource.Column<User>
-      title={I18n.t('common.column.last_name')}
+      title={I18n.t('shared.last_name')}
       id="last_name"
       width={300}
       sorter
     />
     <Resource.Column<User>
-      title={I18n.t('common.column.email')}
+      title={I18n.t('shared.email')}
       id="email"
       width={300}
       sorter
@@ -81,13 +78,13 @@ export const UserTableComponent: React.FC<Props> = ({
       )}
     />
     <Resource.Column<User>
-      title={I18n.t('common.column.updated_at')}
+      title={I18n.t('shared.last_updated')}
       id="updated_at"
       width={300}
       sorter
     />
     <Resource.Column<User>
-      title={I18n.t('common.column.action')}
+      title={I18n.t('shared.action')}
       id="action"
       render={(_, user) => (
         <Dropdown
@@ -161,9 +158,8 @@ interface ActionMenuData extends DropdownProps {
 }
 
 const getActionsMenuProps = ({
-  setConfirmation, user, openResetPasswordModal, userTab, currentUser,
+  setConfirmation, user, openResetPasswordModal,
 }: ActionMenuData):MenuProps => {
-  const navigate = useNavigate()
   const { resource } = useResourceContext<User>()
 
   const toggle2FA = (user) => {
@@ -183,10 +179,6 @@ const getActionsMenuProps = ({
     message.info(I18n.t('users.actions.unlock_user_access.message', { email }))
   })
 
-  const handleAPIKeysClick = (userId: Admin['userId']) => {
-    navigate(`/admin/users/admins/${userId}/api_keys`)
-  }
-
   const menuItems = [
     user.meta.permissions.resetPassword && {
       key: 'reset_password',
@@ -200,13 +192,8 @@ const getActionsMenuProps = ({
     },
     user.meta.permissions.remove && {
       key: 'remove',
-      label: I18n.t('common.actions.remove'),
+      label: I18n.t('shared.remove'),
       onClick: () => setConfirmation(true),
-    },
-    (isSuperAdmin(currentUser) && userTab === 'Users::Admin') && {
-      key: 'apiKeys',
-      label: I18n.t('administration.administrators.list.actions.api_keys'),
-      onClick: () => handleAPIKeysClick(user.id),
     },
     user.meta.permissions.loginAs && {
       key: 'loginAs',
@@ -217,7 +204,7 @@ const getActionsMenuProps = ({
           rel="noopener noreferrer"
           style={{ color: 'inherit' }}
         >
-          {I18n.t('administration.administrators.list.actions.login')}
+          {I18n.t('admin.login')}
         </a>
       ),
     },

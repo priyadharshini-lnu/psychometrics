@@ -7,8 +7,6 @@ RSpec.describe Api::V2::Administration::Assessments::FactorsController, type: :r
   let!(:project) { create(:project, client: client) }
   let!(:project_id) { project.id }
   let!(:superadmin) { create(:superadmin) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:dimension) { create(:dimension, :with_factor) }
   let!(:assessment) { create(:assessment, category: 'threesixty', dimension_id: dimension.id) }
   let!(:assessment_id) { assessment.id }
@@ -18,8 +16,7 @@ RSpec.describe Api::V2::Administration::Assessments::FactorsController, type: :r
 
   describe 'GET /projects/:project_id/assessments/:assessment_id/factors' do
     it 'fetches factors' do
-      get "/api/v2/administration/projects/#{project_id}/assessments/#{assessment_id}/factors",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/projects/#{project_id}/assessments/#{assessment_id}/factors"
 
       expect(response).to have_http_status(:ok)
       factor_response = JSON.parse(response.body)['data'].first

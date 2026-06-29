@@ -36,6 +36,8 @@ ja:
     browser_not_compatible: お使いのブラウザ「%{browser_name}」は、このキャンペーンに対応していません。最適な環境でお楽しみいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
     browser_not_compatible_description: 最適な環境でお使いいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
     browser_not_compatible_detail: お使いのブラウザ「%{browser_name}」は、このキャンペーンに対応していません。最適な環境でお楽しみいただくには、Chrome、Firefox、Safari、またはEdgeの最新版をご利用ください。
+    browser_proctoring_description: 現在、%{browser_name}をご利用ですが、このキャンペーンで有効になっている試験監督機能に関して、一部の制限が生じる可能性があります。最適な環境でご利用いただくため、ChromeまたはEdgeのご利用をお勧めします。
+    browser_proctoring_title: "%{browser_name} ブラウザが検出されました"
     browser_version_fix_description_first: 対応しているブラウザをご利用ください：Chrome、Firefox、Edge、またはSafari
     browser_version_fix_title: お使いのブラウザのバージョンはサポート対象外です。
     camera: 動画と音声
@@ -43,6 +45,7 @@ ja:
     camera_check: カメラとマイクのテスト
     camera_check_abruptly_ended: カメラが突然オフになりました。カメラをオンにして、チェックを再度実行してください。
     camera_check_description: 録画のために、カメラとマイクが正常に動作しているか確認してください
+    camera_check_failed: 動画の確認に失敗しました
     camera_check_passed: 映像と音声のチェックに正常に合格しました
     camera_check_record_instruction: "「録音」をクリックし、次の文章を声に出して読んでください"
     camera_test_step: 映像・音声テスト手順
@@ -69,6 +72,9 @@ ja:
     error_uploading_audio_detail: 音声のアップロード中にエラーが発生しました
     error_uploading_video: 動画のアップロードに失敗しました
     error_uploading_video_detail: 動画のアップロード中にエラーが発生しました
+    face_detection_error: 顔検出中にエラーが発生しました。カメラが正常に動作していることを確認してから、もう一度お試しください。
+    face_detection_failed: 動画に顔が検出されませんでした。カメラが遮られていないこと、および顔が映っていることを確認してください。
+    face_not_detected_warning: 顔が検出されませんでした。カメラに顔が映るようにしてください。
     fail: 失敗
     file_submission_already_exists: この質問に対する投稿はすでに受け付けております。ページを更新してください。それでも以前の投稿が表示されない場合は、管理者までご連絡ください。
     follow_these_steps: システムチェックで検出された問題を解決するには、以下の手順に従ってください
@@ -162,6 +168,8 @@ ja:
     select_video_device: ビデオデバイスを選択
     selected_count: 選択済み
     skill_type: スキルの種類
+    speech_verification_error: 音声の検証中にエラーが発生しました。もう一度お試しください。
+    speech_verification_failed: お話しいただいた内容は、テストフレーズと一致しませんでした。もう一度、フレーズをはっきりと発音して試してみてください。
     start_campaign_message_proctored: これは監督付きキャンペーンです。活動を開始するには「%{buttonText}」ボタンをクリックしてください。
     start_campaign_message_timed: これは時間制限のあるキャンペーンです。アクティビティを開始するには「%{buttonText}」ボタンをクリックしてください。
     start_readiness_check: 準備チェックを開始
@@ -186,10 +194,12 @@ ja:
       one: 私は叫ぶ、あなたも叫ぶ、私たちは皆アイスクリームを求めて叫ぶ！
       seven: 毎日が新たな始まりだ。 大きな声で、誇らしげに！
       six: ピザかパスタか、決断は難しい。
+      ten: 準備はできました。これは、マイクが正常に動作しているかを確認するためのテスト録音です。
       three: テスト、ワン・ツー・スリー、音は限りなくクリアだ！」。
       two: 素早い茶色の狐は怠け者の犬を飛び越える。
     system_check_audio_title: 以下の文章を3回繰り返して言ってください。
     system_check_complete: システムチェックが完了しました
+    system_check_face_detection: 顔検出
     system_check_failed: システムチェックに失敗しました
     system_check_failed_description: 問題を解決し、システムチェックを再度実行してください。
     system_check_failed_message: 一部のシステムチェックに失敗しました。詳細を確認の上、再度お試しください。
@@ -200,6 +210,7 @@ ja:
     system_check_retake: いや、再受験したい
     system_check_run_again: もう一度走る
     system_check_session_not_found: システムチェックのセッションが見つかりません。新しいシステムチェックを開始してください。
+    system_check_speech_verification: 音声認証
     system_check_start_recording: 録音開始
     system_check_stop_recording: 録音停止
     system_check_test_message: お話しできて嬉しいです
@@ -257,6 +268,10 @@ ja:
     video_overlay_label: マイクとカメラを選択し、「録画」をクリックしてから、録画ボタンを押したら以下のメッセージを読み上げてください
     video_overlay_message: マイクとカメラを選択し、「録画」をクリックしてから、画面下部に表示される文章を声に出して読み上げてください。
     video_recorder_label: ビデオレコーダー
+    video_upload_failed_camera_access: カメラまたはマイクにアクセスできません。デバイスの権限設定を確認してから、もう一度お試しください。
+    video_upload_failed_chunk_upload: 録画の一部がアップロードできませんでした。インターネット接続を確認の上、もう一度お試しください。
+    video_upload_failed_finalize: 録画は行われましたが、保存できませんでした。もう一度お試しください。
+    video_upload_failed_no_recording: アップロードする録画が見つかりませんでした。再度録画してください。
     view_details: 詳細を見る
     webgl_api_fix_description_first: お使いのブラウザがWebGLに対応しており、設定で有効になっていることを確認してください
     webgl_api_fix_description_second: グラフィックドライバを最新バージョンに更新してください

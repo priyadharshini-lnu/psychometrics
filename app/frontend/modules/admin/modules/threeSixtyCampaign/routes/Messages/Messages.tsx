@@ -32,22 +32,22 @@ function Messages ({ campaignPermissions }) {
     campaignPermissions.accessEmailMessages && {
       id: 'email',
       key: '/messages/email',
-      label: I18n.t('administration.threesixty_campaigns.messages.email_messages'),
+      label: I18n.t('admin.email_messages'),
     },
     campaignPermissions.accessInstructionMessages && {
       id: 'instructions',
       key: '/messages/instructions',
-      label: I18n.t('administration.threesixty_campaigns.messages.instruction_messages'),
+      label: I18n.t('admin.instruction_messages'),
     },
     campaignPermissions.accessEmailMessages && {
       id: 'mail_histories',
       key: '/messages/mail_histories',
-      label: I18n.t('administration.threesixty_campaigns.messages.mail_history'),
+      label: I18n.t('admin.mail_history'),
     },
     campaignPermissions.accessMessagesOptions && {
       id: 'options',
       key: '/messages/options',
-      label: I18n.t('administration.threesixty_campaigns.messages.options'),
+      label: I18n.t('admin.options'),
     },
   ].filter(Boolean), [campaignPermissions])
 

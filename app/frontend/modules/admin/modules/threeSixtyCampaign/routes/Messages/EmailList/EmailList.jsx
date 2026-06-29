@@ -93,14 +93,14 @@ export default function Emails ({
           <ConsolidatedSwitch selectedTemplate={selectedTemplate} update={update} />
           <DailyDigest selectedTemplate={selectedTemplate} update={update} />
           <Input
-            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
+            addonBefore={I18n.t('admin.from')}
             value={selectedTemplate.from}
             className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'from', e.target.value) }}
           />
 
           <Input
-            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
+            addonBefore={I18n.t('admin.reply_to_email')}
             value={selectedTemplate.replyToEmail}
             className={cs(['mbm', styles.smallWidthInput])}
             onChange={(e) => { update(selectedTemplate.id, 'replyToEmail', e.target.value) }}
@@ -129,14 +129,14 @@ export default function Emails ({
           </div>
           <div className="display-flex">
             <Input
-              addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+              addonBefore={I18n.t('admin.subject')}
               value={selectedLeftLocale.subject}
               className="mb8"
               onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value, leftLocale) }}
             />
             {rightLocale && (
               <Input
-                addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+                addonBefore={I18n.t('admin.subject')}
                 value={selectedRightLocale.subject}
                 readOnly
                 className="mb8"
@@ -169,7 +169,7 @@ export default function Emails ({
           onClick={saveTemplate}
         >
           <SaveOutlined />
-          {I18n.t('administration.threesixty_campaigns.email_templates.save')}
+          {I18n.t('shared.save')}
         </Button>
       </Col>
       <SentTestEmailModal />
@@ -190,7 +190,7 @@ function ConsolidatedSwitch ({ selectedTemplate, update }) {
         onChange={(checked) => { update(selectedTemplate.id, 'consolidated', checked) }}
       />
       {'  '}
-      <span>{I18n.t('administration.threesixty_campaigns.email_templates.consolidated')}</span>
+      <span>{I18n.t('admin.consolidated')}</span>
     </div>
   )
 }

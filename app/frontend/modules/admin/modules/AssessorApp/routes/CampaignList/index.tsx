@@ -69,26 +69,26 @@ const CampaignList: React.FC<Props> = (
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} Campaigns`}</span>
+          <span className="mlm">{`${total} ${I18n.t('campaign.campaigns')}`}</span>
         </Col>
         <div className="float-r">
           <Search
-            placeholder={I18n.t('common.actions.search')}
+            placeholder={I18n.t('shared.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-          <span className={styles.filterLabel}>{I18n.t('administration.campaigns.filters.status')}</span>
+          <span className={styles.filterLabel}>{I18n.t('admin.campaigns_filters_status')}</span>
           <Select
             defaultValue="All"
             value={filters.statusEq || 'All'}
             className={styles.statusFilter}
             onChange={handleStatusChange}
           >
-            <Option value="All" key="All">{I18n.t('administration.campaigns.filters.all')}</Option>
+            <Option value="All" key="All">{I18n.t('admin.campaigns_filters_all')}</Option>
             {map(STATUSES, (val: string) => (
               <Option value={val} key={val}>
-                {I18n.t(`administration.campaigns.filters.${val}`)}
+                {I18n.t(`admin.campaigns_filters_${val}`)}
               </Option>
             ))}
           </Select>
@@ -110,14 +110,14 @@ const CampaignList: React.FC<Props> = (
             })}
           >
             <Column
-              title={I18n.t('administration.campaigns.listing.id')}
+              title={I18n.t('shared.id')}
               dataIndex="id"
               key="id"
               sorter
               sortOrder={getSortOrder('id')}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.name')}
+              title={I18n.t('shared.name')}
               key="name"
               sorter
               sortOrder={getSortOrder('name')}
@@ -126,21 +126,21 @@ const CampaignList: React.FC<Props> = (
               )}
             />
             <Column
-              title={I18n.t('administration.dates.start')}
+              title={I18n.t('admin.dates_start')}
               key="startDate"
               sorter
               sortOrder={getSortOrder('startDate')}
               render={({ startDate }) => (startDate ? dayjs(startDate).format('L LT') : ' - ')}
             />
             <Column
-              title={I18n.t('administration.dates.end')}
+              title={I18n.t('admin.dates_end')}
               key="endDate"
               sorter
               sortOrder={getSortOrder('endDate')}
               render={({ endDate }) => (endDate ? dayjs(endDate).format('L LT') : ' - ')}
             />
             <Column
-              title={I18n.t('administration.campaigns.listing.status')}
+              title={I18n.t('shared.status')}
               key="status"
               render={({ status }) => capitalize(status)}
             />
@@ -148,7 +148,7 @@ const CampaignList: React.FC<Props> = (
               title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="completion_status"
               render={({ evaluationCompletionStatus }) => (
-                I18n.t(`administration.assessor_campaigns.statuses.${evaluationCompletionStatus}`)
+                I18n.t(`admin.assessor_campaigns_statuses_${evaluationCompletionStatus}`)
               )}
             />
             <Column
@@ -162,7 +162,7 @@ const CampaignList: React.FC<Props> = (
               title={I18n.t('assessors.campaigns_list.column.moderation_status')}
               key="moderationStatus"
               render={({ moderationCompletionStatus }) => (
-                I18n.t(`administration.assessor_campaigns.statuses.${moderationCompletionStatus}`)
+                I18n.t(`admin.assessor_campaigns_statuses_${moderationCompletionStatus}`)
               )}
             />
             <Column

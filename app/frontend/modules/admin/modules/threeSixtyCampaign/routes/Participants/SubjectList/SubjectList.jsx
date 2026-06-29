@@ -112,7 +112,7 @@ function SubjectList ({
           && (
             <ToolsDropdown
               isBulk
-              title={I18n.t('administration.threesixty_campaigns.menu.actions')}
+              title={I18n.t('shared.actions')}
               permissions={permissions}
               selectedKeys={selectedKeys}
               excludedKeys={excludedKeys}
@@ -148,7 +148,7 @@ function SubjectList ({
               className="font-normal text-nowrap flex items-center"
               indeterminate={isAllSelected && total !== selectedCount}
             >
-              {I18n.t('administration.scoring.select_all', { n: total ?? 0 })}
+              {I18n.t('admin.scoring_select_all', { n: total ?? 0 })}
             </Checkbox>
           </Col>
         </Row>
@@ -164,7 +164,7 @@ function SubjectList ({
             rowSelection={rowSelection}
           >
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.name')}
+              title={I18n.t('shared.name')}
               fixed={windowWidth > 800 ? 'left' : undefined}
               key="fullName"
               render={({ user, permissions }) => (
@@ -178,7 +178,7 @@ function SubjectList ({
               )}
             />
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.email')}
+              title={I18n.t('shared.email')}
               key="user_email"
               render={({ user }) => user.email}
             />
@@ -186,12 +186,12 @@ function SubjectList ({
             {isSkillRater && (
               <>
                 <Column
-                  title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.current_job_role')}
+                  title={I18n.t('admin.current_job_role')}
                   key="current_job_role"
                   render={({ user }) => user.currentJobRole || '—'}
                 />
                 <Column
-                  title={I18n.t('administration.threesixty_campaigns.menu.participants.subjects.target_job_role')}
+                  title={I18n.t('admin.target_job_role')}
                   key="target_job_role"
                   render={({ user }) => user.targetJobRole || '—'}
                 />
@@ -199,12 +199,12 @@ function SubjectList ({
             )}
 
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_received')}
+              title={I18n.t('admin.evaluations_received')}
               dataIndex="evaluators"
               key="received_evaluations"
             />
             <Column
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.evaluations_completed')}
+              title={I18n.t('admin.evaluations_completed')}
               dataIndex="evaluations"
               key="completed_evaluations"
             />
@@ -227,7 +227,7 @@ function SubjectList ({
             <Column
               key="action"
               fixed={windowWidth > 800 ? 'right' : undefined}
-              title={I18n.t('administration.threesixty_campaigns.menu.participants.columns.action')}
+              title={I18n.t('shared.action')}
               render={({
                 id, user: { email }, user, permissions, userReportId,
               }) => (

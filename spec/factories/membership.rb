@@ -6,6 +6,10 @@ FactoryBot.define do
     client factory: :project
     role { Membership::MEMBER_ROLE }
 
+    trait :with_application_user do
+      association :user, factory: :application_user
+    end
+
     factory :client_admin_membership do
       association :user, factory: :user
       association :grants, factory: :membership_grants, data: AllowedPermissions::CLIENT_ADMIN_PERMISSIONS

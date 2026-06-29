@@ -25,7 +25,7 @@ export const EmbeddedOracleAnalytics: React.FC<Props> = ({
     data: { id },
     responseType: AsyncExternalAssessmentTR,
     onFailure: () => {
-      message.error(I18n.t('administration.dashboard.loading_failed'))
+      message.error(I18n.t('admin.dashboard_loading_failed'))
     },
   })
 
@@ -33,7 +33,7 @@ export const EmbeddedOracleAnalytics: React.FC<Props> = ({
     makeAsyncRequest().then((response) => {
       setEmbedToken(response.responseData)
     }).catch(() => {
-      message.error(I18n.t('administration.dashboard.loading_failed'))
+      message.error(I18n.t('admin.dashboard_loading_failed'))
     })
   }, [])
 

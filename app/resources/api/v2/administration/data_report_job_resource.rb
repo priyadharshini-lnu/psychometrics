@@ -13,10 +13,11 @@ class Api::V2::Administration::DataReportJobResource < Api::V2::Administration::
 
   def self.records(options)
     data_report = DataReport.find(options[:context][:params][:data_report_id])
+    client_id = data_report.scope_global? ? nil : data_report.owner_id
     Api::Administration::DataReportJobPolicy::Scope.new(
       options[:context][:user],
       data_report.data_report_jobs,
-      filter: { client_id: data_report.owner_id }
+      filter: { client_id: client_id }
     ).resolve
   end
 end

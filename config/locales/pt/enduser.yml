@@ -36,6 +36,8 @@ pt:
     browser_not_compatible: O seu navegador %{browser_name} não é compatível com esta campanha. Utilize as versões mais recentes do Chrome, Firefox, Safari ou Edge para obter a melhor experiência.
     browser_not_compatible_description: Utilize as versões mais recentes do Chrome, Firefox, Safari ou Edge para obter a melhor experiência.
     browser_not_compatible_detail: O seu navegador %{browser_name} não é compatível com esta campanha. Utilize as versões mais recentes do Chrome, Firefox, Safari ou Edge para obter a melhor experiência.
+    browser_proctoring_description: Está a utilizar um navegador d%{browser_name}, que poderá ter algumas limitações no que diz respeito às funcionalidades de supervisão ativadas para esta campanha. Para uma melhor experiência, recomendamos a utilização do Chrome ou do Edge
+    browser_proctoring_title: "%{browser_name} Navegador detetado"
     browser_version_fix_description_first: 'Utilize um navegador compatível: Chrome, Firefox, Edge ou Safari'
     browser_version_fix_title: A versão do seu navegador não é suportada.
     camera: Vídeo e Áudio
@@ -43,6 +45,7 @@ pt:
     camera_check: Teste da câmara e do microfone
     camera_check_abruptly_ended: A câmara foi desligada abruptamente. Por favor, ligue a câmara e repita a verificação.
     camera_check_description: Verifique se a sua câmara e o seu microfone estão a funcionar corretamente para a gravação
+    camera_check_failed: A verificação do vídeo falhou
     camera_check_passed: A verificação de vídeo e áudio foi concluída com sucesso
     camera_check_record_instruction: Clique em «Gravar» e leia a seguinte passagem em voz alta
     camera_test_step: Etapa de teste de vídeo e áudio
@@ -69,6 +72,9 @@ pt:
     error_uploading_audio_detail: Ocorreu um erro ao carregar o seu ficheiro de áudio
     error_uploading_video: Erro ao carregar o vídeo
     error_uploading_video_detail: Ocorreu um erro ao carregar o vídeo
+    face_detection_error: Ocorreu um erro durante a deteção de rostos. Certifique-se de que a sua câmara está a funcionar e tente novamente.
+    face_detection_failed: Não foi detetado nenhum rosto na gravação de vídeo. Certifique-se de que a câmara não está tapada e de que o seu rosto está visível.
+    face_not_detected_warning: Não foi detetado nenhum rosto. Certifique-se de que o seu rosto está visível para a câmara.
     fail: Falha
     file_submission_already_exists: Já recebemos a sua resposta a esta pergunta. Por favor, atualize a página e, se continuar sem conseguir ver a sua resposta anterior, contacte o seu administrador.
     follow_these_steps: Siga estes passos para resolver os problemas detetados durante a verificação do sistema
@@ -162,6 +168,8 @@ pt:
     select_video_device: Selecionar dispositivo de vídeo
     selected_count: Selecionado
     skill_type: Tipo de habilidade
+    speech_verification_error: Ocorreu um erro ao verificar o que disse. Por favor, tente novamente.
+    speech_verification_failed: O que disse não correspondeu à frase de teste. Por favor, tente novamente e pronuncie a frase com clareza.
     start_campaign_message_proctored: Esta é uma campanha supervisionada, por favor, clique no botão '%{buttonText}' para iniciar as atividades.
     start_campaign_message_timed: Esta é uma campanha cronometrada, por favor clique no botão '%{buttonText}' para iniciar as atividades.
     start_readiness_check: Iniciar verificação de prontidão
@@ -186,10 +194,12 @@ pt:
       one: Eu grito, tu gritas, todos nós gritamos por gelado!
       seven: Cada dia é um novo começo, diga-o alto e com orgulho!
       six: Pizza ou massa? As decisões são difíceis.
+      ten: Estou pronto. Esta é uma gravação de teste para verificar se o meu microfone está a funcionar corretamente.
       three: Testando, um, dois, três, o som é claro como pode ser!
       two: A rápida raposa castanha salta sobre o cão preguiçoso.
     system_check_audio_title: Diga e repita a seguinte frase 3 vezes.
     system_check_complete: Verificação do sistema concluída
+    system_check_face_detection: Detecção de rostos
     system_check_failed: Falha na verificação do sistema
     system_check_failed_description: Por favor, resolva os problemas e volte a executar as verificações do sistema.
     system_check_failed_message: Algumas verificações do sistema falharam. Por favor, analise os detalhes e tente novamente.
@@ -200,6 +210,7 @@ pt:
     system_check_retake: Não, quero repetir
     system_check_run_again: Voltar a correr
     system_check_session_not_found: Não foi encontrada nenhuma sessão de verificação do sistema. Inicie uma nova verificação do sistema.
+    system_check_speech_verification: Verificação da voz
     system_check_start_recording: Iniciar a gravação
     system_check_stop_recording: Parar a gravação
     system_check_test_message: é ótimo falar consigo
@@ -257,6 +268,10 @@ pt:
     video_overlay_label: Selecione o seu microfone e a sua câmara, clique em «Gravar» e, depois de clicar no botão «Gravar», leia a seguinte mensagem
     video_overlay_message: Selecione o seu microfone e a sua câmara, clique em «Gravar» e, em seguida, leia em voz alta a frase que aparece na parte inferior.
     video_recorder_label: Gravador de vídeo
+    video_upload_failed_camera_access: Não foi possível aceder à sua câmara ou ao seu microfone. Verifique as permissões do seu dispositivo e tente novamente.
+    video_upload_failed_chunk_upload: Não foi possível carregar uma parte da gravação. Verifique a sua ligação à Internet e tente novamente.
+    video_upload_failed_finalize: A gravação foi capturada, mas não foi possível guardá-la. Por favor, tente novamente.
+    video_upload_failed_no_recording: Não foi encontrada nenhuma gravação para carregar. Por favor, grave novamente.
     view_details: Ver detalhes
     webgl_api_fix_description_first: Certifique-se de que o seu navegador suporta WebGL e de que esta funcionalidade está ativada nas definições
     webgl_api_fix_description_second: Atualize os controladores gráficos para a versão mais recente

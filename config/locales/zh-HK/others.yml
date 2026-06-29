@@ -622,6 +622,7 @@ zh-HK:
         roles:
           campaign_admin: 競選行政
           client_admin: 用戶端管理
+          client_assessor: 客户评估员
           manager: 經理
           member: 使用者
           project_admin: 專案管理員
@@ -727,6 +728,7 @@ zh-HK:
           admins:
             admin: 行政
             campaign_admin: 競選行政
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 用戶端管理
             superadmin: 超級管理員
@@ -736,6 +738,7 @@ zh-HK:
           campaign_admin: 競選行政
           case_study: 案例研究
           client_admin: 用戶端管理
+          client_assessor: 客户评估员
           hogan: 霍根
           iiht: IIHT
           manager: 經理
@@ -850,6 +853,7 @@ zh-HK:
       operations:
         add_campaign_reports: 新增戰役報告
         assessment_norm_export: 標準化結果匯出
+        assessment_raw_ai_factor_export: 原始AI因子得分导出
         assessment_raw_factor_export: 原始因子分數匯出
         assessment_raw_result_export: 原始結果匯出
         assessment_scoring_export: 計分結果匯出
@@ -859,6 +863,8 @@ zh-HK:
         bulk_download_idp_reports: 大量下載IDP報告
         bulk_download_reports: 批量下載報告
         bulk_download_user_reports: 批量下載用戶報告
+        bulk_export_norm_factor_scores: 批量导出规范因子得分
+        bulk_export_raw_factor_scores: 批量导出原始因子得分
         bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
         bulk_regenerate_reports: Regenerate Campaign 報告
         bulk_regenerate_threesixty_reports: 重生三百六十主題報告
@@ -871,10 +877,12 @@ zh-HK:
         completion_status_export: 完工狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
         copy_dimension: 複製維度
+        copy_report: 复制报告
         create_threesixty_campaign: Create Threesixty 運動
         data_report_export: 資料報告匯出
         export_admin_with_permissions: 帶權限的 Export 管理員
         export_assessment_questions: 出口評估問題
+        export_audit_logs: 导出审计日志
         export_campaign_ai_artifacts: 輸出戰役 AI 工件
         export_campaign_ai_artifacts_results: 导出活动AI成果
         export_campaign_datasheet: 导出活动数据表
@@ -964,6 +972,8 @@ zh-HK:
       errors:
         no_plans: 未找到有效的 IDP 計劃
     close: 近
+    copy_report:
+      failed: 报告复制失败
     details: 詳
     errors: 錯誤
     invalid_job: 此通知對應於已刪除紀錄
@@ -1013,6 +1023,7 @@ zh-HK:
       evaluate: 評價
       export: 出口
       export_normed: 範式因子分數
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原始版（附標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 原始版（無標籤）
@@ -1444,6 +1455,7 @@ zh-HK:
       export_external: 外
       export_normed: 範式因子分數
       export_occupations: 職業
+      export_raw_ai_scores: AI因子原始得分
       export_raw_labels: 原始版（附標籤）
       export_raw_scores: 原始因子分數
       export_raw_without_labels: 原始版（無標籤）
@@ -1468,6 +1480,7 @@ zh-HK:
       external_user_id: Skillvue 候選人 ID
       id: 戰役評估識別碼
       locales: 地點
+      microsite_assessment_url: 微网站评估网址
       microsite_error_message: 错误信息
       microsite_participant_id: 微网站参与者ID
       microsite_registration_status: 注册状态
@@ -1496,6 +1509,7 @@ zh-HK:
       no_participants_selected: 請選擇至少一名參與者繼續。
       norm_results_export_scheduled: 評估標準化結果出口工作已順利排程
       normalize_factor_scores_scheduled: 標準化因子分數的作業已順利排程。
+      raw_ai_factor_export_scheduled: "“评估原始 AI 因子导出任务”已成功安排"
       raw_factor_export_scheduled: 評估 原始原料出口工作已順利排定
       raw_results_export_scheduled: 評估原始結果匯出工作已順利安排
       scoring_results_export_scheduled: 評估評分結果出口工作順利排定
@@ -1666,7 +1680,6 @@ zh-HK:
     details:
       additional_time: 額外時間
       assessment_center: 評估中心
-      assessment_center_invites: 評估中心邀請
       completed_at: 完成於
       completion_status: 完工狀況
       hogan_id: Hogan ID
@@ -1696,11 +1709,6 @@ zh-HK:
     modals:
       remove: 你確定要把帶有電子郵件「%{email}」的使用者從這個活動中移除嗎？
   campaigns:
-    assessments_and_reports:
-      assessor_assessments: 評估員評量
-      other_assessments: 其他評估
-      other_assessor_assessments: 其他評估員評量
-      other_reports: 其他報導
     card:
       duration: 時間長度
       starts_in: 開始於
@@ -1771,23 +1779,19 @@ zh-HK:
       insert: 插入
       'no': 不
       ok: 好
-      publish: 發表
       reject: 抗
       remove: 刪除
       reset: 重設
       resolve: 解決
       restore: 恢復
       return_to_home: 歸鄉
-      run: 跑
       save: 儲存
       schedule: 程
       search: 搜尋
-      send: 發送
       sign_in: 登入
       start: 開始
       submit: 提交
       unarchive: 取消存檔
-      unpublish: 取消出版
       unresolve: 未解決
       update: 更新
       upload: 上載
@@ -1800,20 +1804,14 @@ zh-HK:
     column:
       action: 操作
       active: 現役
-      ai_assistant: AI助手
-      allow_multiple_responses: 允許多重回應
       approval_notification_list: 核准通知使用者名單
       approvers_list: 審核者名單
-      assessment: 評價
       assessment_name: 評估名稱
       assessments: 評價
-      assessor: 顧問
       category: 類別
       client: 顧客
-      code: 代碼
       created_at: 建立時間
       created_by: 創作人
-      created_date: 創建日期
       default_language: 預設語言
       description: 說明
       details: 詳
@@ -1831,11 +1829,8 @@ zh-HK:
         scoring: JSON評分
       key: 鑰匙
       last_name: 姓氏
-      linked_activities: 相關活動
       linked_assessment: 連結評量
-      meeting_link: 會議連結
       modified_by: 修改者
-      modified_date: 修改日期
       name: 名稱
       owner: 業主
       package_id: 包裝 ID
@@ -1851,7 +1846,6 @@ zh-HK:
       scheduling: 排程
       skills: 技能
       status: 狀態
-      tags: 標籤
       timing: 時間點
       token: 記號
       type: 型
@@ -1863,15 +1857,12 @@ zh-HK:
     messages:
       leave_message: 你確定要離開這個頁面嗎？你未儲存的答案都會遺失。
     model:
-      admins: 管理員
       assessment: 評價
       assessments: 評估
       campaigns: 市場推廣
       completion_statuses: 完工狀態
-      datasheet: 規格表
       report: 報
       reports: 報告
-      sms_contact: 簡訊聯絡
       threesixty_campaign: 三百六十戰役比分
     status:
       completed: 成
@@ -2169,6 +2160,7 @@ zh-HK:
     invalid_token: 出錯了，請重新載入頁面再試一次。
     max_regeneration_limit: 超過最大再生上限，請聯絡你的管理單位。
     messages:
+      content_type_invalid: 内容类型无效
       data_report_blank: 資料報告不存在
       password_complexity:
         digit:
@@ -2988,9 +2980,7 @@ zh-HK:
   languages_localized:
     sl: 斯洛文什奇納
   license_usage:
-    active: 活动
     campaign_name: 活动名称
-    inactive: 非活动状态
     status_updated_at: 最后状态更新
     status_updated_by: 最后由...更新
     subject_email: 邮件主题
@@ -3506,12 +3496,14 @@ zh-HK:
           admin: 行政
           admins:
             admin: 行政
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 用戶端管理
             superadmin: 超級管理員
           agile: 敏捷
           case_study: 案例研究
           client_admin: 用戶端管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 經理
           member: 使用者
@@ -3645,6 +3637,7 @@ zh-HK:
         roles:
           campaign_admin: 競選行政
           client_admin: 用戶端管理
+          client_assessor: 客户评估员
           manager: 經理
           member: 使用者
           project_admin: 專案管理員
@@ -3715,12 +3708,14 @@ zh-HK:
           admin: 行政
           admins:
             admin: 行政
+            client_assessor: 客户评估员
             project_admin: 專案管理員
             regular: 用戶端管理
             superadmin: 超級管理員
           agile: 敏捷
           case_study: 案例研究
           client_admin: 用戶端管理
+          client_assessor: 客户评估员
           hogan: 霍根
           manager: 經理
           member: 使用者
@@ -3991,7 +3986,6 @@ zh-HK:
       with_time_zone: "%d %b %Y %I:%M %p %:z"
       workshop_date: "%e %B %Y, %l:%M %p %:z"
   universal_links:
-    active: 現役
     allow_multiple_respones: 允許使用者提交多份回應
     png: 巴布亞新幾內亞
     regenerate_link: 再生連結
@@ -4180,6 +4174,7 @@ zh-HK:
       campaign_assessor: 競選評估員
       campaign_user: 活動使用者
       client_admin: 用戶端管理
+      client_assessor: 客户评估员
       project_admin: 專案管理員
       superadmin: 超級管理員
     superadmins: 超級管理員

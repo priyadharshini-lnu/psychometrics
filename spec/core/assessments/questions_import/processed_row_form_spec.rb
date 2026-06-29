@@ -20,7 +20,7 @@ describe Assessments::QuestionsImport::ProcessedRowForm do
       form.valid?
       errors = form.errors.full_messages
       expect(errors).to include(
-        "Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable' or 'StaticContent'"
+        "Question type should be 'TextEntry', 'MultipleChoice', 'MatrixTable', 'StaticContent', 'AudioResponse' or 'VideoResponse'" # rubocop:disable Layout/LineLength
       )
     end
   end

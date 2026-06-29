@@ -25,7 +25,7 @@ export const NormFilter: React.FC<Props> = ({
 
   return (
     <>
-      <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+      <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
         <ConditionalDropdown
           menu={{
             items: [{
@@ -35,7 +35,7 @@ export const NormFilter: React.FC<Props> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {I18n.t('administration.norms.index.import')}
+                  {I18n.t('admin.norms_index_import')}
                 </a>
               ),
             }],
@@ -56,7 +56,7 @@ export const NormFilter: React.FC<Props> = ({
           onClick={() => openModal('NormsFormModal')}
         >
           <PlusOutlined />
-          {I18n.t('common.actions.create')}
+          {I18n.t('shared.create')}
         </Button>
       </Resource.Filter>
     </>

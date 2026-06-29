@@ -12,8 +12,15 @@ export const RequirementStatusTR = t.type({
       minimumUploadSpeed: t.number,
       stabilityDuration: t.number,
     }),
+    audio: t.type({
+      required: t.boolean,
+      phraseVerificationEnabled: t.boolean,
+    }),
     video: t.type({
       required: t.boolean,
+      faceDetectionEnabled: t.boolean,
+      minimumFaceDetectionRatio: t.number,
+      phraseVerificationEnabled: t.boolean,
     }),
   }),
   sessionId: t.union([t.string, t.null]),
@@ -37,6 +44,8 @@ export const SystemCheckAddedRecordTR = t.type({
   createdAt: t.string,
   finishedAt: t.string,
   videoUrl: t.union([t.string, t.null]),
+  phraseVerificationStatus: t.union([t.string, t.null, t.undefined]),
+  phraseMatched: t.union([t.boolean, t.null, t.undefined]),
 })
 
 export const SystemCheckResultsTR = t.type({

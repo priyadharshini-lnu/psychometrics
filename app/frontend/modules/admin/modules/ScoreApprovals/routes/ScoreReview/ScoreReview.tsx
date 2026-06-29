@@ -264,14 +264,14 @@ export const ScoreReview = () => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.report_approval.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
-            label: () => I18n.t('administration.scoring_approval.score_approvals'),
+            label: () => I18n.t('admin.scoring_approval_score_approvals'),
             link: () => '/admin/ai_scoring_approvals',
           },
           {
-            label: () => I18n.t('administration.scoring_approval.review'),
+            label: () => I18n.t('admin.scoring_approval_review'),
             // add user email
           },
         ]}
@@ -287,18 +287,18 @@ export const ScoreReview = () => {
               {allowApprove && scoreApproval.allowBulkApproveScores && (
                 <Flex gap={8}>
                   <Popconfirm
-                    title={I18n.t('admin.ai_scoring_appoval_discard_all_questions_title')}
-                    description={I18n.t('admin.ai_scoring_appoval_discard_all_questions_description')}
+                    title={I18n.t('admin.discard_all_questions_title')}
+                    description={I18n.t('admin.discard_all_questions_description')}
                     onConfirm={discardAll}
                     okText={I18n.t('shared.ok')}
                     cancelText={I18n.t('shared.cancel')}
                   >
                     <Button icon={<ReloadOutlined />}>
-                      {I18n.t('admin.ai_scoring_appoval_discard_all_questions')}
+                      {I18n.t('admin.discard_all_questions')}
                     </Button>
                   </Popconfirm>
                   <Button type="primary" onClick={approveAll}>
-                    {I18n.t('admin.ai_scoring_appoval_approve_all_questions')}
+                    {I18n.t('admin.approve_all_questions')}
                   </Button>
                 </Flex>
               )}

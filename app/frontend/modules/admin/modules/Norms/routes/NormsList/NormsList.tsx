@@ -24,10 +24,10 @@ const NormsList: React.FC = () => {
         crumbs={[
           {
             link: () => '/admin',
-            label: () => I18n.t('administration.navigation.dashboard'),
+            label: () => I18n.t('admin.dashboard'),
           },
           {
-            label: () => I18n.t('administration.norms.norms'),
+            label: () => I18n.t('admin.norms'),
           },
         ]}
       />

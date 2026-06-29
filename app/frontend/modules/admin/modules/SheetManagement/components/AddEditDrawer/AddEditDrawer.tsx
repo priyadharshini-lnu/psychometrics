@@ -117,12 +117,12 @@ const AddEditDrawerComponent: FC<Props> = ({
   ): Promise<void> => {
     if (isInEditMode) {
       await update(currentSheetRowId, parentResourceType, parentResourceId, sheetType, values).then(() => {
-        message.success(I18n.t('administration.sheets.drawers.add_edit.success_message_edit'))
+        message.success(I18n.t('admin.sheets_drawers_add_edit_success_message_edit'))
         closeDrawer()
       }).catch(setErrors)
     } else {
       add(parentResourceType, parentResourceId, sheetType, values).then(() => {
-        message.success(I18n.t('administration.sheets.drawers.add_edit.success_message_add'))
+        message.success(I18n.t('admin.sheets_drawers_add_edit_success_message_add'))
         closeDrawer()
       }).catch(setErrors)
     }
@@ -142,14 +142,14 @@ const AddEditDrawerComponent: FC<Props> = ({
   }
 
   const recordTypeTitle = parentResourceType === ParentResourceType.Project
-    ? I18n.t('administration.sheets.drawers.view.project_title')
-    : I18n.t('administration.sheets.drawers.view.campaign_title')
+    ? I18n.t('admin.sheets_drawers_view_project_title')
+    : I18n.t('admin.sheets_drawers_view_campaign_title')
   const buttonText = isAdding || isUpdating
-    ? I18n.t('administration.sheets.drawers.add_edit.saving')
-    : I18n.t('administration.sheets.drawers.add_edit.save')
+    ? I18n.t('admin.sheets_drawers_add_edit_saving')
+    : I18n.t('admin.sheets_drawers_add_edit_save')
   const drawerTitle = isInAddMode
-    ? I18n.t('administration.sheets.drawers.add_edit.title_add')
-    : I18n.t('administration.sheets.drawers.add_edit.title_edit')
+    ? I18n.t('admin.sheets_drawers_add_edit_title_add')
+    : I18n.t('admin.sheets_drawers_add_edit_title_edit')
 
   return (
     <Drawer
@@ -168,7 +168,7 @@ const AddEditDrawerComponent: FC<Props> = ({
         <Col>
           <Space>
             <Button htmlType="reset" onClick={closeDrawer}>
-              {I18n.t('administration.sheets.drawers.add_edit.cancelText')}
+              {I18n.t('admin.sheets_drawers_add_edit_cancelText')}
             </Button>
             <Button
               htmlType="submit"

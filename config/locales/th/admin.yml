@@ -2,15 +2,42 @@
 th:
   admin:
     accept_na_values: ยอมรับค่า N/A
+    acceptable_rate_limit_label: ขีดจํากัดคําขอที่ยอมรับได้
+    acceptable_rate_limit_request_per: คําขอต่อ
     actions: การกระทำ
+    actions_add_code: เพิ่มโค้ด
+    actions_archive: เก็บถาวร
+    actions_playground: สนามเด็กเล่น
+    actions_unarchive: ยกเลิกเก็บถาวร
+    active: เปิดใช้งาน
+    active_label: เปิดใช้งาน
+    active_name: เปิดใช้งาน
+    active_record_audits_audit_id: รหัสการตรวจสอบ
+    active_record_audits_auditable_id: รหัสเรกคอร์ด
+    active_record_audits_auditable_type: ประเภทระเบียน
+    active_record_audits_audited_changes: ตรวจสอบการเปลี่ยนแปลง
+    active_record_audits_new_diff_parse_error: ไม่สามารถวิเคราะห์ข้อมูล JSON ที่มีการเปลี่ยนแปลงใหม่
+    active_record_audits_old_diff_parse_error: ไม่สามารถวิเคราะห์ข้อมูล JSON ที่มีการเปลี่ยนแปลงเก่า
+    active_record_audits_title: ตรวจสอบการเปลี่ยนแปลง
+    activity: กิจกรรม
+    activity_period: ช่วงเวลาของกิจกรรม
     add_admin: เพิ่มผู้ดูแลระบบ
     add_admin_role: เพิ่มบทบาทผู้ดูแลระบบ
+    add_btn: เพิ่มหัวเรื่อง
     add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
+    add_conditions: เพิ่มเงื่อนไข
+    add_evaluators: เพิ่มผู้ประเมิน
     add_indicator: เพิ่มตัวชี้วัด
+    add_lead_assessor: เพิ่มเป็นผู้ประเมินหลัก
+    add_lead_assessor_hint: โปรดเพิ่มแบบฟอร์มหัวหน้าผู้ประเมินก่อน
+    add_more: เพิ่มเพิ่มเติม
     add_new_folder: เพิ่มโฟลเดอร์ใหม่
+    add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
     add_project: เพิ่มโครงการ
     add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
+    add_report: เพิ่มรายงาน
+    add_subjects: เพิ่มหัวข้อ
     add_threesixty_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     add_word_count: เพิ่มจำนวนคำ
     admin_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้ดูแลระบบก่อนดาวน์โหลด
@@ -20,24 +47,15 @@ th:
     admin_role_deleted: บทบาทผู้ดูแลระบบ '%{role_name}' ถูกลบเรียบร้อยแล้ว
     admin_roles: บทบาทผู้ดูแลระบบ
     admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
+    administrator_approves_reports: ผู้ดูแลระบบอนุมัติรายงาน
+    administrators_list_columns_email: อีเมล
     admins: ผู้ดูแลระบบ
     advanced: ขั้นสูง
+    advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     agile: ว่องไว
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
-    ai_artifacts_finalized_at: เสร็จสิ้นที่
-    ai_artifacts_generate_result_confirm: การสร้างผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' จะลบรายงานที่มีอยู่ซึ่งขึ้นอยู่กับอาร์ติแฟกต์ AI นี้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
-    ai_artifacts_generate_results: สร้างผลลัพธ์
-    ai_artifacts_mark_finalized: มาร์คเสร็จสิ้น
-    ai_artifacts_mark_finalized_bulk_confirm: การสรุปผลลัพธ์ของวัตถุสำหรับผู้ใช้ที่เลือกทั้งหมดจะสร้างรายงานที่ใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
-    ai_artifacts_mark_finalized_confirm: กำลังสรุปผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' ซึ่งจะสร้างรายงานที่ใช้ AI อาร์ติแฟกต์สำหรับผู้ใช้ดังกล่าว คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
-    ai_artifacts_mark_not_finalized: ยังไม่ได้รับการอนุมัติขั้นสุดท้าย
-    ai_artifacts_mark_not_finalized_bulk_confirm: การลบ finalize จากผู้ใช้ที่เลือกทั้งหมดจะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
-    ai_artifacts_mark_not_finalized_confirm: การลบ finalize จากผู้ใช้ '%{email}' จะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifact สำหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
-    ai_artifacts_output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
-    ai_artifacts_results_export: ผลลัพธ์การส่งออก
-    ai_artifacts_results_export_job_scheduled: งานส่งออกผลลัพธ์ของ AI Artifacts ได้รับการกำหนดเวลาเรียบร้อยแล้ว
     ai_assistant: ผู้ช่วยปัญญาประดิษฐ์
     ai_assistant_model_id_label: รหัสรุ่น
     ai_assistant_model_label: แบบ
@@ -46,21 +64,14 @@ th:
     ai_assistant_required: จําเป็นต้องมี AI Assistant
     ai_assistant_select_dependencies: เลือกการพึ่งพา
     ai_assistants: ผู้ช่วย AI
-    ai_assistants_advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
-    ai_assistants_campaign_id_placeholder: ป้อนรหัสแคมเปญ
-    ai_assistants_cannot_change_type_when_in_use: ไม่สามารถเปลี่ยนประเภทของ AI Assistant '%{name}' ได้ เนื่องจากกำลังใช้งานอยู่
-    ai_assistants_no_rendered_output: ไม่มีเอาต์พุตที่แสดงผล
-    ai_assistants_provider_change_confirm_title: เปลี่ยนผู้ให้บริการ?
-    ai_assistants_provider_previously_used_warning: ผู้ช่วยคนนี้เคยสร้างผลลัพธ์ด้วย "%{from}" มาก่อน การเปลี่ยนเป็น "%{to}" อาจทำให้พฤติกรรมของผู้ช่วยเปลี่ยนแปลงไปสำหรับคำขอสร้างผลลัพธ์ในอนาคต
-    ai_assistants_render_button: เทมเพลตการแสดงผล
-    ai_assistants_rendered_prompt: พรอมต์ที่แสดงผล
-    ai_assistants_template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
-    ai_assistants_template_render_failed: แสดงเทมเพลตไม่สําเร็จ
-    ai_assistants_test_render: ทดสอบการแสดงผล
-    ai_assistants_test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
-    ai_assistants_type_locked_tooltip: ผู้ช่วยคนนี้กำลังใช้งานอยู่และไม่สามารถเปลี่ยนประเภทได้
+    ai_assistants_disabled_by_client: ผู้ช่วย AI ถูกปิดใช้งานโดยไคลเอ็นต์
+    ai_assistants_playground: สนามทดลองผู้ช่วย AI
+    ai_assisted_idp: AI ช่วยเหลือ IDP
     ai_assisted_idp_disabled_by_client: ระบบช่วยเหลือ IDP โดย AI ถูกปิดใช้งานโดยลูกค้า
     ai_assisted_idp_feature_disabled: คุณลักษณะ AI Assisted IDP ถูกปิดใช้งานสําหรับโครงการนี้
+    ai_assisted_idp_requires_ai_assistants: AI Assisted IDP ต้องการคุณสมบัติ AI Assistants เพื่อเปิดใช้งาน
+    ai_content_analysis: การวิเคราะห์เนื้อหาด้วยปัญญาประดิษฐ์
+    ai_content_analysis_disabled_by_client: การวิเคราะห์เนื้อหาด้วย AI ถูกปิดใช้งานโดยลูกค้า
     ai_idp_assistant_configure_dependencies: กำหนดค่าการพึ่งพา AI
     ai_idp_assistant_configure_dependencies_description: กำหนดค่าข้อมูลการพึ่งพาที่ผู้ช่วย AI ของ IDP สามารถเข้าถึงเป็นบริบทได้ การตั้งค่านี้ใช้เฉพาะเมื่อผู้ช่วยได้รับการกำหนดค่าให้ยอมรับการพึ่งพาเท่านั้น
     ai_idp_assistant_dependencies_updated: การอัปเดตการพึ่งพาสำเร็จแล้ว
@@ -69,28 +80,7 @@ th:
     ai_score_approval_no_answer: ไม่มีคำตอบสำหรับคำถามนี้
     ai_score_approval_no_transcription: ไม่มีคำบรรยายสำหรับคำถามนี้
     ai_scored: AI ได้คะแนน
-    ai_scoring_appoval_approve_all_questions: อนุมัติคำถามทั้งหมด
-    ai_scoring_appoval_approve_question: อนุมัติคำถาม
-    ai_scoring_appoval_back: รีเซ็ตคะแนน
-    ai_scoring_appoval_change_reason: เหตุผลในการเปลี่ยนแปลง
-    ai_scoring_appoval_change_score: คะแนนเปลี่ยนแปลง
-    ai_scoring_appoval_change_score_log: บันทึกการเปลี่ยนแปลงคะแนน
-    ai_scoring_appoval_discard_all_questions: รีเซ็ตคำถามทั้งหมด
-    ai_scoring_appoval_discard_all_questions_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับทุกคำถามและล้างการตั้งค่าทับทั้งหมด การดำเนินการนี้ไม่สามารถย้อนกลับได้ คุณแน่ใจหรือไม่?
-    ai_scoring_appoval_discard_all_questions_title: รีเซ็ตคะแนนคำถามทั้งหมด?
-    ai_scoring_appoval_discard_question: รีเซ็ตคะแนนคำถาม
-    ai_scoring_appoval_discard_question_confirm_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับคำถามนี้และล้างการตั้งค่าทับทั้งหมด คุณแน่ใจหรือไม่?
-    ai_scoring_appoval_discard_question_confirm_title: รีเซ็ตคะแนนคำถาม?
-    ai_scoring_appoval_discarded_changes: การเปลี่ยนแปลงที่ถูกยกเลิก
-    ai_scoring_appoval_evidence_from_transcript: หลักฐานจากบันทึกการสนทนา
-    ai_scoring_appoval_new_score: คะแนนใหม่
     ai_scoring_appoval_next: คำถามถัดไป
-    ai_scoring_appoval_rationale: เหตุผล
-    ai_scoring_appoval_reason_for_changes: เหตุผลของการเปลี่ยนแปลง
-    ai_scoring_appoval_reset_score: รีเซ็ตคะแนน
-    ai_scoring_appoval_reset_score_description: คะแนนจะถูกคืนกลับไปยังค่าเริ่มต้นของ AI
-    ai_scoring_appoval_responses: คำตอบจาก AI
-    ai_scoring_appoval_score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     ai_scoring_approval: การอนุมัติคะแนนโดย AI
     ai_scoring_approval_digest_mailer_access_link_intro: 'คุณสามารถเข้าถึงการอนุมัติคะแนนได้ผ่านลิงก์ต่อไปนี้:'
     ai_scoring_approval_digest_mailer_approved_body_intro: คะแนนต่อไปนี้ได้รับการอนุมัติแล้ว
@@ -114,61 +104,176 @@ th:
     ai_scoring_refresh_score_confirm_title: รีเฟรชคะแนน AI?
     ai_scoring_rescore_queued: การให้คะแนนใหม่โดย AI ได้ถูกจัดคิวแล้ว กรุณารีเฟรชหลังจากผ่านไปสักครู่
     ai_translation: การแปลโดยปัญญาประดิษฐ์
+    ai_translation_disabled_by_client: การแปลด้วย AI ถูกปิดใช้งานโดยลูกค้า
     all_corner_rounded: มุมทั้งหมดโค้งมน
     allow_ai_rescoring: อนุญาตให้ AI คะแนนใหม่
     allow_continue_with_warning_system_check: อนุญาตให้ผู้ใช้ดำเนินการต่อได้เมื่อการตรวจสอบระบบล้มเหลว
+    allow_late_cancellation_and_scheduling: อนุญาตให้ยกเลิกและกําหนดเวลาล่าช้า
+    allow_manager_to_view_individual_responses: อนุญาตให้ผู้จัดการดูคำตอบของแต่ละบุคคล
+    allow_multiple_responses: อนุญาตการตอบกลับหลายรายการ
+    allow_subjects_to_send_reminders: อนุญาตให้ผู้เข้าร่วมส่งการแจ้งเตือนไปยังผู้ประเมิน
+    alt_text_invalid: ข้อความแสดงแทนมีอักขระที่ไม่รองรับ
+    alt_text_logo: โลโก้ Alt-Text
+    alt_text_logo_required: จําเป็นต้องมีโลโก้ Alt-Text
+    alt_text_long: เกินขีดจํากัดสูงสุดที่ 100 อักขระ
     api_keys: กุญแจ API
+    api_keys_form_title: กุญแจ API
+    application: การสมัคร
+    application_add: เพิ่มแอปพลิเคชัน
+    application_name: ชื่อแอปพลิเคชัน
+    application_name_already_taken: มีอยู่แล้วสำหรับลูกค้านี้
+    application_name_format_hint: อนุญาตให้ใช้เฉพาะตัวอักษรและตัวเลขเท่านั้น โดยมีช่องว่างหนึ่งช่องระหว่างคำ
+    applications: การประยุกต์ใช้
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
+    approve_all_questions: อนุมัติคำถามทั้งหมด
+    approve_nomination_description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อการเสนอชื่อที่ทําโดยผู้ใต้บังคับบัญชาโดยตรงจําเป็นต้องได้รับการอนุมัติ
+    approve_nomination_name: อนุมัติการเสนอชื่อ
+    approve_question: อนุมัติคำถาม
+    approve_report_description: ข้อความนี้จะถูกส่งไปยังผู้จัดการของหัวเรื่องเพื่อแจ้งให้ทราบว่ารายงานหัวเรื่องพร้อมสําหรับการอนุมัติ
+    approve_report_name: รายงานอนุมัติ
+    archive: เก็บถาวร
+    archive_content: คุณแน่ใจหรือไม่ว่าต้องการเก็บถาวร '%{project_name}'
+    archive_success: โครงการ '%{project_name}' ถูกเก็บถาวรเรียบร้อยแล้ว
+    archive_title: โครงการเก็บถาวร
+    artifact_results: ผลลัพธ์สิ่งประดิษฐ์
     assessment: การประเมิน
-    assessment_center_activity: กิจกรรม
-    assessment_center_assessor: ผู้ประเมิน
-    assessment_center_attendance: การเข้าร่วม
-    assessment_center_attendance_status: สถานะการเข้าร่วม
-    assessment_center_campaigns_tab: แคมเปญ
-    assessment_center_date_and_time: วันที่ & เวลา
-    assessment_center_join_room: เข้าร่วมห้อง
-    assessment_center_meeting_link: ลิงก์การประชุม
-    assessment_center_participants_tab: ผู้เข้าร่วม
-    assessment_center_prework: งานเตรียมก่อนเรียน
-    assessment_center_schedule_time: กำหนดเวลา
-    assessment_center_scheduling_status: สถานะการจัดตาราง
-    assessment_center_search_participants: ค้นหาผู้เข้าร่วม...
+    assessment_center: 'ศูนย์ประเมิน:'
+    assessment_center_group: กลุ่มศูนย์การประเมิน
+    assessment_center_group_placeholder: เลือกกลุ่มศูนย์การประเมิน
+    assessment_center_invites: ศูนย์ประเมินเชิญ
+    assessment_ids: รหัสการประเมิน
+    assessment_placeholder: เลือก การประเมิน
     assessment_question_not_supported: ประเภทคำถามนี้ยังไม่รองรับในขณะนี้
+    assessment_required: จําเป็นต้องมีการประเมิน
     assessments: การประเมิน
+    assessments_assessment_report: การประเมิน
+    assessments_copy: สำเนา
     assessments_copy_as_microsite: คัดลอกเป็นแบบประเมินไมโครไซต์
+    assessments_copy_assessment: คัดลอกการประเมิน
+    assessments_help_text: การเลือกนี้จะมีผลเฉพาะกับเหตุการณ์การตอบสนองดิบของการประเมินเท่านั้น
+    assessments_label: การประเมิน
     assessments_not_mhs: การประเมินทั้งหมดต้องเป็นประเภท MHS
+    assessments_placeholder: เลือกการประเมิน
     assessments_reports: การประเมินและรายงาน
+    assessments_required: ต้องเลือกการประเมินอย่างน้อยหนึ่งรายการสำหรับเหตุการณ์การตอบสนองการประเมินดิบ
+    assessor: ผู้ประเมิน
+    assessor_add_subject_modal_assessment: การประเมิน
+    assessor_add_subject_modal_mark_as_lead_assessor: ทําเครื่องหมายเป็นหัวหน้าผู้ประเมินสําหรับหัวข้อข้างต้น
+    assessor_add_subject_modal_subject: หัวข้อ
+    assessor_add_subject_modal_subject_placeholder: ค้นหาหัวข้อ..
+    assessor_add_subject_modal_title: เพิ่มหัวเรื่อง
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: เลือกการประเมิน
+    assessor_assessment_name: การประเมินผู้ประเมิน
+    assessor_assessments: การประเมินผู้ประเมิน
+    assessor_assessments_actions_add_subject: เพิ่มหัวเรื่อง
+    assessor_assessments_actions_rescore: ให้คะแนนใหม่
+    assessor_assessments_actions_reset: รีเซ็ตการประเมิน
+    assessor_assessments_actions_reset_progress: รีเซ็ตความคืบหน้า
+    assessor_assessments_bulk_delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบเรกคอร์ดที่เลือก
+    assessor_assessments_bulk_delete_successful: การประเมินผู้ประเมินถูกลบเรียบร้อยแล้ว
+    assessor_assessments_reset_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตการประเมินสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}"
+    assessor_assessments_reset_progress_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตความคืบหน้าสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}"
+    assessor_assessments_reset_progress_successfully: รีเซ็ตความคืบหน้าสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}" สําเร็จ
+    assessor_assessments_reset_successfully: รีเซ็ตการประเมินสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}" สําเร็จ
+    assessor_assessments_subject_email: อีเมลเรื่อง
+    assessor_assessments_subject_name: ชื่อเรื่อง
+    assessor_campaigns_statuses_completed: เสร็จสมบูรณ์
+    assessor_campaigns_statuses_in_progress: อยู่ระหว่างดําเนินการ
+    assessor_campaigns_statuses_not_started: ยังไม่ได้เริ่มต้น
+    assessor_completed_at: เสร็จสิ้น
+    assessor_count: ผู้ประเมิน
+    assessor_create_assessor: เพิ่มผู้ประเมิน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
+    assessor_email: อีเมลของผู้ประเมิน
+    assessor_evaluations: การประเมินผลผู้ประเมิน
+    assessor_first_name: ชื่อผู้ประเมิน
     assessor_form: แบบฟอร์มผู้ประเมิน
+    assessor_ids_label: ผู้ประเมิน
+    assessor_last_name: นามสกุลของผู้ประเมิน
+    assessor_modals_import_body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้เพื่อนําเข้าได้ที่นี่
+    assessor_modals_import_title: ผู้ประเมินนําเข้า
+    assessor_overview: ภาพรวม
+    assessor_placeholder: ค้นหาผู้ประเมิน...
+    assessor_remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินที่มีอีเมล %{email} ออกจากแคมเปญนี้?
+    assessor_statuses_completed: เสร็จสมบูรณ์
+    assessor_statuses_not_completed: ยังไม่เสร็จสมบูรณ์
+    assessor_subjects_statuses_completed: เสร็จสมบูรณ์
+    assessor_subjects_statuses_in_progress: อยู่ระหว่างดําเนินการ
+    assessor_subjects_statuses_not_started: ยังไม่ได้เริ่มต้น
+    assessor_toolbar_export: ผู้ประเมินการส่งออก
+    assessor_toolbar_import: ผู้ประเมินนําเข้า
     assessor_workshops: ศูนย์ประเมินผล
     assessors: ผู้ประเมิน
     assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
     assistant_toolbar_not_a_valid_operation: ไม่สามารถดำเนินการได้ %{operation}.
     assistant_validation_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
+    attendance: การเข้าร่วม
+    attendance_status: สถานะการเข้าร่วม
     audit_log_impersonated_by: แอบอ้างโดย
+    audit_log_title: ข้อมูลบันทึกการตรวจสอบ
+    audit_log_type: ประเภทระเบียน
     audit_logs: บันทึกการตรวจสอบ
+    audit_logs_export_failed: ไม่สามารถกำหนดเวลาการส่งออกงานได้ กรุณาลองอีกครั้ง
+    audit_logs_export_queued: การส่งออกงานได้ถูกกำหนดเวลาไว้เรียบร้อยแล้ว
     audit_reports: รายงานการตรวจสอบ
+    auth_type_api_key_header_format_error: อนุญาตให้ใช้เฉพาะตัวอักษร ตัวเลข ขีดล่าง และยัติภังค์เท่านั้น
+    auth_type_api_key_header_label: ส่วนหัวของคีย์ API
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: กุญแจ API
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: พื้นฐาน
+    auth_type_basic_value: basic_auth
+    auth_type_label: ประเภทการรับรองความถูกต้อง
+    auth_type_name: auth_type
+    auth_type_no_auth_label: ไม่มีใคร
+    auth_type_no_auth_value: no_auth
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: คะแนนนี้ได้รับการตรวจสอบโดยอัตโนมัติและไม่สามารถเปลี่ยนแปลงได้
     auto_placeholder: ออโต้
+    automatically_send_invites: ส่งคำเชิญไปยังผู้ประเมินใหม่โดยอัตโนมัติ
     availability: กำหนดการ
-    available_languages: รายงานมีให้บริการในภาษาต่างๆ
+    available_languages: ภาษาที่ใช้ได้
     average: ค่าเฉลี่ย
+    back: รีเซ็ตคะแนน
     back_to_main: เมนูหลัก
+    background_color: สีพื้นหลัง
+    background_label: พื้นหลัง
+    background_overlay_label: ภาพซ้อนทับพื้นหลัง
+    background_size: ขนาดพื้นหลัง
+    background_size_contain: มี
+    background_size_cover: คลุม
+    basic_info_panel_description: กรุณากรอกข้อมูลตารางเวลาด้านล่าง คุณยังสามารถเลือกวันที่หลายวันเพื่อสร้างศูนย์การประเมินหลายแห่ง
+    basic_info_panel_title: ข้อมูลพื้นฐาน
     block_editor_add_question: เพิ่มคำถาม
     block_editor_question_randomization: การสุ่มคำถาม
     block_options: ตัวเลือกการบล็อก
     block_settings: การตั้งค่าบล็อก
     blocks_new_button: บล็อกใหม่
     blocks_title: บล็อก
+    booked_at: 'จองเมื่อ:'
+    breadcrumbs_norms_editor: เครื่องมือแก้ไขค่ามาตรฐาน
+    bulk_assessment_download_date_range_required: กรุณาเลือกช่วงวันที่
+    bulk_assessment_download_export_type: ประเภทการส่งออก
+    bulk_assessment_download_export_type_required: กรุณาเลือกประเภทการส่งออก
+    bulk_assessment_download_help_text: 'หมายเหตุ: หากการประเมินเชื่อมโยงกับมิติที่แตกต่างกัน ไฟล์ xslx ที่ดาวน์โหลดจะมีแผ่นงานแยกสำหรับแต่ละมิติ'
+    bulk_assessment_download_modal_subtitle: เลือกช่วงวันที่และประเภทการส่งออก จากนั้นส่งออกการประเมินที่เลือก
+    bulk_assessment_download_no_data_found: สำหรับช่วงวันที่และแบบประเมินที่เลือกไว้ ไม่พบข้อมูล กรุณาลองเลือกช่วงวันที่หรือแบบประเมินอื่น
+    bulk_assessment_download_norm_factor_scores: คะแนนปัจจัยนอร์ม
+    bulk_assessment_download_raw_factor_scores: คะแนนปัจจัยดิบ
     bulk_assets_modal_choose_csv: เลือกไฟล์ CSV
     bulk_assets_modal_choose_zip: เลือกไฟล์ ZIP
     bulk_assets_modal_not_csv_file_error: อนุญาตให้อัปโหลดไฟล์ CSV เท่านั้น กรุณาอัปโหลดไฟล์ CSV ที่ถูกต้อง
     bulk_assets_modal_subtitle: 'กรุณาอัปโหลดไฟล์ <b>CSV</b> หนึ่งไฟล์ (พร้อมหัวข้อ: user_email, file_name) และไฟล์ <b>ZIP</b> หนึ่งไฟล์ (ภายในมีไฟล์ PDF ที่ตรงกับชื่อไฟล์จากไฟล์ CSV) ไฟล์ ZIP ต้องมีขนาดไม่เกิน %{max_file_size} MB'
     bulk_assets_modal_title: อัปโหลดไฟล์ CSV และ ZIP
+    bulk_export_assessments_file: ไฟล์ส่งออกการประเมินจำนวนมาก
+    bulk_export_invalid_params: พารามิเตอร์การส่งออกจำนวนมากไม่ถูกต้อง
     bulk_upload_ai_artifacts: อัปโหลดสิ่งประดิษฐ์ AI จํานวนมาก
+    campaign: แคมเปญ
+    campaign_admin: ผู้ดูแลระบบแคมเปญ
     campaign_ai_artifact_updated_successfully: อัปเดตสิ่งประดิษฐ์ AI ของแคมเปญเรียบร้อยแล้ว
     campaign_ai_artifacts_instruction_templating_tooltip: คุณสามารถใช้คำสั่งขั้นสูงโดยใช้เทมเพลตคำสั่งพร้อมด้วยไวยากรณ์เทมเพลต liquid และตัวแปรที่มีอยู่ได้ โปรดดูเอกสารประกอบสำหรับรายละเอียดเพิ่มเติม
-    campaign_ai_artifacts_results_export_details: แคมเปญ AI สร้างผลลัพธ์
     campaign_assessment_actions_disable_caching: ปิดใช้งานการแคชการประเมิน
     campaign_assessment_actions_enable_caching: เปิดใช้งานการแคชการประเมิน
     campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
@@ -201,71 +306,230 @@ th:
     campaign_assessment_modals_enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     campaign_factors: ปัจจัยของแคมเปญ
+    campaign_id_placeholder: ป้อนรหัสแคมเปญ
     campaign_name: ชื่อแคมเปญ
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: รหัสรายงานภายนอก
-          language_id: รหัสภาษา
-          norm: มาตรฐาน
-          norm_id: รหัสปกติ
-          suitability_id: ความเหมาะสม ID
-        labels:
-          assessment_ids: รหัสการประเมิน
-          available_languages: ภาษาที่มีให้บริการ
-          campaign_report_id: รายงานแคมเปญ ID
-          check_details: ตรวจสอบรายละเอียด
-          default_language: ภาษาเริ่มต้น
-          external_settings: การตั้งค่าภายนอก
-          provider: ผู้ให้บริการ
-          report_pdf_status: รายงานสถานะ PDF
-          user_report_id: รหัสรายงานผู้ใช้
+    campaign_report_generate_modal_subtitle: เลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
+    campaign_report_id: รายงานแคมเปญ ID
+    campaign_results_export_details: แคมเปญ AI สร้างผลลัพธ์
     campaign_templates: เทมเพลตแคมเปญ
+    campaign_templates_campaign_templates: เทมเพลตแคมเปญ
+    campaign_templates_column_assessment: การประเมิน
+    campaign_templates_column_campaign: แคมเปญ
+    campaign_templates_column_owner: เจ้าของ
+    campaign_templates_column_report: รายงาน
+    campaign_templates_form_assessment: การประเมิน
+    campaign_templates_form_assessment_placeholder: เลือกการประเมิน
+    campaign_templates_form_name_placeholder: ป้อนชื่อ
+    campaign_templates_form_owner: เจ้าของ
+    campaign_templates_form_owner_placeholder: เลือกเจ้าของ
+    campaign_templates_form_report: รายงาน
+    campaign_templates_form_report_placeholder: เลือกรายงาน
+    campaign_templates_form_title: เทมเพลตแคมเปญ
+    campaign_templates_remove_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการลบเทมเพลตแคมเปญ '%{name}'
+    campaign_templates_remove_confirm_success: แม่แบบแคมป์ '%{name}'' ถูกลบออกเรียบร้อยแล้ว
+    campaign_templates_remove_confirm_title: ลบเทมเพลตแคมเปญ
     campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
     campaigns: แคมเปญ
+    campaigns_convert_to_template: แปลงเป็นเทมเพลต
+    campaigns_extend_time_success_message: ขยายเวลาแคมเปญเป็น %{minutes} นาที
+    campaigns_external_scores_import_modal_title: นําเข้าคะแนนแคมเปญภายนอก
+    campaigns_filters_active: เปิดใช้งาน
+    campaigns_filters_all: ทั้งหมด
+    campaigns_filters_archived: เก็บเข้าคลัง
+    campaigns_filters_closed: ปิด
+    campaigns_filters_inactive: เกียจคร้าน
+    campaigns_filters_status: สถานะ
+    campaigns_form_active_notice: สถานะแคมเปญจะเปลี่ยนเป็นปิดโดยอัตโนมัติในวันที่สิ้นสุดที่เลือก
+    campaigns_form_campaign: แคมเปญ
+    campaigns_form_copy_factors: คัดลอกปัจจัย
+    campaigns_form_inactive_notice: สถานะแคมเปญจะเปลี่ยนไปใช้งานโดยอัตโนมัติในวันที่เริ่มต้นที่เลือก
+    campaigns_form_practice_campaign: แคมเปญฝึกหัด
+    campaigns_listing_assessments: การประเมิน
+    campaigns_listing_reports: รายงาน
+    campaigns_listing_template: เทมเพลต
+    campaigns_menus_add_common_campaign: เพิ่มแคมเปญทั่วไป
+    campaigns_menus_add_multi_rater_campaign: เพิ่มแคมเปญ Multi Rater
+    campaigns_pdf_password: รหัสผ่าน PDF
+    campaigns_tab: แคมเปญ
+    campaigns_types_common: ทั่วไป
+    campaigns_types_threesixty: เฉพาะกลุ่ม
+    campaigns_users_add_user: เพิ่มผู้ใช้
+    campaigns_users_completion_status: สถานะการเสร็จสมบูรณ์
+    campaigns_users_created_by: สร้างโดย
+    campaigns_users_filters_all: ทั้งหมด
+    campaigns_users_filters_anonymous: ไม่ระบุชื่อ
+    campaigns_users_filters_identified: ระบุชื่อ
+    campaigns_users_is_active: เปิดใช้งาน
+    campaigns_users_no_permission_message: คุณไม่มีสิทธิ์ในการแก้ไข
+    campaigns_users_title: ผู้เข้าร่วม
+    campaigns_users_updated_by: อัพเดทโดย
     cancel: ยกเลิก
+    cancel_confirmation_message: คุณแน่ใจหรือไม่ว่าต้องการละทิ้งความคืบหน้าของแบบฟอร์ม?
+    cancel_confirmation_title: ละทิ้งความคืบหน้าของแบบฟอร์ม
     cancellation_and_rescheduling_disabled: การยกเลิกและการเลื่อนกำหนดการถูกปิดใช้งาน
+    cancellation_lead_time_label: ระยะเวลาในการยกเลิก
+    cannot_change_type_when_in_use: ไม่สามารถเปลี่ยนประเภทของ AI Assistant '%{name}' ได้ เนื่องจากกำลังใช้งานอยู่
     captcha: การยืนยันตัวตนด้วย Captcha
     case_study: กรณีศึกษา
     casual: ลำลอง
+    categories_approvals: การอนุมัติ
+    categories_invitations: คำ เชิญ
+    categories_reminders: หมายเหตุ
+    categories_report_ready: รายงานพร้อม
+    category: หมวดหมู่
     cell_save_msg: การเปลี่ยนแปลงที่ถูกต้องจะถูกบันทึกโดยอัตโนมัติเมื่อคุณออกจากเซลล์หลังจากแก้ไข
+    change_reason: เหตุผลในการเปลี่ยนแปลง
+    change_score: คะแนนเปลี่ยนแปลง
+    change_score_log: บันทึกการเปลี่ยนแปลงคะแนน
     characters: ตัวอักษร
     chat_instructions_success: คำแนะนำการแชทถูกบันทึกไว้เรียบร้อยแล้ว
+    check_details: ตรวจสอบรายละเอียด
     children_factor_type: ประเภทปัจจัยของเด็ก
     client: การเช่าลูกค้า
+    client_admin: ผู้ดูแลระบบไคลเอ็นต์
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
+    client_credentials_label: ข้อมูลประจําตัวของลูกค้า
+    client_credentials_value: client_credentials
+    client_features: คุณสมบัติลูกค้า
+    client_id_label: รหัสไคลเอ็นต์
+    client_id_name: oauth_client_id
+    client_id_required: ต้องระบุรหัสไคลเอ็นต์
+    client_ids: รหัสลูกค้า
+    client_ip: IP ไคลเอ็นต์
+    client_logo_label: โลโก้ลูกค้า
+    client_secret_label: ข้อมูลลับของไคลเอ็นต์
+    client_secret_name: oauth_client_secret
+    client_secret_required: จําเป็นต้องมีข้อมูลลับของไคลเอ็นต์
     client_selection_instruction: เลือกลูกค้าเพื่อดำเนินการต่อที่แผงควบคุม
     client_selection_sign_out: ลงชื่อออก
     client_selection_title: เลือกผู้ใช้บริการ
     clients: บัญชีลูกค้า
     clients_search_placeholder: ค้นหาลูกค้า
+    closed: ปิด
     code_required: ต้องใช้รหัส
+    collapse_filters: ยุบตัวกรอง
+    column_code: รหัส
+    column_invitation_status: สถานะคำเชิญ
+    column_participant: ผู้มีส่วนร่วม
+    column_provider: ผู้จัดหา
+    column_scheduling_details: รายละเอียดการนัดหมาย
+    column_usage_stats: สถิติการใช้งาน
     common: การประเมิน TTE
     common_assessment: การประเมิน TTE
+    common_disabled: ไดอะสบลเลอร์
+    common_download_sample_file: ดาวน์โหลดไฟล์ตัวอย่าง
+    common_enabled: เปิด
+    common_import_failure_msg: ข้อผิดพลาดขณะนําเข้าไฟล์
+    common_minute: นาที
+    common_select_all: เลือกทั้งหมด
+    common_type: ประเภท
+    common_unselect_all: ยกเลิกการเลือกทั้งหมด
     communication_center: ศูนย์สื่อสาร
     communications: การสื่อสาร
+    communications_form_insert_piped_text: แทรกข้อความที่มีเส้นขอบ
     completed: เสร็จ สมบูรณ์
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
+    components_input_duration_placeholder: ป้อนเป็น '1d 2h 3m'
     concise: กระชับ
+    confidence_interval: ช่วงความเชื่อมั่น
+    confidence_interval_update_success: ช่วงความเชื่อมั่นได้รับการอัปเดตสำเร็จ
+    configuration: การกำหนดค่า
     configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
     confirmation_required: ต้องการการยืนยัน
     confirmation_required_details: คุณแน่ใจหรือไม่ว่าต้องการลบ "%{resource_name}" จากหมวดหมู่ "%{resource}"?
+    consolidated: รวมกัน
+    contrast_ratio_warning: 'Note: Using this primary color may violate the contrast ratio requirement for text readability.'
+    contrast_ratio_warning_lighter_color: 'Note: Using this %{name} color may violate the contrast ratio requirement for text readability. Try using a darker color.'
     copied: คัดลอกแล้ว
     copied_url_success: URL ถูกคัดลอกไปยังคลิปบอร์ดสำเร็จแล้ว
     copy_ai_artifacts: คัดลอกสิ่งประดิษฐ์ของ AI
+    copy_hint: คัดลอกการกําหนดค่าที่นั่ง ผู้จัดการศูนย์ ผู้ประเมิน และการประชุมและทรัพยากรข้างต้นไปยังศูนย์การประเมินต่อไปนี้ หลังจากคัดลอกแล้ว คุณสามารถทําการเปลี่ยนแปลงเพิ่มเติมกับศูนย์ประเมินแต่ละแห่งก่อนดําเนินการต่อ
     copy_image_url: คัดลอก URL ของรูปภาพ
+    copy_report_scheduled: งานคัดลอกรายงานได้ถูกกำหนดเวลาแล้ว
+    copy_text: ข้อความ
+    copy_to_all: คัดลอกไปยังศูนย์ประเมินอื่น ๆ
     copy_url: คัดลอก URL
     country: ประเทศ
+    course: หลักสูตร
+    create_ai_assistants: สร้างผู้ช่วย AI
     create_client: สร้างไคลเอ็นต์
     create_indicator: สร้างตัวชี้วัด
+    create_level_description_must_exist: คําอธิบายระดับต้องไม่ว่างเปล่า
+    create_level_name_must_exist: ชื่อระดับไม่สามารถเว้นว่างได้
+    create_must_be_unique: ต้องไม่ซ้ํากัน
+    created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
+    current: ปัจจุบัน
     current_job_role: บทบาทงานปัจจุบัน
+    custom_formula: สูตรที่กําหนดเอง
+    custom_message_description: ข้อความนี้สามารถส่งไปยังทุกคนที่เข้าร่วมการประเมิน
+    custom_message_name: ข้อความที่กําหนดเอง
     custom_upload: อัปโหลดแบบกําหนดเอง
     dashboard: แดชบอร์ด
+    dashboard_capacity_name: ชื่อความจุ
+    dashboard_choose_file_format: เลือกรูปแบบไฟล์
+    dashboard_dashboard_types_oracle_analytics: การวิเคราะห์ของ Oracle
+    dashboard_dashboard_types_powerbi: พาวเวอร์บี
+    dashboard_dashboards: แด ชบอร์ด
+    dashboard_export_dashboard_to_file: ส่งออกแดชบอร์ดไปยังไฟล์
+    dashboard_export_job_failure: เริ่มการส่งออกไม่สําเร็จ
+    dashboard_export_job_success: เริ่มงานส่งออก คุณจะได้รับแจ้งเมื่อเสร็จสมบูรณ์
+    dashboard_form_image_upload_failed: อัปโหลดรูปภาพล้มเหลว
+    dashboard_form_none: ไม่มีใคร
+    dashboard_form_refresh_success: ตั้งเวลาการรีเฟรชชุดข้อมูลเรียบร้อยแล้ว
+    dashboard_get_started: เริ่มต้นใช้งาน
+    dashboard_initialize_msg: เริ่มต้นแดชบอร์ดสําหรับแคมเปญนี้
+    dashboard_loading_failed: การโหลดแดชบอร์ดล้มเหลว
+    dashboard_only_export_current_tab: ส่งออกแท็บปัจจุบันเท่านั้น
+    dashboard_pdf: ไฟล์ PDF
+    dashboard_pptx: พีทีเอ็กซ์
+    dashboard_preview_embed_token_error_description: โปรดตรวจสอบว่าชุดข้อมูลและรหัสรายงานในการตั้งค่าถูกต้องหรือไม่
+    dashboard_preview_embed_token_error_title: ไม่สามารถสร้างโทเค็นแบบฝังได้
+    dashboard_settings_capacity_id: รหัสความจุ
+    dashboard_settings_details: รายละเอียด
+    dashboard_settings_refresh: ฟื้นฟู
+    dashboard_settings_workspace_id: รหัสพื้นที่ทํางาน
+    dashboard_tabs_accesssheet: แผ่นเข้าใช้งาน
+    dashboard_tabs_accesssheet_setting: การตั้งค่าแผ่นการเข้าถึง
+    dashboard_tabs_settings: การตั้งค่า
     dashboards: แด ชบอร์ด
+    dashed_button: ถูกขีดฆ่า
+    data_exports_modal_title: เลือกช่วงวันที่
+    data_range_error: กรุณาเลือกช่วงวันที่
     data_reports: รายงานข้อมูล
+    data_reports_columns_created_at: สร้างเมื่อ
+    data_reports_columns_created_by: สร้างโดย
+    data_reports_columns_last_updated_by: อัพเดทล่าสุดโดย
+    data_reports_columns_password: รหัสผ่าน
+    data_reports_columns_udpated_at: อัพเดทล่าสุดเมื่อ
+    data_reports_configuration: องค์ประกอบ
+    data_reports_form_name: รายงานข้อมูล
+    data_reports_messages_runed: รายงานข้อมูลถูกตั้งเวลาให้ทํางานเรียบร้อยแล้ว
+    dataset_id: รหัสชุดข้อมูล
     datasheet: เอกสารข้อมูลสินค้า
+    date_and_time: วันที่ & เวลา
+    date_presets_last_30_days: 30 วันที่ผ่านมา
+    date_presets_last_6_months: หกเดือนที่ผ่านมา
+    date_presets_last_7_days: 7 วันที่ผ่านมา
+    date_presets_last_month: เมื่อเดือนที่แล้ว
+    date_presets_last_week: สัปดาห์ที่แล้ว
+    date_presets_last_year: ปีที่แล้ว
+    date_presets_today: วันนี้
+    date_presets_yesterday: เมื่อวานนี้
+    date_range: ช่วงวันที่
+    date_range_required: จำเป็นต้องระบุช่วงวันที่
+    dates_completed: เสร็จสิ้น
+    dates_end: วันที่สิ้นสุด
+    dates_label: วัน
+    dates_start: วันที่เริ่มต้น
+    dates_started: เริ่มต้น
+    days_repeated: วัน ซ้ํา
     declined: ปฏิเสธ
+    default: ค่าเริ่มต้น
+    default_assessment_language: ภาษาเริ่มต้นสำหรับการประเมิน
+    default_button: ค่าเริ่มต้น
+    default_language: ภาษาเริ่มต้น
+    default_report_language: รายงานภาษาเริ่มต้น
     define_max_score_text: กำหนดคะแนน %{maxScore} (คะแนนสูงสุด)
     define_min_score_text: กำหนดคะแนน %{minScore} (คะแนนขั้นต่ำ)
     define_optional_score_range_text: กำหนดคะแนน %{minScore} ถึง %{maxScore} (ไม่บังคับ)
@@ -273,10 +537,40 @@ th:
     definition: คำนิยาม
     delete_ok_text: ใช่ ลบ
     denied: ถูก ปฏิเสธ
+    dependencies: การพึ่งพา
     description: คำอธิบาย
+    description_name: คำอธิบาย
+    description_save: บันทึกคําอธิบาย
+    description_save_success: บันทึกคําอธิบายสําเร็จ
     descriptive_text: ข้อความเชิงพรรณนา
     development_actions: การดําเนินการพัฒนา
+    development_actions_duration_max_length: ต้องไม่เกิน 1 ปี
+    development_actions_duration_min_length: ต้องไม่น้อยกว่า 1 นาที
+    development_actions_export_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนา
+    development_actions_export_development_actions: การดําเนินการพัฒนา
+    development_actions_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
+    development_actions_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่ โปรดตรวจสอบสถานะในการแจ้งเตือน
+    development_actions_form_available_languages: ภาษาที่ใช้ได้
+    development_actions_form_client_placeholder: เลือกลูกค้า
+    development_actions_form_course_image: ภาพหลักสูตร
+    development_actions_form_course_link: ลิงค์หลักสูตร
+    development_actions_form_development_action_type: ประเภทการดําเนินการพัฒนา
+    development_actions_form_duration: ระยะเวลา
+    development_actions_form_learning_style: รูปแบบการเรียนรู้
+    development_actions_form_project_placeholder: เลือกโครงการ
+    development_actions_form_skills: ทักษะ
+    development_actions_form_skills_placeholder: เลือกทักษะ
     development_actions_form_tags: แท็ก
+    development_actions_form_title: การดําเนินการพัฒนา
+    development_actions_global: การพัฒนาโลกเป็นการดําเนินการหรือไม่?
+    development_actions_heading: การดําเนินการพัฒนา
+    development_actions_import_action_development_actions_title: การดําเนินการพัฒนาการนําเข้า
+    development_actions_import_action_development_actions_translations_title: นําเข้าการแปลการดําเนินการเพื่อการพัฒนา
+    development_actions_import_development_actions: การดําเนินการพัฒนา
+    development_actions_import_development_actions_translations: การแปลการดําเนินการเพื่อการพัฒนา
+    development_actions_import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    development_actions_import_failure_msg: ข้อผิดพลาดขณะนําเข้าไฟล์
+    development_actions_import_info_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
     digest_delivery_mode:
       form_label: โหมดการส่งข้อมูลแบบย่อย
       immediate: ทันที - ส่งเมื่อมีการส่งข้อมูลจำนวนมาก
@@ -297,16 +591,68 @@ th:
       wednesday: วันพุธ
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
+    dimensions_destroy_successfully: มิติ %{name} ถูกลบเรียบร้อยแล้ว
+    dimensions_export_json_successfully: ตั้งเวลาส่งออกข้อมูล JSON สําหรับมิติ %{name}
+    dimensions_form_enable_innovation_styles: เปิดใช้งานรูปแบบนวัตกรรม
+    dimensions_form_enable_occupations: เปิดใช้งานอาชีพ
+    dimensions_form_title: มิติ
+    dimensions_import_factors_sample_file: ไฟล์ตัวอย่าง
+    dimensions_import_factors_title: ปัจจัยการนําเข้า
+    dimensions_import_modal_after: หลังจาก
+    dimensions_import_modal_before: ก่อนหน้า
+    dimensions_import_modal_change_log_input: บันทึกการเปลี่ยนแปลง
+    dimensions_import_modal_error: ข้อผิดพลาด
+    dimensions_import_modal_error_occurred: เกิดข้อผิดพลาด
+    dimensions_import_modal_errors_file_error: กรุณาเลือกไฟล์ JSON ก่อนดำเนินการต่อ
+    dimensions_import_modal_errors_processing_error: เกิดข้อผิดพลาดในการประมวลผลไฟล์
+    dimensions_import_modal_field: ฟิลด์
+    dimensions_import_modal_import_dimension: นำเข้ามิติ
+    dimensions_import_modal_import_scheduled: นำเข้าตามกำหนดการ
+    dimensions_import_modal_operation: การผ่าตัด
+    dimensions_import_modal_owner_input_validation: กรุณาเลือกเจ้าของ
+    dimensions_import_modal_owner_select: เลือกเจ้าของ
+    dimensions_import_modal_select_json: เลือกไฟล์ JSON
+    dimensions_index_title: มิติ
+    dimensions_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือไม่ว่าต้องการลบมิตินี้?</p>\n"
+    dimensions_resource_confirmations_delete_message: กรุณากรอกชื่อมิติที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
+    dimensions_resource_tooltips_export_json: ส่งออก JSON เพื่อนําเข้าในแพลตฟอร์มอื่น
+    dimensions_translations_export: ส่งออกทั้งหมด
+    dimensions_translations_header: การแปลปัจจัย
+    disable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการปิดใช้งานการแคชสําหรับการประเมินนี้
+    disable_caching_successfully: การแคชถูกปิดใช้งานสําหรับการประเมินนี้
+    disable_caching_title: ปิดใช้งานการแคชการประเมิน?
+    disable_cancellation_and_rescheduling: ปิดการยกเลิกและการเลื่อนนัด
+    disable_dp: ไม่อนุญาตให้ประมวลผลข้อมูลเพิ่มเติม
     disable_proctoring: ปิดการใช้งานการตรวจสอบ
+    disable_report_download: ปิดการดาวน์โหลดรายงาน
     disallow_lead_assessor_moderation: ไม่อนุญาตให้ผู้ประเมินหลักเป็นผู้กลั่นกรอง
     disallow_lead_assessor_moderation_info: คะแนนจะถูกคำนวณโดยอัตโนมัติตามการส่งแบบฟอร์มของผู้ประเมินทั้งหมด และผู้ประเมินหลักไม่สามารถเปลี่ยนแปลงคะแนนจากหน้าจอการตรวจสอบได้
+    discard_all_questions: รีเซ็ตคำถามทั้งหมด
+    discard_all_questions_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับทุกคำถามและล้างการตั้งค่าทับทั้งหมด การดำเนินการนี้ไม่สามารถย้อนกลับได้ คุณแน่ใจหรือไม่?
+    discard_all_questions_title: รีเซ็ตคะแนนคำถามทั้งหมด?
+    discard_question: รีเซ็ตคะแนนคำถาม
+    discard_question_confirm_description: นี่จะรีเซ็ตคะแนนทั้งหมดสำหรับคำถามนี้และล้างการตั้งค่าทับทั้งหมด คุณแน่ใจหรือไม่?
+    discard_question_confirm_title: รีเซ็ตคะแนนคำถาม?
+    discarded_changes: การเปลี่ยนแปลงที่ถูกยกเลิก
+    document_titles_project_assessors: ผู้ประเมิน | %{project}
+    document_titles_project_participants: ผู้เข้าร่วม | %{project}
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
+    download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    dp_consent: เปิดใช้ความยินยอมในการประมวลผลข้อมูล
+    dp_consent_custom: ปรับแต่งความยินยอมในการประมวลผลข้อมูล
+    dp_consent_version: เวอร์ชันของนโยบาย
     duration: ระยะเวลา
+    duration_label: ระยะเวลา
+    duration_max_error: ไม่เกิน 16 ชั่วโมง
+    duration_min_error: ต้องไม่น้อยกว่า 15 นาที
     duration_must_be_positive: ระยะเวลาต้องเป็นค่าบวก
+    duration_placeholder: เช่น 4 ชม. 30 นาที
+    edit_ai_assistants: แก้ไขผู้ช่วย AI
     edit_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
     edit_client_admin: แก้ไขผู้ดูแลระบบลูกค้า
+    edit_email: แก้ไขอีเมล
     edit_folder: แก้ไขโฟลเดอร์
     edit_indicator: แก้ไขตัวบ่งชี้
     edit_job_roles: แก้ไขบทบาทงาน
@@ -315,35 +661,106 @@ th:
     edit_permission_denied: คุณไม่มีสิทธิ์แก้ไขผู้ดูแลระบบ '%{name}'
     edit_project_admin: แก้ไขผู้ดูแลระบบโครงการ
     edit_threesixty_campaign_admin: แก้ไขผู้ดูแลระบบแคมเปญ
+    email_manager_when_report_is_ready_for_approval: ผู้จัดการอีเมลเมื่อรายงานพร้อมสำหรับการอนุมัติ
+    email_messages: ข้อความอีเมล
+    email_subject_when_report_becomes_available: หัวข้ออีเมลเมื่อรายงานพร้อมใช้งาน
+    email_subjects_manager_when_available: ส่งอีเมลแจ้งผู้จัดการเรื่องหัวเรื่องเมื่อรายงานพร้อมใช้งาน
     empty: ว่างเปล่า
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
+    enable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานการแคชสําหรับการประเมินนี้
+    enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
+    enable_caching_title: เปิดใช้งานการแคชการประเมิน?
     enable_enhance_with_ai_client_level: โปรดเปิดใช้งานฟีเจอร์เพิ่มประสิทธิภาพด้วย AI ที่ระดับลูกค้า
+    enable_face_detection: เปิดใช้งานการตรวจจับใบหน้า
     enable_maintenance: เปิดใช้งานการบำรุงรักษา
     enable_mobile_proctoring: เปิดใช้งานการตรวจสอบการสอบผ่านมือถือ
+    enable_phrase_verification: เปิดใช้งานการตรวจสอบวลี
     enable_system_check: เปิดใช้งานการตรวจสอบระบบ
     enable_transcription: เปิดใช้งานการถอดเสียง
     enable_transcription_msg: เปิดใช้งานการถอดเสียงเพื่อใช้การให้คะแนนด้วย AI สำหรับคำถามที่ตอบด้วยวิดีโอ/เสียง
+    enable_video_call_recording: เปิดใช้งานการบันทึกการโทรผ่านวิดีโอ
+    enabled: เปิด
     end: สิ้นสุด
     end_time: เวลาสิ้นสุด
     end_time_must_be_after_start_time: เวลาสิ้นสุดต้องเป็นหลังจากเวลาเริ่มต้น
     enhance_with_ai: เพิ่มประสิทธิภาพด้วย AI
     enhance_with_ai_requires_ai_assistants: การเพิ่มประสิทธิภาพด้วย AI ต้องเปิดใช้งานฟีเจอร์ผู้ช่วย AI
+    enter_client_ids: ป้อนรหัสลูกค้า
     enter_description: กรอกคำอธิบาย
     enter_name: กรุณากรอกชื่อ
+    enter_project_ids: ป้อนรหัสโครงการ
     enter_question_id: ป้อนรหัสคำถาม
+    enter_report_ids: ป้อนรหัสรายงาน
+    enter_schema_key: ป้อนคีย์สคีมา
     error: ข้อผิดพลาด
+    error_color: สีข้อผิดพลาด
+    errors_csv_file_required: ไฟล์ต้องเป็นไฟล์ CSV
+    errors_error_msg: มีบางอย่างผิดพลาด โปรดรีเฟรชหน้า และหากปัญหายังคงอยู่ โปรดติดต่อผู้ดูแลระบบของคุณ
+    errors_min_retention: ต้องไม่น้อยกว่า 1 วัน
+    errors_policy_version_format: อนุญาตให้ใช้ได้เฉพาะจํานวนเต็มเท่านั้น
+    errors_required: ต้องกรอกข้อมูล
     estimated_tokens: โทเค็น (ประมาณการ)
+    evaluate_others_description: ข้อความนี้จะปรากฏขึ้นเมื่อผู้เข้าร่วมกําลังประเมินผู้อื่นจากภายในพอร์ทัล
+    evaluate_others_name: ประเมินผู้อื่น
+    evaluate_self_description: ข้อความนี้จะแสดงต่ออาสาสมัครเมื่อพวกเขาเริ่มการประเมินตนเอง
+    evaluate_self_name: ผู้ประเมินตนเอง
+    evaluation_help_description: ข้อความความช่วยเหลือที่แสดงบนการ์ดการประเมินบนแดชบอร์ดของผู้ใช้
+    evaluation_help_name: ความช่วยเหลือในการประเมินผล
     evaluation_status: สถานะการประเมิน
     evaluation_status_not_done: สถานะการประเมินไม่ใช่ "เสร็จสิ้น" สําหรับวิชาที่เลือกอย่างน้อยหนึ่งวิชา โปรดตรวจสอบให้แน่ใจว่าผู้ใช้ที่เลือกทั้งหมดได้ทําการประเมินหรือทําเครื่องหมายว่าเสร็จสิ้น
+    evaluations_completed: การประเมินเสร็จสิ้น
+    evaluations_received: การประเมินที่ได้รับ
+    evaluator_invite_description: ข้อความนี้จะถูกส่งไปยังผู้เข้าร่วมทุกคนที่เป็นผู้ประเมิน
+    evaluator_invite_name: คําเชิญผู้ประเมิน
+    evaluator_reminder_description: ข้อความนี้จะถูกส่งเพื่อเตือนผู้ประเมินให้ทําการประเมินที่รอดําเนินการให้เสร็จสมบูรณ์
+    evaluator_reminder_name: การแจ้งเตือนผู้ประเมิน
+    evaluator_reminder_rule_description: ระบุกฎสําหรับการกําหนดเวลาโดยอัตโนมัติเมื่อมีการกําหนดเวลาคําเชิญ
+    evaluator_reminder_rule_name: กฎการแจ้งเตือนผู้ประเมิน
+    evaluator_welcome_description: ข้อความนี้จะแทนที่ "ข้อความต้อนรับ" และจะแสดงต่อผู้เข้าร่วมที่กําลังเข้าร่วมในฐานะผู้ประเมินเท่านั้น
+    evaluator_welcome_name: ยินดีต้อนรับผู้ประเมิน
+    evaluators_title: ผู้ประเมิน
+    evidence_from_transcript: หลักฐานจากบันทึกการสนทนา
+    expand_filters: ขยายตัวกรอง
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    export_admins_with_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
+    export_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI
     export_campaigns_queued: งานส่งออกได้ถูกจัดคิวแล้ว กรุณาตรวจสอบการแจ้งเตือนของคุณเพื่อดูลิงก์สำหรับดาวน์โหลด
     export_compact_completion_status: กะทัดรัด
     export_completion_status: สถานะการส่งออกเสร็จสมบูรณ์
     export_completion_statuses_scheduled: งานส่งออกสถานะการเสร็จสิ้นถูกกำหนดเวลาสำเร็จ
     export_detailed_completion_status: ละเอียด
+    export_failure_msg: ข้อผิดพลาดขณะส่งออกระดับความชํานาญ
+    export_success: การส่งออกงานของผู้ดูแลระบบถูกตั้งเวลาเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการแจ้งเตือนของคุณ
+    export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
+    export_to_csv: ส่งออกเป็น CSV
+    export_with_inactive_users: ส่งออกรวมผู้ใช้ที่ไม่ใช้งาน
+    external_report_id: รหัสรายงานภายนอก
+    external_score: คะแนนภายนอก
+    external_settings: การตั้งค่าภายนอก
+    factor_benchmark_scores_updated: คะแนนเกณฑ์มาตรฐานปัจจัยอัปเดตเรียบร้อยแล้ว
     factor_feedback: ปัจจัยการให้ข้อเสนอแนะ
     factor_selection: การเลือกปัจจัย
     factors: ปัจจัย
+    factors_form_components_ExternalList_table_jsonpath: เส้นทาง JSON
+    factors_form_components_ExternalList_table_types_norm_score: คะแนนตามค่ามาตรฐาน
+    factors_form_components_ExternalList_table_types_percentage: อัตราร้อยละ
+    factors_form_components_ExternalList_table_types_percentile: คะแนนเปอร์เซ็นไทล์
+    factors_form_components_ExternalList_table_types_score: คะแนน
+    factors_form_components_ExternalList_table_types_zscore: คะแนน Z
+    factors_form_components_ExternalList_title: เส้นทาง JSON สําหรับคะแนน
+    factors_form_predicate: กริยาวิเศษณ์
+    factors_form_scoring_strategies_custom_formula: สูตรที่กําหนดเอง
+    factors_form_scoring_strategies_tip: "<strong>คําถาม (เฉลี่ย):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีคําถามที่เชื่อมโยงกับปัจจัย<br /> <br /><strong>คําถาม (SUM):</strong> นี่เหมือนกับคําถาม (เฉลี่ย) แต่ใช้ SUM<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (บรรทัดฐาน):</strong> นี่เหมือนกับวิธีการให้คะแนนปัจจุบันเมื่อมีปัจจัยย่อยสําหรับปัจจัยการเปลี่ยนแปลงเพียงอย่างเดียวคือการเพิ่มน้ําหนัก<br /> <br /><strong>คําถามเกี่ยวกับปัจจัยอื่น ๆ (SUM):</strong> นี่เหมือนกับปัจจัยอื่น ๆ (บรรทัดฐาน) แต่ใช้ SUM<br /> <br />ผล <strong>รวมถ่วงน้ําหนักของปัจจัย:</strong> ที่นี่คะแนนของปัจจัยอื่น ๆ ที่เลือกจะถูกคูณด้วยน้ําหนักจะถูกเพิ่มเข้ามา"
+    factors_form_scoring_strategy: กลยุทธ์การให้คะแนน
+    factors_form_search_factors: ปัจจัยการค้นหา
+    factors_form_use_sub_factor_norm_score: ใช้คะแนนปัจจัยค่ามาตรฐาน
+    factors_form_value: ค่า
+    factors_index_precision: ความแม่นยำ
+    factors_index_scoring_strategy: กลยุทธ์การให้คะแนน
+    factors_index_sub_factors: ปัจจัยย่อย
+    factors_index_title: ปัจจัย
+    factors_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือไม่ว่าต้องการลบปัจจัยนี้?</p>\n"
+    failure_reason: เหตุผลความล้มเหลว
     feature_ai_assistants_description: เปิดใช้งานผู้ช่วยอัจฉริยะด้วย AI เพื่อประสบการณ์ผู้ใช้ที่ดียิ่งขึ้น
     feature_ai_assisted_idp_description: ใช้ AI เพื่อช่วยในการให้คำแนะนำสำหรับการวางแผนพัฒนาบุคคล
     feature_ai_content_analysis_description: เปิดใช้งานการวิเคราะห์เนื้อหาด้วย AI สำหรับการประเมินผล
@@ -358,25 +775,96 @@ th:
     feature_idp_description: เปิดใช้งานการวางแผนพัฒนาบุคคลสำหรับผู้เข้าร่วม
     feature_not_available: คุณสมบัตินี้ไม่สามารถใช้งานได้
     feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
+    fields_level: ระดับ
+    fields_level_description: คําอธิบายระดับ
+    fields_level_name: ชื่อระดับ
+    fields_proficiency_translations: การแปลความเชี่ยวชาญ
+    fields_proficiency_type: ประเภทความเชี่ยวชาญ
+    fields_skill: ทักษะ
+    fields_skill_name: ชื่อทักษะ
+    fields_skill_type: ประเภททักษะ
     file_size_must_be_less_than_mb: ไฟล์ {{name}} มีขนาดใหญ่เกินขนาดสูงสุดที่กำหนดไว้ที่ {{max_size_mb}} MB
     file_upload_failed: ไม่สามารถอัปโหลด {{name}} ได้
     fill_empty_score_msg: กรอกคะแนนสุดท้ายทั้งหมดก่อนบันทึก
+    filter_by_client: กรองตามลูกค้า
+    filter_by_client_help: เลือกลูกค้าเพื่อโหลดโปรเจ็กต์ของมัน
     final_score_empty_err_msg: คะแนนสุดท้ายของ %{factor_name} ไม่สามารถเป็นค่าว่างได้
     final_score_empty_msg: ยอดรวมสุดท้ายต้องไม่ว่างเปล่า
+    finalized_at: เสร็จสิ้นที่
+    fingerprint: ลายนิ้วมือ
+    first_name_required: กรุณาระบุชื่อจริง
     fix_grammar: แก้ไขไวยากรณ์
+    fixed_time: เวลาคงที่
+    form_active: เปิดใช้งาน
+    form_add_assessment: เพิ่มการประเมิน
+    form_ai_assistant: ผู้ช่วย AI
+    form_assessment_required: จําเป็นต้องมีการประเมิน
+    form_assessments: การประเมิน
+    form_campaign_factors: ปัจจัยของแคมเปญ
+    form_code: รหัส
+    form_configuration: องค์ประกอบ
+    form_datasheet: เอกสารข้อมูล
+    form_datasheet_columns: คอลัมน์แผ่นข้อมูล
+    form_end_date: วันที่สิ้นสุด
+    form_include_all_datasheet_columns: รวมคอลัมน์แผ่นข้อมูลทั้งหมด
+    form_name: ชื่อ
+    form_no_assessment_selected: ยังไม่มีการเพิ่มการประเมิน คลิก "เพิ่ม" เพื่อเริ่มต้น
+    form_questions_required: ต้องเลือกคําถามอย่างน้อยหนึ่งข้อ
+    form_select_ai_assistant: เลือก AI Assistant
+    form_select_assessment: เลือก การประเมิน
+    form_select_campaign_factors: เลือกปัจจัยของแคมเปญ
+    form_select_datasheet_columns: เลือกคอลัมน์แผ่นข้อมูล
+    form_select_questions: เลือกคําถาม
+    form_start_date: วันที่เริ่มต้น
+    form_title: สิ่งประดิษฐ์ AI
+    form_total_count: จำนวนทั้งหมด
     formal: ทางการ
     from: จาก
+    genders_female: หญิง
+    genders_male: ชาย
+    genders_not_set: ไม่ได้ตั้งค่า
+    generate: ผลิต
+    generate_result_confirm: การสร้างผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' จะลบรายงานที่มีอยู่ซึ่งขึ้นอยู่กับอาร์ติแฟกต์ AI นี้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    generate_result_info_message: กําลังสร้างผลลัพธ์ โปรดรีเฟรชหน้าเพื่อดูผลลัพธ์ที่อัปเดต
+    generate_results: สร้างผลลัพธ์
     generate_transcription: สร้างการถอดความ
+    generated_at_time: สร้างขึ้นที่ %{time}
+    generated_value: มูลค่าที่สร้างขึ้น
+    global_skills: ทักษะระดับโลก
+    global_skills_disabled_by_client: Global Skills ถูกปิดใช้งานโดยลูกค้า
+    grant_type_label: ประเภทการให้ทุน
+    grant_type_name: oauth_grant_type
     graphic: กราฟิก
     graphic_slider: สไลเดอร์กราฟิก
     handoff_client_mismatch: โทเค็นการยืนยันตัวตนไม่ถูกต้องสำหรับลูกค้านี้
     handoff_invalid_token: โทเค็นการยืนยันตัวตนไม่ถูกต้องหรือหมดอายุ
     handoff_token_expired: โทเค็นการยืนยันตัวตนหมดอายุหรือถูกใช้งานไปแล้ว
     handoff_user_disabled: บัญชีของคุณถูกปิดใช้งาน
+    has_api_keys: มีคีย์ API
+    has_public_keys: มีกุญแจสาธารณะ
+    header_logout_content: กดยกเลิกหากคุณต้องการทํางานต่อ กดตกลงเพื่อออกจากระบบผู้ใช้ปัจจุบัน
+    header_logout_title: คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ
+    hide_all: ซ่อนทั้งหมด
     hide_middle_scores: ซ่อนคะแนนกลาง
     high: สูง
     hogan: โฮแกน
     hogan_assessment: การประเมินโฮแกน
+    hogan_provider: ผู้จัดหา
+    hogan_providers_mercer: เมอร์เซอร์
+    hogan_providers_phoenix: นกฟีนิกซ์
+    hover_options_danger_item: สิ่งของอันตราย
+    hover_options_first_menu_item: รายการเมนูที่ 1
+    hover_text: เลื่อนเมาส์มาเหนือฉัน
+    idp: ผู้พลัดถิ่น
+    idp_actions_remove_confirm: ป้อนชื่อเทมเพลตปัจจุบันที่ระบุด้านล่างในกล่องข้อความเพื่อลบเทมเพลต
+    idp_actions_success: "%{idpName} ถูกลบออกเรียบร้อยแล้ว"
+    idp_add_idp_template: เพิ่มเทมเพลต IDP
+    idp_ai_assistant: ผู้ช่วย AI
+    idp_ai_assisted_idp_enabled: ระบบช่วยเหลือด้วย AI สำหรับการระบุตัวตนภายในประเทศ
+    idp_ai_enabled: ขับเคลื่อนด้วยปัญญาประดิษฐ์
+    idp_ai_settings: การตั้งค่า AI
+    idp_all: ทั้งหมด
+    idp_appearance: ลักษณะ
     idp_appearance_body: "**เนื้อหา**"
     idp_appearance_color: สี
     idp_appearance_cover: ปก
@@ -387,6 +875,7 @@ th:
     idp_appearance_guideline_position_second: หน้าสอง (หลังจากปก)
     idp_appearance_guideline_position_second_last: หน้าสุดท้ายรอง (ก่อนหน้าสุดท้าย)
     idp_appearance_guidelines: แนวทางปฏิบัติ
+    idp_appearance_hint: หากต้องการแก้ไขรูปลักษณ์ โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
     idp_appearance_idp_skills: ทักษะ IDP
     idp_appearance_last: ครั้งสุดท้าย
     idp_appearance_per_page_font_settings: การตั้งค่าฟอนต์ต่อหน้า
@@ -399,20 +888,136 @@ th:
     idp_appearance_show_guidelines: หน้าคำแนะนำการแสดง
     idp_appearance_size: ขนาด
     idp_appearance_subtitle: คำบรรยาย
+    idp_appearance_success: การตั้งค่าการแสดงผลบันทึกไว้เรียบร้อยแล้ว
     idp_appearance_title: ชื่อเรื่อง
+    idp_background_image: ภาพพื้นหลัง
+    idp_behavioral_skills: ทักษะพฤติกรรม
+    idp_client_skills: ทักษะของลูกค้า
+    idp_delete_skill: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้ การลบจะลบกิจกรรมการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+    idp_delete_skill_msg: คุณแน่ใจหรือไม่ว่าต้องการลบทักษะนี้? การลบจะเป็นการลบการดําเนินการพัฒนาที่เกี่ยวข้องทั้งหมดด้วย
+    idp_details_updated: รายละเอียดผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จแล้ว
+    idp_development_actions_add_from_library: เพิ่มจากห้องสมุด
+    idp_development_actions_completion: เสร็จสมบูรณ์
+    idp_development_actions_create_development_actions_with_ai: สร้างการดําเนินการพัฒนาด้วย AI สําหรับ
+    idp_development_actions_create_from_ai: สร้างจาก AI
+    idp_development_actions_create_my_own: สร้างของตัวเอง
+    idp_development_actions_custom: ธรรมเนียม
+    idp_development_actions_date_range: วันที่เริ่มต้น - วันที่สิ้นสุด
+    idp_development_actions_edit_plan_to_add_development_actions: แก้ไขแผนและเพิ่มการดําเนินการเพื่อการพัฒนา
+    idp_development_actions_errors_invalid_learning_style: "'%{learning_style}' ไม่ใช่รูปแบบการเรียนรู้ที่ถูกต้อง ตัวเลือกที่ถูกต้องคือ: %{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: รูปแบบการเรียนรู้ต้องไม่ว่างเปล่า
+    idp_development_actions_generate_by_ai: สร้างโดย AI
+    idp_development_actions_generate_more: สร้างมากขึ้น
+    idp_development_actions_heading: การดําเนินการพัฒนา
+    idp_development_actions_manage_skills: จัดการทักษะ
+    idp_development_actions_no_development_actions: ไม่มีการดําเนินการพัฒนา
+    idp_disabled_by_client: IDP ถูกปิดใช้งานโดยลูกค้า
+    idp_document_ai_assistant: ผู้ช่วย AI การวิเคราะห์เอกสาร
+    idp_edit_template: แก้ไขเทมเพลต IDP
+    idp_enter_tag_or_skills_error: เลือกอย่างน้อยหนึ่งแท็กหรือทักษะ
+    idp_enter_template_description_error: จําเป็นต้องมีคําอธิบายเทมเพลต
+    idp_enter_template_name_error: ต้องระบุชื่อเทมเพลต
+    idp_errors_cannot_update_progress_plan_completed: ไม่สามารถอัปเดตความคืบหน้าได้เนื่องจากแผน IDP ได้เสร็จสิ้นแล้ว
+    idp_errors_skills_required_on_publishing: โปรดเลือกทักษะก่อนเผยแพร่เทมเพลต
+    idp_errors_update: ไม่อนุญาตให้อัปเดตเนื่องจากเทมเพลต IDP เชื่อมโยงกับแผน IDP ของผู้ใช้อยู่แล้ว การเปลี่ยนแปลงรูปลักษณ์ถูกบันทึกไว้
+    idp_fields_approval_date: วันที่อนุมัติ
+    idp_fields_assigned_data: ข้อมูลที่ได้รับมอบหมาย
+    idp_fields_assigned_date: วันที่กําหนด
+    idp_fields_completion_date: วันที่เสร็จสมบูรณ์
+    idp_fields_current_job_role: บทบาทงานปัจจุบัน
+    idp_fields_division: แผนก
+    idp_fields_label: ฟิลด์
+    idp_fields_name: ชื่อ
+    idp_fields_publish_date: วันที่เผยแพร่
+    idp_fields_review_date: วันที่ตรวจสอบ
+    idp_fields_target_job_role: บทบาทงานเป้าหมาย
+    idp_global_skills: ทักษะระดับโลก
+    idp_idp: ผู้พลัดถิ่น
+    idp_idp_template: เพิ่มเทมเพลต IDP
+    idp_interview_questions: คําถามสัมภาษณ์
+    idp_interview_questions_updated: คําถามสัมภาษณ์อัปเดตเรียบร้อยแล้ว
+    idp_intro_message: ข้อความแนะนํา
+    idp_intro_message_hint: หากต้องการแก้ไขข้อความแนะนําโปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
+    idp_intro_message_success: บันทึกข้อความแนะนําเรียบร้อยแล้ว
+    idp_locales: ตำแหน่ง
+    idp_logo_image: ภาพโลโก้
+    idp_logo_type_both: โลโก้ Mercer และลูกค้า
+    idp_logo_type_client_only: โลโก้ไคลเอ็นต์เท่านั้น
+    idp_logo_type_label: ประเภทโลโก้
+    idp_logo_type_mercer_only: โลโก้ Mercer เท่านั้น
+    idp_logo_type_none: ไม่มีโลโก้
+    idp_no_interview_questions_selected: ไม่มีคําถามสัมภาษณ์ที่เลือก
+    idp_no_reflection_questions_selected: ไม่ได้เลือกคําถามไตร่ตรอง
+    idp_none: ไม่มีใคร
+    idp_one_click_idp_enabled: เปิดใช้งาน IDP ด้วยคลิกเดียว
     idp_plan_reset_success: รีเซ็ตแผนเรียบร้อยแล้ว
+    idp_reference_locale: ตําแหน่งที่ตั้งอ้างอิง
+    idp_reflection_questions: คําถามไตร่ตรอง
+    idp_reflection_questions_hint: หากต้องการแก้ไขคําถามเกี่ยวกับการสะท้อน โปรดบันทึกเทมเพลต IDP ก่อนเพื่อเปิดใช้งานการตั้งค่าเหล่านี้
+    idp_reflection_questions_updated: คําถามสะท้อนอัปเดตเรียบร้อยแล้ว
+    idp_remove_skill: ลบสกิลออก
+    idp_revert_skill_to_public_errors_skill_already_public: ทักษะเป็นสาธารณะแล้ว
+    idp_revert_skill_to_public_errors_skill_not_found: ไม่พบทักษะ
+    idp_revert_skill_to_public_success_base_message: ผู้จัดการของคุณมองเห็นทักษะ '%{skill_name}' แล้ว
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} และแผน IDP ของคุณได้ถูกส่งเพื่อขออนุมัติแล้ว"
+    idp_select_by_tags: เลือกตามแท็ก
+    idp_select_interview_question: เริ่มพิมพ์เพื่อค้นหาและเลือกคําถาม
+    idp_select_reflection_question: เริ่มพิมพ์เพื่อค้นหาและเลือกคําถาม
+    idp_select_skill_gap_report: เลือกรายงานช่องว่างทักษะ
+    idp_select_specific_skills: เลือกทักษะเฉพาะ
+    idp_selected: เลือก
+    idp_self_rating: เปิดใช้งานการให้คะแนนตนเอง
+    idp_setting_manager_approves_idp: ผู้จัดการอนุมัติ IDP
+    idp_setting_manager_can_edit_idp: ผู้จัดการสามารถแก้ไข IDP ได้
+    idp_setting_require_all_development_actions_complete: กําหนดให้การดําเนินการพัฒนาทั้งหมดเสร็จสมบูรณ์
+    idp_show_reflections: แสดงภาพสะท้อน
+    idp_skill_gap_report: รายงานช่องว่างทักษะ
+    idp_skill_gap_report_ai_assistant: ผู้ช่วยวิเคราะห์รายงานช่องว่างทักษะ
+    idp_skill_source_preference: แหล่งที่มาของทักษะ
+    idp_skill_sources_from_ai: จากความรู้ทั่วไป AI
+    idp_skill_sources_from_template: จากเทมเพลตและแผนที่
+    idp_skills: ทักษะ
+    idp_skills_privacy_messages_made_private: ทักษะ '%{skill_name}' ถูกทําเครื่องหมายว่าเป็นส่วนตัวและจะถูกซ่อนจากผู้จัดการของคุณ
+    idp_skills_privacy_messages_made_public: ผู้จัดการของคุณเห็นทักษะ '%{skill_name}' แล้ว
+    idp_skills_privacy_messages_skill_not_found: ไม่พบทักษะ
+    idp_skills_privacy_messages_unauthorized: ไม่ได้รับอนุญาตให้ดัดแปลงทักษะนี้
+    idp_skills_updated: ทักษะ IDP ได้รับการอัปเดตสำเร็จ
+    idp_status_draft: ร่าง
+    idp_status_published: เผยแพร่แล้ว
+    idp_status_updated: สถานะผู้พลัดถิ่นภายในประเทศได้รับการอัปเดตสำเร็จ
+    idp_subtitle_text: ข้อความคําบรรยาย
+    idp_tab_development_actions: การดําเนินการพัฒนา
+    idp_tab_interview_questions: คําถามสัมภาษณ์
+    idp_tab_reflection_questions: คําถามไตร่ตรอง
+    idp_tab_settings: การตั้งค่า
+    idp_tab_templates: แม่ แบบ
+    idp_technical_skills: ทักษะทางเทคนิค
+    idp_template_details: รายละเอียดเทมเพลต
     idp_templates: เทมเพลต IDP
+    idp_title_text: ข้อความชื่อเรื่อง
+    idp_update_interview_questions: อัปเดตคําถามสัมภาษณ์
+    idp_update_reflection_questions: อัปเดตคําถามสะท้อน
     iiht: ไอเอชที
     iiht_assessment: การประเมิน IIHT
+    iiht_password: รหัสผ่าน
+    iiht_tenancy_name: ชื่อผู้เช่า
+    iiht_tenant_id: รหัสผู้เช่า
+    iiht_user: ผู้ใช้
+    image: ภาพ
+    import_action_title: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
+    import_actions_proficiency: ความเชี่ยวชาญในการนําเข้า
+    import_actions_translations: นําเข้าการแปลความสามารถ
     import_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI
     import_csv_assessment_group_error: 'แถว%{index}: ผู้ใช้ที่มีอีเมล %{email} ได้รับเชิญแล้วสำหรับ ''%{workshopInviteName}'''
     import_csv_error: 'แถวที่ %{index}: ผู้ใช้ที่มี %{email} อีเมลไม่ได้อยู่ในแคมเปญนี้'
     import_csv_parsing_error: 'ข้อผิดพลาดในการแยกวิเคราะห์ CSV: %{message}'
     import_description: นําเข้าผู้ใช้จากไฟล์ CSV แต่ละแถวต้องมีที่อยู่อีเมล
+    import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
     import_download_sample: ดาวน์โหลดตัวอย่าง CSV
     import_error: การนําเข้าล้มเหลว โปรดลองอีกครั้ง
     import_error_saving_data: 'ข้อผิดพลาดในการบันทึกข้อมูลสําหรับ %{email}: %{message}'
     import_errors_title: ข้อผิดพลาดในการนําเข้า
+    import_evaluators: ผู้ประเมินการนำเข้า
     import_external_scoring_action: นําเข้าการให้คะแนนภายนอก
     import_external_scoring_body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้นําเข้าได้ที่นี่
     import_external_scoring_data_description: การนําเข้าข้อมูลการให้คะแนนภายนอกสําหรับการประเมินและแคมเปญที่ระบุ
@@ -420,20 +1025,177 @@ th:
     import_external_scoring_success_msg: อัปโหลดนําเข้าสําเร็จแล้ว
     import_external_scoring_upload: อัปโหลด
     import_file_required: โปรดเลือกไฟล์ CSV ที่จะอัปโหลด
+    import_info_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    import_job_queued: งานนําเข้าระดับความชํานาญถูกจัดคิว
     import_queued_success: งานนําเข้าหัวเรื่องถูกจัดกําหนดการเรียบร้อยแล้ว โปรดตรวจสอบสถานะการแจ้งเตือนของคุณ
     import_sample_file_label: 'ไฟล์ตัวอย่าง:'
     import_scenario_id_mismatch: 'รหัสสถานการณ์สมมติไม่ตรงกันสําหรับ %{email}: %{expected_id} ที่คาดไว้ แต่ CSV มีรหัสสถานการณ์ที่แตกต่างกัน'
+    import_subjects: นําเข้าหัวข้อ
+    import_success_msg: อัปโหลดการนําเข้าเรียบร้อยแล้ว
     import_successfully_saved: บันทึกผลการค้นหาภายนอกสําหรับ %{email} ได้สําเร็จด้วยเป้าหมาย %{goals_count}
     import_title: นําเข้าหัวเรื่องจาก CSV
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
+    inactive: เกียจคร้าน
+    include_locales_label: รวมคําแปล
+    include_locales_name: include_locales
+    index_title: โครงการ
+    individual_invite_tabs_assessment_center: ศูนย์ประเมินผล
+    individual_invite_tabs_invitation_status: สถานะคำเชิญ
+    info_color: ข้อมูลสี
+    innovation_styles_form_full_description: คําอธิบายแบบเต็ม
+    innovation_styles_index_title: รูปแบบนวัตกรรม
+    innovation_styles_list_position: ฐานะ
+    innovation_styles_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือไม่ว่าต้องการลบรูปแบบนวัตกรรมนี้?</p>\n"
+    instruction_messages: ข้อความแนะนํา
+    instructions: คำแนะนำ
+    instructions_actions_saved: บันทึกคําแนะนําสําเร็จ
+    instructions_enable: เปิดใช้งานคําแนะนํา
+    instructions_save: บันทึกคําแนะนํา
+    integrations_actions_add: การบูรณาการ
+    integrations_actions_back: กลับไปที่การผสานการทํางาน
+    integrations_actions_load_mettl_catalog: โหลดแคตตาล็อกการประเมิน Mettl
+    integrations_actions_load_microsite_catalog: โหลดแคตตาล็อกการประเมินไมโครไซต์
+    integrations_actions_load_skillvue_catalog: โหลดแคตตาล็อกการประเมิน Skillvue
+    integrations_columns_active: เปิดใช้งาน
+    integrations_columns_details: รายละเอียด
+    integrations_columns_name: ชื่อการรวม
+    integrations_details_client_id: รหัสไคลเอ็นต์
+    integrations_details_deployment_id: รหัสการปรับใช้
+    integrations_details_platform_access_token_url: URL โทเค็นการเข้าถึงแพลตฟอร์ม
+    integrations_details_platform_authentication_request_url: URL คําขอการรับรองความถูกต้องของแพลตฟอร์ม
+    integrations_details_platform_host_name: ชื่อโฮสต์ของแพลตฟอร์ม
+    integrations_details_platform_id: รหัสแพลตฟอร์ม
+    integrations_details_platform_public_keyset_url: URL ชุดคีย์สาธารณะของแพลตฟอร์ม
+    integrations_details_provider: ชื่อผู้ให้บริการ
+    integrations_details_webhookUrl: URL เว็บฮุค
+    integrations_details_webhookUrls: URL เว็บฮุค
+    integrations_integrations: การบูรณาการ
+    integrations_load_mettl_success: โหลดงานการประเมิน mettl ถูกจัดคิวเรียบร้อยแล้ว
+    integrations_load_microsite_success: การประเมินไมโครไซต์ได้ถูกจัดคิวเรียบร้อยแล้ว
+    integrations_load_skillvue_success: โหลดงานการประเมิน skillvue ถูกจัดคิวสําเร็จแล้ว
+    integrations_names_hogan: โฮแกน
+    integrations_names_iiht: ไอเอชที
+    integrations_names_mettl: เมทเทล
+    integrations_names_microsite: ไมโครไซต์
+    integrations_names_skillvue: สกิลวิว
+    integrations_names_yoodli: ยุดลี
+    integrations_view_all_schedules: ดูตาราง Mettl ทั้งหมด
+    interface: อิน เทอร์ เฟซ
     internal: ภายใน
+    interview_questions_delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบคําถามสัมภาษณ์นี้?
+    interview_questions_export_action: ส่งออกคําถามสัมภาษณ์
+    interview_questions_export_failure_msg: เกิดข้อผิดพลาดขณะส่งออกไฟล์
+    interview_questions_export_success_msg: กําลังส่งออกคําถามสัมภาษณ์ โปรดตรวจสอบสถานะในการแจ้งเตือน
+    interview_questions_form_mandatory: บังคับ
+    interview_questions_form_question: ปัญหา
+    interview_questions_form_question_type: ประเภทคําถาม
+    interview_questions_form_question_type_audio: เสียง
+    interview_questions_form_question_type_video: วีดิทัศน์
+    interview_questions_form_time_limit: จํากัดเวลา (วินาที)
+    interview_questions_form_title: คําถามสัมภาษณ์
+    interview_questions_import_action: นําเข้าคําถามสัมภาษณ์
+    interview_questions_import_failure_msg: ข้อผิดพลาดขณะนําเข้าไฟล์
+    interview_questions_import_success_msg: กําลังนําเข้าคําถามสัมภาษณ์ โปรดตรวจสอบสถานะในการแจ้งเตือน
+    interview_questions_question: ปัญหา
+    invalid_client_ids: รหัสลูกค้าไม่ถูกต้อง
+    invalid_confidence_interval: confidence_interval ต้องเป็น 0 หรือ 1
     invalid_csv_header: ไฟล์ CSV มีส่วนหัวที่ไม่ถูกต้อง
+    invalid_json: การกำหนดค่าไม่ถูกต้องตาม JSON
+    invalid_leadership_bar: leadership_bar ต้องเป็น 0 หรือ 1
+    invalid_norm_option: ตัวเลือกค่าปกติต้องอยู่ระหว่าง 0 ถึง 3
+    invalid_project_ids: 'รหัสโครงการไม่ถูกต้อง: %{ids}'
     invalid_question_ids: 'รหัสคำถามไม่พบในการประเมินนี้: %{ids}'
+    invalid_report_ids: รหัสรายงานไม่ถูกต้อง
+    invite_add_invite: เพิ่มคําเชิญ
+    invite_assessment_center: ศูนย์ประเมินผล
+    invite_basic_info_allow_preferred_language: อนุญาตภาษาที่ต้องการ
+    invite_basic_info_assessment_centers: ศูนย์การประเมิน
+    invite_basic_info_assessment_centers_hint: ตัวอย่างคําค้นหา "10 สิงหาคม 2023 เวลา 20:06 น."
+    invite_basic_info_assessment_centers_placeholder: เลือกศูนย์การประเมิน
+    invite_basic_info_description: ออกคำเชิญให้ผู้สมัครโดยเลือกศูนย์การประเมินหลายแห่ง จากนั้นผู้สมัครจะเลือกเพียงศูนย์เดียวจากศูนย์ทั้งหมดที่มีอยู่
+    invite_basic_info_neurodiversity: รวมคําถามเกี่ยวกับความหลากหลายทางระบบประสาท
+    invite_basic_info_preferred_language: ภาษาที่อนุญาต
+    invite_basic_info_required_error: ไม่สามารถว่างเปล่าได้
+    invite_basic_info_title: ข้อมูลพื้นฐาน
+    invite_center_group: กลุ่มศูนย์การประเมิน
+    invite_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบคําเชิญ?
+    invite_confirm_message_with_title: คุณแน่ใจหรือไม่ว่าต้องการลบคําเชิญที่มีชื่อ '%{invite_title}'?
+    invite_evaluators_description: ข้อความนี้จะแสดงต่ออาสาสมัครเมื่อพวกเขาเริ่มเสนอชื่อผู้ประเมิน
+    invite_evaluators_name: เชิญผู้ประเมิน
+    invite_invites: คำเชิญ
+    invite_name_placeholder: ป้อนชื่อคําเชิญ
+    invite_not_selected: ไม่ได้เลือก
+    invite_request_accept: ยอมรับ
+    invite_request_reason: เหตุผล
+    invite_request_reject: ปฏิเสธ
+    invite_request_remove_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการ %{action} %{status} จาก %{subjectName}
+    invite_request_remove_confirm_success: "%{status} จาก %{subjectName} ได้ทำการสั่งซื้อ %{action} สำเร็จแล้ว"
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: ชื่อเรื่อง
+    invite_request_workshop_time: เวลาเวิร์กช็อป
+    invite_requests: คำขอ
+    invite_save: บันทึกและส่ง
+    invite_send_invites_add_description: คุณสามารถแปลชื่อคําเชิญและคําอธิบายได้หลายภาษา
+    invite_send_invites_add_language: เพิ่มภาษา
+    invite_send_invites_input_label: เพิ่มภาษาเพิ่มเติม
+    invite_send_invites_input_placeholder: เลือกภาษาเพิ่มเติม
+    invite_send_invites_invitation_title: ชื่อคําเชิญ
+    invite_send_invites_title: คําเชิญ (%{lang})
+    invite_steps_add_subjects: เพิ่มหัวข้อ
+    invite_steps_basic_info: ข้อมูลพื้นฐาน
+    invite_steps_has_errors: มีข้อผิดพลาด
+    invite_steps_send_invitation: ส่งคําเชิญ
+    invite_subjects_count: หัวข้อ
+    invite_subjects_csv_error: 'แถว%{index}: ผู้ใช้ที่มีอีเมล %{email} ไม่ได้อยู่ในแคมเปญนี้'
+    invite_subjects_csv_imported: "%{count} หัวข้อที่นําเข้า"
+    invite_subjects_description: คุณสามารถเพิ่มหัวเรื่องทีละเรื่องได้โดยการค้นหาหรืออัปโหลดไฟล์ csv จํานวนมาก
+    invite_subjects_download: ดาวน์โหลด
+    invite_subjects_file_example: อ้างอิงถึงไฟล์ตัวอย่างเพื่ออัปโหลดข้อมูลหัวข้อ
+    invite_subjects_import_from_campaign: เพิ่มทั้งหมดจากแคมเปญ
+    invite_subjects_import_title: นําเข้าหัวข้อ
+    invite_subjects_import_users: นําเข้าผู้ใช้
+    invite_subjects_search_user: ค้นหาหัวข้อ
+    invite_subjects_title: หัวข้อ
+    invite_subjects_upload_csv: อัปโหลดไฟล์ CSV
+    invite_success_message: คําเชิญถูกลบออกเรียบร้อยแล้ว
+    invite_success_message_with_title: คําเชิญที่มีชื่อ '%{invite_title}' ลบออกเรียบร้อยแล้ว
+    invite_title: ชื่อเรื่อง
+    invite_workshop_list_remove_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการลบศูนย์การประเมินที่มีชื่อ '%{name}'
+    invite_workshop_list_remove_confirm_success: ศูนย์การประเมินถูกลบออกเรียบร้อยแล้ว
+    invite_workshop_list_remove_confirm_title: ยืนยัน
+    invite_workshop_title: ศูนย์การประเมิน
+    is_subject: คือ หัวข้อ
+    job_role_are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
+    job_role_column_job_group: กลุ่มงาน
+    job_role_column_skill_name: ชื่อทักษะ
+    job_role_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
+    job_role_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
+    job_role_form_code: รหัส
+    job_role_form_description: คำอธิบาย
+    job_role_form_job_group: กลุ่มงาน
+    job_role_form_name: ชื่อ
+    job_role_form_title: บทบาทงาน
+    job_role_import_action_translations: นําเข้าการแปลบทบาทงาน
+    job_role_import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    job_role_import_success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    job_role_job_role_details: รายละเอียดตำแหน่งงาน
+    job_role_skill_mapping_column_expected_proficiency_level: ระดับความชํานาญที่คาดหวัง
+    job_role_skill_mapping_form_title: การทําแผนที่งานทักษะ
+    job_role_translations: การแปลบทบาทงาน
     job_roles: บทบาทงาน
+    join_room: เข้าร่วมห้อง
+    keep_original: เก็บต้นฉบับไว้
+    key: กุญแจ
+    key_id: รหัสประจำตัว
     keywords: คำสำคัญ
     keywords_placeholder: กรุณากรอกคำค้นหาโดยคั่นด้วยเครื่องหมายจุลภาค
+    language_id: รหัสภาษา
+    last_name_required: กรุณาระบุนามสกุล
+    lead_assessment: การประเมินโอกาสในการขาย
     lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
+    leadership_bar: บาร์ผู้นำ
+    leadership_bar_update_success: บาร์ผู้นำได้รับการอัปเดตสำเร็จ
     learning_from_others: การเรียนรู้ร่วมกัน [20]
     level: ระดับ
     level_apply: สมัคร
@@ -446,22 +1208,63 @@ th:
     lighthouse_logo_alt_text: โลโก้ประภาคาร
     lighthouse_question: คำถามสำคัญ
     lighthouse_question_id: รหัสคำถาม Lighthouse
+    link_text: ลิงก์
     linked_assessments: การประเมินที่เชื่อมโยง
+    locale: สถานที่เกิดเหตุ
+    log_date: วันที่บันทึก
     logged_in: เข้าสู่ระบบ
+    login: เข้าสู่ระบบ
     low: ต่ำ
+    mail_history: ประวัติอีเมล
+    main_report: รายงานหลัก
     maintenance: การบำรุงรักษา
     maintenance_settings: การตั้งค่าการบำรุงรักษา
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
+    make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
+    manager_approves_reports: ผู้จัดการอนุมัติรายงาน
+    manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
+    manager_cannot_access_subject_reports: ผู้จัดการไม่สามารถดูรายงานได้จนกว่าจะตอบสนองความต้องการ
+    manager_ids_label: ผู้จัดการศูนย์
+    manager_report_ready_description: ข้อความนี้จะถูกส่งไปยังผู้จัดการของหัวเรื่องเมื่อรายงานของหัวเรื่องพร้อม
+    manager_report_ready_name: พร้อมรายงานผู้จัดการ
+    managers_title: จัดการ
+    mark_finalized: มาร์คเสร็จสิ้น
+    mark_finalized_bulk_confirm: การสรุปผลลัพธ์ของวัตถุสำหรับผู้ใช้ที่เลือกทั้งหมดจะสร้างรายงานที่ใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    mark_finalized_confirm: กำลังสรุปผลลัพธ์ของอาร์ติแฟกต์สำหรับผู้ใช้ '%{email}' ซึ่งจะสร้างรายงานที่ใช้ AI อาร์ติแฟกต์สำหรับผู้ใช้ดังกล่าว คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    mark_licenses_as_deactivated: มาร์คใบอนุญาตเป็นยกเลิกการใช้งาน
+    mark_not_finalized: ยังไม่ได้รับการอนุมัติขั้นสุดท้าย
+    mark_not_finalized_bulk_confirm: การลบ finalize จากผู้ใช้ที่เลือกทั้งหมดจะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    mark_not_finalized_confirm: การลบ finalize จากผู้ใช้ '%{email}' จะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifact สำหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    mask_identity_for_examus: ข้อมูลหน้ากากสําหรับ Examus Proctoring
+    mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
+    mask_identity_for_iiht: ข้อมูลหน้ากากสําหรับ IIHT
+    mask_identity_for_mettl: ข้อมูลหน้ากากสําหรับ METTL
+    mask_identity_for_mhs: ปกปิดข้อมูลสำหรับ MHS
+    mask_identity_for_pearson: ข้อมูลหน้ากากสําหรับ Pearson
+    mask_identity_for_saville: ข้อมูลหน้ากากสําหรับ Saville
+    mask_identity_for_skillvue: ข้อมูลมาสก์สําหรับ Skillvue
+    mask_identity_for_yoodli: ข้อมูลมาสก์สําหรับ Yoodli
     max_value: ค่าสูงสุด
     mean: ค่าเฉลี่ย
     media_files_label: ไฟล์
     media_library: คลังสื่อ
     media_library_page_title: ห้องสมุดสื่อ - แดชบอร์ด - Mercer Lighthouse
     meeting: การประชุม
+    meeting_link: ลิงค์การประชุม
+    meetings_and_resources: การประชุมและแหล่งข้อมูล
     messages: ข้อความ
+    meta_title: แผงการดูแลระบบ
     mettl: เมทเทล
+    mettl_apiBaseUrl: ปลายทาง API
+    mettl_apiBaseUrlRequired: จําเป็นต้องมีปลายทาง API
     mettl_assessment: การประเมิน Mettl
+    mettl_privateKey: คีย์ส่วนตัว
+    mettl_privateKeyRequired: ต้องใช้คีย์ส่วนตัว
+    mettl_publicKey: กุญแจสาธารณะ
+    mettl_publicKeyRequired: ต้องใช้คีย์สาธารณะ
+    mettl_servers_mettl_eu: ยุโรป
+    mettl_servers_mettl_india: อินเดีย
     mhs: MHS
     mhs_assessment: การประเมินผล MHS
     mhs_assessment_name: ชื่อการประเมิน MHS
@@ -477,24 +1280,75 @@ th:
     min_value: ค่าต่ำสุด
     minimum_10_words: อย่างน้อย 10 คำ
     minimum_download_speed: ความเร็วในการดาวน์โหลดขั้นต่ำ (ใน Mbps)
+    minimum_face_detection_ratio: อัตราส่วนการตรวจจับใบหน้าขั้นต่ำ
     minimum_system_check_validity: ระดับแคมเปญขั้นต่ำ การตรวจสอบระบบควรมีผลเป็นเวลา 15 นาที
     minimum_upload_speed: ความเร็วในการอัปโหลดขั้นต่ำ (ใน Mbps)
     missing_min_max_values: จำเป็นต้องระบุค่าต่ำสุดและค่าสูงสุด
+    modal_convert_option: แปลงแคมเปญนี้เป็นเทมเพลต
+    modal_convert_success: เทมเพลตถูกแปลงสำเร็จ
+    modal_copy_option: สร้างเทมเพลตใหม่จากแคมเปญนี้
+    modal_copy_success: การสร้างแม่แบบแคมเปญได้รับการกำหนดเวลาเรียบร้อยแล้ว กรุณาตรวจสอบการแจ้งเตือนของคุณเพื่อดูสถานะ
+    modal_description: เลือกวิธีที่คุณต้องการสร้างเทมเพลตจากแคมเปญนี้
+    modal_failed: การสร้างเทมเพลตล้มเหลว
+    modal_subtitle: เลือกช่วงวันที่ จากนั้นเลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
+    modal_title: แปลงเป็นเทมเพลต
     model_answer: คำตอบตัวอย่าง
     model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
     must_be_a_valid_url: URL ไม่ถูกต้อง กรุณาระบุ URL ที่สมบูรณ์พร้อมโปรโตคอล http หรือ https
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
     name_required: ต้องระบุชื่อ
+    navigation_audit_logs: บันทึกการตรวจสอบ
+    navigation_factors: ปัจจัย
+    navigation_innovation_styles: รูปแบบนวัตกรรม
+    navigation_logout: ออกจากระบบ
+    navigation_occupations: อาชีพ
+    navigation_registration_codes: รหัสการลงทะเบียน
+    navigation_skills_taxonomy: อนุกรมวิธานทักษะ
+    navigation_users: ผู้เข้าร่วม
     new_folder: โฟลเดอร์ใหม่
+    new_score: คะแนนใหม่
+    no_assessments_found: รหัสการตรวจสอบ
     no_client_access: คุณไม่มีสิทธิ์เข้าถึงลูกค้านี้
     no_clients_found: ไม่พบลูกค้า
+    no_completed_assessments: ยังไม่มีการประเมินที่สมบูรณ์
     no_file_selected: ไม่มีไฟล์ที่เลือก
     no_notifications: ไม่มีการแจ้งเตือน
     no_question_mappings: ไม่มีการจับคู่คำถามพร้อมใช้งาน
+    no_rendered_output: ไม่มีเอาต์พุตที่แสดงผล
     no_status: ไม่มีสถานะ
+    nomination_denied_description: ข้อความนี้จะถูกส่งไปยังผู้ทดลองเมื่อการเสนอชื่อถูกปฏิเสธ
+    nomination_denied_name: การเสนอชื่อถูกปฏิเสธ
+    nomination_help_description: ข้อความความช่วยเหลือที่แสดงบนบัตรเสนอชื่อบนแดชบอร์ดของผู้ใช้
+    nomination_help_name: ความช่วยเหลือในการเสนอชื่อ
+    norm: ค่ามาตรฐาน
     norm_editor_numeric_value_error: อนุญาตเฉพาะค่าตัวเลขเท่านั้น (จำนวนเต็มหรือทศนิยม)
+    norm_id: รหัสบรรทัดฐาน
+    norm_option: ตัวเลือกมาตรฐาน
+    norm_option_form_select: เลือกตัวเลือกมาตรฐาน
+    norm_option_update_success: ตัวเลือกปกติได้รับการอัปเดตสำเร็จ
+    norm_region: ภูมิภาคปกติ
+    norm_region_form_select: เลือกภูมิภาคมาตรฐาน
+    norm_region_update_success: ภูมิภาคปกติได้รับการอัปเดตสำเร็จ
+    normal: ปกติ
+    normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
     norms: ค่ามาตรฐาน
+    norms_copy_successfully: คัดลอกค่ามาตรฐาน "%{name}" เรียบร้อยแล้ว
+    norms_export_success_msg: ตั้งเวลาส่งออกงานมาตรฐานเรียบร้อยแล้ว โปรดตรวจสอบสถานะในการแจ้งเตือน
+    norms_import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    norms_import_select_file_validation: โปรดเลือกเจ้าของและไฟล์ก่อนส่ง
+    norms_import_success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    norms_import_title: นําเข้าบรรทัดฐาน
+    norms_index_import: นําเข้า
+    norms_remove_confirm: ป้อนชื่อบรรทัดฐานที่ระบุด้านล่างในกล่องข้อความเพื่อยืนยัน
+    norms_remove_warning: คุณแน่ใจหรือไม่ว่าต้องการลบบรรทัดฐาน "%{name}"
+    norms_score_types_five_scale: ห้ามาตราส่วน
+    norms_score_types_norm_type: ประเภทบรรทัดฐาน
+    norms_score_types_percentage: อัตราร้อยละ
+    norms_sidebar_copy: คัดลอกบรรทัดฐาน
+    norms_sidebar_editor: เครื่องมือแก้ไขค่ามาตรฐาน
+    norms_sidebar_export: บรรทัดฐานการส่งออก
+    norms_title: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
     notes: หมายเหตุ
@@ -503,16 +1357,51 @@ th:
     notification_bell_icon_alt_text: ไอคอนกระดิ่งแจ้งเตือน
     notifications: แจ้ง เตือน
     number: หมายเลข
+    oauth_scope_label: ขอบเขต
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: ต้องมีขอบเขต
     occupations: อาชีพ
+    occupations_factors_list_condition: เงื่อนไข
+    occupations_factors_list_position: ฐานะ
+    occupations_factors_list_weight: น้ําหนัก
+    occupations_form_alternative_icon: ไอคอนทางเลือก
+    occupations_form_color: สี
+    occupations_form_indicative_roles_image: ภาพแสดงบทบาทเชิงบ่งชี้
+    occupations_form_key_career_tracks_image: เส้นทางอาชีพหลัก
+    occupations_index_title: อาชีพ
+    occupations_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือว่าต้องการลบอาชีพนี้?</p>\n"
     on_the_job: ในการทํางาน [70]
     only_editable_on_create: ตัวเลือกนี้สามารถแก้ไขได้เฉพาะในขณะสร้างเท่านั้น
     options: ตัวเลือก
+    options_evaluator_options: ตัวเลือกของผู้ประเมิน
+    options_global: ตัวเลือกระดับโลก
+    options_manager_options: ตัวเลือกของผู้จัดการ
+    options_subject_options: ตัวเลือกวิชา
+    options_title: ตัวเลือก
     organisational: ว่องไว
     original_text: ข้อความต้นฉบับ
+    other_assessments: การประเมินอื่นๆ
+    other_assessor_assessments: การประเมินผู้ประเมินอื่น ๆ
+    other_reports: รายงานอื่นๆ
     others: อื่นๆ
+    outcome: ผล
+    output_schema_key_constraint: คีย์ต้องขึ้นต้นด้วยตัวพิมพ์เล็ก และสามารถมีได้เฉพาะตัวพิมพ์เล็ก ตัวเลข และขีดล่างเท่านั้น
+    output_schema_keys: คีย์สคีมาเอาต์พุต
     overall: โดยรวม
     overall_score: คะแนนรวม
+    overall_scoring: คะแนนโดยรวม
+    parsed_dependencies_help: การพึ่งพาที่แยกวิเคราะห์สําหรับผู้ใช้ที่ใช้โดย AI Assistant สําหรับการสร้างผลลัพธ์สิ่งประดิษฐ์
+    parsed_dependencies_title: การพึ่งพาที่แยกวิเคราะห์
+    parsed_dependencies_view: ดูการพึ่งพาที่แยกวิเคราะห์
     participants: ผู้เข้าร่วม
+    participants_tab: ผู้เข้าร่วม
+    participants_tabs_assessors: ผู้ประเมิน
+    participants_tabs_sms_contacts: ติดต่อ SMS
+    participants_tabs_subjects: หัวข้อ
+    password_label: รหัสผ่าน
+    password_name: รหัสผ่าน
+    past: ก่อนหน้า
+    payload: น้ําหนักบรรทุก
     pearson: เพียร์สัน
     pearson_assessment: การประเมินเพียร์สัน
     permissions:
@@ -710,7 +1599,7 @@ th:
           view: ดู
         messages:
           email: อีเมล
-          instructions: คำแนะนำ
+          instructions: รหัสการตรวจสอบ
           options: ตัวเลือก
           title: ข้อความ
         norms:
@@ -825,7 +1714,7 @@ th:
         view: ดู
       messages:
         email: อีเมล
-        instructions: คำแนะนำ
+        instructions: รหัสการตรวจสอบ
         options: ตัวเลือก
         title: ข้อความ
       norms:
@@ -940,27 +1829,221 @@ th:
         view: ดู
         view_recordings: ดูการบันทึก
     permissions_360_campaigns: สิทธิ์เฉพาะสําหรับแคมเปญ 360 องศา
+    permissions_updated: การปรับปรุงสิทธิ์สำเร็จแล้ว
     piped_text: ข้อความที่จัดรูปแบบ
+    piped_text_modal_assessment_center: ศูนย์ประเมินผล
+    piped_text_modal_campaign_link: ลิงก์แคมเปญ
+    piped_text_modal_campaign_name: ชื่อแคมเปญ
+    piped_text_modal_campaigns: แคมเปญ
+    piped_text_modal_duration: ระยะเวลา
+    piped_text_modal_end_time: เวลาสิ้นสุด
+    piped_text_modal_insight_page_link: ลิงค์หน้าข้อมูลเชิงลึก
+    piped_text_modal_insight_page_url: URL ของหน้าข้อมูลเชิงลึก
+    piped_text_modal_invite_title: ชื่อเรื่อง
+    piped_text_modal_invites: คำเชิญ
+    piped_text_modal_magic_link: ลิงค์เมจิก
+    piped_text_modal_magic_url: URL เมจิก
+    piped_text_modal_platform_url_links: แพลตฟอร์ม URL และลิงก์
+    piped_text_modal_project_name: ชื่อโครงการ
+    piped_text_modal_projects: โครงการ
+    piped_text_modal_report_name: ชื่อรายงาน
+    piped_text_modal_start_time: เวลาเริ่มต้น
+    piped_text_modal_title: เพิ่มข้อความท่อ
+    piped_text_modal_user_reports: รายงานของผู้ใช้
+    piped_text_modal_users: ผู้เข้าร่วม
+    playground: สนามเด็กเล่น
+    playground_info: ทดสอบสิ่งประดิษฐ์ของคุณด้วยข้อมูลตัวอย่างเพื่อดูตัวอย่างผลลัพธ์ที่สร้างขึ้น
+    playground_placeholder: ป้อนข้อมูลการทดสอบ
+    position_auto: รถ
+    position_label: ตําแหน่งกล่องเข้าสู่ระบบ
+    position_left: ซ้าย
+    position_right: ขวา
     precision: ความแม่นยำ
+    preview_report: แสดงตัวอย่างรายงาน
+    previous: ก่อน
+    prework: งานเตรียมก่อนเรียน
+    prework_required: ไม่อนุญาตให้จองศูนย์หากงานล่วงหน้าไม่เสร็จสมบูรณ์
+    prework_required_for_invite: ส่งอีเมลคําเชิญเมื่อ Pre-Work เสร็จสิ้นเท่านั้น
+    primary_button: หลัก
+    primary_color: สีหลัก
     privacy: ความเป็นส่วนตัว
+    privacy_link: เปิดใช้งานลิงก์ความเป็นส่วนตัว
+    privacy_link_label: ลิงค์ความเป็นส่วนตัว
+    privacy_link_placeholder: ป้อนลิงก์ความเป็นส่วนตัว
+    privacy_text: ข้อความความเป็นส่วนตัว
+    privacy_text_placeholder: ป้อนข้อความความเป็นส่วนตัว
     proctoring: การคุมสอบ
+    proctoring_allow_on_assessment_center: อนุญาตให้มีการตรวจสอบการสอบที่ศูนย์ประเมิน
+    proctoring_enable: เปิดใช้งานการคุมสอบ
     proctoring_errors_timed_only: การตรวจสอบการสอบแบบเลือกสรรสามารถเปิดใช้งานได้เฉพาะการประเมินที่มีกำหนดเวลาเท่านั้น
     proctoring_fixed_time_required: เปิดใช้งานเวลาคงที่เพื่อเลือกตัวเลือกนี้
+    proctoring_identification: รหัส
+    proctoring_identifications:
+      face: หน้า
+      face_and_passport: ใบหน้าและหนังสือเดินทาง
+      passport: หนังสือเดินทาง
+    proctoring_integration_type: บูรณาการ
+    proctoring_integration_types:
+      iframe: อิฟราม
+      ldb: เบราว์เซอร์ล็อคดาวน์
     proctoring_mode_all: เปิดใช้งานการตรวจสอบการสอบทุกการประเมิน
     proctoring_mode_all_except_ac: เปิดใช้งานการตรวจสอบการสอบทุกการประเมิน ยกเว้นศูนย์การประเมิน
+    proctoring_rule_types_allow_absence_in_frame: อนุญาตให้ไม่มีในเฟรม
+    proctoring_rule_types_allow_to_use_books: อนุญาตให้ใช้หนังสือ
+    proctoring_rule_types_allow_to_use_calculator: อนุญาตให้ใช้เครื่องคิดเลข
+    proctoring_rule_types_allow_to_use_excel: อนุญาตให้ใช้ Excel
+    proctoring_rule_types_allow_to_use_human_assistant: อนุญาตให้ใช้ผู้ช่วยมนุษย์
+    proctoring_rule_types_allow_to_use_messengers: อนุญาตให้ใช้ผู้ส่งสาร
+    proctoring_rule_types_allow_to_use_paper: อนุญาตให้ใช้กระดาษ
+    proctoring_rule_types_allow_to_use_websites: อนุญาตให้ใช้เว็บไซต์
+    proctoring_rule_types_allow_voices: อนุญาตเสียง
+    proctoring_rule_types_allow_wrong_gaze_direction: อนุญาตให้มีทิศทางการจ้องมองที่ไม่ถูกต้อง
+    proctoring_rules: กฎ
+    proctoring_sessions_columns_comment: ติชม
+    proctoring_sessions_columns_completed_at: เสร็จสิ้น
+    proctoring_sessions_columns_conclusion: บทสรุป
+    proctoring_sessions_columns_links: เชื่อม โยง
+    proctoring_sessions_columns_score: คะแนน
+    proctoring_sessions_columns_session_id: รหัสเซสชัน
+    proctoring_sessions_columns_started_at: เริ่มต้น
+    proctoring_sessions_links_report: รายงาน
+    proctoring_sessions_links_review: ตรวจสอบ
+    proctoring_sessions_resource_name: เซสชันการคุมสอบ
     proctoring_settings: การตั้งค่าการคุมสอบ
+    proctoring_trial: การพิจารณาคดีคุมสอบ
+    proctoring_type: ประเภท
+    proctoring_types:
+      offline: ออฟไลน์
+      online: ออนไลน์
     professional: มืออาชีพ
     proficiency: ความชำนาญ
     proficiency_level: กุญแจ API
     proficiency_levels: ระดับความสามารถ
+    proficiency_levels_fields_title: ความสามารถ
+    profile: โปรไฟล์
+    profile_change_password: เปลี่ยนรหัสผ่าน
     profile_details: รายละเอียดโปรไฟล์
+    project: โครงการ
+    project_admin: ผู้ดูแลระบบโครงการ
     project_admins: ผู้ดูแลระบบโครงการ
+    project_assessor: ผู้ประเมินโครงการ
+    project_features: คุณสมบัติของโครงการ
+    project_ids: รหัสโครงการ
+    project_ids_required: จำเป็นต้องมี project_ids สำหรับประเภทรายงานนี้
+    project_licenses: ใบอนุญาตโครงการ
     project_manager: ผู้จัดการโครงการ
+    project_not_related_to_client: โครงการ '%{project_id}' ไม่ได้เป็นของลูกค้า
     project_number: หมายเลขโครงการ
+    project_participants_column_campaigns: แคมเปญ
+    project_participants_column_createdAt: สร้างเมื่อ
+    project_participants_column_created_at: สร้างเมื่อ
+    project_participants_edit_participant: แก้ไขผู้เข้าร่วม
+    project_participants_filter_campaigns: ไม่มีแคมเปญ
+    project_participants_search_user: ค้นหาผู้ใช้
+    project_participants_send_email: ส่งอีเมล
+    project_path: เส้นทางโครงการ
     project_settings: การตั้งค่าโครงการ
+    project_tabs_assessments_column_normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
+    project_tabs_assessments_column_user_result_validity_in_days: ความถูกต้องของผลลัพธ์
+    project_tabs_assessments_delete_content: คุณแน่ใจหรือไม่ว่าต้องการลบการประเมิน '%{name}'
+    project_tabs_assessments_delete_success: การประเมิน '%{name}' ถูกลบเรียบร้อยแล้ว
+    project_tabs_assessments_delete_title: ลบการประเมิน
+    project_tabs_assessments_title: การประเมิน
+    project_tabs_design: ออกแบบ
+    project_tabs_general: ทั่วไป
+    project_tabs_privacy: ความเป็นส่วนตัว
+    project_tabs_profile: โปรไฟล์
+    project_tabs_registration: การลงทะเบียน
+    project_tabs_webhooks_actions_delete_key: ลบ
+    project_tabs_webhooks_actions_edit_key: แก้ไข
+    project_tabs_webhooks_actions_send_test_key: send_test
+    project_tabs_webhooks_actions_send_test_label: ส่งการทดสอบ
+    project_tabs_webhooks_remove_webhook_content: ลบ %{description} ใช่ไหม
+    project_tabs_webhooks_title: เว็บฮุค
+    project_tools_workshop_status_export: การส่งออกสถานะการประชุมเชิงปฏิบัติการ
+    project_tools_workshop_status_export_success: ตั้งเวลาการส่งออกสถานะเวิร์กชอปเรียบร้อยแล้ว
+    project_users_change_password: เปลี่ยนรหัสผ่าน
+    project_users_column_campaigns: แคมเปญ
+    project_users_column_created_at: สร้างเมื่อ
+    project_users_confirm_delete: ใช่ ลบ
+    project_users_confirm_send: ใช่ ส่ง
+    project_users_delete_error: ไม่สามารถลบผู้ประเมิน '%{name}' โปรดติดต่อผู้ดูแลระบบของคุณ
+    project_users_delete_success: ลบผู้ประเมิน '%{name}' เรียบร้อยแล้ว
+    project_users_edit_assessor: แก้ไขผู้ประเมิน
+    project_users_filter_campaigns: ไม่มีแคมเปญ
+    project_users_modal_delete_content: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมิน '%{name}'
+    project_users_modal_delete_title: ลบผู้ประเมิน
+    project_users_modal_reset_email_content: คุณแน่ใจหรือไม่ว่าต้องการส่งลิงก์รีเซ็ตรหัสผ่านไปยัง '%{email}'
+    project_users_model_reset_email: รีเซ็ตรหัสผ่านของผู้ประเมิน
+    project_users_no_edit_permission: คุณไม่มีสิทธิ์แก้ไขผู้ประเมิน '%{name}'
+    project_users_reset_mail_error: ไม่สามารถส่งลิงก์รีเซ็ตรหัสผ่านไปยัง '%{email}' โปรดติดต่อผู้ดูแลระบบของคุณ
+    project_users_reset_mail_success: ลิงก์รีเซ็ตรหัสผ่านถูกส่งไปยัง '%{email}' เรียบร้อยแล้ว
+    project_users_search_accessor: ผู้เข้าถึงการค้นหา
+    project_users_send_email: ส่งอีเมล
     projects: โครงการ
+    projects_addProject: เพิ่มโครงการ
+    projects_assessment_settings_search: การประเมินการค้นหา
+    projects_columns_project_number: หมายเลขโครงการ
+    projects_form_project_number: หมายเลขโครงการ
+    projects_form_subdomain: โดเมนย่อย
+    projects_form_title: โครงการ
+    projects_general_settings_live_chat: เปิดใช้งานแชทสด
+    projects_general_settings_locales_label: ตำแหน่ง
+    projects_general_settings_project_number_label: หมายเลขโครงการ
+    projects_general_settings_save_changes: บันทึกการเปลี่ยนแปลง
+    projects_general_settings_sub_domain_label: โดเมนย่อย
+    projects_mettl_schedule_records_add: เพิ่มกําหนดการ
+    projects_mettl_schedule_records_assessment_id: รหัสการประเมิน
+    projects_mettl_schedule_records_assessment_name: ชื่อการประเมิน
+    projects_mettl_schedule_records_candidate_authorization: เปิดใช้งานการอนุญาตผู้สมัคร
+    projects_mettl_schedule_records_candidate_screen_capture: เปิดใช้งานการจับภาพหน้าจอผู้สมัคร
+    projects_mettl_schedule_records_count: จํานวนความคลาดเคลื่อนในการเรียกดู
+    projects_mettl_schedule_records_created_at: สร้างเมื่อ
+    projects_mettl_schedule_records_schedule_id: รหัสกําหนดการ
+    projects_mettl_schedule_records_schedule_name: ชื่อกําหนดการ
+    projects_mettl_schedule_records_secure_browser_enabled: เปิดใช้งานเบราว์เซอร์ที่ปลอดภัย
+    projects_mettl_schedule_records_settings: การตั้งค่า
+    projects_mettl_schedule_records_show_remaining_counts: เปิดใช้งานการแสดงจํานวนที่เหลือ
+    projects_mettl_schedule_records_visual_proctoring_enabled: เปิดใช้งานการคุมสอบด้วยภาพ
+    projects_mettl_schedule_records_web_proctoring_enabled: เปิดใช้งาน Web Proctoring
+    projects_profile_settings_form_fields_enabled: เปิด
+    projects_profile_settings_form_fields_half_size: ครึ่งขนาด
+    projects_profile_settings_form_fields_locked: ล็อค
+    projects_profile_settings_form_fields_sort: ประเภท
+    projects_profile_settings_month: เดือน
+    projects_profile_settings_never: ไม่เคย
+    projects_profile_settings_update_in: แจ้งการอัปเดตโปรไฟล์ใน
+    projects_profile_settings_year: ปี
+    projects_registration_settings_hide_signup: ซ่อนตัวเลือกการลงทะเบียน
+    projects_registration_settings_require_mobile_number: ต้องใช้หมายเลขโทรศัพท์มือถือ
+    projects_webhook_settings_add: เพิ่มเว็บฮุค
+    projects_webhook_settings_column_active: เปิดใช้งาน
+    projects_webhook_settings_column_created_date: วันที่สร้าง
+    projects_webhook_settings_column_description: คำอธิบาย
+    projects_webhook_settings_column_updated_date: วันที่แก้ไข
+    projects_webhook_settings_column_url: URL
+    projects_webhook_settings_search: ค้นหา Webhoook
     prompt: คำสั่ง
+    provider: ผู้จัดหา
+    provider_change_confirm_title: เปลี่ยนผู้ให้บริการ?
+    provider_previously_used_warning: ผู้ช่วยคนนี้เคยสร้างผลลัพธ์ด้วย "%{from}" มาก่อน การเปลี่ยนเป็น "%{to}" อาจทำให้พฤติกรรมของผู้ช่วยเปลี่ยนแปลงไปสำหรับคำขอสร้างผลลัพธ์ในอนาคต
     psychometric: ไซโครเมตริก
+    public_key: กุญแจสาธารณะ
+    public_key_add: เพิ่มกุญแจสาธารณะ
+    public_key_cannot_be_changed: ไม่สามารถเปลี่ยนแปลงได้หลังจากสร้างแล้ว
+    public_key_copy_private_key: คัดลอกคีย์ส่วนตัว
+    public_key_created: สร้างกุญแจสาธารณะสำเร็จแล้ว
+    public_key_generate: สร้างคู่กุญแจ
+    public_key_generate_button: สร้างคู่กุญแจ RSA
+    public_key_generate_info: จะสร้างคู่กุญแจ RSA ขนาด 2048 บิต โดยจะเก็บเฉพาะกุญแจสาธารณะเท่านั้น กรุณาคัดลอกและเก็บรักษาไว้อย่างปลอดภัยสำหรับกุญแจส่วนตัว — จะไม่แสดงให้ทราบอีก
+    public_key_invalid_format: ต้องเป็นกุญแจสาธารณะ RSA ที่ถูกต้องในรูปแบบ PEM
+    public_key_must_be_public: ต้องเป็นกุญแจสาธารณะ ไม่ใช่กุญแจส่วนตัว
+    public_key_paste_placeholder: วางคีย์สาธารณะ RSA ของคุณในรูปแบบ PEM ที่นี่ (-----BEGIN PUBLIC KEY-----)
+    public_key_pem: กุญแจสาธารณะ (PEM)
+    public_key_private_key_copied: คัดลอกคีย์ส่วนตัวไปยังคลิปบอร์ดแล้ว
+    public_key_private_key_label: กุญแจส่วนตัว (PEM)
+    public_key_private_key_warning: นี่เป็นครั้งเดียวที่คีย์ส่วนตัวจะปรากฏให้เห็น คัดลอกตอนนี้และเก็บรักษาไว้อย่างปลอดภัย
+    public_keys: กุญแจสาธารณะ
     question_center: ศูนย์คําถาม
     question_center_page_title: ศูนย์คำถาม - แผงควบคุม - Mercer Lighthouse
     question_editor_change_type: เปลี่ยนประเภท
@@ -987,11 +2070,33 @@ th:
     question_type_video_response: วิดีโอคำตอบ
     questions: คำถาม
     questions_new_button: คำถามใหม่
+    questions_percentage: คําถาม (SUM / MAX Total)
+    questions_sum: คําถาม (SUM)
     questions_title: คำถาม
     questions_type: ประเภท
     range_min_max: ระยะทาง%{min} - %{max}
+    rationale: เหตุผล
+    raw: ดิบ
+    reason_for_changes: เหตุผลของการเปลี่ยนแปลง
     recents: รายการล่าสุด
+    record_id: รหัสเรกคอร์ด
+    recordings: บันทึก
     reflection_questions: คําถามไตร่ตรอง
+    reflection_questions_delete_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบคําถามสะท้อนนี้?
+    reflection_questions_export_action: ส่งออกคําถามสะท้อน
+    reflection_questions_export_failure_msg: เกิดข้อผิดพลาดขณะส่งออกไฟล์
+    reflection_questions_export_success_msg: กําลังส่งออกคําถามไตร่ตรอง โปรดตรวจสอบสถานะในการแจ้งเตือน
+    reflection_questions_form_mandatory: บังคับ
+    reflection_questions_form_max_words: จํานวนคําสูงสุด
+    reflection_questions_form_min_words: คําขั้นต่ํา
+    reflection_questions_form_question: ปัญหา
+    reflection_questions_form_title: คําถามสะท้อน
+    reflection_questions_import_action: นําเข้าคําถามสะท้อน
+    reflection_questions_import_failure_msg: ข้อผิดพลาดขณะนําเข้าไฟล์
+    reflection_questions_import_success_msg: กําลังนําเข้าคําถามสะท้อน โปรดตรวจสอบสถานะในการแจ้งเตือน
+    reflection_questions_question: ปัญหา
+    refresh: ฟื้นฟู
+    refresh_interval: ช่วงเวลาการรีเฟรช (นาที)
     regenerate_transcriptions_action: สร้างถอดความใหม่
     regenerate_transcriptions_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการสร้างการถอดเสียงใหม่สำหรับการประเมินนี้? การดำเนินการนี้จะประมวลผลการถอดเสียงที่ยังไม่สมบูรณ์ทั้งหมดใหม่
     regenerate_transcriptions_confirm_title: สร้างถอดความใหม่
@@ -999,33 +2104,174 @@ th:
     registration_codes: รหัสการลงทะเบียน
     registration_settings: การตั้งค่าการลงทะเบียน
     remove_children_to_change_type: นำเด็กทั้งหมดออกเพื่อเปลี่ยนประเภท
+    remove_confirm_content: คุณแน่ใจหรือไม่ว่าต้องการลบหัวเรื่องที่มีอีเมล '%{subjectEmail}'
+    remove_confirm_success: หัวข้อที่มีอีเมล '%{subjectEmail}'' ถูกลบออกเรียบร้อยแล้ว
+    remove_confirm_title: ลบชื่อเรื่อง
     remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?
+    remove_output_schema_key: ลบคีย์สคีมาเอาต์พุต
     remove_successfully: รายการสื่อถูกลบออกสำเร็จ
+    render_button: เทมเพลตการแสดงผล
+    rendered_prompt: พรอมต์ที่แสดงผล
+    reply_to_email: ตอบกลับอีเมล
+    report_access: การเข้าถึงรายงาน
     report_alias_save_confirmation: หากคุณต้องการบันทึกการเปลี่ยนแปลงทั้งหมดใน Report Builder และใน Aliases ด้วย โปรดคลิกปุ่ม 'บันทึก' หน้าเว็บจะโหลดใหม่และการเปลี่ยนแปลงของคุณจะถูกนำไปใช้สำเร็จ
+    report_approval: รายงานการอนุมัติ
+    report_approval_allow_bulk_approve: อนุญาตอนุมัติจํานวนมาก
+    report_approval_allow_qc_bulk_submit: อนุญาตให้ส่ง QC จํานวนมาก
+    report_approval_approval_statuses_approved: ได้รับการอนุมัติ
+    report_approval_approval_statuses_change_requested: ขอเปลี่ยนแปลง
+    report_approval_approval_statuses_not_ready: ยังไม่พร้อม
+    report_approval_approval_statuses_pending_qc: รอดําเนินการ QC
+    report_approval_approval_statuses_qc_completed: QC เสร็จสมบูรณ์
+    report_approval_approval_statuses_qc_in_progress: QC อยู่ระหว่างดําเนินการ
+    report_approval_approvers: ผู้อนุมัติ
+    report_approval_approvers_can_edit: ผู้อนุมัติสามารถแก้ไขได้
+    report_approval_approvers_not_required: ไม่จําเป็นต้องมีผู้อนุมัติ
+    report_approval_bulk_approve_success: "%{sent_for_approval} ส่งเพื่อขออนุมัติ %{approved} รายงานได้รับการอนุมัติ %{ignored} รายงานต้องได้รับการอนุมัติด้วยตนเองเนื่องจากการเปลี่ยนแปลง/ความคิดเห็นของ QC"
+    report_approval_columns_approval_status: สถานะการอนุมัติ
+    report_approval_columns_approved_by: อนุมัติโดย
+    report_approval_columns_assessed_by: ประเมินโดย
+    report_approval_columns_campaign_name: ชื่อแคมเปญ
+    report_approval_columns_qc_by: ตรวจสอบโดย
+    report_approval_columns_report_name: ชื่อรายงาน
+    report_approval_columns_subject_email: อีเมลเรื่อง
+    report_approval_columns_user_email: อีเมลผู้ใช้
+    report_approval_columns_user_name: ชื่อผู้ใช้
+    report_approval_digest_delivery_mode_form_label: โหมดการจัดส่ง Digest
+    report_approval_digest_frequency_daily: ทุกวัน
+    report_approval_digest_frequency_form_label: ความถี่ย่อย
+    report_approval_digest_frequency_weekdays: วันธรรมดา
+    report_approval_digest_frequency_weekly: รายสัปดาห์
+    report_approval_digest_time: เวลาย่อย
+    report_approval_digest_timezone: เขตเวลาสรุป
+    report_approval_digest_weekdays_form_label: Digest วันธรรมดา
+    report_approval_digest_weekdays_friday: วันศุกร์
+    report_approval_digest_weekdays_monday: วันจันทร์
+    report_approval_digest_weekdays_saturday: วันเสาร์
+    report_approval_digest_weekdays_sunday: วันอาทิตย์
+    report_approval_digest_weekdays_thursday: วันพฤหัสบดี
+    report_approval_digest_weekdays_tuesday: วันอังคาร
+    report_approval_digest_weekdays_wednesday: วันพุธ
+    report_approval_do_not_send_notifications: อย่าส่งอีเมลถึงผู้ใช้[QC, Approvers & Approval notification]
+    report_approval_modal_title: การตั้งค่าการอนุมัติรายงาน
+    report_approval_notification_users: ผู้ใช้การแจ้งเตือนการอนุมัติ
+    report_approval_qc_users: ผู้ใช้ QC
+    report_approval_remove_modal_success: 'การตั้งค่าการอนุมัติสําหรับรหัสรายงาน: %{reportId} ถูกลบเรียบร้อยแล้ว '
+    report_approval_remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สําหรับรหัสรายงาน: %{reportId}'
+    report_approval_report: รายงาน
+    report_approval_review: ตรวจสอบ
+    report_approval_saving_filters_actions_clear_filters: ล้างฟิลเตอร์
+    report_approval_saving_filters_actions_delete_filter: ลบตัวกรอง
+    report_approval_saving_filters_actions_save_new_filter: บันทึกเป็นตัวกรองใหม่
+    report_approval_saving_filters_actions_saved_filters: ตัวกรองที่บันทึกไว้
+    report_approval_saving_filters_delete_saved_filters: ตัวกรองที่ถูกลบ
+    report_approval_saving_filters_edit_filter_name: บันทึกชื่อตัวกรอง
+    report_approval_saving_filters_error_while_deleting: ข้อผิดพลาดขณะลบ
+    report_approval_saving_filters_error_while_editing: ข้อผิดพลาดขณะแก้ไข
+    report_approval_saving_filters_error_while_fetching: มีบางอย่างผิดพลาดลองอีกครั้ง
+    report_approval_saving_filters_error_while_saving: ข้อผิดพลาดขณะบันทึกตัวกรอง
+    report_approval_saving_filters_filter_updated: อัปเดตตัวกรอง
+    report_approval_saving_filters_no_saved_filters: ไม่มีตัวกรองที่บันทึกไว้
+    report_approval_saving_filters_save_filter: กรองที่บันทึกไว้
+    report_approval_saving_filters_set_favorite: ตัวกรองถูกตั้งค่าเป็นรายการโปรด
+    report_approval_send_digest_emails: ส่งอีเมลสรุป
+    report_approval_settings: การตั้งค่าการอนุมัติรายงาน
+    report_approval_submit_or_approve_all: ส่งหรืออนุมัติทั้งหมด
     report_approvals: การอนุมัติรายงาน
+    report_availability: รายงานความพร้อมใช้งาน
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
     report_denied: รายงานสําหรับ %{user} ถูกปฏิเสธ
+    report_help_description: ข้อความความช่วยเหลือที่แสดงบนบัตรรายงานบนแดชบอร์ดของผู้ใช้
+    report_help_name: ความช่วยเหลือการรายงาน
+    report_id: รหัสรายงาน
+    report_ids: รายงานรหัสประจำตัว
+    report_ids_required: จำเป็นต้องมีรหัสรายงาน
     report_name: ชื่อรายงาน
     report_no_evaluations: ไม่มีรายงานสําหรับ %{user} - ไม่ได้รับการประเมิน
     report_not_generated: รายงานสําหรับ %{user} ตรงตามเงื่อนไขความพร้อมใช้งานแต่ยังไม่ได้สร้าง โปรดสร้างรายงานก่อน
     report_on_hold: รายงานสําหรับ %{user} ถูกระงับในขณะนี้
+    report_pdf_status: รายงานสถานะ PDF
+    report_review_abort_qc: ยกเลิก QC
+    report_review_approve: อนุมัติ
+    report_review_approve_changes: อนุมัติการเปลี่ยนแปลง
+    report_review_edit: แก้ไข
+    report_review_remove_approval: ลบการอนุมัติ
+    report_review_request_changes: ขอเปลี่ยนแปลง
+    report_review_review: ตรวจสอบ
+    report_review_send_for_approve: ส่งเพื่อขออนุมัติ
+    report_review_statuses_approved: ได้รับการอนุมัติ
+    report_review_statuses_change_requested: ร้องขอการเปลี่ยนแปลง
+    report_review_statuses_not_ready: ยังไม่พร้อม
+    report_review_statuses_pending_qc: รอดําเนินการ QC
+    report_review_statuses_qc_completed: QC เสร็จสมบูรณ์
+    report_review_statuses_qc_in_progress: QC อยู่ระหว่างดําเนินการ
     report_status: สถานะการรายงาน
+    report_type: ประเภทของรายงาน
+    report_types:
+      active_clients_projects: ลูกค้าและโครงการที่ใช้งานอยู่
+      client_assessment_counts: การประเมินลูกค้าสำคัญ
+      hogan_usage_report: การใช้งานแบบประเมินโฮแกน
+      json_data_report: รายงานข้อมูล JSON
+      pearson_usage_report: การใช้งานการประเมินผล Pearson
+      report_usage_summary: รายงานสรุปการใช้งาน
+      saville_usage_report: การใช้งานการประเมิน Saville
+      user_created_dates: วันที่ที่ผู้ใช้สร้างขึ้น
+      user_reports_export: รายงานผู้ใช้ ส่งออก
     reports: รายงาน
+    reports_copy_copy: สำเนา
+    reports_copy_copy_report: คัดลอกรายงาน
+    reports_count: รายงาน
+    reports_edit_default_language_agreement: ใช่ ฉันเข้าใจผลกระทบที่อาจเกิดขึ้นจากการเปลี่ยนแปลงภาษาเริ่มต้น
+    reports_edit_default_language_title: แก้ไข ภาษาเริ่มต้น
+    reports_edit_default_language_tooltip: แก้ไข ภาษาเริ่มต้น
+    reports_edit_default_language_warning_description_li_1: การเปลี่ยนภาษาเริ่มต้นจากภาษา RTL เป็นภาษา LTR หรือในทางกลับกัน จะส่งผลต่อเค้าโครง
+    reports_edit_default_language_warning_description_li_2: คุณจะต้องทำการแก้ไขการแปลรายงานใหม่หากคุณเปลี่ยนภาษาเริ่มต้น
+    reports_edit_default_language_warning_description_li_3: โปรดดาวน์โหลดสำเนาการแปลรายงานก่อนทำการเปลี่ยนแปลงนี้
+    reports_edit_default_language_warning_title: กรุณาอ่านคำแนะนำอย่างละเอียด
+    reports_language_selection_modal_download: ดาวน์โหลดรายงาน
+    reports_language_selection_modal_generate: รายงานสร้างขึ้น
     reports_limit_exceeded: การดาวน์โหลดจํานวนมากจํากัดไว้ที่ 1,000 ไฟล์รายงาน หากคุณเลือกหลายภาษา โปรดลดภาษาลง
     reports_not_found: ไม่พบรายงาน โปรดสร้างรายงานก่อนดาวน์โหลด
+    reports_preview_comments: ความ คิด เห็น
+    reports_preview_hide_resolved: ซ่อนการแก้ไขแล้ว
+    reports_preview_history: ประวัติศาสตร์
+    reports_preview_info_to_select_module: เลือกโมดูลข้อความเพื่อแสดงความคิดเห็น
+    request_approval_description: ข้อความนี้จะถูกส่งไปยังผู้จัดการเมื่อหัวเรื่องร้องขอการอนุมัติ
+    request_approval_name: ขออนุมัติ
+    request_id: รหัสคําขอ
+    required_error: ต้องกรอกข้อมูล
     rescore_responses_content: นี่จะคำนวณคะแนนใหม่สำหรับการตอบคำถามในวิชานี้ เปิดใช้งาน อนุญาตให้ AI ประเมินคะแนนใหม่ เพื่อประเมินคำตอบใหม่โดยใช้ AI สำหรับคำถามที่มี AI
+    resend_invite_content: ส่งคําเชิญไปยังหัวข้อที่เลือกอีกครั้ง คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    resend_invite_success: ส่งคําเชิญเรียบร้อยแล้ว
+    resend_invite_title: ส่งคําเชิญอีกครั้ง
     reset_idp_plan: รีเซ็ตแผน
     reset_idp_plan_confirmation: คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตแผน?
     reset_idp_plan_title: รีเซ็ตแผน
+    reset_score: รีเซ็ตคะแนน
+    reset_score_description: คะแนนจะถูกคืนกลับไปยังค่าเริ่มต้นของ AI
+    resources_panel_description: เพิ่มลิงก์ไปยังแหล่งข้อมูลที่คุณต้องการให้ผู้อํานวยความสะดวกสามารถเข้าถึงได้
+    resources_panel_resource_name_placeholder: ชื่อทรัพยากร
+    resources_panel_resource_url_placeholder: ลิงค์ทรัพยากร
+    resources_panel_title: ทรัพยากร
+    resources_panel_validation_error: ป้อนทั้งชื่อและ URL หรือนําทรัพยากรออก
     response_meta: ตอบกลับ Meta
+    responses: คำตอบจาก AI
     result: ผลลัพธ์
     results: ผลลัพธ์
+    results_export: ผลลัพธ์การส่งออก
+    results_export_job_scheduled: งานส่งออกผลลัพธ์ของ AI Artifacts ได้รับการกำหนดเวลาเรียบร้อยแล้ว
+    revisions_load: โหลดตามแบบฟอร์ม
+    revisions_system_prompt: ระบบ Propmpt
+    revisions_title: การแก้ไข AI Assistant
+    revisions_user_prompt: คำสั่งของผู้ใช้
+    revisions_version: เวอร์ชัน
     role: บทบาท
     role_campaign_admin: ผู้ดูแลแคมเปญ
     role_client_admin: การจัดการลูกค้า
     role_project_admin: ผู้ดูแลโครงการ
     role_superadmin: ผู้ดูแลระบบระดับสูง
+    run: วิ่ง
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
     saml_idp_certificate_label: ใบรับรอง
     saml_idp_entity_id_label: รหัสเอนทิตี/ผู้ออก
@@ -1075,6 +2321,23 @@ th:
     saml_service_provider_updated_date: วันที่อัพเดท
     saml_service_providers: บริการ
     saml_settings: การตั้งค่า SAML
+    saml_settings_after_signout_url: หลังจากออกจากระบบ URL
+    saml_settings_cert: ใบรับรอง
+    saml_settings_config_details_acs_url: URL ของบริการผู้บริโภคการยืนยัน
+    saml_settings_config_details_copied: คัดลอก %{element}
+    saml_settings_config_details_issuer: รหัสเอนทิตี/ผู้ออก
+    saml_settings_config_details_title: กําหนดค่า Idp ด้วยข้อมูลต่อไปนี้
+    saml_settings_email_pipetext: ข้อความไปป์อีเมล
+    saml_settings_enabled: เปิด
+    saml_settings_enforced: บังคับใช้ SAML
+    saml_settings_entity_id: รหัสเอนทิตี/ผู้ออก
+    saml_settings_name_identifier_format: ตัวระบุชื่อ
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:ถาวร
+    saml_settings_saml: SAML
+    saml_settings_save: บันทึกการตั้งค่า
+    saml_settings_sso_service_url: URL บริการ SSO
+    saml_settings_successfully_saved_msg: บันทึกการตั้งค่า SAML เรียบร้อยแล้ว
     save: บันทึก
     save_assessment_for_scoring_management: บันทึกการประเมินก่อนเริ่มต้นการให้คะแนน
     save_block: บันทึกบล็อก
@@ -1093,7 +2356,136 @@ th:
       user_full_name_cont: ชื่อผู้ใช้
     saville: ซาวิลล์
     saville_assessment: การประเมิน Saville
+    schedule: ตาราง
+    schedule_email: กําหนดเวลาอีเมล
+    schedule_email_title: กําหนดเวลาอีเมล
+    schedule_time: กำหนดเวลา
     scheduling: กำหนดการ
+    scheduling_add_activity: เพิ่มกิจกรรม
+    scheduling_add_assessment_center: เพิ่มศูนย์การประเมิน
+    scheduling_add_assessor_form_assessment: การประเมิน
+    scheduling_add_assessor_form_assessor: ผู้ประเมิน
+    scheduling_add_assessor_form_schedule_time: กําหนดเวลา
+    scheduling_add_subject: เพิ่มหัวเรื่อง
+    scheduling_attendance_status_column_name: สถานะการเข้าร่วมงาน
+    scheduling_attendance_status_dropped_out: ออกกลางคัน
+    scheduling_attendance_status_late: สาย
+    scheduling_attendance_status_no_show: ไม่ปรากฏตัว
+    scheduling_attendance_status_no_status: ไม่มีสถานะ
+    scheduling_attendance_status_on_time: ตรงเวลา
+    scheduling_attended_attended: เข้าร่วม
+    scheduling_attended_not_attended: ไม่เข้าร่วม
+    scheduling_campaign_participants: ผู้เข้าร่วมแคมเปญ
+    scheduling_columns_activity: กิจกรรม
+    scheduling_columns_assessment_center_date_and_time: วันและเวลาของศูนย์ประเมิน
+    scheduling_columns_assessor: ผู้ประเมิน
+    scheduling_columns_assessors: ผู้ประเมิน
+    scheduling_columns_attendance: การเข้าร่วม
+    scheduling_columns_attended: เข้าร่วม
+    scheduling_columns_booked_at: จองเมื่อ
+    scheduling_columns_campaign_assessment_group: กลุ่มศูนย์การประเมิน
+    scheduling_columns_campaign_name: ชื่อแคมเปญ
+    scheduling_columns_duration: ระยะเวลา
+    scheduling_columns_link_to_view_recordings: ลิงก์เพื่อดูการบันทึก
+    scheduling_columns_managers: จัดการ
+    scheduling_columns_meeting_link: ลิงค์การประชุม
+    scheduling_columns_participants: ผู้เข้าร่วม
+    scheduling_columns_prework: งานก่อนเริ่ม
+    scheduling_columns_recording_date: วันที่บันทึก
+    scheduling_columns_resource_link: ลิงก์
+    scheduling_columns_schedule_time: กําหนดเวลา
+    scheduling_columns_scheduling_status: สถานะการตั้งเวลา
+    scheduling_columns_seats: ที่นั่ง
+    scheduling_columns_serial_no: หมายเลขซีเรียล
+    scheduling_columns_start_time: วันที่ & เวลา
+    scheduling_columns_subject: หัวข้อ
+    scheduling_columns_title: ชื่อเรื่อง
+    scheduling_columns_view_recording: View การบันทึก
+    scheduling_errors_assessor_already_assigned: ผู้ประเมินได้รับมอบหมายให้ทําการประเมินนี้แล้ว โปรดเลือกการประเมินหรือผู้ประเมินอื่น
+    scheduling_errors_date_required: โปรดเลือกวันที่
+    scheduling_errors_invalid_url: รูปแบบ URL ไม่ถูกต้อง
+    scheduling_errors_meeting_link_https: ลิงก์การประชุมต้องขึ้นต้นด้วย "https://"
+    scheduling_info_allowed: อนุญาต ให้
+    scheduling_info_assessors: ผู้ประเมิน
+    scheduling_info_booked: ที่นั่งที่จองแล้ว
+    scheduling_info_campaign_assessment_group: กลุ่มศูนย์การประเมิน
+    scheduling_info_cancellation_lead_time: ระยะเวลารอคอยการยกเลิก
+    scheduling_info_cancellation_tooltip: ผู้ใช้จะสามารถยกเลิกการจองได้จนถึง %{date}
+    scheduling_info_date: วันที่ & เวลา
+    scheduling_info_duration: ระยะเวลา
+    scheduling_info_join_meeting: เข้าร่วมห้อง
+    scheduling_info_late_cancellation_and_scheduling: การยกเลิกล่าช้าและการกําหนดเวลา
+    scheduling_info_link: ลิงค์การประชุม
+    scheduling_info_managers: ผู้จัดการศูนย์
+    scheduling_info_none: ไม่มีใคร
+    scheduling_info_not_allowed: ไม่อนุญาต
+    scheduling_info_recording_enabled: เปิดใช้งานการบันทึก
+    scheduling_info_remaining: ที่นั่งที่เหลืออยู่
+    scheduling_info_scheduling_lead_time: การจัดตารางเวลานํา
+    scheduling_info_scheduling_tooltip: ผู้ใช้จะสามารถจองสล็อตได้จนถึง %{date}
+    scheduling_info_search_placehoder: ค้นหาตาม ID อีเมล หรือชื่อ
+    scheduling_info_timezone: โซนเวลา
+    scheduling_info_total_seats: จํานวนที่นั่งทั้งหมด
+    scheduling_lead_time_label: ระยะเวลารอคอยสินค้าสําหรับการจัดกําหนดการ
+    scheduling_resources_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบทรัพยากร '%{resource_name}'
+    scheduling_resources_confirm_title: เป็นต้องได้รับการยืนยัน
+    scheduling_resources_create: สร้างทรัพยากร
+    scheduling_resources_invalid_url: URL ไม่ถูกต้อง ระบุชื่อ URL ที่สมบูรณ์ด้วยโปรโตคอล http หรือ https อยู่ในนั้น
+    scheduling_resources_resource: ทรัพยากร
+    scheduling_resources_successful_remove: ทรัพยากรศูนย์การประเมิน %{resource_name} ถูกลบเรียบร้อยแล้ว
+    scheduling_schedule_assessments: กําหนดการประเมิน
+    scheduling_scheduling_statuses_cancelled: ยก เลิก
+    scheduling_scheduling_statuses_late_cancelled: ยกเลิกในนาทีสุดท้าย
+    scheduling_scheduling_statuses_late_rescheduled: เลื่อนกำหนดส่ง
+    scheduling_scheduling_statuses_rescheduled: เลื่อนกําหนดเวลา
+    scheduling_scheduling_statuses_scheduled: ถึงกําหนด
+    scheduling_search_participant: ผู้เข้าร่วมแคมเปญการค้นหา
+    scheduling_status: สถานะการจัดตาราง
+    scheduling_status_change_modal_content: เมื่อคุณปิดศูนย์ประเมินแล้ว ผู้เข้าร่วมจะไม่สามารถเข้าร่วมกิจกรรมใดๆ ของศูนย์ได้
+    scheduling_status_change_modal_title: เปลี่ยนสถานะศูนย์ประเมิน
+    scheduling_status_completed: เสร็จสมบูรณ์
+    scheduling_status_dropped_out: ออกกลางคัน
+    scheduling_status_in_progress: อยู่ระหว่างดําเนินการ
+    scheduling_status_late: สาย
+    scheduling_status_no_show: ไม่ปรากฏตัว
+    scheduling_status_not_started: ยังไม่ได้เริ่มต้น
+    scheduling_subjects_activities: กิจกรรม
+    scheduling_subjects_add_assessor_form: เพิ่มแบบฟอร์มผู้ประเมิน
+    scheduling_subjects_assessments: การประเมิน
+    scheduling_subjects_assessor_forms: แบบฟอร์มผู้ประเมิน
+    scheduling_subjects_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเข้าร่วมของหัวข้อด้วยอีเมล '%{subject_email}'<br />เมื่อทําเครื่องหมายว่ายกเลิกแล้ว วิชานี้จะไม่สามารถเข้าร่วมในศูนย์ประเมินได้
+    scheduling_subjects_confirm_title: เป็นต้องได้รับการยืนยัน
+    scheduling_subjects_edit_assessor_form: แก้ไขแบบฟอร์มผู้ประเมิน
+    scheduling_subjects_form_title: กําหนดการประเมิน
+    scheduling_subjects_language: ภาษา
+    scheduling_subjects_language_not_selected: ไม่ได้เลือก
+    scheduling_subjects_mark_cancel: มาร์ค ยกเลิก
+    scheduling_subjects_mark_cancel_success: ยกเลิกการเข้าร่วมของหัวเรื่องที่มีอีเมล %{subject_email}
+    scheduling_subjects_meeting_link_custom: ธรรมเนียม
+    scheduling_subjects_meeting_link_internal: ภายใน
+    scheduling_subjects_meeting_link_none: ไม่มีใคร
+    scheduling_subjects_meeting_link_title: ลิงค์การประชุม
+    scheduling_subjects_no_change: ไม่มีการเปลี่ยนแปลง
+    scheduling_subjects_override_existing: แทนที่กําหนดการที่มีอยู่สําหรับหัวเรื่อง
+    scheduling_subjects_preworks: งานก่อนเริ่ม
+    scheduling_subjects_re_enroll: ลงทะเบียนใหม่
+    scheduling_subjects_re_enroll_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลงทะเบียนวิชาใหม่ด้วยอีเมล '%{subject_email}'
+    scheduling_subjects_re_enroll_success: นักเรียนลงทะเบียนใหม่ด้วยอีเมล%{subject_email}
+    scheduling_subjects_schedule: ตาราง
+    scheduling_subjects_unschedule: ยกเลิกกําหนดเวลา
+    scheduling_tabs_activities: กิจกรรม
+    scheduling_tabs_assessment_center: ศูนย์ประเมินผล
+    scheduling_tabs_invites: คำเชิญ
+    scheduling_tabs_recordings: บันทึก
+    scheduling_tabs_resources: ทรัพยากร
+    scheduling_tabs_subjects: หัวข้อ
+    schema_key_description_required: คำอธิบายคีย์ของสคีมา จำเป็นต้องมี
+    schema_key_required: จำเป็นต้องใช้คีย์สคีมา
+    schema_key_type: ประเภทของคีย์
+    schema_key_unique: คีย์ของสคีมาควรมีเอกลักษณ์เฉพาะตัว
+    scope: ขอบเขต
+    scope_client: ลูกค้า
+    scope_global: ระดับโลก
     score: คะแนน
     score_approval_not_allowed_to_approve: คุณไม่ได้รับอนุญาตให้อนุมัติคะแนนนี้
     score_approval_not_allowed_to_discard: คุณไม่สามารถทิ้งคะแนนนี้ได้
@@ -1102,56 +2494,342 @@ th:
     score_max: คะแนนสูงสุด
     score_min: คะแนนขั้นต่ำ
     score_must_be_in_between_min_and_max: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
+    score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     score_range_info: 'ช่วงคะแนน: %{min} - %{max}'
     score_with_ai: ทำคะแนนด้วย AI
     scores_finalized: คะแนนได้รับการสรุปแล้วและไม่สามารถเปลี่ยนแปลงได้
     scoring: การให้คะแนน
+    scoring_action_prohibited: การกระทําที่ต้องห้าม
+    scoring_active: เปิดใช้งาน
+    scoring_actual_average: ค่าเฉลี่ยที่แท้จริง
+    scoring_add_factor: เพิ่มปัจจัย
+    scoring_add_group: เพิ่มกลุ่ม
     scoring_approval_add_settings: เพิ่มการตั้งค่า
     scoring_approval_allow_bulk_approve: อนุญาตให้อนุมัติแบบกลุ่ม
     scoring_approval_allow_bulk_approve_scores: อนุญาตให้อนุมัติคะแนนแบบกลุ่ม
     scoring_approval_allow_one_level_approve: อนุญาตให้อนุมัติในระดับเดียว
+    scoring_approval_approve_all: อนุมัติทั้งหมด
     scoring_approval_approver_users: ผู้ใช้ผู้อนุมัติ
     scoring_approval_approvers: ผู้อนุมัติ
     scoring_approval_assessment: การประเมิน
     scoring_approval_assessor_users: ผู้ใช้ผู้ประเมิน
+    scoring_approval_bulk_approve_success: "%{approved} คะแนนได้รับการอนุมัติแล้ว"
     scoring_approval_do_not_send_notifications: อย่าส่งการแจ้งเตือน
     scoring_approval_modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
     scoring_approval_notification_users: ผู้ใช้การแจ้งเตือนการอนุมัติ
     scoring_approval_remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
     scoring_approval_remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
+    scoring_approval_review: ตรวจสอบ
+    scoring_approval_score_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
+    scoring_assessment: การประเมิน
+    scoring_assessment_scoring_type: ประเภทการให้คะแนนการประเมิน
+    scoring_average: เฉลี่ย
+    scoring_campaign_scoring_variables: ตัวแปรการให้คะแนนแคมเปญ
+    scoring_desc: คุณใช้ปัจจัยแคมเปญเกินขีดจํากัดสูงสุดของ %{n} ตัวแปรแคมเปญ ไม่สามารถเพิ่มปัจจัยเพิ่มเติมได้ โปรดตรวจสอบและจัดการปัจจัยที่มีอยู่ของคุณก่อนดําเนินการต่อ
+    scoring_dimension: มิติ
+    scoring_edit_factor: แก้ไขปัจจัย
+    scoring_export_factors: ปัจจัยแคมเปญการส่งออก
+    scoring_factor: ปัจจัย
+    scoring_factor_group_removed_successfully: กลุ่ม Campaign Factor ถูกลบเรียบร้อยแล้ว
+    scoring_factor_removal_confirmation: ป้อนชื่อปัจจัยที่ระบุด้านล่างในกล่องข้อความเพื่อยืนยัน
+    scoring_factor_removed_successfully: ตัวประกอบแคมเปญถูกลบออกเรียบร้อยแล้ว
+    scoring_factors_exported_successfully: งานปัจจัยการส่งเสริมการขายส่งออกถูกกําหนดเวลาเรียบร้อยแล้ว
+    scoring_factors_imported_successfully: กําหนดการงานปัจจัยการส่งเสริมการนําเข้าเรียบร้อยแล้ว
+    scoring_final: สุดท้าย
+    scoring_final_score_updated_successfully: คะแนนสุดท้ายอัปเดตเรียบร้อยแล้ว
+    scoring_formula: สูตร
+    scoring_get_started: เริ่มต้นใช้งาน
+    scoring_import_factors: นําเข้าปัจจัยแคมเปญ
+    scoring_innovation_style_removal_confirmation: กรุณากรอกชื่อสไตล์นวัตกรรมที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
+    scoring_no_groups: ไม่มีกลุ่มอยู่
+    scoring_occupation_removal_confirmation: กรุณากรอกชื่ออาชีพที่ให้ไว้ด้านล่างในช่องข้อความเพื่อยืนยัน
+    scoring_output_type: ประเภทเอาต์พุต
+    scoring_pattern_error: อนุญาตให้ใช้เฉพาะอักขระที่เป็นตัวอักษรและตัวเลข ช่องว่าง และขีดกลางเท่านั้น
+    scoring_profile_years: ปี
+    scoring_public: สาธารณะ
+    scoring_ranked: อันดับ
+    scoring_remove_all_campaign_factors_confirmation: ป้อนชื่อแคมเปญปัจจุบันที่ระบุด้านล่างในกล่องข้อความเพื่อยืนยัน
+    scoring_remove_all_campaign_factors_error: ปัจจัยแคมเปญลบล้มเหลว
+    scoring_remove_all_campaign_factors_success: ลบปัจจัยแคมเปญเรียบร้อยแล้ว
+    scoring_remove_all_campaign_factors_title: นําปัจจัยของแคมเปญออก
+    scoring_remove_all_campaign_factors_warning: คุณกําลังจะลบปัจจัยแคมเปญทั้งหมดและคะแนนที่เกี่ยวข้องทั้งหมดสําหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการนี้?
+    scoring_remove_factor_group_confirmation_content: คุณแน่ใจหรือไม่ว่าต้องการลบกลุ่มตัวประกอบ '%{group_name}'
+    scoring_remove_factor_group_confirmation_title: ลบกลุ่มปัจจัย
+    scoring_required_error: ไม่สามารถว่างเปล่าได้
+    scoring_save_all: บันทึกทั้งหมด
+    scoring_score_range: ช่วงคะแนน
+    scoring_score_types_norm_score: คะแนนบรรทัดฐาน
+    scoring_score_types_percentage: อัตราร้อยละ
+    scoring_score_types_percentile: เปอร์เซ็นไทล์
+    scoring_score_types_score: คะแนน
+    scoring_score_types_zscore: คะแนน Z
+    scoring_scoring: การให้คะแนน
+    scoring_scoring_description: การให้คะแนนแคมเปญช่วยให้สามารถรายงานการประเมินต่างๆ ได้
+    scoring_select_all: เลือกหัวข้อ %{n} ทั้งหมด
+    scoring_select_assessment_first: เลือก การประเมินก่อน
+    scoring_select_factor: เลือกปัจจัย
+    scoring_show_weightages: แสดงน้ําหนัก
+    scoring_subject: หัวข้อ
+    scoring_subject_list_bulk_mark_finalized: ทําเครื่องหมายจํานวนมากเสร็จสิ้นแล้ว
+    scoring_subject_list_bulk_mark_finalized_confirm: การสรุปคะแนนสําหรับผู้ใช้ที่เลือกจะสร้างรายงานที่ใช้ปัจจัยแคมเปญสําหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    scoring_subject_list_bulk_mark_not_finalized: เครื่องหมายจํานวนมากยังไม่เสร็จสิ้น
+    scoring_subject_list_bulk_mark_not_finalized_confirm: การลบ finalize ออกจากผู้ใช้ที่เลือกจะเป็นการลบรายงานที่สร้างขึ้นซึ่งใช้ปัจจัยแคมเปญสําหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    scoring_subject_list_bulk_rescore: ให้คะแนนใหม่จํานวนมาก
+    scoring_subject_list_bulk_rescore_confirm: ให้คะแนนผู้ใช้ที่เลือกใหม่ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    scoring_subject_list_calculated_date: วันที่คํานวณ
+    scoring_subject_list_calculation_errors: ข้อผิดพลาดในการคํานวณ
+    scoring_subject_list_export: การให้คะแนนการส่งออก
+    scoring_subject_list_export_success: งานส่งออกคะแนนถูกกําหนดเวลาเรียบร้อยแล้ว
+    scoring_subject_list_finalized: สรุปแล้ว
+    scoring_subject_list_finalized_date: วันที่สรุป
+    scoring_subject_list_import_external_scores: นําเข้าการให้คะแนนภายนอก
+    scoring_subject_list_mark_finalized: ทําเครื่องหมายเสร็จสิ้น
+    scoring_subject_list_mark_finalized_confirm: การสรุปคะแนนสําหรับผู้ใช้ '%{email}' จะสร้างรายงานที่ใช้ปัจจัยแคมเปญสําหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    scoring_subject_list_mark_not_finalized: เครื่องหมายยังไม่เสร็จสิ้น
+    scoring_subject_list_mark_not_finalized_confirm: การนํา finalize ออกจากผู้ใช้ '%{email}' จะเป็นการลบรายงานที่สร้างขึ้นซึ่งใช้ปัจจัยแคมเปญสําหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
+    scoring_subject_list_push_webhook: พุชเว็บฮุค
+    scoring_subject_list_rank: อันดับ
+    scoring_subject_list_rescore: ให้คะแนนใหม่
+    scoring_subject_list_rescore_confirm: ให้คะแนนผู้ใช้ '%{email}' ใหม่ คุณแน่ใจหรือไม่ว่าต้องการดําเนินการต่อ?
     scoring_supported_only_for_ai_questions: การให้คะแนนอนุญาตเฉพาะคำถามที่เปิดใช้งาน AI สำหรับปัจจัยที่เลือกในปัจจุบันเท่านั้น
+    scoring_tabs_settings: การตั้งค่า
+    scoring_tabs_subject_scores: คะแนนวิชา
     scoring_value_info: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
     scoring_value_out_of_range_err_msg: คะแนนสำหรับ %{factor_name} ต้องอยู่ระหว่าง %{min} ถึง %{max}
+    scoring_variables: ตัว แปร
+    scoring_weightages_assessorForms: แบบฟอร์มผู้ประเมิน
+    scoring_weightages_successful_update: ค่าน้ําหนักอัปเดตเรียบร้อยแล้ว
+    scoring_weightages_weightages: น้ําหนัก
+    scoring_weighted_average: ค่าเฉลี่ยถ่วงน้ําหนัก
     search_admins: ค้นหาผู้ดูแลระบบ
+    search_campaign: ค้นหาตามแคมเปญ
+    search_client: ค้นหาตามลูกค้า
     search_job_role: ค้นหางานในตำแหน่ง
+    search_participants: ค้นหาผู้เข้าร่วม...
+    search_project: ค้นหาตามโครงการ
+    search_record: ค้นหาตาม ID เรกคอร์ด
+    search_user: ค้นหาตามผู้ใช้
+    seats_label: ที่นั่ง
+    sec_logo_label: โลโก้รอง
+    secondary_logo_alt_text: โลโก้รอง Alt-Text
+    secondary_logo_alt_text_required: จําเป็นต้องมีโลโก้ Alt-Text รอง
+    security_setting_180_days: 180 วัน
+    security_setting_30_days: 30 วัน
+    security_setting_365_days: 365 วัน
+    security_setting_90_days: 90 วัน
+    security_setting_attempts_to_lock: พยายามล็อค
+    security_setting_auto_unlock_time: เวลาปลดล็อกอัตโนมัติ
+    security_setting_disable_password_reuse: ปิดใช้งานการใช้รหัสผ่านซ้ํา
+    security_setting_disallow_password_login: ไม่อนุญาตให้เข้าสู่ระบบด้วยรหัสผ่าน
+    security_setting_enable_login_with_magic_link: เปิดใช้งานการเข้าสู่ระบบด้วยลิงค์วิเศษ
+    security_setting_enable_recaptcha: เปิดใช้งาน reCAPTCHA
+    security_setting_enforce_password_policy: บังคับใช้นโยบายรหัสผ่านเมื่อลงชื่อเข้าใช้ครั้งถัดไป
+    security_setting_enforce_strong: บังคับใช้รหัสผ่านที่คาดเดายาก
+    security_setting_expiration: รหัสผ่านหมดอายุ
+    security_setting_lock_account: ล็อคบัญชี
+    security_setting_magic_link_expiry_duration: ระยะเวลาหมดอายุของลิงค์เมจิก
+    security_setting_min_length: ความยาวรหัสผ่านขั้นต่ํา
+    security_setting_never: ไม่เคย
+    security_setting_restrict_sequences: จํากัดอักขระตามลําดับและอักขระซ้ํา
+    security_setting_security: การตั้งค่าความปลอดภัย
+    security_setting_send_unlock_email: ส่งอีเมลปลดล็อก
+    security_setting_session_timeout_duration: ระยะเวลาหมดเวลาเซสชัน
+    security_setting_tfa_enabled: เปิดใช้งานการรับรองความถูกต้องแบบสองปัจจัย
+    security_settings_security_setting: การตั้งค่าความปลอดภัย
     select_admin_role: กรุณาเลือกผู้ดูแลระบบ
+    select_assessment_language: เลือกภาษาการประเมิน
+    select_client: เลือกผู้ใช้บริการ
     select_end_time: เลือกเวลาสิ้นสุด
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
+    select_project_ids_required: เลือก project_ids ที่ต้องการ
+    select_projects: เลือกโครงการ
+    select_projects_required: กรุณาเลือกอย่างน้อยหนึ่งโครงการ
     select_question: ค้นหาคำถามโดยชื่อหรือรหัส
+    select_report_ids_required: เลือก report_ids ที่ต้องการ
+    select_report_language: เลือกภาษาของรายงาน
+    select_report_type: เลือกประเภทรายงาน
     select_start_time: เลือกเวลาเริ่มต้น
     selective_proctoring: การคุมสอบแบบเลือกสรร
     send_email: ส่งอีเมล
+    send_test_email: ส่งอีเมลทดสอบ
     set_min_max_scores_warning: กรุณาตั้งค่าคะแนนต่ำสุดและสูงสุดสำหรับปัจจัยนี้เพื่อกำหนดค่าการให้คะแนน AI
     settings: การตั้งค่า
+    settings_admin_roles_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบบทบาทผู้ดูแลระบบ '%{role_name}'
     settings_saved_successfully: การตั้งค่าถูกบันทึกไว้เรียบร้อยแล้ว
+    settings_siem_destination_type: ประเภทปลายทาง
+    settings_siem_destination_types_s3: เอส 3
+    settings_siem_destination_types_s3_compatible: เข้ากันได้กับ S3
+    settings_siem_enabled: เปิด
+    settings_siem_readable_resource_name: การตั้งค่า SIEM
+    settings_siem_s3_access_key_id: รหัสคีย์การเข้าถึง
+    settings_siem_s3_bucket_folder: โฟลเดอร์ S3 Bucket
+    settings_siem_s3_bucket_name: ชื่อบัคเก็ต S3
+    settings_siem_s3_endpoint: ปลายทาง S3
+    settings_siem_s3_region: ภูมิภาค S3
+    settings_siem_s3_secret_access_key: คีย์การเข้าถึงลับ
+    settings_siem_send_test_log: ส่งบันทึกการทดสอบ
+    settings_siem_send_test_log_error_message: บันทึกการทดสอบยังไม่ได้ส่งไปยังบัคเก็ตของคุณ ให้ตรวจสอบการตั้งค่าของคุณ
+    settings_siem_send_test_log_success_message: บันทึกการทดสอบถูกส่งไปยังบัคเก็ตของคุณเรียบร้อยแล้ว
+    settings_skill_aliases_alias: สมญานาม
+    settings_skill_aliases_confirm_message: คุณแน่ใจหรือไม่ว่าต้องการลบนามแฝงทักษะ '%{skill_alias}'
+    settings_skill_aliases_create: เพิ่มนามแฝงทักษะ
+    settings_skill_aliases_select_skill: เลือกทักษะ
+    settings_skill_aliases_skill: ทักษะ
+    settings_skill_aliases_skill_alias: นามแฝงทักษะ
+    settings_skill_aliases_successful_remove: นามแฝงทักษะ '%{skill_alias}' ถูกลบเรียบร้อยแล้ว
+    settings_tabs_admin_roles: บทบาทผู้ดูแลระบบ
+    settings_tabs_feature_flags: แฟล็กคุณสมบัติ
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: นามแฝงทักษะ
+    sheets_column_add_column: เพิ่มคอลัมน์
+    sheets_column_not_allowed_for_dashboard_use: สําหรับคอลัมน์ที่จะใช้ในแดชบอร์ดควรมีอักขระน้อยกว่า 64 ตัว
+    sheets_column_reorder: เรียง ลำดับ
+    sheets_column_save_order: บันทึกคําสั่งซื้อ
+    sheets_drawers_add_edit_cancelText: ยกเลิก
+    sheets_drawers_add_edit_markdown_preview: ดูตัวอย่าง
+    sheets_drawers_add_edit_markdown_title: มาร์คดาวน์
+    sheets_drawers_add_edit_save: บันทึก
+    sheets_drawers_add_edit_saving: การประหยัด
+    sheets_drawers_add_edit_success_message_add: เพิ่มระเบียนใหม่
+    sheets_drawers_add_edit_success_message_edit: อัปเดตบันทึกแล้ว
+    sheets_drawers_add_edit_title_add: เพิ่มระเบียนแผ่นงาน
+    sheets_drawers_add_edit_title_edit: แก้ไขเรกคอร์ดแถวแผ่นงาน
+    sheets_drawers_add_edit_validations_required_email: กรุณากรอกอีเมล
+    sheets_drawers_view_campaign_title: บันทึกระดับแคมเปญ
+    sheets_drawers_view_project_title: บันทึกระดับโครงการ
+    sheets_drawers_view_title: รายละเอียดบันทึกแถวแผ่นงาน
+    sheets_list_header_add_record: เพิ่มระเบียน
+    sheets_list_header_search_record: ค้นหาระเบียน
+    sheets_modals_delete_records_cancelText: ยกเลิก
+    sheets_modals_delete_records_content: คุณแน่ใจหรือไม่ว่าต้องการลบระเบียน {{count}} ที่เลือก?
+    sheets_modals_delete_records_okText: ใช่ ลบ
+    sheets_modals_delete_records_successMessage: "{{count}} ระเบียนถูกลบสําเร็จ"
+    sheets_modals_delete_records_title: ลบ {{count}} ระเบียน
+    sheets_modals_remove_columns_cancelText: ยกเลิก
+    sheets_modals_remove_columns_content: การลบคอลัมน์ ({{columns}}) จะเป็นการลบข้อมูลในคอลัมน์นี้สําหรับทุกแถว
+    sheets_modals_remove_columns_okText: ใช่ ลบ
+    sheets_modals_remove_columns_successMessage: "{{count}} บันทึกที่ถูกลบ"
+    sheets_modals_remove_columns_title: ลบคอลัมน์
+    sheets_tabs_rows: แถว
+    sheets_tabs_settings: การตั้งค่า
+    show_all: ดูรีวิวทั้งหมด
     show_all_assessment_responses: แสดงคำตอบการประเมินทั้งหมด
     show_middle_scores: แสดงคะแนนเพิ่มเติมของ%{count} (ไม่บังคับ)...
     show_original: แสดงต้นฉบับ
     show_submenu: แสดงเมนูย่อย
     show_translated: แสดงคำแปล
+    show_watermark: แสดงลายน้ํา
+    sidebar_title: ตัวเลือกของโครงการ
     siem: SIEM
     simulation: การลอกเลียนแบบ
     simulation_assessment: การประเมินการจําลอง
     skill_aliases: นามแฝงทักษะ
+    skill_rater: ผู้ประเมินทักษะ
     skills: ทักษะ
+    skills_applicable_proficiency_levels: ระดับความเชี่ยวชาญที่เกี่ยวข้อง
+    skills_columns_skill_group: กลุ่มทักษะ
+    skills_columns_skill_type: ประเภททักษะ
+    skills_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
+    skills_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
+    skills_form_skill_group: กลุ่มทักษะ
+    skills_form_skill_type: ประเภททักษะ
+    skills_form_title: ทักษะ
+    skills_import_action_skills_title: ทักษะการนําเข้า
+    skills_import_action_skills_translations_title: การแปลทักษะการนําเข้า
+    skills_import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    skills_import_info_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    skills_import_success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    skills_skill_details: รายละเอียดทักษะ
+    skills_skill_translations: การแปลทักษะ
     skills_taxonomy: อนุกรมวิธานทักษะ
+    skills_title: ทักษะ
+    skills_vector_generate_embedding: สร้างการฝัง
+    skills_vector_generate_embedding_failure_msg: ล้มเหลวในการจัดคิวงานการสร้างการฝังทักษะ โปรดลองอีกครั้ง
+    skills_vector_generate_embedding_success_msg: งานการสร้างการฝังทักษะได้รับการจัดคิวเรียบร้อยแล้ว โปรดตรวจสอบสถานะในการแจ้งเตือน
+    skills_vector_label: เวกเตอร์ DB
     skillvue: สกิลวิว
+    skillvue_apiKey: กุญแจ API
+    skillvue_apiKeyRequired: ต้องใช้คีย์ API
     skillvue_assessment: การประเมิน Skillvue
     skip_assessment_level_checks: ข้ามการตรวจสอบระดับการประเมิน
     slot_name: ชื่อสล็อต
+    sms_contact: ติดต่อ SMS
     sms_histories: ประวัติ SMS
+    sms_histories_columns_mobile_no: หมายเลขมือถือ
+    sms_histories_columns_price: ราคา
+    sms_histories_columns_segment_length: ความยาวเซ็กเมนต์
+    sms_histories_columns_sent_at: ส่งที่
+    sms_histories_drawer_title: รายละเอียด SMS
+    sms_histories_history: ประวัติศาสตร์
+    sms_histories_statuses_accepted: ยอม รับ
+    sms_histories_statuses_delivered: จัด ส่ง
+    sms_histories_statuses_failed: ล้ม เหลว
+    sms_histories_statuses_queued: จัด คิว
+    sms_histories_statuses_scheduled: ถึงกําหนด
+    sms_histories_statuses_sent: ส่ง
+    sms_histories_statuses_undelivered: ไม่ได้รับการจัดส่ง
     sms_invites: คําเชิญทาง SMS
+    sms_invites_actions_add: เพิ่มผู้ติดต่อ SMS
+    sms_invites_columns_created_at: สร้างเมื่อ
+    sms_invites_columns_created_by: สร้างโดย
+    sms_invites_columns_mobile_no: หมายเลขมือถือ
+    sms_invites_contacts: ติดต่อ
+    sms_invites_form_modal_locale: สถานที่เกิดเหตุ
+    sms_invites_form_modal_mobile_no: หมายเลขมือถือ
+    sms_invites_form_modal_title: เชิญ SMS
+    sms_invites_import_download_example_csv: ดาวน์โหลดตัวอย่าง csv
+    sms_invites_import_success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    sms_invites_import_title: นําเข้าคําเชิญทาง SMS
+    sms_invites_messages_delete_confirm_text: คุณแน่ใจหรือไม่ว่าต้องการลบคําเชิญ SMS ด้วยหมายเลขโทรศัพท์มือถือ %{mobile_no}
+    sms_invites_messages_delete_success: ลบคําเชิญทาง SMS เรียบร้อยแล้ว
+    sms_invites_send_sms_fields_link_expiry: การหมดอายุของลิงก์
+    sms_invites_send_sms_fields_locale: สถานที่เกิดเหตุ
+    sms_invites_send_sms_fields_message: ข้อความ
+    sms_invites_send_sms_fields_statuses: สถานะ
+    sms_invites_send_sms_fields_users: ผู้เข้าร่วม
+    sms_invites_send_sms_modal_btn_name: ส่ง SMS
+    sms_invites_send_sms_modal_title: ส่ง SMS
+    sms_invites_send_sms_pipetext_details: "{{{first_name}}} - ชื่อผู้รับ<br />{{{last_name}}} - นามสกุลผู้รับ<br />{{{invite_url}}} - ลิงค์ลงทะเบียน"
+    sms_invites_send_sms_segment_length_msg: จํานวนเซ็กเมนต์โดยประมาณสําหรับข้อความนี้คือ %{segment_length}
+    sms_invites_send_sms_segment_length_range_msg: จํานวนเซ็กเมนต์โดยประมาณสําหรับข้อความนี้อยู่ระหว่าง %{min_segment_length} ถึง %{max_segment_length}
+    sms_invites_statuses_all: ทั้งหมด
+    sms_invites_statuses_failed: ล้ม เหลว
+    sms_invites_statuses_invited: เชิญ
+    sms_invites_statuses_not_invited: ไม่ได้รับเชิญ
+    sms_invites_statuses_registered: ลง ทะเบียน
+    sms_invites_tools_export: ส่งออกผู้ติดต่อ SMS
+    sms_invites_tools_import: นําเข้าผู้ติดต่อ SMS
+    sms_invites_tools_send_sms: ส่ง SMS
+    sms_notification: การแจ้งเตือนทาง SMS
+    sms_notification_disabled_by_client: การแจ้งเตือนทาง SMS ถูกปิดใช้งานโดยไคลเอ็นต์
+    sms_records_columns_message: ข้อความ
+    smtp_settings: การตั้งค่า SMTP
+    smtp_settings_authentication: ตรวจ สอบ
+    smtp_settings_authentication_type: ประเภทการรับรองความถูกต้อง
+    smtp_settings_authentication_types_cram_md5: ยักไข่ MD5
+    smtp_settings_authentication_types_login: เข้าสู่ระบบ
+    smtp_settings_authentication_types_plain: ทุ่ง
+    smtp_settings_enabled: เปิด
+    smtp_settings_encryption: การเข้ารหัส
+    smtp_settings_encryption_types_none: ไม่มีใคร
+    smtp_settings_encryption_types_ssl: เอสแอลเอสแอล
+    smtp_settings_encryption_types_tls: ทีแอลเอส
+    smtp_settings_from_email: จากอีเมล
+    smtp_settings_from_name: จากชื่อ
+    smtp_settings_host: เจ้าภาพ
+    smtp_settings_password: รหัสผ่าน
+    smtp_settings_port: ท่า
+    smtp_settings_send_test_email: ส่งอีเมลทดสอบ
+    smtp_settings_smtp: ไอ้องค์
+    smtp_settings_test_email_modal_input_hint: การตั้งค่าอีเมลของคุณจะไม่ถูกบันทึกจนกว่าอีเมลทดสอบจะถูกส่งสําเร็จ
+    smtp_settings_test_email_modal_input_placeholder: รหัสอีเมลทดสอบ
+    smtp_settings_test_email_modal_title: รหัสอีเมลทดสอบ
+    smtp_settings_test_modal_success_message: อีเมลทดสอบที่ส่งไปยัง %{email_id}
+    smtp_settings_test_modal_title: ทดสอบการตั้งค่า SMTP
+    smtp_settings_update_success_msg: ตั้งค่า SMTP อัปเดตเรียบร้อยแล้ว
+    smtp_settings_use_sender_verification: ใช้การยืนยันผู้ส่ง
+    smtp_settings_user_name: ชื่อผู้ใช้
     specialty_questions: คำถามเฉพาะทาง
     sso_email_mismatch: คุณกำลังเข้าสู่ระบบด้วยบัญชีอื่นบนผู้ให้บริการข้อมูลประจำตัว กรุณาออกจากระบบจากผู้ให้บริการข้อมูลประจำตัวของคุณและลองอีกครั้ง
     sso_enforced: บังคับใช้ระบบเข้าสู่ระบบครั้งเดียว (SSO)
@@ -1183,30 +2861,167 @@ th:
     sso_settings_slo_url: URL บริการ SLO
     sso_settings_sso_url: URL บริการ SSO
     sso_settings_tab: SSO
+    standard: มาตรฐาน
     standard_deviation: ค่าเบี่ยงเบนมาตรฐาน
     standard_questions: คำถามมาตรฐาน
     start: เริ่มต้น
     start_time: เวลาเริ่มต้น
     static_content: เนื้อหาคงที่
     stats: สถิติ
+    stats_assessments_active: เปิดใช้งาน
+    stats_assessments_columns_assessment_name: ชื่อการประเมิน
+    stats_assessments_columns_completed: เสร็จสมบูรณ์
+    stats_assessments_columns_in_progress: อยู่ระหว่างดําเนินการ
+    stats_assessments_columns_ineligible: ไม่มีสิทธิ์
+    stats_assessments_columns_interrupted: หยุดชะงัก
+    stats_assessments_columns_not_started: ยังไม่ได้เริ่มต้น
+    stats_assessments_columns_timed_out: หมดเวลา
+    stats_assessments_count: จำนวน
+    stats_assessments_inactive: เกียจคร้าน
+    stats_assessments_percentage: อัตราร้อยละ
+    stats_assessments_title: การประเมิน
+    stats_top_metrics_completed: เสร็จสมบูรณ์
+    stats_top_metrics_in_progress: อยู่ระหว่างดําเนินการ
+    stats_top_metrics_interrupted: หยุดชะงัก
+    stats_top_metrics_not_started: ยังไม่ได้เริ่มต้น
+    stats_top_metrics_timed_out: หมดเวลา
+    stats_top_metrics_users: ผู้เข้าร่วม
+    stats_users_date_presets_last_30_days: 30 วันที่ผ่านมา
+    stats_users_date_presets_last_7_days: 7 วันที่ผ่านมา
+    stats_users_date_presets_last_month: เมื่อเดือนที่แล้ว
+    stats_users_date_presets_last_week: สัปดาห์ที่แล้ว
+    stats_users_date_presets_today: วันนี้
+    stats_users_date_presets_yesterday: เมื่อวานนี้
+    stats_users_y_title: จํานวนผู้ใช้
+    status_active: เปิดใช้งาน
+    status_archived: เก็บเข้าคลัง
     status_details: รายละเอียดสถานะ
+    statuses_accepted: ยอม รับ
+    statuses_cancelled: ยก เลิก
+    statuses_late_cancelled: ยกเลิกในนาทีสุดท้าย
+    statuses_late_rescheduled: เลื่อนกำหนดส่ง
+    statuses_pending: รอ
+    statuses_requested_cancellation: การยกเลิกที่ร้องขอ
+    statuses_requested_cancellation_rejected: การยกเลิกถูกปฏิเสธ
+    statuses_requested_rescheduling: การขอเปลี่ยนกําหนดการ
+    statuses_requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
+    statuses_rescheduled: เลื่อนกําหนดเวลา
+    statuses_scheduled: ถึงกําหนด
+    steps_basic_information: ข้อมูลพื้นฐาน
+    steps_facilitators: ผู้อํานวยความสะดวก
+    steps_invite_options: ตัวเลือกคำเชิญ
+    steps_invite_subjects: หัวข้อคำเชิญ
+    steps_send_invitations: ส่งคําเชิญ
     structured_learning: การเรียนรู้อย่างเป็นทางการ [10]
+    sub_factor_questions: คําถามเกี่ยวกับปัจจัยอื่น ๆ (เฉลี่ย)
+    sub_factor_questions_sum: คําถามเกี่ยวกับปัจจัยอื่น ๆ (SUM)
+    sub_factors_average: ค่าเฉลี่ยถ่วงน้ําหนักของปัจจัย
+    sub_factors_conditional_average: ค่าเฉลี่ยถ่วงน้ําหนักแบบมีเงื่อนไขของปัจจัย
+    sub_factors_sum: ผลรวมถ่วงน้ําหนักของปัจจัย
     subdomain: โดเมนย่อย
     subdomain_admin_keyword: ไม่สามารถใช้รูปแบบโดเมนย่อยที่สงวนไว้สำหรับผู้ดูแลระบบได้
     subdomain_invalid_format: รูปแบบซับโดเมนไม่ถูกต้อง
     subdomain_reserved: ซับโดเมน %{value} ถูกสงวนไว้
     subdomain_too_long_max_32: ชื่อโดเมนย่อยยาวเกินไป (สูงสุดคือ 32 ตัวอักษร)
+    subject: หัวข้อ
+    subject_can_access_reports: ผู้ใช้สามารถเข้าถึงรายงานของตนได้
+    subject_email: อีเมลของหัวเรื่อง
+    subject_invite_description: ข้อความนี้จะถูกส่งเพื่อเชิญอาสาสมัครเข้าร่วมการประเมิน
+    subject_invite_name: คําเชิญเรื่อง
     subject_part_of_other_invite: หัวข้อพร้อมอีเมล %{user_email} ได้รับเชิญแล้วสำหรับ '%{workshop_invite_name}'
+    subject_placeholder: หัวข้อค้นหา...
+    subject_reminder_description: ส่งข้อความถึงผู้เข้าร่วมแต่ละคนเพื่อเตือนให้เข้าร่วมการประเมิน
+    subject_reminder_name: เตือนหัวเรื่อง
+    subject_reminder_rule_description: ระบุกฎสําหรับการกําหนดเวลาโดยอัตโนมัติเมื่อมีการกําหนดเวลาคําเชิญ
+    subject_reminder_rule_name: กฎการเตือนหัวเรื่อง
+    subject_report_ready_description: ข้อความนี้จะถูกส่งไปยังหัวเรื่องเมื่อรายงานพร้อม
+    subject_report_ready_name: พร้อมรายงานหัวเรื่อง
+    subjects_title: หัวข้อ
+    submenu_options_option_one: ตัวเลือกที่ 1
+    submenu_options_option_title: รายการที่ 1
+    submenu_options_option_two: ตัวเลือกที่ 2
+    success_call_send_invitation: คุณต้องการส่งคําเชิญหรือไม่?
+    success_color: สีที่ประสบความสําเร็จ
+    success_ok: ใช่
+    success_skip: ข้ามสำหรับตอนนี้
+    success_title: สร้างศูนย์การประเมิน
+    success_update: บันทึกการตั้งค่าการออกแบบสําเร็จแล้ว
+    suitability_id: ความเหมาะสม ID
     superadmin_use_root_domain: ผู้ดูแลระบบระดับสูงต้องลงชื่อเข้าใช้ผ่านโดเมนหลัก
     switch_client: สลับลูกค้า
-    target_job_role: ตำแหน่งงานเป้าหมาย
+    system_prompt: คำสั่งของระบบ
+    tab_text_one: เมนู
+    tab_text_two: เมนูย่อย
+    table_more_actions: การดําเนินการเพิ่มเติม
+    tabs_results: ผลลัพธ์
+    tabs_settings: การตั้งค่า
+    target_job_role: บทบาทงานเป้าหมาย
+    taxonomy_import_action_taxonomy: อนุกรมวิธานนําเข้า
+    taxonomy_import_description: อัปโหลดไฟล์ Excel เพื่อนำเข้าหรือปรับปรุงหมวดหมู่ทักษะของคุณ ซึ่งจะเพิ่มทักษะใหม่ ตำแหน่งงาน และระดับความเชี่ยวชาญ
+    taxonomy_import_download_example_file: ดาวน์โหลดไฟล์ตัวอย่าง
+    taxonomy_import_drag_text: คลิกหรือลากไฟล์มาวางในพื้นที่นี้เพื่ออัปโหลด
+    taxonomy_import_error_title: นำเข้าล้มเหลว
+    taxonomy_import_file_hint: รองรับไฟล์ .xls และ .xlsx
+    taxonomy_import_import_button: นำเข้าหมวดหมู่
+    taxonomy_import_success_msg: ไฟล์ที่อัปโหลดถูกจัดคิวสําหรับการนําเข้า โปรดตรวจสอบสถานะในการแจ้งเตือน
+    taxonomy_title: อนุกรมวิธานทักษะ
+    template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
+    template_render_failed: แสดงเทมเพลตไม่สําเร็จ
+    test_generate: ทดสอบสร้าง
+    test_render: ทดสอบการแสดงผล
+    test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
+    text_danger: ข้อความ(อันตราย)
+    text_success: ข้อความ (สำเร็จ)
+    text_warning: ข้อความ (คำเตือน)
     this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
+    threesixity_advance_settings_campaign_template: เทมเพลตแคมเปญ
+    threesixity_advance_settings_factors: ปัจจัย
+    threesixity_close_content: คุณแน่ใจหรือไม่ว่าต้องการปิดผู้สร้างแคมเปญ Multi Rater งานปรับแต่งที่ยังไม่ได้บันทึกจะสูญหายไป โปรดยืนยันการตัดสินใจของคุณ
+    threesixity_close_title: ปิดผู้สร้างแคมเปญ Multi Rater?
+    threesixity_instructions_creation_empty: 'ว่างเปล่า: เริ่มต้นด้วยแบบสำรวจเปล่าและปรับแต่งให้เหมาะกับความต้องการเฉพาะของคุณ'
+    threesixity_instructions_creation_previous: 'ก่อนหน้า: เลือกการประเมินก่อนหน้าเป็นจุดเริ่มต้นและทำการแก้ไข'
+    threesixity_instructions_creation_standard: 'มาตรฐาน: ใช้แบบฟอร์มที่ออกแบบไว้ล่วงหน้าพร้อมคำถามและตัวชี้วัดที่ใช้บ่อย'
+    threesixity_instructions_creation_sub_title: โปรดเลือกประเภทของแคมเปญที่คุณต้องการสร้าง
+    threesixity_instructions_creation_title: ยินดีต้อนรับสู่ผู้สร้างแคมเปญ Multi Raiter!
+    threesixity_instructions_customization_sub_title: เลือกเท็มเพลตและปัจจัยที่จะรวมอยู่ในการประเมิน
+    threesixity_instructions_customization_title: ปรับแต่งการประเมินของคุณ!
+    threesixity_no_factors_description: โปรดลองใช้คําค้นหาอื่น ๆ
+    threesixity_no_factors_title: ไม่พบปัจจัย
+    threesixity_questions_select_all: เลือกทั้งหมด
+    threesixity_questions_title: คําถามและตัวชี้วัด
+    threesixity_search_factors_description: โปรดป้อนอักขระอย่างน้อย 3 ตัวเพื่อค้นหาปัจจัยที่คุณต้องการ
+    threesixity_search_factors_title: เริ่มการค้นหาของคุณ
+    threesixity_success: สร้างแคมเปญ Multi Rater เรียบร้อยแล้ว
+    threesixity_success_job: งานการสร้างแคมเปญ Multi Rater ถูกตั้งเวลาเรียบร้อยแล้ว
     threesixty: แคมเปญ 360
+    threesixty_campaigns_mail_history_date: วันที่
+    threesixty_campaigns_mail_history_download_details: รายละเอียดการดาวน์โหลด
+    threesixty_campaigns_mail_history_emails_sent: อีเมลที่ส่งแล้ว
+    threesixty_campaigns_mail_history_recipient: ผู้รับ
+    threesixty_campaigns_mail_history_subject: หัวข้อ
+    threesixty_campaigns_manage_assessment: การประเมิน
+    threesixty_campaigns_manage_dimension: มิติ
+    threesixty_campaigns_manage_manage_relationships: จัดการความสัมพันธ์...
+    threesixty_campaigns_manage_report: รายงาน
+    threesixty_campaigns_menu_datasheet_title: เอกสารข้อมูล
+    threesixty_campaigns_menu_messages_title: ข้อความ
+    threesixty_campaigns_menu_participants_title: ผู้เข้าร่วม
+    threesixty_campaigns_menu_report_menu_report_approval_title: การตั้งค่าการอนุมัติรายงาน
+    threesixty_campaigns_menu_report_menu_report_options_title: ตัวเลือกรายงาน
+    threesixty_campaigns_menu_report_title: รายงาน
+    time_label: เวลา
+    time_zone: โซนเวลา
     timed_label: 'จับเวลา: %{time_text}'
     timelines: ไทม์ไลน์
+    times: ครั้ง
     timezone: เขตเวลา
+    timezone_label: โซนเวลา
     timing: เวลาที่เหมาะสม
+    title: ข้อความ
     to: ถึง
+    token_url_label: URL โทเค็น
+    token_url_name: oauth_token_url
+    token_url_required: ต้องระบุ URL โทเค็น
     tone: โทน
     toolbar_ai_insight: AI อินไซต์
     toolbar_ai_suggestion: คำแนะนำจาก AI
@@ -1215,6 +3030,22 @@ th:
     toolbar_text_replaced: ข้อความถูกแทนที่แล้ว!
     toolbar_what_changed_and_why: อะไรที่เปลี่ยนไป & ทำไม
     tools: เครื่องมือ
+    topics_label: กิจกรรม
+    topics_list_assessment_assigned: การประเมินที่ได้รับมอบหมาย
+    topics_list_assessment_completed: การประเมินเสร็จสมบูรณ์
+    topics_list_assessment_raw_response: การประเมินผล ตอบแบบดิบ
+    topics_list_assessment_started: เริ่มการประเมินแล้ว
+    topics_list_assessment_timeout: หมดเวลาการประเมิน
+    topics_list_campaign_results_available: ผลลัพธ์แคมเปญพร้อมใช้งาน
+    topics_list_campaign_user_assessment_summary: สรุปการประเมินผู้ใช้แคมเปญ
+    topics_list_campaign_user_status: สถานะผู้ใช้แคมเปญ
+    topics_list_report_available: มีรายงาน
+    topics_list_results_available: ผลลัพธ์ที่มี
+    topics_list_scheduling_cancelled: ยกเลิกการตั้งเวลา
+    topics_list_scheduling_invited: จัดตารางเวลาได้รับเชิญ
+    topics_list_scheduling_rescheduled: ตั้งเวลาการเลื่อนกำหนดเวลา
+    topics_list_scheduling_scheduled: ตั้งเวลากำหนดเวลา
+    topics_list_workshop_attendance_status: สถานะการเข้าร่วมเวิร์กชอป
     transcription_record_not_found: ไม่พบบันทึกการถอดเสียง
     transcription_schedule_failed: ไม่สามารถกำหนดตารางงานถอดความได้
     transcription_scheduled: งานถอดเสียงถูกกำหนดเวลาแล้ว กรุณาปิดหน้าต่างป๊อปอัปและตรวจสอบสถานะการแจ้งเตือน
@@ -1227,32 +3058,84 @@ th:
     translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
     translations:
       title: การแปล
+    translations_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
+    translations_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
+    tte: ทีทีอี
+    type_by_skill: ตามทักษะ
+    type_by_skill_type: ตามประเภททักษะ
+    type_default: ค่าเริ่มต้น
+    type_locked_tooltip: ผู้ช่วยคนนี้กำลังใช้งานอยู่และไม่สามารถเปลี่ยนประเภทได้
+    unarchive_content: คุณแน่ใจหรือไม่ว่าต้องการยกเลิกการเก็บถาวร '%{project_name}'
+    unarchive_success: โครงการ '%{project_name}'' ถูกยกเลิกการเก็บถาวรเรียบร้อยแล้ว
+    unarchive_title: ยกเลิกการเก็บถาวรโครงการ
+    unsaved_changes: มีการเปลี่ยนแปลงที่ไม่ได้บันทึก ให้พิจารณาส่งแบบฟอร์มเพื่อสร้างการตอบกลับที่อัปเดตจาก Playground
+    upcoming: กำลังจะมาถึง
     update_success: "%{readableResourceName} ได้รับการอัปเดตเรียบร้อยแล้ว"
+    updated_successfully: ผู้ช่วย AI ได้รับการอัปเดตสำเร็จแล้ว
     upload: อัปโหลด
     upload_media: อัปโหลดสื่อ
     upload_required: กรุณาเพิ่มไฟล์อย่างน้อยหนึ่งไฟล์เพื่ออัปโหลด
     upload_success: อัปโหลดสําเร็จ
+    url_label: URL
+    url_name: URL
+    used_tokens_input_tokens: โทเค็นอินพุต
+    used_tokens_output_tokens: โทเค็นเอาต์พุต
+    used_tokens_title: การใช้โทเค็น
+    user: ผู้ใช้
+    user_agent: ตัวแทนผู้ใช้
+    user_prompt: คำสั่งของผู้ใช้
     user_report_events: เหตุการณ์รายงานผู้ใช้
+    user_report_id: รหัสรายงานผู้ใช้
+    user_result_validity_in_days: ผลการสอบเป็นวัน
+    username_label: ชื่อผู้ใช้
+    username_name: ชื่อผู้ใช้
     users: ผู้เข้าร่วม
+    users_modals_download_idp_reports_error: การตั้งเวลาดาวน์โหลดรายงาน IDP จำนวนมากล้มเหลว
+    users_modals_download_idp_reports_include_reflective_questions: รวมคําถามไตร่ตรอง
+    users_modals_download_idp_reports_success: การดาวน์โหลดรายงาน IDP จำนวนมากถูกตั้งเวลาเรียบร้อยแล้ว
+    users_modals_download_idp_reports_title: ดาวน์โหลดรายงาน IDP จํานวนมาก
+    users_user: ผู้ใช้
     validation_error: กรุณากรอกข้อมูลในทุกช่องที่จำเป็น
     validity: ความถูกต้อง
     very_high: สูงมาก
     very_low: ต่ำมาก
+    video_call_recording: อนุญาตให้บันทึกการโทรผ่านวิดีโอ
+    video_call_recording_expiry_duration: ระยะเวลาการเก็บรักษาสำหรับการบันทึกการโทรผ่านวิดีโอ (เป็นวัน)
+    video_call_recording_scope: เปิดใช้งานการบันทึกวิดีโอสำหรับแคมเปญใหม่ทั้งหมด
+    video_call_type_custom: ธรรมเนียม
+    video_call_type_internal: ภายใน
+    video_call_type_label: เพิ่มแฮงเอาท์วิดีโอ
+    video_call_type_none: ไม่มีใคร
     view_licenses: ดูใบอนุญาต
+    visual_header_visibility: การมองเห็นส่วนหัวของภาพ
     wait_for_upload_completion: กรุณารอให้ไฟล์ทั้งหมดอัปโหลดเสร็จสมบูรณ์
     waiting: การรอคอย
+    warning_color: สีเตือน
+    watermark_content: เนื้อหาลายน้ํา
+    watermark_info: หากคุณไม่เพิ่มเนื้อหาใด ๆ โดยค่าเริ่มต้นอีเมลของผู้ใช้จะปรากฏเป็นเครื่องหมายน้ํา คุณสามารถใช้ pipetext ต่อไปนี้ -<br> {{id}} - รหัสผู้เข้าร่วม </br> {{first_name}} - ชื่อผู้เข้าร่วม <br> {{last_name}} - นามสกุลของผู้เข้าร่วม </br> {{email}} - อีเมลผู้เข้าร่วม
+    webhook_delete_success: ลบการตั้งค่าเว็บฮุคเรียบร้อยแล้ว
     weight: น้ำหนัก
+    welcome_message_description: ข้อความนี้จะแสดงต่อผู้เข้ารับการทดสอบเมื่อพวกเขาเข้าสู่ระบบเพื่อเริ่มการประเมินหรือดูรายการงานของพวกเขา
+    welcome_message_name: ข้อความต้อนรับ
     what_to_look_for: สิ่งที่ควรสังเกต
     what_to_look_for_placeholder: หลักฐานของพฤติกรรม การกระทำ หรือผลลัพธ์ที่แสดงให้เห็นถึงปัจจัยนี้
     words: คำ
+    workshop_actions_remove_workshop: ถอดเวิร์กชอปเรียบร้อยแล้ว
+    workshop_statuses_closed: ปิด
+    workshop_statuses_open: เปิด
     workshops: เวิร์กช็อป
     writing_assistant_not_configured: ผู้ช่วยการเขียนยังไม่ได้รับการกำหนดค่า
     x_axis_interval_label: แกน X ช่วง
     y_axis_interval_label: แกน Y ช่วง
     year: ประเทศ
+    year_range: ช่วงปี
+    years: ปี
     yoodli: ยุดลี
     yoodli_activity_id: รหัสกิจกรรม Yoodli
     yoodli_assessment: การประเมิน Yoodli
     yoodli_email_id: รหัสอีเมลผู้สมัคร Yoodli
     yoodli_external_assessment_id: รหัสการประเมิน Yoodli
+    yoodli_keyset_url: URL ของชุดคีย์
+    yoodli_launch_url: URL การเปิดตัว
+    yoodli_login_url: URL เข้าสู่ระบบ
     you_are_here: คุณอยู่ที่นี่

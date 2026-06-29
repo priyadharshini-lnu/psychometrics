@@ -142,7 +142,7 @@ export const AddEditSamlServiceProviderModal: React.FC<Props> = ({
 
           <Form.Item
             name="name"
-            label={I18n.t('admin.saml_service_provider_name')}
+            label={I18n.t('shared.name')}
             rules={[{ required: true, message: I18n.t('admin.saml_service_provider_name_required') }]}
           >
             <Input placeholder={I18n.t('admin.saml_service_provider_name_placeholder')} />

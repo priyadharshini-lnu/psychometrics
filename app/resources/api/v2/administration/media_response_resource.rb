@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::MediaResponseResource < Api::V2::Administration::BaseResource
-  attributes :id, :question_id, :transcription_text, :question_type, :transcription_status,
+  attributes :question_id, :transcription_text, :question_type, :transcription_status,
              :transcription_enabled, :asset_url, :media_id, :question_text, :question_name, :error_details
 
   def self.records(opts = {})

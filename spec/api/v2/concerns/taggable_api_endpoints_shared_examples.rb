@@ -22,7 +22,7 @@ RSpec.shared_examples 'taggable API endpoints' do |model_class|
 
       post "/api/v2/administration/#{model_class.to_s.underscore.pluralize}/#{resource.id}/add_tag",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(resource.reload.all_tags_list).to include(tag_name)
@@ -46,7 +46,7 @@ RSpec.shared_examples 'taggable API endpoints' do |model_class|
 
       post "/api/v2/administration/#{model_class.to_s.underscore.pluralize}/#{resource.id}/remove_tag",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(resource.reload.all_tags_list).not_to include(tag_name)

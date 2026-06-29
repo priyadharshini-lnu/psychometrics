@@ -272,7 +272,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             </Select>
           </Form.Item>
           {isEditForm && (
-            <Tooltip title={I18n.t('administration.reports.edit_default_language.tooltip')}>
+            <Tooltip title={I18n.t('admin.reports_edit_default_language_tooltip')}>
               <Button
                 icon={<EditOutlined />}
                 onClick={showLanguageModal}
@@ -305,12 +305,12 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
       </Form.Item>
       <Form.Item
         name="tagList"
-        label={I18n.t('common.column.tags')}
+        label={I18n.t('shared.tags')}
       >
         <Select
           mode="tags"
           style={{ width: '100%' }}
-          placeholder={I18n.t('common.column.tags')}
+          placeholder={I18n.t('shared.tags')}
           showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
           notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
@@ -320,7 +320,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
         </Select>
       </Form.Item>
       <Modal
-        title={I18n.t('administration.reports.edit_default_language.title')}
+        title={I18n.t('admin.reports_edit_default_language_title')}
         open={isLanguageModalVisible}
         onOk={() => defaultLangForm.submit()}
         onCancel={handleModalCancel}
@@ -341,12 +341,12 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             </Select>
           </Form.Item>
           <Alert
-            message={I18n.t('administration.reports.edit_default_language.warning.title')}
+            message={I18n.t('admin.reports_edit_default_language_warning_title')}
             description={(
               <ul style={{ paddingLeft: '20px' }}>
-                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_1')}</li>
-                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_2')}</li>
-                <li>{I18n.t('administration.reports.edit_default_language.warning.description_li_3')}</li>
+                <li>{I18n.t('admin.reports_edit_default_language_warning_description_li_1')}</li>
+                <li>{I18n.t('admin.reports_edit_default_language_warning_description_li_2')}</li>
+                <li>{I18n.t('admin.reports_edit_default_language_warning_description_li_3')}</li>
               </ul>
             )}
             type="warning"
@@ -358,7 +358,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
             rules={[{ required: true }]}
           >
             <Checkbox style={{ display: 'flex', alignItems: 'flex-start' }}>
-              {I18n.t('administration.reports.edit_default_language.agreement')}
+              {I18n.t('admin.reports_edit_default_language_agreement')}
             </Checkbox>
           </Form.Item>
         </Form>

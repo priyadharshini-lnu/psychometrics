@@ -1,4 +1,6 @@
-import { useEffect, FC, useState } from 'react'
+import {
+  useEffect, FC, useState, useRef,
+} from 'react'
 import { connect, ConnectedProps, useDispatch } from 'react-redux'
 import {
   useNavigate, useParams, useSearchParams, useLocation,
@@ -34,6 +36,7 @@ import { AsyncRequestResponse, AsyncRequestResponseTR } from '~/modules/admin/mo
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
 import { setCampaignUser } from '~/modules/endUser/modules/campaigns/core/campaign'
 import { useDeviceDetection } from '~/hooks/useDeviceDetection'
+import { protectContent } from '~/utils/contentProtection'
 
 import styles from './UserAssessment.less'
 
@@ -90,6 +93,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const [locale, setLocale] = useState(localeData?.code)
   const [dataAvailable, setDataAvailable] = useState(false)
   const [showInstructions, setShowInstructions] = useState(true)
+  const instructionsContainerRef = useRef<HTMLDivElement | null>(null)
   const dispatch = useDispatch()
   const { message, modal } = App.useApp()
   const assessmentTimer = assessmentExtra?.timer
@@ -98,6 +102,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
   const { isMobileDevice } = useDeviceDetection()
   const assessmentNeedsProctoring = selectiveProctoringEnabled && !isProctored
   const insideSelectiveProctoringSession = selectiveProctoringEnabled && isProctored
+  const isCopyEnabled = assessmentExtra?.enable_copy_content === true
 
   useEffect(() => {
     const lang = searchParams.get('lang') || localeData?.code || I18n.currentLocale()
@@ -105,6 +110,27 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
       setDataAvailable(true)
     })
   }, [])
+
+  useEffect(() => {
+    // Proctored sessions handle their own content restrictions, via the proctoring layer.
+    const shouldProtectInstructions = dataAvailable
+      && showInstructions
+      && !insideSelectiveProctoringSession
+      && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))
+      && !isCopyEnabled
+
+    if (!instructionsContainerRef.current || !shouldProtectInstructions) return
+
+    return protectContent(() => instructionsContainerRef.current)
+  }, [
+    assessmentStartedAt,
+    assessmentTimer,
+    dataAvailable,
+    insideSelectiveProctoringSession,
+    instructions,
+    isCopyEnabled,
+    showInstructions,
+  ])
 
   const proctoredAssessmentStartInstruction = () => {
     const messages = [I18n.t('campaign.instruction_modal.common_proctoring_instructions')]
@@ -286,7 +312,11 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               </Space>
             )}
           />
-          <div className={styles.instructionsContainer}>
+          <div
+            ref={instructionsContainerRef}
+            data-content-protected={isCopyEnabled ? undefined : true}
+            className={styles.instructionsContainer}
+          >
             <InstructionsComponent
               initialized
               isDisconnected={isDisconnected}

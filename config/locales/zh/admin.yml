@@ -2,15 +2,42 @@
 zh:
   admin:
     accept_na_values: 接受 N/A 值
+    acceptable_rate_limit_label: 可接受的申请上限
+    acceptable_rate_limit_request_per: 每
     actions: 行动
+    actions_add_code: 添加代码
+    actions_archive: 存档
+    actions_playground: 操场
+    actions_unarchive: 取消存档
+    active: 活跃
+    active_label: 活跃
+    active_name: 活跃
+    active_record_audits_audit_id: 审计编号
+    active_record_audits_auditable_id: 记录编号
+    active_record_audits_auditable_type: 记录类型
+    active_record_audits_audited_changes: 经审计的变化
+    active_record_audits_new_diff_parse_error: 解析带有新更改的 JSON 失败
+    active_record_audits_old_diff_parse_error: 解析带有旧更改的 JSON 失败
+    active_record_audits_title: 经审计的变化
+    activity: 活动
+    activity_period: 活动期间
     add_admin: 添加管理员
     add_admin_role: 添加管理员角色
+    add_btn: 添加主题
     add_campaign_admin: 添加活动管理
     add_client_admin: 添加客户管理员
+    add_conditions: 添加条件
+    add_evaluators: 添加评估员
     add_indicator: 添加指示器
+    add_lead_assessor: 添加为首席评估员
+    add_lead_assessor_hint: 请先添加首席评估员表格
+    add_more: 添加更多
     add_new_folder: 添加新文件夹
+    add_output_schema_key: 添加输出模式密钥
     add_project: 添加项目
     add_project_admin: 添加项目管理
+    add_report: 添加报告
+    add_subjects: 添加主题
     add_threesixty_campaign_admin: 添加活动管理
     add_word_count: 添加字数统计
     admin_approval_required: "%{user}报告需要管理员批准后才能下载"
@@ -20,24 +47,15 @@ zh:
     admin_role_deleted: 已成功删除管理员角色"%{role_name}"。
     admin_roles: 管理员角色
     admin_updated_successfully: 管理员"%{name}"已成功更新
+    administrator_approves_reports: 行政长官批准报告
+    administrators_list_columns_email: 电子邮箱
     admins: 管理员
     advanced: 高级
+    advanced_mode_tooltip: 使用高级模式使用带有可用变量的液态模板进行提示模板。详情请参阅相关文档。
     agile: AGILE
     ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
     ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: AI 工件
-    ai_artifacts_finalized_at: 最终确定于
-    ai_artifacts_generate_result_confirm: 为用户“%{email}”生成工件结果将删除依赖于此 AI 工件的现有报告。您确定要继续吗？
-    ai_artifacts_generate_results: 生成结果
-    ai_artifacts_mark_finalized: 标记已完成
-    ai_artifacts_mark_finalized_bulk_confirm: 为所有选定用户确定分析结果后，系统将生成使用 AI 分析结果的报告。您确定要继续吗？
-    ai_artifacts_mark_finalized_confirm: 完成用户“%{email}”的成果处理将生成一份使用该用户 AI 成果的报告。您确定要继续吗？
-    ai_artifacts_mark_not_finalized: 标记尚未最终确定
-    ai_artifacts_mark_not_finalized_bulk_confirm: 从所有选定用户中移除“finalize”操作将删除使用 AI 生成内容的报告。您确定要继续吗？
-    ai_artifacts_mark_not_finalized_confirm: 从用户“%{email}”中删除“finalize”操作将删除该用户使用 AI 生成物生成的报告。您确定要继续吗？
-    ai_artifacts_output_schema_key_constraint: 键必须以小写字母开头，且只能包含小写字母、数字和下划线
-    ai_artifacts_results_export: 导出结果
-    ai_artifacts_results_export_job_scheduled: AI Artifacts结果导出任务已成功排程
     ai_assistant: 人工智能助手
     ai_assistant_model_id_label: 型号ID
     ai_assistant_model_label: 型
@@ -46,21 +64,14 @@ zh:
     ai_assistant_required: 需要AI助手
     ai_assistant_select_dependencies: 选择依赖项
     ai_assistants: 人工智能助理
-    ai_assistants_advanced_mode_tooltip: 使用高级模式使用带有可用变量的液态模板进行提示模板。详情请参阅相关文档。
-    ai_assistants_campaign_id_placeholder: 这时，活动ID
-    ai_assistants_cannot_change_type_when_in_use: 无法更改 AI 助手“%{name}”的类型，因为它当前正在使用中。
-    ai_assistants_no_rendered_output: 没有渲染输出可用
-    ai_assistants_provider_change_confirm_title: 更换服务商？
-    ai_assistants_provider_previously_used_warning: 该助手此前曾使用“%{from}”生成过结果。若将该值更改为“%{to}”，可能会影响该助手在后续生成请求中的行为。
-    ai_assistants_render_button: 渲染模板
-    ai_assistants_rendered_prompt: 渲染提示
-    ai_assistants_template_and_campaign_required: 请同时提供模板和战役ID
-    ai_assistants_template_render_failed: 模板渲染失败
-    ai_assistants_test_render: 测试渲染
-    ai_assistants_test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
-    ai_assistants_type_locked_tooltip: 该助手目前正在使用中，无法更改其类型。
+    ai_assistants_disabled_by_client: 客户端禁用了 AI 助手
+    ai_assistants_playground: 人工智能助理游乐场
+    ai_assisted_idp: 人工智能辅助 IDP
     ai_assisted_idp_disabled_by_client: AI辅助IDP功能已被客户端禁用
     ai_assisted_idp_feature_disabled: 本项目已禁用AI辅助IDP功能。
+    ai_assisted_idp_requires_ai_assistants: AI 辅助 IDP 需要启用 AI 助手功能
+    ai_content_analysis: 人工智能内容分析
+    ai_content_analysis_disabled_by_client: AI内容分析功能已被客户端禁用
     ai_idp_assistant_configure_dependencies: 配置 AI 依赖项
     ai_idp_assistant_configure_dependencies_description: 配置IDP AI助手可访问的依赖数据作为上下文。此设置仅在助手配置为接受依赖关系时生效。
     ai_idp_assistant_dependencies_updated: 依赖项更新成功
@@ -69,28 +80,7 @@ zh:
     ai_score_approval_no_answer: 此问题未提供答案
     ai_score_approval_no_transcription: 此问题暂无转录文本。
     ai_scored: AI得分
-    ai_scoring_appoval_approve_all_questions: 批准所有问题
-    ai_scoring_appoval_approve_question: 批准问题
-    ai_scoring_appoval_back: 重置分数
-    ai_scoring_appoval_change_reason: 变更原因
-    ai_scoring_appoval_change_score: 更改后的分数
-    ai_scoring_appoval_change_score_log: 变更评分记录
-    ai_scoring_appoval_discard_all_questions: 重置所有问题
-    ai_scoring_appoval_discard_all_questions_description: 这将重置所有问题的分数并清除所有覆盖设置。此操作无法撤销。确定要执行吗？
-    ai_scoring_appoval_discard_all_questions_title: 重置所有问题分数？
-    ai_scoring_appoval_discard_question: 重置问题分数
-    ai_scoring_appoval_discard_question_confirm_description: 这将重置该问题的所有分数并清除所有覆盖设置。确定吗？
-    ai_scoring_appoval_discard_question_confirm_title: 重置问题分数？
-    ai_scoring_appoval_discarded_changes: 已丢弃的更改
-    ai_scoring_appoval_evidence_from_transcript: 笔录证据
-    ai_scoring_appoval_new_score: 新分数
     ai_scoring_appoval_next: 下一个问题
-    ai_scoring_appoval_rationale: 依据
-    ai_scoring_appoval_reason_for_changes: 变更原因
-    ai_scoring_appoval_reset_score: 重置分数
-    ai_scoring_appoval_reset_score_description: 分数将恢复为原始AI值。
-    ai_scoring_appoval_responses: AI 回应
-    ai_scoring_appoval_score_not_applicable: 分数不适用
     ai_scoring_approval: AI评分审批
     ai_scoring_approval_digest_mailer_access_link_intro: 您可以通过以下链接查看评分审批情况：
     ai_scoring_approval_digest_mailer_approved_body_intro: 以下评分结果已获批准。
@@ -113,62 +103,177 @@ zh:
     ai_scoring_refresh_score_confirm_description: 这将使用最新配置重新运行该评估的 AI 评分。您确定吗？
     ai_scoring_refresh_score_confirm_title: 刷新 AI 评分？
     ai_scoring_rescore_queued: AI重新评分已加入队列。请稍后刷新页面。
-    ai_translation: 人工智能翻译
+    ai_translation: AI翻译
+    ai_translation_disabled_by_client: AI 翻译功能已被客户端禁用
     all_corner_rounded: 所有边角均已圆角处理
     allow_ai_rescoring: 允许AI重新评分
     allow_continue_with_warning_system_check: 当系统检查失败时，允许用户在收到警告后继续操作
+    allow_late_cancellation_and_scheduling: 允许延迟取消和调度
+    allow_manager_to_view_individual_responses: 允许经理查看个别回复
+    allow_multiple_responses: 允许多个回复
+    allow_subjects_to_send_reminders: 允许受试者向评估者发送提醒信息
+    alt_text_invalid: Alt 文本包含不支持的字符。
+    alt_text_logo: 徽标换行文字
+    alt_text_logo_required: 需要 Alt-Text 徽标
+    alt_text_long: 超过 100 个字符的最大限制。
     api_keys: API 密钥
+    api_keys_form_title: 服务协议密钥
+    application: 应用
+    application_add: 添加应用程序
+    application_name: 应用程序名称
+    application_name_already_taken: 该客户已有此记录
+    application_name_format_hint: 仅允许使用字母和数字，单词之间用一个空格分隔
+    applications: 应用
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
+    approve_all_questions: 批准所有问题
+    approve_nomination_description: 当直接报告的提名需要批准时，该信息将发送给经理
+    approve_nomination_name: 批准提名
+    approve_question: 批准问题
+    approve_report_description: 此信息将发送给受试者的管理者，通知他们受试者的报告已准备好供审批
+    approve_report_name: 批准报告
+    archive: 存档
+    archive_content: 您确定要存档"%{project_name}"吗？
+    archive_success: 项目"%{project_name}"已成功存档。
+    archive_title: 档案项目
+    artifact_results: 工件结果
     assessment: 评估
-    assessment_center_activity: 活动
-    assessment_center_assessor: 评估员
-    assessment_center_attendance: 出勤情况
-    assessment_center_attendance_status: 出勤状况
-    assessment_center_campaigns_tab: 活动
-    assessment_center_date_and_time: 日期与时间
-    assessment_center_join_room: 加入房间
-    assessment_center_meeting_link: 会议链接
-    assessment_center_participants_tab: 参与者
-    assessment_center_prework: 课前准备
-    assessment_center_schedule_time: 安排时间
-    assessment_center_scheduling_status: 排程状态
-    assessment_center_search_participants: 搜索参与者...
+    assessment_center: 评估中心：
+    assessment_center_group: 评估中心小组
+    assessment_center_group_placeholder: 选择评估中心组
+    assessment_center_invites: 评估中心邀请函
+    assessment_ids: 评估ID
+    assessment_placeholder: 选择评估
     assessment_question_not_supported: 此题型目前不支持。
+    assessment_required: 需要进行评估
     assessments: 评估
+    assessments_assessment_report: 评估
+    assessments_copy: 复制
     assessments_copy_as_microsite: 复制为微网站评估
+    assessments_copy_assessment: 副本评估
+    assessments_help_text: 此选项仅影响评估原始响应事件。
+    assessments_label: 评估
     assessments_not_mhs: 所有评估必须采用MHS类型
+    assessments_placeholder: 选择评估
     assessments_reports: 评估与报告
+    assessments_required: 评估原始响应事件必须至少选择一项评估。
+    assessor: 评估员
+    assessor_add_subject_modal_assessment: 评估
+    assessor_add_subject_modal_mark_as_lead_assessor: 标记为上述科目的主评委
+    assessor_add_subject_modal_subject: 主题
+    assessor_add_subject_modal_subject_placeholder: 搜索主题...
+    assessor_add_subject_modal_title: 添加主题
+    assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: 选择一项评估
+    assessor_assessment_name: 评估员 评估
+    assessor_assessments: 评估员 评估
+    assessor_assessments_actions_add_subject: 添加主题
+    assessor_assessments_actions_rescore: 重核
+    assessor_assessments_actions_reset: 重置评估
+    assessor_assessments_actions_reset_progress: 重置进度
+    assessor_assessments_bulk_delete_confirmation: 您确定要删除选定的记录吗？
+    assessor_assessments_bulk_delete_successful: 评估员评估已成功删除
+    assessor_assessments_reset_confirmation: 您确定要使用电子邮件"%{subjectEmail}"重置主题评估吗？
+    assessor_assessments_reset_progress_confirmation: 您确定要通过电子邮件"%{subjectEmail}"重置主题进度吗？
+    assessor_assessments_reset_progress_successfully: 邮件主题"%{subjectEmail}"的重置进度成功。
+    assessor_assessments_reset_successfully: 使用电子邮件"%{subjectEmail}"对主题进行的重置评估成功。
+    assessor_assessments_subject_email: 主题电子邮件
+    assessor_assessments_subject_name: 主题名称
+    assessor_campaigns_statuses_completed: 已完成
+    assessor_campaigns_statuses_in_progress: 进行中
+    assessor_campaigns_statuses_not_started: 未开始
+    assessor_completed_at: 完成于
+    assessor_count: 评估员
+    assessor_create_assessor: 添加评估员
     assessor_dashboard: 评估员仪表板
+    assessor_email: 评估员电子邮件
+    assessor_evaluations: 评估员评估
+    assessor_first_name: 评估员姓名
     assessor_form: 评估员表格
+    assessor_ids_label: 评估员
+    assessor_last_name: 评估员姓氏
+    assessor_modals_import_body: 请参阅 "导出 "功能，提取可用于此处 "导入 "的模板。
+    assessor_modals_import_title: 进口评估员
+    assessor_overview: 概述
+    assessor_placeholder: 搜索评估员...
+    assessor_remove_confirmation: 您确定要将电子邮件地址为 %{email} 的评估员从该活动中删除吗？
+    assessor_statuses_completed: 已完成
+    assessor_statuses_not_completed: 未完成
+    assessor_subjects_statuses_completed: 已完成
+    assessor_subjects_statuses_in_progress: 进行中
+    assessor_subjects_statuses_not_started: 未开始
+    assessor_toolbar_export: 出口评估员
+    assessor_toolbar_import: 进口评估员
     assessor_workshops: 评估中心
     assessors: 评估员
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
     assistant_toolbar_not_a_valid_operation: 未知操作%{operation}。
     assistant_validation_failed: 多次尝试后仍未能生成有效输出
+    attendance: 出勤情况
+    attendance_status: 出勤状况
     audit_log_impersonated_by: 被冒充者
+    audit_log_title: 审计日志信息
+    audit_log_type: 记录类型
     audit_logs: 审计日志
+    audit_logs_export_failed: 无法安排导出任务。请重试。
+    audit_logs_export_queued: 导出任务已成功安排。
     audit_reports: 审计报告
+    auth_type_api_key_header_format_error: 只允许使用字母、数字、下划线和连字符
+    auth_type_api_key_header_label: API 密钥头
+    auth_type_api_key_header_name: apiKeyHeader
+    auth_type_api_key_label: 服务协议密钥
+    auth_type_api_key_name: api_key
+    auth_type_api_key_value: api_key_auth
+    auth_type_basic_label: 基本
+    auth_type_basic_value: 基本身份验证
+    auth_type_label: 认证类型
+    auth_type_name: 认证类型
+    auth_type_no_auth_label: 无
+    auth_type_no_auth_value: no_auth（简体中文（大陆））
+    auth_type_oauth_label: OAuth
+    auth_type_oauth_value: OAuth
     auto_moderated_factor_info: 该评分由系统自动生成，无法修改
     auto_placeholder: 汽车
+    automatically_send_invites: 自动向新评估员发送邀请
     availability: 可用性
-    available_languages: 报告提供多种语言版本
+    available_languages: 可用语言
     average: 平均
+    back: 重置分数
     back_to_main: 主菜单
+    background_color: 背景颜色
+    background_label: 背景介绍
+    background_overlay_label: 背景叠加
+    background_size: 背景尺寸
+    background_size_contain: 包含
+    background_size_cover: 封面
+    basic_info_panel_description: 请在下面输入日程安排信息，您也可以选择多个日期来创建多个评估中心。
+    basic_info_panel_title: 基本信息
     block_editor_add_question: 添加问题
     block_editor_question_randomization: 试题随机排列
     block_options: 区块选项
     block_settings: 区块设置
     blocks_new_button: 新区块
     blocks_title: 积木
+    booked_at: 预订地点
+    breadcrumbs_norms_editor: 规范编辑
+    bulk_assessment_download_date_range_required: 请选择日期范围
+    bulk_assessment_download_export_type: 导出类型
+    bulk_assessment_download_export_type_required: 请选择导出类型
+    bulk_assessment_download_help_text: 注意：如果评估与不同的维度相关联，下载的 xslx 文件将针对每个维度包含单独的工作表。
+    bulk_assessment_download_modal_subtitle: 选择日期范围和导出类型，然后导出所选的评估结果。
+    bulk_assessment_download_no_data_found: 在所选的日期范围和评估项目中，未找到相关数据。请尝试选择其他日期范围或评估项目。
+    bulk_assessment_download_norm_factor_scores: 常模因子得分
+    bulk_assessment_download_raw_factor_scores: 原始因子得分
     bulk_assets_modal_choose_csv: 选择CSV文件
     bulk_assets_modal_choose_zip: 选择ZIP文件
     bulk_assets_modal_not_csv_file_error: CSV上传仅支持CSV文件格式。请上传有效的CSV文件。
     bulk_assets_modal_subtitle: 请上传<b>一个CSV文件</b>（包含标题行：user_email, file_name）和<b>一个ZIP文件</b>（内含与CSV文件名对应的PDF文件）。ZIP文件大小必须小于%{max_file_size}MB。
     bulk_assets_modal_title: 上传CSV和ZIP文件
+    bulk_export_assessments_file: 批量评估导出文件
+    bulk_export_invalid_params: 批量导出参数无效
     bulk_upload_ai_artifacts: 批量上传AI伪影
+    campaign: 项目
+    campaign_admin: 活动管理
     campaign_ai_artifact_updated_successfully: 战役AI工件已成功更新
     campaign_ai_artifacts_instruction_templating_tooltip: 您可以利用提示符模板功能，结合 Liquid 模板语法和可用变量来使用高级指令。更多详情请参阅文档。
-    campaign_ai_artifacts_results_export_details: 活动人工智能生成物产出结果
     campaign_assessment_actions_disable_caching: 关闭评估缓存
     campaign_assessment_actions_enable_caching: 启用评估缓存
     campaign_assessment_column_caching_enabled: 启用评估缓存
@@ -201,71 +306,230 @@ zh:
     campaign_assessment_modals_enable_caching_successfully: 本次评估已启用缓存功能。
     campaign_assessment_modals_enable_caching_title: 启用评估缓存？
     campaign_factors: 活动因素
+    campaign_id_placeholder: 这时，活动ID
     campaign_name: 活动名称
-    campaign_report:
-      drawers:
-        external_settings:
-          external_report_id: 外部报告编号
-          language_id: 语言代码
-          norm: 诺姆
-          norm_id: 规范编号
-          suitability_id: 适用性标识
-        labels:
-          assessment_ids: 评估ID
-          available_languages: 可用语言
-          campaign_report_id: 活动报告编号
-          check_details: 查看详情
-          default_language: 默认语言
-          external_settings: 外部设置
-          provider: 服务提供商
-          report_pdf_status: 报告 PDF 状态
-          user_report_id: 用户报告编号
+    campaign_report_generate_modal_subtitle: 为每份报告选择所需的语言
+    campaign_report_id: 活动报告编号
+    campaign_results_export_details: 活动人工智能生成物产出结果
     campaign_templates: 活动模板
+    campaign_templates_campaign_templates: 活动模板
+    campaign_templates_column_assessment: 评估
+    campaign_templates_column_campaign: 项目
+    campaign_templates_column_owner: 业主
+    campaign_templates_column_report: 报告
+    campaign_templates_form_assessment: 评估
+    campaign_templates_form_assessment_placeholder: 选择一项评估
+    campaign_templates_form_name_placeholder: 输入名称
+    campaign_templates_form_owner: 业主
+    campaign_templates_form_owner_placeholder: 选择所有者
+    campaign_templates_form_report: 报告
+    campaign_templates_form_report_placeholder: 选择报告
+    campaign_templates_form_title: 活动模板
+    campaign_templates_remove_confirm_content: 您确定要删除活动模板"%{name}"吗？
+    campaign_templates_remove_confirm_success: 活动模板"%{name}"已成功删除。
+    campaign_templates_remove_confirm_title: 删除活动模板
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
     campaigns: 活动
+    campaigns_convert_to_template: 转换为模板
+    campaigns_extend_time_success_message: 活动计时器延长至 %{minutes} 分钟
+    campaigns_external_scores_import_modal_title: 导入外部营销活动评分
+    campaigns_filters_active: 活跃
+    campaigns_filters_all: 全部
+    campaigns_filters_archived: 存档
+    campaigns_filters_closed: 关闭
+    campaigns_filters_inactive: 不活动
+    campaigns_filters_status: 现状
+    campaigns_form_active_notice: 广告系列状态将自动更改为在选定的结束日期关闭
+    campaigns_form_campaign: 项目
+    campaigns_form_copy_factors: 复制因子
+    campaigns_form_inactive_notice: 广告系列状态将在选定的开始日期自动更改为活动
+    campaigns_form_practice_campaign: 实践活动
+    campaigns_listing_assessments: 评估
+    campaigns_listing_reports: 报告
+    campaigns_listing_template: 模板
+    campaigns_menus_add_common_campaign: 添加共同活动
+    campaigns_menus_add_multi_rater_campaign: 添加多评级活动
+    campaigns_pdf_password: PDF 密码
+    campaigns_tab: 活动
+    campaigns_types_common: 常见问题
+    campaigns_types_threesixty: 多评分器
+    campaigns_users_add_user: 添加用户
+    campaigns_users_completion_status: 完成情况
+    campaigns_users_created_by: 创建者
+    campaigns_users_filters_all: 全部
+    campaigns_users_filters_anonymous: 匿名
+    campaigns_users_filters_identified: 已确定
+    campaigns_users_is_active: 活跃
+    campaigns_users_no_permission_message: 您没有权限修改
+    campaigns_users_title: 用户
+    campaigns_users_updated_by: 更新人
     cancel: 取消
+    cancel_confirmation_message: 您确定要放弃表格进度吗？
+    cancel_confirmation_title: 弃表进度
     cancellation_and_rescheduling_disabled: 取消和重新安排功能已禁用
+    cancellation_lead_time_label: 取消预订所需的时间
+    cannot_change_type_when_in_use: 无法更改 AI 助手“%{name}”的类型，因为它当前正在使用中。
     captcha: 验证码验证
     case_study: 案例研究
     casual: 休闲
+    categories_approvals: 批准
+    categories_invitations: 邀请函
+    categories_reminders: 提醒事项
+    categories_report_ready: 报告准备就绪
+    category: 类别
     cell_save_msg: 编辑完成后，只要离开单元格，有效的更改就会自动保存。
+    change_reason: 变更原因
+    change_score: 更改后的分数
+    change_score_log: 变更评分记录
     characters: 字符
     chat_instructions_success: 聊天说明已成功保存
+    check_details: 查看详情
     children_factor_type: 儿童因素类型
     client: 客户平台
+    client_admin: 客户管理
     client_admins: 客户管理员
+    client_credentials_label: 客户端凭据
+    client_credentials_value: client_credentials
+    client_features: 客户特点
+    client_id_label: 客户端ID
+    client_id_name: oauth_client_id
+    client_id_required: 需要客户ID
+    client_ids: 客户端 ID
+    client_ip: 客户 IP
+    client_logo_label: 客户徽标
+    client_secret_label: 客户端密码
+    client_secret_name: oauth_client_secret
+    client_secret_required: 客户端密码是必需的
     client_selection_instruction: 选择一个客户，继续进入管理面板。
     client_selection_sign_out: 退出
     client_selection_title: 选择客户
     clients: 客户平台
     clients_search_placeholder: 搜索客户
+    closed: 关闭
     code_required: 需要规范
+    collapse_filters: 折叠过滤器
+    column_code: 代码
+    column_invitation_status: 邀请状态
+    column_participant: 参与者
+    column_provider: 提供商
+    column_scheduling_details: 日程安排详情
+    column_usage_stats: 使用统计
     common: TTE 评估
     common_assessment: TTE 评估
+    common_disabled: 已禁用
+    common_download_sample_file: 下载样本文件
+    common_enabled: 已启用
+    common_import_failure_msg: 导入文件时出错。
+    common_minute: 分钟
+    common_select_all: 选择所有
+    common_type: 类型
+    common_unselect_all: 全部取消选择
     communication_center: 通信中心
     communications: 通信
+    communications_form_insert_piped_text: 插入管道文字
     completed: 完成
     completed_tooltip: 所有评估人员均已提交评估
+    components_input_duration_placeholder: 输入 "1d 2h 3m
     concise: 简洁
+    confidence_interval: 置信区间
+    confidence_interval_update_success: 置信区间更新成功
+    configuration: 配置
     configure_model_answer_title: 配置模型答案和关键词
     confirm_remove_admin: 您确定要删除电子邮件地址为"%{email}"的管理员用户吗？
     confirmation_required: 需要确认
     confirmation_required_details: 您确定要删除%{resource}中的“%{resource_name}”吗？
+    consolidated: 综合
+    contrast_ratio_warning: 注意：使用这种主色调可能会违反影响文本可读性的对比度要求。
+    contrast_ratio_warning_lighter_color: 注意：使用此%{name}颜色可能会违反文本可读性的对比度要求。请尝试使用更深的颜色。
     copied: 复制
     copied_url_success: URL 已成功复制到剪贴板
     copy_ai_artifacts: 复制 AI 生成内容
+    copy_hint: 将上述座位、中心经理、评估员以及会议和资源配置复制到以下评估中心。 复制后，您可以对各个评估中心做进一步更改，然后再继续操作。
     copy_image_url: 复制图片网址
+    copy_report_scheduled: 报告复制任务已安排。
+    copy_text: 文本
+    copy_to_all: 抄送其他评估中心
     copy_url: 复制链接
     country: 国家
+    course: 课程
+    create_ai_assistants: 创建人工智能助理
     create_client: 创建客户
     create_indicator: 创建指标
-    current_job_role: 当前职位
+    create_level_description_must_exist: 关卡描述不能为空
+    create_level_name_must_exist: 级别名称不能为空
+    create_must_be_unique: 必须独一无二
+    created_successfully: AI 助手创建成功。
+    current: 当前
+    current_job_role: 当前工作角色
+    custom_formula: 自定义公式
+    custom_message_description: 该信息可发送给参与评估的任何人
+    custom_message_name: 自定义信息
     custom_upload: 自定义上传
     dashboard: 仪表板
+    dashboard_capacity_name: 能力名称
+    dashboard_choose_file_format: 选择文件格式
+    dashboard_dashboard_types_oracle_analytics: 甲骨文分析
+    dashboard_dashboard_types_powerbi: PowerBi
+    dashboard_dashboards: 仪表板
+    dashboard_export_dashboard_to_file: 将仪表板导出到文件
+    dashboard_export_job_failure: 导出失败
+    dashboard_export_job_success: 导出工作已开始。完成后会通知您。
+    dashboard_form_image_upload_failed: 图片上传失败。
+    dashboard_form_none: 无
+    dashboard_form_refresh_success: 数据集刷新计划成功。
+    dashboard_get_started: 开始
+    dashboard_initialize_msg: 为该活动初始化仪表板
+    dashboard_loading_failed: 仪表板加载失败。
+    dashboard_only_export_current_tab: 仅导出当前选项卡
+    dashboard_pdf: PDF
+    dashboard_pptx: PPTX
+    dashboard_preview_embed_token_error_description: 请检查设置中的数据集和报告 ID 是否正确。
+    dashboard_preview_embed_token_error_title: 无法生成嵌入式令牌。
+    dashboard_settings_capacity_id: 容量标识
+    dashboard_settings_details: 详细信息
+    dashboard_settings_refresh: 刷新
+    dashboard_settings_workspace_id: 工作区 ID
+    dashboard_tabs_accesssheet: 访问表
+    dashboard_tabs_accesssheet_setting: 访问表设置
+    dashboard_tabs_settings: 设置
     dashboards: 仪表板
+    dashed_button: 虚线
+    data_exports_modal_title: 选择日期范围
+    data_range_error: 请选择日期范围
     data_reports: 数据报告
+    data_reports_columns_created_at: 创建时间
+    data_reports_columns_created_by: 创建者
+    data_reports_columns_last_updated_by: 最后更新
+    data_reports_columns_password: 密码
+    data_reports_columns_udpated_at: 最后更新时间
+    data_reports_configuration: 配置
+    data_reports_form_name: 数据报告
+    data_reports_messages_runed: 数据报告已成功计划运行
+    dataset_id: 数据集编号
     datasheet: 数据表
+    date_and_time: 日期与时间
+    date_presets_last_30_days: 最近 30 天
+    date_presets_last_6_months: 过去6个月
+    date_presets_last_7_days: 最近 7 天
+    date_presets_last_month: 上个月
+    date_presets_last_week: 上周
+    date_presets_last_year: 去年
+    date_presets_today: 今天
+    date_presets_yesterday: 昨天
+    date_range: 日期范围
+    date_range_required: 必须填写日期范围
+    dates_completed: 完成于
+    dates_end: 结束日期
+    dates_label: 日期
+    dates_start: 开始日期
+    dates_started: 开始于
+    days_repeated: 天，重复
     declined: 拒绝
+    default: 默认
+    default_assessment_language: 评估默认语言
+    default_button: 默认
+    default_language: 默认语言
+    default_report_language: 报告默认语言
     define_max_score_text: 定义%{maxScore}的分数（最高分）
     define_min_score_text: 定义%{minScore}的得分（最低得分）
     define_optional_score_range_text: 定义分数 %{minScore} 至 %{maxScore}（可选）
@@ -273,10 +537,40 @@ zh:
     definition: 定义
     delete_ok_text: 是的，删除
     denied: 否认
+    dependencies: 依赖关系
     description: 描述
+    description_name: 说明
+    description_save: 保存说明
+    description_save_success: 说明已成功保存
     descriptive_text: 说明性文本
     development_actions: 发展行动
+    development_actions_duration_max_length: 不能大于1年
+    development_actions_duration_min_length: 不能少于1分钟
+    development_actions_export_development_action_translations: 基于项目的发展行动翻译
+    development_actions_export_development_actions: 发展行动
+    development_actions_export_failure_msg: 导出翻译时出错
+    development_actions_export_success_msg: 导出开发操作正在进行中，请查看通知中的状态。
+    development_actions_form_available_languages: 可用语言
+    development_actions_form_client_placeholder: 选择客户
+    development_actions_form_course_image: 课程图像
+    development_actions_form_course_link: 课程链接
+    development_actions_form_development_action_type: 发展行动类型
+    development_actions_form_duration: 持续时间
+    development_actions_form_learning_style: 学习方式
+    development_actions_form_project_placeholder: 选择项目
+    development_actions_form_skills: 技能
+    development_actions_form_skills_placeholder: 选择技能
     development_actions_form_tags: 标签
+    development_actions_form_title: 发展行动
+    development_actions_global: 全球发展是行动吗？
+    development_actions_heading: 发展行动
+    development_actions_import_action_development_actions_title: 导入开发行动
+    development_actions_import_action_development_actions_translations_title: 导入开发行动 翻译
+    development_actions_import_development_actions: 发展行动
+    development_actions_import_development_actions_translations: 发展行动 翻译
+    development_actions_import_download_example_csv: 常模 CSV 样本
+    development_actions_import_failure_msg: 导入文件时出错。
+    development_actions_import_info_msg: 上传的文件已排队等待导入，请查看通知中的状态。
     digest_delivery_mode:
       form_label: 摘要交付模式
       immediate: 立即 - 每当有批量提交时发送
@@ -297,16 +591,68 @@ zh:
       wednesday: 星期三
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
+    dimensions_destroy_successfully: 尺寸 %{name} 已成功删除。
+    dimensions_export_json_successfully: 导出维度 %{name} 的 JSON 计划。
+    dimensions_form_enable_innovation_styles: 实现创新风格
+    dimensions_form_enable_occupations: 启用职业
+    dimensions_form_title: 尺寸
+    dimensions_import_factors_sample_file: 样本文件
+    dimensions_import_factors_title: 进口因素
+    dimensions_import_modal_after: 之后
+    dimensions_import_modal_before: 之前
+    dimensions_import_modal_change_log_input: 更改日志
+    dimensions_import_modal_error: 错误
+    dimensions_import_modal_error_occurred: 发生错误
+    dimensions_import_modal_errors_file_error: 请在继续之前选择一个 JSON 文件。
+    dimensions_import_modal_errors_processing_error: 文件处理错误
+    dimensions_import_modal_field: 现场
+    dimensions_import_modal_import_dimension: 进口尺寸
+    dimensions_import_modal_import_scheduled: 计划导入
+    dimensions_import_modal_operation: 运行
+    dimensions_import_modal_owner_input_validation: 请选择业主
+    dimensions_import_modal_owner_select: 选择所有者
+    dimensions_import_modal_select_json: 选择 JSON 文件
+    dimensions_index_title: 尺寸
+    dimensions_resource_confirmations_delete_body: "<p>您确定要删除此维度吗？</p>\n"
+    dimensions_resource_confirmations_delete_message: 请在文本框中输入下方的维度名称以确认
+    dimensions_resource_tooltips_export_json: 导出 JSON 以导入其他平台
+    dimensions_translations_export: 全部出口
+    dimensions_translations_header: 因子翻译
+    disable_caching_content: 你确定要在这次评估中禁用缓存吗？
+    disable_caching_successfully: 本次评估已禁用缓存功能。
+    disable_caching_title: 禁用评估缓存？
+    disable_cancellation_and_rescheduling: 禁用取消和重新安排
+    disable_dp: 不允许进一步处理数据
     disable_proctoring: 禁用监考功能
+    disable_report_download: 禁用报告下载
     disallow_lead_assessor_moderation: 禁止首席评估员进行审核
     disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
+    discard_all_questions: 重置所有问题
+    discard_all_questions_description: 这将重置所有问题的分数并清除所有覆盖设置。此操作无法撤销。确定要执行吗？
+    discard_all_questions_title: 重置所有问题分数？
+    discard_question: 重置问题分数
+    discard_question_confirm_description: 这将重置该问题的所有分数并清除所有覆盖设置。确定吗？
+    discard_question_confirm_title: 重置问题分数？
+    discarded_changes: 已丢弃的更改
+    document_titles_project_assessors: 评估员 |%{project}
+    document_titles_project_participants: 参与者 |%{project}
     done: 做
     done_tooltip: 该用户无法提交更多评估，因为该用户的评估已被标记为已完成%{marked_by}
     download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
+    download_example_csv: 常模 CSV 样本
+    dp_consent: 启用数据处理同意
+    dp_consent_custom: 定制数据处理同意书
+    dp_consent_version: 政策版本
     duration: 时长
+    duration_label: 持续时间
+    duration_max_error: 不能超过 16 小时
+    duration_min_error: 不能少于 15 分钟
     duration_must_be_positive: 时长必须为正数
+    duration_placeholder: 例如：4 小时 30 分钟
+    edit_ai_assistants: 编辑人工智能助理
     edit_campaign_admin: 编辑活动管理
     edit_client_admin: 编辑客户管理员
+    edit_email: 编辑电子邮件
     edit_folder: 编辑文件夹
     edit_indicator: 编辑指示器
     edit_job_roles: 编辑职位角色
@@ -315,35 +661,106 @@ zh:
     edit_permission_denied: 你没有权限编辑管理员的“%{name}”
     edit_project_admin: 编辑项目管理
     edit_threesixty_campaign_admin: 编辑活动管理
+    email_manager_when_report_is_ready_for_approval: 报告准备好供审批时，向经理发送电子邮件
+    email_messages: 电子邮件信息
+    email_subject_when_report_becomes_available: 报告发布后以电子邮件发送主题
+    email_subjects_manager_when_available: 报告发布后，向受试者的管理者发送电子邮件
     empty: 空
     empty_csv_file: CSV 文件不包含任何数据。
+    enable_caching_content: 你确定要为这次评估启用缓存吗？
+    enable_caching_successfully: 本次评估已启用缓存功能。
+    enable_caching_title: 启用评估缓存？
     enable_enhance_with_ai_client_level: 请在客户端级别启用AI增强功能
+    enable_face_detection: 启用人脸检测
     enable_maintenance: 启用维护
     enable_mobile_proctoring: 启用移动监考
+    enable_phrase_verification: 启用短语验证
     enable_system_check: 启用系统检查
     enable_transcription: 启用转录功能
     enable_transcription_msg: 启用转录功能，在视频/音频回答问题时使用AI评分。
+    enable_video_call_recording: 启用视频通话录音
+    enabled: 已启用
     end: 结束
     end_time: 终结时刻
     end_time_must_be_after_start_time: 结束时间必须晚于开始时间
     enhance_with_ai: 增强AI
     enhance_with_ai_requires_ai_assistants: 增强AI功能需启用AI助手功能
+    enter_client_ids: 输入客户ID
     enter_description: 输入描述
     enter_name: 输入姓名
+    enter_project_ids: 输入项目 ID
     enter_question_id: 输入问题 ID
+    enter_report_ids: 输入报告 ID
+    enter_schema_key: 输入模式密钥
     error: 错误
+    error_color: 错误颜色
+    errors_csv_file_required: 文件必须是 CSV 文件
+    errors_error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
+    errors_min_retention: 不能少于 1 天
+    errors_policy_version_format: 只允许使用整数
+    errors_required: 所需
     estimated_tokens: 代币（估计值）
+    evaluate_others_description: 当与会者在门户网站内对他人进行评估时，将显示此信息
+    evaluate_others_name: 评价他人
+    evaluate_self_description: 当受试者开始自我评估时，将显示此信息
+    evaluate_self_name: 评价者自我
+    evaluation_help_description: 用户仪表板上的评估卡显示帮助文本
+    evaluation_help_name: 评估帮助
     evaluation_status: 评估状态
     evaluation_status_not_done: 一个或多个被选定的受试者的评估状态并非“完成”。请确保所有被选用户均完成评估，或标记为完成。
+    evaluations_completed: 已完成的评估
+    evaluations_received: 收到的评价
+    evaluator_invite_description: 该信息将发送给所有担任评估员的与会者
+    evaluator_invite_name: 评估员邀请
+    evaluator_reminder_description: 将发送此信息，提醒评估员完成待定评估
+    evaluator_reminder_name: 评估员提醒
+    evaluator_reminder_rule_description: 指定邀请排期时自动排期的规则
+    evaluator_reminder_rule_name: 评估员提醒规则
+    evaluator_welcome_description: 该信息将覆盖 "欢迎信息"，并只显示给目前作为评估员参加的与会者。
+    evaluator_welcome_name: 欢迎评估员
+    evaluators_title: 评估员
+    evidence_from_transcript: 笔录证据
+    expand_filters: 扩展过滤器
     export_admin_roles_permissions: 导出管理员角色和权限
+    export_admins_with_permissions: 导出管理员角色和权限
+    export_ai_artifacts: 导出AI工件
     export_campaigns_queued: 导出任务已加入队列。请查看您的通知以获取下载链接。
     export_compact_completion_status: 紧凑
     export_completion_status: 出口完成状态
     export_completion_statuses_scheduled: 完成状态导出作业已成功安排
     export_detailed_completion_status: 详细
+    export_failure_msg: 导出熟练程度时出错
+    export_success: 管理员导出任务已成功安排，请查看通知以了解状态。
+    export_success_msg: 导出发展中行动
+    export_to_csv: 导出为 CSV
+    export_with_inactive_users: 导出非活动用户
+    external_report_id: 外部报告编号
+    external_score: 外部评分
+    external_settings: 外部设置
+    factor_benchmark_scores_updated: 要素基准分数更新成功
     factor_feedback: 因子反馈
     factor_selection: 因子选择
     factors: 因素
+    factors_form_components_ExternalList_table_jsonpath: JSON 路径
+    factors_form_components_ExternalList_table_types_norm_score: 标准分
+    factors_form_components_ExternalList_table_types_percentage: 百分比
+    factors_form_components_ExternalList_table_types_percentile: 百分位数得分
+    factors_form_components_ExternalList_table_types_score: 得分
+    factors_form_components_ExternalList_table_types_zscore: Z 分数
+    factors_form_components_ExternalList_title: 分数的 JSON 路径
+    factors_form_predicate: 谓语
+    factors_form_scoring_strategies_custom_formula: 自定义公式
+    factors_form_scoring_strategies_tip: "<strong>问题（平均值）：</strong>当有问题与某一因素相关联时，这与当前的计分方法相同。 <br /> <br /><strong>问题（SUM）：</strong>与问题（平均）类似，但使用 SUM。 <br /> <br /><strong>其他因素的问题（平均值）：</strong>当一个因素有子因素时，这与当前的计分方法相同，唯一的变化是增加了权重。 <br /> <br /><strong>其他因素的问题（SUM）：</strong>这与其他因素（平均值）类似，但使用的是 SUM。 <br /> <br /><strong>加权因素总和：</strong>将所选其他因素的得分乘以权重相加。"
+    factors_form_scoring_strategy: 计分策略
+    factors_form_search_factors: 搜索因素
+    factors_form_use_sub_factor_norm_score: 使用因素标准分
+    factors_form_value: 价值
+    factors_index_precision: 精度
+    factors_index_scoring_strategy: 计分策略
+    factors_index_sub_factors: 次级因素
+    factors_index_title: 因素
+    factors_resource_confirmations_delete_body: "<p>您确定要删除该因子吗？</p>\n"
+    failure_reason: 失败原因
     feature_ai_assistants_description: 启用人工智能驱动的助手，提升用户体验
     feature_ai_assisted_idp_description: 利用人工智能辅助制定个人发展规划建议
     feature_ai_content_analysis_description: 启用人工智能驱动的内容分析功能用于评估
@@ -358,25 +775,96 @@ zh:
     feature_idp_description: 为参与者启用个人发展规划
     feature_not_available: 此功能不可用
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
+    fields_level: 级别
+    fields_level_description: 等级描述
+    fields_level_name: 级别名称
+    fields_proficiency_translations: 熟练翻译
+    fields_proficiency_type: 能力类型
+    fields_skill: 技能
+    fields_skill_name: 技能名称
+    fields_skill_type: 技能类型
     file_size_must_be_less_than_mb: 文件 {{name}} 的大小超过了 {{max_size_mb}} MB 的上限
     file_upload_failed: 上传 {{name}} 失败
     fill_empty_score_msg: 保存前填写所有最终分数。
+    filter_by_client: 按客户筛选
+    filter_by_client_help: 选择一个客户以加载其项目
     final_score_empty_err_msg: "%{factor_name}的最终得分不能为空。"
     final_score_empty_msg: 最终账单不能为空。
+    finalized_at: 最终确定于
+    fingerprint: 指纹
+    first_name_required: 必须填写姓名
     fix_grammar: 修正语法
+    fixed_time: 固定时间
+    form_active: 活跃
+    form_add_assessment: 添加评估
+    form_ai_assistant: AI助手
+    form_assessment_required: 需要进行评估
+    form_assessments: 评估
+    form_campaign_factors: 活动因素
+    form_code: 代码
+    form_configuration: 配置
+    form_datasheet: 数据表
+    form_datasheet_columns: 数据表列
+    form_end_date: 结束日期
+    form_include_all_datasheet_columns: 包括所有数据表列
+    form_name: 名称
+    form_no_assessment_selected: 尚未添加任何评估。单击“添加”开始。
+    form_questions_required: 必须至少选择一个问题
+    form_select_ai_assistant: 选择 AI 助手
+    form_select_assessment: 选择评估
+    form_select_campaign_factors: 选择广告系列因素
+    form_select_datasheet_columns: 选择数据表列
+    form_select_questions: 选择问题
+    form_start_date: 开始日期
+    form_title: AI神器
+    form_total_count: 总计数
     formal: 正式
     from: 来自
+    genders_female: 女
+    genders_male: 男
+    genders_not_set: 未设置
+    generate: 生成
+    generate_result_confirm: 为用户“%{email}”生成工件结果将删除依赖于此 AI 工件的现有报告。您确定要继续吗？
+    generate_result_info_message: 结果正在生成中，请刷新页面以查看更新的结果。
+    generate_results: 生成结果
     generate_transcription: 生成转录文本
+    generated_at_time: 生成时间%{time}
+    generated_value: 产生的价值
+    global_skills: 全球技能
+    global_skills_disabled_by_client: 客户端禁用了全局技能
+    grant_type_label: 赠款类型
+    grant_type_name: oauth_grant_type
     graphic: 图形
     graphic_slider: 图片滑块
     handoff_client_mismatch: 此客户端的身份验证令牌无效
     handoff_invalid_token: 身份验证令牌无效或已过期
     handoff_token_expired: 身份验证令牌已过期或已被使用
     handoff_user_disabled: 您的账户已被停用
+    has_api_keys: 拥有 API 密钥
+    has_public_keys: 拥有公钥
+    header_logout_content: 如果你想继续工作，请按取消。按确定键以登出当前用户。
+    header_logout_title: 你确定要登出吗？
+    hide_all: 隐藏全部
     hide_middle_scores: 隐藏中间分数
     high: 高
     hogan: 霍根
     hogan_assessment: 霍根评估
+    hogan_provider: 提供商
+    hogan_providers_mercer: 默瑟
+    hogan_providers_phoenix: 凤凰城
+    hover_options_danger_item: 危险物品
+    hover_options_first_menu_item: 第 1 个菜单项
+    hover_text: 悬停我
+    idp: IDP
+    idp_actions_remove_confirm: 在文本框中输入当前模板名称，删除模板
+    idp_actions_success: "%{idpName} 已成功删除。"
+    idp_add_idp_template: 添加 IDP 模板
+    idp_ai_assistant: AI助手
+    idp_ai_assisted_idp_enabled: 启用人工智能辅助 IDP
+    idp_ai_enabled: 支持人工智能
+    idp_ai_settings: 人工智能设置
+    idp_all: 全部
+    idp_appearance: 外观
     idp_appearance_body: 正文
     idp_appearance_color: 颜色
     idp_appearance_cover: 封面
@@ -387,6 +875,7 @@ zh:
     idp_appearance_guideline_position_second: 第二页（封面之后）
     idp_appearance_guideline_position_second_last: 倒数第二页（在“最后一页”之前）
     idp_appearance_guidelines: 指南
+    idp_appearance_hint: 要修改外观，请先保存 IDP 模板，以启用这些设置。
     idp_appearance_idp_skills: IDP 技能
     idp_appearance_last: 最后
     idp_appearance_per_page_font_settings: 每页字体设置
@@ -399,20 +888,136 @@ zh:
     idp_appearance_show_guidelines: 显示指南页面
     idp_appearance_size: 尺寸
     idp_appearance_subtitle: 副标题
+    idp_appearance_success: 成功保存外观设置
     idp_appearance_title: 标题
+    idp_background_image: 背景图片
+    idp_behavioral_skills: 行为技能
+    idp_client_skills: 客户技能
+    idp_delete_skill: 您确定要删除此技能吗？删除后将同时移除所有相关的开发行动。
+    idp_delete_skill_msg: 你确定要删除这个技能吗？删除后，所有相关的开发作也会被移除。
+    idp_details_updated: 成功更新 IDP 详情
+    idp_development_actions_add_from_library: 从库添加
+    idp_development_actions_completion: 完工
+    idp_development_actions_create_development_actions_with_ai: 使用 AI 创建开发行动
+    idp_development_actions_create_from_ai: 从 AI 创建
+    idp_development_actions_create_my_own: 创建我自己的
+    idp_development_actions_custom: 自定义
+    idp_development_actions_date_range: 开始日期 - 结束日期
+    idp_development_actions_edit_plan_to_add_development_actions: 编辑计划并添加开发作。
+    idp_development_actions_errors_invalid_learning_style: "“%{learning_style}”不是有效的学习风格。有效的选项包括：%{valid_styles}"
+    idp_development_actions_errors_learning_style_blank: 学习风格不能空白
+    idp_development_actions_generate_by_ai: 人工智能生成
+    idp_development_actions_generate_more: 生成更多
+    idp_development_actions_heading: 发展行动
+    idp_development_actions_manage_skills: 管理技能
+    idp_development_actions_no_development_actions: 无发展行动
+    idp_disabled_by_client: 客户端禁用 IDP
+    idp_document_ai_assistant: 文档分析 AI 助手
+    idp_edit_template: 编辑 IDP 模板
+    idp_enter_tag_or_skills_error: 选择至少一个标签或技能
+    idp_enter_template_description_error: 需要模板说明。
+    idp_enter_template_name_error: 模板名称为必填项
+    idp_errors_cannot_update_progress_plan_completed: 无法更新进度，因为 IDP 计划已经完成
+    idp_errors_skills_required_on_publishing: 请在发布模板之前选择技能。
+    idp_errors_update: 不允许更新，因为 IDP 模板已与用户 IDP 计划关联。
+    idp_fields_approval_date: 批准日期
+    idp_fields_assigned_data: 指定数据
+    idp_fields_assigned_date: 分配日期
+    idp_fields_completion_date: 完成日期
+    idp_fields_current_job_role: 当前职位
+    idp_fields_division: 部门
+    idp_fields_label: 字段
+    idp_fields_name: 名称
+    idp_fields_publish_date: 发布日期
+    idp_fields_review_date: 审核日期
+    idp_fields_target_job_role: 目标岗位
+    idp_global_skills: 全球技能
+    idp_idp: IDP
+    idp_idp_template: 添加 IDP 模板
+    idp_interview_questions: 面试问题
+    idp_interview_questions_updated: 面试问题更新成功。
+    idp_intro_message: 介绍信息
+    idp_intro_message_hint: 要修改介绍信息，请先保存 IDP 模板以启用这些设置。
+    idp_intro_message_success: 简介信息已成功保存
+    idp_locales: 区域设置
+    idp_logo_image: 徽标图像
+    idp_logo_type_both: 美世和客户标识
+    idp_logo_type_client_only: 仅限客户徽标
+    idp_logo_type_label: 徽标类型
+    idp_logo_type_mercer_only: 仅有美世徽标
+    idp_logo_type_none: 无标志
+    idp_no_interview_questions_selected: 未选择面试问题
+    idp_no_reflection_questions_selected: 未选择反思问题
+    idp_none: 无
+    idp_one_click_idp_enabled: 启用一键式 IDP
     idp_plan_reset_success: 计划已成功重置
+    idp_reference_locale: 参考区域设置
+    idp_reflection_questions: 思考题
+    idp_reflection_questions_hint: 要修改反思问题，请先保存 IDP 模板以启用这些设置。
+    idp_reflection_questions_updated: 反思问题已成功更新。
+    idp_remove_skill: 移除技能
+    idp_revert_skill_to_public_errors_skill_already_public: 技能已经公开
+    idp_revert_skill_to_public_errors_skill_not_found: 未找到技能
+    idp_revert_skill_to_public_success_base_message: 技能“%{skill_name}”现在对您的经理可见
+    idp_revert_skill_to_public_success_with_approval: "%{base_message} 您的IDP计划已提交审批"
+    idp_select_by_tags: 按标签选择
+    idp_select_interview_question: 开始输入以搜索和选择问题
+    idp_select_reflection_question: 开始输入以搜索和选择问题
+    idp_select_skill_gap_report: 选择技能差距报告
+    idp_select_specific_skills: 选择特定技能
+    idp_selected: 精选
+    idp_self_rating: 启用自我评级
+    idp_setting_manager_approves_idp: 经理批准 IDP
+    idp_setting_manager_can_edit_idp: 管理员可以编辑 IDP
+    idp_setting_require_all_development_actions_complete: 要求完成所有开发行动
+    idp_show_reflections: 展示反思
+    idp_skill_gap_report: 技能差距报告
+    idp_skill_gap_report_ai_assistant: 技能差距报告分析助手
+    idp_skill_source_preference: 技能来源
+    idp_skill_sources_from_ai: 来自通用人工智能知识
+    idp_skill_sources_from_template: 从模板和映射
+    idp_skills: 技能
+    idp_skills_privacy_messages_made_private: 技能“%{skill_name}”已被标记为私有技能，并将对您的经理隐藏
+    idp_skills_privacy_messages_made_public: 技能“%{skill_name}”现在对您的经理可见
+    idp_skills_privacy_messages_skill_not_found: 未找到技能
+    idp_skills_privacy_messages_unauthorized: 未经授权修改此技能
+    idp_skills_updated: IDP 技能更新成功
+    idp_status_draft: 草案
+    idp_status_published: 已出版
+    idp_status_updated: IDP 状态更新成功
+    idp_subtitle_text: 字幕文本
+    idp_tab_development_actions: 发展行动
+    idp_tab_interview_questions: 面试问题
+    idp_tab_reflection_questions: 思考题
+    idp_tab_settings: 设置
+    idp_tab_templates: 模板
+    idp_technical_skills: 技术技能
+    idp_template_details: 模板详情
     idp_templates: IDP 模板
+    idp_title_text: 标题文本
+    idp_update_interview_questions: 更新面试问题
+    idp_update_reflection_questions: 更新反思问题
     iiht: IIHT
     iiht_assessment: IIHT 评估
+    iiht_password: 密码
+    iiht_tenancy_name: 租约名称
+    iiht_tenant_id: 租户编号
+    iiht_user: 用户
+    image: 图片
+    import_action_title: 导入战役AI工件
+    import_actions_proficiency: 进口能力
+    import_actions_translations: 进口能力翻译
     import_ai_artifacts: 导入AI工件
     import_csv_assessment_group_error: "%{index} 行：邮箱为 %{email} 的用户已受邀加入 '%{workshopInviteName}'"
     import_csv_error: 第%{index}行：带有电子邮件%{email}的用户未参与本次活动
     import_csv_parsing_error: CSV 解析错误：%{message}
     import_description: 从CSV文件导入用户。每一行必须包含一个电子邮件地址。
+    import_download_example_csv: 常模 CSV 样本
     import_download_sample: 下载CSV 示例
     import_error: 导入失败。请再试一次。
     import_error_saving_data: "%{email} 的错误保存数据：%{message}"
     import_errors_title: 导入错误
+    import_evaluators: 进口评估员
     import_external_scoring_action: 导入外部计分
     import_external_scoring_body: 请参考导出功能，提取可用于导入的模板。
     import_external_scoring_data_description: 导入指定评估和活动的外部评分数据
@@ -420,20 +1025,177 @@ zh:
     import_external_scoring_success_msg: 导入成功上传
     import_external_scoring_upload: 上传
     import_file_required: 请选择一个CSV文件上传。
+    import_info_msg: 上传的文件已被排队准备导入。请查看通知中的状态。
+    import_job_queued: 能力水平导入工作已排队
     import_queued_success: 受试者导入任务已成功安排。请查看您的通知状态。
     import_sample_file_label: 示例文件：
     import_scenario_id_mismatch: "%{email}的场景ID不匹配：预期%{expected_id}，但CSV包含不同的场景ID。"
+    import_subjects: 进口主题
+    import_success_msg: 导入已成功上传
     import_successfully_saved: 成功为%{goals_count}目标的%{email}保存外部结果
     import_title: 从CSV导入主题
     import_upload: 上传
     import_users: 导入用户
+    inactive: 不活动
+    include_locales_label: 包括翻译
+    include_locales_name: include_locales
+    index_title: 项目
+    individual_invite_tabs_assessment_center: 评估中心
+    individual_invite_tabs_invitation_status: 邀请状态
+    info_color: 信息颜色
+    innovation_styles_form_full_description: 完整说明
+    innovation_styles_index_title: 创新风格
+    innovation_styles_list_position: 职位
+    innovation_styles_resource_confirmations_delete_body: "<p>您确定要删除这种创新风格吗？</p>\n"
+    instruction_messages: 指示信息
+    instructions: 说明
+    instructions_actions_saved: 成功保存指令
+    instructions_enable: 启用说明
+    instructions_save: 保存说明
+    integrations_actions_add: 集成
+    integrations_actions_back: 返回集成
+    integrations_actions_load_mettl_catalog: 载荷测量评估目录
+    integrations_actions_load_microsite_catalog: 加载微网站评估目录
+    integrations_actions_load_skillvue_catalog: 加载 Skillvue 评估目录
+    integrations_columns_active: 活跃
+    integrations_columns_details: 详细信息
+    integrations_columns_name: 集成名称
+    integrations_details_client_id: 客户端ID
+    integrations_details_deployment_id: 部署ID
+    integrations_details_platform_access_token_url: 平台访问令牌 URL
+    integrations_details_platform_authentication_request_url: 平台认证请求 URL
+    integrations_details_platform_host_name: 平台主机名称
+    integrations_details_platform_id: 平台ID
+    integrations_details_platform_public_keyset_url: 平台公共密钥集 URL
+    integrations_details_provider: 提供方名称
+    integrations_details_webhookUrl: Webhook URL
+    integrations_details_webhookUrls: Webhook URL
+    integrations_integrations: 集成
+    integrations_load_mettl_success: 负载计量评估工作已成功排队
+    integrations_load_microsite_success: "“加载微网站评估”任务已成功加入队列"
+    integrations_load_skillvue_success: 加载技能评估工作已成功排队
+    integrations_names_hogan: 霍根
+    integrations_names_iiht: IIHT
+    integrations_names_mettl: 水
+    integrations_names_microsite: 专题网站
+    integrations_names_skillvue: Skillvue
+    integrations_names_yoodli: 尤德利
+    integrations_view_all_schedules: 查看所有梅特尔航班时刻表
+    interface: 界面
     internal: 内部
+    interview_questions_delete_confirmation: 你确定要删除这个面试问题吗？
+    interview_questions_export_action: 出口面试问题
+    interview_questions_export_failure_msg: 导出文件时出错。
+    interview_questions_export_success_msg: 正在导出面试问题。请在通知中查看状态。
+    interview_questions_form_mandatory: 命令的
+    interview_questions_form_question: 问题
+    interview_questions_form_question_type: 问题类型
+    interview_questions_form_question_type_audio: 音频
+    interview_questions_form_question_type_video: 视频
+    interview_questions_form_time_limit: 时限（秒）
+    interview_questions_form_title: 面试问题
+    interview_questions_import_action: 导入面试问题
+    interview_questions_import_failure_msg: 导入文件时出错。
+    interview_questions_import_success_msg: 导入面试问题正在进行中。请在通知中查看状态。
+    interview_questions_question: 问题
+    invalid_client_ids: 客户端 ID 无效
+    invalid_confidence_interval: 置信区间必须为0或1
     invalid_csv_header: CSV 文件中包含无效的头部。
+    invalid_json: 配置不是有效的 JSON
+    invalid_leadership_bar: leadership_bar 必须为 0 或 1
+    invalid_norm_option: Norm Option 必须在 0 到 3 之间
+    invalid_project_ids: 无效的项目 ID：%{ids}
     invalid_question_ids: 未在此评估中找到以下试题编号：%{ids}
+    invalid_report_ids: 无效的报告 ID
+    invite_add_invite: 添加邀请
+    invite_assessment_center: 评估中心
+    invite_basic_info_allow_preferred_language: 允许首选语言
+    invite_basic_info_assessment_centers: 评估中心
+    invite_basic_info_assessment_centers_hint: 搜索查询示例 "2023 年 8 月 10 日晚上 8:06
+    invite_basic_info_assessment_centers_placeholder: 选择评估中心
+    invite_basic_info_description: 通过选择多个评估中心向候选人发出邀请。 然后，候选人将从可供选择的评估中心中选择一个。
+    invite_basic_info_neurodiversity: 包括神经多样性问题
+    invite_basic_info_preferred_language: 允许使用的语言
+    invite_basic_info_required_error: 不能是空的
+    invite_basic_info_title: 基本信息
+    invite_center_group: 评估中心小组
+    invite_confirm_message: 您确定要删除邀请吗？
+    invite_confirm_message_with_title: 您确定要删除标题为"%{invite_title}"的邀请吗？
+    invite_evaluators_description: 当受试者开始提名评估员时，将显示此信息
+    invite_evaluators_name: 邀请评估员
+    invite_invites: 邀请
+    invite_name_placeholder: 输入邀请名称
+    invite_not_selected: 未选择
+    invite_request_accept: 接受
+    invite_request_reason: 原因
+    invite_request_reject: 拒绝
+    invite_request_remove_confirm_content: 您确定要从 %{subjectName} %{action} %{status} 中 %{action} %{status} 吗？
+    invite_request_remove_confirm_success: "%{status} 来自 %{subjectName} 的 %{action} 已成功访问。"
+    invite_request_remove_confirm_title: "%{category}"
+    invite_request_subject_name: 主题名称
+    invite_request_workshop_time: 工作坊时间
+    invite_requests: 要求
+    invite_save: 保存并发送
+    invite_send_invites_add_description: 您可以将邀请标题和描述翻译成多种语言
+    invite_send_invites_add_language: 添加语言
+    invite_send_invites_input_label: 添加其他语言
+    invite_send_invites_input_placeholder: 选择其他语言
+    invite_send_invites_invitation_title: 邀请函标题
+    invite_send_invites_title: 邀请函 (%{lang})
+    invite_steps_add_subjects: 添加主题
+    invite_steps_basic_info: 基本信息
+    invite_steps_has_errors: 有误
+    invite_steps_send_invitation: 发送邀请
+    invite_subjects_count: 主题
+    invite_subjects_csv_error: 第%{index}行：邮箱地址为 %{email} 的用户未参与此营销活动
+    invite_subjects_csv_imported: "%{count} 输入的科目"
+    invite_subjects_description: 您可以通过搜索或批量上传 csv 文件逐个添加主题。
+    invite_subjects_download: 下载
+    invite_subjects_file_example: 参考示例文件上传子项目信息。
+    invite_subjects_import_from_campaign: 添加活动中的所有内容
+    invite_subjects_import_title: 进口主题
+    invite_subjects_import_users: 导入用户
+    invite_subjects_search_user: 搜索主题
+    invite_subjects_title: 主题
+    invite_subjects_upload_csv: 上传 CSV
+    invite_success_message: 邀请已成功删除。
+    invite_success_message_with_title: 标题为"%{invite_title}"的邀请已成功删除。
+    invite_title: 标题
+    invite_workshop_list_remove_confirm_content: 您确定要删除名称为"%{name}"的评估中心吗？
+    invite_workshop_list_remove_confirm_success: 评估中心已成功移除。
+    invite_workshop_list_remove_confirm_title: 确认
+    invite_workshop_title: 评估中心
+    is_subject: 是主题
+    job_role_are_you_sure_to_remove: 你确定要删除吗？
+    job_role_column_job_group: 工作小组
+    job_role_column_skill_name: 技能名称
+    job_role_export_failure_msg: 导出翻译时出错
+    job_role_export_success_msg: 导出开发行动正在进行中。
+    job_role_form_code: 代码
+    job_role_form_description: 说明
+    job_role_form_job_group: 工作小组
+    job_role_form_name: 名称
+    job_role_form_title: 工作角色
+    job_role_import_action_translations: 导入工作角色翻译
+    job_role_import_download_example_csv: 常模 CSV 样本
+    job_role_import_success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+    job_role_job_role_details: 工作角色详情
+    job_role_skill_mapping_column_expected_proficiency_level: 预期能力水平
+    job_role_skill_mapping_form_title: 技能岗位制图
+    job_role_translations: 工作角色翻译
     job_roles: 工作角色
+    join_room: 加入房间
+    keep_original: 保持原创
+    key: 钥匙
+    key_id: 密钥 ID
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
+    language_id: 语言代码
+    last_name_required: 必须填写姓氏
+    lead_assessment: 铅评估
     lead_assessor_form: 主任评估员表格
+    leadership_bar: 领导力条
+    leadership_bar_update_success: 领导力条更新成功
     learning_from_others: 协作学习 [20]
     level: 等级
     level_apply: 申请
@@ -446,22 +1208,63 @@ zh:
     lighthouse_logo_alt_text: 灯塔标志
     lighthouse_question: 灯塔问题
     lighthouse_question_id: Lighthouse 问题 ID
+    link_text: 链接
     linked_assessments: 关联评估
+    locale: 地点
+    log_date: 日志日期
     logged_in: 已登录
+    login: 登录
     low: 低
+    mail_history: 邮件历史
+    main_report: 主要报告
     maintenance: 维护
     maintenance_settings: 维护设置
     maintenance_settings_description: 管理系统维护窗口和设置
+    make_report_available_to_subject_when: 在下列情况下向受试者提供报告
     manager_approval_required: "%{user}报告下载前需要经理批准"
+    manager_approves_reports: 经理批准报告
+    manager_can_access_subject_reports: 管理人员可查阅主题报告
+    manager_cannot_access_subject_reports: 在满足要求之前，经理无法查看报告
+    manager_ids_label: 中心经理
+    manager_report_ready_description: 主体报告准备就绪后，该信息将发送给主体的管理人员
+    manager_report_ready_name: 经理报告准备就绪
+    managers_title: 管理人员
+    mark_finalized: 标记已完成
+    mark_finalized_bulk_confirm: 为所有选定用户确定分析结果后，系统将生成使用 AI 分析结果的报告。您确定要继续吗？
+    mark_finalized_confirm: 完成用户“%{email}”的成果处理将生成一份使用该用户 AI 成果的报告。您确定要继续吗？
+    mark_licenses_as_deactivated: 将许可证标记为停用
+    mark_not_finalized: 标记尚未最终确定
+    mark_not_finalized_bulk_confirm: 从所有选定用户中移除“finalize”操作将删除使用 AI 生成内容的报告。您确定要继续吗？
+    mark_not_finalized_confirm: 从用户“%{email}”中删除“finalize”操作将删除该用户使用 AI 生成物生成的报告。您确定要继续吗？
+    mask_identity_for_examus: Examus Proctoring 的屏蔽数据
+    mask_identity_for_hogan: 霍根的面具数据
+    mask_identity_for_iiht: IIHT 的掩码数据
+    mask_identity_for_mettl: METTL 的掩码数据
+    mask_identity_for_mhs: MHS的掩码数据
+    mask_identity_for_pearson: 皮尔逊的掩码数据
+    mask_identity_for_saville: 萨维尔面具数据
+    mask_identity_for_skillvue: Skillvue 的面具数据
+    mask_identity_for_yoodli: Yoodli 的掩码数据
     max_value: 最大值
     mean: 平均值
     media_files_label: 文件
     media_library: 媒体库
     media_library_page_title: 媒体库 - 仪表盘 - Mercer Lighthouse
     meeting: 会议
+    meeting_link: 会议链接
+    meetings_and_resources: 会议与资源
     messages: 信息
+    meta_title: 管理面板
     mettl: METTL
+    mettl_apiBaseUrl: 应用程序接口端点
+    mettl_apiBaseUrlRequired: 需要使用 API 端点。
     mettl_assessment: Mettl 评估
+    mettl_privateKey: 私钥
+    mettl_privateKeyRequired: 需要私钥。
+    mettl_publicKey: 公钥
+    mettl_publicKeyRequired: 需要公钥。
+    mettl_servers_mettl_eu: 欧洲
+    mettl_servers_mettl_india: 印度
     mhs: MHS
     mhs_assessment: MHS评估
     mhs_assessment_name: MHS评估名称
@@ -477,24 +1280,75 @@ zh:
     min_value: 最小值
     minimum_10_words: 至少10个单词
     minimum_download_speed: 最低下载速度（单位：Mbps）
+    minimum_face_detection_ratio: 最小人脸检测率
     minimum_system_check_validity: 活动“系统检查有效期”的最低时长应为15分钟
     minimum_upload_speed: 最低上传速度（单位：Mbps）
     missing_min_max_values: 必须提供最小值和最大值。
+    modal_convert_option: 将此活动转换为模板
+    modal_convert_success: 模板转换成功
+    modal_copy_option: 在此活动中创建新模板
+    modal_copy_success: 活动模板创建任务已成功安排，请查看通知状态。
+    modal_description: 选择从该广告系列创建模板的方式。
+    modal_failed: 模板创建失败。
+    modal_subtitle: 选择日期范围，然后为每份报告选择所需语言
+    modal_title: 转换为模板
     model_answer: 示范答案
     model_answer_placeholder: 输入供AI评分的模范答案。
     must_be_a_valid_url: URL 无效。请输入包含 http 或 https 协议的完整 URL
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
     name_required: 需要命名
+    navigation_audit_logs: 审计日志
+    navigation_factors: 因素
+    navigation_innovation_styles: 创新风格
+    navigation_logout: 注销
+    navigation_occupations: 职业
+    navigation_registration_codes: 注册码
+    navigation_skills_taxonomy: 技能分类法
+    navigation_users: 用户
     new_folder: 新建文件夹
+    new_score: 新分数
+    no_assessments_found: 审计编号
     no_client_access: 您无权访问此客户
     no_clients_found: 未找到任何客户
+    no_completed_assessments: 尚未完成评估
     no_file_selected: 未选择文件
     no_notifications: 没有通知
     no_question_mappings: 没有可用的问题映射
+    no_rendered_output: 没有渲染输出可用
     no_status: 无状态
+    nomination_denied_description: 拒绝提名时，将向主体发送此信息
+    nomination_denied_name: 拒绝提名
+    nomination_help_description: 用户仪表板提名卡上显示的帮助文本
+    nomination_help_name: 提名帮助
+    norm: 常模
     norm_editor_numeric_value_error: 仅允许输入数值（整数或小数）。
+    norm_id: 常模 ID
+    norm_option: 标准选项
+    norm_option_form_select: 选择标准选项
+    norm_option_update_success: 规范选项更新成功
+    norm_region: 诺姆地区
+    norm_region_form_select: 选择标准区域
+    norm_region_update_success: Norm Region 更新成功
+    normal: 正常
+    normalize_factor_scores: 因子得分标准化
     norms: 常模
+    norms_copy_successfully: 已成功复制规范"%{name}"。
+    norms_export_success_msg: 规范导出任务已成功安排，请查看通知中的状态。
+    norms_import_download_example_csv: 常模 CSV 样本
+    norms_import_select_file_validation: 提交前请选择所有者和文件。
+    norms_import_success_msg: 上传的文件已排队等待导入，请查看通知中的状态。
+    norms_import_title: 规范导入
+    norms_index_import: 进口
+    norms_remove_confirm: 在文本框中输入以下标准名称进行确认
+    norms_remove_warning: 您确定要删除规范"%{name}"吗？
+    norms_score_types_five_scale: 五级
+    norms_score_types_norm_type: 标准类型
+    norms_score_types_percentage: 百分比
+    norms_sidebar_copy: 复制规范
+    norms_sidebar_editor: 规范编辑
+    norms_sidebar_export: 出口规范
+    norms_title: 常模
     not_completed: 未完成
     not_completed_tooltip: "%{completed}评估员被分配，但只有%{submitted}完成了评估"
     notes: 说明
@@ -503,16 +1357,51 @@ zh:
     notification_bell_icon_alt_text: 通知铃图标
     notifications: 通知
     number: 数量
+    oauth_scope_label: 范围
+    oauth_scope_name: oauth_scope
+    oauth_scope_required: 需要范围
     occupations: 职业
+    occupations_factors_list_condition: 条件
+    occupations_factors_list_position: 职位
+    occupations_factors_list_weight: 重量
+    occupations_form_alternative_icon: 备用图标
+    occupations_form_color: 颜色
+    occupations_form_indicative_roles_image: 角色示意图
+    occupations_form_key_career_tracks_image: 主要职业发展路径图
+    occupations_index_title: 职业
+    occupations_resource_confirmations_delete_body: "<p>您确定要删除这个职业吗？</p>\n"
     on_the_job: 在职 [70]
     only_editable_on_create: 此选项仅在创建时可编辑。
     options: 选项
+    options_evaluator_options: 评估员选项
+    options_global: 全球选项
+    options_manager_options: 经理选项
+    options_subject_options: 学科选项
+    options_title: 选项
     organisational: AGILE
     original_text: 原文
+    other_assessments: 其他摊款
+    other_assessor_assessments: 其他摊款
+    other_reports: 其他报告
     others: 其他
+    outcome: 成果
+    output_schema_key_constraint: 键必须以小写字母开头，且只能包含小写字母、数字和下划线
+    output_schema_keys: 输出模式键
     overall: 总体而言
     overall_score: 总分
+    overall_scoring: 总评分
+    parsed_dependencies_help: AI 助手用于生成项目结果的用户的解析依赖项
+    parsed_dependencies_title: 解析的依赖项
+    parsed_dependencies_view: 查看解析的依赖项
     participants: 参与者
+    participants_tab: 参与者
+    participants_tabs_assessors: 评估员
+    participants_tabs_sms_contacts: 短信联系人
+    participants_tabs_subjects: 主题
+    password_label: 密码
+    password_name: 密码
+    past: 过去
+    payload: 有效载荷
     pearson: 皮尔森
     pearson_assessment: 培生评估
     permissions:
@@ -710,7 +1599,7 @@ zh:
           view: 查看
         messages:
           email: 电子邮件
-          instructions: 说明
+          instructions: 审计编号
           options: 选项
           title: 信息
         norms:
@@ -825,7 +1714,7 @@ zh:
         view: 查看
       messages:
         email: 电子邮件
-        instructions: 说明
+        instructions: 审计编号
         options: 选项
         title: 信息
       norms:
@@ -940,27 +1829,221 @@ zh:
         view: 查看
         view_recordings: 查看录制文件
     permissions_360_campaigns: 360 活动的特定权限
+    permissions_updated: 权限已成功更新
     piped_text: 管道文本
+    piped_text_modal_assessment_center: 评估中心
+    piped_text_modal_campaign_link: 活动链接
+    piped_text_modal_campaign_name: 活动名称
+    piped_text_modal_campaigns: 活动
+    piped_text_modal_duration: 持续时间
+    piped_text_modal_end_time: 结束时间
+    piped_text_modal_insight_page_link: 洞察力页面链接
+    piped_text_modal_insight_page_url: 洞察页面 URL
+    piped_text_modal_invite_title: 标题
+    piped_text_modal_invites: 邀请
+    piped_text_modal_magic_link: 魔法链接
+    piped_text_modal_magic_url: 神奇的 URL
+    piped_text_modal_platform_url_links: 平台网址和链接
+    piped_text_modal_project_name: 项目名称
+    piped_text_modal_projects: 项目
+    piped_text_modal_report_name: 报告名称
+    piped_text_modal_start_time: 开始时间
+    piped_text_modal_title: 添加管道文字
+    piped_text_modal_user_reports: 用户报告
+    piped_text_modal_users: 用户
+    playground: 操场
+    playground_info: 使用示例数据测试您的项目，以预览生成的结果。
+    playground_placeholder: 输入测试数据
+    position_auto: 汽车
+    position_label: 登录框位置
+    position_left: 左侧
+    position_right: 对
     precision: 精密
+    preview_report: 预览报告
+    previous: 上一页
+    prework: 课前准备
+    prework_required: 如果前期工作未完成，则不允许中心预订
+    prework_required_for_invite: 仅在预工作完成后发送邀请电子邮件
+    primary_button: 小学
+    primary_color: 原色
     privacy: 隐私权
+    privacy_link: 启用隐私链接
+    privacy_link_label: 隐私链接
+    privacy_link_placeholder: 输入隐私链接
+    privacy_text: 隐私文本
+    privacy_text_placeholder: 输入隐私文本
     proctoring: 监考
+    proctoring_allow_on_assessment_center: 允许在评估中心进行监考
+    proctoring_enable: 启用监考
     proctoring_errors_timed_only: 仅限计时测验可启用选择性监考功能。
     proctoring_fixed_time_required: 启用“固定时间”以选择此选项
+    proctoring_identification: 身份验证
+    proctoring_identifications:
+      face: 面孔
+      face_and_passport: 面部和护照
+      passport: 护照
+    proctoring_integration_type: 整合
+    proctoring_integration_types:
+      iframe: IFrame
+      ldb: 锁定浏览器
     proctoring_mode_all: 在所有测评中启用监考功能
     proctoring_mode_all_except_ac: 在除评估中心以外的所有评估中启用监考功能
+    proctoring_rule_types_allow_absence_in_frame: 允许缺席
+    proctoring_rule_types_allow_to_use_books: 允许使用书籍
+    proctoring_rule_types_allow_to_use_calculator: 允许使用计算器
+    proctoring_rule_types_allow_to_use_excel: 允许使用 Excel
+    proctoring_rule_types_allow_to_use_human_assistant: 允许使用人工助手
+    proctoring_rule_types_allow_to_use_messengers: 允许使用信使
+    proctoring_rule_types_allow_to_use_paper: 允许使用纸张
+    proctoring_rule_types_allow_to_use_websites: 允许使用网站
+    proctoring_rule_types_allow_voices: 允许声音
+    proctoring_rule_types_allow_wrong_gaze_direction: 允许错误的注视方向
+    proctoring_rules: 规则
+    proctoring_sessions_columns_comment: 评论
+    proctoring_sessions_columns_completed_at: 完成于
+    proctoring_sessions_columns_conclusion: 结论
+    proctoring_sessions_columns_links: 链接
+    proctoring_sessions_columns_score: 得分
+    proctoring_sessions_columns_session_id: 会议编号
+    proctoring_sessions_columns_started_at: 开始于
+    proctoring_sessions_links_report: 报告
+    proctoring_sessions_links_review: 评论
+    proctoring_sessions_resource_name: 监考课程
     proctoring_settings: 监考设置
+    proctoring_trial: 监考试验
+    proctoring_type: 类型
+    proctoring_types:
+      offline: 离线
+      online: 在线
     professional: 专业人士
     proficiency: 熟练程度
     proficiency_level: API 密钥
     proficiency_levels: 能力水平
+    proficiency_levels_fields_title: 熟练程度
+    profile: 简介
+    profile_change_password: 更改密码
     profile_details: 简介详情
+    project: 项目
+    project_admin: 项目管理
     project_admins: 项目管理员
+    project_assessor: 项目评估员
+    project_features: 项目特色
+    project_ids: 项目编号
+    project_ids_required: 此报告类型必须包含 project_ids
+    project_licenses: 项目许可证
     project_manager: 项目经理
+    project_not_related_to_client: 项目“%{project_id}”不属于该客户
     project_number: 项目编号
+    project_participants_column_campaigns: 活动
+    project_participants_column_createdAt: 创建时间
+    project_participants_column_created_at: 创建时间
+    project_participants_edit_participant: 编辑参与者
+    project_participants_filter_campaigns: 没有运动
+    project_participants_search_user: 搜索用户
+    project_participants_send_email: 发送电子邮件
+    project_path: 项目路径
     project_settings: 项目设置
+    project_tabs_assessments_column_normalize_factor_scores: 因子得分标准化
+    project_tabs_assessments_column_user_result_validity_in_days: 结果有效性
+    project_tabs_assessments_delete_content: 您确定要删除评估"%{name}"吗？
+    project_tabs_assessments_delete_success: 已成功删除评估"%{name}"。
+    project_tabs_assessments_delete_title: 删除评估
+    project_tabs_assessments_title: 评估
+    project_tabs_design: 设计
+    project_tabs_general: 一般情况
+    project_tabs_privacy: 隐私权
+    project_tabs_profile: 简介
+    project_tabs_registration: 注册
+    project_tabs_webhooks_actions_delete_key: 删除
+    project_tabs_webhooks_actions_edit_key: 编辑
+    project_tabs_webhooks_actions_send_test_key: 发送测试
+    project_tabs_webhooks_actions_send_test_label: 发送测试
+    project_tabs_webhooks_remove_webhook_content: 删除 %{description}?
+    project_tabs_webhooks_title: 网络钩子
+    project_tools_workshop_status_export: 车间状态导出
+    project_tools_workshop_status_export_success: 讲习班状态 导出已成功安排。
+    project_users_change_password: 更改密码
+    project_users_column_campaigns: 活动
+    project_users_column_created_at: 创建时间
+    project_users_confirm_delete: 是，删除
+    project_users_confirm_send: 是，发送
+    project_users_delete_error: 无法删除评估员"%{name}"，请联系管理员。
+    project_users_delete_success: 已成功删除评估员"%{name}"。
+    project_users_edit_assessor: 编辑评审员
+    project_users_filter_campaigns: 没有运动
+    project_users_modal_delete_content: 您确定要删除评估员"%{name}"吗？
+    project_users_modal_delete_title: 删除评估员
+    project_users_modal_reset_email_content: 您确定要向"%{email}"发送密码重置链接吗？
+    project_users_model_reset_email: 重置评估员密码
+    project_users_no_edit_permission: 您没有权限编辑评估员"%{name}"。
+    project_users_reset_mail_error: 无法向"%{email}"发送重置密码链接。 请联系您的管理员。
+    project_users_reset_mail_success: 重置密码链接已成功发送至"%{email}
+    project_users_search_accessor: 搜索访问器
+    project_users_send_email: 发送电子邮件
     projects: 项目
+    projects_addProject: 添加项目
+    projects_assessment_settings_search: 搜索评估
+    projects_columns_project_number: 项目编号
+    projects_form_project_number: 项目编号
+    projects_form_subdomain: 子域
+    projects_form_title: 项目
+    projects_general_settings_live_chat: 启用即时聊天
+    projects_general_settings_locales_label: 区域设置
+    projects_general_settings_project_number_label: 项目编号
+    projects_general_settings_save_changes: 保存更改
+    projects_general_settings_sub_domain_label: 子域
+    projects_mettl_schedule_records_add: 添加时间表
+    projects_mettl_schedule_records_assessment_id: 评估 ID
+    projects_mettl_schedule_records_assessment_name: 评估名称
+    projects_mettl_schedule_records_candidate_authorization: 启用候选人授权
+    projects_mettl_schedule_records_candidate_screen_capture: 启用候选屏幕截图
+    projects_mettl_schedule_records_count: 浏览容差计数
+    projects_mettl_schedule_records_created_at: 创建时间
+    projects_mettl_schedule_records_schedule_id: 时间表 ID
+    projects_mettl_schedule_records_schedule_name: 附表名称
+    projects_mettl_schedule_records_secure_browser_enabled: 启用安全浏览器
+    projects_mettl_schedule_records_settings: 设置
+    projects_mettl_schedule_records_show_remaining_counts: 启用显示剩余计数
+    projects_mettl_schedule_records_visual_proctoring_enabled: 启用可视化监考
+    projects_mettl_schedule_records_web_proctoring_enabled: 启用网络监考
+    projects_profile_settings_form_fields_enabled: 已启用
+    projects_profile_settings_form_fields_half_size: 半身尺寸
+    projects_profile_settings_form_fields_locked: 锁定
+    projects_profile_settings_form_fields_sort: 分类
+    projects_profile_settings_month: 月份
+    projects_profile_settings_never: 从不
+    projects_profile_settings_update_in: 在
+    projects_profile_settings_year: 年份
+    projects_registration_settings_hide_signup: 隐藏注册选项
+    projects_registration_settings_require_mobile_number: 要求提供手机号码
+    projects_webhook_settings_add: 添加 Webhook
+    projects_webhook_settings_column_active: 活跃
+    projects_webhook_settings_column_created_date: 创建日期
+    projects_webhook_settings_column_description: 说明
+    projects_webhook_settings_column_updated_date: 修改日期
+    projects_webhook_settings_column_url: 网址
+    projects_webhook_settings_search: 搜索 Webhoook
     prompt: 提示
+    provider: 提供商
+    provider_change_confirm_title: 更换服务商？
+    provider_previously_used_warning: 该助手此前曾使用“%{from}”生成过结果。若将该值更改为“%{to}”，可能会影响该助手在后续生成请求中的行为。
     psychometric: 心理测量
+    public_key: 公钥
+    public_key_add: 添加公钥
+    public_key_cannot_be_changed: 创建后无法更改
+    public_key_copy_private_key: 复制私钥
+    public_key_created: 公钥已成功生成
+    public_key_generate: 生成密钥对
+    public_key_generate_button: 生成 RSA 密钥对
+    public_key_generate_info: 将生成一对 2048 位的 RSA 密钥对。系统仅会保存公钥。请复制并妥善保管私钥——该私钥此后将不再显示。
+    public_key_invalid_format: 必须是 PEM 格式的有效 RSA 公钥
+    public_key_must_be_public: 必须是公钥，而不是私钥
+    public_key_paste_placeholder: 请将您的 RSA 公钥（PEM 格式，以 -----BEGIN PUBLIC KEY----- 开头）粘贴在此处
+    public_key_pem: 公钥（PEM）
+    public_key_private_key_copied: 私钥已复制到剪贴板
+    public_key_private_key_label: 私钥（PEM）
+    public_key_private_key_warning: 这是私钥唯一一次可见。请立即复制并妥善保管。
+    public_keys: 公钥
     question_center: 问题中心
     question_center_page_title: 问题中心 - 仪表盘 - Mercer Lighthouse
     question_editor_change_type: 更改类型
@@ -987,11 +2070,33 @@ zh:
     question_type_video_response: 视频回复
     questions: 问题
     questions_new_button: 新问题
+    questions_percentage: 问题（SUM / MAX 总计）
+    questions_sum: 问题（SUM）
     questions_title: 问题
     questions_type: 类型
     range_min_max: RANGE %{min} - %{max}
+    rationale: 依据
+    raw: 生
+    reason_for_changes: 变更原因
     recents: 最近
+    record_id: 记录编号
+    recordings: 录音
     reflection_questions: 思考题
+    reflection_questions_delete_confirmation: 您确定要删除这个反思问题吗？
+    reflection_questions_export_action: 出口反思问题
+    reflection_questions_export_failure_msg: 导出文件时出错。
+    reflection_questions_export_success_msg: 正在导出反思问题。请在通知中查看状态。
+    reflection_questions_form_mandatory: 命令的
+    reflection_questions_form_max_words: 最多字数
+    reflection_questions_form_min_words: 最少字数
+    reflection_questions_form_question: 问题
+    reflection_questions_form_title: 思考题
+    reflection_questions_import_action: 进口反思问题
+    reflection_questions_import_failure_msg: 导入文件时出错。
+    reflection_questions_import_success_msg: 正在导入反思问题。请查看通知中的状态。
+    reflection_questions_question: 问题
+    refresh: 刷新
+    refresh_interval: 刷新间隔（分钟）
     regenerate_transcriptions_action: 重新生成转录文本
     regenerate_transcriptions_confirm_content: 您确定要为本次评估重新生成转录文本吗？此操作将重新处理所有未完成的转录文本。
     regenerate_transcriptions_confirm_title: 重新生成转录文本
@@ -999,33 +2104,174 @@ zh:
     registration_codes: 注册码
     registration_settings: 注册设置
     remove_children_to_change_type: 移除所有子节点以更改类型
+    remove_confirm_content: 您确定要删除邮件主题"%{subjectEmail}"吗？
+    remove_confirm_success: 带有电子邮件"%{subjectEmail}"的主题已成功删除。
+    remove_confirm_title: 移除主题
     remove_confirmation: 您确定要删除此项目吗？
+    remove_output_schema_key: 移除输出模式密钥
     remove_successfully: 媒体项目已成功删除。
+    render_button: 渲染模板
+    rendered_prompt: 渲染提示
+    reply_to_email: 回复电子邮件
+    report_access: 报告访问
     report_alias_save_confirmation: 如果您希望保存 Report Builder 和“别名”中的所有更改，请点击“保存”按钮。页面将重新加载，您的更改将成功应用。
+    report_approval: 报告批准
+    report_approval_allow_bulk_approve: 允许批量批准
+    report_approval_allow_qc_bulk_submit: 允许 QC 批量提交
+    report_approval_approval_statuses_approved: 已批准
+    report_approval_approval_statuses_change_requested: 要求更改
+    report_approval_approval_statuses_not_ready: 未准备好
+    report_approval_approval_statuses_pending_qc: 待质检
+    report_approval_approval_statuses_qc_completed: 质量控制已完成
+    report_approval_approval_statuses_qc_in_progress: 质量控制进行中
+    report_approval_approvers: 批准人
+    report_approval_approvers_can_edit: 审批人可以编辑
+    report_approval_approvers_not_required: 不需要批准人
+    report_approval_bulk_approve_success: "%{sent_for_approval}已发送供审批。%{approved}已审批的报告。%{ignored}因质量控制修改/评论而需要人工审批的报告。"
+    report_approval_columns_approval_status: 审批状态
+    report_approval_columns_approved_by: 批准人
+    report_approval_columns_assessed_by: 经评估
+    report_approval_columns_campaign_name: 活动名称
+    report_approval_columns_qc_by: 质量控制
+    report_approval_columns_report_name: 报告名称
+    report_approval_columns_subject_email: 主题电子邮件
+    report_approval_columns_user_email: 用户电子邮件
+    report_approval_columns_user_name: 用户名
+    report_approval_digest_delivery_mode_form_label: 摘要递送模式
+    report_approval_digest_frequency_daily: 日常
+    report_approval_digest_frequency_form_label: 摘要频率
+    report_approval_digest_frequency_weekdays: 平日
+    report_approval_digest_frequency_weekly: 周刊
+    report_approval_digest_time: 消化时间
+    report_approval_digest_timezone: 摘要时区
+    report_approval_digest_weekdays_form_label: 文摘工作日
+    report_approval_digest_weekdays_friday: 星期五
+    report_approval_digest_weekdays_monday: 星期一
+    report_approval_digest_weekdays_saturday: 星期六
+    report_approval_digest_weekdays_sunday: 星期日
+    report_approval_digest_weekdays_thursday: 星期四
+    report_approval_digest_weekdays_tuesday: 星期二
+    report_approval_digest_weekdays_wednesday: 星期三
+    report_approval_do_not_send_notifications: 不发送通知
+    report_approval_modal_title: 报告审批设置
+    report_approval_notification_users: 批准通知用户
+    report_approval_qc_users: 质量控制用户
+    report_approval_remove_modal_success: '报告 ID：%{reportId} 的审批设置已成功删除 '
+    report_approval_remove_modal_text: 您确定要删除报告 ID 的此设置：%{reportId}？
+    report_approval_report: 报告
+    report_approval_review: 评论
+    report_approval_saving_filters_actions_clear_filters: 清除过滤器
+    report_approval_saving_filters_actions_delete_filter: 删除过滤器
+    report_approval_saving_filters_actions_save_new_filter: 保存为新过滤器
+    report_approval_saving_filters_actions_saved_filters: 保存的过滤器
+    report_approval_saving_filters_delete_saved_filters: 删除过滤器
+    report_approval_saving_filters_edit_filter_name: 保存的过滤器名称
+    report_approval_saving_filters_error_while_deleting: 删除时出错
+    report_approval_saving_filters_error_while_editing: 编辑时出错
+    report_approval_saving_filters_error_while_fetching: 出错了，再试一次
+    report_approval_saving_filters_error_while_saving: 保存过滤器时出错
+    report_approval_saving_filters_filter_updated: 过滤器更新
+    report_approval_saving_filters_no_saved_filters: 没有保存的筛选器
+    report_approval_saving_filters_save_filter: 已保存的筛选器
+    report_approval_saving_filters_set_favorite: 过滤器已设置为收藏夹
+    report_approval_send_digest_emails: 发送摘要电子邮件
+    report_approval_settings: 报告审批设置
+    report_approval_submit_or_approve_all: 提交或批准所有
     report_approvals: 报告批准
+    report_availability: 报告可用性
     report_condition_not_met: 需要%{required} %{relationship}评估，但只有%{actual}
     report_conditions_not_met_detailed: "%{user}报告不符合可用性条件。%{conditions}"
     report_denied: "%{user}的报告被拒绝了"
+    report_help_description: 在用户仪表板的报告卡上显示帮助文本
+    report_help_name: 报告帮助
+    report_id: 报告编号
+    report_ids: 报告编号
+    report_ids_required: 必须提供报告 ID
     report_name: 报告名称
     report_no_evaluations: "%{user}报告不可得——尚未收到任何评估。"
     report_not_generated: "%{user}的报告符合可用性条件但尚未生成。请先生成报告。"
     report_on_hold: "%{user}报告目前处于暂停状态"
+    report_pdf_status: 报告 PDF 状态
+    report_review_abort_qc: 中止质控
+    report_review_approve: 批准
+    report_review_approve_changes: 批准变更
+    report_review_edit: 编辑
+    report_review_remove_approval: 取消批准
+    report_review_request_changes: 要求更改
+    report_review_review: 评论
+    report_review_send_for_approve: 发送审批
+    report_review_statuses_approved: 已批准
+    report_review_statuses_change_requested: 要求更改
+    report_review_statuses_not_ready: 未准备好
+    report_review_statuses_pending_qc: 待质检
+    report_review_statuses_qc_completed: 质量控制已完成
+    report_review_statuses_qc_in_progress: 质量控制进行中
     report_status: 报告状态
+    report_type: 报告类型
+    report_types:
+      active_clients_projects: 当前客户与项目
+      client_assessment_counts: 客户评估很重要
+      hogan_usage_report: 霍根评估的使用
+      json_data_report: JSON 数据报告
+      pearson_usage_report: 皮尔森测评的使用
+      report_usage_summary: 报告使用情况摘要
+      saville_usage_report: 萨维尔评估的使用
+      user_created_dates: 用户创建日期
+      user_reports_export: 用户报告导出
     reports: 报告
+    reports_copy_copy: 复制
+    reports_copy_copy_report: 复制报告
+    reports_count: 报告
+    reports_edit_default_language_agreement: 是的，我理解更改默认语言所带来的影响。
+    reports_edit_default_language_title: 编辑默认语言
+    reports_edit_default_language_tooltip: 编辑默认语言
+    reports_edit_default_language_warning_description_li_1: 将默认语言从 RTL 更改为 LTR 语言或反之亦然，都会影响版面设计。
+    reports_edit_default_language_warning_description_li_2: 如果更改默认语言，就必须重新翻译报告。
+    reports_edit_default_language_warning_description_li_3: 在进行此更改之前，请下载报告翻译副本。
+    reports_edit_default_language_warning_title: 请仔细阅读说明
+    reports_language_selection_modal_download: 报告下载
+    reports_language_selection_modal_generate: 生成报告
     reports_limit_exceeded: 批量下载限制为1000份报告文件。如果你选择了许多语言，请减少。
     reports_not_found: 未发现报告。请在下载前生成报告。
+    reports_preview_comments: 评论
+    reports_preview_hide_resolved: 隐藏 已解决
+    reports_preview_history: 历史
+    reports_preview_info_to_select_module: 选择要评论的文本模块
+    request_approval_description: 当主题请求批准时，此信息将发送给管理人员
+    request_approval_name: 申请批准
+    request_id: 申请编号
+    required_error: 所需
     rescore_responses_content: 这将重新计算该科目答案的评分。启用"允许AI重新评分"功能，即可对AI评分题使用人工智能重新评估答案。
+    resend_invite_content: 向所选主题重新发送邀请。你确定要继续吗？
+    resend_invite_success: 邀请成功重新发送。
+    resend_invite_title: 重新发送邀请
     reset_idp_plan: 重置计划
     reset_idp_plan_confirmation: 你确定要重置计划吗？
     reset_idp_plan_title: 重置计划
+    reset_score: 重置分数
+    reset_score_description: 分数将恢复为原始AI值。
+    resources_panel_description: 添加您希望主持人访问的任何资源的链接。
+    resources_panel_resource_name_placeholder: 资源名称
+    resources_panel_resource_url_placeholder: 资源链接
+    resources_panel_title: 资源
+    resources_panel_validation_error: 输入名称和 URL 或删除资源
     response_meta: 响应元
+    responses: AI 回应
     result: 结果
     results: 成果
+    results_export: 导出结果
+    results_export_job_scheduled: AI Artifacts结果导出任务已成功排程
+    revisions_load: 加载到成型
+    revisions_system_prompt: 系统支持法
+    revisions_title: 人工智能助手的修订
+    revisions_user_prompt: 用户提示
+    revisions_version: 版本
     role: 角色
     role_campaign_admin: 活动管理员
     role_client_admin: 客户管理
     role_project_admin: 项目管理员
     role_superadmin: 超级管理员
+    run: 运行
     saml_idp_certificate_available: 可用（点击复制）
     saml_idp_certificate_label: 证书
     saml_idp_entity_id_label: 实体编号/发行人
@@ -1075,6 +2321,23 @@ zh:
     saml_service_provider_updated_date: 更新日期
     saml_service_providers: 服务提供商
     saml_settings: SAML设置
+    saml_settings_after_signout_url: 登出后网址
+    saml_settings_cert: 证书
+    saml_settings_config_details_acs_url: 断言消费者服务 URL
+    saml_settings_config_details_copied: 复制的 %{element}
+    saml_settings_config_details_issuer: 实体 ID/发行人
+    saml_settings_config_details_title: 用以下信息配置 Idp
+    saml_settings_email_pipetext: 向 Pipetext 发送电子邮件
+    saml_settings_enabled: 已启用
+    saml_settings_enforced: 执行 SAML
+    saml_settings_entity_id: 实体 ID/发行人
+    saml_settings_name_identifier_format: 名称标识符
+    saml_settings_name_identifier_formats_email: urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress
+    saml_settings_name_identifier_formats_persistent: urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+    saml_settings_saml: SAML
+    saml_settings_save: 保存设置
+    saml_settings_sso_service_url: SSO 服务网址
+    saml_settings_successfully_saved_msg: SAML 设置已成功保存。
     save: 保存
     save_assessment_for_scoring_management: 在开始评分之前，请先保存评估结果。
     save_block: 保存区块
@@ -1093,7 +2356,139 @@ zh:
       user_full_name_cont: 用户名
     saville: 萨维尔
     saville_assessment: 萨维尔评估
+    schedule: 时间安排
+    schedule_email: 日程安排电子邮件
+    schedule_email_title: 日程安排电子邮件
+    schedule_time: 安排时间
     scheduling: 日程安排
+    scheduling_add_activity: 添加活动
+    scheduling_add_assessment_center: 添加评估中心
+    scheduling_add_assessor_form_assessment: 评估
+    scheduling_add_assessor_form_assessor: 评估员
+    scheduling_add_assessor_form_schedule_time: 时间安排
+    scheduling_add_subject: 添加主题
+    scheduling_attendance_status_column_name: 出席情况
+    scheduling_attendance_status_dropped_out: 辍学
+    scheduling_attendance_status_late: 迟到
+    scheduling_attendance_status_no_show: 无演出
+    scheduling_attendance_status_no_status: 无状态
+    scheduling_attendance_status_on_time: 准时
+    scheduling_attended_attended: 出席
+    scheduling_attended_not_attended: 未出席
+    scheduling_campaign_participants: 活动参与者
+    scheduling_columns_activity: 活动
+    scheduling_columns_assessment_center_date_and_time: 评估中心日期和时间
+    scheduling_columns_assessor: 评估员
+    scheduling_columns_assessors: 评估员
+    scheduling_columns_attendance: 出席情况
+    scheduling_columns_attended: 出席
+    scheduling_columns_booked_at: 预订地点
+    scheduling_columns_campaign_assessment_group: 评估中心小组
+    scheduling_columns_campaign_name: 活动名称
+    scheduling_columns_duration: 持续时间
+    scheduling_columns_link_to_view_recordings: 查看录制文件的链接
+    scheduling_columns_managers: 管理人员
+    scheduling_columns_meeting_link: 会议链接
+    scheduling_columns_participants: 参与者
+    scheduling_columns_prework: 前期工作
+    scheduling_columns_recording_date: 录制日期
+    scheduling_columns_resource_link: 链接
+    scheduling_columns_schedule_time: 时间安排
+    scheduling_columns_scheduling_status: 调度状态
+    scheduling_columns_seats: 座椅
+    scheduling_columns_serial_no: 序列号
+    scheduling_columns_start_time: 日期和时间
+    scheduling_columns_subject: 主题
+    scheduling_columns_title: 标题
+    scheduling_columns_view_recording: 查看录制
+    scheduling_errors_assessor_already_assigned: 已为该评估指派评估员，请选择其他评估或评估员。
+    scheduling_errors_date_required: 请选择日期
+    scheduling_errors_invalid_url: URL 格式无效
+    scheduling_errors_meeting_link_https: 会议链接必须以 "https://"开头
+    scheduling_info_allowed: 允许
+    scheduling_info_assessors: 评估员
+    scheduling_info_booked: 已预订座位
+    scheduling_info_campaign_assessment_group: 评估中心小组
+    scheduling_info_cancellation_lead_time: 取消预订所需时间
+    scheduling_info_cancellation_tooltip: 用户将能够取消预订，直到 %{date}
+    scheduling_info_date: 日期和时间
+    scheduling_info_duration: 持续时间
+    scheduling_info_join_meeting: 加盟房间
+    scheduling_info_late_cancellation_and_scheduling: 延迟取消和日程安排
+    scheduling_info_link: 会议链接
+    scheduling_info_managers: 中心经理
+    scheduling_info_none: 无
+    scheduling_info_not_allowed: 不允许
+    scheduling_info_recording_enabled: 已启用录制
+    scheduling_info_remaining: 剩余席位
+    scheduling_info_scheduling_lead_time: 排产准备时间
+    scheduling_info_scheduling_tooltip: 用户可以预订 %{date}之前的时段
+    scheduling_info_search_placehoder: 按 ID、电子邮件或姓名搜索
+    scheduling_info_timezone: 时区
+    scheduling_info_total_seats: 总席位数
+    scheduling_lead_time_label: 日程安排的准备时间
+    scheduling_resources_confirm_message: 您确定要删除资源"%{resource_name}"吗？
+    scheduling_resources_confirm_title: 需要确认
+    scheduling_resources_create: 创建资源
+    scheduling_resources_invalid_url: 无效 URL，请指定包含 http 或 https 协议的完整 URL。
+    scheduling_resources_resource: 资源
+    scheduling_resources_successful_remove: 评估中心资源 %{resource_name} 已成功删除。
+    scheduling_schedule_assessments: 安排评估
+    scheduling_scheduling_statuses_cancelled: 已取消
+    scheduling_scheduling_statuses_late_cancelled: 延迟取消
+    scheduling_scheduling_statuses_late_rescheduled: 改期
+    scheduling_scheduling_statuses_rescheduled: 改期
+    scheduling_scheduling_statuses_scheduled: 计划
+    scheduling_search_participant: 搜索活动参与者
+    scheduling_status: 排程状态
+    scheduling_status_change_modal_content: 一旦关闭评估中心，参与者将无法参加任何中心活动。
+    scheduling_status_change_modal_title: 更改评估中心状态
+    scheduling_status_completed: 已完成
+    scheduling_status_dropped_out: 辍学
+    scheduling_status_in_progress: 进行中
+    scheduling_status_late: 迟到
+    scheduling_status_no_show: 无演出
+    scheduling_status_not_started: 未开始
+    scheduling_subjects_activities: 活动
+    scheduling_subjects_add_assessor_form: 添加评估员表格
+    scheduling_subjects_assessments: 评估
+    scheduling_subjects_assessor_forms: 评估员表格
+    scheduling_subjects_confirm_message: |
+      '您确定要取消电子邮件名为"%{subject_email}"的受试者的参与资格吗？
+      <br />
+      一旦标记为取消，该受试者将无法参加评估中心的活动。'
+    scheduling_subjects_confirm_title: 需要确认
+    scheduling_subjects_edit_assessor_form: 编辑评估员表格
+    scheduling_subjects_form_title: 安排评估
+    scheduling_subjects_language: 语言
+    scheduling_subjects_language_not_selected: 未选择
+    scheduling_subjects_mark_cancel: 马克 取消
+    scheduling_subjects_mark_cancel_success: 取消主题的参与，电子邮件 %{subject_email}。
+    scheduling_subjects_meeting_link_custom: 自定义
+    scheduling_subjects_meeting_link_internal: 内部
+    scheduling_subjects_meeting_link_none: 无
+    scheduling_subjects_meeting_link_title: 会议链接
+    scheduling_subjects_no_change: 无变化
+    scheduling_subjects_override_existing: 覆盖现有的科目时间表
+    scheduling_subjects_preworks: 前期工作
+    scheduling_subjects_re_enroll: 重新注册
+    scheduling_subjects_re_enroll_confirm_message: 您确定要使用电子邮件 "%{subject_email}"重新注册主题吗？
+    scheduling_subjects_re_enroll_success: 重新注册主题，电子邮件：%{subject_email} 。
+    scheduling_subjects_schedule: 时间安排
+    scheduling_subjects_unschedule: 取消计划
+    scheduling_tabs_activities: 活动
+    scheduling_tabs_assessment_center: 评估中心
+    scheduling_tabs_invites: 邀请
+    scheduling_tabs_recordings: 录音
+    scheduling_tabs_resources: 资源
+    scheduling_tabs_subjects: 主题
+    schema_key_description_required: 模式密钥描述为必填项
+    schema_key_required: 需要模式密钥
+    schema_key_type: 钥匙类型
+    schema_key_unique: 模式键应是唯一的
+    scope: 范围
+    scope_client: 客户
+    scope_global: 全球
     score: 得分
     score_approval_not_allowed_to_approve: 您无权批准此分数。
     score_approval_not_allowed_to_discard: 你不得丢弃这张记分卡。
@@ -1102,56 +2497,347 @@ zh:
     score_max: 得分上限
     score_min: 得分 最低
     score_must_be_in_between_min_and_max: 分数必须介于 %{min} 和 %{max} 之间。
+    score_not_applicable: 分数不适用
     score_range_info: 分数范围：%{min} - %{max}
     score_with_ai: 用AI得分
     scores_finalized: 成绩已最终确定，无法更改
     scoring: 计分
+    scoring_action_prohibited: 禁止采取的行动
+    scoring_active: 活跃
+    scoring_actual_average: 实际平均值
+    scoring_add_factor: 添加系数
+    scoring_add_group: 添加组
     scoring_approval_add_settings: 添加设置
     scoring_approval_allow_bulk_approve: 允许批量批准
     scoring_approval_allow_bulk_approve_scores: 允许批量批准评分
     scoring_approval_allow_one_level_approve: 允许一级审批
+    scoring_approval_approve_all: 批准全部
     scoring_approval_approver_users: 审批用户
     scoring_approval_approvers: 审批人
     scoring_approval_assessment: 评估
     scoring_approval_assessor_users: 评估师用户
+    scoring_approval_bulk_approve_success: "%{approved} 分数已批准。"
     scoring_approval_do_not_send_notifications: 请勿发送通知
     scoring_approval_modal_title: 评分审批设置
     scoring_approval_notification_users: 审批通知用户
     scoring_approval_remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
     scoring_approval_remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
+    scoring_approval_review: 评论
+    scoring_approval_score_approvals: AI评分审批
+    scoring_assessment: 评估
+    scoring_assessment_scoring_type: 评估评分类型
+    scoring_average: 平均
+    scoring_campaign_scoring_variables: 活动评分变量
+    scoring_desc: 您已超过 %{n} 活动因素的最大限制。 无法添加其他因素。 请在继续之前检查并管理现有因素。
+    scoring_dimension: 尺寸
+    scoring_edit_factor: 编辑因子
+    scoring_export_factors: 出口活动因素
+    scoring_factor: 系数
+    scoring_factor_group_removed_successfully: 运动因素组已成功移除
+    scoring_factor_removal_confirmation: 在文本框中输入以下因子名称以确认
+    scoring_factor_removed_successfully: 运动因子已成功移除
+    scoring_factors_exported_successfully: 已成功安排导出活动因子作业
+    scoring_factors_imported_successfully: 已成功安排导入活动因子作业
+    scoring_final: 决赛
+    scoring_final_score_updated_successfully: 最终得分已成功更新
+    scoring_formula: 计算公式
+    scoring_get_started: 开始
+    scoring_import_factors: 导入活动因素
+    scoring_innovation_style_removal_confirmation: 请在文本框中输入下方的创新风格名称以确认
+    scoring_no_groups: 无小组出席
+    scoring_occupation_removal_confirmation: 请在文本框中输入下方的职业名称以确认
+    scoring_output_type: 输出类型
+    scoring_pattern_error: 只允许使用字母数字字符、空格和破折号。
+    scoring_profile_years: 年数
+    scoring_public: 公共
+    scoring_ranked: 排名
+    scoring_remove_all_campaign_factors_confirmation: 在文本框中输入以下当前活动名称以确认
+    scoring_remove_all_campaign_factors_error: 运动因素删除失败
+    scoring_remove_all_campaign_factors_success: 成功删除活动因素
+    scoring_remove_all_campaign_factors_title: 删除活动因素
+    scoring_remove_all_campaign_factors_warning: 您即将删除所有活动因素和用户的所有相关分数。 您确定要执行此操作吗？
+    scoring_remove_factor_group_confirmation_content: 您确定要删除因子组"%{group_name}"吗？
+    scoring_remove_factor_group_confirmation_title: 删除因子组
+    scoring_required_error: 不能是空的
+    scoring_save_all: 保存所有
+    scoring_score_range: 分数范围
+    scoring_score_types_norm_score: 标准分
+    scoring_score_types_percentage: 百分比
+    scoring_score_types_percentile: 百分位数
+    scoring_score_types_score: 得分
+    scoring_score_types_zscore: Z 分数
+    scoring_scoring: 计分
+    scoring_scoring_description: 活动计分允许跨评估报告
+    scoring_select_all: 选择所有 %{n} 科目
+    scoring_select_assessment_first: 首先选择评估
+    scoring_select_factor: 选择因子
+    scoring_show_weightages: 显示权重
+    scoring_subject: 主题
+    scoring_subject_list_bulk_mark_finalized: 批量标识最终确定
+    scoring_subject_list_bulk_mark_finalized_confirm: 最终确定选定用户的分数后，将生成报告，其中使用了用户的活动因素。 您确定要继续吗？
+    scoring_subject_list_bulk_mark_not_finalized: 批量标记未定
+    scoring_subject_list_bulk_mark_not_finalized_confirm: 从所选用户中移除 "最终确定 "将移除使用活动因素为用户生成的报告。 您确定要继续吗？
+    scoring_subject_list_bulk_rescore: 批量重核
+    scoring_subject_list_bulk_rescore_confirm: 您确定要继续吗？
+    scoring_subject_list_calculated_date: 计算日期
+    scoring_subject_list_calculation_errors: 计算错误
+    scoring_subject_list_export: 出口烧焦
+    scoring_subject_list_export_success: 已成功计划导出分数作业
+    scoring_subject_list_finalized: 定稿
+    scoring_subject_list_finalized_date: 最终确定日期
+    scoring_subject_list_import_external_scores: 导入外部刻录
+    scoring_subject_list_mark_finalized: 标记定稿
+    scoring_subject_list_mark_finalized_confirm: 最终确定用户"%{email}"的得分将生成报告，该报告将使用用户的活动因素。 您确定要继续吗？
+    scoring_subject_list_mark_not_finalized: 标记未定
+    scoring_subject_list_mark_not_finalized_confirm: 从用户"%{email}"中移除 "finalize "将移除生成的报告，该报告使用了用户的活动因素。 您确定要继续吗？
+    scoring_subject_list_push_webhook: 推送网络钩子
+    scoring_subject_list_rank: 排名
+    scoring_subject_list_rescore: 重核
+    scoring_subject_list_rescore_confirm: 重新计算用户"%{email}"，您确定要继续吗？
     scoring_supported_only_for_ai_questions: 当前选定因素仅允许在启用AI的题目上进行评分。
+    scoring_tabs_settings: 设置
+    scoring_tabs_subject_scores: 科目分数
     scoring_value_info: 分数必须介于 %{min} 和 %{max} 之间。
     scoring_value_out_of_range_err_msg: "%{factor_name} 的评分必须介于 %{min} 与 %{max} 之间。"
+    scoring_variables: 变量
+    scoring_weightages_assessorForms: 评估员表格
+    scoring_weightages_successful_update: 权重已成功更新
+    scoring_weightages_weightages: 权重
+    scoring_weighted_average: 加权平均
     search_admins: 搜索管理员
+    search_campaign: 按活动搜索
+    search_client: 按客户搜索
     search_job_role: 搜索职位
+    search_participants: 搜索参与者...
+    search_project: 按项目搜索
+    search_record: 按记录 ID 搜索
+    search_user: 按用户搜索
+    seats_label: 座椅
+    sec_logo_label: 二级徽标
+    secondary_logo_alt_text: 二级徽标 Alt-Text
+    secondary_logo_alt_text_required: 需要辅助 Alt-Text 徽标
+    security_setting_180_days: 180 天
+    security_setting_30_days: 30 天
+    security_setting_365_days: 365 天
+    security_setting_90_days: 90 天
+    security_setting_attempts_to_lock: 试图锁定
+    security_setting_auto_unlock_time: 自动解锁时间
+    security_setting_disable_password_reuse: 禁用密码重用
+    security_setting_disallow_password_login: 禁止密码登录
+    security_setting_enable_login_with_magic_link: 启用魔法链接登录
+    security_setting_enable_recaptcha: 启用验证码
+    security_setting_enforce_password_policy: 下次登录时执行密码策略
+    security_setting_enforce_strong: 执行强密码
+    security_setting_expiration: 密码过期
+    security_setting_lock_account: 锁定账户
+    security_setting_magic_link_expiry_duration: 魔法链接过期时间
+    security_setting_min_length: 最小密码长度
+    security_setting_never: 从不
+    security_setting_restrict_sequences: 限制连续和重复的字符
+    security_setting_security: 安全设置
+    security_setting_send_unlock_email: 发送解锁电子邮件
+    security_setting_session_timeout_duration: 会话超时时间
+    security_setting_tfa_enabled: 启用双因素身份验证
+    security_settings_security_setting: 安全设置
     select_admin_role: 选择管理员角色
+    select_assessment_language: 选择评估语言
+    select_client: 选择客户
     select_end_time: 选择结束时间
     select_language_to_translate: 请选择要翻译的语言
     select_level: 选择级别
+    select_project_ids_required: 请选择所需的 project_ids
+    select_projects: 精选项目
+    select_projects_required: 请至少选择一个项目
     select_question: 按名称或ID搜索问题
+    select_report_ids_required: 请选择所需的 report_ids
+    select_report_language: 选择报告语言
+    select_report_type: 选择报告类型
     select_start_time: 选择开始时间
     selective_proctoring: 选择性监考
     send_email: 发送电子邮件
+    send_test_email: 发送测试电子邮件
     set_min_max_scores_warning: 请为该因素设置最低分和最高分以配置AI评分。
     settings: 设置
+    settings_admin_roles_confirm_message: 您确定要删除管理员角色"%{role_name}"吗？
     settings_saved_successfully: 设置已成功保存
+    settings_siem_destination_type: 目的地类型
+    settings_siem_destination_types_s3: S3
+    settings_siem_destination_types_s3_compatible: S3 兼容
+    settings_siem_enabled: 已启用
+    settings_siem_readable_resource_name: SIEM 设置
+    settings_siem_s3_access_key_id: 访问密钥 ID
+    settings_siem_s3_bucket_folder: S3 水桶文件夹
+    settings_siem_s3_bucket_name: S3 存储桶名称
+    settings_siem_s3_endpoint: S3 端点
+    settings_siem_s3_region: S3 地区
+    settings_siem_s3_secret_access_key: 秘密访问密钥
+    settings_siem_send_test_log: 发送测试日志
+    settings_siem_send_test_log_error_message: 测试日志尚未发送到您的邮筒，请检查您的设置
+    settings_siem_send_test_log_success_message: 测试日志已成功发送到您的邮筒
+    settings_skill_aliases_alias: 别名
+    settings_skill_aliases_confirm_message: 您确定要删除技能别名"%{skill_alias}"吗？
+    settings_skill_aliases_create: 添加技能别名
+    settings_skill_aliases_select_skill: 选择技能
+    settings_skill_aliases_skill: 技能
+    settings_skill_aliases_skill_alias: 技能别名
+    settings_skill_aliases_successful_remove: 技能别名"%{skill_alias}"已成功删除。
+    settings_tabs_admin_roles: 管理员角色
+    settings_tabs_feature_flags: 功能标志
+    settings_tabs_siem: SIEM
+    settings_tabs_skill_aliases: 技能别名
+    sheets_column_add_column: 添加栏
+    sheets_column_not_allowed_for_dashboard_use: 在仪表盘中使用的列应少于 64 个字符
+    sheets_column_reorder: 重新订购
+    sheets_column_save_order: 保存订单
+    sheets_drawers_add_edit_cancelText: 取消
+    sheets_drawers_add_edit_markdown_preview: 预览
+    sheets_drawers_add_edit_markdown_title: Markdown
+    sheets_drawers_add_edit_save: 保存
+    sheets_drawers_add_edit_saving: 节约
+    sheets_drawers_add_edit_success_message_add: 新增记录
+    sheets_drawers_add_edit_success_message_edit: 记录更新
+    sheets_drawers_add_edit_title_add: 添加工作表记录
+    sheets_drawers_add_edit_title_edit: 编辑工作表行记录
+    sheets_drawers_add_edit_validations_required_email: 请输入电子邮件
+    sheets_drawers_view_campaign_title: 活动级别记录
+    sheets_drawers_view_project_title: 项目级记录
+    sheets_drawers_view_title: 工作表行记录详情
+    sheets_list_header_add_record: 添加记录
+    sheets_list_header_search_record: 搜索记录
+    sheets_modals_delete_records_cancelText: 取消
+    sheets_modals_delete_records_content: 您确定要删除所选的 {{count}} 记录吗？
+    sheets_modals_delete_records_okText: 是，删除
+    sheets_modals_delete_records_successMessage: 已成功删除 {{count}} 条记录。
+    sheets_modals_delete_records_title: 删除 {{count}} 记录
+    sheets_modals_remove_columns_cancelText: 取消
+    sheets_modals_remove_columns_content: 删除一列 ({{columns}}) 将删除该列所有行中的数据
+    sheets_modals_remove_columns_okText: 是，删除
+    sheets_modals_remove_columns_successMessage: "{{count}}删除的记录"
+    sheets_modals_remove_columns_title: 删除栏目
+    sheets_tabs_rows: 行数
+    sheets_tabs_settings: 设置
+    show_all: 显示全部
     show_all_assessment_responses: 显示所有评估回复
     show_middle_scores: 显示更多%{count}的评分（可选）...
     show_original: 显示原文
     show_submenu: 显示子菜单
     show_translated: 显示翻译
+    show_watermark: 显示水印
+    sidebar_title: 项目的选择
     siem: SIEM
     simulation: 模拟
     simulation_assessment: 模拟评估
     skill_aliases: 技能别名
+    skill_rater: 技能评级员
     skills: 技能
+    skills_applicable_proficiency_levels: 适用的能力水平
+    skills_columns_skill_group: 技能组
+    skills_columns_skill_type: 技能类型
+    skills_export_failure_msg: 导出翻译时出错
+    skills_export_success_msg: 导出开发行动正在进行中。
+    skills_form_skill_group: 技能组
+    skills_form_skill_type: 技能类型
+    skills_form_title: 技能
+    skills_import_action_skills_title: 进口技能
+    skills_import_action_skills_translations_title: 进口技能翻译
+    skills_import_download_example_csv: 常模 CSV 样本
+    skills_import_info_msg: 上传的文件已排队等待导入，请查看通知中的状态。
+    skills_import_success_msg: 上传的文件已排队等待导入，请查看通知中的状态。
+    skills_skill_details: 技能详情
+    skills_skill_translations: 技能翻译
     skills_taxonomy: 技能分类法
+    skills_title: 技能
+    skills_vector_generate_embedding: 生成嵌入
+    skills_vector_generate_embedding_failure_msg: 未能排队技能嵌入生成任务。请再试一次。
+    skills_vector_generate_embedding_success_msg: 技能嵌入生成任务已成功排队。请查看通知中的状态。
+    skills_vector_label: 向量数据库
     skillvue: Skillvue
+    skillvue_apiKey: 服务协议密钥
+    skillvue_apiKeyRequired: 需要 API 密钥
     skillvue_assessment: Skillvue 评估
     skip_assessment_level_checks: 跳过评估级别的系统检查
     slot_name: 车位名称
+    sms_contact: 短信联系
     sms_histories: 短信历史
+    sms_histories_columns_mobile_no: 手机号码
+    sms_histories_columns_price: 价格
+    sms_histories_columns_segment_length: 段长
+    sms_histories_columns_sent_at: 发送至
+    sms_histories_drawer_title: 短信详情
+    sms_histories_history: 历史
+    sms_histories_statuses_accepted: 已接受
+    sms_histories_statuses_delivered: 已交付
+    sms_histories_statuses_failed: 失败
+    sms_histories_statuses_queued: 排队等候
+    sms_histories_statuses_scheduled: 计划
+    sms_histories_statuses_sent: 发送
+    sms_histories_statuses_undelivered: 未送达
     sms_invites: 短信邀请
+    sms_invites_actions_add: 添加短信联系人
+    sms_invites_columns_created_at: 创建时间
+    sms_invites_columns_created_by: 创建者
+    sms_invites_columns_mobile_no: 手机号码
+    sms_invites_contacts: 联系方式
+    sms_invites_form_modal_locale: 地点
+    sms_invites_form_modal_mobile_no: 手机号码
+    sms_invites_form_modal_title: 短信邀请
+    sms_invites_import_download_example_csv: 常模 CSV 样本
+    sms_invites_import_success_msg: 上传的文件已排队等待导入，请查看通知中的状态。
+    sms_invites_import_title: 短信邀请导入
+    sms_invites_messages_delete_confirm_text: 您确定要删除手机号码 %{mobile_no} 的短信邀请吗？
+    sms_invites_messages_delete_success: 短信邀请已成功删除
+    sms_invites_send_sms_fields_link_expiry: 链接到期
+    sms_invites_send_sms_fields_locale: 地点
+    sms_invites_send_sms_fields_message: 留言
+    sms_invites_send_sms_fields_statuses: 状态
+    sms_invites_send_sms_fields_users: 用户
+    sms_invites_send_sms_modal_btn_name: 发送短信
+    sms_invites_send_sms_modal_title: 发送短信
+    sms_invites_send_sms_pipetext_details: |
+      "{{{first_name}} - 接收人的名
+      <br />
+      {{{last_name}}}--收件人的姓
+      <br />
+      {{{invite_url}}} - 注册链接"
+    sms_invites_send_sms_segment_length_msg: 此报文的预计段落数为 %{segment_length}。
+    sms_invites_send_sms_segment_length_range_msg: 此报文的估计段数介于 %{min_segment_length} 和 %{max_segment_length} 之间。
+    sms_invites_statuses_all: 全部
+    sms_invites_statuses_failed: 失败
+    sms_invites_statuses_invited: 特邀
+    sms_invites_statuses_not_invited: 未受邀请
+    sms_invites_statuses_registered: 注册
+    sms_invites_tools_export: 导出短信联系人
+    sms_invites_tools_import: 导入短信联系人
+    sms_invites_tools_send_sms: 发送短信
+    sms_notification: 短信通知
+    sms_notification_disabled_by_client: 客户端禁用短信通知
+    sms_records_columns_message: 留言
+    smtp_settings: SMTP 设置
+    smtp_settings_authentication: 认证
+    smtp_settings_authentication_type: 认证类型
+    smtp_settings_authentication_types_cram_md5: 充值 md5
+    smtp_settings_authentication_types_login: 登录
+    smtp_settings_authentication_types_plain: 平原
+    smtp_settings_enabled: 已启用
+    smtp_settings_encryption: 加密
+    smtp_settings_encryption_types_none: 无
+    smtp_settings_encryption_types_ssl: SSL
+    smtp_settings_encryption_types_tls: TLS
+    smtp_settings_from_email: 来自电子邮件
+    smtp_settings_from_name: 来自名称
+    smtp_settings_host: 主持人
+    smtp_settings_password: 密码
+    smtp_settings_port: 港口
+    smtp_settings_send_test_email: 发送测试电子邮件
+    smtp_settings_smtp: SMTP
+    smtp_settings_test_email_modal_input_hint: 在测试邮件成功发送之前，您的邮件设置不会被保存。
+    smtp_settings_test_email_modal_input_placeholder: 测试电子邮件
+    smtp_settings_test_email_modal_title: 测试电子邮件
+    smtp_settings_test_modal_success_message: 测试电子邮件已发送至 %{email_id}。
+    smtp_settings_test_modal_title: 测试 SMTP 设置
+    smtp_settings_update_success_msg: SMTP 设置已成功更新。
+    smtp_settings_use_sender_verification: 使用发件人验证
+    smtp_settings_user_name: 用户名
     specialty_questions: 专业问题
     sso_email_mismatch: 您在身份提供商上登录的是另一个账户。请先从身份提供商中退出，然后重试。
     sso_enforced: 强制实施单点登录
@@ -1183,30 +2869,167 @@ zh:
     sso_settings_slo_url: SLO 服务 URL
     sso_settings_sso_url: SSO 服务 URL
     sso_settings_tab: SSO
+    standard: 标准
     standard_deviation: 标准差
     standard_questions: 标准问题
     start: 开始
     start_time: 开始时间
     static_content: 静态内容
     stats: 统计数据
+    stats_assessments_active: 活跃
+    stats_assessments_columns_assessment_name: 评估名称
+    stats_assessments_columns_completed: 已完成
+    stats_assessments_columns_in_progress: 进行中
+    stats_assessments_columns_ineligible: 不符合条件
+    stats_assessments_columns_interrupted: 中断
+    stats_assessments_columns_not_started: 未开始
+    stats_assessments_columns_timed_out: 超时
+    stats_assessments_count: 数量
+    stats_assessments_inactive: 不活动
+    stats_assessments_percentage: 百分比
+    stats_assessments_title: 评估
+    stats_top_metrics_completed: 已完成
+    stats_top_metrics_in_progress: 进行中
+    stats_top_metrics_interrupted: 中断
+    stats_top_metrics_not_started: 未开始
+    stats_top_metrics_timed_out: 超时
+    stats_top_metrics_users: 用户
+    stats_users_date_presets_last_30_days: 最近 30 天
+    stats_users_date_presets_last_7_days: 最近 7 天
+    stats_users_date_presets_last_month: 上个月
+    stats_users_date_presets_last_week: 上周
+    stats_users_date_presets_today: 今天
+    stats_users_date_presets_yesterday: 昨天
+    stats_users_y_title: 用户数量
+    status_active: 活跃
+    status_archived: 存档
     status_details: 状态详情
+    statuses_accepted: 已接受
+    statuses_cancelled: 已取消
+    statuses_late_cancelled: 延迟取消
+    statuses_late_rescheduled: 改期
+    statuses_pending: 待定
+    statuses_requested_cancellation: 申请取消
+    statuses_requested_cancellation_rejected: 拒绝取消
+    statuses_requested_rescheduling: 要求改期
+    statuses_requested_rescheduling_rejected: 重新安排 拒绝
+    statuses_rescheduled: 改期
+    statuses_scheduled: 计划
+    steps_basic_information: 基本信息
+    steps_facilitators: 主持人
+    steps_invite_options: 邀请选项
+    steps_invite_subjects: 邀请主题
+    steps_send_invitations: 发送邀请函
     structured_learning: 正规学习 [10]
+    sub_factor_questions: 其他因素的问题（平均值）
+    sub_factor_questions_sum: 其他因素的问题(SUM)
+    sub_factors_average: 系数加权平均数
+    sub_factors_conditional_average: 系数的条件加权平均数
+    sub_factors_sum: 系数加权和
     subdomain: 子域
     subdomain_admin_keyword: 无法使用预留的管理子域名模式
     subdomain_invalid_format: 子域格式错误。
     subdomain_reserved: 子域名 %{value} 已被保留
     subdomain_too_long_max_32: 子域名过长（最长为32个字符）
+    subject: 主题
+    subject_can_access_reports: 受试者可查阅其报告
+    subject_email: 主题电子邮件
+    subject_invite_description: 该信息将用于邀请受试者参与评估
+    subject_invite_name: 主题 邀请
     subject_part_of_other_invite: 邮箱地址为 %{user_email} 的用户已获邀加入 '%{workshop_invite_name}' 群组。
+    subject_placeholder: 搜索主题...
+    subject_reminder_description: 向每位参与者发送信息，提醒他们参加评估
+    subject_reminder_name: 主题提醒
+    subject_reminder_rule_description: 指定邀请排期时自动排期的规则
+    subject_reminder_rule_name: 主题提醒规则
+    subject_report_ready_description: 报告准备就绪后，该信息将发送给受试者
+    subject_report_ready_name: 课题报告准备就绪
+    subjects_title: 主题
+    submenu_options_option_one: 方案 1
+    submenu_options_option_title: 项目 1
+    submenu_options_option_two: 方案 2
+    success_call_send_invitation: 您愿意发送邀请函吗？
+    success_color: 成功色彩
+    success_ok: 是
+    success_skip: 暂时跳过
+    success_title: 创建评估中心
+    success_update: 设计设置已成功保存
+    suitability_id: 适用性标识
     superadmin_use_root_domain: 超级管理员必须通过主域登录
     switch_client: 切换客户端
-    target_job_role: 目标职位
+    system_prompt: 系统提示
+    tab_text_one: 菜单
+    tab_text_two: 子菜单
+    table_more_actions: 更多行动
+    tabs_results: 成果
+    tabs_settings: 设置
+    target_job_role: 目标岗位
+    taxonomy_import_action_taxonomy: 导入技能分类标准
+    taxonomy_import_description: 上传Excel文件以导入或更新您的技能分类体系。此操作将添加新技能、职位角色及熟练程度等级。
+    taxonomy_import_download_example_file: 下载示例文件
+    taxonomy_import_drag_text: 点击或拖拽文件至此区域进行上传
+    taxonomy_import_error_title: 导入失败
+    taxonomy_import_file_hint: 支持 .xls 和 .xlsx 文件
+    taxonomy_import_import_button: 导入分类法
+    taxonomy_import_success_msg: 上传的文件已排队等待导入。请查看通知中的状态。
+    taxonomy_title: 技能分类法
+    template_and_campaign_required: 请同时提供模板和战役ID
+    template_render_failed: 模板渲染失败
+    test_generate: 测试生成
+    test_render: 测试渲染
+    test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
+    text_danger: 文本（危险）
+    text_success: 文本（成功）
+    text_warning: 文本（警告）
     this_field_is_required: 此字段为必填项
+    threesixity_advance_settings_campaign_template: 活动模板
+    threesixity_advance_settings_factors: 因素
+    threesixity_close_content: 您确定要关闭多评级活动创建器吗？ 任何未保存的自定义工作都将丢失。 请确认您的决定。
+    threesixity_close_title: 关闭多评级活动创建器？
+    threesixity_instructions_creation_empty: 空白：从一张空白问卷开始，并根据您的具体需求进行自定义。
+    threesixity_instructions_creation_previous: 上一项：选择上一项评估作为起点，并进行修改。
+    threesixity_instructions_creation_standard: 标准：使用包含常用问题和指标的预设模板。
+    threesixity_instructions_creation_sub_title: 请选择您想创建的活动类型。
+    threesixity_instructions_creation_title: 欢迎使用多评级活动创建器！
+    threesixity_instructions_customization_sub_title: 选择要纳入评估的模板和因素。
+    threesixity_instructions_customization_title: 定制您的评估！
+    threesixity_no_factors_description: 请尝试其他搜索关键词。
+    threesixity_no_factors_title: 未找到因素
+    threesixity_questions_select_all: 选择所有
+    threesixity_questions_title: 问题和指标
+    threesixity_search_factors_description: 请输入至少 3 个字符以查找您要查找的因素。
+    threesixity_search_factors_title: 开始搜索
+    threesixity_success: 多评级活动已成功创建。
+    threesixity_success_job: 多评级活动创建任务已成功安排。
     threesixty: 360营销活动
+    threesixty_campaigns_mail_history_date: 日期
+    threesixty_campaigns_mail_history_download_details: 下载详细信息
+    threesixty_campaigns_mail_history_emails_sent: 已发送电子邮件
+    threesixty_campaigns_mail_history_recipient: 受援国
+    threesixty_campaigns_mail_history_subject: 主题
+    threesixty_campaigns_manage_assessment: 评估
+    threesixty_campaigns_manage_dimension: 尺寸
+    threesixty_campaigns_manage_manage_relationships: 管理关系...
+    threesixty_campaigns_manage_report: 报告
+    threesixty_campaigns_menu_datasheet_title: 数据表
+    threesixty_campaigns_menu_messages_title: 信息
+    threesixty_campaigns_menu_participants_title: 参与者
+    threesixty_campaigns_menu_report_menu_report_approval_title: 报告审批设置
+    threesixty_campaigns_menu_report_menu_report_options_title: 报告选项
+    threesixty_campaigns_menu_report_title: 报告
+    time_label: 时间
+    time_zone: 时区
     timed_label: 时间戳：%{time_text}
     timelines: 时间线
+    times: 时代
     timezone: 时区
+    timezone_label: 时区
     timing: 时间
+    title: 消息
     to: 致
+    token_url_label: 令牌网址
+    token_url_name: oauth_token_url
+    token_url_required: 令牌 URL 是必填项
     tone: 语调
     toolbar_ai_insight: 人工智能洞察
     toolbar_ai_suggestion: AI建议
@@ -1215,6 +3038,22 @@ zh:
     toolbar_text_replaced: 文本已替换！
     toolbar_what_changed_and_why: 发生了什么变化及原因
     tools: 工具
+    topics_label: 活动
+    topics_list_assessment_assigned: 指定评估
+    topics_list_assessment_completed: 已完成评估
+    topics_list_assessment_raw_response: 评估原始答复
+    topics_list_assessment_started: 评估开始
+    topics_list_assessment_timeout: 评估超时
+    topics_list_campaign_results_available: 活动结果已公布
+    topics_list_campaign_user_assessment_summary: 活动用户评估摘要
+    topics_list_campaign_user_status: 活动用户状态
+    topics_list_report_available: 现有报告
+    topics_list_results_available: 已有结果
+    topics_list_scheduling_cancelled: 日程安排取消
+    topics_list_scheduling_invited: 特邀日程安排
+    topics_list_scheduling_rescheduled: 重新安排日程
+    topics_list_scheduling_scheduled: 计划安排 计划安排
+    topics_list_workshop_attendance_status: 工作坊出席状态
     transcription_record_not_found: 未找到转录记录
     transcription_schedule_failed: 转录任务调度失败
     transcription_scheduled: 转录任务已安排。请关闭弹出窗口并查看通知状态。
@@ -1227,32 +3066,84 @@ zh:
     translation_assistant_not_configured: 翻译助手未配置
     translations:
       title: 翻译
+    translations_export_failure_msg: 导出翻译时出错
+    translations_export_success_msg: 导出开发行动正在进行中。
+    tte: TTE
+    type_by_skill: 通过技能
+    type_by_skill_type: 按技能类型
+    type_default: 默认
+    type_locked_tooltip: 该助手目前正在使用中，无法更改其类型。
+    unarchive_content: 您确定要解压缩"%{project_name}"吗？
+    unarchive_success: 项目"%{project_name}"已成功解存档。
+    unarchive_title: Unarchive 项目
+    unsaved_changes: 存在未保存的更改，请考虑提交表单以从 Playground 生成更新的响应。
+    upcoming: 即将推出
     update_success: 已成功更新 %{readableResourceName}
+    updated_successfully: 人工智能助理已成功更新。
     upload: 上传
     upload_media: 上传媒体
     upload_required: 请至少添加一个文件进行上传
     upload_success: 上传成功
+    url_label: 网址
+    url_name: 网址
+    used_tokens_input_tokens: 输入令牌
+    used_tokens_output_tokens: 输出令牌
+    used_tokens_title: 代币使用
+    user: 用户
+    user_agent: 用户代理
+    user_prompt: 用户提示
     user_report_events: 用户报告事件
+    user_report_id: 用户报告编号
+    user_result_validity_in_days: 结果有效天数
+    username_label: 用户名
+    username_name: 用户名
     users: 用户
+    users_modals_download_idp_reports_error: 批量下载 IDP 报告任务计划失败。
+    users_modals_download_idp_reports_include_reflective_questions: 包括反思性问题
+    users_modals_download_idp_reports_success: 批量下载 IDP 报告任务已成功调度。
+    users_modals_download_idp_reports_title: 批量下载 IDP 报告
+    users_user: 用户
     validation_error: 请填写所有必填字段
     validity: 有效期
     very_high: 极高
     very_low: 极低
+    video_call_recording: 允许视频通话录音
+    video_call_recording_expiry_duration: 视频通话记录的保存期限（天数）
+    video_call_recording_scope: 启用所有新活动的视频录制功能
+    video_call_type_custom: 自定义
+    video_call_type_internal: 内部
+    video_call_type_label: 添加视频通话
+    video_call_type_none: 无
     view_licenses: 查看许可证
+    visual_header_visibility: 可视化标题可见性
     wait_for_upload_completion: 请等待所有文件上传完成
     waiting: 等待
+    warning_color: 警告色
+    watermark_content: 水印内容
+    watermark_info: 如果不添加任何内容，默认情况下用户的电子邮件将显示为水印。 您可以使用以下任何 pipetext -<br/> {{id}} - 参与者 ID </br>{{first_name}}（名字）-- 参与者的名字 </br>{{last_name}}--与会者的姓 </br>{{email}} - 参与者电子邮件
+    webhook_delete_success: Webhook 设置已成功删除
     weight: 重量
+    welcome_message_description: 当受试者登录开始评估或查看任务列表时，该信息将显示给受试者
+    welcome_message_name: 欢迎词
     what_to_look_for: 需要关注什么
     what_to_look_for_placeholder: 能够证明该因素的行为、行动或结果的证据
     words: 词语
+    workshop_actions_remove_workshop: 成功拆除车间
+    workshop_statuses_closed: 关闭
+    workshop_statuses_open: 开放
     workshops: 工作坊
     writing_assistant_not_configured: 写作助手尚未配置
     x_axis_interval_label: X轴间隔
     y_axis_interval_label: Y轴间隔
     year: 国家
+    year_range: 年份范围
+    years: 年数
     yoodli: 尤德利
     yoodli_activity_id: Yoodli 活动ID
     yoodli_assessment: 尤德利评估
     yoodli_email_id: Yoodli候选人邮箱ID
     yoodli_external_assessment_id: Yoodli 评估 ID
+    yoodli_keyset_url: 密钥集URL
+    yoodli_launch_url: 启动网址
+    yoodli_login_url: 登录网址
     you_are_here: 您当前所在位置

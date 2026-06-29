@@ -5,9 +5,6 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::TagsController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:assessment) { create(:assessment) }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before do
     sign_in(superadmin)
     set_current_user(superadmin)
@@ -20,7 +17,7 @@ RSpec.describe Api::V2::Administration::TagsController, type: :request do
     it 'returns tag list' do
       get '/api/v2/administration/tags',
           params: { 'query[taggable_resource_type]' => 'Assessment' },
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
 

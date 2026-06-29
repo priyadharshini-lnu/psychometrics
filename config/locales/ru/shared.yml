@@ -18,23 +18,28 @@ ru:
     assessment_id: Идентификатор оценки
     assessment_list: Список оценок
     assessment_name: Название оценки
+    assessor: оценщик
     assessor_approved: Одобрено оценщиком
     assessors_list: Список оценщиков
     asset_not_present: Актив отсутствует
     audio: Аудио
     audio_devices: Аудиоустройства
     authentication_failed: Аутентификация не удалась. Повторите попытку.
+    auto_approved: Автоматическое одобрение
     back: Назад
     basic: Базовый
+    bulk_download: Массовая загрузка
     camera: Камера
     camera_preview: Здесь появится предварительный просмотр камеры
     campaign: Кампания
     campaign_id: Идентификатор кампании
     cancel: Отменить
+    category: Категория
     change_password: Изменить пароль
     clear_filters: Очистить фильтры
     client: Клиент
     close: Закрыть
+    code: Код
     collaborative_learning: Совместное обучение
     completed: Завершено
     configurations: Конфигурации
@@ -43,11 +48,13 @@ ru:
     controller: Контроллер
     cookie_notice: Уведомление об использовании файлов cookie
     cookies_statement: Заявление о файлах cookie
+    copied: Скопировано в буфер обмена
     copied_successfully: Копирование завершено успешно
     copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
     create: Создать
     created_at: Создано в
+    created_by: Создано
     created_date: Дата создания
     created_successfully: Создано успешно
     custom_acknowledgment_text: Пользовательский текст благодарности
@@ -55,11 +62,14 @@ ru:
     custom_consent_text: Текст согласия пользователя
     custom_consent_text_required: Для роли контроллера данных требуется индивидуальный текст согласия
     data_role: Роль данных
+    datasheet: Технические характеристики
     decline: Спад
+    default: По умолчанию
     delete: Удалить
     description: Описание
     desktop_or_laptop_recommended: Рекомендуется использовать настольный компьютер или ноутбук
     desktop_or_laptop_required: Требуется настольный компьютер или ноутбук
+    dimension: Размер
     disabled: С ограниченными возможностями
     discard: Отклонить
     download: Скачать
@@ -69,6 +79,7 @@ ru:
     edit: Редактировать
     edited: Отредактировано
     email: Электронная почта
+    end_date: Дата окончания
     ending_proctoring_session_msg: Мы завершаем сеанс экзамена. <p>Пожалуйста, подождите, пока мы сохраним ваши ответы и перенаправим вас обратно на главную страницу.</p>
     error: Ошибка
     export: Экспорт
@@ -83,12 +94,18 @@ ru:
     generating: Генерация
     group_question_max_validation_error: Каждая группа может содержать не более {{max}} элементов.
     group_question_min_validation_error: Каждая группа должна содержать не менее {{min}} элементов.
+    icon: Икона
     id: ID
     idp_ai_assistant_disclaimer: Помощник Lighthouse AI IDP может допускать ошибки. Пожалуйста, будьте осторожны при использовании ответов.
+    import: Импорт
+    inactive: Неактивный
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
     last_name: Фамилия
+    last_updated: Последнее обновление
     learning_on_the_job_label: Обучение на рабочем месте
     lets_start: Начнём!
+    linked_activities: Связанные мероприятия
+    linked_assessment: Связанная оценка
     loading: Загрузка...
     login: Вход
     maintenance_in_hours: "%{hours} часы"
@@ -98,11 +115,13 @@ ru:
     maintenance_time_remaining: Оставшееся время
     maintenance_upcoming_description: Мы будем проводить плановое техническое обслуживание на сайте %{date} в течение примерно %{duration}, чтобы улучшить ваш опыт работы с сайтом. В течение этого времени вы не сможете получить доступ к назначенным задачам или выполнить их. Благодарим вас за терпение.
     maintenance_upcoming_title: Предстоящее техническое обслуживание
+    manage: Управлять
     manage_cookies: Управление файлами cookie
     media_id: Идентификатор СМИ
     media_preview: Предварительный просмотр для СМИ
     media_question_transcriptions: Транскрипции вопросов СМИ
     media_responses: Реакция СМИ
+    meeting_link: Ссылка на встречу
     microphones: Микрофоны
     mobile_proctoring_disabled_instructions: Для продолжения этой оценки требуется настольный компьютер или ноутбук. Пожалуйста, перейдите на компьютер, чтобы завершить задание.
     mobile_proctoring_enabled_instructions: Для оптимального просмотра переключитесь на настольный компьютер или ноутбук, если у вас есть такой. При необходимости вы можете продолжить просмотр на мобильном устройстве.
@@ -116,13 +135,17 @@ ru:
     new: Новый
     next: Далее
     no_audio_warning: Аудио не обнаружено. Проверьте, подключен ли микрофон и работает ли он правильно.
+    no_data_found: Данные не найдены
     no_results_found: Результаты не найдены
+    none: Нет
     not_requested: Еще не запрошено
     ok: Хорошо
     options: Параметры
+    overview: Обзор
     owner: Владелец
     pause: Пауза
     pending: В ожидании
+    permissions: Права доступа
     play: Играть
     policy_version: Версия политики
     policy_version_format: Допускаются только целые числа
@@ -133,6 +156,7 @@ ru:
     proctoring_maintenance_active: В настоящее время сайт %{start_time} находится на техническом обслуживании и будет доступен по адресу %{end_time}. Пожалуйста, попробуйте снова после завершения технического обслуживания.
     proctoring_maintenance_upcoming: Процесс проктинга будет находиться на техническом обслуживании с %{start_time} по %{end_time}.
     project: Проект
+    publish: Опубликовать
     question: Вопрос
     question_id: Идентификатор вопроса
     question_transcription_disabled: Транскрипция для этого вопроса отключена.
@@ -146,20 +170,27 @@ ru:
     remove: Удалить
     removed: Удалено
     replace: Заменить
+    required: требуемый
+    reset: Сброс
     reset_password: Сбросить пароль
     response_text: Текст ответа
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
+    run: Запустить
     save: Сохранить
     saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
+    schedule_time: Расписание времени
     scoring_details: Детали подсчета очков
     search: Поиск
     select_camera: Выберите камеру
+    select_language: Выберите язык
     select_microphone: Выберите микрофон
+    send: Отправить
     send_email: Отправить электронное письмо
     show_more: Показать больше
     something_wrong: Что-то пошло не так. Обратитесь к администратору.
     speakers: Докладчики
+    start_date: Дата начала
     status: Статус
     status_unknown: Статус неизвестен
     stop: Стоп
@@ -178,6 +209,7 @@ ru:
           one: 'Всего: 1'
           other: 'Всего: {{count}}'
           zero: 'Всего: 0'
+    tags: Теги
     terms_conditions_privacy: Заявление о конфиденциальности
     tools: Инструменты
     transcription: Транскрипция
@@ -189,11 +221,35 @@ ru:
     try_again: Попробовать еще раз
     tte_terms_and_condition: Условия и конфиденциальность
     type: Тип
+    unpublish: Отменить публикацию
     update: Обновление
     update_failed: Ошибка обновления
     updated_at: Обновлено
+    updated_by: Обновлено
     updated_successfully: Обновление успешно завершено
+    upload: Загрузить
     user_report_pdf_url_not_generated: Не удалось сгенерировать ссылку для скачивания PDF-файла
+    user_reports_approval_status_pending_qc: Ожидается проверка качества
+    user_reports_approval_status_qc_completed: Контроль качества завершен
+    user_reports_assessment_name_not_completed_reason_template: Оценка «%{names}» не завершена
+    user_reports_assessments_name_not_completed_reason_template: Оценки %{names} не завершены
+    user_reports_assessor_not_completed_reason_template: Форма оценщика «%{names}» не заполнена
+    user_reports_assessors_not_completed_reason_template: Формы оценщика %{names} не заполнены
+    user_reports_campaign_artifact_results_pending_reason_message: Результаты по артефактам кампании для этого пользователя ещё не окончательные
+    user_reports_campaign_scoring_pending_reason_message: Результаты кампании для этого пользователя ещё не подсчитаны
+    user_reports_custom_upload_report_reason_message: Источник отчета — пользовательская загрузка
+    user_reports_external_report_pending_reason_message: Ожидание отчета от поставщика
+    user_reports_lead_assessor_not_completed_reason_template: Форма ведущего эксперта «%{names}» не заполнена
+    user_reports_lead_assessors_not_completed_reason_template: Формы главного оценщика %{names} не заполнены
+    user_reports_no_report_module_reason_message: Модуль для данного отчета не найден
+    user_reports_not_prepared_reason_message: Отчет пока не подготовлен
+    user_reports_pending_approval_reason_template: 'Статус утверждения: «%{status}»'
+    user_reports_pending_final_ai_scoring_approval_reason_message: Ожидается окончательное утверждение результатов оценки с использованием ИИ
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Ожидается утверждение результатов оценки QC AI
+    user_reports_pending_qc_approval_reason_message: Ожидается утверждение отчета по контролю качества
+    user_reports_qc_completed_approval_reason_message: Ожидается утверждение окончательного отчета
+    user_reports_report_generating_reason_message: Ведётся формирование отчёта
+    user_reports_report_generation_failed_reason_message: Ошибка при создании отчета
     video: Видео
     view: Просмотр
     view_audio: Просмотр аудио

@@ -41,17 +41,17 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
         <Col span={24}>
           <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false}>
             <Column
-              title={I18n.t('administration.scheduling.columns.serial_no')}
+              title={I18n.t('admin.scheduling_columns_serial_no')}
               dataIndex="id"
               key="id"
             />
             <Column
-              title={I18n.t('administration.scheduling.columns.recording_date')}
+              title={I18n.t('admin.scheduling_columns_recording_date')}
               key="recordingDate"
               dataIndex="recordingDate"
             />
             <Column
-              title={I18n.t('administration.scheduling.columns.assessment_center_date_and_time')}
+              title={I18n.t('admin.scheduling_columns_assessment_center_date_and_time')}
               key="assessmentCenterDateAndTime"
               render={({ assessmentCenterDateAndTime }) => {
                 if (!assessmentCenterDateAndTime) return null
@@ -59,7 +59,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
               }}
             />
             <Column
-              title={I18n.t('administration.scheduling.columns.assessor')}
+              title={I18n.t('admin.scheduling_columns_assessor')}
               key="assessors"
               render={({ assessors }) => {
                 if (!assessors || assessors.length === 0) return null
@@ -80,7 +80,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
               }}
             />
             <Column
-              title={I18n.t('administration.scheduling.columns.participants')}
+              title={I18n.t('admin.scheduling_columns_participants')}
               key="participants"
               render={({ participants }) => {
                 if (!participants || participants.length === 0) return null
@@ -101,7 +101,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
               }}
             />
             <Column
-              title={I18n.t('administration.scheduling.columns.link_to_view_recordings')}
+              title={I18n.t('admin.scheduling_columns_link_to_view_recordings')}
               key="recording_url"
               width="5%"
               render={({ recordingUrl, recordingDate, id }) => {
@@ -176,7 +176,7 @@ const RecordingUrlColumn: React.FC<{
 }> = ({ recordingUrl, recordingDate, serialNo }) => {
   const [open, setOpen] = useState(false)
 
-  if (!recordingUrl) return <span>NA</span>
+  if (!recordingUrl) return <span>{I18n.t('shared.na_text')}</span>
 
   return (
     <>
@@ -185,7 +185,7 @@ const RecordingUrlColumn: React.FC<{
         className="ps-0"
         onClick={() => setOpen(true)}
       >
-        View recording
+        {I18n.t('admin.scheduling_columns_view_recording')}
       </Button>
       <Modal
         open={open}

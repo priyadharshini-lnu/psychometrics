@@ -180,13 +180,13 @@ export const UserDetails: React.FC<Props> = ({
 
   const handleDelete = () => {
     modal.confirm({
-      title: I18n.t('common.text.confirm'),
+      title: I18n.t('shared.confirm'),
       icon: <ExclamationCircleOutlined />,
       centered: true,
       width: 650,
       content: I18n.t('campaign_users.details.modals.remove.title', { campaignName }),
-      okText: I18n.t('common.text.ok'),
-      cancelText: I18n.t('common.text.cancel'),
+      okText: I18n.t('shared.ok'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         remove(campaignId, parsedUserId)
         navigate(`/admin/projects/${projectId}/new_campaigns/${campaignId}/participants/subjects`)
@@ -256,12 +256,12 @@ export const UserDetails: React.FC<Props> = ({
           subTitle={user.email}
           extra={user.permissions.remove && [
             <Button key="3" onClick={() => handleDelete()}>
-              {I18n.t('common.actions.remove')}
+              {I18n.t('shared.remove')}
             </Button>,
           ]}
         >
           <Descriptions size="small" column={3}>
-            <Descriptions.Item label={I18n.t('administration.campaigns.users.is_active')}>
+            <Descriptions.Item label={I18n.t('admin.campaigns_users_is_active')}>
               <Switch
                 checked={user.active}
                 disabled={!user.permissions.toggleStatus}
@@ -272,7 +272,7 @@ export const UserDetails: React.FC<Props> = ({
                 }
               />
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('common.model.campaigns')}>
+            <Descriptions.Item label={I18n.t('admin.campaigns')}>
               {userCampaigns()}
             </Descriptions.Item>
             {assessmentStatuses && (
@@ -290,7 +290,7 @@ export const UserDetails: React.FC<Props> = ({
                 {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
               </Tag>
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('common.column.status')}>
+            <Descriptions.Item label={I18n.t('shared.status')}>
               {user.additionalTime && user.status === 'interrupted'
                 && (
                   <span className="prs">
@@ -304,7 +304,7 @@ export const UserDetails: React.FC<Props> = ({
             <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>
               {user.lastSignInAt || I18n.t('campaign_users.details.not_logged_in_yet')}
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('common.column.created_at')}>
+            <Descriptions.Item label={I18n.t('shared.created_at')}>
               {user.createdAt}
             </Descriptions.Item>
             <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>

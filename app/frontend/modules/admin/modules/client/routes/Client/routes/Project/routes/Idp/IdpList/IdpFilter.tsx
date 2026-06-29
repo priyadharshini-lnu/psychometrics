@@ -10,14 +10,14 @@ export const IdpFilter: React.FC<{ openModal: () => void }> = ({
 }) => {
   const { resource } = useResourceContext<Idp>()
   return (
-    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+    <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
       {resource.meta.permissions?.create && (
         <Button
           type="primary"
           onClick={openModal}
         >
           <PlusOutlined />
-          {I18n.t('administration.idp.add_idp_template')}
+          {I18n.t('admin.idp_add_idp_template')}
         </Button>
       )}
     </Resource.Filter>

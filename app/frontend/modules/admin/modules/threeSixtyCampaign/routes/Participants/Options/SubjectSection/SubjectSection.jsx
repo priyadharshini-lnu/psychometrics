@@ -36,7 +36,7 @@ export default function SubjectSection ({
   })
 
   return (
-    <OptionSection label={I18n.t('administration.threesixty_campaigns.menu.participants.options.subject_options')}>
+    <OptionSection label={I18n.t('admin.options_subject_options')}>
       <NominationRequirementModal />
       <ExpandableOption
         label={I18n.t('threesixty.options.subject.self_evaluates')}

@@ -11,7 +11,7 @@ import { ButtonWithArrow, DirectionalBackArrowIcon } from '~/glint'
 import { VideoCheck } from './VideoCheck'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
-  useAddSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
+  useAddSystemCheckRecordMutation, useUpdateSystemCheckRecordMutation, useFetchSystemCheckRequirementsStatusQuery,
 } from '~/modules/endUser/modules/campaigns/core/systemChecks/api'
 import {
   VideoCameraOutlined, ExclamationCircleOutlined,
@@ -36,9 +36,9 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const [checkStatus, setCheckStatus] = useState<CHECK_STATUS>(CHECK_STATUS.pending)
 
-  const [isDeviceRequestGranted, setIsDeviceRequestGranted] = useState<boolean>(true)
+  const [failureReason, setFailureReason] = useState<string | null>(null)
 
-  const [isAbruptlyEnded, setIsAbruptlyEnded] = useState<boolean>(false)
+  const [isDeviceRequestGranted, setIsDeviceRequestGranted] = useState<boolean>(true)
 
   const dispatch = useDispatch()
 
@@ -51,6 +51,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
   const { campaignId } = useParams() as { campaignId: string}
 
   const [addSystemCheckRecord] = useAddSystemCheckRecordMutation()
+  const [updateSystemCheckRecord] = useUpdateSystemCheckRecordMutation()
   const {
     data:
     systemCheckRequirementsStatus,
@@ -124,9 +125,9 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         i18nKey: 'enduser.camera_access_blocked',
         i18nVars: [],
       })
-    } else if (isDeviceRequestGranted && checkStatus === CHECK_STATUS.failed) {
+    } else if (checkStatus === CHECK_STATUS.failed) {
       details.push({
-        i18nKey: 'enduser.error_uploading_video_detail',
+        i18nKey: failureReason || 'enduser.error_uploading_video_detail',
         i18nVars: [],
       })
     } else {
@@ -141,17 +142,17 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
 
   const onCheckAbruptlyEnded = () => {
     if (checkStatus === CHECK_STATUS.pending) {
-      setIsAbruptlyEnded(true)
+      setFailureReason('enduser.camera_check_abruptly_ended')
       setCheckStatus(CHECK_STATUS.failed)
     }
   }
 
   const handleNext = async () => {
     setIsLoading(true)
-    await addSystemCheckRecord({
+    await updateSystemCheckRecord({
       campaignId,
+      recordId: recordId!,
       record: {
-        checkType: CHECK_TYPE.video,
         passed: checkStatus === CHECK_STATUS.passed,
         data: {
           details: generateDetails(),
@@ -160,7 +161,6 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
     })
 
     dispatch(actions.setSystemCheckStatusPassed(checkStatus === CHECK_STATUS.passed))
-
     setIsLoading(false)
     onNext()
   }
@@ -238,8 +238,11 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               >
                 <ExclamationCircleOutlined style={{ fontSize: '2rem', color: 'var(--ant-error-color)' }} className="mb-2" />
                 <h4 className="mt-0">
-                  {isAbruptlyEnded ? I18n.t('enduser.camera_check_abruptly_ended') : I18n.t('enduser.error_uploading_video')}
+                  {I18n.t('enduser.camera_check_failed')}
                 </h4>
+                <Typography.Text type="secondary">
+                  {failureReason ? I18n.t(failureReason) : I18n.t('enduser.error_uploading_video_detail')}
+                </Typography.Text>
               </Flex>
 
             </Flex>
@@ -251,7 +254,7 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
               <Flex justify="end" gap={4} className="mt-2">
                 <Button onClick={() => {
                   setCheckStatus(CHECK_STATUS.pending)
-                  setIsAbruptlyEnded(false)
+                  setFailureReason(null)
                 }}
                 >
                   {I18n.t('enduser.rerun_check')}
@@ -262,7 +265,6 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
                   style={{ alignSelf: 'flex-end' }}
                   label={I18n.t('shared.continue')}
                   onClick={handleNext}
-                  disabled={isAbruptlyEnded}
                 />
               </Flex>
             </Flex>
@@ -270,23 +272,29 @@ export const CameraCheckComponent = ({ onPrev, onNext, fetchCampaign }) => {
         )
       ) : (
         <>
-          {isLoading
-            ? (
-              <Skeleton.Input
-                active
-                style={{ width: '100%', height: '100%' }}
-              />
-            ) : (
-              <VideoCheck
-                directUploadURL={directUploadURL || ''}
-                postRecordingCallbackURL={postRecordingCallbackURL || ''}
-                nextStep={handleNext}
-                onPrev={onPrev}
-                setCheckStatus={setCheckStatus}
-                setIsDeviceRequestGranted={setIsDeviceRequestGranted}
-                onCheckAbruptlyEnded={onCheckAbruptlyEnded}
-              />
-            )}
+          {isLoading ? (
+            <Skeleton.Input
+              active
+              style={{ width: '100%', height: '100%' }}
+            />
+          ) : (
+            <VideoCheck
+              directUploadURL={directUploadURL || ''}
+              postRecordingCallbackURL={postRecordingCallbackURL || ''}
+              nextStep={handleNext}
+              onPrev={onPrev}
+              setCheckStatus={setCheckStatus}
+              setIsDeviceRequestGranted={setIsDeviceRequestGranted}
+              onCheckAbruptlyEnded={onCheckAbruptlyEnded}
+              setFailureReason={setFailureReason}
+              faceDetectionEnabled={
+                systemCheckRequirementsStatus?.requirements?.video?.faceDetectionEnabled ?? false
+              }
+              phraseVerificationEnabled={
+                systemCheckRequirementsStatus?.requirements?.video?.phraseVerificationEnabled ?? false
+              }
+            />
+          )}
         </>
       )}
     </Flex>

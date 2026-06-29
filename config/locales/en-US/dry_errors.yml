@@ -16,7 +16,7 @@ en-US:
         assessment_exists: AI Scoring approval setting for this assessment already exists.
         validates_admins: Admins don't have access to the campaign.
       already_assigned?: Cannot link this assessment - it is already assigned to '%{linked_assessor_form_name}'.
-      already_invited: This user already exists in the assessment centre you are attempting to add.
+      already_exists: The assessment center you are attempting to add already exists.
       assessor_assessment:
         already_added: Assessor Assessment already added to campaign.
         lead_already_added: Only one Lead Assessor Assessment can be added to campaign.

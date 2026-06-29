@@ -36,6 +36,8 @@ hu:
     browser_not_compatible: A böngészője (%{browser_name}) nem kompatibilis ezzel a kampánnyal. A legjobb felhasználói élmény érdekében kérjük, használja a Chrome, a Firefox, a Safari vagy az Edge legújabb verzióját.
     browser_not_compatible_description: A legjobb felhasználói élmény érdekében használja a Chrome, a Firefox, a Safari vagy az Edge legújabb verzióit.
     browser_not_compatible_detail: A böngészője (%{browser_name}) nem kompatibilis ezzel a kampánnyal. A legjobb felhasználói élmény érdekében kérjük, használja a Chrome, a Firefox, a Safari vagy az Edge legújabb verzióját.
+    browser_proctoring_description: "%{browser_name} böngészőt használ, amelynek bizonyos korlátai lehetnek a kampányhoz engedélyezett felügyeleti funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome vagy az Edge böngésző használatát javasoljuk."
+    browser_proctoring_title: "%{browser_name} Böngésző felismerve"
     browser_version_fix_description_first: 'Használjon támogatott böngészőt: Chrome, Firefox, Edge vagy Safari'
     browser_version_fix_title: A böngésződ verziója nem támogatott.
     camera: Videó és hang
@@ -43,6 +45,7 @@ hu:
     camera_check: Kamera- és mikrofonpróba
     camera_check_abruptly_ended: A kamera hirtelen kikapcsolt. Kérjük, kapcsolja be a kamerát, és futtassa újra az ellenőrzést.
     camera_check_description: Ellenőrizze, hogy a kamera és a mikrofon megfelelően működik-e a felvételhez
+    camera_check_failed: A videó ellenőrzése sikertelen volt
     camera_check_passed: A videó- és hangellenőrzés sikeresen lezajlott
     camera_check_record_instruction: Kattintson a „Felvétel” gombra, és olvassa fel hangosan az alábbi szöveget
     camera_test_step: Videó- és hangteszt lépés
@@ -69,6 +72,9 @@ hu:
     error_uploading_audio_detail: Hiba történt az audiofájl feltöltése közben
     error_uploading_video: Hiba a videó feltöltése közben
     error_uploading_video_detail: Hiba történt a videó feltöltése közben
+    face_detection_error: Hiba történt az arcfelismerés során. Kérjük, ellenőrizze, hogy a kamera működik-e, majd próbálja meg újra.
+    face_detection_failed: Az videofelvételen nem sikerült felismerni az arcot. Kérjük, ellenőrizze, hogy a kamera elé nem takar-e valami, és hogy az arca jól látható-e.
+    face_not_detected_warning: Nem sikerült felismerni az arcot. Kérjük, győződjön meg arról, hogy az arca jól látható a kamera számára.
     fail: Hiba
     file_submission_already_exists: Már megkaptuk a kérdésre adott válaszát. Kérjük, frissítse az oldalt, és ha továbbra sem látja a korábbi válaszát, vegye fel a kapcsolatot a rendszergazdával.
     follow_these_steps: Kövesse az alábbi lépéseket a rendszerellenőrzés során észlelt problémák megoldásához
@@ -162,6 +168,8 @@ hu:
     select_video_device: Videóeszköz kiválasztása
     selected_count: Kiválasztott
     skill_type: Képesség típusa
+    speech_verification_error: Hiba történt a beszéd ellenőrzése közben. Kérjük, próbálja meg újra.
+    speech_verification_failed: A beszéde nem egyezett meg a tesztmondattal. Kérjük, próbálja meg újra, és mondja ki a mondatot tisztán.
     start_campaign_message_proctored: Ez egy felügyelt kampány, kérjük, kattintson a '%{buttonText}' gombra a tevékenységek elindításához.
     start_campaign_message_timed: Ez egy időzített kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_readiness_check: Indítsa el az indulás előtti ellenőrzést
@@ -186,10 +194,12 @@ hu:
       one: Én sikítok, te sikítasz, mindannyian sikítunk a fagylaltért!
       seven: Minden nap egy új kezdet. Mondd ezt hangosan és büszkén!
       six: Pizza vagy tészta? A döntés nehéz.
+      ten: Készen állok. Ez egy próbafelvétel, amellyel ellenőrizni szeretném, hogy a mikrofonom megfelelően működik-e.
       three: Tesztelés, egy kettő három, a hang tiszta, mint lehet!.
       two: A gyors barna róka átugrik a lusta kutyán.
     system_check_audio_title: Kérem, beszéljen és ismételje meg a következő mondatot háromszor.
     system_check_complete: A rendszerellenőrzés befejeződött
+    system_check_face_detection: Arcfelismerés
     system_check_failed: A rendszerellenőrzés sikertelen
     system_check_failed_description: Kérjük, oldja meg a problémákat, majd futtassa újra a rendszerellenőrzéseket.
     system_check_failed_message: Néhány rendszerellenőrzés sikertelen volt. Kérjük, ellenőrizze a részleteket, majd próbálja meg újra.
@@ -200,6 +210,7 @@ hu:
     system_check_retake: Nem, újra akarom venni
     system_check_run_again: Fuss újra
     system_check_session_not_found: A rendszerellenőrzési munkamenet nem található. Kérjük, indítson el egy új rendszerellenőrzést.
+    system_check_speech_verification: Hangazonosítás
     system_check_start_recording: Indítsa el a felvételt
     system_check_stop_recording: Felvétel leállítása
     system_check_test_message: nagyszerű, hogy beszélhetek veled
@@ -257,6 +268,10 @@ hu:
     video_overlay_label: Válassza ki a mikrofont és a kamerát, kattintson a „Felvétel” gombra, majd miután megnyomta a „Felvétel” gombot, olvassa fel az alábbi üzenetet
     video_overlay_message: Válaszd ki a mikrofont és a kamerát, kattints a „Felvétel” gombra, majd olvasd fel hangosan az alul megjelenő mondatot.
     video_recorder_label: Videofelvevő
+    video_upload_failed_camera_access: Nem sikerült hozzáférni a kamerádhoz vagy a mikrofonodhoz. Kérjük, ellenőrizd a készülék engedélyeit, majd próbáld meg újra.
+    video_upload_failed_chunk_upload: A felvétel egy része nem sikerült feltölteni. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
+    video_upload_failed_finalize: A felvétel elkészült, de nem sikerült elmenteni. Kérjük, próbálja meg újra.
+    video_upload_failed_no_recording: Nem találtunk feltöltendő felvételt. Kérjük, készítsen új felvételt.
     view_details: Részletek megtekintése
     webgl_api_fix_description_first: Győződjön meg arról, hogy a böngészője támogatja a WebGL-t, és hogy az be van kapcsolva a beállításokban
     webgl_api_fix_description_second: Frissítse a grafikus illesztőprogramokat a legújabb verzióra

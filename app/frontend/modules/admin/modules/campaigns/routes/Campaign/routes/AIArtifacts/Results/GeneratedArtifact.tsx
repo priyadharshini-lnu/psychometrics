@@ -51,7 +51,7 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
             </Tooltip>
           )}
           {artifactData.parsedDependencies && !isGenerating && (
-            <Tooltip title={I18n.t('administration.ai_artifacts.parsed_dependencies.view')}>
+            <Tooltip title={I18n.t('admin.parsed_dependencies_view')}>
               <Button
                 type="text"
                 icon={<FileTextOutlined />}
@@ -65,12 +65,12 @@ export const GeneratedArtifact: React.FC<GeneratedArtifactProps> = ({ artifactNa
           type="primary"
           loading={isGenerating}
         >
-          {I18n.t('administration.ai_artifacts.generate')}
+          {I18n.t('shared.generate')}
         </Button>
       </Flex>
       {!isGenerating && (
         <Typography.Text type="secondary">
-          {I18n.t('administration.ai_artifacts.generated_at_time',
+          {I18n.t('admin.generated_at_time',
             { time: formatedDate(artifactData.generatedAt) })}
         </Typography.Text>
       )}

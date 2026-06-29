@@ -26,14 +26,10 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
   after(:each) do
     sign_out(superadmin)
   end
-
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   describe 'GET /projects/:project_id/idp_templates' do
     it 'fetches Idp Template list' do
       get "/api/v2/administration/projects/#{project_id}/idp_templates",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       idp_templates = JSON.parse(response.body)['data']
       expect(idp_templates[0]).to have_key('id')
@@ -98,7 +94,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
 
       post "/api/v2/administration/projects/#{project_id}/idp_templates",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.status).to eq(201)
       idp_template_response = JSON.parse(response.body)['data']
@@ -150,7 +146,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
 
       put "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template.id}",
           params: body.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       idp_template.reload
       expect(response.status).to eq(200)
@@ -180,7 +176,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
 
       put "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template.id}",
           params: body.to_json,
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.status).to eq(400)
       json_response = JSON.parse(response.body)
@@ -195,7 +191,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
       idp_template_to_delete = create(:idp_template, project: project)
 
       delete "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template_to_delete.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.status).to eq(204)
       expect(IdpTemplate.find_by(id: idp_template_to_delete.id)).to be_nil
@@ -205,7 +201,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
       create(:user_idp_plan, idp_template: idp_template)
 
       delete "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.status).to eq(400)
       json_response = JSON.parse(response.body)
@@ -233,7 +229,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
 
       post "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template.id}/update_reflection_questions",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       idp_template.reload
       expect(response.status).to eq(200)
@@ -266,7 +262,7 @@ RSpec.describe Api::V2::Administration::Projects::IdpTemplatesController, type: 
 
       post "/api/v2/administration/projects/#{project_id}/idp_templates/#{idp_template.id}/update_interview_questions",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       idp_template.reload
       expect(response.status).to eq(200)

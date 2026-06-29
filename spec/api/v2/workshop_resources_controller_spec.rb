@@ -10,15 +10,11 @@ RSpec.describe Api::V2::Administration::WorkshopResourcesController, type: :requ
   let(:workshop_id) { workshop.id }
   let!(:resource) { create(:workshop_resource, workshop: workshop) }
   let(:resource_id) { resource.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /campaigns/:campaign_id/workshops/:workshop_id/workshop_resources' do
     it 'returns workshop resources list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_resources",
-          headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_resources"
 
       expect(response).to have_http_status(:ok)
       resource_response = JSON.parse(response.body)['data'].first
@@ -42,7 +38,7 @@ RSpec.describe Api::V2::Administration::WorkshopResourcesController, type: :requ
 
       post "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/workshop_resources",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       resource_response = JSON.parse(response.body)['data']
@@ -68,7 +64,7 @@ RSpec.describe Api::V2::Administration::WorkshopResourcesController, type: :requ
       patch "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/" \
             "workshop_resources/#{resource_id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       resource_response = JSON.parse(response.body)['data']
@@ -80,8 +76,7 @@ RSpec.describe Api::V2::Administration::WorkshopResourcesController, type: :requ
   describe 'DELETE /campaigns/:campaign_id/workshops/:workshop_id/workshop_resources/:resource_id' do
     it 'deletes workshop resource' do
       delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/" \
-             "workshop_resources/#{resource_id}",
-             headers: { 'Authorization' => authorization }
+             "workshop_resources/#{resource_id}"
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')

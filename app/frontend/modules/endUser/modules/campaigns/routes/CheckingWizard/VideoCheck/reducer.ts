@@ -9,6 +9,7 @@ export interface State {
   speechDetection: CheckListStatus
   speechTestText:string
   uploading: CheckListStatus
+  speechVerification: CheckListStatus
 }
 
 export const initialState: State = {
@@ -19,6 +20,7 @@ export const initialState: State = {
   speechTestText: '',
   uploading: CheckListStatus.Pending,
   ambientLight: CheckListStatus.InProgress,
+  speechVerification: CheckListStatus.Pending,
 }
 
 export const UPDATE_SYSTEM_CHECK = 'UPDATE_SYSTEM_CHECK'
@@ -29,6 +31,7 @@ export const UPDATE_SPEECH_TEST_TEXT = 'UPDATE_SPEECH_TEST_TEXT'
 export const UPDATE_UPLOADING = 'UPDATE_UPLOADING'
 export const FACE_DETECTION_FAILED_BY_TIMEOUT = 'FACE_DETECTION_FAILED_BY_TIMEOUT'
 export const UPDATE_AMBIENT_LIGHT = 'UPDATE_AMBIENT_LIGHT'
+export const UPDATE_SPEECH_VERIFICATION = 'UPDATE_SPEECH_VERIFICATION'
 
 
 export const updateSystemCheck = (status: CheckListStatus) => ({
@@ -62,6 +65,11 @@ export const updateUploading = (status: CheckListStatus) => ({
   payload: { status },
 })
 
+export const updateSpeechVerification = (status: CheckListStatus) => ({
+  type: UPDATE_SPEECH_VERIFICATION as typeof UPDATE_SPEECH_VERIFICATION,
+  payload: { status },
+})
+
 export const failFaceDetectionByTimeout = () => ({
   type: FACE_DETECTION_FAILED_BY_TIMEOUT as typeof FACE_DETECTION_FAILED_BY_TIMEOUT,
 })
@@ -71,6 +79,7 @@ type UpdateAccessType = ReturnType<typeof updateAccess>
 type UpdateFaceDetectionType = ReturnType<typeof updateFaceDetection>
 type UpdateSpeechDetectionAction = ReturnType<typeof updateSpeechDetection>
 type UpdateSpeechTestText = ReturnType<typeof updateSpeechTestText>
+type UpdateSpeechVerificationType = ReturnType<typeof updateSpeechVerification>
 
 
 const HANDLERS = {
@@ -100,6 +109,10 @@ const HANDLERS = {
   [UPDATE_AMBIENT_LIGHT]: (state: State, { payload: { status } }: UpdateAccessType): State => ({
     ...state,
     ambientLight: status,
+  }),
+  [UPDATE_SPEECH_VERIFICATION]: (state: State, { payload: { status } }: UpdateSpeechVerificationType): State => ({
+    ...state,
+    speechVerification: status,
   }),
 }
 

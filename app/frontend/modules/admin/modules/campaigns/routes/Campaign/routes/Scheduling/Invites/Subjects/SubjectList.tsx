@@ -139,7 +139,7 @@ const SubjectsTable = ({
         },
         responseType: t.unknown,
       }).then(() => {
-        message.success(I18n.t('administration.invited_subject.resend_invite.success'))
+        message.success(I18n.t('admin.resend_invite_success'))
       })
     }
   }
@@ -213,7 +213,7 @@ const SubjectsTable = ({
           sorter
         />
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.invited_subject.column.participant')}
+          title={I18n.t('admin.column_participant')}
           id="user.firstName"
           sorter
           width="40%"
@@ -233,7 +233,7 @@ const SubjectsTable = ({
           )}
         />
         <Resource.Column<WorkshopInvitedSubject>
-          title={I18n.t('administration.invited_subject.column.scheduling_details')}
+          title={I18n.t('admin.column_scheduling_details')}
           id="details"
           sorter
           render={(_, subject) => {
@@ -246,7 +246,7 @@ const SubjectsTable = ({
               <>
                 {subject.schedulingStatus !== null ? (
                   <Tag color={STATUSES_TO_COLOR[subject.schedulingStatus]}>
-                    {I18n.t(`administration.invited_subject.statuses.${subject.schedulingStatus}`)}
+                    {I18n.t(`admin.statuses_${subject.schedulingStatus}`)}
                   </Tag>
                 ) : (
                   '-'
@@ -257,7 +257,7 @@ const SubjectsTable = ({
                   {bookedAt && (
                     <Flex vertical>
                       <Typography.Text strong>
-                        {I18n.t('administration.invited_subject.booked_at')}
+                        {I18n.t('admin.booked_at')}
                       </Typography.Text>
                       <Typography.Text>
                         {`${bookedAt.format('DD MMM, HH:mm')} ${bookedAt.format(' (z)')}`}
@@ -267,7 +267,7 @@ const SubjectsTable = ({
                   {assessmentCenterBooked && (
                     <Flex vertical>
                       <Typography.Text strong>
-                        {I18n.t('administration.invited_subject.assessment_center')}
+                        {I18n.t('admin.assessment_center')}
                       </Typography.Text>
                       <Typography.Text>
                         <Link
@@ -288,15 +288,15 @@ const SubjectsTable = ({
         />
         <Resource.Column<WorkshopInvitedSubject>
           id="status"
-          title={I18n.t('administration.invited_subject.column.invitation_status')}
+          title={I18n.t('admin.column_invitation_status')}
           sorter
           render={(_, { status }) => (
-            <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`administration.invited_subject.statuses.${status}`)}</Tag>
+            <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`admin.statuses_${status}`)}</Tag>
           )}
         />
         <Resource.Column<WorkshopInvitedSubject>
           id="remove"
-          title={I18n.t('common.actions.remove')}
+          title={I18n.t('shared.remove')}
           render={(_, workshopInvitedSubject) => <RemoveSubject workshopInvitedSubject={workshopInvitedSubject} />}
         />
       </Resource.Table>
@@ -344,7 +344,7 @@ const Filter: React.FC<FilterProps> = ({
       <Button type="primary" onClick={() => openModal('SubjectAddFormModal')}>
         <PlusOutlined />
         {' '}
-        {I18n.t('administration.invited_subject.add_btn')}
+        {I18n.t('admin.add_btn')}
       </Button>
     )}
   </Resource.Filter>
@@ -356,13 +356,13 @@ const RemoveSubject: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
 
   const removeSubject = ({ id, user }: WorkshopInvitedSubject) => {
     modal.confirm({
-      title: I18n.t('administration.invited_subject.remove_confirm.title'),
-      content: I18n.t('administration.invited_subject.remove_confirm.content', { subjectEmail: user.email }),
-      okText: I18n.t('common.text.confirm'),
-      cancelText: I18n.t('common.text.cancel'),
+      title: I18n.t('admin.remove_confirm_title'),
+      content: I18n.t('admin.remove_confirm_content', { subjectEmail: user.email }),
+      okText: I18n.t('shared.confirm'),
+      cancelText: I18n.t('shared.cancel'),
       onOk: () => {
         resource.removeResource(id).then(() => {
-          message.success(I18n.t('administration.invited_subject.remove_confirm.success',
+          message.success(I18n.t('admin.remove_confirm_success',
             { subjectEmail: user.email }))
         })
       },
@@ -375,8 +375,8 @@ const RemoveSubject: React.FC<{ workshopInvitedSubject: WorkshopInvitedSubject }
 const bulkActionDetails = (action: string) => {
   if (action === 'resend_invite') {
     return {
-      title: I18n.t('administration.invited_subject.resend_invite.title'),
-      content: I18n.t('administration.invited_subject.resend_invite.content'),
+      title: I18n.t('admin.resend_invite_title'),
+      content: I18n.t('admin.resend_invite_content'),
     }
   }
   return {}

@@ -31,7 +31,39 @@ module Administration
       render json: types
     end
 
+    def schedule_export
+      authorize(::AuditLog)
+      filters = filters_params.to_h
+
+      AdminJob.call('export_audit_logs', { filters: filters }, current_user)
+
+      siem_log_sensitive_operation(
+        context: 'Audit Logs Export Requested',
+        action_description: 'requested audit logs export',
+        action_type: 'SecurityAudit',
+        resource: 'AuditLog'
+      )
+
+      render json: { message: I18n.t('admin.audit_logs_export_queued') }, status: :accepted
+    end
+
     private
+
+    def filters_params
+      params.fetch(:filters, {}).permit(
+        :record_id_eq,
+        :created_at_gteq,
+        :created_at_lteq,
+        :user_search,
+        :client_search,
+        :project_search,
+        :campaign_search,
+        :record_type_in,
+        :action_in,
+        record_type_in: [],
+        action_in: []
+      )
+    end
 
     def fetch_and_render_logs
       @q = policy_scope(::AuditLog).geo_scoped(Current.user_country).ransack(params[:filters])

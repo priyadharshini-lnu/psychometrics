@@ -18,23 +18,28 @@ de:
     assessment_id: Bewertungs-ID
     assessment_list: Bewertungsliste
     assessment_name: Bezeichnung der Bewertung
+    assessor: Assessor
     assessor_approved: Von der Prüfstelle genehmigt
     assessors_list: Liste der Gutachter
     asset_not_present: Asset nicht vorhanden
     audio: Audio
     audio_devices: Audiogeräte
     authentication_failed: Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.
+    auto_approved: Automatisch genehmigt
     back: Zurück
     basic: Grundlegend
+    bulk_download: Massendownload
     camera: Kamera
     camera_preview: Die Kamera-Vorschau wird hier angezeigt
     campaign: Kampagne
     campaign_id: Wahlkampf-ID
     cancel: Stornieren
+    category: Kategorie
     change_password: Passwort ändern
     clear_filters: Filter löschen
     client: Kunde
     close: Schließen
+    code: Code
     collaborative_learning: Kollaboratives Lernen
     completed: Abgeschlossen
     configurations: Konfigurationen
@@ -43,11 +48,13 @@ de:
     controller: Steuergerät
     cookie_notice: Hinweis zu Cookies
     cookies_statement: Cookie-Erklärung
+    copied: In die Zwischenablage kopiert
     copied_successfully: Erfolgreich kopiert
     copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
     create: Erstellen
     created_at: Erstellt am
+    created_by: Erstellt von
     created_date: Erstellt am
     created_successfully: Erfolgreich erstellt
     custom_acknowledgment_text: Benutzerdefinierter Danksagungstext
@@ -55,11 +62,14 @@ de:
     custom_consent_text: Benutzerdefinierter Einwilligungstext
     custom_consent_text_required: Für die Datenrolle des Verantwortlichen ist ein benutzerdefinierter Einwilligungstext erforderlich.
     data_role: Datenrolle
+    datasheet: Datenblatt
     decline: Ablehnen
+    default: Standard
     delete: Löschen
     description: Beschreibung
     desktop_or_laptop_recommended: Desktop oder Laptop empfohlen
     desktop_or_laptop_required: Desktop-PC oder Laptop erforderlich
+    dimension: Dimension
     disabled: Deaktiviert
     discard: Verwerfen
     download: Herunterladen
@@ -69,6 +79,7 @@ de:
     edit: Bearbeiten
     edited: Neu
     email: E-Mail
+    end_date: Datum des Endes
     ending_proctoring_session_msg: Wir beenden nun die Prüfungssitzung. <p>Bitte haben Sie einen Moment Geduld, während wir Ihre Antworten speichern und Sie zurück zur Startseite leiten.</p>
     error: Fehler
     export: Exportieren
@@ -83,12 +94,18 @@ de:
     generating: Erzeugen
     group_question_max_validation_error: Jede Gruppe kann höchstens {{max}} Elemente enthalten.
     group_question_min_validation_error: Jede Gruppe muss mindestens {{min}} Elemente enthalten.
+    icon: Icon
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP-Assistent kann Fehler machen. Bitte seid vorsichtig beim Verwenden der Antworten.
+    import: Importieren
+    inactive: Inaktiv
     internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
     last_name: Familienname, Nachname
+    last_updated: Zuletzt aktualisiert
     learning_on_the_job_label: Lernen am Arbeitsplatz
     lets_start: Los geht’s!
+    linked_activities: Verknüpfte Aktivitäten
+    linked_assessment: Verknüpfte Bewertung
     loading: Wird geladen...
     login: Anmelden
     maintenance_in_hours: "%{hours} Stunden"
@@ -98,11 +115,13 @@ de:
     maintenance_time_remaining: Verbleibende Zeit
     maintenance_upcoming_description: Wir führen planmäßige Wartungsarbeiten an %{date} für etwa %{duration} durch, um Ihre Benutzererfahrung zu verbessern. Während dieser Zeit können Sie nicht auf zugewiesene Aufgaben zugreifen oder diese erledigen. Wir danken Ihnen für Ihre Geduld.
     maintenance_upcoming_title: Bevorstehende Wartungsarbeiten
+    manage: Verwalten Sie
     manage_cookies: Cookies verwalten
     media_id: Medien-ID
     media_preview: Medienvorschau
     media_question_transcriptions: Transkriptionen von Medienfragen
     media_responses: Medienreaktionen
+    meeting_link: Sitzung Link
     microphones: Mikrofone
     mobile_proctoring_disabled_instructions: Für diese Bewertung benötigen Sie einen Desktop-PC oder Laptop. Bitte wechseln Sie zu einem Computer, um die Aktivität abzuschließen.
     mobile_proctoring_enabled_instructions: Für ein optimales Erlebnis wechseln Sie bitte zu einem Desktop- oder Laptop-Computer, falls Sie einen zur Verfügung haben. Bei Bedarf können Sie auch auf Ihrem Mobilgerät fortfahren.
@@ -116,13 +135,17 @@ de:
     new: Neu
     next: Weiter
     no_audio_warning: Es wurde kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
+    no_data_found: Keine Daten gefunden
     no_results_found: Keine Ergebnisse gefunden
+    none: Keine
     not_requested: Noch nicht angefordert
     ok: Ok
     options: Optionen
+    overview: Übersicht
     owner: Eigentümer
     pause: Pause
     pending: Ausstehend
+    permissions: Berechtigungen
     play: Spielen
     policy_version: Richtlinienversion
     policy_version_format: Es sind nur ganze Zahlen zulässig.
@@ -133,6 +156,7 @@ de:
     proctoring_maintenance_active: Die Proctoring-Funktion wird derzeit von %{start_time} auf %{end_time} umgestellt. Bitte versuchen Sie es nach Abschluss der Wartungsarbeiten erneut.
     proctoring_maintenance_upcoming: Die Überwachung wird von %{start_time} bis %{end_time} gewartet.
     project: Projekt
+    publish: veröffentlichen.
     question: Frage
     question_id: Fragen-ID
     question_transcription_disabled: Die Transkription ist für diese Frage deaktiviert.
@@ -146,20 +170,27 @@ de:
     remove: Entfernen
     removed: Entfernt
     replace: Ersetzen
+    required: erforderlich
+    reset: Zurücksetzen
     reset_password: Passwort zurücksetzen
     response_text: Antworttext
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
+    run: Ausführen
     save: speich
     saving_video: Video speichert... Bitte schließen oder aktualisieren Sie den Browser nicht
+    schedule_time: Zeit einplanen
     scoring_details: Punktestand-Details
     search: Suchen
     select_camera: Wählen Sie eine Kamera aus
+    select_language: Sprache auswählen
     select_microphone: Wählen Sie ein Mikrofon aus
+    send: Schicken
     send_email: E-Mail senden
     show_more: Mehr anzeigen
     something_wrong: Es ist etwas schief gelaufen, wenden Sie sich an Ihren Administrator.
     speakers: Referenten
+    start_date: Datum des Beginns
     status: Status
     status_unknown: Status unbekannt
     stop: Stopp
@@ -178,6 +209,7 @@ de:
           one: 'Gesamt : 1'
           other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
+    tags: Tags
     terms_conditions_privacy: Datenschutzerklärung
     tools: Werkzeuge
     transcription: Transkription
@@ -189,11 +221,35 @@ de:
     try_again: Erneut versuchen
     tte_terms_and_condition: TTE – Geschäftsbedingungen und Datenschutzerklärung
     type: Typ
+    unpublish: Unveröffentlicht
     update: Aktualisieren
     update_failed: Aktualisierung fehlgeschlagen
     updated_at: Aktualisiert am
+    updated_by: Aktualisiert von
     updated_successfully: Erfolgreich aktualisiert
+    upload: Hochladen
     user_report_pdf_url_not_generated: Der Link zum PDF-Download konnte nicht generiert werden
+    user_reports_approval_status_pending_qc: In Bearbeitung (Qualitätskontrolle)
+    user_reports_approval_status_qc_completed: Qualitätskontrolle abgeschlossen
+    user_reports_assessment_name_not_completed_reason_template: Die Bewertung „%{names}“ ist noch nicht abgeschlossen
+    user_reports_assessments_name_not_completed_reason_template: Die Bewertungen unter %{names} sind noch nicht abgeschlossen
+    user_reports_assessor_not_completed_reason_template: Das Formular „%{names}“ des Gutachters wurde nicht ausgefüllt
+    user_reports_assessors_not_completed_reason_template: Die Formulare für die Gutachter %{names} wurden nicht ausgefüllt
+    user_reports_campaign_artifact_results_pending_reason_message: Die Ergebnisse der Kampagnen-Artefakte sind für diesen Benutzer noch nicht endgültig feststehend
+    user_reports_campaign_scoring_pending_reason_message: Die Kampagnenwerte für diesen Nutzer stehen noch nicht endgültig fest
+    user_reports_custom_upload_report_reason_message: Der Berichtsanbieter ist ein benutzerdefinierter Upload
+    user_reports_external_report_pending_reason_message: Warten auf den Bericht des Anbieters
+    user_reports_lead_assessor_not_completed_reason_template: Das Formular für den federführenden Gutachter unter %{names} wurde nicht ausgefüllt
+    user_reports_lead_assessors_not_completed_reason_template: Die Formulare für den leitenden Gutachter %{names} wurden nicht ausgefüllt
+    user_reports_no_report_module_reason_message: Für diesen Bericht wurde kein Berichtsmodul gefunden
+    user_reports_not_prepared_reason_message: Der Bericht liegt noch nicht vor.
+    user_reports_pending_approval_reason_template: Der Genehmigungsstatus lautet „%{status}“
+    user_reports_pending_final_ai_scoring_approval_reason_message: Die endgültige Genehmigung der KI-Bewertung steht noch aus
+    user_reports_pending_qc_ai_scoring_approval_reason_message: Genehmigung der QC-KI-Bewertung steht noch aus
+    user_reports_pending_qc_approval_reason_message: Freigabe des QC-Berichts steht noch aus
+    user_reports_qc_completed_approval_reason_message: Die Genehmigung des Abschlussberichts steht noch aus
+    user_reports_report_generating_reason_message: Der Bericht wird gerade erstellt
+    user_reports_report_generation_failed_reason_message: Die Berichterstellung ist fehlgeschlagen
     video: Video
     view: Ansicht
     view_audio: Audio anzeigen

@@ -11,8 +11,6 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
   let!(:workshop_subject) { create(:workshop_subject, workshop: workshop) }
   let!(:user1) { create(:user, email: 'user1@test.test') }
   let!(:user2) { create(:user, email: 'user2@test.test') }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
   let!(:manager) { workshop.workshop_managers.first }
   let!(:assessor) { workshop.workshop_assessors.first }
   let!(:campaign_admin) { create(:user, role: User::ADMIN_ROLE) }
@@ -32,7 +30,7 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
 
   describe 'GET /campaigns/:campaign_id/workshops' do
     it 'returns workshops list' do
-      get "/api/v2/administration/campaigns/#{campaign_id}/workshops", headers: { 'Authorization' => authorization }
+      get "/api/v2/administration/campaigns/#{campaign_id}/workshops"
 
       expect(response).to have_http_status(:ok)
       workshop_response = JSON.parse(response.body)['data'].first
@@ -55,8 +53,7 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
     context 'when workshop has no subject' do
       it 'removes workshop' do
         delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/" \
-               "#{workshop_without_subject_id}/remove_workshop",
-               headers: { 'Authorization' => authorization }
+               "#{workshop_without_subject_id}/remove_workshop"
 
         expect(response).to have_http_status(:ok)
         expect { Workshop.find(workshop_without_subject_id) }.to raise_error(ActiveRecord::RecordNotFound)
@@ -66,8 +63,7 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
 
   context 'when workshop has subject' do
     it 'does not get deleted and returns error' do
-      delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop.id}/remove_workshop",
-             headers: { 'Authorization' => authorization }
+      delete "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop.id}/remove_workshop"
 
       data = JSON.parse(response.body)['errors']
       expect(response.status).to be(422)
@@ -101,7 +97,7 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
 
       post "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}/bulk_update_subjects",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(@user_assessment.reload.schedule_time).to eq('Fri, 04 Aug 2023 06:00:00.063000000 +04 +04:00')
@@ -131,7 +127,7 @@ RSpec.describe Api::V2::Administration::WorkshopsController, type: :request do
       }
 
       put "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_id}", params: body.to_json,
-headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       expect(workshop.reload.total_seats).to eq(20)

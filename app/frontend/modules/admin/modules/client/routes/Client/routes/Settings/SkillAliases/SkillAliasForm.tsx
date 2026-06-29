@@ -36,7 +36,7 @@ export const SkillAliasForm: React.FC<Props> = ({
     <ResourceFormModal
       resourceName="skillAlias"
       resource={skillAlias}
-      readableResourceName={I18n.t('administration.settings.skill_aliases.skill_alias')}
+      readableResourceName={I18n.t('admin.settings_skill_aliases_skill_alias')}
       showSuccessMessages
       close={close}
       scrollToFirstError
@@ -50,11 +50,11 @@ export const SkillAliasForm: React.FC<Props> = ({
         <>
           <Form.Item
             name="skillId"
-            label={I18n.t('administration.settings.skill_aliases.skill')}
+            label={I18n.t('admin.settings_skill_aliases_skill')}
             rules={[{ required: true }]}
           >
             <Select
-              placeholder={I18n.t('administration.settings.skill_aliases.select_skill')}
+              placeholder={I18n.t('admin.settings_skill_aliases_select_skill')}
               showSearch={{ filterOption: false, onSearch: handleSkillSearch }}
               notFoundContent={isSkillLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
@@ -67,10 +67,10 @@ export const SkillAliasForm: React.FC<Props> = ({
           </Form.Item>
           <Form.Item
             name="name"
-            label={I18n.t('administration.settings.skill_aliases.alias')}
+            label={I18n.t('admin.settings_skill_aliases_alias')}
             rules={[{ required: true }]}
           >
-            <Input name="skill_alias_name" placeholder={I18n.t('administration.settings.skill_aliases.alias')} />
+            <Input name="skill_alias_name" placeholder={I18n.t('admin.settings_skill_aliases_alias')} />
           </Form.Item>
         </>
       )}

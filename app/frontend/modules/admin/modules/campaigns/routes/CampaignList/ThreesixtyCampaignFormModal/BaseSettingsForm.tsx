@@ -122,7 +122,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="name"
-                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.name')}
+                label={I18n.t('shared.name')}
                 rules={[{ required: true, transform: value => value.trim() }]}
               >
                 <Input name="threesixty_campaign_name" />
@@ -132,7 +132,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="status"
-                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.status')}
+                label={I18n.t('shared.status')}
                 required
               >
                 <Radio.Group className="ps-4">
@@ -140,12 +140,12 @@ const BaseSettingsForm = ({
                     <Radio
                       value={STATUSES.ACTIVE}
                     >
-                      {I18n.t(`administration.campaigns.modals.create_threesixity.base_settings.${STATUSES.ACTIVE}`)}
+                      {I18n.t(`admin.${STATUSES.ACTIVE}`)}
                     </Radio>
                     <Radio
                       value={STATUSES.INACTIVE}
                     >
-                      {I18n.t(`administration.campaigns.modals.create_threesixity.base_settings.${STATUSES.INACTIVE}`)}
+                      {I18n.t(`admin.${STATUSES.INACTIVE}`)}
                     </Radio>
                   </Space>
                 </Radio.Group>
@@ -157,7 +157,7 @@ const BaseSettingsForm = ({
                   <Flex vertical className="w-100">
                     <Form.Item
                       name="threesixty_category"
-                      label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.category')}
+                      label={I18n.t('admin.category')}
                       required
                     >
                       <Radio.Group className="ps-4">
@@ -165,12 +165,12 @@ const BaseSettingsForm = ({
                           <Radio
                             value={THREESIXTY_CATEGORY.NORMAL}
                           >
-                            {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.normal')}
+                            {I18n.t('admin.normal')}
                           </Radio>
                           <Radio
                             value={THREESIXTY_CATEGORY.SKILLS_RATER}
                           >
-                            {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.skill_rater')}
+                            {I18n.t('admin.skill_rater')}
                           </Radio>
                         </Space>
                       </Radio.Group>
@@ -181,7 +181,7 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="threesixty_type"
-                label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.type')}
+                label={I18n.t('shared.type')}
                 required
               >
                 <Radio.Group className="ps-4">
@@ -189,15 +189,15 @@ const BaseSettingsForm = ({
                     <Radio
                       value={THREESIXTY_TYPES.EMPTY}
                     >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.empty')}
+                      {I18n.t('admin.empty')}
                     </Radio>
                     <Radio
                       value={THREESIXTY_TYPES.PREVIOUS_360}
                     >
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.previous')}
+                      {I18n.t('admin.previous')}
                     </Radio>
                     <Radio value={THREESIXTY_TYPES.STANDARD_360}>
-                      {I18n.t('administration.campaigns.modals.create_threesixity.base_settings.standard')}
+                      {I18n.t('admin.standard')}
                     </Radio>
                   </Space>
                 </Radio.Group>
@@ -207,7 +207,7 @@ const BaseSettingsForm = ({
               <Flex vertical className="w-100">
                 <Form.Item
                   name="assessment_id"
-                  label={I18n.t('administration.campaigns.modals.create_threesixity.base_settings.assessment')}
+                  label={I18n.t('admin.assessment')}
                   rules={[{ required: true }]}
                 >
                   <Select
@@ -226,13 +226,13 @@ const BaseSettingsForm = ({
                 <Form.Item
                   name="default_assessment_locale"
                   label={I18n.t(
-                    'administration.campaigns.modals.create_threesixity.base_settings.default_assessment_language',
+                    'admin.default_assessment_language',
                   )}
                 >
                   <Select
                     placeholder={
                     I18n.t(
-                      'administration.campaigns.modals.create_threesixity.base_settings.select_assessment_language',
+                      'admin.select_assessment_language',
                     )}
                     options={localeOptions}
                   />
@@ -246,12 +246,12 @@ const BaseSettingsForm = ({
                 <Form.Item
                   name="default_report_language"
                   label={I18n.t(
-                    'administration.campaigns.modals.create_threesixity.base_settings.default_report_language',
+                    'admin.default_report_language',
                   )}
                 >
                   <Select
                     placeholder={I18n.t(
-                      'administration.campaigns.modals.create_threesixty.base_settings.select_report_language',
+                      'admin.threesixty_base_settings_select_report_language',
                     )}
                     options={localeOptions}
                   />
@@ -261,12 +261,12 @@ const BaseSettingsForm = ({
             <Flex vertical className="w-100">
               <Form.Item
                 name="tagList"
-                label={I18n.t('common.column.tags')}
+                label={I18n.t('shared.tags')}
               >
                 <Select
                   mode="tags"
                   style={{ width: '100%' }}
-                  placeholder={I18n.t('common.column.tags')}
+                  placeholder={I18n.t('shared.tags')}
                   showSearch={{ filterOption: false, onSearch: debouncedFetchTags }}
                   notFoundContent={isTagsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
                 >
@@ -290,28 +290,28 @@ const BaseSettingsForm = ({
               </Flex>
               <Flex vertical style={{ maxWidth: '600px' }} justify="center" align="center">
                 <Typography.Title level={3} style={{ margin: 0 }}>
-                  {I18n.t('administration.campaigns.modals.create_threesixity.instructions_creation.title')}
+                  {I18n.t('admin.threesixity_instructions_creation_title')}
                 </Typography.Title>
                 <Typography.Title level={5} style={{ margin: 0 }}>
                   {I18n.t(
-                    'administration.campaigns.modals.create_threesixity.instructions_creation.sub_title',
+                    'admin.threesixity_instructions_creation_sub_title',
                   )}
                 </Typography.Title>
                 <Typography.Paragraph>
                   <ol>
                     <li>
                       {I18n.t(
-                        'administration.campaigns.modals.create_threesixity.instructions_creation.empty',
+                        'admin.threesixity_instructions_creation_empty',
                       )}
                     </li>
                     <li>
                       {I18n.t(
-                        'administration.campaigns.modals.create_threesixity.instructions_creation.standard',
+                        'admin.threesixity_instructions_creation_standard',
                       )}
                     </li>
                     <li>
                       {I18n.t(
-                        'administration.campaigns.modals.create_threesixity.instructions_creation.previous',
+                        'admin.threesixity_instructions_creation_previous',
                       )}
                     </li>
                   </ol>
@@ -322,7 +322,7 @@ const BaseSettingsForm = ({
         </Flex>
         <Flex className={`w-100 p-8 ${styles.borderTop}`} gap={8} justify="flex-end">
           <Button key="back" onClick={onClose} disabled={isSubmitting}>
-            {I18n.t('administration.common.cancel')}
+            {I18n.t('shared.cancel')}
           </Button>
           <Button
             key="submit"
@@ -331,7 +331,7 @@ const BaseSettingsForm = ({
             loading={isSubmitting}
             disabled={isSubmitting}
           >
-            {isCreate ? I18n.t('administration.common.add') : I18n.t('administration.common.next')}
+            {isCreate ? I18n.t('shared.add') : I18n.t('shared.next')}
           </Button>
         </Flex>
       </Flex>

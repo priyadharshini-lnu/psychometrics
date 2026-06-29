@@ -6,9 +6,6 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
   let!(:superadmin) { create(:superadmin) }
   let(:campaign) { create(:campaign) }
   let!(:campaign_id) { campaign.id }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /campaigns/:campaign_id/report_approval_settings' do
@@ -20,7 +17,7 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
       )
 
       get "/api/v2/administration/campaigns/#{campaign_id}/report_approval_settings",
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       report_approval_settings_response = data.find { |d| d['id'] == report_approval_setting.id.to_s }
@@ -66,7 +63,7 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
 
       post "/api/v2/administration/campaigns/#{campaign_id}/report_approval_settings",
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       expect(data).to have_key('id')
@@ -105,7 +102,7 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
 
       patch "/api/v2/administration/campaigns/#{campaign.id}/report_approval_settings/#{report_approval_setting.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       data = JSON.parse(response.body)['data']
       expect(data).to have_key('id')
@@ -123,7 +120,7 @@ RSpec.describe Api::V2::Administration::ReportApprovalSettingsController, type: 
       report_approval_setting = create(:report_approval_setting, campaign: campaign)
 
       delete "/api/v2/administration/campaigns/#{campaign.id}/report_approval_settings/#{report_approval_setting.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response.body).to be_empty
       expect(ReportApprovalSetting.find_by(id: report_approval_setting.id)).to eq(nil)

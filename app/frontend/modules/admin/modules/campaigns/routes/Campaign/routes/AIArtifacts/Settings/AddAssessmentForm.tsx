@@ -45,8 +45,8 @@ export const AddAssessmentForm: React.FC<Props> = ({
           allowClear
           showSearch={{ filterOption: false, onSearch }}
           loading={isLoading}
-          placeholder={I18n.t('administration.ai_artifacts.form.select_assessment')}
-          notFoundContent={isLoading ? I18n.t('administration.common.loading') : 'No assessments found'}
+          placeholder={I18n.t('admin.form_select_assessment')}
+          notFoundContent={isLoading ? I18n.t('shared.loading') : I18n.t('admin.no_assessments_found')}
           options={availableAssessments.map(assessment => ({
             key: assessment.id,
             label: assessment.name,

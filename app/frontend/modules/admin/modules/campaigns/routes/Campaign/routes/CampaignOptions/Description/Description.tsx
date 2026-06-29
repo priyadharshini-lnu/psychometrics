@@ -69,7 +69,7 @@ const DescriptionComponent: React.FC<Props> = ({
       projectId, campaignId, { ...options, ...selectedLeftLocale }, leftLocale,
     ).then(() => {
       setErrors({})
-      message.success(I18n.t('administration.campaigns.options.description.save_success'))
+      message.success(I18n.t('admin.description_save_success'))
     }).catch(setErrors).finally(() => {
       setSavingInProgress(false)
     })
@@ -138,7 +138,7 @@ const DescriptionComponent: React.FC<Props> = ({
           loading={savingInProgress}
         >
           <SaveOutlined />
-          {I18n.t('administration.campaigns.options.description.save')}
+          {I18n.t('admin.description_save')}
         </Button>
       </Col>
     </Row>

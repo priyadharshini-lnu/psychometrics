@@ -24,11 +24,11 @@ export const AIArtifacts: React.FC = () => {
   const menuItems: MenuItem[] = [
     {
       key: '/results',
-      label: I18n.t('administration.ai_artifacts.tabs.results'),
+      label: I18n.t('admin.tabs_results'),
     },
     {
       key: '/settings',
-      label: I18n.t('administration.ai_artifacts.tabs.settings'),
+      label: I18n.t('admin.tabs_settings'),
     }]
   return (
     <div>

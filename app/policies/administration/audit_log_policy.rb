@@ -14,6 +14,10 @@ module Administration
       access_audit_log?
     end
 
+    def schedule_export?
+      @user.is?(:superadmin)
+    end
+
     private
 
     def access_audit_log?

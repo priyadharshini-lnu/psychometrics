@@ -70,20 +70,20 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const menuItems = [
     {
       key: '/participants/subjects',
-      label: I18n.t('administration.threesixty_campaigns.menu.participants.subjects.title'),
+      label: I18n.t('admin.subjects_title'),
     },
     {
       key: '/participants/evaluators',
-      label: I18n.t('administration.threesixty_campaigns.menu.participants.evaluators.title'),
+      label: I18n.t('admin.evaluators_title'),
     },
     {
       key: '/participants/managers',
-      label: I18n.t('administration.threesixty_campaigns.menu.participants.managers.title'),
+      label: I18n.t('admin.managers_title'),
     },
   ]
   campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
-    label: I18n.t('administration.threesixty_campaigns.menu.participants.options.title'),
+    label: I18n.t('admin.options_title'),
   })
   return (
     <>

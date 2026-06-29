@@ -5,15 +5,12 @@ require 'rails_helper'
 RSpec.describe Api::V2::Administration::ReportFamiliesController, type: :request do
   let!(:superadmin) { create(:superadmin) }
   let!(:report_family) { create(:report_family, name: 'Report Family') }
-  let!(:api_key) { create(:api_key, user: superadmin) }
-  let(:authorization) { "Basic #{Base64.strict_encode64("#{api_key.key}:#{api_key.token}")}" }
-
   before { sign_in(superadmin) }
 
   describe 'GET /report_families/' do
     it 'Report Family List' do
       get '/api/v2/administration/report_families/',
-          headers: { 'Authorization' => authorization, 'Content-Type' => 'application/json' }
+          headers: { 'Content-Type' => 'application/json' }
 
       expect(response).to have_http_status(:ok)
       data = JSON.parse(response.body)['data']
@@ -36,7 +33,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesController, type: :request
 
       post '/api/v2/administration/report_families/',
            params: body.to_json,
-           headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:created)
       parsed_response = JSON.parse(response.body)['data']
@@ -59,7 +56,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesController, type: :request
 
       patch "/api/v2/administration/report_families/#{report_family.id}",
             params: body.to_json,
-            headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
       parsed_response = JSON.parse(response.body)['data']
@@ -71,7 +68,7 @@ RSpec.describe Api::V2::Administration::ReportFamiliesController, type: :request
   describe 'DELETE /report_families/{report_family_id}' do
     it 'Delete a report family' do
       delete "/api/v2/administration/report_families/#{report_family.id}",
-             headers: { 'Authorization' => authorization, 'Content-Type' => 'application/vnd.api+json' }
+             headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:no_content)
       expect(response.body).to eq('')

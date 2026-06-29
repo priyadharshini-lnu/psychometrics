@@ -85,7 +85,7 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
   const externalSettingsRows = [
     {
       key: 'externalReportId',
-      label: I18n.t('admin.campaign_report.drawers.external_settings.external_report_id'),
+      label: I18n.t('admin.external_report_id'),
       value: externalSettings.report_id
         ?? externalSettings.reportId
         ?? externalSettings.external_report_id
@@ -94,22 +94,22 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
     },
     {
       key: 'normId',
-      label: I18n.t('admin.campaign_report.drawers.external_settings.norm_id'),
+      label: I18n.t('admin.norm_id'),
       value: externalSettings.norm_id ?? externalSettings.normId ?? '-',
     },
     {
       key: 'languageId',
-      label: I18n.t('admin.campaign_report.drawers.external_settings.language_id'),
+      label: I18n.t('admin.language_id'),
       value: externalSettings.language_id ?? externalSettings.languageId ?? '-',
     },
     {
       key: 'suitabilityId',
-      label: I18n.t('admin.campaign_report.drawers.external_settings.suitability_id'),
+      label: I18n.t('admin.suitability_id'),
       value: externalSettings.suitability_id ?? externalSettings.suitabilityId ?? '-',
     },
     {
       key: 'norm',
-      label: I18n.t('admin.campaign_report.drawers.external_settings.norm'),
+      label: I18n.t('admin.norm'),
       value: externalSettings.norm ?? '-',
     },
   ]
@@ -131,7 +131,7 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
           column={1}
         >
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.user_report_id')}
+            label={I18n.t('admin.user_report_id')}
             className="va-t w-30"
             labelStyle={{ width: '40%' }}
             contentStyle={{ width: '60%' }}
@@ -139,13 +139,13 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
             {report.id}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.assessment_ids')}
+            label={I18n.t('admin.assessment_ids')}
             className="va-t"
           >
             {_.isEmpty(report.assessmentIds) ? '—' : report.assessmentIds?.join(', ')}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.report_pdf_status')}
+            label={I18n.t('admin.report_pdf_status')}
             className="va-t"
           >
             <Space direction="vertical" size="small" style={{ width: '100%' }}>
@@ -157,7 +157,7 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
                     onClick={handleCheckDetailsClick}
                   >
                     <InfoCircleOutlined style={{ marginRight: 4 }} />
-                    {I18n.t('admin.campaign_report.drawers.labels.check_details')}
+                    {I18n.t('admin.check_details')}
                   </Typography.Link>
                 )}
               </Space>
@@ -165,25 +165,29 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
                 <Alert
                   type="info"
                   showIcon
-                  message={availabilityReasonMessage}
+                  message={(
+                    <Typography.Text style={{ whiteSpace: 'pre-line' }}>
+                      {availabilityReasonMessage}
+                    </Typography.Text>
+                  )}
                 />
               )}
             </Space>
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.provider')}
+            label={I18n.t('admin.provider')}
             className="va-t"
           >
             {report.reportProvider}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.default_language')}
+            label={I18n.t('admin.default_language')}
             className="va-t"
           >
             {report.effectiveDefaultLanguage}
           </Descriptions.Item>
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report.drawers.labels.available_languages')}
+            label={I18n.t('admin.available_languages')}
             className="va-t"
           >
             {_.isEmpty(report.availableLanguages) ? '—' : report.availableLanguages.join(', ')}
@@ -192,7 +196,7 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
         {hasExternalSettings && (
           <div className="mtm w-100">
             <div className="mbs" style={{ fontWeight: 700 }}>
-              {I18n.t('admin.campaign_report.drawers.labels.external_settings')}
+              {I18n.t('admin.external_settings')}
             </div>
             <Descriptions
               layout="horizontal"

@@ -1,7 +1,13 @@
 import { EventStreamMarshaller } from '@aws-sdk/eventstream-marshaller'
 import { toUtf8, fromUtf8 } from '@aws-sdk/util-utf8-node'
-import MicrophoneStream from 'microphone-stream'
+import MicrophoneStreamImport from 'microphone-stream'
 import { downsampleBuffer, pcmEncode, getAudioEventMessage } from './utils'
+
+// microphone-stream is a CommonJS module. When bundled via Vite/ESM the default
+// export may be nested under `.default` — normalise here so `new MicrophoneStream()`
+// always works regardless of the bundler's interop strategy.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const MicrophoneStream = (MicrophoneStreamImport as any).default ?? MicrophoneStreamImport
 
 interface MessageJsonAws {
   Transcript: {
@@ -54,54 +60,57 @@ export const transcribe = ({
 }: Transcribe) => {
   transcription = ''
 
-  // let's get the mic input from the browser, via the microphone-stream module
   micStream = new MicrophoneStream()
-
-  micStream.on('format', (dataFormat: { sampleRate: number }) => {
-    inputSampleRate = dataFormat.sampleRate
-  })
-
-  micStream.setStream(stream)
+  inputSampleRate = micStream.context.sampleRate
 
   socket = new WebSocket(url)
   socket.binaryType = 'arraybuffer'
 
-  // when we get audio data from the mic, send it to the WebSocket if possible
   socket.onopen = function () {
+    micStream.setStream(stream)
+
     micStream.on('data', (rawAudioChunk: Buffer) => {
       // the audio stream is raw audio bytes. Transcribe expects PCM with additional metadata, encoded as binary
       const binary = convertAudioToBinaryMessage(rawAudioChunk)
 
-      if (socket.readyState === socket.OPEN) {
+      // Skip empty frames — sending zero-length binary causes an immediate AWS close (code 1005)
+      if (socket.readyState === socket.OPEN && binary.length > 0) {
         socket.send(binary)
       }
     })
   }
 
   socket.onmessage = function (message) {
-    // convert the binary event stream message to JSON
-    const messageWrapper = eventStreamMarshaller.unmarshall(
-      Buffer.from(message.data),
-    )
-
-    if (messageWrapper.headers[':message-type'].value === 'event') {
-      const messageBody: MessageJsonAws = JSON.parse(
-        String.fromCharCode(...messageWrapper.body),
+    try {
+      // convert the binary event stream message to JSON
+      const messageWrapper = eventStreamMarshaller.unmarshall(
+        Buffer.from(message.data),
       )
-      handleEventStreamMessage(messageBody, onTranscribe, onSilence)
-    } else {
-      stopTranscription()
-      onError('incorrect stream from aws', messageWrapper)
+
+      if (messageWrapper.headers[':message-type'].value === 'event') {
+        const messageBody: MessageJsonAws = JSON.parse(
+          String.fromCharCode(...messageWrapper.body),
+        )
+        handleEventStreamMessage(messageBody, onTranscribe, onSilence)
+      } else {
+        stopTranscription()
+        onError('incorrect stream from aws', messageWrapper)
+      }
+    } catch (err) {
+      onError('failed to parse message from aws', err)
     }
   }
 
-  socket.onerror = function () {
+  socket.onerror = function (event) {
     stopTranscription()
-    onError('socket closed due to error')
+    onError('socket closed due to error', event)
   }
 
-  socket.onclose = function () {
+  socket.onclose = function (event) {
     micStream.stop()
+    if (event.code !== 1000) {
+      onError(`socket closed abnormally (code ${event.code})`, event)
+    }
   }
 }
 
