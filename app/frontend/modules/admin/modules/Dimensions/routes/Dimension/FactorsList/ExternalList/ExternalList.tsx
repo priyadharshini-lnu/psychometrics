@@ -26,11 +26,11 @@ export default function ExternalList () {
           title={(
             <Row>
               <Col span={22}>
-                <span>{I18n.t('administration.factors.form.components.ExternalList.title')}</span>
+                <span>{I18n.t('admin.factors_form_components_ExternalList_title')}</span>
               </Col>
               <Col span={2}>
                 <Button onClick={() => add({ type: TYPES[0], jsonpath: '' })}>
-                  {I18n.t('administration.factors.form.components.ExternalList.add')}
+                  {I18n.t('shared.add')}
                 </Button>
               </Col>
             </Row>
@@ -40,9 +40,9 @@ export default function ExternalList () {
             <table className="table table-bordered">
               <thead>
                 <tr>
-                  <th key="type">{I18n.t('administration.factors.form.components.ExternalList.table.type')}</th>
-                  <th key="jsonpath">{I18n.t('administration.factors.form.components.ExternalList.table.jsonpath')}</th>
-                  <th key="actions">{I18n.t('administration.factors.form.components.ExternalList.table.actions')}</th>
+                  <th key="type">{I18n.t('shared.type')}</th>
+                  <th key="jsonpath">{I18n.t('admin.factors_form_components_ExternalList_table_jsonpath')}</th>
+                  <th key="actions">{I18n.t('shared.actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +56,7 @@ export default function ExternalList () {
                         >
                           {TYPES.map(type => (
                             <Select.Option key={type} value={type}>
-                              {I18n.t(`administration.factors.form.components.ExternalList.table.types.${type}`)}
+                              {I18n.t(`admin.factors_form_components_ExternalList_table_types_${type}`)}
                             </Select.Option>
                           ))}
                         </Select>
