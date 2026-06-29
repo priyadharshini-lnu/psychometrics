@@ -95,7 +95,7 @@ export const ScoringStrategyEditor = ({ strategy, form, childrenFactorType }) =>
   }
 
   if (strategy === 'external_score') {
-    return <ExternalList form={form} />
+    return <ExternalList />
   }
 
   return null

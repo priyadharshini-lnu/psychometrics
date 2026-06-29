@@ -11,7 +11,8 @@ module AdminJobs
       'user_created_dates' => DataReportHandlers::UserCreatedDatesExport,
       'pearson_usage_report' => DataReportHandlers::PearsonUsageHandler,
       'client_assessment_counts' => DataReportHandlers::ClientAssessmentsCountHandler,
-      'active_clients_projects' => DataReportHandlers::ActiveClientsProjectsHandler
+      'active_clients_projects' => DataReportHandlers::ActiveClientsProjectsHandler,
+      'user_access_review' => DataReportHandlers::UserAccessReviewHandler
     }.freeze
 
     def initialize(record, _stage = nil)
@@ -76,9 +77,11 @@ module AdminJobs
     end
 
     def file_path
-      directory = Rails.root.join('tmp', export_name, record.id.to_s)
-      FileUtils.mkdir_p(directory)
-      directory.join(file_name)
+      @file_path ||= begin
+        directory = Rails.root.join('tmp', export_name, record.id.to_s)
+        FileUtils.mkdir_p(directory)
+        directory.join(file_name)
+      end
     end
 
     def zip_file_name
@@ -86,8 +89,10 @@ module AdminJobs
     end
 
     def file_name
-      timestamp = Time.current.strftime('%Y%m%d')
-      "#{timestamp}_#{data_report.name.parameterize(separator: '_')}.#{file_extension}"
+      @file_name ||= handler_class.file_name(
+        report_name: data_report.name,
+        extension: file_extension
+      )
     end
 
     def handler_class

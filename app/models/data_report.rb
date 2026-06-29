@@ -24,7 +24,8 @@ class DataReport < ApplicationRecord
     hogan_usage_report: 5,
     report_usage_summary: 6,
     client_assessment_counts: 7,
-    active_clients_projects: 8
+    active_clients_projects: 8,
+    user_access_review: 9
   }
 
   enum :scope, { client: 0, global: 1 }, prefix: :scope

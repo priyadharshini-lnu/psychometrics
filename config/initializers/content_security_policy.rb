@@ -73,6 +73,7 @@ unless Rails.env.test?
         "https://#{Settings.secrets.s3_compatible_storage.private_bucket}.s3.#{Settings.secrets.s3_compatible_storage.region}.amazonaws.com",
         Settings.secrets.s3_compatible_storage.endpoint
       ].compact
+      object_src << ENV.fetch('CLOUDFRONT_DOMAIN', nil) if ENV.fetch('CLOUDFRONT_DOMAIN', nil).present?
 
       policy.worker_src :self, :blob
       policy.default_src :self
