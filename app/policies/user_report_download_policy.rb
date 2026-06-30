@@ -24,7 +24,7 @@ class UserReportDownloadPolicy < BasePolicy
     return false unless @current_user.is?(:assessor)
 
     campaign = @record.campaign
-    return false unless @current_user.assessors_campaings.exists?(id: campaign.id)
+    return false unless @current_user.assessors_campaigns.exists?(id: campaign.id)
 
     campaign_report = @record.campaign_report
     return false if campaign_report.nil? || !campaign_report.assessor_access?

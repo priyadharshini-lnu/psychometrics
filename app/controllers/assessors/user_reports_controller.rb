@@ -18,7 +18,7 @@ module Assessors
     end
 
     def campaign
-      @campaign ||= current_user.assessors_campaings.find(params[:campaign_id])
+      @campaign ||= current_user.assessors_campaigns.find(params[:campaign_id])
     end
 
     def view_report_as
