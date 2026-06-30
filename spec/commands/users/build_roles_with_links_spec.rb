@@ -72,4 +72,35 @@ describe Users::BuildRolesWithLinks do
       expect(roles).to eq [{ name: 'superadmin', paths: [] }]
     end
   end
+
+  describe 'when user is only a client assessor' do
+    before do
+      create(:membership, user: admin, client: client, role: Membership::CLIENT_ASSESSOR_ROLE, campaign_id: nil)
+    end
+
+    it 'includes client assessor role with client link' do
+      roles = described_class.call!(admin)
+
+      expect(roles).to include(
+        {
+          name: 'client_assessor',
+          paths: [{ name: client.name, value: "/admin/clients/#{client.id}/projects" }]
+        }
+      )
+    end
+  end
+
+  describe 'when user is both client assessor and campaign assessor for same client' do
+    before do
+      create(:membership, user: admin, client: client, role: Membership::CLIENT_ASSESSOR_ROLE, campaign_id: nil)
+      create(:assessor, user: admin, campaign: campaign)
+    end
+
+    it 'does not include client assessor role' do
+      roles = described_class.call!(admin)
+
+      expect(roles.pluck(:name)).not_to include('client_assessor')
+      expect(roles.pluck(:name)).to include('campaign_assessor')
+    end
+  end
 end

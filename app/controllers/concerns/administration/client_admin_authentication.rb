@@ -102,7 +102,7 @@ module Administration
     end
 
     def assessor_highest_role?(highest_role)
-      ['assessor'].include?(highest_role)
+      [Membership::CLIENT_ASSESSOR_ROLE, 'assessor'].include?(highest_role)
     end
 
     def setup_client_admin_after_password_login(user)

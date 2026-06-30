@@ -26,6 +26,7 @@ en:
     add_btn: Add Subject
     add_campaign_admin: Add Campaign Admin
     add_client_admin: Add Client Admin
+    add_client_assessor: Add Client Assessor
     add_conditions: Add Conditions
     add_evaluators: Add Evaluators
     add_indicator: Add Indicator
@@ -47,6 +48,7 @@ en:
     admin_role_deleted: Admin role '%{role_name}' was deleted successfully.
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
+    admin_with_email_already_added: User with this email has already been added.
     administrator_approves_reports: Administrator approves reports
     administrators_list_columns_email: Email
     admins: Admins
@@ -410,6 +412,13 @@ en:
     client: Client
     client_admin: Client Admin
     client_admins: Client Admins
+    client_assessor_import_already_added: User with email '%{email}' has already been added as a client assessor.
+    client_assessor_import_client_required: Client is required for importing assessors.
+    client_assessor_import_description: Import a CSV file with a single email column for client assessors.
+    client_assessor_import_duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
+    client_assessor_import_emails_required: Please provide at least one assessor email.
+    client_assessor_import_global_assessor_required: User must exist as a global assessor.
+    client_assessor_removed_successfully: Client assessor with email '%{email}' was removed successfully
     client_credentials_label: Client Credentials
     client_credentials_value: client_credentials
     client_features: Client Features
@@ -458,6 +467,7 @@ en:
     configuration: Configuration
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
+    confirm_remove_client_assessor: Are you sure you want to remove the client assessor with email '%{email}'?
     confirmation_required: Confirmation Required
     confirmation_required_details: Are you sure you want to delete the %{resource} "%{resource_name}"?
     consolidated: Consolidated
@@ -660,6 +670,7 @@ en:
     document_titles_project_participants: Participants | %{project}
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
+    download_assessor_email_template: Download sample template
     download_bulk_asset_download_example_csv: Download Example CSV.
     download_example_csv: Download Example csv
     dp_consent: Enable Data Processing consent
@@ -1332,6 +1343,7 @@ en:
     new_score: New Score
     no_assessments_found: No Assessments Found
     no_client_access: You do not have access to this client
+    no_client_access_root: You are not associated with any client
     no_clients_found: No clients found
     no_completed_assessments: There are no completed assessments yet
     no_file_selected: No file selected
@@ -2630,6 +2642,7 @@ en:
     search_admins: Search admins
     search_campaign: Search by Campaign
     search_client: Search by Client
+    search_client_assessors: Search client assessors
     search_job_role: Search job role
     search_participants: Search Participants...
     search_project: Search by Project

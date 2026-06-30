@@ -1426,6 +1426,7 @@ as: :simulation_progress_notification
             collection do
               get :available_permissions
               post :export
+              post :import_client_assessors
             end
           end
           jsonapi_resources :users do

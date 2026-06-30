@@ -27,6 +27,8 @@ interface Props {
   ): void
   handleResetPassword(id: Admin['id']): void
   handleEdit(id: Admin['id']): void
+  showEditAction?: boolean
+  showSendEmailAction?: boolean
 }
 
 export const ActionsMenu: FC<Props> = ({
@@ -40,6 +42,8 @@ export const ActionsMenu: FC<Props> = ({
   handleResetPassword,
   handleEdit,
   handleDelete,
+  showEditAction = true,
+  showSendEmailAction = true,
 }) => (
   <ConditionalDropdown
     menu={
@@ -54,6 +58,8 @@ export const ActionsMenu: FC<Props> = ({
         handleEdit,
         handleResetPassword,
         handleDelete,
+        showEditAction,
+        showSendEmailAction,
       })
     }
     innerElement={(
@@ -85,6 +91,8 @@ interface ActionMenuData {
   handleResetPassword: Props['handleResetPassword']
   handleDelete: Props['handleDelete']
   handleEdit: Props['handleEdit']
+  showEditAction: boolean
+  showSendEmailAction: boolean
 }
 
 const getActionMenuProps = ({
@@ -96,6 +104,8 @@ const getActionMenuProps = ({
   handleResetPassword,
   handleDelete,
   handleEdit,
+  showEditAction,
+  showSendEmailAction,
 }: ActionMenuData): MenuProps => {
   const menuItems:MenuItem[] = []
   permissions.loginAs && menuItems.push(
@@ -112,7 +122,7 @@ const getActionMenuProps = ({
       ),
     },
   )
-  permissions.edit && menuItems.push(
+  permissions.edit && showEditAction && menuItems.push(
     {
       key: 'edit',
       label: I18n.t('shared.edit'),
@@ -124,7 +134,7 @@ const getActionMenuProps = ({
       label: I18n.t('shared.reset_password'),
     },
   )
-  permissions.sendMail && menuItems.push(
+  permissions.sendMail && showSendEmailAction && menuItems.push(
     {
       key: 'sendMail',
       label: (

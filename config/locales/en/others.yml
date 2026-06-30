@@ -915,6 +915,7 @@ en:
         import_assessors: Import Assessors
         import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
+        import_client_assessors: Import Client Assessors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
         import_development_actions: Import Development Actions

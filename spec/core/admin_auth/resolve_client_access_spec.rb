@@ -105,9 +105,12 @@ RSpec.describe AdminAuth::ResolveClientAccess do
       before do
         create(:membership, user: user, client: client, role: 'client_assessor')
       end
-      it 'returns access false' do
+      it 'returns access with client_assessor role' do
         result = described_class.call(user, client)
-        expect(result[:error]).to eq(:no_access)
+
+        expect(result[:ok][:has_access]).to be true
+        expect(result[:ok][:highest_role]).to eq('client_assessor')
+        expect(result[:ok][:roles]).to include('client_assessor')
       end
     end
 
