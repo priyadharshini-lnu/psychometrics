@@ -38,6 +38,35 @@ export const useAwsRealtimeSpeech = ({
 }: useAwsRealtimeSpeechProps): useAwsRealtimeSpeechReturn => {
   const [isConnecting, setIsConnecting] = useState(false)
   const isStoppingRef = useRef(false)
+
+  const handleTranscription: OnTranscribe = useCallback((transcription) => {
+    const initialValue = value ?? ''
+
+    const formattedTranscription = transcription
+      .toLowerCase()
+      .replace(/\./g, '')
+      .replace(/\?/g, '')
+      .replace(/!/g, '')
+      .replace(/\r?\n|\r/g, ' ')
+
+    const finalValue = `${initialValue} ${formattedTranscription}`.trim()
+
+    onChange(finalValue)
+  }, [value, onChange])
+
+  const handleTranscriptionError: OnTranscribeError = useCallback((
+    message,
+    additionalMessage,
+  ) => {
+    console.error('err in speech to text', message, additionalMessage)
+    if (!isStoppingRef.current) {
+      antdNotification.error({
+        message: I18n.t('assessments.dictation.dictation_stopped'),
+        description: I18n.t('assessments.dictation.notifications.refresh_page'),
+      })
+    }
+  }, [])
+
   const startDictation = useCallback(async (onReady?: () => void) => {
     try {
       setIsConnecting(true)
@@ -81,48 +110,20 @@ export const useAwsRealtimeSpeech = ({
           message: I18n.t('assessments.dictation.dictation_not_started'),
         })
       }
+      throw err
     } finally {
       setIsConnecting(false)
     }
-  }, [fetchPresignUrl])
+  }, [fetchPresignUrl, handleTranscription, handleTranscriptionError])
 
   const stopDictation = useCallback(async () => {
     isStoppingRef.current = true
-    stopTranscription()
+    await stopTranscription()
   }, [])
 
-  const handleTranscription: OnTranscribe = useCallback((transcription) => {
-    const initialValue = value ?? ''
-
-    const formattedTranscription = transcription
-      .toLowerCase()
-      .replace(/\./g, '')
-      .replace(/\?/g, '')
-      .replace(/!/g, '')
-      .replace(/\r?\n|\r/g, ' ')
-
-    const finalValue = `${initialValue} ${formattedTranscription}`.trim()
-
-    onChange(finalValue)
-  }, [value, onChange])
-
-  const handleTranscriptionError: OnTranscribeError = useCallback((
-    message,
-    additionalMessage,
-  ) => {
-    console.error('err in speech to text', message, additionalMessage)
-    if (!isStoppingRef.current) {
-      antdNotification.error({
-        message: I18n.t('assessments.dictation.dictation_stopped'),
-        description: I18n.t('assessments.dictation.notifications.refresh_page'),
-      })
-    }
-    stopDictation()
-  }, [stopDictation])
-
   useEffect(() => () => {
-    stopDictation()
-  }, [stopDictation])
+    stopTranscription()
+  }, [])
 
   return {
     startDictation,
