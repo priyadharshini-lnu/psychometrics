@@ -167,6 +167,8 @@ gem 'date_validator', '~> 0.12.0'
 gem 'encryptor', '~> 3.0.0'
 gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'rlua', git: 'https://github.com/TheTalentEnterprise/rlua', branch: 'tte-master'
+
+# Once rswag-api and rswag-ui is updated, check if we can remove config/initializers/rswag_override.rb
 gem 'rswag-api', '~> 2.16.0'
 gem 'rswag-ui', '~> 2.16.0'
 gem 'tty-progressbar', '~> 0.10.1', require: false
