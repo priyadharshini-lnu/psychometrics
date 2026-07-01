@@ -3,7 +3,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin, App,
 } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import qs from 'qs'
 import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
@@ -84,6 +85,9 @@ const AuditLogList: React.FC<Props> = (
     }
   }, [tableConfig])
 
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
+
   const today = dayjs()
   const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
 
@@ -94,32 +98,61 @@ const AuditLogList: React.FC<Props> = (
   const [isExportLoading, setIsExportLoading] = useState(false)
   const { message: messageApi } = App.useApp()
 
+  useEffect(() => {
+    const { filters } = tableConfig
+    const hasExpandedFilters = filters.user_search || filters.client_search
+      || filters.project_search || filters.campaign_search || filters.action_in
+
+    if (hasExpandedFilters) setIsExpanded(true)
+
+    const dateRange = filters.created_at_gteq && filters.created_at_lteq
+      ? [dayjs(filters.created_at_gteq), dayjs(filters.created_at_lteq)]
+      : initialRange
+
+    form.setFieldsValue({
+      recordId: filters.record_id_eq || undefined,
+      recordType: filters.record_type_in || undefined,
+      action: filters.action_in || undefined,
+      dateRange,
+      user: filters.user_search || undefined,
+      client: filters.client_search || undefined,
+      project: filters.project_search || undefined,
+      campaign: filters.campaign_search || undefined,
+    })
+  }, [])
+
   const handleSearch = (values) => {
     const {
       recordId, recordType, action, dateRange, user, client, project, campaign,
     } = values
-    changeFilter('record_id_eq', recordId)
-    changeFilter('record_type_in', recordType)
-    changeFilter('action_in', action)
 
-    if (dateRange) {
-      changeFilter('created_at_gteq', dateRange[0].startOf('day').toString())
-      changeFilter('created_at_lteq', dateRange[1].endOf('day').toString())
-    } else {
-      removeFilter('created_at_gteq')
-      removeFilter('created_at_lteq')
+    const filters: Record<string, string | undefined> = {
+      record_id_eq: recordId,
+      record_type_in: recordType,
+      action_in: action,
+      created_at_gteq: dateRange?.[0].startOf('day').toString(),
+      created_at_lteq: dateRange?.[1].endOf('day').toString(),
+      user_search: user,
+      client_search: client,
+      project_search: project,
+      campaign_search: campaign,
     }
 
-    changeFilter('user_search', user)
-    changeFilter('client_search', client)
-    changeFilter('project_search', project)
-    changeFilter('campaign_search', campaign)
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) changeFilter(key, value)
+      else removeFilter(key)
+    })
+
+    const activeFilters = Object.fromEntries(Object.entries(filters).filter(([, v]) => v))
+    const queryString = qs.stringify({ filters: activeFilters })
+    navigate(queryString ? `${pathname}?${queryString}` : pathname, { replace: true })
   }
 
   const handleReset = () => {
     form.resetFields()
     removeAllFilters('auditLogList')
     setRange(initialRange)
+    navigate(pathname, { replace: true })
   }
 
   const handleExportCsv = () => {
