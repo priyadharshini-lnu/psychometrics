@@ -9,7 +9,7 @@ type SafeTimerProps = {
   remainingTime: number | null
   format?: string
   className?: string
-  onChange?: (remainingSeconds: number) => void
+  onChange?: (remainingMs: number) => void
   onFinish: () => void
   onTimeShiftDetected?: () => void
   prefix?: React.ReactNode
@@ -69,7 +69,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
       prevWallClockRef.current = now
 
       setDisplayMs(remainingMsRef.current)
-      onChangeRef.current?.(Math.floor(remainingMsRef.current / 1000))
+      onChangeRef.current?.(remainingMsRef.current)
 
       if (remainingMsRef.current <= 0 && !finishedRef.current) {
         finishedRef.current = true
