@@ -7,7 +7,7 @@ module Administration
     attributes :id, :name, :subdomain, :logo_url, :sso_enabled, :sso_enforced
 
     def logo_url
-      object.design_setting&.logo&.url
+      object.client_design_setting&.logo_url
     end
 
     def sso_enabled

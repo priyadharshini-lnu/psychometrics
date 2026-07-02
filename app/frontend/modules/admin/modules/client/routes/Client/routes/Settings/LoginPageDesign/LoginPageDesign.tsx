@@ -3,12 +3,11 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { uploadFiles } from '~/modules/admin/modules/client/core/designSettings'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcrumbs'
 import { DesignSettingsForm } from '~/modules/admin/components/DesignSettingsForm/DesignSettingsForm'
 
 const connecter = connect(
   (state: RootState) => ({
-    projectName: getCurrentProject(state).name || '',
+    clientName: state.ui.breadcrumbs.client.name || '',
   }),
   {
     uploadFiles,
@@ -17,12 +16,12 @@ const connecter = connect(
 
 type Props = ConnectedProps<typeof connecter>
 
-export const DesignComponent: React.FC<Props> = ({ uploadFiles, projectName }) => {
-  const { projectId } = useParams() as { projectId: string }
+export const LoginPageDesignComponent: React.FC<Props> = ({ uploadFiles, clientName }) => {
+  const { clientId } = useParams() as { clientId: string }
 
   return (
-    <DesignSettingsForm entityId={projectId} entityName={projectName} entityType="project" uploadFiles={uploadFiles} />
+    <DesignSettingsForm entityId={clientId} entityName={clientName} entityType="client" uploadFiles={uploadFiles} />
   )
 }
 
-export const Design = connecter(DesignComponent)
+export const LoginPageDesign = connecter(LoginPageDesignComponent)

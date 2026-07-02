@@ -43,7 +43,7 @@ module PsyGlobalStateHelper
     switchable = ActsAsTenant.without_tenant do
       current_user.
         clients_with_admin_access.
-        includes(:client_sso_setting, design_setting: { logo_attachment: :blob }).
+        includes(:client_sso_setting, client_design_setting: { logo_attachment: :blob }).
         select(:id, :name, :subdomain).
         order(:name).
         to_a

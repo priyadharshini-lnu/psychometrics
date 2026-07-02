@@ -3637,7 +3637,7 @@ CREATE TABLE public.design_settings (
     secondary_logo character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL,
+    project_id bigint,
     primary_color character varying,
     error_color character varying,
     warning_color character varying,
@@ -3646,7 +3646,8 @@ CREATE TABLE public.design_settings (
     background_size character varying DEFAULT 'cover'::character varying,
     logo_alt_text character varying,
     secondary_logo_alt_text character varying,
-    tenant_id bigint
+    tenant_id bigint,
+    client_id bigint
 );
 
 
@@ -15667,6 +15668,13 @@ CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING
 
 
 --
+-- Name: index_design_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_settings_on_client_id ON public.design_settings USING btree (client_id);
+
+
+--
 -- Name: index_design_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -22784,6 +22792,14 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24377,6 +24393,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260605000000'),
 ('20260603081303'),
 ('20260602120000'),
+('20260602000002'),
+('20260602000001'),
+('20260601000001'),
 ('20260527180000'),
 ('20260526000001'),
 ('20260520094000'),

@@ -30,7 +30,10 @@ module Administration
           )
         end
 
-        clients_list = user_for_clients.clients_with_admin_access.includes(:client_sso_setting, :design_setting).to_a
+        clients_list = user_for_clients.clients_with_admin_access.includes(
+          :client_sso_setting,
+          client_design_setting: { logo_attachment: :blob }
+        ).to_a
         highest_roles = AdminAuth::HighestClientRoles.for_user(user_for_clients, clients_list)
 
         @clients_data = Panko::ArraySerializer.new(

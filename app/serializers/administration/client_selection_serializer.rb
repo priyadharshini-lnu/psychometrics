@@ -13,7 +13,7 @@ module Administration
     end
 
     def logo_url
-      object.design_setting&.logo&.url
+      object.client_design_setting&.logo_url
     end
 
     def has_active_session

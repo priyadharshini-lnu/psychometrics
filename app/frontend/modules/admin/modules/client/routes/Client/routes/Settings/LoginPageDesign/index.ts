@@ -1,0 +1,1 @@
+export { LoginPageDesign } from './LoginPageDesign'
