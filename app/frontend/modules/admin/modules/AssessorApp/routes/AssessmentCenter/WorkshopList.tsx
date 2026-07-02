@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs } from 'antd'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { CampaignsList } from './CampaignsList'
 import { ParticipantsList } from './ParticipantsList'
 
@@ -9,13 +9,10 @@ const { I18n } = window
 export const WorkshopList: React.FC = () => {
   const { tab } = useParams<{ tab: string }>()
   const navigate = useNavigate()
-  const location = useLocation()
-  const searchParams = new URLSearchParams(location.search)
 
   const handleTabChange = (activeKey: string) => {
     navigate({
       pathname: `../${activeKey}`,
-      search: searchParams.toString(),
     }, { relative: 'path' })
   }
 
