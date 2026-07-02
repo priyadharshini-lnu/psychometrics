@@ -150,7 +150,7 @@ gem 'csv-safe'
 
 # SOAP client
 gem 'nkf'
-gem 'savon', '~> 2.15.1'
+gem 'savon', '~> 2.17.2'
 # Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
