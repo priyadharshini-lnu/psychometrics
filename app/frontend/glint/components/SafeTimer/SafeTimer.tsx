@@ -28,7 +28,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
   onTimeShiftDetected,
   ...rest
 }) => {
-  const remainingMsRef = useRef<number>((remainingTime ?? 0) * 1000)
+  const remainingMsRef = useRef<number>(Math.max(0, (remainingTime ?? 0) * 1000))
   const prevWallClockRef = useRef<number>(Date.now())
   const finishedRef = useRef<boolean>(false)
   const [displayMs, setDisplayMs] = useState<number>(remainingMsRef.current)
@@ -42,7 +42,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
 
   useEffect(() => {
     if (remainingTime === null) return
-    remainingMsRef.current = remainingTime * 1000
+    remainingMsRef.current = Math.max(0, remainingTime * 1000)
     prevWallClockRef.current = Date.now()
     finishedRef.current = false
     setDisplayMs(remainingMsRef.current)

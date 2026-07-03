@@ -45,6 +45,13 @@ describe('SafeTimer display format', () => {
     expect(screen.getByText('9d 0h 0m 0s')).toBeInTheDocument()
   })
 
+  test('clamps an already-expired (negative) remainingTime to zero', () => {
+    // Regression: an expiry date in the past yields a negative remainingTime,
+    // which previously rendered as a negative duration instead of zero.
+    render(<SafeTimer remainingTime={-5 * minuteInSecs} format={minuteFormat} onFinish={vi.fn()} />)
+    expect(screen.getByText('0m 0s')).toBeInTheDocument()
+  })
+
   test('resyncs the display when the remainingTime prop changes', () => {
     const { rerender } = render(
       <SafeTimer remainingTime={5 * minuteInSecs} format={minuteFormat} onFinish={vi.fn()} />,
