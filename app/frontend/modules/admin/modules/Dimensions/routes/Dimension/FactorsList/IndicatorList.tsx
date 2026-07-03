@@ -155,8 +155,13 @@ export const IndicatorList: React.FC<Props> = ({ form: parentForm }) => {
       parentForm.setFieldValue('subFactors', currentIndicators)
       closeModal()
     } catch (e) {
-      message.error(String(e))
-      console.error('Validation failed:', e)
+      // AntD form validation throws a structured object; field errors are already shown inline.
+      if (e && typeof e === 'object' && 'errorFields' in e) {
+        return
+      }
+
+      message.error(I18n.t('admin.validation_error'))
+      console.error('Save indicator failed:', e)
     }
   }
 
