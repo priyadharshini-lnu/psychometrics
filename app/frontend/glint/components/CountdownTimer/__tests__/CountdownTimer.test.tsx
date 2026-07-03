@@ -64,6 +64,62 @@ describe('CountdownTimer shows time in proper format when', () => {
   })
 })
 
+describe('CountdownTimer with safeTimer shows time in proper format when', () => {
+  test('time provided is less than a minute', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={10} />
+      </div>,
+    )
+    expect(screen.getByText(onlySecondsFormatMatcher)).toBeInTheDocument()
+  })
+
+  test('time provided is more than a minute', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={minuteInSecs + 30} />
+      </div>,
+    )
+    expect(screen.getByText(minutesFormatMatcher)).toBeInTheDocument()
+  })
+
+  test('time provided is more than an hour', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={hourInSecs + 30} />
+      </div>,
+    )
+    expect(screen.getByText(hoursFormatMatcher)).toBeInTheDocument()
+  })
+
+  test('time provided is more than a day', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={dayInSecs + 30} />
+      </div>,
+    )
+    expect(screen.getByText(daysFormatMatcher)).toBeInTheDocument()
+  })
+
+  test('a full day duration renders without an off-by-one day error', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={dayInSecs + 12 * hourInSecs + 30 * minuteInSecs} />
+      </div>,
+    )
+    expect(screen.getByText('1d 12h 30m 0s')).toBeInTheDocument()
+  })
+
+  test('a multi-day campaign duration renders correctly', () => {
+    render(
+      <div id="container">
+        <CountdownTimer safeTimer seconds={9 * dayInSecs} />
+      </div>,
+    )
+    expect(screen.getByText('9d 0h 0m 0s')).toBeInTheDocument()
+  })
+})
+
 describe('CountdownTimer format should change when', () => {
   test('time goes below a minute', async () => {
     render(

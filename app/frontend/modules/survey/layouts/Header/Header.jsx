@@ -9,7 +9,7 @@ import {
   EyeOutlined, SaveOutlined, PartitionOutlined, ClockCircleOutlined, SettingOutlined, DownOutlined,
   TranslationOutlined, PlusOutlined, CopyOutlined, TableOutlined, ImportOutlined, EditOutlined, ExportOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import dayjs from '~/utils/dayjs'
+import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import { perform } from '~/modules/survey/core/temp/socket'
@@ -187,7 +187,7 @@ const Header = (props) => {
           {isAssessmentTimerAdded && (
             <Space>
               <ClockCircleOutlined size={24} />
-              {dayjs.utc(extra.timer * 1000).format('HH:mm:ss')}
+              {secondsToDayHoursAndMinutes(extra.timer)}
             </Space>
           )}
         </Space>

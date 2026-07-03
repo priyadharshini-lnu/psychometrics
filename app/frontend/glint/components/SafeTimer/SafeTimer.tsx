@@ -2,7 +2,7 @@ import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import cs from 'classnames'
-import Dayjs from 'dayjs'
+import dayjs from '~/utils/dayjs'
 import styles from './styles.less'
 
 type SafeTimerProps = {
@@ -90,7 +90,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
     <div className={cs(className)}>
       {rest?.prefix && <span className={styles.prefix}>{rest.prefix}</span>}
       <span className={styles.timer}>
-        {Dayjs(displayMs).format(format || 'HH:mm:ss')}
+        {dayjs.duration(displayMs).format(format || 'HH:mm:ss')}
       </span>
     </div>
   )
