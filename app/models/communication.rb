@@ -75,7 +75,7 @@ class Communication < ApplicationRecord
   scope :invitation_for_end_level_id, ->(end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id subject body client_id kind created_at]
+    %w[id subject body client_id project_id campaign_id kind created_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

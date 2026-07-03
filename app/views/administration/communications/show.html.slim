@@ -109,7 +109,7 @@
         = @translated_body.present? ? raw(Utility::SanitizeHtml.process(@translated_body)) : ""
 
 .col-md-1
-  = link_to t('.back'), administration_communications_path, class: 'btn btn-default'
+  = link_to t('.back'), administration_communications_path(q: @back_query_params), class: 'btn btn-default'
 
 javascript [nonce=content_security_policy_nonce]:
   $(document).ready(function() {
