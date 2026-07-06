@@ -183,7 +183,7 @@ module Administration
     def resource_params
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id, :assessment_completion_status_code, :delivery_delay_hours,
-        :client_id, :recipients, :owner_id,
+        :client_id, :recipients,
         :delivery_rule, :reminder_type, :delivery_interval,
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,

@@ -10,7 +10,6 @@ RSpec.describe Forms::Communications::Simple do
   let(:campaign) { create(:campaign) }
   let(:valid_params) do
     {
-      owner_id: campaign.client.id,
       client_id: campaign.client.id,
       project_id: campaign.project.id,
       campaign_id: campaign.id,
@@ -22,8 +21,8 @@ RSpec.describe Forms::Communications::Simple do
     }
   end
 
-  let(:params_without_client_id_and_owner_id) do
-    valid_params.slice!(:owner_id, :client_id)
+  let(:params_without_client_id) do
+    valid_params.slice!(:client_id)
   end
 
   let(:params_without_kind) do
@@ -60,9 +59,9 @@ RSpec.describe Forms::Communications::Simple do
       expect(form.validate(valid_params)).to be_truthy
     end
 
-    it 'should not be valid without owner_id' do
+    it 'should not be valid without client_id' do
       form.prepopulate!(current_user: superadmin)
-      expect(form.validate(params_without_client_id_and_owner_id)).to be_falsey
+      expect(form.validate(params_without_client_id)).to be_falsey
     end
 
     it 'should not be valid without kind' do
@@ -106,19 +105,10 @@ RSpec.describe Forms::Communications::Simple do
       Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))
     end
 
-    context 'current_user is superadmin' do
-      let(:form_with_owner_id) { Forms::Communications::Simple.new(Communication.new(owner_id: 5)) }
-
-      it 'assign client_id from owner_id' do
-        form_with_owner_id.prepopulate!(current_user: superadmin)
-        expect(form_with_owner_id.client_id).to eq(form_with_owner_id.owner_id)
-      end
-    end
-
     context 'current_user is client_admin' do
-      it 'assign owner_id from client_id' do
+      it 'sets end_level_id from campaign_id' do
         form_with_campaign_id_end.prepopulate!(current_user: client_admin)
-        expect(form_with_campaign_id_end.owner_id).to eq(form_with_campaign_id_end.client_id)
+        expect(form_with_campaign_id_end.end_level_id).to eq(form_with_campaign_id_end.campaign_id)
       end
     end
 
@@ -131,11 +121,6 @@ RSpec.describe Forms::Communications::Simple do
       end
       let(:form_client_id_end) do
         Forms::Communications::Simple.new(Communication.new(client_id: 10))
-      end
-
-      it 'assign owner_id from client_id' do
-        form_with_campaign_id_end.prepopulate!(current_user: project_admin)
-        expect(form_with_campaign_id_end.owner_id).to eq(form_with_campaign_id_end.client_id)
       end
 
       it 'assign end_level_id from campaign_id' do

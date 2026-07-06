@@ -98,41 +98,37 @@ module Facades
         form.reminder_type == 'timeframes'
       end
 
-      def owner_behavior
-        'communication-changeable owner_id'
-      end
-
       def client_behavior
-        'communication-changeable client_id owner-resettable'
+        'communication-changeable client_id'
       end
 
       def project_behavior
-        'communication-changeable project_id owner-resettable client-resettable'
+        'communication-changeable project_id client-resettable'
       end
 
       def campaign_behavior
-        'communication-changeable campaign_id owner-resettable client-resettable project-resettable'
+        'communication-changeable campaign_id client-resettable project-resettable'
       end
 
       def sub_campaign_behavior
-        'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable ' \
+        'communication-changeable sub_campaign_id client-resettable project-resettable ' \
           'campaign-resettable'
       end
 
       def memberships_behavior
-        'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+        'client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
       def cc_behavior
-        'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+        'client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
       def admin_recipients_behavior
-        'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+        'client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
       def assessment_center_group_behavior
-        'communication-changeable sub_campaign_id owner-resettable client-resettable project-resettable ' \
+        'communication-changeable sub_campaign_id client-resettable project-resettable ' \
           'campaign-resettable'
       end
 

@@ -133,11 +133,11 @@ class Communication < ApplicationRecord
   end
 
   def end_level_id
-    sub_campaign_id || campaign_id || project_id || client_id || owner_id
+    sub_campaign_id || campaign_id || project_id || client_id
   end
 
   def end_level
-    sub_campaign || campaign || project || client || owner
+    sub_campaign || campaign || project || client
   end
 
   def delivery_interval_duration
@@ -185,8 +185,7 @@ class Communication < ApplicationRecord
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
 
-    where.not(client_id: restricted_client_subquery).
-      where('owner_id IS NULL OR owner_id NOT IN (?)', restricted_client_subquery)
+    where.not(client_id: restricted_client_subquery)
   end
 
   private

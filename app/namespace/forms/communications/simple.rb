@@ -9,14 +9,13 @@ module Forms
 
       model :communication
 
-      properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :end_level,
+      properties :subject, :body, :recipients, :client, :project, :campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at,
                  :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
                  :user_ids, :stop_reminder_datetime, :assessment_completion_status_code, :delivery_delay_hours,
                  :cc_user_ids
 
       property :assessment_id
-      property :owner_id, type: Types::Params::Integer | Types::Params::Nil
       property :client_id, type: Types::Params::Integer | Types::Params::Nil
       property :project_id, type: Types::Params::Integer | Types::Params::Nil
       property :campaign_id, type: Types::Params::Integer | Types::Params::Nil
@@ -91,8 +90,6 @@ module Forms
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
-      validates :owner_id, :owner, presence: true, allow_nil: true
-
       validates :project, presence: true, if: proc { project_id.present? }
       validates :campaign, presence: true, if: :campaign_validation_required?
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
@@ -143,10 +140,6 @@ module Forms
       validate :body_content
       validate :selected_assessments_presence, if: -> { assessment_selection == 'selected' }
 
-      def owner
-        Client.find_by(id: owner_id)
-      end
-
       def client
         Client.find_by(id: client_id)
       end
@@ -171,10 +164,7 @@ module Forms
         campaign || project || client
       end
 
-      def prepopulate!(options)
-        user = options[:current_user]
-        self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
-        self.owner_id = client_id unless user.is?(:superadmin)
+      def prepopulate!(_options)
         self.end_level_id = campaign_id || project_id || client_id
         self.assessment_selection ||= model.selected_assessments.any? ? 'selected' : 'all'
       end

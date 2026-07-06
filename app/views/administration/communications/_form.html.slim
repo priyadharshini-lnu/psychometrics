@@ -8,15 +8,10 @@
     .form-inputs.clearfix
       h3
         = t('administration.communication_settings')
-      - if current_user.is?(:superadmin)
-        = f.hidden_field :owner_id if @copying_communication
-        = f.association :owner, collection: @communication_facade.owners, include_blank: t('administration.tte'),
-          input_html: { data: { live_search: true, behavior: @communication_facade.owner_behavior }, disabled: @copying_communication }, label: t('.owner')
-      - unless current_user.is?(:superadmin) && @communication_facade.communication.owner_id.present?
-        = f.hidden_field :client_id if @copying_communication
-        = f.association :client,
-          collection: @communication_facade.owners,
-          input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior }, disabled: @copying_communication }, label: t('.client')
+      = f.hidden_field :client_id if @copying_communication
+      = f.association :client,
+        collection: @communication_facade.owners,
+        input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior }, disabled: @copying_communication }, label: t('.client')
 
       - if @communication_facade.show_projects?
         = f.hidden_field :project_id if @copying_communication
