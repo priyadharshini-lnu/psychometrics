@@ -38,6 +38,21 @@ module Api
       render json: :ok
     end
 
+    def search_project
+      projects =
+        if params[:client_id].present?
+          Client.find(params[:client_id]).projects
+        else
+          Project
+        end
+
+      if params[:filter].present?
+        projects = projects.ransack(params[:filter]).result
+      end
+
+      render json: projects.order(:name).limit(20).select(:id, :name)
+    end
+
     def pundit_authorize
       authorize(
         model,

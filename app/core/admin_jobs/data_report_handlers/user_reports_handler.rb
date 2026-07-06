@@ -21,7 +21,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 

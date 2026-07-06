@@ -1795,6 +1795,9 @@ only: %i[index create update]
           end
           resources :data_reports do
             post :run, on: :member
+            collection do
+              get :search_project
+            end
             resources :data_report_jobs, only: %i[index] do
               get :get_password, on: :member
             end

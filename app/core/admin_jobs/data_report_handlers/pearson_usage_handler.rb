@@ -23,7 +23,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 
@@ -62,6 +64,7 @@ module AdminJobs
                   )
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
+        records = records.where(user_assessments: { completed_at: completed_at_range }) if completed_at_range
 
         records.
           where.not(r: { id: nil }).
@@ -100,9 +103,9 @@ module AdminJobs
                 WHEN 5 THEN 'Ineligible'
               END
             SQL
-            Arel.sql("TO_CHAR(user_assessments.started_at, 'YYYY-MM-DD HH24:MI:SS TZHTZM')"),
-            Arel.sql("TO_CHAR(user_assessments.completed_at, 'YYYY-MM-DD HH24:MI:SS TZHTZM')"),
-            Arel.sql("TO_CHAR(user_assessments.created_at, 'YYYY-MM-DD HH24:MI:SS TZHTZM')"),
+            'user_assessments.started_at',
+            'user_assessments.completed_at',
+            'user_assessments.created_at',
             'r.id',
             'r.name',
             'p.id',
@@ -112,6 +115,20 @@ module AdminJobs
             Arel.sql("u.first_name || ' ' || u.last_name"),
             'u.email'
           )
+      end
+
+      def completed_at_range
+        return unless start_date.present? && end_date.present?
+
+        start_date.beginning_of_day..end_date.end_of_day
+      end
+
+      def start_date
+        config['start_date']&.to_date
+      end
+
+      def end_date
+        config['end_date']&.to_date
       end
     end
   end

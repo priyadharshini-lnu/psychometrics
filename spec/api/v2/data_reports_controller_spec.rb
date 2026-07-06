@@ -216,5 +216,50 @@ RSpec.describe Api::V2::Administration::DataReportsController, type: :request do
         expect(AdminJobRecord.last).to eq(job.admin_job_record)
       end
     end
+
+    describe 'GET /api/v2/administration/data_reports/search_project' do
+      before do
+        allow_any_instance_of(Api::Administration::DataReportPolicy).
+          to receive(:search_project?).
+          and_return(true)
+      end
+
+      it 'searches projects globally' do
+        matching_project = create(:project, name: 'Project 1')
+        create(:project, name: 'Project 2')
+
+        get '/api/v2/administration/data_reports/search_project',
+            params: {
+              filter: {
+                name_cont: 'Project 1'
+              }
+            },
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:ok)
+
+        parsed = JSON.parse(response.body)
+
+        expect(parsed.pluck('id')).to include(matching_project.id)
+        expect(parsed.first['name']).to eq('Project 1')
+      end
+
+      it 'searches projects for a specific client' do
+        project2.update!(name: 'Client Project')
+
+        get '/api/v2/administration/data_reports/search_project',
+            params: {
+              client_id: project2.client.id
+            },
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:ok)
+
+        parsed = JSON.parse(response.body)
+
+        expect(parsed.pluck('id')).to include(project2.id)
+        expect(parsed.pluck('name')).to include('Client Project')
+      end
+    end
   end
 end

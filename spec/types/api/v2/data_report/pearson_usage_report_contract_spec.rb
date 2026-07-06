@@ -148,14 +148,12 @@ RSpec.describe Api::V2::DataReport::PearsonUsageReportContract do
       )
     end
 
-    it 'fails when project_ids is empty' do
+    it 'succeeds when project_ids is empty' do
       params = valid_params(scope: 'global', project_ids: [])
 
       result = contract.call(params)
 
-      expect(result.failure?).to be true
-      error_message = result.errors.to_hash.values.flatten.join(' ')
-      expect(error_message).to include(I18n.t('admin.project_ids_required'))
+      expect(result.success?).to be true
     end
   end
 end

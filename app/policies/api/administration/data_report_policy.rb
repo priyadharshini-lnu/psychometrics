@@ -26,6 +26,10 @@ module Api
         @user.is?(:superadmin)
       end
 
+      def search_project?
+        index?
+      end
+
       class Scope < Administration::BasePolicy::Scope
         def resolve
           geo_filtered_scope = @scope.geo_scoped(Current.user_country)

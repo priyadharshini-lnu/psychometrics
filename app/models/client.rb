@@ -415,6 +415,10 @@ class Client < ApplicationRecord
     raise Geo::Exceptions::RestrictedEndpoint unless restricted_to_countries.include?(Current.user_country)
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    []
+  end
+
   private
 
   def generate_hogan_group_name
