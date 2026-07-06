@@ -11,6 +11,10 @@ RSpec.describe AdminJobRecord, type: :model do
         'assessment_raw_ai_factor_export'
       )
     end
+
+    it 'includes the assessment copy operation' do
+      expect(described_class.operations).to include('copy_assessment')
+    end
   end
 
   describe '#increment_completed_tasks' do

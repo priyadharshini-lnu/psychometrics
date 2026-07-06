@@ -6,9 +6,10 @@ import {
   Switch,
 } from 'antd'
 
+import * as t from 'io-ts'
 import { connect } from 'react-redux'
 import { useResourceContext } from '~/modules/admin/components/Resource'
-import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
+import { Assessment } from '~/modules/admin/modules/client/core/assessments'
 
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
@@ -65,13 +66,13 @@ const CopyAssessmentFormModal: React.FC<Props> = ({
     action: 'copy',
     method: 'post',
     updateStore: true,
-    responseType: AssessmentTR,
+    responseType: t.string,
     body: showMicrositeFields ? {
       name, owner, project, externalSettings,
     } : { name, owner },
-  }).then((response: Assessment) => {
+  }).then(() => {
     resource.setMeta({ ...resource.meta, recordCount: resource.meta?.recordCount ? resource.meta?.recordCount + 1 : 0 })
-    message.success(I18n.t('assessments.actions.copy.success_message', { name: response.name }))
+    message.info(I18n.t('admin.copy_assessment_scheduled'))
   })
 
   const {

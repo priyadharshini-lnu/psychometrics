@@ -120,7 +120,8 @@ class AdminJob < ApplicationJob
     bulk_export_norm_factor_scores: AdminJobs::BulkExportNormFactorScores,
     export_audit_logs: AdminJobs::ExportAuditLogs,
     copy_report: AdminJobs::CopyReport,
-    import_client_assessors: AdminJobs::ImportClientAssessors
+    import_client_assessors: AdminJobs::ImportClientAssessors,
+    copy_assessment: AdminJobs::CopyAssessment
   }.freeze
 
   def perform(record, stage = nil)

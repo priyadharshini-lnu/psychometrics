@@ -111,15 +111,21 @@ headers: { 'Content-Type' => 'application/vnd.api+json' }
         }
       }
 
-      post "/api/v2/administration/assessments/#{assessment.id}/copy", params: body.to_json,
-          headers: {
-            'Content-Type' => 'application/vnd.api+json'
-          }
+      expect do
+        post "/api/v2/administration/assessments/#{assessment.id}/copy", params: body.to_json,
+            headers: {
+              'Content-Type' => 'application/vnd.api+json'
+            }
+      end.to change(AdminJobRecord, :count).by(1)
 
       expect(response).to have_http_status(:ok)
-      assessment_response = JSON.parse(response.body)['data']
-      expect(assessment_response).to have_key('id')
-      expect(assessment_response).to have_attribute(:name).with_value('Copy of First Assessment')
+      expect(JSON.parse(response.body)).to eq('ok')
+
+      job = AdminJobRecord.order(:created_at).last
+      expect(job.operation).to eq('copy_assessment')
+      expect(job.data['assessment_id']).to eq(assessment.id)
+      expect(job.data['owner_id']).to eq(client.id)
+      expect(job.data['name']).to eq('Copy of First Assessment')
     end
   end
 

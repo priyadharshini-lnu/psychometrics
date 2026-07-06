@@ -476,6 +476,7 @@ en:
     copied: Copied
     copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
+    copy_assessment_scheduled: Assessment copy job has been scheduled.
     copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
     copy_report_scheduled: Report copy job has been scheduled.
