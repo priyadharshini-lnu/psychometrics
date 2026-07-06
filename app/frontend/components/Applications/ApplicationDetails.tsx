@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs, Spin } from 'antd'
 import { connect } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
@@ -48,6 +48,7 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   permissionsConfig,
 }) => {
   const { pathname } = useLocation()
+  const { projectId, clientId } = useParams() as { projectId?: string, clientId?: string }
   const navigate = useNavigate()
 
   const {
@@ -124,7 +125,13 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
         {
           key: 'public_keys',
           label: I18n.t('admin.public_keys'),
-          children: <ApplicationPublicKeys applicationId={applicationId} />,
+          children: (
+            <ApplicationPublicKeys
+              applicationId={applicationId}
+              projectId={projectId}
+              clientId={clientId}
+            />
+          ),
         },
         {
           key: 'permissions',

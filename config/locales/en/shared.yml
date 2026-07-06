@@ -22,6 +22,8 @@ en:
     assessor_approved: Assessor Approved
     assessors_list: Assessors List
     asset_not_present: Asset not present
+    audience: Audience
+    audience_claim_label: Audience (aud)
     audio: Audio
     audio_devices: Audio Devices
     authentication_failed: Authentication failed. Please try again.
@@ -100,6 +102,10 @@ en:
     import: Import
     inactive: Inactive
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    issuer: Issuer
+    issuer_claim_label: Issuer (iss)
+    jwt_claims_details: JWT Claims Details
+    key_id_claim_label: Key ID (kid)
     last_name: Last Name
     last_updated: Last Updated
     learning_on_the_job_label: Learning on the Job

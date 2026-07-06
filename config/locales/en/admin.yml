@@ -2069,6 +2069,7 @@ en:
     public_key_cannot_be_changed: cannot be changed after creation
     public_key_copy_private_key: Copy Private Key
     public_key_created: Public key created successfully
+    public_key_details: Public Key Details
     public_key_generate: Generate Key Pair
     public_key_generate_button: Generate RSA Key Pair
     public_key_generate_info: Will generate a 2048-bit RSA key pair. Only the public key will be stored. Copy and securely store the private key — it will not be shown again.

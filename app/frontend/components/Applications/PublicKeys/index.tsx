@@ -9,12 +9,24 @@ import { PublicKeysFilter } from './PublicKeysFilter'
 
 type Props = {
   applicationId: string
+  projectId?: string
+  clientId?: string
 }
 
-export const ApplicationPublicKeys: React.FC<Props> = ({ applicationId }) => {
+export const ApplicationPublicKeys: React.FC<Props> = ({ applicationId, projectId, clientId }) => {
+  let query = {}
+  if (projectId) {
+    query = { project_id: projectId }
+  } else if (clientId) {
+    query = { client_id: clientId }
+  }
+
   const config = {
     responseType: PublicKeyTR,
     basePath: `applications/${applicationId}`,
+    apiConfig: {
+      query,
+    },
   }
 
   return (

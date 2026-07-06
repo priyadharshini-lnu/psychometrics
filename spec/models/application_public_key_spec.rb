@@ -42,7 +42,9 @@ RSpec.describe ApplicationPublicKey, type: :model do
   describe 'before_validation on create' do
     it 'assigns a unique key_id automatically' do
       expect { public_key.save! }.to change { public_key.key_id }.from(nil)
-      expect(public_key.key_id).to match(/\A[0-9a-f-]{36}\z/)
+
+      expect(public_key.key_id).to be_a(Integer)
+      expect(public_key.key_id).to be > 0
     end
 
     it 'assigns a fingerprint automatically' do

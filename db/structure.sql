@@ -1631,14 +1631,14 @@ CREATE TABLE public.application_public_keys (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     tenant_id bigint NOT NULL,
-    key_id character varying NOT NULL,
     public_key text NOT NULL,
     fingerprint character varying,
     description character varying,
     disabled boolean DEFAULT false NOT NULL,
     created_by_id integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    key_id bigint NOT NULL
 );
 
 
@@ -24382,6 +24382,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260619141340'),
 ('20260618120212'),
 ('20260618120113'),
 ('20260616103502'),

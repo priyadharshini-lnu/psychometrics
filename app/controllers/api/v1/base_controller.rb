@@ -17,9 +17,9 @@ module Api
       rescue_from Pundit::NotAuthorizedError, with: :render_not_authorized_error
 
       def auth
-        @api_key      = fetch_api_key
-        @current_user = @api_key&.user
-        raise Api::Errors::InvalidAuthentication unless @api_key
+        @current_user = Api::V1::FetchCurrentUser.call!(request: request)
+
+        raise Api::Errors::InvalidAuthentication unless @current_user
         raise Api::Errors::InvalidAuthentication, 'API User is disabled' if @current_user&.disabled
       end
 
@@ -90,37 +90,22 @@ module Api
         render json: { code: e.code, message: e.message, more_info: e.more_info, meta: e.meta }, status: e.status
       end
 
-      # Fetches API key
-      #
-      def fetch_api_key
-        authenticate_with_http_basic do |key, token|
-          possible_api_key = ApiKey.active.find_by(key: key)
-          return nil if possible_api_key.nil? || possible_api_key.token != token
-
-          possible_api_key
-        end
-      end
-
       def set_request_interface
         request.env['interface'] = 'api'
       end
 
-      def find_application
-        key_value, = ActionController::HttpAuthentication::Basic.user_name_and_password(request)
-        return if key_value.blank?
-
-        ::Users::Application.joins(:api_keys).find_by(api_keys: { key: key_value, disabled: false })
-      end
-
       def authorize_request_ip
-        application = find_application
+        ip_allowed = application&.application_setting&.ip_allowed?(request.remote_ip)
 
-        raise Api::Errors::InvalidAuthentication unless application
-
-        application_setting = application&.application_setting
-        return if application_setting.ip_allowed?(request.remote_ip)
+        return if ip_allowed
 
         raise Api::Errors::InvalidAuthentication
+      end
+
+      private
+
+      def application
+        @application ||= ::Api::V1::FetchApplication.call!(request: request)
       end
     end
   end

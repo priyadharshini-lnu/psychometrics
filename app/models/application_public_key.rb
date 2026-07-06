@@ -3,6 +3,9 @@
 class ApplicationPublicKey < ApplicationRecord
   audited except: %i[public_key fingerprint]
 
+  MIN_KEY_ID = 10**17
+  MAX_KEY_ID = (10**18) - 1
+
   belongs_to :user, class_name: 'Users::Application'
   belongs_to :application, class_name: 'Users::Application', foreign_key: :user_id, optional: true
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User', optional: true
@@ -15,7 +18,7 @@ class ApplicationPublicKey < ApplicationRecord
   scope :inactive, -> { where(disabled: true) }
 
   validates :public_key, presence: true
-  validates :key_id, presence: true, uniqueness: true
+  validates :key_id, presence: true, uniqueness: true, numericality: { only_integer: true }
   validate :validate_rsa_public_key, on: :create
   validate :public_key_immutable, on: :update
 
@@ -40,7 +43,7 @@ class ApplicationPublicKey < ApplicationRecord
 
   def assign_key_id
     self.key_id ||= loop do
-      candidate = SecureRandom.uuid
+      candidate = SecureRandom.random_number(MIN_KEY_ID..MAX_KEY_ID)
       break candidate unless ApplicationPublicKey.exists?(key_id: candidate)
     end
   end

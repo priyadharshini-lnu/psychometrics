@@ -3,6 +3,8 @@ import * as t from 'io-ts'
 export const PublicKeyTR = t.type({
   id: t.string,
   keyId: t.string,
+  issuer: t.union([t.string, t.null]),
+  audience: t.union([t.string, t.null]),
   publicKey: t.union([t.string, t.null]),
   fingerprint: t.union([t.string, t.null]),
   description: t.union([t.string, t.null]),
