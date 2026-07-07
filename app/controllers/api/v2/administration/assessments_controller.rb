@@ -80,10 +80,12 @@ module Api
     end
 
     def export_raw_results
-      with_labels = params[:with_lables] == 'true'
       AdminJob.call(
         :super_admin_assessment_raw_result_export,
-        { assessment_id: params[:assessment_id].to_i, export_with_labels: with_labels },
+        {
+          assessment_id: params[:assessment_id].to_i,
+          export_with_labels: params.dig(:data, :attributes, :with_labels)
+        },
         current_user
       )
 
