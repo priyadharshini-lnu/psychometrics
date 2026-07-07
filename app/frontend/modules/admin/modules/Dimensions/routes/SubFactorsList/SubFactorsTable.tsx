@@ -49,6 +49,13 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         width={300}
       />
       <Resource.Column<SubFactors>
+        title={I18n.t('admin.factors_form_value')}
+        id="value"
+        sorter
+        render={subFact => subFact.value}
+        width={150}
+      />
+      <Resource.Column<SubFactors>
         title={I18n.t('admin.occupations_factors_list_position')}
         id="position"
         sorter

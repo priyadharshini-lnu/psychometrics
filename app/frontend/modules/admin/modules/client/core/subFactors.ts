@@ -6,6 +6,7 @@ export const SubFactorsTR = t.type({
   factorName: t.union([t.string, t.undefined]),
   condition: t.union([t.string, t.undefined]),
   predicate: t.union([t.string, t.undefined]),
+  value: t.union([t.string, t.number, t.undefined]),
   position: t.union([t.string, t.number, t.undefined]),
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),

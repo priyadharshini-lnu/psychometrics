@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import {
   Select, Form, InputNumber,
 } from 'antd'
@@ -8,6 +8,7 @@ import { SubFactors, SubFactorsTR } from '~/modules/admin/modules/client/core/su
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
 import { Factor, FactorSearchTR } from '~/modules/admin/modules/campaigns/core/factors'
+import { useResourceContext } from '~/modules/admin/components/Resource'
 
 type Props = {
   close(): void
@@ -25,6 +26,7 @@ const getResourceName = (slug: string) => {
 
 export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) => {
   const { dimensionId, tagId } = useParams() as { dimensionId: string, tagId: string }
+  const { resource: parentResource } = useResourceContext<SubFactors>()
   const [form] = Form.useForm()
   const [state, setState] = useState({
     data: [] as Factor[], requests: {}, meta: {}, query: {},
@@ -56,6 +58,18 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
     })
   }, 300), [])
 
+  useEffect(() => {
+    search()
+  }, [])
+
+  const factorOptions = factors.map(({ id, name }) => ({ value: id, label: name }))
+  const selectedFactorId = (subFact as SubFactors & { factorId?: string })?.factorId
+  const selectOptions = selectedFactorId
+    && subFact?.factorName
+    && !factorOptions.some(({ value }) => value === selectedFactorId)
+    ? [{ value: selectedFactorId, label: subFact.factorName }, ...factorOptions]
+    : factorOptions
+
   const createSubFactors = (data: SubFactors) => resource.createResource(data)
 
   return (
@@ -65,6 +79,9 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
       readableResourceName={I18n.t('admin.factors_index_title')}
       showSuccessMessages
       close={close}
+      onSuccessfulSubmission={() => {
+        parentResource.fetch()
+      }}
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
@@ -79,7 +96,7 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
             <Select
               showSearch={{ onSearch: searchFactor, filterOption: false }}
               placeholder={I18n.t('admin.factors_form_search_factors')}
-              options={factors.map(({ id, name }) => ({ value: id, label: name }))}
+              options={selectOptions}
             />
           </Form.Item>
           <Form.Item
