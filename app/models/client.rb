@@ -270,6 +270,10 @@ class Client < ApplicationRecord
     super || build_saml_setting
   end
 
+  def client_sso_setting
+    super || build_client_sso_setting
+  end
+
   def available_locales
     return locales if locales.any?
 

@@ -21,6 +21,7 @@ describe Saml::GetIdentityProviderSettings do
     context 'client admin subdomain' do
       let(:tenancy) { create(:tenancy, subdomain: 'acmecorp') }
       let(:valid_cert) { Rails.root.join('spec/fixtures/files/cert.pem').read }
+      let(:metadata_request) { instance_double(ActionDispatch::Request, path: '/users/saml/metadata') }
 
       before do
         tenancy.client_sso_setting.update!(
@@ -39,21 +40,46 @@ describe Saml::GetIdentityProviderSettings do
         expect(result[:idp_cert]).to eq(valid_cert)
       end
 
-      it 'returns nil when client SSO is not enabled' do
+      it 'returns client SSO settings even when client SSO is not enabled' do
         tenancy.client_sso_setting.update_column(:sso_enabled, false)
 
         result = described_class.new('acmecorp-admin').settings(nil)
 
-        expect(result).to be_nil
+        expect(result[:assertion_consumer_service_url]).to be_present
+        expect(result[:issuer]).to be_present
       end
 
-      it 'returns nil when client has no SSO setting' do
+      it 'returns client SSO settings when client SSO is not enabled for metadata endpoint' do
+        tenancy.client_sso_setting.update_column(:sso_enabled, false)
+
+        result = described_class.new('acmecorp-admin').settings(nil)
+
+        expect(result[:assertion_consumer_service_url]).to be_present
+        expect(result[:issuer]).to be_present
+      end
+
+      it 'returns settings with nil IdP fields when client has no persisted SSO setting' do
         tenancy.client_sso_setting.destroy
         tenancy.reload
 
         result = described_class.new('acmecorp-admin').settings(nil)
 
-        expect(result).to be_nil
+        expect(result[:assertion_consumer_service_url]).to be_present
+        expect(result[:issuer]).to be_present
+        expect(result[:idp_entity_id]).to be_nil
+        expect(result[:idp_sso_service_url]).to be_nil
+      end
+
+      it 'returns settings with nil IdP fields when client has no SSO setting for metadata endpoint' do
+        tenancy.client_sso_setting.destroy
+        tenancy.reload
+
+        result = described_class.new('acmecorp-admin').settings(nil)
+
+        expect(result[:assertion_consumer_service_url]).to be_present
+        expect(result[:issuer]).to be_present
+        expect(result[:idp_entity_id]).to be_nil
+        expect(result[:idp_sso_service_url]).to be_nil
       end
     end
   end
