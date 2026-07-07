@@ -23,6 +23,7 @@ interface BaseVideoPlayerProps {
   audioDevices: MediaDeviceInfo[];
   onChangeVideoDevice: (deviceId: string) => void;
   onChangeAudioDevice: (deviceId: string) => void;
+  showDeviceSelectors?: boolean;
 }
 
 interface VideoPlayerPropsWithCountdown extends BaseVideoPlayerProps {
@@ -54,6 +55,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   audioDevices,
   onChangeVideoDevice,
   onChangeAudioDevice,
+  showDeviceSelectors = true,
 }) => {
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
   const { isMobile } = useContext(MediaQueryContext)
@@ -114,48 +116,50 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   return (
     <Flex vertical className={styles.videoPlayerContainer}>
-      <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
-        <AudioOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
-        <Select
-          placeholder={(
-            <p style={{ color: deviceControlColor, margin: 0 }}>
-              {I18n.t('assessments.video_response.device_selection.mic')}
-            </p>
-          )}
-          onChange={onChangeAudioDevice}
-          suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
-          variant="borderless"
-          disabled={isRecording}
-          styles={{
-            root: { maxWidth: '40%' },
-            popup: { root: { width: '300px', ...(isMobile ? { right: '-100%', width: '200px' } : {}) } },
-          }}
-          options={getMicrophoneDevices()}
-          getPopupContainer={trigger => trigger}
-        />
-        <VideoCameraOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
-        <Select
-          disabled={isRecording}
-          placeholder={(
-            <p style={{ color: deviceControlColor, margin: 0 }}>
-              {I18n.t('assessments.video_response.device_selection.camera')}
-            </p>
-          )}
-          suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
-          styles={{
-            root: { maxWidth: '40%' },
-            popup: {
-              root: {
-                width: '300px',
-                ...(isMobile ? { width: '200px' } : {}),
+      {showDeviceSelectors && (
+        <Flex style={{ paddingTop: '16px' }} className={styles.controls} justify="flex-end" align="flex-end">
+          <AudioOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
+          <Select
+            placeholder={(
+              <p style={{ color: deviceControlColor, margin: 0 }}>
+                {I18n.t('assessments.video_response.device_selection.mic')}
+              </p>
+            )}
+            onChange={onChangeAudioDevice}
+            suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
+            variant="borderless"
+            disabled={isRecording}
+            styles={{
+              root: { maxWidth: '40%' },
+              popup: { root: { width: '300px', ...(isMobile ? { right: '-100%', width: '200px' } : {}) } },
+            }}
+            options={getMicrophoneDevices()}
+            getPopupContainer={trigger => trigger}
+          />
+          <VideoCameraOutlined style={{ alignSelf: 'center', color: deviceControlColor }} />
+          <Select
+            disabled={isRecording}
+            placeholder={(
+              <p style={{ color: deviceControlColor, margin: 0 }}>
+                {I18n.t('assessments.video_response.device_selection.camera')}
+              </p>
+            )}
+            suffixIcon={<DownOutlined style={{ color: deviceControlColor, pointerEvents: 'none' }} />}
+            styles={{
+              root: { maxWidth: '40%' },
+              popup: {
+                root: {
+                  width: '300px',
+                  ...(isMobile ? { width: '200px' } : {}),
+                },
               },
-            },
-          }}
-          onChange={onChangeVideoDevice}
-          variant="borderless"
-          options={getCameraDevices()}
-        />
-      </Flex>
+            }}
+            onChange={onChangeVideoDevice}
+            variant="borderless"
+            options={getCameraDevices()}
+          />
+        </Flex>
+      )}
       <Flex className={styles.videoContainer}>
         <video
           key={mediaUrl}
