@@ -2,14 +2,14 @@ import {
   FC, useEffect, useRef, useState,
 } from 'react'
 import cs from 'classnames'
-import Dayjs from 'dayjs'
+import dayjs from '~/utils/dayjs'
 import styles from './styles.less'
 
 type SafeTimerProps = {
   remainingTime: number | null
   format?: string
   className?: string
-  onChange?: (remainingSeconds: number) => void
+  onChange?: (remainingMs: number) => void
   onFinish: () => void
   onTimeShiftDetected?: () => void
   prefix?: React.ReactNode
@@ -28,7 +28,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
   onTimeShiftDetected,
   ...rest
 }) => {
-  const remainingMsRef = useRef<number>((remainingTime ?? 0) * 1000)
+  const remainingMsRef = useRef<number>(Math.max(0, (remainingTime ?? 0) * 1000))
   const prevWallClockRef = useRef<number>(Date.now())
   const finishedRef = useRef<boolean>(false)
   const [displayMs, setDisplayMs] = useState<number>(remainingMsRef.current)
@@ -42,7 +42,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
 
   useEffect(() => {
     if (remainingTime === null) return
-    remainingMsRef.current = remainingTime * 1000
+    remainingMsRef.current = Math.max(0, remainingTime * 1000)
     prevWallClockRef.current = Date.now()
     finishedRef.current = false
     setDisplayMs(remainingMsRef.current)
@@ -69,7 +69,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
       prevWallClockRef.current = now
 
       setDisplayMs(remainingMsRef.current)
-      onChangeRef.current?.(Math.floor(remainingMsRef.current / 1000))
+      onChangeRef.current?.(remainingMsRef.current)
 
       if (remainingMsRef.current <= 0 && !finishedRef.current) {
         finishedRef.current = true
@@ -90,7 +90,7 @@ export const SafeTimer: FC<SafeTimerProps> = ({
     <div className={cs(className)}>
       {rest?.prefix && <span className={styles.prefix}>{rest.prefix}</span>}
       <span className={styles.timer}>
-        {Dayjs(displayMs).format(format || 'HH:mm:ss')}
+        {dayjs.duration(displayMs).format(format || 'HH:mm:ss')}
       </span>
     </div>
   )

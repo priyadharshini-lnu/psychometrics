@@ -1388,7 +1388,7 @@ ar:
       invalid_status: حالة الحملة غير صالحة
     goto_dashboard: الذهاب الى لوحة التعليمات
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
-    insights_reports: رؤى وتقارير
+    insights_reports: التحاليل والتقارير
     instruction_modal:
       campaign_start_final_instructions: |-
         <p>

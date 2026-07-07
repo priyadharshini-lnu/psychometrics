@@ -35,11 +35,6 @@ module Saml
       client = Client.find_by!(subdomain: client_subdomain)
       sso_setting = client.client_sso_setting
 
-      unless sso_setting&.saml_login_allowed?
-        Rails.logger.info "SSO not enabled for client #{client.id} (#{client_subdomain})"
-        return nil
-      end
-
       sso_setting.saml_settings(url_options_for(@subdomain))
     end
 

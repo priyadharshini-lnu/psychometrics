@@ -127,7 +127,7 @@ export default function InstructionList ({
           onClick={saveTemplate}
         >
           <SaveOutlined />
-          {I18n.t('admin.save')}
+          {I18n.t('shared.save')}
         </Button>
       </Col>
     </Row>

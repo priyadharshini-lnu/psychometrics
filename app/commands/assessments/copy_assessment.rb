@@ -147,7 +147,10 @@ module Assessments
     end
 
     def copy_association(name, old_question, new_question, assessment)
-      old_question.send(name).each do |item|
+      association_items = old_question.send(name)
+      association_items = association_items.reject { |item| item.factor.nil? } if name == 'factors_scorings'
+
+      association_items.each do |item|
         new_item = make_copy(item, assessment)
         new_item.question_id = new_question.id
 
