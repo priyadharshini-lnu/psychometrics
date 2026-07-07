@@ -19,7 +19,7 @@ const INDICATOR_SUPPORTED_STRATEGIES = [
 const CustomFormula = () => (
   <Form.Item
     label={I18n.t('admin.factors_form_scoring_strategies_custom_formula')}
-    name="custom_formula"
+    name="customFormula"
     className="mtm"
   >
     <LuaEditor />
