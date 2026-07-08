@@ -3,7 +3,7 @@
 module Facades
   module Administration
     class Communication
-      attr_reader :owners, :projects, :campaigns, :communication, :memberships, :form, :delivery_rules,
+      attr_reader :projects, :campaigns, :communication, :memberships, :form, :delivery_rules,
                   :assessments, :assessment_center_groups
 
       include EmailDelivery
@@ -14,7 +14,6 @@ module Facades
         @form = ::Forms::Communications::Simple.new(communication)
         @form.prepopulate!(current_user: current_user)
         @communication = communication
-        @owners = fetch_owners(current_user)
         @projects = fetch_projects(current_user)
         @campaigns = fetch_campaigns(current_user)
         @delivery_rules = fetch_delivery_rules
@@ -168,10 +167,6 @@ module Facades
 
       def workshop_communication?
         ::Communication::WORKSHOP_COMMUNICATION_KINDS.include?(form.kind)
-      end
-
-      def fetch_owners(user)
-        client_policy_scope(user).geo_scoped(Current.user_country).roots.order(:name)
       end
 
       def fetch_projects(user)

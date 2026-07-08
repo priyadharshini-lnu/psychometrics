@@ -728,7 +728,6 @@ sr-Cyrl:
         end_date: 'Датум завршетка:'
         every_interval: Сваки %{interval}
         frequency: 'Фреквенција:'
-        owner: 'Власник:'
         project: 'Пројекат:'
         recipients: 'Примаоци:'
         specific_datetime: 'Пошаљите на:'

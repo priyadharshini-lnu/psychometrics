@@ -9,11 +9,6 @@
               { class: 'form-control', id: 'show_page_locale' }
 
   ul.list-group
-    - if current_user.is?(:superadmin) && @communication.owner
-      li.list-group-item
-        strong.mrs = t('.owner')
-        = @communication.owner.name
-
     li.list-group-item
       strong.mrs = t('.client')
       = @communication.client.name

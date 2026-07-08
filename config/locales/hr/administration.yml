@@ -710,7 +710,6 @@ hr:
         end_date: 'Datum završetka:'
         every_interval: Svaki %{interval}
         frequency: 'Frekvencija:'
-        owner: 'Vlasnik:'
         project: 'Projekt:'
         recipients: 'Primatelja:'
         specific_datetime: 'Pošaljite na:'

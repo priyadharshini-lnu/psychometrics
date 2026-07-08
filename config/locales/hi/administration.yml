@@ -728,7 +728,6 @@ hi:
         end_date: 'अंतिम तिथि:'
         every_interval: प्रत्येक %{interval}
         frequency: 'आवृत्ति:'
-        owner: 'मालिक:'
         project: 'परियोजना:'
         recipients: 'प्राप्तकर्ता:'
         specific_datetime: 'भेजें:'

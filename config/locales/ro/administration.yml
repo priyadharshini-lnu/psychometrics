@@ -710,7 +710,6 @@ ro:
         end_date: 'Data de încheiere:'
         every_interval: Fiecare %{interval}
         frequency: 'Frecvență:'
-        owner: 'Proprietar:'
         project: 'Proiect:'
         recipients: 'Destinatari:'
         specific_datetime: 'Trimite la:'

@@ -15,9 +15,7 @@ FactoryBot.define do
     delivery_at { nil }
     delivery_interval { nil }
     kind { 'invitation' }
-    owner_id { create(:tenancy, :campaign_level) }
     end_level_id { Client.last }
     memberships { create_list(:membership, 5) }
-    skip_owner_validation { true }
   end
 end

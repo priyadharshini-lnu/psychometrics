@@ -710,7 +710,6 @@ pl:
         end_date: 'Data zakończenia:'
         every_interval: Co %{interval}
         frequency: 'Częstotliwość:'
-        owner: 'Właściciel:'
         project: 'Projekt:'
         recipients: 'Adresatów:'
         specific_datetime: 'Wyślij na:'

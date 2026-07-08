@@ -10,7 +10,7 @@
         = t('administration.communication_settings')
       = f.hidden_field :client_id if @copying_communication
       = f.association :client,
-        collection: @communication_facade.owners,
+        collection: Client.roots.order(:name),
         input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior }, disabled: @copying_communication }, label: t('.client')
 
       - if @communication_facade.show_projects?

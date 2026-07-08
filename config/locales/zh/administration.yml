@@ -710,7 +710,6 @@ zh:
         end_date: 结束日期：
         every_interval: 每 %{interval}
         frequency: 频率：
-        owner: 业主
         project: 项目：
         recipients: 获奖者：
         specific_datetime: 发送至

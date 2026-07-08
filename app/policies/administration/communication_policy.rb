@@ -11,18 +11,15 @@ module Administration
     end
 
     def show?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :view, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :view)
     end
 
     def copy?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def destroy?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def new_form?
@@ -30,23 +27,19 @@ module Administration
     end
 
     def download_history?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def edit?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def edit_translation?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     def update_translation?
-      @user.is?(:superadmin) ||
-        @user.has_permission?(:communications, :manage, project_id: record.project_id, campaign_id: record.campaign_id)
+      @user.is?(:superadmin) || @user.has_grant?(:communications, :manage)
     end
 
     class Scope < Scope

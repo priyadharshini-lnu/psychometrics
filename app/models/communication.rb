@@ -7,7 +7,6 @@ class Communication < ApplicationRecord
   translates :subject, :body
 
   audited
-  include OwnerValidations
   include RecurringScheduling
 
   WORKSHOP_COMMUNICATION_KINDS = %w[
@@ -37,7 +36,6 @@ class Communication < ApplicationRecord
 
   belongs_to :assessment
   belongs_to :client
-  belongs_to :owner, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
   # rename project_campaign relation when we will ditch all old structures
   belongs_to :project_campaign, class_name: 'Campaign', foreign_key: :campaign_id, optional: true
