@@ -17,7 +17,8 @@ module Api
       'pearson_usage_report' => Api::V2::DataReport::PearsonUsageReportContract,
       'client_assessment_counts' => Api::V2::DataReport::ClientAssessmentCountsContract,
       'active_clients_projects' => Api::V2::DataReport::ActiveClientsProjectsContract,
-      'user_access_review' => Api::V2::DataReport::UserAccessReviewContract
+      'user_access_review' => Api::V2::DataReport::UserAccessReviewContract,
+      'campaign_factor_scores' => Api::V2::DataReport::CampaignFactorScoresContract
     }.freeze
 
     def create_contract_based_on_report_type

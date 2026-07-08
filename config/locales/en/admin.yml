@@ -2247,6 +2247,7 @@ en:
     report_type: Report Type
     report_types:
       active_clients_projects: Active Clients & Projects
+      campaign_factor_scores: Campaign Factor Scores
       client_assessment_counts: Client Assessment Counts
       hogan_usage_report: Hogan Assessment Usage
       json_data_report: JSON Data Report
