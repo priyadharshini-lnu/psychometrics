@@ -25,8 +25,16 @@ module Api
       end
 
       def bearer_token
-        token, = ActionController::HttpAuthentication::Token.token_and_options(request)
-        token.presence
+        raw_header = authorization_header
+        return if raw_header.blank?
+
+        raw_header[/\ABearer\s+(.+)\z/i, 1]&.presence
+      end
+
+      private
+
+      def authorization_header
+        request.get_header('HTTP_AUTHORIZATION') || request.headers['Authorization'] || request.headers['authorization']
       end
     end
   end
