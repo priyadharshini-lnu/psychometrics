@@ -3,5 +3,5 @@
 = vite_javascript_tag 'entrypoints/assessment/builder.jsx'
 
 javascript [nonce=content_security_policy_nonce]:
-  I18n.availableLocales = #{(@current_project&.available_locales || Settings.enduser_locales).to_json.html_safe}
+  I18n.availableLocales = #{I18n.available_locales.to_json.html_safe}
   x_navigation_minimize('close');
