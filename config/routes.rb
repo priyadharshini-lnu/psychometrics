@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   get '/global_config', to: 'apps#global_config'
+  post '/login/jwt', to: 'jwt_login#login_jwt'
   get '/async_requests/status', to: 'async_requests#status'
   post 'extend_session', to: 'users/session_extensions#extend'
   get 'privacy-statement', to: 'home#privacy_statement'
