@@ -2931,10 +2931,10 @@
   resolved "https://npm.pkg.github.com/download/@thetalententerprise/green-audio-player/2.0.0/42abad30f68935aa23d6cfe3e29000365512c735#42abad30f68935aa23d6cfe3e29000365512c735"
   integrity sha512-wTTXB6OrDFhvgfDISppnEErw9gRToMmA/zfD1RByKm7kAUOOYZr7GtitYHtk+QpfoDhxpP5a2GLj/Giyu8tqXA==
 
-"@thetalententerprise/interactive-assessments@1.11.0-beta":
-  version "1.11.0-beta"
-  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.11.0-beta/82acc376d26d7fd3c03e2e3413f6ed73f1734c42#82acc376d26d7fd3c03e2e3413f6ed73f1734c42"
-  integrity sha512-Z+RUdjPgh3hzsTX95apBrMvE1czorNClsE/5+6fLKqQOj5ND+6x92zvn2YG+r9kQ27+mDCgLdO8J1QWqY8xz2Q==
+"@thetalententerprise/interactive-assessments@1.11.1":
+  version "1.11.1"
+  resolved "https://npm.pkg.github.com/download/@TheTalentEnterprise/interactive-assessments/1.11.1/e4073cd6c89270a594ec4d682550d747f50b59cf#e4073cd6c89270a594ec4d682550d747f50b59cf"
+  integrity sha512-SZ3989jScW0o7eatab3VVP5XCKFS871XM3I1jVo5ziHmrG4mCMMZq3u2/yy/yNMsf+lGmUWP0ulJu4TOhwYyTA==
 
 "@thetalententerprise/jsonapi-react@0.0.31":
   version "0.0.31"

@@ -7,6 +7,7 @@ import _ from 'lodash'
 import cs from 'classnames'
 import Ajv from 'ajv'
 import schema from '@thetalententerprise/interactive-assessments/dist/schema.json'
+import { useSelector } from 'react-redux'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 
 import '~/styles/utils.less'
@@ -20,6 +21,7 @@ const { TabPane } = Tabs
 const AgileConfigBuilder = ({
   assessmentId, config, translations, saveConfig,
 }) => {
+  const extra = useSelector(state => state.settings.extra)
   const handleSaveConfig = (key, value) => {
     let parseJson
 
@@ -43,7 +45,7 @@ const AgileConfigBuilder = ({
       console.error(validate.errors)
       return
     }
-    saveConfig(assessmentId, { [key]: parseJson }).then(() => {
+    saveConfig(assessmentId, { [key]: parseJson, extra }).then(() => {
       message.info(`${_.capitalize(key)} updated successfully`)
     })
   }

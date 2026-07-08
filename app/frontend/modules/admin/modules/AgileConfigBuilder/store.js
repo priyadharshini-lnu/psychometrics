@@ -1,5 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import {
+  createStore, applyMiddleware, compose, combineReducers,
+} from 'redux'
 import api from '~/middleware/api'
+import modals from '~/modules/admin/core/ui/modals'
+import extra from './actions'
 
 
 let composeEnhancers = compose
@@ -10,8 +14,15 @@ if (__DEV__) {
   }
 }
 
+const rootReducer = combineReducers({
+  ui: combineReducers({
+    modals,
+  }),
+  settings: extra,
+})
+
 const store = createStore(
-  () => ({}),
+  rootReducer,
   {},
   composeEnhancers(applyMiddleware(api)),
 )

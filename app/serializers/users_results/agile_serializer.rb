@@ -3,7 +3,7 @@
 module UsersResults
   class AgileSerializer < Panko::Serializer
     attributes :id, :groups, :locale, :completed_groups, :assets, :available_locales, :other_pending_assessments_count,
-               :remaining_campaign_time
+               :remaining_campaign_time, :remaining_assessment_time
 
     delegate :agile, :user_assessment, to: :object
     delegate :config, :translations, to: :agile
@@ -39,6 +39,17 @@ module UsersResults
         available: available_locales,
         translations: available_translations
       }
+    end
+
+    def remaining_assessment_time
+      return unless user_assessment.expiry_date
+      return if object.not_started?
+
+      assessment_time_left = [user_assessment.expiry_date - Time.zone.now, 0].max
+
+      return [assessment_time_left, remaining_campaign_time].min if remaining_campaign_time
+
+      assessment_time_left
     end
 
     def attributes(*_)

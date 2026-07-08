@@ -67,7 +67,6 @@ module Examus
 
     def session_url
       resource_id = subject.present? ? subject.id : campaign_user.id
-      resource_url = subject.present? ? :pass_user_assessment_url : :proctoring_redirect_campaign_user_url
       Utility::Url.generate(
         resource_url,
         subdomain: project.subdomain,
@@ -75,6 +74,13 @@ module Examus
         jwt: jwt_token,
         user_id: campaign_user.user.id
       )
+    end
+
+    def resource_url
+      return :proctoring_redirect_campaign_user_url if subject.blank?
+      return :agile_user_assessment_url if subject.assessment.agile?
+
+      :pass_user_assessment_url
     end
 
     def campaign_url

@@ -99,7 +99,13 @@ class EndUser::UserAssessmentsController < ApplicationController
     UserAssessments::Begin.call!(@user_assessment, lang)
 
     respond_to do |format|
-      format.html { render 'end_user/users/dashboard', layout: 'layouts/end_user' }
+      format.html do
+        if @user_assessment.assessment.agile?
+          redirect_to agile_user_assessment_path(@user_assessment)
+        else
+          render 'end_user/users/dashboard', layout: 'layouts/end_user'
+        end
+      end
     end
   end
 

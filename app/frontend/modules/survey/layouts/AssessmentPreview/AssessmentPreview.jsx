@@ -27,7 +27,7 @@ const AssessmentPreview = ({
 
   useEffect(() => {
     isAgile() && initializeAgile()
-    if (fixedTimed && insideSelectiveProctoringSession && !started) {
+    if (fixedTimed && !isAgile() && insideSelectiveProctoringSession && !started) {
       window.location.href = `/user_assessments/${userAssessmentId}/begin${location.search}`
     }
   }, [])
