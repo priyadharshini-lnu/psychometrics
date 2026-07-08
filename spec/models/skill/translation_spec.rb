@@ -36,7 +36,7 @@ RSpec.describe Skill::Translation, type: :model do
     end
 
     context 'when tenant_id is already set' do
-      it 'does not overwrite an existing tenant_id' do
+      it 'overwrites it with the derived tenant_id from parent skill' do
         other_tenant = create(:tenancy)
         translation = described_class.new(
           translated_model: skill,
@@ -45,7 +45,7 @@ RSpec.describe Skill::Translation, type: :model do
         )
         translation.valid?
 
-        expect(translation.tenant_id).to eq(other_tenant.id)
+        expect(translation.tenant_id).to eq(tenant.id)
       end
     end
   end

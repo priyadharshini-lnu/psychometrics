@@ -52,6 +52,10 @@ module Users
 
     private
 
+    def should_resolve_tenant?
+      false
+    end
+
     def generate_email_and_defaults
       self.last_name = 'App'
       self.email = "#{first_name.to_s.parameterize}.#{tenant_id}@app.com"

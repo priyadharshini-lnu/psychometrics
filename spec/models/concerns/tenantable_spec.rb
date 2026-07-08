@@ -37,6 +37,13 @@ describe Tenantable do
         campaign = create(:campaign, project: project_a)
         expect(campaign.tenant_id).to eq(tenant_a.id)
       end
+
+      it 'overwrites a stale tenant_id on create with the derived tenant' do
+        campaign = Campaign.new(project: project_a, tenant_id: tenant_b.id)
+        campaign.valid?
+
+        expect(campaign.tenant_id).to eq(tenant_a.id)
+      end
     end
 
     context 'via campaign_id' do
