@@ -13,6 +13,7 @@ module Api
       result = ::OccupationConditionSets::Copy.call(source, params.dig(:data, :attributes, :new_name))
 
       if result[:ok]
+        audit! :copy, result[:ok], payload: { source_id: source.id }
         jsonapi_render json: result[:ok]
       else
         render json: { errors: result[:error] }, status: 422

@@ -7,6 +7,11 @@ class Api::V2::Administration::Dimensions::Occupations::OccupationsFactorResourc
              :condition_set_id
 
   ransack_filters %i[filterable_fields search_query]
+
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :factor_id) }
+
   filter :condition_set_id, apply: lambda { |records, value, _options|
     records.where(occupation_condition_set_id: value)
   }

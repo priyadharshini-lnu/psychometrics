@@ -5,6 +5,10 @@ class Api::V2::Administration::Dimensions::OccupationConditionSetResource < Api:
 
   ransack_filters %i[filterable_fields search_query]
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
+
   def self.records(opts)
     ::Pundit.policy_scope!(
       opts[:context][:user],

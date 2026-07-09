@@ -7,6 +7,10 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
   has_one :owner
   ransack_filters %i[filterable_fields]
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
+
   def meta_details
     {
       permissions: lambda {
