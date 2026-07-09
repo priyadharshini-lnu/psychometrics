@@ -22,6 +22,8 @@ hr:
     assessor_approved: Odobrio procjenitelj
     assessors_list: Popis procjenitelja
     asset_not_present: Imovina nije prisutna
+    audience: Publika
+    audience_claim_label: Publika (aud)
     audio: Audio
     audio_devices: Zvučni uređaji
     authentication_failed: Autentifikacija nije uspjela. Molim te, pokušaj ponovno.
@@ -100,6 +102,10 @@ hr:
     import: Uvoz
     inactive: Neaktivan
     internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
+    issuer: Izdavatelj
+    issuer_claim_label: Izdavatelj (iss)
+    jwt_claims_details: Detalji potraživanja JWT-a
+    key_id_claim_label: Ključni ID (kid)
     last_name: Prezime
     last_updated: Posljednje ažuriranje
     learning_on_the_job_label: Učenje na poslu

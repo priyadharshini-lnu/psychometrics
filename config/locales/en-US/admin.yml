@@ -26,6 +26,7 @@ en-US:
     add_btn: Add subject
     add_campaign_admin: Add Campaign Admin
     add_client_admin: Add Client Admin
+    add_client_assessor: Add Client Assessor
     add_conditions: Add Conditions
     add_evaluators: Add Evaluators
     add_indicator: Add Indicator
@@ -33,6 +34,7 @@ en-US:
     add_lead_assessor_hint: Please, add Lead Assessor Form first
     add_more: Add More
     add_new_folder: Add New Folder
+    add_or_select_factor_msg: Click on add/select a factor to view details.
     add_output_schema_key: Add Output Schema Key
     add_project: Add Project
     add_project_admin: Add Project Admin
@@ -47,6 +49,7 @@ en-US:
     admin_role_deleted: Admin role '%{role_name}' was deleted successfully.
     admin_roles: Admin Roles
     admin_updated_successfully: Admin '%{name}' was updated successfully
+    admin_with_email_already_added: User with this email has already been added.
     administrator_approves_reports: Administrator approves reports
     administrators_list_columns_email: Email
     admins: Admins
@@ -123,6 +126,20 @@ en-US:
     application_name: Application Name
     application_name_already_taken: Already exists for this client
     application_name_format_hint: Only letters and numbers are allowed, with a single space between words
+    application_settings_at_least_one_ip_required: Please enable at least one IP address entry before enabling IP whitelisting
+    application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
+    application_settings_edit_ip_address: Edit IP Address / CIDR Range
+    application_settings_enable_ip_whitelisting: Enable IP Whitelisting
+    application_settings_invalid_ip_format: Invalid IP address or CIDR format
+    application_settings_ip_addresses: IP Addresses / CIDR Ranges
+    application_settings_ip_deleted_successfully: IP address deleted successfully
+    application_settings_ip_description_placeholder: e.g., Office network or Production server
+    application_settings_ip_input_placeholder: e.g., 192.168.1.1 or 10.0.0.0/24
+    application_settings_ip_or_cidr: IP Address or CIDR Range
+    application_settings_ip_required: IP address or CIDR range is required
+    application_settings_ip_updated_successfully: IP address updated successfully
+    application_settings_ip_whitelisting_disabled_success: IP whitelisting disabled successfully
+    application_settings_ip_whitelisting_enabled_success: IP whitelisting enabled successfully
     applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions
@@ -279,6 +296,7 @@ en-US:
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
     campaign_assessment_column_hogan_assessment_id: Hogan Assessment ID
     campaign_assessment_column_hogan_form_id: Hogan Form ID
+    campaign_assessment_column_occupation_condition_set: Occupation Condition Set
     campaign_assessment_column_pearson_assessment_id: Pearson Assessment ID
     campaign_assessment_column_pearson_assessment_language: Pearson Assessment Language
     campaign_assessment_column_pearson_error_details: Pearson Error Details
@@ -305,6 +323,10 @@ en-US:
     campaign_assessment_modals_enable_caching_content: Are you sure you want to enable caching for this assessment?
     campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
     campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Apply this change to existing users in this campaign
+    campaign_assessment_modals_update_occupation_condition_set_select: Select Occupation Condition Set
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Occupation Condition Set was updated successfully
+    campaign_assessment_modals_update_occupation_condition_set_title: Update Occupation Condition Set
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
@@ -388,6 +410,13 @@ en-US:
     client: Client Tenancy
     client_admin: Client Admin
     client_admins: Client Admins
+    client_assessor_import_already_added: User with email '%{email}' has already been added as a client assessor.
+    client_assessor_import_client_required: Client is required for importing assessors.
+    client_assessor_import_description: Import a CSV file with a single email column for client assessors.
+    client_assessor_import_duplicated_emails: 'The following email(s) are duplicated in CSV: %{emails}'
+    client_assessor_import_emails_required: Please provide at least one assessor email.
+    client_assessor_import_global_assessor_required: User must exist as a global assessor.
+    client_assessor_removed_successfully: Client assessor with email '%{email}' was removed successfully
     client_credentials_label: Client Credentials
     client_credentials_value: client_credentials
     client_features: Client Features
@@ -431,11 +460,13 @@ en-US:
     completed_tooltip: All evaluators have submitted the evaluation
     components_input_duration_placeholder: Enter as '1d 2h 3m'
     concise: Concise
+    condition_sets: Condition Sets
     confidence_interval: Confidence Interval
     confidence_interval_update_success: Confidence interval updated successfully
     configuration: Configuration
     configure_model_answer_title: Configure Model Answer and Keywords
     confirm_remove_admin: Are you sure you want to remove admin user with email '%{email}'?
+    confirm_remove_client_assessor: Are you sure you want to remove the client assessor with email '%{email}'?
     confirmation_required: Confirmation Required
     confirmation_required_details: Are you sure you want to delete the %{resource} "%{resource_name}"?
     consolidated: Consolidated
@@ -444,8 +475,11 @@ en-US:
     copied: Copied
     copied_url_success: URL is copied to clipboard successfully
     copy_ai_artifacts: Copy AI Artifacts
+    copy_assessment_scheduled: Assessment copy job has been scheduled.
     copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
+    copy_occupation_condition_set: Copy Occupation Condition Set
+    copy_occupation_condition_set_msg: This will copy all existing occupation factors configuration from current condition set to the new condition set.
     copy_report_scheduled: Report copy job has been scheduled.
     copy_text: Text
     copy_to_all: Copy to other Assessment Centers
@@ -529,6 +563,7 @@ en-US:
     default_assessment_language: Assessment default language
     default_button: Default
     default_language: Default Language
+    default_occupation_condition_set: Default Occupation Condition Set
     default_report_language: Report default language
     define_max_score_text: Define a score of %{maxScore} (maximum score)
     define_min_score_text: Define a score of %{minScore} (minimum score)
@@ -638,6 +673,7 @@ en-US:
     document_titles_project_participants: Participants | %{project}
     done: Done
     done_tooltip: No more evaluation can be submitted for this user as this user's evaluation is marked as done by %{marked_by}
+    download_assessor_email_template: Download sample template
     download_bulk_asset_download_example_csv: Download Example CSV.
     download_example_csv: Download Example csv
     dp_consent: Enable data processing consent
@@ -667,6 +703,7 @@ en-US:
     email_subjects_manager_when_available: Email subject's manager when report becomes available
     empty: Empty
     empty_csv_file: CSV file does not contain any data.
+    empty_occupation_condition_set_msg: No Occupation factors found for this condition set. Please add a factor.
     enable_caching_content: Are you sure you want to enable caching for this assessment?
     enable_caching_successfully: Caching has been enabled for this assessment.
     enable_caching_title: Enable Assessment Caching?
@@ -760,6 +797,7 @@ en-US:
     factors_index_sub_factors: Sub factors / Indicators
     factors_index_title: Factors
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: Factor '%{name}' was removed successfully.
     failure_reason: Failure Reason
     feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
     feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
@@ -1214,6 +1252,7 @@ en-US:
     log_date: Log Date
     logged_in: Logged in
     login: Login
+    login_page_design_tab: Design
     low: Low
     mail_history: Mail History
     main_report: Main Report
@@ -1310,6 +1349,7 @@ en-US:
     new_score: New Score
     no_assessments_found: Audit ID
     no_client_access: You do not have access to this client
+    no_client_access_root: You are not associated with any client
     no_clients_found: No clients found
     no_completed_assessments: There are no completed assessments yet
     no_file_selected: No file selected
@@ -1360,6 +1400,13 @@ en-US:
     oauth_scope_label: Scope
     oauth_scope_name: oauth_scope
     oauth_scope_required: Scope is required
+    occupation_condition_set_copy_success: Occupation Condition Set copied successfully
+    occupation_condition_sets: Occupation Condition Sets
+    occupation_condition_sets_remove_confirm: Enter the occupation condition set name given below in the text box to confirm
+    occupation_condition_sets_remove_success: Occupation condition set "%{name}" was removed successfully
+    occupation_condition_sets_remove_warning: Are you sure you want to delete the occupation condition set "%{name}"?
+    occupation_factors_condition_set: Condition Set
+    occupation_factors_title: Occupation Factors
     occupations: Occupations
     occupations_factors_list_condition: Condition
     occupations_factors_list_position: Position
@@ -2033,6 +2080,7 @@ en-US:
     public_key_cannot_be_changed: cannot be changed after creation
     public_key_copy_private_key: Copy Private Key
     public_key_created: Public key created successfully
+    public_key_details: Public Key Details
     public_key_generate: Generate Key Pair
     public_key_generate_button: Generate RSA Key Pair
     public_key_generate_info: Will generate a 2048-bit RSA key pair. Only the public key will be stored. Copy and securely store the private key — it will not be shown again.
@@ -2210,12 +2258,14 @@ en-US:
     report_type: Report Type
     report_types:
       active_clients_projects: Active Clients & Projects
+      campaign_factor_scores: Campaign Factor Scores
       client_assessment_counts: Client Assessment Counts
       hogan_usage_report: Hogan Assessment Usage
       json_data_report: JSON Data Report
       pearson_usage_report: Pearson Assessment Usage
       report_usage_summary: Report Usage Summary
       saville_usage_report: Saville Assessment Usage
+      user_access_review: User Access Review
       user_created_dates: User Created Dates
       user_reports_export: User Reports Export
     reports: Reports
@@ -2607,6 +2657,7 @@ en-US:
     search_admins: Search admins
     search_campaign: Search by Campaign
     search_client: Search by Client
+    search_client_assessors: Search client assessors
     search_job_role: Search job role
     search_participants: Search Participants...
     search_project: Search by Project
@@ -2642,6 +2693,7 @@ en-US:
     select_admin_role: Select admin role
     select_assessment_language: Select assessment language
     select_client: Select Client
+    select_condition_set: Select condition set
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level

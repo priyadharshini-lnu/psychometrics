@@ -876,6 +876,7 @@ es-ES:
         compact_completion_status_export: Exportación de estados de finalización compactos
         completion_status_export: Exportación del estado de finalización
         copy_as_template_or_campaign: Copiar campaña como plantilla
+        copy_assessment: Evaluación de la copia
         copy_dimension: Copiar dimensión
         copy_report: Copiar informe
         create_threesixty_campaign: Crear campaña Threesixty
@@ -915,6 +916,7 @@ es-ES:
         import_assessors: Evaluadores de importaciones
         import_campaign_ai_artifacts: Importar artefactos de IA de campañas
         import_campaign_factors: Factores de la campaña de importación
+        import_client_assessors: Importar evaluadores de clientes
         import_datasheet: Hoja de datos de importación
         import_development_action_translations: Importación Desarrollo Acción Traducciones
         import_development_actions: Importar acciones de desarrollo
@@ -972,6 +974,8 @@ es-ES:
       errors:
         no_plans: No se encontraron planes activos para desplazados internos
     close: Cerrar
+    copy_assessment:
+      failed: La copia de evaluación ha fallado
     copy_report:
       failed: No se ha podido copiar el informe
     details: Detalles

@@ -26,6 +26,7 @@ ru:
     add_btn: Добавить тему
     add_campaign_admin: Добавить администратора кампании
     add_client_admin: Добавить администратора клиента
+    add_client_assessor: Добавить оценщика клиента
     add_conditions: Добавить условия
     add_evaluators: Добавить оценщиков
     add_indicator: Добавить индикатор
@@ -33,6 +34,7 @@ ru:
     add_lead_assessor_hint: Пожалуйста, сначала добавьте форму ведущего оценщика.
     add_more: Добавить еще
     add_new_folder: Добавить новую папку
+    add_or_select_factor_msg: Нажмите «Добавить/выбрать фактор», чтобы просмотреть подробную информацию.
     add_output_schema_key: Добавить ключ схемы вывода
     add_project: Добавить проект
     add_project_admin: Добавить администратора проекта
@@ -47,6 +49,7 @@ ru:
     admin_role_deleted: Роль администратора «%{role_name}» была успешно удалена.
     admin_roles: Роли администратора
     admin_updated_successfully: Администратор «%{name}» был успешно обновлен.
+    admin_with_email_already_added: Пользователь с этим адресом электронной почты уже добавлен.
     administrator_approves_reports: Администратор утверждает отчеты
     administrators_list_columns_email: Электронная почта
     admins: Администраторы
@@ -123,6 +126,20 @@ ru:
     application_name: Название приложения
     application_name_already_taken: У этого клиента уже есть
     application_name_format_hint: Допускаются только буквы и цифры, с одним пробелом между словами
+    application_settings_at_least_one_ip_required: Перед включением белого списка IP-адресов необходимо добавить хотя бы одну запись с IP-адресом
+    application_settings_confirm_delete_ip: Вы уверены, что хотите удалить этот IP-адрес?
+    application_settings_edit_ip_address: Изменить IP-адрес / диапазон CIDR
+    application_settings_enable_ip_whitelisting: Включить белый список IP-адресов
+    application_settings_invalid_ip_format: Недопустимый IP-адрес или формат CIDR
+    application_settings_ip_addresses: IP-адреса / диапазоны CIDR
+    application_settings_ip_deleted_successfully: IP-адрес удален успешно
+    application_settings_ip_description_placeholder: например, офисная сеть или производственный сервер
+    application_settings_ip_input_placeholder: например, 192.168.1.1 или 10.0.0.0/24
+    application_settings_ip_or_cidr: IP-адрес или диапазон CIDR
+    application_settings_ip_required: Необходимо указать IP-адрес или диапазон CIDR
+    application_settings_ip_updated_successfully: IP-адрес успешно обновлен
+    application_settings_ip_whitelisting_disabled_success: Белый список IP-адресов успешно отключен
+    application_settings_ip_whitelisting_enabled_success: Белый список IP-адресов успешно включен
     applications: Приложения
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
     approve_all_questions: Утвердить все вопросы
@@ -279,6 +296,7 @@ ru:
     campaign_assessment_column_caching_enabled: Кэширование оценок включено
     campaign_assessment_column_hogan_assessment_id: Идентификатор оценки Хогана
     campaign_assessment_column_hogan_form_id: Идентификационный номер Хогана
+    campaign_assessment_column_occupation_condition_set: Набор условий занятости
     campaign_assessment_column_pearson_assessment_id: Идентификатор теста Pearson
     campaign_assessment_column_pearson_assessment_language: Язык тестирования Pearson
     campaign_assessment_column_pearson_error_details: Подробная информация об ошибке Пирсона
@@ -305,6 +323,10 @@ ru:
     campaign_assessment_modals_enable_caching_content: Вы уверены, что хотите включить кэширование для этой оценки?
     campaign_assessment_modals_enable_caching_successfully: Для этой оценки включено кэширование.
     campaign_assessment_modals_enable_caching_title: Включить кэширование оценок?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Применить это изменение к существующим пользователям в данной кампании
+    campaign_assessment_modals_update_occupation_condition_set_select: Выбрать набор условий по профессии
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Набор условий занятости успешно обновлен
+    campaign_assessment_modals_update_occupation_condition_set_title: Обновление набора условий занятости
     campaign_factors: Факторы кампании
     campaign_id_placeholder: Введите идентификатор кампании
     campaign_name: Название кампании
@@ -388,6 +410,13 @@ ru:
     client: Клиент
     client_admin: Администратор клиента
     client_admins: Администраторы клиентов
+    client_assessor_import_already_added: Пользователь с адресом электронной почты «%{email}» уже добавлен в качестве оценщика клиентов.
+    client_assessor_import_client_required: Для импорта оценщиков требуется клиентская программа.
+    client_assessor_import_description: Импортируйте CSV-файл, содержащий один столбец с адресами электронной почты для оценщиков клиентов.
+    client_assessor_import_duplicated_emails: 'Следующие адреса электронной почты повторяются в файле CSV: %{emails}'
+    client_assessor_import_emails_required: Пожалуйста, укажите адрес электронной почты хотя бы одного эксперта.
+    client_assessor_import_global_assessor_required: Пользователь должен быть зарегистрирован в качестве глобального оценщика.
+    client_assessor_removed_successfully: Пользователь «Client assessor» с адресом электронной почты «%{email}» был успешно удален
     client_credentials_label: Учетные данные клиента
     client_credentials_value: клиентские_учетные_данные
     client_features: Особенности клиента
@@ -431,11 +460,13 @@ ru:
     completed_tooltip: Все эксперты представили свои оценки.
     components_input_duration_placeholder: Введите как «1 дн. 2 ч. 3 мин.».
     concise: Лаконичный
+    condition_sets: Наборы условий
     confidence_interval: Доверительный интервал
     confidence_interval_update_success: Доверительный интервал обновлен успешно
     configuration: Настройка
     configure_model_answer_title: Настройте образец ответа и ключевые слова
     confirm_remove_admin: Вы уверены, что хотите удалить администратора с адресом электронной почты «%{email}»?
+    confirm_remove_client_assessor: Вы уверены, что хотите удалить клиентского оценщика с адресом электронной почты «%{email}»?
     confirmation_required: Требуется подтверждение
     confirmation_required_details: Вы действительно хотите удалить файл «%{resource_name}» из папки «%{resource}»?
     consolidated: Консолидированный
@@ -444,8 +475,11 @@ ru:
     copied: Скопировано
     copied_url_success: URL успешно скопирован в буфер обмена
     copy_ai_artifacts: Копировать артефакты искусственного интеллекта
+    copy_assessment_scheduled: Задание на печать пробного экземпляра добавлено в график.
     copy_hint: Копирует вышеуказанную конфигурацию «Места», «Менеджеры центра», «Оценщики» и «Встречи и ресурсы» в следующие центры оценки. После копирования вы можете внести дополнительные изменения в отдельные центры оценки, прежде чем продолжить.
     copy_image_url: Скопировать URL изображения
+    copy_occupation_condition_set: Копировать набор условий занятости
+    copy_occupation_condition_set_msg: При этом все настройки факторов занятости из текущего набора условий будут скопированы в новый набор условий.
     copy_report_scheduled: Задание на копирование отчета добавлено в график.
     copy_text: Текст
     copy_to_all: Копировать в другие центры оценки
@@ -529,6 +563,7 @@ ru:
     default_assessment_language: Язык оценки по умолчанию
     default_button: По умолчанию
     default_language: Язык по умолчанию
+    default_occupation_condition_set: Набор условий по профессии по умолчанию
     default_report_language: Сообщить о языке по умолчанию
     define_max_score_text: Определите оценку «%{maxScore}» (максимальная оценка)
     define_min_score_text: Определите оценку «%{minScore}» (минимальная оценка)
@@ -638,6 +673,7 @@ ru:
     document_titles_project_participants: Участники | %{project}
     done: Готово
     done_tooltip: Для этого пользователя больше не может быть отправлена оценка, так как оценка этого пользователя помечена как выполненная %{marked_by}
+    download_assessor_email_template: Скачать образец шаблона
     download_bulk_asset_download_example_csv: Скачать пример CSV.
     download_example_csv: Скачать пример csv
     dp_consent: Разрешить обработку данных
@@ -667,6 +703,7 @@ ru:
     email_subjects_manager_when_available: Уведомить руководителя по электронной почте, когда отчет будет готов
     empty: Пусто
     empty_csv_file: CSV-файл не содержит никаких данных.
+    empty_occupation_condition_set_msg: Для данного набора состояний не найдено факторов, связанных с родом занятий. Пожалуйста, добавьте фактор.
     enable_caching_content: Вы уверены, что хотите включить кэширование для этой оценки?
     enable_caching_successfully: Для этой оценки включено кэширование.
     enable_caching_title: Включить кэширование оценок?
@@ -760,6 +797,7 @@ ru:
     factors_index_sub_factors: Подфакторы
     factors_index_title: Факторы
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: Фактор «%{name}» был успешно удален.
     failure_reason: Причина сбоя
     feature_ai_assistants_description: Включите помощников на базе искусственного интеллекта для улучшения пользовательского опыта
     feature_ai_assisted_idp_description: Используйте ИИ для помощи в составлении рекомендаций по индивидуальному плану развития
@@ -1214,6 +1252,7 @@ ru:
     log_date: Дата регистрации
     logged_in: Вошел
     login: Вход
+    login_page_design_tab: Дизайн
     low: Низкий
     mail_history: История почты
     main_report: Основной отчет
@@ -1310,6 +1349,7 @@ ru:
     new_score: Новый счет
     no_assessments_found: Идентификатор аудита
     no_client_access: У вас нет доступа к этому клиенту
+    no_client_access_root: Вы не связаны ни с одним клиентом
     no_clients_found: Клиенты не найдены
     no_completed_assessments: Пока нет завершенных оценок
     no_file_selected: Файл не выбран
@@ -1360,6 +1400,13 @@ ru:
     oauth_scope_label: Объем
     oauth_scope_name: oauth_scope
     oauth_scope_required: Требуется объем
+    occupation_condition_set_copy_success: Набор условий занятости успешно скопирован
+    occupation_condition_sets: Наборы условий занятости
+    occupation_condition_sets_remove_confirm: Введите в поле ввода название набора условий занятости, указанное ниже, для подтверждения
+    occupation_condition_sets_remove_success: Набор условий занятости «%{name}» был успешно удален
+    occupation_condition_sets_remove_warning: Вы уверены, что хотите удалить набор условий по профессии «%{name}»?
+    occupation_factors_condition_set: Набор условий
+    occupation_factors_title: Факторы, связанные с родом занятий
     occupations: Профессии
     occupations_factors_list_condition: Состояние
     occupations_factors_list_position: Позиция
@@ -2033,6 +2080,7 @@ ru:
     public_key_cannot_be_changed: не может быть изменено после создания
     public_key_copy_private_key: Скопировать закрытый ключ
     public_key_created: Открытый ключ создан успешно
+    public_key_details: Сведения об открытом ключе
     public_key_generate: Создать пару ключей
     public_key_generate_button: Создать пару ключей RSA
     public_key_generate_info: Будет сгенерирована пара ключей RSA длиной 2048 бит. Сохранится только открытый ключ. Скопируйте и надежно сохраните закрытый ключ — он больше не будет отображаться.
@@ -2210,12 +2258,14 @@ ru:
     report_type: Тип отчета
     report_types:
       active_clients_projects: Текущие клиенты и проекты
+      campaign_factor_scores: Оценки факторов кампании
       client_assessment_counts: Оценка клиентов имеет значение
       hogan_usage_report: Использование системы оценки Hogan
       json_data_report: Отчет по данным в формате JSON
       pearson_usage_report: Использование оценочных материалов Pearson
       report_usage_summary: Сводка по использованию отчета
       saville_usage_report: Использование системы оценки Saville
+      user_access_review: Проверка прав доступа пользователей
       user_created_dates: Даты, созданные пользователем
       user_reports_export: Экспорт отчетов пользователей
     reports: Отчеты
@@ -2607,6 +2657,7 @@ ru:
     search_admins: Администраторы поиска
     search_campaign: Поиск по кампании
     search_client: Поиск по клиенту
+    search_client_assessors: Поиск клиентских оценщиков
     search_job_role: Поиск вакансии
     search_participants: Поиск участников...
     search_project: Поиск по проекту
@@ -2642,6 +2693,7 @@ ru:
     select_admin_role: Выберите роль администратора
     select_assessment_language: Выберите язык оценки
     select_client: Выбрать клиента
+    select_condition_set: Выбрать набор условий
     select_end_time: Выберите время окончания
     select_language_to_translate: Выберите язык для перевода
     select_level: Выберите уровень

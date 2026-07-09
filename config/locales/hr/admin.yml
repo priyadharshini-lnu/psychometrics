@@ -26,6 +26,7 @@ hr:
     add_btn: Dodavanje ispitanika
     add_campaign_admin: Dodaj administratora kampanje
     add_client_admin: Dodaj klijenta administratora
+    add_client_assessor: Dodaj klijenta procjenitelja
     add_conditions: Dodaj uvjete
     add_evaluators: Dodaj evaluatore
     add_indicator: Dodaj pokazatelj
@@ -33,6 +34,7 @@ hr:
     add_lead_assessor_hint: Molimo prvo dodajte obrazac glavnog procjenitelja
     add_more: Dodaj više
     add_new_folder: Dodaj novu mapu
+    add_or_select_factor_msg: Kliknite na Dodaj/Odaberi čimbenik da biste vidjeli detalje.
     add_output_schema_key: Dodaj ključ izlazne sheme
     add_project: Dodavanje projekta
     add_project_admin: Dodaj administratora projekta
@@ -47,6 +49,7 @@ hr:
     admin_role_deleted: Administratorska uloga '%{role_name}' uspješno je izbrisana.
     admin_roles: Uloge administratora
     admin_updated_successfully: Administrator '%{name}' uspješno je ažuriran
+    admin_with_email_already_added: Korisnik s ovom e-poštom je već dodan.
     administrator_approves_reports: Administrator odobrava izvješća
     administrators_list_columns_email: E-pošta
     admins: Administratori
@@ -123,6 +126,20 @@ hr:
     application_name: Naziv aplikacije
     application_name_already_taken: Već postoji za ovog klijenta
     application_name_format_hint: Dopušteni su samo slova i brojevi, s jednim razmakom između riječi.
+    application_settings_at_least_one_ip_required: Molimo omogućite barem jedan unos IP adrese prije omogućavanja IP bijele liste.
+    application_settings_confirm_delete_ip: Jeste li sigurni da želite izbrisati ovu IP adresu?
+    application_settings_edit_ip_address: Uređivanje IP adrese / CIDR raspona
+    application_settings_enable_ip_whitelisting: Omogući bijeli popis IP adresa
+    application_settings_invalid_ip_format: Neispravna IP adresa ili CIDR format
+    application_settings_ip_addresses: IP adrese / CIDR rasponi
+    application_settings_ip_deleted_successfully: IP adresa uspješno izbrisana
+    application_settings_ip_description_placeholder: npr. mreža ureda ili produkcijski poslužitelj
+    application_settings_ip_input_placeholder: npr. 192.168.1.1 ili 10.0.0.0/24
+    application_settings_ip_or_cidr: IP adresa ili CIDR raspon
+    application_settings_ip_required: Potrebna je IP adresa ili CIDR raspon.
+    application_settings_ip_updated_successfully: IP adresa uspješno ažurirana
+    application_settings_ip_whitelisting_disabled_success: Uspješno onemogućeno bijelo popisivanje IP adresa
+    application_settings_ip_whitelisting_enabled_success: Uspješno omogućeno bijelo popisivanje IP adresa
     applications: Primjene
     apply_to_existing_users: Primijeni ovu promjenu na postojeće korisnike u ovoj kampanji.
     approve_all_questions: Odobri sva pitanja
@@ -279,6 +296,7 @@ hr:
     campaign_assessment_column_caching_enabled: Omogućeno keširanje procjene
     campaign_assessment_column_hogan_assessment_id: Hogan ID procjene
     campaign_assessment_column_hogan_form_id: Hogan ID obrasca
+    campaign_assessment_column_occupation_condition_set: Postavljena radna uvjetna postavka
     campaign_assessment_column_pearson_assessment_id: Pearson ID za procjenu
     campaign_assessment_column_pearson_assessment_language: Pearsonov jezični test
     campaign_assessment_column_pearson_error_details: Detalji o pogreškama u Pearsonovoj analizi
@@ -305,6 +323,10 @@ hr:
     campaign_assessment_modals_enable_caching_content: Jeste li sigurni da želite omogućiti keširanje za ovu procjenu?
     campaign_assessment_modals_enable_caching_successfully: Keširanje je omogućeno za ovu procjenu.
     campaign_assessment_modals_enable_caching_title: Omogućiti keširanje procjene?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Primijeni ovu promjenu na postojeće korisnike u ovoj kampanji.
+    campaign_assessment_modals_update_occupation_condition_set_select: Odaberite skup uvjeta za zanimanje
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Skup uvjeta za okupaciju je uspješno ažuriran.
+    campaign_assessment_modals_update_occupation_condition_set_title: Ažuriraj skup stanja zanimanja
     campaign_factors: Čimbenici kampanje
     campaign_id_placeholder: Unesite ID kampanje
     campaign_name: Naziv kampanje
@@ -388,6 +410,13 @@ hr:
     client: Najam klijenta
     client_admin: Klijent administrator
     client_admins: Klijenti administratori
+    client_assessor_import_already_added: Korisnik s e-poštom '%{email}' već je dodan kao klijentski procjenitelj.
+    client_assessor_import_client_required: Klijent je potreban za uvoz ocjenjivača.
+    client_assessor_import_description: Uvezi CSV datoteku s jednom stupcem e-pošte za klijentske procjenitelje.
+    client_assessor_import_duplicated_emails: 'Sljedeći e-mailovi su duplicirani u CSV-u: %{emails}'
+    client_assessor_import_emails_required: Molimo dostavite barem jednu adresu e-pošte procjenitelja.
+    client_assessor_import_global_assessor_required: Korisnik mora postojati kao globalni ocjenjivač.
+    client_assessor_removed_successfully: Klijent-ocjenjivač s e-poštom '%{email}' uspješno je uklonjen
     client_credentials_label: Vjerodajnice klijenta
     client_credentials_value: client_credentials
     client_features: Odlike klijenta
@@ -431,11 +460,13 @@ hr:
     completed_tooltip: Svi evaluatori su podnijeli evaluaciju
     components_input_duration_placeholder: Unesite kao '1d 2h 3m'
     concise: Sažeto
+    condition_sets: Skupovi stanja
     confidence_interval: Povjerljivostni interval
     confidence_interval_update_success: Interval pouzdanosti uspješno ažuriran
     configuration: Konfiguracija
     configure_model_answer_title: Konfigurirajte model odgovora i ključne riječi
     confirm_remove_admin: Jeste li sigurni da želite ukloniti administratora s e-poštom '%{email}'?
+    confirm_remove_client_assessor: Jeste li sigurni da želite ukloniti klijentskog procjenitelja s e-poštom '%{email}'?
     confirmation_required: Potvrda je potrebna
     confirmation_required_details: Jeste li sigurni da želite izbrisati "%{resource_name}" iz "%{resource}"?
     consolidated: Konsolidirano
@@ -444,8 +475,11 @@ hr:
     copied: Kopirano
     copied_url_success: URL je uspješno kopiran u međuspremnik.
     copy_ai_artifacts: Kopiraj AI artefakte
+    copy_assessment_scheduled: Zadatak za procjenu je zakazan.
     copy_hint: Kopira gore navedenu konfiguraciju Sjedala, Upravitelji centra, Procjenitelji i Sastanci i resursi u sljedeće centre za procjenu. Nakon kopiranja možete unijeti daljnje promjene u pojedinačne centre za procjenu prije nego što nastavite.
     copy_image_url: Kopiraj URL slike
+    copy_occupation_condition_set: Kopiraj skup uvjeta stanja
+    copy_occupation_condition_set_msg: Ovo će kopirati svu konfiguraciju postojećih faktora zauzetosti iz trenutnog skupa stanja u novi skup stanja.
     copy_report_scheduled: Zadatak kopiranja izvještaja je zakazan.
     copy_text: Tekstualna poruka
     copy_to_all: Kopiraj u druge centre za procjenu
@@ -529,6 +563,7 @@ hr:
     default_assessment_language: Zadani jezik procjene
     default_button: Zadano
     default_language: Zadani jezik
+    default_occupation_condition_set: Postavljanje zadane radne uvjetne postavke
     default_report_language: Zadani jezik izvješća
     define_max_score_text: Definirajte rezultat od %{maxScore} (maksimalni rezultat)
     define_min_score_text: Definirajte rezultat od %{minScore} (minimalni rezultat)
@@ -638,6 +673,7 @@ hr:
     document_titles_project_participants: Sudionici | %{project}
     done: Učinjeno
     done_tooltip: Za ovog korisnika više se ne može podnijeti evaluacija jer je evaluacija označena kao %{marked_by}
+    download_assessor_email_template: Preuzmi primjer predloška
     download_bulk_asset_download_example_csv: Preuzmi primjer CSV-a.
     download_example_csv: Preuzmite primjer csv
     dp_consent: Omogućite privolu za obradu podataka
@@ -667,6 +703,7 @@ hr:
     email_subjects_manager_when_available: Pošaljite e-poštu menadžeru ispitanika kada izvješće postane dostupno
     empty: Prazno
     empty_csv_file: CSV datoteka ne sadrži nikakve podatke.
+    empty_occupation_condition_set_msg: Nisu pronađeni čimbenici zanimanja za ovaj skup stanja. Molimo dodajte čimbenik.
     enable_caching_content: Jeste li sigurni da želite omogućiti keširanje za ovu procjenu?
     enable_caching_successfully: Keširanje je omogućeno za ovu procjenu.
     enable_caching_title: Omogućiti keširanje procjene?
@@ -760,6 +797,7 @@ hr:
     factors_index_sub_factors: Podčimbenici
     factors_index_title: Faktori
     factors_resource_confirmations_delete_body: "<p>Jeste li sigurni da želite izbrisati ovaj faktor?</p>\n"
+    factors_resource_removal_success: Faktor '%{name}' uspješno je uklonjen.
     failure_reason: Razlog neuspjeha
     feature_ai_assistants_description: Omogućite asistente pokretane umjetnom inteligencijom za poboljšano korisničko iskustvo
     feature_ai_assisted_idp_description: Koristite umjetnu inteligenciju za pomoć pri preporukama za planiranje individualnog razvoja.
@@ -1214,6 +1252,7 @@ hr:
     log_date: Datum zapisa
     logged_in: Prijavljeno
     login: Prijava
+    login_page_design_tab: Dizajn
     low: Nisko
     mail_history: Povijest pošte
     main_report: Glavno izvješće
@@ -1310,6 +1349,7 @@ hr:
     new_score: Nova ocjena
     no_assessments_found: ID revizije
     no_client_access: Nemate pristup ovom klijentu
+    no_client_access_root: Niste povezani ni s jednim klijentom.
     no_clients_found: Nisu pronađeni klijenti
     no_completed_assessments: Još nema dovršenih procjena
     no_file_selected: Nijedna datoteka nije odabrana
@@ -1360,6 +1400,13 @@ hr:
     oauth_scope_label: Opseg
     oauth_scope_name: oauth_scope
     oauth_scope_required: Opseg je potreban
+    occupation_condition_set_copy_success: Skup uvjeta za zanimanje kopiran uspješno
+    occupation_condition_sets: Skupovi uvjeta zanimanja
+    occupation_condition_sets_remove_confirm: Unesite naziv skupa stanja zauzetosti navedenog u nastavku u tekstualno polje za potvrdu
+    occupation_condition_sets_remove_success: Uspješno je uklonjena postavka stanja zauzetosti "%{name}"
+    occupation_condition_sets_remove_warning: Jeste li sigurni da želite izbrisati skup uvjeta zanimanja "%{name}"?
+    occupation_factors_condition_set: Skup stanja
+    occupation_factors_title: Čimbenici zanimanja
     occupations: Zanimanja
     occupations_factors_list_condition: Uvjet
     occupations_factors_list_position: Pozicija
@@ -2033,6 +2080,7 @@ hr:
     public_key_cannot_be_changed: Ne može se promijeniti nakon stvaranja.
     public_key_copy_private_key: Kopirajte privatni ključ
     public_key_created: Javni ključ uspješno stvoren
+    public_key_details: Detalji javnog ključa
     public_key_generate: Generirajte par ključeva
     public_key_generate_button: Generirajte RSA par ključeva
     public_key_generate_info: Stvorit će se par RSA ključeva od 2048 bita. Pohranit će se samo javni ključ. Kopirajte i sigurno pohranite privatni ključ — više se neće prikazati.
@@ -2210,12 +2258,14 @@ hr:
     report_type: Vrsta izvještaja
     report_types:
       active_clients_projects: Aktivni klijenti i projekti
+      campaign_factor_scores: Rezultati faktorske analize kampanje
       client_assessment_counts: Procjena klijenta je važna
       hogan_usage_report: Upotreba Hoganove procjene
       json_data_report: Izvješće o JSON podacima
       pearson_usage_report: Upotreba Pearsonovih testova
       report_usage_summary: Sažetak upotrebe izvještaja
       saville_usage_report: Upotreba Saville Assessmenta
+      user_access_review: Pregled korisničkog pristupa
       user_created_dates: Datumi koje su kreirali korisnici
       user_reports_export: Izvoz korisničkih izvještaja
     reports: Izvješća
@@ -2604,6 +2654,7 @@ hr:
     search_admins: Pretraživanje administratora
     search_campaign: Pretraživanje kampanja
     search_client: Pretraživanje klijenata
+    search_client_assessors: Pretraži klijentske procjenitelje
     search_job_role: Pretraži radnu poziciju
     search_participants: Pretraži sudionike...
     search_project: Pretraživanje projekata
@@ -2639,6 +2690,7 @@ hr:
     select_admin_role: Odaberite administratorsku ulogu
     select_assessment_language: Odaberite jezik procjene
     select_client: Odabir klijenta
+    select_condition_set: Odaberite skup stanja
     select_end_time: Odaberite vrijeme završetka
     select_language_to_translate: Molimo odaberite jezik za prijevod
     select_level: Odabir razine

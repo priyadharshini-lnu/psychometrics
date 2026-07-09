@@ -22,6 +22,8 @@ ru:
     assessor_approved: Одобрено оценщиком
     assessors_list: Список оценщиков
     asset_not_present: Актив отсутствует
+    audience: Аудитория
+    audience_claim_label: Аудитория (aud)
     audio: Аудио
     audio_devices: Аудиоустройства
     authentication_failed: Аутентификация не удалась. Повторите попытку.
@@ -100,6 +102,10 @@ ru:
     import: Импорт
     inactive: Неактивный
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
+    issuer: Эмитент
+    issuer_claim_label: Эмитент (iss)
+    jwt_claims_details: Сведения о претензиях JWT
+    key_id_claim_label: Идентификатор ключа (kid)
     last_name: Фамилия
     last_updated: Последнее обновление
     learning_on_the_job_label: Обучение на рабочем месте

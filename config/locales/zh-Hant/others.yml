@@ -876,6 +876,7 @@ zh-Hant:
         compact_completion_status_export: 緊湊型完成狀態匯出
         completion_status_export: 完成狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
+        copy_assessment: 抄写评估
         copy_dimension: 複製尺寸
         copy_report: 复制报告
         create_threesixty_campaign: 建立 Threesixty 活動
@@ -915,6 +916,7 @@ zh-Hant:
         import_assessors: 進口評估員
         import_campaign_ai_artifacts: 匯入戰役 AI 工件
         import_campaign_factors: 匯入活動因素
+        import_client_assessors: 导入客户评估员
         import_datasheet: 匯入資料表
         import_development_action_translations: 進口開發 動作翻譯
         import_development_actions: 匯入開發作業
@@ -972,6 +974,8 @@ zh-Hant:
       errors:
         no_plans: 未找到有效的 IDP 計劃
     close: 關閉
+    copy_assessment:
+      failed: 评估副本失败
     copy_report:
       failed: 报告复制失败
     details: 詳細資訊

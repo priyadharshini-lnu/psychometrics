@@ -26,6 +26,7 @@ vi:
     add_btn: Thêm chủ đề
     add_campaign_admin: Thêm quản trị viên chiến dịch
     add_client_admin: Thêm quản trị viên khách hàng
+    add_client_assessor: Thêm chuyên viên đánh giá khách hàng
     add_conditions: Thêm điều kiện
     add_evaluators: Thêm người đánh giá
     add_indicator: Thêm chỉ báo
@@ -33,6 +34,7 @@ vi:
     add_lead_assessor_hint: Vui lòng thêm Biểu mẫu đánh giá chính trước
     add_more: Thêm nhiều hơn
     add_new_folder: Thêm thư mục mới
+    add_or_select_factor_msg: Nhấp vào “Thêm/Chọn một yếu tố” để xem chi tiết.
     add_output_schema_key: Thêm khóa lược đồ đầu ra
     add_project: Thêm dự án
     add_project_admin: Thêm quản trị viên dự án
@@ -47,6 +49,7 @@ vi:
     admin_role_deleted: Vai trò quản trị viên '%{role_name}' đã bị xóa thành công.
     admin_roles: Vai trò quản trị viên
     admin_updated_successfully: Quản trị viên '%{name}' đã được cập nhật thành công
+    admin_with_email_already_added: Tài khoản có địa chỉ email này đã được thêm vào rồi.
     administrator_approves_reports: Quản trị viên phê duyệt báo cáo
     administrators_list_columns_email: E-mail
     admins: Quản trị viên
@@ -123,6 +126,20 @@ vi:
     application_name: Tên ứng dụng
     application_name_already_taken: Đã tồn tại cho khách hàng này
     application_name_format_hint: Chỉ được phép sử dụng chữ cái và số, với một khoảng trắng giữa các từ
+    application_settings_at_least_one_ip_required: Vui lòng kích hoạt ít nhất một mục địa chỉ IP trước khi kích hoạt danh sách trắng IP
+    application_settings_confirm_delete_ip: Bạn có chắc chắn muốn xóa địa chỉ IP này không?
+    application_settings_edit_ip_address: Chỉnh sửa địa chỉ IP / Phạm vi CIDR
+    application_settings_enable_ip_whitelisting: Bật tính năng danh sách trắng IP
+    application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ
+    application_settings_ip_addresses: Địa chỉ IP / Phạm vi CIDR
+    application_settings_ip_deleted_successfully: Đã xóa địa chỉ IP thành công
+    application_settings_ip_description_placeholder: 'ví dụ: Mạng văn phòng hoặc máy chủ sản xuất'
+    application_settings_ip_input_placeholder: 'ví dụ: 192.168.1.1 hoặc 10.0.0.0/24'
+    application_settings_ip_or_cidr: Địa chỉ IP hoặc dải CIDR
+    application_settings_ip_required: Phải nhập địa chỉ IP hoặc dải CIDR
+    application_settings_ip_updated_successfully: Địa chỉ IP đã được cập nhật thành công
+    application_settings_ip_whitelisting_disabled_success: Chức năng danh sách trắng IP đã được tắt thành công
+    application_settings_ip_whitelisting_enabled_success: Chức năng danh sách trắng IP đã được kích hoạt thành công
     applications: Ứng dụng
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
     approve_all_questions: Chấp thuận tất cả các câu hỏi
@@ -279,6 +296,7 @@ vi:
     campaign_assessment_column_caching_enabled: Đã bật bộ nhớ đệm đánh giá
     campaign_assessment_column_hogan_assessment_id: Mã đánh giá Hogan
     campaign_assessment_column_hogan_form_id: Mã số hồ sơ Hogan
+    campaign_assessment_column_occupation_condition_set: Bộ điều kiện nghề nghiệp
     campaign_assessment_column_pearson_assessment_id: Mã đánh giá Pearson
     campaign_assessment_column_pearson_assessment_language: Ngôn ngữ đánh giá của Pearson
     campaign_assessment_column_pearson_error_details: Chi tiết về sai số Pearson
@@ -305,6 +323,10 @@ vi:
     campaign_assessment_modals_enable_caching_content: Bạn có chắc chắn muốn bật bộ nhớ đệm cho đánh giá này không?
     campaign_assessment_modals_enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     campaign_assessment_modals_enable_caching_title: Bật bộ nhớ đệm đánh giá?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Áp dụng thay đổi này cho những người dùng hiện có trong chiến dịch này
+    campaign_assessment_modals_update_occupation_condition_set_select: Chọn Bộ điều kiện nghề nghiệp
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Bộ điều kiện nghề nghiệp đã được cập nhật thành công
+    campaign_assessment_modals_update_occupation_condition_set_title: Cập nhật Bộ điều kiện nghề nghiệp
     campaign_factors: Các yếu tố chiến dịch
     campaign_id_placeholder: Nhập mã chiến dịch
     campaign_name: Tên chiến dịch
@@ -388,6 +410,13 @@ vi:
     client: Khách hàng thuê nhà
     client_admin: Quản trị viên khách hàng
     client_admins: Quản trị viên khách hàng
+    client_assessor_import_already_added: Người dùng có địa chỉ email '%{email}' đã được thêm vào với tư cách là người đánh giá khách hàng.
+    client_assessor_import_client_required: Cần có Client để nhập các chuyên gia đánh giá.
+    client_assessor_import_description: Nhập tệp CSV có một cột duy nhất chứa địa chỉ email của các chuyên gia đánh giá khách hàng.
+    client_assessor_import_duplicated_emails: 'Các địa chỉ email sau đây bị trùng lặp trong tệp CSV: %{emails}'
+    client_assessor_import_emails_required: Vui lòng cung cấp ít nhất một địa chỉ email của người đánh giá.
+    client_assessor_import_global_assessor_required: Người dùng phải là người đánh giá toàn cầu.
+    client_assessor_removed_successfully: Người đánh giá khách hàng có địa chỉ email '%{email}' đã được xóa thành công
     client_credentials_label: Thông tin đăng nhập khách hàng
     client_credentials_value: client_credentials
     client_features: Tính năng khách hàng
@@ -431,11 +460,13 @@ vi:
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
     components_input_duration_placeholder: Nhập là '1d 2h 3m'
     concise: Ngắn gọn
+    condition_sets: Tập điều kiện
     confidence_interval: Khoảng tin cậy
     confidence_interval_update_success: Khoảng tin cậy đã được cập nhật thành công.
     configuration: Cấu hình
     configure_model_answer_title: Cấu hình câu trả lời mẫu và từ khóa
     confirm_remove_admin: Bạn có chắc chắn muốn xóa người dùng quản trị có email '%{email}' không?
+    confirm_remove_client_assessor: Bạn có chắc chắn muốn xóa người đánh giá khách hàng có địa chỉ email là '%{email}' không?
     confirmation_required: Yêu cầu xác nhận
     confirmation_required_details: Bạn có chắc chắn muốn xóa tệp "%{resource_name}" trong thư mục "%{resource}" không?
     consolidated: Hợp nhất
@@ -444,8 +475,11 @@ vi:
     copied: Đã sao chép
     copied_url_success: URL đã được sao chép vào khay nhớ tạm thành công
     copy_ai_artifacts: Sao chép các tác phẩm nghệ thuật do AI tạo ra
+    copy_assessment_scheduled: Công việc sao chép bản đánh giá đã được lên lịch.
     copy_hint: Sao chép cấu hình Chỗ ngồi, Quản lý Trung tâm, Đánh giá viên và Cuộc họp & Tài nguyên ở trên cho các Trung tâm Đánh giá sau. Sau khi sao chép, bạn có thể thực hiện các thay đổi khác đối với các Trung tâm Đánh giá riêng lẻ trước khi tiếp tục.
     copy_image_url: Sao chép URL hình ảnh
+    copy_occupation_condition_set: Sao chép bộ điều kiện nghề nghiệp
+    copy_occupation_condition_set_msg: Thao tác này sẽ sao chép toàn bộ cấu hình các yếu tố nghề nghiệp hiện có từ bộ điều kiện hiện tại sang bộ điều kiện mới.
     copy_report_scheduled: Tác vụ sao chép báo cáo đã được lên lịch.
     copy_text: Nhắn tin
     copy_to_all: Sao chép đến các Trung tâm Đánh giá khác
@@ -529,6 +563,7 @@ vi:
     default_assessment_language: Ngôn ngữ mặc định cho đánh giá
     default_button: Mặc định
     default_language: Ngôn ngữ mặc định
+    default_occupation_condition_set: Bộ điều kiện nghề nghiệp mặc định
     default_report_language: Báo cáo ngôn ngữ mặc định
     define_max_score_text: Xác định điểm số của "%{maxScore}" (điểm số tối đa)
     define_min_score_text: Xác định điểm số tối thiểu (%{minScore}).
@@ -638,6 +673,7 @@ vi:
     document_titles_project_participants: Đối tượng tham gia | %{project}
     done: Thực hiện
     done_tooltip: Không thể gửi thêm đánh giá cho người dùng này vì đánh giá của người dùng này được đánh dấu là đã thực hiện bởi %{marked_by}
+    download_assessor_email_template: Tải xuống mẫu biểu mẫu
     download_bulk_asset_download_example_csv: Tải xuống tệp CSV mẫu.
     download_example_csv: Tải xuống ví dụ csv
     dp_consent: Bật sự đồng ý xử lý dữ liệu
@@ -667,6 +703,7 @@ vi:
     email_subjects_manager_when_available: Gửi email cho người quản lý của chủ đề email khi báo cáo có sẵn.
     empty: Trống
     empty_csv_file: Tệp CSV không chứa bất kỳ dữ liệu nào.
+    empty_occupation_condition_set_msg: Không tìm thấy yếu tố nghề nghiệp nào cho tập hợp tình trạng này. Vui lòng thêm một yếu tố.
     enable_caching_content: Bạn có chắc chắn muốn bật bộ nhớ đệm cho đánh giá này không?
     enable_caching_successfully: Bộ nhớ đệm đã được bật cho đánh giá này.
     enable_caching_title: Bật bộ nhớ đệm đánh giá?
@@ -760,6 +797,7 @@ vi:
     factors_index_sub_factors: Các yếu tố phụ
     factors_index_title: Yếu tố
     factors_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa Yếu tố này không?</p>\n"
+    factors_resource_removal_success: Yếu tố “%{name}” đã được xóa thành công.
     failure_reason: Lý do thất bại
     feature_ai_assistants_description: Kích hoạt trợ lý ảo được hỗ trợ bởi trí tuệ nhân tạo (AI) để nâng cao trải nghiệm người dùng.
     feature_ai_assisted_idp_description: Sử dụng trí tuệ nhân tạo (AI) để hỗ trợ đưa ra các đề xuất cho Kế hoạch Phát triển Cá nhân.
@@ -1214,6 +1252,7 @@ vi:
     log_date: Ngày ghi nhật ký
     logged_in: Đã đăng nhập
     login: Đăng nhập
+    login_page_design_tab: Thiết kế
     low: Thấp
     mail_history: Lịch sử thư
     main_report: Báo cáo chính
@@ -1310,6 +1349,7 @@ vi:
     new_score: Điểm mới
     no_assessments_found: Mã kiểm toán
     no_client_access: Bạn không có quyền truy cập vào khách hàng này
+    no_client_access_root: Bạn hiện không có mối quan hệ với bất kỳ khách hàng nào
     no_clients_found: Không tìm thấy khách hàng nào
     no_completed_assessments: Chưa có đánh giá hoàn thành
     no_file_selected: Không có tệp nào được chọn
@@ -1360,6 +1400,13 @@ vi:
     oauth_scope_label: Phạm vi
     oauth_scope_name: oauth_scope
     oauth_scope_required: Phạm vi là bắt buộc
+    occupation_condition_set_copy_success: Bộ điều kiện nghề nghiệp đã được sao chép thành công
+    occupation_condition_sets: Các tập điều kiện nghề nghiệp
+    occupation_condition_sets_remove_confirm: Hãy nhập tên bộ điều kiện nghề nghiệp được nêu dưới đây vào ô văn bản để xác nhận
+    occupation_condition_sets_remove_success: Bộ điều kiện nghề nghiệp “%{name}” đã được xóa thành công
+    occupation_condition_sets_remove_warning: Bạn có chắc chắn muốn xóa bộ điều kiện nghề nghiệp “%{name}” không?
+    occupation_factors_condition_set: Tập điều kiện
+    occupation_factors_title: Các yếu tố liên quan đến nghề nghiệp
     occupations: Nghề
     occupations_factors_list_condition: Điều kiện
     occupations_factors_list_position: Vị trí
@@ -2033,6 +2080,7 @@ vi:
     public_key_cannot_be_changed: không thể thay đổi sau khi tạo
     public_key_copy_private_key: Sao chép khóa riêng
     public_key_created: Khóa công khai đã được tạo thành công
+    public_key_details: Chi tiết khóa công khai
     public_key_generate: Tạo cặp khóa
     public_key_generate_button: Tạo cặp khóa RSA
     public_key_generate_info: Hệ thống sẽ tạo ra một cặp khóa RSA 2048-bit. Chỉ khóa công khai mới được lưu trữ. Hãy sao chép và lưu giữ khóa riêng một cách an toàn — khóa này sẽ không được hiển thị lại.
@@ -2210,12 +2258,14 @@ vi:
     report_type: Loại báo cáo
     report_types:
       active_clients_projects: Khách hàng và dự án đang triển khai
+      campaign_factor_scores: Điểm số các yếu tố chiến dịch
       client_assessment_counts: Việc đánh giá khách hàng rất quan trọng
       hogan_usage_report: Việc sử dụng công cụ đánh giá Hogan
       json_data_report: Báo cáo dữ liệu JSON
       pearson_usage_report: Việc sử dụng các bài kiểm tra của Pearson
       report_usage_summary: Tóm tắt báo cáo về tình hình sử dụng
       saville_usage_report: Cách sử dụng công cụ đánh giá Saville
+      user_access_review: Kiểm tra quyền truy cập của người dùng
       user_created_dates: Ngày do người dùng tạo
       user_reports_export: Xuất báo cáo người dùng
     reports: Báo cáo
@@ -2604,6 +2654,7 @@ vi:
     search_admins: Quản trị viên tìm kiếm
     search_campaign: Tìm kiếm theo chiến dịch
     search_client: Tìm kiếm theo khách hàng
+    search_client_assessors: Tìm kiếm các chuyên gia đánh giá khách hàng
     search_job_role: Tìm kiếm vị trí công việc
     search_participants: Tìm kiếm người tham gia...
     search_project: Tìm kiếm theo dự án
@@ -2639,6 +2690,7 @@ vi:
     select_admin_role: Chọn vai trò quản trị viên
     select_assessment_language: Chọn ngôn ngữ đánh giá
     select_client: Chọn khách hàng
+    select_condition_set: Chọn bộ điều kiện
     select_end_time: Chọn Thời gian kết thúc
     select_language_to_translate: Vui lòng chọn ngôn ngữ để dịch.
     select_level: Chọn cấp độ

@@ -26,6 +26,7 @@ hi:
     add_btn: विषय जोड़ें
     add_campaign_admin: अभियान प्रशासक जोड़ें
     add_client_admin: क्लाइंट एडमिन जोड़ें
+    add_client_assessor: क्लाइंट आकलनकर्ता जोड़ें
     add_conditions: शर्तें जोड़ें
     add_evaluators: मूल्यांकनकर्ताओं को जोड़ें
     add_indicator: सूचक जोड़ें
@@ -33,6 +34,7 @@ hi:
     add_lead_assessor_hint: कृपया पहले लीड असेसर फॉर्म जोड़ें।
     add_more: और जोड़ें
     add_new_folder: नया फ़ोल्डर जोड़ें
+    add_or_select_factor_msg: विवरण देखने के लिए किसी कारक को जोड़ें/चुनें पर क्लिक करें।
     add_output_schema_key: आउटपुट स्कीमा कुंजी जोड़ें
     add_project: परियोजना जोड़ें
     add_project_admin: परियोजना प्रशासक जोड़ें
@@ -47,6 +49,7 @@ hi:
     admin_role_deleted: प्रशासनिक भूमिका '%{role_name}' सफलतापूर्वक हटा दी गई।
     admin_roles: प्रशासन भूमिकाएँ
     admin_updated_successfully: प्रशासक '%{name}' सफलतापूर्वक अपडेट किया गया।
+    admin_with_email_already_added: इस ईमेल वाला उपयोगकर्ता पहले ही जोड़ दिया गया है।
     administrator_approves_reports: प्रशासक रिपोर्टों को अनुमोदित करता है।
     administrators_list_columns_email: ईमेल
     admins: प्रशासक
@@ -123,6 +126,20 @@ hi:
     application_name: आवेदन का नाम
     application_name_already_taken: इस क्लाइंट के लिए पहले से ही मौजूद है
     application_name_format_hint: केवल अक्षर और अंक ही अनुमत हैं, शब्दों के बीच एक खाली स्थान के साथ।
+    application_settings_at_least_one_ip_required: कृपया आईपी व्हाइटलिस्टिंग सक्षम करने से पहले कम से कम एक आईपी पता प्रविष्टि सक्षम करें।
+    application_settings_confirm_delete_ip: क्या आप निश्चित हैं कि आप इस आईपी पते को हटाना चाहते हैं?
+    application_settings_edit_ip_address: आईपी पता / सीआईडीआर रेंज संपादित करें
+    application_settings_enable_ip_whitelisting: आईपी व्हाइटलिस्टिंग सक्षम करें
+    application_settings_invalid_ip_format: अमान्य आईपी पता या सीआईडीआर प्रारूप
+    application_settings_ip_addresses: आईपी पते / सीआईडीआर रेंज
+    application_settings_ip_deleted_successfully: आईपी पता सफलतापूर्वक हटा दिया गया
+    application_settings_ip_description_placeholder: उदाहरण के लिए, ऑफिस नेटवर्क या प्रोडक्शन सर्वर
+    application_settings_ip_input_placeholder: उदाहरण के लिए, 192.168.1.1 या 10.0.0.0/24
+    application_settings_ip_or_cidr: आईपी पता या सीआईडीआर रेंज
+    application_settings_ip_required: आईपी पता या सीआईडीआर रेंज आवश्यक है।
+    application_settings_ip_updated_successfully: आईपी पता सफलतापूर्वक अपडेट हो गया
+    application_settings_ip_whitelisting_disabled_success: आईपी व्हाइटलिस्टिंग सफलतापूर्वक अक्षम कर दी गई
+    application_settings_ip_whitelisting_enabled_success: आईपी व्हाइटलिस्टिंग सफलतापूर्वक सक्षम हो गई।
     applications: आवेदन
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
     approve_all_questions: सभी प्रश्नों को अनुमोदित करें
@@ -279,6 +296,7 @@ hi:
     campaign_assessment_column_caching_enabled: मूल्यांकन कैशिंग सक्षम
     campaign_assessment_column_hogan_assessment_id: होगन मूल्यांकन आईडी
     campaign_assessment_column_hogan_form_id: होगन फॉर्म आईडी
+    campaign_assessment_column_occupation_condition_set: व्यवसाय स्थिति सेट
     campaign_assessment_column_pearson_assessment_id: पियर्सन असेसमेंट आईडी
     campaign_assessment_column_pearson_assessment_language: पियर्सन आकलन भाषा
     campaign_assessment_column_pearson_error_details: पियर्सन त्रुटि विवरण
@@ -305,6 +323,10 @@ hi:
     campaign_assessment_modals_enable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग सक्षम करना चाहते हैं?
     campaign_assessment_modals_enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
     campaign_assessment_modals_enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
+    campaign_assessment_modals_update_occupation_condition_set_apply: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
+    campaign_assessment_modals_update_occupation_condition_set_select: व्यावसायिक स्थिति सेट चुनें
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: ऑक्यूपेशन कंडीशन सेट सफलतापूर्वक अपडेट हो गया।
+    campaign_assessment_modals_update_occupation_condition_set_title: व्यवसाय स्थिति सेट अपडेट करें
     campaign_factors: अभियान कारक
     campaign_id_placeholder: अभियान आईडी दर्ज करें
     campaign_name: अभियान का नाम
@@ -388,6 +410,13 @@ hi:
     client: ग्राहक
     client_admin: क्लाइंट एडमिन
     client_admins: क्लाइंट एडमिन
+    client_assessor_import_already_added: ईमेल '%{email}' वाला उपयोगकर्ता पहले ही क्लाइंट आकलनकर्ता के रूप में जोड़ दिया गया है।
+    client_assessor_import_client_required: मूल्यांकनकर्ताओं को आयात करने के लिए क्लाइंट आवश्यक है।
+    client_assessor_import_description: क्लाइंट आकलनकर्ताओं के लिए एकल ईमेल कॉलम वाली CSV फ़ाइल आयात करें।
+    client_assessor_import_duplicated_emails: 'निम्नलिखित ईमेल CSV में डुप्लिकेट किए गए हैं: %{emails}'
+    client_assessor_import_emails_required: कृपया कम से कम एक मूल्यांकनकर्ता का ईमेल प्रदान करें।
+    client_assessor_import_global_assessor_required: उपयोगकर्ता को वैश्विक मूल्यांकनकर्ता के रूप में मौजूद होना चाहिए।
+    client_assessor_removed_successfully: ईमेल '%{email}' वाले क्लाइंट आकलनकर्ता को सफलतापूर्वक हटा दिया गया।
     client_credentials_label: क्लाइंट क्रेडेंशियल्स
     client_credentials_value: क्लाइंट प्रमाण-पत्र
     client_features: ग्राहक सुविधाएँ
@@ -431,11 +460,13 @@ hi:
     completed_tooltip: सभी मूल्यांकनकर्ताओं ने मूल्यांकन जमा कर दिया है।
     components_input_duration_placeholder: 1d 2h 3m के रूप में दर्ज करें
     concise: संक्षिप्त
+    condition_sets: अवस्था सेट
     confidence_interval: विश्वास अंतराल
     confidence_interval_update_success: विश्वास अंतराल सफलतापूर्वक अद्यतन किया गया
     configuration: संरचना
     configure_model_answer_title: मॉडल उत्तर और कीवर्ड्स कॉन्फ़िगर करें
     confirm_remove_admin: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले एडमिन उपयोगकर्ता को हटाना चाहते हैं?
+    confirm_remove_client_assessor: क्या आप सुनिश्चित हैं कि आप '%{email}' ईमेल वाले क्लाइंट असेसोर को हटाना चाहते हैं?
     confirmation_required: पुष्टि आवश्यक है
     confirmation_required_details: क्या आप सुनिश्चित हैं कि आप "%{resource}" "%{resource_name}" को हटाना चाहते हैं?
     consolidated: समेकित
@@ -444,8 +475,11 @@ hi:
     copied: नकल किया गया
     copied_url_success: यूआरएल क्लिपबोर्ड पर सफलतापूर्वक कॉपी हो गया।
     copy_ai_artifacts: एआई कलाकृतियों की प्रतिलिपि बनाएँ
+    copy_assessment_scheduled: मूल्यांकन प्रति कार्य निर्धारित कर दिया गया है।
     copy_hint: उपरोक्त सीटें, केंद्र प्रबंधक, मूल्यांकनकर्ता और बैठकें एवं संसाधन कॉन्फ़िगरेशन को निम्नलिखित मूल्यांकन केंद्रों में कॉपी करता है। कॉपी करने के बाद, आगे बढ़ने से पहले आप प्रत्येक मूल्यांकन केंद्र में और बदलाव कर सकते हैं।
     copy_image_url: छवि का URL कॉपी करें
+    copy_occupation_condition_set: कॉपी व्यवसायिक स्थिति सेट
+    copy_occupation_condition_set_msg: यह वर्तमान स्थिति सेट से सभी मौजूदा कब्ज़ा कारक विन्यास को नई स्थिति सेट में कॉपी करेगा।
     copy_report_scheduled: रिपोर्ट कॉपी जॉब निर्धारित कर दिया गया है।
     copy_text: पाठ
     copy_to_all: अन्य मूल्यांकन केंद्रों को प्रतिलिपि भेजें
@@ -529,6 +563,7 @@ hi:
     default_assessment_language: मूल्यांकन की पूर्वनिर्धारित भाषा
     default_button: डिफ़ॉल्ट
     default_language: डिफ़ॉल्ट भाषा
+    default_occupation_condition_set: डिफ़ॉल्ट आवास स्थिति सेट
     default_report_language: डिफ़ॉल्ट भाषा रिपोर्ट करें
     define_max_score_text: "%{maxScore} का स्कोर परिभाषित करें (अधिकतम स्कोर)"
     define_min_score_text: "%{minScore} का स्कोर परिभाषित करें (न्यूनतम स्कोर)"
@@ -640,6 +675,7 @@ hi:
     document_titles_project_participants: प्रतिभागी | %{project}
     done: हो गया
     done_tooltip: इस उपयोगकर्ता के लिए कोई और मूल्यांकन प्रस्तुत नहीं किया जा सकता क्योंकि इस उपयोगकर्ता का मूल्यांकन %{marked_by} द्वारा पूरा किया हुआ चिह्नित है।
+    download_assessor_email_template: नमूना टेम्पलेट डाउनलोड करें
     download_bulk_asset_download_example_csv: उदाहरण CSV डाउनलोड करें।
     download_example_csv: उदाहरण सीएसवी डाउनलोड करें
     dp_consent: डेटा प्रसंस्करण सहमति सक्षम करें
@@ -669,6 +705,7 @@ hi:
     email_subjects_manager_when_available: जब रिपोर्ट उपलब्ध हो जाए तो ईमेल विषय के प्रबंधक को भेजें।
     empty: खाली
     empty_csv_file: CSV फ़ाइल में कोई डेटा नहीं है।
+    empty_occupation_condition_set_msg: इस स्थिति सेट के लिए कोई व्यावसायिक कारक नहीं मिले। कृपया एक कारक जोड़ें।
     enable_caching_content: क्या आप सुनिश्चित हैं कि आप इस मूल्यांकन के लिए कैशिंग सक्षम करना चाहते हैं?
     enable_caching_successfully: इस मूल्यांकन के लिए कैशिंग सक्षम कर दी गई है।
     enable_caching_title: मूल्यांकन कैशिंग सक्षम करें?
@@ -762,6 +799,7 @@ hi:
     factors_index_sub_factors: उप कारक
     factors_index_title: तत्व
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: कारक '%{name}' को सफलतापूर्वक हटा दिया गया।
     failure_reason: विफलता का कारण
     feature_ai_assistants_description: बेहतर उपयोगकर्ता अनुभव के लिए एआई-संचालित सहायकों को सक्षम करें।
     feature_ai_assisted_idp_description: व्यक्तिगत विकास योजना सिफारिशों में सहायता के लिए एआई का उपयोग करें
@@ -1216,6 +1254,7 @@ hi:
     log_date: प्रवेश तिथि
     logged_in: लॉग इन
     login: लॉगिन
+    login_page_design_tab: डिज़ाइन
     low: कम
     mail_history: मेल इतिहास
     main_report: मुख्य रिपोर्ट
@@ -1312,6 +1351,7 @@ hi:
     new_score: नया स्कोर
     no_assessments_found: ऑडिट आईडी
     no_client_access: आपके पास इस क्लाइंट तक पहुंच नहीं है।
+    no_client_access_root: आप किसी भी क्लाइंट से जुड़े नहीं हैं।
     no_clients_found: कोई क्लाइंट नहीं मिला
     no_completed_assessments: अभी तक कोई पूर्ण मूल्यांकन नहीं हुए हैं।
     no_file_selected: कोई फ़ाइल चयनित नहीं है
@@ -1362,6 +1402,13 @@ hi:
     oauth_scope_label: दायरा
     oauth_scope_name: ओथ_स्कोप
     oauth_scope_required: दायरा आवश्यक है
+    occupation_condition_set_copy_success: कब्ज़ा स्थिति सेट सफलतापूर्वक कॉपी हो गया
+    occupation_condition_sets: व्यवसायिक स्थिति सेट
+    occupation_condition_sets_remove_confirm: पुष्टि करने के लिए नीचे टेक्स्ट बॉक्स में दिए गए व्यवसायिक स्थिति सेट का नाम दर्ज करें।
+    occupation_condition_sets_remove_success: कब्जा स्थिति सेट "%{name}" सफलतापूर्वक हटा दिया गया
+    occupation_condition_sets_remove_warning: क्या आप निश्चित हैं कि आप "%{name}" व्यवसाय शर्त सेट को हटाना चाहते हैं?
+    occupation_factors_condition_set: अवस्था सेट
+    occupation_factors_title: व्यवसाय संबंधी कारक
     occupations: व्यवसाय
     occupations_factors_list_condition: स्थिति
     occupations_factors_list_position: पद
@@ -2037,6 +2084,7 @@ hi:
     public_key_cannot_be_changed: बनाने के बाद बदला नहीं जा सकता
     public_key_copy_private_key: निजी कुंजी की प्रतिलिपि करें
     public_key_created: सार्वजनिक कुंजी सफलतापूर्वक बनाई गई
+    public_key_details: सार्वजनिक कुंजी विवरण
     public_key_generate: कुंजी जोड़ी उत्पन्न करें
     public_key_generate_button: RSA कुंजी जोड़ी उत्पन्न करें
     public_key_generate_info: 2048-बिट RSA कुंजी जोड़ी उत्पन्न की जाएगी। केवल सार्वजनिक कुंजी संग्रहीत की जाएगी। निजी कुंजी को कॉपी करें और सुरक्षित रूप से संग्रहीत करें — यह फिर कभी नहीं दिखाई जाएगी।
@@ -2214,12 +2262,14 @@ hi:
     report_type: रिपोर्ट का प्रकार
     report_types:
       active_clients_projects: सक्रिय ग्राहक और परियोजनाएँ
+      campaign_factor_scores: अभियान कारक स्कोर
       client_assessment_counts: ग्राहक मूल्यांकन मायने रखता है
       hogan_usage_report: होगन मूल्यांकन उपयोग
       json_data_report: जेएसओएन डेटा रिपोर्ट
       pearson_usage_report: पियर्सन मूल्यांकन उपयोग
       report_usage_summary: उपयोग सारांश रिपोर्ट
       saville_usage_report: सैविल मूल्यांकन का उपयोग
+      user_access_review: उपयोगकर्ता पहुँच समीक्षा
       user_created_dates: उपयोगकर्ता निर्मित दिनांक
       user_reports_export: उपयोगकर्ता रिपोर्ट निर्यात
     reports: रिपोर्टें
@@ -2611,6 +2661,7 @@ hi:
     search_admins: प्रशासकों को खोजें
     search_campaign: अभियान द्वारा खोजें
     search_client: ग्राहक के अनुसार खोजें
+    search_client_assessors: क्लाइंट मूल्यांकनकर्ताओं को खोजें
     search_job_role: नौकरी की भूमिका खोजें
     search_participants: प्रतिभागियों को खोजें...
     search_project: परियोजना द्वारा खोजें
@@ -2646,6 +2697,7 @@ hi:
     select_admin_role: प्रशासक भूमिका चुनें
     select_assessment_language: मूल्यांकन भाषा चुनें
     select_client: ग्राहक चुनें
+    select_condition_set: स्थिति सेट चुनें
     select_end_time: अंत का समय चुनें
     select_language_to_translate: कृपया अनुवाद के लिए भाषा चुनें
     select_level: स्तर चुनें

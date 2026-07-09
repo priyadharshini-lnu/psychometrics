@@ -26,6 +26,7 @@ sr-Cyrl:
     add_btn: Додајте предмет
     add_campaign_admin: Додај администратора кампање
     add_client_admin: Додај администратора клијента
+    add_client_assessor: Додај клијентског процењивача
     add_conditions: Додајте услове
     add_evaluators: Додајте оцењиваче
     add_indicator: Додај индикатор
@@ -33,6 +34,7 @@ sr-Cyrl:
     add_lead_assessor_hint: Молимо, прво додајте образац главног процењивача.
     add_more: Додај више
     add_new_folder: Додај нову фасциклу
+    add_or_select_factor_msg: Кликните на "Додај/Изабери фактор" да бисте видели детаље.
     add_output_schema_key: Додајте кључ шеме излаза
     add_project: Додај пројекат
     add_project_admin: Додај администратора пројекта
@@ -47,6 +49,7 @@ sr-Cyrl:
     admin_role_deleted: Улога администратора "%{role_name}" је успешно избрисана.
     admin_roles: Администраторске улоге
     admin_updated_successfully: Админ '%{name}' је успешно ажуриран
+    admin_with_email_already_added: Корисник са овом е-поштом је већ додатан.
     administrator_approves_reports: Администратор одобрава извештаје
     administrators_list_columns_email: Е-пошта
     admins: Администратори
@@ -123,6 +126,20 @@ sr-Cyrl:
     application_name: Име апликације
     application_name_already_taken: Већ постоји за овог клијента
     application_name_format_hint: Дозвољени су само слови и бројеви, са једним размаком између речи.
+    application_settings_at_least_one_ip_required: Молимо омогућите барем један унос IP адресе пре омогућавања беле листе IP адреса.
+    application_settings_confirm_delete_ip: Да ли сте сигурни да желите да обришете ову ИП адресу?
+    application_settings_edit_ip_address: Уређивање IP адресе / CIDR опсега
+    application_settings_enable_ip_whitelisting: Омогућите белу листу ИП адреса
+    application_settings_invalid_ip_format: Неважећа ИП адреса или CIDR формат
+    application_settings_ip_addresses: IP адресе / CIDR опсези
+    application_settings_ip_deleted_successfully: IP адреса успешно избрисана
+    application_settings_ip_description_placeholder: нпр. канцеларијска мрежа или производни сервер
+    application_settings_ip_input_placeholder: нпр. 192.168.1.1 или 10.0.0.0/24
+    application_settings_ip_or_cidr: IP адреса или CIDR опсег
+    application_settings_ip_required: Потребан је ИП адреса или CIDR опсег.
+    application_settings_ip_updated_successfully: IP адреса успешно ажурирана
+    application_settings_ip_whitelisting_disabled_success: Успешно онемогућено бело списковање ИП адреса
+    application_settings_ip_whitelisting_enabled_success: Успешно омогућена бела листа ИП адреса
     applications: Примене
     apply_to_existing_users: Примени ову промену на постојеће кориснике у овој кампањи.
     approve_all_questions: Одобри сва питања
@@ -279,6 +296,7 @@ sr-Cyrl:
     campaign_assessment_column_caching_enabled: Омогућено кеширање процена
     campaign_assessment_column_hogan_assessment_id: Хоган идентификација процене
     campaign_assessment_column_hogan_form_id: Хоган ИД обрасца
+    campaign_assessment_column_occupation_condition_set: Постављање услова за занимање
     campaign_assessment_column_pearson_assessment_id: Пирсон ИД за процену
     campaign_assessment_column_pearson_assessment_language: Пирсон асесмент језик
     campaign_assessment_column_pearson_error_details: Детаљи о грешкама Пирсона
@@ -305,6 +323,10 @@ sr-Cyrl:
     campaign_assessment_modals_enable_caching_content: Да ли сте сигурни да желите да омогућите кеширање за ову процену?
     campaign_assessment_modals_enable_caching_successfully: За ово оцењивање омогућено је кеширање.
     campaign_assessment_modals_enable_caching_title: Омогући кеширање процене?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Примени ову промену на постојеће кориснике у овој кампањи
+    campaign_assessment_modals_update_occupation_condition_set_select: Изаберите скуп услова занимања
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Скуп услова за занимање је успешно ажуриран
+    campaign_assessment_modals_update_occupation_condition_set_title: Ажурирати скуп стања занимања
     campaign_factors: Фактори кампање
     campaign_id_placeholder: Унесите ИД кампање
     campaign_name: Назив кампање
@@ -388,6 +410,13 @@ sr-Cyrl:
     client: Клијент
     client_admin: Администратор клијента
     client_admins: Администратори клијената
+    client_assessor_import_already_added: Корисник са адресом електронске поште '%{email}' је већ додатан као клијентски процењивач.
+    client_assessor_import_client_required: Клијент захтева увоз процењивача.
+    client_assessor_import_description: Увезите CSV фајл са једном колоном за е-пошту клијентских процењивача.
+    client_assessor_import_duplicated_emails: 'Следећи имејлови су дуплирани у CSV-у: %{emails}'
+    client_assessor_import_emails_required: Молимо вас да наведете барем једну адресу е-поште процењивача.
+    client_assessor_import_global_assessor_required: Корисник мора да постоји као глобални процењивач.
+    client_assessor_removed_successfully: Клијентски процењивач са адресом е-поште '%{email}' је успешно уклоњен
     client_credentials_label: Клијентске акредитиве
     client_credentials_value: клијентске акредитивације
     client_features: Клијентске функције
@@ -431,11 +460,13 @@ sr-Cyrl:
     completed_tooltip: Сви оцењивачи су доставили оцењивање.
     components_input_duration_placeholder: Унесите као "1d 2h 3m"
     concise: Сажето
+    condition_sets: Скупoви стања
     confidence_interval: Поверјени интервал
     confidence_interval_update_success: Поверљиви интервал успешно ажуриран
     configuration: Конфигурација
     configure_model_answer_title: Конфигуришите модел одговора и кључне речи
     confirm_remove_admin: Да ли сте сигурни да желите да уклоните администраторског корисника са е-поштом '%{email}'?
+    confirm_remove_client_assessor: Да ли сте сигурни да желите да уклоните клијентског процењивача са адресом електронске поште '%{email}'?
     confirmation_required: Потврда је неопходна
     confirmation_required_details: Да ли сте сигурни да желите да избришете "%{resource_name}"?
     consolidated: Консолидовани
@@ -444,8 +475,11 @@ sr-Cyrl:
     copied: Копирано
     copied_url_success: URL је успешно копиран у међуспремник
     copy_ai_artifacts: Копирајте АИ артефакте
+    copy_assessment_scheduled: Задатак за процену је заказан.
     copy_hint: Копира горе наведене конфигурације места, менаџера центра, процењивача и састанака и ресурса у следеће центре процене. Након копирања, можете направити даље измене на појединачним центрима процене пре него што наставите.
     copy_image_url: Копирајте УРЛ слике
+    copy_occupation_condition_set: Копирај скуп услова заузетости
+    copy_occupation_condition_set_msg: Ово ће копирати конфигурацију свих постојећих фактора заузетости из тренутног сета стања у нови сет стања.
     copy_report_scheduled: Задатак копирања извештаја је заказан.
     copy_text: Текстуална порука
     copy_to_all: Копирај у друге центре за процену
@@ -529,6 +563,7 @@ sr-Cyrl:
     default_assessment_language: Претпостављени језик процене
     default_button: Подразумевано
     default_language: Подразумевани језик
+    default_occupation_condition_set: Подешавање подразумеваног стања заузетости
     default_report_language: Пријави подразумевани језик
     define_max_score_text: Дефинишите резултат од %{maxScore} (максимални резултат)
     define_min_score_text: Дефинишите резултат од %{minScore} (минимални резултат)
@@ -640,6 +675,7 @@ sr-Cyrl:
     document_titles_project_participants: Учесници | %{project}
     done: Готово
     done_tooltip: За овог корисника више не могу бити поднете оцене јер је његова оцена означена као завршена од стране %{marked_by}
+    download_assessor_email_template: Преузмите пример шаблона
     download_bulk_asset_download_example_csv: Преузмите пример CSV-а.
     download_example_csv: Преузмите пример CSV
     dp_consent: Омогућите сагласност за обраду података
@@ -669,6 +705,7 @@ sr-Cyrl:
     email_subjects_manager_when_available: Пошаљите мејл менаџеру адресата када извештај постане доступан.
     empty: Празно
     empty_csv_file: CSV фајл не садржи никакве податке.
+    empty_occupation_condition_set_msg: За овај скуп стања нису пронађени фактори занимања. Молимо додајте фактор.
     enable_caching_content: Да ли сте сигурни да желите да омогућите кеширање за ову процену?
     enable_caching_successfully: За ово оцењивање омогућено је кеширање.
     enable_caching_title: Омогући кеширање процене?
@@ -762,6 +799,7 @@ sr-Cyrl:
     factors_index_sub_factors: Подкатегорије
     factors_index_title: Фактори
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: Фактор '%{name}' је успешно уклоњен.
     failure_reason: Разлог неуспеха
     feature_ai_assistants_description: Омогућите асистенте покретане вештачком интелигенцијом за унапређено корисничко искуство
     feature_ai_assisted_idp_description: Користите вештачку интелигенцију за помоћ при препорукама за индивидуално планирање развоја.
@@ -1216,6 +1254,7 @@ sr-Cyrl:
     log_date: Датум уписа
     logged_in: Пријављено
     login: Пријава
+    login_page_design_tab: Дизајн
     low: Ниско
     mail_history: Историја поште
     main_report: Главни извештај
@@ -1312,6 +1351,7 @@ sr-Cyrl:
     new_score: Нова оцена
     no_assessments_found: Идентификациони број ревизије
     no_client_access: Немате приступ овом клијенту
+    no_client_access_root: Нисте повезани ни са једним клијентом.
     no_clients_found: Није пронађен ниједан клијент
     no_completed_assessments: Још нема завршених процена.
     no_file_selected: Није изабрана датотека
@@ -1362,6 +1402,13 @@ sr-Cyrl:
     oauth_scope_label: Опсег
     oauth_scope_name: обухват OAuth-а
     oauth_scope_required: Обим је потребан
+    occupation_condition_set_copy_success: Скуп услова занимања копиран успешно
+    occupation_condition_sets: Постављање услова за занимање
+    occupation_condition_sets_remove_confirm: Унесите назив скупа стања занимања наведеног у наставку у поље за текст да бисте потврдили
+    occupation_condition_sets_remove_success: Успешно је уклоњена поставка услова за занимање "%{name}"
+    occupation_condition_sets_remove_warning: Да ли сте сигурни да желите да избришете скуп услова занимања "%{name}"?
+    occupation_factors_condition_set: Скуп услова
+    occupation_factors_title: Фактори занимања
     occupations: Занимања
     occupations_factors_list_condition: Стање
     occupations_factors_list_position: Позиција
@@ -2037,6 +2084,7 @@ sr-Cyrl:
     public_key_cannot_be_changed: не може се променити након креирања
     public_key_copy_private_key: Копирајте приватни кључ
     public_key_created: Јавни кључ је успешно креиран
+    public_key_details: Детаљи јавног кључа
     public_key_generate: Генеришите пар кључева
     public_key_generate_button: Генеришите RSA пар кључева
     public_key_generate_info: Ће генерисати пар RSA кључева од 2048 бита. Само јавни кључ ће бити сачуван. Копирајте и безбедно сачувајте приватни кључ — он се више неће приказивати.
@@ -2214,12 +2262,14 @@ sr-Cyrl:
     report_type: Тип извештаја
     report_types:
       active_clients_projects: Активни клијенти и пројекти
+      campaign_factor_scores: Резултати кампање
       client_assessment_counts: Процена клијента је важна
       hogan_usage_report: Употреба Hogan асесмента
       json_data_report: Извештај о JSON подацима
       pearson_usage_report: Коришћење Пирсон тестова
       report_usage_summary: Извештај о резимеу коришћења
       saville_usage_report: Употреба Савилл процене
+      user_access_review: Преглед приступа корисника
       user_created_dates: Датуми креирани од стране корисника
       user_reports_export: Извештај о корисницима
     reports: Извештаји
@@ -2611,6 +2661,7 @@ sr-Cyrl:
     search_admins: Претрага администратора
     search_campaign: Претрага по кампањи
     search_client: Претрага по клијенту
+    search_client_assessors: Претрага клијентских процењивача
     search_job_role: Претражи пословање улогу
     search_participants: Претрага учесника...
     search_project: Претрага по пројекту
@@ -2646,6 +2697,7 @@ sr-Cyrl:
     select_admin_role: Изаберите улогу администратора
     select_assessment_language: Изаберите језик процене
     select_client: Изабери клијента
+    select_condition_set: Изаберите скуп услова
     select_end_time: Изаберите време завршетка
     select_language_to_translate: Молимо изаберите језик за превод
     select_level: Изабери ниво

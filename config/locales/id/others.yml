@@ -876,6 +876,7 @@ id:
         compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         completion_status_export: Ekspor Status Penyelesaian
         copy_as_template_or_campaign: Salin Kampanye sebagai Templat
+        copy_assessment: Penilaian Salinan
         copy_dimension: Salin Dimensi
         copy_report: Salin Laporan
         create_threesixty_campaign: Buat Kampanye Threesixty
@@ -915,6 +916,7 @@ id:
         import_assessors: Penilai Impor
         import_campaign_ai_artifacts: Impor Artefak AI Kampanye
         import_campaign_factors: Impor Faktor Kampanye
+        import_client_assessors: Impor Penilai Klien
         import_datasheet: Lembar Data Impor
         import_development_action_translations: Terjemahan Tindakan Pengembangan Impor
         import_development_actions: Tindakan Pengembangan Impor
@@ -972,6 +974,8 @@ id:
       errors:
         no_plans: Tidak ada paket IDP aktif yang ditemukan
     close: Tutup
+    copy_assessment:
+      failed: Salinan penilaian gagal
     copy_report:
       failed: Penyalinan laporan gagal
     details: Rincian

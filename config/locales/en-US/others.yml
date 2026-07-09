@@ -876,6 +876,7 @@ en-US:
         compact_completion_status_export: Compact Completion Status Export
         completion_status_export: Completion Status Export
         copy_as_template_or_campaign: Copy Campaign as Template
+        copy_assessment: Copy Assessment
         copy_dimension: Copy Dimension
         copy_report: Copy Report
         create_threesixty_campaign: Create Threesixty Campaign
@@ -915,6 +916,7 @@ en-US:
         import_assessors: Import Assessors
         import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
+        import_client_assessors: Import Client Assessors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
         import_development_actions: Import Development Actions
@@ -972,6 +974,8 @@ en-US:
       errors:
         no_plans: No active IDP plans found
     close: Close
+    copy_assessment:
+      failed: Assessment copy failed
     copy_report:
       failed: Report copy failed
     details: Details

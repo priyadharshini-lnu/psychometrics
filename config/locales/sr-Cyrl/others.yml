@@ -876,6 +876,7 @@ sr-Cyrl:
         compact_completion_status_export: Извоз статуса завршетка компакта
         completion_status_export: Завршетак статуса Извоз
         copy_as_template_or_campaign: Копирај кампању као шаблон
+        copy_assessment: Копирај процену
         copy_dimension: Копирај димензију
         copy_report: Копирај извештај
         create_threesixty_campaign: Креирајте кампању Тхреесиxтy
@@ -915,6 +916,7 @@ sr-Cyrl:
         import_assessors: Количина саветника
         import_campaign_ai_artifacts: Увоз кампање АИ артефаката
         import_campaign_factors: Фактори увозне кампање
+        import_client_assessors: Увоз клијентских процењивача
         import_datasheet: Увези податке о подацима
         import_development_action_translations: Увоз Развој Акције Преводи
         import_development_actions: Акције за развој увоза
@@ -972,6 +974,8 @@ sr-Cyrl:
       errors:
         no_plans: Није пронађен активан ИДП планови
     close: Затворите
+    copy_assessment:
+      failed: Процена копије није успела
     copy_report:
       failed: Извештај копије није успео
     details: Детаље

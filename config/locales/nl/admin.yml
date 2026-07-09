@@ -26,6 +26,7 @@ nl:
     add_btn: Onderwerp toevoegen
     add_campaign_admin: Campagne-admin toevoegen
     add_client_admin: Client-admin toevoegen
+    add_client_assessor: Klantbeoordelaar toevoegen
     add_conditions: Voorwaarden toevoegen
     add_evaluators: Evaluatoren toevoegen
     add_indicator: Indicator toevoegen
@@ -33,6 +34,7 @@ nl:
     add_lead_assessor_hint: Voeg eerst het formulier voor hoofdbeoordelaar toe
     add_more: Meer toevoegen
     add_new_folder: Nieuwe map toevoegen
+    add_or_select_factor_msg: Klik op ‘Toevoegen/Selecteer een factor’ om de details te bekijken.
     add_output_schema_key: Uitvoerschema sleutel toevoegen
     add_project: Project toevoegen
     add_project_admin: Projectbeheerder toevoegen
@@ -47,6 +49,7 @@ nl:
     admin_role_deleted: Beheerdersrol '%{role_name}' is succesvol verwijderd.
     admin_roles: Beheerdersrollen
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
+    admin_with_email_already_added: De gebruiker met dit e-mailadres is al toegevoegd.
     administrator_approves_reports: Beheerder keurt rapporten goed
     administrators_list_columns_email: E-mail
     admins: Beheerders
@@ -123,6 +126,20 @@ nl:
     application_name: Naam van de applicatie
     application_name_already_taken: Bestaat al voor deze klant
     application_name_format_hint: Alleen letters en cijfers zijn toegestaan, met één spatie tussen de woorden
+    application_settings_at_least_one_ip_required: Schakel ten minste één IP-adres in voordat u de IP-whitelist inschakelt
+    application_settings_confirm_delete_ip: Weet je zeker dat je dit IP-adres wilt verwijderen?
+    application_settings_edit_ip_address: IP-adres / CIDR-bereik bewerken
+    application_settings_enable_ip_whitelisting: IP-whitelisting inschakelen
+    application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat
+    application_settings_ip_addresses: IP-adressen / CIDR-bereiken
+    application_settings_ip_deleted_successfully: IP-adres succesvol verwijderd
+    application_settings_ip_description_placeholder: bijv. het kantoornetwerk of de productieserver
+    application_settings_ip_input_placeholder: bijvoorbeeld 192.168.1.1 of 10.0.0.0/24
+    application_settings_ip_or_cidr: IP-adres of CIDR-bereik
+    application_settings_ip_required: Een IP-adres of CIDR-bereik is vereist
+    application_settings_ip_updated_successfully: IP-adres succesvol bijgewerkt
+    application_settings_ip_whitelisting_disabled_success: IP-whitelisting is succesvol uitgeschakeld
+    application_settings_ip_whitelisting_enabled_success: IP-whitelisting is succesvol ingeschakeld
     applications: Toepassingen
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     approve_all_questions: Alle vragen goedkeuren
@@ -279,6 +296,7 @@ nl:
     campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
     campaign_assessment_column_hogan_assessment_id: Hogan-beoordelings-ID
     campaign_assessment_column_hogan_form_id: Hogan-formulier-ID
+    campaign_assessment_column_occupation_condition_set: Set van beroepsmatige omstandigheden
     campaign_assessment_column_pearson_assessment_id: Pearson-beoordelings-ID
     campaign_assessment_column_pearson_assessment_language: Pearson Assessment Taal
     campaign_assessment_column_pearson_error_details: Details over de Pearson-fout
@@ -305,6 +323,10 @@ nl:
     campaign_assessment_modals_enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
     campaign_assessment_modals_enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+    campaign_assessment_modals_update_occupation_condition_set_select: Selecteer een reeks beroepsgerelateerde aandoeningen
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: De set met beroepsomstandigheden is succesvol bijgewerkt
+    campaign_assessment_modals_update_occupation_condition_set_title: Set met beroepsstatus bijwerken
     campaign_factors: Campagne factoren
     campaign_id_placeholder: Voer campagne-ID in
     campaign_name: Campagnenaam
@@ -388,6 +410,13 @@ nl:
     client: Huurder
     client_admin: Klant Admin
     client_admins: Klanten-admins
+    client_assessor_import_already_added: De gebruiker met het e-mailadres '%{email}' is al toegevoegd als klantbeoordelaar.
+    client_assessor_import_client_required: Er is een client nodig om beoordelaars te importeren.
+    client_assessor_import_description: Importeer een CSV-bestand met één kolom met e-mailadressen voor klantbeoordelaars.
+    client_assessor_import_duplicated_emails: 'De volgende e-mail(s) zijn dubbel opgenomen in het CSV-bestand: %{emails}'
+    client_assessor_import_emails_required: Geef alstublieft ten minste één e-mailadres van een beoordelaar op.
+    client_assessor_import_global_assessor_required: De gebruiker moet als algemene beoordelaar zijn aangemaakt.
+    client_assessor_removed_successfully: De klantbeoordelaar met het e-mailadres '%{email}' is succesvol verwijderd
     client_credentials_label: Inloggegevens van de klant
     client_credentials_value: client_credentials
     client_features: Klantkenmerken
@@ -431,11 +460,13 @@ nl:
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
     components_input_duration_placeholder: Invoeren als '1d 2h 3m'
     concise: Beknopt
+    condition_sets: Voorwaardensets
     confidence_interval: Betrouwbaarheidsinterval
     confidence_interval_update_success: Betrouwbaarheidsinterval succesvol bijgewerkt
     configuration: Configuratie
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
+    confirm_remove_client_assessor: Weet je zeker dat je de klantbeoordelaar met het e-mailadres '%{email}' wilt verwijderen?
     confirmation_required: Bevestiging vereist
     confirmation_required_details: Weet u zeker dat u de %{resource} "%{resource_name}" wilt verwijderen?
     consolidated: Geconsolideerd
@@ -444,8 +475,11 @@ nl:
     copied: Gekopieerd
     copied_url_success: De URL is succesvol naar het klembord gekopieerd
     copy_ai_artifacts: AI-artefacten kopiëren
+    copy_assessment_scheduled: De taak voor het beoordelen van het exemplaar is ingepland.
     copy_hint: Kopieert de bovenstaande configuratie van Zitplaatsen, Centrummanagers, Assessoren en Vergaderingen &amp; Middelen naar de volgende Assessment Centers. Na het kopiëren kun je verdere wijzigingen aanbrengen in de individuele Assessment Centers voordat je verder gaat.
     copy_image_url: URL van afbeelding kopiëren
+    copy_occupation_condition_set: Set met beroeps- en gezondheidsstatus kopiëren
+    copy_occupation_condition_set_msg: Hiermee worden alle bestaande configuraties van bezettingsfactoren uit de huidige conditieset naar de nieuwe conditieset gekopieerd.
     copy_report_scheduled: De taak voor het kopiëren van rapporten is ingepland.
     copy_text: Tekst
     copy_to_all: Kopiëren naar andere beoordelingscentra
@@ -529,6 +563,7 @@ nl:
     default_assessment_language: Standaard taal voor beoordeling
     default_button: Standaard
     default_language: Standaard Taal
+    default_occupation_condition_set: Standaard set van beroepsomstandigheden
     default_report_language: Standaard taal rapporteren
     define_max_score_text: Definieer een score van %{maxScore} (maximale score)
     define_min_score_text: Definieer een score van %{minScore} (minimumscore)
@@ -638,6 +673,7 @@ nl:
     document_titles_project_participants: Deelnemers %{project}
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
+    download_assessor_email_template: Voorbeeldsjabloon downloaden
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
     download_example_csv: Voorbeeldnormen CSV
     dp_consent: Toestemming voor gegevensverwerking inschakelen
@@ -667,6 +703,7 @@ nl:
     email_subjects_manager_when_available: E-mail de manager van het onderwerp wanneer het rapport beschikbaar is
     empty: Leeg
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
+    empty_occupation_condition_set_msg: Er zijn geen beroepsfactoren gevonden voor deze aandoeningenreeks. Voeg alstublieft een factor toe.
     enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
     enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     enable_caching_title: Assessment caching mogelijk maken?
@@ -760,6 +797,7 @@ nl:
     factors_index_sub_factors: Subfactoren
     factors_index_title: Factoren
     factors_resource_confirmations_delete_body: "<p>Weet je zeker dat je deze Factor wilt verwijderen?</p>\n"
+    factors_resource_removal_success: De factor '%{name}' is succesvol verwijderd.
     failure_reason: Storing Reden
     feature_ai_assistants_description: Schakel AI-aangedreven assistenten in voor een verbeterde gebruikerservaring
     feature_ai_assisted_idp_description: Gebruik AI om te helpen bij aanbevelingen voor individuele ontwikkelingsplannen
@@ -1214,6 +1252,7 @@ nl:
     log_date: Log Datum
     logged_in: Ingelogd
     login: Inloggen
+    login_page_design_tab: Ontwerp
     low: Laag
     mail_history: Mail Geschiedenis
     main_report: Hoofdrapport
@@ -1310,6 +1349,7 @@ nl:
     new_score: Nieuwe score
     no_assessments_found: Controle-id
     no_client_access: Je hebt geen toegang tot deze klant
+    no_client_access_root: Je bent niet gekoppeld aan een klant
     no_clients_found: Er zijn geen klanten gevonden
     no_completed_assessments: Er zijn nog geen afgeronde beoordelingen
     no_file_selected: Geen bestand geselecteerd
@@ -1360,6 +1400,13 @@ nl:
     oauth_scope_label: Draagwijdte
     oauth_scope_name: oauth_scope
     oauth_scope_required: Reikwijdte is vereist
+    occupation_condition_set_copy_success: De set met beroepsomstandigheden is succesvol gekopieerd
+    occupation_condition_sets: Sets van beroepsmatige omstandigheden
+    occupation_condition_sets_remove_confirm: Voer de naam van de hieronder vermelde beroepsvoorwaarde in het tekstvak in om te bevestigen
+    occupation_condition_sets_remove_success: De bezettingsstatus „%{name}“ is succesvol verwijderd
+    occupation_condition_sets_remove_warning: Weet u zeker dat u de beroepsvoorwaardenset „%{name}” wilt verwijderen?
+    occupation_factors_condition_set: Voorwaardenset
+    occupation_factors_title: Beroepsfactoren
     occupations: Beroepen
     occupations_factors_list_condition: Voorwaarde
     occupations_factors_list_position: Positie
@@ -2033,6 +2080,7 @@ nl:
     public_key_cannot_be_changed: kan na het aanmaken niet meer worden gewijzigd
     public_key_copy_private_key: Privésleutel kopiëren
     public_key_created: De openbare sleutel is succesvol aangemaakt
+    public_key_details: Gegevens over de openbare sleutel
     public_key_generate: Sleutelpaar genereren
     public_key_generate_button: RSA-sleutelpaar genereren
     public_key_generate_info: Er wordt een RSA-sleutelpaar van 2048 bits gegenereerd. Alleen de openbare sleutel wordt opgeslagen. Kopieer de privésleutel en bewaar deze op een veilige plek — deze wordt niet nogmaals weergegeven.
@@ -2210,12 +2258,14 @@ nl:
     report_type: Type rapport
     report_types:
       active_clients_projects: Actieve klanten en projecten
+      campaign_factor_scores: Scores van campagnefactoren
       client_assessment_counts: De beoordeling door de klant telt
       hogan_usage_report: Gebruik van de Hogan-beoordeling
       json_data_report: JSON-gegevensrapport
       pearson_usage_report: Gebruik van Pearson Assessment
       report_usage_summary: Overzicht van het rapportgebruik
       saville_usage_report: Gebruik van Saville Assessment
+      user_access_review: Beoordeling van gebruikerstoegang
       user_created_dates: Door gebruikers aangemaakte datums
       user_reports_export: Gebruikersrapporten exporteren
     reports: Rapporten
@@ -2607,6 +2657,7 @@ nl:
     search_admins: Beheerders zoeken
     search_campaign: Zoeken op campagne
     search_client: Zoeken op klant
+    search_client_assessors: Zoek naar beoordelaars van klanten
     search_job_role: Zoek functie
     search_participants: Deelnemers zoeken...
     search_project: Zoeken op project
@@ -2642,6 +2693,7 @@ nl:
     select_admin_role: Selecteer beheerdersrol
     select_assessment_language: Taal voor beoordeling kiezen
     select_client: Klant selecteren
+    select_condition_set: Selecteer een reeks voorwaarden
     select_end_time: Eindtijd selecteren
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau

@@ -876,6 +876,7 @@ ru:
         compact_completion_status_export: Экспорт статуса завершения компактного формата
         completion_status_export: Статус завершения Экспорт
         copy_as_template_or_campaign: Копировать кампанию в качестве шаблона
+        copy_assessment: Оценка копии
         copy_dimension: Копировать размер
         copy_report: Скопировать отчет
         create_threesixty_campaign: Создать кампанию Threesixty
@@ -915,6 +916,7 @@ ru:
         import_assessors: Эксперты по импорту
         import_campaign_ai_artifacts: Импорт артефактов искусственного интеллекта кампании
         import_campaign_factors: Импорт факторов кампании
+        import_client_assessors: Импорт оценщиков клиентов
         import_datasheet: Импорт технического паспорта
         import_development_action_translations: Импорт переводов действий по развитию
         import_development_actions: Действия по развитию импорта
@@ -972,6 +974,8 @@ ru:
       errors:
         no_plans: Не найдено активных планов IDP
     close: Закрыть
+    copy_assessment:
+      failed: Ошибка при создании тестового экземпляра
     copy_report:
       failed: Копирование отчета не удалось
     details: Подробности

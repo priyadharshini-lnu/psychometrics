@@ -876,6 +876,7 @@ ko:
         compact_completion_status_export: 컴팩트 완료 상태 내보내기
         completion_status_export: 완료 상태 내보내기
         copy_as_template_or_campaign: 캠페인을 템플릿으로 복사
+        copy_assessment: 평가 복사
         copy_dimension: 복사 차원
         copy_report: 보고서 복사
         create_threesixty_campaign: 쓰리식스티 캠페인 만들기
@@ -915,6 +916,7 @@ ko:
         import_assessors: 평가자 가져오기
         import_campaign_ai_artifacts: 캠페인 AI 아티팩트 가져오기
         import_campaign_factors: 캠페인 요소 가져오기
+        import_client_assessors: 수입 고객 평가자
         import_datasheet: 데이터시트 가져오기
         import_development_action_translations: 개발 작업 번역 가져오기
         import_development_actions: 개발 작업 가져오기
@@ -972,6 +974,8 @@ ko:
       errors:
         no_plans: 활성 IDP 플랜을 찾을 수 없습니다.
     close: 닫기
+    copy_assessment:
+      failed: 평가용 사본 전송에 실패했습니다.
     copy_report:
       failed: 보고서 복사에 실패했습니다.
     details: 세부 정보
