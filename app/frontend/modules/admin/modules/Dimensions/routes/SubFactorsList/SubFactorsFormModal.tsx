@@ -1,13 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
-  Select, Form, InputNumber,
+  Form,
 } from 'antd'
 import { useParams } from 'react-router-dom'
-import _ from 'lodash'
 import { SubFactors, SubFactorsTR } from '~/modules/admin/modules/client/core/subFactors'
-import ResourceFormModal from '~/components/ResourceFormModal'
+import { ResourceFormModalComponent } from '~/components/ResourceFormModal'
 import { useResources } from '~/hooks/useResources'
-import { Factor, FactorSearchTR } from '~/modules/admin/modules/campaigns/core/factors'
+import { SubFactorsForm } from '~/modules/admin/modules/Dimensions/components/SubFactorsForm'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 
 type Props = {
@@ -28,9 +27,14 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
   const { dimensionId, tagId } = useParams() as { dimensionId: string, tagId: string }
   const { resource: parentResource } = useResourceContext<SubFactors>()
   const [form] = Form.useForm()
-  const [state, setState] = useState({
-    data: [] as Factor[], requests: {}, meta: {}, query: {},
-  })
+
+  const [resourceStatus, setResourceStatus] = useState<string | null>(null)
+
+  const handleSuccessfulSubmission = () => {
+    if (subFact) {
+      close()
+    }
+  }
 
   const resourceName = getResourceName(slug)
 
@@ -42,38 +46,10 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
     },
   )
 
-  const { data: factors, fetch: search } = useResources<Factor>('factors', {
-    basePath: `dimensions/${dimensionId}/`,
-    responseType: FactorSearchTR,
-    stateManager: {
-      state, setState,
-    },
-  })
-
-  const searchFactor = useCallback(_.debounce((value) => {
-    search({
-      apiConfig: {
-        filter: { search_query: value },
-      },
-    })
-  }, 300), [])
-
-  useEffect(() => {
-    search()
-  }, [])
-
-  const factorOptions = factors.map(({ id, name }) => ({ value: id, label: name }))
-  const selectedFactorId = (subFact as SubFactors & { factorId?: string })?.factorId
-  const selectOptions = selectedFactorId
-    && subFact?.factorName
-    && !factorOptions.some(({ value }) => value === selectedFactorId)
-    ? [{ value: selectedFactorId, label: subFact.factorName }, ...factorOptions]
-    : factorOptions
-
   const createSubFactors = (data: SubFactors) => resource.createResource(data)
 
   return (
-    <ResourceFormModal
+    <ResourceFormModalComponent
       resourceName={resourceName}
       resource={subFact}
       readableResourceName={I18n.t('admin.factors_index_title')}
@@ -86,54 +62,16 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
       scrollToFirstError
       modalProps={{ width: 720 }}
       request={{ createResource: createSubFactors, updateResource: resource.updateResource }}
+      resourceStatus={resourceStatus}
+      form={form}
     >
-      {() => (
-        <>
-          <Form.Item
-            name="factorId"
-            label={I18n.t('admin.scoring_factor')}
-          >
-            <Select
-              showSearch={{ onSearch: searchFactor, filterOption: false }}
-              placeholder={I18n.t('admin.factors_form_search_factors')}
-              options={selectOptions}
-            />
-          </Form.Item>
-          <Form.Item
-            name="predicate"
-            label={I18n.t('admin.factors_form_predicate')}
-          >
-            <Select
-              options={[
-                { value: 'equal_to', label: '==' },
-                { value: 'not_equal_to', label: '!=' },
-                { value: 'less_then', label: '<' },
-                { value: 'less_then_or_equal', label: '<=' },
-                { value: 'greater_then', label: '>' },
-                { value: 'greater_then_or_equal', label: '>=' },
-              ]}
-            />
-          </Form.Item>
-          <Form.Item
-            name="value"
-            label={I18n.t('admin.factors_form_value')}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            name="position"
-            label={I18n.t('admin.occupations_factors_list_position')}
-          >
-            <InputNumber />
-          </Form.Item>
-          <Form.Item
-            name="weight"
-            label={I18n.t('admin.occupations_factors_list_weight')}
-          >
-            <InputNumber />
-          </Form.Item>
-        </>
-      )}
-    </ResourceFormModal>
+      <SubFactorsForm
+        subFact={subFact}
+        slug={slug}
+        form={form}
+        onStatusChange={setResourceStatus}
+        onSuccessfulSubmission={handleSuccessfulSubmission}
+      />
+    </ResourceFormModalComponent>
   )
 }

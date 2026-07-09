@@ -34,6 +34,7 @@ en:
     add_lead_assessor_hint: Please, add Lead Assessor Form first
     add_more: Add More
     add_new_folder: Add New Folder
+    add_or_select_factor_msg: Click on add/select a factor to view details.
     add_output_schema_key: Add Output Schema Key
     add_project: Add Project
     add_project_admin: Add Project Admin
@@ -303,6 +304,7 @@ en:
     campaign_assessment_column_caching_enabled: Assessment Caching Enabled
     campaign_assessment_column_hogan_assessment_id: Hogan Assessment ID
     campaign_assessment_column_hogan_form_id: Hogan Form ID
+    campaign_assessment_column_occupation_condition_set: Occupation Condition Set
     campaign_assessment_column_pearson_assessment_id: Pearson Assessment ID
     campaign_assessment_column_pearson_assessment_language: Pearson Assessment Language
     campaign_assessment_column_pearson_error_details: Pearson Error Details
@@ -329,6 +331,10 @@ en:
     campaign_assessment_modals_enable_caching_content: Are you sure you want to enable caching for this assessment?
     campaign_assessment_modals_enable_caching_successfully: Caching has been enabled for this assessment.
     campaign_assessment_modals_enable_caching_title: Enable Assessment Caching?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Apply this change to existing users in this campaign
+    campaign_assessment_modals_update_occupation_condition_set_select: Select Occupation Condition Set
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Occupation Condition Set was updated successfully
+    campaign_assessment_modals_update_occupation_condition_set_title: Update Occupation Condition Set
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
@@ -462,6 +468,7 @@ en:
     completed_tooltip: All evaluators have submitted the evaluation
     components_input_duration_placeholder: Enter as '1d 2h 3m'
     concise: Concise
+    condition_sets: Condition Sets
     confidence_interval: Confidence Interval
     confidence_interval_update_success: Confidence interval updated successfully
     configuration: Configuration
@@ -479,6 +486,8 @@ en:
     copy_assessment_scheduled: Assessment copy job has been scheduled.
     copy_hint: Copies the above Seats, Center Managers, Assessors and Meetings & Resources configuration to following Assessment Centers. After copying, you can make further changes to individual Assessment Centers before proceeding.
     copy_image_url: Copy Image URL
+    copy_occupation_condition_set: Copy Occupation Condition Set
+    copy_occupation_condition_set_msg: This will copy all existing occupation factors configuration from current condition set to the new condition set.
     copy_report_scheduled: Report copy job has been scheduled.
     copy_text: Text
     copy_to_all: Copy to other Assessment Centers
@@ -562,6 +571,7 @@ en:
     default_assessment_language: Assessment default language
     default_button: Default
     default_language: Default Language
+    default_occupation_condition_set: Default Occupation Condition Set
     default_report_language: Report default language
     define_max_score_text: Define a score of %{maxScore} (maximum score)
     define_min_score_text: Define a score of %{minScore} (minimum score)
@@ -701,6 +711,7 @@ en:
     email_subjects_manager_when_available: Email subject's manager when report becomes available
     empty: Empty
     empty_csv_file: CSV file does not contain any data.
+    empty_occupation_condition_set_msg: No Occupation factors found for this condition set. Please add a factor.
     enable_caching_content: Are you sure you want to enable caching for this assessment?
     enable_caching_successfully: Caching has been enabled for this assessment.
     enable_caching_title: Enable Assessment Caching?
@@ -794,6 +805,7 @@ en:
     factors_index_sub_factors: Sub factors / Indicators
     factors_index_title: Factors
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: Factor '%{name}' was removed successfully.
     failure_reason: Failure Reason
     feature_ai_assistants_description: Enable AI-powered assistants for enhanced user experience
     feature_ai_assisted_idp_description: Use AI to assist with Individual Development Planning recommendations
@@ -1396,6 +1408,13 @@ en:
     oauth_scope_label: Scope
     oauth_scope_name: oauth_scope
     oauth_scope_required: Scope is required
+    occupation_condition_set_copy_success: Occupation Condition Set copied successfully
+    occupation_condition_sets: Occupation Condition Sets
+    occupation_condition_sets_remove_confirm: Enter the occupation condition set name given below in the text box to confirm
+    occupation_condition_sets_remove_success: Occupation condition set "%{name}" was removed successfully
+    occupation_condition_sets_remove_warning: Are you sure you want to delete the occupation condition set "%{name}"?
+    occupation_factors_condition_set: Condition Set
+    occupation_factors_title: Occupation Factors
     occupations: Occupations
     occupations_factors_list_condition: Condition
     occupations_factors_list_position: Position
@@ -2682,6 +2701,7 @@ en:
     select_admin_role: Select admin role
     select_assessment_language: Select assessment language
     select_client: Select Client
+    select_condition_set: Select condition set
     select_end_time: Select End Time
     select_language_to_translate: Please select language to translate
     select_level: Select level

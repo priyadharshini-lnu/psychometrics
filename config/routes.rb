@@ -433,6 +433,7 @@ Rails.application.routes.draw do
             end
             member do
               put :update_external_config
+              post :update_occupation_condition_set
             end
           end
         end
@@ -1477,6 +1478,9 @@ as: :simulation_progress_notification
                   jsonapi_resources :occupations_factors
                   resource :uploads, only: %i[update], controller: 'uploads'
                 end
+              end
+              jsonapi_resources :occupation_condition_sets do
+                post :copy, on: :member
               end
               jsonapi_resources :innovation_styles do
                 scope module: :innovation_styles do

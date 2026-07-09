@@ -10,6 +10,7 @@ import { DimensionTR, Dimension } from '~/modules/admin/modules/client/core/dime
 import FactorsList from './FactorsList'
 import OccupationsList from './OccupationsList'
 import InnovationStylesList from './InnovationStylesList'
+import { OccupationConditionSetsList } from './OccupationConditionSetsList'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
@@ -37,6 +38,7 @@ const DimensionComponent: React.FC = () => {
     ]
     if (dimensions?.occupationsEnabled) {
       items.push({ key: '/occupations', label: I18n.t('admin.navigation_occupations') })
+      items.push({ key: '/occupation_condition_sets', label: I18n.t('admin.occupation_condition_sets') })
     }
     if (dimensions?.innovationStylesEnabled) {
       items.push({ key: '/innovation_styles', label: I18n.t('admin.navigation_innovation_styles') })
@@ -48,6 +50,7 @@ const DimensionComponent: React.FC = () => {
     if (location.pathname.includes('/factors')) return '/factors'
     if (location.pathname.includes('/occupations')) return '/occupations'
     if (location.pathname.includes('/innovation_styles')) return '/innovation_styles'
+    if (location.pathname.includes('/occupation_condition_sets')) return '/occupation_condition_sets'
     return '/factors'
   }, [location.pathname])
 
@@ -56,6 +59,7 @@ const DimensionComponent: React.FC = () => {
       '/factors': I18n.t('admin.navigation_factors'),
       '/occupations': I18n.t('admin.navigation_occupations'),
       '/innovation_styles': I18n.t('admin.navigation_innovation_styles'),
+      '/occupation_condition_sets': I18n.t('admin.occupation_condition_sets'),
     }[activePath] || I18n.t('admin.navigation_factors')
   ), [activePath])
 
@@ -82,6 +86,7 @@ const DimensionComponent: React.FC = () => {
           { redirect: true, from: '', to: 'factors' },
           { path: '/factors', component: <FactorsList /> },
           { path: '/occupations', component: <OccupationsList /> },
+          { path: '/occupation_condition_sets', component: <OccupationConditionSetsList /> },
           { path: '/innovation_styles', component: <InnovationStylesList /> },
         ]}
         urlPrefix=""

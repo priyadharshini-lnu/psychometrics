@@ -15,25 +15,36 @@ module UsersResults
     attr_reader :users_result
 
     def calculate_occupations # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+      condition_set_id = users_result.resolve_occupation_condition_set&.id
+      return [] if condition_set_id.nil?
+
       users_result.assessment&.
         dimension&.
         occupations&.
         includes(occupations_factors: :factor)&.
+        where(occupations_factors: { occupation_condition_set_id: condition_set_id })&.
+        distinct&.
         each_with_object([]) do |occupation, mem|
+        occupations_factors = occupation.occupations_factors
+
         # Fetch a valid factor ids
         valid_factors = []
-        next if occupation.occupations_factors.empty?
+        next if occupations_factors.empty?
 
-        occupation.occupations_factors.each do |occupations_factor|
-          # Calculates AVG of scoring
+        occupations_factors.each do |occupations_factor|
           avg_scoring = AverageScoring.call!(users_result.scoring, occupations_factor.factor)
+
           # Collects factor ID if condition is valid
           valid_factors << occupations_factor if condition_valid?(occupations_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        valid_factors_weight_sum = valid_factors.sum { |f| f[:weight] } || 0
-        total_factors_weight_sum = occupation.occupations_factors.sum { |f| f[:weight] }
-        value = total_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) : 0
+        valid_factors_weight_sum = valid_factors.sum(&:weight)
+        total_factors_weight_sum = occupations_factors.sum(&:weight)
+        value = if total_factors_weight_sum.positive?
+                  (valid_factors_weight_sum / total_factors_weight_sum).round(2)
+                else
+                  0
+                end
 
         mem << {
           id: occupation.id,

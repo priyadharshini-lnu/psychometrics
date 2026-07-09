@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class CampaignAssessmentsController < Administration::Campaigns::BaseController
-      before_action :set_resource, only: %i[update update_external_config]
+      before_action :set_resource, only: %i[update update_external_config update_occupation_condition_set]
       before_action :pundit_authorize
 
       def update
@@ -43,6 +43,34 @@ module Administration
           ).serialize(resource)
         else
           render json: { errors: resource.errors.messages }, status: 422
+        end
+      end
+
+      def update_occupation_condition_set
+        condition_set_id = params.dig(:campaign_assessment, :occupation_condition_set_id)
+        apply_to_existing = ActiveRecord::Type::Boolean.new.cast(params.dig(:campaign_assessment,
+                                                                            :apply_to_existing_users))
+
+        ::CampaignAssessments::UpdateOccupationConditionSet.call(resource, condition_set_id, apply_to_existing) do
+          on(:ok) do |updated_resource|
+            audit!(
+              :update,
+              updated_resource,
+              payload: {
+                occupation_condition_set_id: condition_set_id,
+                apply_to_existing_users: apply_to_existing
+              },
+              campaign: updated_resource.campaign
+            )
+
+            render json: Administration::CampaignAssessmentSerializer.new(
+              context: {
+                current_user: current_user,
+                project_id: campaign.project_id,
+                campaign_id: campaign.id
+              }
+            ).serialize(updated_resource)
+          end
         end
       end
 

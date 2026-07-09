@@ -274,7 +274,7 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
     expect(report_response.keys).to contain_exactly(
       *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
           auto_assign available_languages report_locales effective_default_language internal custom_upload
-          assessment_ids external_settings report_provider schema_validation_error status user_report_id]
+          assessment_ids external_settings report_provider status user_report_id]
     )
     expect(report_response).to include({
       'name' => report.name,
@@ -321,6 +321,10 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         proctoring_enabled
         is_timed
         fixed_time_duration
+        occupation_condition_set_id
+        occupation_condition_set_name
+        dimension_has_occupations
+        occupation_condition_sets
       ]
     )
     expect(assessment_response).to include({

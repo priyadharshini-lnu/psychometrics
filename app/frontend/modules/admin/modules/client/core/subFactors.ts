@@ -10,6 +10,7 @@ export const SubFactorsTR = t.type({
   position: t.union([t.string, t.number, t.undefined]),
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),
+  factorId: t.union([t.string, t.undefined, t.number]),
 })
 
 export type SubFactors = t.TypeOf<typeof SubFactorsTR>

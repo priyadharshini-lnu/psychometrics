@@ -405,6 +405,7 @@ const AssessmentList: React.FC<Props> = ({
             close={() => setDrawerAssessment(undefined)}
             assessment={drawerAssessment}
             campaignId={campaignId}
+            openModal={openModal}
             updateMettlSchedule={updateMettlSchedule}
             loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
             updatePearsonVariation={updatePearsonVariation}

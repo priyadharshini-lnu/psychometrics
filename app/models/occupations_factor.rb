@@ -17,6 +17,7 @@ class OccupationsFactor < ApplicationRecord
 
   belongs_to :factor
   belongs_to :occupation
+  belongs_to :occupation_condition_set
   tenant_config has_global_records: true, optional: true
   include Tenantable
 
@@ -24,7 +25,7 @@ class OccupationsFactor < ApplicationRecord
 
   default_scope { order('position asc NULLS LAST') }
 
-  validates :factor, :predicate, :value, presence: true
+  validates :factor, :predicate, :value, :occupation_condition_set, presence: true
   validates :predicate, inclusion: { in: CONDITION_MAP.keys.map(&:to_s) }
   validates :value, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :position, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true

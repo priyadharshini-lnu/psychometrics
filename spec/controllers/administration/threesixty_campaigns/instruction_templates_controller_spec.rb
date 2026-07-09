@@ -7,7 +7,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::InstructionTemplatesControll
   let!(:template) { create(:threesixty_instruction_template, content: 'En') }
   let(:current_user) { create(:superadmin) }
 
-  before(:each) { sign_in(current_user) }
+  before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
   it 'show locales for a certain template' do
