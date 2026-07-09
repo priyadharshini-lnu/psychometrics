@@ -112,9 +112,9 @@ describe Assessments::CopyAssessment do
     end
 
     it 'replaces question_id in skip_logic' do
-      old_question_id = assessment.questions.first.id
-      new_question_id = copy.questions.first.id
-      copied_skip_logic = copy.questions.first.skip_logic.to_json
+      old_question_id = assessment.questions.order(:position).first.id
+      new_question_id = copy.questions.order(:position).first.id
+      copied_skip_logic = copy.questions.order(:position).first.skip_logic.to_json
 
       old_question_id_pattern = /"subject":#{old_question_id}/
       new_question_id_pattern = /"subject":#{new_question_id}/
@@ -126,7 +126,7 @@ describe Assessments::CopyAssessment do
     it 'replaces block_id in skip_logic' do
       old_block_id = assessment.blocks.first.id
       new_block_id = copy.blocks.first.id
-      copied_skip_logic = copy.blocks.first.questions.last.skip_logic.to_json
+      copied_skip_logic = copy.blocks.first.questions.order(:position).last.skip_logic.to_json
 
       old_block_id_pattern = /"destinationBlock":"?#{old_block_id}"?/
       new_block_id_pattern = /"destinationBlock":"?#{new_block_id}"?/

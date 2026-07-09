@@ -8,7 +8,7 @@ module AdminJobs
         owner,
         record.data['owner_id'],
         new_assessment_name: record.data['name'],
-        microsite_settings: record.data['microsite_settings']
+        microsite_settings: record.data['microsite_settings']&.symbolize_keys
       )
 
       if result[:ok]
