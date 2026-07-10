@@ -48,11 +48,19 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   after_create :link_to_workshop_invite
 
   def link_to_workshop_invite
-    workshop_invited_subject = WorkshopInvitedSubject.find_by(
-      user_id: @model.user_id,
-      workshop_invite_id: WorkshopInvite.where(campaign_id: @model.campaign_id).select(:id),
-      status: :pending
-    )
+    workshop_invited_subject = WorkshopInvitedSubject.
+                               joins(workshop_invite: :workshops).
+                               where(
+                                 user_id: @model.user_id,
+                                 status: :pending,
+                                 workshop_invites: {
+                                   campaign_id: @model.campaign_id,
+                                   campaign_assessment_group_id: @model.workshop.campaign_assessment_group_id
+                                 },
+                                 workshops: { id: @model.workshop_id }
+                               ).
+                               order(created_at: :desc).
+                               first
     return unless workshop_invited_subject
 
     ApplicationRecord.transaction do
