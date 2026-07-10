@@ -286,6 +286,7 @@ Rails.application.routes.draw do
               put :send_for_approval
               put :request_changes
               put :remove_approval
+              patch :mark_ready
               patch :toggle_user_access
               get :webhook_payload
               get :possible_webhook_events

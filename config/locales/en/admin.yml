@@ -1283,6 +1283,7 @@ en:
     mark_not_finalized: Mark Not Finalized
     mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
     mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
+    mark_ready_button: Mark as Ready
     mask_identity_for_examus: Mask data for Examus Proctoring
     mask_identity_for_hogan: Mask data for Hogan
     mask_identity_for_iiht: Mask data for IIHT

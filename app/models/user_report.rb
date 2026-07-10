@@ -230,8 +230,20 @@ class UserReport < ApplicationRecord
   def common_report_generatable?
     return false if provider_custom_upload?
 
+    common_report_generation_ready?
+  end
+
+  def can_mark_ready?
+    return false unless not_ready?
+    return false unless has_approval_workflow?
+    return false if provider_custom_upload?
+
+    common_report_generation_ready?(check_approval: false)
+  end
+
+  def common_report_generation_ready?(check_approval: true)
     generate = all_assessments_are_scored? && (external_report? || !report_modules_empty?)
-    generate &&= approved? if has_approval_workflow?
+    generate &&= approved? if check_approval && has_approval_workflow?
     generate &&= campaign_user.campaign_scores_finalized? if report.campaign_factors.present?
     generate &&= campaign_user.campaign_artifact_results_finalized? if report.campaign_ai_artifacts.present?
     generate
