@@ -27,12 +27,15 @@ class License < ApplicationRecord
   scope :active, -> { where(disabled: false) }
   scope :available, lambda {
                       active.
-                        where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
-                              date: Time.zone.today)
+                        where(
+                          'licenses.end_date >= :date AND licenses.start_date <= :date AND ' \
+                          'licenses.number + licenses.overuse_number > licenses.used_number',
+                          date: Time.zone.today
+                        )
                     }
   scope :not_expired, lambda {
     active.
-      where('end_date >= :date and start_date <= :date',
+      where('licenses.end_date >= :date AND licenses.start_date <= :date',
             date: Time.zone.today)
   }
 
