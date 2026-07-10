@@ -15,8 +15,11 @@ module UsersResults
     attr_reader :users_result
 
     def calculate_occupations # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      condition_set_id = users_result.resolve_occupation_condition_set&.id
+      condition_set = users_result.resolve_occupation_condition_set
+      condition_set_id = condition_set&.id
       return [] if condition_set_id.nil?
+
+      score_key = condition_set.score_type == 'normed' ? 'norm_score' : 'score'
 
       users_result.assessment&.
         dimension&.
@@ -32,10 +35,8 @@ module UsersResults
         next if occupations_factors.empty?
 
         occupations_factors.each do |occupations_factor|
-          avg_scoring = AverageScoring.call!(users_result.scoring, occupations_factor.factor)
-
-          # Collects factor ID if condition is valid
-          valid_factors << occupations_factor if condition_valid?(occupations_factor, avg_scoring)
+          factor_score = users_result.scoring&.dig(occupations_factor.factor_id.to_s, score_key)
+          valid_factors << occupations_factor if condition_valid?(occupations_factor, factor_score)
         end
         # Calculates ratio of valid factors
         valid_factors_weight_sum = valid_factors.sum(&:weight)
@@ -54,15 +55,11 @@ module UsersResults
       end
     end
 
-    # Checks if condition is valid
-    #
-    def condition_valid?(occupations_factor, avg_scoring)
-      return false if avg_scoring.nil?
+    def condition_valid?(occupations_factor, factor_score)
+      return false if factor_score.nil?
 
-      # Pridcate can be ==, !=, >, >=, <, <=
       predicate = OccupationsFactor::CONDITION_MAP[occupations_factor.predicate.to_sym]
-      # Checks if avg scoring is valid
-      avg_scoring.send(predicate, occupations_factor.value)
+      factor_score.send(predicate, occupations_factor.value)
     end
   end
 end

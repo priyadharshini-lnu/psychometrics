@@ -12,6 +12,7 @@ module Api
           def self.attributes(attribute, _type)
             proc do
               attribute[:name].filled(:string)
+              attribute[:score_type].maybe(:string)
             end
           end
 

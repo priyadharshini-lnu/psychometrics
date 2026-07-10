@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Dimensions::OccupationConditionSetResource < Api::V2::Administration::BaseResource
-  attributes :name, :conditions_count, :created_at, :updated_at
+  attributes :name, :score_type, :conditions_count, :created_at, :updated_at
 
   ransack_filters %i[filterable_fields search_query]
 
