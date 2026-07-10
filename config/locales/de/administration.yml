@@ -710,7 +710,6 @@ de:
         end_date: 'Enddatum:'
         every_interval: Jedes %{interval}
         frequency: 'Frequenz:'
-        owner: 'Eigentümerin:'
         project: 'Projekt:'
         recipients: 'Begünstigte:'
         specific_datetime: 'Senden an:'

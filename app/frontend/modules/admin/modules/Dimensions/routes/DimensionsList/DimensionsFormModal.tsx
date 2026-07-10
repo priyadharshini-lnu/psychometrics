@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Checkbox,
   Flex,
@@ -28,10 +28,27 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
   const { currentUser } = useCurrentUser()
   const { resource } = useResourceContext<Dimension>()
   const [form] = Form.useForm()
+  const occupationsEnabled = Form.useWatch('occupationsEnabled', form)
 
   const {
     data: clients, fetch: fetchClients, isLoading: isClientsLoading,
   } = useResources<Client>('clients')
+
+  const {
+    data: conditionSets,
+    fetch: fetchOccupationConditionSets, isLoading: isOccupationConditionSetsLoading,
+  } = useResources<{ id: string, name: string }>('occupation_condition_sets', {
+    basePath: `dimensions/${dimension?.id}/`,
+  })
+
+  useEffect(() => {
+    if (occupationsEnabled) {
+      fetchOccupationConditionSets()
+    }
+  }, [occupationsEnabled])
+
+  const hasConditionSets = conditionSets && conditionSets.length > 0
+
 
   const getClients = (): OptionsType[] => {
     if (!dimension || !dimension.owner || clients.find(d => dimension?.owner?.id === d.id)) {
@@ -109,6 +126,19 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
               <Checkbox>{I18n.t('admin.dimensions_form_enable_innovation_styles')}</Checkbox>
             </Form.Item>
           </Flex>
+          {dimension?.id && hasConditionSets && occupationsEnabled && (
+            <Form.Item
+              name="defaultOccupationConditionSetId"
+              label={I18n.t('admin.default_occupation_condition_set')}
+            >
+              <Select
+                showSearch={{ optionFilterProp: 'label' }}
+                options={conditionSets.map(({ id, name }) => ({ value: id, label: name }))}
+                notFoundContent={
+                  isOccupationConditionSetsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+              />
+            </Form.Item>
+          )}
         </>
       )}
     </ResourceFormModal>

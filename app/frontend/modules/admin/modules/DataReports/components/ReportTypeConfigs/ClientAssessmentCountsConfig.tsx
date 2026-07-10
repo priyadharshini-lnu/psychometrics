@@ -7,20 +7,14 @@ const { I18n } = window
 
 type ParsedConfiguration = {
   client_ids?: string[]
-  year_range?: [number, number] | number[]
+  start_date?: string
+  end_date?: string
 }
 
 const ClientAssessmentCountsConfig: React.FC<ReportTypeConfigProps> = ({
   parsedConfiguration,
 }) => {
   const config = parsedConfiguration as ParsedConfiguration | undefined
-
-  const yearRangeValue = Array.isArray(config?.year_range) && config.year_range.length === 2
-    ? [
-      dayjs().year(Number(config!.year_range![0])),
-      dayjs().year(Number(config!.year_range![1])),
-    ]
-    : undefined
 
   return (
     <>
@@ -38,12 +32,18 @@ const ClientAssessmentCountsConfig: React.FC<ReportTypeConfigProps> = ({
       </Form.Item>
 
       <Form.Item
-        name="yearRange"
-        label={I18n.t('admin.year_range')}
-        initialValue={yearRangeValue}
-        rules={[{ required: false }]}
+        name="dateRange"
+        label={I18n.t('admin.date_range')}
+        initialValue={
+          config?.start_date && config?.end_date
+            ? [
+              dayjs(config.start_date),
+              dayjs(config.end_date),
+            ]
+            : undefined
+        }
       >
-        <DatePicker.RangePicker picker="year" />
+        <DatePicker.RangePicker />
       </Form.Item>
     </>
   )
@@ -61,15 +61,15 @@ export const clientAssessmentCountsDefinition: ReportTypeDefinition = {
     ...data,
     configuration: JSON.stringify({
       client_ids: data.clientIds,
-      year_range: data.yearRange
-        ? [
-          dayjs(data.yearRange[0]).year(),
-          dayjs(data.yearRange[1]).year(),
-        ]
+      start_date: data.dateRange
+        ? dayjs(data.dateRange[0]).format('YYYY-MM-DD')
+        : null,
+      end_date: data.dateRange
+        ? dayjs(data.dateRange[1]).format('YYYY-MM-DD')
         : null,
     }),
     clientIds: undefined,
-    yearRange: undefined,
+    dateRange: undefined,
   }),
 }
 

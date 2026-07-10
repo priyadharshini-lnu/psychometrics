@@ -22,6 +22,8 @@ ar:
     assessor_approved: المقيم المعتمد
     assessors_list: قائمة المقيمين
     asset_not_present: الأصل غير موجود
+    audience: الجمهور
+    audience_claim_label: الجمهور (aud)
     audio: الصوت
     audio_devices: أجهزة الصوت
     authentication_failed: فشل المصادقة. يرجى المحاولة مرة أخرى.
@@ -100,6 +102,10 @@ ar:
     import: استيراد
     inactive: كسلان
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
+    issuer: الجهة المصدرة
+    issuer_claim_label: المُصدر (iss)
+    jwt_claims_details: تفاصيل مطالبات JWT
+    key_id_claim_label: معرّف المفتاح (kid)
     last_name: إسم العائلة
     last_updated: آخر تحديث
     learning_on_the_job_label: التعلم أثناء العمل

@@ -14,7 +14,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 
@@ -37,13 +39,7 @@ module AdminJobs
                 where(status: [2, 3, 4, 5])
 
         query = query.where(c: { id: client_ids }) if client_ids.present?
-
-        if year_range.present?
-          start_date = Date.new(year_range[0].to_i, 1, 1)
-          end_date   = Date.new(year_range[1].to_i, 12, 31).end_of_day
-
-          query = query.where(completed_at: start_date..end_date)
-        end
+        query = query.where(completed_at: completed_at_range) if completed_at_range
 
         query = query.select(Arel.sql(%(
           c.id AS client_id,
@@ -67,11 +63,25 @@ module AdminJobs
           [
             row.client_id,
             row.client_name,
-            row.year,
+            row.year.to_i,
             row.count,
             row.proctored_count
           ]
         end
+      end
+
+      def completed_at_range
+        return unless start_date.present? && end_date.present?
+
+        start_date.beginning_of_day..end_date.end_of_day
+      end
+
+      def start_date
+        config['start_date']&.to_date
+      end
+
+      def end_date
+        config['end_date']&.to_date
       end
     end
   end

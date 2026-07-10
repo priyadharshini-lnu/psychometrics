@@ -22,6 +22,8 @@ fr:
     assessor_approved: Évaluateur approuvé
     assessors_list: Liste des évaluateurs
     asset_not_present: Actif non présent
+    audience: Public
+    audience_claim_label: Public (aud)
     audio: Audio
     audio_devices: Périphériques audio
     authentication_failed: L’authentification a échoué. Veuillez réessayer.
@@ -100,6 +102,10 @@ fr:
     import: Importation
     inactive: Inactif
     internet_disconnected_message: Essayez de vous reconnecter. Veuillez vérifier votre connexion internet.
+    issuer: Émetteur
+    issuer_claim_label: Émetteur (iss)
+    jwt_claims_details: Détails des réclamations JWT
+    key_id_claim_label: Identifiant de clé (kid)
     last_name: Nom de famille
     last_updated: Dernière mise à jour
     learning_on_the_job_label: Apprendre sur le terrain

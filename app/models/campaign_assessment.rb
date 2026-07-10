@@ -9,6 +9,7 @@ class CampaignAssessment < ApplicationRecord
   belongs_to :assessor_form, class_name: 'Assessment'
   belongs_to :campaign_assessment_group
   belongs_to :mettl_schedule_record, optional: true
+  belongs_to :occupation_condition_set, optional: true
   include Tenantable
 
   scope :ungrouped, -> { where(campaign_assessment_group_id: nil) }

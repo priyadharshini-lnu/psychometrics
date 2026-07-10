@@ -74,6 +74,9 @@ export const Client: FC<Props> = ({ currentUser }) => {
     if (pathname.includes('/admins')) {
       return ['admins']
     }
+    if (pathname.includes('/assessors')) {
+      return ['assessors']
+    }
     if (pathname.includes('/settings')) {
       return ['settings']
     }
@@ -101,6 +104,8 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return I18n.t('admin.projects')
       case 'admins':
         return I18n.t('admin.admins')
+      case 'assessors':
+        return I18n.t('admin.assessors')
       case 'settings':
         return I18n.t('admin.settings')
       case 'data_reports':
@@ -125,6 +130,12 @@ export const Client: FC<Props> = ({ currentUser }) => {
     key: 'admins',
     icon: <UserOutlined />,
     label: I18n.t('admin.client_admins'),
+  })
+
+  isSuperAdmin(currentUser) && menuItems.push({
+    key: 'assessors',
+    icon: <UserOutlined />,
+    label: I18n.t('admin.assessors'),
   })
 
   isSuperAdmin(currentUser) && menuItems.push({

@@ -876,6 +876,7 @@ hr:
         compact_completion_status_export: Kompaktni izvoz statusa dovršetka
         completion_status_export: Izvoz statusa dovršetka
         copy_as_template_or_campaign: Kopiraj kampanju kao predložak
+        copy_assessment: Kopiraj procjenu
         copy_dimension: Kopiraj dimenziju
         copy_report: Kopiraj izvještaj
         create_threesixty_campaign: Kreirajte kampanju Threesixty
@@ -915,6 +916,7 @@ hr:
         import_assessors: Procjenitelji uvoza
         import_campaign_ai_artifacts: AI artefakti kampanje uvoza
         import_campaign_factors: Faktori uvozne kampanje
+        import_client_assessors: Uvezi procjenitelje klijenata
         import_datasheet: Uvoz podatkovne tablice
         import_development_action_translations: Uvoz Prijevodi razvojnih radnji
         import_development_actions: Uvoz razvojnih akcija
@@ -972,6 +974,8 @@ hr:
       errors:
         no_plans: Nisu pronađeni aktivni IDP planovi
     close: Blizak
+    copy_assessment:
+      failed: Procjena kopije nije uspjela
     copy_report:
       failed: Prijenos kopije je propao
     details: Detalji

@@ -16,6 +16,7 @@ import { Applications, ApplicationDetails } from './Applications'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
 import settings from '~/modules/admin/modules/client/settings'
+import { LoginPageDesign } from './LoginPageDesign'
 
 const { I18n } = window
 
@@ -37,6 +38,7 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
     ? [
       { path: 'smtp', element: <Smtp /> },
       { path: 'sso_settings', element: <SsoSettings /> },
+      { path: 'login_page_design', element: <LoginPageDesign /> },
       { path: 'privacy_settings', element: <PrivacySettings /> },
       { path: 'features', element: <Features /> },
       { path: 'applications', element: <Applications /> },
@@ -56,6 +58,7 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
     if (pathname.includes('/applications')) return 'applications'
     if (pathname.includes('/smtp')) return 'smtp'
     if (pathname.includes('/sso_settings')) return 'sso_settings'
+    if (pathname.includes('/login_page_design')) return 'login_page_design'
     if (pathname.includes('/siem')) return 'siem'
     if (pathname.includes('/skill_aliases')) return 'skill_aliases'
     if (pathname.includes('/privacy_settings')) return 'privacy_settings'
@@ -74,6 +77,7 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
         { key: 'applications', label: I18n.t('admin.applications'), children: routeContent },
         { key: 'smtp', label: I18n.t('admin.smtp_settings_smtp'), children: routeContent },
         { key: 'sso_settings', label: I18n.t('admin.sso_settings_tab'), children: routeContent },
+        { key: 'login_page_design', label: I18n.t('admin.login_page_design_tab'), children: routeContent },
       ]
       : []
     ),

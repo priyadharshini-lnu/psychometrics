@@ -18,6 +18,7 @@ interface Props {
   close: () => void
   assessment: Assessment | undefined
   campaignId: string
+  openModal: (name: string, props: object) => void
   updateMettlSchedule: (
     campaignId: number, assessmentId: number, body: { assessment: { id: string } }
   ) => Promise<{ response: unknown }>
@@ -38,6 +39,7 @@ export const DetailsDrawer: FC<Props> = ({
   close,
   assessment,
   campaignId,
+  openModal,
   updateMettlSchedule,
   loadingUpdateMettlSchedule,
   updateMhsConfidenceInterval,
@@ -94,6 +96,27 @@ export const DetailsDrawer: FC<Props> = ({
           >
             {assessment.dimensionId}
           </Descriptions.Item>
+
+          {assessment.dimensionHasOccupations && (
+            <Descriptions.Item
+              label={I18n.t('admin.campaign_assessment_column_occupation_condition_set')}
+              key="occupation_condition_set"
+              className="va-t"
+            >
+              {assessment.permissions.updateOccupationConditionSet ? (
+                <a
+                  onClick={() => openModal('UpdateConditionSetModal', {
+                    campaignId: parseInt(campaignId, 10),
+                    campaignAssessmentId: assessment.id,
+                  })}
+                >
+                  {assessment.occupationConditionSetName || I18n.t('common.text.default')}
+                </a>
+              ) : (
+                assessment.occupationConditionSetName || I18n.t('common.text.default')
+              )}
+            </Descriptions.Item>
+          )}
 
           <Descriptions.Item
             label={I18n.t('campaign_assessment.column.norm_id')}

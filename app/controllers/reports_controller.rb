@@ -4,6 +4,7 @@
 # Cause user no more need to view report
 class ReportsController < ApplicationController
   include AuthenticateByToken
+  include AddCookie
 
   # Turn off normally auth
   skip_before_action :authenticate_user!
@@ -29,6 +30,6 @@ class ReportsController < ApplicationController
   end
 
   def add_cookie_for_file_download
-    cookies[:fileDownload] = true
+    add_cookie(:fileDownload, true, httponly: false)
   end
 end

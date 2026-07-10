@@ -22,6 +22,8 @@ sk:
     assessor_approved: Schválený posudzovateľ
     assessors_list: Zoznam hodnotiteľov
     asset_not_present: Aktívum nie je prítomné
+    audience: Publikum
+    audience_claim_label: Publikum (aud)
     audio: Audio
     audio_devices: Zvukové zariadenia
     authentication_failed: Autentifikácia zlyhala. Prosím, skúste to znova.
@@ -100,6 +102,10 @@ sk:
     import: Import
     inactive: Neaktívny
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
+    issuer: Emitent
+    issuer_claim_label: Emitent (iss)
+    jwt_claims_details: Podrobnosti o reklamáciách spoločnosti JWT
+    key_id_claim_label: ID kľúča (kid)
     last_name: Priezvisko
     last_updated: Posledná aktualizácia
     learning_on_the_job_label: Učenie sa priamo v práci

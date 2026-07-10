@@ -99,6 +99,10 @@ module Administration
       can_manage_campaign_and_users?
     end
 
+    def update_occupation_condition_set?
+      can_manage_campaign_and_users?
+    end
+
     def export_occupations?
       !!(has_permission?(:results, :export_occupations) && @record.dimension&.occupations_enabled?)
     end

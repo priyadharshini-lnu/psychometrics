@@ -18,7 +18,7 @@ module Administration
     def show?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, campaign_id: record.id
-      ) || (@user.assessor? && @user.assessors_campaings.include?(record))
+      ) || (@user.assessor? && @user.assessors_campaigns.include?(record))
     end
 
     def edit?
@@ -319,7 +319,7 @@ module Administration
           @user.has_permission?(@group, @permission, project_id: campaign.project_id, campaign_id: campaign.id)
         end.pluck(:id)
 
-        permitted_campaign_ids += @user.assessors_campaings.pluck(:id)
+        permitted_campaign_ids += @user.assessors_campaigns.pluck(:id)
 
         permitted_client_admin_project_ids = restrict_to_client_subtree(permitted_client_admin_project_ids)
         permitted_project_admin_project_ids = restrict_to_client_subtree(permitted_project_admin_project_ids)

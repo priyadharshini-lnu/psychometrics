@@ -710,7 +710,6 @@ cs:
         end_date: 'Datum ukončení:'
         every_interval: Každý %{interval}
         frequency: 'Frekvence:'
-        owner: 'Majitel:'
         project: 'Projekt:'
         recipients: 'Příjemci:'
         specific_datetime: 'Odeslat na adresu:'

@@ -23,6 +23,7 @@ module Administration
       schema.required(:user_dashboard).filled(:bool?)
       schema.required(:main_report).filled(:bool?)
       schema.required(:internal).filled(:bool?)
+      schema.required(:custom_upload).filled(:bool?)
     end
 
     def self.define_permissions_field(schema)
@@ -39,7 +40,7 @@ module Administration
     end
 
     def self.define_optional_fields(schema)
-      schema.required(:assessment_id).maybe(:int?)
+      schema.required(:assessment_ids).maybe(:array?).each(:int?)
       schema.required(:report_provider).maybe(:str?)
       schema.required(:user_report_id).maybe(:int?)
       schema.required(:external_settings).maybe(:hash?)

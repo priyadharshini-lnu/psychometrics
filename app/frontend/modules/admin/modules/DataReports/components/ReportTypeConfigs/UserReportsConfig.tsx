@@ -1,24 +1,17 @@
 import React from 'react'
-import { Form, Select } from 'antd'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
-
-const { I18n } = window
+import ProjectSearchField from './ProjectSearchField'
 
 const UserReportsConfig: React.FC<ReportTypeConfigProps> = ({
   parsedConfiguration,
+  scope,
+  ownerId,
 }) => (
-  <Form.Item
-    name="projectIds"
-    label={I18n.t('admin.project_ids')}
-    initialValue={(parsedConfiguration?.project_ids as string[])?.map(String) || []}
-    rules={[{ required: true, message: I18n.t('admin.select_projects_required') }]}
-  >
-    <Select
-      mode="tags"
-      placeholder={I18n.t('admin.enter_project_ids')}
-      tokenSeparators={[',', ' ']}
-    />
-  </Form.Item>
+  <ProjectSearchField
+    scope={scope}
+    ownerId={ownerId}
+    parsedConfiguration={parsedConfiguration}
+  />
 )
 
 export const userReportsDefinition: ReportTypeDefinition = {
@@ -31,6 +24,10 @@ export const userReportsDefinition: ReportTypeDefinition = {
       configuration: JSON.stringify({ project_ids: projectIds.map(id => parseInt(id, 10)) }),
       projectIds: undefined,
     }
+  },
+  uiRules: {
+    defaultScope: 'client',
+    scopeOptions: ['client'],
   },
 }
 

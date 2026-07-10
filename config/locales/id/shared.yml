@@ -22,6 +22,8 @@ id:
     assessor_approved: Disetujui oleh Penilai
     assessors_list: Daftar Penilai
     asset_not_present: Aset tidak tersedia
+    audience: Penonton
+    audience_claim_label: Penonton (aud)
     audio: Audio
     audio_devices: Perangkat Audio
     authentication_failed: Autentikasi gagal. Silakan coba lagi.
@@ -100,6 +102,10 @@ id:
     import: Mengimpor
     inactive: Aktif
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
+    issuer: Penerbit
+    issuer_claim_label: Penerbit (iss)
+    jwt_claims_details: Rincian Klaim JWT
+    key_id_claim_label: ID Kunci (kid)
     last_name: Nama belakang
     last_updated: Terakhir Diperbarui
     learning_on_the_job_label: Belajar di Tempat Kerja

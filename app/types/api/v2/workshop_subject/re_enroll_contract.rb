@@ -18,7 +18,7 @@ module Api
           workshop_subject = ::WorkshopSubject.find(_context[:params][:id])
           workshop = workshop_subject.workshop
 
-          if workshop.scheduling_lead_time_passed?
+          if workshop.scheduling_lead_time_passed? && !workshop_subject.late_cancelled?
             key.failure(:scheduling_lead_time_passed)
           end
 

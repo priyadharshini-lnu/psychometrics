@@ -876,6 +876,7 @@ ja:
         compact_completion_status_export: コンパクト完成状況エクスポート
         completion_status_export: 完成状況のエクスポート
         copy_as_template_or_campaign: キャンペーンをテンプレートとしてコピーする
+        copy_assessment: 評価のコピー
         copy_dimension: コピー寸法
         copy_report: レポートをコピー
         create_threesixty_campaign: クリエイト・スリーシックスティ・キャンペーン
@@ -915,6 +916,7 @@ ja:
         import_assessors: インポートアセッサー
         import_campaign_ai_artifacts: キャンペーンAIアーティファクトのインポート
         import_campaign_factors: インポート・キャンペーン要因
+        import_client_assessors: クライアント評価担当者のインポート
         import_datasheet: データシートのインポート
         import_development_action_translations: 輸入開発アクション翻訳
         import_development_actions: インポート開発アクション
@@ -972,6 +974,8 @@ ja:
       errors:
         no_plans: アクティブな IDP プランが見つかりませんでした
     close: 閉じる
+    copy_assessment:
+      failed: 評価用コピーの作成に失敗しました
     copy_report:
       failed: レポートのコピーに失敗しました
     details: 詳細

@@ -710,7 +710,6 @@ bg:
         end_date: 'Крайна дата:'
         every_interval: Всеки %{interval}
         frequency: 'Честота:'
-        owner: 'Собственик:'
         project: 'Проект:'
         recipients: 'Получатели:'
         specific_datetime: 'Изпратете на:'

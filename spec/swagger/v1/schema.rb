@@ -36,12 +36,72 @@ module Swagger
           To ensure data privacy and security, all requests should be made over `https`. `http` is not supported.
 
           ## Authentication
-          Basic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.
+
+          Lighthouse REST APIs support two authentication methods.
+
+          ### Basic Auth
+          Use the **API Key** as the Username and **Token** as the password.
+
+          ### Bearer JWT (RS256)
+          REST API requests may alternatively be authenticated using a short-lived JWT passed as a Bearer token
+          in the `Authorization` header.
+
+          ```
+          Authorization: Bearer <jwt_token>
+          ```
+
+          The JWT must be signed using **RS256** with a private key whose corresponding public key has been
+          configured for your Lighthouse Application. The token is not accepted as a query parameter.
+
+          #### Required JWT Claims
+
+          | Claim | Type | Description |
+          |-------|------|-------------|
+          | `iss` | numeric string | Your Lighthouse Application ID |
+          | `jti` | string | Unique token identifier (UUID recommended) |
+          | `aud` | string | Client project URL in subdomain + domain format, e.g. `https://client.tte-lighthouse.com` |
+          | `exp` | integer | Token expiry (Unix timestamp). Recommended: less than 5 minutes. Maximum: 1 hour |
+          | `kid` | numeric | RS256 key ID identifying the signing key |
+          | `single_use` | boolean | Optional. If `true`, the token can only be used once. Defaults to `false` |
+
+          #### JWT Header
+
+          ```json
+          {
+            "alg": "RS256",
+            "typ": "JWT",
+            "kid": 45
+          }
+          ```
+
+          #### JWT Payload Example
+
+          ```json
+          {
+            "iss": 1024,
+            "jti": "8f5f0b2a-6e31-4a17-9c6f-6db6d91f51c2",
+            "aud": "https://client.tte-lighthouse.com",
+            "exp": 1778767200,
+            "single_use": true
+          }
+          ```
+
+          #### Single-Use Tokens
+          When `single_use` is set to `true`, the `iss` + `jti` combination is recorded on first use and
+          subsequent requests with the same token are rejected until the token expires. When `single_use` is
+          `false` or omitted, the token may be reused until it expires.
+
+          #### Validation Rules
+          - The `aud` claim must match the client project URL using subdomain + domain format only. Path-based
+            audience values are rejected.
+          - Tokens signed with algorithms other than RS256 are rejected.
+          - Tokens with an expiry greater than 1 hour are rejected.
+          - The `kid` must identify an active public key configured for the Application identified by `iss`.
 
           ## Single Sign-On
           Single Sign-On (SSO) is a feature that allows users to access multiple applications with one set of login credentials.
 
-          There are 3 ways to use SSO feature.
+          There are 3 ways to use the SSO feature.
 
           ### SAML 2.0
           Lighthouse supports SAML 2.0 for SSO. Please contact your TTE Project Manager to configure your Identity Provider (IdP).
@@ -49,22 +109,54 @@ module Swagger
           ### SSO URLs using REST API
           The Lighthouse API provides a way to generate SSO URLs using the REST API. The SSO URL can be used to authenticate users and redirect them to the participant dashboard.
 
-          ### JWT
-          You can pass JWT token to any of the Lighthouse Participant portal URLs to authenticate the user. The JWT token should be passed as a query parameter `jwt`.
+          ### POST-Based JWT SSO
+          Lighthouse supports participant SSO via a signed RS256 JWT submitted as a form POST. This method
+          keeps the token out of browser history, URL query strings, referrer headers, and access logs.
 
-          Example:
+          **Endpoint:** `POST /login/jwt`
+
+          **Request:** Submit the token as a form field named `token`.
+
           ```
-          https://<subdomain>.tte-lighthouse.com/?jwt=<jwt_token>
+          POST /login/jwt
+          Content-Type: application/x-www-form-urlencoded
+
+          token=<jwt_token>
           ```
-          The JWT token should be signed with the API Token provided by TTE. API Token is also used as a password for Basic Authentication for the APIs.
 
-          Following are the claims that should be present in the payload:
-          - `sub`: User's email address or User ID
-          - `exp`: Expiry time of the token
+          #### Required JWT Claims for SSO
 
-          Following are the claims that should be present in the header:
-          - `alg`: Use `HS256`
-          - `api_key`: API Key provided by TTE
+          | Claim | Required | Description |
+          |-------|----------|-------------|
+          | `iss` | Yes | Lighthouse Application ID |
+          | `jti` | Yes | Unique token identifier |
+          | `aud` | Yes | Client project URL, e.g. `https://client.tte-lighthouse.com` |
+          | `exp` | Yes | Token expiry. Recommended < 5 minutes. Maximum 1 hour |
+          | `sub` | Yes | Lighthouse User ID or participant email address |
+          | `kid` | Yes | RS256 key ID used for signing |
+          | `tg` | Yes | Target type: `cmp` (campaign) or `asmt` (assessment) |
+          | `tg_cmp_id` | Conditional | Required when `tg` is `cmp` or `asmt` |
+          | `tg_asmt_id` | Conditional | Required when `tg` is `asmt` |
+          | `single_use` | No | Boolean. Defaults to `false` |
+          | `ret_url` | No | Optional return URL after activity completion |
+
+          #### Return URL Placeholder Substitution
+          The `ret_url` may contain the placeholder `ASSESSMENT_STATUS`. Lighthouse substitutes this with one
+          of the following values upon redirect:
+
+          | Value | Meaning |
+          |-------|---------|
+          | `assessment_completed` | Participant completed the assessment |
+          | `assessment_pending` | Assessment is pending or incomplete |
+          | `campaign_completed` | Participant completed all campaign activities |
+          | `campaign_pending` | Campaign activities are pending |
+
+          #### Token Replay Handling
+          If `single_use` is `true` and the token has already been used, Lighthouse redirects to `ret_url`
+          (if provided) with the appropriate pending status substituted. If no `ret_url` is available, a
+          generic authentication failure response is returned.
+
+          Invalid or unverified tokens never result in a redirect to `ret_url`.
 
           ## Workflow
           There is no particular workflow you need to follow. A typical workflow is shown below.
@@ -88,12 +180,21 @@ module Swagger
           New attributes could also be added to the request schema but would be optional.
         DESCRIPTION
       },
-      securityDefinitions: { basic: { type: :basic } },
+      securityDefinitions: {
+        basic: { type: :basic },
+        bearer: {
+          type: :apiKey,
+          name: 'Authorization',
+          in: :header,
+          description: 'RS256-signed JWT. Enter the **full header value** including the Bearer prefix: ' \
+                       '`Bearer <your_jwt_token>`. ' \
+                       'See the Authentication section for required claims and validation rules.'
+        }
+      },
       paths: {},
       security: [
-        {
-          basic: []
-        }
+        { basic: [] },
+        { bearer: [] }
       ],
       basePath: '/api/v1',
       schemes: [

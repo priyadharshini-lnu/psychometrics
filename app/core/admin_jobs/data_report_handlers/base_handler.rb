@@ -66,6 +66,22 @@ module AdminJobs
 
         @campaigns ||= ::Campaign.where(id: ids)
       end
+
+      def format_datetime(value)
+        return value if value.blank?
+
+        value.in_time_zone.strftime('%Y-%m-%d %H:%M:%S')
+      end
+
+      def format_csv_row(row)
+        row.map do |value|
+          if value.is_a?(Time) || value.is_a?(ActiveSupport::TimeWithZone)
+            format_datetime(value)
+          else
+            value
+          end
+        end
+      end
     end
   end
 end

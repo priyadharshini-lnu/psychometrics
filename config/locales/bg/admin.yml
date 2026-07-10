@@ -26,6 +26,7 @@ bg:
     add_btn: Добавяне на тема
     add_campaign_admin: Добавяне на администратор на кампанията
     add_client_admin: Добавяне на клиентски администратор
+    add_client_assessor: Добави клиент-оценител
     add_conditions: Добавяне на условия
     add_evaluators: Добавяне на оценители
     add_indicator: Добави индикатор
@@ -33,6 +34,7 @@ bg:
     add_lead_assessor_hint: Моля, първо добавете формуляр за водещ оценител
     add_more: Добави още
     add_new_folder: Добави нова папка
+    add_or_select_factor_msg: Кликнете върху „Добави/избери фактор“, за да видите подробностите.
     add_output_schema_key: Добавяне на ключ на изходната схема
     add_project: Добавяне на проект
     add_project_admin: Добавяне на администратор на проекта
@@ -47,6 +49,7 @@ bg:
     admin_role_deleted: Ролята на администратор '%{role_name}' беше изтрита успешно.
     admin_roles: Администраторски роли
     admin_updated_successfully: Администраторът '%{name}' е актуализиран успешно
+    admin_with_email_already_added: Потребител с този имейл адрес вече е добавен.
     administrator_approves_reports: Администраторът одобрява докладите
     administrators_list_columns_email: Имейл
     admins: Администратори
@@ -123,6 +126,20 @@ bg:
     application_name: Име на приложението
     application_name_already_taken: Вече съществува за този клиент
     application_name_format_hint: Допускат се само букви и цифри, като между думите се поставя едно пространство
+    application_settings_at_least_one_ip_required: Моля, добавете поне един IP адрес, преди да активирате белия списък с IP адреси
+    application_settings_confirm_delete_ip: Сигурен ли сте, че искате да изтриете този IP адрес?
+    application_settings_edit_ip_address: Редактиране на IP адрес / CIDR диапазон
+    application_settings_enable_ip_whitelisting: Активиране на белия списък за IP адреси
+    application_settings_invalid_ip_format: Невалиден IP адрес или CIDR формат
+    application_settings_ip_addresses: IP адреси / CIDR диапазони
+    application_settings_ip_deleted_successfully: IP адресът беше изтрит успешно
+    application_settings_ip_description_placeholder: например, офисна мрежа или производствен сървър
+    application_settings_ip_input_placeholder: например 192.168.1.1 или 10.0.0.0/24
+    application_settings_ip_or_cidr: IP адрес или CIDR диапазон
+    application_settings_ip_required: Необходим е IP адрес или CIDR диапазон
+    application_settings_ip_updated_successfully: IP адресът беше актуализиран успешно
+    application_settings_ip_whitelisting_disabled_success: Добавянето в белия списък на IP адреса беше успешно деактивирано
+    application_settings_ip_whitelisting_enabled_success: Добавянето в белия списък на IP адреси беше активирано успешно
     applications: Приложения
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
     approve_all_questions: Одобри всички въпроси
@@ -279,6 +296,7 @@ bg:
     campaign_assessment_column_caching_enabled: Възможно е кеширане на оценка
     campaign_assessment_column_hogan_assessment_id: Идентификационен номер на оценката на Хоган
     campaign_assessment_column_hogan_form_id: Идентификационен номер на формуляр „Хоган“
+    campaign_assessment_column_occupation_condition_set: Набор от условия за професията
     campaign_assessment_column_pearson_assessment_id: Идентификационен номер на оценката на Pearson
     campaign_assessment_column_pearson_assessment_language: Език на оценяването на Pearson
     campaign_assessment_column_pearson_error_details: Подробности за грешката на Пиърсън
@@ -305,6 +323,10 @@ bg:
     campaign_assessment_modals_enable_caching_content: Сигурни ли сте, че искате да включите кеширане за тази оценка?
     campaign_assessment_modals_enable_caching_successfully: Кеширането е активирано за тази оценка.
     campaign_assessment_modals_enable_caching_title: Да активирам кеширането на оценката?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Приложете тази промяна към съществуващите потребители в тази кампания
+    campaign_assessment_modals_update_occupation_condition_set_select: Изберете набор от условия за професия
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Наборът от условия за професия беше актуализиран успешно
+    campaign_assessment_modals_update_occupation_condition_set_title: Актуализиране на набора от състояния на заетостта
     campaign_factors: Фактори на кампанията
     campaign_id_placeholder: Въведете ID на кампанията
     campaign_name: Име на кампанията
@@ -388,6 +410,13 @@ bg:
     client: Наемане на клиенти
     client_admin: Администратор на клиенти
     client_admins: Администратори на клиенти
+    client_assessor_import_already_added: Потребителят с имейл адрес „%{email}“ вече е добавен като оценител на клиенти.
+    client_assessor_import_client_required: Необходим е клиент за импортиране на оценители.
+    client_assessor_import_description: Импортирайте CSV файл с една колона за имейл адреси на клиентските оценители.
+    client_assessor_import_duplicated_emails: 'Следните имейли са дублирани във файла CSV: %{emails}'
+    client_assessor_import_emails_required: Моля, посочете поне един имейл адрес на оценител.
+    client_assessor_import_global_assessor_required: Потребителят трябва да е регистриран като глобален оценител.
+    client_assessor_removed_successfully: Клиентът-оценител с имейл адрес „%{email}“ беше успешно премахнат
     client_credentials_label: Идентификационни данни за клиенти
     client_credentials_value: client_credentials
     client_features: Характеристики на клиента
@@ -431,11 +460,13 @@ bg:
     completed_tooltip: Всички оценители са подали оценката
     components_input_duration_placeholder: Въведете като "1d 2h 3m"
     concise: Кратък
+    condition_sets: Множества от условия
     confidence_interval: Доверителен интервал
     confidence_interval_update_success: Доверителният интервал е актуализиран успешно
     configuration: Конфигурация
     configure_model_answer_title: Конфигуриране на моделни отговори и ключови думи
     confirm_remove_admin: Сигурни ли сте, че искате да премахнете администратор с имейл '%{email}'?
+    confirm_remove_client_assessor: Сигурен ли сте, че искате да премахнете клиентския оценител с имейл адрес „%{email}“?
     confirmation_required: Необходимо е потвърждение
     confirmation_required_details: Сигурен ли сте, че искате да изтриете файла „%{resource_name}“ от папката „%{resource}“?
     consolidated: Консолидиран
@@ -444,8 +475,11 @@ bg:
     copied: Копирано
     copied_url_success: URL адресът беше успешно копиран в клипборда
     copy_ai_artifacts: Копиране на AI-артефакти
+    copy_assessment_scheduled: Задачата за копиране с цел оценка е планирана.
     copy_hint: Копира горната конфигурация за места, мениджъри на центрове, оценители и срещи и ресурси в следните центрове за оценяване. След копирането можете да направите допълнителни промени в отделните центрове за оценяване, преди да продължите.
     copy_image_url: Копирай URL адреса на изображението
+    copy_occupation_condition_set: Копиране на набор от условия за заетост
+    copy_occupation_condition_set_msg: Това ще копира цялата съществуваща конфигурация на факторите за заетост от текущия набор от условия към новия набор от условия.
     copy_report_scheduled: Задачата за копиране на отчета е планирана.
     copy_text: Текст
     copy_to_all: Копиране в други центрове за оценяване
@@ -529,6 +563,7 @@ bg:
     default_assessment_language: Език по подразбиране на оценката
     default_button: По подразбиране
     default_language: Език по подразбиране
+    default_occupation_condition_set: Набор от условия за професия по подразбиране
     default_report_language: Език по подразбиране на доклада
     define_max_score_text: Определете резултат от %{maxScore} (максимален резултат)
     define_min_score_text: Определете резултат от %{minScore} (минимален резултат)
@@ -638,6 +673,7 @@ bg:
     document_titles_project_participants: Участници | %{project}
     done: Направи
     done_tooltip: Не може да се подава повече оценка за този потребител, тъй като оценката му се маркира като извършена от %{marked_by}
+    download_assessor_email_template: Изтеглете примерния шаблон
     download_bulk_asset_download_example_csv: Изтеглете пример за CSV.
     download_example_csv: Изтегляне на пример csv
     dp_consent: Разрешаване на съгласие за обработка на данни
@@ -667,6 +703,7 @@ bg:
     email_subjects_manager_when_available: Изпратете имейл на мениджъра на обекта, когато докладът стане достъпен
     empty: Празно
     empty_csv_file: CSV файлът не съдържа никакви данни.
+    empty_occupation_condition_set_msg: Не бяха намерени фактори, свързани с професията, за този набор от състояния. Моля, добавете фактор.
     enable_caching_content: Сигурни ли сте, че искате да включите кеширане за тази оценка?
     enable_caching_successfully: Кеширането е активирано за тази оценка.
     enable_caching_title: Да активирам кеширането на оценката?
@@ -760,6 +797,7 @@ bg:
     factors_index_sub_factors: Подфактори
     factors_index_title: Фактори
     factors_resource_confirmations_delete_body: "<p>Сигурни ли сте, че искате да изтриете този фактор?</p>\n"
+    factors_resource_removal_success: Факторът „%{name}“ беше успешно премахнат.
     failure_reason: Причина за повреда
     feature_ai_assistants_description: Активирайте AI-базирани асистенти за подобрено потребителско преживяване
     feature_ai_assisted_idp_description: Използвайте изкуствен интелект, за да подпомогнете препоръките за индивидуално планиране на развитието
@@ -1214,6 +1252,7 @@ bg:
     log_date: Дата на записа
     logged_in: Влязъл съм
     login: Вход
+    login_page_design_tab: Дизайн
     low: Ниска
     mail_history: История на пощата
     main_report: Основен доклад
@@ -1310,6 +1349,7 @@ bg:
     new_score: Нов резултат
     no_assessments_found: Идентификационен номер на одита
     no_client_access: Нямате достъп до този клиент
+    no_client_access_root: Не сте свързани с нито един клиент
     no_clients_found: Не бяха намерени клиенти
     no_completed_assessments: Все още няма завършени оценявания
     no_file_selected: Няма избран файл
@@ -1360,6 +1400,13 @@ bg:
     oauth_scope_label: Обхват
     oauth_scope_name: oauth_scope
     oauth_scope_required: Изисква се обхват
+    occupation_condition_set_copy_success: Наборът от състояния на заетост беше копиран успешно
+    occupation_condition_sets: Набори от състояния на професиите
+    occupation_condition_sets_remove_confirm: Въведете името на набора от условия за заетост, посочено по-долу, в текстовото поле, за да потвърдите
+    occupation_condition_sets_remove_success: Наборът от условия за заетост „%{name}“ беше успешно премахнат
+    occupation_condition_sets_remove_warning: Сигурен ли сте, че искате да изтриете набора от условия за професия „%{name}“?
+    occupation_factors_condition_set: Набор от условия
+    occupation_factors_title: Фактори, свързани с професията
     occupations: Професии
     occupations_factors_list_condition: Условие
     occupations_factors_list_position: Положение
@@ -2033,6 +2080,7 @@ bg:
     public_key_cannot_be_changed: не може да бъде променено след създаването му
     public_key_copy_private_key: Копиране на частния ключ
     public_key_created: Публичният ключ беше създаден успешно
+    public_key_details: Подробности за публичния ключ
     public_key_generate: Генериране на двойка ключове
     public_key_generate_button: Генериране на двойка RSA ключове
     public_key_generate_info: Ще се генерира двойка RSA ключове с дължина 2048 бита. Ще бъде запазен само публичният ключ. Копирайте и съхранявайте на сигурно място частния ключ — той няма да се показва отново.
@@ -2210,12 +2258,14 @@ bg:
     report_type: Тип на доклада
     report_types:
       active_clients_projects: Активни клиенти и проекти
+      campaign_factor_scores: Резултати по факторите на кампанията
       client_assessment_counts: Оценката на клиента е от значение
       hogan_usage_report: Използване на оценката на Хоган
       json_data_report: Отчет за данни в JSON формат
       pearson_usage_report: Използване на оценките на „Пиърсън“
       report_usage_summary: Обобщение на използването на отчета
       saville_usage_report: Използване на оценката на Saville
+      user_access_review: Преглед на достъпа на потребителите
       user_created_dates: Дати, създадени от потребители
       user_reports_export: Експорт на потребителски отчети
     reports: Доклади
@@ -2604,6 +2654,7 @@ bg:
     search_admins: Търсене на дминистратори
     search_campaign: Търсене по кампания
     search_client: Търсене по клиент
+    search_client_assessors: Търсене на клиентски оценители
     search_job_role: Търсене на длъжност
     search_participants: Търсене на участници...
     search_project: Търсене по проект
@@ -2639,6 +2690,7 @@ bg:
     select_admin_role: Изберете роля на администратор
     select_assessment_language: Избор на език за оценяване
     select_client: Изберете клиент
+    select_condition_set: Изберете набор от условия
     select_end_time: Изберете час на приключване
     select_language_to_translate: Моля, изберете език за превод
     select_level: Изберете ниво

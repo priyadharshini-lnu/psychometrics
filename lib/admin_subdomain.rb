@@ -79,7 +79,8 @@ module AdminSubdomain
   def extract_subdomain(host)
     return '' if host.blank?
 
-    ActionDispatch::Http::URL.extract_subdomain(host, 1).to_s
+    tld_length = Settings.domain == 'localhost' ? 0 : 1
+    ActionDispatch::Http::URL.extract_subdomain(host, tld_length).to_s
   end
 
   def strip_app_subdomain(subdomain)

@@ -22,6 +22,8 @@ th:
     assessor_approved: ผู้ประเมินอนุมัติ
     assessors_list: รายชื่อผู้ประเมิน
     asset_not_present: ไม่มีสินทรัพย์
+    audience: ผู้ชม
+    audience_claim_label: ผู้ชม (aud)
     audio: เสียง
     audio_devices: อุปกรณ์เสียง
     authentication_failed: การรับรองความถูกต้องล้มเหลว โปรดลองอีกครั้ง
@@ -100,6 +102,10 @@ th:
     import: นําเข้า
     inactive: เกียจคร้าน
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
+    issuer: ผู้ออก
+    issuer_claim_label: ผู้ออก (iss)
+    jwt_claims_details: รายละเอียดคำร้องของ JWT
+    key_id_claim_label: รหัสหลัก (kid)
     last_name: นามสกุล
     last_updated: อัพเดทล่าสุด
     learning_on_the_job_label: การเรียนรู้ในการทํางาน

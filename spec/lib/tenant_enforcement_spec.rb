@@ -67,8 +67,11 @@ RSpec.describe TenantEnforcement do
     end
 
     it 'assigns tenant_id from current_tenant when current_tenant is set' do
-      campaign = ActsAsTenant.with_tenant(tenant_b) { Campaign.new(project: project_a) }
-      campaign.valid?
+      campaign = ActsAsTenant.with_tenant(tenant_b) do
+        campaign = Campaign.new(project: project_a)
+        campaign.valid?
+        campaign
+      end
 
       expect(campaign.tenant_id).to eq(tenant_b.id)
     end

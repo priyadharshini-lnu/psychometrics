@@ -22,6 +22,8 @@ ja:
     assessor_approved: 査定者承認済み
     assessors_list: 評価者リスト
     asset_not_present: 資産が存在しません
+    audience: 対象読者
+    audience_claim_label: 聴衆 (aud)
     audio: オーディオ
     audio_devices: オーディオ機器
     authentication_failed: 認証に失敗しました。もう一度お試しください。
@@ -100,6 +102,10 @@ ja:
     import: 輸入
     inactive: 活動休止中
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
+    issuer: 発行者
+    issuer_claim_label: 発行体 (iss)
+    jwt_claims_details: JWTの請求明細
+    key_id_claim_label: キーID (kid)
     last_name: 姓
     last_updated: 最終更新日
     learning_on_the_job_label: 現場での学び

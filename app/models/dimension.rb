@@ -14,11 +14,17 @@ class Dimension < ApplicationRecord
   has_many :assessments
   has_many :norms, dependent: :destroy
   has_many :innovation_styles, dependent: :destroy
+  has_many :occupation_condition_sets, dependent: :destroy
+  belongs_to :default_occupation_condition_set, class_name: 'OccupationConditionSet', optional: true
   has_many :innovation_styles_factors, through: :innovation_styles
   has_many :factors_sub_factors, through: :all_factors
   has_many :occupations_factors, through: :occupations
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
+
+  after_create :create_default_occupation_condition_set, if: :occupations_enabled?
+  after_update :ensure_default_occupation_condition_set, if: :occupations_just_enabled?
+  before_destroy :clear_default_condition_set_reference, prepend: true
 
   tenant_config has_global_records: true, optional: true
   include Tenantable
@@ -51,7 +57,8 @@ class Dimension < ApplicationRecord
       include: [
         { all_factors: :factors_sub_factors },
         { occupations: { occupations_factors: :factor } },
-        { innovation_styles: { innovation_styles_factors: :factor } }
+        { innovation_styles: { innovation_styles_factors: :factor } },
+        :occupation_condition_sets
       ],
       dictionary: dictionary
     ) do |original, copied|
@@ -67,11 +74,12 @@ class Dimension < ApplicationRecord
     end
 
     factor_id_mapping = build_factor_id_mapping(dictionary)
+    condition_set_id_mapping = build_condition_set_id_mapping(dictionary)
 
     @cloned_dimension.gen_uniq_name
     @cloned_dimension.created_by_id = @cloned_dimension.updated_by_id = user_id
     if @cloned_dimension.save
-      remap_factors_relationships_post_save(factor_id_mapping)
+      remap_factors_relationships_post_save(factor_id_mapping, condition_set_id_mapping)
       @cloned_dimension
     end
   end
@@ -104,7 +112,18 @@ class Dimension < ApplicationRecord
     factor_entries.transform_keys(&:id)
   end
 
-  def remap_factors_relationships_post_save(factor_id_mapping)
+  def build_condition_set_id_mapping(dictionary)
+    set_entries = dictionary[:occupation_condition_sets] || {}
+    set_entries.transform_keys(&:id)
+  end
+
+  def remap_factors_relationships_post_save(factor_id_mapping, condition_set_id_mapping)
+    remap_factor_hierarchies(factor_id_mapping)
+    remap_default_condition_set(condition_set_id_mapping)
+    remap_occupations_factors(condition_set_id_mapping)
+  end
+
+  def remap_factor_hierarchies(factor_id_mapping)
     @cloned_dimension.all_factors.each do |factor|
       factor.factors_sub_factors.each do |fs|
         new_sub_factor = factor_id_mapping[fs.sub_factor_id]
@@ -116,5 +135,47 @@ class Dimension < ApplicationRecord
         factor.update_column(:parent_id, new_parent.id) if new_parent
       end
     end
+  end
+
+  def remap_default_condition_set(condition_set_id_mapping)
+    return unless @cloned_dimension.default_occupation_condition_set_id
+
+    new_default_set = condition_set_id_mapping[@cloned_dimension.default_occupation_condition_set_id]
+    @cloned_dimension.update_column(:default_occupation_condition_set_id, new_default_set.id) if new_default_set
+  end
+
+  def remap_occupations_factors(condition_set_id_mapping)
+    @cloned_dimension.occupations.flat_map(&:occupations_factors).each do |of|
+      next unless of.occupation_condition_set_id
+
+      new_set = condition_set_id_mapping[of.occupation_condition_set_id]
+      of.update_column(:occupation_condition_set_id, new_set.id) if new_set
+    end
+  end
+
+  def occupations_just_enabled?
+    saved_change_to_occupations_enabled? && occupations_enabled?
+  end
+
+  def create_default_occupation_condition_set
+    return if occupation_condition_sets.exists?(name: 'Default')
+
+    set = occupation_condition_sets.create!(name: 'Default', tenant_id: tenant_id)
+    update_column(:default_occupation_condition_set_id, set.id)
+  end
+
+  def ensure_default_occupation_condition_set
+    return if default_occupation_condition_set_id.present?
+
+    existing_set = occupation_condition_sets.first
+    if existing_set
+      update_column(:default_occupation_condition_set_id, existing_set.id)
+    else
+      create_default_occupation_condition_set
+    end
+  end
+
+  def clear_default_condition_set_reference
+    update_column(:default_occupation_condition_set_id, nil)
   end
 end

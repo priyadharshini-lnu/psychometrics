@@ -26,6 +26,7 @@ cs:
     add_btn: Přidat předmět
     add_campaign_admin: Přidání správce kampaně
     add_client_admin: Přidání správce klienta
+    add_client_assessor: Přidat hodnotitele klienta
     add_conditions: Přidat podmínky
     add_evaluators: Přidání hodnotitelů
     add_indicator: Přidat indikátor
@@ -33,6 +34,7 @@ cs:
     add_lead_assessor_hint: Nejprve přidejte formulář Lead Assessor
     add_more: Přidat více
     add_new_folder: Přidat novou složku
+    add_or_select_factor_msg: Kliknutím na „Přidat/vybrat faktor“ zobrazíte podrobnosti.
     add_output_schema_key: Přidání klíče výstupního schématu
     add_project: Přidat projekt
     add_project_admin: Přidání správce projektu
@@ -47,6 +49,7 @@ cs:
     admin_role_deleted: Role správce '%{role_name}' byla úspěšně odstraněna.
     admin_roles: Role správce
     admin_updated_successfully: Admin '%{name}' byl úspěšně aktualizován
+    admin_with_email_already_added: Uživatel s touto e-mailovou adresou již byl přidán.
     administrator_approves_reports: Správce schvaluje zprávy
     administrators_list_columns_email: E-mail
     admins: Administrátoři
@@ -123,6 +126,20 @@ cs:
     application_name: Název aplikace
     application_name_already_taken: Pro tohoto klienta již existuje
     application_name_format_hint: Povoleny jsou pouze písmena a číslice, mezi slovy smí být pouze jedna mezera
+    application_settings_at_least_one_ip_required: Před aktivací seznamu povolených IP adres prosím zadejte alespoň jednu IP adresu.
+    application_settings_confirm_delete_ip: Opravdu chcete tuto IP adresu smazat?
+    application_settings_edit_ip_address: Upravit IP adresu / rozsah CIDR
+    application_settings_enable_ip_whitelisting: Povolit seznam povolených IP adres
+    application_settings_invalid_ip_format: Neplatná IP adresa nebo formát CIDR
+    application_settings_ip_addresses: IP adresy / rozsahy CIDR
+    application_settings_ip_deleted_successfully: IP adresa byla úspěšně smazána
+    application_settings_ip_description_placeholder: např. kancelářská síť nebo produkční server
+    application_settings_ip_input_placeholder: např. 192.168.1.1 nebo 10.0.0.0/24
+    application_settings_ip_or_cidr: IP adresa nebo rozsah CIDR
+    application_settings_ip_required: Je nutné zadat IP adresu nebo rozsah CIDR
+    application_settings_ip_updated_successfully: IP adresa byla úspěšně aktualizována
+    application_settings_ip_whitelisting_disabled_success: Bílý seznam IP adres byl úspěšně deaktivován
+    application_settings_ip_whitelisting_enabled_success: Bílý seznam IP adres byl úspěšně aktivován
     applications: Aplikace
     apply_to_existing_users: Použít tuto změnu na stávající uživatele v této kampani
     approve_all_questions: Schválit všechny otázky
@@ -279,6 +296,7 @@ cs:
     campaign_assessment_column_caching_enabled: Zapnuto cache hodnocení
     campaign_assessment_column_hogan_assessment_id: Identifikační číslo hodnocení Hogana
     campaign_assessment_column_hogan_form_id: Identifikační číslo formuláře Hogan
+    campaign_assessment_column_occupation_condition_set: Sada stavů povolání
     campaign_assessment_column_pearson_assessment_id: Identifikační číslo testu společnosti Pearson
     campaign_assessment_column_pearson_assessment_language: Jazyk testů společnosti Pearson
     campaign_assessment_column_pearson_error_details: Podrobnosti o Pearsonově chybě
@@ -305,6 +323,10 @@ cs:
     campaign_assessment_modals_enable_caching_content: Opravdu chcete povolit ukládání do mezipaměti pro tento test?
     campaign_assessment_modals_enable_caching_successfully: Pro tento test bylo povoleno ukládání do mezipaměti.
     campaign_assessment_modals_enable_caching_title: Povolit ukládání hodnocení do mezipaměti?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Tuto změnu aplikujte na stávající uživatele v této kampani
+    campaign_assessment_modals_update_occupation_condition_set_select: Vyberte sadu stavů povolání
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Sada stavů povolání byla úspěšně aktualizována
+    campaign_assessment_modals_update_occupation_condition_set_title: Aktualizace sady stavů obsazení
     campaign_factors: Faktory kampaně
     campaign_id_placeholder: Vstup do kampaně ID
     campaign_name: Název kampaně
@@ -388,6 +410,13 @@ cs:
     client: Nájem klienta
     client_admin: Administrátor klienta
     client_admins: Správci klientů
+    client_assessor_import_already_added: Uživatel s e-mailovou adresou „%{email}“ již byl přidán jako hodnotitel klienta.
+    client_assessor_import_client_required: K importu hodnotitelů je nutný klient.
+    client_assessor_import_description: Načtěte soubor CSV obsahující jeden sloupec s e-mailovými adresami hodnotitelů klientů.
+    client_assessor_import_duplicated_emails: 'V souboru CSV se opakují následující e-mailové adresy: %{emails}'
+    client_assessor_import_emails_required: Uveďte prosím alespoň jednu e-mailovou adresu hodnotitele.
+    client_assessor_import_global_assessor_required: Uživatel musí být zapsán jako globální hodnotitel.
+    client_assessor_removed_successfully: Klientský hodnotitel s e-mailovou adresou „%{email}“ byl úspěšně odstraněn
     client_credentials_label: Přihlašovací údaje klienta
     client_credentials_value: přihlašovací údaje klienta
     client_features: Funkce pro klienty
@@ -431,11 +460,13 @@ cs:
     completed_tooltip: Všichni hodnotitelé již podali hodnocení
     components_input_duration_placeholder: Zadejte jako "1d 2h 3m"
     concise: Stručný
+    condition_sets: Množiny podmínek
     confidence_interval: Interval spolehlivosti
     confidence_interval_update_success: Interval spolehlivosti byl úspěšně aktualizován.
     configuration: Konfigurace
     configure_model_answer_title: Nakonfigurujte vzorovou odpověď a klíčová slova
     confirm_remove_admin: Jste si jisti, že chcete odstranit uživatele s e-mailem '%{email}'?
+    confirm_remove_client_assessor: Opravdu chcete odstranit klienta-hodnotitele s e-mailovou adresou „%{email}“?
     confirmation_required: Je nutné potvrzení
     confirmation_required_details: Opravdu chcete smazat soubor „%{resource_name}“ z adresáře „%{resource}“?
     consolidated: Konsolidované
@@ -444,8 +475,11 @@ cs:
     copied: Zkopírováno
     copied_url_success: URL byla úspěšně zkopírována do schránky
     copy_ai_artifacts: Kopírovat artefakty AI
+    copy_assessment_scheduled: Úloha na vyhotovení zkušební kopie byla naplánována.
     copy_hint: Zkopíruje výše uvedené konfigurace Seats, Center Managers, Assessors a Meetings &amp; Resources do následujících Assessment Center. Po zkopírování můžete před pokračováním provést další změny v jednotlivých Assessment Centrech.
     copy_image_url: Zkopírovat adresu URL obrázku
+    copy_occupation_condition_set: Kopírovat sadu podmínek obsazení
+    copy_occupation_condition_set_msg: Tím se zkopíruje veškerá stávající konfigurace faktorů obsazení z aktuální sady podmínek do nové sady podmínek.
     copy_report_scheduled: Úloha kopírování zprávy byla naplánována.
     copy_text: Text
     copy_to_all: Kopírování do ostatních středisek pro posuzování
@@ -529,6 +563,7 @@ cs:
     default_assessment_language: Výchozí jazyk hodnocení
     default_button: Výchozí
     default_language: Výchozí jazyk
+    default_occupation_condition_set: Výchozí sada podmínek pro povolání
     default_report_language: Výchozí jazyk zprávy
     define_max_score_text: Definujte skóre „%{maxScore}“ (maximální skóre)
     define_min_score_text: Definujte skóre „%{minScore}“ (minimální skóre)
@@ -638,6 +673,7 @@ cs:
     document_titles_project_participants: Účastníci | %{project}
     done: Hotový
     done_tooltip: Již nelze podat žádné další hodnocení tohoto uživatele, protože hodnocení tohoto uživatele je označeno jako provedené %{marked_by}
+    download_assessor_email_template: Stáhnout vzorovou šablonu
     download_bulk_asset_download_example_csv: Stáhnout příklad CSV.
     download_example_csv: Vzorové normy CSV
     dp_consent: Povolit souhlas se zpracováním údajů
@@ -667,6 +703,7 @@ cs:
     email_subjects_manager_when_available: Pošlete e-mail manažerovi subjektu, jakmile bude zpráva k dispozici
     empty: Prázdné
     empty_csv_file: CSV soubor neobsahuje žádná data.
+    empty_occupation_condition_set_msg: Pro tuto sadu stavů nebyly nalezeny žádné faktory povolání. Přidejte prosím faktor.
     enable_caching_content: Jste si jistý, že chcete pro toto hodnocení povolit cache?
     enable_caching_successfully: Pro toto hodnocení bylo zapnuto ukládání do mezipaměti.
     enable_caching_title: Povolit cache hodnocení?
@@ -760,6 +797,7 @@ cs:
     factors_index_sub_factors: Dílčí faktory
     factors_index_title: Faktory
     factors_resource_confirmations_delete_body: "<p>Opravdu chcete tento faktor odstranit?</p>\n"
+    factors_resource_removal_success: Faktor „%{name}“ byl úspěšně odstraněn.
     failure_reason: Důvod selhání
     feature_ai_assistants_description: Aktivujte asistenty využívající umělou inteligenci pro lepší uživatelský zážitek
     feature_ai_assisted_idp_description: Využijte AI k podpoře doporučení pro individuální rozvojové plány
@@ -1214,6 +1252,7 @@ cs:
     log_date: Datum záznamu
     logged_in: Jsem přihlášen/a
     login: Přihlášení
+    login_page_design_tab: Design
     low: Nízká
     mail_history: Historie pošty
     main_report: Hlavní zpráva
@@ -1310,6 +1349,7 @@ cs:
     new_score: Nové skóre
     no_assessments_found: Nebyly nalezeny žádné hodnocení
     no_client_access: K tomuto klientovi nemáte přístup
+    no_client_access_root: Nejste přiřazen k žádnému klientovi
     no_clients_found: Nebyli nalezeni žádní klienti
     no_completed_assessments: Zatím nejsou k dispozici žádné vyplněné dotazníky
     no_file_selected: Žádný soubor nebyl vybrán
@@ -1360,6 +1400,13 @@ cs:
     oauth_scope_label: Rozsah
     oauth_scope_name: oauth_scope
     oauth_scope_required: Rozsah je vyžadován
+    occupation_condition_set_copy_success: Sada stavů povolání byla úspěšně zkopírována
+    occupation_condition_sets: Sady stavů povolání
+    occupation_condition_sets_remove_confirm: Do textového pole zadejte název sady podmínek pro povolání uvedený níže, abyste potvrdili
+    occupation_condition_sets_remove_success: Sada stavů obsazení „%{name}“ byla úspěšně odstraněna
+    occupation_condition_sets_remove_warning: Opravdu chcete smazat sadu podmínek pro povolání „%{name}“?
+    occupation_factors_condition_set: Množina podmínek
+    occupation_factors_title: Faktory související s povoláním
     occupations: Povolání
     occupations_factors_list_condition: Stav
     occupations_factors_list_position: Pozice
@@ -2033,6 +2080,7 @@ cs:
     public_key_cannot_be_changed: po vytvoření nelze změnit
     public_key_copy_private_key: Zkopírovat soukromý klíč
     public_key_created: Veřejný klíč byl úspěšně vytvořen
+    public_key_details: Údaje o veřejném klíči
     public_key_generate: Vygenerovat pár klíčů
     public_key_generate_button: Vygenerovat pár klíčů RSA
     public_key_generate_info: Bude vygenerován pár klíčů RSA o délce 2048 bitů. Uložen bude pouze veřejný klíč. Soukromý klíč si zkopírujte a bezpečně uložte – již se znovu nezobrazí.
@@ -2210,12 +2258,14 @@ cs:
     report_type: Typ zprávy
     report_types:
       active_clients_projects: Aktivní klienti a projekty
+      campaign_factor_scores: Skóre faktorů kampaně
       client_assessment_counts: Hodnocení klientů je důležité
       hogan_usage_report: Využití hodnocení Hogan
       json_data_report: Zpráva o datech ve formátu JSON
       pearson_usage_report: Využití testů společnosti Pearson
       report_usage_summary: Souhrn využití zprávy
       saville_usage_report: Využití hodnocení Saville
+      user_access_review: Kontrola uživatelských přístupů
       user_created_dates: Datumy vytvořené uživatelem
       user_reports_export: Export uživatelských zpráv
     reports: Zprávy
@@ -2607,6 +2657,7 @@ cs:
     search_admins: Vyhledávání administrátorů
     search_campaign: Vyhledávání podle kampaně
     search_client: Vyhledávání podle klienta
+    search_client_assessors: Vyhledat hodnotitele klientů
     search_job_role: Hledat pracovní pozici
     search_participants: Vyhledat účastníky...
     search_project: Vyhledávání podle projektu
@@ -2642,6 +2693,7 @@ cs:
     select_admin_role: Vyberte roli správce
     select_assessment_language: Výběr jazyka hodnocení
     select_client: Vyberte klienta
+    select_condition_set: Vyberte sadu podmínek
     select_end_time: Vyberte čas ukončení
     select_language_to_translate: Vyberte jazyk, do kterého chcete překládat
     select_level: Vyberte úroveň

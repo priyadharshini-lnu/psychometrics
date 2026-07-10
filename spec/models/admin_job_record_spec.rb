@@ -7,8 +7,13 @@ RSpec.describe AdminJobRecord, type: :model do
     it 'includes bulk factor score export operations' do
       expect(described_class.operations).to include(
         'bulk_export_raw_factor_scores',
-        'bulk_export_norm_factor_scores'
+        'bulk_export_norm_factor_scores',
+        'assessment_raw_ai_factor_export'
       )
+    end
+
+    it 'includes the assessment copy operation' do
+      expect(described_class.operations).to include('copy_assessment')
     end
   end
 

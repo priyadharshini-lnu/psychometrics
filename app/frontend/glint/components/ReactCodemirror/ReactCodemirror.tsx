@@ -11,7 +11,7 @@ import {
   defaultHighlightStyle,
 } from '@codemirror/language'
 import { searchKeymap, openSearchPanel } from '@codemirror/search'
-import { autocompletion } from '@codemirror/autocomplete'
+import { autocompletion, type CompletionSource } from '@codemirror/autocomplete'
 import { getLanguageExtension } from './languages'
 import styles from './ReactCodemirror.less'
 
@@ -31,7 +31,9 @@ interface ReactCodemirrorProps {
   minHeight?: string
   onEditorReady?: (view: EditorView) => void
   autocomplete?: boolean
+  completionSources?: CompletionSource[]
   search?: boolean
+  enableWebSpellChecker?: boolean
 }
 
 const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
@@ -48,7 +50,9 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
   minHeight,
   onEditorReady,
   autocomplete = false,
+  completionSources,
   search = false,
+  enableWebSpellChecker = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
@@ -83,7 +87,9 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
     }
 
     if (autocomplete) {
-      extensions.push(autocompletion())
+      extensions.push(autocompletion(
+        completionSources?.length ? { override: completionSources } : {},
+      ))
     }
 
     if (search) {
@@ -114,8 +120,17 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
       }),
     )
 
+    if (!enableWebSpellChecker) {
+      extensions.push(EditorView.contentAttributes.of({
+        class: 'spellcheck-disabled',
+      }))
+    }
+
     return extensions
-  }, [lineNumbers, lineWrapping, foldGutter, autocomplete, search, readOnly, mode, height, maxHeight, minHeight])
+  }, [
+    lineNumbers, lineWrapping, foldGutter, autocomplete,
+    completionSources, search, readOnly, mode, height, minHeight, maxHeight,
+  ])
 
   useEffect(() => {
     if (!containerRef.current) return
@@ -177,6 +192,7 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
 
 function buildThemeExtension (height?: string, maxHeight?: string, minHeight?: string) {
   const editorStyles: Record<string, string> = {}
+  const contentStyles: Record<string, string> = {}
 
   if (height) {
     editorStyles.height = height
@@ -190,8 +206,23 @@ function buildThemeExtension (height?: string, maxHeight?: string, minHeight?: s
 
   return EditorView.theme({
     '&': editorStyles,
+    '.cm-content': contentStyles,
     '.cm-scroller': {
       overflow: 'auto',
+    },
+    '.cm-tooltip-autocomplete': {
+      borderRadius: '6px',
+      borderColor: 'transparent',
+      boxShadow: '4px 4px 12px rgba(0, 0, 0, 0.2)',
+    },
+    '.cm-tooltip-autocomplete ul li': {
+      padding: '8px 4px !important',
+      borderRadius: '4px',
+      whiteSpace: 'break-spaces !important',
+    },
+    '.cm-tooltip-autocomplete ul li[aria-selected]': {
+      backgroundColor: 'var(--ant-primary-color) !important',
+      color: '#fff !important',
     },
   })
 }

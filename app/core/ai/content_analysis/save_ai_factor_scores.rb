@@ -32,6 +32,7 @@ module AI
         end
 
         complete_admin_job!
+        notify_assessors_if_pending!
         merge_scores_if_no_approval_flow!
 
         broadcast :ok
@@ -242,6 +243,19 @@ module AI
 
       def scorable_question_ids
         @scorable_question_ids ||= assessment.scorable_ai_questions.pluck(:id)
+      end
+
+      def notify_assessors_if_pending!
+        return unless user_assessment.has_ai_scoring_approval_flow?
+        return unless user_assessment.approval_status == 'pending'
+        return if score_approval.setting&.do_not_send_notifications?
+        return if rescore
+
+        ::ScoreApprovals::NotifyAssessors.call!(score_approval)
+      end
+
+      def score_approval
+        @score_approval ||= AI::ScoreApproval.find(user_assessment.id)
       end
 
       def merge_scores_if_no_approval_flow!

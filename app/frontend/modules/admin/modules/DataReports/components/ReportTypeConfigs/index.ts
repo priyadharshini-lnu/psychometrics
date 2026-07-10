@@ -9,6 +9,7 @@ import { pearsonUsageReportDefinition } from './PearsonUsageReportConfig'
 import { activeClientsProjectsDefinition } from './ActiveClientsProjectsConfig'
 import { clientAssessmentCountsDefinition } from './ClientAssessmentCountsConfig'
 import { userAccessReviewDefinition } from './UserAccessReviewConfig'
+import { campaignFactorScoresDefinition } from './CampaignFactorScoresConfig'
 
 export * from './types'
 
@@ -23,6 +24,7 @@ export const REPORT_TYPE_REGISTRY: Record<string, ReportTypeDefinition> = {
   active_clients_projects: activeClientsProjectsDefinition,
   client_assessment_counts: clientAssessmentCountsDefinition,
   user_access_review: userAccessReviewDefinition,
+  campaign_factor_scores: campaignFactorScoresDefinition,
 }
 
 export const REPORT_TYPE_KEYS = Object.keys(REPORT_TYPE_REGISTRY) as Array<keyof typeof REPORT_TYPE_REGISTRY>

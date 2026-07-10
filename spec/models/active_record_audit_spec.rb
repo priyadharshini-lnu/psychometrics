@@ -44,7 +44,7 @@ RSpec.describe ActiveRecordAudit, type: :model do
     end
 
     context 'when tenant_id is already set' do
-      it 'does not overwrite an existing tenant_id' do
+      it 'resolves tenant_id from auditable, ignoring the pre-set value' do
         other_tenant = create(:tenancy)
         audit = described_class.new(
           auditable: skill,
@@ -54,7 +54,7 @@ RSpec.describe ActiveRecordAudit, type: :model do
         )
         audit.valid?
 
-        expect(audit.tenant_id).to eq(other_tenant.id)
+        expect(audit.tenant_id).to eq(tenant.id)
       end
     end
   end

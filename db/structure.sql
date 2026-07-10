@@ -1589,6 +1589,41 @@ ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
 
 
 --
+-- Name: application_ip_whitelist_entries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_ip_whitelist_entries (
+    id bigint NOT NULL,
+    application_setting_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    ip_or_cidr inet NOT NULL,
+    description text,
+    enabled boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_ip_whitelist_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_ip_whitelist_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_ip_whitelist_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_ip_whitelist_entries_id_seq OWNED BY public.application_ip_whitelist_entries.id;
+
+
+--
 -- Name: application_public_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1596,14 +1631,14 @@ CREATE TABLE public.application_public_keys (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     tenant_id bigint NOT NULL,
-    key_id character varying NOT NULL,
     public_key text NOT NULL,
     fingerprint character varying,
     description character varying,
     disabled boolean DEFAULT false NOT NULL,
     created_by_id integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    key_id bigint NOT NULL
 );
 
 
@@ -1624,6 +1659,39 @@ CREATE SEQUENCE public.application_public_keys_id_seq
 --
 
 ALTER SEQUENCE public.application_public_keys_id_seq OWNED BY public.application_public_keys.id;
+
+
+--
+-- Name: application_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_settings (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    ip_whitelisting_enabled boolean DEFAULT false NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_settings_id_seq OWNED BY public.application_settings.id;
 
 
 --
@@ -2305,7 +2373,8 @@ CREATE TABLE public.campaign_assessments (
     mettl_schedule_record_id bigint,
     caching_enabled boolean DEFAULT false,
     proctoring_enabled boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    occupation_condition_set_id bigint
 );
 
 
@@ -3569,7 +3638,7 @@ CREATE TABLE public.design_settings (
     secondary_logo character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    project_id bigint NOT NULL,
+    project_id bigint,
     primary_color character varying,
     error_color character varying,
     warning_color character varying,
@@ -3578,7 +3647,8 @@ CREATE TABLE public.design_settings (
     background_size character varying DEFAULT 'cover'::character varying,
     logo_alt_text character varying,
     secondary_logo_alt_text character varying,
-    tenant_id bigint
+    tenant_id bigint,
+    client_id bigint
 );
 
 
@@ -3697,7 +3767,8 @@ CREATE TABLE public.dimensions (
     created_by_id bigint,
     updated_by_id bigint,
     dimension_type integer DEFAULT 0,
-    tenant_id bigint
+    tenant_id bigint,
+    default_occupation_condition_set_id bigint
 );
 
 
@@ -5519,6 +5590,39 @@ ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
 -- Name: occupations; Type: TABLE; Schema: public; Owner: -
 --
 
+
+--
+-- Name: occupation_condition_sets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.occupation_condition_sets (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    dimension_id integer NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+--
+-- Name: occupation_condition_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.occupation_condition_sets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: occupation_condition_sets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.occupation_condition_sets_id_seq OWNED BY public.occupation_condition_sets.id;
+
+
 CREATE TABLE public.occupations (
     id integer NOT NULL,
     name character varying,
@@ -5556,7 +5660,8 @@ CREATE TABLE public.occupations_factors (
     updated_at timestamp without time zone NOT NULL,
     "position" integer,
     weight double precision DEFAULT 1.0,
-    tenant_id bigint
+    tenant_id bigint,
+    occupation_condition_set_id bigint NOT NULL
 );
 
 
@@ -9168,7 +9273,8 @@ CREATE TABLE public.users_results (
     prev_pages json DEFAULT '[]'::json,
     progress integer,
     ai_scoring_status integer,
-    tenant_id bigint
+    tenant_id bigint,
+    occupation_condition_set_id bigint
 );
 
 
@@ -9958,10 +10064,24 @@ ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api
 
 
 --
+-- Name: application_ip_whitelist_entries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries ALTER COLUMN id SET DEFAULT nextval('public.application_ip_whitelist_entries_id_seq'::regclass);
+
+
+--
 -- Name: application_public_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.application_public_keys ALTER COLUMN id SET DEFAULT nextval('public.application_public_keys_id_seq'::regclass);
+
+
+--
+-- Name: application_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings ALTER COLUMN id SET DEFAULT nextval('public.application_settings_id_seq'::regclass);
 
 
 --
@@ -10683,6 +10803,13 @@ ALTER TABLE ONLY public.norms ALTER COLUMN id SET DEFAULT nextval('public.norms_
 --
 
 ALTER TABLE ONLY public.notifications ALTER COLUMN id SET DEFAULT nextval('public.notifications_id_seq'::regclass);
+
+
+--
+-- Name: occupation_condition_sets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupation_condition_sets ALTER COLUMN id SET DEFAULT nextval('public.occupation_condition_sets_id_seq'::regclass);
 
 
 --
@@ -11692,11 +11819,27 @@ ALTER TABLE ONLY public.api_keys
 
 
 --
+-- Name: application_ip_whitelist_entries application_ip_whitelist_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries
+    ADD CONSTRAINT application_ip_whitelist_entries_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: application_public_keys application_public_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.application_public_keys
     ADD CONSTRAINT application_public_keys_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: application_settings application_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings
+    ADD CONSTRAINT application_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -12558,6 +12701,14 @@ ALTER TABLE ONLY public.occupations_factors
 --
 -- Name: occupations occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
+
+
+--
+-- Name: occupation_condition_sets occupation_condition_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupation_condition_sets
+    ADD CONSTRAINT occupation_condition_sets_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY public.occupations
     ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
@@ -13588,6 +13739,20 @@ CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant
 
 
 --
+-- Name: idx_on_application_setting_id_e570a8a095; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_e570a8a095 ON public.application_ip_whitelist_entries USING btree (application_setting_id);
+
+
+--
+-- Name: idx_on_application_setting_id_enabled_f85a302e40; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_enabled_f85a302e40 ON public.application_ip_whitelist_entries USING btree (application_setting_id, enabled);
+
+
+--
 -- Name: idx_on_assessment_id_3b131a93ee; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14239,6 +14404,20 @@ CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
+-- Name: index_application_ip_whitelist_entries_on_ip_or_cidr; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_ip_whitelist_entries_on_ip_or_cidr ON public.application_ip_whitelist_entries USING btree (ip_or_cidr);
+
+
+--
+-- Name: index_application_ip_whitelist_entries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_ip_whitelist_entries_on_tenant_id ON public.application_ip_whitelist_entries USING btree (tenant_id);
+
+
+--
 -- Name: index_application_public_keys_on_key_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14264,6 +14443,20 @@ CREATE INDEX index_application_public_keys_on_user_id ON public.application_publ
 --
 
 CREATE INDEX index_application_public_keys_on_user_id_and_disabled ON public.application_public_keys USING btree (user_id, disabled);
+
+
+--
+-- Name: index_application_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_settings_on_tenant_id ON public.application_settings USING btree (tenant_id);
+
+
+--
+-- Name: index_application_settings_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_application_settings_on_user_id ON public.application_settings USING btree (user_id);
 
 
 --
@@ -14703,6 +14896,13 @@ CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessment
 --
 -- Name: index_campaign_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
+
+
+--
+-- Name: index_campaign_assessments_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessments_on_occupation_condition_set_id ON public.campaign_assessments USING btree (occupation_condition_set_id);
 
 CREATE INDEX index_campaign_assessments_on_tenant_id ON public.campaign_assessments USING btree (tenant_id);
 
@@ -15527,6 +15727,13 @@ CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING
 
 
 --
+-- Name: index_design_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_settings_on_client_id ON public.design_settings USING btree (client_id);
+
+
+--
 -- Name: index_design_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15585,6 +15792,13 @@ CREATE INDEX index_dimensions_on_created_by_id ON public.dimensions USING btree 
 --
 -- Name: index_dimensions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
+
+
+--
+-- Name: index_dimensions_on_default_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_dimensions_on_default_occupation_condition_set_id ON public.dimensions USING btree (default_occupation_condition_set_id);
 
 CREATE INDEX index_dimensions_on_tenant_id ON public.dimensions USING btree (tenant_id);
 
@@ -16657,6 +16871,27 @@ CREATE INDEX index_notifications_on_tenant_id ON public.notifications USING btre
 -- Name: index_occupations_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
+
+--
+-- Name: index_occupation_condition_sets_on_dimension_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupation_condition_sets_on_dimension_id ON public.occupation_condition_sets USING btree (dimension_id);
+
+
+--
+-- Name: index_occupation_condition_sets_on_dimension_id_and_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_occupation_condition_sets_on_dimension_id_and_name ON public.occupation_condition_sets USING btree (dimension_id, name);
+
+
+--
+-- Name: index_occupation_condition_sets_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupation_condition_sets_on_tenant_id ON public.occupation_condition_sets USING btree (tenant_id);
+
 CREATE INDEX index_occupations_factors_on_factor_id ON public.occupations_factors USING btree (factor_id);
 
 
@@ -16670,6 +16905,13 @@ CREATE INDEX index_occupations_factors_on_occupation_id ON public.occupations_fa
 --
 -- Name: index_occupations_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
+
+
+--
+-- Name: index_occupations_factors_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_factors_on_occupation_condition_set_id ON public.occupations_factors USING btree (occupation_condition_set_id);
 
 CREATE INDEX index_occupations_factors_on_tenant_id ON public.occupations_factors USING btree (tenant_id);
 
@@ -18911,6 +19153,13 @@ CREATE INDEX index_users_on_tenant_id ON public.users USING btree (tenant_id);
 -- Name: index_users_results_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
 
+
+--
+-- Name: index_users_results_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_occupation_condition_set_id ON public.users_results USING btree (occupation_condition_set_id);
+
 CREATE INDEX index_users_results_on_tenant_id ON public.users_results USING btree (tenant_id);
 
 
@@ -20567,6 +20816,14 @@ ALTER TABLE ONLY public.memberships
 -- Name: questions fk_rails_38b686d55b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
+
+--
+-- Name: campaign_assessments fk_rails_3874b11207; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessments
+    ADD CONSTRAINT fk_rails_3874b11207 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id);
+
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_38b686d55b FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
 
@@ -20580,6 +20837,14 @@ ALTER TABLE ONLY public.threesixty_reminder_histories
 
 
 --
+-- Name: application_ip_whitelist_entries fk_rails_3973e593f4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_ip_whitelist_entries
+    ADD CONSTRAINT fk_rails_3973e593f4 FOREIGN KEY (application_setting_id) REFERENCES public.application_settings(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports_accesses fk_rails_3a283de8a1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20590,6 +20855,14 @@ ALTER TABLE ONLY public.reports_accesses
 --
 -- Name: admin_roles fk_rails_3b1aac0d32; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
+
+
+--
+-- Name: occupation_condition_sets fk_rails_3abfce3f69; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupation_condition_sets
+    ADD CONSTRAINT fk_rails_3abfce3f69 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.admin_roles
     ADD CONSTRAINT fk_rails_3b1aac0d32 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
@@ -20966,6 +21239,14 @@ ALTER TABLE ONLY public.idp_templates
 --
 -- Name: assessments fk_rails_516ec5451d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
+
+
+--
+-- Name: users_results fk_rails_514f3ba943; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_514f3ba943 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id);
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_516ec5451d FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
@@ -22023,6 +22304,14 @@ ALTER TABLE ONLY public.client_ai_assistants
 -- Name: campaigns fk_rails_8de91ec8d1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
+
+--
+-- Name: occupations_factors fk_rails_8da89aeab3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupations_factors
+    ADD CONSTRAINT fk_rails_8da89aeab3 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id) ON DELETE CASCADE;
+
 ALTER TABLE ONLY public.campaigns
     ADD CONSTRAINT fk_rails_8de91ec8d1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
@@ -22636,6 +22925,14 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
+-- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -22750,6 +23047,14 @@ ALTER TABLE ONLY public.assessments
 --
 -- Name: idp_template_interview_questions fk_rails_b9b361c335; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
+
+
+--
+-- Name: dimensions fk_rails_b8c3fe7ea4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.dimensions
+    ADD CONSTRAINT fk_rails_b8c3fe7ea4 FOREIGN KEY (default_occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id) ON DELETE SET NULL;
 
 ALTER TABLE ONLY public.idp_template_interview_questions
     ADD CONSTRAINT fk_rails_b9b361c335 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
@@ -23369,6 +23674,14 @@ ALTER TABLE ONLY public.campaign_option_translations
 
 ALTER TABLE ONLY public.profile_field_values
     ADD CONSTRAINT fk_rails_da47a0e23d FOREIGN KEY (user_profile_id) REFERENCES public.user_profiles(id) ON DELETE CASCADE;
+
+
+--
+-- Name: application_settings fk_rails_da47b0ce69; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_settings
+    ADD CONSTRAINT fk_rails_da47b0ce69 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -24210,6 +24523,12 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260630180650'),
+('20260630180649'),
+('20260630180648'),
+('20260619141340'),
+('20260618120212'),
+('20260618120113'),
 ('20260616103502'),
 ('20260615195000'),
 ('20260612100749'),
@@ -24219,6 +24538,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260605000000'),
 ('20260603081303'),
 ('20260602120000'),
+('20260602000002'),
+('20260602000001'),
+('20260601000001'),
 ('20260527180000'),
 ('20260526000001'),
 ('20260520094000'),
@@ -25275,4 +25597,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

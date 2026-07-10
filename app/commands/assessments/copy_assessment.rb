@@ -8,9 +8,7 @@ module Assessments
     def initialize(assessment_id, current_user, owner_id = nil, # rubocop:disable Metrics/ParameterLists
                    skip_owner_validation: false, new_assessment_name: nil, questions_to_copy: nil,
                    microsite_settings: nil)
-      @assessment = Assessment.includes(blocks: {
-        questions: %i[factors_scorings question_recodings translations]
-      }).find(assessment_id)
+      @assessment = Assessment.find(assessment_id)
 
       @owner_id = owner_id
       @current_user = current_user
@@ -147,7 +145,11 @@ module Assessments
     end
 
     def copy_association(name, old_question, new_question, assessment)
-      old_question.send(name).each do |item|
+      association_items = old_question.send(name)
+      association_items = association_items.reject { |item| item.factor.nil? } if name == 'factors_scorings'
+      association_items = association_items.reject { |item| item.question.nil? } if name == 'question_recodings'
+
+      association_items.each do |item|
         new_item = make_copy(item, assessment)
         new_item.question_id = new_question.id
 

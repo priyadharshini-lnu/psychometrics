@@ -54,6 +54,7 @@ module Administration
           required(:toggle_require_scheduling).filled(:bool?)
           required(:update_prework).filled(:bool?)
           required(:toggle_caching).filled(:bool?)
+          required(:update_occupation_condition_set).filled(:bool?)
         end
         required(:has_external_norm).filled(:bool?)
         required(:available_locales).maybe(:array?).each(:str?)
@@ -93,6 +94,17 @@ module Administration
         required(:proctoring_enabled).filled(:bool?)
         required(:is_timed).filled(:bool?)
         required(:fixed_time_duration).maybe(:int?)
+        required(:occupation_condition_set_id).maybe(:int?)
+        required(:occupation_condition_set_name).maybe(:str?)
+        required(:dimension_has_occupations).filled(:bool?)
+        required(:occupation_condition_sets).maybe do
+          array do
+            schema do
+              required(:id).filled(:int?)
+              required(:name).filled(:str?)
+            end
+          end
+        end
       end
     end
   end

@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DimensionResource < Api::V2::Administration::BaseResource
-  attributes :name, :disabled, :created_at, :updated_at, :occupations_enabled, :innovation_styles_enabled
+  attributes :name, :disabled, :created_at, :updated_at, :occupations_enabled, :innovation_styles_enabled,
+             :default_occupation_condition_set_id
 
   has_one :owner
   ransack_filters %i[filterable_fields]
+
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+  audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
 
   def meta_details
     {

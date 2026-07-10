@@ -24,8 +24,14 @@ module Administration
         end
       end
 
+      if AdminSubdomain.client_admin_sso_enabled? && target_user.clients_with_admin_access.empty?
+        flash[:alert] = I18n.t('admin.no_client_access_root')
+        redirect_to root_url
+        return
+      end
+
       impersonate_as_admin(target_user)
-      redirect_to fallback_redirect_url, allow_other_host: true
+      redirect_to fallback_redirect_url
     end
 
     def impersonate_as_admin(target_user)

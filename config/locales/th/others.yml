@@ -876,6 +876,7 @@ th:
         compact_completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์แบบกะทัดรัด
         completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์
         copy_as_template_or_campaign: คัดลอกแคมเปญเป็นเทมเพลต
+        copy_assessment: การประเมินการคัดลอก
         copy_dimension: คัดลอกมิติ
         copy_report: คัดลอกรายงาน
         create_threesixty_campaign: สร้างแคมเปญ Threesixty
@@ -915,6 +916,7 @@ th:
         import_assessors: ผู้ประเมินนําเข้า
         import_campaign_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
         import_campaign_factors: นําเข้าปัจจัยแคมเปญ
+        import_client_assessors: นำเข้าผู้ประเมินลูกค้า
         import_datasheet: นําเข้าเอกสารข้อมูล
         import_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนานําเข้า
         import_development_actions: การดําเนินการพัฒนาการนําเข้า
@@ -972,6 +974,8 @@ th:
       errors:
         no_plans: ไม่พบแผน IDP ที่ใช้งานอยู่
     close: ปิด
+    copy_assessment:
+      failed: การคัดลอกเพื่อประเมินผลไม่สำเร็จ
     copy_report:
       failed: รายงานสำเนาล้มเหลว
     details: รายละเอียด

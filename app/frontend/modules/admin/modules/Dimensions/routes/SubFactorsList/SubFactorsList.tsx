@@ -8,7 +8,7 @@ import { Resource } from '~/modules/admin/components/Resource'
 import { SubFactorsFormModal } from './SubFactorsFormModal'
 import { SubFactorsTable } from './SubFactorsTable'
 import { SubFactorsFilter } from './SubFactorsFilter'
-import { RemoveSubFactorsModal } from './RemoveSubFactorsModal'
+import { RemoveSubFactorsModal } from '~/modules/admin/modules/Dimensions/components/RemoveSubFactorsModal'
 import { SubFactorsBreadcrumb } from './SubFactorsBreadcrumb'
 
 const MODALS = {

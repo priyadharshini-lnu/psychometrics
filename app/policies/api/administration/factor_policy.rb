@@ -2,9 +2,17 @@
 
 module Api
   module Administration
-    class FactorPolicy < ::Administration::BasePolicy
+    class FactorPolicy < ::Administration::FactorPolicy
       def index?
-        has_permission?(:campaigns, :manage)
+        return has_permission?(:campaigns, :manage) if project_id.present? || campaign_id.present?
+
+        super
+      end
+
+      def show?
+        return has_permission?(:dimensions, :view, project_id: record_owner_id) if record_owner_id
+
+        index?
       end
 
       def import?
@@ -13,6 +21,14 @@ module Api
 
       def questions?
         index?
+      end
+
+      private
+
+      def record_owner_id
+        return if @record.is_a?(Class)
+
+        @record&.dimension&.owner_id
       end
     end
   end

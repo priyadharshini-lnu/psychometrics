@@ -18,7 +18,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 
@@ -29,11 +31,15 @@ module AdminJobs
       private
 
       def fetch_data
-        records = UserAssessment.joins(:assessment).
+        records = UserAssessment.
+                  joins(:assessment).
                   joins('LEFT JOIN users u ON u.id = user_assessments.subject_id').
                   joins('LEFT JOIN campaigns cmp ON cmp.id = user_assessments.campaign_id').
                   joins('LEFT JOIN clients p ON p.id = cmp.project_id').
-                  joins('LEFT JOIN assessments_reports ar ON ar.assessment_id = user_assessments.assessment_id').
+                  joins(
+                    'LEFT JOIN assessments_reports ar ' \
+                    'ON ar.assessment_id = user_assessments.assessment_id'
+                  ).
                   joins(<<~SQL.squish).
                     LEFT JOIN user_reports ur
                       ON ur.user_id = user_assessments.subject_id
@@ -49,18 +55,55 @@ module AdminJobs
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
 
-        records.where.not(r: { id: nil }).
-          group(
-            'r.id', 'r.name', 'p.id', 'p.name', 'cmp.id',
-            'cmp.name', 'u.first_name', 'u.last_name', 'u.email'
-          ).
+        records = records.
+                  where.not(r: { id: nil }).
+                  group(
+                    'r.id',
+                    'r.name',
+                    'p.id',
+                    'p.name',
+                    'cmp.id',
+                    'cmp.name',
+                    'u.first_name',
+                    'u.last_name',
+                    'u.email'
+                  )
+
+        if completed_at_range
+          records = records.having(
+            'MAX(user_assessments.completed_at) BETWEEN ? AND ?',
+            completed_at_range.begin,
+            completed_at_range.end
+          )
+        end
+
+        records.
           order('p.id', 'cmp.id', 'r.id').
           pluck(
-            'r.id', 'r.name', 'p.id', 'p.name', 'cmp.id', 'cmp.name',
+            'r.id',
+            'r.name',
+            'p.id',
+            'p.name',
+            'cmp.id',
+            'cmp.name',
             Arel.sql("u.first_name || ' ' || u.last_name"),
             'u.email',
             Arel.sql('MAX(user_assessments.completed_at)')
           )
+      end
+
+      def completed_at_range
+        return unless start_date.present? && end_date.present?
+
+        start_date.beginning_of_day..end_date.end_of_day
+      end
+
+      def start_date
+        config['start_date']&.to_date
+      end
+
+      def end_date
+        config['end_date']&.to_date
       end
     end
   end

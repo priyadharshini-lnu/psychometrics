@@ -4,6 +4,7 @@ import React, {
 import {
   Dropdown, Input, Empty,
 } from 'antd'
+import DOMPurify from 'dompurify'
 import {
   SwapOutlined, SearchOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -36,6 +37,19 @@ interface Props {
 
 const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
+const getSafeUrl = (url?: string | null) => {
+  if (!url) return undefined
+  try {
+    const parsed = new URL(url, window.location.origin)
+    if (['http:', 'https:', 'data:'].includes(parsed.protocol)) {
+      return parsed.href
+    }
+  } catch {
+    return undefined
+  }
+  return undefined
+}
+
 export const ClientSwitcher: React.FC<Props> = ({
   currentClient,
   switchableClients,
@@ -62,11 +76,13 @@ export const ClientSwitcher: React.FC<Props> = ({
     }
   }, [selectedClientId])
 
-  const clientAvatar = (client: SwitchableClient) => (
-    client.logo_url
-      ? <img src={client.logo_url} alt={client.name} className={styles.menuAvatarImg} />
+  const clientAvatar = (client: SwitchableClient) => {
+    const safeUrl = getSafeUrl(client.logo_url)
+    const sanitizedUrl = safeUrl ? DOMPurify.sanitize(safeUrl) : undefined
+    return sanitizedUrl
+      ? <img src={sanitizedUrl} alt={client.name} className={styles.menuAvatarImg} />
       : <img src={clientIconSrc} alt="" className={styles.menuAvatarImg} />
-  )
+  }
 
   const renderClientItem = (client: SwitchableClient) => (
     <div className={styles.menuItem}>

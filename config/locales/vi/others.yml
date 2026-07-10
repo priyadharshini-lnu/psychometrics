@@ -876,6 +876,7 @@ vi:
         compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
         completion_status_export: Xuất trạng thái hoàn thành
         copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
+        copy_assessment: Đánh giá bản sao
         copy_dimension: Sao chép kích thước
         copy_report: Sao chép báo cáo
         create_threesixty_campaign: Tạo chiến dịch Threesixty
@@ -915,6 +916,7 @@ vi:
         import_assessors: Giám định viên nhập khẩu
         import_campaign_ai_artifacts: Nhập hiện vật AI của chiến dịch
         import_campaign_factors: Các yếu tố chiến dịch nhập khẩu
+        import_client_assessors: Nhập danh sách các chuyên gia đánh giá khách hàng
         import_datasheet: Bảng dữ liệu nhập
         import_development_action_translations: Bản dịch hành động phát triển nhập khẩu
         import_development_actions: Hành động phát triển nhập khẩu
@@ -972,6 +974,8 @@ vi:
       errors:
         no_plans: Không tìm thấy kế hoạch IDP đang hoạt động
     close: Đóng
+    copy_assessment:
+      failed: Việc sao chép bài đánh giá không thành công
     copy_report:
       failed: Không sao chép được báo cáo
     details: Chi tiết

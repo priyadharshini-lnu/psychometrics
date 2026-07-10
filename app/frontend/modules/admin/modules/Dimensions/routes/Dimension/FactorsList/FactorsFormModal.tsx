@@ -49,6 +49,14 @@ const INDICATOR_SUPPORTED_STRATEGIES = [
   'sub_factors_sum',
 ]
 
+const PARENT_FACTOR_STRATEGIES = [
+  'sub_factors_average',
+  'sub_factors_conditional_average',
+  'sub_factors_sum',
+  'sub_factor_questions',
+  'sub_factor_questions_sum',
+]
+
 export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
   const dispatch = useDispatch()
 
@@ -67,6 +75,9 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
   const subFactors = Form.useWatch('subFactors', { form }) || []
   const childrenFactorType = Form.useWatch(['childFactorType'], form)
   const hasChildren = subFactors.length > 0
+
+  const hideScoreRange = ['external_score', 'custom_formula'].includes(scoringStrategy)
+  const hideScoreDefinitions = hideScoreRange || PARENT_FACTOR_STRATEGIES.includes(scoringStrategy)
 
   const handleUploadChange = (info: UploadChangeParam<UploadFile>) => {
     setFileList(info.fileList)
@@ -212,22 +223,25 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
           <PercentageCheckbox strategy={scoringStrategy} />
           <SubfactorNormScoreCheckbox strategy={scoringStrategy} />
 
-          <Flex gap="middle">
-            <Form.Item
-              label={I18n.t('admin.score_min')}
-              name="scoreMin"
-            >
-              <InputNumber min={1} max={10} />
-            </Form.Item>
-            <Form.Item
-              label={I18n.t('admin.score_max')}
-              name="scoreMax"
-            >
-              <InputNumber min={1} max={10} />
-            </Form.Item>
-          </Flex>
+          {!hideScoreRange && (
+            <Flex gap="middle">
+              <Form.Item
+                label={I18n.t('admin.score_min')}
+                name="scoreMin"
+              >
+                <InputNumber min={1} max={10} />
+              </Form.Item>
+              <Form.Item
+                label={I18n.t('admin.score_max')}
+                name="scoreMax"
+              >
+                <InputNumber min={1} max={10} />
+              </Form.Item>
+            </Flex>
+          )}
 
-          {scoreMin !== null
+          {!hideScoreDefinitions
+            && scoreMin !== null
             && scoreMax !== null
             && scoreMin !== undefined
             && scoreMax !== undefined

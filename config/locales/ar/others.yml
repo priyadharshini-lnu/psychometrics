@@ -876,6 +876,7 @@ ar:
         compact_completion_status_export: تصدير حالة الاكتمال المدمجة
         completion_status_export: تصدير حالة الإنجاز
         copy_as_template_or_campaign: نسخ الحملة كقالب
+        copy_assessment: تقييم النسخ
         copy_dimension: أبعاد النسخ
         copy_report: نسخ التقرير
         create_threesixty_campaign: إنشاء حملة Threesixty
@@ -915,6 +916,7 @@ ar:
         import_assessors: مقيمو الاستيراد
         import_campaign_ai_artifacts: استيراد قطع أثرية من الذكاء الاصطناعي للحملة
         import_campaign_factors: استيراد عوامل الحملة
+        import_client_assessors: استيراد مقيمي العملاء
         import_datasheet: استيراد ورقة البيانات
         import_development_action_translations: استيراد ترجمات إجراءات التطوير
         import_development_actions: إجراءات تطوير الاستيراد
@@ -972,6 +974,8 @@ ar:
       errors:
         no_plans: لم يتم العثور على خطط آي دي بي نشطة
     close: غلق
+    copy_assessment:
+      failed: فشل استنساخ النسخة التقييمية
     copy_report:
       failed: فشل نسخ التقرير
     details: التفاصيل
@@ -1388,7 +1392,7 @@ ar:
       invalid_status: حالة الحملة غير صالحة
     goto_dashboard: الذهاب الى لوحة التعليمات
     inactive_campaign_message: حاليًا ، لم يتم تعيين أي أنشطة لك.
-    insights_reports: رؤى وتقارير
+    insights_reports: التحاليل والتقارير
     instruction_modal:
       campaign_start_final_instructions: |-
         <p>

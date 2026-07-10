@@ -41,9 +41,14 @@ module Api
 
       class Scope < BasePolicy::Scope
         def resolve
-          ::Administration::ClientPolicy::Scope.new(
-            user, Client
-          ).resolve.includes(design_setting: { logo_attachment: :blob })
+          ProjectAdminClientScope.new(user, Client).resolve.
+            includes(design_setting: { logo_attachment: :blob })
+        end
+
+        class ProjectAdminClientScope < ::Administration::ClientPolicy::Scope
+          def assessor_campaigns_project_ids
+            []
+          end
         end
       end
     end

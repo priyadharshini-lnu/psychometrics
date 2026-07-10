@@ -48,7 +48,7 @@ module Tenantable
     return false unless has_attribute?(:tenant_id)
     return false if ActsAsTenant.current_tenant
 
-    tenant_id.blank? || parent_association_changed?
+    new_record? || parent_association_changed?
   end
 
   def cascade_tenant_id_to_dependents

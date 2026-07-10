@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   end
 
   get '/global_config', to: 'apps#global_config'
+  post '/login/jwt', to: 'jwt_login#login_jwt'
   get '/async_requests/status', to: 'async_requests#status'
   post 'extend_session', to: 'users/session_extensions#extend'
   get 'privacy-statement', to: 'home#privacy_statement'
@@ -432,6 +433,7 @@ Rails.application.routes.draw do
             end
             member do
               put :update_external_config
+              post :update_occupation_condition_set
             end
           end
         end
@@ -1373,9 +1375,16 @@ as: :simulation_progress_notification
               post :activate
               post :deactivate
             end
+            jsonapi_resources :api_keys, only: %i[index create update]
             jsonapi_resources :public_keys, only: %i[index create update] do
               collection do
                 post :generate_key_pair
+              end
+            end
+            jsonapi_resources :application_settings, only: %i[index create update]
+            jsonapi_resources :application_ip_whitelist_entries, only: %i[index create update destroy] do
+              collection do
+                post :bulk_create
               end
             end
           end
@@ -1419,6 +1428,7 @@ as: :simulation_progress_notification
             collection do
               get :available_permissions
               post :export
+              post :import_client_assessors
             end
           end
           jsonapi_resources :users do
@@ -1433,7 +1443,6 @@ as: :simulation_progress_notification
               get :current_user_details
               post :change_locale
             end
-            jsonapi_resources :api_keys, only: %i[index create update]
           end
           jsonapi_resources :campaign_templates
           jsonapi_resources :assessments, concerns: :taggable do
@@ -1469,6 +1478,9 @@ as: :simulation_progress_notification
                   jsonapi_resources :occupations_factors
                   resource :uploads, only: %i[update], controller: 'uploads'
                 end
+              end
+              jsonapi_resources :occupation_condition_sets do
+                post :copy, on: :member
               end
               jsonapi_resources :innovation_styles do
                 scope module: :innovation_styles do
@@ -1788,6 +1800,9 @@ only: %i[index create update]
           end
           resources :data_reports do
             post :run, on: :member
+            collection do
+              get :search_project
+            end
             resources :data_report_jobs, only: %i[index] do
               get :get_password, on: :member
             end

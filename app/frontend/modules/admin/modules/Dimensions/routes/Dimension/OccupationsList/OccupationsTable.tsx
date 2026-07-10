@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 import {
-  Button, MenuProps,
+  Button, MenuProps, Typography,
 } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
-import { Link, useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { Occupation } from '~/modules/admin/modules/campaigns/core/occupations'
+import { OccupationFactorsDrawer } from './OccupationFactorsDrawer'
 
 type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
@@ -16,7 +16,11 @@ type Props = {
 const { I18n } = window
 
 export const OccupationsTable: FC<Props> = ({ openModal }) => {
-  const { dimensionId } = useParams() as { dimensionId: string }
+  const [selectedOccupationId, setSelectedOccupationId] = React.useState<number | null>(null)
+
+  const handleOccupationFactorsDrawer = (occupationId: number | null) => {
+    setSelectedOccupationId(occupationId)
+  }
 
   return (
     <>
@@ -33,7 +37,12 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           id="name"
           sorter
           render={occupation => (
-            <Link to={`/admin/dimensions/${dimensionId}/occupations/${occupation.id}/factors`}>{occupation.name}</Link>
+            <Typography.Link onClick={() => handleOccupationFactorsDrawer(
+              occupation.id,
+            )}
+            >
+              {occupation.name}
+            </Typography.Link>
           )}
           width={200}
         />
@@ -67,6 +76,11 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           width={100}
         />
       </Resource.Table>
+      <OccupationFactorsDrawer
+        open={selectedOccupationId !== null}
+        handleClose={() => handleOccupationFactorsDrawer(null)}
+        occupationId={selectedOccupationId}
+      />
     </>
   )
 }

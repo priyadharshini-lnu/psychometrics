@@ -876,6 +876,7 @@ bg:
         compact_completion_status_export: Компактен износ на състоянието на завършване
         completion_status_export: Експортиране на състоянието на завършване
         copy_as_template_or_campaign: Копиране на кампанията като шаблон
+        copy_assessment: Оценка на копието
         copy_dimension: Копиране на величината
         copy_report: Копиране на отчета
         create_threesixty_campaign: Създайте кампания Threesixty
@@ -915,6 +916,7 @@ bg:
         import_assessors: Оценители на вноса
         import_campaign_ai_artifacts: Артефакти от AI за Import Campaign
         import_campaign_factors: Импортиране на фактори на кампанията
+        import_client_assessors: Импортиране на оценители на клиенти
         import_datasheet: Лист с данни за импортиране
         import_development_action_translations: Импортиране на преводи за действие за разработка
         import_development_actions: Действия за развитие на вноса
@@ -972,6 +974,8 @@ bg:
       errors:
         no_plans: Не са намерени активни планове за вътрешно разселени лица
     close: Затварям
+    copy_assessment:
+      failed: Копието за оценка не е успешно
     copy_report:
       failed: Копирането на отчета се провали
     details: Подробности

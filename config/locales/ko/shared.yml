@@ -22,6 +22,8 @@ ko:
     assessor_approved: 심사관 승인
     assessors_list: 평가자 명단
     asset_not_present: 자산이 존재하지 않습니다
+    audience: 대상 독자
+    audience_claim_label: 청중 (aud)
     audio: 오디오
     audio_devices: 오디오 장치
     authentication_failed: 인증에 실패했습니다. 다시 시도해 주세요.
@@ -100,6 +102,10 @@ ko:
     import: 가져오기
     inactive: 비활성
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
+    issuer: 발행인
+    issuer_claim_label: 발행자 (iss)
+    jwt_claims_details: JWT 청구 내역
+    key_id_claim_label: 키 ID (kid)
     last_name: 성
     last_updated: 마지막 업데이트
     learning_on_the_job_label: 현장에서 배우기

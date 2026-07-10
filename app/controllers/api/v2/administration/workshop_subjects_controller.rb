@@ -36,7 +36,7 @@ module Api
     def re_enroll
       subject = WorkshopSubject.find(params[:id])
 
-      if subject&.cancelled?
+      if subject&.cancelled? || subject&.late_cancelled?
         subject.update!(scheduling_status: :scheduled)
         subject.workshop.increment!(:booked_seats)
 

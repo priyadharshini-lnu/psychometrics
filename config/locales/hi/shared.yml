@@ -22,6 +22,8 @@ hi:
     assessor_approved: मूल्यांकनकर्ता अनुमोदित
     assessors_list: मूल्यांकनकर्ताओं की सूची
     asset_not_present: संपत्ति मौजूद नहीं है
+    audience: दर्शक
+    audience_claim_label: दर्शक (ऑड)
     audio: ऑडियो
     audio_devices: ऑडियो उपकरण
     authentication_failed: प्रमाणीकरण विफल हो गया। कृपया फिर से प्रयास करें।
@@ -100,6 +102,10 @@ hi:
     import: आयात
     inactive: निष्क्रिय
     internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
+    issuer: जारीकर्ता
+    issuer_claim_label: जारीकर्ता (iss)
+    jwt_claims_details: जेडब्ल्यूटी दावों का विवरण
+    key_id_claim_label: मुख्य आईडी (kid)
     last_name: आखिरी नाम
     last_updated: अंतिम अपडेट
     learning_on_the_job_label: काम करते हुए सीखना

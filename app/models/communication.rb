@@ -7,7 +7,6 @@ class Communication < ApplicationRecord
   translates :subject, :body
 
   audited
-  include OwnerValidations
   include RecurringScheduling
 
   WORKSHOP_COMMUNICATION_KINDS = %w[
@@ -37,7 +36,6 @@ class Communication < ApplicationRecord
 
   belongs_to :assessment
   belongs_to :client
-  belongs_to :owner, class_name: 'Client'
   belongs_to :project, class_name: 'Client'
   # rename project_campaign relation when we will ditch all old structures
   belongs_to :project_campaign, class_name: 'Campaign', foreign_key: :campaign_id, optional: true
@@ -75,7 +73,7 @@ class Communication < ApplicationRecord
   scope :invitation_for_end_level_id, ->(end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id subject body client_id kind created_at]
+    %w[id subject body client_id project_id campaign_id kind created_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)
@@ -133,11 +131,11 @@ class Communication < ApplicationRecord
   end
 
   def end_level_id
-    sub_campaign_id || campaign_id || project_id || client_id || owner_id
+    sub_campaign_id || campaign_id || project_id || client_id
   end
 
   def end_level
-    sub_campaign || campaign || project || client || owner
+    sub_campaign || campaign || project || client
   end
 
   def delivery_interval_duration
@@ -185,8 +183,7 @@ class Communication < ApplicationRecord
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
 
-    where.not(client_id: restricted_client_subquery).
-      where('owner_id IS NULL OR owner_id NOT IN (?)', restricted_client_subquery)
+    where.not(client_id: restricted_client_subquery)
   end
 
   private

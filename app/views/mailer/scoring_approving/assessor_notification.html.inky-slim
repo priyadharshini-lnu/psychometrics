@@ -1,0 +1,13 @@
+p Dear #{@user.decorate.full_name},
+p The following scoring is ready for #{@review_stage} and requires your action.
+
+p Project: #{@score_approval.project.name}
+p Campaign: #{@score_approval.campaign.name}
+p Assessment: #{@score_approval.assessment.name}
+p Candidate: #{@score_approval.subject.decorate.full_name}
+
+p You are receiving this email because you have been added as the #{@review_role} for this scoring.
+
+p You can access the scoring approval via the following link:
+
+= link_to 'Scoring Approval', administration_to_admin_url(@url)

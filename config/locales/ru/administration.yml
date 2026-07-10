@@ -710,7 +710,6 @@ ru:
         end_date: 'Дата окончания:'
         every_interval: Каждый %{interval}
         frequency: 'Частота:'
-        owner: 'Владелец:'
         project: 'Проект:'
         recipients: 'Получатели:'
         specific_datetime: 'Отправить:'

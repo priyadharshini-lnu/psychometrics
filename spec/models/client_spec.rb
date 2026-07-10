@@ -155,4 +155,19 @@ describe Client, type: :model do
       end
     end
   end
+
+  describe 'after_create callbacks' do
+    context 'when client is a root tenancy' do
+      it 'creates a design setting' do
+        tenancy = create(:tenancy)
+        expect(tenancy.design_setting).to be_present
+      end
+
+      it 'creates a design setting for each project' do
+        tenancy = create(:tenancy)
+        project = create(:project, parent: tenancy)
+        expect(project.design_setting).to be_present
+      end
+    end
+  end
 end

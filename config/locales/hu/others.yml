@@ -876,6 +876,7 @@ hu:
         compact_completion_status_export: Kompakt teljesítési állapot exportálása
         completion_status_export: Teljesítési állapotok exportálása
         copy_as_template_or_campaign: Kampány másolása sablonként
+        copy_assessment: Másolásértékelés
         copy_dimension: Méret másolása
         copy_report: Jelentés másolása
         create_threesixty_campaign: Hozzon létre Threesixty kampányt
@@ -915,6 +916,7 @@ hu:
         import_assessors: Importértékelők
         import_campaign_ai_artifacts: Kampány AI tárgyak importálása
         import_campaign_factors: Kampánytényezők importálása
+        import_client_assessors: Ügyfélértékelők importálása
         import_datasheet: Adatlap importálása
         import_development_action_translations: Fejlesztési akciófordítások importálása
         import_development_actions: Fejlesztési tevékenységek importálása
@@ -972,6 +974,8 @@ hu:
       errors:
         no_plans: Nem található aktív IDP-terv
     close: Bezár
+    copy_assessment:
+      failed: Az értékelési példány nem sikerült
     copy_report:
       failed: A jelentés másolása nem sikerült
     details: Részletek

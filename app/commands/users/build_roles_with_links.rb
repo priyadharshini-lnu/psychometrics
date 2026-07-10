@@ -17,10 +17,28 @@ module Users
             build_for_client_admins +
             build_for_project_admins +
             build_for_campaign_admins +
+            build_for_client_assessors +
             build_for_campaign_assessor
         end
 
       broadcast :ok, roles
+    end
+
+    def build_for_client_assessors
+      assessor_client_ids = user.assessors.includes(campaign: { project: :client }).map do |assessor|
+        assessor.campaign.project.client.id
+      end.uniq
+
+      user.client_assessor_clients.uniq(&:id).reject do |client|
+        assessor_client_ids.include?(client.id)
+      end.map do |client|
+        {
+          name: 'client_assessor',
+          paths: [
+            { name: client.name, value: "/admin/clients/#{client.id}/projects" }
+          ]
+        }
+      end
     end
 
     def build_for_campaign_assessor

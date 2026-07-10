@@ -26,6 +26,7 @@ es-ES:
     add_btn: Añadir tema
     add_campaign_admin: Añadir administrador de campaña
     add_client_admin: Añadir Client Admin
+    add_client_assessor: Añadir evaluador de clientes
     add_conditions: Añadir condiciones
     add_evaluators: Añadir evaluadores
     add_indicator: Añadir indicador
@@ -33,6 +34,7 @@ es-ES:
     add_lead_assessor_hint: Por favor, añada primero el formulario del asesor principal
     add_more: Más información
     add_new_folder: Añadir nueva carpeta
+    add_or_select_factor_msg: Haz clic en «Añadir/Seleccionar un factor» para ver los detalles.
     add_output_schema_key: Añadir clave de esquema de salida
     add_project: Añadir proyecto
     add_project_admin: Añadir administrador de proyecto
@@ -47,6 +49,7 @@ es-ES:
     admin_role_deleted: La función de administrador '%{role_name}' se ha eliminado correctamente.
     admin_roles: Funciones administrativas
     admin_updated_successfully: Admin '%{name}' se ha actualizado correctamente
+    admin_with_email_already_added: El usuario con esta dirección de correo electrónico ya ha sido añadido.
     administrator_approves_reports: El administrador aprueba los informes
     administrators_list_columns_email: Correo electrónico
     admins: Administradores
@@ -123,6 +126,20 @@ es-ES:
     application_name: Nombre de la aplicación
     application_name_already_taken: Ya existe para este cliente
     application_name_format_hint: Solo se permiten letras y números, con un único espacio entre palabras
+    application_settings_at_least_one_ip_required: Por favor, introduce al menos una dirección IP antes de activar la lista blanca de direcciones IP.
+    application_settings_confirm_delete_ip: "¿Estás seguro de que quieres eliminar esta dirección IP?"
+    application_settings_edit_ip_address: Editar dirección IP / rango CIDR
+    application_settings_enable_ip_whitelisting: Activar la lista blanca de direcciones IP
+    application_settings_invalid_ip_format: Dirección IP o formato CIDR no válido
+    application_settings_ip_addresses: Direcciones IP / Rangos CIDR
+    application_settings_ip_deleted_successfully: La dirección IP se ha eliminado correctamente
+    application_settings_ip_description_placeholder: Por ejemplo, la red de la oficina o el servidor de producción
+    application_settings_ip_input_placeholder: por ejemplo, 192.168.1.1 o 10.0.0.0/24
+    application_settings_ip_or_cidr: Dirección IP o rango CIDR
+    application_settings_ip_required: Es necesario introducir una dirección IP o un rango CIDR
+    application_settings_ip_updated_successfully: La dirección IP se ha actualizado correctamente
+    application_settings_ip_whitelisting_disabled_success: La lista blanca de direcciones IP se ha desactivado correctamente
+    application_settings_ip_whitelisting_enabled_success: La lista blanca de direcciones IP se ha activado correctamente
     applications: Aplicaciones
     apply_to_existing_users: Aplicar este cambio a los usuarios existentes en esta campaña.
     approve_all_questions: Aprobar todas las preguntas
@@ -279,6 +296,7 @@ es-ES:
     campaign_assessment_column_caching_enabled: Caché de evaluación habilitada
     campaign_assessment_column_hogan_assessment_id: N.º de identificación de la evaluación de Hogan
     campaign_assessment_column_hogan_form_id: N.º de formulario Hogan
+    campaign_assessment_column_occupation_condition_set: Conjunto de condiciones de ocupación
     campaign_assessment_column_pearson_assessment_id: N.º de identificación de la evaluación de Pearson
     campaign_assessment_column_pearson_assessment_language: Idioma de la evaluación de Pearson
     campaign_assessment_column_pearson_error_details: Detalles del error de Pearson
@@ -305,6 +323,10 @@ es-ES:
     campaign_assessment_modals_enable_caching_content: "¿Estás seguro de que quieres activar el caché para esta evaluación?"
     campaign_assessment_modals_enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
     campaign_assessment_modals_enable_caching_title: "¿Habilitar la caché de evaluaciones?"
+    campaign_assessment_modals_update_occupation_condition_set_apply: Aplica este cambio a los usuarios existentes en esta campaña
+    campaign_assessment_modals_update_occupation_condition_set_select: Seleccionar conjunto de condiciones de ocupación
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: El conjunto de condiciones de ocupación se ha actualizado correctamente
+    campaign_assessment_modals_update_occupation_condition_set_title: Actualizar el conjunto de condiciones de ocupación
     campaign_factors: Factores de campaña
     campaign_id_placeholder: Introduce el ID de campaña
     campaign_name: Nombre de la campaña
@@ -388,6 +410,13 @@ es-ES:
     client: Arrendamiento de clientes
     client_admin: Administración de clientes
     client_admins: Administradores de clientes
+    client_assessor_import_already_added: El usuario con la dirección de correo electrónico «%{email}» ya ha sido añadido como evaluador de clientes.
+    client_assessor_import_client_required: Se necesita un cliente para importar evaluadores.
+    client_assessor_import_description: Importa un archivo CSV con una única columna de correo electrónico para los evaluadores de clientes.
+    client_assessor_import_duplicated_emails: 'Los siguientes correos electrónicos aparecen duplicados en el archivo CSV: %{emails}'
+    client_assessor_import_emails_required: Indica al menos una dirección de correo electrónico de un evaluador.
+    client_assessor_import_global_assessor_required: El usuario debe figurar como evaluador global.
+    client_assessor_removed_successfully: El evaluador de clientes con la dirección de correo electrónico «%{email}» se ha eliminado correctamente.
     client_credentials_label: Credenciales de cliente
     client_credentials_value: client_credentials
     client_features: Características del cliente
@@ -431,11 +460,13 @@ es-ES:
     completed_tooltip: Todos los evaluadores han presentado la evaluación
     components_input_duration_placeholder: Introducir como '1d 2h 3m'
     concise: Conciso
+    condition_sets: Conjuntos de condiciones
     confidence_interval: Intervalo de confianza
     confidence_interval_update_success: Intervalo de confianza actualizado correctamente
     configuration: Configuración
     configure_model_answer_title: Configurar la respuesta modelo y las palabras clave
     confirm_remove_admin: "¿Está seguro de que desea eliminar el usuario administrador con el correo electrónico '%{email}'?"
+    confirm_remove_client_assessor: "¿Estás seguro de que quieres eliminar al evaluador de clientes con la dirección de correo electrónico «%{email}»?"
     confirmation_required: Se requiere confirmación
     confirmation_required_details: "¿Estás seguro de que quieres eliminar el archivo «%{resource_name}» de la carpeta «%{resource}»?"
     consolidated: Consolidado
@@ -444,8 +475,11 @@ es-ES:
     copied: Copiado
     copied_url_success: La URL se ha copiado correctamente en el portapapeles
     copy_ai_artifacts: Copiar artefactos de IA
+    copy_assessment_scheduled: Se ha programado la tarea de copia de evaluación.
     copy_hint: Copia la configuración anterior de Asientos, Administradores de centros, Evaluadores y Reuniones y recursos a los siguientes Centros de evaluación. Después de copiar, puede realizar más cambios en los Centros de evaluación individuales antes de continuar.
     copy_image_url: Copiar la URL de la imagen
+    copy_occupation_condition_set: Copiar conjunto de condiciones de ocupación
+    copy_occupation_condition_set_msg: Esto copiará toda la configuración de los factores de ocupación existente del conjunto de condiciones actual al nuevo conjunto de condiciones.
     copy_report_scheduled: Se ha programado la tarea de copia del informe.
     copy_text: Texto
     copy_to_all: Copia a otros Centros de Evaluación
@@ -529,6 +563,7 @@ es-ES:
     default_assessment_language: Evaluación de la lengua por defecto
     default_button: Por defecto
     default_language: Idioma por defecto
+    default_occupation_condition_set: Conjunto de condiciones de ocupación predeterminado
     default_report_language: Idioma por defecto del informe
     define_max_score_text: Defina una puntuación de %{maxScore} (puntuación máxima).
     define_min_score_text: Defina una puntuación de %{minScore} (puntuación mínima).
@@ -638,6 +673,7 @@ es-ES:
     document_titles_project_participants: Participantes | %{project}
     done: Hecho
     done_tooltip: No se puede enviar más evaluación para este usuario, ya que la evaluación de este usuario se marca como realizada por %{marked_by}
+    download_assessor_email_template: Descargar plantilla de ejemplo
     download_bulk_asset_download_example_csv: Descargar ejemplo CSV.
     download_example_csv: Muestra de normas CSV
     dp_consent: Habilitar el consentimiento para el tratamiento de datos
@@ -667,6 +703,7 @@ es-ES:
     email_subjects_manager_when_available: Enviar un correo electrónico al responsable del sujeto cuando el informe esté disponible
     empty: Vacío
     empty_csv_file: El archivo CSV no contiene ningún dato.
+    empty_occupation_condition_set_msg: No se han encontrado factores de ocupación para este conjunto de afecciones. Añade un factor.
     enable_caching_content: "¿Estás seguro de que quieres activar el caché para esta evaluación?"
     enable_caching_successfully: Se ha habilitado la caché para esta evaluación.
     enable_caching_title: "¿Habilitar la caché de evaluaciones?"
@@ -760,6 +797,7 @@ es-ES:
     factors_index_sub_factors: Subfactores
     factors_index_title: Factores
     factors_resource_confirmations_delete_body: "<p>¿Estás seguro de que quieres borrar este Factor?</p>\n"
+    factors_resource_removal_success: El factor «%{name}» se ha eliminado correctamente.
     failure_reason: Motivo del fallo
     feature_ai_assistants_description: Habilite los asistentes con tecnología de inteligencia artificial para mejorar la experiencia del usuario.
     feature_ai_assisted_idp_description: Utilizar la IA para ayudar con las recomendaciones del Plan de Desarrollo Individual.
@@ -1214,6 +1252,7 @@ es-ES:
     log_date: Fecha de registro
     logged_in: Iniciado sesión
     login: Iniciar sesión
+    login_page_design_tab: Diseño
     low: Bajo
     mail_history: Historia del correo
     main_report: Informe principal
@@ -1310,6 +1349,7 @@ es-ES:
     new_score: Nueva puntuación
     no_assessments_found: ID de auditoría
     no_client_access: No tienes acceso a este cliente
+    no_client_access_root: No estás vinculado a ningún cliente
     no_clients_found: No se han encontrado clientes
     no_completed_assessments: Aún no hay valoraciones realizadas
     no_file_selected: No se selecciona ningún archivo
@@ -1360,6 +1400,13 @@ es-ES:
     oauth_scope_label: Alcance
     oauth_scope_name: oauth_scope
     oauth_scope_required: Se requiere alcance
+    occupation_condition_set_copy_success: Conjunto de condiciones de ocupación copiado correctamente
+    occupation_condition_sets: Conjuntos de condiciones de ocupación
+    occupation_condition_sets_remove_confirm: Introduce el nombre del conjunto de condiciones de ocupación que se indica a continuación en el cuadro de texto para confirmar
+    occupation_condition_sets_remove_success: Se ha eliminado correctamente el conjunto de condiciones de ocupación «%{name}».
+    occupation_condition_sets_remove_warning: "¿Estás seguro de que quieres eliminar el conjunto de condiciones de ocupación «%{name}»?"
+    occupation_factors_condition_set: Conjunto de condiciones
+    occupation_factors_title: Factores relacionados con la ocupación
     occupations: Ocupaciones
     occupations_factors_list_condition: Condición
     occupations_factors_list_position: Posición
@@ -2033,6 +2080,7 @@ es-ES:
     public_key_cannot_be_changed: No se puede modificar una vez creado
     public_key_copy_private_key: Copiar clave privada
     public_key_created: La clave pública se ha creado correctamente
+    public_key_details: Detalles de la clave pública
     public_key_generate: Generar un par de claves
     public_key_generate_button: Generar un par de claves RSA
     public_key_generate_info: Se generará un par de claves RSA de 2048 bits. Solo se almacenará la clave pública. Copia y guarda de forma segura la clave privada, ya que no volverá a mostrarse.
@@ -2210,12 +2258,14 @@ es-ES:
     report_type: Tipo de informe
     report_types:
       active_clients_projects: Clientes y proyectos en curso
+      campaign_factor_scores: Puntuaciones de los factores de la campaña
       client_assessment_counts: La valoración del cliente es importante
       hogan_usage_report: Uso de la evaluación Hogan
       json_data_report: Informe de datos JSON
       pearson_usage_report: Uso de las evaluaciones de Pearson
       report_usage_summary: Resumen de uso del informe
       saville_usage_report: Uso de la evaluación de Saville
+      user_access_review: Revisión del acceso de los usuarios
       user_created_dates: Fechas creadas por el usuario
       user_reports_export: Exportación de informes de usuarios
     reports: Informes
@@ -2607,6 +2657,7 @@ es-ES:
     search_admins: Buscar administradores
     search_campaign: Búsqueda por campaña
     search_client: Buscar por cliente
+    search_client_assessors: Buscar evaluadores de clientes
     search_job_role: Buscar puesto de trabajo
     search_participants: Buscar participantes...
     search_project: Búsqueda por proyecto
@@ -2642,6 +2693,7 @@ es-ES:
     select_admin_role: Seleccione el rol de administrador
     select_assessment_language: Seleccionar idioma de evaluación
     select_client: Seleccionar cliente
+    select_condition_set: Seleccionar conjunto de condiciones
     select_end_time: Seleccionar hora de finalización
     select_language_to_translate: Seleccione el idioma para traducir.
     select_level: Seleccionar nivel

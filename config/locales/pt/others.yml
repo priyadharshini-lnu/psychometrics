@@ -876,6 +876,7 @@ pt:
         compact_completion_status_export: Exportação do estado de conclusão compacto
         completion_status_export: Exportação do estado de conclusão
         copy_as_template_or_campaign: Copiar campanha como modelo
+        copy_assessment: Avaliação da cópia
         copy_dimension: Dimensão da cópia
         copy_report: Copiar relatório
         create_threesixty_campaign: Criar campanha Threesixty
@@ -915,6 +916,7 @@ pt:
         import_assessors: Avaliadores de importação
         import_campaign_ai_artifacts: Importação de artefatos de IA de campanhas
         import_campaign_factors: Factores da campanha de importação
+        import_client_assessors: Importar avaliadores do cliente
         import_datasheet: Importar ficha de dados
         import_development_action_translations: Importação Desenvolvimento Ação Traduções
         import_development_actions: Importar acções de desenvolvimento
@@ -972,6 +974,8 @@ pt:
       errors:
         no_plans: Nenhum plano IDP ativo encontrado
     close: Fechar
+    copy_assessment:
+      failed: A cópia de avaliação falhou
     copy_report:
       failed: A cópia do relatório falhou
     details: Detalhes

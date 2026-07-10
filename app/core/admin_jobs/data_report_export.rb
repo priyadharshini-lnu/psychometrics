@@ -12,7 +12,8 @@ module AdminJobs
       'pearson_usage_report' => DataReportHandlers::PearsonUsageHandler,
       'client_assessment_counts' => DataReportHandlers::ClientAssessmentsCountHandler,
       'active_clients_projects' => DataReportHandlers::ActiveClientsProjectsHandler,
-      'user_access_review' => DataReportHandlers::UserAccessReviewHandler
+      'user_access_review' => DataReportHandlers::UserAccessReviewHandler,
+      'campaign_factor_scores' => DataReportHandlers::CampaignFactorScoresHandler
     }.freeze
 
     def initialize(record, _stage = nil)

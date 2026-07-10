@@ -27,15 +27,19 @@ const Link = ({
 export const UserAvatar = ({
   currentUser,
   collapsed,
-}) => (
-  <>
-    <div className={cs(styles.logo, { [styles.small]: collapsed })}>
-      <Link
-        ariaLabel={`${I18n.t('frontend.aria.back_to_dashboard')}`}
-        href={currentUser.roleTitle === 'Assessor' ? '/assessors' : '/admin'}
-      >
-        <img alt="Lighthouse logo" src={collapsed ? logoSmall : logo} />
-      </Link>
-    </div>
-  </>
-)
+}) => {
+  const customLogo = window.PsyGlobalState?.clientContextData?.logo_url
+
+  return (
+    <>
+      <div className={cs(styles.logo, { [styles.small]: collapsed })}>
+        <Link
+          ariaLabel={`${I18n.t('frontend.aria.back_to_dashboard')}`}
+          href={currentUser.roleTitle === 'Assessor' ? '/assessors' : '/admin'}
+        >
+          <img alt="Lighthouse logo" src={customLogo || (collapsed ? logoSmall : logo)} />
+        </Link>
+      </div>
+    </>
+  )
+}

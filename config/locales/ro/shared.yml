@@ -22,6 +22,8 @@ ro:
     assessor_approved: Evaluator aprobat
     assessors_list: Lista evaluatorilor
     asset_not_present: Activul nu este prezent
+    audience: Publicul
+    audience_claim_label: Public (aud)
     audio: Audio
     audio_devices: Dispozitive audio
     authentication_failed: Autentificarea a eșuat. Vă rog să încercați din nou.
@@ -100,6 +102,10 @@ ro:
     import: Importa
     inactive: Inactivă
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
+    issuer: Emitent
+    issuer_claim_label: Emitent (iss)
+    jwt_claims_details: Detalii privind cererile de despăgubire JWT
+    key_id_claim_label: ID-ul cheii (kid)
     last_name: Numele de familie
     last_updated: Ultima actualizare
     learning_on_the_job_label: Învățarea la locul de muncă

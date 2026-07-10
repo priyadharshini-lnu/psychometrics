@@ -26,6 +26,7 @@ pl:
     add_btn: Dodaj temat
     add_campaign_admin: Dodaj administratora kampanii
     add_client_admin: Dodawanie administratora klienta
+    add_client_assessor: Dodaj oceniającego klienta
     add_conditions: Dodaj warunki
     add_evaluators: Dodaj oceniających
     add_indicator: Dodaj wskaźnik
@@ -33,6 +34,7 @@ pl:
     add_lead_assessor_hint: Najpierw dodaj formularz głównego asesora
     add_more: Dodaj więcej
     add_new_folder: Dodaj nowy folder
+    add_or_select_factor_msg: Kliknij opcję „Dodaj/wybierz czynnik”, aby wyświetlić szczegóły.
     add_output_schema_key: Dodaj klucz schematu wyjściowego
     add_project: Dodaj projekt
     add_project_admin: Dodawanie administratora projektu
@@ -47,6 +49,7 @@ pl:
     admin_role_deleted: Rola administratora "%{role_name}" została pomyślnie usunięta.
     admin_roles: Role administratora
     admin_updated_successfully: Administrator "%{name}" został pomyślnie zaktualizowany
+    admin_with_email_already_added: Użytkownik o tym adresie e-mail został już dodany.
     administrator_approves_reports: Administrator zatwierdza raporty
     administrators_list_columns_email: E-mail
     admins: Administratorzy
@@ -123,6 +126,20 @@ pl:
     application_name: Nazwa aplikacji
     application_name_already_taken: Już istnieje dla tego klienta
     application_name_format_hint: Dopuszczalne są wyłącznie litery i cyfry, z pojedynczą spacją między wyrazami
+    application_settings_at_least_one_ip_required: Przed włączeniem białej listy adresów IP należy dodać co najmniej jeden wpis adresu IP
+    application_settings_confirm_delete_ip: Czy na pewno chcesz usunąć ten adres IP?
+    application_settings_edit_ip_address: Edytuj adres IP / zakres CIDR
+    application_settings_enable_ip_whitelisting: Włącz białą listę adresów IP
+    application_settings_invalid_ip_format: Nieprawidłowy adres IP lub format CIDR
+    application_settings_ip_addresses: Adresy IP / Zakresy CIDR
+    application_settings_ip_deleted_successfully: Adres IP został pomyślnie usunięty
+    application_settings_ip_description_placeholder: np. sieć biurowa lub serwer produkcyjny
+    application_settings_ip_input_placeholder: np. 192.168.1.1 lub 10.0.0.0/24
+    application_settings_ip_or_cidr: Adres IP lub zakres CIDR
+    application_settings_ip_required: Wymagany jest adres IP lub zakres CIDR
+    application_settings_ip_updated_successfully: Adres IP został pomyślnie zaktualizowany
+    application_settings_ip_whitelisting_disabled_success: Biała lista adresów IP została pomyślnie wyłączona
+    application_settings_ip_whitelisting_enabled_success: Wprowadzenie białej listy adresów IP zakończyło się powodzeniem
     applications: Zastosowania
     apply_to_existing_users: Zastosuj tę zmianę do obecnych użytkowników w tej kampanii
     approve_all_questions: Zatwierdź wszystkie pytania
@@ -279,6 +296,7 @@ pl:
     campaign_assessment_column_caching_enabled: Włączone buforowanie oceny
     campaign_assessment_column_hogan_assessment_id: Numer identyfikacyjny oceny Hogana
     campaign_assessment_column_hogan_form_id: Numer identyfikacyjny formularza Hogana
+    campaign_assessment_column_occupation_condition_set: Zestaw warunków dotyczących zawodu
     campaign_assessment_column_pearson_assessment_id: Numer identyfikacyjny testu firmy Pearson
     campaign_assessment_column_pearson_assessment_language: Język testów firmy Pearson
     campaign_assessment_column_pearson_error_details: Szczegóły błędu Pearsona
@@ -305,6 +323,10 @@ pl:
     campaign_assessment_modals_enable_caching_content: Czy na pewno chcesz włączyć bufor do tej oceny?
     campaign_assessment_modals_enable_caching_successfully: Do tej oceny włączono buforowanie.
     campaign_assessment_modals_enable_caching_title: Włączyć cache oceny (Assessment)?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Zastosuj tę zmianę do obecnych użytkowników tej kampanii
+    campaign_assessment_modals_update_occupation_condition_set_select: Wybierz zestaw warunków dotyczących zawodu
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Zestaw warunków dotyczących zawodu został pomyślnie zaktualizowany
+    campaign_assessment_modals_update_occupation_condition_set_title: Zaktualizuj zestaw warunków dotyczących zawodu
     campaign_factors: Czynniki kampanii
     campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
     campaign_name: Nazwa kampanii
@@ -388,6 +410,13 @@ pl:
     client: Dzierżawa klienta
     client_admin: Administrator klienta
     client_admins: Administratorzy klienta
+    client_assessor_import_already_added: Użytkownik o adresie e-mail „%{email}” został już dodany jako oceniający klienta.
+    client_assessor_import_client_required: Do importowania rzeczoznawców wymagany jest klient.
+    client_assessor_import_description: Zaimportuj plik CSV zawierający jedną kolumnę z adresami e-mail dla osób oceniających klientów.
+    client_assessor_import_duplicated_emails: 'W pliku CSV znajdują się następujące duplikaty adresów e-mail: %{emails}'
+    client_assessor_import_emails_required: Proszę podać adres e-mail co najmniej jednego recenzenta.
+    client_assessor_import_global_assessor_required: Użytkownik musi być zarejestrowany jako globalny oceniający.
+    client_assessor_removed_successfully: Użytkownik „Client assessor” o adresie e-mail „%{email}” został pomyślnie usunięty
     client_credentials_label: Poświadczenia klienta
     client_credentials_value: client_credentials
     client_features: Funkcje klienta
@@ -431,11 +460,13 @@ pl:
     completed_tooltip: Wszyscy oceniający złożyli ocenę
     components_input_duration_placeholder: Wpisz jako "1d 2h 3m"
     concise: Zwięzły
+    condition_sets: Zbiory warunków
     confidence_interval: Przedział ufności
     confidence_interval_update_success: Przedział ufności zaktualizowany pomyślnie
     configuration: Konfiguracja
     configure_model_answer_title: Skonfiguruj modelową odpowiedź i słowa kluczowe
     confirm_remove_admin: Czy na pewno chcesz usunąć administratora za pomocą adresu e-mail "%{email}"?
+    confirm_remove_client_assessor: Czy na pewno chcesz usunąć klienta-oceniającego o adresie e-mail „%{email}”?
     confirmation_required: Wymagane potwierdzenie
     confirmation_required_details: Czy na pewno chcesz usunąć plik „%{resource_name}” z katalogu „%{resource}”?
     consolidated: Skonsolidowany
@@ -444,8 +475,11 @@ pl:
     copied: Skopiowano
     copied_url_success: Adres URL został pomyślnie skopiowany do schowka
     copy_ai_artifacts: Skopiuj artefakty AI
+    copy_assessment_scheduled: Zadanie dotyczące kopii oceny zostało zaplanowane.
     copy_hint: Kopiuje powyższą konfigurację Miejsc, Kierowników Centrum, Asesorów oraz Spotkań i Zasobów do następujących Centrów Oceny. Po skopiowaniu możesz wprowadzić dalsze zmiany w poszczególnych Assessment Center, zanim przejdziesz dalej.
     copy_image_url: Skopiuj adres URL obrazu
+    copy_occupation_condition_set: Skopiuj zestaw warunków dotyczących zawodu
+    copy_occupation_condition_set_msg: Spowoduje to skopiowanie całej istniejącej konfiguracji czynników zajętości z bieżącego zestawu warunków do nowego zestawu warunków.
     copy_report_scheduled: Zadanie tworzenia kopii raportu zostało zaplanowane.
     copy_text: Tekst
     copy_to_all: Kopiowanie do innych ośrodków oceny
@@ -529,6 +563,7 @@ pl:
     default_assessment_language: Domyślny język oceny
     default_button: Domyślne
     default_language: Język domyślny
+    default_occupation_condition_set: Domyślny zestaw warunków dotyczących zawodu
     default_report_language: Domyślny język raportu
     define_max_score_text: Zdefiniuj wynik „%{maxScore}” (maksymalny wynik)
     define_min_score_text: Zdefiniuj wynik „%{minScore}” (minimalny wynik)
@@ -638,6 +673,7 @@ pl:
     document_titles_project_participants: Uczestnicy | %{project}
     done: Gotowy
     done_tooltip: Nie można już zgłosić oceny tego użytkownika, ponieważ jest oznaczana jako przeprowadzona przez %{marked_by}
+    download_assessor_email_template: Pobierz przykładowy szablon
     download_bulk_asset_download_example_csv: Pobierz przykładowy plik CSV.
     download_example_csv: Pobierz przykładowy plik csv
     dp_consent: Włącz zgodę na przetwarzanie danych
@@ -667,6 +703,7 @@ pl:
     email_subjects_manager_when_available: Wyślij wiadomość e-mail do menedżera podmiotu, gdy raport będzie dostępny
     empty: Puste
     empty_csv_file: Plik CSV nie zawiera żadnych danych.
+    empty_occupation_condition_set_msg: Nie znaleziono czynników związanych z zawodem dla tego zestawu schorzeń. Proszę dodać czynnik.
     enable_caching_content: Czy na pewno chcesz włączyć bufor do tej oceny?
     enable_caching_successfully: Do tej oceny włączono buforowanie.
     enable_caching_title: Włączyć cache oceny (Assessment)?
@@ -760,6 +797,7 @@ pl:
     factors_index_sub_factors: Czynniki podrzędne
     factors_index_title: Czynników
     factors_resource_confirmations_delete_body: "<p>Czy na pewno chcesz usunąć ten czynnik?</p>\n"
+    factors_resource_removal_success: Czynnik „%{name}” został pomyślnie usunięty.
     failure_reason: Przyczyna niepowodzenia
     feature_ai_assistants_description: Włącz asystentów opartych na sztucznej inteligencji, aby poprawić komfort użytkowania.
     feature_ai_assisted_idp_description: Wykorzystaj sztuczną inteligencję do pomocy w tworzeniu zaleceń dotyczących indywidualnych planów rozwoju.
@@ -1214,6 +1252,7 @@ pl:
     log_date: Data logowania
     logged_in: Zalogowano się
     login: Logowanie
+    login_page_design_tab: Projekt
     low: Niski
     mail_history: Historia poczty
     main_report: Raport główny
@@ -1310,6 +1349,7 @@ pl:
     new_score: Nowy wynik
     no_assessments_found: Identyfikator audytu
     no_client_access: Nie masz dostępu do tego klienta
+    no_client_access_root: Nie jesteś powiązany z żadnym klientem
     no_clients_found: Nie znaleziono żadnych klientów
     no_completed_assessments: Nie ma jeszcze zakończonych ocen
     no_file_selected: Nie wybrano żadnego pliku
@@ -1360,6 +1400,13 @@ pl:
     oauth_scope_label: Zakres
     oauth_scope_name: oauth_scope
     oauth_scope_required: Zakres obowiązkowy jest
+    occupation_condition_set_copy_success: Zestaw warunków dotyczących zawodu został pomyślnie skopiowany
+    occupation_condition_sets: Zbiory warunków dotyczących zawodu
+    occupation_condition_sets_remove_confirm: Wpisz w polu tekstowym nazwę zestawu warunków dotyczących zawodu podaną poniżej, aby potwierdzić
+    occupation_condition_sets_remove_success: Zestaw warunków dotyczących zawodu „%{name}” został pomyślnie usunięty
+    occupation_condition_sets_remove_warning: Czy na pewno chcesz usunąć zestaw warunków dotyczących zawodu „%{name}”?
+    occupation_factors_condition_set: Zbiór warunków
+    occupation_factors_title: Czynniki związane z zawodem
     occupations: Zawodów
     occupations_factors_list_condition: Warunek
     occupations_factors_list_position: Pozycja
@@ -2033,6 +2080,7 @@ pl:
     public_key_cannot_be_changed: nie można tego zmienić po utworzeniu
     public_key_copy_private_key: Skopiuj klucz prywatny
     public_key_created: Klucz publiczny został pomyślnie utworzony
+    public_key_details: Szczegóły klucza publicznego
     public_key_generate: Wygeneruj parę kluczy
     public_key_generate_button: Wygeneruj parę kluczy RSA
     public_key_generate_info: Zostanie wygenerowana para kluczy RSA o długości 2048 bitów. Zapisany zostanie wyłącznie klucz publiczny. Skopiuj klucz prywatny i przechowuj go w bezpiecznym miejscu — nie zostanie on ponownie wyświetlony.
@@ -2210,12 +2258,14 @@ pl:
     report_type: Rodzaj raportu
     report_types:
       active_clients_projects: Aktywni klienci i projekty
+      campaign_factor_scores: Wyniki czynników kampanii
       client_assessment_counts: Ważna jest ocena klienta
       hogan_usage_report: Wykorzystanie narzędzia Hogan Assessment
       json_data_report: Raport danych JSON
       pearson_usage_report: Wykorzystanie narzędzi diagnostycznych firmy Pearson
       report_usage_summary: Podsumowanie wykorzystania raportu
       saville_usage_report: Wykorzystanie narzędzia Saville Assessment
+      user_access_review: Przegląd uprawnień użytkowników
       user_created_dates: Daty utworzone przez użytkownika
       user_reports_export: Eksport raportów użytkowników
     reports: Raporty
@@ -2604,6 +2654,7 @@ pl:
     search_admins: Wyszukiwanie administratorów
     search_campaign: Wyszukiwanie według kampanii
     search_client: Wyszukiwanie według klienta
+    search_client_assessors: Wyszukaj oceniających klientów
     search_job_role: Wyszukaj stanowisko
     search_participants: Wyszukaj uczestników...
     search_project: Wyszukiwanie według projektu
@@ -2639,6 +2690,7 @@ pl:
     select_admin_role: Wybierz rolę administratora
     select_assessment_language: Wybierz język oceny
     select_client: Wybierz klienta
+    select_condition_set: Wybierz zestaw warunków
     select_end_time: Wybierz czas zakończenia
     select_language_to_translate: Wybierz język do tłumaczenia
     select_level: Wybierz poziom

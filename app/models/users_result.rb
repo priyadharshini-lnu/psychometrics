@@ -9,6 +9,7 @@ class UsersResult < ApplicationRecord
 
   has_one :participant, class_name: 'Threesixty::Participant'
   has_many :media_responses, dependent: :destroy
+  belongs_to :occupation_condition_set, optional: true
   has_one :user_assessment
   has_one :norm, through: :user_assessment
   has_one :campaign, through: :user_assessment
@@ -88,6 +89,12 @@ class UsersResult < ApplicationRecord
 
   def generate_randomseed
     self.seedrandom = rand(1..100).to_s
+  end
+
+  def resolve_occupation_condition_set
+    occupation_condition_set ||
+      user_assessment.campaign_assessment&.occupation_condition_set ||
+      assessment&.dimension&.default_occupation_condition_set
   end
 
   def ready_for_ai_scoring?

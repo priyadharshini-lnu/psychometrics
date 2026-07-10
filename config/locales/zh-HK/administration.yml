@@ -710,7 +710,6 @@ zh-HK:
         end_date: 截止日期：
         every_interval: 每 %{interval}
         frequency: 频率：
-        owner: 所有者：
         project: 项目：
         recipients: 收件人：
         specific_datetime: 发送于：

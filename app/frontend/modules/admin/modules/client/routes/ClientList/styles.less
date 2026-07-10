@@ -1,0 +1,33 @@
+@import '~/styles/spacing.less';
+
+.imageLinkWrapper {
+  display: block;
+  width: @space-16;
+  height: @space-16;
+}
+
+.imageDimension() {
+  width: @space-16;
+  height: @space-16;
+}
+
+.imageSkeleton :global(.ant-skeleton-avatar) {
+  .imageDimension()
+}
+
+.logoImageStyles {
+  background-size: cover;
+  cursor: pointer;
+  .imageDimension();
+}
+
+.imageAvatarStyles {
+  background-color: #02b1a8;
+  cursor: default;
+  vertical-align: text-top;
+  margin-left: 5px;
+}
+
+.campaignLink {
+  font-weight: bold;
+}

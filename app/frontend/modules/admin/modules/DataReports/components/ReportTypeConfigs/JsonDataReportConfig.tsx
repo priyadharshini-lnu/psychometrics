@@ -19,6 +19,10 @@ export const jsonDataReportDefinition: ReportTypeDefinition = {
   key: 'json_data_report',
   component: JsonDataReportConfig,
   processConfiguration: data => data,
+  uiRules: {
+    defaultScope: 'client',
+    scopeOptions: ['client'],
+  },
 }
 
 export default JsonDataReportConfig

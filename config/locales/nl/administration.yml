@@ -710,7 +710,6 @@ nl:
         end_date: 'Einddatum:'
         every_interval: Elk %{interval}
         frequency: 'Frequentie:'
-        owner: 'Eigenaar:'
         project: 'Project:'
         recipients: 'Ontvangers:'
         specific_datetime: 'Verzenden naar:'

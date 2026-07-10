@@ -710,7 +710,6 @@ zh-Hant:
         end_date: 結束日期：
         every_interval: 每 %{interval}
         frequency: 頻率：
-        owner: 業主：
         project: 專案：
         recipients: 收件人：
         specific_datetime: 發送至

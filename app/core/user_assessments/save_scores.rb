@@ -29,6 +29,7 @@ module UserAssessments
         else
           user_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(user_result)
           user_result.scoring = ::UsersResults::CalculateScoring.call!(user_result) if user_result.completed?
+          user_result.occupation_condition_set = user_result.resolve_occupation_condition_set
           user_result.occupations = ::UsersResults::CalculateOccupations.call!(user_result)
           user_result.innovation_styles = ::UsersResults::CalculateInnovationStyles.call!(user_result)
           user_result.save!

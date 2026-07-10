@@ -1,0 +1,35 @@
+= search_form_for(filter_form,
+                  url: { action: :index },
+                  html: { id: 'filter', class: 'list-filter' },
+                  builder: SimpleForm::FormBuilder) do |f|
+  = hidden_field_tag :refresh_filters, 0, id: 'communications_refresh_filters'
+
+  = f.input :subject_or_body_cont,
+            label: false,
+            as: :string,
+            required: false,
+            placeholder: t('administration.search'),
+            input_html: { class: 'has_clear periodically-observed' }
+  = f.input :client_id_in,
+            collection: @client_filter_options,
+            input_html: { data: { live_search: true }, disabled: @client_filter_locked, multiple: true, title: t('administration.communications.index.clients') },
+            required: false,
+            label: false
+  = f.input :project_id_eq,
+            collection: @project_filter_options,
+            include_blank: false,
+            input_html: { data: { live_search: true }, disabled: @project_filter_disabled, title: t('administration.communications.list.project') },
+            required: false,
+            label: false
+  = f.input :campaign_id_eq,
+            collection: @campaign_filter_options,
+            include_blank: false,
+            input_html: { data: { live_search: true }, disabled: @campaign_filter_disabled, title: t('administration.communications.list.campaign') },
+            required: false,
+            label: false
+  = f.input :kind_in,
+            collection: Communication.kinds,
+            input_html: { data: { live_search: true }, multiple: true, title: t('administration.communications.index.type') },
+            required: false,
+            label: false
+  = link_to t('shared.clear_filters'), administration_communications_path, class: "btn btn-default"

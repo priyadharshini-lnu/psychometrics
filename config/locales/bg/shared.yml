@@ -22,6 +22,8 @@ bg:
     assessor_approved: Одобрен от оценителя
     assessors_list: Списък на оценителите
     asset_not_present: Активът не е наличен
+    audience: Аудитория
+    audience_claim_label: Аудитория (aud)
     audio: Аудио
     audio_devices: Аудиоустройства
     authentication_failed: Автентикацията не беше успешна. Моля, опитайте отново.
@@ -100,6 +102,10 @@ bg:
     import: Импортирам
     inactive: Неактивен
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
+    issuer: Емитент
+    issuer_claim_label: Емитент (iss)
+    jwt_claims_details: Подробности за претенциите към JWT
+    key_id_claim_label: Идентификационен номер на ключа (kid)
     last_name: Фамилия
     last_updated: Последна актуализация
     learning_on_the_job_label: Учене на работа
