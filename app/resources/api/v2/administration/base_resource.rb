@@ -21,6 +21,8 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
 
   class_attribute :_audit_log_config
 
+  attribute :tenant_id
+
   def self.ransack_filters(matchers)
     matchers.each do |matcher|
       filter matcher, apply: lambda { |records, value, _|
@@ -64,5 +66,18 @@ class Api::V2::Administration::BaseResource < JSONAPI::Resource
 
   def meta_details
     {}
+  end
+
+  def tenant_id
+    @model[:tenant_id]
+  rescue ActiveModel::MissingAttributeError
+    nil
+  end
+
+  def fetchable_fields
+    fields = super
+    return fields - [:tenant_id] unless @model.class.column_names.include?('tenant_id')
+
+    fields
   end
 end
