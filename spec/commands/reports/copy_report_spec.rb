@@ -8,6 +8,7 @@ describe Reports::CopyReport do
 
     let(:report) do
       filters = create_list(:filter, 2)
+      campaign_factors = create_list(:report_campaign_factor, 2)
 
       report = build(:report, owner_id: client.id)
       pages = build_list(:page, 2)
@@ -28,6 +29,8 @@ describe Reports::CopyReport do
       create(:translation, translateable: filters.first, resource: report)
       report.filters << filters
 
+      report.campaign_factors << campaign_factors
+
       report.save!
       report
     end
@@ -40,6 +43,10 @@ describe Reports::CopyReport do
 
       factor = create(:factor)
       create(:translation, translateable: factor, resource: report)
+
+      report.campaign_factors.each do |campaign_factor|
+        create(:translation, translateable: campaign_factor, resource: report)
+      end
     end
 
     context 'Success' do
@@ -104,6 +111,19 @@ describe Reports::CopyReport do
 
         expect(report.filters.first.translations.length).to eq(1)
         expect(copy.filters.first.translations.length).to eq(1)
+      end
+
+      it 'copies campaign factors' do
+        copy = subject[:ok]
+
+        expect(copy.campaign_factors.length).to eq(report.campaign_factors.length)
+      end
+
+      it 'copies campaign factor translations' do
+        copy = subject[:ok]
+
+        expect(report.campaign_factors.first.translations.length).to eq(1)
+        expect(copy.campaign_factors.first.translations.length).to eq(1)
       end
 
       it 'copies factor translations' do
