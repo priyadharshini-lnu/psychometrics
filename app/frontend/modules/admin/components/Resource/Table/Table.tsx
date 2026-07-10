@@ -7,6 +7,7 @@ import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { useWindowSize } from '~/hooks/useWindowSize'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 
 type Props = {
   children: React.ReactNode[]
@@ -44,13 +45,18 @@ export const Table: FC<Props> = ({
     return innerProps
   })
 
+  const getRowProps = (record: Record<string, unknown>) => ({
+    ...getTenantRowAttributes(record),
+    ...(onRowChange?.(record) || {}),
+  })
+
   const InnerTable = (
     <AntTable
       rowKey={row => row?.id ?? -1}
       dataSource={resource.data}
       pagination={false}
       loading={tableLoading}
-      onRow={onRowChange}
+      onRow={getRowProps}
       scroll={{ x: 'max-content' }}
       expandable={expandable}
       onChange={resource.handleTableChange}

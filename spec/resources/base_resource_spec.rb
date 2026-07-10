@@ -12,6 +12,22 @@ describe Api::V2::Administration::BaseResource do
     }
   end
 
+  describe 'default tenant_id exposure' do
+    context 'when the model has a tenant_id column' do
+      let!(:tenancy) { create(:tenancy) }
+      let!(:assessment) { create(:assessment, owner: tenancy) }
+
+      it 'includes tenant_id in the serialized response' do
+        assessment_resource = Api::V2::Administration::AssessmentResource.new(assessment, context)
+        serialized_data = JSONAPI::ResourceSerializer.new(
+          Api::V2::Administration::AssessmentResource
+        ).serialize_to_hash(assessment_resource)
+
+        expect(serialized_data.dig(:data, 'attributes', 'tenant_id')).to eq(tenancy.id)
+      end
+    end
+  end
+
   context 'include_resource_meta options' do
     it 'doesnt add meta if option include_resource_meta not passed in params' do
       user_resource = Api::V2::Administration::UserResource.new(client_admin, context)
