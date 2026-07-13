@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddOccupationConditionSets < ActiveRecord::Migration[7.1]
+class AddOccupationConditionSets < ActiveRecord::Migration[8.0]
   def change
     create_table :occupation_condition_sets do |t|
       t.string :name

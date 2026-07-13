@@ -17,7 +17,7 @@ export const RemoveOccupationConditionSetsFormModal: React.FC<{
     message.info(I18n.t('admin.occupation_condition_sets_remove_success', { name }))
     close()
   }).catch((error) => {
-    message.error(error)
+    message.error(error?.base?.[0]?.title)
   })
 
   return (

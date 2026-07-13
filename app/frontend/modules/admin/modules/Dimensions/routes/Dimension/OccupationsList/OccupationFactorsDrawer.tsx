@@ -52,7 +52,12 @@ export const OccupationFactorsDrawer: React.FC<{
        responseType: OccupationConditionSetTR,
      })
 
-     const currentConditionSetId = selectedConditionSetId || conditionSets[0]?.id || null
+     const defaultSet = conditionSets.find(cs => cs.isDefault)
+
+     const currentConditionSetId = selectedConditionSetId
+       || defaultSet?.id
+       || conditionSets[0]?.id || null
+
      const clearSelectedFactor = () => {
        selectedFactorId && setSelectedFactorId(null)
        isAddingFactor && setIsAddingFactor(false)

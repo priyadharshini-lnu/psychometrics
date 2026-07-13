@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddConstraintsToOccupationConditionSets < ActiveRecord::Migration[7.1]
+class AddConstraintsToOccupationConditionSets < ActiveRecord::Migration[8.0]
   disable_ddl_transaction!
 
   def up

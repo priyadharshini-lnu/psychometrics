@@ -133,7 +133,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
             >
               <Select
                 showSearch={{ optionFilterProp: 'label' }}
-                options={conditionSets.map(({ id, name }) => ({ value: id, label: name }))}
+                options={conditionSets.map(({ id, name }) => ({ value: Number(id), label: name }))}
                 notFoundContent={
                   isOccupationConditionSetsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
               />
