@@ -266,7 +266,7 @@ en:
     video_check_fix_sixth: Restart your browser and try again
     video_check_fix_third: Close other applications using the camera (Zoom, Teams, etc.)
     video_overlay_label: Select your microphone and camera, click Record,then read the following message once you hit Record button
-    video_overlay_message: Select your microphone and camera, click Record, then read aloud the sentence appearing at the bottom.
+    video_overlay_message: Select your microphone and camera, click Record, then read aloud and repeat the sentence appearing at the bottom 3 times.
     video_recorder_label: Video Recorder
     video_upload_failed_camera_access: Unable to access your camera or microphone. Please check your device permissions and try again.
     video_upload_failed_chunk_upload: A part of the recording failed to upload. Please check your internet connection and try again.

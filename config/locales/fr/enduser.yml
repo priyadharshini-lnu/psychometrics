@@ -266,7 +266,7 @@ fr:
     video_check_fix_sixth: Redémarrez votre navigateur et réessayez
     video_check_fix_third: Fermez les autres applications qui utilisent la caméra (Zoom, Teams, etc.)
     video_overlay_label: Sélectionnez votre microphone et votre caméra, cliquez sur « Enregistrer », puis lisez le message suivant une fois que vous avez cliqué sur le bouton « Enregistrer »
-    video_overlay_message: Choisissez votre microphone et votre caméra, cliquez sur « Enregistrer », puis lisez à voix haute la phrase qui s'affiche en bas de l'écran.
+    video_overlay_message: Choisissez votre microphone et votre caméra, cliquez sur « Enregistrer », puis lisez à voix haute et répétez 3 fois la phrase qui apparaît en bas de l’écran.
     video_recorder_label: Enregistreur vidéo
     video_upload_failed_camera_access: Impossible d'accéder à votre caméra ou à votre microphone. Veuillez vérifier les autorisations de votre appareil, puis réessayez.
     video_upload_failed_chunk_upload: Une partie de l'enregistrement n'a pas pu être mise en ligne. Veuillez vérifier votre connexion Internet et réessayer.

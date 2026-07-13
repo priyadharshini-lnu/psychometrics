@@ -266,7 +266,7 @@ vi:
     video_check_fix_sixth: Hãy khởi động lại trình duyệt và thử lại
     video_check_fix_third: Đóng các ứng dụng khác đang sử dụng camera (Zoom, Teams, v.v.)
     video_overlay_label: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc thông báo sau khi bạn nhấn nút Ghi âm
-    video_overlay_message: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc to câu xuất hiện ở phía dưới.
+    video_overlay_message: Chọn micrô và camera của bạn, nhấp vào Ghi âm, sau đó đọc to và lặp lại 3 lần câu xuất hiện ở phía dưới.
     video_recorder_label: Máy quay video
     video_upload_failed_camera_access: Không thể truy cập vào camera hoặc micrô của bạn. Vui lòng kiểm tra quyền truy cập trên thiết bị của bạn và thử lại.
     video_upload_failed_chunk_upload: Một phần của bản ghi âm không tải lên được. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.

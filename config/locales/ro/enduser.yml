@@ -266,7 +266,7 @@ ro:
     video_check_fix_sixth: Reporniți browserul și încercați din nou
     video_check_fix_third: Închideți celelalte aplicații care utilizează camera (Zoom, Teams etc.)
     video_overlay_label: Alegeți microfonul și camera, faceți clic pe „Înregistrare”, apoi citiți mesajul următor după ce ați apăsat butonul „Înregistrare”
-    video_overlay_message: Alege microfonul și camera, apasă pe „Înregistrare”, apoi citește cu voce tare propoziția care apare în partea de jos.
+    video_overlay_message: Alege microfonul și camera, apasă pe „Înregistrare”, apoi citește cu voce tare și repetă de 3 ori propoziția care apare în partea de jos.
     video_recorder_label: Aparat de înregistrare video
     video_upload_failed_camera_access: Nu se poate accesa camera sau microfonul. Vă rugăm să verificați permisiunile dispozitivului și să încercați din nou.
     video_upload_failed_chunk_upload: O parte din înregistrare nu s-a încărcat. Vă rugăm să verificați conexiunea la internet și să încercați din nou.

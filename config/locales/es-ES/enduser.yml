@@ -266,7 +266,7 @@ es-ES:
     video_check_fix_sixth: Reinicia el navegador e inténtalo de nuevo
     video_check_fix_third: Cierra las demás aplicaciones que utilicen la cámara (Zoom, Teams, etc.)
     video_overlay_label: Selecciona el micrófono y la cámara, haz clic en «Grabar» y, a continuación, lee el siguiente mensaje una vez que hayas pulsado el botón «Grabar».
-    video_overlay_message: Selecciona el micrófono y la cámara, haz clic en «Grabar» y, a continuación, lee en voz alta la frase que aparece en la parte inferior.
+    video_overlay_message: Selecciona tu micrófono y cámara, haz clic en «Grabar», luego lee en voz alta y repite 3 veces la frase que aparece en la parte inferior.
     video_recorder_label: Grabadora de vídeo
     video_upload_failed_camera_access: No se puede acceder a tu cámara ni a tu micrófono. Comprueba los permisos de tu dispositivo e inténtalo de nuevo.
     video_upload_failed_chunk_upload: No se ha podido subir una parte de la grabación. Comprueba tu conexión a Internet e inténtalo de nuevo.

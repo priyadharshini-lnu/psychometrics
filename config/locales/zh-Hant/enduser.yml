@@ -266,7 +266,7 @@ zh-Hant:
     video_check_fix_sixth: 请重新启动浏览器，然后重试
     video_check_fix_third: 关闭其他正在使用摄像头的应用程序（如Zoom、Teams等）
     video_overlay_label: 选择麦克风和摄像头，点击“录制”，然后在点击“录制”按钮后朗读以下内容
-    video_overlay_message: 选择麦克风和摄像头，点击“录制”，然后大声朗读屏幕底部的句子。
+    video_overlay_message: 選擇麥克風和攝影機，點擊「錄製」，然後大聲朗讀並重複畫面底部顯示的句子 3 次。
     video_recorder_label: 视频录像机
     video_upload_failed_camera_access: 无法访问您的摄像头或麦克风。请检查设备权限，然后重试。
     video_upload_failed_chunk_upload: 部分录音未能上传。请检查您的网络连接，然后重试。

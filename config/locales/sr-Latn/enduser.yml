@@ -266,7 +266,7 @@ sr-Latn:
     video_check_fix_sixth: Поново покрените прегледач и покушајте поново.
     video_check_fix_third: Затворите друге апликације које користе камеру (Zoom, Teams итд.)
     video_overlay_label: Изаберите микрофон и камеру, кликните на "Сними", а затим прочитајте следећу поруку чим кликнете на дугме "Сними".
-    video_overlay_message: Изаберите микрофон и камеру, кликните на "Сними", а затим наглас прочитајте реченицу која се појављује на дну.
+    video_overlay_message: Izaberite mikrofon i kameru, kliknite na „Snimi“, a zatim naglas pročitajte i ponovite rečenicu koja se pojavljuje na dnu 3 puta.
     video_recorder_label: Видео снимач
     video_upload_failed_camera_access: Не можемо да приступимо вашој камери или микрофону. Молимо вас да проверите дозволе на вашем уређају и покушате поново.
     video_upload_failed_chunk_upload: Део снимања није успео да се отпреми. Молимо проверите везу са интернетом и покушајте поново.

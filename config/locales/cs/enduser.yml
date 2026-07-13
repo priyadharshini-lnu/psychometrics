@@ -266,7 +266,7 @@ cs:
     video_check_fix_sixth: Restartujte prohlížeč a zkuste to znovu
     video_check_fix_third: Ukončete ostatní aplikace, které využívají kameru (Zoom, Teams atd.)
     video_overlay_label: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté, co stisknete tlačítko Nahrát, přečtěte následující zprávu
-    video_overlay_message: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté nahlas přečtěte větu, která se zobrazí v dolní části obrazovky.
+    video_overlay_message: Vyberte mikrofon a kameru, klikněte na tlačítko Nahrát a poté nahlas přečtěte a 3krát zopakujte větu, která se zobrazí v dolní části obrazovky.
     video_recorder_label: Videorekordér
     video_upload_failed_camera_access: Nelze získat přístup k vaší kameře nebo mikrofonu. Zkontrolujte prosím oprávnění zařízení a zkuste to znovu.
     video_upload_failed_chunk_upload: Část nahrávky se nepodařilo nahrát. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
