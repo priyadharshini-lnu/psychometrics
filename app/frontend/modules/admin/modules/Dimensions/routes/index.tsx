@@ -4,6 +4,7 @@ import RouteList from '~/components/RouteList'
 const DimensionsList = lazy(() => import('./DimensionsList'))
 const DimensionComponent = lazy(() => import('./Dimension'))
 const SubFactorsList = lazy(() => import('./SubFactorsList'))
+const OccupationConditionSetsList = lazy(() => import('./OccupationConditionSetsList'))
 
 const routes = [
   {
@@ -13,6 +14,10 @@ const routes = [
   {
     path: '/:dimensionId/:slug/:tagId/factors',
     component: <SubFactorsList />,
+  },
+  {
+    path: '/:dimensionId/occupations/condition_sets',
+    component: <OccupationConditionSetsList />,
   },
   {
     path: '/:dimensionId/*',

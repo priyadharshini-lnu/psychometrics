@@ -13,13 +13,18 @@ type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
 }
 
+type OccupationData = {
+  id: number
+  name: string
+}
+
 const { I18n } = window
 
 export const OccupationsTable: FC<Props> = ({ openModal }) => {
-  const [selectedOccupationId, setSelectedOccupationId] = React.useState<number | null>(null)
+  const [selectedOccupation, setSelectedOccupation] = React.useState<OccupationData | null>(null)
 
-  const handleOccupationFactorsDrawer = (occupationId: number | null) => {
-    setSelectedOccupationId(occupationId)
+  const handleOccupationFactorsDrawer = (occupation: OccupationData | null) => {
+    setSelectedOccupation(occupation)
   }
 
   return (
@@ -37,9 +42,10 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           id="name"
           sorter
           render={occupation => (
-            <Typography.Link onClick={() => handleOccupationFactorsDrawer(
-              occupation.id,
-            )}
+            <Typography.Link onClick={() => handleOccupationFactorsDrawer({
+              id: occupation.id,
+              name: occupation.name,
+            })}
             >
               {occupation.name}
             </Typography.Link>
@@ -77,9 +83,10 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
         />
       </Resource.Table>
       <OccupationFactorsDrawer
-        open={selectedOccupationId !== null}
+        open={selectedOccupation !== null}
         handleClose={() => handleOccupationFactorsDrawer(null)}
-        occupationId={selectedOccupationId}
+        occupationId={selectedOccupation?.id}
+        occupationName={selectedOccupation?.name}
       />
     </>
   )

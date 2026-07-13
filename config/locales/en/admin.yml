@@ -1268,6 +1268,7 @@ en:
     maintenance_settings: Maintenance Settings
     maintenance_settings_description: Manage system maintenance windows and settings
     make_report_available_to_subject_when: 'Make report available to subject when:'
+    manage_condition_sets: Manage Condition Sets
     manager_approval_required: Report for %{user} requires manager approval before download
     manager_approves_reports: Manager approves reports
     manager_can_access_subject_reports: Manager can access subject reports
@@ -1378,6 +1379,7 @@ en:
     norm_region: Norm Region
     norm_region_form_select: Select Norm Region
     norm_region_update_success: Norm Region updated successfully
+    norm_score: Norm Score
     normal: Normal
     normalize_factor_scores: Normalize Factor Scores
     norms: Norms
@@ -2133,6 +2135,7 @@ en:
     range_min_max: RANGE %{min} - %{max}
     rationale: Rationale
     raw: RAW
+    raw_score: Raw Score
     reason_for_changes: Reason for changes
     recents: Recents
     record_id: Record ID
@@ -2557,6 +2560,7 @@ en:
     score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
     score_not_applicable: Score not applicable
     score_range_info: 'Score Range: %{min} - %{max}'
+    score_type: Score Type
     score_with_ai: Score with AI
     scores_finalized: Scores are finalized and can’t be changed
     scoring: Scoring

@@ -1,6 +1,7 @@
 import {
-  Form, Input, Alert, App,
+  Form, Input, Alert, App, Radio,
 } from 'antd'
+import { useEffect } from 'react'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { OccupationConditionSet, OccupationConditionSetTR } from './interfaces'
@@ -16,9 +17,11 @@ export const OccupationConditionSetsFormModal: React.FC<{
   const [form] = Form.useForm()
   const { message } = App.useApp()
 
-  if (copying) {
-    form.setFieldsValue({ newName: `${occupationConditionSet?.name} - Copy` })
-  }
+  useEffect(() => {
+    copying && form.setFieldsValue({ newName: `${occupationConditionSet?.name} - Copy` })
+    !occupationConditionSet && form.setFieldsValue({ scoreType: 'raw' })
+  }, [])
+
 
   const copyResource = (values: { newName: string }) => resource.memberAction({
     id: occupationConditionSet!.id,
@@ -61,6 +64,17 @@ export const OccupationConditionSetsFormModal: React.FC<{
             >
               <Input />
             </Form.Item>
+            {!copying && (
+              <Form.Item
+                label={I18n.t('admin.score_type')}
+                name="scoreType"
+              >
+                <Radio.Group>
+                  <Radio value="raw">{I18n.t('admin.raw_score')}</Radio>
+                  <Radio value="normed">{I18n.t('admin.norm_score')}</Radio>
+                </Radio.Group>
+              </Form.Item>
+            )}
           </>
         )
       }

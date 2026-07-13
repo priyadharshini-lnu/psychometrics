@@ -1,5 +1,7 @@
 import React from 'react'
-import { Button, MenuProps } from 'antd'
+import {
+  Button, MenuProps, Space, Tag,
+} from 'antd'
 import { useDispatch } from 'react-redux'
 import { Resource } from '~/modules/admin/components/Resource'
 import type { OccupationConditionSet } from './interfaces'
@@ -12,19 +14,31 @@ export const OccupationConditionSetsTable: React.FC = () => (
   <Resource.Table pagination>
     <Resource.Column
       id="id"
-      title="ID"
+      title={I18n.t('shared.id')}
       dataIndex="id"
       key="id"
     />
     <Resource.Column
       id="name"
-      title="Name"
+      title={I18n.t('shared.name')}
       dataIndex="name"
       key="name"
+      render={(_, record: OccupationConditionSet) => (
+        <Space>
+          {record.name}
+          {record.isDefault && <Tag color="processing">{I18n.t('admin.default')}</Tag>}
+        </Space>
+      )}
+    />
+    <Resource.Column
+      id="scoreType"
+      title={I18n.t('admin.score_type')}
+      dataIndex="scoreType"
+      key="scoreType"
     />
     <Resource.Column<OccupationConditionSet>
       id="actions"
-      title="Actions"
+      title={I18n.t('admin.actions')}
       key="actions"
       render={(_, record) => (
         <Dropdown occupationConditionSet={record} />

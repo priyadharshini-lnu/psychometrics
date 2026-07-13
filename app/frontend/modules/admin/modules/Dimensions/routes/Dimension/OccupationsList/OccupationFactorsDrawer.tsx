@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import {
-  Drawer, Tree, Button, Empty, Tooltip, Select, Col, Row, Typography,
+  Drawer, Tree, Button, Empty, Tooltip, Select, Col, Row, Typography, Space, Tag,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -11,7 +11,10 @@ import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDe
 import { SubFactorsForm } from '~/modules/admin/modules/Dimensions/components/SubFactorsForm'
 import { SubFactors, SubFactorsTR } from '~/modules/admin/modules/client/core/subFactors'
 import { useResources } from '~/hooks/useResources/useResources'
-import { OccupationConditionSet, OccupationConditionSetTR } from '../OccupationConditionSetsList/interfaces'
+import {
+  OccupationConditionSet,
+  OccupationConditionSetTR,
+} from '~/modules/admin/modules/Dimensions/routes/OccupationConditionSetsList/interfaces'
 import { RemoveSubFactorsModal } from '~/modules/admin/modules/Dimensions/components/RemoveSubFactorsModal'
 
 const MODALS = {
@@ -21,8 +24,10 @@ const MODALS = {
 const { I18n } = window
 
 export const OccupationFactorsDrawer: React.FC<{
-   open: boolean; handleClose: () => void; occupationId: number | null}> = (
-     { open, handleClose, occupationId },
+   open: boolean; handleClose: () => void; occupationId?: number; occupationName?: string }> = (
+     {
+       open, handleClose, occupationId, occupationName,
+     },
    ) => {
      const [selectedConditionSetId, setSelectedConditionSetId] = useState<string | null>(null)
      const [selectedFactorId, setSelectedFactorId] = useState<string | null>(null)
@@ -36,8 +41,8 @@ export const OccupationFactorsDrawer: React.FC<{
      const dispatch = useDispatch()
 
      const {
-       data: occupationsFactors, fetch: fetchOccupationFactors, changeFilter,
-       isLoading: isFactorsLoading,
+       data: occupationsFactors, fetch: fetchOccupationFactors,
+       isLoading: isFactorsLoading, changeFilter,
      } = useResources<SubFactors>('occupations_factors', {
        basePath: `dimensions/${dimensionId}/occupations/${occupationId}/`,
        stateManager: { state: factorsDataState, setState: setFactorsDataState },
@@ -77,6 +82,7 @@ export const OccupationFactorsDrawer: React.FC<{
      useEffect(() => {
        if (open) {
          fetchConditionSets()
+         fetchOccupationFactors()
        }
      }, [occupationId, open])
 
@@ -110,7 +116,7 @@ export const OccupationFactorsDrawer: React.FC<{
        if (selectedFactorId === id) setSelectedFactorId(null)
      }
 
-     const handleSelectFactor = (selectedKeys: string[]) => {
+     const handleSelectFactor = (selectedKeys) => {
        if (!selectedKeys.length) return
        setIsAddingFactor(false)
        setSelectedFactorId(selectedKeys[0])
@@ -133,7 +139,17 @@ export const OccupationFactorsDrawer: React.FC<{
        key: factor.id,
        title: (
          <div className="flex items-center justify-between w-100">
-           <span>{factor.factorName}</span>
+           <Space>
+             <Typography.Text
+               style={{
+                 background: selectedFactorId === factor.id ? 'transparent' : undefined,
+               }}
+               code
+             >
+               {factor.factorId}
+             </Typography.Text>
+             {factor.factorName}
+           </Space>
            <Tooltip title={I18n.t('shared.remove')}>
              <DeleteOutlined
                onClick={(event) => {
@@ -162,7 +178,15 @@ export const OccupationFactorsDrawer: React.FC<{
        <Drawer
          open={open}
          onClose={handleClose}
-         title={I18n.t('admin.occupation_factors_title')}
+         title={(
+           <>
+             {occupationName}
+             {' '}
+             -
+             {' '}
+             <Tag className="fs-20">{I18n.t('admin.occupation_factors_title')}</Tag>
+           </>
+)}
          size={960}
        >
          <Row gutter={[24, 0]}>
@@ -175,7 +199,17 @@ export const OccupationFactorsDrawer: React.FC<{
                className="w-100 mb-4"
                value={currentConditionSetId}
                onChange={handleConditionSetChange}
-               options={conditionSets.map(({ id, name }) => ({ value: id, label: name }))}
+               options={conditionSets.map(({ id, name, isDefault }) => ({
+                 value: id,
+                 label: (
+                   <Space className="w-100" styles={{ root: { justifyContent: 'space-between' } }}>
+                     {name}
+                     {isDefault && (
+                       <Tag className="ta-e" color="var(--ant-primary-color)">{I18n.t('admin.default')}</Tag>
+                     )}
+                   </Space>
+                 ),
+               }))}
              />
              {isFactorsLoading('fetch') ? (
                <FullWidthSkeleton height="1.25rem" rows={4} active />
