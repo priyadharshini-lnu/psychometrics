@@ -16,6 +16,6 @@ class Api::V2::Administration::CampaignAssessmentResource < Api::V2::Administrat
   end
 
   def allow_caching
-    @model.assessment.allow_caching?
+    @model.assessment&.allow_caching? || false
   end
 end
