@@ -44,7 +44,7 @@ export const PercentageCheckbox = ({ strategy }) => {
   if (strategy === 'sub_factor_questions_sum' || strategy === 'questions_sum') {
     return (
       <Form.Item
-        name="use_percentage"
+        name="usePercentage"
         valuePropName="checked"
       >
         <Checkbox>

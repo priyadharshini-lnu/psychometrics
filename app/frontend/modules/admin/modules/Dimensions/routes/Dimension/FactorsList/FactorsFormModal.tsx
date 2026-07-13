@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { UploadChangeParam, UploadFile } from 'antd/es/upload/interface'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
+import sortBy from 'lodash/sortBy'
 import { useParams } from 'react-router-dom'
 import { UploadOutlined, DeleteOutlined, QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Factor, uploadFiles } from '~/modules/admin/modules/campaigns/core/factors'
@@ -78,6 +79,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
 
   const hideScoreRange = ['external_score', 'custom_formula'].includes(scoringStrategy)
   const hideScoreDefinitions = hideScoreRange || PARENT_FACTOR_STRATEGIES.includes(scoringStrategy)
+  const sortedScoringStrategies = sortBy(SCORING_STRATEGIES, strategy => I18n.t(`admin.${strategy}`))
 
   const handleUploadChange = (info: UploadChangeParam<UploadFile>) => {
     setFileList(info.fileList)
@@ -213,8 +215,8 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
             rules={[{ required: true }]}
           >
             <Select>
-              {SCORING_STRATEGIES.map(strategy => (
-                <Select.Option value={strategy}>
+              {sortedScoringStrategies.map(strategy => (
+                <Select.Option key={strategy} value={strategy}>
                   {I18n.t(`admin.${strategy}`)}
                 </Select.Option>
               ))}

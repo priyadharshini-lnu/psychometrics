@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import _ from 'lodash'
 import {
   Col, Row, Select, Spin,
@@ -27,6 +27,10 @@ export default function Title ({ factor, onAdd }) {
       },
     })
   }, 300), [])
+
+  useEffect(() => {
+    search()
+  }, [])
 
   const availableFactors = _.filter(factors, f => f.id !== factor.id)
 
