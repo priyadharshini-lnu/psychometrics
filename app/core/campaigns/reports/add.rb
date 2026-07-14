@@ -46,6 +46,7 @@ module Campaigns
             attrs[:external_norm_id] = assessment.external_settings[:norm_id] if assessment.has_external_norm?
             attrs[:mettl_schedule_record_id] = default_mettl_schedule_record_id(assessment) if assessment.mettl?
             attrs[:external_config] = default_config_for_simulation(assessment) if assessment.simulation?
+            attrs[:occupation_condition_set_id] = default_config_for_occupation_condition_set(assessment)
 
             campaign_assessment = campaign.campaign_assessments.
                                   create_with(attrs).find_or_create_by!(assessment: assessment)
@@ -122,6 +123,14 @@ module Campaigns
         end
 
         nil
+      end
+
+      def default_config_for_occupation_condition_set(assessment)
+        dimension = assessment.dimension
+
+        if dimension.occupations_enabled? && dimension.default_occupation_condition_set_id
+          dimension.default_occupation_condition_set_id
+        end
       end
 
       def total_count
