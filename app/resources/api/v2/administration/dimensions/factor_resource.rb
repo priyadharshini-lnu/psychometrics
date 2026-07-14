@@ -13,8 +13,29 @@ class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administrat
 
   ransack_filters %i[filterable_fields search_query]
 
+  filter :scoring_strategy_in, apply: lambda { |records, value, _|
+    raw_values = if value.is_a?(Array)
+                   value
+                 else
+                   value.to_s.split(',')
+                 end
+
+    filter_values = raw_values.filter_map do |raw_value|
+      normalized_value = raw_value.to_s.strip
+      next if normalized_value.blank?
+
+      if normalized_value.match?(/\A\d+\z/)
+        normalized_value.to_i
+      else
+        Factor.scoring_strategies[normalized_value]
+      end
+    end
+
+    records.ransack(scoring_strategy_in: filter_values).result
+  }
+
   def self.sortable_fields(context)
-    super + %i[created_at updated_at]
+    super + %i[id name scoring_strategy created_at updated_at]
   end
 
   def meta_details

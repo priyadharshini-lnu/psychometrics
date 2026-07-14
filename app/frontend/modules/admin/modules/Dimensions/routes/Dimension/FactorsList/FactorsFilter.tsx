@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Button } from 'antd'
+import { Button, Select } from 'antd'
 import {
   ImportOutlined,
   PlusOutlined,
@@ -13,6 +13,26 @@ type Props = {
 }
 
 const { I18n } = window
+
+const SCORING_STRATEGIES = [
+  'questions',
+  'sub_factor_questions',
+  'sub_factors_average',
+  'sub_factors_conditional_average',
+  'questions_sum',
+  'sub_factor_questions_sum',
+  'external_score',
+  'questions_percentage',
+  'sub_factors_sum',
+  'custom_formula',
+]
+
+const sortedScoringStrategyOptions = SCORING_STRATEGIES
+  .map(strategy => ({
+    label: I18n.t(`admin.${strategy}`),
+    value: strategy,
+  }))
+  .sort((a, b) => a.label.localeCompare(b.label))
 
 export const FactorsFilter: FC<Props> = ({
   openModal,
@@ -33,11 +53,30 @@ export const FactorsFilter: FC<Props> = ({
     openModal('FactorTranslationsModal')
   }
 
+  const selectedScoringStrategy = resource.getFilteredValue('scoring_strategy_in') as string | undefined
+  const scoringStrategyOptions = [
+    {
+      label: I18n.t('administration.any'),
+      value: '',
+    },
+    ...sortedScoringStrategyOptions,
+  ]
+
+  const handleScoringStrategyFilterChange = (value: string) => {
+    resource.changeFilter('scoring_strategy_in', value || undefined)
+  }
+
   return (
     <Resource.Filter
       name="filterable_fields"
       placeholder={I18n.t('shared.search')}
     >
+      <Select
+        value={selectedScoringStrategy || ''}
+        options={scoringStrategyOptions}
+        style={{ minWidth: 260 }}
+        onChange={handleScoringStrategyFilterChange}
+      />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateFactorsModal}>
         <PlusOutlined />
         {I18n.t('shared.create')}

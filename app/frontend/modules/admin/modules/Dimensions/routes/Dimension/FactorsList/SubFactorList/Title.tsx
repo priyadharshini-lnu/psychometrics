@@ -65,7 +65,7 @@ export default function Title ({ factor, onAdd }) {
           {availableFactors.map(({ id, name }) => (
             <Select.Option
               key={id}
-              disabled={_.some(factor.subFactors, f => f.subFactorId === id)}
+              disabled={_.some(factor.subFactors, f => String(f.subFactorId ?? f.sub_factor_id) === String(id))}
               value={id}
             >
               {name}

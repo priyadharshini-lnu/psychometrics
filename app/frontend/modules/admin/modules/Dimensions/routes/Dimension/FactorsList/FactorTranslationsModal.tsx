@@ -66,6 +66,8 @@ export const FactorTranslationsModal: React.FC<Props> = ({ close }) => {
       fileLabel={I18n.t('admin.translations.import')}
       fileErrorMessage={I18n.t('admin.errors_csv_file_import')}
       fileAccept=".csv,.xlsx,.xls"
+      chooseFileButtonLabel={I18n.t('admin.bulk_assets_modal_choose_csv')}
+      showFileErrorAlert={false}
       showMappableFields={false}
       skipValidation
       submitFileImport={submitFileImport}

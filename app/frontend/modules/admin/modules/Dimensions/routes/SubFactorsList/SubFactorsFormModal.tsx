@@ -31,9 +31,8 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
 
   const handleSuccessfulSubmission = () => {
-    if (subFact) {
-      close()
-    }
+    parentResource.fetch()
+    close()
   }
 
   const resourceName = getResourceName(slug)
@@ -55,9 +54,6 @@ export const SubFactorsFormModal: React.FC<Props> = ({ close, subFact, slug }) =
       readableResourceName={I18n.t('admin.factors_index_title')}
       showSuccessMessages
       close={close}
-      onSuccessfulSubmission={() => {
-        parentResource.fetch()
-      }}
       storeManager={{ form }}
       scrollToFirstError
       modalProps={{ width: 720 }}
