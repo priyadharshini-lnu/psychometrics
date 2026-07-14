@@ -18,7 +18,7 @@ describe 'Assessments' do
       description 'List of assessments currently assigned to the user'
       tags 'Assessments'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
@@ -154,7 +154,7 @@ describe 'Assessments' do
       description 'Update user assessments'
       tags 'Assessments'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :assessment_id, in: :path, type: :string, required: false

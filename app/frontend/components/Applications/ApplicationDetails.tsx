@@ -21,6 +21,7 @@ import { ApplicationPermissions } from './ApplicationPermissions'
 import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
 
 const { I18n } = window
+const { application_public_keys_settings_enabled } = window.PsyGlobalState.features
 
 type PermissionsConfig = {
   role: AdminTypes
@@ -89,9 +90,9 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
     const lastSegment = pathname.split('/').filter(Boolean).pop()
 
     if (lastSegment === 'api_keys') return 'api_keys'
-    if (lastSegment === 'public_keys') return 'public_keys'
+    if (lastSegment === 'public_keys' && application_public_keys_settings_enabled) return 'public_keys'
     if (lastSegment === 'permissions') return 'permissions'
-    if (lastSegment === 'settings') return 'settings'
+    if (lastSegment === 'settings' && application_public_keys_settings_enabled) return 'settings'
     return 'overview'
   }
 
@@ -122,17 +123,19 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
           label: I18n.t('admin.api_keys'),
           children: <ApplicationAPIKeys applicationId={applicationId} />,
         },
-        {
-          key: 'public_keys',
-          label: I18n.t('admin.public_keys'),
-          children: (
-            <ApplicationPublicKeys
-              applicationId={applicationId}
-              projectId={projectId}
-              clientId={clientId}
-            />
-          ),
-        },
+        ...(application_public_keys_settings_enabled ? [
+          {
+            key: 'public_keys',
+            label: I18n.t('admin.public_keys'),
+            children: (
+              <ApplicationPublicKeys
+                applicationId={applicationId}
+                projectId={projectId}
+                clientId={clientId}
+              />
+            ),
+          },
+        ] : []),
         {
           key: 'permissions',
           label: I18n.t('shared.permissions'),
@@ -144,11 +147,13 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
             />
           ),
         },
-        {
-          key: 'settings',
-          label: I18n.t('admin.settings'),
-          children: <ApplicationSettings applicationId={applicationId} />,
-        },
+        ...(application_public_keys_settings_enabled ? [
+          {
+            key: 'settings',
+            label: I18n.t('admin.settings'),
+            children: <ApplicationSettings applicationId={applicationId} />,
+          },
+        ] : []),
       ]
       : []),
   ]
