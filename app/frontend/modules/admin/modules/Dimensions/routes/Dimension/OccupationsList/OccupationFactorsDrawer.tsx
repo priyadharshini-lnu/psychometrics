@@ -42,7 +42,7 @@ export const OccupationFactorsDrawer: React.FC<{
 
      const {
        data: occupationsFactors, fetch: fetchOccupationFactors,
-       isLoading: isFactorsLoading, changeFilter,
+       isLoading: isFactorsLoading, changeFilter, getFilteredValue,
      } = useResources<SubFactors>('occupations_factors', {
        basePath: `dimensions/${dimensionId}/occupations/${occupationId}/`,
        stateManager: { state: factorsDataState, setState: setFactorsDataState },
@@ -81,16 +81,22 @@ export const OccupationFactorsDrawer: React.FC<{
 
      useEffect(() => {
        if (open) {
-         fetchConditionSets()
-         fetchOccupationFactors()
+         fetchConditionSets().then(({ data }) => {
+           const defaultSet = data.find(cs => cs.isDefault)
+           if (defaultSet?.id && getFilteredValue('condition_set_id') === defaultSet?.id) {
+             fetchOccupationFactors({ apiConfig: { filter: { condition_set_id: defaultSet.id } } })
+             return
+           }
+           defaultSet?.id && changeFilter('condition_set_id', defaultSet?.id)
+         })
        }
      }, [occupationId, open])
 
      useEffect(() => {
-       if (open && currentConditionSetId) {
-         changeFilter('condition_set_id', currentConditionSetId || '')
+       if (open && selectedConditionSetId) {
+         changeFilter('condition_set_id', selectedConditionSetId || '')
        }
-     }, [currentConditionSetId, open])
+     }, [selectedConditionSetId, open])
 
      useEffect(() => () => {
        if (!open) {
@@ -186,7 +192,7 @@ export const OccupationFactorsDrawer: React.FC<{
              {' '}
              <Tag className="fs-20">{I18n.t('admin.occupation_factors_title')}</Tag>
            </>
-)}
+         )}
          size={960}
        >
          <Row gutter={[24, 0]}>
