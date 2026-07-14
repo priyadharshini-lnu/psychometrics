@@ -33,6 +33,18 @@ const getResourceName = (slug: string) => {
   return 'factors'
 }
 
+const formatDecimalWeight = (value?: number | string | null) => {
+  if (value === undefined || value === null || value === '') return ''
+  const parsed = Number(value)
+  if (Number.isNaN(parsed)) return ''
+  return parsed.toFixed(1)
+}
+
+const parseDecimalWeight = (value?: string) => {
+  if (!value) return ''
+  return value.replace(/[^0-9.-]/g, '')
+}
+
 export const SubFactorsForm: React.FC<Props> = ({
   subFact, slug, showSubmitButton, onStatusChange, onSuccessfulSubmission, occupationId, occupationConditionSetId,
   form: providedForm,
@@ -95,7 +107,6 @@ export const SubFactorsForm: React.FC<Props> = ({
           ...values,
           ConditionSetId: occupationConditionSetId,
         }) : undefined}
-      formProps={{ requiredMark: 'optional' }}
     >
       {({ status, isEdit }) => (
         <>
@@ -145,16 +156,19 @@ export const SubFactorsForm: React.FC<Props> = ({
           <Form.Item
             name="position"
             label={I18n.t('admin.occupations_factors_list_position')}
-            rules={[{ required: true }]}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="weight"
             label={I18n.t('admin.occupations_factors_list_weight')}
-            rules={[{ required: true }]}
           >
-            <InputNumber />
+            <InputNumber
+              step={1}
+              precision={1}
+              formatter={formatDecimalWeight}
+              parser={parseDecimalWeight}
+            />
           </Form.Item>
           {showSubmitButton && (
             <Form.Item>

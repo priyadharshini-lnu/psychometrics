@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import {
   Modal, Button, Alert, Form, Input, Select, Table, Tag, message, Spin,
 } from 'antd'
@@ -28,6 +28,7 @@ const ImportModal = (props) => {
     topActionLabel,
     onTopAction,
     showFileErrorAlert = true,
+    chooseFileButtonLabel,
   } = props
   const [show, setShow] = useState(isOpen)
   const [file, setFile] = useState(null)
@@ -42,6 +43,7 @@ const ImportModal = (props) => {
   const [isClientsLoading, setIsClientsLoading] = useState(false)
   const [isImporting, setIsImporting] = useState(false)
   const [isValidating, setIsValidating] = useState(false)
+  const fileInputRef = useRef(null)
   const operationColors = {
     Added: 'green',
     Deleted: 'red',
@@ -243,11 +245,27 @@ const ImportModal = (props) => {
         validateStatus={fileError ? 'error' : ''}
         help={fileError}
       >
-        <Input
-          type="file"
-          accept={fileAccept}
-          onChange={handleFileChange}
-        />
+        {chooseFileButtonLabel ? (
+          <div className="flex items-center">
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept={fileAccept}
+              onChange={handleFileChange}
+              style={{ display: 'none' }}
+            />
+            <Button onClick={() => fileInputRef.current?.click()}>
+              {chooseFileButtonLabel}
+            </Button>
+            <span className="ms-3">{file?.name || I18n.t('admin.no_file_selected')}</span>
+          </div>
+        ) : (
+          <Input
+            type="file"
+            accept={fileAccept}
+            onChange={handleFileChange}
+          />
+        )}
       </Form.Item>
       {showFileErrorAlert && fileError && (
         <Alert
