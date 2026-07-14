@@ -17,7 +17,7 @@ describe 'New Campaigns' do
       description 'Get all campaigns associated with a project'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :status, in: :query, type: :string, required: false,
                 description: 'Filter campaigns by status (comma-separated for multiple)'

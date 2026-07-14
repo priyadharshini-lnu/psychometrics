@@ -5601,7 +5601,8 @@ CREATE TABLE public.occupation_condition_sets (
     dimension_id integer NOT NULL,
     tenant_id bigint,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    score_type integer DEFAULT 0 NOT NULL
 );
 
 --
@@ -24523,6 +24524,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260709000000'),
 ('20260630180650'),
 ('20260630180649'),
 ('20260630180648'),

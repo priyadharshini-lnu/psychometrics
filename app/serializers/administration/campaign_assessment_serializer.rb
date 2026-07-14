@@ -154,7 +154,7 @@ module Administration
     end
 
     def allow_caching
-      object.assessment.allow_caching?
+      object.assessment&.allow_caching? || false
     end
 
     private

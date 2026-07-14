@@ -2,7 +2,7 @@
 
 # rubocop:disable CustomRubocops/AvoidActiveRecordInMigrations
 
-class BackfillOccupationConditionSets < ActiveRecord::Migration[7.1]
+class BackfillOccupationConditionSets < ActiveRecord::Migration[8.0]
   class MigrationDimension < ActiveRecord::Base
     self.table_name = 'dimensions'
   end

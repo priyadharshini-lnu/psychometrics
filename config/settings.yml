@@ -98,6 +98,7 @@ features:
   client_admin_sso_enabled: <%= ENV.fetch('CLIENT_ADMIN_SSO_ENABLED', 'true') == 'true' %>
   assessment_content_protection_enabled: <%= ENV.fetch('ASSESSMENT_CONTENT_PROTECTION_ENABLED', 'false') == 'true' %>
   client_scope_filter_disabled: <%= ENV.fetch('DISABLE_CLIENT_SCOPE_FILTER', 'false') == 'true' %>
+  application_public_keys_settings_enabled: <%= ENV.fetch('APPLICATION_PUBLIC_KEYS_SETTINGS_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

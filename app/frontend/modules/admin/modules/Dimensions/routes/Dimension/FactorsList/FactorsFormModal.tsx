@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import {
-  Avatar, Button, Form, Input, Upload, Select, InputNumber,
+  Avatar, Button, Checkbox, Form, Input, Upload, Select, InputNumber,
   Space, Flex, Radio, Typography, Tooltip,
 } from 'antd'
 import { useDispatch } from 'react-redux'
 import { UploadChangeParam, UploadFile } from 'antd/es/upload/interface'
 import omit from 'lodash/omit'
 import get from 'lodash/get'
+import sortBy from 'lodash/sortBy'
 import { useParams } from 'react-router-dom'
-import { UploadOutlined, DeleteOutlined, QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { UploadOutlined, QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Factor, uploadFiles } from '~/modules/admin/modules/campaigns/core/factors'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -78,6 +79,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
 
   const hideScoreRange = ['external_score', 'custom_formula'].includes(scoringStrategy)
   const hideScoreDefinitions = hideScoreRange || PARENT_FACTOR_STRATEGIES.includes(scoringStrategy)
+  const sortedScoringStrategies = sortBy(SCORING_STRATEGIES, strategy => I18n.t(`admin.${strategy}`))
 
   const handleUploadChange = (info: UploadChangeParam<UploadFile>) => {
     setFileList(info.fileList)
@@ -137,7 +139,17 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
   }
 
   useEffect(() => {
-    const values: { usePercentage?: boolean | null, scaleMin?: number | null, scaleMax?: number | null } = {}
+    const values: {
+      usePercentage?: boolean | null
+      scaleMin?: number | null
+      scaleMax?: number | null
+      childFactorType?: string
+    } = {}
+
+    if (INDICATOR_SUPPORTED_STRATEGIES.includes(scoringStrategy) && !childrenFactorType) {
+      values.childFactorType = 'regular'
+    }
+
     if (scoringStrategy !== 'sub_factor_questions_sum' && scoringStrategy !== 'questions_sum') {
       values.usePercentage = false
     }
@@ -147,7 +159,7 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
     }
 
     form.setFieldsValue(values)
-  }, [scoringStrategy])
+  }, [childrenFactorType, form, scoringStrategy])
 
   return (
     <ResourceFormModal
@@ -213,8 +225,8 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
             rules={[{ required: true }]}
           >
             <Select>
-              {SCORING_STRATEGIES.map(strategy => (
-                <Select.Option value={strategy}>
+              {sortedScoringStrategies.map(strategy => (
+                <Select.Option key={strategy} value={strategy}>
                   {I18n.t(`admin.${strategy}`)}
                 </Select.Option>
               ))}
@@ -228,12 +240,36 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
               <Form.Item
                 label={I18n.t('admin.score_min')}
                 name="scoreMin"
+                dependencies={['scoreMax']}
+                rules={[
+                  ({ getFieldValue }) => ({
+                    validator (_, value) {
+                      const max = getFieldValue('scoreMax')
+                      if (value == null || max == null || value < max) {
+                        return Promise.resolve()
+                      }
+                      return Promise.reject(new Error(I18n.t('admin.score_min_must_be_less_than_score_max')))
+                    },
+                  }),
+                ]}
               >
                 <InputNumber min={1} max={10} />
               </Form.Item>
               <Form.Item
                 label={I18n.t('admin.score_max')}
                 name="scoreMax"
+                dependencies={['scoreMin']}
+                rules={[
+                  ({ getFieldValue }) => ({
+                    validator (_, value) {
+                      const min = getFieldValue('scoreMin')
+                      if (value == null || min == null || value > min) {
+                        return Promise.resolve()
+                      }
+                      return Promise.reject(new Error(I18n.t('admin.score_max_must_be_greater_than_score_min')))
+                    },
+                  }),
+                ]}
               >
                 <InputNumber min={1} max={10} />
               </Form.Item>
@@ -287,17 +323,10 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
           <Form.Item
             label={I18n.t('shared.icon')}
           >
-            <Space orientation="vertical">
-              {(factor?.iconUrl) && !removeIcon && (
+            <Space orientation="vertical" style={{ width: '100%' }}>
+              {factor?.iconUrl && !removeIcon && (
                 <Space>
                   <Avatar src={factor.iconUrl} size={64} shape="square" />
-                  <Button
-                    danger
-                    icon={<DeleteOutlined />}
-                    onClick={() => setRemoveIcon(true)}
-                  >
-                    {I18n.t('shared.delete')}
-                  </Button>
                 </Space>
               )}
               <Upload
@@ -310,6 +339,14 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
               >
                 <Button icon={<UploadOutlined />}>{I18n.t('assessments.upload')}</Button>
               </Upload>
+              <div style={{ marginTop: '24px' }}>
+                <Checkbox
+                  checked={removeIcon}
+                  onChange={e => setRemoveIcon(e.target.checked)}
+                >
+                  {I18n.t('admin.remove_icon')}
+                </Checkbox>
+              </div>
             </Space>
           </Form.Item>
 

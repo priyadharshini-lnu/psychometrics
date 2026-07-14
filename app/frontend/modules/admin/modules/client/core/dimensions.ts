@@ -13,6 +13,7 @@ export const DimensionTR = t.type({
   ]),
   occupationsEnabled: t.boolean,
   innovationStylesEnabled: t.boolean,
+  defaultOccupationConditionSetId: t.union([t.number, t.null, t.undefined]),
   createdAt: t.union([t.string, t.undefined]),
   updatedAt: t.union([t.string, t.undefined]),
   meta: t.union([

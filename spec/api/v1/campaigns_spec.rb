@@ -18,7 +18,7 @@ describe 'Campaigns' do
       description 'Get project campaign'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
 
@@ -72,7 +72,7 @@ describe 'Campaigns' do
       description 'Duplicated campaign will have the same default assessments and reports as the source campaign'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/DuplicatedCampaign' }, required: true
@@ -154,7 +154,7 @@ describe 'Campaigns' do
 assessments and reports.'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewUserCampaigns' }, required: true
@@ -246,7 +246,7 @@ assessments and reports.'
       description 'Updates the schedule start and end dates for a specific campaign assigned to a user'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
 
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
@@ -287,7 +287,7 @@ assessments and reports.'
       description 'returns all campaigns associated with the user'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
@@ -329,7 +329,7 @@ assessments and reports.'
       description 'Create new campaign'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewCampaign' }, required: true
 
@@ -388,7 +388,7 @@ assessments and reports.'
       description 'Update campaign'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedCampaign' }, required: true
@@ -442,7 +442,7 @@ assessments and reports.'
       description 'Update campaign assessments and reports'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
 
@@ -496,7 +496,7 @@ assessments and reports.'
       description 'Update campaign assessments and reports'
       tags 'Campaigns'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body,
@@ -564,7 +564,7 @@ assessments and reports.'
       description 'Update Campaign assessments'
       tags 'Assessments'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :assessment_id, in: :path, type: :string, required: false
@@ -651,7 +651,7 @@ assessments and reports.'
       description 'Delete campaign assessments'
       tags 'Assessments'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :assessment_id, in: :path, type: :string, required: false
@@ -731,7 +731,7 @@ assessments and reports.'
       description 'Update Campaign Report'
       tags 'Reports'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string, required: false
@@ -821,7 +821,7 @@ assessments and reports.'
       description 'Delete campaign report'
       tags 'Reports'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string, required: false

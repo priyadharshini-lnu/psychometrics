@@ -95,12 +95,14 @@ export const SubFactorsForm: React.FC<Props> = ({
           ...values,
           ConditionSetId: occupationConditionSetId,
         }) : undefined}
+      formProps={{ requiredMark: 'optional' }}
     >
       {({ status, isEdit }) => (
         <>
           <Form.Item
             name="factorId"
             label={I18n.t('admin.scoring_factor')}
+            rules={[{ required: true }]}
           >
             <Select
               showSearch={{
@@ -120,6 +122,7 @@ export const SubFactorsForm: React.FC<Props> = ({
           <Form.Item
             name="predicate"
             label={I18n.t('admin.factors_form_predicate')}
+            rules={[{ required: true }]}
           >
             <Select
               options={[
@@ -135,18 +138,21 @@ export const SubFactorsForm: React.FC<Props> = ({
           <Form.Item
             name="value"
             label={I18n.t('admin.factors_form_value')}
+            rules={[{ required: true }]}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="position"
             label={I18n.t('admin.occupations_factors_list_position')}
+            rules={[{ required: true }]}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="weight"
             label={I18n.t('admin.occupations_factors_list_weight')}
+            rules={[{ required: true }]}
           >
             <InputNumber />
           </Form.Item>

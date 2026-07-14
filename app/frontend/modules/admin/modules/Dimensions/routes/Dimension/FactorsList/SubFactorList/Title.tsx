@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import _ from 'lodash'
 import {
   Col, Row, Select, Spin,
@@ -9,6 +9,7 @@ import { Factor, FactorSearchTR } from '~/modules/admin/modules/campaigns/core/f
 
 export default function Title ({ factor, onAdd }) {
   const { dimensionId } = useParams() as { dimensionId: string }
+  const [selectValue, setSelectValue] = useState<string | null>(null)
   const [state, setState] = useState({
     data: [] as Factor[], requests: {}, meta: {}, query: {},
   })
@@ -28,14 +29,19 @@ export default function Title ({ factor, onAdd }) {
     })
   }, 300), [])
 
+  useEffect(() => {
+    search()
+  }, [])
+
   const availableFactors = _.filter(factors, f => f.id !== factor.id)
 
-  const add = (factor) => {
-    const subFactor = factors.find(f => f.id === factor)
+  const add = (factorId) => {
+    const subFactor = factors.find(f => f.id === factorId)
     if (!subFactor) return
     onAdd({
       subFactorId: subFactor.id, name: subFactor.name, weight: 1.0,
     })
+    setSelectValue(null)
   }
 
   return (
@@ -50,6 +56,7 @@ export default function Title ({ factor, onAdd }) {
           className="mls"
           placeholder="Choose a sub factor"
           showSearch
+          value={selectValue}
           onSearch={searchFactor}
           onChange={add}
           notFoundContent={isLoading('fetch') ? <Spin size="small" /> : null}

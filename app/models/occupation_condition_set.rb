@@ -13,6 +13,8 @@ class OccupationConditionSet < ApplicationRecord
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :users_results, dependent: :restrict_with_error
 
+  enum :score_type, { raw: 0, normed: 1 }
+
   validates :name, presence: true, uniqueness: { scope: :dimension_id }
 
   before_destroy :check_not_default

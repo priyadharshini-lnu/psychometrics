@@ -17,7 +17,7 @@ describe 'Projects' do
       description 'Create new project'
       tags 'Projects'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewProject' }, required: true
 
       response '200', 'Project created' do
@@ -80,7 +80,7 @@ describe 'Projects' do
       description 'Update a project'
       tags 'Projects'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedProject' }, required: true
       parameter name: :project_id, in: :path, type: :string
 
@@ -139,7 +139,7 @@ describe 'Projects' do
       description 'Update a project'
       tags 'Projects'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedProject' }, required: true
       parameter name: :project_id, in: :path, type: :string
 
@@ -199,7 +199,7 @@ describe 'Projects' do
       description 'Get a project'
       tags 'Projects'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
 
       response '200', 'Project Getd' do
@@ -240,7 +240,7 @@ describe 'Projects' do
       tags 'Projects'
       description 'Get a user by email.'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string, required: true
       parameter name: :email, in: :query, type: :string, required: true
       parameter name: :datasheet, in: :query, type: :boolean, required: false,
@@ -301,7 +301,7 @@ describe 'Projects' do
       description 'Get projects associated with a client'
       tags 'Projects'
       consumes 'application/json'
-      security [basic: [], bearer: []]
+      security [basic: []]
       parameter name: :client_id, in: :path, type: :string
 
       response '200', 'Success' do
