@@ -107,7 +107,6 @@ export const SubFactorsForm: React.FC<Props> = ({
           ...values,
           ConditionSetId: occupationConditionSetId,
         }) : undefined}
-      formProps={{ requiredMark: 'optional' }}
     >
       {({ status, isEdit }) => (
         <>
@@ -157,14 +156,12 @@ export const SubFactorsForm: React.FC<Props> = ({
           <Form.Item
             name="position"
             label={I18n.t('admin.occupations_factors_list_position')}
-            rules={[{ required: true }]}
           >
             <InputNumber />
           </Form.Item>
           <Form.Item
             name="weight"
             label={I18n.t('admin.occupations_factors_list_weight')}
-            rules={[{ required: true }]}
           >
             <InputNumber
               step={1}

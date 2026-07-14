@@ -30,6 +30,7 @@ module Administration
 
     def create
       @_resource = @occupation.occupations_factors.new(resource_params)
+      @_resource.occupation_condition_set_id = @occupation.dimension.default_occupation_condition_set_id
       respond_to do |format|
         if resource.save
           audit! :create, resource, payload: params
