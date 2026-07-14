@@ -29,13 +29,52 @@ const CustomFormula = () => (
 const QuestionsPercentage = () => (
   <>
     <Form.Item
-      label="Scale Min"
+      label={I18n.t('admin.scale_min')}
       name="scaleMin"
+      dependencies={['scaleMax']}
+      rules={[
+        ({ getFieldValue }) => ({
+          validator (_, value) {
+            if (value == null) return Promise.resolve()
+            if (value < 0) {
+              return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
+            }
+
+            const scaleMax = getFieldValue('scaleMax')
+            if (scaleMax == null || value <= scaleMax) {
+              return Promise.resolve()
+            }
+
+            return Promise.reject(new Error(I18n.t('admin.scale_min_must_be_less_than_scale_max')))
+          },
+        }),
+      ]}
     >
-      <InputNumber />
+      <InputNumber min={0} />
     </Form.Item>
-    <Form.Item label="Scale Max" name="scaleMax">
-      <InputNumber />
+    <Form.Item
+      label={I18n.t('admin.scale_max')}
+      name="scaleMax"
+      dependencies={['scaleMin']}
+      rules={[
+        ({ getFieldValue }) => ({
+          validator (_, value) {
+            if (value == null) return Promise.resolve()
+            if (value < 0) {
+              return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
+            }
+
+            const scaleMin = getFieldValue('scaleMin')
+            if (scaleMin == null || value >= scaleMin) {
+              return Promise.resolve()
+            }
+
+            return Promise.reject(new Error(I18n.t('admin.scale_max_must_be_greater_than_scale_min')))
+          },
+        }),
+      ]}
+    >
+      <InputNumber min={0} />
     </Form.Item>
   </>
 )

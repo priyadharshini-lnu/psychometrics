@@ -739,6 +739,7 @@ en:
     enter_schema_key: Enter Schema Key
     error: Error
     error_color: Error Color
+    errors_csv_file_import: Please upload a CSV file before clicking on "Import"
     errors_csv_file_required: File must be a CSV file
     errors_error_msg: Something went wrong. Please refresh the page and if issue still persists contact your administrator
     errors_min_retention: Cannot be less than 1 day
@@ -1424,6 +1425,7 @@ en:
     occupations_form_alternative_icon: Alternative icon
     occupations_form_color: Color
     occupations_form_indicative_roles_image: Indicative roles image
+    occupations_form_key_career_tracks_hint: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
     occupations_form_key_career_tracks_image: Key career tracks image
     occupations_index_title: Occupations
     occupations_resource_confirmations_delete_body: "<p>Are you sure you want to delete this occupation?</p>\n"
@@ -2167,6 +2169,7 @@ en:
     remove_confirm_success: Subject with email '%{subjectEmail}'' was successfully removed.
     remove_confirm_title: Remove Subject
     remove_confirmation: Are you sure you want to remove this item?
+    remove_icon: Remove icon
     remove_output_schema_key: Remove Output Schema Key
     remove_successfully: Media Item was removed successfully.
     render_button: Render Template
@@ -2417,6 +2420,11 @@ en:
       user_full_name_cont: User Name
     saville: Saville
     saville_assessment: Saville Assessment
+    scale_max: Scale Max
+    scale_max_must_be_greater_than_scale_min: Scale max value should be greater than Scale min value
+    scale_min: Scale Min
+    scale_min_must_be_less_than_scale_max: Scale min value shoud be less than Scale max value
+    scale_value_must_not_be_negative: Value should not be negative
     schedule: Schedule
     schedule_email: Schedule Email
     schedule_email_title: Schedule Email
@@ -2556,7 +2564,9 @@ en:
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max
+    score_max_must_be_greater_than_score_min: Score max must be greater than score min
     score_min: Score Min
+    score_min_must_be_less_than_score_max: Score min must be less than score max
     score_must_be_in_between_min_and_max: Score must be in between %{min} and %{max}.
     score_not_applicable: Score not applicable
     score_range_info: 'Score Range: %{min} - %{max}'
@@ -3129,6 +3139,7 @@ en:
     translated_with_ai_notice: AI Translated
     translation_assistant_not_configured: Translation Assistant not configured
     translations:
+      import: Import Translations
       title: Translations
     translations_export_failure_msg: Error while exporting translations
     translations_export_success_msg: Exporting development actions in progress.
