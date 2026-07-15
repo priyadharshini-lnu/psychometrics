@@ -8,7 +8,8 @@ module Microsite
       'free_text' => AnswerConverters::FreeText,
       'ranked' => AnswerConverters::Ranked,
       'tf_grid' => AnswerConverters::TfGrid,
-      'form' => AnswerConverters::Form
+      'form' => AnswerConverters::Form,
+      'most_least' => AnswerConverters::MostLeast
     }.freeze
 
     attr_reader :microsite_user_assessment
