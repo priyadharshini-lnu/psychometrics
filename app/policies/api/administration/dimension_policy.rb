@@ -17,6 +17,12 @@ module Api
         has_permission?(:campaign_factors, :manage)
       end
 
+      def export_translations?
+        return has_permission?(:dimensions, :manage, project_id: record_owner_id) if record_owner_id
+
+        super
+      end
+
       private
 
       def record_owner_id

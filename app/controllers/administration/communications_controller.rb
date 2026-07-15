@@ -251,23 +251,18 @@ module Administration
       communications_scope = communications_scope.where(project_id: selected_project_id) if selected_project_id.present?
       campaign_ids_from_comms = communications_scope.where.not(campaign_id: nil).distinct.pluck(:campaign_id)
 
-      # For non-superadmin users, also include campaigns from projects where they're a campaign admin
+      # For non-superadmin users, also include campaigns where they're a campaign admin
       # This ensures campaign admins can see and filter by their campaigns even if no communications exist
-      campaign_ids_from_projects = if current_user.is?(:superadmin)
-                                     []
-                                   else
-                                     campaign_admin_project_ids = current_user.memberships.
-                                                                  where(role: 'campaign_admin').
-                                                                  distinct.
-                                                                  pluck(:client_id)
-                                     if campaign_admin_project_ids.any?
-                                       Campaign.where(project_id: campaign_admin_project_ids).pluck(:id)
-                                     else
+      campaign_ids_from_admin_role = if current_user.is?(:superadmin)
                                        []
+                                     else
+                                       current_user.memberships.
+                                         where(role: 'campaign_admin').
+                                         distinct.
+                                         pluck(:campaign_id)
                                      end
-                                   end
 
-      (campaign_ids_from_comms + campaign_ids_from_projects&.compact)&.uniq
+      (campaign_ids_from_comms + campaign_ids_from_admin_role&.compact)&.uniq
     end
 
     def project_filter_disabled?
