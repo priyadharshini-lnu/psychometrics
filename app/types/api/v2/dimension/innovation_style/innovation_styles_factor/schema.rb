@@ -10,11 +10,11 @@ module Api
 
         def self.attributes(attribute, _)
           proc do
-            attribute[:factor_id].filled(:integer)
+            attribute[:factor_id].filled(Types::Params::Integer)
             attribute[:predicate].filled(:string)
-            attribute[:value].filled(:float)
-            attribute[:position].maybe(:integer)
-            attribute[:weight].maybe(:float)
+            attribute[:value].filled(Types::IntOrFloat)
+            attribute[:position].maybe(Types::Params::Integer)
+            attribute[:weight].maybe(Types::IntOrFloat)
           end
         end
 
