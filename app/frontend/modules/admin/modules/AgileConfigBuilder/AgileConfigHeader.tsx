@@ -1,6 +1,8 @@
 import React from 'react'
 import { omit } from 'lodash'
-import { Button, Modal, Row } from 'antd'
+import {
+  Button, Modal, Row,
+} from 'antd'
 import {
   connect, ConnectedProps, useSelector, useDispatch,
 } from 'react-redux'
@@ -50,6 +52,7 @@ const AgileSettingsModal = ({ close }) => {
           time={extra?.timer}
           updateTimer={updateTimer}
           toggleTimer={toggleTimer}
+          isAgile
         />
       </Row>
     </Modal>

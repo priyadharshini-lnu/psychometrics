@@ -56,6 +56,7 @@ en:
     advanced: Advanced
     advanced_mode_tooltip: Use advanced mode for prompt templating using liquid template with available variables. Refer to documentation for more details.
     agile: AGILE
+    agile_time_config_msg: Agile assessments may use section-wise timers (set up in config settings). Ensure to put enough time here to complete each section comfortably.
     ai_artifact_result_generation_admin_job_failed: Artifact '%{artifact_name}' cannot be generated for User '%{user_email}'
     ai_artifact_result_stale: Result may be stale as the AI artifact dependencies have changed since the last result was generated. Consider regenerating the artifact to generate with the latest dependencies.
     ai_artifacts: AI Artifacts
