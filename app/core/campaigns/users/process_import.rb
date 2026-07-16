@@ -9,7 +9,7 @@ module Campaigns
       private_attr_accessor :users_those_pwd_not_changed
 
       PROFILE_FIELDS = %i[age gender timezone locale profile_locale].freeze
-      CHUNK_SIZE = 500
+      CHUNK_SIZE = 100
 
       def initialize(campaign, current_user, rows, operation, job_record)
         @campaign = campaign
