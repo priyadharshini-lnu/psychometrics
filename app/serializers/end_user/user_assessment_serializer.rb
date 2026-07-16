@@ -132,7 +132,7 @@ module EndUser
 
       return if duration_minutes.blank?
 
-      I18n.t('enduser.assessment_timing_duration_minutes', duration: duration_minutes)
+      I18n.t('enduser.pearson_timing_duration_minutes', duration: duration_minutes)
     end
   end
 end
