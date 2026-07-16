@@ -13,7 +13,6 @@ es-ES:
     all_checks_must_pass: Todas las comprobaciones deben superarse antes de poder continuar.
     approve_idp_plan: Aprobar Plan
     assessment_misconfigured: Configuración incorrecta de la evaluación
-    assessment_timing_duration_minutes: "%{duration} minutos"
     audio: Audio
     audio_check: Prueba del micrófono
     audio_check_description: Comprueba que tu micrófono funcione correctamente para la grabación
@@ -137,6 +136,8 @@ es-ES:
     no_audio_detected: No se detecta audio. Comprueba si el micrófono está conectado y funciona correctamente.
     pass: Pasar
     pause: Pausa
+    pearson_timing_duration_minutes: 'Con límite de tiempo: %{duration} minutos para completarlo'
+    pearson_timing_untimed_duration: 'Sin límite de tiempo: se tarda entre 20 y 25 minutos en completarlo'
     pending: Pendiente
     personal_readiness: Preparación personal
     plan_text: Planifica toda la duración. Una vez comenzada la prueba, es posible que no se permitan pausas, dependiendo del tipo de evaluación.

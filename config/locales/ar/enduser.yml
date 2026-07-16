@@ -13,7 +13,6 @@ ar:
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
     assessment_misconfigured: خطأ في تكوين التقييم
-    assessment_timing_duration_minutes: "%{duration} دقائق"
     audio: صوتي
     audio_check: اختبار الميكروفون
     audio_check_description: تحقق من أن الميكروفون يعمل بشكل صحيح للتسجيل.
@@ -137,6 +136,8 @@ ar:
     no_audio_detected: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون ومن أنه يعمل بشكل صحيح.
     pass: يمر
     pause: توقف مؤقت
+    pearson_timing_duration_minutes: محدد بوقت - لديك %{duration} دقيقة
+    pearson_timing_untimed_duration: غير محدد بوقت - الوقت التقريبي 20-25 دقيقة
     pending: قيد الانتظار
     personal_readiness: الجاهزية الشخصية
     plan_text: خطّط لإجراء التقييم بشكل كامل. بعد البدء، قد لا يُسمح ببأخذ استراحات، وذلك حسب نوع التقييم

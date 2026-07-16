@@ -13,7 +13,6 @@ sk:
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
     assessment_misconfigured: Hodnotenie je nesprávne nakonfigurované
-    assessment_timing_duration_minutes: "%{duration} minút"
     audio: Audio
     audio_check: Test mikrofónu
     audio_check_description: Skontrolujte, či mikrofón správne funguje pri nahrávaní
@@ -137,6 +136,8 @@ sk:
     no_audio_detected: Nebolo zistené žiadne zvukové signály. Skontrolujte, či je mikrofón pripojený a správne funguje.
     pass: Preskočiť
     pause: Pauza
+    pearson_timing_duration_minutes: Časovo obmedzené – %{duration} minút na dokončenie
+    pearson_timing_untimed_duration: Bez časového obmedzenia – na vyriešenie je potrebných 20–25 minút
     pending: V riešení
     personal_readiness: Osobná pripravenosť
     plan_text: Naplánujte si celú dobu trvania. Po začatí sa prestávky nemusia povoliť, v závislosti od typu hodnotenia.

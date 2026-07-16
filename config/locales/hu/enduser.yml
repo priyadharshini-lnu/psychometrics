@@ -13,7 +13,6 @@ hu:
     all_checks_must_pass: Minden ellenőrzésnek sikeresnek kell lennie, mielőtt továbbhaladhatna.
     approve_idp_plan: Terv jóváhagyása
     assessment_misconfigured: A beállítás hibás
-    assessment_timing_duration_minutes: "%{duration} perc"
     audio: Hang
     audio_check: Mikrofon teszt
     audio_check_description: Ellenőrizze, hogy a mikrofon megfelelően működik-e a felvételhez
@@ -137,6 +136,8 @@ hu:
     no_audio_detected: Nem érzékelhető hang. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     pass: Tovább
     pause: Szünet
+    pearson_timing_duration_minutes: Időkorlát – %{duration} perc a feladat elvégzésére
+    pearson_timing_untimed_duration: Időkorlát nélkül – a feladat elvégzéséhez 20–25 perc szükséges
     pending: Függőben
     personal_readiness: Személyes felkészültség
     plan_text: Tervezzen a teljes időtartamra. A vizsga megkezdése után – a vizsga típusától függően – szünetek nem engedélyezettek.

@@ -13,7 +13,6 @@ ru:
     all_checks_must_pass: Прежде чем продолжить, необходимо пройти все проверки.
     approve_idp_plan: Утвердить план
     assessment_misconfigured: Неправильная настройка оценки
-    assessment_timing_duration_minutes: "%{duration} мин."
     audio: Аудио
     audio_check: Проверка микрофона
     audio_check_description: Убедитесь, что ваш микрофон исправно работает для записи
@@ -137,6 +136,8 @@ ru:
     no_audio_detected: Звук не обнаружен. Проверьте, подключен ли микрофон и работает ли он исправно.
     pass: Пропустить
     pause: Пауза
+    pearson_timing_duration_minutes: С ограничением по времени — %{duration} минут на выполнение
+    pearson_timing_untimed_duration: Без ограничения по времени — на выполнение уходит 20–25 минут
     pending: В процессе рассмотрения
     personal_readiness: Личная готовность
     plan_text: Планируйте время на весь период. После начала тестирования перерывы могут быть запрещены в зависимости от типа тестирования.

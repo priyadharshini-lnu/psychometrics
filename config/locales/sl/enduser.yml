@@ -13,7 +13,6 @@ sl:
     all_checks_must_pass: Preden lahko nadaljujete, morajo biti vsi pregledi uspešni.
     approve_idp_plan: Odobri načrt
     assessment_misconfigured: 'Ocena: napačna konfiguracija'
-    assessment_timing_duration_minutes: "%{duration} minut"
     audio: Zvok
     audio_check: Preizkus mikrofona
     audio_check_description: Preverite, ali mikrofon pravilno deluje za snemanje
@@ -137,6 +136,8 @@ sl:
     no_audio_detected: Zvok ni zaznan. Preverite, ali je mikrofon priključen in ali deluje pravilno.
     pass: Preskoči
     pause: Premor
+    pearson_timing_duration_minutes: Časovno omejeno – za rešitev je potrebnih %{duration} minut
+    pearson_timing_untimed_duration: Brez časovne omejitve – za rešitev potrebujete 20–25 minut
     pending: V obravnavi
     personal_readiness: Osebna pripravljenost
     plan_text: Načrtujte za celotno trajanje. Ko se preizkus začne, odmorji morda ne bodo dovoljeni, odvisno od vrste preizkusa.

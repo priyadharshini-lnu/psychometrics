@@ -13,7 +13,6 @@ de:
     all_checks_must_pass: Alle Prüfungen müssen erfolgreich abgeschlossen sein, bevor Sie fortfahren können.
     approve_idp_plan: Plan genehmigen
     assessment_misconfigured: Bewertung falsch konfiguriert
-    assessment_timing_duration_minutes: "%{duration} Minuten"
     audio: Audio
     audio_check: Mikrofontest
     audio_check_description: Stellen Sie sicher, dass Ihr Mikrofon für die Aufnahme ordnungsgemäß funktioniert
@@ -137,6 +136,8 @@ de:
     no_audio_detected: Es wird kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
     pass: Überspringen
     pause: Pause
+    pearson_timing_duration_minutes: Zeitlich begrenzt – %{duration} Minuten bis zum Abschluss
+    pearson_timing_untimed_duration: 'Ohne Zeitvorgabe – Dauer: 20–25 Minuten'
     pending: In Bearbeitung
     personal_readiness: Persönliche Bereitschaft
     plan_text: Planen Sie für die gesamte Dauer. Sobald der Test begonnen hat, sind je nach Testart möglicherweise keine Pausen mehr erlaubt.

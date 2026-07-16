@@ -13,7 +13,6 @@ sr-Cyrl:
     all_checks_must_pass: Сви чекови морају бити успешно прошли пре него што можете да наставите.
     approve_idp_plan: Одобрити план
     assessment_misconfigured: Оцењивање је неправилно подешено
-    assessment_timing_duration_minutes: "%{duration} минута"
     audio: Аудио
     audio_check: Тест микрофона
     audio_check_description: Проверите да ли ваш микрофон исправно ради за снимање.
@@ -137,6 +136,8 @@ sr-Cyrl:
     no_audio_detected: Нема звука. Молимо проверите да ли је ваш микрофон прикључен и да ли исправно ради.
     pass: Проћи
     pause: Пауза
+    pearson_timing_duration_minutes: Временом ограничено - %{duration} минута за завршетак
+    pearson_timing_untimed_duration: Без временског ограничења - 20-25 минута за завршетак
     pending: Учешће
     personal_readiness: Лична спремност
     plan_text: Планирајте за цео трајање. Када се започне, паузе можда неће бити дозвољене у зависности од врсте процене.
