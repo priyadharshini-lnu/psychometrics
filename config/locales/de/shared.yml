@@ -170,6 +170,11 @@ de:
     remove: Entfernen
     removed: Entfernt
     replace: Ersetzen
+    reports_show_values_inside_bar: Werte innerhalb des Balkens anzeigen
+    reports_value_label_position: Position des Wertetiketts
+    reports_value_label_position_center: Mitte
+    reports_value_label_position_left: Links
+    reports_value_label_position_right: Richtig
     required: erforderlich
     reset: Zurücksetzen
     reset_password: Passwort zurücksetzen

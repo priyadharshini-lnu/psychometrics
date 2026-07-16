@@ -170,6 +170,11 @@ ja:
     remove: 削除
     removed: 削除
     replace: 置換
+    reports_show_values_inside_bar: 棒グラフ内の値を表示する
+    reports_value_label_position: 値ラベルの位置
+    reports_value_label_position_center: センター
+    reports_value_label_position_left: 左
+    reports_value_label_position_right: そう
     required: 必須
     reset: リセット
     reset_password: パスワードをリセット

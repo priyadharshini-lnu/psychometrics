@@ -170,6 +170,11 @@ sr-Cyrl:
     remove: Уклони
     removed: Уклоњена
     replace: Заменити
+    reports_show_values_inside_bar: Прикажи вредности унутар траке
+    reports_value_label_position: Позиција етикете вредности
+    reports_value_label_position_center: Центар
+    reports_value_label_position_left: Лево
+    reports_value_label_position_right: У реду
     required: потребно
     reset: Поништи
     reset_password: Поништавање лозинке

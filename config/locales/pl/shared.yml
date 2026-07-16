@@ -170,6 +170,11 @@ pl:
     remove: Usuń
     removed: Usunięte
     replace: Zastąp
+    reports_show_values_inside_bar: Pokaż wartości wewnątrz słupka
+    reports_value_label_position: Położenie etykiety z wartością
+    reports_value_label_position_center: Centrum
+    reports_value_label_position_left: Po lewej
+    reports_value_label_position_right: Racja
     required: wymagany
     reset: Resetować
     reset_password: Zresetuj hasło

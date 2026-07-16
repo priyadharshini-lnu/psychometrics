@@ -13,6 +13,7 @@ en:
     all_checks_must_pass: All checks must pass before you can proceed.
     approve_idp_plan: Approve Plan
     assessment_misconfigured: Assessment misconfigured
+    assessment_timing_duration_minutes: "%{duration} mins"
     audio: Audio
     audio_check: Microphone Test
     audio_check_description: Verify your microphone is working properly for recording

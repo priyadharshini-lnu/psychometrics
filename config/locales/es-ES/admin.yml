@@ -2216,6 +2216,7 @@ es-ES:
       pearson_usage_report: Uso de las evaluaciones de Pearson
       report_usage_summary: Resumen de uso del informe
       saville_usage_report: Uso de la evaluación de Saville
+      user_access_review: Revisión del acceso de los usuarios
       user_created_dates: Fechas creadas por el usuario
       user_reports_export: Exportación de informes de usuarios
     reports: Informes

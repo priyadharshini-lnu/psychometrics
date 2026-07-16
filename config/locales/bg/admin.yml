@@ -2216,6 +2216,7 @@ bg:
       pearson_usage_report: Използване на оценките на „Пиърсън“
       report_usage_summary: Обобщение на използването на отчета
       saville_usage_report: Използване на оценката на Saville
+      user_access_review: Преглед на достъпа на потребителите
       user_created_dates: Дати, създадени от потребители
       user_reports_export: Експорт на потребителски отчети
     reports: Доклади

@@ -2216,6 +2216,7 @@ th:
       pearson_usage_report: การใช้งานการประเมินผล Pearson
       report_usage_summary: รายงานสรุปการใช้งาน
       saville_usage_report: การใช้งานการประเมิน Saville
+      user_access_review: การตรวจสอบสิทธิ์การเข้าถึงของผู้ใช้
       user_created_dates: วันที่ที่ผู้ใช้สร้างขึ้น
       user_reports_export: รายงานผู้ใช้ ส่งออก
     reports: รายงาน

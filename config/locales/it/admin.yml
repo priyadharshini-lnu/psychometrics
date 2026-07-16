@@ -2216,6 +2216,7 @@ it:
       pearson_usage_report: Utilizzo dei test di valutazione Pearson
       report_usage_summary: Riepilogo sull'utilizzo del report
       saville_usage_report: Utilizzo del test di valutazione Saville
+      user_access_review: Verifica degli accessi degli utenti
       user_created_dates: Date create dall'utente
       user_reports_export: Esportazione dei rapporti degli utenti
     reports: Report

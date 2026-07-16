@@ -170,6 +170,11 @@ bg:
     remove: Премахнете
     removed: Отстранени
     replace: Замени
+    reports_show_values_inside_bar: Показване на стойностите вътре в лентата
+    reports_value_label_position: Позиция на етикета със стойността
+    reports_value_label_position_center: Център
+    reports_value_label_position_left: Наляво
+    reports_value_label_position_right: Дясно
     required: изисква се
     reset: Проучване
     reset_password: Възстановете на паролата
