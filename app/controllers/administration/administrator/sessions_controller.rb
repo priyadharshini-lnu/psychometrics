@@ -8,8 +8,8 @@ module Administration
       skip_before_action :set_current_user_in_current_attributes, only: [:create]
       prepend_before_action :clear_stale_session_for_handoff, only: [:new]
       prepend_before_action :ensure_redirect_to_saml, only: [:create]
-      prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
       prepend_before_action :reject_superadmin_on_client_subdomain, only: [:create]
+      prepend_before_action :verify_recaptcha_or_redirect, only: [:create]
 
       helper_method :resource_name, :devise_mapping
       layout 'administration/devise'
@@ -37,14 +37,11 @@ module Administration
       end
 
       def authenticate_user
-        user = User.find_by(email: params[:user][:email])
-
-        if user
-          if user.saml_enforced_for_admins?
-            token = AdminAuth::SamlIntentToken.encode(email: user.email, return_url: stored_location_for(:user))
-            redirect_to new_saml_user_session_url(saml_email_token: token)
-          elsif (client_sso_url = sole_client_sso_url(user))
-            Utility::Url.redirect_to_safe_internal_url(self, client_sso_url, allow_other_host: true)
+        if (user = user_from_params)
+          if (saml = AdminAuth::SamlRedirectGuard.for_user(user: user, return_url: stored_location_for(:user))).required
+            redirect_to new_saml_user_session_url(saml_email_token: saml.token)
+          elsif (sso = AdminAuth::ResolveSsoRedirect.for_client(user: user)).required
+            Utility::Url.redirect_to_safe_internal_url(self, sso.url, allow_other_host: true)
           else
             session[:user_email] = user.email
             redirect_to new_administration_session_path
@@ -138,28 +135,26 @@ module Administration
       private
 
       def reject_superadmin_on_client_subdomain
-        return unless client_admin_context?
+        return unless Current.client_admin_context?
 
-        user = User.find_by(email: params.dig(:user, :email))
-        if user&.is?(:superadmin)
+        if user_from_params&.is?(:superadmin)
           flash[:alert] =
             I18n.t('admin.superadmin_use_root_domain')
           redirect_to new_administration_session_path and return
         end
       end
 
+      # Guards the standard Devise :create path (form POST with credentials).
+      # authenticate_user independently guards the email-first path (POST /authenticate_user).
+      # Both must check SamlRedirectGuard because the two entry points are mutually exclusive.
       def ensure_redirect_to_saml
-        return if Settings.features.disable_saml_for_admins
+        result = AdminAuth::SamlRedirectGuard.for_user(user: user_from_params, return_url: stored_location_for(:user))
+        return unless result.required
 
-        user = User.find_by(email: params[:user][:email])
-        return unless user&.saml_enforced_for_admins?
-
-        token = AdminAuth::SamlIntentToken.encode(email: user.email, return_url: stored_location_for(:user))
-
-        if client_admin_context?
-          Utility::Url.redirect_to_safe_internal_url(self, root_admin_saml_url(token), allow_other_host: true)
+        if Current.client_admin_context?
+          Utility::Url.redirect_to_safe_internal_url(self, root_admin_saml_url(result.token), allow_other_host: true)
         else
-          redirect_to new_saml_user_session_url(saml_email_token: token)
+          redirect_to new_saml_user_session_url(saml_email_token: result.token)
         end
       end
 
@@ -185,7 +180,7 @@ module Administration
       end
 
       def clear_stale_session_for_handoff
-        return unless handoff_token_present? && client_admin_context?
+        return unless handoff_token_present? && Current.client_admin_context?
 
         request.reset_session
       end
@@ -194,18 +189,8 @@ module Administration
         resource.is?(:superadmin) && path.include?('client_selection')
       end
 
-      def sole_client_sso_url(user)
-        return unless AdminSubdomain.client_admin_sso_enabled?
-
-        client = user.sole_admin_client
-        return unless client&.client_sso_setting&.saml_enforced?
-
-        token = AdminAuth::SamlIntentToken.encode(email: user.email)
-        AdminSubdomain.admin_url_for(client, path: '/users/saml/sign_in', params: { saml_email_token: token })
-      end
-
-      def client_admin_context?
-        Current.client_admin_context?
+      def user_from_params
+        @user_from_params ||= User.find_by(email: params.dig(:user, :email))
       end
 
       def impersonating?

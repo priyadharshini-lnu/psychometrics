@@ -4,11 +4,12 @@ module Administration
   module Impersonation
     extend ActiveSupport::Concern
 
+    SPOOFABLE_ROLES = (AdminAuth::ResolveClientAccess::ADMIN_ROLES.map(&:to_sym) + [:client_assessor]).freeze
+
     private
 
     def spoof_admin_routing(target_user, client: nil, fallback_redirect_url: admin_path)
-      if AdminSubdomain.client_admin_sso_enabled? && target_user.is?(:client_admin, :project_admin, :campaign_admin,
-                                                                     :client_assessor)
+      if AdminSubdomain.client_admin_sso_enabled? && target_user.is?(*SPOOFABLE_ROLES)
         if client.nil?
           clients = target_user.clients_with_admin_access
           if clients.size > 1

@@ -5,6 +5,13 @@ module AdminAuth
     ADMIN_ROLES = %w[client_admin project_admin campaign_admin].freeze
     ENTRY_ROLES = (ADMIN_ROLES + [Membership::CLIENT_ASSESSOR_ROLE]).freeze
 
+    def self.superadmin_has_role_on?(user, client)
+      return false unless user.is?(:superadmin)
+
+      user.memberships.
+        exists?(client_id: client.subtree_ids, role: ADMIN_ROLES)
+    end
+
     def initialize(user, client)
       @user = user
       @client = client

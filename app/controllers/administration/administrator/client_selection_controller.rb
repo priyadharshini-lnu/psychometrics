@@ -103,14 +103,11 @@ module Administration
       end
 
       def handoff_and_redirect(target_user, client, spoofing: false, impersonated_by: nil)
-        if requires_sso_login?(client, spoofing, impersonated_by)
-          token = AdminAuth::SamlIntentToken.encode(email: target_user.email)
-          saml_url = AdminSubdomain.admin_url_for(
-            client,
-            path: '/users/saml/sign_in',
-            params: { saml_email_token: token }
-          )
-          Utility::Url.redirect_to_safe_internal_url(self, saml_url, allow_other_host: true)
+        result = AdminAuth::ResolveSsoRedirect.for_client(
+          user: target_user, client: client, spoofing: spoofing, impersonator: impersonated_by
+        )
+        if result.required
+          Utility::Url.redirect_to_safe_internal_url(self, result.url, allow_other_host: true)
           return
         end
 
@@ -120,13 +117,6 @@ module Administration
           flash[:alert] = I18n.t('admin.no_client_access')
           redirect_to administration_client_selection_path
         }, locale: LocaleValidator.sanitize(cookies[:locale]))
-      end
-
-      def requires_sso_login?(client, spoofing, impersonator)
-        return false if spoofing
-        return false if impersonator
-
-        client.client_sso_setting&.saml_enforced?
       end
 
       # Single-client users don't need the central session since they'll never

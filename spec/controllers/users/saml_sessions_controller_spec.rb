@@ -76,7 +76,7 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
         allow(controller).to receive(:params).and_return(
           ActionController::Parameters.new(RelayState: token)
         )
-        allow(controller).to receive(:client_admin_context?).and_return(false)
+        allow(Current).to receive(:client_admin_context?).and_return(false)
 
         expect(controller.after_sign_in_path_for(user)).to eq('/admin/clients/123/projects')
       end
@@ -87,7 +87,7 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
         allow(controller).to receive(:params).and_return(
           ActionController::Parameters.new(RelayState: '/admin/projects/288/campaigns')
         )
-        allow(controller).to receive(:client_admin_context?).and_return(false)
+        allow(Current).to receive(:client_admin_context?).and_return(false)
 
         expect(controller.after_sign_in_path_for(user)).to eq('/admin/projects/288/campaigns')
       end

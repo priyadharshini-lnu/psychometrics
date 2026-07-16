@@ -2,6 +2,11 @@
 
 module AdminAuth
   class SessionRegistry
+    def self.register(session_hash, client:, impersonated_by_id: nil)
+      session_hash[:client_id]          = client.id
+      session_hash[:impersonated_by_id] = impersonated_by_id
+    end
+
     def self.recent_client_ids(user, impersonator: nil, limit: 3)
       scope = impersonator ? Session.impersonated.where(impersonator_id: impersonator.id) : Session.real
       scope.where(user_id: user.id).
