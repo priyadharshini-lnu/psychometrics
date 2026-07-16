@@ -13,7 +13,6 @@ fr:
     all_checks_must_pass: Toutes les vérifications doivent être validées avant que vous puissiez continuer.
     approve_idp_plan: Approuver le plan
     assessment_misconfigured: Évaluation mal configurée
-    assessment_timing_duration_minutes: "%{duration} min"
     audio: Audio
     audio_check: Test du microphone
     audio_check_description: Vérifiez que votre microphone fonctionne correctement pour l'enregistrement

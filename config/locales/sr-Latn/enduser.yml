@@ -13,7 +13,6 @@ sr-Latn:
     all_checks_must_pass: Сви чекови морају бити успешно прошли пре него што можете да наставите.
     approve_idp_plan: Odobri plan
     assessment_misconfigured: Оцењивање је неправилно подешено
-    assessment_timing_duration_minutes: "%{duration} минута"
     audio: Аудио
     audio_check: Тест микрофона
     audio_check_description: Проверите да ли ваш микрофон исправно ради за снимање.

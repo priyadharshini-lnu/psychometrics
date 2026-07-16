@@ -13,7 +13,6 @@ id:
     all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
     approve_idp_plan: Setujui Rencana
     assessment_misconfigured: Konfigurasi penilaian salah
-    assessment_timing_duration_minutes: "%{duration} menit"
     audio: Audio
     audio_check: Uji Mikrofon
     audio_check_description: Pastikan mikrofon Anda berfungsi dengan baik untuk merekam

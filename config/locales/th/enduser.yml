@@ -13,7 +13,6 @@ th:
     all_checks_must_pass: ต้องผ่านการตรวจสอบทั้งหมดก่อนจึงจะสามารถดำเนินการต่อได้
     approve_idp_plan: อนุมัติแผน
     assessment_misconfigured: การประเมินค่าถูกตั้งค่าไม่ถูกต้อง
-    assessment_timing_duration_minutes: "%{duration} นาที"
     audio: เสียง
     audio_check: ทดสอบไมโครโฟน
     audio_check_description: ตรวจสอบให้แน่ใจว่าไมโครโฟนของคุณทำงานได้อย่างถูกต้องสำหรับการบันทึก

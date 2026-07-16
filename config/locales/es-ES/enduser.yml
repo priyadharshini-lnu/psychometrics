@@ -13,7 +13,6 @@ es-ES:
     all_checks_must_pass: Todas las comprobaciones deben superarse antes de poder continuar.
     approve_idp_plan: Aprobar Plan
     assessment_misconfigured: Configuración incorrecta de la evaluación
-    assessment_timing_duration_minutes: "%{duration} minutos"
     audio: Audio
     audio_check: Prueba del micrófono
     audio_check_description: Comprueba que tu micrófono funcione correctamente para la grabación

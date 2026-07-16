@@ -13,7 +13,6 @@ hi:
     all_checks_must_pass: आगे बढ़ने से पहले सभी जांचें पास होनी चाहिए।
     approve_idp_plan: योजना को अनुमोदित करें
     assessment_misconfigured: मूल्यांकन गलत कॉन्फ़िगर किया गया
-    assessment_timing_duration_minutes: "%{duration} मिनट"
     audio: ऑडियो
     audio_check: माइक्रोफ़ोन परीक्षण
     audio_check_description: रिकॉर्डिंग के लिए अपने माइक्रोफ़ोन का ठीक से काम करना सुनिश्चित करें।

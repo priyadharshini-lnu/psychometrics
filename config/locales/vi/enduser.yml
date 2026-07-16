@@ -13,7 +13,6 @@ vi:
     all_checks_must_pass: Tất cả các bước kiểm tra phải được hoàn tất trước khi bạn có thể tiếp tục.
     approve_idp_plan: Phê duyệt kế hoạch
     assessment_misconfigured: Cài đặt đánh giá không chính xác
-    assessment_timing_duration_minutes: "%{duration} phút"
     audio: Âm thanh
     audio_check: Kiểm tra micro
     audio_check_description: Hãy kiểm tra xem micrô của bạn có hoạt động bình thường để ghi âm không
