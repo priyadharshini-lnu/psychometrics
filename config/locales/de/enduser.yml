@@ -13,6 +13,7 @@ de:
     all_checks_must_pass: Alle Prüfungen müssen erfolgreich abgeschlossen sein, bevor Sie fortfahren können.
     approve_idp_plan: Plan genehmigen
     assessment_misconfigured: Bewertung falsch konfiguriert
+    assessment_timing_duration_minutes: "%{duration} Minuten"
     audio: Audio
     audio_check: Mikrofontest
     audio_check_description: Stellen Sie sicher, dass Ihr Mikrofon für die Aufnahme ordnungsgemäß funktioniert

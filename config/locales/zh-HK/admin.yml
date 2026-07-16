@@ -2216,6 +2216,7 @@ zh-HK:
       pearson_usage_report: 皮尔森测评的使用
       report_usage_summary: 报告使用情况摘要
       saville_usage_report: 萨维尔评估的使用
+      user_access_review: 用户访问审查
       user_created_dates: 用户创建日期
       user_reports_export: 用户报告导出
     reports: 报告

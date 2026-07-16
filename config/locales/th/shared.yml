@@ -170,6 +170,11 @@ th:
     remove: เอาออก
     removed: ถูก เอา ออก
     replace: แทนที่
+    reports_show_values_inside_bar: แสดงค่าภายในแท่ง
+    reports_value_label_position: ตำแหน่งของป้ายค่า
+    reports_value_label_position_center: ศูนย์
+    reports_value_label_position_left: ซ้าย
+    reports_value_label_position_right: ถูกต้อง
     required: ต้องกรอกข้อมูล
     reset: รี เซ็ต
     reset_password: รีเซ็ตรหัสผ่าน

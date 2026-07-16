@@ -13,6 +13,7 @@ bg:
     all_checks_must_pass: Всички проверки трябва да бъдат успешни, преди да продължите.
     approve_idp_plan: Одобри план
     assessment_misconfigured: Неправилна конфигурация на оценката
+    assessment_timing_duration_minutes: "%{duration} минути"
     audio: Аудио
     audio_check: Тест на микрофона
     audio_check_description: Уверете се, че микрофонът ви работи правилно за запис

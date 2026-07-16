@@ -170,6 +170,11 @@ sl:
     remove: Odstranite
     removed: Odstranjen
     replace: Zamenjaj
+    reports_show_values_inside_bar: Prikaži vrednosti znotraj stolpca
+    reports_value_label_position: Položaj oznake vrednosti
+    reports_value_label_position_center: Center
+    reports_value_label_position_left: Levo
+    reports_value_label_position_right: Desno
     required: obvezno
     reset: Ponastavi
     reset_password: Ponastavitev gesla

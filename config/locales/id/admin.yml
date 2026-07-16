@@ -2216,6 +2216,7 @@ id:
       pearson_usage_report: Penggunaan Asesmen Pearson
       report_usage_summary: Ringkasan Penggunaan Laporan
       saville_usage_report: Penggunaan Saville Assessment
+      user_access_review: Peninjauan Akses Pengguna
       user_created_dates: Tanggal yang Dibuat Pengguna
       user_reports_export: Ekspor Laporan Pengguna
     reports: Laporan

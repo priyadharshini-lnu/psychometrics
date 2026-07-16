@@ -170,6 +170,11 @@ fr:
     remove: Retirer
     removed: Supprimé
     replace: Remplacer
+    reports_show_values_inside_bar: Afficher les valeurs à l'intérieur de la barre
+    reports_value_label_position: Position de l'étiquette de valeur
+    reports_value_label_position_center: Centre
+    reports_value_label_position_left: À gauche
+    reports_value_label_position_right: D'accord
     required: requis
     reset: Remise à zéro
     reset_password: Réinitialiser le mot de passe

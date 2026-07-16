@@ -13,6 +13,7 @@ cs:
     all_checks_must_pass: Než budete moci pokračovat, musí být všechny kontroly úspěšné.
     approve_idp_plan: Schválit plán
     assessment_misconfigured: Nesprávné nastavení
+    assessment_timing_duration_minutes: "%{duration} minut"
     audio: Zvuk
     audio_check: Test mikrofonu
     audio_check_description: Zkontrolujte, zda váš mikrofon správně funguje pro nahrávání

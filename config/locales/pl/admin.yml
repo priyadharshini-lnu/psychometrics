@@ -2216,6 +2216,7 @@ pl:
       pearson_usage_report: Wykorzystanie narzędzi diagnostycznych firmy Pearson
       report_usage_summary: Podsumowanie wykorzystania raportu
       saville_usage_report: Wykorzystanie narzędzia Saville Assessment
+      user_access_review: Przegląd uprawnień użytkowników
       user_created_dates: Daty utworzone przez użytkownika
       user_reports_export: Eksport raportów użytkowników
     reports: Raporty

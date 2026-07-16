@@ -2216,6 +2216,7 @@ ar:
       pearson_usage_report: استخدام تقييمات بيرسون
       report_usage_summary: ملخص استخدام التقرير
       saville_usage_report: استخدام تقييم سافيل
+      user_access_review: مراجعة صلاحيات المستخدم
       user_created_dates: التواريخ التي أنشأها المستخدمون
       user_reports_export: تصدير تقارير المستخدمين
     reports: التقارير

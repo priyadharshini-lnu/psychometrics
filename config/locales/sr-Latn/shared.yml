@@ -170,6 +170,11 @@ sr-Latn:
     remove: Ukloni
     removed: Uklonjeno
     replace: Замени
+    reports_show_values_inside_bar: Прикажи вредности унутар траке
+    reports_value_label_position: Позиција етикете вредности
+    reports_value_label_position_center: Центар
+    reports_value_label_position_left: Лево
+    reports_value_label_position_right: У реду
     required: Potrebno
     reset: Poništi
     reset_password: Poništi lozinku

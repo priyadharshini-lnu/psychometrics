@@ -2216,6 +2216,7 @@ sk:
       pearson_usage_report: Využitie hodnotenia spoločnosti Pearson
       report_usage_summary: Súhrn využitia správy
       saville_usage_report: Využitie hodnotenia Saville
+      user_access_review: Kontrola prístupových práv používateľov
       user_created_dates: Dátumy vytvorené používateľom
       user_reports_export: Export užívateľských správ
     reports: Správy

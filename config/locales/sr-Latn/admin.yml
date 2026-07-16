@@ -2216,6 +2216,7 @@ sr-Latn:
       pearson_usage_report: Коришћење Пирсон тестова
       report_usage_summary: Извештај о резимеу коришћења
       saville_usage_report: Употреба Савилл процене
+      user_access_review: Преглед приступа корисника
       user_created_dates: Датуми креирани од стране корисника
       user_reports_export: Извештај о корисницима
     reports: Izveštaji

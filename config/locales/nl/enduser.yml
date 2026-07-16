@@ -13,6 +13,7 @@ nl:
     all_checks_must_pass: Alle controles moeten zijn doorlopen voordat u verder kunt gaan.
     approve_idp_plan: Plan goedkeuren
     assessment_misconfigured: De configuratie is onjuist
+    assessment_timing_duration_minutes: "%{duration} minuten"
     audio: Audio
     audio_check: Microfooncontrole
     audio_check_description: Controleer of je microfoon goed werkt voor opnames

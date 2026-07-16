@@ -2216,6 +2216,7 @@ ru:
       pearson_usage_report: Использование оценочных материалов Pearson
       report_usage_summary: Сводка по использованию отчета
       saville_usage_report: Использование системы оценки Saville
+      user_access_review: Проверка прав доступа пользователей
       user_created_dates: Даты, созданные пользователем
       user_reports_export: Экспорт отчетов пользователей
     reports: Отчеты

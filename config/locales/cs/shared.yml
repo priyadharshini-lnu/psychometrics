@@ -170,6 +170,11 @@ cs:
     remove: Odstranit
     removed: Odstraněno
     replace: Nahradit
+    reports_show_values_inside_bar: Zobrazit hodnoty uvnitř sloupce
+    reports_value_label_position: Poloha štítku s hodnotou
+    reports_value_label_position_center: Střed
+    reports_value_label_position_left: Vlevo
+    reports_value_label_position_right: Správně
     required: požadované
     reset: Obnovení
     reset_password: Obnovit heslo

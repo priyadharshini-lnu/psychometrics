@@ -170,6 +170,11 @@ ro:
     remove: Eliminați
     removed: Scos
     replace: Înlocuiți
+    reports_show_values_inside_bar: Afișează valorile în interiorul barei
+    reports_value_label_position: Poziția etichetei de valoare
+    reports_value_label_position_center: Centru
+    reports_value_label_position_left: Stânga
+    reports_value_label_position_right: Corect
     required: necesare
     reset: Reseta
     reset_password: Resetați parola

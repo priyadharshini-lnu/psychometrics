@@ -2216,6 +2216,7 @@ vi:
       pearson_usage_report: Việc sử dụng các bài kiểm tra của Pearson
       report_usage_summary: Tóm tắt báo cáo về tình hình sử dụng
       saville_usage_report: Cách sử dụng công cụ đánh giá Saville
+      user_access_review: Kiểm tra quyền truy cập của người dùng
       user_created_dates: Ngày do người dùng tạo
       user_reports_export: Xuất báo cáo người dùng
     reports: Báo cáo

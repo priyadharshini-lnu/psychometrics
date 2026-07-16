@@ -2216,6 +2216,7 @@ ro:
       pearson_usage_report: Utilizarea instrumentelor de evaluare Pearson
       report_usage_summary: Rezumatul utilizării raportului
       saville_usage_report: Utilizarea evaluării Saville
+      user_access_review: Analiza accesului utilizatorilor
       user_created_dates: Date create de utilizatori
       user_reports_export: Exportul rapoartelor utilizatorilor
     reports: Rapoarte

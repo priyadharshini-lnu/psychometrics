@@ -2216,6 +2216,7 @@ hr:
       pearson_usage_report: Upotreba Pearsonovih testova
       report_usage_summary: Sažetak upotrebe izvještaja
       saville_usage_report: Upotreba Saville Assessmenta
+      user_access_review: Pregled korisničkog pristupa
       user_created_dates: Datumi koje su kreirali korisnici
       user_reports_export: Izvoz korisničkih izvještaja
     reports: Izvješća
