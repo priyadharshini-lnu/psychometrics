@@ -50,6 +50,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<InnovationStyles>
           title={I18n.t('shared.created_at')}
           id="created_at"
+          sorter
           dataIndex="createdAt"
           render={createdAt => (
             dayjs(createdAt).format('lll')
@@ -59,6 +60,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<InnovationStyles>
           title={I18n.t('shared.last_updated')}
           id="updated_at"
+          sorter
           dataIndex="updatedAt"
           render={updatedAt => (
             dayjs(updatedAt).format('lll')

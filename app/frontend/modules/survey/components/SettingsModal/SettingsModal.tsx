@@ -155,6 +155,7 @@ const SettingsModalComponent = ({
           toggleTimer={toggleTimer}
           isAssessmentTimerAdded={isAssessmentTimerAdded}
           updateTimer={updateTimer}
+          isAgile={false}
         />
         <Col span={24}>
           <Space>
@@ -228,7 +229,7 @@ const EnableSingleQuestionWrapper = ({
 }
 
 export const AssessmentTimerSettings = ({
-  time, toggleTimer, isAssessmentTimerAdded, updateTimer,
+  time, toggleTimer, isAssessmentTimerAdded, updateTimer, isAgile,
 }) => (
   <>
     <Col span={24}>
@@ -240,6 +241,14 @@ export const AssessmentTimerSettings = ({
 
     {isAssessmentTimerAdded && (
       <>
+        {isAgile && (
+          <Col offset={2}>
+            <Alert
+              title={I18n.t('admin.agile_time_config_msg')}
+              type="warning"
+            />
+          </Col>
+        )}
         <Col offset={2} span={4}>
           <InputDuration
             placeholder="1h 30m"

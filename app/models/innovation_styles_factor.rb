@@ -24,6 +24,21 @@ class InnovationStylesFactor < ApplicationRecord
 
   default_scope { order('position asc NULLS LAST') }
 
+  scope :filterable_fields, lambda { |search_term|
+    search_term = search_term.to_s
+    records = joins(:factor)
+
+    if search_term.match?(/\A\d+\z/)
+      records.where(
+        "#{table_name}.id = :search_id OR factors.name ILIKE :search_name",
+        search_id: search_term.to_i,
+        search_name: "%#{search_term}%"
+      )
+    else
+      records.where('factors.name ILIKE :search_name', search_name: "%#{search_term}%")
+    end
+  }
+
   validates :predicate, :value, presence: true
   validates :predicate, inclusion: { in: CONDITION_MAP.keys.map(&:to_s) }
   validates :value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true

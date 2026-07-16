@@ -46,7 +46,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         id="condition"
         sorter
         render={subFact => CONDITION_MAP[subFact.predicate]}
-        width={300}
+        width={200}
       />
       <Resource.Column<SubFactors>
         title={I18n.t('admin.factors_form_value')}
@@ -60,11 +60,19 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         id="position"
         sorter
         render={subFact => subFact.position}
-        width={300}
+        width={150}
+      />
+      <Resource.Column<SubFactors>
+        title={I18n.t('admin.occupations_factors_list_weight')}
+        id="weight"
+        sorter
+        render={subFact => subFact.weight}
+        width={150}
       />
       <Resource.Column<SubFactors>
         title={I18n.t('shared.created_at')}
         id="created_at"
+        sorter
         dataIndex="createdAt"
         render={createdAt => (
           dayjs(createdAt).format('lll')
@@ -74,6 +82,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
       <Resource.Column<SubFactors>
         title={I18n.t('shared.last_updated')}
         id="updated_at"
+        sorter
         dataIndex="updatedAt"
         render={updatedAt => (
           dayjs(updatedAt).format('lll')
