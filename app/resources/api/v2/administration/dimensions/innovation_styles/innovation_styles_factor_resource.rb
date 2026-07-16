@@ -7,6 +7,26 @@ class Api::V2::Administration::Dimensions::InnovationStyles::InnovationStylesFac
 
   ransack_filters %i[filterable_fields search_query]
 
+  def self.sortable_fields(context)
+    super + %i[name condition created_at updated_at]
+  end
+
+  def self.apply_sort(records, order_options, context = {})
+    order_options.each do |field, direction|
+      records = case field.to_s
+                  when 'condition'
+                    super(records, { predicate: direction }, context)
+                  when 'name'
+                    sort_direction = direction.to_s == 'desc' ? :desc : :asc
+                    records.joins(:factor).reorder(Factor.arel_table[:name].send(sort_direction))
+                  else
+                    super(records, { field => direction }, context)
+                end
+    end
+
+    records
+  end
+
   def factor_name
     @model.factor&.name
   end

@@ -56,6 +56,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.created_at')}
           id="created_at"
           dataIndex="createdAt"
+          sorter
           render={createdAt => (
             dayjs(createdAt).format('lll')
           )}
@@ -65,6 +66,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
+          sorter
           render={updatedAt => (
             dayjs(updatedAt).format('lll')
           )}
