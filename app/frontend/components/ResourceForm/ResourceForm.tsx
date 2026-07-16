@@ -208,7 +208,7 @@ const ResourceForm: React.FC<Props> = ({
   const displayableError = (error: string | string[] | JSONApiError | JSONApiError[]) => (
     [error].flat().map((e: string | JSONApiError) => {
       if (_.isString(e)) return e
-      if (e.detail !== undefined && e.title !== undefined) return `${e.title} (${e.detail})`
+
       return e.title || e.detail
     }) as string[]
   )

@@ -1422,6 +1422,7 @@ en:
     occupation_factors_condition_set: Condition Set
     occupation_factors_title: Occupation Factors
     occupations: Occupations
+    occupations_factor_uniqueness: Factor has already been taken
     occupations_factors_list_condition: Condition
     occupations_factors_list_position: Position
     occupations_factors_list_weight: Weight

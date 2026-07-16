@@ -99,6 +99,7 @@ export const SubFactorsForm: React.FC<Props> = ({
       showSuccessMessages
       storeManager={{ form }}
       scrollToFirstError
+      nullifyEmptyString
       request={{ createResource: createSubFactors, updateResource: resource.updateResource }}
       onStatusChange={onStatusChange}
       onSuccessfulSubmission={onSuccessfulSubmission}
