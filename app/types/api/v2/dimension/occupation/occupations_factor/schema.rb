@@ -12,8 +12,8 @@ module Api
           proc do
             attribute[:predicate].filled(:string)
             attribute[:value].filled(Types::IntOrFloat)
-            attribute[:position].maybe(:integer)
-            attribute[:weight].maybe(Types::IntOrFloat)
+            optional(:position).maybe(:integer)
+            optional(:weight).maybe(Types::IntOrFloat)
           end
         end
 
