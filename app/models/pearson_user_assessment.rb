@@ -9,4 +9,9 @@ class PearsonUserAssessment < ApplicationRecord
   tenant_source :user_assessment
 
   delegate :user_reports, to: :user_assessment
+
+  def duration_minutes
+    pearson_variation = user_assessment.assessment.pearson_variations&.find { |v| v.code == variation }
+    pearson_variation&.duration_minutes
+  end
 end

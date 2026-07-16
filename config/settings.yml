@@ -1112,11 +1112,13 @@ providers:
             configuration:
               enable_timers: true
               change_items_count: 33
+            duration_minutes: 20
           - code: 15_items_timed
             name: 15 items timed
             configuration:
               enable_timers: true
               change_items_count: 0
+            duration_minutes: 20
   saville:
     assessments:
       - id: A830E4AB-BC66-4238-92E0-6E6FD3FD1EDF
