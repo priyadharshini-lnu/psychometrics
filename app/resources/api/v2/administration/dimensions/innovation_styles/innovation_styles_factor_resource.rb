@@ -12,15 +12,20 @@ class Api::V2::Administration::Dimensions::InnovationStyles::InnovationStylesFac
   end
 
   def self.apply_sort(records, order_options, context = {})
+    # We already have default order applied in the default_scope of the model,
+    # so we need to remove it before applying new order
+    records = records.reorder(nil)
+
     order_options.each do |field, direction|
+      sort_direction = direction.to_s == 'desc' ? :desc : :asc
+
       records = case field.to_s
                   when 'condition'
-                    super(records, { predicate: direction }, context)
+                    super(records, { predicate: sort_direction }, context)
                   when 'name'
-                    sort_direction = direction.to_s == 'desc' ? :desc : :asc
-                    records.joins(:factor).reorder(Factor.arel_table[:name].send(sort_direction))
+                    records.joins(:factor).order(Factor.arel_table[:name].public_send(sort_direction))
                   else
-                    super(records, { field => direction }, context)
+                    super(records, { field => sort_direction }, context)
                 end
     end
 

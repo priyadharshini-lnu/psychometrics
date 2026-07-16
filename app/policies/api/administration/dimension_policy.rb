@@ -23,6 +23,14 @@ module Api
         super
       end
 
+      def import?
+        has_permission?(:dimensions, :manage)
+      end
+
+      def validate_import?
+        has_permission?(:dimensions, :manage)
+      end
+
       private
 
       def record_owner_id
