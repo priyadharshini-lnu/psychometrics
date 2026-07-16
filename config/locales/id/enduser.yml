@@ -136,6 +136,8 @@ id:
     no_audio_detected: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda sudah terhubung dan berfungsi dengan baik.
     pass: Lewati
     pause: Jeda
+    pearson_timing_duration_minutes: Berbatas Waktu - %{duration} menit untuk menyelesaikannya
+    pearson_timing_untimed_duration: Tanpa batas waktu - membutuhkan waktu 20–25 menit untuk menyelesaikannya
     pending: Sedang diproses
     personal_readiness: Kesiapan Pribadi
     plan_text: Rencanakan untuk seluruh durasi. Setelah dimulai, istirahat mungkin tidak diperbolehkan, tergantung pada jenis penilaian.

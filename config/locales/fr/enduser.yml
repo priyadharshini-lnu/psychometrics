@@ -136,6 +136,8 @@ fr:
     no_audio_detected: Aucun son n'est détecté. Vérifiez si votre microphone est branché et fonctionne correctement.
     pass: Passer
     pause: Pause
+    pearson_timing_duration_minutes: Chronométré - %{duration} minutes pour terminer
+    pearson_timing_untimed_duration: Sans limite de temps - 20 à 25 minutes pour terminer l'exercice
     pending: En attente
     personal_readiness: Préparation personnelle
     plan_text: Prévoyez du temps pour toute la durée de l'épreuve. Une fois l'épreuve commencée, les pauses ne seront peut-être pas autorisées, selon le type d'évaluation.
