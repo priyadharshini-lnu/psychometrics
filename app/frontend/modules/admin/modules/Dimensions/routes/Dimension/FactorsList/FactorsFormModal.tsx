@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
-  Avatar, Button, Checkbox, Form, Input, Upload, Select, InputNumber,
+  Avatar, Button, Form, Input, Upload, Select, InputNumber,
   Space, Flex, Radio, Typography, Tooltip,
 } from 'antd'
 import { useDispatch } from 'react-redux'
@@ -9,7 +9,7 @@ import omit from 'lodash/omit'
 import get from 'lodash/get'
 import sortBy from 'lodash/sortBy'
 import { useParams } from 'react-router-dom'
-import { UploadOutlined, QuestionCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { UploadOutlined, QuestionCircleOutlined, DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Factor, uploadFiles } from '~/modules/admin/modules/campaigns/core/factors'
 import { useResourceContext } from '~/modules/admin/components/Resource'
 import ResourceFormModal from '~/components/ResourceFormModal'
@@ -80,6 +80,11 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
   const hideScoreRange = ['external_score', 'custom_formula'].includes(scoringStrategy)
   const hideScoreDefinitions = hideScoreRange || PARENT_FACTOR_STRATEGIES.includes(scoringStrategy)
   const sortedScoringStrategies = sortBy(SCORING_STRATEGIES, strategy => I18n.t(`admin.${strategy}`))
+  const isScoreRangeInvalid = scoreMin != null && scoreMax != null && scoreMin >= scoreMax
+  const isScoreMinTouched = form.isFieldTouched('scoreMin')
+  const isScoreMaxTouched = form.isFieldTouched('scoreMax')
+  const showScoreMinError = isScoreRangeInvalid && isScoreMinTouched && !isScoreMaxTouched
+  const showScoreMaxError = isScoreRangeInvalid && isScoreMaxTouched
 
   const handleUploadChange = (info: UploadChangeParam<UploadFile>) => {
     setFileList(info.fileList)
@@ -245,13 +250,17 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
                   ({ getFieldValue }) => ({
                     validator (_, value) {
                       const max = getFieldValue('scoreMax')
+
                       if (value == null || max == null || value < max) {
                         return Promise.resolve()
                       }
+
                       return Promise.reject(new Error(I18n.t('admin.score_min_must_be_less_than_score_max')))
                     },
                   }),
                 ]}
+                validateStatus={showScoreMinError ? 'error' : ''}
+                help={showScoreMinError ? I18n.t('admin.score_min_must_be_less_than_score_max') : ''}
               >
                 <InputNumber min={1} max={10} />
               </Form.Item>
@@ -263,13 +272,17 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
                   ({ getFieldValue }) => ({
                     validator (_, value) {
                       const min = getFieldValue('scoreMin')
+
                       if (value == null || min == null || value > min) {
                         return Promise.resolve()
                       }
+
                       return Promise.reject(new Error(I18n.t('admin.score_max_must_be_greater_than_score_min')))
                     },
                   }),
                 ]}
+                validateStatus={showScoreMaxError ? 'error' : ''}
+                help={showScoreMaxError ? I18n.t('admin.score_max_must_be_greater_than_score_min') : ''}
               >
                 <InputNumber min={1} max={10} />
               </Form.Item>
@@ -327,6 +340,13 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
               {factor?.iconUrl && !removeIcon && (
                 <Space>
                   <Avatar src={factor.iconUrl} size={64} shape="square" />
+                  <Button
+                    danger
+                    icon={<DeleteOutlined />}
+                    onClick={() => setRemoveIcon(true)}
+                  >
+                    {I18n.t('shared.delete')}
+                  </Button>
                 </Space>
               )}
               <Upload
@@ -339,14 +359,6 @@ export const FactorsFormModal: React.FC<Props> = ({ close, factor }) => {
               >
                 <Button icon={<UploadOutlined />}>{I18n.t('assessments.upload')}</Button>
               </Upload>
-              <div style={{ marginTop: '24px' }}>
-                <Checkbox
-                  checked={removeIcon}
-                  onChange={e => setRemoveIcon(e.target.checked)}
-                >
-                  {I18n.t('admin.remove_icon')}
-                </Checkbox>
-              </div>
             </Space>
           </Form.Item>
 

@@ -26,58 +26,72 @@ const CustomFormula = () => (
   </Form.Item>
 )
 
-const QuestionsPercentage = () => (
-  <>
-    <Form.Item
-      label={I18n.t('admin.scale_min')}
-      name="scaleMin"
-      dependencies={['scaleMax']}
-      rules={[
-        ({ getFieldValue }) => ({
-          validator (_, value) {
-            if (value == null) return Promise.resolve()
-            if (value < 0) {
-              return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
-            }
+const QuestionsPercentage = ({ form }) => {
+  const scaleMin = Form.useWatch(['scaleMin'], form)
+  const scaleMax = Form.useWatch(['scaleMax'], form)
+  const isScaleRangeInvalid = scaleMin != null && scaleMax != null && scaleMin > scaleMax
+  const isScaleMinTouched = form.isFieldTouched('scaleMin')
+  const isScaleMaxTouched = form.isFieldTouched('scaleMax')
+  const showScaleMinError = isScaleRangeInvalid && isScaleMinTouched && !isScaleMaxTouched
+  const showScaleMaxError = isScaleRangeInvalid && isScaleMaxTouched
 
-            const scaleMax = getFieldValue('scaleMax')
-            if (scaleMax == null || value <= scaleMax) {
-              return Promise.resolve()
-            }
+  return (
+    <>
+      <Form.Item
+        label={I18n.t('admin.scale_min')}
+        name="scaleMin"
+        dependencies={['scaleMax']}
+        rules={[
+          ({ getFieldValue }) => ({
+            validator (_, value) {
+              if (value == null) return Promise.resolve()
+              if (value < 0) {
+                return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
+              }
 
-            return Promise.reject(new Error(I18n.t('admin.scale_min_must_be_less_than_scale_max')))
-          },
-        }),
-      ]}
-    >
-      <InputNumber min={0} />
-    </Form.Item>
-    <Form.Item
-      label={I18n.t('admin.scale_max')}
-      name="scaleMax"
-      dependencies={['scaleMin']}
-      rules={[
-        ({ getFieldValue }) => ({
-          validator (_, value) {
-            if (value == null) return Promise.resolve()
-            if (value < 0) {
-              return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
-            }
+              const max = getFieldValue('scaleMax')
+              if (max == null || value <= max) {
+                return Promise.resolve()
+              }
 
-            const scaleMin = getFieldValue('scaleMin')
-            if (scaleMin == null || value >= scaleMin) {
-              return Promise.resolve()
-            }
+              return Promise.reject(new Error(I18n.t('admin.scale_min_must_be_less_than_scale_max')))
+            },
+          }),
+        ]}
+        validateStatus={showScaleMinError ? 'error' : ''}
+        help={showScaleMinError ? I18n.t('admin.scale_min_must_be_less_than_scale_max') : ''}
+      >
+        <InputNumber min={0} />
+      </Form.Item>
+      <Form.Item
+        label={I18n.t('admin.scale_max')}
+        name="scaleMax"
+        dependencies={['scaleMin']}
+        rules={[
+          ({ getFieldValue }) => ({
+            validator (_, value) {
+              if (value == null) return Promise.resolve()
+              if (value < 0) {
+                return Promise.reject(new Error(I18n.t('admin.scale_value_must_not_be_negative')))
+              }
 
-            return Promise.reject(new Error(I18n.t('admin.scale_max_must_be_greater_than_scale_min')))
-          },
-        }),
-      ]}
-    >
-      <InputNumber min={0} />
-    </Form.Item>
-  </>
-)
+              const min = getFieldValue('scaleMin')
+              if (min == null || value >= min) {
+                return Promise.resolve()
+              }
+
+              return Promise.reject(new Error(I18n.t('admin.scale_max_must_be_greater_than_scale_min')))
+            },
+          }),
+        ]}
+        validateStatus={showScaleMaxError ? 'error' : ''}
+        help={showScaleMaxError ? I18n.t('admin.scale_max_must_be_greater_than_scale_min') : ''}
+      >
+        <InputNumber min={0} />
+      </Form.Item>
+    </>
+  )
+}
 
 export const PercentageCheckbox = ({ strategy }) => {
   if (strategy === 'sub_factor_questions_sum' || strategy === 'questions_sum') {
@@ -122,7 +136,7 @@ export const ScoringStrategyEditor = ({ strategy, form, childrenFactorType }) =>
   }
 
   if (strategy === 'questions_percentage') {
-    return <QuestionsPercentage />
+    return <QuestionsPercentage form={form} />
   }
 
   if (INDICATOR_SUPPORTED_STRATEGIES.includes(strategy) && childrenFactorType === 'indicator') {

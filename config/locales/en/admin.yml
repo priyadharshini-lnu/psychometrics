@@ -787,6 +787,7 @@ en:
     factor_feedback: Factor Feedback
     factor_selection: Factor Selection
     factors: Factors
+    factors_filter_strategy: Strategy
     factors_form_components_ExternalList_table_jsonpath: JSON Path
     factors_form_components_ExternalList_table_types_norm_score: Normed Score
     factors_form_components_ExternalList_table_types_percentage: Percentage

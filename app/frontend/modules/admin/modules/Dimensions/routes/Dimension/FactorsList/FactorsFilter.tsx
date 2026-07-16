@@ -27,12 +27,16 @@ const SCORING_STRATEGIES = [
   'custom_formula',
 ]
 
-const sortedScoringStrategyOptions = SCORING_STRATEGIES
-  .map(strategy => ({
+const scoringStrategyOptions = [
+  {
+    label: I18n.t('administration.any'),
+    value: '',
+  },
+  ...SCORING_STRATEGIES.map(strategy => ({
     label: I18n.t(`admin.${strategy}`),
     value: strategy,
-  }))
-  .sort((a, b) => a.label.localeCompare(b.label))
+  })).sort((a, b) => a.label.localeCompare(b.label)),
+]
 
 export const FactorsFilter: FC<Props> = ({
   openModal,
@@ -54,14 +58,6 @@ export const FactorsFilter: FC<Props> = ({
   }
 
   const selectedScoringStrategy = resource.getFilteredValue('scoring_strategy_in') as string | undefined
-  const scoringStrategyOptions = [
-    {
-      label: I18n.t('administration.any'),
-      value: '',
-    },
-    ...sortedScoringStrategyOptions,
-  ]
-
   const handleScoringStrategyFilterChange = (value: string) => {
     resource.changeFilter('scoring_strategy_in', value || undefined)
   }
@@ -72,8 +68,9 @@ export const FactorsFilter: FC<Props> = ({
       placeholder={I18n.t('shared.search')}
     >
       <Select
-        value={selectedScoringStrategy || ''}
+        value={selectedScoringStrategy || undefined}
         options={scoringStrategyOptions}
+        placeholder={I18n.t('admin.factors_filter_strategy')}
         style={{ minWidth: 260 }}
         onChange={handleScoringStrategyFilterChange}
       />
