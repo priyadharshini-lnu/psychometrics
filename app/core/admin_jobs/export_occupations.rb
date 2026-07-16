@@ -3,7 +3,8 @@
 module AdminJobs
   class ExportOccupations < BaseExportCsv
     HEADER_COLUMNS = [
-      'Client Name', 'First Name', 'Last Name', 'Email', 'Assessment ID', 'Completed At', 'Assessment', 'Subdomain'
+      'Client Name', 'First Name', 'Last Name', 'Email', 'Assessment ID', 'Completed At', 'Assessment', 'Subdomain',
+      'Condition set ID'
     ].freeze
 
     RANK_COLUMNS = %w[
@@ -36,6 +37,7 @@ module AdminJobs
           'user_assessments.completed_at',
           'assessments.name AS assessment',
           'clients.subdomain',
+          'users_results.occupation_condition_set_id',
           'users_results.occupations'
         ).
         where(
@@ -63,7 +65,8 @@ module AdminJobs
         row.assessment.id,
         row.completed_at,
         row.assessment.name,
-        row.subdomain
+        row.subdomain,
+        row.occupation_condition_set_id
       ]
 
       occupations.each do |occ|
