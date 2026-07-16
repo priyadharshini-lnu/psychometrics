@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import {
   Drawer, Button,
   Form, Input, Select, Spin,
@@ -33,6 +33,7 @@ export const DataReportForm: React.FC<Props> = ({
 }) => {
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
+  const [submitting, setSubmitting] = useState(false)
   const selectedOwnerId = Form.useWatch('ownerId', form) as string | null
   const selectedReportType = Form.useWatch('reportType', form) as string
   const selectedScope = Form.useWatch('scope', form) as string
@@ -69,14 +70,31 @@ export const DataReportForm: React.FC<Props> = ({
     }
   }, [defaultScope, form])
 
-  const createResource = (data: Record<string, unknown>) => {
-    const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
-    return resource.createResource(processedData).then(() => close())
+  const createResource = async (data: Record<string, unknown>) => {
+    if (submitting) return
+    setSubmitting(true)
+    try {
+      const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
+      await resource.createResource(processedData)
+      close()
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  const updateResource = (data: Record<string, unknown>) => {
-    const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
-    return resource.updateResource({ ...processedData, id: dataReport?.id as string }).then(() => close())
+  const updateResource = async (data: Record<string, unknown>) => {
+    if (submitting) return
+    setSubmitting(true)
+    try {
+      const processedData = reportTypeDefinition?.processConfiguration(data) ?? data
+      await resource.updateResource({
+        ...processedData,
+        id: dataReport?.id as string,
+      })
+      close()
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const ConfigComponent = reportTypeDefinition?.component
@@ -177,7 +195,12 @@ export const DataReportForm: React.FC<Props> = ({
                 parsedConfiguration={parsedConfiguration}
               />
             )}
-            <Button type="primary" htmlType="submit">
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={submitting}
+              disabled={submitting}
+            >
               {dataReport?.id ? I18n.t('shared.update') : I18n.t('shared.create')}
             </Button>
           </>
