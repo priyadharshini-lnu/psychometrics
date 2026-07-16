@@ -48,8 +48,7 @@ module Administration
 
       def update_occupation_condition_set
         condition_set_id = params.dig(:campaign_assessment, :occupation_condition_set_id)
-        apply_to_existing = ActiveRecord::Type::Boolean.new.cast(params.dig(:campaign_assessment,
-                                                                            :apply_to_existing_users))
+        apply_to_existing = ActiveRecord::Type::Boolean.new.cast(params[:apply_to_existing_users])
 
         ::CampaignAssessments::UpdateOccupationConditionSet.call(resource, condition_set_id, apply_to_existing) do
           on(:ok) do |updated_resource|
