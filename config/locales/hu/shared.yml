@@ -176,6 +176,11 @@ hu:
     remove: Távolítsa el a
     removed: Eltávolított
     replace: Cserélje ki
+    reports_show_values_inside_bar: Értékek megjelenítése az oszlopon belül
+    reports_value_label_position: Az értékcímke helyzete
+    reports_value_label_position_center: Központ
+    reports_value_label_position_left: Balra
+    reports_value_label_position_right: Igaz
     required: szükséges
     reset: Átszed
     reset_password: Jelszó visszaállítása

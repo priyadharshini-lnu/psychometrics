@@ -176,6 +176,11 @@ ar:
     remove: إزالة
     removed: تمت الإزالة
     replace: استبدال
+    reports_show_values_inside_bar: إظهار القيم داخل الشريط
+    reports_value_label_position: موضع علامة القيمة
+    reports_value_label_position_center: الوسط
+    reports_value_label_position_left: يسار
+    reports_value_label_position_right: صحيح
     required: مطلوب
     reset: اعاده تعيين
     reset_password: إعادة تعيين كلمة المرور

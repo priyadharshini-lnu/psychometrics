@@ -176,6 +176,11 @@ zh-Hant:
     remove: 移除
     removed: 已移除
     replace: 替换
+    reports_show_values_inside_bar: 在柱形图内显示数值
+    reports_value_label_position: 值标签的位置
+    reports_value_label_position_center: 中心
+    reports_value_label_position_left: 左
+    reports_value_label_position_right: 对
     required: 所需
     reset: 重設
     reset_password: 重設密碼

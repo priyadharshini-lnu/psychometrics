@@ -176,6 +176,11 @@ en-US:
     remove: Remove
     removed: Removed
     replace: Replace
+    reports_show_values_inside_bar: Show values inside bar
+    reports_value_label_position: Value label position
+    reports_value_label_position_center: Center
+    reports_value_label_position_left: Left
+    reports_value_label_position_right: Right
     required: Audit ID
     reset: Reset
     reset_password: Reset Password

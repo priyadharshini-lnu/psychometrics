@@ -5,6 +5,7 @@ class AI::AssistantOutputSchemaKey < ApplicationRecord
 
   belongs_to :ai_assistant, class_name: 'AI::Assistant'
 
+  tenant_config has_global_records: true, optional: true
   include Tenantable
 
   tenant_source :ai_assistant

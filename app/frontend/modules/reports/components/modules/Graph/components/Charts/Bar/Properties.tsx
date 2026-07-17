@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Checkbox, InputNumber, Space, Typography,
+  Checkbox, InputNumber, Select, Space, Typography,
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
@@ -50,6 +50,11 @@ const positionOptions = [
 const graphSubtypeOptions = [
   I18n.t('reports.builder.graph.properties.graphTypeVertical'),
   I18n.t('reports.builder.graph.properties.graphTypeHorizontal'),
+]
+const valueLabelPositionOptions = [
+  { value: 'left', label: I18n.t('shared.reports_value_label_position_left') },
+  { value: 'center', label: I18n.t('shared.reports_value_label_position_center') },
+  { value: 'right', label: I18n.t('shared.reports_value_label_position_right') },
 ]
 const axisDisplayOptions: AxisDisplayOptions [] = [
   { label: I18n.t('reports.builder.graph.properties.hideXAxisLine'), propName: 'xAxisLinesHide' },
@@ -102,6 +107,12 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
   const changeLegendPosition = (value: string) => {
     updateAll((model) => {
       model.props.legendPosition = value
+    })
+  }
+
+  const changeValueLabelPosition = (value: 'center' | 'left' | 'right' | undefined) => {
+    updateAll((model) => {
+      model.props.valueLabelPosition = value
     })
   }
 
@@ -227,6 +238,29 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
       >
         {I18n.t('reports.builder.graph.properties.hideZeroValueColumns')}
       </Checkbox>
+      <Checkbox
+        checked={model.props.showValuesInsideBar || false}
+        onChange={e => checkboxHandler('showValuesInsideBar', e)}
+        className="font-normal"
+      >
+        {I18n.t('shared.reports_show_values_inside_bar')}
+      </Checkbox>
+      <Typography.Text>{I18n.t('shared.reports_value_label_position')}</Typography.Text>
+      <Select
+        size="small"
+        value={model.props.valueLabelPosition}
+        onChange={changeValueLabelPosition}
+        allowClear
+        placeholder={I18n.t('shared.none')}
+        getPopupContainer={(triggerNode: HTMLElement) => triggerNode.parentNode as HTMLElement}
+        className="w-100"
+      >
+        {valueLabelPositionOptions.map(option => (
+          <Select.Option key={option.value} value={option.value}>
+            {option.label}
+          </Select.Option>
+        ))}
+      </Select>
     </Space>
   )
 }

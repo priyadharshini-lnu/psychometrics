@@ -136,6 +136,8 @@ pt:
     no_audio_detected: Não foi detetado áudio. Verifique se o seu microfone está ligado e a funcionar corretamente.
     pass: Passe
     pause: Pausa
+    pearson_timing_duration_minutes: Com limite de tempo - %{duration} minutos para concluir
+    pearson_timing_untimed_duration: Sem limite de tempo – demora entre 20 e 25 minutos a concluir
     pending: Em espera
     personal_readiness: Preparação pessoal
     plan_text: Planeie para toda a duração. Uma vez iniciada, poderá não ser permitido fazer pausas, dependendo do tipo de avaliação.

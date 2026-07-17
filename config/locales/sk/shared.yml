@@ -176,6 +176,11 @@ sk:
     remove: Odstránenie stránky
     removed: Odstránený
     replace: Nahradiť
+    reports_show_values_inside_bar: Zobraziť hodnoty vnútri stĺpca
+    reports_value_label_position: Poloha štítku s hodnotou
+    reports_value_label_position_center: Stred
+    reports_value_label_position_left: Vľavo
+    reports_value_label_position_right: Vpravo
     required: požadované
     reset: Vynulovanie
     reset_password: Obnovenie hesla

@@ -136,6 +136,8 @@ nl:
     no_audio_detected: Er wordt geen geluid gedetecteerd. Controleer of je microfoon is aangesloten en goed werkt.
     pass: Sla over
     pause: Pauze
+    pearson_timing_duration_minutes: Tijdsduur - %{duration} minuten om te voltooien
+    pearson_timing_untimed_duration: Zonder tijdslimiet – duurt ongeveer 20-25 minuten om te voltooien
     pending: In behandeling
     personal_readiness: Persoonlijke voorbereiding
     plan_text: Plan voor de volledige duur. Als je eenmaal bent begonnen, zijn pauzes mogelijk niet toegestaan, afhankelijk van het type toets.

@@ -176,6 +176,11 @@ vi:
     remove: Di dời
     removed: Gỡ bỏ
     replace: Thay thế
+    reports_show_values_inside_bar: Hiển thị các giá trị bên trong thanh
+    reports_value_label_position: Vị trí nhãn giá trị
+    reports_value_label_position_center: Trung tâm
+    reports_value_label_position_left: Bên trái
+    reports_value_label_position_right: Phải
     required: yêu cầu
     reset: Reset
     reset_password: Đặt lại mật khẩu

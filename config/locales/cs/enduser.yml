@@ -136,6 +136,8 @@ cs:
     no_audio_detected: Nebylo zjištěno žádné zvukové zařízení. Zkontrolujte prosím, zda je mikrofon připojen a zda správně funguje.
     pass: Přeskočit
     pause: Pauza
+    pearson_timing_duration_minutes: Časový limit – %{duration} minut na dokončení
+    pearson_timing_untimed_duration: Bez časového limitu – vyřešení trvá 20–25 minut
     pending: V řešení
     personal_readiness: Osobní připravenost
     plan_text: Naplánujte si čas na celou dobu trvání. Jakmile začnete, nemusí být v závislosti na typu hodnocení povoleny přestávky.
