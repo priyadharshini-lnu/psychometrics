@@ -63,11 +63,11 @@ module AdminAuth
     end
 
     def cache_key(nonce)
-      "#{HANDOFF_CACHE_PREFIX}:#{nonce}"
+      "#{AdminAuth::HANDOFF_CACHE_PREFIX}:#{nonce}"
     end
 
     def verifier_purpose
-      HANDOFF_VERIFIER_PURPOSE
+      AdminAuth::HANDOFF_VERIFIER_PURPOSE
     end
   end
 end

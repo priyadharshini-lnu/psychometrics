@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 module AdminAuth
-  HANDOFF_CACHE_PREFIX     = 'admin_handoff'
-  HANDOFF_VERIFIER_PURPOSE = 'admin_handoff_token'
-
   class GenerateHandoffToken < BaseCommand
     EXPIRY = 2.minutes
 
@@ -62,11 +59,11 @@ module AdminAuth
     end
 
     def cache_key(nonce)
-      "#{HANDOFF_CACHE_PREFIX}:#{nonce}"
+      "#{AdminAuth::HANDOFF_CACHE_PREFIX}:#{nonce}"
     end
 
     def verifier_purpose
-      HANDOFF_VERIFIER_PURPOSE
+      AdminAuth::HANDOFF_VERIFIER_PURPOSE
     end
   end
 end
