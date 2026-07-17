@@ -56,6 +56,7 @@ sr-Latn:
     advanced: Напредно
     advanced_mode_tooltip: Koristite napredni režim za brzu šablonu koristeći tečni šablon sa dostupnim promenljivim. Pogledajte dokumentaciju za više detalja.
     agile: GIBGIB
+    agile_time_config_msg: Агилне процене могу да користе тајмере по секцијама (подешене у конфигурационим подешавањима). Обавезно предвидите довољно времена да бисте удобно завршили сваку секцију.
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта са најновијим зависностима.
     ai_artifacts: AI artefakti
@@ -731,6 +732,7 @@ sr-Latn:
     enter_schema_key: Unesite ključ šeme
     error: Грешка
     error_color: Boja greške
+    errors_csv_file_import: Молимо отпремите CSV фајл пре него што кликнете на "Увоз".
     errors_csv_file_required: Datoteka mora biti CSV datoteka
     errors_error_msg: Nešto je pošlo naopako. Molimo Vas da osvežite stranicu i ako problem i dalje postoji, kontaktirajte svog administratora
     errors_min_retention: Ne može biti manje od 1 dana
@@ -778,6 +780,7 @@ sr-Latn:
     factor_feedback: Фактор повратне информације
     factor_selection: Избор фактора
     factors: Фактори
+    factors_filter_strategy: Стратегија
     factors_form_components_ExternalList_table_jsonpath: JSON Path
     factors_form_components_ExternalList_table_types_norm_score: Normirani skor
     factors_form_components_ExternalList_table_types_percentage: Procenat
@@ -1260,6 +1263,7 @@ sr-Latn:
     maintenance_settings: Подешавања одржавања
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     make_report_available_to_subject_when: 'Učini izveštaj dostupnim subjektu kada:'
+    manage_condition_sets: Управљање скуповима стања
     manager_approval_required: Izveštaj za %{user} zahteva odobrenje menadžera pre preuzimanja
     manager_approves_reports: Menadžer odobrava izveštaje
     manager_can_access_subject_reports: Menadžer može da pristupi izveštajima subjekta
@@ -1370,6 +1374,7 @@ sr-Latn:
     norm_region: Норм регион
     norm_region_form_select: Изаберите регион норме
     norm_region_update_success: Норм регион је успешно ажуриран
+    norm_score: Нормални резултат
     normal: Normalno
     normalize_factor_scores: Normalizujte rezultate faktora
     norms: Norme
@@ -1408,12 +1413,14 @@ sr-Latn:
     occupation_factors_condition_set: Скуп услова
     occupation_factors_title: Фактори занимања
     occupations: Zanimanja
+    occupations_factor_uniqueness: Фактор је већ узет
     occupations_factors_list_condition: Stanje
     occupations_factors_list_position: Pozicija
     occupations_factors_list_weight: Ponder
     occupations_form_alternative_icon: Алтернативна икона
     occupations_form_color: Боја
     occupations_form_indicative_roles_image: Индикативне улоге слика
+    occupations_form_key_career_tracks_hint: '"+" - листа, "*" - подебљано. Пример: + *Биологија* - неки опис...'
     occupations_form_key_career_tracks_image: Кључне каријерне путање
     occupations_index_title: Zanimanja
     occupations_resource_confirmations_delete_body: "<p>Da li ste sigurni da želite da izbrišete ovo zanimanje?</p>\n"
@@ -2125,6 +2132,7 @@ sr-Latn:
     range_min_max: Домeн %{min} - %{max}
     rationale: Оправдање
     raw: SIROVO
+    raw_score: Сирови резултат
     reason_for_changes: Разлог за промене
     recents: Недавни
     record_id: Zapis ID
@@ -2156,6 +2164,7 @@ sr-Latn:
     remove_confirm_success: Predmet sa imejlom '%{subjectEmail}'' je uspešno uklonjen.
     remove_confirm_title: Ukloni temu
     remove_confirmation: Да ли сте сигурни да желите да уклоните овај предмет?
+    remove_icon: Уклони икону
     remove_output_schema_key: Ukloni izlazni ključ šeme
     remove_successfully: Медијски ставка је успешно уклоњена.
     render_button: Render Šablon
@@ -2406,6 +2415,11 @@ sr-Latn:
       user_full_name_cont: Име корисника
     saville: San-Tome i Prinsipi
     saville_assessment: Savil Procena
+    scale_max: Максимална скала
+    scale_max_must_be_greater_than_scale_min: Максимална вредност скале треба да буде већа од минималне вредности скале.
+    scale_min: Скала мин
+    scale_min_must_be_less_than_scale_max: Минимална вредност скале треба да буде мања од максималне вредности скале.
+    scale_value_must_not_be_negative: Вредност не би требало да буде негативна.
     schedule: Raspored
     schedule_email: Zakaži imejl
     schedule_email_title: Zakaži imejl
@@ -2542,10 +2556,13 @@ sr-Latn:
     score_definition_placeholder: Унесите дефиницију за овај ниво бодовања
     score_definitions: Дефиниције бодова
     score_max: Постигни максимум
+    score_max_must_be_greater_than_score_min: Максимални резултат мора бити већи од минималног резултата.
     score_min: Минимални резултат
+    score_min_must_be_less_than_score_max: Минимална оцена мора бити мања од максималне оцене.
     score_must_be_in_between_min_and_max: Резултат мора бити између %{min} и %{max}.
     score_not_applicable: Резултат није примењив
     score_range_info: 'Опсег бодова: %{min} - %{max}'
+    score_type: Тип резултата
     score_with_ai: Постигни са АИ
     scores_finalized: Резултати су коначни и не могу се мењати.
     scoring: Bodovanja
@@ -3109,6 +3126,7 @@ sr-Latn:
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
     translations:
+      import: Увоз превода
       title: Преводи
     translations_export_failure_msg: Greška prilikom izvoza prevoda
     translations_export_success_msg: Izvoz razvojnih akcija u toku.

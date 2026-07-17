@@ -56,6 +56,7 @@ ru:
     advanced: Для опытных пользователей
     advanced_mode_tooltip: Используйте расширенный режим для быстрого создания шаблонов с помощью шаблона Liquid с доступными переменными. Более подробную информацию см. в документации.
     agile: AGILE
+    agile_time_config_msg: При проведении оценок по методологии Agile могут использоваться таймеры для отдельных разделов (настраиваемые в параметрах конфигурации). Убедитесь, что выделили достаточно времени на каждый раздел, чтобы его можно было пройти без спешки.
     ai_artifact_result_generation_admin_job_failed: Артефакт «%{artifact_name}» не может быть сгенерирован для пользователя «%{user_email}».
     ai_artifact_result_stale: Результат может быть устаревшим, поскольку зависимости артефакта ИИ изменились с момента генерации последнего результата. Рассмотрите возможность повторной генерации артефакта с использованием последних зависимостей.
     ai_artifacts: Артефакты искусственного интеллекта
@@ -731,6 +732,7 @@ ru:
     enter_schema_key: Введите ключ схемы
     error: Ошибка
     error_color: Цвет ошибки
+    errors_csv_file_import: Пожалуйста, загрузите файл CSV, прежде чем нажать кнопку «Импорт»
     errors_csv_file_required: Файл должен быть файлом CSV.
     errors_error_msg: Что-то пошло не так. Обновите страницу и, если проблема не исчезнет, обратитесь к администратору.
     errors_min_retention: Не может быть менее 1 дня
@@ -778,6 +780,7 @@ ru:
     factor_feedback: Обратная связь по факторам
     factor_selection: Выбор факторов
     factors: Факторы
+    factors_filter_strategy: Стратегия
     factors_form_components_ExternalList_table_jsonpath: JSON Path
     factors_form_components_ExternalList_table_types_norm_score: Нормированный балл
     factors_form_components_ExternalList_table_types_percentage: Процент
@@ -1260,6 +1263,7 @@ ru:
     maintenance_settings: Настройки обслуживания
     maintenance_settings_description: Управление окнами и настройками обслуживания системы
     make_report_available_to_subject_when: 'Предоставить отчет субъекту, когда:'
+    manage_condition_sets: Управление наборами условий
     manager_approval_required: Отчет для %{user} требует утверждения менеджера перед загрузкой
     manager_approves_reports: Менеджер утверждает отчеты
     manager_can_access_subject_reports: Менеджер может получить доступ к отчетам по предмету
@@ -1370,6 +1374,7 @@ ru:
     norm_region: Норма Регион
     norm_region_form_select: Выберите регион Норм
     norm_region_update_success: Регион Норм успешно обновлен
+    norm_score: Нормативный балл
     normal: Нормальный
     normalize_factor_scores: Нормализация факторных оценок
     norms: Нормы
@@ -1408,12 +1413,14 @@ ru:
     occupation_factors_condition_set: Набор условий
     occupation_factors_title: Факторы, связанные с родом занятий
     occupations: Профессии
+    occupations_factor_uniqueness: Этот фактор уже учтён
     occupations_factors_list_condition: Состояние
     occupations_factors_list_position: Позиция
     occupations_factors_list_weight: Вес
     occupations_form_alternative_icon: Альтернативная иконка
     occupations_form_color: Цвет
     occupations_form_indicative_roles_image: Иллюстрация типичных ролей
+    occupations_form_key_career_tracks_hint: "«+» — список, «*» — жирный шрифт. Пример: + *Биология* — краткое описание..."
     occupations_form_key_career_tracks_image: Изображение основных направлений карьерного роста
     occupations_index_title: Профессии
     occupations_resource_confirmations_delete_body: "<p>Вы уверены, что хотите удалить эту профессию?</p>\n"
@@ -2125,6 +2132,7 @@ ru:
     range_min_max: ДИАПАЗОН%{min} - %{max}
     rationale: Обоснование
     raw: RAW
+    raw_score: Брутто-балл
     reason_for_changes: Причина изменений
     recents: Последние
     record_id: Идентификатор записи
@@ -2156,6 +2164,7 @@ ru:
     remove_confirm_success: Тема с электронным адресом «%{subjectEmail}» была успешно удалена.
     remove_confirm_title: Удалить тему
     remove_confirmation: Вы уверены, что хотите удалить этот элемент?
+    remove_icon: Удалить значок
     remove_output_schema_key: Удалить ключ схемы вывода
     remove_successfully: Медиафайл удален успешно.
     render_button: Шаблон рендеринга
@@ -2406,6 +2415,11 @@ ru:
       user_full_name_cont: Имя пользователя
     saville: Сэвилл
     saville_assessment: Оценка Saville
+    scale_max: Максимальный масштаб
+    scale_max_must_be_greater_than_scale_min: Максимальное значение масштаба должно быть больше минимального значения масштаба
+    scale_min: Минимальный масштаб
+    scale_min_must_be_less_than_scale_max: Минимальное значение шкалы должно быть меньше максимального значения шкалы
+    scale_value_must_not_be_negative: Значение не должно быть отрицательным
     schedule: Расписание
     schedule_email: Расписание Электронная почта
     schedule_email_title: Расписание Электронная почта
@@ -2545,10 +2559,13 @@ ru:
     score_definition_placeholder: Введите определение для этого уровня оценки
     score_definitions: Определения баллов
     score_max: Максимальный балл
+    score_max_must_be_greater_than_score_min: Максимальный балл должен быть больше минимального балла
     score_min: Минимальный балл
+    score_min_must_be_less_than_score_max: Минимальный балл должен быть меньше максимального балла
     score_must_be_in_between_min_and_max: Оценка должна быть в диапазоне от %{min} до %{max}.
     score_not_applicable: Оценка не применима
     score_range_info: 'Диапазон баллов: %{min} - %{max}'
+    score_type: Тип результата
     score_with_ai: Очки с помощью ИИ
     scores_finalized: Оценки окончательные и не подлежат изменению
     scoring: Оценка
@@ -3117,6 +3134,7 @@ ru:
     translated_with_ai_notice: Перевод с помощью ИИ
     translation_assistant_not_configured: Помощник перевода не настроен
     translations:
+      import: Импорт переводов
       title: Переводы
     translations_export_failure_msg: Ошибка при экспорте переводов
     translations_export_success_msg: Экспорт текущих действий по развитию.

@@ -56,6 +56,7 @@ pt:
     advanced: Avançado
     advanced_mode_tooltip: Use o modo avançado para plantar prompts usando o template líquido com variáveis disponíveis. Consulte a documentação para mais detalhes.
     agile: ÁGIL
+    agile_time_config_msg: As avaliações ágeis podem utilizar temporizadores por secção (definidos nas definições de configuração). Certifique-se de que define tempo suficiente para concluir cada secção com tranquilidade.
     ai_artifact_result_generation_admin_job_failed: O artefato "%{artifact_name}" não pode ser gerado para o usuário "%{user_email}".
     ai_artifact_result_stale: O resultado pode estar desatualizado, pois as dependências do artefato de IA foram alteradas desde que o último resultado foi gerado. Considere regenerar o artefato para gerá-lo com as dependências mais recentes.
     ai_artifacts: Artefatos de IA
@@ -731,6 +732,7 @@ pt:
     enter_schema_key: Introduzir chave de esquema
     error: Erro
     error_color: Cor do erro
+    errors_csv_file_import: Por favor, carregue um ficheiro CSV antes de clicar em «Importar»
     errors_csv_file_required: O ficheiro deve ser um ficheiro CSV
     errors_error_msg: Algo correu mal. Actualize a página e, se o problema persistir, contacte o seu administrador
     errors_min_retention: Não pode ser inferior a 1 dia
@@ -778,6 +780,7 @@ pt:
     factor_feedback: Feedback sobre os fatores
     factor_selection: Seleção de fatores
     factors: Fatores
+    factors_filter_strategy: Estratégia
     factors_form_components_ExternalList_table_jsonpath: Caminho JSON
     factors_form_components_ExternalList_table_types_norm_score: Pontuação normalizada
     factors_form_components_ExternalList_table_types_percentage: Percentagem
@@ -1260,6 +1263,7 @@ pt:
     maintenance_settings: Configurações de manutenção
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     make_report_available_to_subject_when: 'Disponibilizar o relatório à pessoa em causa quando:'
+    manage_condition_sets: Gerir conjuntos de condições
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     manager_approves_reports: O gestor aprova os relatórios
     manager_can_access_subject_reports: O gestor pode aceder aos relatórios sobre o assunto
@@ -1370,6 +1374,7 @@ pt:
     norm_region: Região Norma
     norm_region_form_select: Selecionar região padrão
     norm_region_update_success: Região Norm atualizada com sucesso
+    norm_score: Pontuação Normalizada
     normal: Normal
     normalize_factor_scores: Normalizar as pontuações dos factores
     norms: Normas
@@ -1408,12 +1413,14 @@ pt:
     occupation_factors_condition_set: Conjunto de condições
     occupation_factors_title: Fatores ocupacionais
     occupations: Profissões
+    occupations_factor_uniqueness: O fator já foi tido em conta
     occupations_factors_list_condition: Estado
     occupations_factors_list_position: Posição
     occupations_factors_list_weight: Peso
     occupations_form_alternative_icon: Ícone alternativo
     occupations_form_color: Cor
     occupations_form_indicative_roles_image: Imagem ilustrativa das funções
+    occupations_form_key_career_tracks_hint: '"+" - lista, "*" - negrito. Exemplo: + *Biologia* - alguma descrição...'
     occupations_form_key_career_tracks_image: Imagem das principais trajetórias profissionais
     occupations_index_title: Profissões
     occupations_resource_confirmations_delete_body: "<p>Tem a certeza de que pretende apagar esta ocupação?</p>\n"
@@ -2125,6 +2132,7 @@ pt:
     range_min_max: GAMA %{min} - %{max}
     rationale: Fundamentação
     raw: CRU
+    raw_score: Pontuação bruta
     reason_for_changes: Motivo das alterações
     recents: Recentes
     record_id: ID do registo
@@ -2156,6 +2164,7 @@ pt:
     remove_confirm_success: O assunto com o e-mail '%{subjectEmail}'' foi removido com êxito.
     remove_confirm_title: Remover assunto
     remove_confirmation: Tem a certeza de que deseja eliminar este item?
+    remove_icon: Remover ícone
     remove_output_schema_key: Remover chave do esquema de saída
     remove_successfully: O item multimédia foi removido com sucesso.
     render_button: Template de Renderização
@@ -2406,6 +2415,11 @@ pt:
       user_full_name_cont: Nome de utilizador
     saville: Saville
     saville_assessment: Avaliação Saville
+    scale_max: Escala Máxima
+    scale_max_must_be_greater_than_scale_min: O valor máximo da escala deve ser superior ao valor mínimo da escala
+    scale_min: Escala mínima
+    scale_min_must_be_less_than_scale_max: O valor mínimo da escala deve ser inferior ao valor máximo da escala
+    scale_value_must_not_be_negative: O valor não deve ser negativo
     schedule: Horário
     schedule_email: Agendar e-mail
     schedule_email_title: Agendar e-mail
@@ -2545,10 +2559,13 @@ pt:
     score_definition_placeholder: Insira a definição para este nível de pontuação
     score_definitions: Definições de pontuação
     score_max: Pontuação máxima
+    score_max_must_be_greater_than_score_min: A pontuação máxima deve ser superior à pontuação mínima
     score_min: Pontuação mínima
+    score_min_must_be_less_than_score_max: A pontuação mínima deve ser inferior à pontuação máxima
     score_must_be_in_between_min_and_max: A pontuação deve estar entre %{min} e %{max}.
     score_not_applicable: Pontuação não aplicável
     score_range_info: 'Intervalo de pontuação: %{min} - %{max}'
+    score_type: Tipo de pontuação
     score_with_ai: Pontuação com IA
     scores_finalized: As pontuações estão definitivas e não podem ser alteradas
     scoring: Pontuação
@@ -3117,6 +3134,7 @@ pt:
     translated_with_ai_notice: Traduzido por IA
     translation_assistant_not_configured: Assistente de tradução não configurado
     translations:
+      import: Importar traduções
       title: Traduções
     translations_export_failure_msg: Erro ao exportar traduções
     translations_export_success_msg: Acções de desenvolvimento de exportação em curso.

@@ -56,6 +56,7 @@ th:
     advanced: ขั้นสูง
     advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     agile: ว่องไว
+    agile_time_config_msg: การประเมินแบบ Agile อาจใช้ตัวจับเวลาตามแต่ละส่วน (ตั้งค่าไว้ในส่วนการตั้งค่า) โปรดแน่ใจว่าได้กำหนดเวลาที่เพียงพอในแต่ละส่วน เพื่อให้สามารถทำแต่ละส่วนให้เสร็จได้อย่างสบายๆ
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
@@ -731,6 +732,7 @@ th:
     enter_schema_key: ป้อนคีย์สคีมา
     error: ข้อผิดพลาด
     error_color: สีข้อผิดพลาด
+    errors_csv_file_import: โปรดอัปโหลดไฟล์ CSV ก่อนที่จะคลิก "นำเข้า"
     errors_csv_file_required: ไฟล์ต้องเป็นไฟล์ CSV
     errors_error_msg: มีบางอย่างผิดพลาด โปรดรีเฟรชหน้า และหากปัญหายังคงอยู่ โปรดติดต่อผู้ดูแลระบบของคุณ
     errors_min_retention: ต้องไม่น้อยกว่า 1 วัน
@@ -778,6 +780,7 @@ th:
     factor_feedback: ปัจจัยการให้ข้อเสนอแนะ
     factor_selection: การเลือกปัจจัย
     factors: ปัจจัย
+    factors_filter_strategy: กลยุทธ์
     factors_form_components_ExternalList_table_jsonpath: เส้นทาง JSON
     factors_form_components_ExternalList_table_types_norm_score: คะแนนตามค่ามาตรฐาน
     factors_form_components_ExternalList_table_types_percentage: อัตราร้อยละ
@@ -1260,6 +1263,7 @@ th:
     maintenance_settings: การตั้งค่าการบำรุงรักษา
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
+    manage_condition_sets: จัดการชุดเงื่อนไข
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     manager_approves_reports: ผู้จัดการอนุมัติรายงาน
     manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
@@ -1370,6 +1374,7 @@ th:
     norm_region: ภูมิภาคปกติ
     norm_region_form_select: เลือกภูมิภาคมาตรฐาน
     norm_region_update_success: ภูมิภาคปกติได้รับการอัปเดตสำเร็จ
+    norm_score: คะแนนมาตรฐาน
     normal: ปกติ
     normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
     norms: ค่ามาตรฐาน
@@ -1408,12 +1413,14 @@ th:
     occupation_factors_condition_set: ชุดเงื่อนไข
     occupation_factors_title: ปัจจัยที่เกี่ยวข้องกับอาชีพ
     occupations: อาชีพ
+    occupations_factor_uniqueness: ปัจจัยนี้ได้ถูกนำมาใช้แล้ว
     occupations_factors_list_condition: เงื่อนไข
     occupations_factors_list_position: ฐานะ
     occupations_factors_list_weight: น้ําหนัก
     occupations_form_alternative_icon: ไอคอนทางเลือก
     occupations_form_color: สี
     occupations_form_indicative_roles_image: ภาพแสดงบทบาทเชิงบ่งชี้
+    occupations_form_key_career_tracks_hint: '"+" - รายการ, "*" - ตัวหนา ตัวอย่าง: + *ชีววิทยา* - คำอธิบายบางส่วน...'
     occupations_form_key_career_tracks_image: เส้นทางอาชีพหลัก
     occupations_index_title: อาชีพ
     occupations_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือว่าต้องการลบอาชีพนี้?</p>\n"
@@ -2125,6 +2132,7 @@ th:
     range_min_max: ระยะทาง%{min} - %{max}
     rationale: เหตุผล
     raw: ดิบ
+    raw_score: คะแนนดิบ
     reason_for_changes: เหตุผลของการเปลี่ยนแปลง
     recents: รายการล่าสุด
     record_id: รหัสเรกคอร์ด
@@ -2156,6 +2164,7 @@ th:
     remove_confirm_success: หัวข้อที่มีอีเมล '%{subjectEmail}'' ถูกลบออกเรียบร้อยแล้ว
     remove_confirm_title: ลบชื่อเรื่อง
     remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?
+    remove_icon: ลบไอคอน
     remove_output_schema_key: ลบคีย์สคีมาเอาต์พุต
     remove_successfully: รายการสื่อถูกลบออกสำเร็จ
     render_button: เทมเพลตการแสดงผล
@@ -2406,6 +2415,11 @@ th:
       user_full_name_cont: ชื่อผู้ใช้
     saville: ซาวิลล์
     saville_assessment: การประเมิน Saville
+    scale_max: ปรับขนาดสูงสุด
+    scale_max_must_be_greater_than_scale_min: ค่าสูงสุดของ Scale ต้องมากกว่าค่าต่ำสุดของ Scale
+    scale_min: ปรับขนาดให้เล็กที่สุด
+    scale_min_must_be_less_than_scale_max: ค่าต่ำสุดของ Scale ต้องน้อยกว่าค่าสูงสุดของ Scale
+    scale_value_must_not_be_negative: ค่าไม่ควรเป็นค่าลบ
     schedule: ตาราง
     schedule_email: กําหนดเวลาอีเมล
     schedule_email_title: กําหนดเวลาอีเมล
@@ -2542,10 +2556,13 @@ th:
     score_definition_placeholder: ป้อนคำจำกัดความสำหรับระดับคะแนนนี้
     score_definitions: คำจำกัดความของคะแนน
     score_max: คะแนนสูงสุด
+    score_max_must_be_greater_than_score_min: คะแนนสูงสุดต้องมากกว่าคะแนนต่ำสุด
     score_min: คะแนนขั้นต่ำ
+    score_min_must_be_less_than_score_max: คะแนนต่ำสุดต้องน้อยกว่าคะแนนสูงสุด
     score_must_be_in_between_min_and_max: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
     score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     score_range_info: 'ช่วงคะแนน: %{min} - %{max}'
+    score_type: ประเภทคะแนน
     score_with_ai: ทำคะแนนด้วย AI
     scores_finalized: คะแนนได้รับการสรุปแล้วและไม่สามารถเปลี่ยนแปลงได้
     scoring: การให้คะแนน
@@ -3109,6 +3126,7 @@ th:
     translated_with_ai_notice: AI แปล
     translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
     translations:
+      import: นำเข้าการแปล
       title: การแปล
     translations_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
     translations_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่

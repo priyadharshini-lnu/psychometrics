@@ -56,6 +56,7 @@ sl:
     advanced: Napredno
     advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
     agile: AGILE
+    agile_time_config_msg: Pri agilnih ocenjevanjih se lahko uporabljajo časovniki za posamezne dele (nastavljeni v konfiguracijskih nastavitvah). Poskrbite, da tu določite dovolj časa, da bo mogoče vsak del brez težav zaključiti.
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
@@ -731,6 +732,7 @@ sl:
     enter_schema_key: Vnesite ključ sheme
     error: Napaka
     error_color: Barva napake
+    errors_csv_file_import: Preden kliknete na »Uvozi«, naložite datoteko CSV.
     errors_csv_file_required: Datoteka mora biti datoteka CSV
     errors_error_msg: Nekaj je šlo narobe. Osvežite stran in če težave še vedno ne morete, se obrnite na skrbnika
     errors_min_retention: Ne sme biti krajši od 1 dneva
@@ -778,6 +780,7 @@ sl:
     factor_feedback: Povratne informacije o faktorjih
     factor_selection: Izbira dejavnikov
     factors: Dejavniki
+    factors_filter_strategy: Strategija
     factors_form_components_ExternalList_table_jsonpath: Pot JSON
     factors_form_components_ExternalList_table_types_norm_score: Normirana partitura
     factors_form_components_ExternalList_table_types_percentage: Odstotek
@@ -1260,6 +1263,7 @@ sl:
     maintenance_settings: Nastavitve vzdrževanja
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
     make_report_available_to_subject_when: 'Poročilo dajte na voljo subjektu, ko:'
+    manage_condition_sets: Upravljanje sklopov pogojev
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
     manager_approves_reports: Vodja odobri poročila
     manager_can_access_subject_reports: Upravitelj lahko dostopa do poročil o predmetih
@@ -1370,6 +1374,7 @@ sl:
     norm_region: Norm Regija
     norm_region_form_select: Izberite normativno regijo
     norm_region_update_success: Regija Norm uspešno posodobljena
+    norm_score: Normativna ocena
     normal: Normalno
     normalize_factor_scores: Normalizirajte rezultate faktorjev
     norms: Norme
@@ -1408,12 +1413,14 @@ sl:
     occupation_factors_condition_set: Skupina pogojev
     occupation_factors_title: Dejavniki, povezani s poklicem
     occupations: Poklicev
+    occupations_factor_uniqueness: Faktor je že upoštevan
     occupations_factors_list_condition: Pogoj
     occupations_factors_list_position: Položaj
     occupations_factors_list_weight: Teža
     occupations_form_alternative_icon: Nadomestna ikona
     occupations_form_color: Barva
     occupations_form_indicative_roles_image: Primer slike vlog
+    occupations_form_key_career_tracks_hint: '"+" – seznam, "*" – krepko. Primer: + *Biologija* – kratek opis...'
     occupations_form_key_career_tracks_image: Slika ključnih poklicnih poti
     occupations_index_title: Poklicev
     occupations_resource_confirmations_delete_body: "<p>Ste prepričani, da želite izbrisati ta poklic?</p>\n"
@@ -2125,6 +2132,7 @@ sl:
     range_min_max: RANGE %{min} - %{max}
     rationale: Utemeljitev
     raw: SUROV
+    raw_score: Bruto ocena
     reason_for_changes: Razlog za spremembe
     recents: Zadnje
     record_id: ID zapisa
@@ -2156,6 +2164,7 @@ sl:
     remove_confirm_success: Zadeva z e-poštnim naslovom »%{subjectEmail}« je bila uspešno odstranjena.
     remove_confirm_title: Odstranite osebo
     remove_confirmation: Ali ste prepričani, da želite ta element odstraniti?
+    remove_icon: Odstrani ikono
     remove_output_schema_key: Odstranitev ključa izhodne sheme
     remove_successfully: Medijska datoteka je bila uspešno odstranjena.
     render_button: Predloga za upodabljanje
@@ -2406,6 +2415,11 @@ sl:
       user_full_name_cont: Uporabniško ime
     saville: Saville
     saville_assessment: Ocena Saville
+    scale_max: Največja lestvica
+    scale_max_must_be_greater_than_scale_min: Največja vrednost lestvice mora biti večja od najmanjše vrednosti lestvice
+    scale_min: Lestvica Min
+    scale_min_must_be_less_than_scale_max: Najmanjša vrednost lestvice mora biti manjša od največje vrednosti lestvice
+    scale_value_must_not_be_negative: Vrednost ne sme biti negativna
     schedule: Načrtuj
     schedule_email: Načrtovanje e-pošte
     schedule_email_title: Načrtovanje e-pošte
@@ -2542,10 +2556,13 @@ sl:
     score_definition_placeholder: Vnesite definicijo za to stopnjo ocene.
     score_definitions: Opredelitve točk
     score_max: Najvišji rezultat
+    score_max_must_be_greater_than_score_min: Najvišja ocena mora biti višja od najnižje ocene
     score_min: Rezultat Min
+    score_min_must_be_less_than_score_max: Najnižja ocena mora biti manjša od najvišje ocene
     score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
     score_not_applicable: Rezultat ni veljaven
     score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
+    score_type: Vrsta rezultata
     score_with_ai: Zmagajte z umetno inteligenco
     scores_finalized: Rezultati so dokončni in jih ni mogoče spremeniti
     scoring: Točkovanja
@@ -3109,6 +3126,7 @@ sl:
     translated_with_ai_notice: Prevedeno z umetno inteligenco
     translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
     translations:
+      import: Uvoz prevodov
       title: Prevodi
     translations_export_failure_msg: Napaka pri izvažanju prevodov
     translations_export_success_msg: Izvoz razvojnih ukrepov v teku.

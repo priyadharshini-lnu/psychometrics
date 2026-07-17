@@ -56,6 +56,7 @@ vi:
     advanced: Nâng cao
     advanced_mode_tooltip: Sử dụng chế độ nâng cao để tạo mẫu nhanh bằng cách sử dụng mẫu liquid với các biến có sẵn. Tham khảo tài liệu để biết thêm chi tiết.
     agile: NHANH NHẸN
+    agile_time_config_msg: Các bài đánh giá Agile có thể sử dụng bộ đếm thời gian cho từng phần (được thiết lập trong phần cài đặt cấu hình). Hãy đảm bảo dành đủ thời gian cho mỗi phần để có thể hoàn thành một cách thoải mái.
     ai_artifact_result_generation_admin_job_failed: Không thể tạo đối tượng '%{artifact_name}' cho người dùng '%{user_email}'
     ai_artifact_result_stale: Kết quả có thể đã lỗi thời vì các phụ thuộc của mô hình AI đã thay đổi kể từ lần tạo kết quả gần nhất. Hãy xem xét việc tạo lại mô hình để sử dụng các phụ thuộc mới nhất.
     ai_artifacts: Đồ tạo tác AI
@@ -731,6 +732,7 @@ vi:
     enter_schema_key: Nhập khóa lược đồ
     error: Lỗi
     error_color: Màu lỗi
+    errors_csv_file_import: Vui lòng tải lên tệp CSV trước khi nhấp vào “Nhập”
     errors_csv_file_required: Tệp phải là tệp CSV
     errors_error_msg: Có điều gì đó không ổn. Vui lòng làm mới trang và nếu sự cố vẫn tiếp diễn, hãy liên hệ với quản trị viên của bạn
     errors_min_retention: Không được ít hơn 1 ngày
@@ -778,6 +780,7 @@ vi:
     factor_feedback: Phản hồi yếu tố
     factor_selection: Lựa chọn yếu tố
     factors: Các yếu tố
+    factors_filter_strategy: Chiến lược
     factors_form_components_ExternalList_table_jsonpath: Đường dẫn JSON
     factors_form_components_ExternalList_table_types_norm_score: Điểm chuẩn
     factors_form_components_ExternalList_table_types_percentage: Tỷ lệ phần trăm
@@ -1260,6 +1263,7 @@ vi:
     maintenance_settings: Cài đặt bảo trì
     maintenance_settings_description: Quản lý các khung thời gian bảo trì hệ thống và cài đặt
     make_report_available_to_subject_when: 'Cho phép người liên quan xem báo cáo khi:'
+    manage_condition_sets: Quản lý các bộ điều kiện
     manager_approval_required: Báo cáo cho %{user} yêu cầu sự chấp thuận của người quản lý trước khi tải xuống
     manager_approves_reports: Quản lý phê duyệt báo cáo
     manager_can_access_subject_reports: Quản lý có thể truy cập các báo cáo liên quan.
@@ -1370,6 +1374,7 @@ vi:
     norm_region: Vùng Norm
     norm_region_form_select: Chọn Khu vực tiêu chuẩn
     norm_region_update_success: Khu vực Norm đã được cập nhật thành công.
+    norm_score: Điểm chuẩn
     normal: Bình thường
     normalize_factor_scores: Chuẩn hóa điểm số yếu tố
     norms: Tiêu chuẩn
@@ -1408,12 +1413,14 @@ vi:
     occupation_factors_condition_set: Tập điều kiện
     occupation_factors_title: Các yếu tố liên quan đến nghề nghiệp
     occupations: Nghề
+    occupations_factor_uniqueness: Yếu tố này đã được tính đến
     occupations_factors_list_condition: Điều kiện
     occupations_factors_list_position: Vị trí
     occupations_factors_list_weight: Trọng lượng
     occupations_form_alternative_icon: Biểu tượng thay thế
     occupations_form_color: Màu sắc
     occupations_form_indicative_roles_image: Hình ảnh minh họa các vai trò
+    occupations_form_key_career_tracks_hint: '"+" - danh sách, "*" - in đậm. Ví dụ: + *Sinh học* - một số mô tả...'
     occupations_form_key_career_tracks_image: Hình ảnh các lộ trình nghề nghiệp chính
     occupations_index_title: Nghề
     occupations_resource_confirmations_delete_body: "<p>Bạn có chắc chắn muốn xóa nghề nghiệp này không?</p>\n"
@@ -2125,6 +2132,7 @@ vi:
     range_min_max: Dải sản phẩm%{min} - %{max}
     rationale: Lý do
     raw: SỐNG
+    raw_score: Điểm thô
     reason_for_changes: Lý do thay đổi
     recents: Các bài viết gần đây
     record_id: ID bản ghi
@@ -2156,6 +2164,7 @@ vi:
     remove_confirm_success: Chủ đề có email '%{subjectEmail}'' đã bị xóa thành công.
     remove_confirm_title: Xóa chủ đề
     remove_confirmation: Bạn có chắc chắn muốn xóa mục này không?
+    remove_icon: Xóa biểu tượng
     remove_output_schema_key: Xóa khóa lược đồ đầu ra
     remove_successfully: Tệp phương tiện đã được xóa thành công.
     render_button: Mẫu kết xuất
@@ -2406,6 +2415,11 @@ vi:
       user_full_name_cont: Tên người dùng
     saville: Saville
     saville_assessment: Đánh giá Saville
+    scale_max: Mức tối đa
+    scale_max_must_be_greater_than_scale_min: Giá trị tối đa của thang đo phải lớn hơn giá trị tối thiểu của thang đo
+    scale_min: Thang đo tối thiểu
+    scale_min_must_be_less_than_scale_max: Giá trị tối thiểu của thang đo phải nhỏ hơn giá trị tối đa của thang đo
+    scale_value_must_not_be_negative: Giá trị không được là số âm
     schedule: Lịch
     schedule_email: Lên lịch email
     schedule_email_title: Lên lịch email
@@ -2542,10 +2556,13 @@ vi:
     score_definition_placeholder: Nhập định nghĩa cho mức điểm này.
     score_definitions: Định nghĩa điểm số
     score_max: Điểm tối đa
+    score_max_must_be_greater_than_score_min: Điểm tối đa phải lớn hơn điểm tối thiểu
     score_min: Điểm tối thiểu
+    score_min_must_be_less_than_score_max: Điểm tối thiểu phải nhỏ hơn điểm tối đa
     score_must_be_in_between_min_and_max: Điểm số phải nằm trong khoảng từ %{min} đến %{max}.
     score_not_applicable: Điểm không áp dụng
     score_range_info: 'Phạm vi điểm: %{min} - %{max}'
+    score_type: Loại điểm
     score_with_ai: Đạt điểm cao với Trí tuệ nhân tạo
     scores_finalized: Kết quả đã được chốt và không thể thay đổi
     scoring: Ghi
@@ -3109,6 +3126,7 @@ vi:
     translated_with_ai_notice: Dịch bởi Trí tuệ nhân tạo
     translation_assistant_not_configured: Trợ lý Dịch thuật chưa được cấu hình
     translations:
+      import: Nhập bản dịch
       title: Bản dịch
     translations_export_failure_msg: Lỗi khi xuất bản dịch
     translations_export_success_msg: Xuất các hành động phát triển đang được tiến hành.

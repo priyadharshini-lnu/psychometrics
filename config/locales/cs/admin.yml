@@ -56,6 +56,7 @@ cs:
     advanced: Pokročilé
     advanced_mode_tooltip: Použijte pokročilý režim pro šablonování promptů pomocí tekuté šablony s dostupnými proměnnými. Pro více informací se podívejte na dokumentaci.
     agile: AGILE
+    agile_time_config_msg: Při agilním hodnocení lze využít časomíry pro jednotlivé sekce (nastavené v konfiguračních nastaveních). Nezapomeňte zde vyhradit dostatek času, aby bylo možné každou sekci pohodlně dokončit.
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nelze vygenerovat pro uživatele „%{user_email}“.
     ai_artifact_result_stale: Výsledek může být zastaralý, protože závislosti artefaktu AI se od posledního vygenerování výsledku změnily. Zvažte opětovné vygenerování artefaktu s nejnovějšími závislostmi.
     ai_artifacts: Artefakty AI
@@ -731,6 +732,7 @@ cs:
     enter_schema_key: Zadejte klíč schématu
     error: Chyba
     error_color: Barva chyby
+    errors_csv_file_import: Než kliknete na tlačítko „Importovat“, nahrajte prosím soubor CSV.
     errors_csv_file_required: Soubor musí být CSV
     errors_error_msg: Něco se pokazilo. Obnovte prosím stránku a pokud problém přetrvává, kontaktujte správce
     errors_min_retention: Nesmí být kratší než 1 den
@@ -778,6 +780,7 @@ cs:
     factor_feedback: Factor Feedback
     factor_selection: Factor Selection
     factors: Faktory
+    factors_filter_strategy: Strategie
     factors_form_components_ExternalList_table_jsonpath: Cesta JSON
     factors_form_components_ExternalList_table_types_norm_score: Normované skóre
     factors_form_components_ExternalList_table_types_percentage: Procento
@@ -1260,6 +1263,7 @@ cs:
     maintenance_settings: Nastavení údržby
     maintenance_settings_description: Správa časových oken a nastavení údržby systému
     make_report_available_to_subject_when: 'Zpřístupněte zprávu subjektu, když:'
+    manage_condition_sets: Správa sad podmínek
     manager_approval_required: Report for %{user} vyžaduje schválení manažera před stažením
     manager_approves_reports: Manažer schvaluje zprávy
     manager_can_access_subject_reports: Manažer má přístup k předmětovým zprávám
@@ -1370,6 +1374,7 @@ cs:
     norm_region: Normální oblast
     norm_region_form_select: Vyberte normu Region
     norm_region_update_success: Norm Region úspěšně aktualizován
+    norm_score: Normované skóre
     normal: Normální
     normalize_factor_scores: Normalizace skóre faktorů
     norms: Normy
@@ -1408,12 +1413,14 @@ cs:
     occupation_factors_condition_set: Množina podmínek
     occupation_factors_title: Faktory související s povoláním
     occupations: Povolání
+    occupations_factor_uniqueness: Tento faktor již byl zohledněn
     occupations_factors_list_condition: Stav
     occupations_factors_list_position: Pozice
     occupations_factors_list_weight: Hmotnost
     occupations_form_alternative_icon: Alternativní ikona
     occupations_form_color: Barva
     occupations_form_indicative_roles_image: Ilustrační obrázek rolí
+    occupations_form_key_career_tracks_hint: "„+“ – seznam, „*“ – tučné písmo. Příklad: + *Biologie* – nějaký popis..."
     occupations_form_key_career_tracks_image: Obrázek hlavních kariérních směrů
     occupations_index_title: Povolání
     occupations_resource_confirmations_delete_body: "<p>Opravdu chcete toto povolání smazat?</p>\n"
@@ -2125,6 +2132,7 @@ cs:
     range_min_max: ROZSAH%{min} - %{max}
     rationale: Odůvodnění
     raw: RAW
+    raw_score: Hrubý výsledek
     reason_for_changes: Důvod změn
     recents: Poslední příspěvky
     record_id: ID záznamu
@@ -2156,6 +2164,7 @@ cs:
     remove_confirm_success: Předmět s e-mailem '%{subjectEmail}'' byl úspěšně odstraněn.
     remove_confirm_title: Odstranit předmět
     remove_confirmation: Opravdu chcete tuto položku odstranit?
+    remove_icon: Odstranit ikonu
     remove_output_schema_key: Odstranění klíče výstupního schématu
     remove_successfully: Mediální položka byla úspěšně odstraněna.
     render_button: Šablona renderu
@@ -2406,6 +2415,11 @@ cs:
       user_full_name_cont: Uživatelské jméno
     saville: Saville
     saville_assessment: Hodnocení Saville
+    scale_max: Maximální měřítko
+    scale_max_must_be_greater_than_scale_min: Maximální hodnota měřítka by měla být větší než minimální hodnota měřítka
+    scale_min: Měřítko Min
+    scale_min_must_be_less_than_scale_max: Minimální hodnota měřítka by měla být menší než maximální hodnota měřítka
+    scale_value_must_not_be_negative: Hodnota nesmí být záporná
     schedule: Plán
     schedule_email: Plán E-mail
     schedule_email_title: Plán E-mail
@@ -2545,10 +2559,13 @@ cs:
     score_definition_placeholder: Zadejte definici pro tuto úroveň skóre.
     score_definitions: Definice skóre
     score_max: Skóre Max
+    score_max_must_be_greater_than_score_min: Maximální skóre musí být vyšší než minimální skóre
     score_min: Skóre Min
+    score_min_must_be_less_than_score_max: Minimální skóre musí být nižší než maximální skóre
     score_must_be_in_between_min_and_max: Skóre musí být mezi %{min} a %{max}.
     score_not_applicable: Skóre se nevztahuje
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
+    score_type: Typ skóre
     score_with_ai: Skórujte s AI
     scores_finalized: Výsledky jsou konečné a nelze je změnit
     scoring: Bodování
@@ -3117,6 +3134,7 @@ cs:
     translated_with_ai_notice: Přeloženo umělou inteligencí
     translation_assistant_not_configured: Překladač není nakonfigurován
     translations:
+      import: Importovat překlady
       title: Překlady
     translations_export_failure_msg: Chyba při exportu překladů
     translations_export_success_msg: Exportování probíhajících vývojových akcí.

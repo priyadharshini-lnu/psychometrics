@@ -56,6 +56,7 @@ ro:
     advanced: Avansat
     advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
     agile: AGIL
+    agile_time_config_msg: Evaluările Agile pot utiliza cronometre pentru fiecare secțiune (configurate în setările de configurare). Asigurați-vă că alocați suficient timp pentru a finaliza fiecare secțiune fără grabă.
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
@@ -731,6 +732,7 @@ ro:
     enter_schema_key: Introduceți cheia schemei
     error: Eroare
     error_color: Culoare eroare
+    errors_csv_file_import: Vă rugăm să încărcați un fișier CSV înainte de a face clic pe „Import”
     errors_csv_file_required: Fișierul trebuie să fie un fișier CSV
     errors_error_msg: Ceva nu a mers bine. Vă rugăm să reîmprospătați pagina și, dacă problema persistă, contactați administratorul
     errors_min_retention: Nu poate fi mai mică de 1 zi
@@ -778,6 +780,7 @@ ro:
     factor_feedback: Feedback privind factorii
     factor_selection: Selectarea factorilor
     factors: Factori
+    factors_filter_strategy: Strategie
     factors_form_components_ExternalList_table_jsonpath: Calea JSON
     factors_form_components_ExternalList_table_types_norm_score: Scor normat
     factors_form_components_ExternalList_table_types_percentage: Procent
@@ -1260,6 +1263,7 @@ ro:
     maintenance_settings: Setări de întreținere
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     make_report_available_to_subject_when: 'Puneți raportul la dispoziția subiectului atunci când:'
+    manage_condition_sets: Gestionarea seturilor de condiții
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     manager_approves_reports: Managerul aprobă rapoartele
     manager_can_access_subject_reports: Managerul poate accesa rapoartele pe subiect
@@ -1370,6 +1374,7 @@ ro:
     norm_region: Regiunea normă
     norm_region_form_select: Selectați regiunea normă
     norm_region_update_success: Regiunea Norm a fost actualizată cu succes
+    norm_score: Scorul normativ
     normal: Normal
     normalize_factor_scores: Normalizați scorurile factorilor
     norms: Normele
@@ -1408,12 +1413,14 @@ ro:
     occupation_factors_condition_set: Set de condiții
     occupation_factors_title: Factori legați de ocupație
     occupations: Ocupaţii
+    occupations_factor_uniqueness: Factorul a fost deja luat în considerare
     occupations_factors_list_condition: Condiție
     occupations_factors_list_position: Poziție
     occupations_factors_list_weight: Greutate
     occupations_form_alternative_icon: Pictogramă alternativă
     occupations_form_color: Culoare
     occupations_form_indicative_roles_image: Imagine cu exemple de roluri
+    occupations_form_key_career_tracks_hint: "„+” – listă, „*” – caractere aldine. Exemplu: + *Biologie* – o descriere..."
     occupations_form_key_career_tracks_image: Imagine cu principalele parcursuri profesionale
     occupations_index_title: Ocupaţii
     occupations_resource_confirmations_delete_body: "<p>Sunteți sigur că doriți să ștergeți această ocupație?</p>\n"
@@ -2125,6 +2132,7 @@ ro:
     range_min_max: GAMA%{min} - %{max}
     rationale: Justificare
     raw: CRUD
+    raw_score: Punctaj brut
     reason_for_changes: Motivul modificărilor
     recents: Cele mai recente
     record_id: ID înregistrare
@@ -2156,6 +2164,7 @@ ro:
     remove_confirm_success: Subiectul cu adresa de e-mail "%{subjectEmail}" a fost eliminat cu succes.
     remove_confirm_title: Eliminați subiectul
     remove_confirmation: Ești sigur că vrei să ștergi acest element?
+    remove_icon: Eliminare pictogramă
     remove_output_schema_key: Eliminarea cheii schemei de ieșire
     remove_successfully: Elementul media a fost șters cu succes.
     render_button: Șablon de randare
@@ -2406,6 +2415,11 @@ ro:
       user_full_name_cont: Nume de utilizator
     saville: Saville
     saville_assessment: Evaluarea Saville
+    scale_max: Scala maximă
+    scale_max_must_be_greater_than_scale_min: Valoarea maximă a scalei trebuie să fie mai mare decât valoarea minimă a scalei
+    scale_min: Scala minimă
+    scale_min_must_be_less_than_scale_max: Valoarea minimă a scalei trebuie să fie mai mică decât valoarea maximă a scalei
+    scale_value_must_not_be_negative: Valoarea nu trebuie să fie negativă
     schedule: Orar
     schedule_email: Programați e-mailul
     schedule_email_title: Programați e-mailul
@@ -2542,10 +2556,13 @@ ro:
     score_definition_placeholder: Introduceți definiția pentru acest nivel de scor
     score_definitions: Definiții ale scorurilor
     score_max: Scor maxim
+    score_max_must_be_greater_than_score_min: Scorul maxim trebuie să fie mai mare decât scorul minim
     score_min: Scor minim
+    score_min_must_be_less_than_score_max: Scorul minim trebuie să fie mai mic decât scorul maxim
     score_must_be_in_between_min_and_max: Scorul trebuie să se încadreze între %{min} și %{max}.
     score_not_applicable: Scorul nu se aplică
     score_range_info: 'Interval de scoruri: %{min} - %{max}'
+    score_type: Tipul scorului
     score_with_ai: Scor cu AI
     scores_finalized: Rezultatele sunt definitive și nu pot fi modificate
     scoring: Notare
@@ -3109,6 +3126,7 @@ ro:
     translated_with_ai_notice: Traducere AI
     translation_assistant_not_configured: Asistentul de traducere nu este configurat
     translations:
+      import: Importare traduceri
       title: Traduceri
     translations_export_failure_msg: Eroare la exportul traducerilor
     translations_export_success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.

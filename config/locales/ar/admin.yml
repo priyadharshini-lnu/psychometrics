@@ -56,6 +56,7 @@ ar:
     advanced: متقدم
     advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     agile: رشيق
+    agile_time_config_msg: قد تستخدم تقييمات أجايل مؤقتات لكل قسم على حدة (يتم إعدادها في إعدادات التكوين). تأكد من تخصيص وقت كافٍ هنا لإكمال كل قسم براحة.
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
@@ -731,6 +732,7 @@ ar:
     enter_schema_key: أدخل مفتاح المخطط
     error: خطأ
     error_color: لون الخطأ
+    errors_csv_file_import: يرجى تحميل ملف CSV قبل النقر على زر «استيراد»
     errors_csv_file_required: يجب أن يكون الملف ملف CSV
     errors_error_msg: حدث خطأ ما. يرجى تحديث الصفحة، وإذا استمرت المشكلة، فيرجى الاتصال بالمسؤول
     errors_min_retention: لا يمكن أن تقل عن 1 يوم
@@ -778,6 +780,7 @@ ar:
     factor_feedback: ملاحظات حول العوامل
     factor_selection: اختيار العوامل
     factors: العوامل
+    factors_filter_strategy: الاستراتيجية
     factors_form_components_ExternalList_table_jsonpath: مسار JSON
     factors_form_components_ExternalList_table_types_norm_score: درجة معايرة
     factors_form_components_ExternalList_table_types_percentage: نسبة مئوية
@@ -1260,6 +1263,7 @@ ar:
     maintenance_settings: إعدادات الصيانة
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     make_report_available_to_subject_when: 'إتاحة التقرير للموضوع عندما:'
+    manage_condition_sets: إدارة مجموعات الشروط
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     manager_approves_reports: يوافق المدير على التقارير
     manager_can_access_subject_reports: يمكن للمدير الوصول إلى تقارير الموضوعات
@@ -1370,6 +1374,7 @@ ar:
     norm_region: منطقة نورم
     norm_region_form_select: حدد منطقة المعيار
     norm_region_update_success: تم تحديث منطقة Norm بنجاح
+    norm_score: درجة المعيار
     normal: عادي
     normalize_factor_scores: تطبيع درجات العامل
     norms: المعايير
@@ -1408,12 +1413,14 @@ ar:
     occupation_factors_condition_set: مجموعة الشروط
     occupation_factors_title: عوامل المهنة
     occupations: المهن
+    occupations_factor_uniqueness: تم أخذ العامل في الحسبان بالفعل
     occupations_factors_list_condition: الحالة
     occupations_factors_list_position: المنصب
     occupations_factors_list_weight: الوزن
     occupations_form_alternative_icon: رمز بديل
     occupations_form_color: اللون
     occupations_form_indicative_roles_image: صورة توضح الأدوار
+    occupations_form_key_career_tracks_hint: '"+" - قائمة، "*" - خط عريض. مثال: + *علم الأحياء* - وصف ما...'
     occupations_form_key_career_tracks_image: صورة لمسارات مهنية رئيسية
     occupations_index_title: المهن
     occupations_resource_confirmations_delete_body: "<p>هل أنت متأكد من أنك تريد حذف هذه المهنة؟</p>\n"
@@ -2125,6 +2132,7 @@ ar:
     range_min_max: النطاق%{min} - %{max}
     rationale: الأساس المنطقي
     raw: نيء
+    raw_score: الدرجة الأولية
     reason_for_changes: سبب التغييرات
     recents: الأحدث
     record_id: معرف السجل
@@ -2156,6 +2164,7 @@ ar:
     remove_confirm_success: تمت إزالة الموضوع بالبريد الإلكتروني "%{subjectEmail}" بنجاح.
     remove_confirm_title: إزالة الموضوع
     remove_confirmation: هل أنت متأكد من أنك تريد حذف هذا العنصر؟
+    remove_icon: إزالة الرمز
     remove_output_schema_key: إزالة مفتاح مخطط الإخراج
     remove_successfully: تمت إزالة العنصر الإعلامي بنجاح.
     render_button: قالب العرض
@@ -2406,6 +2415,11 @@ ar:
       user_full_name_cont: اسم المستخدم
     saville: سافيل
     saville_assessment: تقييم سافيل
+    scale_max: الحد الأقصى للمقياس
+    scale_max_must_be_greater_than_scale_min: يجب أن تكون القيمة القصوى للمقياس أكبر من القيمة الدنيا للمقياس
+    scale_min: الحد الأدنى للمقياس
+    scale_min_must_be_less_than_scale_max: يجب أن تكون القيمة الدنيا للمقياس أقل من القيمة القصوى للمقياس
+    scale_value_must_not_be_negative: يجب ألا تكون القيمة سالبة
     schedule: جدول
     schedule_email: جدولة البريد الإلكتروني
     schedule_email_title: جدولة البريد الإلكتروني
@@ -2545,10 +2559,13 @@ ar:
     score_definition_placeholder: أدخل تعريف مستوى النقاط هذا
     score_definitions: تعريفات النقاط
     score_max: النتيجة القصوى
+    score_max_must_be_greater_than_score_min: يجب أن تكون الدرجة القصوى أكبر من الدرجة الدنيا
     score_min: النتيجة الدقيقة
+    score_min_must_be_less_than_score_max: يجب أن تكون الدرجة الدنيا أقل من الدرجة القصوى
     score_must_be_in_between_min_and_max: يجب أن تكون النتيجة بين %{min} و %{max}.
     score_not_applicable: النتيجة غير قابلة للتطبيق
     score_range_info: 'نطاق النقاط: %{min} - %{max}'
+    score_type: نوع النتيجة
     score_with_ai: تسجيل النقاط باستخدام الذكاء الاصطناعي
     scores_finalized: تم إغلاق النتائج ولا يمكن تغييرها
     scoring: سجل
@@ -3117,6 +3134,7 @@ ar:
     translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
     translation_assistant_not_configured: مساعد الترجمة غير مهيأ
     translations:
+      import: استيراد الترجمات
       title: الترجمات
     translations_export_failure_msg: خطأ أثناء تصدير الترجمات
     translations_export_success_msg: تصدير إجراءات التطوير قيد التنفيذ.

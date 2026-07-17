@@ -56,6 +56,7 @@ sk:
     advanced: Pokročilé
     advanced_mode_tooltip: Použite pokročilý režim na šablónovanie promptov pomocou tekutej šablóny s dostupnými premennými. Viac informácií nájdete v dokumentácii.
     agile: ŽIVÝ
+    agile_time_config_msg: Pri agilných hodnoteniach sa môžu používať časomiery pre jednotlivé sekcie (nastavené v konfiguračných nastaveniach). Uistite sa, že ste tu vyhradili dostatok času na pohodlné dokončenie každej sekcie.
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nemožno vygenerovať pre používateľa „%{user_email}“.
     ai_artifact_result_stale: Výsledok môže byť neaktuálny, pretože závislosti artefaktu AI sa od posledného vygenerovania výsledku zmenili. Zvážte regenerovanie artefaktu, aby sa vygeneroval s najnovšími závislosťami.
     ai_artifacts: Artefakty AI
@@ -731,6 +732,7 @@ sk:
     enter_schema_key: Zadajte kľúč schémy
     error: Chyba
     error_color: Farba chyby
+    errors_csv_file_import: Pred kliknutím na tlačidlo „Importovať“ nahrajte súbor CSV
     errors_csv_file_required: Súbor musí byť súbor CSV
     errors_error_msg: Niečo sa pokazilo. Obnovte stránku a ak problém pretrváva, kontaktujte svojho správcu
     errors_min_retention: Nesmie byť kratšia ako 1 deň
@@ -778,6 +780,7 @@ sk:
     factor_feedback: Spätná väzba k faktorom
     factor_selection: Výber faktorov
     factors: Faktory
+    factors_filter_strategy: Stratégia
     factors_form_components_ExternalList_table_jsonpath: Cesta JSON
     factors_form_components_ExternalList_table_types_norm_score: Normované skóre
     factors_form_components_ExternalList_table_types_percentage: Percento
@@ -1260,6 +1263,7 @@ sk:
     maintenance_settings: Nastavenia údržby
     maintenance_settings_description: Správa okien a nastavení údržby systému
     make_report_available_to_subject_when: 'Sprístupnite správu subjektu, keď:'
+    manage_condition_sets: Správa súborov podmienok
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
     manager_approves_reports: Manažér schvaľuje správy
     manager_can_access_subject_reports: Manažér má prístup k predmetným správam
@@ -1370,6 +1374,7 @@ sk:
     norm_region: Normálny región
     norm_region_form_select: Vyberte normu Región
     norm_region_update_success: Norm Region úspešne aktualizovaný
+    norm_score: Normované skóre
     normal: Normálne
     normalize_factor_scores: Normalizujte skóre faktorov
     norms: Normy
@@ -1408,12 +1413,14 @@ sk:
     occupation_factors_condition_set: Množina podmienok
     occupation_factors_title: Faktory súvisiace s povolaním
     occupations: Povolania
+    occupations_factor_uniqueness: Tento faktor už bol zohľadnený
     occupations_factors_list_condition: Podmienka
     occupations_factors_list_position: Pozícia
     occupations_factors_list_weight: Hmotnosť
     occupations_form_alternative_icon: Alternatívna ikona
     occupations_form_color: Farba
     occupations_form_indicative_roles_image: Ilustračný obrázok rolí
+    occupations_form_key_career_tracks_hint: "„+“ – zoznam, „*“ – tučné písmo. Príklad: + *Biológia* – nejaký popis..."
     occupations_form_key_career_tracks_image: Obrázok hlavných kariérnych dráh
     occupations_index_title: Povolania
     occupations_resource_confirmations_delete_body: "<p>Naozaj chcete toto povolanie zmazať?</p>\n"
@@ -2125,6 +2132,7 @@ sk:
     range_min_max: ROZSAH%{min} - %{max}
     rationale: Odôvodnenie
     raw: SUROVÝ
+    raw_score: Hrubý výsledok
     reason_for_changes: Dôvod zmien
     recents: Najnovšie
     record_id: ID záznamu
@@ -2156,6 +2164,7 @@ sk:
     remove_confirm_success: Predmet s e-mailom "%{subjectEmail}" bol úspešne odstránený.
     remove_confirm_title: Odstrániť predmet
     remove_confirmation: Naozaj chcete túto položku odstrániť?
+    remove_icon: Odstrániť ikonu
     remove_output_schema_key: Odstránenie kľúča výstupnej schémy
     remove_successfully: Mediálny súbor bol úspešne odstránený.
     render_button: Šablóna renderu
@@ -2406,6 +2415,11 @@ sk:
       user_full_name_cont: Používateľské meno
     saville: Saville
     saville_assessment: Hodnotenie Saville
+    scale_max: Maximálna stupnica
+    scale_max_must_be_greater_than_scale_min: Maximálna hodnota mierky by mala byť väčšia ako minimálna hodnota mierky
+    scale_min: Mierka Min
+    scale_min_must_be_less_than_scale_max: Minimálna hodnota mierky by mala byť menšia ako maximálna hodnota mierky
+    scale_value_must_not_be_negative: Hodnota nesmie byť záporná
     schedule: Rozvrh
     schedule_email: Naplánovať e-mail
     schedule_email_title: Naplánovať e-mail
@@ -2542,10 +2556,13 @@ sk:
     score_definition_placeholder: Zadajte definíciu pre túto úroveň skóre
     score_definitions: Definície skóre
     score_max: Maximálny počet bodov
+    score_max_must_be_greater_than_score_min: Maximálne skóre musí byť väčšie ako minimálne skóre
     score_min: Skóre Min
+    score_min_must_be_less_than_score_max: Minimálne skóre musí byť nižšie ako maximálne skóre
     score_must_be_in_between_min_and_max: Skóre musí byť v rozmedzí %{min} a %{max}.
     score_not_applicable: Skóre sa neuplatňuje
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
+    score_type: Typ skóre
     score_with_ai: Skórujte s AI
     scores_finalized: Výsledky sú konečné a nemožno ich meniť
     scoring: Bodovania
@@ -3109,6 +3126,7 @@ sk:
     translated_with_ai_notice: Preložené umelou inteligenciou
     translation_assistant_not_configured: Prekladateľský asistent nie je nakonfigurovaný
     translations:
+      import: Importovať preklady
       title: Preklady
     translations_export_failure_msg: Chyba pri exporte prekladov
     translations_export_success_msg: Export prebiehajúcich vývojových akcií.

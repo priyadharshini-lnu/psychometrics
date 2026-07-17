@@ -56,6 +56,7 @@ sr-Cyrl:
     advanced: Напредно
     advanced_mode_tooltip: Користите напредни режим за израду шаблона упитника користећи Liquid шаблон са расположивим променљивим. Погледајте документацију за више детаља.
     agile: Окретан
+    agile_time_config_msg: Агилне процене могу користити тајмере по секцијама (подешене у конфигурационим подешавањима). Обавезно одвојте довољно времена да бисте удобно завршили сваку секцију.
     ai_artifact_result_generation_admin_job_failed: Артифакт "%{artifact_name}" не може да се генерише за корисника "%{user_email}"
     ai_artifact_result_stale: Резултат може бити застарео јер су се зависности АИ артефакта промениле од последњег генерисања резултата. Размотрите поновно генерисање артефакта како бисте користили најновије зависности.
     ai_artifacts: АИ артефакти
@@ -733,6 +734,7 @@ sr-Cyrl:
     enter_schema_key: Унесите Схема кључ
     error: Грешка
     error_color: Боја грешке
+    errors_csv_file_import: Молимо отпремите CSV фајл пре него што кликнете на "Увоз".
     errors_csv_file_required: Датотека мора бити CSV датотека.
     errors_error_msg: Нешто је пошло по злу. Молимо освежите страницу, а ако проблем и даље траје, контактирајте свог администратора.
     errors_min_retention: Не може бити мање од 1 дан
@@ -780,6 +782,7 @@ sr-Cyrl:
     factor_feedback: Фактор повратне информације
     factor_selection: Избор фактора
     factors: Фактори
+    factors_filter_strategy: Стратегија
     factors_form_components_ExternalList_table_jsonpath: ЈСОН пут
     factors_form_components_ExternalList_table_types_norm_score: Нормирани резултат
     factors_form_components_ExternalList_table_types_percentage: Проценат
@@ -1262,6 +1265,7 @@ sr-Cyrl:
     maintenance_settings: Подешавања одржавања
     maintenance_settings_description: Управљајте прозорима и подешавањама за одржавање система
     make_report_available_to_subject_when: 'Омогућите извештај одговорном лицу када:'
+    manage_condition_sets: Управљање скуповима стања
     manager_approval_required: Извештај за %{user} захтева одобрење менаџера пре преузимања.
     manager_approves_reports: Менаџер одобрава извештаје
     manager_can_access_subject_reports: Менаџер може да приступи извештајима о предметима
@@ -1372,6 +1376,7 @@ sr-Cyrl:
     norm_region: Норм регион
     norm_region_form_select: Изаберите регион норме
     norm_region_update_success: Норм регион је успешно ажуриран
+    norm_score: Нормални резултат
     normal: Нормално
     normalize_factor_scores: Нормализујте резултате фактора
     norms: Норме
@@ -1410,12 +1415,14 @@ sr-Cyrl:
     occupation_factors_condition_set: Скуп услова
     occupation_factors_title: Фактори занимања
     occupations: Занимања
+    occupations_factor_uniqueness: Фактор је већ узет
     occupations_factors_list_condition: Стање
     occupations_factors_list_position: Позиција
     occupations_factors_list_weight: Тежина
     occupations_form_alternative_icon: Алтернативна икона
     occupations_form_color: Боја
     occupations_form_indicative_roles_image: Индикативне улоге слика
+    occupations_form_key_career_tracks_hint: '"+" - листа, "*" - подебљано. Пример: + *Биологија* - неки опис...'
     occupations_form_key_career_tracks_image: Кључне каријерне путање
     occupations_index_title: Занимања
     occupations_resource_confirmations_delete_body: 'Јесте ли сигурни да желите да избришете ово занимање?
@@ -2129,6 +2136,7 @@ sr-Cyrl:
     range_min_max: Домeн %{min} - %{max}
     rationale: Оправдање
     raw: сирово
+    raw_score: Сирови резултат
     reason_for_changes: Разлог за промене
     recents: Недавни
     record_id: Идентификациони број записа
@@ -2160,6 +2168,7 @@ sr-Cyrl:
     remove_confirm_success: Предмет са имејлом "%{subjectEmail}" је успешно уклоњен.
     remove_confirm_title: Уклони наслов
     remove_confirmation: Да ли сте сигурни да желите да уклоните овај предмет?
+    remove_icon: Уклони икону
     remove_output_schema_key: Уклоните кључ шеме излаза
     remove_successfully: Медијски ставка је успешно уклоњена.
     render_button: Шаблон рендера
@@ -2410,6 +2419,11 @@ sr-Cyrl:
       user_full_name_cont: Име корисника
     saville: Ел Салвадор
     saville_assessment: Савилле Процена
+    scale_max: Максимална скала
+    scale_max_must_be_greater_than_scale_min: Максимална вредност скале треба да буде већа од минималне вредности скале.
+    scale_min: Скала мин
+    scale_min_must_be_less_than_scale_max: Минимална вредност скале треба да буде мања од максималне вредности скале.
+    scale_value_must_not_be_negative: Вредност не би требало да буде негативна.
     schedule: Распоред
     schedule_email: Закажи е-пошту
     schedule_email_title: Закажи е-пошту
@@ -2549,10 +2563,13 @@ sr-Cyrl:
     score_definition_placeholder: Унесите дефиницију за овај ниво бодовања
     score_definitions: Дефиниције бодова
     score_max: Постигни максимум
+    score_max_must_be_greater_than_score_min: Максимални резултат мора бити већи од минималног резултата.
     score_min: Минимални резултат
+    score_min_must_be_less_than_score_max: Минимална оцена мора бити мања од максималне оцене.
     score_must_be_in_between_min_and_max: Резултат мора бити између %{min} и %{max}.
     score_not_applicable: Резултат није примењив
     score_range_info: 'Опсег бодова: %{min} - %{max}'
+    score_type: Тип резултата
     score_with_ai: Постигни са ВИ
     scores_finalized: Резултати су коначни и не могу се мењати.
     scoring: Поентирање
@@ -3121,6 +3138,7 @@ sr-Cyrl:
     translated_with_ai_notice: Преведено помоћу вештачке интелигенције
     translation_assistant_not_configured: Помоћник за превод није конфигурисан
     translations:
+      import: Увоз превода
       title: Преводи
     translations_export_failure_msg: Грешка приликом извоза превода
     translations_export_success_msg: Извоз развојних акција у току.

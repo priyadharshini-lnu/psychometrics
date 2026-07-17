@@ -56,6 +56,7 @@ zh:
     advanced: 高级
     advanced_mode_tooltip: 使用高级模式使用带有可用变量的液态模板进行提示模板。详情请参阅相关文档。
     agile: AGILE
+    agile_time_config_msg: 敏捷评估可能会使用按章节设置的计时器（在配置设置中设置）。请确保在此处设置足够的时间，以便从容地完成每个章节。
     ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
     ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: AI 工件
@@ -731,6 +732,7 @@ zh:
     enter_schema_key: 输入模式密钥
     error: 错误
     error_color: 错误颜色
+    errors_csv_file_import: 请先上传一个 CSV 文件，然后再点击“导入”
     errors_csv_file_required: 文件必须是 CSV 文件
     errors_error_msg: 出错了，请刷新页面，如果问题仍然存在，请联系您的管理员
     errors_min_retention: 不能少于 1 天
@@ -778,6 +780,7 @@ zh:
     factor_feedback: 因子反馈
     factor_selection: 因子选择
     factors: 因素
+    factors_filter_strategy: 战略
     factors_form_components_ExternalList_table_jsonpath: JSON 路径
     factors_form_components_ExternalList_table_types_norm_score: 标准分
     factors_form_components_ExternalList_table_types_percentage: 百分比
@@ -1260,6 +1263,7 @@ zh:
     maintenance_settings: 维护设置
     maintenance_settings_description: 管理系统维护窗口和设置
     make_report_available_to_subject_when: 在下列情况下向受试者提供报告
+    manage_condition_sets: 管理条件集
     manager_approval_required: "%{user}报告下载前需要经理批准"
     manager_approves_reports: 经理批准报告
     manager_can_access_subject_reports: 管理人员可查阅主题报告
@@ -1370,6 +1374,7 @@ zh:
     norm_region: 诺姆地区
     norm_region_form_select: 选择标准区域
     norm_region_update_success: Norm Region 更新成功
+    norm_score: 常模分数
     normal: 正常
     normalize_factor_scores: 因子得分标准化
     norms: 常模
@@ -1408,12 +1413,14 @@ zh:
     occupation_factors_condition_set: 条件集
     occupation_factors_title: 职业因素
     occupations: 职业
+    occupations_factor_uniqueness: 该因子已考虑在内
     occupations_factors_list_condition: 条件
     occupations_factors_list_position: 职位
     occupations_factors_list_weight: 重量
     occupations_form_alternative_icon: 备用图标
     occupations_form_color: 颜色
     occupations_form_indicative_roles_image: 角色示意图
+    occupations_form_key_career_tracks_hint: "“+” - 列表，“*” - 加粗。示例：+ *生物学* - 相关说明……"
     occupations_form_key_career_tracks_image: 主要职业发展路径图
     occupations_index_title: 职业
     occupations_resource_confirmations_delete_body: "<p>您确定要删除这个职业吗？</p>\n"
@@ -2125,6 +2132,7 @@ zh:
     range_min_max: RANGE %{min} - %{max}
     rationale: 依据
     raw: 生
+    raw_score: 原始分数
     reason_for_changes: 变更原因
     recents: 最近
     record_id: 记录编号
@@ -2156,6 +2164,7 @@ zh:
     remove_confirm_success: 带有电子邮件"%{subjectEmail}"的主题已成功删除。
     remove_confirm_title: 移除主题
     remove_confirmation: 您确定要删除此项目吗？
+    remove_icon: 删除图标
     remove_output_schema_key: 移除输出模式密钥
     remove_successfully: 媒体项目已成功删除。
     render_button: 渲染模板
@@ -2406,6 +2415,11 @@ zh:
       user_full_name_cont: 用户名
     saville: 萨维尔
     saville_assessment: 萨维尔评估
+    scale_max: 最大刻度
+    scale_max_must_be_greater_than_scale_min: "“比例尺最大值”应大于“比例尺最小值”"
+    scale_min: 刻度最小值
+    scale_min_must_be_less_than_scale_max: 刻度最小值应小于刻度最大值
+    scale_value_must_not_be_negative: 值不应为负数
     schedule: 时间安排
     schedule_email: 日程安排电子邮件
     schedule_email_title: 日程安排电子邮件
@@ -2545,10 +2559,13 @@ zh:
     score_definition_placeholder: 输入此分数等级的定义
     score_definitions: 分数定义
     score_max: 得分上限
+    score_max_must_be_greater_than_score_min: 最高分必须大于最低分
     score_min: 得分 最低
+    score_min_must_be_less_than_score_max: 最低分数必须小于最高分数
     score_must_be_in_between_min_and_max: 分数必须介于 %{min} 和 %{max} 之间。
     score_not_applicable: 分数不适用
     score_range_info: 分数范围：%{min} - %{max}
+    score_type: 分数类型
     score_with_ai: 用AI得分
     scores_finalized: 成绩已最终确定，无法更改
     scoring: 计分
@@ -3117,6 +3134,7 @@ zh:
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
     translations:
+      import: 导入翻译
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 导出开发行动正在进行中。

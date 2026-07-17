@@ -56,6 +56,7 @@ hi:
     advanced: उन्नत
     advanced_mode_tooltip: उपलब्ध वेरिएबल्स के साथ लिक्विड टेम्पलेट का उपयोग करके प्रॉम्प्ट टेम्पलेटिंग के लिए एडवांस्ड मोड का उपयोग करें। अधिक जानकारी के लिए दस्तावेज़ीकरण देखें।
     agile: चपल
+    agile_time_config_msg: एजाइल मूल्यांकन अनुभाग-वार टाइमर (कॉन्फ़िग सेटिंग्स में सेट) का उपयोग कर सकते हैं। प्रत्येक अनुभाग को आराम से पूरा करने के लिए पर्याप्त समय यहाँ अवश्य दें।
     ai_artifact_result_generation_admin_job_failed: उपयोगकर्ता '%{user_email}' के लिए कलाकृति '%{artifact_name}' उत्पन्न नहीं की जा सकती।
     ai_artifact_result_stale: परिणाम पुराना हो सकता है क्योंकि एआई आर्टिफैक्ट की निर्भरताएँ अंतिम परिणाम उत्पन्न होने के बाद बदल गई हैं। नवीनतम निर्भरताओं के साथ आर्टिफैक्ट को पुनः उत्पन्न करने पर विचार करें।
     ai_artifacts: एआई कलाकृतियाँ
@@ -733,6 +734,7 @@ hi:
     enter_schema_key: स्कीमा कुंजी दर्ज करें
     error: त्रुटि
     error_color: त्रुटि का रंग
+    errors_csv_file_import: कृपया "Import" पर क्लिक करने से पहले एक CSV फ़ाइल अपलोड करें।
     errors_csv_file_required: फ़ाइल CSV फ़ाइल होनी चाहिए।
     errors_error_msg: कुछ गलत हो गया। कृपया पेज रिफ्रेश करें और यदि समस्या अभी भी बनी रहती है तो अपने व्यवस्थापक से संपर्क करें।
     errors_min_retention: 1 दिन से कम नहीं हो सकता
@@ -780,6 +782,7 @@ hi:
     factor_feedback: कारक प्रतिक्रिया
     factor_selection: कारक चयन
     factors: तत्व
+    factors_filter_strategy: रणनीति
     factors_form_components_ExternalList_table_jsonpath: जेएसओएन पाथ
     factors_form_components_ExternalList_table_types_norm_score: मानकीकृत स्कोर
     factors_form_components_ExternalList_table_types_percentage: प्रतिशत
@@ -1262,6 +1265,7 @@ hi:
     maintenance_settings: रखरखाव सेटिंग्स
     maintenance_settings_description: सिस्टम रखरखाव विंडो और सेटिंग्स प्रबंधित करें
     make_report_available_to_subject_when: 'रिपोर्ट विषय को तब उपलब्ध कराएं जब:'
+    manage_condition_sets: स्थिति सेट प्रबंधित करें
     manager_approval_required: "%{user} के लिए रिपोर्ट डाउनलोड करने से पहले प्रबंधक की मंजूरी आवश्यक है।"
     manager_approves_reports: प्रबंधक रिपोर्टों को मंजूरी देता है
     manager_can_access_subject_reports: प्रबंधक विषय रिपोर्टों तक पहुँच सकता है।
@@ -1372,6 +1376,7 @@ hi:
     norm_region: नॉर्म क्षेत्र
     norm_region_form_select: नॉर्म क्षेत्र चुनें
     norm_region_update_success: नॉर्म क्षेत्र सफलतापूर्वक अपडेट किया गया
+    norm_score: मानक स्कोर
     normal: सामान्य
     normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
     norms: मानदंड
@@ -1410,12 +1415,14 @@ hi:
     occupation_factors_condition_set: अवस्था सेट
     occupation_factors_title: व्यवसाय संबंधी कारक
     occupations: व्यवसाय
+    occupations_factor_uniqueness: कारक पहले ही ले लिया गया है।
     occupations_factors_list_condition: स्थिति
     occupations_factors_list_position: पद
     occupations_factors_list_weight: वजन
     occupations_form_alternative_icon: वैकल्पिक आइकन
     occupations_form_color: रंग
     occupations_form_indicative_roles_image: संकेतात्मक भूमिकाओं की छवि
+    occupations_form_key_career_tracks_hint: '"+" - सूची, "*" - बोल्ड। उदाहरण: + *जीवविज्ञान* - कुछ विवरण...'
     occupations_form_key_career_tracks_image: मुख्य करियर मार्गों की छवि
     occupations_index_title: व्यवसाय
     occupations_resource_confirmations_delete_body: 'क्या आप इस व्यवसाय को हटाना चाहते हैं?
@@ -2129,6 +2136,7 @@ hi:
     range_min_max: दायरा %{min} - %{max}
     rationale: तर्कसंगतता
     raw: कच्चा
+    raw_score: कच्चा स्कोर
     reason_for_changes: बदलाव का कारण
     recents: हाल के
     record_id: रिकॉर्ड आईडी
@@ -2160,6 +2168,7 @@ hi:
     remove_confirm_success: ईमेल '%{subjectEmail}' वाला विषय सफलतापूर्वक हटा दिया गया।
     remove_confirm_title: विषय हटाएँ
     remove_confirmation: क्या आप इस आइटम को हटाना चाहते हैं?
+    remove_icon: आइकन हटाएँ
     remove_output_schema_key: आउटपुट स्कीमा कुंजी हटाएँ
     remove_successfully: मीडिया आइटम सफलतापूर्वक हटा दिया गया।
     render_button: रेंडर टेम्पलेट
@@ -2410,6 +2419,11 @@ hi:
       user_full_name_cont: उपयोगकर्ता नाम
     saville: सैविल
     saville_assessment: सैविल मूल्यांकन
+    scale_max: अधिकतम पैमाना
+    scale_max_must_be_greater_than_scale_min: स्केल का अधिकतम मान स्केल के न्यूनतम मान से अधिक होना चाहिए।
+    scale_min: न्यूनतम पैमाना
+    scale_min_must_be_less_than_scale_max: स्केल का न्यूनतम मान स्केल के अधिकतम मान से कम होना चाहिए।
+    scale_value_must_not_be_negative: मूल्य नकारात्मक नहीं होना चाहिए।
     schedule: समय-सारणी
     schedule_email: ईमेल अनुसूची करें
     schedule_email_title: ईमेल अनुसूची करें
@@ -2549,10 +2563,13 @@ hi:
     score_definition_placeholder: इस स्कोर स्तर के लिए परिभाषा दर्ज करें
     score_definitions: स्कोर परिभाषाएँ
     score_max: अधिकतम स्कोर
+    score_max_must_be_greater_than_score_min: अधिकतम स्कोर न्यूनतम स्कोर से अधिक होना चाहिए।
     score_min: न्यूनतम स्कोर
+    score_min_must_be_less_than_score_max: स्कोर न्यूनतम स्कोर अधिकतम से कम होना चाहिए।
     score_must_be_in_between_min_and_max: स्कोर %{min} और %{max} के बीच होना चाहिए।
     score_not_applicable: स्कोर लागू नहीं
     score_range_info: 'स्कोर सीमा: %{min} - %{max}'
+    score_type: स्कोर का प्रकार
     score_with_ai: एआई के साथ स्कोर करें
     scores_finalized: स्कोर अंतिम हैं और बदले नहीं जा सकते।
     scoring: स्कोरिंग
@@ -3121,6 +3138,7 @@ hi:
     translated_with_ai_notice: एआई द्वारा अनुवादित
     translation_assistant_not_configured: अनुवाद सहायक कॉन्फ़िगर नहीं किया गया है
     translations:
+      import: अनुवाद आयात करें
       title: अनुवाद
     translations_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
     translations_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।

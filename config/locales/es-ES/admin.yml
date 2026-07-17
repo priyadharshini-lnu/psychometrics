@@ -56,6 +56,7 @@ es-ES:
     advanced: Avanzado
     advanced_mode_tooltip: Utiliza el modo avanzado para la plantilla de prompts usando la plantilla líquida con variables disponibles. Consulta la documentación para más detalles.
     agile: AGIL
+    agile_time_config_msg: Las evaluaciones ágiles pueden utilizar temporizadores por secciones (que se configuran en los ajustes de configuración). Asegúrate de asignar tiempo suficiente para completar cada sección con comodidad.
     ai_artifact_result_generation_admin_job_failed: No se puede generar el artefacto «%{artifact_name}» para el usuario «%{user_email}».
     ai_artifact_result_stale: El resultado puede estar desactualizado, ya que las dependencias del artefacto de IA han cambiado desde que se generó el último resultado. Considere la posibilidad de volver a generar el artefacto con las últimas dependencias.
     ai_artifacts: Artefactos de IA
@@ -731,6 +732,7 @@ es-ES:
     enter_schema_key: Introducir clave de esquema
     error: Error
     error_color: Error Color
+    errors_csv_file_import: Por favor, sube un archivo CSV antes de hacer clic en «Importar».
     errors_csv_file_required: El archivo debe ser un archivo CSV
     errors_error_msg: Si el problema persiste, póngase en contacto con su administrador
     errors_min_retention: No puede ser inferior a 1 día
@@ -778,6 +780,7 @@ es-ES:
     factor_feedback: Retroalimentación de factores
     factor_selection: Selección de factores
     factors: Factores
+    factors_filter_strategy: Estrategia
     factors_form_components_ExternalList_table_jsonpath: Ruta JSON
     factors_form_components_ExternalList_table_types_norm_score: Puntuación normalizada
     factors_form_components_ExternalList_table_types_percentage: Porcentaje
@@ -1260,6 +1263,7 @@ es-ES:
     maintenance_settings: Configuración de mantenimiento
     maintenance_settings_description: Gestionar las ventanas y la configuración de mantenimiento del sistema.
     make_report_available_to_subject_when: 'Poner el informe a disposición del sujeto cuando:'
+    manage_condition_sets: Gestionar conjuntos de condiciones
     manager_approval_required: Informe para %{user} requiere la aprobación del gestor antes de la descarga
     manager_approves_reports: El Director aprueba los informes
     manager_can_access_subject_reports: El gestor puede acceder a los informes temáticos
@@ -1370,6 +1374,7 @@ es-ES:
     norm_region: Región normal
     norm_region_form_select: Seleccionar región normal
     norm_region_update_success: Región Norm actualizada correctamente
+    norm_score: Puntuación normalizada
     normal: Normal
     normalize_factor_scores: Normalizar las puntuaciones de los factores
     norms: Normas
@@ -1408,12 +1413,14 @@ es-ES:
     occupation_factors_condition_set: Conjunto de condiciones
     occupation_factors_title: Factores relacionados con la ocupación
     occupations: Ocupaciones
+    occupations_factor_uniqueness: El factor ya se ha tenido en cuenta
     occupations_factors_list_condition: Condición
     occupations_factors_list_position: Posición
     occupations_factors_list_weight: Peso
     occupations_form_alternative_icon: Icono alternativo
     occupations_form_color: Color
     occupations_form_indicative_roles_image: Imagen ilustrativa de los roles
+    occupations_form_key_career_tracks_hint: "«+» - lista, «*» - negrita. Ejemplo: + *Biología* - alguna descripción..."
     occupations_form_key_career_tracks_image: Imagen de las principales trayectorias profesionales
     occupations_index_title: Ocupaciones
     occupations_resource_confirmations_delete_body: "<p>¿Estás seguro de que quieres borrar esta ocupación?</p>\n"
@@ -2125,6 +2132,7 @@ es-ES:
     range_min_max: RANGE %{min} - %{max}
     rationale: Fundamento
     raw: CRUDO
+    raw_score: Puntuación bruta
     reason_for_changes: Motivo de los cambios
     recents: Últimas publicaciones
     record_id: ID de registro
@@ -2156,6 +2164,7 @@ es-ES:
     remove_confirm_success: El asunto con el correo electrónico "%{subjectEmail}" se ha eliminado correctamente.
     remove_confirm_title: Eliminar asunto
     remove_confirmation: "¿Estás seguro de que quieres eliminar este elemento?"
+    remove_icon: Eliminar icono
     remove_output_schema_key: Eliminar clave de esquema de salida
     remove_successfully: El elemento multimedia se ha eliminado correctamente.
     render_button: Plantilla de renderizado
@@ -2406,6 +2415,11 @@ es-ES:
       user_full_name_cont: Nombre de usuario
     saville: Saville
     saville_assessment: Evaluación Saville
+    scale_max: Escala máxima
+    scale_max_must_be_greater_than_scale_min: El valor máximo de la escala debe ser mayor que el valor mínimo de la escala.
+    scale_min: Escala mín.
+    scale_min_must_be_less_than_scale_max: El valor mínimo de la escala debe ser inferior al valor máximo de la escala.
+    scale_value_must_not_be_negative: El valor no debe ser negativo
     schedule: Horario
     schedule_email: Programar correo electrónico
     schedule_email_title: Programar correo electrónico
@@ -2545,10 +2559,13 @@ es-ES:
     score_definition_placeholder: Introduzca la definición para este nivel de puntuación.
     score_definitions: Definiciones de puntuación
     score_max: Puntuación máxima
+    score_max_must_be_greater_than_score_min: La puntuación máxima debe ser mayor que la puntuación mínima.
     score_min: Puntuación mínima
+    score_min_must_be_less_than_score_max: La puntuación mínima debe ser inferior a la puntuación máxima
     score_must_be_in_between_min_and_max: La puntuación debe estar entre %{min} y %{max}.
     score_not_applicable: Puntuación no aplicable
     score_range_info: 'Rango de puntuación: %{min} - %{max}'
+    score_type: Tipo de puntuación
     score_with_ai: Anota con IA
     scores_finalized: Las puntuaciones ya son definitivas y no se pueden modificar
     scoring: Puntuación
@@ -3117,6 +3134,7 @@ es-ES:
     translated_with_ai_notice: Traducido por IA
     translation_assistant_not_configured: Asistente de traducción no configurado
     translations:
+      import: Importar traducciones
       title: Traducciones
     translations_export_failure_msg: Error al exportar traducciones
     translations_export_success_msg: Exportación de acciones de desarrollo en curso.
