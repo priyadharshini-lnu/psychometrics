@@ -96,7 +96,9 @@ module EndUser
     end
 
     def timing
-      object.assessment.timing
+      return object.assessment.timing if object.assessment.timing.present?
+
+      object.pearson_user_assessment&.timing_text if object.assessment.pearson?
     end
 
     def assessment_category

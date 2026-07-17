@@ -176,6 +176,11 @@ hi:
     remove: हटाएँ
     removed: हटाया गया
     replace: बदलें
+    reports_show_values_inside_bar: बार के अंदर मान दिखाएँ
+    reports_value_label_position: मूल्य लेबल स्थिति
+    reports_value_label_position_center: केंद्र
+    reports_value_label_position_left: बायाँ
+    reports_value_label_position_right: सही
     required: आवश्यक
     reset: पुनः आरंभ करें
     reset_password: पासवर्ड रीसेट करें

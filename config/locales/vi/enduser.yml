@@ -136,6 +136,8 @@ vi:
     no_audio_detected: Không phát hiện thấy âm thanh. Vui lòng kiểm tra xem micrô của bạn đã được kết nối và hoạt động bình thường chưa.
     pass: Bỏ qua
     pause: Tạm dừng
+    pearson_timing_duration_minutes: Có giới hạn thời gian - %{duration} phút để hoàn thành
+    pearson_timing_untimed_duration: Không giới hạn thời gian - Mất khoảng 20-25 phút để hoàn thành
     pending: Đang chờ xử lý
     personal_readiness: Sự chuẩn bị cá nhân
     plan_text: Hãy lên kế hoạch cho toàn bộ thời gian thi. Một khi đã bắt đầu, tùy thuộc vào loại hình đánh giá, có thể sẽ không được phép nghỉ giải lao.

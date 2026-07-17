@@ -31,6 +31,8 @@ interface Props extends TextCondition {
   hideEmptyColumns: boolean
   hideZeroValueColumns: boolean
   showValues: boolean
+  showValuesInsideBar: boolean
+  valueLabelPosition?: 'center' | 'left' | 'right'
   preventValueOverlap: boolean
   xAxisLinesHide: boolean
   yAxisLinesHide: boolean

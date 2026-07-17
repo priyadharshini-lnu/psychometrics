@@ -176,6 +176,11 @@ hr:
     remove: Ukloniti
     removed: Uklonjeno
     replace: Zamijeniti
+    reports_show_values_inside_bar: Prikaži vrijednosti unutar trake
+    reports_value_label_position: Vrijednost položaja oznake
+    reports_value_label_position_center: Centar
+    reports_value_label_position_left: Lijevo
+    reports_value_label_position_right: Desno
     required: potrebno
     reset: Ponovno pokrenuti
     reset_password: Poništiti lozinku

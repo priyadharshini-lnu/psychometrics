@@ -105,6 +105,7 @@ export default {
     type: null,
     zIndex: 3000,
     showValues: true,
+    showValuesInsideBar: false,
     showOnAllPages: false,
   },
 

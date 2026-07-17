@@ -2265,7 +2265,7 @@ cs:
       pearson_usage_report: Využití testů společnosti Pearson
       report_usage_summary: Souhrn využití zprávy
       saville_usage_report: Využití hodnocení Saville
-      user_access_review: Kontrola uživatelských přístupů
+      user_access_review: Kontrola přístupových práv uživatelů
       user_created_dates: Datumy vytvořené uživatelem
       user_reports_export: Export uživatelských zpráv
     reports: Zprávy

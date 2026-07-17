@@ -284,7 +284,7 @@ const getActionsMenuProps = ({
     id: assessment.id,
     action: 'export_raw_results',
     method: 'post',
-    body: { with_lables: with_labels },
+    body: { with_labels },
   }).then(() => {
     message.success(I18n.t('assessments.messages.raw_results_export_scheduled'))
   })

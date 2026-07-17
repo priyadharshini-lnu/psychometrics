@@ -136,6 +136,8 @@ en:
     no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
     pass: Pass
     pause: Pause
+    pearson_timing_duration_minutes: Timed - %{duration} minutes to complete
+    pearson_timing_untimed_duration: Untimed - 20-25 minutes to complete
     pending: Pending
     personal_readiness: Personal Readiness
     plan_text: Plan for the full duration. Once started, breaks may not be allowed depending on the assessment type.

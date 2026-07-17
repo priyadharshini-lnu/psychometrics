@@ -176,6 +176,11 @@ pt:
     remove: Remover
     removed: Removido
     replace: Substituir
+    reports_show_values_inside_bar: Mostrar valores dentro da barra
+    reports_value_label_position: Posição da etiqueta de valor
+    reports_value_label_position_center: Centro
+    reports_value_label_position_left: Esquerda
+    reports_value_label_position_right: Certo
     required: necessário
     reset: Reiniciar
     reset_password: Redefinir a palavra-passe
