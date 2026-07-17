@@ -69,7 +69,7 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
   end
 
   def self.records(opts = {})
-    super.includes(:creator, :modifier)
+    super.includes(:creator, :modifier, :project, :security_setting, user_profile: :photo_attachment)
   end
 
   def fetchable_fields

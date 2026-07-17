@@ -14,6 +14,14 @@ class Api::V2::Administration::QuestionResource < Api::V2::Administration::BaseR
 
   ransack_filters %i[assessment_id_eq type_in filterable_fields name_cont owner_id_eq view_eq]
 
+  def self.records(opts = {})
+    super.includes(
+      owner: { client_design_setting: { logo_attachment: :blob } },
+      linked_assessments: [:translations, :created_by, :updated_by,
+                           { icon_attachment: :blob }, { poster_attachment: :blob }]
+    )
+  end
+
   before_create do
     @model.created_by_id = context[:user].id if context[:user]
     @model.updated_by_id = context[:user].id if context[:user]

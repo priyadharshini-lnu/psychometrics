@@ -123,7 +123,8 @@ module Administration
     end
 
     def all_factor_scores
-      @all_factor_scores ||= object.users_result.ai_factor_scores.order(:id).includes(:factor, :versions).to_a # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+      @all_factor_scores ||= object.users_result.ai_factor_scores.order(:id). # rubocop:disable CustomRubocops/AvoidUsingMemoizationInSerializers
+                             includes({ factor: :translations }, :versions).to_a
     end
 
     def active_media_responses_by_question

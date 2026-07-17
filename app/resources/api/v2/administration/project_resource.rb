@@ -53,11 +53,12 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
     client = opts[:context][:client]
     policy_scope = ::Pundit.policy_scope!(user, [:api, :administration, Project])
 
-    if client
-      policy_scope.where(ancestry: client.id)
-    else
-      policy_scope.where(ancestry_depth: Project::HIERARCHY_LEVEL[:project])
-    end
+    scope = if client
+              policy_scope.where(ancestry: client.id)
+            else
+              policy_scope.where(ancestry_depth: Project::HIERARCHY_LEVEL[:project])
+            end
+    scope.includes(:design_setting)
   end
 
   def fetchable_fields

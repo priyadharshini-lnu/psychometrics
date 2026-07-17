@@ -74,7 +74,11 @@ class Api::V2::Administration::WorkshopResource < Api::V2::Administration::BaseR
       opts[:context][:user],
       Workshop,
       campaign_id: opts[:context][:params]['campaign_id']
-    ).resolve
+    ).resolve.includes(
+      :meeting_room,
+      :tenant,
+      campaign: %i[default_idp_template dashboard threesixty_campaign]
+    )
   end
 
   def meta_details

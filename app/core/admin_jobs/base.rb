@@ -81,6 +81,18 @@ module AdminJobs
         new(record).valid?
       end
 
+      def preloaded_campaigns
+        Thread.current[:admin_job_preloaded_campaigns] || {}
+      end
+
+      def preload_campaigns_for(records)
+        campaign_ids = records.filter_map { |r| r.data['campaign_id'].to_i.nonzero? }.uniq
+        Thread.current[:admin_job_preloaded_campaigns] = Campaign.where(id: campaign_ids).index_by(&:id)
+        yield
+      ensure
+        Thread.current[:admin_job_preloaded_campaigns] = nil
+      end
+
       def step(name, klass, options = {})
         steps << { name: name, klass: klass, options: options }
       end
@@ -120,7 +132,8 @@ module AdminJobs
     end
 
     def campaign
-      @campaign ||= Campaign.find_by(id: record.data['campaign_id'])
+      @campaign ||= self.class.preloaded_campaigns[record.data['campaign_id'].to_i] ||
+                    Campaign.find_by(id: record.data['campaign_id'])
     end
 
     def project

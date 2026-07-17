@@ -6,7 +6,7 @@ module Administration
       before_action :set_resource, only: %i[update show destroy spoof]
 
       def index
-        assessors = campaign.assessors.ransack(params[:filters]).result
+        assessors = campaign.assessors.ransack(params[:filters]).result.preload(:user)
         paginated_assessors = assessors.page(params[:page])
 
         # rubocop:disable Metrics/BlockLength

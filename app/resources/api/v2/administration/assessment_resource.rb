@@ -53,7 +53,11 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   end
 
   def self.records(opts)
-    super.with_attached_icon.with_attached_poster.includes(:dimension, :owner, taggings: :tag)
+    super.with_attached_icon.with_attached_poster.
+      includes(
+        :translations, :created_by, :updated_by, :dimension,
+        owner: { client_design_setting: { logo_attachment: :blob } }
+      )
   end
 
   def icon_url
