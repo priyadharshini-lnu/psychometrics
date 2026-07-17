@@ -100,7 +100,7 @@ module Administration
     end
 
     def update_occupation_condition_set?
-      can_manage_campaign_and_users?
+      @user.is?(:superadmin)
     end
 
     def export_occupations?

@@ -7,15 +7,15 @@ module Administration
     end
 
     def create?
-      @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
+      @user.is?(:superadmin)
     end
 
     def edit?
-      @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
+      @user.is?(:superadmin)
     end
 
     def destroy?
-      @user.is?(:superadmin) || @user.has_permission?(:dimensions, :manage, project_id: project_id)
+      @user.is?(:superadmin)
     end
 
     def copy?
