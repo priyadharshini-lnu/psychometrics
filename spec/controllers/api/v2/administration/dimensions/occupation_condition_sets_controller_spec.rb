@@ -25,8 +25,31 @@ RSpec.describe Api::V2::Administration::Dimensions::OccupationConditionSetsContr
   end
 
   describe 'POST #copy' do
-    let(:dimension) { create(:dimension, occupations_enabled: true) }
+    let(:client) { create(:tenancy) }
+    let(:dimension) { create(:dimension, occupations_enabled: true, owner: client) }
     let!(:source) { dimension.default_occupation_condition_set }
+
+    context 'when user is not a superadmin but has access to the dimension' do
+      let(:user) { create(:client_admin, client: client) }
+      before { sign_in user }
+
+      it 'returns 403 forbidden' do
+        post :copy,
+             params: { dimension_id: dimension.id, id: source.id, data: { attributes: { new_name: 'Copied Set' } } }
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+
+    context 'when user is not a superadmin and has no access to the dimension' do
+      let(:user) { create(:client_admin) }
+      before { sign_in user }
+
+      it 'returns 404 not found' do
+        post :copy,
+             params: { dimension_id: dimension.id, id: source.id, data: { attributes: { new_name: 'Copied Set' } } }
+        expect(response).to have_http_status(:not_found)
+      end
+    end
 
     context 'when the new name is unique' do
       it 'creates a copy and returns it' do

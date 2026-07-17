@@ -126,7 +126,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
               <Checkbox>{I18n.t('admin.dimensions_form_enable_innovation_styles')}</Checkbox>
             </Form.Item>
           </Flex>
-          {dimension?.id && hasConditionSets && occupationsEnabled && (
+          {isSuperAdmin(currentUser) && dimension?.id && hasConditionSets && occupationsEnabled && (
             <Form.Item
               name="defaultOccupationConditionSetId"
               label={I18n.t('admin.default_occupation_condition_set')}

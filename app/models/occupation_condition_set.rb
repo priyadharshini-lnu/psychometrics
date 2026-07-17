@@ -3,12 +3,13 @@
 class OccupationConditionSet < ApplicationRecord
   audited
   include RansackSearchableFields
-  include Tenantable
-
-  tenant_config has_global_records: true, optional: true
-  tenant_source :dimension
 
   belongs_to :dimension
+  tenant_config has_global_records: true, optional: true
+  include Tenantable
+
+  tenant_source :dimension
+
   has_many :occupations_factors, dependent: :destroy
   has_many :campaign_assessments, dependent: :restrict_with_error
   has_many :users_results, dependent: :restrict_with_error

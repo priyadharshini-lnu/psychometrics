@@ -7,6 +7,16 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
   has_one :owner
   ransack_filters %i[filterable_fields]
 
+  def self.creatable_fields(context)
+    fields = super
+    fields -= [:default_occupation_condition_set_id] unless context[:user]&.is?(:superadmin)
+    fields
+  end
+
+  def self.updatable_fields(context)
+    creatable_fields(context)
+  end
+
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
