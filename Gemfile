@@ -298,4 +298,5 @@ gem 'oauth2', '~> 2.0'
 gem 'ph_model'
 gem 'validate_url', '~> 1.0'
 
+gem 'excon', '~> 1.5.0'
 gem 'falcon-rails', '~> 0.2.4'
