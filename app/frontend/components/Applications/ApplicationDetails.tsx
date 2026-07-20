@@ -11,6 +11,7 @@ import {
 } from '~/modules/admin/modules/client/core/applications'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
+import { setApplication } from '~/modules/admin/core/ui/breadcrumbs'
 import {
   ApplicationOverview,
   ApplicationAPIKeys,
@@ -33,13 +34,14 @@ type Props = {
   applicationId: string
   baseUrl: string
   permissionsConfig: PermissionsConfig
+  setApplication: (application: { id?: number; name?: string }) => void
 }
 
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
   }),
-  {},
+  { setApplication },
 )
 
 const ApplicationDetailsComponent: React.FC<Props> = ({
@@ -47,6 +49,7 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   applicationId,
   baseUrl,
   permissionsConfig,
+  setApplication,
 }) => {
   const { pathname } = useLocation()
   const { projectId, clientId } = useParams() as { projectId?: string, clientId?: string }
@@ -68,6 +71,13 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
       fetchSingle({ id: applicationId })
     }
   }, [applicationId])
+
+  useEffect(() => {
+    if (application) {
+      setApplication({ id: parseInt(application.id, 10), name: application.name })
+    }
+    return () => { setApplication({}) }
+  }, [application?.name])
 
   const [isTogglingStatus, setIsTogglingStatus] = useState(false)
 
