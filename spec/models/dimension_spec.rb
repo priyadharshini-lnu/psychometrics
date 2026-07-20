@@ -66,4 +66,60 @@ RSpec.describe Dimension, type: :model do
       expect(result.name).to eq('My Project - Skill Rater')
     end
   end
+
+  describe 'after_create' do
+    it 'creates a default occupation condition set when occupations are enabled' do
+      new_dimension = create(:dimension, occupations_enabled: true)
+
+      expect(new_dimension.default_occupation_condition_set).to be_present
+      expect(new_dimension.default_occupation_condition_set.name).to eq('Default')
+    end
+
+    it 'does not create an occupation condition set when occupations are disabled' do
+      new_dimension = create(:dimension, occupations_enabled: false)
+
+      expect(new_dimension.default_occupation_condition_set).to be_nil
+      expect(new_dimension.occupation_condition_sets).to be_empty
+    end
+  end
+
+  describe 'after_update' do
+    context 'when occupations_enabled is toggled to true' do
+      it 'creates a default occupation condition set when none exist' do
+        new_dimension = create(:dimension, occupations_enabled: false)
+
+        new_dimension.update!(occupations_enabled: true)
+
+        expect(new_dimension.reload.default_occupation_condition_set).to be_present
+        expect(new_dimension.default_occupation_condition_set.name).to eq('Default')
+      end
+
+      it 'assigns the existing condition set as default when one already exists' do
+        new_dimension = create(:dimension, occupations_enabled: false)
+        existing_set = create(:occupation_condition_set, dimension: new_dimension, name: 'Custom Set')
+
+        new_dimension.update!(occupations_enabled: true)
+
+        expect(new_dimension.reload.default_occupation_condition_set).to eq(existing_set)
+      end
+
+      it 'does not change the default if one is already assigned' do
+        new_dimension = create(:dimension, occupations_enabled: true)
+        original_default = new_dimension.default_occupation_condition_set
+
+        new_dimension.update!(occupations_enabled: false)
+        new_dimension.update!(occupations_enabled: true)
+
+        expect(new_dimension.reload.default_occupation_condition_set).to eq(original_default)
+      end
+    end
+  end
+
+  describe 'before_destroy' do
+    it 'can be destroyed without being blocked by the default condition set' do
+      dimension_to_destroy = create(:dimension)
+
+      expect { dimension_to_destroy.destroy! }.not_to raise_error
+    end
+  end
 end

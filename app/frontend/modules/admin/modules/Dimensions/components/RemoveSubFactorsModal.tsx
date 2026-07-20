@@ -12,6 +12,8 @@ export interface Props {
   close(): void
   subFact: SubFactors
   slug: string
+  occupationId?: number | null
+  onSuccessfulRemoval?(): void
 }
 
 const getResourceName = (slug: string) => {
@@ -20,7 +22,9 @@ const getResourceName = (slug: string) => {
   return 'factors'
 }
 
-export const RemoveSubFactorsModal: React.FC<Props> = ({ close, subFact, slug }) => {
+export const RemoveSubFactorsModal: React.FC<Props> = ({
+  close, subFact, slug, occupationId, onSuccessfulRemoval,
+}) => {
   const { dimensionId, tagId } = useParams() as { dimensionId: string, tagId: string }
 
   const resourceName = getResourceName(slug)
@@ -28,18 +32,21 @@ export const RemoveSubFactorsModal: React.FC<Props> = ({ close, subFact, slug })
   const resource = useResources<SubFactors>(
     resourceName,
     {
-      basePath: `dimensions/${dimensionId}/${slug}/${tagId}/`,
+      basePath: slug === 'occupations'
+        ? `dimensions/${dimensionId}/occupations/${occupationId}/`
+        : `dimensions/${dimensionId}/${slug}/${tagId}/`,
       responseType: SubFactorsTR,
     },
   )
 
-  const { id, name } = subFact
+  const { id, name, factorName } = subFact
 
-  const displayName = slug === 'occupations' ? (subFact.factorName || '') : (name || '')
+  const displayName = factorName || name || ''
 
   const handleOnConfirm = () => resource.removeResource(id).then(() => {
-    message.info(I18n.t('frontend.clients.actions.remove.success', { clientName: displayName }))
+    message.info(I18n.t('admin.factors_resource_removal_success', { name: displayName }))
     close()
+    onSuccessfulRemoval && onSuccessfulRemoval()
   }).catch((error) => {
     message.error(error)
   })
@@ -51,6 +58,7 @@ export const RemoveSubFactorsModal: React.FC<Props> = ({ close, subFact, slug })
       confirmationMessage={I18n.t('admin.scoring_factor_removal_confirmation')}
       onConfirm={handleOnConfirm}
       onCancel={close}
+      getContainer={false}
     />
   )
 }

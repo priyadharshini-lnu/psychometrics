@@ -59,7 +59,8 @@ RSpec.describe Api::V2::Administration::Campaigns::SmsHistoriesController, type:
       'segment_length' => sms_history.segment_length,
       'price' => sms_history.price,
       'created_at' => I18n.l(sms_history.created_at, format: :short),
-      'status' => sms_history.status
+      'status' => sms_history.status,
+      'tenant_id' => sms_history.tenant_id
     }
     expect(data['attributes']).to eq(expected_attributes)
   end

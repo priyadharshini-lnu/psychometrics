@@ -710,7 +710,6 @@ ja:
         end_date: '終了日:'
         every_interval: すべての%{interval}
         frequency: 周波数：
-        owner: オーナー
         project: プロジェクト
         recipients: 受賞者
         specific_datetime: で送る：

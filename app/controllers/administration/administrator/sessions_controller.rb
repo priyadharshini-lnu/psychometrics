@@ -122,7 +122,8 @@ module Administration
           administration_client_selection_path
         else
           sign_out(resource)
-          flash[:alert] = I18n.t('admin.no_client_access')
+          flash.discard(:notice)
+          flash[:alert] = I18n.t('admin.no_client_access_root')
           new_administration_session_path
         end
       end

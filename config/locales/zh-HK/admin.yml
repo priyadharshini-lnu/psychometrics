@@ -26,6 +26,7 @@ zh-HK:
     add_btn: 添加主题
     add_campaign_admin: 添加活动管理员
     add_client_admin: 添加客户管理员
+    add_client_assessor: 添加客户评估员
     add_conditions: 添加条件
     add_evaluators: 添加评估者
     add_indicator: 添加指示器
@@ -33,6 +34,7 @@ zh-HK:
     add_lead_assessor_hint: 请先添加首席评估员表格
     add_more: 添加更多
     add_new_folder: 添加新文件夹
+    add_or_select_factor_msg: 点击“添加/选择因子”以查看详细信息。
     add_output_schema_key: 添加输出模式键
     add_project: 添加项目
     add_project_admin: 添加项目管理员
@@ -47,12 +49,14 @@ zh-HK:
     admin_role_deleted: 管理员角色“%{role_name}”已成功删除。
     admin_roles: 管理员角色
     admin_updated_successfully: 管理员 '%{name}' 已成功更新
+    admin_with_email_already_added: 该邮箱的用户已添加。
     administrator_approves_reports: 管理员批准报告
     administrators_list_columns_email: 電郵
     admins: 管理员
     advanced: 高级
     advanced_mode_tooltip: 使用高级模式进行提示模板设计，可利用Liquid模板及其可用变量。更多详情请参阅文档。
     agile: 敏捷
+    agile_time_config_msg: 敏捷评估可能会使用按章节设置的计时器（在配置设置中设置）。请确保在此处设置足够的时间，以便从容地完成每个章节。
     ai_artifact_result_generation_admin_job_failed: 无法为用户 '%{user_email}' 生成工件 '%{artifact_name}'
     ai_artifact_result_stale: 结果可能已过时，因为自上次生成结果以来，AI工件的依赖项已发生变化。建议重新生成工件以使用最新依赖项进行构建。
     ai_artifacts: 人工智能产物
@@ -123,6 +127,20 @@ zh-HK:
     application_name: 应用程序名称
     application_name_already_taken: 该客户已有此记录
     application_name_format_hint: 仅允许使用字母和数字，单词之间用一个空格分隔
+    application_settings_at_least_one_ip_required: 在启用 IP 白名单功能之前，请先启用至少一个 IP 地址条目
+    application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
+    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
+    application_settings_enable_ip_whitelisting: 启用 IP 白名单
+    application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
+    application_settings_ip_addresses: IP 地址 / CIDR 范围
+    application_settings_ip_deleted_successfully: IP地址已成功删除
+    application_settings_ip_description_placeholder: 例如：办公室网络或生产服务器
+    application_settings_ip_input_placeholder: 例如：192.168.1.1 或 10.0.0.0/24
+    application_settings_ip_or_cidr: IP 地址或 CIDR 范围
+    application_settings_ip_required: 必须提供 IP 地址或 CIDR 范围
+    application_settings_ip_updated_successfully: IP 地址已成功更新
+    application_settings_ip_whitelisting_disabled_success: IP白名单已成功禁用
+    application_settings_ip_whitelisting_enabled_success: 已成功启用 IP 白名单功能
     applications: 应用
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
     approve_all_questions: 批准所有问题
@@ -279,6 +297,7 @@ zh-HK:
     campaign_assessment_column_caching_enabled: 评估缓存已启用
     campaign_assessment_column_hogan_assessment_id: 霍根评估编号
     campaign_assessment_column_hogan_form_id: 霍根表格编号
+    campaign_assessment_column_occupation_condition_set: 占用状态集
     campaign_assessment_column_pearson_assessment_id: 培生测评编号
     campaign_assessment_column_pearson_assessment_language: 培生测评语言
     campaign_assessment_column_pearson_error_details: 皮尔逊误差详情
@@ -305,6 +324,10 @@ zh-HK:
     campaign_assessment_modals_enable_caching_content: 您确定要为本次评估启用缓存功能吗？
     campaign_assessment_modals_enable_caching_successfully: 已为本次评估启用缓存功能。
     campaign_assessment_modals_enable_caching_title: 启用评估缓存？
+    campaign_assessment_modals_update_occupation_condition_set_apply: 将此更改应用到该营销活动中的现有用户
+    campaign_assessment_modals_update_occupation_condition_set_select: 选择职业状况集
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: "“占用状态集”已成功更新"
+    campaign_assessment_modals_update_occupation_condition_set_title: 更新职业状态集
     campaign_factors: 竞选因素
     campaign_id_placeholder: 输入活动ID
     campaign_name: 活动名称
@@ -388,6 +411,13 @@ zh-HK:
     client: 客户
     client_admin: 用戶端管理
     client_admins: 客户管理员
+    client_assessor_import_already_added: 邮箱地址为“%{email}”的用户已被添加为客户评估员。
+    client_assessor_import_client_required: 导入评估员需要客户端。
+    client_assessor_import_description: 导入一个仅包含“客户评估员”电子邮件列的 CSV 文件。
+    client_assessor_import_duplicated_emails: 以下电子邮件在 CSV 文件中重复出现：%{emails}
+    client_assessor_import_emails_required: 请至少提供一位评估员的电子邮箱地址。
+    client_assessor_import_global_assessor_required: 该用户必须是全局评估员。
+    client_assessor_removed_successfully: 已成功移除邮箱地址为“%{email}”的客户端评估员
     client_credentials_label: 客户端凭证
     client_credentials_value: 客户端凭证
     client_features: 客户功能
@@ -431,11 +461,13 @@ zh-HK:
     completed_tooltip: 所有评估员均已提交评估报告。
     components_input_duration_placeholder: 输入格式为 '1天 2小时 3分钟'
     concise: 简洁
+    condition_sets: 条件集
     confidence_interval: 置信区间
     confidence_interval_update_success: 置信区间更新成功
     configuration: 配置
     configure_model_answer_title: 配置模型答案和关键词
     confirm_remove_admin: 您确定要删除邮箱为 '%{email}' 的管理员用户吗？
+    confirm_remove_client_assessor: 您确定要删除邮箱地址为“%{email}”的客户评估员吗？
     confirmation_required: 需要确认
     confirmation_required_details: 您确定要删除%{resource}中的“%{resource_name}”吗？
     consolidated: 合并
@@ -444,8 +476,11 @@ zh-HK:
     copied: 复制
     copied_url_success: URL 已成功复制到剪贴板
     copy_ai_artifacts: 复制 AI 生成内容
+    copy_assessment_scheduled: 评估副本任务已安排。
     copy_hint: 将上述评估中心、中心管理员、评估员及会议与资源配置复制到以下评估中心。复制完成后，您可在继续操作前对各评估中心进行进一步修改。
     copy_image_url: 复制图片网址
+    copy_occupation_condition_set: 复制“职业条件集”
+    copy_occupation_condition_set_msg: 这将把当前条件集中的所有现有职业因素配置复制到新条件集中。
     copy_report_scheduled: 报告复制任务已安排。
     copy_text: 簡訊
     copy_to_all: 复制到其他评估中心
@@ -529,6 +564,7 @@ zh-HK:
     default_assessment_language: 评估默认语言
     default_button: 預設
     default_language: 預設語言
+    default_occupation_condition_set: 默认职业条件集
     default_report_language: 报告默认语言
     define_max_score_text: 定义%{maxScore}的分数（最高分）
     define_min_score_text: 定义%{minScore}的得分（最低得分）
@@ -638,6 +674,7 @@ zh-HK:
     document_titles_project_participants: 参与者 | %{project}
     done: 完成
     done_tooltip: 该用户的评估已由 %{marked_by} 标记为完成，因此无法再提交评估。
+    download_assessor_email_template: 下载示例模板
     download_bulk_asset_download_example_csv: 下载示例 CSV 文件。
     download_example_csv: 下载示例 csv
     dp_consent: 啟用資料處理同意
@@ -667,6 +704,7 @@ zh-HK:
     email_subjects_manager_when_available: 报告完成后，请邮件通知主题负责人
     empty: 空
     empty_csv_file: CSV文件不包含任何数据。
+    empty_occupation_condition_set_msg: 未找到与该病症集相关的职业因素。请添加一个因素。
     enable_caching_content: 您确定要为本次评估启用缓存功能吗？
     enable_caching_successfully: 已为本次评估启用缓存功能。
     enable_caching_title: 启用评估缓存？
@@ -694,6 +732,7 @@ zh-HK:
     enter_schema_key: 输入模式键
     error: 错误
     error_color: 错误颜色
+    errors_csv_file_import: 请先上传一个 CSV 文件，然后再点击“导入”
     errors_csv_file_required: 文件必须是CSV格式文件
     errors_error_msg: 出现错误。请刷新页面，若问题仍未解决，请联系您的管理员。
     errors_min_retention: 不能少于1天
@@ -741,6 +780,7 @@ zh-HK:
     factor_feedback: 因子反馈
     factor_selection: 因子选择
     factors: 因素
+    factors_filter_strategy: 战略
     factors_form_components_ExternalList_table_jsonpath: JSON路径
     factors_form_components_ExternalList_table_types_norm_score: 标准化分数
     factors_form_components_ExternalList_table_types_percentage: 百分比
@@ -760,6 +800,7 @@ zh-HK:
     factors_index_sub_factors: 次级因素
     factors_index_title: 因素
     factors_resource_confirmations_delete_body: "<p>您确定要删除此因子吗？</p>\n"
+    factors_resource_removal_success: 已成功移除因子“%{name}”。
     failure_reason: 故障原因
     feature_ai_assistants_description: 启用人工智能驱动的助手，提升用户体验
     feature_ai_assisted_idp_description: 利用人工智能辅助制定个人发展规划建议
@@ -1214,6 +1255,7 @@ zh-HK:
     log_date: 日志日期
     logged_in: 已登录
     login: 登入
+    login_page_design_tab: 设计
     low: 低
     mail_history: 邮件历史记录
     main_report: 主報告
@@ -1221,6 +1263,7 @@ zh-HK:
     maintenance_settings: 维护设置
     maintenance_settings_description: 管理系统维护窗口和设置
     make_report_available_to_subject_when: 在以下情况下向当事人提供报告：
+    manage_condition_sets: 管理条件集
     manager_approval_required: "%{user}的报告需经经理批准后方可下载"
     manager_approves_reports: 经理批准报告
     manager_can_access_subject_reports: 经理可以访问相关报告
@@ -1310,6 +1353,7 @@ zh-HK:
     new_score: 新分数
     no_assessments_found: 审计ID
     no_client_access: 您无权访问此客户
+    no_client_access_root: 您未与任何客户关联
     no_clients_found: 未找到任何客户
     no_completed_assessments: 目前尚无已完成的评估
     no_file_selected: 未选择文件
@@ -1330,6 +1374,7 @@ zh-HK:
     norm_region: 诺姆地区
     norm_region_form_select: 选择标准区域
     norm_region_update_success: Norm Region 更新成功
+    norm_score: 常模分数
     normal: 正常
     normalize_factor_scores: 標準化因子分數
     norms: 规范
@@ -1360,13 +1405,22 @@ zh-HK:
     oauth_scope_label: 范围
     oauth_scope_name: oauth_scope
     oauth_scope_required: 需要範圍
+    occupation_condition_set_copy_success: "“占用状态集”已成功复制"
+    occupation_condition_sets: 占用状态集
+    occupation_condition_sets_remove_confirm: 请在文本框中输入下文给出的“占用条件集”名称以确认
+    occupation_condition_sets_remove_success: 已成功删除占用状态集“%{name}”
+    occupation_condition_sets_remove_warning: 您确定要删除职业条件集“%{name}”吗？
+    occupation_factors_condition_set: 条件集
+    occupation_factors_title: 职业因素
     occupations: 职业
+    occupations_factor_uniqueness: 该因子已考虑在内
     occupations_factors_list_condition: 状态
     occupations_factors_list_position: 职位
     occupations_factors_list_weight: 重量
     occupations_form_alternative_icon: 备用图标
     occupations_form_color: 颜色
     occupations_form_indicative_roles_image: 角色示意图
+    occupations_form_key_career_tracks_hint: "“+” - 列表，“*” - 加粗。示例：+ *生物学* - 相关说明……"
     occupations_form_key_career_tracks_image: 主要职业发展路径图
     occupations_index_title: 职业
     occupations_resource_confirmations_delete_body: "<p>您确定要删除此职业吗？</p>\n"
@@ -2033,6 +2087,7 @@ zh-HK:
     public_key_cannot_be_changed: 创建后无法更改
     public_key_copy_private_key: 复制私钥
     public_key_created: 公钥已成功生成
+    public_key_details: 公钥详细信息
     public_key_generate: 生成密钥对
     public_key_generate_button: 生成 RSA 密钥对
     public_key_generate_info: 将生成一对 2048 位的 RSA 密钥对。系统仅会保存公钥。请复制私钥并将其安全保存——该私钥此后将不再显示。
@@ -2077,6 +2132,7 @@ zh-HK:
     range_min_max: RANGE %{min} - %{max}
     rationale: 依据
     raw: RAW
+    raw_score: 原始分数
     reason_for_changes: 变更原因
     recents: 最近
     record_id: 记录ID
@@ -2108,6 +2164,7 @@ zh-HK:
     remove_confirm_success: Subject with email '%{subjectEmail}'' was successfully removed.
     remove_confirm_title: 刪除主題
     remove_confirmation: 您确定要删除此项目吗？
+    remove_icon: 删除图标
     remove_output_schema_key: 移除输出模式键
     remove_successfully: 媒体项目已成功删除。
     render_button: 渲染模板
@@ -2210,6 +2267,7 @@ zh-HK:
     report_type: 报告类型
     report_types:
       active_clients_projects: 当前客户与项目
+      campaign_factor_scores: 竞选因素得分
       client_assessment_counts: 客户评估很重要
       hogan_usage_report: 霍根评估的使用
       json_data_report: JSON 数据报告
@@ -2357,6 +2415,11 @@ zh-HK:
       user_full_name_cont: 用户名
     saville: 薩維爾
     saville_assessment: 薩維爾評估
+    scale_max: 最大刻度
+    scale_max_must_be_greater_than_scale_min: "“比例尺最大值”应大于“比例尺最小值”"
+    scale_min: 刻度最小值
+    scale_min_must_be_less_than_scale_max: 刻度最小值应小于刻度最大值
+    scale_value_must_not_be_negative: 值不应为负数
     schedule: 程
     schedule_email: 安排邮件
     schedule_email_title: 安排邮件
@@ -2496,10 +2559,13 @@ zh-HK:
     score_definition_placeholder: 输入此分数等级的定义
     score_definitions: 分数定义
     score_max: 得分上限
+    score_max_must_be_greater_than_score_min: 最高分必须大于最低分
     score_min: 得分 最低
+    score_min_must_be_less_than_score_max: 最低分数必须小于最高分数
     score_must_be_in_between_min_and_max: 分数必须介于 %{min} 和 %{max} 之间。
     score_not_applicable: 分数不适用
     score_range_info: 分数范围：%{min} - %{max}
+    score_type: 分数类型
     score_with_ai: 用AI得分
     scores_finalized: 成绩已最终确定，无法更改
     scoring: 评分
@@ -2608,6 +2674,7 @@ zh-HK:
     search_admins: 搜索管理员
     search_campaign: 按活动搜索
     search_client: 按客户搜索
+    search_client_assessors: 搜索客户评估员
     search_job_role: 搜索职位
     search_participants: 搜索参与者...
     search_project: 按项目搜索
@@ -2643,6 +2710,7 @@ zh-HK:
     select_admin_role: 选择管理员角色
     select_assessment_language: 选择评估语言
     select_client: 选择客户
+    select_condition_set: 选择条件集
     select_end_time: 选择结束时间
     select_language_to_translate: 请选择要翻译的语言
     select_level: 选择级别
@@ -3066,6 +3134,7 @@ zh-HK:
     translated_with_ai_notice: AI翻译
     translation_assistant_not_configured: 翻译助手未配置
     translations:
+      import: 导入翻译
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 正在导出进行中的开发操作。

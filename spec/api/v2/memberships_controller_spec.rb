@@ -183,6 +183,80 @@ RSpec.describe Api::V2::Administration::MembershipsController, type: :request do
       expect(AdminJobRecord.last.data).to include({ 'campaign_id' => campaign.id })
     end
   end
+
+  describe 'POST /memberships/import_client_assessors' do
+    it 'enqueues client assessor import job for valid csv' do
+      client = create(:tenancy)
+      create(:superadmin, email: 'assessor1@example.com', global_assessor: true)
+      create(:superadmin, email: 'assessor2@example.com', global_assessor: true)
+      csv_content = "email\nassessor1@example.com\nassessor2@example.com\n"
+      file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv',
+                                          original_filename: 'client_assessors.csv')
+
+      expect do
+        post '/api/v2/administration/memberships/import_client_assessors',
+             params: {
+               client_id: client.id,
+               import_data: file
+             }
+      end.to change(AdminJobRecord, :count).by(1)
+
+      expect(response).to have_http_status(:ok)
+      expect(AdminJobRecord.last.operation).to eq('import_client_assessors')
+      expect(AdminJobRecord.last.data).to include({ 'client_id' => client.id })
+    end
+
+    it 'returns validation error when csv contains blank email' do
+      client = create(:tenancy)
+      csv_content = "email\n\n"
+      file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv',
+                                          original_filename: 'client_assessors.csv')
+
+      post '/api/v2/administration/memberships/import_client_assessors',
+           params: {
+             client_id: client.id,
+             import_data: file
+           }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)['errors'].join(' ')).to include(I18n.t('errors.messages.blank'))
+    end
+
+    it 'returns validation error for non csv import file' do
+      client = create(:tenancy)
+      file = Rack::Test::UploadedFile.new(StringIO.new('dummy'),
+                                          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                                          original_filename: 'client_assessors.xlsx')
+
+      post '/api/v2/administration/memberships/import_client_assessors',
+           params: {
+             client_id: client.id,
+             import_data: file
+           }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)['errors']).to include(I18n.t('admin.errors_csv_file_required'))
+    end
+
+    it 'returns validation error when email is not an existing global assessor' do
+      client = create(:tenancy)
+      csv_content = "email\nassessor1@example.com\n"
+      file = Rack::Test::UploadedFile.new(StringIO.new(csv_content), 'text/csv',
+                                          original_filename: 'client_assessors.csv')
+
+      post '/api/v2/administration/memberships/import_client_assessors',
+           params: {
+             client_id: client.id,
+             import_data: file
+           }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(JSON.parse(response.body)['errors'].join(' ')).to include(
+        I18n.t('admin.client_assessor_import_global_assessor_required')
+      )
+    end
+  end
+
   describe 'GET /memberships/{membership_id}/spoof' do
     it 'falls back to root-domain impersonation when client admin sso is disabled' do
       membership = create(:client_admin_membership)

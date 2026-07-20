@@ -124,7 +124,7 @@ module Administration
 
         flash.now[:success] = t('.successfully', name: target_user.decorate.display_name)
         spoof_admin_routing(target_user, client: campaign.project.parent,
-fallback_redirect_url: assessors_dashboard_path)
+                            fallback_redirect_url: assessors_dashboard_path)
       end
 
       private

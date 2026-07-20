@@ -17,6 +17,7 @@ class OccupationsFactor < ApplicationRecord
 
   belongs_to :factor
   belongs_to :occupation
+  belongs_to :occupation_condition_set
   tenant_config has_global_records: true, optional: true
   include Tenantable
 
@@ -24,10 +25,16 @@ class OccupationsFactor < ApplicationRecord
 
   default_scope { order('position asc NULLS LAST') }
 
-  validates :factor, :predicate, :value, presence: true
+  validates :factor, :predicate, :value, :occupation_condition_set, presence: true
+  validates :factor_id, uniqueness: {
+    scope: %i[occupation_id occupation_condition_set_id],
+    message: ->(_object, _data) { I18n.t('admin.occupations_factor_uniqueness') }
+  }
   validates :predicate, inclusion: { in: CONDITION_MAP.keys.map(&:to_s) }
   validates :value, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :position, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+
+  before_validation :set_default_weight
 
   def log_attribute_for_delete
     slice(:factor_id, :occupation_id)
@@ -39,5 +46,11 @@ class OccupationsFactor < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[factor]
+  end
+
+  private
+
+  def set_default_weight
+    self.weight ||= 1.0
   end
 end

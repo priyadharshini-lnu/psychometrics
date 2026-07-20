@@ -22,6 +22,8 @@ vi:
     assessor_approved: Được phê duyệt bởi chuyên gia đánh giá
     assessors_list: Danh sách các đánh giá viên
     asset_not_present: Tài sản không có sẵn
+    audience: Đối tượng khán giả
+    audience_claim_label: Khán giả (aud)
     audio: Âm thanh
     audio_devices: Thiết bị âm thanh
     authentication_failed: Xác thực không thành công. Vui lòng thử lại.
@@ -100,6 +102,10 @@ vi:
     import: Nhập khẩu
     inactive: Không hoạt động
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
+    issuer: Tổ chức phát hành
+    issuer_claim_label: Tổ chức phát hành (iss)
+    jwt_claims_details: Chi tiết yêu cầu bồi thường của JWT
+    key_id_claim_label: Mã định danh (kid)
     last_name: Họ
     last_updated: Cập nhật lần cuối
     learning_on_the_job_label: Học tập trong công việc

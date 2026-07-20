@@ -10,7 +10,7 @@ gem 'erb',                        '< 5.0' # Pin to avoid frozen string issues in
 gem 'rack',                       '~> 3.2.6'
 
 gem 'barnes', '~> 0.0.7'
-gem 'faraday', '~> 1.10.5'
+gem 'faraday', '~> 2.14.3'
 gem 'jbuilder', '~> 2.12.0'
 gem 'jquery-rails', '~> 4.4.0'
 gem 'jwt', '~> 2.10'
@@ -19,7 +19,7 @@ gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
 gem 'pg',                         '~> 1.4'
-gem 'rails',                      '~> 8.0.0'
+gem 'rails',                      '~> 8.0.4.1'
 gem 'rails-i18n',                 '~> 8.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'sprockets-rails'
@@ -65,7 +65,7 @@ gem 'kaminari', git: 'https://github.com/kaminari/kaminari', branch: 'master'
 gem 'breadcrumbs_on_rails',       '~> 4.1.0'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
-gem 'ransack',                    '~> 4.2'
+gem 'ransack',                    '~> 4.4'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.5'
 
@@ -266,8 +266,8 @@ gem 'statistics', '~> 1.0'
 gem 'syslog'
 gem 'syslog-logger', '~> 1.6'
 
-gem 'rails_semantic_logger', '~> 4.14'
-gem 'semantic_logger', '~> 4.15'
+gem 'rails_semantic_logger', '~> 4.17'
+gem 'semantic_logger', '~> 4.17'
 
 # TO handle authentication with Oracle
 gem 'oci', '~> 2.22.0'

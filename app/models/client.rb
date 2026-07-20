@@ -51,6 +51,7 @@ class Client < ApplicationRecord
   has_one :saml_setting, dependent: :destroy, foreign_key: :project_id
   has_one :security_setting, dependent: :destroy, foreign_key: :project_id
   has_one :design_setting, dependent: :destroy, foreign_key: :project_id
+  has_one :client_design_setting, class_name: 'DesignSetting', dependent: :destroy
   has_one :profile_setting, dependent: :destroy, foreign_key: :project_id
   has_one :registration_setting, dependent: :destroy, foreign_key: :project_id
   has_one :power_bi_setting, dependent: :destroy, foreign_key: :project_id
@@ -170,6 +171,7 @@ class Client < ApplicationRecord
   after_create :create_privacy_setting, if: :project?
   after_create :create_client_privacy_setting, if: :root?
   after_create :create_client_sso_setting, if: :root?
+  after_create :create_root_design_setting, if: :root?
   after_create :create_idp_setting, if: :project?
   after_create :create_client_features
   after_create :create_project_features, if: :project?
@@ -336,6 +338,10 @@ class Client < ApplicationRecord
     root
   end
 
+  def design_setting
+    root? ? client_design_setting : super
+  end
+
   def project
     return self if project?
     return parent if campaign?
@@ -411,6 +417,10 @@ class Client < ApplicationRecord
     return unless geo_restricted?
     raise Geo::Exceptions::RestrictedEndpoint if Current.user_country.blank?
     raise Geo::Exceptions::RestrictedEndpoint unless restricted_to_countries.include?(Current.user_country)
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    []
   end
 
   private
@@ -490,6 +500,10 @@ class Client < ApplicationRecord
 
   def create_project_features
     build_project_feature.save
+  end
+
+  def create_root_design_setting
+    build_client_design_setting(tenant_id: id).save!
   end
 end
 # rubocop:enable Metrics/ClassLength

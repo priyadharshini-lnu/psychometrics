@@ -710,7 +710,6 @@ vi:
         end_date: 'Ngày kết thúc:'
         every_interval: Mỗi %{interval}
         frequency: 'Tần số:'
-        owner: 'Chủ nhân:'
         project: 'Dự án:'
         recipients: 'Nhận:'
         specific_datetime: 'Gửi tại:'

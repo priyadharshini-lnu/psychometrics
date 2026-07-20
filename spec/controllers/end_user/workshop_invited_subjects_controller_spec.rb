@@ -21,6 +21,10 @@ describe EndUser::WorkshopInvitedSubjectsController, type: :controller do
     create(:workshop_subject, workshop: workshop, user: user, campaign: workshop_invite.campaign)
   end
 
+  let!(:campaign_user) do
+    create(:campaign_user, user: user, campaign: workshop_invite.campaign, active: true)
+  end
+
   before(:each) do
     login_user(user)
   end

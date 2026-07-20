@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from 'react'
 import {
-  Modal, Input, Button, Alert,
+  Modal, Input, Button, Alert, ModalProps,
 } from 'antd'
 import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
@@ -14,13 +14,14 @@ interface Props {
   alertType?: 'warning' | 'error'
   onCancel(): void
   children?: ReactNode
+  getContainer?: ModalProps['getContainer']
 }
 
 const { I18n } = window
 
 const AnswerableConfirmationModal: React.FC<Props> = ({
   confirmationTitle, confirmationMessage, warningMessage, requiredAnswer, onConfirm, onWrongAnswer, onCancel, children,
-  alertType = 'warning',
+  alertType = 'warning', getContainer,
 }) => {
   const [answer, setAnswer] = useState('')
   const [error, setError] = useState(null)
@@ -62,6 +63,7 @@ const AnswerableConfirmationModal: React.FC<Props> = ({
           {I18n.t('common.text.confirm')}
         </Button>,
       ]}
+      getContainer={getContainer}
     >
       {error && <div className="mbl"><Alert message={error} type="error" /></div>}
       { warningMessage && (

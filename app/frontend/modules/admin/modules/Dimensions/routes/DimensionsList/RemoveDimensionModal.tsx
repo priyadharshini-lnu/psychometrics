@@ -20,7 +20,8 @@ export const RemoveDimensionModal: React.FC<Props> = ({ close, dimension }) => {
     message.info(I18n.t('admin.dimensions_destroy_successfully', { name }))
     close()
   }).catch((error) => {
-    message.error(error)
+    const errorMessage = error?.base?.[0]?.title || error?.message || String(error)
+    message.error(errorMessage)
   })
 
   return (

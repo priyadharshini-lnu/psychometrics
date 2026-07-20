@@ -876,6 +876,7 @@ zh:
         compact_completion_status_export: 简要完成状态
         completion_status_export: 详细完成状态
         copy_as_template_or_campaign: 复制活动作为模板
+        copy_assessment: 抄写评估
         copy_dimension: 复制尺寸
         copy_report: 复制报告
         create_threesixty_campaign: 创建 Threesixty 活动
@@ -915,6 +916,7 @@ zh:
         import_assessors: 进口评估员
         import_campaign_ai_artifacts: 导入战役AI工件
         import_campaign_factors: 导入活动因素
+        import_client_assessors: 导入客户评估员
         import_datasheet: 导入数据表
         import_development_action_translations: 进口开发行动 翻译
         import_development_actions: 导入开发行动
@@ -972,6 +974,8 @@ zh:
       errors:
         no_plans: 未找到有效的 IDP 计划
     close: 关闭
+    copy_assessment:
+      failed: 评估副本失败
     copy_report:
       failed: 报告复制失败
     details: 详细信息

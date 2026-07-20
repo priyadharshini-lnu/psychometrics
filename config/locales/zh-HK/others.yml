@@ -876,6 +876,7 @@ zh-HK:
         compact_completion_status_export: 緊湊完工狀態匯出
         completion_status_export: 完工狀態匯出
         copy_as_template_or_campaign: 複製活動作為範本
+        copy_assessment: 抄写评估
         copy_dimension: 複製維度
         copy_report: 复制报告
         create_threesixty_campaign: Create Threesixty 運動
@@ -915,6 +916,7 @@ zh-HK:
         import_assessors: 顧問人數
         import_campaign_ai_artifacts: 匯入戰役 AI 工件
         import_campaign_factors: 進動因素
+        import_client_assessors: 导入客户评估员
         import_datasheet: 匯入資料表
         import_development_action_translations: 進口開發行動翻譯
         import_development_actions: 進口開發行動
@@ -972,6 +974,8 @@ zh-HK:
       errors:
         no_plans: 未找到有效的 IDP 計劃
     close: 近
+    copy_assessment:
+      failed: 评估副本失败
     copy_report:
       failed: 报告复制失败
     details: 詳

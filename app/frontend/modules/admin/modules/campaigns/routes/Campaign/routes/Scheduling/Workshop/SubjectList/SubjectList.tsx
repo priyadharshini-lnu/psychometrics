@@ -42,7 +42,7 @@ const SCHEDULING_STATUS_TO_TAG_COLOR = {
   late_rescheduled: 'error',
 }
 const UNACTIONABLE_SCHEDULING_STATUSES = ['rescheduled', 'cancelled', 'late_rescheduled', 'late_cancelled']
-const RE_ENROLL_SCHEDULING_STATUSES = ['cancelled']
+const RE_ENROLL_SCHEDULING_STATUSES = ['cancelled', 'late_cancelled']
 
 interface OwnProps {
   workshop: Workshop

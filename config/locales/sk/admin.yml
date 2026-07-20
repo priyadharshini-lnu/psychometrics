@@ -26,6 +26,7 @@ sk:
     add_btn: Pridanie predmetu
     add_campaign_admin: Pridanie správcu kampane
     add_client_admin: Pridať správcu klienta
+    add_client_assessor: Pridať hodnotiteľa klienta
     add_conditions: Pridať podmienky
     add_evaluators: Pridať hodnotiteľov
     add_indicator: Pridať indikátor
@@ -33,6 +34,7 @@ sk:
     add_lead_assessor_hint: Najprv pridajte formulár hlavného hodnotiteľa
     add_more: Pridať viac
     add_new_folder: Pridať nový priečinok
+    add_or_select_factor_msg: Kliknite na „Pridať/vybrať faktor“, aby ste si zobraili podrobnosti.
     add_output_schema_key: Pridanie kľúča výstupnej schémy
     add_project: Pridať projekt
     add_project_admin: Pridanie správcu projektu
@@ -47,12 +49,14 @@ sk:
     admin_role_deleted: Rola správcu %{role_name} bola úspešne odstránená.
     admin_roles: Roly správcu
     admin_updated_successfully: Správca "%{name}" bol úspešne aktualizovaný
+    admin_with_email_already_added: Používateľ s touto e-mailovou adresou už bol pridaný.
     administrator_approves_reports: Správca schvaľuje správy
     administrators_list_columns_email: E-mail
     admins: Správcovia
     advanced: Pokročilé
     advanced_mode_tooltip: Použite pokročilý režim na šablónovanie promptov pomocou tekutej šablóny s dostupnými premennými. Viac informácií nájdete v dokumentácii.
     agile: ŽIVÝ
+    agile_time_config_msg: Pri agilných hodnoteniach sa môžu používať časomiery pre jednotlivé sekcie (nastavené v konfiguračných nastaveniach). Uistite sa, že ste tu vyhradili dostatok času na pohodlné dokončenie každej sekcie.
     ai_artifact_result_generation_admin_job_failed: Artefakt „%{artifact_name}“ nemožno vygenerovať pre používateľa „%{user_email}“.
     ai_artifact_result_stale: Výsledok môže byť neaktuálny, pretože závislosti artefaktu AI sa od posledného vygenerovania výsledku zmenili. Zvážte regenerovanie artefaktu, aby sa vygeneroval s najnovšími závislosťami.
     ai_artifacts: Artefakty AI
@@ -123,6 +127,20 @@ sk:
     application_name: Názov aplikácie
     application_name_already_taken: Pre tohto klienta už existuje
     application_name_format_hint: Povolené sú iba písmená a čísla, medzi slovami je povolená iba jedna medzera
+    application_settings_at_least_one_ip_required: Pred aktiváciou bieleho zoznamu IP adries prosím aktivujte aspoň jednu položku IP adresy
+    application_settings_confirm_delete_ip: Naozaj chcete túto IP adresu vymazať?
+    application_settings_edit_ip_address: Upraviť IP adresu / rozsah CIDR
+    application_settings_enable_ip_whitelisting: Aktivovať zoznam povolených IP adries
+    application_settings_invalid_ip_format: Neplatná IP adresa alebo formát CIDR
+    application_settings_ip_addresses: IP adresy / rozsahy CIDR
+    application_settings_ip_deleted_successfully: IP adresa bola úspešne odstránená
+    application_settings_ip_description_placeholder: napr. kancelárska sieť alebo produkčný server
+    application_settings_ip_input_placeholder: napr. 192.168.1.1 alebo 10.0.0.0/24
+    application_settings_ip_or_cidr: IP adresa alebo rozsah CIDR
+    application_settings_ip_required: Je potrebná IP adresa alebo rozsah CIDR
+    application_settings_ip_updated_successfully: IP adresa bola úspešne aktualizovaná
+    application_settings_ip_whitelisting_disabled_success: Biely zoznam IP adries bol úspešne deaktivovaný
+    application_settings_ip_whitelisting_enabled_success: Biely zoznam IP adries bol úspešne aktivovaný
     applications: Aplikácie
     apply_to_existing_users: Túto zmenu aplikujte na existujúcich používateľov v tejto kampani.
     approve_all_questions: Schváliť všetky otázky
@@ -279,6 +297,7 @@ sk:
     campaign_assessment_column_caching_enabled: Zapnuté cache hodnotenia
     campaign_assessment_column_hogan_assessment_id: Identifikačné číslo hodnotenia Hogan
     campaign_assessment_column_hogan_form_id: Identifikačné číslo formulára Hogan
+    campaign_assessment_column_occupation_condition_set: Súbor podmienok povolania
     campaign_assessment_column_pearson_assessment_id: Identifikačné číslo testu Pearson
     campaign_assessment_column_pearson_assessment_language: Jazykové hodnotenie Pearson
     campaign_assessment_column_pearson_error_details: Podrobnosti o chybe Pearsonovej
@@ -305,6 +324,10 @@ sk:
     campaign_assessment_modals_enable_caching_content: Si si istý, že chceš pre toto hodnotenie povoliť cache?
     campaign_assessment_modals_enable_caching_successfully: Pre toto hodnotenie bolo zapnuté ukladanie do vyrovnávacej pamäte.
     campaign_assessment_modals_enable_caching_title: Povoliť cache hodnotenia?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Túto zmenu uplatniť na existujúcich používateľov v tejto kampani
+    campaign_assessment_modals_update_occupation_condition_set_select: Vyberte súbor podmienok povolania
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Sada podmienok povolania bola úspešne aktualizovaná
+    campaign_assessment_modals_update_occupation_condition_set_title: Aktualizácia súboru stavov obsadenosti
     campaign_factors: Faktory kampane
     campaign_id_placeholder: Predstavte ID kampane
     campaign_name: Názov kampane
@@ -388,6 +411,13 @@ sk:
     client: Prenájom klienta
     client_admin: Správca klienta
     client_admins: Správcovia klientov
+    client_assessor_import_already_added: Používateľ s e-mailovou adresou „%{email}“ už bol pridaný ako hodnotiteľ klienta.
+    client_assessor_import_client_required: Na import hodnotiteľov je potrebný klient.
+    client_assessor_import_description: Naimportujte súbor CSV s jedným stĺpcom obsahujúcim e-mailové adresy hodnotiteľov klientov.
+    client_assessor_import_duplicated_emails: 'Nasledujúce e-mailové adresy sa v súbore CSV vyskytujú duplicitne: %{emails}'
+    client_assessor_import_emails_required: Uveďte prosím aspoň jednu e-mailovú adresu hodnotiteľa.
+    client_assessor_import_global_assessor_required: Používateľ musí byť zaradený medzi globálnych hodnotiteľov.
+    client_assessor_removed_successfully: Klientský hodnotiteľ s e-mailovou adresou „%{email}“ bol úspešne odstránený
     client_credentials_label: Prihlasovacie údaje klienta
     client_credentials_value: client_credentials
     client_features: Funkcie klienta
@@ -431,11 +461,13 @@ sk:
     completed_tooltip: Všetci hodnotitelia odovzdali hodnotenie
     components_input_duration_placeholder: Zadajte ako "1d 2h 3m"
     concise: Stručný
+    condition_sets: Množiny podmienok
     confidence_interval: Interval spoľahlivosti
     confidence_interval_update_success: Interval spoľahlivosti bol úspešne aktualizovaný
     configuration: Konfigurácia
     configure_model_answer_title: Nakonfigurujte vzorové odpovede a kľúčové slová
     confirm_remove_admin: Naozaj chcete odstrániť správcu používateľa s e-mailom '%{email}'?
+    confirm_remove_client_assessor: Naozaj chcete odstrániť hodnotiteľa klienta s e-mailovou adresou „%{email}“?
     confirmation_required: Je potrebné potvrdenie
     confirmation_required_details: Naozaj chcete odstrániť súbor „%{resource_name}“ z adresára „%{resource}“?
     consolidated: Konsolidované
@@ -444,8 +476,11 @@ sk:
     copied: Kopírované
     copied_url_success: URL bola úspešne skopírovaná do schránky
     copy_ai_artifacts: Kopírovať umelecké diela vytvorené umelou inteligenciou
+    copy_assessment_scheduled: Úloha na posúdenie kópie bola naplánovaná.
     copy_hint: Skopíruje vyššie uvedenú konfiguráciu Miesta, Manažéri stredísk, Hodnotitelia a Schôdze a zdroje do nasledujúcich hodnotiacich centier. Po skopírovaní môžete pred pokračovaním vykonať ďalšie zmeny v jednotlivých hodnotiacich centrách.
     copy_image_url: Skopíruj adresu URL obrázka
+    copy_occupation_condition_set: Kopírovať súbor podmienok povolania
+    copy_occupation_condition_set_msg: Týmto sa skopíruje celá existujúca konfigurácia faktorov obsadenosti z aktuálnej sady podmienok do novej sady podmienok.
     copy_report_scheduled: Úloha na vytvorenie kópie správy bola naplánovaná.
     copy_text: Text
     copy_to_all: Kopírovanie do iných hodnotiacich centier
@@ -529,6 +564,7 @@ sk:
     default_assessment_language: Predvolený jazyk hodnotenia
     default_button: Predvolené nastavenie
     default_language: Predvolený jazyk
+    default_occupation_condition_set: Predvolená sada podmienok povolania
     default_report_language: Predvolený jazyk správy
     define_max_score_text: Definujte skóre „%{maxScore}“ (maximálne skóre)
     define_min_score_text: Definujte skóre „%{minScore}“ (minimálne skóre)
@@ -638,6 +674,7 @@ sk:
     document_titles_project_participants: Účastníci | %{project}
     done: Robené
     done_tooltip: Pre tohto používateľa už nie je možné vykonať ďalšie hodnotenie, pretože hodnotenie je označené ako vykonané %{marked_by}
+    download_assessor_email_template: Stiahnuť vzorovú šablónu
     download_bulk_asset_download_example_csv: Stiahnuť príklad CSV.
     download_example_csv: Stiahnuť Príklad csv
     dp_consent: Povolenie súhlasu so spracovaním údajov
@@ -667,6 +704,7 @@ sk:
     email_subjects_manager_when_available: E-mail manažérovi subjektu, keď bude správa k dispozícii
     empty: Prázdne
     empty_csv_file: CSV súbor neobsahuje žiadne údaje.
+    empty_occupation_condition_set_msg: Pre túto skupinu ochorení neboli nájdené žiadne faktory týkajúce sa povolania. Prosím, pridajte faktor.
     enable_caching_content: Si si istý, že chceš pre toto hodnotenie povoliť cache?
     enable_caching_successfully: Pre toto hodnotenie bolo zapnuté ukladanie do vyrovnávacej pamäte.
     enable_caching_title: Povoliť cache hodnotenia?
@@ -694,6 +732,7 @@ sk:
     enter_schema_key: Zadajte kľúč schémy
     error: Chyba
     error_color: Farba chyby
+    errors_csv_file_import: Pred kliknutím na tlačidlo „Importovať“ nahrajte súbor CSV
     errors_csv_file_required: Súbor musí byť súbor CSV
     errors_error_msg: Niečo sa pokazilo. Obnovte stránku a ak problém pretrváva, kontaktujte svojho správcu
     errors_min_retention: Nesmie byť kratšia ako 1 deň
@@ -741,6 +780,7 @@ sk:
     factor_feedback: Spätná väzba k faktorom
     factor_selection: Výber faktorov
     factors: Faktory
+    factors_filter_strategy: Stratégia
     factors_form_components_ExternalList_table_jsonpath: Cesta JSON
     factors_form_components_ExternalList_table_types_norm_score: Normované skóre
     factors_form_components_ExternalList_table_types_percentage: Percento
@@ -760,6 +800,7 @@ sk:
     factors_index_sub_factors: Čiastkové faktory
     factors_index_title: Faktory
     factors_resource_confirmations_delete_body: "<p>Naozaj chcete tento faktor odstrániť?</p>\n"
+    factors_resource_removal_success: Faktor „%{name}“ bol úspešne odstránený.
     failure_reason: Dôvod zlyhania
     feature_ai_assistants_description: Aktivujte asistenty s umelou inteligenciou pre lepší používateľský zážitok
     feature_ai_assisted_idp_description: Využite umelú inteligenciu na pomoc pri odporúčaniach týkajúcich sa individuálneho rozvoja
@@ -1214,6 +1255,7 @@ sk:
     log_date: Dátum záznamu
     logged_in: Prihlásený
     login: Prihlásenie
+    login_page_design_tab: Dizajn
     low: Nízka
     mail_history: História pošty
     main_report: Hlavná správa
@@ -1221,6 +1263,7 @@ sk:
     maintenance_settings: Nastavenia údržby
     maintenance_settings_description: Správa okien a nastavení údržby systému
     make_report_available_to_subject_when: 'Sprístupnite správu subjektu, keď:'
+    manage_condition_sets: Správa súborov podmienok
     manager_approval_required: Report for %{user} vyžaduje schválenie manažéra pred stiahnutím
     manager_approves_reports: Manažér schvaľuje správy
     manager_can_access_subject_reports: Manažér má prístup k predmetným správam
@@ -1310,6 +1353,7 @@ sk:
     new_score: Nové skóre
     no_assessments_found: ID auditu
     no_client_access: Nemáte prístup k tomuto klientovi
+    no_client_access_root: Nie ste priradený k žiadnemu klientovi
     no_clients_found: Nenašli sa žiadni klienti
     no_completed_assessments: Zatiaľ nie sú dokončené hodnotenia
     no_file_selected: Žiadny súbor nevybraný
@@ -1330,6 +1374,7 @@ sk:
     norm_region: Normálny región
     norm_region_form_select: Vyberte normu Región
     norm_region_update_success: Norm Region úspešne aktualizovaný
+    norm_score: Normované skóre
     normal: Normálne
     normalize_factor_scores: Normalizujte skóre faktorov
     norms: Normy
@@ -1360,13 +1405,22 @@ sk:
     oauth_scope_label: Rozsah
     oauth_scope_name: oauth_scope
     oauth_scope_required: Rozsah je potrebný
+    occupation_condition_set_copy_success: Sada stavov povolania bola úspešne skopírovaná
+    occupation_condition_sets: Súbory podmienok povolania
+    occupation_condition_sets_remove_confirm: Na potvrdenie zadajte do textového poľa názov sady podmienok povolania uvedený nižšie
+    occupation_condition_sets_remove_success: Sada podmienok povolania „%{name}“ bola úspešne odstránená
+    occupation_condition_sets_remove_warning: Naozaj chcete odstrániť sadu podmienok povolania „%{name}“?
+    occupation_factors_condition_set: Množina podmienok
+    occupation_factors_title: Faktory súvisiace s povolaním
     occupations: Povolania
+    occupations_factor_uniqueness: Tento faktor už bol zohľadnený
     occupations_factors_list_condition: Podmienka
     occupations_factors_list_position: Pozícia
     occupations_factors_list_weight: Hmotnosť
     occupations_form_alternative_icon: Alternatívna ikona
     occupations_form_color: Farba
     occupations_form_indicative_roles_image: Ilustračný obrázok rolí
+    occupations_form_key_career_tracks_hint: "„+“ – zoznam, „*“ – tučné písmo. Príklad: + *Biológia* – nejaký popis..."
     occupations_form_key_career_tracks_image: Obrázok hlavných kariérnych dráh
     occupations_index_title: Povolania
     occupations_resource_confirmations_delete_body: "<p>Naozaj chcete toto povolanie zmazať?</p>\n"
@@ -2033,6 +2087,7 @@ sk:
     public_key_cannot_be_changed: po vytvorení sa nedá zmeniť
     public_key_copy_private_key: Skopírovať súkromný kľúč
     public_key_created: Verejný kľúč bol úspešne vytvorený
+    public_key_details: Podrobnosti o verejnom kľúči
     public_key_generate: Vytvoriť pár kľúčov
     public_key_generate_button: Vytvoriť pár kľúčov RSA
     public_key_generate_info: Vytvorí sa pár kľúčov RSA s dĺžkou 2048 bitov. Uloží sa iba verejný kľúč. Súkromný kľúč si skopírujte a bezpečne uložte – už sa viac nezobrazí.
@@ -2077,6 +2132,7 @@ sk:
     range_min_max: ROZSAH%{min} - %{max}
     rationale: Odôvodnenie
     raw: SUROVÝ
+    raw_score: Hrubý výsledok
     reason_for_changes: Dôvod zmien
     recents: Najnovšie
     record_id: ID záznamu
@@ -2108,6 +2164,7 @@ sk:
     remove_confirm_success: Predmet s e-mailom "%{subjectEmail}" bol úspešne odstránený.
     remove_confirm_title: Odstrániť predmet
     remove_confirmation: Naozaj chcete túto položku odstrániť?
+    remove_icon: Odstrániť ikonu
     remove_output_schema_key: Odstránenie kľúča výstupnej schémy
     remove_successfully: Mediálny súbor bol úspešne odstránený.
     render_button: Šablóna renderu
@@ -2210,6 +2267,7 @@ sk:
     report_type: Typ správy
     report_types:
       active_clients_projects: Aktívni klienti a projekty
+      campaign_factor_scores: Skóre faktorov kampane
       client_assessment_counts: Hodnotenie klientov je dôležité
       hogan_usage_report: Využitie hodnotenia Hogan
       json_data_report: Správa s údajmi vo formáte JSON
@@ -2357,6 +2415,11 @@ sk:
       user_full_name_cont: Používateľské meno
     saville: Saville
     saville_assessment: Hodnotenie Saville
+    scale_max: Maximálna stupnica
+    scale_max_must_be_greater_than_scale_min: Maximálna hodnota mierky by mala byť väčšia ako minimálna hodnota mierky
+    scale_min: Mierka Min
+    scale_min_must_be_less_than_scale_max: Minimálna hodnota mierky by mala byť menšia ako maximálna hodnota mierky
+    scale_value_must_not_be_negative: Hodnota nesmie byť záporná
     schedule: Rozvrh
     schedule_email: Naplánovať e-mail
     schedule_email_title: Naplánovať e-mail
@@ -2493,10 +2556,13 @@ sk:
     score_definition_placeholder: Zadajte definíciu pre túto úroveň skóre
     score_definitions: Definície skóre
     score_max: Maximálny počet bodov
+    score_max_must_be_greater_than_score_min: Maximálne skóre musí byť väčšie ako minimálne skóre
     score_min: Skóre Min
+    score_min_must_be_less_than_score_max: Minimálne skóre musí byť nižšie ako maximálne skóre
     score_must_be_in_between_min_and_max: Skóre musí byť v rozmedzí %{min} a %{max}.
     score_not_applicable: Skóre sa neuplatňuje
     score_range_info: 'Rozsah skóre: %{min} - %{max}'
+    score_type: Typ skóre
     score_with_ai: Skórujte s AI
     scores_finalized: Výsledky sú konečné a nemožno ich meniť
     scoring: Bodovania
@@ -2605,6 +2671,7 @@ sk:
     search_admins: Vyhľadávanie správcov
     search_campaign: Vyhľadávanie podľa kampane
     search_client: Vyhľadávanie podľa klienta
+    search_client_assessors: Vyhľadávať hodnotiteľov klientov
     search_job_role: Hľadať pracovnú pozíciu
     search_participants: Vyhľadávať účastníkov...
     search_project: Vyhľadávanie podľa projektu
@@ -2640,6 +2707,7 @@ sk:
     select_admin_role: Vyberte rolu správcu
     select_assessment_language: Výber jazyka hodnotenia
     select_client: Vyberte klienta
+    select_condition_set: Vyberte sadu podmienok
     select_end_time: Vyberte čas ukončenia
     select_language_to_translate: Vyberte jazyk, do ktorého chcete preložiť
     select_level: Vyberte úroveň
@@ -3058,6 +3126,7 @@ sk:
     translated_with_ai_notice: Preložené umelou inteligenciou
     translation_assistant_not_configured: Prekladateľský asistent nie je nakonfigurovaný
     translations:
+      import: Importovať preklady
       title: Preklady
     translations_export_failure_msg: Chyba pri exporte prekladov
     translations_export_success_msg: Export prebiehajúcich vývojových akcií.

@@ -1,4 +1,23 @@
 $(function () {
+  $(document).on(
+    'change',
+    "#filter[action*='/administration/communications'] select[name='q[client_id_in][]'], " +
+    "#filter[action*='/administration/communications'] select[name='q[project_id_eq]'], " +
+    "#filter[action*='/administration/communications'] select[name='q[campaign_id_eq]']",
+    function () {
+      $('#communications_refresh_filters').val('1')
+    }
+  )
+
+  $(document).on(
+    'input change',
+    "#filter[action*='/administration/communications'] input[name='q[subject_or_body_cont]'], " +
+    "#filter[action*='/administration/communications'] select[name='q[kind_in][]']",
+    function () {
+      $('#communications_refresh_filters').val('0')
+    }
+  )
+
   $(document).on('change', '[data-behavior~=communication-changeable]', function () {
     updateForm(this);
   });

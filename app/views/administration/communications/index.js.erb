@@ -1,0 +1,11 @@
+<% if @refresh_filters %>
+$('#communications_filters').html('<%= j render(partial: 'filters') %>');
+
+if (window.Filterrific && window.Filterrific.initListener) {
+  window.Filterrific.initListener();
+}
+<% end %>
+
+$('#filter_results').html('<%= j render(partial: 'list') %>');
+
+$(document).trigger('initPlugins');

@@ -22,6 +22,8 @@ sl:
     assessor_approved: Ocenjevalec odobril
     assessors_list: Seznam ocenjevalcev
     asset_not_present: Sredstvo ni prisotno
+    audience: Občinstvo
+    audience_claim_label: Občinstvo (aud)
     audio: Avdio
     audio_devices: Avdio naprave
     authentication_failed: Avtentikacija ni uspela. Prosim, poskusite znova.
@@ -100,6 +102,10 @@ sl:
     import: Uvoz
     inactive: Neaktiven
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
+    issuer: Izdajatelj
+    issuer_claim_label: Izdajatelj (iss)
+    jwt_claims_details: Podrobnosti o zahtevkih JWT
+    key_id_claim_label: ID ključa (kid)
     last_name: Priimek
     last_updated: Zadnja posodobitev
     learning_on_the_job_label: Učenje na delovnem mestu

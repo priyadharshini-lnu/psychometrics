@@ -26,6 +26,7 @@ hu:
     add_btn: Tárgy hozzáadása
     add_campaign_admin: Kampányadminisztrátor hozzáadása
     add_client_admin: Ügyfél-adminisztrátor hozzáadása
+    add_client_assessor: Ügyfélértékelő hozzáadása
     add_conditions: Feltételek hozzáadása
     add_evaluators: Értékelők hozzáadása
     add_indicator: Indikátor hozzáadása
@@ -33,6 +34,7 @@ hu:
     add_lead_assessor_hint: Kérjük, először adja hozzá a vezető értékelői űrlapot
     add_more: Adjon hozzá többet
     add_new_folder: Új mappa hozzáadása
+    add_or_select_factor_msg: Kattintson a „Tényező hozzáadása/kiválasztása” gombra a részletek megtekintéséhez.
     add_output_schema_key: Kimeneti séma kulcs hozzáadása
     add_project: Projekt hozzáadása
     add_project_admin: Projektadminisztrátor hozzáadása
@@ -47,12 +49,14 @@ hu:
     admin_role_deleted: A(z) %{role_name} adminisztrátori szerepkör törlése sikeresen megtörtént.
     admin_roles: Adminisztrátori szerepkörök
     admin_updated_successfully: Az adminisztrátori '%{name}' frissítése sikeresen megtörtént
+    admin_with_email_already_added: A fenti e-mail-címmel rendelkező felhasználót már hozzáadták.
     administrator_approves_reports: Az adminisztrátor jóváhagyja a jelentéseket
     administrators_list_columns_email: E-mail
     admins: Adminisztrátorok
     advanced: Haladó
     advanced_mode_tooltip: Használj fejlett módot prompt templáláshoz liquid sablon használatával, elérhető változókkal. További részletekért lásd a dokumentációt.
     agile: FÜRGE
+    agile_time_config_msg: Az agilis értékelések során szakaszokra lebontott időzítők használhatók (a konfigurációs beállításokban állíthatók be). Ügyeljen arra, hogy elegendő időt állítson be az egyes szakaszok kényelmes elvégzéséhez.
     ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
     ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
@@ -123,6 +127,20 @@ hu:
     application_name: Alkalmazás neve
     application_name_already_taken: Ez az ügyfél számára már létezik
     application_name_format_hint: Csak betűk és számok használhatók, a szavak között egyetlen szóközzel
+    application_settings_at_least_one_ip_required: Kérjük, legalább egy IP-címet adjon meg, mielőtt engedélyezné az IP-címek fehérlistáját.
+    application_settings_confirm_delete_ip: Biztosan törölni szeretné ezt az IP-címet?
+    application_settings_edit_ip_address: IP-cím / CIDR-tartomány szerkesztése
+    application_settings_enable_ip_whitelisting: IP-címek fehérlistájának engedélyezése
+    application_settings_invalid_ip_format: Érvénytelen IP-cím vagy CIDR-formátum
+    application_settings_ip_addresses: IP-címek / CIDR-tartományok
+    application_settings_ip_deleted_successfully: Az IP-cím törlése sikeresen megtörtént
+    application_settings_ip_description_placeholder: pl. irodai hálózat vagy termelési szerver
+    application_settings_ip_input_placeholder: pl. 192.168.1.1 vagy 10.0.0.0/24
+    application_settings_ip_or_cidr: IP-cím vagy CIDR-tartomány
+    application_settings_ip_required: IP-cím vagy CIDR-tartomány megadása kötelező
+    application_settings_ip_updated_successfully: Az IP-cím frissítése sikeresen megtörtént
+    application_settings_ip_whitelisting_disabled_success: Az IP-címek fehérlistájának engedélyezése sikeresen lezárult
+    application_settings_ip_whitelisting_enabled_success: Az IP-címek fehérlistájának engedélyezése sikeresen megtörtént
     applications: Alkalmazások
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
     approve_all_questions: Minden kérdés jóváhagyása
@@ -279,6 +297,7 @@ hu:
     campaign_assessment_column_caching_enabled: Értékelési gyorsítótár engedélyezve
     campaign_assessment_column_hogan_assessment_id: Hogan értékelési azonosító
     campaign_assessment_column_hogan_form_id: Hogan űrlap azonosító
+    campaign_assessment_column_occupation_condition_set: Foglalkozási állapotkészlet
     campaign_assessment_column_pearson_assessment_id: Pearson értékelési azonosító
     campaign_assessment_column_pearson_assessment_language: Pearson Értékelés Nyelv
     campaign_assessment_column_pearson_error_details: A Pearson-tévedés részletei
@@ -305,6 +324,10 @@ hu:
     campaign_assessment_modals_enable_caching_content: Biztos vagy benne, hogy szeretnéd bekapcsolni a gyorsítótárat ehhez az értékeléshez?
     campaign_assessment_modals_enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
     campaign_assessment_modals_enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Alkalmazzuk ezt a módosítást a kampányban már regisztrált felhasználókra
+    campaign_assessment_modals_update_occupation_condition_set_select: Foglalkozási állapotkészlet kiválasztása
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: A „Foglalkozás és állapot” készlet frissítése sikeresen megtörtént
+    campaign_assessment_modals_update_occupation_condition_set_title: A foglalkozási állapotkészlet frissítése
     campaign_factors: Kampány tényezők
     campaign_id_placeholder: Jelentkezik a kampányazonosító
     campaign_name: Kampány neve
@@ -388,6 +411,13 @@ hu:
     client: Ügyfél bérleti joga
     client_admin: Ügyfél rendszergazda
     client_admins: Ügyféladminisztrátorok
+    client_assessor_import_already_added: A „%{email}” e-mail-címmel rendelkező felhasználót már hozzáadták ügyfélértékelőként.
+    client_assessor_import_client_required: Az értékelők importálásához ügyfélprogram szükséges.
+    client_assessor_import_description: Töltsön be egy CSV-fájlt, amelyben egyetlen e-mail oszlop szerepel az ügyfélértékelők adataival.
+    client_assessor_import_duplicated_emails: 'A következő e-mailek többször szerepelnek a CSV-fájlban: %{emails}'
+    client_assessor_import_emails_required: Kérjük, adjon meg legalább egy értékelő e-mail-címét.
+    client_assessor_import_global_assessor_required: A felhasználónak globális értékelőként kell szerepelnie.
+    client_assessor_removed_successfully: A „%{email}” e-mail-címmel rendelkező ügyfélértékelőt sikeresen eltávolítottuk
     client_credentials_label: Ügyfél hitelesítő adatai
     client_credentials_value: client_credentials
     client_features: Ügyfélfunkciók
@@ -431,11 +461,13 @@ hu:
     completed_tooltip: Minden értékelő benyújtotta az értékelést
     components_input_duration_placeholder: Írja be "1d 2h 3m"
     concise: Tömör
+    condition_sets: Feltételhalmazok
     confidence_interval: Bizalmi intervallum
     confidence_interval_update_success: A konfidencia intervallum frissítése sikeresen megtörtént.
     configuration: Beállítások
     configure_model_answer_title: Modellválasz és kulcsszavak konfigurálása
     confirm_remove_admin: Biztosan el akarja távolítani az a(z) '%{email}' e-mail címmel rendelkező adminisztrátori felhasználót ?
+    confirm_remove_client_assessor: Biztosan el akarja távolítani a „%{email}” e-mail-címmel rendelkező ügyfélértékelőt?
     confirmation_required: Megerősítés szükséges
     confirmation_required_details: Biztosan törölni szeretné a „%{resource}” „%{resource_name}” fájlt?
     consolidated: Konszolidált
@@ -444,8 +476,11 @@ hu:
     copied: Másolva
     copied_url_success: Az URL sikeresen a vágólapra lett másolva
     copy_ai_artifacts: AI-műalkotások másolása
+    copy_assessment_scheduled: Az értékelési másolási feladat ütemezése megtörtént.
     copy_hint: Átmásolja a fenti helyek, központvezetők, értékelők és értekezletek & erőforrások konfigurációt a következő értékelési központokba. A másolás után a folytatás előtt további módosításokat végezhet az egyes értékelőközpontokban.
     copy_image_url: Kép URL-jének másolása
+    copy_occupation_condition_set: Foglalkozási feltételkészlet másolása
+    copy_occupation_condition_set_msg: Ezzel az aktuális állapotkészletből az összes meglévő foglalkozási tényező beállítása átmásolódik az új állapotkészletbe.
     copy_report_scheduled: A jelentésmásolási feladat ütemezése megtörtént.
     copy_text: SMS
     copy_to_all: Másolás más értékelőközpontokba
@@ -529,6 +564,7 @@ hu:
     default_assessment_language: Az értékelés alapértelmezett nyelve
     default_button: Alapértelmezett
     default_language: Alapértelmezett nyelv
+    default_occupation_condition_set: Alapértelmezett foglalkozási feltételkészlet
     default_report_language: Jelentés alapértelmezett nyelv
     define_max_score_text: Határozza meg a „%{maxScore}” (maximális pontszám) pontszámot.
     define_min_score_text: Határozza meg a „%{minScore}” (minimális pontszám) pontszámot.
@@ -638,6 +674,7 @@ hu:
     document_titles_project_participants: Résztvevők | %{project}
     done: Kész
     done_tooltip: Több értékelést nem lehet benyújtani erre a felhasználóra, mivel az értékelést a %{marked_by}
+    download_assessor_email_template: Minta sablon letöltése
     download_bulk_asset_download_example_csv: Példa CSV letöltése.
     download_example_csv: csv-példa letöltése
     dp_consent: Adatfeldolgozási hozzájárulás engedélyezése
@@ -667,6 +704,7 @@ hu:
     email_subjects_manager_when_available: E-mail az alany menedzserének, amikor a jelentés elérhetővé válik
     empty: Üres
     empty_csv_file: A CSV fájl nem tartalmaz adatokat.
+    empty_occupation_condition_set_msg: Ehhez a betegségcsoporthoz nem találtak foglalkozási tényezőket. Kérjük, adjon hozzá egy tényezőt.
     enable_caching_content: Biztos vagy benne, hogy szeretnéd bekapcsolni a gyorsítótárat ehhez az értékeléshez?
     enable_caching_successfully: A gyorsítótározás lehetővé vált ehhez az értékeléshez.
     enable_caching_title: Engedélyezni az értékelési gyorsítótárat?
@@ -694,6 +732,7 @@ hu:
     enter_schema_key: Sémakulcs megadása
     error: Hiba
     error_color: Hibás szín
+    errors_csv_file_import: Kérjük, töltsön fel egy CSV-fájlt, mielőtt az „Importálás” gombra kattintana.
     errors_csv_file_required: A fájlnak CSV-fájlnak kell lennie
     errors_error_msg: Valami elromlott. Kérjük, frissítse az oldalt, és ha a probléma továbbra is fennáll, forduljon az adminisztrátorhoz
     errors_min_retention: Nem lehet kevesebb, mint 1 nap
@@ -741,6 +780,7 @@ hu:
     factor_feedback: Tényező-visszacsatolás
     factor_selection: Tényezők kiválasztása
     factors: Tényezők
+    factors_filter_strategy: Stratégia
     factors_form_components_ExternalList_table_jsonpath: JSON elérési út
     factors_form_components_ExternalList_table_types_norm_score: Átlaghoz viszonyított pontszám
     factors_form_components_ExternalList_table_types_percentage: Százalék
@@ -760,6 +800,7 @@ hu:
     factors_index_sub_factors: Altényezők
     factors_index_title: Tényezők
     factors_resource_confirmations_delete_body: "<p>Are you sure you want to delete this Factor?</p>\n"
+    factors_resource_removal_success: A „%{name}” tényezőt sikeresen eltávolítottuk.
     failure_reason: Hiba oka
     feature_ai_assistants_description: Az AI-alapú asszisztensek engedélyezése a felhasználói élmény javítása érdekében
     feature_ai_assisted_idp_description: Használja az AI-t az egyéni fejlesztési terv ajánlásainak kidolgozásához
@@ -1214,6 +1255,7 @@ hu:
     log_date: Naplózás dátuma
     logged_in: Bejelentkezve
     login: Bejelentkezés
+    login_page_design_tab: Tervezés
     low: Alacsony
     mail_history: Levelezési előzmények
     main_report: Fő jelentés
@@ -1221,6 +1263,7 @@ hu:
     maintenance_settings: Karbantartási beállítások
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     make_report_available_to_subject_when: 'A jelentést akkor kell az érintett rendelkezésére bocsátani, amikor:'
+    manage_condition_sets: Feltételkészletek kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     manager_approves_reports: A menedzser jóváhagyja a jelentéseket
     manager_can_access_subject_reports: A menedzser hozzáférhet a témajelentésekhez
@@ -1310,6 +1353,7 @@ hu:
     new_score: Új pontszám
     no_assessments_found: Ellenőrzés azonosítója
     no_client_access: Nincs hozzáférése ehhez az ügyfélhez
+    no_client_access_root: Jelenleg nincs hozzárendelt ügyfele
     no_clients_found: Nem találtunk ügyfeleket
     no_completed_assessments: Még nincsenek befejezett értékelések
     no_file_selected: Fájl nem volt kiválasztva
@@ -1330,6 +1374,7 @@ hu:
     norm_region: Norm régió
     norm_region_form_select: Norm régió kiválasztása
     norm_region_update_success: Norm Region frissítése sikeresen megtörtént
+    norm_score: Normál pontszám
     normal: Normál
     normalize_factor_scores: Faktorpontszámok normalizálása
     norms: Normák
@@ -1360,13 +1405,22 @@ hu:
     oauth_scope_label: Kiterjedés
     oauth_scope_name: oauth_scope
     oauth_scope_required: A hatókör szükséges
+    occupation_condition_set_copy_success: A foglalkozási állapotkészlet másolása sikeresen befejeződött
+    occupation_condition_sets: Foglalkozási állapotkészletek
+    occupation_condition_sets_remove_confirm: A megerősítéshez írja be a szövegmezőbe az alábbiakban megadott foglalkozási feltételkészlet nevét
+    occupation_condition_sets_remove_success: A „%{name}” foglalási állapot sikeresen eltávolításra került
+    occupation_condition_sets_remove_warning: Biztosan törölni szeretné a „%{name}” foglalkozási feltételkészletet?
+    occupation_factors_condition_set: Feltételkészlet
+    occupation_factors_title: Foglalkozási tényezők
     occupations: Foglalkozások
+    occupations_factor_uniqueness: A tényezőt már figyelembe vették
     occupations_factors_list_condition: Feltétel
     occupations_factors_list_position: Pozíció
     occupations_factors_list_weight: Súly
     occupations_form_alternative_icon: Alternatív ikon
     occupations_form_color: Szín
     occupations_form_indicative_roles_image: Példakénti szerepek képe
+    occupations_form_key_career_tracks_hint: "„+” – lista, „*” – félkövér. Példa: + *Biológia* – néhány leírás..."
     occupations_form_key_career_tracks_image: A főbb karrierpályák ábrája
     occupations_index_title: Foglalkozások
     occupations_resource_confirmations_delete_body: "<p>Biztosan törölni szeretné ezt a foglalkozást?</p>\n"
@@ -2033,6 +2087,7 @@ hu:
     public_key_cannot_be_changed: létrehozás után nem módosítható
     public_key_copy_private_key: Magánkulcs másolása
     public_key_created: A nyilvános kulcs létrehozása sikeresen megtörtént
+    public_key_details: Nyilvános kulcs adatai
     public_key_generate: Kulcspár létrehozása
     public_key_generate_button: RSA kulcspár létrehozása
     public_key_generate_info: A rendszer létrehoz egy 2048 bites RSA kulcspárt. Csak a nyilvános kulcs kerül tárolásra. Másolja le és biztonságosan őrizze meg a titkos kulcsot — ez a jövőben nem jelenik meg újra.
@@ -2077,6 +2132,7 @@ hu:
     range_min_max: RANGE %{min} - %{max}
     rationale: Indoklás
     raw: NYERS
+    raw_score: Nyers pontszám
     reason_for_changes: A változások oka
     recents: Legutóbbi bejegyzések
     record_id: Bejegyzés azonosítója
@@ -2108,6 +2164,7 @@ hu:
     remove_confirm_success: A(z) "%{subjectEmail}" e-mail tárgya sikeresen el lett távolítva.
     remove_confirm_title: Tárgy eltávolítása
     remove_confirmation: Biztosan el akarja távolítani ezt az elemet?
+    remove_icon: Ikon eltávolítása
     remove_output_schema_key: Kimeneti séma kulcs eltávolítása
     remove_successfully: A médiaelem sikeresen eltávolításra került.
     render_button: Render sablon
@@ -2210,6 +2267,7 @@ hu:
     report_type: Jelentés típusa
     report_types:
       active_clients_projects: Aktív ügyfelek és projektek
+      campaign_factor_scores: Kampánytényező-pontszámok
       client_assessment_counts: Az ügyfelek értékelése számít
       hogan_usage_report: A Hogan-értékelés használata
       json_data_report: JSON-adatjelentés
@@ -2357,6 +2415,11 @@ hu:
       user_full_name_cont: Felhasználónév
     saville: Saville
     saville_assessment: Saville-értékelés
+    scale_max: Maximális skála
+    scale_max_must_be_greater_than_scale_min: A skála maximális értékének nagyobbnak kell lennie, mint a skála minimális értékének
+    scale_min: Skála Min.
+    scale_min_must_be_less_than_scale_max: A skála minimális értékének kisebbnek kell lennie, mint a skála maximális értékének
+    scale_value_must_not_be_negative: Az érték nem lehet negatív
     schedule: Menetrend
     schedule_email: E-mail ütemezése
     schedule_email_title: E-mail ütemezése
@@ -2493,10 +2556,13 @@ hu:
     score_definition_placeholder: Írja be a pontszám szintjének meghatározását
     score_definitions: Pontszámok meghatározása
     score_max: Pontszám Max
+    score_max_must_be_greater_than_score_min: A maximális pontszámnak nagyobbnak kell lennie, mint a minimális pontszámnak
     score_min: Pontszám Min
+    score_min_must_be_less_than_score_max: A minimális pontszámnak kisebbnek kell lennie, mint a maximális pontszámnak
     score_must_be_in_between_min_and_max: A pontszámnak %{min} és %{max} között kell lennie.
     score_not_applicable: Pontszám nem alkalmazható
     score_range_info: 'Pontszámtartomány: %{min} - %{max}'
+    score_type: Pontszámtípus
     score_with_ai: Pontszám az AI segítségével
     scores_finalized: Az eredmények véglegesek, és már nem módosíthatók
     scoring: Pontozás
@@ -2605,6 +2671,7 @@ hu:
     search_admins: Adminisztrátorok keresése
     search_campaign: Keresés kampány szerint
     search_client: Keresés ügyfél szerint
+    search_client_assessors: Ügyfélértékelők keresése
     search_job_role: Álláskeresés
     search_participants: Résztvevők keresése...
     search_project: Keresés projekt szerint
@@ -2640,6 +2707,7 @@ hu:
     select_admin_role: Válassza ki az adminisztrátori szerepkört
     select_assessment_language: Értékelési nyelv kiválasztása
     select_client: Ügyfél kiválasztása
+    select_condition_set: Feltételkészlet kiválasztása
     select_end_time: Végidő kiválasztása
     select_language_to_translate: Kérjük, válassza ki a fordítani kívánt nyelvet
     select_level: Szint kiválasztása
@@ -3063,6 +3131,7 @@ hu:
     translated_with_ai_notice: AI fordítás
     translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
     translations:
+      import: Fordítások importálása
       title: Fordítások
     translations_export_failure_msg: Hiba a fordítások exportálása során
     translations_export_success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.

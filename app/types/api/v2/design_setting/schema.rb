@@ -29,7 +29,8 @@ module Api
 
         def self.relationships(_)
           [
-            { name: :project, resource: :projects, relationship: :one }
+            { name: :project, resource: :projects, relationship: :one, required: false, allowed_blank: true },
+            { name: :client, resource: :clients, relationship: :one, required: false, allowed_blank: true }
           ]
         end
       end

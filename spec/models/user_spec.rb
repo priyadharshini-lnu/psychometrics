@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { should have_many(:api_keys).inverse_of(:user) }
   it { should have_many(:user_assessments).inverse_of(:subject) }
   it { should have_many(:assessments).through(:user_assessments) }
   it { should have_many(:user_reports).inverse_of(:user) }

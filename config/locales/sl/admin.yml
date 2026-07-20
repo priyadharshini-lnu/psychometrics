@@ -26,6 +26,7 @@ sl:
     add_btn: Dodajanje zadeve
     add_campaign_admin: Dodajanje skrbnika oglaševalske akcije
     add_client_admin: Dodajanje skrbnika odjemalca
+    add_client_assessor: Dodaj ocenjevalca stranke
     add_conditions: Dodajanje pogojev
     add_evaluators: Dodajanje ocenjevalcev
     add_indicator: Dodaj indikator
@@ -33,6 +34,7 @@ sl:
     add_lead_assessor_hint: Prosimo, najprej dodajte obrazec za glavnega ocenjevalca
     add_more: Dodaj več
     add_new_folder: Dodaj novo mapo
+    add_or_select_factor_msg: Kliknite na »Dodaj/izberi dejavnik«, da si ogledate podrobnosti.
     add_output_schema_key: Dodajanje ključa izhodne sheme
     add_project: Dodajanje projekta
     add_project_admin: Dodajanje skrbnika projekta
@@ -47,12 +49,14 @@ sl:
     admin_role_deleted: Skrbniška vloga »%{role_name}« je bila uspešno izbrisana.
     admin_roles: Skrbniške vloge
     admin_updated_successfully: Skrbnik '%{name}' je bil uspešno posodobljen
+    admin_with_email_already_added: Uporabnik s tem e-poštnim naslovom je že bil dodan.
     administrator_approves_reports: Upravitelj odobri poročila
     administrators_list_columns_email: E-pošta
     admins: Skrbniki
     advanced: Napredno
     advanced_mode_tooltip: Uporabite napredni način za predloge pozivov z uporabo tekoče predloge z razpoložljivimi spremenljivkami. Za več podrobnosti glejte dokumentacijo.
     agile: AGILE
+    agile_time_config_msg: Pri agilnih ocenjevanjih se lahko uporabljajo časovniki za posamezne dele (nastavljeni v konfiguracijskih nastavitvah). Poskrbite, da tu določite dovolj časa, da bo mogoče vsak del brez težav zaključiti.
     ai_artifact_result_generation_admin_job_failed: Artefakt »%{artifact_name}« ni mogoče ustvariti za uporabnika »%{user_email}«.
     ai_artifact_result_stale: Rezultat je lahko zastarel, saj so se odvisnosti AI artefakta spremenile od zadnjega rezultata. Razmislite o ponovni generaciji artefakta, da se generira z najnovejšimi odvisnostmi.
     ai_artifacts: Artefakti umetne inteligence
@@ -123,6 +127,20 @@ sl:
     application_name: Ime aplikacije
     application_name_already_taken: Za tega stranko že obstaja
     application_name_format_hint: Dovoljene so le črke in številke, med besedami pa je dovoljena le ena preslednica
+    application_settings_at_least_one_ip_required: Preden omogočite uporabo seznama dovoljenih IP-naslovov, omogočite vsaj en vnos IP-naslova
+    application_settings_confirm_delete_ip: Ali ste prepričani, da želite izbrisati ta IP-naslov?
+    application_settings_edit_ip_address: Uredi IP-naslov / CIDR-območje
+    application_settings_enable_ip_whitelisting: Omogoči belo listo IP-naslovov
+    application_settings_invalid_ip_format: Neveljaven IP-naslov ali format CIDR
+    application_settings_ip_addresses: IP-naslovi / CIDR-območja
+    application_settings_ip_deleted_successfully: IP-naslov je bil uspešno izbrisan
+    application_settings_ip_description_placeholder: npr. pisarniško omrežje ali produkcijski strežnik
+    application_settings_ip_input_placeholder: npr. 192.168.1.1 ali 10.0.0.0/24
+    application_settings_ip_or_cidr: IP-naslov ali CIDR-območje
+    application_settings_ip_required: IP-naslov ali CIDR-območje je obvezno
+    application_settings_ip_updated_successfully: IP-naslov je bil uspešno posodobljen
+    application_settings_ip_whitelisting_disabled_success: Uporaba seznama dovoljenih IP-naslovov je bila uspešno onemogočena
+    application_settings_ip_whitelisting_enabled_success: Vključitev seznama dovoljenih IP-naslovov je bila uspešno izvedena
     applications: Uporaba
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
     approve_all_questions: Odobri vsa vprašanja
@@ -279,6 +297,7 @@ sl:
     campaign_assessment_column_caching_enabled: Omogočeno predpomnjenje ocenjevanja
     campaign_assessment_column_hogan_assessment_id: ID ocene Hogan
     campaign_assessment_column_hogan_form_id: Hoganov obrazec ID
+    campaign_assessment_column_occupation_condition_set: Skupina poklicnih pogojev
     campaign_assessment_column_pearson_assessment_id: ID ocenjevanja Pearson
     campaign_assessment_column_pearson_assessment_language: Pearsonovo ocenjevanje jezikov
     campaign_assessment_column_pearson_error_details: Podrobnosti o napaki Pearson
@@ -305,6 +324,10 @@ sl:
     campaign_assessment_modals_enable_caching_content: Ste prepričani, da želite omogočiti predpomnjenje za to oceno?
     campaign_assessment_modals_enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
     campaign_assessment_modals_enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
+    campaign_assessment_modals_update_occupation_condition_set_apply: To spremembo uporabi za obstoječe uporabnike v tej kampanji
+    campaign_assessment_modals_update_occupation_condition_set_select: Izberite nabor pogojev poklica
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Nabor pogojev poklica je bil uspešno posodobljen
+    campaign_assessment_modals_update_occupation_condition_set_title: Posodobitev niza pogojev zasedenosti
     campaign_factors: Dejavniki oglaševalske akcije
     campaign_id_placeholder: Vnesite ID kampanje
     campaign_name: Ime kampanje
@@ -388,6 +411,13 @@ sl:
     client: Najem stranke
     client_admin: Skrbnik odjemalca
     client_admins: Skrbniki odjemalcev
+    client_assessor_import_already_added: Uporabnik z e-poštnim naslovom »%{email}« je že bil dodan kot ocenjevalec strank.
+    client_assessor_import_client_required: Za uvoz ocenjevalcev je potreben odjemalec.
+    client_assessor_import_description: Uvozite CSV-datoteko z enim stolpcem za e-poštne naslove ocenjevalcev strank.
+    client_assessor_import_duplicated_emails: 'Naslednji e-poštni naslovi so v datoteki CSV navedeni večkrat: %{emails}'
+    client_assessor_import_emails_required: Prosimo, navedite vsaj en e-poštni naslov ocenjevalca.
+    client_assessor_import_global_assessor_required: Uporabnik mora biti registriran kot globalni ocenjevalec.
+    client_assessor_removed_successfully: Uporabnik »client assessor« z e-poštnim naslovom »%{email}« je bil uspešno odstranjen
     client_credentials_label: Poverilnice odjemalca
     client_credentials_value: client_credentials
     client_features: Funkcije odjemalca
@@ -431,11 +461,13 @@ sl:
     completed_tooltip: Vsi ocenjevalci so oddali oceno
     components_input_duration_placeholder: Vpišite kot "1d 2h 3m"
     concise: Kratek
+    condition_sets: Skupine pogojev
     confidence_interval: Interval zaupanja
     confidence_interval_update_success: Zaupanjski interval je bil uspešno posodobljen.
     configuration: Konfiguracija
     configure_model_answer_title: Konfigurirajte vzorčni odgovor in ključne besede
     confirm_remove_admin: Ali ste prepričani, da želite odstraniti skrbniškega uporabnika z e-poštnim sporočilom '%{email}'?
+    confirm_remove_client_assessor: Ali ste prepričani, da želite odstraniti ocenjevalca stranke z e-poštnim naslovom »%{email}«?
     confirmation_required: Potrebna je potrditev
     confirmation_required_details: Ali ste prepričani, da želite izbrisati datoteko »%{resource_name}« iz mape »%{resource}«?
     consolidated: Konsolidirani
@@ -444,8 +476,11 @@ sl:
     copied: Kopirano
     copied_url_success: URL je bil uspešno kopiran v odložišče
     copy_ai_artifacts: Kopiraj AI-ustvarjene artefakte
+    copy_assessment_scheduled: Naloga za ocenjevanje kopije je bila razporejena.
     copy_hint: Kopira zgornje konfiguracije sedežev, vodij centrov, ocenjevalcev ter sestankov in virov v naslednje ocenjevalne centre. Po kopiranju lahko pred nadaljevanjem naredite nadaljnje spremembe v posameznih ocenjevalnih centrih.
     copy_image_url: Kopiraj URL slike
+    copy_occupation_condition_set: Kopiranje sklopa pogojev poklica
+    copy_occupation_condition_set_msg: S tem se bo vsa obstoječa konfiguracija dejavnikov zasedenosti iz trenutnega niza pogojev kopirala v nov niz pogojev.
     copy_report_scheduled: Naloga za kopiranje poročila je bila načrtovana.
     copy_text: Besedilno sporočilo
     copy_to_all: Kopirajte v druge ocenjevalne centre
@@ -529,6 +564,7 @@ sl:
     default_assessment_language: Privzet jezik ocenjevanja
     default_button: Privzeto
     default_language: Privzeti jezik
+    default_occupation_condition_set: Privzeti nabor pogojev za poklic
     default_report_language: Privzet jezik poročila
     define_max_score_text: Določite oceno »%{maxScore}« (najvišja ocena)
     define_min_score_text: Določite oceno „%{minScore}“ (minimalna ocena)
@@ -638,6 +674,7 @@ sl:
     document_titles_project_participants: Udeleženci | %{project}
     done: Storiti
     done_tooltip: Za tega uporabnika ni mogoče več opraviti ocene, saj je ocena označena kot opravljena s strani %{marked_by}
+    download_assessor_email_template: Prenesi vzorčno predlogo
     download_bulk_asset_download_example_csv: Prenesi primer CSV.
     download_example_csv: Prenesite primer csv
     dp_consent: Omogočite soglasje za obdelavo podatkov
@@ -667,6 +704,7 @@ sl:
     email_subjects_manager_when_available: Pošljite e-pošto vodji subjekta, ko bo poročilo na voljo
     empty: Prazno
     empty_csv_file: CSV datoteka ne vsebuje nobenih podatkov.
+    empty_occupation_condition_set_msg: Za ta sklop bolezni niso bili najdeni nobeni dejavniki poklica. Prosimo, dodajte dejavnik.
     enable_caching_content: Ste prepričani, da želite omogočiti predpomnjenje za to oceno?
     enable_caching_successfully: Za to oceno je omogočeno predpomnjenje.
     enable_caching_title: Omogočiti predpomnjenje ocenjevanja?
@@ -694,6 +732,7 @@ sl:
     enter_schema_key: Vnesite ključ sheme
     error: Napaka
     error_color: Barva napake
+    errors_csv_file_import: Preden kliknete na »Uvozi«, naložite datoteko CSV.
     errors_csv_file_required: Datoteka mora biti datoteka CSV
     errors_error_msg: Nekaj je šlo narobe. Osvežite stran in če težave še vedno ne morete, se obrnite na skrbnika
     errors_min_retention: Ne sme biti krajši od 1 dneva
@@ -741,6 +780,7 @@ sl:
     factor_feedback: Povratne informacije o faktorjih
     factor_selection: Izbira dejavnikov
     factors: Dejavniki
+    factors_filter_strategy: Strategija
     factors_form_components_ExternalList_table_jsonpath: Pot JSON
     factors_form_components_ExternalList_table_types_norm_score: Normirana partitura
     factors_form_components_ExternalList_table_types_percentage: Odstotek
@@ -760,6 +800,7 @@ sl:
     factors_index_sub_factors: Poddejavniki
     factors_index_title: Dejavniki
     factors_resource_confirmations_delete_body: "<p>Ali ste prepričani, da želite izbrisati ta faktor?</p>\n"
+    factors_resource_removal_success: Faktor »%{name}« je bil uspešno odstranjen.
     failure_reason: Razlog za neuspeh
     feature_ai_assistants_description: Omogočite pomočnike na podlagi umetne inteligence za izboljšano uporabniško izkušnjo
     feature_ai_assisted_idp_description: Uporabite umetno inteligenco za pomoč pri priporočilih za individualno razvojno načrtovanje.
@@ -1214,6 +1255,7 @@ sl:
     log_date: Datum dnevnika
     logged_in: Prijavljen
     login: Prijava
+    login_page_design_tab: Oblikovanje
     low: Nizka
     mail_history: Zgodovina pošte
     main_report: Glavno poročilo
@@ -1221,6 +1263,7 @@ sl:
     maintenance_settings: Nastavitve vzdrževanja
     maintenance_settings_description: Upravljanje časovnih okvirjev in nastavitev za vzdrževanje sistema
     make_report_available_to_subject_when: 'Poročilo dajte na voljo subjektu, ko:'
+    manage_condition_sets: Upravljanje sklopov pogojev
     manager_approval_required: Poročilo za %{user} zahteva odobritev upravitelja pred prenosom
     manager_approves_reports: Vodja odobri poročila
     manager_can_access_subject_reports: Upravitelj lahko dostopa do poročil o predmetih
@@ -1310,6 +1353,7 @@ sl:
     new_score: Nova ocena
     no_assessments_found: ID revizije
     no_client_access: Nimate dostopa do tega stranke
+    no_client_access_root: Niste povezani z nobeno stranko
     no_clients_found: Ni bilo najdenih strank
     no_completed_assessments: Ocen še ni zaključenih
     no_file_selected: Izbrana ni bila izbrana datoteka
@@ -1330,6 +1374,7 @@ sl:
     norm_region: Norm Regija
     norm_region_form_select: Izberite normativno regijo
     norm_region_update_success: Regija Norm uspešno posodobljena
+    norm_score: Normativna ocena
     normal: Normalno
     normalize_factor_scores: Normalizirajte rezultate faktorjev
     norms: Norme
@@ -1360,13 +1405,22 @@ sl:
     oauth_scope_label: Obseg
     oauth_scope_name: oauth_scope
     oauth_scope_required: Obseg je potreben
+    occupation_condition_set_copy_success: Nabor pogojev poklica je bil uspešno kopiran
+    occupation_condition_sets: Skupine poklicnih pogojev
+    occupation_condition_sets_remove_confirm: Vnesite ime sklopa pogojev za poklic, ki je navedeno spodaj, v tekstovno polje, da potrdite
+    occupation_condition_sets_remove_success: Nabor pogojev za poklic »%{name}« je bil uspešno odstranjen
+    occupation_condition_sets_remove_warning: Ali ste prepričani, da želite izbrisati nabor pogojev za poklic »%{name}«?
+    occupation_factors_condition_set: Skupina pogojev
+    occupation_factors_title: Dejavniki, povezani s poklicem
     occupations: Poklicev
+    occupations_factor_uniqueness: Faktor je že upoštevan
     occupations_factors_list_condition: Pogoj
     occupations_factors_list_position: Položaj
     occupations_factors_list_weight: Teža
     occupations_form_alternative_icon: Nadomestna ikona
     occupations_form_color: Barva
     occupations_form_indicative_roles_image: Primer slike vlog
+    occupations_form_key_career_tracks_hint: '"+" – seznam, "*" – krepko. Primer: + *Biologija* – kratek opis...'
     occupations_form_key_career_tracks_image: Slika ključnih poklicnih poti
     occupations_index_title: Poklicev
     occupations_resource_confirmations_delete_body: "<p>Ste prepričani, da želite izbrisati ta poklic?</p>\n"
@@ -2033,6 +2087,7 @@ sl:
     public_key_cannot_be_changed: po ustvarjanju ga ni mogoče spremeniti
     public_key_copy_private_key: Kopiraj zasebni ključ
     public_key_created: Javni ključ je bil uspešno ustvarjen
+    public_key_details: Podrobnosti o javnem ključu
     public_key_generate: Ustvari par ključev
     public_key_generate_button: Ustvari par ključev RSA
     public_key_generate_info: Sistem bo ustvaril par 2048-bitnih RSA ključev. Shranjen bo le javni ključ. Zasebni ključ kopirajte in ga varno shranite – ne bo se več prikazal.
@@ -2077,6 +2132,7 @@ sl:
     range_min_max: RANGE %{min} - %{max}
     rationale: Utemeljitev
     raw: SUROV
+    raw_score: Bruto ocena
     reason_for_changes: Razlog za spremembe
     recents: Zadnje
     record_id: ID zapisa
@@ -2108,6 +2164,7 @@ sl:
     remove_confirm_success: Zadeva z e-poštnim naslovom »%{subjectEmail}« je bila uspešno odstranjena.
     remove_confirm_title: Odstranite osebo
     remove_confirmation: Ali ste prepričani, da želite ta element odstraniti?
+    remove_icon: Odstrani ikono
     remove_output_schema_key: Odstranitev ključa izhodne sheme
     remove_successfully: Medijska datoteka je bila uspešno odstranjena.
     render_button: Predloga za upodabljanje
@@ -2210,6 +2267,7 @@ sl:
     report_type: Vrsta poročila
     report_types:
       active_clients_projects: Aktivne stranke in projekti
+      campaign_factor_scores: Ocene dejavnikov kampanje
       client_assessment_counts: Ocena stranke je pomembna
       hogan_usage_report: Uporaba ocenjevalnega orodja Hogan
       json_data_report: Poročilo o podatkih v formatu JSON
@@ -2357,6 +2415,11 @@ sl:
       user_full_name_cont: Uporabniško ime
     saville: Saville
     saville_assessment: Ocena Saville
+    scale_max: Največja lestvica
+    scale_max_must_be_greater_than_scale_min: Največja vrednost lestvice mora biti večja od najmanjše vrednosti lestvice
+    scale_min: Lestvica Min
+    scale_min_must_be_less_than_scale_max: Najmanjša vrednost lestvice mora biti manjša od največje vrednosti lestvice
+    scale_value_must_not_be_negative: Vrednost ne sme biti negativna
     schedule: Načrtuj
     schedule_email: Načrtovanje e-pošte
     schedule_email_title: Načrtovanje e-pošte
@@ -2493,10 +2556,13 @@ sl:
     score_definition_placeholder: Vnesite definicijo za to stopnjo ocene.
     score_definitions: Opredelitve točk
     score_max: Najvišji rezultat
+    score_max_must_be_greater_than_score_min: Najvišja ocena mora biti višja od najnižje ocene
     score_min: Rezultat Min
+    score_min_must_be_less_than_score_max: Najnižja ocena mora biti manjša od najvišje ocene
     score_must_be_in_between_min_and_max: Rezultat mora biti med %{min} in %{max}.
     score_not_applicable: Rezultat ni veljaven
     score_range_info: 'Ocenjevalna lestvica: %{min} - %{max}'
+    score_type: Vrsta rezultata
     score_with_ai: Zmagajte z umetno inteligenco
     scores_finalized: Rezultati so dokončni in jih ni mogoče spremeniti
     scoring: Točkovanja
@@ -2605,6 +2671,7 @@ sl:
     search_admins: Skrbniki za iskanje
     search_campaign: Iskanje po oglaševalski akciji
     search_client: Iskanje po odjemalcu
+    search_client_assessors: Iskanje ocenjevalcev strank
     search_job_role: Iskanje delovnega mesta
     search_participants: Iskanje udeležencev...
     search_project: Iskanje po projektu
@@ -2640,6 +2707,7 @@ sl:
     select_admin_role: Izberite skrbniško vlogo
     select_assessment_language: Izberite jezik ocenjevanja
     select_client: Izberi stranko
+    select_condition_set: Izberite sklop pogojev
     select_end_time: Izberite čas zaključka
     select_language_to_translate: Izberite jezik za prevajanje
     select_level: Izberite raven
@@ -3058,6 +3126,7 @@ sl:
     translated_with_ai_notice: Prevedeno z umetno inteligenco
     translation_assistant_not_configured: Pomočnik za prevajanje ni nastavljen
     translations:
+      import: Uvoz prevodov
       title: Prevodi
     translations_export_failure_msg: Napaka pri izvažanju prevodov
     translations_export_success_msg: Izvoz razvojnih ukrepov v teku.

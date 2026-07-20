@@ -2,6 +2,7 @@
 
 class EndUser::UsersController < ApplicationController
   include ::Threesixty::InitialState
+  include AddCookie
 
   layout 'layouts/end_user'
   before_action :skip_policy_scope
@@ -76,7 +77,7 @@ class EndUser::UsersController < ApplicationController
   end
 
   def change_locale
-    cookies[:locale] = params[:locale] if @current_project.available_locales.include?(params[:locale])
+    add_cookie(:locale, params[:locale]) if @current_project.available_locales.include?(params[:locale])
     set_locale
     current_user&.user_profile&.update(locale: I18n.locale)
   end

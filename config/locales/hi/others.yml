@@ -876,6 +876,7 @@ hi:
         compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
         completion_status_export: पूर्णता स्थिति निर्यात
         copy_as_template_or_campaign: अभियान को टेम्पलेट के रूप में कॉपी करें
+        copy_assessment: मूल्यांकन की प्रतिलिपि
         copy_dimension: आयाम की प्रतिलिपि
         copy_report: रिपोर्ट की प्रतिलिपि
         create_threesixty_campaign: थ्रीसिक्स्टी अभियान बनाएँ
@@ -915,6 +916,7 @@ hi:
         import_assessors: आयात मूल्यांकनकर्ता
         import_campaign_ai_artifacts: अभियान अभियान एआई कलाकृतियाँ आयात करें
         import_campaign_factors: अभियान कारक आयात करें
+        import_client_assessors: क्लाइंट आकलनकर्ताओं को आयात करें
         import_datasheet: डेटाशीट आयात करें
         import_development_action_translations: विकास कार्रवाई अनुवादों का आयात करें
         import_development_actions: आयात विकास क्रियाएँ
@@ -972,6 +974,8 @@ hi:
       errors:
         no_plans: कोई सक्रिय आईडीपी योजना नहीं मिली
     close: बंद करें
+    copy_assessment:
+      failed: मूल्यांकन प्रति असफल
     copy_report:
       failed: रिपोर्ट कॉपी विफल हो गई
     details: विवरण

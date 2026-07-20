@@ -4,6 +4,8 @@ module Api
   class V2::Administration::MembershipsController < Api::V2::Administration::BaseController
     skip_before_action :enforce_geo_restriction, except: %i[index]
     before_action :check_geo_restriction_if_client_context, only: %i[create update]
+    before_action :authorize_import_client_assessors, only: :import_client_assessors
+
     validates_request_schema :create, -> { Api::V2::Membership::CreateContract.new }
     validate_crud_requests Api::V2::Membership::Schema
 
@@ -48,6 +50,28 @@ module Api
       render json: :ok
     end
 
+    def import_client_assessors
+      form = Memberships::ImportClientAssessorsForm.new(
+        import_data: import_client_assessors_params[:import_data]
+      ).with_context(client: import_client)
+
+      if form.valid?
+        audit! :import_client_assessors,
+               import_client,
+               payload: { row_count: form.parsed_rows.size },
+               record_type: Membership
+        AdminJob.call(
+          :import_client_assessors,
+          { client_id: import_client.id },
+          current_user,
+          import_client_assessors_params[:import_data]
+        )
+        return render json: :ok
+      end
+
+      render json: { errors: form.errors.messages.map { |_k, v| v }.flatten }, status: :unprocessable_entity
+    end
+
     private
 
     def impersonate_on_root_domain(target_user)
@@ -65,6 +89,11 @@ module Api
       policy_klass = policy_class_for_role(@_resource.role)
       authorize @_resource, :spoof?, policy_class: policy_klass,
                project_id: @_resource.client_id, campaign_id: @_resource.campaign_id
+    end
+
+    def authorize_import_client_assessors
+      authorize Membership, :create?, policy_class: Api::Administration::MembershipPolicy,
+               project_id: import_client_assessors_params[:client_id]
     end
 
     def enforce_geo_restriction
@@ -106,6 +135,14 @@ module Api
 
     def export_params
       params.require(:data).require(:attributes).permit(:client_id, :project_id, :campaign_id)
+    end
+
+    def import_client_assessors_params
+      params.permit(:client_id, :import_data)
+    end
+
+    def import_client
+      @import_client ||= Client.find_by(id: import_client_assessors_params[:client_id])
     end
 
     def base_response_meta

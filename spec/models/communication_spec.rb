@@ -6,7 +6,6 @@ RSpec.describe Communication, type: :model do
   context 'Associations' do
     it { should have_many(:emails) }
     it { should belong_to(:assessment) }
-    it { should belong_to(:owner) }
     it { should belong_to(:project) }
     it { should belong_to(:sub_campaign) }
     it { should belong_to(:end_level) }

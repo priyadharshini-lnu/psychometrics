@@ -1,29 +1,38 @@
 import React from 'react'
-import { Form, Select } from 'antd'
+import { DatePicker, Form } from 'antd'
+import dayjs from '~/utils/dayjs'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
+import ProjectSearchField from './ProjectSearchField'
 
 const { I18n } = window
 
 export const UsageReportConfig: React.FC<ReportTypeConfigProps> = ({
   parsedConfiguration,
+  scope,
+  ownerId,
 }) => (
-  <Form.Item
-    name="projectIds"
-    label={I18n.t('admin.project_ids')}
-    initialValue={(parsedConfiguration?.project_ids as string[])?.map(String) || []}
-    rules={[
-      {
-        required: true,
-        message: I18n.t('admin.select_projects_required'),
-      },
-    ]}
-  >
-    <Select
-      mode="tags"
-      placeholder={I18n.t('admin.enter_project_ids')}
-      tokenSeparators={[',', ' ']}
+  <>
+    <ProjectSearchField
+      scope={scope}
+      ownerId={ownerId}
+      parsedConfiguration={parsedConfiguration}
     />
-  </Form.Item>
+
+    <Form.Item
+      name="dateRange"
+      label={I18n.t('admin.date_range')}
+      initialValue={
+        parsedConfiguration?.start_date && parsedConfiguration?.end_date
+          ? [
+            dayjs(parsedConfiguration.start_date as string),
+            dayjs(parsedConfiguration.end_date as string),
+          ]
+          : undefined
+      }
+    >
+      <DatePicker.RangePicker />
+    </Form.Item>
+  </>
 )
 
 const processUsageReportConfiguration = (data: Record<string, unknown>) => {
@@ -33,12 +42,21 @@ const processUsageReportConfiguration = (data: Record<string, unknown>) => {
     ...data,
     configuration: JSON.stringify({
       project_ids: projectIds.map(id => parseInt(id, 10)),
+      start_date: data.dateRange
+        ? dayjs(data.dateRange[0]).format('YYYY-MM-DD')
+        : null,
+      end_date: data.dateRange
+        ? dayjs(data.dateRange[1]).format('YYYY-MM-DD')
+        : null,
     }),
     projectIds: undefined,
+    dateRange: undefined,
   }
 }
 
-export const createUsageReportDefinition = (key: string): ReportTypeDefinition => ({
+export const createUsageReportDefinition = (
+  key: string,
+): ReportTypeDefinition => ({
   key,
   component: UsageReportConfig,
   processConfiguration: processUsageReportConfiguration,

@@ -18,9 +18,16 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
   end
 
   def invites
-    @resources = WorkshopInvitedSubject.where(
-      user_id: current_user.id
-    ).invites
+    @resources = WorkshopInvitedSubject.
+                 joins(workshop_invite: { campaign: :campaign_users }).
+                 where(
+                   user_id: current_user.id,
+                   campaign_users: {
+                     user_id: current_user.id,
+                     active: true
+                   }
+                 ).
+                 invites
 
     serialized_resources = Panko::ArraySerializer.new(
       @resources,

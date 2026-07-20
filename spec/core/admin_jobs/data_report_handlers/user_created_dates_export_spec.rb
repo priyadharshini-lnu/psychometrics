@@ -65,7 +65,7 @@ RSpec.describe AdminJobs::DataReportHandlers::UserCreatedDatesExport do
       subject.generate_file
 
       csv = CSV.read(file_path)
-      timestamp_regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [+-]\d{2}:?\d{2}$/
+      timestamp_regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
 
       csv[1..].each do |row|
         expect(row[1]).to match(timestamp_regex)

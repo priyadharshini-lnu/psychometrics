@@ -7,7 +7,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::EmailSchedulesController, ty
   let!(:template) { create(:threesixty_email_template, content: 'En', subject: 'Sub') }
   let(:current_user) { create(:superadmin) }
 
-  before(:each) { sign_in(current_user) }
+  before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
   it 'creates schedule with template content' do

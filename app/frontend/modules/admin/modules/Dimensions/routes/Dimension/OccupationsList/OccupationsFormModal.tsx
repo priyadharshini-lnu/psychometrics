@@ -167,6 +167,7 @@ export const OccupationsFormModal: React.FC<Props> = ({ close, occupation }) => 
           <Form.Item
             name="keyCareerTracks"
             label={I18n.t('activerecord.attributes.occupation.key_career_tracks')}
+            extra={I18n.t('admin.occupations_form_key_career_tracks_hint')}
           >
             <TextArea />
           </Form.Item>

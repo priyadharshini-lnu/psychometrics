@@ -126,7 +126,7 @@ class PotentialKeyCareerTracks extends Component {
     }
     this.keyCareerTracks = null
     try {
-      this.keyCareerTracks = yaml.safeLoad(I18nStore.tOccupation(this.occupationData, 'keyCareerTracks'))
+      this.keyCareerTracks = yaml.load(I18nStore.tOccupation(this.occupationData, 'keyCareerTracks'))
     } catch (e) {
       console.error(e)
     }

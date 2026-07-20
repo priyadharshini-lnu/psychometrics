@@ -63,7 +63,7 @@ describe ActiveStorageAttachable do
       expect(@dashboard.image.key).
         to match(%r{private/projects/#{@dashboard.project.id}/dashboard/#{@dashboard.id}/image/\w+_test_image.jpeg})
       expect(@design_setting.logo.key).
-        to match(%r{public/projects/#{@design_setting.project.id}/design_setting/logo/\w+_test_image.jpeg})
+        to match(%r{public/projects/#{@design_setting.owner.id}/design_setting/logo/\w+_test_image.jpeg})
       expect(@factor.icon.key).
         to match(%r{public/factor/#{@factor.id}/icon/\w+_test_image.jpeg})
       expect(@innovation_style.icon.key).

@@ -61,7 +61,7 @@ export const CampaignTagFilter: FC<Props> = ({
   }, 300), [])
 
   const updateTagFilterInUrl = (tags: string[]) => {
-    const params = new URLSearchParams(window.location.search)
+    const params = new URLSearchParams()
 
     Array.from(params.keys()).forEach((key) => {
       if (key.startsWith('filters[taggedWith]')) {
@@ -73,11 +73,7 @@ export const CampaignTagFilter: FC<Props> = ({
       params.append('filters[taggedWith][]', tag)
     })
 
-    navigate(
-      {
-        search: params.toString(),
-      },
-    )
+    navigate({ search: params.toString() })
   }
 
   const handleTagSelect = (value: string) => {

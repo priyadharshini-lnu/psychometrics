@@ -20,7 +20,7 @@ module Api
           nil
         end
 
-        def validate_project_ids(project_ids, scope, client_id, required: true)
+        def validate_project_ids(project_ids, scope, client_id, required: scope == 'client')
           if required && project_ids.blank?
             return I18n.t('admin.project_ids_required')
           end

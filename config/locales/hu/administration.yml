@@ -710,7 +710,6 @@ hu:
         end_date: 'Befejezés dátuma:'
         every_interval: Minden %{interval}
         frequency: 'Frekvencia:'
-        owner: 'Tulajdonos:'
         project: 'Projekt:'
         recipients: 'Címzettek:'
         specific_datetime: 'Küldés:'

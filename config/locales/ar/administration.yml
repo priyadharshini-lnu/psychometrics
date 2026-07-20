@@ -710,7 +710,6 @@ ar:
         end_date: 'تاريخ الانتهاء:'
         every_interval: كل %{interval}
         frequency: 'تردد:'
-        owner: 'المالك:'
         project: 'المشروع:'
         recipients: 'المستلمون:'
         specific_datetime: 'الإرسال في:'

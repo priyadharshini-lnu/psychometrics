@@ -710,7 +710,6 @@ id:
         end_date: 'Tanggal Berakhir:'
         every_interval: Setiap %{interval}
         frequency: 'Frekuensi:'
-        owner: 'Pemilik:'
         project: 'Proyek:'
         recipients: 'Penerima:'
         specific_datetime: 'Kirim di:'

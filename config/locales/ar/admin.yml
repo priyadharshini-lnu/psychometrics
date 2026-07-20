@@ -26,6 +26,7 @@ ar:
     add_btn: إضافة موضوع
     add_campaign_admin: إضافة مسؤول حملة
     add_client_admin: إضافة مسؤول عميل
+    add_client_assessor: إضافة مُقيّم عميل
     add_conditions: إضافة شروط
     add_evaluators: إضافة المقيِّمين
     add_indicator: إضافة مؤشر
@@ -33,6 +34,7 @@ ar:
     add_lead_assessor_hint: يرجى إضافة نموذج المقيم الرئيسي أولاً
     add_more: أضف المزيد
     add_new_folder: إضافة مجلد جديد
+    add_or_select_factor_msg: انقر على «إضافة/اختيار عامل» لعرض التفاصيل.
     add_output_schema_key: إضافة مفتاح مخطط الإخراج
     add_project: إضافة مشروع
     add_project_admin: إضافة مسؤول مشروع
@@ -47,12 +49,14 @@ ar:
     admin_role_deleted: تم حذف دور المسؤول «%{role_name}» بنجاح.
     admin_roles: أدوار المسؤولين
     admin_updated_successfully: تم تحديث المسؤول '%{name}' بنجاح
+    admin_with_email_already_added: تمت إضافة المستخدم صاحب عنوان البريد الإلكتروني هذا بالفعل.
     administrator_approves_reports: يوافق المسؤول على التقارير
     administrators_list_columns_email: البريد الإلكتروني
     admins: المسؤولون
     advanced: متقدم
     advanced_mode_tooltip: استخدم الوضع المتقدم لقالب الأوامر باستخدام قالب سائل مع المتغيرات المتاحة. راجع الوثائق لمزيد من التفاصيل.
     agile: رشيق
+    agile_time_config_msg: قد تستخدم تقييمات أجايل مؤقتات لكل قسم على حدة (يتم إعدادها في إعدادات التكوين). تأكد من تخصيص وقت كافٍ هنا لإكمال كل قسم براحة.
     ai_artifact_result_generation_admin_job_failed: لا يمكن إنشاء الأداة "%{artifact_name}" للمستخدم "%{user_email}"
     ai_artifact_result_stale: قد تكون النتيجة قديمة لأن تبعيات أداة الذكاء الاصطناعي قد تغيرت منذ إنشاء النتيجة الأخيرة. ضع في اعتبارك إعادة إنشاء الأداة لإنشاء أحدث التبعيات.
     ai_artifacts: قطع الذكاء الاصطناعي
@@ -123,6 +127,20 @@ ar:
     application_name: اسم التطبيق
     application_name_already_taken: موجود بالفعل لهذا العميل
     application_name_format_hint: يُسمح فقط باستخدام الحروف والأرقام، مع ترك مسافة واحدة بين الكلمات
+    application_settings_at_least_one_ip_required: يرجى تفعيل إدخال عنوان IP واحد على الأقل قبل تفعيل قائمة العناوين المسموح بها
+    application_settings_confirm_delete_ip: هل أنت متأكد من رغبتك في حذف عنوان IP هذا؟
+    application_settings_edit_ip_address: تعديل عنوان IP / نطاق CIDR
+    application_settings_enable_ip_whitelisting: تمكين قائمة العناوين المسموح بها
+    application_settings_invalid_ip_format: عنوان IP أو تنسيق CIDR غير صالح
+    application_settings_ip_addresses: عناوين IP / نطاقات CIDR
+    application_settings_ip_deleted_successfully: تم حذف عنوان IP بنجاح
+    application_settings_ip_description_placeholder: على سبيل المثال، شبكة المكتب أو خادم الإنتاج
+    application_settings_ip_input_placeholder: على سبيل المثال، 192.168.1.1 أو 10.0.0.0/24
+    application_settings_ip_or_cidr: عنوان IP أو نطاق CIDR
+    application_settings_ip_required: يلزم إدخال عنوان IP أو نطاق CIDR
+    application_settings_ip_updated_successfully: تم تحديث عنوان IP بنجاح
+    application_settings_ip_whitelisting_disabled_success: تم تعطيل قائمة العناوين IP المسموح بها بنجاح
+    application_settings_ip_whitelisting_enabled_success: تم تمكين قائمة العناوين IP المسموح بها بنجاح
     applications: التطبيقات
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     approve_all_questions: الموافقة على جميع الأسئلة
@@ -279,6 +297,7 @@ ar:
     campaign_assessment_column_caching_enabled: تمكين التخزين المؤقت للتقييم
     campaign_assessment_column_hogan_assessment_id: رقم تقييم هوجان
     campaign_assessment_column_hogan_form_id: رقم نموذج هوجان
+    campaign_assessment_column_occupation_condition_set: مجموعة شروط المهنة
     campaign_assessment_column_pearson_assessment_id: رقم تعريف تقييم بيرسون
     campaign_assessment_column_pearson_assessment_language: لغة تقييم بيرسون
     campaign_assessment_column_pearson_error_details: تفاصيل خطأ بيرسون
@@ -305,6 +324,10 @@ ar:
     campaign_assessment_modals_enable_caching_content: هل أنت متأكد من رغبتك في تفعيل التخزين المؤقت لهذا التقييم؟
     campaign_assessment_modals_enable_caching_successfully: تم تفعيل التخزين المؤقت لهذا التقييم.
     campaign_assessment_modals_enable_caching_title: تمكين التخزين المؤقت للتقييم؟
+    campaign_assessment_modals_update_occupation_condition_set_apply: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
+    campaign_assessment_modals_update_occupation_condition_set_select: تحديد مجموعة شروط المهنة
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: تم تحديث «مجموعة شروط المهنة» بنجاح
+    campaign_assessment_modals_update_occupation_condition_set_title: تحديث مجموعة حالات المهنة
     campaign_factors: عوامل الحملة
     campaign_id_placeholder: ادخل معرف الحملة
     campaign_name: اسم الحملة
@@ -388,6 +411,13 @@ ar:
     client: مستأجر العميل
     client_admin: مسؤول العميل
     client_admins: مسؤولو العملاء
+    client_assessor_import_already_added: تمت بالفعل إضافة المستخدم صاحب عنوان البريد الإلكتروني «%{email}» بصفته مُقيِّمًا للعملاء.
+    client_assessor_import_client_required: يلزم وجود برنامج العميل لاستيراد المقيمين.
+    client_assessor_import_description: استيراد ملف CSV يحتوي على عمود واحد للبريد الإلكتروني الخاص بمقيمي العملاء.
+    client_assessor_import_duplicated_emails: 'الرسائل الإلكترونية التالية موجودة مرتين في ملف CSV: %{emails}'
+    client_assessor_import_emails_required: يرجى تقديم عنوان بريد إلكتروني واحد على الأقل لأحد المقيمين.
+    client_assessor_import_global_assessor_required: يجب أن يكون المستخدم مسجلاً كمُقيِّم عام.
+    client_assessor_removed_successfully: تمت إزالة حساب «%{email}» الخاص بمُقيّم العميل بنجاح
     client_credentials_label: بيانات اعتماد العميل
     client_credentials_value: client_credentials
     client_features: ميزات العميل
@@ -431,11 +461,13 @@ ar:
     completed_tooltip: جميع المقيمين قدموا التقييم
     components_input_duration_placeholder: أدخل كـ '1d 2h 3m'
     concise: موجز
+    condition_sets: مجموعات الشروط
     confidence_interval: فاصل الثقة
     confidence_interval_update_success: تم تحديث فاصل الثقة بنجاح
     configuration: الإعدادات
     configure_model_answer_title: تكوين نموذج الإجابة والكلمات المفتاحية
     confirm_remove_admin: هل أنت متأكد أنك تريد إزالة المستخدم المسؤول بالبريد الإلكتروني '%{email}'؟
+    confirm_remove_client_assessor: هل أنت متأكد من رغبتك في إزالة المُقيِّم العميل صاحب عنوان البريد الإلكتروني «%{email}»؟
     confirmation_required: يلزم التأكيد
     confirmation_required_details: هل أنت متأكد من رغبتك في حذف ملف "%{resource_name}" الموجود في المجلد "%{resource}"؟
     consolidated: مدمجة
@@ -444,8 +476,11 @@ ar:
     copied: نسخ
     copied_url_success: تم نسخ عنوان URL إلى الحافظة بنجاح
     copy_ai_artifacts: نسخ أعمال الفن الاصطناعي
+    copy_assessment_scheduled: تم جدولة مهمة نسخ التقييم.
     copy_hint: ينسخ الإعدادات أعلاه للمقاعد ومديري المركز والمقيمين والاجتماعات والموارد إلى مراكز التقييم التالية. بعد النسخ، يمكنك إجراء تغييرات إضافية على مراكز التقييم الفردية قبل المتابعة.
     copy_image_url: نسخ عنوان URL للصورة
+    copy_occupation_condition_set: نسخ مجموعة شروط المهنة
+    copy_occupation_condition_set_msg: سيؤدي ذلك إلى نسخ جميع إعدادات عوامل التخصيص الموجودة من مجموعة الشروط الحالية إلى مجموعة الشروط الجديدة.
     copy_report_scheduled: تم جدولة مهمة نسخ التقرير.
     copy_text: نص
     copy_to_all: نسخ إلى مراكز التقييم الأخرى
@@ -529,6 +564,7 @@ ar:
     default_assessment_language: لغة التقييم الافتراضية
     default_button: الافتراضي
     default_language: اللغة الافتراضية
+    default_occupation_condition_set: مجموعة شروط المهنة الافتراضية
     default_report_language: لغة التقرير الافتراضية
     define_max_score_text: حدد درجة "%{maxScore}" (الحد الأقصى للدرجة)
     define_min_score_text: تحديد درجة "%{minScore}" (الحد الأدنى للدرجة)
@@ -638,6 +674,7 @@ ar:
     document_titles_project_participants: المشاركون | %{project}
     done: منجز
     done_tooltip: لا يمكن تقديم تقييم إضافي لهذا المستخدم لأن تقييمه تم تصنيفه على أنه تم بواسطة %{marked_by}
+    download_assessor_email_template: تنزيل نموذج القالب
     download_bulk_asset_download_example_csv: تنزيل مثال CSV.
     download_example_csv: تنزيل مثال csv
     dp_consent: تمكين الموافقة على معالجة البيانات
@@ -667,6 +704,7 @@ ar:
     email_subjects_manager_when_available: إرسال بريد إلكتروني إلى مدير الموضوع عند توفر التقرير
     empty: فارغ
     empty_csv_file: ملف CSV لا يحتوي على أي بيانات.
+    empty_occupation_condition_set_msg: لم يتم العثور على عوامل المهنة لهذه المجموعة من الحالات. يرجى إضافة عامل.
     enable_caching_content: هل أنت متأكد من رغبتك في تفعيل التخزين المؤقت لهذا التقييم؟
     enable_caching_successfully: تم تفعيل التخزين المؤقت لهذا التقييم.
     enable_caching_title: تمكين التخزين المؤقت للتقييم؟
@@ -694,6 +732,7 @@ ar:
     enter_schema_key: أدخل مفتاح المخطط
     error: خطأ
     error_color: لون الخطأ
+    errors_csv_file_import: يرجى تحميل ملف CSV قبل النقر على زر «استيراد»
     errors_csv_file_required: يجب أن يكون الملف ملف CSV
     errors_error_msg: حدث خطأ ما. يرجى تحديث الصفحة، وإذا استمرت المشكلة، فيرجى الاتصال بالمسؤول
     errors_min_retention: لا يمكن أن تقل عن 1 يوم
@@ -741,6 +780,7 @@ ar:
     factor_feedback: ملاحظات حول العوامل
     factor_selection: اختيار العوامل
     factors: العوامل
+    factors_filter_strategy: الاستراتيجية
     factors_form_components_ExternalList_table_jsonpath: مسار JSON
     factors_form_components_ExternalList_table_types_norm_score: درجة معايرة
     factors_form_components_ExternalList_table_types_percentage: نسبة مئوية
@@ -760,6 +800,7 @@ ar:
     factors_index_sub_factors: العوامل الفرعية
     factors_index_title: العوامل
     factors_resource_confirmations_delete_body: "<p>هل أنت متأكد من أنك تريد حذف هذا العامل؟</p>\n"
+    factors_resource_removal_success: تمت إزالة العنصر «%{name}» بنجاح.
     failure_reason: سبب الفشل
     feature_ai_assistants_description: تمكين المساعدين المدعومين بالذكاء الاصطناعي لتحسين تجربة المستخدم
     feature_ai_assisted_idp_description: استخدام الذكاء الاصطناعي للمساعدة في توصيات تخطيط التنمية الفردية
@@ -1214,6 +1255,7 @@ ar:
     log_date: تاريخ السجل
     logged_in: تم تسجيل الدخول
     login: تسجيل الدخول
+    login_page_design_tab: التصميم
     low: منخفض
     mail_history: سجل البريد
     main_report: التقرير الرئيسي
@@ -1221,6 +1263,7 @@ ar:
     maintenance_settings: إعدادات الصيانة
     maintenance_settings_description: إدارة نوافذ صيانة النظام والإعدادات
     make_report_available_to_subject_when: 'إتاحة التقرير للموضوع عندما:'
+    manage_condition_sets: إدارة مجموعات الشروط
     manager_approval_required: يتطلب الإبلاغ عن %{user} موافقة المدير قبل التحميل
     manager_approves_reports: يوافق المدير على التقارير
     manager_can_access_subject_reports: يمكن للمدير الوصول إلى تقارير الموضوعات
@@ -1310,6 +1353,7 @@ ar:
     new_score: النتيجة الجديدة
     no_assessments_found: معرف التدقيق
     no_client_access: ليس لديك حق الوصول إلى هذا العميل
+    no_client_access_root: أنت غير مرتبط بأي عميل
     no_clients_found: لم يتم العثور على أي عملاء
     no_completed_assessments: لا توجد تقييمات مكتملة حتى الآن
     no_file_selected: لم يتم اختيار ملف
@@ -1330,6 +1374,7 @@ ar:
     norm_region: منطقة نورم
     norm_region_form_select: حدد منطقة المعيار
     norm_region_update_success: تم تحديث منطقة Norm بنجاح
+    norm_score: درجة المعيار
     normal: عادي
     normalize_factor_scores: تطبيع درجات العامل
     norms: المعايير
@@ -1360,13 +1405,22 @@ ar:
     oauth_scope_label: نطاق
     oauth_scope_name: oauth_scope
     oauth_scope_required: النطاق مطلوب
+    occupation_condition_set_copy_success: تم نسخ مجموعة شروط المهنة بنجاح
+    occupation_condition_sets: مجموعات حالات المهنة
+    occupation_condition_sets_remove_confirm: أدخل اسم مجموعة شروط المهنة المذكور أدناه في مربع النص للتأكيد
+    occupation_condition_sets_remove_success: تمت إزالة مجموعة شروط التخصيص «%{name}» بنجاح
+    occupation_condition_sets_remove_warning: هل أنت متأكد من رغبتك في حذف مجموعة شروط المهنة «%{name}»؟
+    occupation_factors_condition_set: مجموعة الشروط
+    occupation_factors_title: عوامل المهنة
     occupations: المهن
+    occupations_factor_uniqueness: تم أخذ العامل في الحسبان بالفعل
     occupations_factors_list_condition: الحالة
     occupations_factors_list_position: المنصب
     occupations_factors_list_weight: الوزن
     occupations_form_alternative_icon: رمز بديل
     occupations_form_color: اللون
     occupations_form_indicative_roles_image: صورة توضح الأدوار
+    occupations_form_key_career_tracks_hint: '"+" - قائمة، "*" - خط عريض. مثال: + *علم الأحياء* - وصف ما...'
     occupations_form_key_career_tracks_image: صورة لمسارات مهنية رئيسية
     occupations_index_title: المهن
     occupations_resource_confirmations_delete_body: "<p>هل أنت متأكد من أنك تريد حذف هذه المهنة؟</p>\n"
@@ -2033,6 +2087,7 @@ ar:
     public_key_cannot_be_changed: لا يمكن تغييره بعد إنشائه
     public_key_copy_private_key: نسخ المفتاح الخاص
     public_key_created: تم إنشاء المفتاح العام بنجاح
+    public_key_details: تفاصيل المفتاح العام
     public_key_generate: إنشاء زوج مفاتيح
     public_key_generate_button: إنشاء زوج مفاتيح RSA
     public_key_generate_info: سيتم إنشاء زوج مفاتيح RSA بقيمة 2048 بت. سيتم تخزين المفتاح العام فقط. انسخ المفتاح الخاص واحفظه في مكان آمن — فلن يتم عرضه مرة أخرى.
@@ -2077,6 +2132,7 @@ ar:
     range_min_max: النطاق%{min} - %{max}
     rationale: الأساس المنطقي
     raw: نيء
+    raw_score: الدرجة الأولية
     reason_for_changes: سبب التغييرات
     recents: الأحدث
     record_id: معرف السجل
@@ -2108,6 +2164,7 @@ ar:
     remove_confirm_success: تمت إزالة الموضوع بالبريد الإلكتروني "%{subjectEmail}" بنجاح.
     remove_confirm_title: إزالة الموضوع
     remove_confirmation: هل أنت متأكد من أنك تريد حذف هذا العنصر؟
+    remove_icon: إزالة الرمز
     remove_output_schema_key: إزالة مفتاح مخطط الإخراج
     remove_successfully: تمت إزالة العنصر الإعلامي بنجاح.
     render_button: قالب العرض
@@ -2210,6 +2267,7 @@ ar:
     report_type: نوع التقرير
     report_types:
       active_clients_projects: العملاء والمشاريع الحالية
+      campaign_factor_scores: درجات عوامل الحملة الانتخابية
       client_assessment_counts: أهمية تقييم العملاء
       hogan_usage_report: استخدام تقييم هوجان
       json_data_report: تقرير بيانات JSON
@@ -2357,6 +2415,11 @@ ar:
       user_full_name_cont: اسم المستخدم
     saville: سافيل
     saville_assessment: تقييم سافيل
+    scale_max: الحد الأقصى للمقياس
+    scale_max_must_be_greater_than_scale_min: يجب أن تكون القيمة القصوى للمقياس أكبر من القيمة الدنيا للمقياس
+    scale_min: الحد الأدنى للمقياس
+    scale_min_must_be_less_than_scale_max: يجب أن تكون القيمة الدنيا للمقياس أقل من القيمة القصوى للمقياس
+    scale_value_must_not_be_negative: يجب ألا تكون القيمة سالبة
     schedule: جدول
     schedule_email: جدولة البريد الإلكتروني
     schedule_email_title: جدولة البريد الإلكتروني
@@ -2496,10 +2559,13 @@ ar:
     score_definition_placeholder: أدخل تعريف مستوى النقاط هذا
     score_definitions: تعريفات النقاط
     score_max: النتيجة القصوى
+    score_max_must_be_greater_than_score_min: يجب أن تكون الدرجة القصوى أكبر من الدرجة الدنيا
     score_min: النتيجة الدقيقة
+    score_min_must_be_less_than_score_max: يجب أن تكون الدرجة الدنيا أقل من الدرجة القصوى
     score_must_be_in_between_min_and_max: يجب أن تكون النتيجة بين %{min} و %{max}.
     score_not_applicable: النتيجة غير قابلة للتطبيق
     score_range_info: 'نطاق النقاط: %{min} - %{max}'
+    score_type: نوع النتيجة
     score_with_ai: تسجيل النقاط باستخدام الذكاء الاصطناعي
     scores_finalized: تم إغلاق النتائج ولا يمكن تغييرها
     scoring: سجل
@@ -2608,6 +2674,7 @@ ar:
     search_admins: البحث عن المسؤولين
     search_campaign: البحث عن حملة
     search_client: البحث عن عميل
+    search_client_assessors: البحث عن مقيمي العملاء
     search_job_role: البحث عن وظيفة
     search_participants: البحث عن المشاركين...
     search_project: البحث عن مشروع
@@ -2643,6 +2710,7 @@ ar:
     select_admin_role: اختر دور المسؤول
     select_assessment_language: تحديد لغة التقييم
     select_client: اختر العميل
+    select_condition_set: اختر مجموعة الشروط
     select_end_time: حدد وقت الانتهاء
     select_language_to_translate: يرجى تحديد اللغة المطلوب ترجمتها
     select_level: اختر المستوى
@@ -3066,6 +3134,7 @@ ar:
     translated_with_ai_notice: ترجمة بالذكاء الاصطناعي
     translation_assistant_not_configured: مساعد الترجمة غير مهيأ
     translations:
+      import: استيراد الترجمات
       title: الترجمات
     translations_export_failure_msg: خطأ أثناء تصدير الترجمات
     translations_export_success_msg: تصدير إجراءات التطوير قيد التنفيذ.

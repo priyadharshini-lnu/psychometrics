@@ -4,7 +4,10 @@ module Users
   class Application < User
     NAME_FORMAT = /\A[a-zA-Z0-9]+( [a-zA-Z0-9]+)*\z/
 
+    has_many :api_keys, class_name: 'ApiKey', foreign_key: :user_id, inverse_of: :application, dependent: :destroy
     has_many :public_keys, class_name: 'ApplicationPublicKey', foreign_key: :user_id, dependent: :destroy
+    has_one :application_setting, class_name: 'ApplicationSetting', foreign_key: :user_id, dependent: :destroy
+    has_many :ip_whitelist_entries, class_name: 'ApplicationIpWhitelistEntry', through: :application_setting
 
     scope :active, -> { where(disabled: false) }
     scope :inactive, -> { where(disabled: true) }
@@ -13,6 +16,7 @@ module Users
     validate :unique_dasherized_name_within_client
 
     before_validation :generate_email_and_defaults, on: :create
+    after_create :create_application_setting
 
     def self.ransackable_attributes(_auth_object = nil)
       %w[disabled]

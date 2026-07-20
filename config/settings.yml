@@ -14,6 +14,8 @@ file_host: <%= ENV["FILE_HOST"] %>
 cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
+sentry_url: <%= ENV.fetch('SENTRY_URL', '') %>
+sentry_debug: <%= ENV.fetch('SENTRY_DEBUG', 'false') %>
 cloud_functions_service: <%= ENV.fetch('CLOUD_FUNCTION_SERVICE', 'aws') %>
 timezone_tip: ' (GST)'
 skip_recaptcha_for_ips: <%= ENV.fetch('SKIP_RECAPTCHA_FOR_IPS', '').split(',').map(&:strip) %>
@@ -96,6 +98,7 @@ features:
   client_admin_sso_enabled: <%= ENV.fetch('CLIENT_ADMIN_SSO_ENABLED', 'true') == 'true' %>
   assessment_content_protection_enabled: <%= ENV.fetch('ASSESSMENT_CONTENT_PROTECTION_ENABLED', 'false') == 'true' %>
   client_scope_filter_disabled: <%= ENV.fetch('DISABLE_CLIENT_SCOPE_FILTER', 'false') == 'true' %>
+  application_public_keys_settings_enabled: <%= ENV.fetch('APPLICATION_PUBLIC_KEYS_SETTINGS_ENABLED', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:

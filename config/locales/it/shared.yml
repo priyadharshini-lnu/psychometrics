@@ -22,6 +22,8 @@ it:
     assessor_approved: Approvato dal valutatore
     assessors_list: Elenco dei valutatori
     asset_not_present: Risorsa non presente
+    audience: Pubblico
+    audience_claim_label: Pubblico (aud)
     audio: Audio
     audio_devices: Dispositivi audio
     authentication_failed: L'autenticazione è fallita. Per favore, riprova.
@@ -100,6 +102,10 @@ it:
     import: Importazione
     inactive: Inattivo
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
+    issuer: Emittente
+    issuer_claim_label: Emittente (iss)
+    jwt_claims_details: Dettagli dei sinistri JWT
+    key_id_claim_label: ID chiave (kid)
     last_name: Cognome
     last_updated: Ultimo aggiornamento
     learning_on_the_job_label: Imparare sul campo

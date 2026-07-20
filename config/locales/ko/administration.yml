@@ -710,7 +710,6 @@ ko:
         end_date: '종료 날짜:'
         every_interval: 간격마다 %{interval}
         frequency: '빈도:'
-        owner: '소유자:'
         project: '프로젝트:'
         recipients: '수신자:'
         specific_datetime: '에 보내세요:'

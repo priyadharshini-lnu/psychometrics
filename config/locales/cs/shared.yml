@@ -22,6 +22,8 @@ cs:
     assessor_approved: Schváleno hodnotitelem
     assessors_list: Seznam hodnotitelů
     asset_not_present: Aktivum není k dispozici
+    audience: Publikum
+    audience_claim_label: Publikum (aud)
     audio: Audio
     audio_devices: Zvuková zařízení
     authentication_failed: Autentizace selhala. Zkuste to prosím znovu.
@@ -100,6 +102,10 @@ cs:
     import: Import
     inactive: Neaktivní
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
+    issuer: Emitent
+    issuer_claim_label: Emitent (iss)
+    jwt_claims_details: Podrobnosti k reklamacím JWT
+    key_id_claim_label: ID klíče (kid)
     last_name: Příjmení
     last_updated: Poslední aktualizace
     learning_on_the_job_label: Učení se přímo v práci

@@ -22,6 +22,8 @@ nl:
     assessor_approved: Beoordelaar goedgekeurd
     assessors_list: Lijst van beoordelaars
     asset_not_present: Asset niet aanwezig
+    audience: Doelgroep
+    audience_claim_label: Publiek (aud)
     audio: Audio
     audio_devices: Audioapparatuur
     authentication_failed: Authenticatie mislukt. Probeer het alsjeblieft opnieuw.
@@ -100,6 +102,10 @@ nl:
     import: Importeren
     inactive: Inactief
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    issuer: Uitgever
+    issuer_claim_label: Emittent (iss)
+    jwt_claims_details: Gegevens over de vorderingen van JWT
+    key_id_claim_label: Sleutel-ID (kid)
     last_name: Achternaam
     last_updated: Laatst bijgewerkt
     learning_on_the_job_label: Leren op de werkvloer

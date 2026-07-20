@@ -22,6 +22,8 @@ zh:
     assessor_approved: 评估师批准
     assessors_list: 评估员名单
     asset_not_present: 资产不存在
+    audience: 受众
+    audience_claim_label: 受众 (aud)
     audio: 音频
     audio_devices: 音频设备
     authentication_failed: 身份验证失败。请再试一次。
@@ -100,6 +102,10 @@ zh:
     import: 进口
     inactive: 不活动
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
+    issuer: 发行人
+    issuer_claim_label: 发行人 (iss)
+    jwt_claims_details: JWT 索赔详情
+    key_id_claim_label: 密钥 ID (kid)
     last_name: 姓
     last_updated: 最后更新
     learning_on_the_job_label: 边学边学

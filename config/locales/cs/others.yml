@@ -876,6 +876,7 @@ cs:
         compact_completion_status_export: souhrnné informace export stavu dokončení
         completion_status_export: Export stavu dokončení
         copy_as_template_or_campaign: Kopírování kampaně jako šablony
+        copy_assessment: Kopírování hodnocení
         copy_dimension: Kopírovat rozměr
         copy_report: Kopírovat zprávu
         create_threesixty_campaign: Vytvořit kampaň Threesixty
@@ -915,6 +916,7 @@ cs:
         import_assessors: Posuzovatelé dovozu
         import_campaign_ai_artifacts: AI artefakty importních kampaní
         import_campaign_factors: Faktory importní kampaně
+        import_client_assessors: Importovat hodnotitele klientů
         import_datasheet: Import datového listu
         import_development_action_translations: Dovoz Vývoj Akce Překlady
         import_development_actions: Import vývojových akcí
@@ -972,6 +974,8 @@ cs:
       errors:
         no_plans: Nebyly nalezeny žádné aktivní plány IDP
     close: Zavřít
+    copy_assessment:
+      failed: Hodnocení kopie se nezdařilo
     copy_report:
       failed: Kopírování zprávy se nezdařilo
     details: Podrobnosti na

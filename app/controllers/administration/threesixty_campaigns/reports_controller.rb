@@ -4,6 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class ReportsController < Administration::ThreesixtyCampaigns::BaseController
       include AuthenticateByToken
+      include AddCookie
 
       prepend_before_action :set_resource_class
       before_action :load_available_languages, only: %i[show]
@@ -99,7 +100,7 @@ module Administration
       end
 
       def add_cookie_for_file_download
-        cookies[:fileDownload] = true
+        add_cookie(:fileDownload, true, httponly: false)
       end
 
       def set_available_translations(report)

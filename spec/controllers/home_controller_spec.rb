@@ -39,4 +39,114 @@ RSpec.describe HomeController, type: :controller do
       expect(response).to redirect_to('https://www.mercer.com/regulatory/mercer-cookie-notice/')
     end
   end
+
+  describe '#assessment_completed with post login jwt' do
+    let(:project) { user.project }
+
+    before do
+      request.host = "#{project.subdomain}.#{Settings.domain}"
+    end
+
+    it 'redirects to return_url with assessment_completed for jwt_post session' do
+      campaign_user.update!(completion_status: :completed)
+      session[:sso] = {
+        'user_id' => user.id,
+        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'source' => 'jwt_post'
+      }
+
+      get :assessment_completed
+
+      expect(response).to redirect_to(
+        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_completed"
+      )
+    end
+
+    it 'redirects to return_url with assessment_completed for jwt_post assessment session' do
+      user_assessment = create(
+        :user_assessment,
+        campaign: campaign,
+        evaluator: user,
+        subject: user,
+        status: :completed
+      )
+      session[:sso] = {
+        'user_id' => user.id,
+        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'user_assessment_id' => user_assessment.id,
+        'source' => 'jwt_post'
+      }
+
+      get :assessment_completed
+
+      expect(response).to redirect_to(
+        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_completed"
+      )
+    end
+
+    it 'redirects to valid optional return_url after successful completion without placeholder substitution' do
+      campaign_user.update!(completion_status: :completed)
+      session[:sso] = {
+        'user_id' => user.id,
+        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done",
+        'source' => 'jwt_post'
+      }
+
+      get :assessment_completed
+
+      expect(response).to redirect_to("https://#{project.subdomain}.#{Settings.domain}/done")
+    end
+  end
+
+  describe '#assessment_completed status normalization with post login jwt' do
+    let(:project) { user.project }
+
+    before do
+      request.host = "#{project.subdomain}.#{Settings.domain}"
+    end
+
+    it 'maps unsupported assessment status to assessment_pending for jwt_post source' do
+      user_assessment = create(
+        :user_assessment,
+        campaign: campaign,
+        evaluator: user,
+        subject: user,
+        status: :ineligible
+      )
+      session[:sso] = {
+        'user_id' => user.id,
+        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'user_assessment_id' => user_assessment.id,
+        'source' => 'jwt_post'
+      }
+
+      get :assessment_completed
+
+      expect(response).to redirect_to(
+        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_pending"
+      )
+    end
+
+    it 'keeps unsupported assessment status as-is when source is not jwt_post' do
+      user_assessment = create(
+        :user_assessment,
+        campaign: campaign,
+        evaluator: user,
+        subject: user,
+        status: :ineligible
+      )
+      session[:sso] = {
+        'user_id' => user.id,
+        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'user_assessment_id' => user_assessment.id,
+        'source' => 'sso'
+      }
+
+      get :assessment_completed
+
+      expect(response).to redirect_to(
+        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_ineligible"
+      )
+    end
+  end
 end

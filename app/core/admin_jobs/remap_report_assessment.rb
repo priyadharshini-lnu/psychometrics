@@ -23,7 +23,7 @@ module AdminJobs
     end
 
     def valid?
-      true
+      report.present?
     end
 
     private

@@ -123,4 +123,29 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentsController, type: :
     expect(response).to have_http_status(400)
     expect(ca.reload.workshop_activity_duration).to eq 20
   end
+
+  describe '#update_occupation_condition_set' do
+    let(:dimension) { create(:dimension, occupations_enabled: true) }
+    let(:assessment) { create(:assessment, dimension: dimension) }
+    let(:campaign_assessment) { create(:campaign_assessment, campaign: campaign, assessment: assessment) }
+    let(:new_condition_set) { create(:occupation_condition_set, dimension: dimension, name: 'New Set') }
+
+    it 'updates the condition set and applies to existing users if requested' do
+      expect(CampaignAssessments::UpdateOccupationConditionSet).to receive(:call).with(
+        campaign_assessment,
+        new_condition_set.id.to_s,
+        true
+      ).and_call_original
+
+      post :update_occupation_condition_set, params: {
+        id: campaign_assessment.id,
+        new_campaign_id: campaign.id,
+        campaign_assessment: { occupation_condition_set_id: new_condition_set.id },
+        apply_to_existing_users: 'true'
+      }
+
+      expect(response).to have_http_status(:success)
+      expect(campaign_assessment.reload.occupation_condition_set_id).to eq(new_condition_set.id)
+    end
+  end
 end

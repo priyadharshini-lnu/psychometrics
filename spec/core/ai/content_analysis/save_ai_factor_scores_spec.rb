@@ -163,8 +163,22 @@ describe AI::ContentAnalysis::SaveAIFactorScores do
     end
 
     context 'when approval flow is enabled' do
+      let(:assessor) { create(:client_admin, client: user_assessment.campaign.project.client) }
+      let(:approver) { create(:client_admin, client: user_assessment.campaign.project.client) }
+      let(:allow_one_level_approve) { false }
+      let!(:scoring_approval_setting) do
+        create(:ai_scoring_approval_setting,
+               campaign: user_assessment.campaign,
+               assessment: assessment,
+               assessor_ids: [assessor.id],
+               approver_ids: [approver.id],
+               approval_notification_user_ids: [approver.id],
+               allow_one_level_approve: allow_one_level_approve)
+      end
+
       before do
         allow(user_assessment).to receive(:has_ai_scoring_approval_flow?).and_return(true)
+        scoring_approval_setting
         create(:ai_question_scoring_session,
                user: users_result.user,
                question: question1,
@@ -179,6 +193,33 @@ describe AI::ContentAnalysis::SaveAIFactorScores do
         expect(score_record.status).to eq('pending')
       end
 
+      it 'notifies assessors when scoring is pending QC' do
+        expect { described_class.call!(users_result) }.to(
+          have_enqueued_mail(ScoringApproving::AssessorNotificationMailer, :notify).once
+        )
+      end
+
+      it 'does not notify assessors again when rescoring existing scores' do
+        create(:ai_factor_score,
+               users_result: users_result,
+               factor: factor1,
+               question_id: question1.id,
+               score: 2.0,
+               scoring_type: :ai)
+
+        expect { described_class.call!(users_result, rescore: true) }.not_to(
+          have_enqueued_mail(ScoringApproving::AssessorNotificationMailer, :notify)
+        )
+      end
+
+      it 'does not notify pending reviewers when notifications are disabled' do
+        scoring_approval_setting.update!(do_not_send_notifications: true)
+
+        expect { described_class.call!(users_result) }.not_to(
+          have_enqueued_mail(ScoringApproving::AssessorNotificationMailer, :notify)
+        )
+      end
+
       it 'does not call MergeAIScores' do
         expect(UsersResults::Scoring::MergeAIScores).not_to receive(:call)
 
@@ -189,6 +230,16 @@ describe AI::ContentAnalysis::SaveAIFactorScores do
         expect(user_assessment).not_to receive(:auto_approve_scoring!)
 
         described_class.call!(users_result)
+      end
+
+      context 'when one-level approval is enabled' do
+        let(:allow_one_level_approve) { true }
+
+        it 'notifies approvers while the scoring is still pending' do
+          expect { described_class.call!(users_result) }.to(
+            have_enqueued_mail(ScoringApproving::AssessorNotificationMailer, :notify).once
+          )
+        end
       end
     end
 

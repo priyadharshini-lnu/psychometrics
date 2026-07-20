@@ -1,5 +1,6 @@
 import { ProjectList } from './ProjectList'
 import { Admins } from './Admins'
+import { Assessors } from './Assessors'
 import { Settings } from './Settings'
 import { DataReports } from './DataReports'
 import { DataReportJobs } from './DataReports/DataReportJobs'
@@ -15,6 +16,10 @@ export const routes = [
   {
     path: '/admins',
     component: <Admins />,
+  },
+  {
+    path: '/assessors',
+    component: <Assessors />,
   },
   {
     path: '/settings/*',

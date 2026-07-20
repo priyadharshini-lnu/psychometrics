@@ -22,6 +22,8 @@ hu:
     assessor_approved: Értékelő által jóváhagyva
     assessors_list: Értékelők listája
     asset_not_present: Az eszköz nincs jelen
+    audience: Célközönség
+    audience_claim_label: Közönség (aud)
     audio: Audio
     audio_devices: Hangeszközök
     authentication_failed: A hitelesítés sikertelen. Kérlek, próbáld meg újra.
@@ -100,6 +102,10 @@ hu:
     import: Importál
     inactive: Inaktív
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    issuer: Kibocsátó
+    issuer_claim_label: Kibocsátó (iss)
+    jwt_claims_details: A JWT-igénylések részletei
+    key_id_claim_label: Kulcsazonosító (kid)
     last_name: Vezetéknév
     last_updated: Utolsó frissítés
     learning_on_the_job_label: Tanulás munka közben

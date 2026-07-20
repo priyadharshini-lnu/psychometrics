@@ -40,6 +40,7 @@ export const UPDATE_MHS_LEADERSHIP_BAR = 'campaigns/assessments/UPDATE_MHS_LEADE
 export const UPDATE_MHS_CONFIDENCE_INTERVAL = 'campaigns/assessments/UPDATE_MHS_CONFIDENCE_INTERVAL'
 export const UPDATE_MHS_NORM_REGION = 'campaigns/assessments/UPDATE_MHS_NORM_REGION'
 export const UPDATE_MHS_NORM_OPTION = 'campaigns/assessments/UPDATE_MHS_NORM_OPTION'
+export const UPDATE_OCCUPATION_CONDITION_SET = 'campaigns/assessments/UPDATE_OCCUPATION_CONDITION_SET'
 
 export const updatePrework = (campaignId: number, id: number, body: object) => ({
   type: UPDATE_PREWORK,
@@ -446,6 +447,21 @@ export const updateProctoringSettings = (
     method: 'put',
     url: `/administration/new_campaigns/${campaignId}/assessments/${id}/update_proctoring_settings`,
     body,
+    loader: true,
+  },
+})
+
+export const updateOccupationConditionSet = (
+  campaignId: number,
+  campaignAssessmentId: number,
+  body: { occupationConditionSetId: string | null, applyToExistingUsers: boolean },
+) => ({
+  type: UPDATE_OCCUPATION_CONDITION_SET,
+  request: {
+    method: 'post',
+    // eslint-disable-next-line max-len
+    url: `/administration/new_campaigns/${campaignId}/campaign_assessments/${campaignAssessmentId}/update_occupation_condition_set`,
+    body: { ...body, id: campaignAssessmentId },
     loader: true,
   },
 })

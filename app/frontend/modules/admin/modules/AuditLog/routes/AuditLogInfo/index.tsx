@@ -1,9 +1,10 @@
 
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { Descriptions, Collapse } from 'antd'
-import { useParams } from 'react-router-dom'
+import { Descriptions, Collapse, Button } from 'antd'
+import { useParams, useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
+import { ArrowLeftOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { getCurrent, fetchCurrent } from '~/modules/admin/modules/AuditLog/core'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
@@ -33,6 +34,7 @@ const AuditLogList: React.FC<Props> = ({
   fetchCurrent,
 }) => {
   const { id } = useParams() as Params
+  const navigate = useNavigate()
   useEffect(() => {
     fetchCurrent(id)
   }, [])
@@ -57,7 +59,16 @@ const AuditLogList: React.FC<Props> = ({
         ]}
       />
       <div className={styles.main}>
-        <Descriptions title={I18n.t('admin.audit_log_title')} bordered column={1}>
+        <div className="flex align-center items-center mb-4">
+          <Button
+            type="text"
+            icon={<ArrowLeftOutlined />}
+            onClick={() => navigate(-1)}
+          >
+            {I18n.t('shared.back')}
+          </Button>
+        </div>
+        <Descriptions bordered column={1}>
           <Descriptions.Item label={I18n.t('shared.action')}>{record.action}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('admin.audit_log_type')}>{record.recordType}</Descriptions.Item>
           <Descriptions.Item label={I18n.t('admin.record_id')}>{record.recordId}</Descriptions.Item>

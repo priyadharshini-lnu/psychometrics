@@ -876,6 +876,7 @@ sr-Latn:
         compact_completion_status_export: Kompaktan Završetak Status Izvoz
         completion_status_export: Završetak Status Izvoz
         copy_as_template_or_campaign: Kopiraj kampanju kao šablon
+        copy_assessment: Копирај процену
         copy_dimension: Kopiraj dimenziju
         copy_report: Копирај извештај
         create_threesixty_campaign: Kreirajte Threesixty kampanju
@@ -915,6 +916,7 @@ sr-Latn:
         import_assessors: Procenjivači uvoza
         import_campaign_ai_artifacts: Uvoz kampanje AI artefakata
         import_campaign_factors: Faktori uvozne kampanje
+        import_client_assessors: Увоз клијентских процењивача
         import_datasheet: Uvoz Datasheet
         import_development_action_translations: Uvoz Razvoj Akcija Prevodi
         import_development_actions: Uvoz razvojnih akcija
@@ -972,6 +974,8 @@ sr-Latn:
       errors:
         no_plans: Nije pronađen aktivan IDP planovi
     close: Zatvorite
+    copy_assessment:
+      failed: Процена копије није успела
     copy_report:
       failed: Извештај копије није успео
     details: Detalji

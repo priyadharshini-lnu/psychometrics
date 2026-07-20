@@ -10,6 +10,7 @@ export const ClientTR = t.intersection([
     country: t.string,
     subdomain: t.union([t.string, t.null]),
     url: t.union([t.string, t.null]),
+    logo: t.union([t.string, t.null, t.undefined]),
     projectManager: t.union([
       t.type({
         id: t.string,

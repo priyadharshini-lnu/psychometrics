@@ -111,6 +111,42 @@ RSpec.describe AdminSubdomain do
     end
   end
 
+  describe '.extract_subdomain' do
+    context 'with a production domain' do
+      it 'extracts admin subdomain' do
+        expect(described_class.extract_subdomain('adnoc-admin.tte.com')).to eq('adnoc-admin')
+      end
+
+      it 'returns empty string for bare domain' do
+        expect(described_class.extract_subdomain('tte.com')).to eq('')
+      end
+
+      it 'returns empty string for blank input' do
+        expect(described_class.extract_subdomain('')).to eq('')
+      end
+    end
+
+    context 'on localhost' do
+      before { allow(Settings).to receive(:domain).and_return('localhost') }
+
+      it 'extracts client admin subdomain' do
+        expect(described_class.extract_subdomain('acme-admin.localhost')).to eq('acme-admin')
+      end
+
+      it 'extracts end-user subdomain' do
+        expect(described_class.extract_subdomain('acme.localhost')).to eq('acme')
+      end
+
+      it 'returns empty string for bare localhost' do
+        expect(described_class.extract_subdomain('localhost')).to eq('')
+      end
+
+      it 'extracts subdomain when port is present' do
+        expect(described_class.extract_subdomain('acme-admin.localhost:3030')).to eq('acme-admin')
+      end
+    end
+  end
+
   describe '.host_options_for' do
     let(:user) { instance_double('User', superadmin?: false) }
     let(:client) { instance_double('Client', subdomain: 'adnoc') }

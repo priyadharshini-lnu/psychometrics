@@ -56,11 +56,11 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def import?
-    @user.is?(:superadmin)
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   def validate_import?
-    @user.is?(:superadmin)
+    @user.is?(:superadmin) || @user.has_grant?(:dimensions, :manage)
   end
 
   class Scope < Scope

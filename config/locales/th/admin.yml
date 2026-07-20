@@ -26,6 +26,7 @@ th:
     add_btn: เพิ่มหัวเรื่อง
     add_campaign_admin: เพิ่มผู้ดูแลแคมเปญ
     add_client_admin: เพิ่มผู้ดูแลระบบลูกค้า
+    add_client_assessor: เพิ่มผู้ประเมินลูกค้า
     add_conditions: เพิ่มเงื่อนไข
     add_evaluators: เพิ่มผู้ประเมิน
     add_indicator: เพิ่มตัวชี้วัด
@@ -33,6 +34,7 @@ th:
     add_lead_assessor_hint: โปรดเพิ่มแบบฟอร์มหัวหน้าผู้ประเมินก่อน
     add_more: เพิ่มเพิ่มเติม
     add_new_folder: เพิ่มโฟลเดอร์ใหม่
+    add_or_select_factor_msg: คลิกที่ "เพิ่ม/เลือกปัจจัย" เพื่อดูรายละเอียด
     add_output_schema_key: เพิ่มคีย์แบบแผนเอาต์พุต
     add_project: เพิ่มโครงการ
     add_project_admin: เพิ่มผู้ดูแลระบบโครงการ
@@ -47,12 +49,14 @@ th:
     admin_role_deleted: บทบาทผู้ดูแลระบบ '%{role_name}' ถูกลบเรียบร้อยแล้ว
     admin_roles: บทบาทผู้ดูแลระบบ
     admin_updated_successfully: ผู้ดูแลระบบ '%{name}' อัปเดตเรียบร้อยแล้ว
+    admin_with_email_already_added: ผู้ใช้ที่มีที่อยู่อีเมลนี้ได้ถูกเพิ่มเข้าไปแล้ว
     administrator_approves_reports: ผู้ดูแลระบบอนุมัติรายงาน
     administrators_list_columns_email: อีเมล
     admins: ผู้ดูแลระบบ
     advanced: ขั้นสูง
     advanced_mode_tooltip: ใช้โหมดขั้นสูงสําหรับการสร้างเทมเพลตพร้อมท์โดยใช้เทมเพลตของเหลวที่มีตัวแปรที่มีอยู่ โปรดดูเอกสารประกอบสําหรับรายละเอียดเพิ่มเติม
     agile: ว่องไว
+    agile_time_config_msg: การประเมินแบบ Agile อาจใช้ตัวจับเวลาตามแต่ละส่วน (ตั้งค่าไว้ในส่วนการตั้งค่า) โปรดแน่ใจว่าได้กำหนดเวลาที่เพียงพอในแต่ละส่วน เพื่อให้สามารถทำแต่ละส่วนให้เสร็จได้อย่างสบายๆ
     ai_artifact_result_generation_admin_job_failed: ไม่สามารถสร้างวัตถุ '%{artifact_name}' สำหรับผู้ใช้ '%{user_email}' ได้
     ai_artifact_result_stale: ผลลัพธ์อาจล้าสมัยเนื่องจากความพึ่งพาของ AI artifact ได้เปลี่ยนแปลงไปตั้งแต่ผลลัพธ์ครั้งล่าสุดถูกสร้างขึ้น โปรดพิจารณาการสร้าง artifact ใหม่เพื่อสร้างด้วย dependency ล่าสุด
     ai_artifacts: สิ่งประดิษฐ์ AI
@@ -123,6 +127,20 @@ th:
     application_name: ชื่อแอปพลิเคชัน
     application_name_already_taken: มีอยู่แล้วสำหรับลูกค้านี้
     application_name_format_hint: อนุญาตให้ใช้เฉพาะตัวอักษรและตัวเลขเท่านั้น โดยมีช่องว่างหนึ่งช่องระหว่างคำ
+    application_settings_at_least_one_ip_required: โปรดเปิดใช้งานการบันทึกที่อยู่ IP อย่างน้อยหนึ่งรายการ ก่อนที่จะเปิดใช้งานการอนุญาต IP แบบ whitelist
+    application_settings_confirm_delete_ip: คุณแน่ใจหรือไม่ว่าต้องการลบที่อยู่ IP นี้?
+    application_settings_edit_ip_address: แก้ไขที่อยู่ IP / ช่วง CIDR
+    application_settings_enable_ip_whitelisting: เปิดใช้งานการอนุญาต IP แบบ whitelist
+    application_settings_invalid_ip_format: ที่อยู่ IP หรือรูปแบบ CIDR ไม่ถูกต้อง
+    application_settings_ip_addresses: ที่อยู่ IP / ช่วง CIDR
+    application_settings_ip_deleted_successfully: ที่อยู่ IP ได้ถูกลบเรียบร้อยแล้ว
+    application_settings_ip_description_placeholder: เช่น เครือข่ายสำนักงาน หรือเซิร์ฟเวอร์การผลิต
+    application_settings_ip_input_placeholder: เช่น 192.168.1.1 หรือ 10.0.0.0/24
+    application_settings_ip_or_cidr: ที่อยู่ IP หรือช่วง CIDR
+    application_settings_ip_required: ต้องระบุที่อยู่ IP หรือช่วง CIDR
+    application_settings_ip_updated_successfully: ที่อยู่ IP ได้รับการอัปเดตสำเร็จแล้ว
+    application_settings_ip_whitelisting_disabled_success: การเพิ่ม IP เข้าสู่รายชื่ออนุญาตได้สำเร็จแล้ว
+    application_settings_ip_whitelisting_enabled_success: การเพิ่มรายชื่ออนุญาต IP ได้สำเร็จแล้ว
     applications: การประยุกต์ใช้
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
     approve_all_questions: อนุมัติคำถามทั้งหมด
@@ -279,6 +297,7 @@ th:
     campaign_assessment_column_caching_enabled: เปิดใช้งานการแคชการประเมิน
     campaign_assessment_column_hogan_assessment_id: รหัสการประเมินโฮแกน
     campaign_assessment_column_hogan_form_id: แบบฟอร์มโฮแกน
+    campaign_assessment_column_occupation_condition_set: ชุดเงื่อนไขอาชีพ
     campaign_assessment_column_pearson_assessment_id: รหัสการประเมิน Pearson
     campaign_assessment_column_pearson_assessment_language: การประเมินภาษาเพียร์สัน
     campaign_assessment_column_pearson_error_details: รายละเอียดข้อผิดพลาดของ Pearson
@@ -305,6 +324,10 @@ th:
     campaign_assessment_modals_enable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
     campaign_assessment_modals_enable_caching_title: เปิดใช้งานการแคชการประเมิน?
+    campaign_assessment_modals_update_occupation_condition_set_apply: นำไปใช้การเปลี่ยนแปลงนี้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
+    campaign_assessment_modals_update_occupation_condition_set_select: เลือกชุดเงื่อนไขอาชีพ
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: ชุดเงื่อนไขอาชีพได้รับการอัปเดตสำเร็จแล้ว
+    campaign_assessment_modals_update_occupation_condition_set_title: อัปเดตชุดเงื่อนไขอาชีพ
     campaign_factors: ปัจจัยของแคมเปญ
     campaign_id_placeholder: ป้อนรหัสแคมเปญ
     campaign_name: ชื่อแคมเปญ
@@ -388,6 +411,13 @@ th:
     client: การเช่าลูกค้า
     client_admin: ผู้ดูแลระบบไคลเอ็นต์
     client_admins: ผู้ดูแลระบบไคลเอ็นต์
+    client_assessor_import_already_added: ผู้ใช้ที่มีที่อยู่อีเมล '%{email}' ได้ถูกเพิ่มเข้าไปแล้วในฐานะผู้ประเมินลูกค้า
+    client_assessor_import_client_required: จำเป็นต้องมีลูกค้าเพื่อนำเข้าผู้ประเมิน
+    client_assessor_import_description: นำเข้าไฟล์ CSV ที่มีคอลัมน์อีเมลเดียวสำหรับผู้ประเมินลูกค้า
+    client_assessor_import_duplicated_emails: 'อีเมลต่อไปนี้ถูกคัดลอกไว้ในไฟล์ CSV: %{emails}'
+    client_assessor_import_emails_required: กรุณาให้ที่อยู่อีเมลของผู้ประเมินอย่างน้อยหนึ่งคน
+    client_assessor_import_global_assessor_required: ผู้ใช้ต้องมีสถานะเป็นผู้ประเมินระดับโลก
+    client_assessor_removed_successfully: ผู้ประเมินลูกค้าที่มีที่อยู่อีเมล '%{email}' ได้ถูกลบออกสำเร็จแล้ว
     client_credentials_label: ข้อมูลประจําตัวของลูกค้า
     client_credentials_value: client_credentials
     client_features: คุณสมบัติลูกค้า
@@ -431,11 +461,13 @@ th:
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
     components_input_duration_placeholder: ป้อนเป็น '1d 2h 3m'
     concise: กระชับ
+    condition_sets: ชุดเงื่อนไข
     confidence_interval: ช่วงความเชื่อมั่น
     confidence_interval_update_success: ช่วงความเชื่อมั่นได้รับการอัปเดตสำเร็จ
     configuration: การกำหนดค่า
     configure_model_answer_title: กำหนดค่าคำตอบแบบจำลองและคำสำคัญ
     confirm_remove_admin: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ดูแลระบบอีเมล '%{email}'
+    confirm_remove_client_assessor: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินลูกค้าที่มีที่อยู่อีเมล '%{email}' ออกไป?
     confirmation_required: ต้องการการยืนยัน
     confirmation_required_details: คุณแน่ใจหรือไม่ว่าต้องการลบ "%{resource_name}" จากหมวดหมู่ "%{resource}"?
     consolidated: รวมกัน
@@ -444,8 +476,11 @@ th:
     copied: คัดลอกแล้ว
     copied_url_success: URL ถูกคัดลอกไปยังคลิปบอร์ดสำเร็จแล้ว
     copy_ai_artifacts: คัดลอกสิ่งประดิษฐ์ของ AI
+    copy_assessment_scheduled: งานพิมพ์ตัวอย่างเพื่อการประเมินได้ถูกกำหนดเวลาแล้ว
     copy_hint: คัดลอกการกําหนดค่าที่นั่ง ผู้จัดการศูนย์ ผู้ประเมิน และการประชุมและทรัพยากรข้างต้นไปยังศูนย์การประเมินต่อไปนี้ หลังจากคัดลอกแล้ว คุณสามารถทําการเปลี่ยนแปลงเพิ่มเติมกับศูนย์ประเมินแต่ละแห่งก่อนดําเนินการต่อ
     copy_image_url: คัดลอก URL ของรูปภาพ
+    copy_occupation_condition_set: คัดลอกชุดเงื่อนไขอาชีพ
+    copy_occupation_condition_set_msg: การนี้จะคัดลอกการตั้งค่าปัจจัยการใช้งานที่มีอยู่ทั้งหมดจากชุดเงื่อนไขปัจจุบันไปยังชุดเงื่อนไขใหม่
     copy_report_scheduled: งานคัดลอกรายงานได้ถูกกำหนดเวลาแล้ว
     copy_text: ข้อความ
     copy_to_all: คัดลอกไปยังศูนย์ประเมินอื่น ๆ
@@ -529,6 +564,7 @@ th:
     default_assessment_language: ภาษาเริ่มต้นสำหรับการประเมิน
     default_button: ค่าเริ่มต้น
     default_language: ภาษาเริ่มต้น
+    default_occupation_condition_set: ชุดเงื่อนไขอาชีพตามค่าเริ่มต้น
     default_report_language: รายงานภาษาเริ่มต้น
     define_max_score_text: กำหนดคะแนน %{maxScore} (คะแนนสูงสุด)
     define_min_score_text: กำหนดคะแนน %{minScore} (คะแนนขั้นต่ำ)
@@ -638,6 +674,7 @@ th:
     document_titles_project_participants: ผู้เข้าร่วม | %{project}
     done: เสร็จแล้ว
     done_tooltip: ไม่สามารถส่งการประเมินสําหรับผู้ใช้รายนี้ได้อีก เนื่องจากการประเมินของผู้ใช้รายนี้ถูกทําเครื่องหมายว่าเสร็จสิ้นโดย %{marked_by}
+    download_assessor_email_template: ดาวน์โหลดแบบตัวอย่าง
     download_bulk_asset_download_example_csv: ดาวน์โหลดตัวอย่าง CSV
     download_example_csv: ดาวน์โหลดตัวอย่าง csv
     dp_consent: เปิดใช้ความยินยอมในการประมวลผลข้อมูล
@@ -667,6 +704,7 @@ th:
     email_subjects_manager_when_available: ส่งอีเมลแจ้งผู้จัดการเรื่องหัวเรื่องเมื่อรายงานพร้อมใช้งาน
     empty: ว่างเปล่า
     empty_csv_file: ไฟล์ CSV ไม่มีข้อมูลใดๆ
+    empty_occupation_condition_set_msg: ไม่พบปัจจัยอาชีพใดสำหรับชุดภาวะนี้ โปรดเพิ่มปัจจัย
     enable_caching_content: คุณแน่ใจหรือไม่ว่าต้องการเปิดใช้งานการแคชสําหรับการประเมินนี้
     enable_caching_successfully: เปิดใช้งานการแคชสําหรับการประเมินนี้
     enable_caching_title: เปิดใช้งานการแคชการประเมิน?
@@ -694,6 +732,7 @@ th:
     enter_schema_key: ป้อนคีย์สคีมา
     error: ข้อผิดพลาด
     error_color: สีข้อผิดพลาด
+    errors_csv_file_import: โปรดอัปโหลดไฟล์ CSV ก่อนที่จะคลิก "นำเข้า"
     errors_csv_file_required: ไฟล์ต้องเป็นไฟล์ CSV
     errors_error_msg: มีบางอย่างผิดพลาด โปรดรีเฟรชหน้า และหากปัญหายังคงอยู่ โปรดติดต่อผู้ดูแลระบบของคุณ
     errors_min_retention: ต้องไม่น้อยกว่า 1 วัน
@@ -741,6 +780,7 @@ th:
     factor_feedback: ปัจจัยการให้ข้อเสนอแนะ
     factor_selection: การเลือกปัจจัย
     factors: ปัจจัย
+    factors_filter_strategy: กลยุทธ์
     factors_form_components_ExternalList_table_jsonpath: เส้นทาง JSON
     factors_form_components_ExternalList_table_types_norm_score: คะแนนตามค่ามาตรฐาน
     factors_form_components_ExternalList_table_types_percentage: อัตราร้อยละ
@@ -760,6 +800,7 @@ th:
     factors_index_sub_factors: ปัจจัยย่อย
     factors_index_title: ปัจจัย
     factors_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือไม่ว่าต้องการลบปัจจัยนี้?</p>\n"
+    factors_resource_removal_success: ปัจจัย '%{name}' ได้ถูกลบออกอย่างสำเร็จแล้ว
     failure_reason: เหตุผลความล้มเหลว
     feature_ai_assistants_description: เปิดใช้งานผู้ช่วยอัจฉริยะด้วย AI เพื่อประสบการณ์ผู้ใช้ที่ดียิ่งขึ้น
     feature_ai_assisted_idp_description: ใช้ AI เพื่อช่วยในการให้คำแนะนำสำหรับการวางแผนพัฒนาบุคคล
@@ -1214,6 +1255,7 @@ th:
     log_date: วันที่บันทึก
     logged_in: เข้าสู่ระบบ
     login: เข้าสู่ระบบ
+    login_page_design_tab: การออกแบบ
     low: ต่ำ
     mail_history: ประวัติอีเมล
     main_report: รายงานหลัก
@@ -1221,6 +1263,7 @@ th:
     maintenance_settings: การตั้งค่าการบำรุงรักษา
     maintenance_settings_description: จัดการช่วงเวลาการบำรุงรักษาระบบและการตั้งค่า
     make_report_available_to_subject_when: 'ให้รายงานพร้อมใช้งานแก่ผู้เกี่ยวข้องเมื่อ:'
+    manage_condition_sets: จัดการชุดเงื่อนไข
     manager_approval_required: รายงานสําหรับ %{user} ต้องได้รับการอนุมัติจากผู้จัดการก่อนดาวน์โหลด
     manager_approves_reports: ผู้จัดการอนุมัติรายงาน
     manager_can_access_subject_reports: ผู้จัดการสามารถเข้าถึงรายงานตามหัวข้อได้
@@ -1310,6 +1353,7 @@ th:
     new_score: คะแนนใหม่
     no_assessments_found: รหัสการตรวจสอบ
     no_client_access: คุณไม่มีสิทธิ์เข้าถึงลูกค้านี้
+    no_client_access_root: คุณไม่มีความเกี่ยวข้องกับลูกค้าใดทั้งสิ้น
     no_clients_found: ไม่พบลูกค้า
     no_completed_assessments: ยังไม่มีการประเมินที่สมบูรณ์
     no_file_selected: ไม่มีไฟล์ที่เลือก
@@ -1330,6 +1374,7 @@ th:
     norm_region: ภูมิภาคปกติ
     norm_region_form_select: เลือกภูมิภาคมาตรฐาน
     norm_region_update_success: ภูมิภาคปกติได้รับการอัปเดตสำเร็จ
+    norm_score: คะแนนมาตรฐาน
     normal: ปกติ
     normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
     norms: ค่ามาตรฐาน
@@ -1360,13 +1405,22 @@ th:
     oauth_scope_label: ขอบเขต
     oauth_scope_name: oauth_scope
     oauth_scope_required: ต้องมีขอบเขต
+    occupation_condition_set_copy_success: ชุดเงื่อนไขอาชีพถูกคัดลอกสำเร็จแล้ว
+    occupation_condition_sets: ชุดเงื่อนไขอาชีพ
+    occupation_condition_sets_remove_confirm: กรอกชื่อชุดเงื่อนไขอาชีพที่ระบุไว้ด้านล่างลงในช่องข้อความเพื่อยืนยัน
+    occupation_condition_sets_remove_success: ชุดเงื่อนไขอาชีพ "%{name}" ได้ถูกลบออกสำเร็จแล้ว
+    occupation_condition_sets_remove_warning: คุณแน่ใจหรือไม่ว่าต้องการลบชุดเงื่อนไขอาชีพ "%{name}"?
+    occupation_factors_condition_set: ชุดเงื่อนไข
+    occupation_factors_title: ปัจจัยที่เกี่ยวข้องกับอาชีพ
     occupations: อาชีพ
+    occupations_factor_uniqueness: ปัจจัยนี้ได้ถูกนำมาใช้แล้ว
     occupations_factors_list_condition: เงื่อนไข
     occupations_factors_list_position: ฐานะ
     occupations_factors_list_weight: น้ําหนัก
     occupations_form_alternative_icon: ไอคอนทางเลือก
     occupations_form_color: สี
     occupations_form_indicative_roles_image: ภาพแสดงบทบาทเชิงบ่งชี้
+    occupations_form_key_career_tracks_hint: '"+" - รายการ, "*" - ตัวหนา ตัวอย่าง: + *ชีววิทยา* - คำอธิบายบางส่วน...'
     occupations_form_key_career_tracks_image: เส้นทางอาชีพหลัก
     occupations_index_title: อาชีพ
     occupations_resource_confirmations_delete_body: "<p>คุณแน่ใจหรือว่าต้องการลบอาชีพนี้?</p>\n"
@@ -2033,6 +2087,7 @@ th:
     public_key_cannot_be_changed: ไม่สามารถเปลี่ยนแปลงได้หลังจากสร้างแล้ว
     public_key_copy_private_key: คัดลอกคีย์ส่วนตัว
     public_key_created: สร้างกุญแจสาธารณะสำเร็จแล้ว
+    public_key_details: รายละเอียดกุญแจสาธารณะ
     public_key_generate: สร้างคู่กุญแจ
     public_key_generate_button: สร้างคู่กุญแจ RSA
     public_key_generate_info: จะสร้างคู่กุญแจ RSA ขนาด 2048 บิต โดยจะเก็บเฉพาะกุญแจสาธารณะเท่านั้น กรุณาคัดลอกและเก็บรักษาไว้อย่างปลอดภัยสำหรับกุญแจส่วนตัว — จะไม่แสดงให้ทราบอีก
@@ -2077,6 +2132,7 @@ th:
     range_min_max: ระยะทาง%{min} - %{max}
     rationale: เหตุผล
     raw: ดิบ
+    raw_score: คะแนนดิบ
     reason_for_changes: เหตุผลของการเปลี่ยนแปลง
     recents: รายการล่าสุด
     record_id: รหัสเรกคอร์ด
@@ -2108,6 +2164,7 @@ th:
     remove_confirm_success: หัวข้อที่มีอีเมล '%{subjectEmail}'' ถูกลบออกเรียบร้อยแล้ว
     remove_confirm_title: ลบชื่อเรื่อง
     remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบรายการนี้?
+    remove_icon: ลบไอคอน
     remove_output_schema_key: ลบคีย์สคีมาเอาต์พุต
     remove_successfully: รายการสื่อถูกลบออกสำเร็จ
     render_button: เทมเพลตการแสดงผล
@@ -2210,6 +2267,7 @@ th:
     report_type: ประเภทของรายงาน
     report_types:
       active_clients_projects: ลูกค้าและโครงการที่ใช้งานอยู่
+      campaign_factor_scores: คะแนนปัจจัยของแคมเปญ
       client_assessment_counts: การประเมินลูกค้าสำคัญ
       hogan_usage_report: การใช้งานแบบประเมินโฮแกน
       json_data_report: รายงานข้อมูล JSON
@@ -2357,6 +2415,11 @@ th:
       user_full_name_cont: ชื่อผู้ใช้
     saville: ซาวิลล์
     saville_assessment: การประเมิน Saville
+    scale_max: ปรับขนาดสูงสุด
+    scale_max_must_be_greater_than_scale_min: ค่าสูงสุดของ Scale ต้องมากกว่าค่าต่ำสุดของ Scale
+    scale_min: ปรับขนาดให้เล็กที่สุด
+    scale_min_must_be_less_than_scale_max: ค่าต่ำสุดของ Scale ต้องน้อยกว่าค่าสูงสุดของ Scale
+    scale_value_must_not_be_negative: ค่าไม่ควรเป็นค่าลบ
     schedule: ตาราง
     schedule_email: กําหนดเวลาอีเมล
     schedule_email_title: กําหนดเวลาอีเมล
@@ -2493,10 +2556,13 @@ th:
     score_definition_placeholder: ป้อนคำจำกัดความสำหรับระดับคะแนนนี้
     score_definitions: คำจำกัดความของคะแนน
     score_max: คะแนนสูงสุด
+    score_max_must_be_greater_than_score_min: คะแนนสูงสุดต้องมากกว่าคะแนนต่ำสุด
     score_min: คะแนนขั้นต่ำ
+    score_min_must_be_less_than_score_max: คะแนนต่ำสุดต้องน้อยกว่าคะแนนสูงสุด
     score_must_be_in_between_min_and_max: คะแนนต้องอยู่ระหว่าง %{min} ถึง %{max}
     score_not_applicable: คะแนนไม่สามารถนำมาใช้ได้
     score_range_info: 'ช่วงคะแนน: %{min} - %{max}'
+    score_type: ประเภทคะแนน
     score_with_ai: ทำคะแนนด้วย AI
     scores_finalized: คะแนนได้รับการสรุปแล้วและไม่สามารถเปลี่ยนแปลงได้
     scoring: การให้คะแนน
@@ -2605,6 +2671,7 @@ th:
     search_admins: ค้นหาผู้ดูแลระบบ
     search_campaign: ค้นหาตามแคมเปญ
     search_client: ค้นหาตามลูกค้า
+    search_client_assessors: ค้นหาผู้ประเมินลูกค้า
     search_job_role: ค้นหางานในตำแหน่ง
     search_participants: ค้นหาผู้เข้าร่วม...
     search_project: ค้นหาตามโครงการ
@@ -2640,6 +2707,7 @@ th:
     select_admin_role: กรุณาเลือกผู้ดูแลระบบ
     select_assessment_language: เลือกภาษาการประเมิน
     select_client: เลือกผู้ใช้บริการ
+    select_condition_set: เลือกชุดเงื่อนไข
     select_end_time: เลือกเวลาสิ้นสุด
     select_language_to_translate: กรุณาเลือกภาษาเพื่อแปล
     select_level: เลือกระดับ
@@ -3058,6 +3126,7 @@ th:
     translated_with_ai_notice: AI แปล
     translation_assistant_not_configured: ผู้ช่วยแปลยังไม่ได้กำหนดค่า
     translations:
+      import: นำเข้าการแปล
       title: การแปล
     translations_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
     translations_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่

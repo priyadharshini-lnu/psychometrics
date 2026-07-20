@@ -26,6 +26,7 @@ nl:
     add_btn: Onderwerp toevoegen
     add_campaign_admin: Campagne-admin toevoegen
     add_client_admin: Client-admin toevoegen
+    add_client_assessor: Klantbeoordelaar toevoegen
     add_conditions: Voorwaarden toevoegen
     add_evaluators: Evaluatoren toevoegen
     add_indicator: Indicator toevoegen
@@ -33,6 +34,7 @@ nl:
     add_lead_assessor_hint: Voeg eerst het formulier voor hoofdbeoordelaar toe
     add_more: Meer toevoegen
     add_new_folder: Nieuwe map toevoegen
+    add_or_select_factor_msg: Klik op ‘Toevoegen/Selecteer een factor’ om de details te bekijken.
     add_output_schema_key: Uitvoerschema sleutel toevoegen
     add_project: Project toevoegen
     add_project_admin: Projectbeheerder toevoegen
@@ -47,12 +49,14 @@ nl:
     admin_role_deleted: Beheerdersrol '%{role_name}' is succesvol verwijderd.
     admin_roles: Beheerdersrollen
     admin_updated_successfully: Admin '%{name}' is succesvol bijgewerkt
+    admin_with_email_already_added: De gebruiker met dit e-mailadres is al toegevoegd.
     administrator_approves_reports: Beheerder keurt rapporten goed
     administrators_list_columns_email: E-mail
     admins: Beheerders
     advanced: Geavanceerd
     advanced_mode_tooltip: Gebruik de geavanceerde modus voor prompt-templates met vloeibare template en beschikbare variabelen. Raadpleeg de documentatie voor meer details.
     agile: AGIEL
+    agile_time_config_msg: Bij agile-beoordelingen kan gebruik worden gemaakt van timers per onderdeel (in te stellen in de configuratie-instellingen). Zorg ervoor dat je hier voldoende tijd uittrekt om elk onderdeel op een rustige manier af te ronden.
     ai_artifact_result_generation_admin_job_failed: Het artefact '%{artifact_name}' kan niet worden gegenereerd voor gebruiker '%{user_email}'.
     ai_artifact_result_stale: Het resultaat kan verouderd zijn, aangezien de afhankelijkheden van het AI-artefact zijn gewijzigd sinds het laatste resultaat werd gegenereerd. Overweeg het artefact opnieuw te genereren met de nieuwste afhankelijkheden.
     ai_artifacts: AI-artefacten
@@ -123,6 +127,20 @@ nl:
     application_name: Naam van de applicatie
     application_name_already_taken: Bestaat al voor deze klant
     application_name_format_hint: Alleen letters en cijfers zijn toegestaan, met één spatie tussen de woorden
+    application_settings_at_least_one_ip_required: Schakel ten minste één IP-adres in voordat u de IP-whitelist inschakelt
+    application_settings_confirm_delete_ip: Weet je zeker dat je dit IP-adres wilt verwijderen?
+    application_settings_edit_ip_address: IP-adres / CIDR-bereik bewerken
+    application_settings_enable_ip_whitelisting: IP-whitelisting inschakelen
+    application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat
+    application_settings_ip_addresses: IP-adressen / CIDR-bereiken
+    application_settings_ip_deleted_successfully: IP-adres succesvol verwijderd
+    application_settings_ip_description_placeholder: bijv. het kantoornetwerk of de productieserver
+    application_settings_ip_input_placeholder: bijvoorbeeld 192.168.1.1 of 10.0.0.0/24
+    application_settings_ip_or_cidr: IP-adres of CIDR-bereik
+    application_settings_ip_required: Een IP-adres of CIDR-bereik is vereist
+    application_settings_ip_updated_successfully: IP-adres succesvol bijgewerkt
+    application_settings_ip_whitelisting_disabled_success: IP-whitelisting is succesvol uitgeschakeld
+    application_settings_ip_whitelisting_enabled_success: IP-whitelisting is succesvol ingeschakeld
     applications: Toepassingen
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     approve_all_questions: Alle vragen goedkeuren
@@ -279,6 +297,7 @@ nl:
     campaign_assessment_column_caching_enabled: Assessment Caching ingeschakeld
     campaign_assessment_column_hogan_assessment_id: Hogan-beoordelings-ID
     campaign_assessment_column_hogan_form_id: Hogan-formulier-ID
+    campaign_assessment_column_occupation_condition_set: Set van beroepsmatige omstandigheden
     campaign_assessment_column_pearson_assessment_id: Pearson-beoordelings-ID
     campaign_assessment_column_pearson_assessment_language: Pearson Assessment Taal
     campaign_assessment_column_pearson_error_details: Details over de Pearson-fout
@@ -305,6 +324,10 @@ nl:
     campaign_assessment_modals_enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
     campaign_assessment_modals_enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     campaign_assessment_modals_enable_caching_title: Assessment caching mogelijk maken?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Pas deze wijziging toe op bestaande gebruikers in deze campagne
+    campaign_assessment_modals_update_occupation_condition_set_select: Selecteer een reeks beroepsgerelateerde aandoeningen
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: De set met beroepsomstandigheden is succesvol bijgewerkt
+    campaign_assessment_modals_update_occupation_condition_set_title: Set met beroepsstatus bijwerken
     campaign_factors: Campagne factoren
     campaign_id_placeholder: Voer campagne-ID in
     campaign_name: Campagnenaam
@@ -388,6 +411,13 @@ nl:
     client: Huurder
     client_admin: Klant Admin
     client_admins: Klanten-admins
+    client_assessor_import_already_added: De gebruiker met het e-mailadres '%{email}' is al toegevoegd als klantbeoordelaar.
+    client_assessor_import_client_required: Er is een client nodig om beoordelaars te importeren.
+    client_assessor_import_description: Importeer een CSV-bestand met één kolom met e-mailadressen voor klantbeoordelaars.
+    client_assessor_import_duplicated_emails: 'De volgende e-mail(s) zijn dubbel opgenomen in het CSV-bestand: %{emails}'
+    client_assessor_import_emails_required: Geef alstublieft ten minste één e-mailadres van een beoordelaar op.
+    client_assessor_import_global_assessor_required: De gebruiker moet als algemene beoordelaar zijn aangemaakt.
+    client_assessor_removed_successfully: De klantbeoordelaar met het e-mailadres '%{email}' is succesvol verwijderd
     client_credentials_label: Inloggegevens van de klant
     client_credentials_value: client_credentials
     client_features: Klantkenmerken
@@ -431,11 +461,13 @@ nl:
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
     components_input_duration_placeholder: Invoeren als '1d 2h 3m'
     concise: Beknopt
+    condition_sets: Voorwaardensets
     confidence_interval: Betrouwbaarheidsinterval
     confidence_interval_update_success: Betrouwbaarheidsinterval succesvol bijgewerkt
     configuration: Configuratie
     configure_model_answer_title: Modelantwoord en trefwoorden configureren
     confirm_remove_admin: Weet je zeker dat je admin gebruiker met e-mail '%{email}' wilt verwijderen?
+    confirm_remove_client_assessor: Weet je zeker dat je de klantbeoordelaar met het e-mailadres '%{email}' wilt verwijderen?
     confirmation_required: Bevestiging vereist
     confirmation_required_details: Weet u zeker dat u de %{resource} "%{resource_name}" wilt verwijderen?
     consolidated: Geconsolideerd
@@ -444,8 +476,11 @@ nl:
     copied: Gekopieerd
     copied_url_success: De URL is succesvol naar het klembord gekopieerd
     copy_ai_artifacts: AI-artefacten kopiëren
+    copy_assessment_scheduled: De taak voor het beoordelen van het exemplaar is ingepland.
     copy_hint: Kopieert de bovenstaande configuratie van Zitplaatsen, Centrummanagers, Assessoren en Vergaderingen &amp; Middelen naar de volgende Assessment Centers. Na het kopiëren kun je verdere wijzigingen aanbrengen in de individuele Assessment Centers voordat je verder gaat.
     copy_image_url: URL van afbeelding kopiëren
+    copy_occupation_condition_set: Set met beroeps- en gezondheidsstatus kopiëren
+    copy_occupation_condition_set_msg: Hiermee worden alle bestaande configuraties van bezettingsfactoren uit de huidige conditieset naar de nieuwe conditieset gekopieerd.
     copy_report_scheduled: De taak voor het kopiëren van rapporten is ingepland.
     copy_text: Tekst
     copy_to_all: Kopiëren naar andere beoordelingscentra
@@ -529,6 +564,7 @@ nl:
     default_assessment_language: Standaard taal voor beoordeling
     default_button: Standaard
     default_language: Standaard Taal
+    default_occupation_condition_set: Standaard set van beroepsomstandigheden
     default_report_language: Standaard taal rapporteren
     define_max_score_text: Definieer een score van %{maxScore} (maximale score)
     define_min_score_text: Definieer een score van %{minScore} (minimumscore)
@@ -638,6 +674,7 @@ nl:
     document_titles_project_participants: Deelnemers %{project}
     done: Klaar
     done_tooltip: Er kan geen verdere evaluatie worden ingediend voor deze gebruiker omdat de evaluatie van deze gebruiker als uitgevoerd door %{marked_by}
+    download_assessor_email_template: Voorbeeldsjabloon downloaden
     download_bulk_asset_download_example_csv: Voorbeeld CSV downloaden.
     download_example_csv: Voorbeeldnormen CSV
     dp_consent: Toestemming voor gegevensverwerking inschakelen
@@ -667,6 +704,7 @@ nl:
     email_subjects_manager_when_available: E-mail de manager van het onderwerp wanneer het rapport beschikbaar is
     empty: Leeg
     empty_csv_file: Het CSV-bestand bevat geen gegevens.
+    empty_occupation_condition_set_msg: Er zijn geen beroepsfactoren gevonden voor deze aandoeningenreeks. Voeg alstublieft een factor toe.
     enable_caching_content: Weet je zeker dat je caching wilt inschakelen voor deze beoordeling?
     enable_caching_successfully: Caching is ingeschakeld voor deze beoordeling.
     enable_caching_title: Assessment caching mogelijk maken?
@@ -694,6 +732,7 @@ nl:
     enter_schema_key: Schemasleutel invoeren
     error: Fout
     error_color: Fout Kleur
+    errors_csv_file_import: U moet eerst een CSV-bestand uploaden voordat u op "Importeren" klikt
     errors_csv_file_required: Bestand moet een CSV-bestand zijn
     errors_error_msg: Er is iets misgegaan. Vernieuw de pagina en neem contact op met uw beheerder als het probleem zich nog steeds voordoet
     errors_min_retention: Mag niet korter zijn dan 1 dag
@@ -741,6 +780,7 @@ nl:
     factor_feedback: Feedback over factoren
     factor_selection: Selectie van factoren
     factors: Factoren
+    factors_filter_strategy: Strategie
     factors_form_components_ExternalList_table_jsonpath: JSON-pad
     factors_form_components_ExternalList_table_types_norm_score: Genormeerde score
     factors_form_components_ExternalList_table_types_percentage: Percentage
@@ -760,6 +800,7 @@ nl:
     factors_index_sub_factors: Subfactoren
     factors_index_title: Factoren
     factors_resource_confirmations_delete_body: "<p>Weet je zeker dat je deze Factor wilt verwijderen?</p>\n"
+    factors_resource_removal_success: De factor '%{name}' is succesvol verwijderd.
     failure_reason: Storing Reden
     feature_ai_assistants_description: Schakel AI-aangedreven assistenten in voor een verbeterde gebruikerservaring
     feature_ai_assisted_idp_description: Gebruik AI om te helpen bij aanbevelingen voor individuele ontwikkelingsplannen
@@ -1214,6 +1255,7 @@ nl:
     log_date: Log Datum
     logged_in: Ingelogd
     login: Inloggen
+    login_page_design_tab: Ontwerp
     low: Laag
     mail_history: Mail Geschiedenis
     main_report: Hoofdrapport
@@ -1221,6 +1263,7 @@ nl:
     maintenance_settings: Onderhoudsinstellingen
     maintenance_settings_description: Beheer onderhoudsvensters en instellingen van het systeem
     make_report_available_to_subject_when: 'Stel het rapport beschikbaar aan de proefpersoon wanneer:'
+    manage_condition_sets: Conditiesets beheren
     manager_approval_required: Rapporteer voor %{user} vereist goedkeuring van de manager voordat het wordt gedownload
     manager_approves_reports: Manager keurt rapporten goed
     manager_can_access_subject_reports: Manager heeft toegang tot rapporten over het onderwerp
@@ -1310,6 +1353,7 @@ nl:
     new_score: Nieuwe score
     no_assessments_found: Controle-id
     no_client_access: Je hebt geen toegang tot deze klant
+    no_client_access_root: Je bent niet gekoppeld aan een klant
     no_clients_found: Er zijn geen klanten gevonden
     no_completed_assessments: Er zijn nog geen afgeronde beoordelingen
     no_file_selected: Geen bestand geselecteerd
@@ -1330,6 +1374,7 @@ nl:
     norm_region: Norm Regio
     norm_region_form_select: Selecteer Norm Regio
     norm_region_update_success: Normregio succesvol bijgewerkt
+    norm_score: Normscore
     normal: Normaal
     normalize_factor_scores: Factorscores normaliseren
     norms: Normen
@@ -1360,13 +1405,22 @@ nl:
     oauth_scope_label: Draagwijdte
     oauth_scope_name: oauth_scope
     oauth_scope_required: Reikwijdte is vereist
+    occupation_condition_set_copy_success: De set met beroepsomstandigheden is succesvol gekopieerd
+    occupation_condition_sets: Sets van beroepsmatige omstandigheden
+    occupation_condition_sets_remove_confirm: Voer de naam van de hieronder vermelde beroepsvoorwaarde in het tekstvak in om te bevestigen
+    occupation_condition_sets_remove_success: De bezettingsstatus „%{name}“ is succesvol verwijderd
+    occupation_condition_sets_remove_warning: Weet u zeker dat u de beroepsvoorwaardenset „%{name}” wilt verwijderen?
+    occupation_factors_condition_set: Voorwaardenset
+    occupation_factors_title: Beroepsfactoren
     occupations: Beroepen
+    occupations_factor_uniqueness: Met deze factor is al rekening gehouden
     occupations_factors_list_condition: Voorwaarde
     occupations_factors_list_position: Positie
     occupations_factors_list_weight: Gewicht
     occupations_form_alternative_icon: Alternatief pictogram
     occupations_form_color: Kleur
     occupations_form_indicative_roles_image: Afbeelding met voorbeeldfuncties
+    occupations_form_key_career_tracks_hint: '"+" - lijst, "*" - vetgedrukt. Voorbeeld: + *Biologie* - een korte beschrijving...'
     occupations_form_key_career_tracks_image: Afbeelding van belangrijke loopbaantrajecten
     occupations_index_title: Beroepen
     occupations_resource_confirmations_delete_body: "<p>Weet je zeker dat je deze bezetting wilt verwijderen?</p>\n"
@@ -2033,6 +2087,7 @@ nl:
     public_key_cannot_be_changed: kan na het aanmaken niet meer worden gewijzigd
     public_key_copy_private_key: Privésleutel kopiëren
     public_key_created: De openbare sleutel is succesvol aangemaakt
+    public_key_details: Gegevens over de openbare sleutel
     public_key_generate: Sleutelpaar genereren
     public_key_generate_button: RSA-sleutelpaar genereren
     public_key_generate_info: Er wordt een RSA-sleutelpaar van 2048 bits gegenereerd. Alleen de openbare sleutel wordt opgeslagen. Kopieer de privésleutel en bewaar deze op een veilige plek — deze wordt niet nogmaals weergegeven.
@@ -2077,6 +2132,7 @@ nl:
     range_min_max: ASSORTIMENT %{min} - %{max}
     rationale: Motivering
     raw: RAUW
+    raw_score: Ruwe score
     reason_for_changes: Reden voor wijzigingen
     recents: Laatste
     record_id: Record-id
@@ -2108,6 +2164,7 @@ nl:
     remove_confirm_success: Onderwerp met e-mail '%{subjectEmail}' is succesvol verwijderd.
     remove_confirm_title: Onderwerp verwijderen
     remove_confirmation: Weet u zeker dat u dit item wilt verwijderen?
+    remove_icon: Pictogram verwijderen
     remove_output_schema_key: Uitvoerschema sleutel verwijderen
     remove_successfully: Het media-item is succesvol verwijderd.
     render_button: Rendertemplate
@@ -2210,6 +2267,7 @@ nl:
     report_type: Type rapport
     report_types:
       active_clients_projects: Actieve klanten en projecten
+      campaign_factor_scores: Scores van campagnefactoren
       client_assessment_counts: De beoordeling door de klant telt
       hogan_usage_report: Gebruik van de Hogan-beoordeling
       json_data_report: JSON-gegevensrapport
@@ -2357,6 +2415,11 @@ nl:
       user_full_name_cont: Gebruikersnaam
     saville: Saville
     saville_assessment: Beoordeling Saville
+    scale_max: Maximale schaal
+    scale_max_must_be_greater_than_scale_min: De maximale schaalwaarde moet groter zijn dan de minimale schaalwaarde
+    scale_min: Schaal Min
+    scale_min_must_be_less_than_scale_max: De minimumwaarde van de schaal moet kleiner zijn dan de maximumwaarde van de schaal
+    scale_value_must_not_be_negative: De waarde mag niet negatief zijn
     schedule: Schema
     schedule_email: E-mail plannen
     schedule_email_title: E-mail plannen
@@ -2496,10 +2559,13 @@ nl:
     score_definition_placeholder: Voer de definitie voor dit score niveau in
     score_definitions: Score definities
     score_max: Maximale score
+    score_max_must_be_greater_than_score_min: De maximale score moet hoger zijn dan de minimale score
     score_min: Score Min
+    score_min_must_be_less_than_score_max: De minimale score moet lager zijn dan de maximale score
     score_must_be_in_between_min_and_max: De score moet tussen %{min} en %{max} liggen.
     score_not_applicable: Score niet van toepassing
     score_range_info: 'Scorebereik: %{min} - %{max}'
+    score_type: Soort score
     score_with_ai: Scoor met AI
     scores_finalized: De scores zijn definitief en kunnen niet meer worden gewijzigd
     scoring: Scoren
@@ -2608,6 +2674,7 @@ nl:
     search_admins: Beheerders zoeken
     search_campaign: Zoeken op campagne
     search_client: Zoeken op klant
+    search_client_assessors: Zoek naar beoordelaars van klanten
     search_job_role: Zoek functie
     search_participants: Deelnemers zoeken...
     search_project: Zoeken op project
@@ -2643,6 +2710,7 @@ nl:
     select_admin_role: Selecteer beheerdersrol
     select_assessment_language: Taal voor beoordeling kiezen
     select_client: Klant selecteren
+    select_condition_set: Selecteer een reeks voorwaarden
     select_end_time: Eindtijd selecteren
     select_language_to_translate: Selecteer de taal die u wilt vertalen
     select_level: Selecteer niveau
@@ -3066,6 +3134,7 @@ nl:
     translated_with_ai_notice: AI vertaald
     translation_assistant_not_configured: Vertaalassistent niet geconfigureerd
     translations:
+      import: Vertalingen importeren
       title: Vertalingen
     translations_export_failure_msg: Fout tijdens het exporteren van vertalingen
     translations_export_success_msg: Het exporteren van ontwikkelingsacties in uitvoering.

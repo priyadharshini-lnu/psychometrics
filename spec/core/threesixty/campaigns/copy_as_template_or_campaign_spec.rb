@@ -84,7 +84,8 @@ describe Threesixty::Campaigns::CopyAsTemplateOrCampaign do
         expect(cloned_dimension).to be_present
         expect(cloned_dimension.id).not_to eq(dimension.id)
         expect(cloned_dimension).to have_attributes(dimension.attributes.except(
-                                                      'id', 'created_at', 'updated_at', 'name'
+                                                      'id', 'created_at', 'updated_at', 'name',
+                                                      'default_occupation_condition_set_id'
                                                     ))
 
         cloned_campaign = result[:campaign]

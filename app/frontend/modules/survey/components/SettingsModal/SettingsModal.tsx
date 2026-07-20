@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import {
   Button, Modal, Space, Switch, Row, Col, Alert, Popconfirm, Tooltip,
   Select,
@@ -48,7 +48,9 @@ const SettingsModalComponent = ({
   const isThreeSixtyAssessment = assessment && assessment.category === CAMPAIGN_TYPES.THREESIXTY
   const [enableSelectMainFactor, setEnableSelectMainFactor] = useState(extra && extra.main_factor_id)
 
-  const hasRandomizedBlockWithMultiQuestionsPerPage = checkRandomizedBlockWithMultiQuestionsPerPage(blocks)
+  const hasRandomizedBlockWithMultiQuestionsPerPage = useMemo(
+    () => checkRandomizedBlockWithMultiQuestionsPerPage(blocks), [blocks],
+  )
 
   const toggleTimer = () => {
     if (isAssessmentTimerAdded) {
@@ -148,30 +150,13 @@ const SettingsModalComponent = ({
             </Space>
           </Col>
         )}
-        <Col span={24}>
-          <Space>
-            <Switch checked={isAssessmentTimerAdded} onChange={toggleTimer} />
-            {I18n.t('administration.assessments.settings.enable_timer')}
-          </Space>
-        </Col>
-
-        {isAssessmentTimerAdded && (
-          <>
-            <Col offset={2} span={4}>
-              <InputDuration
-                placeholder="1h 30m"
-                value={extra.timer}
-                onChange={updateTimer}
-                prefix={<FieldTimeOutlined />}
-              />
-            </Col>
-            <Col span={2}>
-              <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
-                <span><QuestionCircleOutlined className="ms-4" /></span>
-              </Tooltip>
-            </Col>
-          </>
-        )}
+        <AssessmentTimerSettings
+          time={extra.timer}
+          toggleTimer={toggleTimer}
+          isAssessmentTimerAdded={isAssessmentTimerAdded}
+          updateTimer={updateTimer}
+          isAgile={false}
+        />
         <Col span={24}>
           <Space>
             <Switch
@@ -185,7 +170,9 @@ const SettingsModalComponent = ({
           <Space>
             <Switch
               checked={extra.disable_continue_to_dashboard}
-              onChange={() => updateExtraOptions('disable_continue_to_dashboard', !extra.disable_continue_to_dashboard)}
+              onChange={() => updateExtraOptions(
+                'disable_continue_to_dashboard', !extra.disable_continue_to_dashboard,
+              )}
             />
             {I18n.t('administration.assessments.settings.disable_continue_to_dashboard')}
           </Space>
@@ -240,6 +227,45 @@ const EnableSingleQuestionWrapper = ({
   }
   return <>{renderSwitch({ handleToggleSingleQuestionPage })}</>
 }
+
+export const AssessmentTimerSettings = ({
+  time, toggleTimer, isAssessmentTimerAdded, updateTimer, isAgile,
+}) => (
+  <>
+    <Col span={24}>
+      <Space>
+        <Switch checked={isAssessmentTimerAdded} onChange={toggleTimer} />
+        {I18n.t('administration.assessments.settings.enable_timer')}
+      </Space>
+    </Col>
+
+    {isAssessmentTimerAdded && (
+      <>
+        {isAgile && (
+          <Col offset={2}>
+            <Alert
+              title={I18n.t('admin.agile_time_config_msg')}
+              type="warning"
+            />
+          </Col>
+        )}
+        <Col offset={2} span={4}>
+          <InputDuration
+            placeholder="1h 30m"
+            value={time}
+            onChange={updateTimer}
+            prefix={<FieldTimeOutlined />}
+          />
+        </Col>
+        <Col span={2}>
+          <Tooltip title={I18n.t('administration.components.input_duration.placeholder')}>
+            <span><QuestionCircleOutlined className="ms-4" /></span>
+          </Tooltip>
+        </Col>
+      </>
+    )}
+  </>
+)
 
 const checkRandomizedBlockWithMultiQuestionsPerPage = (blocks) => {
   const block = _.find(

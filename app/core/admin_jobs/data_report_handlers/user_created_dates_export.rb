@@ -11,7 +11,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 
@@ -24,17 +26,23 @@ module AdminJobs
       def fetch_data
         return [] if project_ids.blank?
 
-        User.
-          where(project_id: project_ids).
-          order(:email).
-          pluck(:email, :created_at).
-          map do |email, created_at|
-            [email, format_timestamp(created_at)]
-          end
+        records = User.where(project_id: project_ids)
+        records = records.where(created_at: created_at_range) if created_at_range
+        records.order(:email).pluck(:email, :created_at)
       end
 
-      def format_timestamp(timestamp)
-        timestamp.strftime('%Y-%m-%d %H:%M:%S %:z')
+      def created_at_range
+        return unless start_date.present? && end_date.present?
+
+        start_date.beginning_of_day..end_date.end_of_day
+      end
+
+      def start_date
+        config['start_date']&.to_date
+      end
+
+      def end_date
+        config['end_date']&.to_date
       end
     end
   end

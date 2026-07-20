@@ -1,22 +1,31 @@
 import React, { FC } from 'react'
 import {
-  Button, MenuProps,
+  Button, MenuProps, Typography,
 } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
-import { Link, useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { Resource } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { Occupation } from '~/modules/admin/modules/campaigns/core/occupations'
+import { OccupationFactorsDrawer } from './OccupationFactorsDrawer'
 
 type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
 }
 
+type OccupationData = {
+  id: number
+  name: string
+}
+
 const { I18n } = window
 
 export const OccupationsTable: FC<Props> = ({ openModal }) => {
-  const { dimensionId } = useParams() as { dimensionId: string }
+  const [selectedOccupation, setSelectedOccupation] = React.useState<OccupationData | null>(null)
+
+  const handleOccupationFactorsDrawer = (occupation: OccupationData | null) => {
+    setSelectedOccupation(occupation)
+  }
 
   return (
     <>
@@ -33,7 +42,13 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           id="name"
           sorter
           render={occupation => (
-            <Link to={`/admin/dimensions/${dimensionId}/occupations/${occupation.id}/factors`}>{occupation.name}</Link>
+            <Typography.Link onClick={() => handleOccupationFactorsDrawer({
+              id: occupation.id,
+              name: occupation.name,
+            })}
+            >
+              {occupation.name}
+            </Typography.Link>
           )}
           width={200}
         />
@@ -41,6 +56,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.created_at')}
           id="created_at"
           dataIndex="createdAt"
+          sorter
           render={createdAt => (
             dayjs(createdAt).format('lll')
           )}
@@ -50,6 +66,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           title={I18n.t('common.column.updated_at')}
           id="updated_at"
           dataIndex="updatedAt"
+          sorter
           render={updatedAt => (
             dayjs(updatedAt).format('lll')
           )}
@@ -67,6 +84,12 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           width={100}
         />
       </Resource.Table>
+      <OccupationFactorsDrawer
+        open={selectedOccupation !== null}
+        handleClose={() => handleOccupationFactorsDrawer(null)}
+        occupationId={selectedOccupation?.id}
+        occupationName={selectedOccupation?.name}
+      />
     </>
   )
 }

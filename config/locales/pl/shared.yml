@@ -22,6 +22,8 @@ pl:
     assessor_approved: Oceniony przez rzeczoznawcę
     assessors_list: Lista oceniających
     asset_not_present: Brak zasobów
+    audience: Odbiorcy
+    audience_claim_label: Odbiorcy (aud)
     audio: Audio
     audio_devices: Urządzenia audio
     authentication_failed: Uwierzytelnianie się nie powiodło. Proszę, spróbuj ponownie.
@@ -100,6 +102,10 @@ pl:
     import: Import
     inactive: Nieaktywny
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
+    issuer: Emitent
+    issuer_claim_label: Emitent (iss)
+    jwt_claims_details: Szczegóły roszczeń JWT
+    key_id_claim_label: Identyfikator klucza (kid)
     last_name: Nazwisko
     last_updated: Ostatnia aktualizacja
     learning_on_the_job_label: Nauka w pracy

@@ -1,6 +1,6 @@
 div style="background-color: white; margin: 5px 10px" id='agile-config-builder'
 
 javascript [nonce=content_security_policy_nonce]:
-  window.__PROPS__ = #{{ assessmentId: resource.id, config: resource.agile_config, translations: resource.agile_translations }.to_json.html_safe}
+  window.__PROPS__ = #{{ assessmentId: resource.id, config: resource.agile_config, translations: resource.agile_translations, extra: resource.extra }.to_json.html_safe}
 
 = vite_javascript_tag 'entrypoints/admin/agile_config_builder.jsx'

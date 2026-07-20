@@ -11,7 +11,7 @@ module AgileUserResult
          user_assessment.available_locales.include?(params[:lang])
         user_assessment_locale = params[:lang]
       end
-      user_assessment.update!(started_at: Time.zone.now, status: :in_progress, selected_locale: user_assessment_locale)
+      UserAssessments::Begin.call!(user_assessment, user_assessment_locale)
       UserAssessments::Webhook.new(user_assessment).publish_assessment_started if user_assessment
     end
 

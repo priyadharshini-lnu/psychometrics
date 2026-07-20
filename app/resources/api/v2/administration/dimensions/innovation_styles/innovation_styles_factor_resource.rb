@@ -7,6 +7,31 @@ class Api::V2::Administration::Dimensions::InnovationStyles::InnovationStylesFac
 
   ransack_filters %i[filterable_fields search_query]
 
+  def self.sortable_fields(context)
+    super + %i[name condition created_at updated_at]
+  end
+
+  def self.apply_sort(records, order_options, context = {})
+    # We already have default order applied in the default_scope of the model,
+    # so we need to remove it before applying new order
+    records = records.reorder(nil)
+
+    order_options.each do |field, direction|
+      sort_direction = direction.to_s == 'desc' ? :desc : :asc
+
+      records = case field.to_s
+                  when 'condition'
+                    super(records, { predicate: sort_direction }, context)
+                  when 'name'
+                    records.joins(:factor).order(Factor.arel_table[:name].public_send(sort_direction))
+                  else
+                    super(records, { field => sort_direction }, context)
+                end
+    end
+
+    records
+  end
+
   def factor_name
     @model.factor&.name
   end

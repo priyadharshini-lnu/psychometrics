@@ -876,6 +876,7 @@ nl:
         compact_completion_status_export: Export van compacte voltooiingsstatus
         completion_status_export: Export van voltooiingsstatus
         copy_as_template_or_campaign: Campagne kopiëren als sjabloon
+        copy_assessment: Beoordeling kopiëren
         copy_dimension: Dimensie kopiëren
         copy_report: Rapport kopiëren
         create_threesixty_campaign: Creëer DrieZestig Campagne
@@ -915,6 +916,7 @@ nl:
         import_assessors: Importeurs
         import_campaign_ai_artifacts: Import Campagne AI-artefacten
         import_campaign_factors: Campagnefactoren importeren
+        import_client_assessors: Beoordelaars van importklanten
         import_datasheet: Gegevensblad importeren
         import_development_action_translations: Import Ontwikkeling Actie Vertalingen
         import_development_actions: Ontwikkelingsacties importeren
@@ -972,6 +974,8 @@ nl:
       errors:
         no_plans: Geen actieve IDP-plannen gevonden
     close: Sluit
+    copy_assessment:
+      failed: Het beoordelingsexemplaar is mislukt
     copy_report:
       failed: Het kopiëren van het rapport is mislukt
     details: Details

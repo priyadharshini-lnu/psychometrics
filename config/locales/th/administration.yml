@@ -710,7 +710,6 @@ th:
         end_date: 'วันที่สิ้นสุด:'
         every_interval: ทุก %{interval}
         frequency: 'ความถี่:'
-        owner: 'เจ้าของ:'
         project: 'โครงการ:'
         recipients: 'รับ:'
         specific_datetime: 'ส่งที่:'

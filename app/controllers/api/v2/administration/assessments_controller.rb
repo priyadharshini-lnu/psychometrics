@@ -63,14 +63,17 @@ module Api
 
     def copy
       audit! :copy, resource, payload: { source_id: resource.id }
-      result = ::Assessments::CopyAssessment.call!(
-        resource.id,
-        current_user,
-        params.dig(:data, :relationships, :owner, :data, :id),
-        new_assessment_name: params.dig(:data, :attributes, :name),
-        microsite_settings: microsite_copy_settings
+      AdminJob.call(
+        :copy_assessment,
+        {
+          assessment_id: resource.id,
+          owner_id: params.dig(:data, :relationships, :owner, :data, :id),
+          name: params.dig(:data, :attributes, :name),
+          microsite_settings: microsite_copy_settings
+        },
+        current_user
       )
-      jsonapi_render json: result[:assessment]
+      render json: :ok
     end
 
     def restore

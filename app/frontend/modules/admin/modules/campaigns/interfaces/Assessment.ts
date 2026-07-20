@@ -1,4 +1,5 @@
 import Norm from './Norm'
+import OccupationConditionSet from './OccupationConditionSet'
 import SimulationContentVariation from './SimulationContentVariation'
 import PearsonVariation from './PearsonVariation'
 import MhsNormRegion from './MhsNormRegion'
@@ -31,6 +32,7 @@ export default interface Assessment {
   isExternal: boolean
   universalLink: string | null
   norms?: Norm[]
+  occupationConditionSets?: OccupationConditionSet[]
   simulationContentVariations?: SimulationContentVariation[]
   pearsonVariations?: PearsonVariation[]
   mhsNormRegions?: MhsNormRegion[]
@@ -64,6 +66,7 @@ export default interface Assessment {
     updateMhsNormRegion: boolean
     updateMhsNormOption: boolean
     toggleCaching: boolean | undefined;
+    updateOccupationConditionSet: boolean
   },
   externalConfig: ExternalConfig,
   campaignAssessmentId: number
@@ -75,4 +78,7 @@ export default interface Assessment {
   proctoringEnabled?: boolean
   isTimed: boolean
   fixedTimeDuration?: number
+  occupationConditionSetId: string | null
+  occupationConditionSetName: string | null
+  dimensionHasOccupations: boolean
 }

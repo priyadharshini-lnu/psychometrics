@@ -116,7 +116,7 @@ RSpec.describe AdminJobs::DataReportHandlers::SavilleUsageHandler do
 
       data_row = csv[1..].find { |row| row[0].to_i == assessment.id }
 
-      timestamp_regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [+-]\d{2}:?\d{2}$/
+      timestamp_regex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/
 
       expect(data_row[3]).to match(timestamp_regex)
       expect(data_row[4]).to match(timestamp_regex)

@@ -22,6 +22,8 @@ pt:
     assessor_approved: Aprovado pelo avaliador
     assessors_list: Lista de avaliadores
     asset_not_present: Ativo não presente
+    audience: Público
+    audience_claim_label: Público (aud)
     audio: Áudio
     audio_devices: Dispositivos de áudio
     authentication_failed: A autenticação falhou. Por favor, tente novamente.
@@ -100,6 +102,10 @@ pt:
     import: Importação
     inactive: Inativo
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    issuer: Emitente
+    issuer_claim_label: Emitente (iss)
+    jwt_claims_details: Detalhes das reclamações da JWT
+    key_id_claim_label: ID da chave (kid)
     last_name: Apelido
     last_updated: Última atualização
     learning_on_the_job_label: Aprendendo no Trabalho

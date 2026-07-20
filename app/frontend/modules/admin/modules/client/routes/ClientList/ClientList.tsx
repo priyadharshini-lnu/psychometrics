@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Input, Space, Pagination, Button, MenuProps, Typography,
+  Table, Input, Space, Pagination, Button, MenuProps, Typography, Image, Avatar, Skeleton, Row, Col,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
+import styles from './styles.less'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
@@ -123,19 +124,57 @@ const ClientList: React.FC<Props> = ({
             name,
             id,
             url,
+            logo,
           }: Client) => (
-            <Space direction="vertical" size={0}>
-              <Link to={`/admin/clients/${id}/projects`} style={{ fontWeight: 'bold' }}>{name}</Link>
-              {url && (
-                <Typography.Link
-                  href={url}
-                  target="_blank"
-                  copyable
-                >
-                  {url}
-                </Typography.Link>
-              )}
-            </Space>
+            <div>
+              <Row gutter={40} wrap={false}>
+                <Col span="4">
+                  {
+                    logo ? (
+                      <Link to={`/admin/clients/${id}/projects`} className={styles.imageLinkWrapper}>
+                        <Image
+                          src={logo}
+                          alt={`${name} logo`}
+                          preview={false}
+                          className={styles.logoImageStyles}
+                          placeholder={<Skeleton.Avatar className={styles.imageSkeleton} shape="square" active />}
+                        />
+                      </Link>
+                    ) : (
+                      <Avatar
+                        size="large"
+                        className={styles.imageAvatarStyles}
+                      >
+                        {name.substring(0, 2)}
+                      </Avatar>
+                    )
+                  }
+                </Col>
+                <Col>
+                  <Space
+                    orientation="vertical"
+                  >
+                    <Link
+                      className={styles.campaignLink}
+                      to={`/admin/clients/${id}/projects`}
+                    >
+                      {name}
+                    </Link>
+                    <div>
+                      {url && (
+                        <Typography.Link
+                          href={url}
+                          target="_blank"
+                          copyable
+                        >
+                          {url}
+                        </Typography.Link>
+                      )}
+                    </div>
+                  </Space>
+                </Col>
+              </Row>
+            </div>
           )}
           minWidth={300}
         />

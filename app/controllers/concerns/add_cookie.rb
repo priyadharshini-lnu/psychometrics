@@ -3,11 +3,11 @@
 module AddCookie
   extend ActiveSupport::Concern
 
-  def add_cookie(name, value, expires: nil)
+  def add_cookie(name, value, expires: nil, httponly: true)
     secure = Settings.protocol == 'https'
     cookie_options = {
       value: value,
-      httponly: true,
+      httponly: httponly,
       secure: secure,
       same_site: secure ? 'None' : 'Lax'
     }

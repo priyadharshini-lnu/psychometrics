@@ -110,6 +110,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
 
   describe 'GET spoof' do
     it 'sign_in assessor and redirects to assessors_dashboard_path' do
+      allow(AdminSubdomain).to receive(:client_admin_sso_enabled?).and_return(false)
       expect(controller).to receive(:sign_in).with(assessor.user, skip_session_limitable: true)
 
       get :spoof, params: { new_campaign_id: assessor.campaign_id, id: assessor.id }

@@ -8,7 +8,9 @@ module Administration
                :prework, :workshop_activity, :workshop_activity_duration, :allow_multiple_responses,
                :require_scheduling, :auto_assign, :mettl_schedule_name, :mettl_schedule_record_id, :dimension_id,
                :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching, :mhs_norm_regions,
-               :mhs_norm_options, :proctoring_enabled, :is_timed, :fixed_time_duration
+               :mhs_norm_options, :proctoring_enabled, :is_timed, :fixed_time_duration,
+               :occupation_condition_set_id, :occupation_condition_set_name, :dimension_has_occupations,
+               :occupation_condition_sets
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
@@ -19,6 +21,20 @@ module Administration
 
     def fixed_time_duration
       assessment.extra&.[]('timer').to_i if assessment.fixed_timed?
+    end
+
+    def occupation_condition_set_name
+      object.occupation_condition_set&.name
+    end
+
+    def dimension_has_occupations
+      assessment.dimension&.occupations_enabled? || false
+    end
+
+    def occupation_condition_sets
+      return [] unless assessment.dimension&.occupations_enabled?
+
+      assessment.dimension.occupation_condition_sets.map { |cs| { id: cs.id, name: cs.name } }
     end
 
     def campaign_assessment_id
@@ -119,6 +135,7 @@ module Administration
           'update_mhs_norm_option',
           'toggle_require_scheduling',
           'update_prework',
+          'update_occupation_condition_set',
           'toggle_caching'
         ],
         {
@@ -137,7 +154,7 @@ module Administration
     end
 
     def allow_caching
-      object.assessment.allow_caching?
+      object.assessment&.allow_caching? || false
     end
 
     private

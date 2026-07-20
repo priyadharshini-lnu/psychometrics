@@ -11,7 +11,7 @@ RSpec.describe WebhookSystem::Job do
 
       it 'does not add basic auth' do
         client = described_class.build_client(webhook)
-        expect(client.builder.handlers).not_to include(Faraday::Request::BasicAuthentication)
+        expect(client.builder.handlers).not_to include(Faraday::Request::Authorization)
       end
 
       it 'does not fetch OAuth token even if oauth fields are present' do
@@ -34,7 +34,7 @@ RSpec.describe WebhookSystem::Job do
 
       it 'adds basic auth when username and password are present' do
         client = described_class.build_client(webhook)
-        expect(client.builder.handlers).to include(Faraday::Request::BasicAuthentication)
+        expect(client.builder.handlers).to include(Faraday::Request::Authorization)
       end
 
       it 'does not fetch OAuth token even if oauth fields are present' do

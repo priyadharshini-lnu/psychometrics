@@ -39,7 +39,7 @@ export const ApplicationOverview: React.FC<Props> = ({
   ]
 
   return (
-    <div style={{ padding: 20 }}>
+    <div className="pl">
       <Descriptions
         bordered
         column={1}

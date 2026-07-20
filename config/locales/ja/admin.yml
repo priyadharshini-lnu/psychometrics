@@ -26,6 +26,7 @@ ja:
     add_btn: 件名の追加
     add_campaign_admin: キャンペーン管理者の追加
     add_client_admin: クライアント管理者の追加
+    add_client_assessor: クライアント評価者を追加
     add_conditions: 条件追加
     add_evaluators: 評価者の追加
     add_indicator: インジケーターを追加
@@ -33,6 +34,7 @@ ja:
     add_lead_assessor_hint: 最初にリード・アセッサーのフォームを追加してください。
     add_more: 追加
     add_new_folder: 新しいフォルダを追加
+    add_or_select_factor_msg: "「要因の追加／選択」をクリックして詳細を表示してください。"
     add_output_schema_key: 出力スキーマ・キーの追加
     add_project: プロジェクトの追加
     add_project_admin: プロジェクト管理者の追加
@@ -47,12 +49,14 @@ ja:
     admin_role_deleted: 管理者ロール '%{role_name}' は正常に削除されました。
     admin_roles: 管理者の役割
     admin_updated_successfully: 管理者 '%{name}' は正常に更新されました。
+    admin_with_email_already_added: このメールアドレスを持つユーザーはすでに登録されています。
     administrator_approves_reports: 管理者が報告書を承認
     administrators_list_columns_email: Eメール
     admins: 管理者
     advanced: 上級
     advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     agile: AGILE
+    agile_time_config_msg: アジャイル評価では、セクションごとのタイマー（設定画面で設定）が使用される場合があります。各セクションを余裕を持って完了できるよう、十分な時間を確保してください。
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
@@ -123,6 +127,20 @@ ja:
     application_name: アプリケーション名
     application_name_already_taken: このクライアントについてはすでに存在します
     application_name_format_hint: 使用できるのは英数字のみであり、単語の間にはスペースを1つ入れること
+    application_settings_at_least_one_ip_required: IPホワイトリストを有効にする前に、少なくとも1つのIPアドレスを登録してください
+    application_settings_confirm_delete_ip: このIPアドレスを削除してもよろしいですか？
+    application_settings_edit_ip_address: IPアドレス／CIDR範囲の編集
+    application_settings_enable_ip_whitelisting: IPホワイトリストを有効にする
+    application_settings_invalid_ip_format: IPアドレスまたはCIDR形式が不正です
+    application_settings_ip_addresses: IPアドレス／CIDR範囲
+    application_settings_ip_deleted_successfully: IPアドレスの削除に成功しました
+    application_settings_ip_description_placeholder: 例：オフィスネットワークや本番サーバーなど
+    application_settings_ip_input_placeholder: 例：192.168.1.1 または 10.0.0.0/24
+    application_settings_ip_or_cidr: IPアドレスまたはCIDR範囲
+    application_settings_ip_required: IPアドレスまたはCIDR範囲の入力が必要です
+    application_settings_ip_updated_successfully: IPアドレスの更新に成功しました
+    application_settings_ip_whitelisting_disabled_success: IPのホワイトリスト登録が無効化されました
+    application_settings_ip_whitelisting_enabled_success: IPのホワイトリスト登録が正常に有効化されました
     applications: 用途
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
     approve_all_questions: すべての質問を承認する
@@ -279,6 +297,7 @@ ja:
     campaign_assessment_column_caching_enabled: 評価キャッシュ有効
     campaign_assessment_column_hogan_assessment_id: ホーガン・アセスメントID
     campaign_assessment_column_hogan_form_id: ホーガン・フォームID
+    campaign_assessment_column_occupation_condition_set: 職業・状況セット
     campaign_assessment_column_pearson_assessment_id: ピアソン・アセスメントID
     campaign_assessment_column_pearson_assessment_language: ピアソン・アセスメント・ランゲージ
     campaign_assessment_column_pearson_error_details: ピアソン誤差の詳細
@@ -305,6 +324,10 @@ ja:
     campaign_assessment_modals_enable_caching_content: この評価でキャッシュを有効にしたいと本当に思っていますか?
     campaign_assessment_modals_enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     campaign_assessment_modals_enable_caching_title: 評価キャッシュを有効にする?
+    campaign_assessment_modals_update_occupation_condition_set_apply: この変更を、このキャンペーンの既存ユーザーに適用する
+    campaign_assessment_modals_update_occupation_condition_set_select: 職業・健康状態セットを選択
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: "「職業条件セット」の更新に成功しました"
+    campaign_assessment_modals_update_occupation_condition_set_title: "「職業条件セット」を更新する"
     campaign_factors: キャンペーン要因
     campaign_id_placeholder: キャンペーンIDの登場です
     campaign_name: キャンペーン名
@@ -388,6 +411,13 @@ ja:
     client: クライアント・テナンシー
     client_admin: クライアント管理者
     client_admins: クライアント管理者
+    client_assessor_import_already_added: メールアドレス「%{email}」のユーザーは、すでにクライアント評価者として登録されています。
+    client_assessor_import_client_required: 評価者をインポートするには、クライアントが必要です。
+    client_assessor_import_description: クライアント評価者用のメールアドレスが1つの列として記載されたCSVファイルをインポートします。
+    client_assessor_import_duplicated_emails: 以下のメールアドレスがCSVファイルに重複して記載されています：%{emails}
+    client_assessor_import_emails_required: 少なくとも1名の評価者のメールアドレスをご入力ください。
+    client_assessor_import_global_assessor_required: そのユーザーはグローバル評価者として登録されている必要があります。
+    client_assessor_removed_successfully: メールアドレス「%{email}」のクライアントアセッサーが正常に削除されました
     client_credentials_label: クライアント資格情報
     client_credentials_value: client_credentials
     client_features: クライアントの特徴
@@ -431,11 +461,13 @@ ja:
     completed_tooltip: すべての評価者が評価を提出しました
     components_input_duration_placeholder: 1d 2h 3m」と入力する。
     concise: 簡潔
+    condition_sets: 条件集合
     confidence_interval: 信頼区間
     confidence_interval_update_success: 信頼区間が正常に更新されました
     configuration: 設定
     configure_model_answer_title: 模範解答とキーワードを設定する
     confirm_remove_admin: メール '%{email}' を持つ管理ユーザーを本当に削除しますか？
+    confirm_remove_client_assessor: メールアドレス「%{email}」のクライアント評価者を削除してもよろしいですか？
     confirmation_required: 確認が必要です
     confirmation_required_details: "「%{resource}」の「%{resource_name}」を削除してもよろしいですか？"
     consolidated: 連結
@@ -444,8 +476,11 @@ ja:
     copied: コピーされました
     copied_url_success: URLがクリップボードに正常にコピーされました
     copy_ai_artifacts: AI生成のアートワークをコピー
+    copy_assessment_scheduled: 評価用コピージョブがスケジュールされました。
     copy_hint: 上記のシート、センターマネージャー、アセッサー、ミーティングおよびリソースの設定を次のアセスメントセンターにコピーします。 コピー後、次に進む前に個々のアセスメントセンターに対してさらに変更を加えることができます。
     copy_image_url: 画像のURLをコピー
+    copy_occupation_condition_set: "「職業条件セット」をコピーする"
+    copy_occupation_condition_set_msg: これにより、現在のコンディションセットにある既存の職業要因の設定がすべて、新しいコンディションセットにコピーされます。
     copy_report_scheduled: レポートのコピー処理がスケジュールされました。
     copy_text: テキスト
     copy_to_all: 他のアセスメント・センターへのコピー
@@ -529,6 +564,7 @@ ja:
     default_assessment_language: 評価のデフォルト言語
     default_button: デフォルト
     default_language: デフォルト言語
+    default_occupation_condition_set: デフォルトの占有条件セット
     default_report_language: 報告書のデフォルト言語
     define_max_score_text: "%{maxScore}（最高得点）のスコアを定義する"
     define_min_score_text: "%{minScore}（最低スコア）のスコアを定義する"
@@ -638,6 +674,7 @@ ja:
     document_titles_project_participants: 参加者｜%{project}。
     done: 完成です
     done_tooltip: このユーザーの評価は%{marked_by}によって行われたとマークされているため、これ以上の評価は提出できません
+    download_assessor_email_template: サンプルテンプレートをダウンロード
     download_bulk_asset_download_example_csv: サンプルCSVをダウンロード
     download_example_csv: サンプル規範CSV
     dp_consent: データ処理同意の有効化
@@ -667,6 +704,7 @@ ja:
     email_subjects_manager_when_available: レポートが入手可能になり次第、対象者のマネージャーにメールする
     empty: 空
     empty_csv_file: CSVファイルにはデータが含まれていません。
+    empty_occupation_condition_set_msg: この疾患セットには「職業」の因子が見つかりませんでした。因子を追加してください。
     enable_caching_content: この評価でキャッシュを有効にしたいと本当に思っていますか?
     enable_caching_successfully: この評価のためにキャッシュが有効化されています。
     enable_caching_title: 評価キャッシュを有効にする?
@@ -694,6 +732,7 @@ ja:
     enter_schema_key: スキーマ・キーを入力
     error: エラー
     error_color: エラーカラー
+    errors_csv_file_import: "「インポート」をクリックする前に、CSVファイルをアップロードしてください"
     errors_csv_file_required: ファイルはCSVファイルでなければならない
     errors_error_msg: ページを更新し、それでも問題が解決しない場合は、管理者に連絡してください。
     errors_min_retention: 1日未満にすることはできません
@@ -741,6 +780,7 @@ ja:
     factor_feedback: 要因フィードバック
     factor_selection: 因子の選択
     factors: 要因
+    factors_filter_strategy: 戦略
     factors_form_components_ExternalList_table_jsonpath: JSONパス
     factors_form_components_ExternalList_table_types_norm_score: 標準スコア
     factors_form_components_ExternalList_table_types_percentage: パーセント
@@ -760,6 +800,7 @@ ja:
     factors_index_sub_factors: サブファクター
     factors_index_title: 要因
     factors_resource_confirmations_delete_body: "<p>本当にこのファクターを削除しますか？</p>\n"
+    factors_resource_removal_success: "「%{name}」という因子が正常に削除されました。"
     failure_reason: 故障理由
     feature_ai_assistants_description: AI搭載アシスタントを有効化し、ユーザー体験を向上させる
     feature_ai_assisted_idp_description: AIを活用して個人開発計画の提案を支援する
@@ -1214,6 +1255,7 @@ ja:
     log_date: ログ日付
     logged_in: ログイン中
     login: ログイン
+    login_page_design_tab: デザイン
     low: 低
     mail_history: メール履歴
     main_report: 主要レポート
@@ -1221,6 +1263,7 @@ ja:
     maintenance_settings: メンテナンス設定
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     make_report_available_to_subject_when: 対象者に報告書を提出する：
+    manage_condition_sets: 条件セットの管理
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     manager_approves_reports: マネージャーが報告書を承認
     manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
@@ -1310,6 +1353,7 @@ ja:
     new_score: 新スコア
     no_assessments_found: 監査ID
     no_client_access: このクライアントにはアクセスできません
+    no_client_access_root: 現在、どのクライアントとも関連付けられていません
     no_clients_found: クライアントが見つかりません
     no_completed_assessments: 完了した査定はまだない
     no_file_selected: ファイルが選択されていない
@@ -1330,6 +1374,7 @@ ja:
     norm_region: ノーム地域
     norm_region_form_select: 標準地域を選択
     norm_region_update_success: Norm Region の更新に成功しました
+    norm_score: 標準化スコア
     normal: ノーマル
     normalize_factor_scores: 因子スコアを正規化する
     norms: 規範
@@ -1360,13 +1405,22 @@ ja:
     oauth_scope_label: スコープ
     oauth_scope_name: oauth_scope
     oauth_scope_required: 範囲が必要です
+    occupation_condition_set_copy_success: "「職業・状態セット」のコピーに成功しました"
+    occupation_condition_sets: 職業別条件セット
+    occupation_condition_sets_remove_confirm: 確認するには、以下のテキストボックスに職業条件セット名を入力してください
+    occupation_condition_sets_remove_success: "「%{name}」という占有状態が正常に削除されました"
+    occupation_condition_sets_remove_warning: "「%{name}」という職業条件セットを削除してもよろしいですか？"
+    occupation_factors_condition_set: 条件集合
+    occupation_factors_title: 職業上の要因
     occupations: 職業
+    occupations_factor_uniqueness: その因子はすでに考慮済みです
     occupations_factors_list_condition: コンディション
     occupations_factors_list_position: ポジション
     occupations_factors_list_weight: 重量
     occupations_form_alternative_icon: 別のアイコン
     occupations_form_color: 色
     occupations_form_indicative_roles_image: 役割のイメージ図
+    occupations_form_key_career_tracks_hint: "「+」 - リスト、「*」 - 太字。例：+ *生物学* - 説明文…"
     occupations_form_key_career_tracks_image: 主なキャリアパス（画像）
     occupations_index_title: 職業
     occupations_resource_confirmations_delete_body: "<p>本当にこの職業を削除しますか？</p>\n"
@@ -2033,6 +2087,7 @@ ja:
     public_key_cannot_be_changed: 作成後は変更できません
     public_key_copy_private_key: 秘密鍵をコピーする
     public_key_created: 公開鍵の作成に成功しました
+    public_key_details: 公開鍵の詳細
     public_key_generate: 鍵ペアを生成する
     public_key_generate_button: RSA鍵ペアの生成
     public_key_generate_info: 2048ビットのRSA鍵ペアを生成します。保存されるのは公開鍵のみです。秘密鍵はコピーして安全に保管してください。この鍵は二度と表示されません。
@@ -2077,6 +2132,7 @@ ja:
     range_min_max: 範囲 %{min} - %{max}
     rationale: 根拠
     raw: 生
+    raw_score: 素点
     reason_for_changes: 変更の理由
     recents: 最近の投稿
     record_id: レコードID
@@ -2108,6 +2164,7 @@ ja:
     remove_confirm_success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
     remove_confirm_title: 課題を削除する
     remove_confirmation: このアイテムを削除してもよろしいですか？
+    remove_icon: アイコンを削除
     remove_output_schema_key: 出力スキーマ・キーの削除
     remove_successfully: メディアアイテムが正常に削除されました。
     render_button: レンダーテンプレート
@@ -2210,6 +2267,7 @@ ja:
     report_type: レポートの種類
     report_types:
       active_clients_projects: 現在進行中のクライアントおよびプロジェクト
+      campaign_factor_scores: キャンペーン要因スコア
       client_assessment_counts: クライアント評価の重要性
       hogan_usage_report: Hoganアセスメントの利用状況
       json_data_report: JSONデータレポート
@@ -2357,6 +2415,11 @@ ja:
       user_full_name_cont: ユーザー名
     saville: サヴィル
     saville_assessment: サヴィル査定
+    scale_max: 最大スケール
+    scale_max_must_be_greater_than_scale_min: "「スケールの最大値」は「スケールの最小値」よりも大きくなければなりません。"
+    scale_min: 目盛最小値
+    scale_min_must_be_less_than_scale_max: "「スケールの最小値」は「スケールの最大値」より小さくなければなりません。"
+    scale_value_must_not_be_negative: 値は負であってはなりません
     schedule: スケジュール
     schedule_email: スケジュールメール
     schedule_email_title: スケジュールメール
@@ -2496,10 +2559,13 @@ ja:
     score_definition_placeholder: このスコアレベルの定義を入力してください
     score_definitions: スコアの定義
     score_max: スコア・マックス
+    score_max_must_be_greater_than_score_min: スコアの上限は、スコアの下限よりも大きくなければなりません
     score_min: スコア最小値
+    score_min_must_be_less_than_score_max: スコアの下限はスコアの上限より小さくなければなりません
     score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
     score_not_applicable: スコアは適用されません
     score_range_info: スコア範囲：%{min} - %{max}
+    score_type: スコアの種類
     score_with_ai: AIで得点する
     scores_finalized: スコアは確定しており、変更することはできません
     scoring: 採点
@@ -2608,6 +2674,7 @@ ja:
     search_admins: 管理者を検索
     search_campaign: キャンペーンで検索
     search_client: クライアントで検索
+    search_client_assessors: クライアント評価担当者の検索
     search_job_role: 職種を検索
     search_participants: 参加者を検索...
     search_project: プロジェクトで検索
@@ -2643,6 +2710,7 @@ ja:
     select_admin_role: 管理者ロールの選択
     select_assessment_language: 評価言語の選択
     select_client: クライアントを選択
+    select_condition_set: 条件セットを選択してください
     select_end_time: 終了時間を選択
     select_language_to_translate: 翻訳する言語を選択してください
     select_level: レベルを選択
@@ -3066,6 +3134,7 @@ ja:
     translated_with_ai_notice: AI翻訳
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
     translations:
+      import: 翻訳をインポートする
       title: 翻訳
     translations_export_failure_msg: 翻訳のエクスポート時のエラー
     translations_export_success_msg: 進行中の開発アクションをエクスポートする。

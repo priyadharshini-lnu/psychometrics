@@ -710,7 +710,6 @@ sr-Latn:
         end_date: 'Datum završetka:'
         every_interval: Svaki %{interval}
         frequency: 'Frekvenciju:'
-        owner: 'Vlasnik:'
         project: 'Projekat:'
         recipients: 'Primaoci:'
         specific_datetime: 'Pošalji na:'

@@ -54,7 +54,7 @@ module Swagger
 
           Example:
           ```
-          https://<subdomain>.tte-lighthouse.com/?jwt=<jwt_token>
+            https://<subdomain>.tte-lighthouse.com/?jwt=<jwt_token>
           ```
           The JWT token should be signed with the API Token provided by TTE. API Token is also used as a password for Basic Authentication for the APIs.
 

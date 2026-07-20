@@ -130,4 +130,18 @@ describe Campaigns::Reports::Add do
 
     described_class.call!(form, campaign, current_user)
   end
+
+  it 'saves default occupation_condition_set_id from dimension if occupations are enabled' do
+    dimension = create(:dimension, occupations_enabled: true)
+    default_ocs = dimension.occupation_condition_sets.find_by(name: 'Default') ||
+                  create(:occupation_condition_set, name: 'Default OCS', dimension: dimension)
+    dimension.update_column(:default_occupation_condition_set_id, default_ocs.id)
+    assessment = create(:assessment, dimension: dimension)
+    report = create(:report, assessments: [assessment])
+    form = Campaigns::Reports::Form.new(report_ids: report.id, report_access: { report.id.to_s => true })
+
+    described_class.call!(form, campaign, current_user)
+
+    expect(assessment.campaign_assessments.first.occupation_condition_set_id).to eq(default_ocs.id)
+  end
 end

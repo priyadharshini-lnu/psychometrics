@@ -31,6 +31,7 @@ import {
   UPDATE_MHS_NORM_REGION,
   UPDATE_MHS_NORM_OPTION,
   UPDATE_PROCTORING_SETTINGS,
+  UPDATE_OCCUPATION_CONDITION_SET,
 } from './actions'
 
 const defaultState: State = {
@@ -286,6 +287,11 @@ const HANDLERS = {
   [UPDATE_PROCTORING_SETTINGS]: (state, { response }: ApiActionResponse<Assessment>) => (
     updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
       assessment.id === response.id ? response : assessment
+    )))
+  ),
+  [UPDATE_OCCUPATION_CONDITION_SET]: (state, { response }: ApiActionResponse<Assessment>) => (
+    updateIn(state, ['list'], (assessments: Assessment[]) => _.map(assessments, assessment => (
+      assessment.campaignAssessmentId === response.campaignAssessmentId ? response : assessment
     )))
   ),
 }

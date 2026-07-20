@@ -22,6 +22,8 @@ sr-Cyrl:
     assessor_approved: Оцењивач одобрио
     assessors_list: Списак процењивача
     asset_not_present: Имовина није присутна
+    audience: Публика
+    audience_claim_label: Публика (aud)
     audio: Аудио
     audio_devices: Аудио уређаји
     authentication_failed: Аутентификација није успела. Покушајте поново.
@@ -100,6 +102,10 @@ sr-Cyrl:
     import: Увоз
     inactive: Неактиван
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    issuer: Издавач
+    issuer_claim_label: Издавач (iss)
+    jwt_claims_details: Детаљи тврдњи JWT
+    key_id_claim_label: Кључни ИД (kid)
     last_name: Презиме
     last_updated: Последње измене
     learning_on_the_job_label: Учење на послу

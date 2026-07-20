@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Tabs, Spin } from 'antd'
 import { connect } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
@@ -11,11 +11,17 @@ import {
 } from '~/modules/admin/modules/client/core/applications'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
-import { ApplicationOverview, ApplicationAPIKeys, ApplicationPublicKeys } from '~/components/Applications'
+import {
+  ApplicationOverview,
+  ApplicationAPIKeys,
+  ApplicationPublicKeys,
+  ApplicationSettings,
+} from '~/components/Applications'
 import { ApplicationPermissions } from './ApplicationPermissions'
 import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
 
 const { I18n } = window
+const { application_public_keys_settings_enabled } = window.PsyGlobalState.features
 
 type PermissionsConfig = {
   role: AdminTypes
@@ -43,6 +49,7 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   permissionsConfig,
 }) => {
   const { pathname } = useLocation()
+  const { projectId, clientId } = useParams() as { projectId?: string, clientId?: string }
   const navigate = useNavigate()
 
   const {
@@ -80,9 +87,12 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   }
 
   const getActiveTab = (): string => {
-    if (pathname.includes('/api_keys')) return 'api_keys'
-    if (pathname.includes('/public_keys')) return 'public_keys'
-    if (pathname.includes('/permissions')) return 'permissions'
+    const lastSegment = pathname.split('/').filter(Boolean).pop()
+
+    if (lastSegment === 'api_keys') return 'api_keys'
+    if (lastSegment === 'public_keys' && application_public_keys_settings_enabled) return 'public_keys'
+    if (lastSegment === 'permissions') return 'permissions'
+    if (lastSegment === 'settings' && application_public_keys_settings_enabled) return 'settings'
     return 'overview'
   }
 
@@ -113,11 +123,19 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
           label: I18n.t('admin.api_keys'),
           children: <ApplicationAPIKeys applicationId={applicationId} />,
         },
-        {
-          key: 'public_keys',
-          label: I18n.t('admin.public_keys'),
-          children: <ApplicationPublicKeys applicationId={applicationId} />,
-        },
+        ...(application_public_keys_settings_enabled ? [
+          {
+            key: 'public_keys',
+            label: I18n.t('admin.public_keys'),
+            children: (
+              <ApplicationPublicKeys
+                applicationId={applicationId}
+                projectId={projectId}
+                clientId={clientId}
+              />
+            ),
+          },
+        ] : []),
         {
           key: 'permissions',
           label: I18n.t('shared.permissions'),
@@ -129,6 +147,13 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
             />
           ),
         },
+        ...(application_public_keys_settings_enabled ? [
+          {
+            key: 'settings',
+            label: I18n.t('admin.settings'),
+            children: <ApplicationSettings applicationId={applicationId} />,
+          },
+        ] : []),
       ]
       : []),
   ]

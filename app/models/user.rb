@@ -112,7 +112,6 @@ class User < ApplicationRecord
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
-  has_many :api_keys, inverse_of: :user, dependent: :destroy
   has_many :user_assessments, inverse_of: :subject, foreign_key: :subject_id, dependent: :destroy
   has_many :self_user_assessments, lambda {
     UserAssessment.self_assessment
@@ -134,7 +133,7 @@ class User < ApplicationRecord
             class_name: 'Report'
   has_many :campaigns, through: :campaign_users
   has_many :assessors, dependent: :destroy
-  has_many :assessors_campaings, through: :assessors, source: :campaign
+  has_many :assessors_campaigns, through: :assessors, source: :campaign
   has_many :report_approvals, dependent: :destroy
   has_many :highlights, dependent: :destroy
   has_many :privacy_consents, dependent: :destroy

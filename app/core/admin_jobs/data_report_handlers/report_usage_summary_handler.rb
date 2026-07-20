@@ -16,7 +16,9 @@ module AdminJobs
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
-          fetch_data.each { |row| csv << row }
+          fetch_data.each do |row|
+            csv << format_csv_row(row)
+          end
         end
       end
 
@@ -27,14 +29,24 @@ module AdminJobs
       private
 
       def fetch_data
-        return [] if project_ids.blank?
+        records = UserReport.
+                  joins('LEFT JOIN campaigns cmp ON cmp.id = user_reports.campaign_id').
+                  joins('LEFT JOIN clients p ON p.id = cmp.project_id').
+                  joins('LEFT JOIN reports r ON r.id = user_reports.report_id').
+                  where(r: { id: report_ids })
 
-        UserReport.
-          joins('LEFT JOIN campaigns cmp ON cmp.id = user_reports.campaign_id').
-          joins('LEFT JOIN clients p ON p.id = cmp.project_id').
-          joins('LEFT JOIN reports r ON r.id = user_reports.report_id').
-          where(r: { id: report_ids }, p: { id: project_ids }).
-          group('r.id', 'r.name', 'p.id', 'p.name', 'cmp.id', 'cmp.name').
+        records = records.where(p: { id: project_ids }) if project_ids.present?
+        records = records.where(created_at: created_at_range) if created_at_range
+
+        records.
+          group(
+            'r.id',
+            'r.name',
+            'p.id',
+            'p.name',
+            'cmp.id',
+            'cmp.name'
+          ).
           pluck(
             'r.id',
             'r.name',
@@ -44,6 +56,20 @@ module AdminJobs
             'cmp.name',
             'COUNT(user_reports.id)'
           )
+      end
+
+      def created_at_range
+        return unless start_date.present? && end_date.present?
+
+        start_date.beginning_of_day..end_date.end_of_day
+      end
+
+      def start_date
+        config['start_date']&.to_date
+      end
+
+      def end_date
+        config['end_date']&.to_date
       end
     end
   end

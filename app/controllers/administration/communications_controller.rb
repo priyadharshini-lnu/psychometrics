@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class CommunicationsController < Administration::BaseController
+  class CommunicationsController < Administration::BaseController # rubocop:disable Metrics/ClassLength
     include Administration::Communications::Translatable
 
     skip_before_action :enforce_geo_restriction
@@ -13,6 +13,10 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
+      prepare_index_filter_options
+      @active_filter_params = sanitized_filter_params
+      @refresh_filters = params[:refresh_filters] == '1'
+
       @_filter_form = policy_scope(resource_class).
                       includes(
                         :client,
@@ -24,7 +28,7 @@ module Administration
                         :project_campaign,
                         :translations
                       ).
-                      ransack(params[:q])
+                      ransack(@active_filter_params)
 
       @_resources = filter_form.result.page(params[:page])
 
@@ -36,6 +40,7 @@ module Administration
 
     def show
       @communication = policy_scope(resource_class).find(params[:id])
+      @back_query_params = sanitized_filter_params.presence
       @selected_locale = params[:lang] || I18n.default_locale.to_s
       @available_locales = @communication.translations.map(&:locale).uniq
       @available_locales << I18n.default_locale.to_s unless @available_locales.include?(I18n.default_locale.to_s)
@@ -178,7 +183,7 @@ module Administration
     def resource_params
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id, :assessment_completion_status_code, :delivery_delay_hours,
-        :client_id, :recipients, :owner_id,
+        :client_id, :recipients,
         :delivery_rule, :reminder_type, :delivery_interval,
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,
@@ -200,6 +205,118 @@ module Administration
 
     def current_locale
       LocaleValidator.sanitize(cookies[:locale])
+    end
+
+    def prepare_index_filter_options
+      @client_filter_options = client_filter_options
+      @project_filter_options = project_filter_options
+      @campaign_filter_options = campaign_filter_options
+
+      @client_filter_locked = !current_user.is?(:superadmin) && @client_filter_options.one?
+
+      @project_filter_disabled = project_filter_disabled?
+      @campaign_filter_disabled = campaign_filter_disabled?
+    end
+
+    def client_filter_options
+      @client_filter_options ||= policy_scope(Client).roots.order(:name)
+    end
+
+    def project_filter_options
+      scope = policy_scope(Client).projects.enabled.order(:name)
+      scope = scope.where(tte_id: selected_client_ids) if selected_client_ids.present?
+      return scope.none if current_user.is?(:superadmin) && selected_client_ids.blank?
+
+      scope
+    end
+
+    def campaign_filter_options
+      scope = Campaign.where(id: campaign_ids_for_accessible_communications).order(:name)
+      valid_selected_project_id = project_filter_options.exists?(id: selected_project_id) ? selected_project_id : nil
+
+      if valid_selected_project_id.present?
+        scope = scope.where(project_id: valid_selected_project_id)
+      elsif selected_client_ids.present?
+        scope = scope.where(project_id: project_filter_options.select(:id))
+      elsif current_user.is?(:superadmin)
+        scope = scope.none
+      end
+
+      scope
+    end
+
+    def campaign_ids_for_accessible_communications
+      # Campaign IDs from communications the user can access
+      communications_scope = policy_scope(resource_class)
+      communications_scope = communications_scope.where(project_id: selected_project_id) if selected_project_id.present?
+      campaign_ids_from_comms = communications_scope.where.not(campaign_id: nil).distinct.pluck(:campaign_id)
+
+      # For non-superadmin users, also include campaigns where they're a campaign admin
+      # This ensures campaign admins can see and filter by their campaigns even if no communications exist
+      campaign_ids_from_admin_role = if current_user.is?(:superadmin)
+                                       []
+                                     else
+                                       current_user.memberships.
+                                         where(role: 'campaign_admin').
+                                         distinct.
+                                         pluck(:campaign_id)
+                                     end
+
+      (campaign_ids_from_comms + campaign_ids_from_admin_role&.compact)&.uniq
+    end
+
+    def project_filter_disabled?
+      current_user.is?(:superadmin) && selected_client_ids.blank?
+    end
+
+    def campaign_filter_disabled?
+      current_user.is?(:superadmin) && selected_client_ids.blank?
+    end
+
+    def selected_client_ids
+      @selected_client_ids ||= begin
+        values = params.dig(:q, :client_id_in)
+        Array.wrap(values).compact_blank.map(&:to_i)
+      end
+    end
+
+    def selected_project_id
+      @selected_project_id ||= params.dig(:q, :project_id_eq).presence
+    end
+
+    def sanitized_filter_params
+      @sanitized_filter_params ||= begin
+        filters = params.fetch(:q, ActionController::Parameters.new).
+                  permit(
+                    :subject_or_body_cont,
+                    :project_id_eq,
+                    :campaign_id_eq,
+                    :s,
+                    client_id_in: [],
+                    kind_in: []
+                  ).
+                  to_h.deep_dup
+
+        if current_user.is?(:superadmin) && selected_client_ids.blank?
+          filters.delete('project_id_eq')
+          filters.delete('campaign_id_eq')
+        end
+
+        if filters['project_id_eq'].present?
+          available_project_ids = project_filter_options.pluck(:id).map(&:to_s)
+          unless available_project_ids.include?(filters['project_id_eq'].to_s)
+            filters.delete('project_id_eq')
+            filters.delete('campaign_id_eq')
+          end
+        end
+
+        if filters['campaign_id_eq'].present?
+          available_campaign_ids = campaign_filter_options.pluck(:id).map(&:to_s)
+          filters.delete('campaign_id_eq') unless available_campaign_ids.include?(filters['campaign_id_eq'].to_s)
+        end
+
+        filters
+      end
     end
   end
 end

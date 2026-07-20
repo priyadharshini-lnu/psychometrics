@@ -26,6 +26,7 @@ id:
     add_btn: Tambahkan subjek
     add_campaign_admin: Tambahkan Admin Kampanye
     add_client_admin: Tambahkan Admin Klien
+    add_client_assessor: Tambahkan Penilai Klien
     add_conditions: Tambahkan Ketentuan
     add_evaluators: Menambahkan Evaluator
     add_indicator: Tambahkan Indikator
@@ -33,6 +34,7 @@ id:
     add_lead_assessor_hint: Silakan, tambahkan Formulir Penilai Utama terlebih dahulu
     add_more: Tambahkan Lebih Banyak
     add_new_folder: Tambahkan Folder Baru
+    add_or_select_factor_msg: Klik "Tambahkan/Pilih Faktor" untuk melihat detailnya.
     add_output_schema_key: Tambahkan Kunci Skema Keluaran
     add_project: Tambahkan Proyek
     add_project_admin: Tambahkan Admin Proyek
@@ -47,12 +49,14 @@ id:
     admin_role_deleted: Peran admin '%{role_name}' berhasil dihapus.
     admin_roles: Peran Admin
     admin_updated_successfully: Admin '%{name}' berhasil diperbarui
+    admin_with_email_already_added: Pengguna dengan alamat email ini sudah ditambahkan.
     administrator_approves_reports: Administrator menyetujui laporan
     administrators_list_columns_email: Email
     admins: Admin
     advanced: Lanjutan
     advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
     agile: LINCAH
+    agile_time_config_msg: Penilaian Agile dapat menggunakan pengatur waktu per bagian (yang diatur dalam pengaturan konfigurasi). Pastikan untuk mengalokasikan waktu yang cukup di sini agar setiap bagian dapat diselesaikan dengan nyaman.
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
@@ -123,6 +127,20 @@ id:
     application_name: Nama Aplikasi
     application_name_already_taken: Sudah ada untuk klien ini
     application_name_format_hint: Hanya huruf dan angka yang diperbolehkan, dengan satu spasi di antara kata-kata
+    application_settings_at_least_one_ip_required: Harap aktifkan setidaknya satu entri alamat IP sebelum mengaktifkan daftar putih IP
+    application_settings_confirm_delete_ip: Apakah Anda yakin ingin menghapus alamat IP ini?
+    application_settings_edit_ip_address: Edit Alamat IP / Rentang CIDR
+    application_settings_enable_ip_whitelisting: Aktifkan Daftar Putih IP
+    application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid
+    application_settings_ip_addresses: Alamat IP / Rentang CIDR
+    application_settings_ip_deleted_successfully: Alamat IP telah dihapus dengan sukses
+    application_settings_ip_description_placeholder: misalnya, jaringan kantor atau server produksi
+    application_settings_ip_input_placeholder: misalnya, 192.168.1.1 atau 10.0.0.0/24
+    application_settings_ip_or_cidr: Alamat IP atau Rentang CIDR
+    application_settings_ip_required: Alamat IP atau rentang CIDR wajib diisi
+    application_settings_ip_updated_successfully: Alamat IP telah diperbarui dengan sukses
+    application_settings_ip_whitelisting_disabled_success: Daftar putih IP telah dinonaktifkan dengan sukses
+    application_settings_ip_whitelisting_enabled_success: Daftar putih IP telah diaktifkan dengan sukses
     applications: Aplikasi
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
     approve_all_questions: Setujui Semua Pertanyaan
@@ -279,6 +297,7 @@ id:
     campaign_assessment_column_caching_enabled: Caching Penilaian Diaktifkan
     campaign_assessment_column_hogan_assessment_id: ID Penilaian Hogan
     campaign_assessment_column_hogan_form_id: Formulir Identitas Hogan
+    campaign_assessment_column_occupation_condition_set: Kumpulan Kondisi Pekerjaan
     campaign_assessment_column_pearson_assessment_id: ID Penilaian Pearson
     campaign_assessment_column_pearson_assessment_language: Bahasa Penilaian Pearson
     campaign_assessment_column_pearson_error_details: Rincian Kesalahan Pearson
@@ -305,6 +324,10 @@ id:
     campaign_assessment_modals_enable_caching_content: Apakah Anda yakin ingin mengaktifkan caching untuk penilaian ini?
     campaign_assessment_modals_enable_caching_successfully: Caching telah diaktifkan untuk penilaian ini.
     campaign_assessment_modals_enable_caching_title: Aktifkan Assessment Caching?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini
+    campaign_assessment_modals_update_occupation_condition_set_select: Pilih Kumpulan Kondisi Pekerjaan
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Kumpulan Kondisi Pekerjaan telah diperbarui dengan sukses
+    campaign_assessment_modals_update_occupation_condition_set_title: Perbarui Kumpulan Kondisi Pekerjaan
     campaign_factors: Faktor Kampanye
     campaign_id_placeholder: Masukkan ID kampanye
     campaign_name: Nama Kampanye
@@ -388,6 +411,13 @@ id:
     client: Klien Pengguna
     client_admin: Admin Klien
     client_admins: Admin Klien
+    client_assessor_import_already_added: Pengguna dengan alamat email '%{email}' telah ditambahkan sebagai penilai klien.
+    client_assessor_import_client_required: Diperlukan klien untuk mengimpor penilai.
+    client_assessor_import_description: Impor berkas CSV yang berisi satu kolom alamat email untuk penilai klien.
+    client_assessor_import_duplicated_emails: 'Email-email berikut ini terduplikasi dalam berkas CSV: %{emails}'
+    client_assessor_import_emails_required: Mohon cantumkan setidaknya satu alamat email penilai.
+    client_assessor_import_global_assessor_required: Pengguna harus terdaftar sebagai penilai global.
+    client_assessor_removed_successfully: Penilai klien dengan alamat email '%{email}' telah dihapus dengan sukses
     client_credentials_label: Kredensial Klien
     client_credentials_value: client_credentials
     client_features: Fitur Klien
@@ -431,11 +461,13 @@ id:
     completed_tooltip: Semua evaluator telah menyerahkan evaluasi
     components_input_duration_placeholder: Masukkan sebagai '1d 2h 3m'
     concise: Ringkas
+    condition_sets: Himpunan Kondisi
     confidence_interval: Interval Kepercayaan
     confidence_interval_update_success: Interval kepercayaan telah diperbarui dengan sukses.
     configuration: Konfigurasi
     configure_model_answer_title: Konfigurasikan Jawaban Model dan Kata Kunci
     confirm_remove_admin: Apakah Anda yakin ingin menghapus pengguna admin dengan email '%{email}'?
+    confirm_remove_client_assessor: Apakah Anda yakin ingin menghapus penilai klien dengan alamat email '%{email}'?
     confirmation_required: Diperlukan Konfirmasi
     confirmation_required_details: Apakah Anda yakin ingin menghapus "%{resource_name}" dari %{resource}?
     consolidated: Dikonsolidasikan
@@ -444,8 +476,11 @@ id:
     copied: Dicopy
     copied_url_success: URL telah berhasil disalin ke papan klip
     copy_ai_artifacts: Salin Artefak AI
+    copy_assessment_scheduled: Tugas penyalinan penilaian telah dijadwalkan.
     copy_hint: Menyalin konfigurasi Kursi, Manajer Pusat, Penilai, dan Rapat & Sumber Daya di atas ke Pusat Penilaian berikut. Setelah menyalin, Anda dapat membuat perubahan lebih lanjut pada masing-masing Pusat Penilaian sebelum melanjutkan.
     copy_image_url: Salin URL Gambar
+    copy_occupation_condition_set: Salin Kumpulan Kondisi Pekerjaan
+    copy_occupation_condition_set_msg: Tindakan ini akan menyalin seluruh konfigurasi faktor pekerjaan yang ada dari kumpulan kondisi saat ini ke kumpulan kondisi yang baru.
     copy_report_scheduled: Tugas pencetakan laporan telah dijadwalkan.
     copy_text: Teks
     copy_to_all: Salin ke Pusat Penilaian lainnya
@@ -529,6 +564,7 @@ id:
     default_assessment_language: Bahasa default penilaian
     default_button: Default
     default_language: Bahasa Default
+    default_occupation_condition_set: Set Kondisi Pekerjaan Default
     default_report_language: Laporkan bahasa default
     define_max_score_text: Tentukan nilai maksimum (%{maxScore}).
     define_min_score_text: Tentukan nilai minimum (%{minScore}).
@@ -638,6 +674,7 @@ id:
     document_titles_project_participants: Peserta | %{project}
     done: Selesai
     done_tooltip: Tidak ada lagi evaluasi yang dapat diajukan untuk pengguna ini karena evaluasi pengguna ini ditandai sebagai dilakukan oleh %{marked_by}
+    download_assessor_email_template: Unduh contoh templat
     download_bulk_asset_download_example_csv: Unduh Contoh CSV.
     download_example_csv: Unduh Contoh csv
     dp_consent: Mengaktifkan izin pemrosesan data
@@ -667,6 +704,7 @@ id:
     email_subjects_manager_when_available: Manajer subjek email saat laporan tersedia
     empty: Kosong
     empty_csv_file: CSV tidak berisi data apa pun.
+    empty_occupation_condition_set_msg: Tidak ditemukan faktor pekerjaan untuk kelompok kondisi ini. Silakan tambahkan faktor.
     enable_caching_content: Apakah Anda yakin ingin mengaktifkan caching untuk penilaian ini?
     enable_caching_successfully: Caching telah diaktifkan untuk penilaian ini.
     enable_caching_title: Aktifkan Assessment Caching?
@@ -694,6 +732,7 @@ id:
     enter_schema_key: Masukkan Kunci Skema
     error: Kesalahan
     error_color: Warna Kesalahan
+    errors_csv_file_import: Silakan unggah berkas CSV sebelum mengklik "Impor"
     errors_csv_file_required: File harus berupa file CSV
     errors_error_msg: Ada yang tidak beres. Silakan segarkan halaman dan jika masalah masih berlanjut, hubungi administrator Anda
     errors_min_retention: Tidak boleh kurang dari 1 hari
@@ -741,6 +780,7 @@ id:
     factor_feedback: Umpan Balik Faktor
     factor_selection: Pemilihan Faktor
     factors: Faktor-faktor
+    factors_filter_strategy: Strategi
     factors_form_components_ExternalList_table_jsonpath: Jalur JSON
     factors_form_components_ExternalList_table_types_norm_score: Skor Norma
     factors_form_components_ExternalList_table_types_percentage: Persentase
@@ -760,6 +800,7 @@ id:
     factors_index_sub_factors: Sub faktor
     factors_index_title: Faktor
     factors_resource_confirmations_delete_body: "<p>Apakah Anda yakin ingin menghapus Faktor ini?</p>\n"
+    factors_resource_removal_success: Faktor '%{name}' telah dihapus dengan sukses.
     failure_reason: Alasan Kegagalan
     feature_ai_assistants_description: Aktifkan asisten yang didukung kecerdasan buatan (AI) untuk pengalaman pengguna yang lebih baik.
     feature_ai_assisted_idp_description: Gunakan kecerdasan buatan (AI) untuk membantu dalam memberikan rekomendasi terkait Perencanaan Pengembangan Pribadi.
@@ -1214,6 +1255,7 @@ id:
     log_date: Tanggal Log
     logged_in: Sudah masuk
     login: Masuk
+    login_page_design_tab: Desain
     low: Rendah
     mail_history: Riwayat Surat
     main_report: Laporan Utama
@@ -1221,6 +1263,7 @@ id:
     maintenance_settings: Pengaturan Pemeliharaan
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     make_report_available_to_subject_when: 'Membuat laporan tersedia untuk subjek ketika:'
+    manage_condition_sets: Kelola Kumpulan Kondisi
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     manager_approves_reports: Manajer menyetujui laporan
     manager_can_access_subject_reports: Manajer dapat mengakses laporan subjek
@@ -1310,6 +1353,7 @@ id:
     new_score: Skor Baru
     no_assessments_found: Audit ID
     no_client_access: Anda tidak memiliki akses ke klien ini
+    no_client_access_root: Anda tidak terafiliasi dengan klien mana pun
     no_clients_found: Tidak ditemukan klien
     no_completed_assessments: Belum ada penilaian yang selesai
     no_file_selected: Tidak ada file yang dipilih
@@ -1330,6 +1374,7 @@ id:
     norm_region: Wilayah Norma
     norm_region_form_select: Pilih Wilayah Standar
     norm_region_update_success: Wilayah Norm telah diperbarui dengan sukses.
+    norm_score: Skor Norma
     normal: Normal
     normalize_factor_scores: Menormalkan Skor Faktor
     norms: Norma
@@ -1360,13 +1405,22 @@ id:
     oauth_scope_label: Ruang lingkup
     oauth_scope_name: oauth_scope
     oauth_scope_required: Ruang lingkup diperlukan
+    occupation_condition_set_copy_success: Kumpulan Kondisi Pekerjaan telah disalin dengan sukses
+    occupation_condition_sets: Kumpulan Kondisi Pekerjaan
+    occupation_condition_sets_remove_confirm: Masukkan nama kumpulan kondisi pekerjaan yang tercantum di bawah ini ke dalam kotak teks untuk mengonfirmasi
+    occupation_condition_sets_remove_success: Set kondisi pekerjaan "%{name}" telah dihapus dengan sukses
+    occupation_condition_sets_remove_warning: Apakah Anda yakin ingin menghapus kumpulan syarat pekerjaan “%{name}”?
+    occupation_factors_condition_set: Himpunan Kondisi
+    occupation_factors_title: Faktor-Faktor Pekerjaan
     occupations: Pekerjaan
+    occupations_factor_uniqueness: Faktor tersebut sudah diperhitungkan
     occupations_factors_list_condition: Status
     occupations_factors_list_position: Posisi
     occupations_factors_list_weight: Berat
     occupations_form_alternative_icon: Ikon alternatif
     occupations_form_color: Warna
     occupations_form_indicative_roles_image: Gambar ilustrasi peran
+    occupations_form_key_career_tracks_hint: '"+" - daftar, "*" - huruf tebal. Contoh: + *Biologi* - deskripsi singkat...'
     occupations_form_key_career_tracks_image: Gambar jalur karier utama
     occupations_index_title: Pekerjaan
     occupations_resource_confirmations_delete_body: "<p>Apakah Anda yakin ingin menghapus pekerjaan ini?</p>\n"
@@ -2033,6 +2087,7 @@ id:
     public_key_cannot_be_changed: tidak dapat diubah setelah dibuat
     public_key_copy_private_key: Salin Kunci Pribadi
     public_key_created: Kunci publik berhasil dibuat
+    public_key_details: Rincian Kunci Publik
     public_key_generate: Buat Pasangan Kunci
     public_key_generate_button: Buat Pasangan Kunci RSA
     public_key_generate_info: Akan menghasilkan pasangan kunci RSA 2048-bit. Hanya kunci publik yang akan disimpan. Salin dan simpan kunci pribadi dengan aman — kunci tersebut tidak akan ditampilkan lagi.
@@ -2077,6 +2132,7 @@ id:
     range_min_max: RANGE %{min} - %{max}
     rationale: Alasan
     raw: MENTAH
+    raw_score: Nilai Mentah
     reason_for_changes: Alasan perubahan
     recents: Terbaru
     record_id: Rekor ID
@@ -2108,6 +2164,7 @@ id:
     remove_confirm_success: Subjek dengan email '%{subjectEmail}'' berhasil dihapus.
     remove_confirm_title: Hapus subjek
     remove_confirmation: Apakah Anda yakin ingin menghapus item ini?
+    remove_icon: Hapus ikon
     remove_output_schema_key: Hapus Kunci Skema Keluaran
     remove_successfully: Item media telah dihapus dengan sukses.
     render_button: Templat Render
@@ -2210,6 +2267,7 @@ id:
     report_type: Jenis Laporan
     report_types:
       active_clients_projects: Klien dan Proyek Aktif
+      campaign_factor_scores: Skor Faktor Kampanye
       client_assessment_counts: Penilaian Klien Itu Penting
       hogan_usage_report: Penggunaan Penilaian Hogan
       json_data_report: Laporan Data JSON
@@ -2357,6 +2415,11 @@ id:
       user_full_name_cont: Nama Pengguna
     saville: Saville
     saville_assessment: Penilaian Saville
+    scale_max: Skala Maksimum
+    scale_max_must_be_greater_than_scale_min: Nilai maksimum skala harus lebih besar daripada nilai minimum skala
+    scale_min: Skala Min
+    scale_min_must_be_less_than_scale_max: Nilai minimum skala harus lebih kecil dari nilai maksimum skala
+    scale_value_must_not_be_negative: Nilai tidak boleh negatif
     schedule: Jadwal
     schedule_email: Jadwalkan Email
     schedule_email_title: Jadwalkan Email
@@ -2493,10 +2556,13 @@ id:
     score_definition_placeholder: Masukkan definisi untuk tingkat skor ini.
     score_definitions: Definisi Skor
     score_max: Skor Maksimum
+    score_max_must_be_greater_than_score_min: Nilai maksimum harus lebih besar dari nilai minimum
     score_min: Skor Minimum
+    score_min_must_be_less_than_score_max: Nilai minimum harus lebih kecil dari nilai maksimum
     score_must_be_in_between_min_and_max: Skor harus berada di antara %{min} dan %{max}.
     score_not_applicable: Skor tidak berlaku
     score_range_info: 'Rentang Skor: %{min} - %{max}'
+    score_type: Jenis Skor
     score_with_ai: Mencetak gol dengan kecerdasan buatan
     scores_finalized: Nilai telah ditetapkan dan tidak dapat diubah
     scoring: Penilaian
@@ -2605,6 +2671,7 @@ id:
     search_admins: Cari Admin
     search_campaign: Cari berdasarkan Kampanye
     search_client: Cari berdasarkan Klien
+    search_client_assessors: Cari penilai klien
     search_job_role: Cari peran pekerjaan
     search_participants: Cari Peserta...
     search_project: Cari berdasarkan Proyek
@@ -2640,6 +2707,7 @@ id:
     select_admin_role: Pilih peran admin
     select_assessment_language: Pilih bahasa penilaian
     select_client: Pilih Klien
+    select_condition_set: Pilih kumpulan kondisi
     select_end_time: Pilih Waktu Berakhir
     select_language_to_translate: Silakan pilih bahasa yang ingin diterjemahkan.
     select_level: Pilih tingkat
@@ -3058,6 +3126,7 @@ id:
     translated_with_ai_notice: Diterjemahkan oleh AI
     translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
     translations:
+      import: Impor Terjemahan
       title: Terjemahan
     translations_export_failure_msg: Kesalahan saat mengekspor terjemahan
     translations_export_success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.

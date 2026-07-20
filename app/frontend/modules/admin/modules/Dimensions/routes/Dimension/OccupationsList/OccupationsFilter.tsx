@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Occupation } from '~/modules/admin/modules/campaigns/core/occupations'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { ToolsDropdown } from './ToolsDropdown'
 
 type Props = {
     openModal: (modalName: string, modalProps?: unknown) => void
@@ -26,6 +27,7 @@ export const OccupationsFilter: FC<Props> = ({
       name="filterable_fields"
       placeholder={I18n.t('common.actions.search')}
     >
+      <ToolsDropdown />
       <Button type="primary" disabled={tableLoading} onClick={handleCreateOccupationModal}>
         <PlusOutlined />
         {I18n.t('common.actions.create')}

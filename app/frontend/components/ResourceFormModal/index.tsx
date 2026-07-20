@@ -59,18 +59,10 @@ const { I18n } = window
 
 const ResourceFormModal: React.FC<Props> = (props) => {
   const {
-    title,
-    readableResourceName,
-    resourceName,
     close,
-    modalProps,
-    resource,
-    resourceId,
     onSuccessfulSubmission,
     storeManager,
-    submitButtonName,
     manuallyClose,
-    hideOkButton,
   } = props
 
   const [resourceStatus, setResourceStatus] = useState<string | null>(null)
@@ -81,12 +73,44 @@ const ResourceFormModal: React.FC<Props> = (props) => {
     setFields: (storeManager && storeManager.setFields),
   }
 
-  const isEdit = () => !!resource || !!resourceId
-
   const handleSuccessfulSubmission = (response: object, values: object) => {
     onSuccessfulSubmission && onSuccessfulSubmission(response, values)
     if (!manuallyClose) close()
   }
+
+  return (
+    <ResourceFormModalComponent form={store.form} resourceStatus={resourceStatus} {...props}>
+      <ResourceForm
+        {...props}
+        storeManager={{ ...store, ...(storeManager || {}) }}
+        onStatusChange={setResourceStatus}
+        onSuccessfulSubmission={handleSuccessfulSubmission}
+      />
+    </ResourceFormModalComponent>
+  )
+}
+
+type ResourceFormModalComponentProps = Omit<Props, 'children'> & {
+  children: React.ReactNode
+  resourceStatus: string | null
+  form: FormInstance
+}
+export const ResourceFormModalComponent: React.FC<ResourceFormModalComponentProps> = (props) => {
+  const {
+    children,
+    title,
+    readableResourceName,
+    resourceName,
+    close,
+    modalProps,
+    resource,
+    resourceId,
+    submitButtonName,
+    hideOkButton,
+    resourceStatus,
+    form,
+  } = props
+  const isEdit = () => !!resource || !!resourceId
 
   const saveButtonIcon = () => {
     if (resourceStatus === ResourceStatus.Saving) {
@@ -136,7 +160,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
           <Button
             key="submit"
             type="primary"
-            onClick={() => store.form.submit()}
+            onClick={() => form.submit()}
             disabled={resourceStatus === ResourceStatus.Saving}
           >
             {saveButtonIcon()}
@@ -146,12 +170,7 @@ const ResourceFormModal: React.FC<Props> = (props) => {
       ]}
       {...modalProps || {}}
     >
-      <ResourceForm
-        {...props}
-        storeManager={{ ...store, ...(storeManager || {}) }}
-        onStatusChange={setResourceStatus}
-        onSuccessfulSubmission={handleSuccessfulSubmission}
-      />
+      {children}
     </Modal>
   )
 }

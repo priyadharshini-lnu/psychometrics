@@ -11,6 +11,7 @@ module Api
         def self.attributes(attribute, _type)
           proc do
             attribute[:name].filled(:string)
+            attribute[:default_occupation_condition_set_id].maybe(:integer)
           end
         end
 

@@ -26,6 +26,7 @@ pt:
     add_btn: Adicionar assunto
     add_campaign_admin: Adicionar administrador da campanha
     add_client_admin: Adicionar administrador de cliente
+    add_client_assessor: Adicionar avaliador de clientes
     add_conditions: Adicionar condições
     add_evaluators: Adicionar avaliadores
     add_indicator: Adicionar indicador
@@ -33,6 +34,7 @@ pt:
     add_lead_assessor_hint: Por favor, adicione primeiro o formulário do avaliador principal
     add_more: Adicionar mais
     add_new_folder: Adicionar nova pasta
+    add_or_select_factor_msg: Clique em «Adicionar/Selecionar um fator» para ver os detalhes.
     add_output_schema_key: Adicionar chave de esquema de saída
     add_project: Adicionar projeto
     add_project_admin: Adicionar administrador de projeto
@@ -47,12 +49,14 @@ pt:
     admin_role_deleted: A função de administrador '%{role_name}' foi eliminada com êxito.
     admin_roles: Funções de administrador
     admin_updated_successfully: O administrador '%{name}' foi atualizado com êxito
+    admin_with_email_already_added: O utilizador com este endereço de e-mail já foi adicionado.
     administrator_approves_reports: O administrador aprova os relatórios
     administrators_list_columns_email: E-mail
     admins: Administradores
     advanced: Avançado
     advanced_mode_tooltip: Use o modo avançado para plantar prompts usando o template líquido com variáveis disponíveis. Consulte a documentação para mais detalhes.
     agile: ÁGIL
+    agile_time_config_msg: As avaliações ágeis podem utilizar temporizadores por secção (definidos nas definições de configuração). Certifique-se de que define tempo suficiente para concluir cada secção com tranquilidade.
     ai_artifact_result_generation_admin_job_failed: O artefato "%{artifact_name}" não pode ser gerado para o usuário "%{user_email}".
     ai_artifact_result_stale: O resultado pode estar desatualizado, pois as dependências do artefato de IA foram alteradas desde que o último resultado foi gerado. Considere regenerar o artefato para gerá-lo com as dependências mais recentes.
     ai_artifacts: Artefatos de IA
@@ -123,6 +127,20 @@ pt:
     application_name: Nome da aplicação
     application_name_already_taken: Já existe para este cliente
     application_name_format_hint: Só são permitidas letras e números, com um único espaço entre as palavras
+    application_settings_at_least_one_ip_required: Por favor, ative pelo menos uma entrada de endereço IP antes de ativar a lista de endereços IP autorizados
+    application_settings_confirm_delete_ip: Tem a certeza de que quer eliminar este endereço IP?
+    application_settings_edit_ip_address: Editar endereço IP / intervalo CIDR
+    application_settings_enable_ip_whitelisting: Ativar lista de endereços IP autorizados
+    application_settings_invalid_ip_format: Endereço IP ou formato CIDR inválido
+    application_settings_ip_addresses: Endereços IP / Intervalos CIDR
+    application_settings_ip_deleted_successfully: O endereço IP foi eliminado com sucesso
+    application_settings_ip_description_placeholder: por exemplo, rede do escritório ou servidor de produção
+    application_settings_ip_input_placeholder: por exemplo, 192.168.1.1 ou 10.0.0.0/24
+    application_settings_ip_or_cidr: Endereço IP ou intervalo CIDR
+    application_settings_ip_required: É necessário indicar um endereço IP ou um intervalo CIDR
+    application_settings_ip_updated_successfully: O endereço IP foi atualizado com sucesso
+    application_settings_ip_whitelisting_disabled_success: A lista de endereços IP autorizados foi desativada com sucesso
+    application_settings_ip_whitelisting_enabled_success: A lista de endereços IP autorizados foi ativada com sucesso
     applications: Aplicações
     apply_to_existing_users: Aplicar esta alteração aos usuários existentes nesta campanha
     approve_all_questions: Aprovar todas as perguntas
@@ -279,6 +297,7 @@ pt:
     campaign_assessment_column_caching_enabled: Cache de Avaliação Ativado
     campaign_assessment_column_hogan_assessment_id: ID de Avaliação Hogan
     campaign_assessment_column_hogan_form_id: N.º de identificação do formulário Hogan
+    campaign_assessment_column_occupation_condition_set: Conjunto de condições de ocupação
     campaign_assessment_column_pearson_assessment_id: ID de Avaliação da Pearson
     campaign_assessment_column_pearson_assessment_language: Idioma da Avaliação Pearson
     campaign_assessment_column_pearson_error_details: Detalhes do erro de Pearson
@@ -305,6 +324,10 @@ pt:
     campaign_assessment_modals_enable_caching_content: Você tem certeza de que quer ativar o cache para essa avaliação?
     campaign_assessment_modals_enable_caching_successfully: O cache foi ativado para essa avaliação.
     campaign_assessment_modals_enable_caching_title: Habilitar o cache de avaliação?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Aplicar esta alteração aos utilizadores existentes nesta campanha
+    campaign_assessment_modals_update_occupation_condition_set_select: Selecionar conjunto de condições de ocupação
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: O conjunto de condições de ocupação foi atualizado com sucesso
+    campaign_assessment_modals_update_occupation_condition_set_title: Atualizar o conjunto de condições de ocupação
     campaign_factors: Fatores da campanha
     campaign_id_placeholder: Insira o ID da campanha
     campaign_name: Nome da campanha
@@ -388,6 +411,13 @@ pt:
     client: Locação de clientes
     client_admin: Administrador de clientes
     client_admins: Administradores de clientes
+    client_assessor_import_already_added: O utilizador com o endereço de e-mail «%{email}» já foi adicionado como avaliador de clientes.
+    client_assessor_import_client_required: É necessário um cliente para importar avaliadores.
+    client_assessor_import_description: Importe um ficheiro CSV com uma única coluna de e-mail para os avaliadores dos clientes.
+    client_assessor_import_duplicated_emails: 'Os seguintes e-mails estão duplicados no ficheiro CSV: %{emails}'
+    client_assessor_import_emails_required: Indique, por favor, pelo menos um endereço de e-mail de um avaliador.
+    client_assessor_import_global_assessor_required: O utilizador deve existir como avaliador global.
+    client_assessor_removed_successfully: O avaliador do cliente com o endereço de e-mail «%{email}» foi removido com sucesso
     client_credentials_label: Credenciais do cliente
     client_credentials_value: client_credentials
     client_features: Caraterísticas do cliente
@@ -431,11 +461,13 @@ pt:
     completed_tooltip: Todos os avaliadores enviaram a avaliação
     components_input_duration_placeholder: Introduzir como "1d 2h 3m
     concise: Conciso
+    condition_sets: Conjuntos de condições
     confidence_interval: Intervalo de confiança
     confidence_interval_update_success: Intervalo de confiança atualizado com sucesso
     configuration: Configuração
     configure_model_answer_title: Configurar resposta modelo e palavras-chave
     confirm_remove_admin: Tem a certeza de que pretende remover o utilizador administrativo com o e-mail '%{email}'?
+    confirm_remove_client_assessor: Tem a certeza de que quer eliminar o avaliador do cliente com o endereço de e-mail «%{email}»?
     confirmation_required: É necessária a confirmação
     confirmation_required_details: Tem a certeza de que deseja eliminar o ficheiro «%{resource_name}» da pasta «%{resource}»?
     consolidated: Consolidado
@@ -444,8 +476,11 @@ pt:
     copied: Copiado
     copied_url_success: O URL foi copiado para a área de transferência com sucesso
     copy_ai_artifacts: Copiar artefactos de IA
+    copy_assessment_scheduled: A tarefa de cópia de avaliação foi agendada.
     copy_hint: Copia a configuração de Lugares, Gerentes de Centro, Avaliadores e Reuniões e Recursos acima para os seguintes Centros de Avaliação. Após a cópia, você pode fazer outras alterações nos Centros de Avaliação individuais antes de continuar.
     copy_image_url: Copiar URL da imagem
+    copy_occupation_condition_set: Copiar conjunto de condições de ocupação
+    copy_occupation_condition_set_msg: Isto irá copiar toda a configuração dos fatores de ocupação existente do conjunto de condições atual para o novo conjunto de condições.
     copy_report_scheduled: A tarefa de cópia do relatório foi agendada.
     copy_text: Texto
     copy_to_all: Cópia para outros centros de avaliação
@@ -529,6 +564,7 @@ pt:
     default_assessment_language: Língua de avaliação por defeito
     default_button: Padrão
     default_language: Língua por defeito
+    default_occupation_condition_set: Conjunto de condições de ocupação predefinido
     default_report_language: Idioma predefinido do relatório
     define_max_score_text: Defina uma pontuação de %{maxScore} (pontuação máxima)
     define_min_score_text: Defina uma pontuação de %{minScore} (pontuação mínima)
@@ -638,6 +674,7 @@ pt:
     document_titles_project_participants: Participantes | %{project}
     done: Terminado
     done_tooltip: Nenhuma avaliação adicional pode ser submetida para esse usuário, pois a avaliação desse usuário é marcada como feita por %{marked_by}
+    download_assessor_email_template: Descarregar modelo de exemplo
     download_bulk_asset_download_example_csv: Baixar exemplo CSV.
     download_example_csv: Normas de amostragem CSV
     dp_consent: Permitir o consentimento para o tratamento de dados
@@ -667,6 +704,7 @@ pt:
     email_subjects_manager_when_available: Enviar um e-mail ao gestor do assunto quando o relatório estiver disponível
     empty: Vazio
     empty_csv_file: CSV não contém nenhum dado.
+    empty_occupation_condition_set_msg: Não foram encontrados fatores de ocupação para este conjunto de condições. Por favor, adicione um fator.
     enable_caching_content: Você tem certeza de que quer ativar o cache para essa avaliação?
     enable_caching_successfully: O cache foi ativado para essa avaliação.
     enable_caching_title: Habilitar o cache de avaliação?
@@ -694,6 +732,7 @@ pt:
     enter_schema_key: Introduzir chave de esquema
     error: Erro
     error_color: Cor do erro
+    errors_csv_file_import: Por favor, carregue um ficheiro CSV antes de clicar em «Importar»
     errors_csv_file_required: O ficheiro deve ser um ficheiro CSV
     errors_error_msg: Algo correu mal. Actualize a página e, se o problema persistir, contacte o seu administrador
     errors_min_retention: Não pode ser inferior a 1 dia
@@ -741,6 +780,7 @@ pt:
     factor_feedback: Feedback sobre os fatores
     factor_selection: Seleção de fatores
     factors: Fatores
+    factors_filter_strategy: Estratégia
     factors_form_components_ExternalList_table_jsonpath: Caminho JSON
     factors_form_components_ExternalList_table_types_norm_score: Pontuação normalizada
     factors_form_components_ExternalList_table_types_percentage: Percentagem
@@ -760,6 +800,7 @@ pt:
     factors_index_sub_factors: Subfactores
     factors_index_title: Factores
     factors_resource_confirmations_delete_body: "<p>Tem a certeza de que pretende apagar este Fator?</p>\n"
+    factors_resource_removal_success: O fator «%{name}» foi removido com sucesso.
     failure_reason: Motivo da falha
     feature_ai_assistants_description: Habilite assistentes com tecnologia de IA para melhorar a experiência do usuário
     feature_ai_assisted_idp_description: Use a IA para auxiliar nas recomendações do Planejamento de Desenvolvimento Individual
@@ -1214,6 +1255,7 @@ pt:
     log_date: Data de registo
     logged_in: Conectado
     login: Iniciar sessão
+    login_page_design_tab: Design
     low: Baixo
     mail_history: Histórico do correio
     main_report: Relatório principal
@@ -1221,6 +1263,7 @@ pt:
     maintenance_settings: Configurações de manutenção
     maintenance_settings_description: Gerenciar janelas e configurações de manutenção do sistema
     make_report_available_to_subject_when: 'Disponibilizar o relatório à pessoa em causa quando:'
+    manage_condition_sets: Gerir conjuntos de condições
     manager_approval_required: Relatório para %{user} requer aprovação do gerente antes do download
     manager_approves_reports: O gestor aprova os relatórios
     manager_can_access_subject_reports: O gestor pode aceder aos relatórios sobre o assunto
@@ -1310,6 +1353,7 @@ pt:
     new_score: Nova pontuação
     no_assessments_found: Identificação da auditoria
     no_client_access: Não tem acesso a este cliente
+    no_client_access_root: Não está associado a nenhum cliente
     no_clients_found: Não foram encontrados clientes
     no_completed_assessments: Ainda não existem avaliações concluídas
     no_file_selected: Nenhum arquivo selecionado
@@ -1330,6 +1374,7 @@ pt:
     norm_region: Região Norma
     norm_region_form_select: Selecionar região padrão
     norm_region_update_success: Região Norm atualizada com sucesso
+    norm_score: Pontuação Normalizada
     normal: Normal
     normalize_factor_scores: Normalizar as pontuações dos factores
     norms: Normas
@@ -1360,13 +1405,22 @@ pt:
     oauth_scope_label: Âmbito
     oauth_scope_name: oauth_scope
     oauth_scope_required: O escopo é necessário
+    occupation_condition_set_copy_success: Conjunto de condições de ocupação copiado com sucesso
+    occupation_condition_sets: Conjuntos de condições de ocupação
+    occupation_condition_sets_remove_confirm: Introduza o nome do conjunto de condições de ocupação indicado abaixo na caixa de texto para confirmar
+    occupation_condition_sets_remove_success: O conjunto de condições de ocupação «%{name}» foi removido com sucesso
+    occupation_condition_sets_remove_warning: Tem a certeza de que pretende eliminar o conjunto de condições de ocupação «%{name}»?
+    occupation_factors_condition_set: Conjunto de condições
+    occupation_factors_title: Fatores ocupacionais
     occupations: Profissões
+    occupations_factor_uniqueness: O fator já foi tido em conta
     occupations_factors_list_condition: Estado
     occupations_factors_list_position: Posição
     occupations_factors_list_weight: Peso
     occupations_form_alternative_icon: Ícone alternativo
     occupations_form_color: Cor
     occupations_form_indicative_roles_image: Imagem ilustrativa das funções
+    occupations_form_key_career_tracks_hint: '"+" - lista, "*" - negrito. Exemplo: + *Biologia* - alguma descrição...'
     occupations_form_key_career_tracks_image: Imagem das principais trajetórias profissionais
     occupations_index_title: Profissões
     occupations_resource_confirmations_delete_body: "<p>Tem a certeza de que pretende apagar esta ocupação?</p>\n"
@@ -2033,6 +2087,7 @@ pt:
     public_key_cannot_be_changed: não pode ser alterado após a criação
     public_key_copy_private_key: Copiar chave privada
     public_key_created: A chave pública foi criada com sucesso
+    public_key_details: Detalhes da chave pública
     public_key_generate: Gerar par de chaves
     public_key_generate_button: Gerar um par de chaves RSA
     public_key_generate_info: Irá gerar um par de chaves RSA de 2048 bits. Apenas a chave pública será guardada. Copie e guarde a chave privada num local seguro — esta não voltará a ser apresentada.
@@ -2077,6 +2132,7 @@ pt:
     range_min_max: GAMA %{min} - %{max}
     rationale: Fundamentação
     raw: CRU
+    raw_score: Pontuação bruta
     reason_for_changes: Motivo das alterações
     recents: Recentes
     record_id: ID do registo
@@ -2108,6 +2164,7 @@ pt:
     remove_confirm_success: O assunto com o e-mail '%{subjectEmail}'' foi removido com êxito.
     remove_confirm_title: Remover assunto
     remove_confirmation: Tem a certeza de que deseja eliminar este item?
+    remove_icon: Remover ícone
     remove_output_schema_key: Remover chave do esquema de saída
     remove_successfully: O item multimédia foi removido com sucesso.
     render_button: Template de Renderização
@@ -2210,6 +2267,7 @@ pt:
     report_type: Tipo de relatório
     report_types:
       active_clients_projects: Clientes e projetos em curso
+      campaign_factor_scores: Pontuações dos fatores da campanha
       client_assessment_counts: A avaliação do cliente é importante
       hogan_usage_report: Utilização da Avaliação Hogan
       json_data_report: Relatório de dados JSON
@@ -2357,6 +2415,11 @@ pt:
       user_full_name_cont: Nome de utilizador
     saville: Saville
     saville_assessment: Avaliação Saville
+    scale_max: Escala Máxima
+    scale_max_must_be_greater_than_scale_min: O valor máximo da escala deve ser superior ao valor mínimo da escala
+    scale_min: Escala mínima
+    scale_min_must_be_less_than_scale_max: O valor mínimo da escala deve ser inferior ao valor máximo da escala
+    scale_value_must_not_be_negative: O valor não deve ser negativo
     schedule: Horário
     schedule_email: Agendar e-mail
     schedule_email_title: Agendar e-mail
@@ -2496,10 +2559,13 @@ pt:
     score_definition_placeholder: Insira a definição para este nível de pontuação
     score_definitions: Definições de pontuação
     score_max: Pontuação máxima
+    score_max_must_be_greater_than_score_min: A pontuação máxima deve ser superior à pontuação mínima
     score_min: Pontuação mínima
+    score_min_must_be_less_than_score_max: A pontuação mínima deve ser inferior à pontuação máxima
     score_must_be_in_between_min_and_max: A pontuação deve estar entre %{min} e %{max}.
     score_not_applicable: Pontuação não aplicável
     score_range_info: 'Intervalo de pontuação: %{min} - %{max}'
+    score_type: Tipo de pontuação
     score_with_ai: Pontuação com IA
     scores_finalized: As pontuações estão definitivas e não podem ser alteradas
     scoring: Pontuação
@@ -2608,6 +2674,7 @@ pt:
     search_admins: Pesquisar administradores
     search_campaign: Pesquisa por campanha
     search_client: Pesquisa por cliente
+    search_client_assessors: Pesquisar avaliadores de clientes
     search_job_role: Pesquisar função profissional
     search_participants: Pesquisar participantes...
     search_project: Pesquisa por projeto
@@ -2643,6 +2710,7 @@ pt:
     select_admin_role: Selecionar a função de administrador
     select_assessment_language: Selecionar a língua de avaliação
     select_client: Selecionar cliente
+    select_condition_set: Selecionar conjunto de condições
     select_end_time: Selecionar hora de término
     select_language_to_translate: Selecione o idioma para traduzir
     select_level: Selecione o nível
@@ -3066,6 +3134,7 @@ pt:
     translated_with_ai_notice: Traduzido por IA
     translation_assistant_not_configured: Assistente de tradução não configurado
     translations:
+      import: Importar traduções
       title: Traduções
     translations_export_failure_msg: Erro ao exportar traduções
     translations_export_success_msg: Acções de desenvolvimento de exportação em curso.

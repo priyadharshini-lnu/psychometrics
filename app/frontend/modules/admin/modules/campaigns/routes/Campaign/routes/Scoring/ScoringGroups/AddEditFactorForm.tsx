@@ -14,6 +14,7 @@ import ResourceForm from '~/components/ResourceForm'
 import { slugify } from '~/utils/string'
 import { DirectionalNavigateBackIcon, LuaEditor } from '~/glint'
 import { useResources } from '~/hooks/useResources'
+import { allScoringCompletions } from './scoringFunctionAutoCompletion'
 import styles from './styles.less'
 
 const { TreeNode } = Tree
@@ -354,7 +355,7 @@ export const AddEditFactorForm: FC<Props> = ({
     formFieldBasedOnFactorType = (
       <>
         <Form.Item name="formula" label={I18n.t('admin.scoring_formula')}>
-          <LuaEditor />
+          <LuaEditor autoCompletions={allScoringCompletions} />
         </Form.Item>
       </>
     )

@@ -7,6 +7,7 @@ import { Application } from '~/modules/admin/modules/client/core/applications'
 import { ApplicationStatusSwitch } from './ApplicationStatusSwitch'
 
 const { I18n } = window
+const { application_public_keys_settings_enabled } = window.PsyGlobalState.features
 
 export const ApplicationsTable: React.FC = () => {
   const { resource } = useResourceContext<Application>()
@@ -45,12 +46,14 @@ export const ApplicationsTable: React.FC = () => {
         dataIndex="hasApiKeys"
         render={(hasApiKeys: boolean) => <Switch disabled checked={hasApiKeys} />}
       />
-      <Resource.Column<Application>
-        title={I18n.t('admin.has_public_keys')}
-        id="has_public_keys"
-        dataIndex="hasPublicKeys"
-        render={(hasPublicKeys: boolean) => <Switch disabled checked={hasPublicKeys} />}
-      />
+      {application_public_keys_settings_enabled && (
+        <Resource.Column<Application>
+          title={I18n.t('admin.has_public_keys')}
+          id="has_public_keys"
+          dataIndex="hasPublicKeys"
+          render={(hasPublicKeys: boolean) => <Switch disabled checked={hasPublicKeys} />}
+        />
+      )}
       <Resource.Column<Application>
         title={I18n.t('shared.created_at')}
         id="created_at"

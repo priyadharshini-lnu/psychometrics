@@ -26,6 +26,7 @@ ro:
     add_btn: Adaugă subiect
     add_campaign_admin: Adăugați administratorul campaniei
     add_client_admin: Adăugați administrator client
+    add_client_assessor: Adăugare evaluator client
     add_conditions: Adăugați condiții
     add_evaluators: Adăugați evaluatori
     add_indicator: Adăugați indicator
@@ -33,6 +34,7 @@ ro:
     add_lead_assessor_hint: Vă rugăm să adăugați mai întâi formularul de evaluator principal
     add_more: Adaugă mai multe
     add_new_folder: Adăugare folder nou
+    add_or_select_factor_msg: Faceți clic pe „Adăugați/selectați un factor” pentru a vizualiza detaliile.
     add_output_schema_key: Adăugați cheia schemei de ieșire
     add_project: Adaugă proiect
     add_project_admin: Adăugați administrator de proiect
@@ -47,12 +49,14 @@ ro:
     admin_role_deleted: Rolul de administrator '%{role_name}' a fost șters cu succes.
     admin_roles: Roluri de administrator
     admin_updated_successfully: Admin '%{name}' a fost actualizat cu succes
+    admin_with_email_already_added: Utilizatorul cu această adresă de e-mail a fost deja adăugat.
     administrator_approves_reports: Administratorul aprobă rapoartele
     administrators_list_columns_email: E-mail
     admins: Administratori
     advanced: Avansat
     advanced_mode_tooltip: Folosește modul avansat pentru modelarea prompturilor folosind șablonul lichid cu variabile disponibile. Consultați documentația pentru mai multe detalii.
     agile: AGIL
+    agile_time_config_msg: Evaluările Agile pot utiliza cronometre pentru fiecare secțiune (configurate în setările de configurare). Asigurați-vă că alocați suficient timp pentru a finaliza fiecare secțiune fără grabă.
     ai_artifact_result_generation_admin_job_failed: Artefactul „%{artifact_name}” nu poate fi generat pentru utilizatorul „%{user_email}”.
     ai_artifact_result_stale: Rezultatul poate fi învechit, deoarece dependențele artefactului AI s-au modificat de la generarea ultimului rezultat. Luați în considerare regenerarea artefactului pentru a genera cu cele mai recente dependențe.
     ai_artifacts: Artefacte AI
@@ -123,6 +127,20 @@ ro:
     application_name: Numele aplicației
     application_name_already_taken: Există deja pentru acest client
     application_name_format_hint: Sunt permise doar litere și cifre, cu un singur spațiu între cuvinte
+    application_settings_at_least_one_ip_required: Vă rugăm să activați cel puțin o intrare de adresă IP înainte de a activa lista albă de adrese IP
+    application_settings_confirm_delete_ip: Ești sigur că vrei să ștergi această adresă IP?
+    application_settings_edit_ip_address: Editare adresă IP / interval CIDR
+    application_settings_enable_ip_whitelisting: Activare listă albă de adrese IP
+    application_settings_invalid_ip_format: Adresă IP sau format CIDR nevalid(ă)
+    application_settings_ip_addresses: Adrese IP / Intervale CIDR
+    application_settings_ip_deleted_successfully: Adresa IP a fost ștearsă cu succes
+    application_settings_ip_description_placeholder: de exemplu, rețeaua de birou sau serverul de producție
+    application_settings_ip_input_placeholder: de exemplu, 192.168.1.1 sau 10.0.0.0/24
+    application_settings_ip_or_cidr: Adresă IP sau interval CIDR
+    application_settings_ip_required: Este necesară introducerea unei adrese IP sau a unui interval CIDR
+    application_settings_ip_updated_successfully: Adresa IP a fost actualizată cu succes
+    application_settings_ip_whitelisting_disabled_success: Lista albă IP a fost dezactivată cu succes
+    application_settings_ip_whitelisting_enabled_success: Lista albă IP a fost activată cu succes
     applications: Aplicații
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
     approve_all_questions: Aprobă toate întrebările
@@ -279,6 +297,7 @@ ro:
     campaign_assessment_column_caching_enabled: Caching de evaluare activat
     campaign_assessment_column_hogan_assessment_id: Cod de evaluare Hogan
     campaign_assessment_column_hogan_form_id: Codul de identificare Hogan
+    campaign_assessment_column_occupation_condition_set: Setul de condiții privind ocupația
     campaign_assessment_column_pearson_assessment_id: ID evaluare Pearson
     campaign_assessment_column_pearson_assessment_language: Limba de evaluare Pearson
     campaign_assessment_column_pearson_error_details: Detalii privind eroarea Pearson
@@ -305,6 +324,10 @@ ro:
     campaign_assessment_modals_enable_caching_content: Ești sigur că vrei să activezi cache-ul pentru această evaluare?
     campaign_assessment_modals_enable_caching_successfully: Cache-ul a fost activat pentru această evaluare.
     campaign_assessment_modals_enable_caching_title: Activarea cache-ului evaluării?
+    campaign_assessment_modals_update_occupation_condition_set_apply: Aplică această modificare utilizatorilor existenți din această campanie
+    campaign_assessment_modals_update_occupation_condition_set_select: Selectați setul de condiții privind ocupația
+    campaign_assessment_modals_update_occupation_condition_set_success_msg: Setul de condiții privind ocupația a fost actualizat cu succes
+    campaign_assessment_modals_update_occupation_condition_set_title: Actualizarea setului de condiții de ocupație
     campaign_factors: Factorii campaniei
     campaign_id_placeholder: Introduceți ID-ul campaniei
     campaign_name: Numele campaniei
@@ -388,6 +411,13 @@ ro:
     client: Închirierea clientului
     client_admin: Administrator client
     client_admins: Administratori clienți
+    client_assessor_import_already_added: Utilizatorul cu adresa de e-mail „%{email}” a fost deja adăugat ca evaluator al clienților.
+    client_assessor_import_client_required: Este necesar un client pentru importarea evaluatorilor.
+    client_assessor_import_description: Importați un fișier CSV care conține o singură coloană cu adresele de e-mail ale evaluatorilor clienților.
+    client_assessor_import_duplicated_emails: 'Următoarele adrese de e-mail apar de două ori în fișierul CSV: %{emails}'
+    client_assessor_import_emails_required: Vă rugăm să furnizați cel puțin o adresă de e-mail a unui evaluator.
+    client_assessor_import_global_assessor_required: Utilizatorul trebuie să fie înregistrat ca evaluator global.
+    client_assessor_removed_successfully: Contul de client cu adresa de e-mail „%{email}” a fost șters cu succes
     client_credentials_label: Acreditări client
     client_credentials_value: client_credentials
     client_features: Caracteristicile clientului
@@ -431,11 +461,13 @@ ro:
     completed_tooltip: Toți evaluatorii au depus evaluarea
     components_input_duration_placeholder: Introduceți ca "1d 2h 3m"
     concise: Concis
+    condition_sets: Seturi de condiții
     confidence_interval: Interval de încredere
     confidence_interval_update_success: Intervalul de încredere actualizat cu succes
     configuration: Configurare
     configure_model_answer_title: Configurați răspunsul model și cuvintele cheie
     confirm_remove_admin: Sigur doriți să eliminați utilizatorul administrator cu e-mailul "%{email}"?
+    confirm_remove_client_assessor: Ești sigur că vrei să elimini evaluatorul client cu adresa de e-mail „%{email}”?
     confirmation_required: Este necesară confirmarea
     confirmation_required_details: Ești sigur că vrei să ștergi fișierul „%{resource_name}” din folderul „%{resource}”?
     consolidated: Consolidat
@@ -444,8 +476,11 @@ ro:
     copied: Copiată
     copied_url_success: Adresa URL a fost copiată cu succes în clipboard
     copy_ai_artifacts: Copiere artefacte AI
+    copy_assessment_scheduled: Sarcina de copiere pentru evaluare a fost programată.
     copy_hint: Copiază configurația locurilor, managerilor de centru, evaluatorilor și întâlnirilor și resurselor de mai sus în următoarele centre de evaluare. După copiere, puteți face modificări suplimentare la centrele de evaluare individuale înainte de a continua.
     copy_image_url: Copiază adresa URL a imaginii
+    copy_occupation_condition_set: Copiere set de condiții de ocupație
+    copy_occupation_condition_set_msg: Această operațiune va copia întreaga configurație a factorilor de ocupație din setul de condiții actual în noul set de condiții.
     copy_report_scheduled: Sarcina de copiere a raportului a fost programată.
     copy_text: Text
     copy_to_all: Copiați la alte centre de evaluare
@@ -529,6 +564,7 @@ ro:
     default_assessment_language: Limba implicită de evaluare
     default_button: Implicit
     default_language: Limba implicită
+    default_occupation_condition_set: Setul implicit de condiții privind ocupația
     default_report_language: Limba implicită a raportului
     define_max_score_text: Definiți un scor de %{maxScore} (scor maxim)
     define_min_score_text: Definiți un scor de %{minScore} (scor minim)
@@ -638,6 +674,7 @@ ro:
     document_titles_project_participants: Participanți | %{project}
     done: Făcut
     done_tooltip: Nu se mai poate trimite nicio evaluare pentru acest utilizator, deoarece evaluarea acestuia este marcată ca fiind făcută de %{marked_by}
+    download_assessor_email_template: Descărcați un șablon de exemplu
     download_bulk_asset_download_example_csv: Descărcați exemplul CSV.
     download_example_csv: Descărcați exemplu csv
     dp_consent: Activați consimțământul pentru prelucrarea datelor
@@ -667,6 +704,7 @@ ro:
     email_subjects_manager_when_available: Trimiteți un e-mail managerului subiectului atunci când raportul devine disponibil
     empty: Gol
     empty_csv_file: Fișierul CSV nu conține niciun fel de date.
+    empty_occupation_condition_set_msg: Nu s-au găsit factori legați de ocupație pentru acest set de afecțiuni. Vă rugăm să adăugați un factor.
     enable_caching_content: Ești sigur că vrei să activezi cache-ul pentru această evaluare?
     enable_caching_successfully: Cache-ul a fost activat pentru această evaluare.
     enable_caching_title: Activarea cache-ului evaluării?
@@ -694,6 +732,7 @@ ro:
     enter_schema_key: Introduceți cheia schemei
     error: Eroare
     error_color: Culoare eroare
+    errors_csv_file_import: Vă rugăm să încărcați un fișier CSV înainte de a face clic pe „Import”
     errors_csv_file_required: Fișierul trebuie să fie un fișier CSV
     errors_error_msg: Ceva nu a mers bine. Vă rugăm să reîmprospătați pagina și, dacă problema persistă, contactați administratorul
     errors_min_retention: Nu poate fi mai mică de 1 zi
@@ -741,6 +780,7 @@ ro:
     factor_feedback: Feedback privind factorii
     factor_selection: Selectarea factorilor
     factors: Factori
+    factors_filter_strategy: Strategie
     factors_form_components_ExternalList_table_jsonpath: Calea JSON
     factors_form_components_ExternalList_table_types_norm_score: Scor normat
     factors_form_components_ExternalList_table_types_percentage: Procent
@@ -760,6 +800,7 @@ ro:
     factors_index_sub_factors: Subfactori
     factors_index_title: Factori
     factors_resource_confirmations_delete_body: "<p>Sunteți sigur că doriți să ștergeți acest factor?</p>\n"
+    factors_resource_removal_success: Factorul „%{name}” a fost eliminat cu succes.
     failure_reason: Motivul eșecului
     feature_ai_assistants_description: Activați asistenții bazati pe inteligență artificială pentru o experiență îmbunătățită a utilizatorului
     feature_ai_assisted_idp_description: Utilizați IA pentru a vă ajuta cu recomandările privind planificarea dezvoltării individuale
@@ -1214,6 +1255,7 @@ ro:
     log_date: Data jurnalului
     logged_in: Conectat
     login: Autentificare
+    login_page_design_tab: Proiectare
     low: Scăzut
     mail_history: Istoricul e-mailurilor
     main_report: Raport principal
@@ -1221,6 +1263,7 @@ ro:
     maintenance_settings: Setări de întreținere
     maintenance_settings_description: Gestionați ferestrele și setările de întreținere a sistemului
     make_report_available_to_subject_when: 'Puneți raportul la dispoziția subiectului atunci când:'
+    manage_condition_sets: Gestionarea seturilor de condiții
     manager_approval_required: Raportul pentru %{user} necesită aprobarea managerului înainte de descărcare
     manager_approves_reports: Managerul aprobă rapoartele
     manager_can_access_subject_reports: Managerul poate accesa rapoartele pe subiect
@@ -1310,6 +1353,7 @@ ro:
     new_score: Scor nou
     no_assessments_found: Audit ID
     no_client_access: Nu aveți acces la acest client
+    no_client_access_root: Nu sunteți asociat cu niciun client
     no_clients_found: Nu s-au găsit clienți
     no_completed_assessments: Nu există încă evaluări finalizate
     no_file_selected: Niciun fișier selectat
@@ -1330,6 +1374,7 @@ ro:
     norm_region: Regiunea normă
     norm_region_form_select: Selectați regiunea normă
     norm_region_update_success: Regiunea Norm a fost actualizată cu succes
+    norm_score: Scorul normativ
     normal: Normal
     normalize_factor_scores: Normalizați scorurile factorilor
     norms: Normele
@@ -1360,13 +1405,22 @@ ro:
     oauth_scope_label: Aplicare
     oauth_scope_name: oauth_scope
     oauth_scope_required: Este necesară sfera de aplicare
+    occupation_condition_set_copy_success: Setul de condiții de ocupație a fost copiat cu succes
+    occupation_condition_sets: Seturi de condiții privind ocupația
+    occupation_condition_sets_remove_confirm: Introduceți în caseta de text numele setului de condiții de ocupație indicat mai jos pentru a confirma
+    occupation_condition_sets_remove_success: Setul de condiții de ocupație „%{name}” a fost eliminat cu succes
+    occupation_condition_sets_remove_warning: Ești sigur că vrei să ștergi setul de condiții de ocupație „%{name}”?
+    occupation_factors_condition_set: Set de condiții
+    occupation_factors_title: Factori legați de ocupație
     occupations: Ocupaţii
+    occupations_factor_uniqueness: Factorul a fost deja luat în considerare
     occupations_factors_list_condition: Condiție
     occupations_factors_list_position: Poziție
     occupations_factors_list_weight: Greutate
     occupations_form_alternative_icon: Pictogramă alternativă
     occupations_form_color: Culoare
     occupations_form_indicative_roles_image: Imagine cu exemple de roluri
+    occupations_form_key_career_tracks_hint: "„+” – listă, „*” – caractere aldine. Exemplu: + *Biologie* – o descriere..."
     occupations_form_key_career_tracks_image: Imagine cu principalele parcursuri profesionale
     occupations_index_title: Ocupaţii
     occupations_resource_confirmations_delete_body: "<p>Sunteți sigur că doriți să ștergeți această ocupație?</p>\n"
@@ -2033,6 +2087,7 @@ ro:
     public_key_cannot_be_changed: nu poate fi modificat după creare
     public_key_copy_private_key: Copierea cheii private
     public_key_created: Cheia publică a fost creată cu succes
+    public_key_details: Detalii privind cheia publică
     public_key_generate: Generare pereche de chei
     public_key_generate_button: Generare pereche de chei RSA
     public_key_generate_info: Se va genera o pereche de chei RSA de 2048 de biți. Se va stoca doar cheia publică. Copiați și păstrați în siguranță cheia privată — aceasta nu va mai fi afișată.
@@ -2077,6 +2132,7 @@ ro:
     range_min_max: GAMA%{min} - %{max}
     rationale: Justificare
     raw: CRUD
+    raw_score: Punctaj brut
     reason_for_changes: Motivul modificărilor
     recents: Cele mai recente
     record_id: ID înregistrare
@@ -2108,6 +2164,7 @@ ro:
     remove_confirm_success: Subiectul cu adresa de e-mail "%{subjectEmail}" a fost eliminat cu succes.
     remove_confirm_title: Eliminați subiectul
     remove_confirmation: Ești sigur că vrei să ștergi acest element?
+    remove_icon: Eliminare pictogramă
     remove_output_schema_key: Eliminarea cheii schemei de ieșire
     remove_successfully: Elementul media a fost șters cu succes.
     render_button: Șablon de randare
@@ -2210,6 +2267,7 @@ ro:
     report_type: Tipul raportului
     report_types:
       active_clients_projects: Clienți activi și proiecte
+      campaign_factor_scores: Scorurile factorilor de campanie
       client_assessment_counts: Evaluarea clienților contează
       hogan_usage_report: Utilizarea evaluării Hogan
       json_data_report: Raport privind datele JSON
@@ -2357,6 +2415,11 @@ ro:
       user_full_name_cont: Nume de utilizator
     saville: Saville
     saville_assessment: Evaluarea Saville
+    scale_max: Scala maximă
+    scale_max_must_be_greater_than_scale_min: Valoarea maximă a scalei trebuie să fie mai mare decât valoarea minimă a scalei
+    scale_min: Scala minimă
+    scale_min_must_be_less_than_scale_max: Valoarea minimă a scalei trebuie să fie mai mică decât valoarea maximă a scalei
+    scale_value_must_not_be_negative: Valoarea nu trebuie să fie negativă
     schedule: Orar
     schedule_email: Programați e-mailul
     schedule_email_title: Programați e-mailul
@@ -2493,10 +2556,13 @@ ro:
     score_definition_placeholder: Introduceți definiția pentru acest nivel de scor
     score_definitions: Definiții ale scorurilor
     score_max: Scor maxim
+    score_max_must_be_greater_than_score_min: Scorul maxim trebuie să fie mai mare decât scorul minim
     score_min: Scor minim
+    score_min_must_be_less_than_score_max: Scorul minim trebuie să fie mai mic decât scorul maxim
     score_must_be_in_between_min_and_max: Scorul trebuie să se încadreze între %{min} și %{max}.
     score_not_applicable: Scorul nu se aplică
     score_range_info: 'Interval de scoruri: %{min} - %{max}'
+    score_type: Tipul scorului
     score_with_ai: Scor cu AI
     scores_finalized: Rezultatele sunt definitive și nu pot fi modificate
     scoring: Notare
@@ -2605,6 +2671,7 @@ ro:
     search_admins: Administratori de căutare
     search_campaign: Căutare după campanie
     search_client: Căutare după Client
+    search_client_assessors: Căutare evaluatori ai clienților
     search_job_role: Căutare post
     search_participants: Căutare participanți...
     search_project: Caută după proiect
@@ -2640,6 +2707,7 @@ ro:
     select_admin_role: Selectați rolul de administrator
     select_assessment_language: Selectați limba de evaluare
     select_client: Selectați clientul
+    select_condition_set: Selectați setul de condiții
     select_end_time: Selectați ora de încheiere
     select_language_to_translate: Vă rugăm să selectați limba pentru traducere
     select_level: Selectați nivelul
@@ -3058,6 +3126,7 @@ ro:
     translated_with_ai_notice: Traducere AI
     translation_assistant_not_configured: Asistentul de traducere nu este configurat
     translations:
+      import: Importare traduceri
       title: Traduceri
     translations_export_failure_msg: Eroare la exportul traducerilor
     translations_export_success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.

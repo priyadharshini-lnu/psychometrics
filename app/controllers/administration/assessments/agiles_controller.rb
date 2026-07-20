@@ -14,7 +14,8 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   def update
     form = Assessments::AgileForm.new(agile_params)
     if form.valid?
-      resource.agile.update(form.attributes)
+      resource.agile.update(form.attributes.except(:extra))
+      resource.update(extra: form.extra) if form.extra
       audit! :update, resource, payload: agile_params
       head :ok
     else
@@ -27,7 +28,8 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   def agile_params
     params.expect(
       agile: [config: {},
-              translations: {}]
+              translations: {},
+              extra: {}]
     )
   end
 

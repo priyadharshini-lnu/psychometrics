@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :design_setting do
-    project { create(:project, ancestry_depth: 0) }
+    association :client, factory: :tenancy
     login_box_position { 'auto' }
     background_color { '#ff0000' }
   end

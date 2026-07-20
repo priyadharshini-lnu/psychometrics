@@ -235,6 +235,7 @@ const AdminsComponent: React.FC<Props> = ({
             pagination={false}
             loading={tableLoading}
             scroll={{ x: 'max-content' }}
+            rowKey="id"
             dataSource={data}
             onChange={handleTableChange}
           >

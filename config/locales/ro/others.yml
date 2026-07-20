@@ -876,6 +876,7 @@ ro:
         compact_completion_status_export: Exportați compact al stării de finalizare
         completion_status_export: Exportul stării de finalizare
         copy_as_template_or_campaign: Copiați campania ca șablon
+        copy_assessment: Evaluarea copierii
         copy_dimension: Copiere parametru
         copy_report: Copiere raport
         create_threesixty_campaign: Creați campania Threesixty
@@ -915,6 +916,7 @@ ro:
         import_assessors: Evaluatori de import
         import_campaign_ai_artifacts: Importul artefactelor AI din campanii
         import_campaign_factors: Importați factori de campanie
+        import_client_assessors: Importarea evaluatorilor clienților
         import_datasheet: Fișa tehnică de import
         import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
         import_development_actions: Acțiune de dezvoltare a importurilor
@@ -972,6 +974,8 @@ ro:
       errors:
         no_plans: Nu s-au găsit planuri IDP active
     close: Închide
+    copy_assessment:
+      failed: Copierea pentru evaluare a eșuat
     copy_report:
       failed: Copierea raportului a eșuat
     details: Detalii
