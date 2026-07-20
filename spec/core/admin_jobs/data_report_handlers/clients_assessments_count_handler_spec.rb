@@ -32,8 +32,7 @@ RSpec.describe AdminJobs::DataReportHandlers::ClientAssessmentsCountHandler do
       scope: 'global',
       report_type: :client_assessment_counts,
       configuration: {
-        client_id: nil,
-        year_range: nil
+        client_id: nil
       }.to_json
     )
   end

@@ -119,5 +119,22 @@ module AdminJobs
 
       true
     end
+
+    def generate_title_link
+      return {} unless data_report
+
+      {
+        href: data_report_path,
+        label: data_report.name
+      }
+    end
+
+    private
+
+    def data_report_path
+      return "/admin/data_reports/#{data_report.id}" if data_report.scope_global?
+
+      "/admin/clients/#{data_report.owner_id}/data_reports/#{data_report.id}"
+    end
   end
 end

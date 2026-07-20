@@ -24,6 +24,7 @@ export const DataReports: React.FC<{}> = () => {
       users: ['name', 'email'],
       clients: ['name'],
     },
+    sort: '-id',
   }
 
   const { memberAction, fetchSingle } = useResources<DataReport>(
@@ -99,6 +100,13 @@ export const DataReports: React.FC<{}> = () => {
         dataIndex="name"
         key="campaign_name"
         width={300}
+      />
+      <Resource.Column<DataReport>
+        id="report_type"
+        title={I18n.t('admin.report_type')}
+        dataIndex="reportType"
+        width={200}
+        render={reportType => I18n.t(`admin.report_types.${reportType}`)}
       />
       <Resource.Column<DataReport>
         id="scope"

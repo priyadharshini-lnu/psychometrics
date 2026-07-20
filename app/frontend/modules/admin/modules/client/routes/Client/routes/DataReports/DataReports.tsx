@@ -15,6 +15,7 @@ export const DataReports: React.FC<{}> = () => {
     include: ['last_updated_by', 'owner'],
     fields: { users: ['name', 'email'], clients: ['name'] },
     filter: { owner_id_eq: clientId as string },
+    sort: '-id',
   }
 
   const { memberAction } = useResources<DataReport>(
@@ -57,6 +58,24 @@ export const DataReports: React.FC<{}> = () => {
           dataIndex="name"
           id="name"
           width={300}
+        />
+        <Resource.Column<DataReport>
+          title={I18n.t('admin.report_type')}
+          dataIndex="reportType"
+          id="report_type"
+          width={200}
+          render={reportType => I18n.t(`admin.report_types.${reportType}`)
+          }
+        />
+        <Resource.Column<DataReport>
+          title={I18n.t('admin.scope')}
+          dataIndex="scope"
+          id="scope"
+          width={100}
+          render={scope => (scope === 'global'
+            ? I18n.t('admin.scope_global')
+            : I18n.t('admin.scope_client'))
+          }
         />
         <Resource.Column<DataReport>
           title={I18n.t('shared.owner')}

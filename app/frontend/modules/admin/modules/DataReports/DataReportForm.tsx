@@ -122,6 +122,28 @@ export const DataReportForm: React.FC<Props> = ({
               <Input />
             </Form.Item>
             <Form.Item
+              name="reportType"
+              label={I18n.t('admin.report_type')}
+              initialValue={dataReport?.reportType || 'json_data_report'}
+              rules={[{ required: true }]}
+            >
+              <Select
+                showSearch
+                placeholder={I18n.t('admin.select_report_type')}
+                optionFilterProp="children"
+                filterOption={(input, option) => String(option?.children)
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+                }
+              >
+                {REPORT_TYPE_KEYS.map(key => (
+                  <Select.Option key={key} value={key}>
+                    {I18n.t(`admin.report_types.${key}`)}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+            <Form.Item
               name="scope"
               label={I18n.t('admin.scope')}
               initialValue={dataReport?.scope || 'client'}
@@ -173,20 +195,6 @@ export const DataReportForm: React.FC<Props> = ({
                 </Select>
               </Form.Item>
             )}
-            <Form.Item
-              name="reportType"
-              label={I18n.t('admin.report_type')}
-              initialValue={dataReport?.reportType || 'json_data_report'}
-              rules={[{ required: true }]}
-            >
-              <Select placeholder={I18n.t('admin.select_report_type')}>
-                {REPORT_TYPE_KEYS.map(key => (
-                  <Select.Option key={key} value={key}>
-                    {I18n.t(`admin.report_types.${key}`)}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
             {ConfigComponent && (
               <ConfigComponent
                 form={form}
