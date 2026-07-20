@@ -99,6 +99,12 @@ module Administration
       end
 
       def copy
+        audit! :copy, @campaign, payload: {
+          source_id: @campaign.id,
+          new_name: params.dig(:resource, :name),
+          copy_ai_artifacts: params.dig(:resource, :copy_campaign_ai_artifacts),
+          copy_factors: params.dig(:resource, :copy_campaign_factors)
+        }
         form = ::Campaigns::CopyForm.from_params(campaign_params)
         ::Campaigns::Copy.call!(form, @campaign)
 
