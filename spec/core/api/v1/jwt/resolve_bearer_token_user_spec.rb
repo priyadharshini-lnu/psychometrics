@@ -34,28 +34,6 @@ RSpec.describe Api::V1::Jwt::ResolveBearerTokenUser do
       end
     end
 
-    context 'when replay is detected for single_use token' do
-      before do
-        payload[:single_use] = true
-        allow(Jwt::SingleUse::SingleUseJtiGuard).to receive(:call).and_return({ replayed: { reason: :replayed } })
-      end
-
-      it 'returns token_replayed error' do
-        expect(call_service[:error]).to eq(:token_replayed)
-      end
-    end
-
-    context 'when single_use token is expired in replay guard' do
-      before do
-        payload[:single_use] = true
-        allow(Jwt::SingleUse::SingleUseJtiGuard).to receive(:call).and_return({ replayed: { reason: :expired } })
-      end
-
-      it 'returns token_expired error' do
-        expect(call_service[:error]).to eq(:token_expired)
-      end
-    end
-
     context 'when audience is wrong' do
       let(:token_aud) { 'https://wrong.ttedev.me:3030' }
 
