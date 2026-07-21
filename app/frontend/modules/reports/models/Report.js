@@ -14,6 +14,7 @@ export const PAGE_SIZES = [
   { width: 1188, height: 840, label: 'A4 - Landscape (1188*840)' },
   { width: 850, height: 1100, label: 'Letter - Portrait (850x1100)' },
   { width: 1100, height: 850, label: 'Letter - Landscape (1100x850)' },
+  { width: 1355, height: 762, label: 'PowerPoint Presentation (1355x762)' },
 ]
 export const LEGACY_PAGE_SIZES = [
   { width: 827, height: 1169, label: 'Legacy - A4 - Portrait (827x1169)' },
