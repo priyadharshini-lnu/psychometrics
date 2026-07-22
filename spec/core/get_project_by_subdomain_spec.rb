@@ -32,4 +32,13 @@ describe GetProjectBySubdomain do
 
     expect(result).to eq(project)
   end
+
+  it 'returns nil if the subdomain belongs to a root client' do
+    allow(Settings).to receive(:subdomain).and_return(nil)
+    create(:tenancy, subdomain: 'root-client-subdomain')
+
+    result = described_class.call!('root-client-subdomain')
+
+    expect(result).to be_nil
+  end
 end
