@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import {
   Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin, Popover,
-  Descriptions, Switch, Tooltip, App,
+  Descriptions, Switch, Tooltip, App, InputNumber, Collapse,
 } from 'antd'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -42,10 +42,16 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const originalProvider = availableAiProviders.find(p => p.model_id === aiAssistant?.modelId)
   const providerChanged = aiAssistant?.providerPreviouslyUsed && selectedModelId !== aiAssistant?.modelId
 
+  const showTemperature = selectedProvider?.supports_temperature ?? true
+  const showReasoning = !!selectedProvider?.supports_reasoning
+  const showThinkingBudget = selectedProvider?.supports_thinking_budget ?? true
+
   const assistantOutputSchemaKeys = Form.useWatch('assistantOutputSchemaKeysAttributes', form) || []
   const assistantType = Form.useWatch('assistantType', form)
 
   const currentAssistantTypeConfig = Object.values(ASSISTANT_TYPES).find(type => type.id === assistantType)
+  type TypeDefaults = { maxTokens?: number; temperature?: number }
+  const typeDefaults: TypeDefaults = currentAssistantTypeConfig?.defaultModelParams ?? {}
   const supportedDependencies = currentAssistantTypeConfig && 'supportedDependencies' in currentAssistantTypeConfig
     ? currentAssistantTypeConfig.supportedDependencies
     : []
@@ -372,6 +378,93 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               )}
             </>
           )}
+          <Collapse
+            style={{ marginBottom: 16 }}
+            items={[{
+              key: 'model-params',
+              label: I18n.t('admin.model_params_title'),
+              children: (
+                <>
+                  <Typography.Text type="secondary" style={{ display: 'block', marginBottom: 16 }}>
+                    {I18n.t('admin.model_params_description')}
+                  </Typography.Text>
+                  <Row gutter={16}>
+                    <Col span={12}>
+                      <Form.Item
+                        name={['modelParams', 'maxTokens']}
+                        label={I18n.t('admin.model_params_max_tokens')}
+                        tooltip={I18n.t('admin.model_params_max_tokens_tooltip')}
+                      >
+                        <InputNumber
+                          min={1}
+                          style={{ width: '100%' }}
+                          placeholder={typeDefaults.maxTokens?.toString()}
+                        />
+                      </Form.Item>
+                    </Col>
+                    {showTemperature && (
+                      <Col span={12}>
+                        <Form.Item
+                          name={['modelParams', 'temperature']}
+                          label={I18n.t('admin.model_params_temperature')}
+                          tooltip={I18n.t('admin.model_params_temperature_tooltip')}
+                        >
+                          <InputNumber
+                            min={0}
+                            max={2}
+                            step={0.1}
+                            style={{ width: '100%' }}
+                            placeholder={typeDefaults.temperature?.toString()}
+                          />
+                        </Form.Item>
+                      </Col>
+                    )}
+                    {showReasoning && (
+                      <>
+                        <Col span={12}>
+                          <Form.Item
+                            name={['modelParams', 'thinkingEffort']}
+                            label={I18n.t('admin.model_params_thinking_effort')}
+                            tooltip={I18n.t('admin.model_params_thinking_effort_tooltip')}
+                          >
+                            <Select allowClear>
+                              <Select.Option value="none">
+                                {I18n.t('admin.model_params_thinking_effort_none')}
+                              </Select.Option>
+                              <Select.Option value="low">
+                                {I18n.t('admin.model_params_thinking_effort_low')}
+                              </Select.Option>
+                              <Select.Option value="medium">
+                                {I18n.t('admin.model_params_thinking_effort_medium')}
+                              </Select.Option>
+                              <Select.Option value="high">
+                                {I18n.t('admin.model_params_thinking_effort_high')}
+                              </Select.Option>
+                            </Select>
+                          </Form.Item>
+                        </Col>
+                        <Col span={12}>
+                          <Form.Item
+                            name={['modelParams', 'thinkingBudget']}
+                            label={I18n.t('admin.model_params_thinking_budget')}
+                            tooltip={showThinkingBudget
+                              ? I18n.t('admin.model_params_thinking_budget_tooltip')
+                              : I18n.t('admin.model_params_thinking_budget_unsupported')}
+                          >
+                            <InputNumber
+                              min={1}
+                              style={{ width: '100%' }}
+                              disabled={!showThinkingBudget}
+                            />
+                          </Form.Item>
+                        </Col>
+                      </>
+                    )}
+                  </Row>
+                </>
+              ),
+            }]}
+          />
           <Button type="primary" htmlType="submit" onClick={handleSubmit} loading={isLoading} className="mb-16">
             {I18n.t('common.actions.save')}
           </Button>

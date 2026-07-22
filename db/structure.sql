@@ -1316,7 +1316,8 @@ CREATE TABLE public.ai_assistants (
     dependencies jsonb DEFAULT '[]'::jsonb NOT NULL,
     status integer DEFAULT 0 NOT NULL,
     advanced_prompting_enabled boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    model_params jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -5587,11 +5588,6 @@ ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
 
 
 --
--- Name: occupations; Type: TABLE; Schema: public; Owner: -
---
-
-
---
 -- Name: occupation_condition_sets; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5604,6 +5600,7 @@ CREATE TABLE public.occupation_condition_sets (
     updated_at timestamp(6) without time zone NOT NULL,
     score_type integer DEFAULT 0 NOT NULL
 );
+
 
 --
 -- Name: occupation_condition_sets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
@@ -5623,6 +5620,10 @@ CREATE SEQUENCE public.occupation_condition_sets_id_seq
 
 ALTER SEQUENCE public.occupation_condition_sets_id_seq OWNED BY public.occupation_condition_sets.id;
 
+
+--
+-- Name: occupations; Type: TABLE; Schema: public; Owner: -
+--
 
 CREATE TABLE public.occupations (
     id integer NOT NULL,
@@ -12692,6 +12693,14 @@ ALTER TABLE ONLY public.notifications
 
 
 --
+-- Name: occupation_condition_sets occupation_condition_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupation_condition_sets
+    ADD CONSTRAINT occupation_condition_sets_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: occupations_factors occupations_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12702,14 +12711,6 @@ ALTER TABLE ONLY public.occupations_factors
 --
 -- Name: occupations occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
-
-
---
--- Name: occupation_condition_sets occupation_condition_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.occupation_condition_sets
-    ADD CONSTRAINT occupation_condition_sets_pkey PRIMARY KEY (id);
 
 ALTER TABLE ONLY public.occupations
     ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
@@ -14895,15 +14896,15 @@ CREATE INDEX index_campaign_assessments_on_norm_id ON public.campaign_assessment
 
 
 --
--- Name: index_campaign_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
---
-
-
---
 -- Name: index_campaign_assessments_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_campaign_assessments_on_occupation_condition_set_id ON public.campaign_assessments USING btree (occupation_condition_set_id);
+
+
+--
+-- Name: index_campaign_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
 
 CREATE INDEX index_campaign_assessments_on_tenant_id ON public.campaign_assessments USING btree (tenant_id);
 
@@ -15721,17 +15722,17 @@ CREATE UNIQUE INDEX index_dd1550fac3e20f3c72e929b92570e38fc03f70a8 ON public.cam
 
 
 --
--- Name: index_design_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING btree (project_id);
-
-
---
 -- Name: index_design_settings_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_design_settings_on_client_id ON public.design_settings USING btree (client_id);
+
+
+--
+-- Name: index_design_settings_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_design_settings_on_project_id ON public.design_settings USING btree (project_id);
 
 
 --
@@ -15791,15 +15792,15 @@ CREATE INDEX index_dimensions_on_created_by_id ON public.dimensions USING btree 
 
 
 --
--- Name: index_dimensions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
---
-
-
---
 -- Name: index_dimensions_on_default_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_dimensions_on_default_occupation_condition_set_id ON public.dimensions USING btree (default_occupation_condition_set_id);
+
+
+--
+-- Name: index_dimensions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
 
 CREATE INDEX index_dimensions_on_tenant_id ON public.dimensions USING btree (tenant_id);
 
@@ -16869,11 +16870,6 @@ CREATE INDEX index_notifications_on_tenant_id ON public.notifications USING btre
 
 
 --
--- Name: index_occupations_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
---
-
-
---
 -- Name: index_occupation_condition_sets_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16893,7 +16889,19 @@ CREATE UNIQUE INDEX index_occupation_condition_sets_on_dimension_id_and_name ON 
 
 CREATE INDEX index_occupation_condition_sets_on_tenant_id ON public.occupation_condition_sets USING btree (tenant_id);
 
+
+--
+-- Name: index_occupations_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
 CREATE INDEX index_occupations_factors_on_factor_id ON public.occupations_factors USING btree (factor_id);
+
+
+--
+-- Name: index_occupations_factors_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_factors_on_occupation_condition_set_id ON public.occupations_factors USING btree (occupation_condition_set_id);
 
 
 --
@@ -16906,13 +16914,6 @@ CREATE INDEX index_occupations_factors_on_occupation_id ON public.occupations_fa
 --
 -- Name: index_occupations_factors_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
-
-
---
--- Name: index_occupations_factors_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_occupations_factors_on_occupation_condition_set_id ON public.occupations_factors USING btree (occupation_condition_set_id);
 
 CREATE INDEX index_occupations_factors_on_tenant_id ON public.occupations_factors USING btree (tenant_id);
 
@@ -19151,15 +19152,15 @@ CREATE INDEX index_users_on_tenant_id ON public.users USING btree (tenant_id);
 
 
 --
--- Name: index_users_results_on_tenant_id; Type: INDEX; Schema: public; Owner: -
---
-
-
---
 -- Name: index_users_results_on_occupation_condition_set_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_results_on_occupation_condition_set_id ON public.users_results USING btree (occupation_condition_set_id);
+
+
+--
+-- Name: index_users_results_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
 
 CREATE INDEX index_users_results_on_tenant_id ON public.users_results USING btree (tenant_id);
 
@@ -20814,16 +20815,16 @@ ALTER TABLE ONLY public.memberships
 
 
 --
--- Name: questions fk_rails_38b686d55b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-
---
 -- Name: campaign_assessments fk_rails_3874b11207; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.campaign_assessments
     ADD CONSTRAINT fk_rails_3874b11207 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id);
+
+
+--
+-- Name: questions fk_rails_38b686d55b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY public.questions
     ADD CONSTRAINT fk_rails_38b686d55b FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
@@ -20854,16 +20855,16 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
--- Name: admin_roles fk_rails_3b1aac0d32; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-
---
 -- Name: occupation_condition_sets fk_rails_3abfce3f69; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.occupation_condition_sets
     ADD CONSTRAINT fk_rails_3abfce3f69 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: admin_roles fk_rails_3b1aac0d32; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY public.admin_roles
     ADD CONSTRAINT fk_rails_3b1aac0d32 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
@@ -21238,16 +21239,16 @@ ALTER TABLE ONLY public.idp_templates
 
 
 --
--- Name: assessments fk_rails_516ec5451d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-
---
 -- Name: users_results fk_rails_514f3ba943; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users_results
     ADD CONSTRAINT fk_rails_514f3ba943 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id);
+
+
+--
+-- Name: assessments fk_rails_516ec5451d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY public.assessments
     ADD CONSTRAINT fk_rails_516ec5451d FOREIGN KEY (updated_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
@@ -22302,16 +22303,16 @@ ALTER TABLE ONLY public.client_ai_assistants
 
 
 --
--- Name: campaigns fk_rails_8de91ec8d1; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-
---
 -- Name: occupations_factors fk_rails_8da89aeab3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.occupations_factors
     ADD CONSTRAINT fk_rails_8da89aeab3 FOREIGN KEY (occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id) ON DELETE CASCADE;
+
+
+--
+-- Name: campaigns fk_rails_8de91ec8d1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY public.campaigns
     ADD CONSTRAINT fk_rails_8de91ec8d1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
@@ -22926,14 +22927,6 @@ ALTER TABLE ONLY public.design_settings
 
 
 --
--- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.design_settings
-    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
-
-
---
 -- Name: factor_benchmark_scores fk_rails_b025f0548c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23046,16 +23039,16 @@ ALTER TABLE ONLY public.assessments
 
 
 --
--- Name: idp_template_interview_questions fk_rails_b9b361c335; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-
---
 -- Name: dimensions fk_rails_b8c3fe7ea4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.dimensions
     ADD CONSTRAINT fk_rails_b8c3fe7ea4 FOREIGN KEY (default_occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id) ON DELETE SET NULL;
+
+
+--
+-- Name: idp_template_interview_questions fk_rails_b9b361c335; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
 
 ALTER TABLE ONLY public.idp_template_interview_questions
     ADD CONSTRAINT fk_rails_b9b361c335 FOREIGN KEY (idp_template_id) REFERENCES public.idp_templates(id) ON DELETE CASCADE;
@@ -23403,6 +23396,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_cff428b57f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
+-- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -24524,6 +24525,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260717000000'),
 ('20260709000000'),
 ('20260630180650'),
 ('20260630180649'),
@@ -25599,3 +25601,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

@@ -21,7 +21,8 @@ user_prompt: 'How can I help you?')
   end
 
   let(:llm_response) do
-    instance_double(RubyLLM::Message, content: 'LLM says hello', input_tokens: 12, output_tokens: 8)
+    instance_double(RubyLLM::Message, content: 'LLM says hello', input_tokens: 12, output_tokens: 8,
+                                     thinking_tokens: nil)
   end
 
   before do
@@ -36,6 +37,7 @@ user_prompt: 'How can I help you?')
       expect(result[:message]).to eq(llm_response.content)
       expect(result[:input_tokens]).to eq(llm_response.input_tokens)
       expect(result[:output_tokens]).to eq(llm_response.output_tokens)
+      expect(result[:thinking_tokens]).to eq(llm_response.thinking_tokens)
     end
 
     it 'creates a new chat for the user and assistant' do
@@ -105,10 +107,12 @@ user_prompt: 'How can I help you?')
     end
     let(:output_schema_class) { double('OutputSchemaClass') }
     let(:invalid_llm_response) do
-      instance_double(RubyLLM::Message, content: '{"error": "invalid"}', input_tokens: 12, output_tokens: 8)
+      instance_double(RubyLLM::Message, content: '{"error": "invalid"}', input_tokens: 12, output_tokens: 8,
+                                        thinking_tokens: nil)
     end
     let(:valid_llm_response) do
-      instance_double(RubyLLM::Message, content: '{"translated_texts": ["Hello"]}', input_tokens: 15, output_tokens: 10)
+      instance_double(RubyLLM::Message, content: '{"translated_texts": ["Hello"]}', input_tokens: 15,
+                                        output_tokens: 10, thinking_tokens: nil)
     end
 
     before do
