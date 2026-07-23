@@ -24,12 +24,28 @@ module Middlewares
 
       if AdminSubdomain.root_domain?(subdomain)
         Current.admin_context = :super_admin
+        resolve_superadmin_scope(request)
       elsif AdminSubdomain.client_admin_sso_enabled? && AdminSubdomain.client_admin?(subdomain)
         Current.admin_context = :client_admin
         resolve_client(subdomain)
       else
         Current.admin_context = nil
       end
+    end
+
+    def resolve_superadmin_scope(request)
+      return if TenantEnforcement.superadmin_scoping_disabled?
+
+      client = ActsAsTenant.without_tenant do
+        ::Clients::ResolveFromRequest.call!(request.path, request_params(request))
+      end
+      return unless client
+
+      ActsAsTenant.current_tenant = client unless bypass_tenant_scoping?(client)
+    end
+
+    def request_params(request)
+      Rack::Utils.parse_nested_query(request.query_string).with_indifferent_access
     end
 
     def resolve_client(subdomain)

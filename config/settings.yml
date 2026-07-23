@@ -2720,3 +2720,4 @@ smtp_default:
 tenant_scoping:
   disabled: <%= ENV.fetch('TENANT_SCOPING_DISABLED', 'false') == 'true' %>
   bypass_subdomains: <%= ENV.fetch('TENANT_BYPASS_SUBDOMAINS', '').split(',').map(&:strip) %>
+  superadmin_scoping_disabled: <%= ENV.fetch('SUPERADMIN_SCOPING_DISABLED', 'false') == 'true' %>

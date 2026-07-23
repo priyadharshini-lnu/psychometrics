@@ -18,7 +18,11 @@ class ApplicationJob < ActiveJob::Base
 
   around_enqueue do |job, block|
     job.request_id = Current.request_id
-    block.call
+    if Current.super_admin_context?
+      ActsAsTenant.without_tenant { block.call }
+    else
+      block.call
+    end
   end
 
   around_perform do |job, block|
