@@ -180,6 +180,7 @@ en:
     reset: Reset
     reset_password: Reset Password
     response_text: Response Text
+    return_url_not_whitelisted: The return URL is not whitelisted for this application.
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     run: Run

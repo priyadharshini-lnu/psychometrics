@@ -1672,7 +1672,8 @@ CREATE TABLE public.application_settings (
     tenant_id bigint NOT NULL,
     ip_whitelisting_enabled boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    url_whitelisting_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -1693,6 +1694,41 @@ CREATE SEQUENCE public.application_settings_id_seq
 --
 
 ALTER SEQUENCE public.application_settings_id_seq OWNED BY public.application_settings.id;
+
+
+--
+-- Name: application_url_whitelist_entries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_url_whitelist_entries (
+    id bigint NOT NULL,
+    application_setting_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    url character varying NOT NULL,
+    description text,
+    enabled boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_url_whitelist_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_url_whitelist_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_url_whitelist_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_url_whitelist_entries_id_seq OWNED BY public.application_url_whitelist_entries.id;
 
 
 --
@@ -10087,6 +10123,13 @@ ALTER TABLE ONLY public.application_settings ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: application_url_whitelist_entries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries ALTER COLUMN id SET DEFAULT nextval('public.application_url_whitelist_entries_id_seq'::regclass);
+
+
+--
 -- Name: assessment_assistants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -11842,6 +11885,14 @@ ALTER TABLE ONLY public.application_public_keys
 
 ALTER TABLE ONLY public.application_settings
     ADD CONSTRAINT application_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: application_url_whitelist_entries application_url_whitelist_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries
+    ADD CONSTRAINT application_url_whitelist_entries_pkey PRIMARY KEY (id);
 
 
 --
@@ -13741,10 +13792,24 @@ CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant
 
 
 --
+-- Name: idx_on_application_setting_id_c2c1c3f547; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_c2c1c3f547 ON public.application_url_whitelist_entries USING btree (application_setting_id);
+
+
+--
 -- Name: idx_on_application_setting_id_e570a8a095; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_on_application_setting_id_e570a8a095 ON public.application_ip_whitelist_entries USING btree (application_setting_id);
+
+
+--
+-- Name: idx_on_application_setting_id_enabled_bef3a46920; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_enabled_bef3a46920 ON public.application_url_whitelist_entries USING btree (application_setting_id, enabled);
 
 
 --
@@ -14459,6 +14524,20 @@ CREATE INDEX index_application_settings_on_tenant_id ON public.application_setti
 --
 
 CREATE UNIQUE INDEX index_application_settings_on_user_id ON public.application_settings USING btree (user_id);
+
+
+--
+-- Name: index_application_url_whitelist_entries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_url_whitelist_entries_on_tenant_id ON public.application_url_whitelist_entries USING btree (tenant_id);
+
+
+--
+-- Name: index_application_url_whitelist_entries_on_url; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_url_whitelist_entries_on_url ON public.application_url_whitelist_entries USING btree (url);
 
 
 --
@@ -21151,6 +21230,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: application_url_whitelist_entries fk_rails_4ab0221ecf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries
+    ADD CONSTRAINT fk_rails_4ab0221ecf FOREIGN KEY (application_setting_id) REFERENCES public.application_settings(id) ON DELETE CASCADE;
+
+
+--
 -- Name: simulation_user_assessments fk_rails_4b5406d610; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24526,6 +24613,8 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260717000000'),
+('20260713060835'),
+('20260713060508'),
 ('20260709000000'),
 ('20260630180650'),
 ('20260630180649'),

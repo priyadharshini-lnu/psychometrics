@@ -3,11 +3,10 @@ import {
   Space, Switch, Typography,
 } from 'antd'
 import {
-  ApplicationIpWhitelistEntry, ApplicationIpWhitelistEntryTR,
+  ApplicationIpWhitelistEntry, ApplicationIpWhitelistEntryTR, ApplicationIpWhitelistSetting,
 } from '~/modules/admin/modules/client/core/applicationIpWhitelistEntries'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { Resource } from '~/modules/admin/components/Resource'
-import { ApplicationSetting } from '~/modules/admin/modules/client/core/applicationSettings'
 import { IpWhiteListFilter } from './IpWhiteListFilter'
 import { IpWhiteListFormModal } from './IpWhiteListFormModal'
 import { IpWhiteListTable } from './IpWhiteListTable'
@@ -17,7 +16,7 @@ const { Text } = Typography
 
 type Props = {
   applicationId: string
-  applicationSetting?: ApplicationSetting
+  applicationIpWhitelistSetting?: ApplicationIpWhitelistSetting
   isIpWhitelistingEnabled: boolean
   isToggleLoading: boolean
   onToggleWhitelisting: (enabled: boolean) => void
@@ -27,7 +26,7 @@ type Props = {
 
 export const IpSettings: React.FC<Props> = ({
   applicationId,
-  applicationSetting,
+  applicationIpWhitelistSetting,
   isIpWhitelistingEnabled,
   isToggleLoading,
   onToggleWhitelisting,
@@ -57,7 +56,7 @@ export const IpSettings: React.FC<Props> = ({
             <Switch
               checked={isIpWhitelistingEnabled}
               onChange={onToggleWhitelisting}
-              disabled={!applicationSetting}
+              disabled={!applicationIpWhitelistSetting}
               loading={isToggleLoading}
             />
             <Text className="font-semi-bold">{I18n.t('admin.application_settings_enable_ip_whitelisting')}</Text>

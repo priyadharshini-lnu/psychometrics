@@ -1388,6 +1388,11 @@ as: :simulation_progress_notification
                 post :bulk_create
               end
             end
+            jsonapi_resources :application_url_whitelist_entries, only: %i[index create update destroy] do
+              collection do
+                post :bulk_create
+              end
+            end
           end
           jsonapi_resources :report_families do
             jsonapi_resources :report_families_reports

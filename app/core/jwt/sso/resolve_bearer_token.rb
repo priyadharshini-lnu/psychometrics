@@ -36,8 +36,10 @@ module Jwt
         target = resolve_target_route(claims, participant)
         return broadcast(:error, :invalid_target) unless target
 
-        return_url = validate_return_url(claims)
-        return broadcast(:error, :invalid_return_url) if return_url == :invalid
+        return_url_result = validate_return_url(claims, application_and_key[:application])
+        return broadcast(:error, return_url_result[:error]) if return_url_result.key?(:error)
+
+        return_url = return_url_result[:ok]
 
         token_replayed = token_replayed?(claims)
         if token_replayed
@@ -100,11 +102,8 @@ module Jwt
         result[:ok]
       end
 
-      def validate_return_url(claims)
-        result = ValidateReturnUrl.call(return_url: claims['ret_url'])
-        return result[:ok] if result.key?(:ok)
-
-        :invalid
+      def validate_return_url(claims, application)
+        ValidateReturnUrl.call(return_url: claims['ret_url'], application: application)
       end
 
       def token_replayed?(claims)

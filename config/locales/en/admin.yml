@@ -128,10 +128,15 @@ en:
     application_name_already_taken: Already exists for this client
     application_name_format_hint: Only letters and numbers are allowed, with a single space between words
     application_settings_at_least_one_ip_required: Please enable at least one IP address entry before enabling IP whitelisting
+    application_settings_at_least_one_url_required: Please enable at least one URL entry before enabling URL whitelisting
     application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
+    application_settings_confirm_delete_url: Are you sure you want to delete this URL?
     application_settings_edit_ip_address: Edit IP Address / CIDR Range
+    application_settings_edit_url: Edit URL
     application_settings_enable_ip_whitelisting: Enable IP Whitelisting
+    application_settings_enable_url_whitelisting: Enable URL Whitelisting
     application_settings_invalid_ip_format: Invalid IP address or CIDR format
+    application_settings_invalid_url_format: Invalid URL format
     application_settings_ip_addresses: IP Addresses / CIDR Ranges
     application_settings_ip_deleted_successfully: IP address deleted successfully
     application_settings_ip_description_placeholder: e.g., Office network or Production server
@@ -141,6 +146,16 @@ en:
     application_settings_ip_updated_successfully: IP address updated successfully
     application_settings_ip_whitelisting_disabled_success: IP whitelisting disabled successfully
     application_settings_ip_whitelisting_enabled_success: IP whitelisting enabled successfully
+    application_settings_url: URL
+    application_settings_url_addresses: URL Addresses
+    application_settings_url_deleted_successfully: URL deleted successfully
+    application_settings_url_description_placeholder: e.g., Office network or Production server
+    application_settings_url_input_placeholder: e.g., https://example.com or https://sub.example.com
+    application_settings_url_required: URL is required
+    application_settings_url_updated_successfully: URL updated successfully
+    application_settings_url_whitelisting_disabled_success: URL whitelisting disabled successfully
+    application_settings_url_whitelisting_enabled_success: URL whitelisting enabled successfully
+    application_settings_urls: URLs
     applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions
@@ -1216,6 +1231,7 @@ en:
     invite_workshop_list_remove_confirm_success: Assessment Center was removed successfully.
     invite_workshop_list_remove_confirm_title: Confirm
     invite_workshop_title: Assessment Centers
+    ip_whitelisting: IP Whitelisting
     is_subject: Is Subject
     job_role_are_you_sure_to_remove: Are you sure to remove?
     job_role_column_job_group: Job Group
@@ -3185,6 +3201,7 @@ en:
     upload_success: Uploaded successfully
     url_label: URL
     url_name: url
+    url_whitelisting: URL Whitelisting
     used_tokens_input_tokens: Input Tokens
     used_tokens_output_tokens: Output Tokens
     used_tokens_thinking_tokens: Thinking Tokens

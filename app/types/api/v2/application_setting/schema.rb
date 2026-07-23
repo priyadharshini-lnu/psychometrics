@@ -10,7 +10,8 @@ module Api
 
         def self.attributes(_attribute, _type)
           proc do
-            required(:ip_whitelisting_enabled).filled(:bool)
+            optional(:ip_whitelisting_enabled).maybe(:bool)
+            optional(:url_whitelisting_enabled).maybe(:bool)
           end
         end
       end
