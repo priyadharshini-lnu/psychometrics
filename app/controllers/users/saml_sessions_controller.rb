@@ -7,6 +7,18 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   before_action :ensure_sso_enabled_for_client_admin, only: [:new]
   after_action :after_saml_login, only: [:create]
 
+  def metadata
+    return super unless params[:download] == 'true'
+
+    meta = OneLogin::RubySaml::Metadata.new
+    xml = meta.generate(saml_config(params[:idp_entity_id], request))
+
+    send_data xml,
+              filename: metadata_filename,
+              type: 'application/xml',
+              disposition: 'attachment'
+  end
+
   def force_logout_existing_user
     if user_signed_in?
       sign_out(current_user)
@@ -60,6 +72,12 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   end
 
   private
+
+  def metadata_filename
+    subdomain = AdminSubdomain.extract_subdomain(request.host)
+
+    subdomain.present? ? "sp-metadata-#{subdomain}.xml" : 'sp-metadata.xml'
+  end
 
   def ensure_sso_enabled_for_client_admin
     return unless Current.client_admin_context?

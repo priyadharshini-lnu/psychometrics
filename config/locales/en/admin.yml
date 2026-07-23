@@ -2412,6 +2412,7 @@ en:
     saml_settings_config_details_copied: Copied %{element}
     saml_settings_config_details_issuer: Entity ID/Issuer
     saml_settings_config_details_title: Configure Idp with following info
+    saml_settings_download_metadata: Download Metadata
     saml_settings_email_pipetext: Email Pipetext
     saml_settings_enabled: Enabled
     saml_settings_enforced: Enforce SAML

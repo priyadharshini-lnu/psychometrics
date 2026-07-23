@@ -191,4 +191,54 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #metadata' do
+    let(:xml_content) { '<md:EntityDescriptor></md:EntityDescriptor>' }
+
+    before do
+      allow_any_instance_of(OneLogin::RubySaml::Metadata).to receive(:generate).and_return(xml_content)
+      allow(controller).to receive(:saml_config).and_return(OneLogin::RubySaml::Settings.new)
+    end
+
+    context 'when download param is true' do
+      it 'sends the XML data as an attachment with the correct client-level filename' do
+        request.host = 'client-admin.example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('client-admin.example.com').and_return('client-admin')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).
+          to include('attachment; filename="sp-metadata-client-admin.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+
+      it 'sends the XML data as an attachment with the correct project-level filename' do
+        request.host = 'project.example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('project.example.com').and_return('project')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).to include('attachment; filename="sp-metadata-project.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+
+      it 'sends the XML data as an attachment with the default filename for root domain' do
+        request.host = 'example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('example.com').and_return('')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).to include('attachment; filename="sp-metadata.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+    end
+
+    context 'when download param is not true' do
+      it 'delegates to the default behavior (inline rendering)' do
+        get :metadata
+        expect(response.headers['Content-Disposition']).to be_nil
+        expect(response.body).to eq(xml_content)
+      end
+    end
+  end
 end
