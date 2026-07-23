@@ -8,6 +8,7 @@ import { useResources } from '~/hooks/useResources'
 import { PageLoadSpinner } from '~/glint'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
+import { formDataToResource } from '~/libs/jsonApi/helpers'
 import { AvailablePermissions } from '~/modules/admin/modules/Admins/core'
 
 const AvailablePermissionsTR = t.record(t.string, t.union([t.array(t.string), t.undefined]))
@@ -117,8 +118,16 @@ export const ApplicationPermissions: React.FC<Props> = ({ applicationId, role, s
     }
   }, [membership])
 
-  const handleSave = async (values: { grantNames: Record<string, string[]>, adminRolesIds?: string[] }) => {
-    await updateResource({ id: membership.id, grantNames: values.grantNames, adminRolesIds: values.adminRolesIds })
+  const handleSave = async (values: { grantNames: Record<string, string[]>, adminRoleIds?: string[] }) => {
+    const payload = formDataToResource({
+      grantNames: values.grantNames,
+      adminRoleIds: values.adminRoleIds ?? [],
+    }, 'memberships')
+
+    await updateResource({
+      id: membership.id,
+      ...payload,
+    })
     message.success(I18n.t('admin.permissions_updated'))
   }
 
