@@ -2221,6 +2221,8 @@ en:
     report_approval_columns_user_email: User Email
     report_approval_columns_user_name: User Name
     report_approval_digest_delivery_mode_form_label: Digest Delivery Mode
+    report_approval_digest_delivery_mode_immediate: Immediate - Send whenever there is a bulk submission
+    report_approval_digest_delivery_mode_scheduled: Scheduled - Send a digest email at a scheduled time
     report_approval_digest_frequency_daily: Daily
     report_approval_digest_frequency_form_label: Digest Frequency
     report_approval_digest_frequency_weekdays: Weekdays
