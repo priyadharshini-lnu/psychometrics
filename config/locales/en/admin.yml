@@ -213,6 +213,8 @@ en:
     assessor_overview: Overview
     assessor_placeholder: Search Assessor...
     assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+    assessor_remove_has_evaluations: This assessor has %{evaluation_count} assessor form(s) assigned. All evaluations they have filled will be lost.
+    assessor_remove_in_assessment_centers: This assessor is part of %{workshop_count} assessment center(s). Proceeding will remove them from all assessment centers.
     assessor_statuses_completed: Completed
     assessor_statuses_not_completed: Not Completed
     assessor_subjects_statuses_completed: Completed

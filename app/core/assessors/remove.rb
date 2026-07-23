@@ -10,7 +10,9 @@ module Assessors
 
     def call
       Assessor.transaction do
-        assessor.user_assessments.where(campaign_id: assessor.campaign_id).map(&:destroy!)
+        assessor.user_assessments.where(campaign_id: assessor.campaign_id).find_each(&:destroy!)
+        WorkshopAssessor.joins(:workshop).where(user_id: assessor.user_id,
+                                                workshops: { campaign_id: assessor.campaign_id }).find_each(&:destroy!)
         assessor.destroy!
       end
 

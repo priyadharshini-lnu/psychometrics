@@ -4,7 +4,7 @@ module Administration
   module Campaigns
     class AssessorSerializer < Panko::Serializer
       attributes :id, :full_name, :email, :permissions,
-                 :status, :total_evaluations, :completed_evaluations
+                 :status, :total_evaluations, :completed_evaluations, :workshop_assessors_count
 
       delegate :email, to: :user
 
@@ -40,6 +40,10 @@ module Administration
             campaign_id: context[:campaign_id]
           }
         )
+      end
+
+      def workshop_assessors_count
+        context[:workshop_assessors_count][object.user_id] || 0
       end
 
       private

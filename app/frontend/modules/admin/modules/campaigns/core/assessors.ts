@@ -52,6 +52,7 @@ const AssessorTR = t.type({
   email: t.string,
   totalEvaluations: t.number,
   completedEvaluations: t.number,
+  workshopAssessorsCount: t.number,
   status: t.string,
   permissions: t.type({
     remove: t.boolean,
