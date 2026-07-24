@@ -670,6 +670,7 @@ en:
     dimensions_import_modal_import_dimension: Import Dimension
     dimensions_import_modal_import_scheduled: Import scheduled
     dimensions_import_modal_operation: Operation
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Please select an owner
     dimensions_import_modal_owner_select: Select an owner
     dimensions_import_modal_select_json: Select JSON file

@@ -47,6 +47,8 @@ module PortableData
         all_deferred_updates = []
         json_file_content.dig(:meta, :resource_import_order)&.each do |resource_name|
           resource_data = json_file_content.dig(:resources, resource_name)
+          next if resource_data.nil?
+
           importer = ResourceImporter.new(resource_data, mappable_values)
           errors.concat(importer.import)
           all_deferred_updates.concat(importer.deferred_updates)
