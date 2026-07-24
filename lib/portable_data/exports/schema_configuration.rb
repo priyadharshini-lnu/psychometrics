@@ -44,6 +44,11 @@ module PortableData
           add_relationship(column_name, model: model)
         end
 
+        def deferred_relationship_attribute(column_name, model:)
+          add_to_schema(column_name, 'deferred_relationship', model: model)
+          add_to_schema(column_name, 'relationship', model: model)
+        end
+
         def related_resource(name, klass: nil, model: nil)
           add_related_resource(name, klass: klass, model: model)
         end

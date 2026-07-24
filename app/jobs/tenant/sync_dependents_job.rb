@@ -5,6 +5,8 @@ module Tenant
     queue_as :async_request_handler
 
     def perform(source_class_name, record_ids)
+      Rails.application.eager_load!
+
       source_class = source_class_name.constantize
       cascade(source_class, record_ids)
     end

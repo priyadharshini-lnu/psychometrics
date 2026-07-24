@@ -32,7 +32,7 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
           Api::Administration::DimensionPolicy,
           context[:user],
           @model,
-          %w[copy export_json],
+          %w[copy export_json] + [%w[can_import validate_import]],
           {
             project_id: @model.owner_id
           }

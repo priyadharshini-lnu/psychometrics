@@ -22,7 +22,9 @@ class Dimension < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
-  after_create :create_default_occupation_condition_set, if: :occupations_enabled?
+  attr_accessor :skip_default_ocs_creation
+
+  after_create :create_default_occupation_condition_set, if: -> { occupations_enabled? && !skip_default_ocs_creation }
   after_update :ensure_default_occupation_condition_set, if: :occupations_just_enabled?
   before_destroy :clear_default_condition_set_reference, prepend: true
 
