@@ -27,9 +27,9 @@ module Api
 
                 # rubocop:disable Style/OpenStructUse
                 struct = OpenStruct.new(
-                  email: form.email,
-                  first_name: form.first_name,
-                  last_name: form.last_name,
+                  email: user_attributes[:email],
+                  first_name: user_attributes[:first_name],
+                  last_name: user_attributes[:last_name],
                   gender: form.gender,
                   operation: campaign_attrs[:existing_record],
                   active: campaign_attrs[:active],
@@ -68,12 +68,7 @@ module Api
         def update_user
           return unless user
 
-          user.update!(
-            first_name: form.first_name,
-            last_name: form.last_name,
-            email: form.email,
-            external_id: form.try(:user_external_id) || user.external_id
-          )
+          user.update!(user_attributes)
           user.user_profile.update!(gender: form.gender) if form.gender.present?
         end
 
@@ -88,7 +83,16 @@ module Api
         def create_or_update_project_datasheet
           return if form.project_datasheet.blank?
 
-          ::SheetRows::UpsertData.call!(project.datasheet, form.email, form.project_datasheet)
+          ::SheetRows::UpsertData.call!(project.datasheet, user_attributes[:email], form.project_datasheet)
+        end
+
+        def user_attributes
+          @user_attributes ||= {
+            first_name: form.first_name || user&.first_name,
+            last_name: form.last_name || user&.last_name,
+            email: form.email || user&.email,
+            external_id: form.try(:user_external_id) || user&.external_id
+          }
         end
       end
     end

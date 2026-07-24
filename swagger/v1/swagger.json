@@ -2505,6 +2505,13 @@
             "required": true
           },
           {
+            "name": "X-USER-ID-TYPE",
+            "in": "header",
+            "type": "string",
+            "required": false,
+            "description": "Specify \"external_id\" or \"email\" to use non-integer user identifiers"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
@@ -2537,6 +2544,12 @@
                   }
                 }
               }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
             }
           }
         }

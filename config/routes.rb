@@ -1316,7 +1316,9 @@ as: :simulation_progress_notification
             end
           end
 
-          resources :users, only: %i[index create update] do
+          put 'users/*id', to: 'users#update', constraints: { id: %r{[^/]+} }
+
+          resources :users, only: %i[index create] do
             post :sso, on: :member
             collection do
               get :search
