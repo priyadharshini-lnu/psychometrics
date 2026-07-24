@@ -169,11 +169,28 @@ module OciSpeech
     end
 
     def setup_oci_clients
-      @speech_client = OCI::AiSpeech::AIServiceSpeechClient.new(config: Psy::Oci.config)
-      @notification_control_client = OCI::Ons::NotificationControlPlaneClient.new(config: Psy::Oci.config)
-      @notification_data_client = OCI::Ons::NotificationDataPlaneClient.new(config: Psy::Oci.config)
-      @events_client = OCI::Events::EventsClient.new(config: Psy::Oci.config)
+      oci_config = Psy::Oci.config
+
+      @speech_client = OCI::AiSpeech::AIServiceSpeechClient.new(config: oci_config)
+      @notification_control_client = OCI::Ons::NotificationControlPlaneClient.new(config: oci_config)
+      @notification_data_client = OCI::Ons::NotificationDataPlaneClient.new(config: oci_config)
+      @events_client = OCI::Events::EventsClient.new(
+        config: oci_config,
+        endpoint: events_endpoint_for(oci_config.region)
+      )
       Rails.logger.info 'OCI clients initialized'
+    end
+
+    # TODO: Remove this explicit events endpoint override after OCI fixes
+    # https://github.com/oracle/oci-ruby-sdk/issues/90 in a released gem version.
+    def events_endpoint_for(region)
+      endpoint_template = +'https://events.{region}.oci.{secondLevelDomain}'
+
+      OCI::Regions.get_service_endpoint_for_template(
+        region,
+        endpoint_template,
+        'events'
+      )
     end
 
     def log_next_steps

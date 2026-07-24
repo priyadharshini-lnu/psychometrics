@@ -43,8 +43,9 @@
     "@babel/core": "7.29.6",
     "esbuild": "0.28.1",
     "jackspeak": "2.1.1",
+    "brace-expansion": "2.1.2",
     "uuid": "^14.0.0",
-    "ws": "8.21.0",
+    "ws": "8.21.1",
     "qs": "6.15.2"
   },
   "eslintConfig": {
