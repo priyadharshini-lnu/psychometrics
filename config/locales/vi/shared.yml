@@ -88,6 +88,7 @@ vi:
     failed: Thất bại
     'false': false
     file: Tệp
+    file_upload_button: Chọn tệp
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra

@@ -152,7 +152,7 @@ export default function FileUpload ({
             >
               <UploadOutlined />
               {' '}
-              Select File
+              {I18n.t('shared.file_upload_button')}
             </Button>
             {'   '}
             <span>{file && file.name}</span>

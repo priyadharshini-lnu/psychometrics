@@ -625,6 +625,7 @@ es-ES:
       thursday: Jueves
       tuesday: Martes
       wednesday: Miércoles
+    dimension_errors_cannot_delete_with_assessments: No se puede eliminar esta dimensión porque todavía está asociada a evaluaciones. Elimina o actualiza primero las evaluaciones asociadas.
     dimension_translations_export_scheduled: Exportar las traducciones programadas para la dimensión «%{name}».
     dimensions: Dimensiones
     dimensions_destroy_successfully: La dimensión %{name} se ha eliminado correctamente.

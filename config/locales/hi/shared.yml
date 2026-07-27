@@ -88,6 +88,7 @@ hi:
     failed: असफल
     'false': false
     file: फ़ाइल
+    file_upload_button: फ़ाइल चुनें
     first_name: पहला नाम
     formal_learning: औपचारिक अधिगम
     generate: उत्पन्न करें

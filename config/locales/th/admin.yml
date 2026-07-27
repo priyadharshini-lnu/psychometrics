@@ -625,6 +625,7 @@ th:
       thursday: วันพฤหัสบดี
       tuesday: วันอังคาร
       wednesday: วันพุธ
+    dimension_errors_cannot_delete_with_assessments: ไม่สามารถลบมิติข้อมูลนี้ได้ เนื่องจากยังเชื่อมโยงกับการประเมินอยู่ โปรดลบหรืออัปเดตการประเมินที่เกี่ยวข้องก่อน
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
     dimensions_destroy_successfully: มิติ %{name} ถูกลบเรียบร้อยแล้ว

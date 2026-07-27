@@ -625,6 +625,7 @@ ro:
       thursday: joi
       tuesday: marți
       wednesday: miercuri
+    dimension_errors_cannot_delete_with_assessments: Nu se poate șterge această dimensiune, deoarece este încă asociată cu evaluări. Vă rugăm să ștergeți sau să actualizați mai întâi evaluările asociate.
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     dimensions_destroy_successfully: Parametrul %{name} a fost șters cu succes.

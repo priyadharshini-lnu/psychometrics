@@ -625,6 +625,7 @@ ru:
       thursday: четверг
       tuesday: вторник
       wednesday: среда
+    dimension_errors_cannot_delete_with_assessments: Невозможно удалить этот показатель, так как он по-прежнему связан с оценками. Сначала удалите или обновите связанные с ним оценки.
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     dimensions_destroy_successfully: Размер «%{name}» удален успешно.

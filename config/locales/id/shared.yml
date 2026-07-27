@@ -88,6 +88,7 @@ id:
     failed: Gagal
     'false': false
     file: Berkas
+    file_upload_button: Pilih Berkas
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate

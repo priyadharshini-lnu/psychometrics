@@ -625,6 +625,7 @@ ja:
       thursday: 木曜日
       tuesday: 火曜日
       wednesday: 水曜日
+    dimension_errors_cannot_delete_with_assessments: このディメンションは、まだ評価と関連付けられているため削除できません。まず、関連付けられている評価を削除または更新してください。
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     dimensions_destroy_successfully: ディメンション %{name} は正常に削除されました。

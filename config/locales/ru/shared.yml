@@ -88,6 +88,7 @@ ru:
     failed: Неудача
     'false': false
     file: Файл
+    file_upload_button: Выбрать файл
     first_name: Имя
     formal_learning: Формальное обучение
     generate: Генерировать

@@ -625,6 +625,7 @@ pl:
       thursday: czwartek
       tuesday: wtorek
       wednesday: Środa
+    dimension_errors_cannot_delete_with_assessments: Nie można usunąć tego wymiaru, ponieważ jest on nadal powiązany z ocenami. Proszę najpierw usunąć lub zaktualizować powiązane oceny.
     dimension_translations_export_scheduled: Zaplanowano eksport tłumaczeń dla wymiaru „%{name}”.
     dimensions: Wymiary
     dimensions_destroy_successfully: Wymiar %{name} został pomyślnie usunięty.

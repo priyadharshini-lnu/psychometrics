@@ -88,6 +88,7 @@ nl:
     failed: Mislukt
     'false': false
     file: Bestand
+    file_upload_button: Selecteer bestand
     first_name: Voornaam
     formal_learning: Formeel Leren
     generate: Genereren

@@ -625,6 +625,7 @@ zh:
       thursday: 星期四
       tuesday: 星期二
       wednesday: 星期三
+    dimension_errors_cannot_delete_with_assessments: 无法删除此维度，因为它仍与评估相关联。请先删除或更新相关联的评估。
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     dimensions_destroy_successfully: 尺寸 %{name} 已成功删除。

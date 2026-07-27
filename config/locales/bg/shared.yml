@@ -88,6 +88,7 @@ bg:
     failed: Неуспешен
     'false': false
     file: Файл
+    file_upload_button: Изберете файл
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране

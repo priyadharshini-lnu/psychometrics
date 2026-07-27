@@ -625,6 +625,7 @@ fr:
       thursday: jeudi
       tuesday: mardi
       wednesday: mercredi
+    dimension_errors_cannot_delete_with_assessments: Impossible de supprimer cette dimension car elle est toujours associée à des évaluations. Veuillez d'abord supprimer ou mettre à jour les évaluations associées.
     dimension_translations_export_scheduled: Exportation des traductions prévue pour la dimension «%{name}».
     dimensions: Dimensions
     dimensions_destroy_successfully: La dimension %{name} a été supprimée avec succès.

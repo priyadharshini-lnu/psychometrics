@@ -625,6 +625,7 @@ sr-Cyrl:
       thursday: Четвртак
       tuesday: Уторак
       wednesday: Среда
+    dimension_errors_cannot_delete_with_assessments: Не може се обрисати ова димензија јер је и даље повезана са проценама. Молимо вас да прво обришете или ажурирате повезане процене.
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Димензије
     dimensions_destroy_successfully: Димензија %{name} је успешно избрисана.

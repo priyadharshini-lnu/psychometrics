@@ -625,6 +625,7 @@ de:
       thursday: Donnerstag
       tuesday: Dienstag
       wednesday: Mittwoch
+    dimension_errors_cannot_delete_with_assessments: Diese Dimension kann nicht gelöscht werden, da sie noch mit Bewertungen verknüpft ist. Bitte löschen oder aktualisieren Sie zunächst die zugehörigen Bewertungen.
     dimension_translations_export_scheduled: Export der Übersetzungen für die Dimension „%{name}“ ist geplant.
     dimensions: Abmessungen
     dimensions_destroy_successfully: Dimension %{name} wurde erfolgreich gelöscht.

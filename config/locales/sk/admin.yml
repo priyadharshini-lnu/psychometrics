@@ -625,6 +625,7 @@ sk:
       thursday: štvrtok
       tuesday: utorok
       wednesday: streda
+    dimension_errors_cannot_delete_with_assessments: Túto dimenziu nie je možné odstrániť, pretože je stále prepojená s hodnoteniami. Najskôr odstráňte alebo aktualizujte príslušné hodnotenia.
     dimension_translations_export_scheduled: Export prekladov naplánovaný pre dimenziu „%{name}“.
     dimensions: Rozmery
     dimensions_destroy_successfully: Dimenzia %{name} bola úspešne odstránená.

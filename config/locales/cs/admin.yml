@@ -625,6 +625,7 @@ cs:
       thursday: čtvrtek
       tuesday: úterý
       wednesday: středa
+    dimension_errors_cannot_delete_with_assessments: Tuto dimenzi nelze odstranit, protože je stále přiřazena k hodnocení. Nejprve prosím odstraňte nebo aktualizujte přiřazená hodnocení.
     dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
     dimensions_destroy_successfully: Dimenze „%{name}“ byla úspěšně odstraněna.

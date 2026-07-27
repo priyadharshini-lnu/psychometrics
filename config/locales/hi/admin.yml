@@ -625,6 +625,7 @@ hi:
       thursday: गुरुवार
       tuesday: मंगलवार
       wednesday: बुधवार
+    dimension_errors_cannot_delete_with_assessments: इस आयाम को हटाया नहीं जा सकता क्योंकि यह अभी भी मूल्यांकनों से जुड़ा हुआ है। कृपया पहले संबंधित मूल्यांकनों को हटाएँ या अपडेट करें।
     dimension_translations_export_scheduled: "%{name} आयाम के लिए निर्धारित अनुवाद निर्यात करें।"
     dimensions: आयाम
     dimensions_destroy_successfully: आयाम %{name} सफलतापूर्वक हटा दिया गया।

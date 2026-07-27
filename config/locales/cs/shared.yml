@@ -88,6 +88,7 @@ cs:
     failed: Neúspěšný
     'false': false
     file: Soubor
+    file_upload_button: Vybrat soubor
     first_name: Jméno
     formal_learning: Formální učení
     generate: Generovat

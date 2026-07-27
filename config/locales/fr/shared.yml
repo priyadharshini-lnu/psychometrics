@@ -88,6 +88,7 @@ fr:
     failed: Échec
     'false': false
     file: Fichier
+    file_upload_button: Sélectionner un fichier
     first_name: Prénom
     formal_learning: Apprentissage formel
     generate: Générer

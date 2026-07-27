@@ -625,6 +625,7 @@ id:
       thursday: Kamis
       tuesday: Selasa
       wednesday: Rabu
+    dimension_errors_cannot_delete_with_assessments: Dimensi ini tidak dapat dihapus karena masih terkait dengan penilaian. Silakan hapus atau perbarui penilaian yang terkait terlebih dahulu.
     dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
     dimensions_destroy_successfully: Dimensi %{name} berhasil dihapus.

@@ -625,6 +625,7 @@ nl:
       thursday: donderdag
       tuesday: dinsdag
       wednesday: woensdag
+    dimension_errors_cannot_delete_with_assessments: Deze dimensie kan niet worden verwijderd omdat deze nog steeds aan beoordelingen is gekoppeld. Verwijder of werk eerst de bijbehorende beoordelingen bij.
     dimension_translations_export_scheduled: De vertalingen voor de dimensie '%{name}' staan gepland om te worden geëxporteerd.
     dimensions: Afmetingen
     dimensions_destroy_successfully: Dimensie %{name} is succesvol verwijderd.

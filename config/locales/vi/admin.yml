@@ -625,6 +625,7 @@ vi:
       thursday: Thứ Năm
       tuesday: Thứ Ba
       wednesday: Thứ Tư
+    dimension_errors_cannot_delete_with_assessments: Không thể xóa chiều này vì nó vẫn còn được liên kết với các bài đánh giá. Vui lòng xóa hoặc cập nhật các bài đánh giá liên quan trước.
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
     dimensions_destroy_successfully: Thứ nguyên %{name} đã bị xóa thành công.

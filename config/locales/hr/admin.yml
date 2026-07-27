@@ -625,6 +625,7 @@ hr:
       thursday: Četvrtak
       tuesday: Utorak
       wednesday: Srijeda
+    dimension_errors_cannot_delete_with_assessments: Ovu dimenziju nije moguće izbrisati jer je još uvijek povezana s procjenama. Molimo prvo izbrišite ili ažurirajte povezane procjene.
     dimension_translations_export_scheduled: Izvoz prijevoda zakazan za dimenziju%{name}.
     dimensions: Dimenzije
     dimensions_destroy_successfully: Dimenzija %{name} uspješno je izbrisana.

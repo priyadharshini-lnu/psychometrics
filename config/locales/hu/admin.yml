@@ -625,6 +625,7 @@ hu:
       thursday: csütörtök
       tuesday: kedd
       wednesday: Szerda
+    dimension_errors_cannot_delete_with_assessments: Ezt a dimenziót nem lehet törölni, mert még mindig értékelésekhez van társítva. Kérjük, először törölje vagy frissítse a hozzá tartozó értékeléseket.
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     dimensions_destroy_successfully: A(z) %{name} dimenzió törlése sikeresen megtörtént.

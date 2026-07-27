@@ -88,6 +88,7 @@ ja:
     failed: 失敗した
     'false': false
     file: ファイル
+    file_upload_button: ファイルを選択
     first_name: 名
     formal_learning: 正式な学習
     generate: 生成

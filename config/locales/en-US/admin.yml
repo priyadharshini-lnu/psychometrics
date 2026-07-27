@@ -625,6 +625,7 @@ en-US:
       thursday: Thursday
       tuesday: Tuesday
       wednesday: Wednesday
+    dimension_errors_cannot_delete_with_assessments: Cannot delete this dimension because it is still associated with assessments. Please delete or update the associated assessments first.
     dimension_translations_export_scheduled: Export translations scheduled for dimension %{name}.
     dimensions: Dimensions
     dimensions_destroy_successfully: Dimension %{name} was deleted successfully.
