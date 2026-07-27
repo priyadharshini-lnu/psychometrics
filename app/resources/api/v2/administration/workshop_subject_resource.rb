@@ -71,7 +71,11 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
                                first
 
     if workshop_invited_subject
-      @model.update!(workshop_invited_subject_id: workshop_invited_subject.id)
+      ApplicationRecord.transaction do
+        @model.update!(workshop_invited_subject_id: workshop_invited_subject.id)
+        # Update status back to accepted if it was cancelled during re-booking
+        workshop_invited_subject.update!(status: :accepted) if workshop_invited_subject.cancelled?
+      end
       return
     end
 
