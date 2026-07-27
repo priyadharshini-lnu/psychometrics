@@ -11,7 +11,7 @@ class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration:
   has_one :factor
   has_one :dimension
 
-  ransack_filters %i[factor_type_eq]
+  ransack_filters %i[factor_type_eq filterable_fields]
 
   def assessment_id
     @model.assessment&.id.to_s
