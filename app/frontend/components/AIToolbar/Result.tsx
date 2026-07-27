@@ -2,6 +2,7 @@ import {
   Button, Typography, Tag, Divider, Modal,
   Card,
   Flex,
+  Alert,
 } from 'antd'
 import {
   CheckOutlined,
@@ -134,6 +135,12 @@ const Result: React.FC<ResultProps> = ({
               {assistantOutput.whatChangedAndWhy}
             </Typography.Paragraph>
           </Card>
+          <Alert
+            type="warning"
+            showIcon
+            title={I18n.t('shared.ai_toolbar_disclaimer')}
+            style={{ marginTop: 12 }}
+          />
         </>
       )}
     </Modal>
