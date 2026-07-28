@@ -55,6 +55,7 @@ export const CampaignTR = t.intersection([
     isFixedTime: t.union([t.boolean, t.null, t.undefined]),
     isThreesixty: t.union([t.boolean, t.null, t.undefined]),
     practiceCampaign: t.union([t.boolean, t.null, t.undefined]),
+    tenantId: t.union([t.number, t.null, t.undefined]),
     campaignReports: t.array(t.type({
       id: t.string,
       defaultLanguage: t.union([t.string, t.null, t.undefined]),

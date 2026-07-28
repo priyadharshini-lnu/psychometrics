@@ -3,6 +3,11 @@
 class CampaignAssessment < ApplicationRecord
   audited
 
+  attr_accessor :skip_owner_validation, :skip_set_position
+
+  include OwnerCompatibility
+  include MhsConfigurable
+
   belongs_to :campaign
   belongs_to :assessment
   belongs_to :norm
@@ -16,10 +21,9 @@ class CampaignAssessment < ApplicationRecord
   scope :preworks, -> { where(prework: true) }
   scope :workshop_activities, -> { where(workshop_activity: true) }
 
-  validate :validate_external_config
+  validate :campaign_owner_compatibility_with_assessment_owner,
+           if: :validate_campaign_owner_compatibility_with_assessment_owner?
   before_save :parse_external_config
-
-  attr_accessor :skip_set_position
 
   before_create :set_position, unless: :skip_set_position
   before_commit :invalidate_assessment_cache, if: -> { norm_id_changed? || available_locales_changed? }
@@ -50,15 +54,6 @@ class CampaignAssessment < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[assessment]
-  end
-
-  def validate_external_config
-    return unless external_config.presence.is_a?(String)
-
-    config = JSON.parse(external_config)
-    validate_mhs_external_config(config) if mhs?
-  rescue JSON::ParserError
-    errors.add(:external_config, :invalid)
   end
 
   def parse_external_config
@@ -132,66 +127,6 @@ class CampaignAssessment < ApplicationRecord
     end
   end
 
-  def update_mhs_confidence_interval!(confidence_interval, apply_to_existing_users = false)
-    return unless mhs?
-
-    config = parsed_external_config
-    config['confidence_interval'] = confidence_interval
-
-    if update!(external_config: config.to_json) && apply_to_existing_users
-      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
-
-      MhsUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
-        confidence_interval: external_config['confidence_interval']
-      )
-    end
-  end
-
-  def update_mhs_leadership_bar!(leadership_bar, apply_to_existing_users = false)
-    return unless mhs?
-
-    config = parsed_external_config
-    config['leadership_bar'] = leadership_bar
-
-    if update!(external_config: config.to_json) && apply_to_existing_users
-      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
-
-      MhsUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
-        leadership_bar: external_config['leadership_bar']
-      )
-    end
-  end
-
-  def update_mhs_norm_region!(norm_region, apply_to_existing_users = false)
-    return unless mhs?
-
-    config = parsed_external_config
-    config['norm_region'] = norm_region
-
-    if update!(external_config: config.to_json) && apply_to_existing_users
-      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
-
-      MhsUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
-        norm_region: external_config['norm_region']
-      )
-    end
-  end
-
-  def update_mhs_norm_option!(norm_option, apply_to_existing_users = false)
-    return unless mhs?
-
-    config = parsed_external_config
-    config['norm_option'] = norm_option
-
-    if update!(external_config: config.to_json) && apply_to_existing_users
-      not_started_assessments = user_assessments.where(status: :not_started).pluck(:id)
-
-      MhsUserAssessment.where(user_assessment_id: not_started_assessments).update_all(
-        norm_option: external_config['norm_option']
-      )
-    end
-  end
-
   def update_prework(prework, apply_to_existing_users = false)
     if update!(prework: prework) && apply_to_existing_users
       not_started_assessments = user_assessments.where(status: :not_started)
@@ -213,6 +148,23 @@ class CampaignAssessment < ApplicationRecord
 
   private
 
+  def validate_campaign_owner_compatibility_with_assessment_owner?
+    return false if skip_owner_validation == true
+    return false if campaign.blank? || assessment.blank?
+
+    new_record? || will_save_change_to_campaign_id? || will_save_change_to_assessment_id?
+  end
+
+  def campaign_owner_compatibility_with_assessment_owner
+    return if compatible_owner_ids?(campaign.tenant_id, assessment.owner_id)
+
+    add_owner_compatibility_error(
+      :assessment_id,
+      child_resource: :assessment,
+      parent_resource: :campaign
+    )
+  end
+
   def pearson_norm_name
     Assessments::PearsonSettings.
       norms(external_assessment_id)&.
@@ -225,30 +177,6 @@ class CampaignAssessment < ApplicationRecord
 
   def invalidate_assessment_cache
     assessment.invalidate_cache
-  end
-
-  def validate_mhs_external_config(config)
-    if config['confidence_interval'].present? && [0, 1].exclude?(config['confidence_interval'])
-      errors.add(
-        :external_config,
-        I18n.t('admin.campaign_assessment_mhs_invalid_confidence_interval')
-      )
-    end
-
-    if config['leadership_bar'].present? && [0, 1].exclude?(config['leadership_bar'])
-      errors.add(
-        :external_config,
-        I18n.t('admin.campaign_assessment_mhs_invalid_leadership_bar')
-      )
-    end
-
-    if config['norm_region'].present? && (0..8).exclude?(config['norm_region'])
-      errors.add(:external_config, I18n.t('admin.campaign_assessment_mhs_invalid_norm_region'))
-    end
-
-    if config['norm_option'].present? && (0..3).exclude?(config['norm_option'])
-      errors.add(:external_config, I18n.t('admin.campaign_assessment_mhs_invalid_norm_option'))
-    end
   end
 
   def parsed_external_config

@@ -6,8 +6,10 @@ describe Threesixty::Campaigns::CopyAsTemplateOrCampaign do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let!(:dimension) { create(:dimension, owner: membership.client) }
-  let!(:assessment) { create(:assessment, dimension: dimension, name: 'Assessment') }
-  let!(:report) { create(:report, name: 'Report', assessment: assessment) }
+  let!(:assessment) do
+    create(:assessment, dimension: dimension, owner: membership.client, name: 'Assessment')
+  end
+  let!(:report) { create(:report, name: 'Report', owner: membership.client, assessment: assessment) }
   let!(:campaign) { create(:campaign, project: project, name: 'Original Campaign', type: :threesixty) }
   let!(:threesixty_campaign) do
     create(:threesixty_campaign, campaign: campaign, assessment: assessment, report: report, category: :normal)

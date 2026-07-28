@@ -6,6 +6,7 @@ class Dimension < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include OwnerValidations
+  include OwnerCompatibility
 
   belongs_to :owner, class_name: 'Client'
   has_many :factors, -> { roots.order(id: :asc) }
@@ -34,6 +35,14 @@ class Dimension < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
+  validate(
+    :owner_compatibility_with_assessments,
+    if: :validate_owner_compatibility_with_assessments?
+  )
+  validate(
+    :owner_compatibility_with_norms,
+    if: :validate_owner_compatibility_with_norms?
+  )
 
   enum :dimension_type, { regular: 0, skill_rater: 1 }
 
@@ -108,6 +117,44 @@ class Dimension < ApplicationRecord
   end
 
   private
+
+  def validate_owner_compatibility_with_assessments?
+    return false if skip_owner_validation
+
+    will_save_change_to_owner_id?
+  end
+
+  def owner_compatibility_with_assessments
+    incompatible_assessments = assessments.reject do |assessment|
+      compatible_owner_ids?(assessment.owner_id, owner_id)
+    end
+    return if incompatible_assessments.blank?
+
+    add_owner_compatibility_error(
+      :owner,
+      child_resource: :assessment,
+      parent_resource: :dimension
+    )
+  end
+
+  def validate_owner_compatibility_with_norms?
+    return false if skip_owner_validation
+
+    will_save_change_to_owner_id?
+  end
+
+  def owner_compatibility_with_norms
+    incompatible_norms = norms.reject do |norm|
+      compatible_owner_ids?(norm.owner_id, owner_id)
+    end
+    return if incompatible_norms.blank?
+
+    add_owner_compatibility_error(
+      :owner,
+      child_resource: :norm,
+      parent_resource: :dimension
+    )
+  end
 
   def build_factor_id_mapping(dictionary)
     factor_entries = dictionary[:factors] || {}

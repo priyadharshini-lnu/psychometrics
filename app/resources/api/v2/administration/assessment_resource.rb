@@ -9,6 +9,11 @@ class Api::V2::Administration::AssessmentResource < Api::V2::Administration::Bas
   ransack_filters %i[filterable_fields with_resource_state category_in category_not_in id_eq category_eq archived_eq
                      project_id_eq owned_by_client_or_tte owner_id_eq name_cont with_ai_questions]
 
+  filter :tenant_id, apply: lambda { |records, value, _options|
+    tenant_id = value.is_a?(Array) ? value[0] : value
+    records.owned_by_client_or_tte(tenant_id)
+  }
+
   add_tag_filter
 
   audit_log_for :create, payload: '*'

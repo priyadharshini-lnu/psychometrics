@@ -5,6 +5,9 @@
 class UserReport < ApplicationRecord
   audited
 
+  attr_accessor :skip_owner_validation
+
+  include OwnerCompatibility
   include WorkflowActiverecord
   include ActiveStorageAttachable
   include HoganResource
@@ -61,6 +64,10 @@ class UserReport < ApplicationRecord
                            joins(report: :assessments_reports).
                              where(assessments_reports: { assessment_id: assessment_id })
                          }
+  validate :campaign_owner_compatibility_with_report_owner,
+           if: :validate_campaign_owner_compatibility_with_report_owner?
+  validate :campaign_owner_compatibility_with_report_family_owner,
+           if: :validate_campaign_owner_compatibility_with_report_family_owner?
 
   workflow_column :approval_status
   workflow do # rubocop:disable Metrics/BlockLength
@@ -307,6 +314,42 @@ class UserReport < ApplicationRecord
     user_results.joins(:user_assessment).
       order('user_assessments.completed_at DESC').
       pick('user_assessments.completed_at')
+  end
+
+  private
+
+  def validate_campaign_owner_compatibility_with_report_owner?
+    return false if skip_owner_validation == true
+    return false if campaign.blank? || report.blank?
+
+    new_record? || will_save_change_to_campaign_id? || will_save_change_to_report_id?
+  end
+
+  def campaign_owner_compatibility_with_report_owner
+    return if compatible_owner_ids?(campaign.tenant_id, report.owner_id)
+
+    add_owner_compatibility_error(
+      :report_id,
+      child_resource: :report,
+      parent_resource: :campaign
+    )
+  end
+
+  def validate_campaign_owner_compatibility_with_report_family_owner?
+    return false if skip_owner_validation == true
+    return false if campaign.blank? || report_family.blank?
+
+    new_record? || will_save_change_to_campaign_id? || will_save_change_to_report_family_id?
+  end
+
+  def campaign_owner_compatibility_with_report_family_owner
+    return if compatible_owner_ids?(campaign.tenant_id, report_family.tenant_id)
+
+    add_owner_compatibility_error(
+      :report_family_id,
+      child_resource: :report_bundle,
+      parent_resource: :campaign
+    )
   end
 end
 

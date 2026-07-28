@@ -1487,6 +1487,14 @@ en:
     overall: Overall
     overall_score: Overall Score
     overall_scoring: Overall Scoring
+    owner_resource_assessment: assessment
+    owner_resource_campaign: campaign
+    owner_resource_client: client
+    owner_resource_dimension: dimension
+    owner_resource_mismatch: "%{child_resource} owner is not compatible with %{parent_resource} owner."
+    owner_resource_norm: norm
+    owner_resource_report: report
+    owner_resource_report_bundle: report bundle
     parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
     parsed_dependencies_title: Parsed Dependencies
     parsed_dependencies_view: View Parsed Dependencies

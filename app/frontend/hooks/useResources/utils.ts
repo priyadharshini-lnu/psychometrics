@@ -22,7 +22,10 @@ interface JsonApiStandardError {
 
 interface Schema {
   relationships?: {
-    association?: 'hasOne' | 'hasMany'
+    [key: string]: {
+      association?: 'hasOne' | 'hasMany'
+      singularName?: string
+    }
   }
 }
 
@@ -34,6 +37,17 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
     const pointer = error.source?.pointer
     let attribute: string
 
+    const relationshipFieldName = (relationshipName: string) => {
+      const relationship = schema?.relationships?.[relationshipName]
+      if (!relationship) return null
+
+      const association = relationship.association || 'hasOne'
+      if (association === 'hasOne') return `${relationshipName}Id`
+
+      const hasManyFieldName = relationship.singularName || relationshipName
+      return `${hasManyFieldName}Ids`
+    }
+
     if (pointer === undefined || pointer === '/data') {
       acc.base ||= []
       acc.base = [...acc.base, { title: error.title, detail: error.detail }]
@@ -42,12 +56,13 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
 
     if (pointer.startsWith(attributePrefix)) {
       attribute = pointer.replace(attributePrefix, '')
+      const mappedAttribute = relationshipFieldName(attribute)
+      if (mappedAttribute) attribute = mappedAttribute
     } else if (pointer.startsWith(relationshipPrefix)) {
       const [relationshipName] = pointer.replace(relationshipPrefix, '').split('/')
 
       if (schema) {
-        const association = schema?.relationships?.[relationshipName]?.association || 'hasOne'
-        attribute = association === 'hasOne' ? `${relationshipName}Id` : `${relationshipName}Ids`
+        attribute = relationshipFieldName(relationshipName) || relationshipName
       } else {
         attribute = relationshipName
       }

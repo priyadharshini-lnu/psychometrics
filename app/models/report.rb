@@ -8,6 +8,7 @@ class Report < ApplicationRecord
   include RansackSearchableFields
   include SoftDelete
   include OwnerValidations
+  include OwnerCompatibility
   include ActiveStorageAttachable
   include Taggable
 
@@ -98,6 +99,7 @@ class Report < ApplicationRecord
   validate :all_assessments_hogan, if: :provider_hogan?
   validate :all_assessments_saville, if: :provider_saville?
   validate :all_assessments_mhs, if: :provider_mhs?
+  validate :assessment_owner_compatibility, if: :validate_owner_compatibility?
 
   #   CALLBACKS
   #
@@ -333,6 +335,51 @@ class Report < ApplicationRecord
 
   def all_assessments_mhs
     errors.add(:base, I18n.t('admin.assessments_not_mhs')) unless assessments.all?(&:mhs?)
+  end
+
+  def assessment_owner_compatibility
+    return if skip_owner_validation
+    return if assessment_not_applicable?
+
+    assessment_owner_compatibility_assessments
+    assessment_owner_compatibility_report_families
+  end
+
+  def assessment_owner_compatibility_assessments
+    return if assessments.blank?
+
+    incompatible_assessments = assessments.reject do |assessment|
+      compatible_owner_ids?(owner_id, assessment.owner_id)
+    end.uniq(&:id)
+    return if incompatible_assessments.blank?
+
+    errors.delete(:assessments, :invalid)
+    add_owner_compatibility_error(
+      :assessments,
+      child_resource: :assessment,
+      parent_resource: :report
+    )
+  end
+
+  def assessment_owner_compatibility_report_families
+    return if report_families.blank?
+
+    incompatible_report_families = report_families.reject do |report_family|
+      compatible_owner_ids?(report_family.tenant_id, owner_id)
+    end.uniq(&:id)
+    return if incompatible_report_families.blank?
+
+    add_owner_compatibility_error(
+      :owner,
+      child_resource: :report,
+      parent_resource: :report_bundle
+    )
+  end
+
+  def validate_owner_compatibility?
+    return false if skip_owner_validation
+
+    new_record? || will_save_change_to_owner_id?
   end
 end
 # rubocop:enable all

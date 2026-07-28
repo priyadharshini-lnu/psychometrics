@@ -5,6 +5,11 @@ require 'rails_helper'
 RSpec.describe License, type: :model do
   let!(:tenancy) { create(:tenancy) }
   let!(:license) { create(:license, client: tenancy) }
+  let(:owner_mismatch_message) do
+    I18n.t('admin.owner_resource_mismatch',
+           child_resource: I18n.t('admin.owner_resource_client'),
+           parent_resource: I18n.t('admin.owner_resource_report_bundle'))
+  end
 
   context 'Relations' do
     # TODO: Remove explicit syntax once these issues are fixed in the gem:
@@ -117,6 +122,45 @@ RSpec.describe License, type: :model do
         if Client has enough licenses' do
       license.update(number: 10, used_number: 5)
       expect(license.enough_licenses?).to be_truthy
+    end
+  end
+
+  describe 'owner compatibility with report bundle owner' do
+    let(:report_family_owner) { create(:tenancy) }
+    let(:other_client) { create(:tenancy) }
+    let(:report_family) { create(:report_family, tenant: report_family_owner) }
+
+    it 'is invalid when license client is incompatible with report bundle owner' do
+      license = build(:license, client: other_client, report_family: report_family)
+
+      expect(license).not_to be_valid
+      expect(license.errors[:report_family]).to include(
+        owner_mismatch_message
+      )
+    end
+
+    it 'is valid when report bundle owner is nil' do
+      report_family = create(:report_family, tenant: nil)
+      license = build(:license, client: other_client, report_family: report_family)
+
+      expect(license).to be_valid
+    end
+
+    it 'is valid for non-common license type even when owner is incompatible' do
+      license = build(:license, client: other_client, report_family: report_family, type: :threesixty)
+
+      expect(license).to be_valid
+    end
+
+    it 'is invalid when updating client to an incompatible owner' do
+      license = create(:license, client: report_family_owner, report_family: report_family)
+
+      result = license.update(client: other_client)
+
+      expect(result).to be(false)
+      expect(license.errors[:report_family]).to include(
+        owner_mismatch_message
+      )
     end
   end
 end

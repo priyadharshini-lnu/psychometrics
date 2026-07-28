@@ -59,6 +59,38 @@ RSpec.describe Api::V2::Administration::ReportFamiliesReportsController, type: :
       expect(report_families_report.external_package_id).to eq('RPInsightFlashPkg')
     end
 
+    it 'returns error when report owner is not compatible with report bundle owner' do
+      report_family_owner = create(:tenancy)
+      report_owner = create(:tenancy)
+      report_family = create(:report_family, tenant_id: report_family_owner.id)
+      report = create(:report, owner: report_owner, report_families: [])
+
+      body = {
+        data: {
+          type: 'report_families_reports',
+          attributes: {
+            external_package_id: 'RPInsightFlashPkg'
+          },
+          relationships: {
+            report: {
+              data: {
+                type: 'reports',
+                id: report.id.to_s
+              }
+            }
+          }
+        }
+      }
+
+      post "/api/v2/administration/report_families/#{report_family.id}/report_families_reports",
+           params: body.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      expect(errors.first['title']).to eq('report owner is not compatible with report bundle owner.')
+    end
+
     it 'returns error for duplicate report families report' do
       existing_report = create(:report)
       create(:report_families_report, report_family_id: report_family.id, report: existing_report)

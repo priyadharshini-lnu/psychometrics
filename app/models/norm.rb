@@ -6,6 +6,7 @@ class Norm < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include OwnerValidations
+  include OwnerCompatibility
 
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
@@ -20,6 +21,7 @@ class Norm < ApplicationRecord
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
+  validate :owner_and_dimension_owner_compatibility, if: :validate_owner_and_dimension_owner_compatibility?
 
   enum :norm_type, { five_scale: 0, percentile: 1 }
 
@@ -44,5 +46,24 @@ class Norm < ApplicationRecord
     @cloned_item = deep_clone include: [:factors_norms]
     @cloned_item.gen_uniq_name
     @cloned_item
+  end
+
+  private
+
+  def validate_owner_and_dimension_owner_compatibility?
+    return false if skip_owner_validation
+    return false if dimension.blank?
+
+    new_record? || will_save_change_to_owner_id? || will_save_change_to_dimension_id?
+  end
+
+  def owner_and_dimension_owner_compatibility
+    return if compatible_owner_ids?(owner_id, dimension.owner_id)
+
+    add_owner_compatibility_error(
+      :dimension,
+      child_resource: :norm,
+      parent_resource: :dimension
+    )
   end
 end
