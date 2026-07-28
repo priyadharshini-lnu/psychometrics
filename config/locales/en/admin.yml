@@ -1346,6 +1346,21 @@ en:
     modal_title: Convert to Template
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
+    model_params_description: Leave blank to use the default values defined by the assistant type.
+    model_params_max_tokens: Max Tokens
+    model_params_max_tokens_tooltip: Limits the maximum number of tokens the model can generate per response. Higher values allow longer outputs but increase cost and latency.
+    model_params_temperature: Temperature
+    model_params_temperature_tooltip: Controls randomness in the output. 0 = deterministic and focused; 2 = highly creative and varied. Use lower values for outputs to be restricted to the context provided.
+    model_params_thinking_budget: Thinking Budget (tokens)
+    model_params_thinking_budget_tooltip: Sets a hard cap on tokens the model can spend on internal reasoning. Higher values allow deeper analysis but increase token usage and response time.
+    model_params_thinking_budget_unsupported: This model uses effort-based reasoning control only. Thinking budget (token cap) is not supported.
+    model_params_thinking_effort: Thinking Effort
+    model_params_thinking_effort_high: High
+    model_params_thinking_effort_low: Low
+    model_params_thinking_effort_medium: Medium
+    model_params_thinking_effort_none: None
+    model_params_thinking_effort_tooltip: Controls how much reasoning the model applies before responding. Higher effort produces more thorough answers but takes longer. Use 'None' to disable reasoning entirely.
+    model_params_title: Advanced Model Configuration
     must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
@@ -3167,6 +3182,7 @@ en:
     url_name: url
     used_tokens_input_tokens: Input Tokens
     used_tokens_output_tokens: Output Tokens
+    used_tokens_thinking_tokens: Thinking Tokens
     used_tokens_title: Token usage
     user: User
     user_agent: User Agent

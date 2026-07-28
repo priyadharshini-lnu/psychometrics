@@ -72,3 +72,21 @@ rescue RubyLLM::Error => e
   puts "Error: #{e.message} #{e.response.body}"
 end
 ```
+
+### File analysis
+
+```ruby
+assistant = AI::Assistant.first
+user = User.first
+
+chat = assistant.for_user(user)
+
+begin
+  response = chat.with_params().ask('Please analyze this document', with: 'https://pdfobject.com/pdf/sample.pdf', service: :openai_response_api)
+  puts response.content
+  puts "Input tokens:  #{response.input_tokens}"
+  puts "Output tokens: #{response.output_tokens}"
+rescue => e
+  puts "Unexpected error: #{e.class} - #{e.message}"
+end
+```

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import {
   Input, Button,
-  Flex, Form, Typography,
+  Flex, Form, Typography, theme,
   Select, Splitter, Avatar,
 } from 'antd'
 import { Bubble, Sender } from '@ant-design/x'
@@ -22,9 +22,48 @@ import { getAvailableAiProviders } from '~/core/config'
 const { Paragraph } = Typography
 const MAX_LENGTH = 10000
 
+type TokenInfo = {
+  inputTokens: number
+  outputTokens: number
+  thinkingTokens: number | null
+}
+
+type Message = {
+  text: string
+  isUser: boolean
+  tokens?: TokenInfo
+}
+
+const { I18n } = window
+
+const TokenUsage: React.FC<{ tokens: TokenInfo }> = ({ tokens }) => {
+  const { token } = theme.useToken()
+  return (
+    <Flex gap={12}>
+      <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+        {I18n.t('admin.used_tokens_input_tokens')}
+        :
+        {tokens.inputTokens}
+      </Typography.Text>
+      <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+        {I18n.t('admin.used_tokens_output_tokens')}
+        :
+        {tokens.outputTokens}
+      </Typography.Text>
+      {tokens.thinkingTokens != null && tokens.thinkingTokens > 0 && (
+        <Typography.Text type="secondary" style={{ fontSize: token.fontSizeSM }}>
+          {I18n.t('admin.used_tokens_thinking_tokens')}
+          :
+          {tokens.thinkingTokens}
+        </Typography.Text>
+      )}
+    </Flex>
+  )
+}
+
 
 export const AiAssistantPlayground: React.FC = () => {
-  const [messages, setMessages] = useState([
+  const [messages, setMessages] = useState<Message[]>([
     { text: 'Welcome to AI Playground!\nType your prompt below.', isUser: false },
   ])
   const [input, setInput] = useState('')
@@ -69,8 +108,17 @@ export const AiAssistantPlayground: React.FC = () => {
       body: {
         prompt,
       },
-    }).then((response: { attributes: { message: string | object } }) => {
-      const { message } = response.attributes
+    }).then((response: {
+      attributes: {
+        message: string | object
+        inputTokens: number
+        outputTokens: number
+        thinkingTokens: number | null
+      }
+    }) => {
+      const {
+        message, inputTokens, outputTokens, thinkingTokens,
+      } = response.attributes
       const displayText = typeof message === 'string' ? message : JSON.stringify(message, null, 2)
 
       setMessages(msgs => [
@@ -78,6 +126,7 @@ export const AiAssistantPlayground: React.FC = () => {
         {
           text: displayText,
           isUser: false,
+          tokens: { inputTokens, outputTokens, thinkingTokens },
         },
       ])
       setLoading(false)
@@ -113,7 +162,8 @@ export const AiAssistantPlayground: React.FC = () => {
               key={idx}
               placement={msg.isUser ? 'end' : 'start'}
               content={msg.text}
-              styles={{ content: { maxWidth: 500 } }}
+              styles={{ content: { maxWidth: 500 }, footer: { marginTop: 0, paddingTop: 0 } }}
+              footer={!msg.isUser && msg.tokens ? <TokenUsage tokens={msg.tokens} /> : undefined}
               avatar={msg.isUser ? (
                 <Avatar
                   icon={<UserOutlined />}

@@ -21,6 +21,7 @@ module Api
               attribute[:model_id].maybe(:string)
               attribute[:status].maybe(:string)
               attribute[:dependencies].maybe(:array).each(:string)
+              attribute[:model_params].maybe
             end
           end
 
@@ -34,6 +35,12 @@ module Api
               required(:model_id).filled(:string)
               optional(:status).maybe(:string)
               optional(:dependencies).maybe(:array).each(:string)
+              optional(:model_params).hash do
+                optional(:max_tokens).maybe(:integer)
+                optional(:temperature).maybe { int? | float? }
+                optional(:thinking_effort).maybe(:string)
+                optional(:thinking_budget).maybe(:integer)
+              end
             end
           end
 
@@ -47,6 +54,12 @@ module Api
               optional(:model_id).filled(:string)
               optional(:status).maybe(:string)
               optional(:dependencies).maybe(:array).each(:string)
+              optional(:model_params).hash do
+                optional(:max_tokens).maybe(:integer)
+                optional(:temperature).maybe { int? | float? }
+                optional(:thinking_effort).maybe(:string)
+                optional(:thinking_budget).maybe(:integer)
+              end
             end
           end
 

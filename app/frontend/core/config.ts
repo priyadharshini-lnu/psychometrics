@@ -16,6 +16,9 @@ export interface AiModel {
   region?: string
   model: string
   provider?: string
+  supports_reasoning?: boolean
+  supports_temperature?: boolean
+  supports_thinking_budget?: boolean
 }
 
 export interface ConfigState {

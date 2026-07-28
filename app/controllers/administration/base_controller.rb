@@ -127,7 +127,13 @@ module Administration
 
       (Settings.ai_providers || []).
         select { |p| available_ids.include?(p['model_id']) }.
-        map { |p| p.to_h.slice(:model_id, :description, :region, :model, :name, :provider) }
+        map do |p|
+          p.to_h.slice(:model_id, :description, :region, :model, :name, :provider).merge(
+            supports_reasoning: p.dig('capabilities', 'supports_reasoning') || false,
+            supports_temperature: p.dig('capabilities', 'supports_temperature') != false,
+            supports_thinking_budget: p.dig('capabilities', 'supports_thinking_budget') != false
+          )
+        end
     end
 
     def handle_render_entrypoint

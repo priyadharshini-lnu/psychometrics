@@ -90,7 +90,8 @@ module AI
       {
         message: response.content,
         input_tokens: response.input_tokens,
-        output_tokens: response.output_tokens
+        output_tokens: response.output_tokens,
+        thinking_tokens: response.thinking_tokens
       }
     end
 

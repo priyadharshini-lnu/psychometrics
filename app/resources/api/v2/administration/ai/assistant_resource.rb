@@ -7,7 +7,7 @@ module Api
         model_name 'AI::Assistant'
         attributes :name, :description, :assistant_type, :user_prompt, :system_prompt,
                    :created_at, :updated_at, :model_id, :status, :dependencies,
-                   :assistant_output_schema_keys_attributes,
+                   :assistant_output_schema_keys_attributes, :model_params,
                    :advanced_prompting_enabled, :in_use, :provider_previously_used
 
         has_one :owner, class_name: 'Client'
