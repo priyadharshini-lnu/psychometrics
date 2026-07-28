@@ -3,7 +3,6 @@
 class ReportFamily < ApplicationRecord
   include RansackSearchableFields
   include OwnerCompatibility
-  include Tenantable
 
   audited
 
@@ -19,6 +18,9 @@ class ReportFamily < ApplicationRecord
   validates :name, presence: true
   validate :owner_compatibility_with_reports, if: :validate_owner_compatibility_with_reports?
   validate :owner_compatibility_with_licenses, if: :validate_owner_compatibility_with_licenses?
+
+  tenant_config has_global_records: true, optional: true
+  include Tenantable
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name tenant_id]
