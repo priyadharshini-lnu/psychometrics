@@ -30,6 +30,8 @@ module Api
         @user ||= begin
           u = if user_id_type == 'external_id'
                 ::Users::Regular.find_by(project_id: project_id, external_id: user_id)
+              elsif user_id_type == 'email'
+                ::Users::Regular.find_by(project_id: project_id, email: user_id)
               else
                 ::Users::Regular.find_by(project_id: project_id, id: user_id)
               end

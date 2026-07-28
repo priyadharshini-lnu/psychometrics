@@ -6,6 +6,10 @@ module Api
       class UpdateForm < BaseForm
         validate :uniq_email
 
+        validates :first_name, presence: true, if: -> { context.passed_attributes.include?(:first_name) }
+        validates :last_name, presence: true, if: -> { context.passed_attributes.include?(:last_name) }
+        validates :email, presence: true, if: -> { context.passed_attributes.include?(:email) }
+
         def uniq_email
           return if email.nil?
           return if email == context.user.email
