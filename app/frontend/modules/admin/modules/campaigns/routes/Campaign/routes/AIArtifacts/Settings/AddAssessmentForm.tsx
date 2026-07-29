@@ -1,5 +1,7 @@
-import { useState } from 'react'
-import { Select, Form } from 'antd'
+import { useMemo } from 'react'
+import { Select, Spin } from 'antd'
+import { getAvailableAssessments } from './assessmentSearchUtils'
+import './assessmentSelect.css'
 
 const { I18n } = window
 
@@ -23,37 +25,59 @@ export const AddAssessmentForm: React.FC<Props> = ({
   onSearch,
   isLoading = false,
 }) => {
-  const [form] = Form.useForm()
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(undefined)
+  const availableAssessments = useMemo(
+    () => getAvailableAssessments(allAssessments, selectedAssessments),
+    [allAssessments, selectedAssessments],
+  )
 
-  const handleChange = (value: string) => {
-    setSelectedValue(undefined)
-    form.resetFields()
+  const handleChange = (value?: string) => {
+    onSearch?.('')
+    if (!value) return
     onAssessmentSelect(value)
   }
 
-  const availableAssessments = allAssessments.filter(
-    assessment => !selectedAssessments.has(assessment.id.toString()),
-  )
-
   return (
-    <Form form={form}>
-      <Form.Item name="assessment">
-        <Select
-          value={selectedValue}
-          onChange={handleChange}
-          allowClear
-          showSearch={{ filterOption: false, onSearch }}
-          loading={isLoading}
-          placeholder={I18n.t('admin.form_select_assessment')}
-          notFoundContent={isLoading ? I18n.t('shared.loading') : I18n.t('admin.no_assessments_found')}
-          options={availableAssessments.map(assessment => ({
-            key: assessment.id,
-            label: assessment.name,
-            value: assessment.id.toString(),
-          }))}
-        />
-      </Form.Item>
-    </Form>
+    <Select
+      value={null}
+      allowClear
+      showSearch={{
+        filterOption: false,
+      }}
+      autoFocus
+      onSearch={value => onSearch?.(value)}
+      onChange={handleChange}
+      onClear={() => onSearch?.('')}
+      loading={isLoading}
+      placeholder={I18n.t('admin.form_select_assessment')}
+      getPopupContainer={triggerNode => triggerNode.parentElement}
+      notFoundContent={
+        isLoading ? (
+          <div style={{ textAlign: 'center', padding: '10px 0' }}>
+            <Spin size="small" />
+          </div>
+        ) : (
+          I18n.t('admin.no_assessments_found')
+        )
+      }
+      style={{ width: '100%' }}
+      popupClassName="assessment-select-popup"
+      options={availableAssessments.map(assessment => ({
+        key: assessment.id,
+        label: (
+          <div
+            style={{
+              whiteSpace: 'normal',
+              wordBreak: 'break-word',
+              overflow: 'visible',
+              padding: '4px 0',
+            }}
+          >
+            {assessment.name}
+          </div>
+        ),
+        value: assessment.id.toString(),
+        title: assessment.name,
+      }))}
+    />
   )
 }

@@ -1,0 +1,21 @@
+/* Assessment Select Dropdown Styling */
+
+.assessment-select-popup .rc-virtual-list-holder-inner {
+  width: auto !important;
+}
+
+.assessment-select-popup .ant-select-item-option {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow: visible !important;
+  padding: 5px 12px !important;
+  line-height: 1.5 !important;
+  max-width: none !important;
+  height: auto !important;
+}
+
+.assessment-select-popup .ant-select-item-option-content {
+  white-space: normal !important;
+  word-break: break-word !important;
+  overflow: visible !important;
+}
