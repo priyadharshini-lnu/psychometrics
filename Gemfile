@@ -199,7 +199,7 @@ group :development, :test do
   ### Generate schema in each model
   gem 'deepl-rb'
   gem 'derailed_benchmarks', '~> 1.7.0'
-  gem 'i18n-tasks', '~> 1.0.15'
+  gem 'i18n-tasks', '~> 1.1.2'
   gem 'rswag-specs', '~> 2.11'
   gem 'rubocop', '= 1.79.2', require: false
   gem 'rubocop-performance', '= 1.25.0'

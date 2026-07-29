@@ -58,8 +58,9 @@ jobs:
       - name: Translate missing keys
         env:
           DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
+          GOOGLE_TRANSLATE_API_KEY: ${{ secrets.GOOGLE_TRANSLATE_API_KEY }}
         run: |
-          i18n-tasks translate-missing ${{ steps.parse_args.outputs.languages }} --backend=deepl
+          i18n-tasks translate-missing ${{ steps.parse_args.outputs.languages }} --backend=google
 
       - name: Normalize locale files
         run: i18n-tasks normalize -p
