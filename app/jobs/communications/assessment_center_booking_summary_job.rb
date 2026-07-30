@@ -19,7 +19,8 @@ module Communications
       new_last_ran_at = Time.zone.now
       communication.update_column(:last_ran_at, new_last_ran_at)
 
-      last_run_date = new_last_ran_at.in_time_zone(communication.delivery_timezone).to_date
+      normalized_tz = TimezoneHelper.normalize(communication.delivery_timezone)
+      last_run_date = new_last_ran_at.in_time_zone(normalized_tz).to_date
       communication.schedule_repeated_emails(job: Communications::AssessmentCenterBookingSummaryJob,
                                              last_run_date: last_run_date)
     end

@@ -20,7 +20,8 @@ class ScheduledDigestEmailsJob < ApplicationJob
   def due_for_digest?(setting)
     return false if setting.digest_emails_enabled_at.blank?
 
-    now         = Time.current.in_time_zone(setting.digest_timezone)
+    normalized_tz = TimezoneHelper.normalize(setting.digest_timezone)
+    now         = Time.current.in_time_zone(normalized_tz)
     last_sent   = setting.last_digest_sent_at
     target_time = now.change(
       hour: setting.digest_time.hour,

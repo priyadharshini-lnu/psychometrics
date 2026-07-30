@@ -139,7 +139,8 @@ class CommunicationEmailMailer < ApplicationMailer
   def format_date(date, time_zone)
     return unless date
 
-    I18n.l date.in_time_zone(time_zone || Time.zone.name), format: :with_time_zone
+    normalized_tz = TimezoneHelper.normalize(time_zone) || Time.zone.name
+    I18n.l date.in_time_zone(normalized_tz), format: :with_time_zone
   end
 
   def recipient
