@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource
+class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration::BaseResource # rubocop:disable Metrics/ClassLength
   attributes :attendance_status, :attended, :preworks, :workshop_id, :workshop_activities, :meeting_link,
              :language, :late_duration, :scheduling_status, :created_at, :campaign_assessment_group_name,
              :campaign_assessment_group_id, :full_name, :email, :photo_url, :workshop_name,
