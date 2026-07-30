@@ -12,8 +12,12 @@ class Api::V2::Administration::CampaignTemplateResource < Api::V2::Administratio
 
   def self.records(opts)
     super.includes(
-      assessment: { icon_attachment: :blob, poster_attachment: :blob },
-      report: { icon_attachment: :blob, poster_attachment: :blob }
+      assessment: [:translations, :created_by, :updated_by,
+                   { icon_attachment: :blob }, { poster_attachment: :blob }],
+      report: [:created_by, :updated_by,
+               { icon_attachment: :blob }, { poster_attachment: :blob }],
+      owner: { client_design_setting: { logo_attachment: :blob } },
+      campaign: %i[default_idp_template dashboard threesixty_campaign]
     )
   end
 

@@ -46,7 +46,8 @@ class Api::V2::Administration::AIScoreApprovalResource < Api::V2::Administration
   end
 
   def self.records(_)
-    super.select('user_assessments.*', 'assessor_ids', 'approver_ids',
-                 'allow_bulk_approve', 'allow_bulk_approve_scores')
+    super.includes(assessment: :translations).
+      select('user_assessments.*', 'assessor_ids', 'approver_ids',
+             'allow_bulk_approve', 'allow_bulk_approve_scores')
   end
 end

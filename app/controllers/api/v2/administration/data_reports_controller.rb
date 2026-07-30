@@ -47,11 +47,13 @@ module Api
           Project
         end
 
-      if params[:filter].present?
+      if params[:ids].present?
+        projects = projects.ransack(id: params[:ids]).result
+      elsif params[:filter].present?
         projects = projects.ransack(params[:filter]).result
       end
 
-      render json: projects.order(:name).limit(20).select(:id, :name)
+      render json: projects.order(:name).select(:id, :name)
     end
 
     def pundit_authorize

@@ -126,5 +126,13 @@ module EndUser
     def completed_without_timed_out?(result)
       result.deemed_completed? && !result.timed_out?
     end
+
+    def pearson_timed_duration_text
+      duration_minutes = object.pearson_user_assessment&.duration_minutes
+
+      return if duration_minutes.blank?
+
+      I18n.t('enduser.assessment_timing_duration_minutes', duration: duration_minutes)
+    end
   end
 end

@@ -128,10 +128,14 @@ ja:
     application_name_already_taken: このクライアントについてはすでに存在します
     application_name_format_hint: 使用できるのは英数字のみであり、単語の間にはスペースを1つ入れること
     application_settings_at_least_one_ip_required: IPホワイトリストを有効にする前に、少なくとも1つのIPアドレスを登録してください
+    application_settings_at_least_one_url_required: URLホワイトリストを有効にする前に、少なくとも1つのURLエントリを有効にしてください。
     application_settings_confirm_delete_ip: このIPアドレスを削除してもよろしいですか？
-    application_settings_edit_ip_address: IPアドレス／CIDR範囲の編集
+    application_settings_confirm_delete_url: このURLを削除してもよろしいですか？
     application_settings_enable_ip_whitelisting: IPホワイトリストを有効にする
+    application_settings_enable_url_whitelisting: URLホワイトリストを有効にする
     application_settings_invalid_ip_format: IPアドレスまたはCIDR形式が不正です
+    application_settings_invalid_url_format: 無効なURL形式
+    application_settings_ip_address: IPアドレス/CIDR範囲
     application_settings_ip_addresses: IPアドレス／CIDR範囲
     application_settings_ip_deleted_successfully: IPアドレスの削除に成功しました
     application_settings_ip_description_placeholder: 例：オフィスネットワークや本番サーバーなど
@@ -141,6 +145,16 @@ ja:
     application_settings_ip_updated_successfully: IPアドレスの更新に成功しました
     application_settings_ip_whitelisting_disabled_success: IPのホワイトリスト登録が無効化されました
     application_settings_ip_whitelisting_enabled_success: IPのホワイトリスト登録が正常に有効化されました
+    application_settings_url: URL
+    application_settings_url_addresses: URLアドレス
+    application_settings_url_deleted_successfully: URLは正常に削除されました
+    application_settings_url_description_placeholder: 例：オフィスネットワークまたは本番サーバー
+    application_settings_url_input_placeholder: 例：https://example.com または https://sub.example.com
+    application_settings_url_required: URLは必須です
+    application_settings_url_updated_successfully: URLが正常に更新されました
+    application_settings_url_whitelisting_disabled_success: URLホワイトリストの無効化に成功しました
+    application_settings_url_whitelisting_enabled_success: URLホワイトリスト登録が正常に有効化されました
+    application_settings_urls: URL
     applications: 用途
     apply_to_existing_users: この変更をこのキャンペーンの既存ユーザーに適用する
     approve_all_questions: すべての質問を承認する
@@ -213,6 +227,8 @@ ja:
     assessor_overview: 概要
     assessor_placeholder: アセッサーの検索...
     assessor_remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
+    assessor_remove_has_evaluations: この評価者には%{evaluation_count}件の評価フォームが割り当てられています。この評価者が記入したすべての評価は失われます。
+    assessor_remove_in_assessment_centers: この評価担当者は%{workshop_count}評価センターに所属しています。この手続きにより、すべての評価センターから削除されます。
     assessor_statuses_completed: 完了済み
     assessor_statuses_not_completed: 未完了
     assessor_subjects_statuses_completed: 完了済み
@@ -625,6 +641,7 @@ ja:
       thursday: 木曜日
       tuesday: 火曜日
       wednesday: 水曜日
+    dimension_errors_cannot_delete_with_assessments: このディメンションは評価に関連付けられているため、削除できません。まず、関連付けられている評価を削除または更新してください。
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     dimensions_destroy_successfully: ディメンション %{name} は正常に削除されました。
@@ -645,6 +662,7 @@ ja:
     dimensions_import_modal_import_dimension: 輸入寸法
     dimensions_import_modal_import_scheduled: インポート予定
     dimensions_import_modal_operation: オペレーション
+    dimensions_import_modal_owner_global: TTE（グローバル）
     dimensions_import_modal_owner_input_validation: オーナーを選択してください
     dimensions_import_modal_owner_select: オーナーの選択
     dimensions_import_modal_select_json: JSONファイルを選択
@@ -1206,6 +1224,7 @@ ja:
     invite_workshop_list_remove_confirm_success: アセスメントセンターは正常に削除されました。
     invite_workshop_list_remove_confirm_title: 確認
     invite_workshop_title: アセスメント・センター
+    ip_whitelisting: IPホワイトリスト
     is_subject: 対象
     job_role_are_you_sure_to_remove: 本当に外していいのか？
     job_role_column_job_group: 職務グループ
@@ -1279,6 +1298,7 @@ ja:
     mark_not_finalized: マークは確定していません
     mark_not_finalized_bulk_confirm: 選択したすべてのユーザーから「finalize」を削除すると、AIアーティファクトを使用した生成済みレポートが削除されます。本当に続行しますか？
     mark_not_finalized_confirm: ユーザー「%{email}」から「finalize」を削除すると、そのユーザー向けにAIアーティファクトを使用して生成されたレポートが削除されます。本当に続行しますか？
+    mark_ready_button: 準備完了としてマークする
     mask_identity_for_examus: エグザムス・プロテクターのマスクデータ
     mask_identity_for_hogan: ホーガンのマスクデータ
     mask_identity_for_iiht: IIHTのマスクデータ
@@ -1337,6 +1357,21 @@ ja:
     modal_title: テンプレートに変換
     model_answer: 模範解答
     model_answer_placeholder: AI採点用の模範解答を入力してください。
+    model_params_description: アシスタントの種類によって定義されたデフォルト値を使用する場合は、空欄のままにしてください。
+    model_params_max_tokens: 最大トークン数
+    model_params_max_tokens_tooltip: モデルが応答ごとに生成できるトークンの最大数を制限します。値を大きくすると出力が長くなりますが、コストとレイテンシが増加します。
+    model_params_temperature: 温度
+    model_params_temperature_tooltip: 出力のランダム性を制御します。0 = 決定論的で焦点が絞られた出力。2 = 非常に創造的で多様な出力。出力が指定されたコンテキストに限定される場合は、低い値を使用してください。
+    model_params_thinking_budget: 予算を考える（トークン）
+    model_params_thinking_budget_tooltip: モデルが内部推論に使用できるトークン数の上限を設定します。値を大きくするとより詳細な分析が可能になりますが、トークンの使用量と応答時間が増加します。
+    model_params_thinking_budget_unsupported: このモデルは、努力に基づく推論制御のみを使用します。思考予算（トークン上限）はサポートされていません。
+    model_params_thinking_effort: 思考努力
+    model_params_thinking_effort_high: 高い
+    model_params_thinking_effort_low: 低い
+    model_params_thinking_effort_medium: 中くらい
+    model_params_thinking_effort_none: なし
+    model_params_thinking_effort_tooltip: モデルが応答する前にどの程度推論を行うかを制御します。推論の度合いが高いほど、より詳細な回答が得られますが、時間がかかります。「なし」を選択すると、推論が完全に無効になります。
+    model_params_title: 高度なモデル構成
     must_be_a_valid_url: URLが無効です。http または https プロトコルを含む完全な URL を指定してください
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
@@ -1444,6 +1479,14 @@ ja:
     overall: 全体的に
     overall_score: 総合スコア
     overall_scoring: 総合得点
+    owner_resource_assessment: 評価
+    owner_resource_campaign: キャンペーン
+    owner_resource_client: クライアント
+    owner_resource_dimension: 寸法
+    owner_resource_mismatch: "%{child_resource}の所有者は%{parent_resource}の所有者と互換性がありません。"
+    owner_resource_norm: 規範
+    owner_resource_report: 報告
+    owner_resource_report_bundle: レポートバンドル
     parsed_dependencies_help: 成果物結果の生成に AI アシスタントによって使用されるユーザーの解析された依存関係
     parsed_dependencies_title: 解析された依存関係
     parsed_dependencies_view: 解析された依存関係の表示
@@ -2195,6 +2238,8 @@ ja:
     report_approval_columns_user_email: ユーザーEメール
     report_approval_columns_user_name: ユーザー名
     report_approval_digest_delivery_mode_form_label: ダイジェスト配信モード
+    report_approval_digest_delivery_mode_immediate: 即時 - 大量送信があった場合はいつでも送信します
+    report_approval_digest_delivery_mode_scheduled: スケジュール設定 - 指定した時間にダイジェストメールを送信します
     report_approval_digest_frequency_daily: 日毎
     report_approval_digest_frequency_form_label: ダイジェスト周波数
     report_approval_digest_frequency_weekdays: 平日
@@ -2386,6 +2431,7 @@ ja:
     saml_settings_config_details_copied: コピーされた %{element}
     saml_settings_config_details_issuer: エンティティID/発行者
     saml_settings_config_details_title: 以下の情報でIdpを設定する。
+    saml_settings_download_metadata: メタデータのダウンロード
     saml_settings_email_pipetext: Pipetextにメールする
     saml_settings_enabled: 有効
     saml_settings_enforced: SAML の実施
@@ -3156,8 +3202,10 @@ ja:
     upload_success: アップロード成功
     url_label: URL
     url_name: URL
+    url_whitelisting: URLホワイトリスト登録
     used_tokens_input_tokens: 入力トークン
     used_tokens_output_tokens: 出力トークン
+    used_tokens_thinking_tokens: 思考トークン
     used_tokens_title: トークンの使用
     user: ユーザー
     user_agent: ユーザーエージェント

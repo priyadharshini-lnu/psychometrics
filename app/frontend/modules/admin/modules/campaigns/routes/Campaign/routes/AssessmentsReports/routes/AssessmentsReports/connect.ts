@@ -25,6 +25,7 @@ const connecter = connect(
     bulkDownloadInProgress: isRequestInProgress(state, BULK_DOWNLOAD),
     reports: getReports(state),
     campaignPermissions: getCurrentCampaign(state).permissions,
+    campaignTenantId: getCurrentCampaign(state).tenantId,
     otherAsessorAssessments: getAssessorAssessment(state),
     otherReports: getOtherReports(state),
     otherAssessments: getOtherAssessments(state),

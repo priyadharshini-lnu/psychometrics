@@ -7,6 +7,7 @@ zh:
     add: 添加
     advanced: 高深
     agree_and_continue: 同意并继续
+    ai_toolbar_disclaimer: 人工智能生成的建议可能包含不准确之处或意外更改。请在使用前仔细审核所有内容，并自行承担验证最终输出结果的责任。
     approval_status: 审批状态
     approved: 已批准
     approved_by: 经批准
@@ -99,9 +100,12 @@ zh:
     icon: 图标
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP助手可能会犯错。使用回复时请务必小心。
+    impersonation_banner_aria_label: 主动模仿会话
+    impersonation_end_session: 出口
     import: 进口
     inactive: 不活动
     internet_disconnected_message: 正在尝试重新连接。请检查你的互联网连接。
+    is_impersonating: 冒充
     issuer: 发行人
     issuer_claim_label: 发行人 (iss)
     jwt_claims_details: JWT 索赔详情
@@ -185,6 +189,7 @@ zh:
     reset: 重置
     reset_password: 重置密码
     response_text: 响应文本
+    return_url_not_whitelisted: 此应用程序未将返回 URL 列入白名单。
     rte_paste_content_exceeds_char_limit: 文本超过了{{maxCharacterLimit}}的字符限制，无法粘贴。
     rte_paste_content_exceeds_word_limit: 文本超过{{maxWordLimit}}的字数限制，无法粘贴。
     run: 运行

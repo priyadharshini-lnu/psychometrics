@@ -79,13 +79,22 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
     },
   })
 
-  const debouncedFetchAiAssistantsGroups = useCallback(debounce((value) => {
-    fetchAiAssistants({
-      apiConfig: {
-        filter: { filterable_fields: value, assistant_type_eq: ASSISTANT_TYPES.content_writer.id },
+  const fetchContentWriterAssistants = (searchValue = '') => fetchAiAssistants({
+    apiConfig: {
+      filter: {
+        assistant_type_eq: ASSISTANT_TYPES.content_writer.id,
+        filterable_fields: searchValue,
       },
-    })
+    },
+  })
+
+  const debouncedFetchAiAssistantsGroups = useCallback(debounce((value) => {
+    fetchContentWriterAssistants(value)
   }, 300), [])
+
+  useEffect(() => {
+    fetchContentWriterAssistants()
+  }, [])
 
   const aiAssistant = useMemo(() => {
     if (aiAssistantId) {

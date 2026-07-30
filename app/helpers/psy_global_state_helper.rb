@@ -10,6 +10,7 @@ module PsyGlobalStateHelper
       sentryDebug: Settings.sentry_debug.presence || 'false',
       availableAiProviders: Settings.available_ai_providers.to_s,
       currentUser: current_user_data,
+      impersonationData: impersonation_data,
       features: Settings.features.to_h.transform_values { |v| v == true },
       clientContextData: client_context_data,
       switchableClients: switchable_clients_data,
@@ -23,6 +24,24 @@ module PsyGlobalStateHelper
     return { id: nil, email: nil } unless current_user
 
     current_user.as_json(only: %i[id email])
+  end
+
+  def impersonation_data
+    return nil unless user_signed_in?
+
+    impersonator = resolve_impersonator
+    return nil unless impersonator
+
+    decorated_target = current_user.decorate
+    {
+      impersonator: { id: impersonator.id, email: impersonator.email, name: impersonator.decorate.display_name },
+      target: {
+        id: current_user.id,
+        email: current_user.email,
+        name: decorated_target.display_name,
+        role: decorated_target.role
+      }
+    }
   end
 
   def client_context_data
@@ -70,6 +89,6 @@ module PsyGlobalStateHelper
   def resolve_impersonator
     return nil if session[:impersonated_by_id].blank?
 
-    User.find_by(id: session[:impersonated_by_id])
+    @resolve_impersonator ||= User.find_by(id: session[:impersonated_by_id])
   end
 end

@@ -22,7 +22,7 @@ RUN update-ca-certificates
 
 # We're also installing the latest nodejs and lua
 RUN apt-get update -qq
-RUN apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev
+RUN apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev unzip
 RUN curl --version
 RUN curl -v https://deb.nodesource.com/setup_22.x -o /tmp/nodesetup.sh || (echo 'curl failed, trying wget...' && wget https://deb.nodesource.com/setup_22.x -O /tmp/nodesetup.sh)
 RUN cat /tmp/nodesetup.sh
@@ -108,6 +108,7 @@ ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT 'development test'
 ENV NODE_ENV=production
 
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -117,7 +118,7 @@ ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 RUN yarn global add modclean@3.0.0-beta.1
 
 COPY package.json yarn.lock .npmrc ./
-RUN set -a && . /tmp/build.env && set +a && yarn install --pure-lockfile --network-timeout 600000
+RUN set -a && . /tmp/build.env && set +a && PUPPETEER_SKIP_DOWNLOAD=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --pure-lockfile --network-timeout 600000
 RUN modclean -r
 
 

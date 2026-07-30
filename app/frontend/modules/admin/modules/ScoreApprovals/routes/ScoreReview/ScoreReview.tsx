@@ -210,21 +210,38 @@ export const ScoreReview = () => {
 
   const nextQuestion = (questionId) => {
     const index = filteredQuestions.findIndex(q => q.id === questionId)
+    const status = scoreApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'
 
     const isQuestionApproved = question => (
       scoreApproval.indicators[question.id]
         ?.every(i => i.status === 'approver_approved' || i.status === status)
     )
 
-    const questionsAfter = filteredQuestions.slice(index + 1)
-    const questionsBefore = filteredQuestions.slice(0, index)
-    const searchOrder = [...questionsAfter, ...questionsBefore]
+    const allQuestionsApproved = filteredQuestions.every(q => isQuestionApproved(q))
 
-    const nextUnapproved = searchOrder.find(q => !isQuestionApproved(q))
-    if (nextUnapproved) {
-      setCurrentTab(nextUnapproved.id)
+    if (allQuestionsApproved && scoreApproval.approvedBy) {
+      const nextIndex = (index + 1) % filteredQuestions.length
+      setCurrentTab(filteredQuestions[nextIndex].id)
+      return
+    }
+
+    const questionsAfter = filteredQuestions.slice(index + 1)
+    const nextPending = questionsAfter.find(q => !isQuestionApproved(q))
+
+    if (nextPending) {
+      setCurrentTab(nextPending.id)
+    } else if (!isQuestionApproved(filteredQuestions[index])) {
+      // If current question is pending and no more pending questions, stay on it
+
+
+    } else {
+      const firstPending = filteredQuestions.find(q => !isQuestionApproved(q))
+      if (firstPending) {
+        setCurrentTab(firstPending.id)
+      }
     }
   }
+
   const status = scoreApproval.reviewAs === 'assessor' ? 'assessor_approved' : 'approver_approved'
   const { allowApprove } = scoreApproval
 
@@ -232,7 +249,7 @@ export const ScoreReview = () => {
     const approved = scoreApproval.indicators[question.id]
       ?.every(i => i.status === 'approver_approved' || i.status === status)
 
-    return ({
+    return {
       key: question.id,
       label: (
         <Space>
@@ -256,7 +273,7 @@ export const ScoreReview = () => {
         approved={approved}
         lastQuestion={filteredQuestions.length === index + 1}
       />,
-    })
+    }
   })
   return (
     <>

@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import * as t from 'io-ts'
 import {
-  Form, Checkbox, Divider, Button, Space, App,
+  Form, Checkbox, Divider, Button, Space, App, Select, Spin,
 } from 'antd'
 import map from 'lodash/map'
 import { useResources } from '~/hooks/useResources'
 import { PageLoadSpinner } from '~/glint'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { AdminTypes } from '~/modules/admin/modules/Admins/constants'
+import { formDataToResource } from '~/libs/jsonApi/helpers'
 import { AvailablePermissions } from '~/modules/admin/modules/Admins/core'
 
 const AvailablePermissionsTR = t.record(t.string, t.union([t.array(t.string), t.undefined]))
 
+const AdminRoleTR = t.type({
+  id: t.string,
+  name: t.string,
+})
+
+type AdminRole = t.TypeOf<typeof AdminRoleTR>
+
 const MembershipTR = t.type({
   id: t.string,
+  adminRoles: t.array(AdminRoleTR),
   grantNames: t.union([
     t.partial({
       clients: t.array(t.string),
@@ -44,10 +53,17 @@ type Props = {
   scopeFilter: Record<string, string>
 }
 
+const resolveAdminRolesPath = (scopeFilter: Record<string, string>): string => {
+  const clientId = scopeFilter.client_id_eq
+  const projectId = scopeFilter.project_id_eq
+  return `clients/${clientId || projectId}/admin_roles`
+}
+
 export const ApplicationPermissions: React.FC<Props> = ({ applicationId, role, scopeFilter }) => {
   const [form] = Form.useForm()
   const [availablePermissions, setAvailablePermissions] = useState<AvailablePermissions>({})
   const [isLoadingPermissions, setIsLoadingPermissions] = useState(true)
+  const [adminRolesOpen, setAdminRolesOpen] = useState(false)
   const { message } = App.useApp()
 
   const {
@@ -68,10 +84,19 @@ export const ApplicationPermissions: React.FC<Props> = ({ applicationId, role, s
     },
   })
 
+  const {
+    data: adminRoles,
+    fetch: fetchAdminRoles,
+    isLoading: isAdminRolesLoading,
+  } = useResources<AdminRole>(resolveAdminRolesPath(scopeFilter), {
+    apiConfig: { fields: { admin_roles: ['id', 'name'] } },
+  })
+
   const membership = memberships[0]
 
   useEffect(() => {
     fetchMemberships()
+    fetchAdminRoles()
     collectionAction({
       action: 'available_permissions',
       method: 'get',
@@ -86,12 +111,23 @@ export const ApplicationPermissions: React.FC<Props> = ({ applicationId, role, s
 
   useEffect(() => {
     if (membership) {
-      form.setFieldsValue({ grantNames: membership.grantNames ?? {} })
+      form.setFieldsValue({
+        grantNames: membership.grantNames ?? {},
+        adminRoleIds: membership.adminRoles.map(adminRole => adminRole.id),
+      })
     }
   }, [membership])
 
-  const handleSave = async (values: { grantNames: Record<string, string[]> }) => {
-    await updateResource({ id: membership.id, grantNames: values.grantNames })
+  const handleSave = async (values: { grantNames: Record<string, string[]>, adminRoleIds?: string[] }) => {
+    const payload = formDataToResource({
+      grantNames: values.grantNames,
+      adminRoleIds: values.adminRoleIds ?? [],
+    }, 'memberships')
+
+    await updateResource({
+      id: membership.id,
+      ...payload,
+    })
     message.success(I18n.t('admin.permissions_updated'))
   }
 
@@ -106,6 +142,24 @@ export const ApplicationPermissions: React.FC<Props> = ({ applicationId, role, s
   return (
     <div style={{ padding: 20 }}>
       <Form form={form} layout="vertical" onFinish={handleSave}>
+        <Form.Item
+          label={I18n.t('admin.admin_roles')}
+          name="adminRoleIds"
+        >
+          <Select
+            mode="multiple"
+            showSearch={false}
+            placeholder={I18n.t('admin.select_admin_role')}
+            options={map(adminRoles, adminRole => ({ label: adminRole.name, value: adminRole.id }))}
+            open={adminRolesOpen}
+            onFocus={() => setAdminRolesOpen(true)}
+            onBlur={() => setAdminRolesOpen(false)}
+            notFoundContent={
+              isAdminRolesLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')
+            }
+          />
+        </Form.Item>
+        <Divider />
         {map(availablePermissions, (grants, grantFor) => (
           <React.Fragment key={grantFor}>
             <Form.Item

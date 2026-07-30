@@ -28,7 +28,15 @@ export const General: React.FC<Props> = ({ report }) => {
   const handleUpdate = (values: Report) => {
     setIsLoading(true)
 
-    return updateResource(values).then(() => setIsLoading(false)).catch(() => setIsLoading(false))
+    return updateResource(values)
+      .then((response) => {
+        setIsLoading(false)
+        return response
+      })
+      .catch((error) => {
+        setIsLoading(false)
+        throw error
+      })
   }
 
   return (

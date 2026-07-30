@@ -9,7 +9,8 @@ module Api
         schema Api::V2::UserAvailabilityDate::Schema.create_request
 
         rule(data: { attributes: :timezone }) do
-          unless ActiveSupport::TimeZone[value]
+          normalized_tz = TimezoneHelper.normalize(value)
+          unless ActiveSupport::TimeZone[normalized_tz]
             key.failure(:not_in_the_list?)
           end
         end

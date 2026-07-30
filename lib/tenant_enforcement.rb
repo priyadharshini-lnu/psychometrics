@@ -7,6 +7,10 @@ module TenantEnforcement
     Settings.tenant_scoping.disabled
   end
 
+  def superadmin_scoping_disabled?
+    Settings.tenant_scoping.superadmin_scoping_disabled
+  end
+
   def subdomain_bypassed?(subdomain)
     return false if subdomain.blank?
 

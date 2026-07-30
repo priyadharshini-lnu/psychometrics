@@ -81,6 +81,7 @@ const CampaignPage: React.FC = () => {
           isFixedTime: campaign.isFixedTime,
           projectId: parseInt(projectId, 10),
           practiceCampaign: campaign.practiceCampaign,
+          ...(campaign.tenantId && { tenantId: campaign.tenantId }),
           permissions: campaign.meta.permissions as CommonCampaignPermissions,
           assessments: [],
           reports: [],

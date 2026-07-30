@@ -76,18 +76,15 @@ module UserRoles
     return true if is?(:superadmin)
     return false if project_id.nil? && campaign_id.nil?
 
-    project = ActsAsTenant.without_tenant { Client.find(project_id) } if project_id
-    project ||= ActsAsTenant.without_tenant { Campaign.find(campaign_id).project }
+    project = cached_project_for_permission(project_id, campaign_id)
 
     project_based_client_ids = [].tap do |arr|
       arr.concat(project.tenancy? ? [project.id] : [project.id, project.parent_id])
     end.compact
 
-    project_memberships = memberships.includes(:grants, :admin_roles).where(
-      client_id: project_based_client_ids, role: [Membership::CLIENT_ADMIN_ROLE, Membership::PROJECT_ADMIN_ROLE]
-    )
+    project_memberships = cached_project_memberships_for_permission(project_based_client_ids)
 
-    campaign_memberships = memberships.includes(:grants, :admin_roles).where(campaign_id: campaign_id) if campaign_id
+    campaign_memberships = cached_campaign_memberships_for_permission(campaign_id)
 
     (project_memberships + campaign_memberships.to_a).any? { |m| m.has_grant?(scope, grant) }
   end
@@ -122,5 +119,38 @@ module UserRoles
     else
       memberships
     end
+  end
+
+  def cached_project_for_permission(project_id, campaign_id)
+    @cached_permission_projects ||= {}
+
+    if project_id
+      @cached_permission_projects[project_id] ||= ActsAsTenant.without_tenant { Client.find(project_id) }
+    else
+      @cached_permission_campaigns ||= {}
+      campaign = @cached_permission_campaigns[campaign_id] ||= ActsAsTenant.without_tenant do
+        Campaign.find(campaign_id)
+      end
+      campaign.project
+    end
+  end
+
+  def cached_project_memberships_for_permission(project_based_client_ids)
+    @cached_permission_project_memberships ||= {}
+    cache_key = project_based_client_ids.sort.join('-')
+
+    @cached_permission_project_memberships[cache_key] ||= memberships.includes(:grants, :admin_roles).where(
+      client_id: project_based_client_ids,
+      role: [Membership::CLIENT_ADMIN_ROLE, Membership::PROJECT_ADMIN_ROLE]
+    ).to_a
+  end
+
+  def cached_campaign_memberships_for_permission(campaign_id)
+    return [] if campaign_id.blank?
+
+    @cached_permission_campaign_memberships ||= {}
+    @cached_permission_campaign_memberships[campaign_id] ||= memberships.includes(:grants, :admin_roles).where(
+      campaign_id: campaign_id
+    ).to_a
   end
 end

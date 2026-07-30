@@ -128,10 +128,14 @@ sl:
     application_name_already_taken: Za tega stranko že obstaja
     application_name_format_hint: Dovoljene so le črke in številke, med besedami pa je dovoljena le ena preslednica
     application_settings_at_least_one_ip_required: Preden omogočite uporabo seznama dovoljenih IP-naslovov, omogočite vsaj en vnos IP-naslova
+    application_settings_at_least_one_url_required: Preden omogočite seznam dovoljenih URL-jev, omogočite vsaj en vnos URL-ja.
     application_settings_confirm_delete_ip: Ali ste prepričani, da želite izbrisati ta IP-naslov?
-    application_settings_edit_ip_address: Uredi IP-naslov / CIDR-območje
+    application_settings_confirm_delete_url: Ali ste prepričani, da želite izbrisati ta URL?
     application_settings_enable_ip_whitelisting: Omogoči belo listo IP-naslovov
+    application_settings_enable_url_whitelisting: Omogoči seznam dovoljenih URL-jev
     application_settings_invalid_ip_format: Neveljaven IP-naslov ali format CIDR
+    application_settings_invalid_url_format: Neveljavna oblika URL-ja
+    application_settings_ip_address: Območje IP-naslovov/CIDR
     application_settings_ip_addresses: IP-naslovi / CIDR-območja
     application_settings_ip_deleted_successfully: IP-naslov je bil uspešno izbrisan
     application_settings_ip_description_placeholder: npr. pisarniško omrežje ali produkcijski strežnik
@@ -141,6 +145,16 @@ sl:
     application_settings_ip_updated_successfully: IP-naslov je bil uspešno posodobljen
     application_settings_ip_whitelisting_disabled_success: Uporaba seznama dovoljenih IP-naslovov je bila uspešno onemogočena
     application_settings_ip_whitelisting_enabled_success: Vključitev seznama dovoljenih IP-naslovov je bila uspešno izvedena
+    application_settings_url: URL-naslov
+    application_settings_url_addresses: URL-naslovi
+    application_settings_url_deleted_successfully: URL je bil uspešno izbrisan
+    application_settings_url_description_placeholder: npr. pisarniško omrežje ali produkcijski strežnik
+    application_settings_url_input_placeholder: npr. https://example.com ali https://sub.example.com
+    application_settings_url_required: URL je obvezen
+    application_settings_url_updated_successfully: URL je bil uspešno posodobljen
+    application_settings_url_whitelisting_disabled_success: Uvrstitev URL-jev na seznam dovoljenih je bila uspešno onemogočena
+    application_settings_url_whitelisting_enabled_success: Ustvarjanje URL-jev na beli seznam je bilo uspešno omogočeno
+    application_settings_urls: URL-ji
     applications: Uporaba
     apply_to_existing_users: Uporabi to spremembo za obstoječe uporabnike v tej kampanji
     approve_all_questions: Odobri vsa vprašanja
@@ -213,6 +227,8 @@ sl:
     assessor_overview: Pregled
     assessor_placeholder: Iskanje ocenjevalca ...
     assessor_remove_confirmation: Ali ste prepričani, da želite odstraniti ocenjevalca z e-poštnim naslovom %{email} iz te kampanje?
+    assessor_remove_has_evaluations: Ta ocenjevalec ima dodeljenih %{evaluation_count} obrazcev za ocenjevanje. Vse ocene, ki jih je izpolnil, bodo izgubljene.
+    assessor_remove_in_assessment_centers: Ta ocenjevalec je del ocenjevalnih centrov %{workshop_count}. Če nadaljujete, bo odstranjen iz vseh ocenjevalnih centrov.
     assessor_statuses_completed: Zaključeno
     assessor_statuses_not_completed: Ni zaključeno
     assessor_subjects_statuses_completed: Zaključeno
@@ -625,6 +641,7 @@ sl:
       thursday: četrtek
       tuesday: torek
       wednesday: sreda
+    dimension_errors_cannot_delete_with_assessments: Te dimenzije ni mogoče izbrisati, ker je še vedno povezana z ocenami. Najprej izbrišite ali posodobite povezane ocene.
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
     dimensions_destroy_successfully: Dimenzija %{name} je bila uspešno izbrisana.
@@ -645,6 +662,7 @@ sl:
     dimensions_import_modal_import_dimension: Uvozna razsežnost
     dimensions_import_modal_import_scheduled: Načrtovani uvoz
     dimensions_import_modal_operation: Operacija
+    dimensions_import_modal_owner_global: TTE (globalno)
     dimensions_import_modal_owner_input_validation: Prosimo, izberite lastnika
     dimensions_import_modal_owner_select: Izberite lastnika
     dimensions_import_modal_select_json: Izberite datoteko JSON
@@ -1206,6 +1224,7 @@ sl:
     invite_workshop_list_remove_confirm_success: Ocenjevalni center je bil uspešno odstranjen.
     invite_workshop_list_remove_confirm_title: Potrdi
     invite_workshop_title: Ocenjevalni centri
+    ip_whitelisting: Seznam dovoljenih IP-jev
     is_subject: Je predmet
     job_role_are_you_sure_to_remove: Ali ste prepričani, da ga odstranite?
     job_role_column_job_group: Delovna skupina
@@ -1279,6 +1298,7 @@ sl:
     mark_not_finalized: Oznaka ni dokončna
     mark_not_finalized_bulk_confirm: Če iz vseh izbranih uporabnikov odstranite status »finalize«, bodo odstranjena tudi ustvarjena poročila, ki uporabljajo artefakte umetne inteligence. Ali ste prepričani, da želite nadaljevati?
     mark_not_finalized_confirm: Če iz uporabnika »%{email}« odstranite oznako »finalize«, bo to povzročilo odstranitev ustvarjenega poročila, ki uporablja AI-artefakt za tega uporabnika. Ali ste prepričani, da želite nadaljevati?
+    mark_ready_button: Označi kot pripravljeno
     mask_identity_for_examus: Podatki o maski za Examus Proctoring
     mask_identity_for_hogan: Podatki o maski za Hogana
     mask_identity_for_iiht: Podatki o maski za IIHT
@@ -1337,6 +1357,21 @@ sl:
     modal_title: Pretvori v predlogo
     model_answer: Vzorec odgovora
     model_answer_placeholder: Vnesite vzorčni odgovor za ocenjevanje AI.
+    model_params_description: Pustite prazno, če želite uporabiti privzete vrednosti, ki jih določa tip pomočnika.
+    model_params_max_tokens: Največ žetonov
+    model_params_max_tokens_tooltip: Omejuje največje število žetonov, ki jih lahko model ustvari na odgovor. Višje vrednosti omogočajo daljše izhode, vendar povečajo stroške in zakasnitev.
+    model_params_temperature: Temperatura
+    model_params_temperature_tooltip: Nadzira naključnost v izhodu. 0 = deterministično in osredotočeno; 2 = zelo ustvarjalno in raznoliko. Uporabite nižje vrednosti za izhode, ki bodo omejeni na podani kontekst.
+    model_params_thinking_budget: Razmišljanje o proračunu (žetoni)
+    model_params_thinking_budget_tooltip: Določi fiksno zgornjo mejo žetonov, ki jih lahko model porabi za notranje sklepanje. Višje vrednosti omogočajo globljo analizo, vendar povečajo uporabo žetonov in odzivni čas.
+    model_params_thinking_budget_unsupported: Ta model uporablja samo nadzor sklepanja na podlagi napora. Proračun za razmišljanje (omejitev žetonov) ni podprt.
+    model_params_thinking_effort: Napor razmišljanja
+    model_params_thinking_effort_high: Visoka
+    model_params_thinking_effort_low: Nizko
+    model_params_thinking_effort_medium: Srednje
+    model_params_thinking_effort_none: Nobena
+    model_params_thinking_effort_tooltip: Nadzira, koliko sklepanja model uporabi pred odgovorom. Večji napor daje temeljitejše odgovore, vendar traja dlje. Za popolno onemogočanje sklepanja uporabite »Brez«.
+    model_params_title: Napredna konfiguracija modela
     must_be_a_valid_url: Neveljaven URL. Vnesite popoln URL z vključenim protokolom http ali https
     name: Ime
     name_max_length: Ime ne sme biti daljše od %{length} znakov.
@@ -1444,6 +1479,14 @@ sl:
     overall: Na splošno
     overall_score: Skupna ocena
     overall_scoring: Skupno točkovanje
+    owner_resource_assessment: ocena
+    owner_resource_campaign: kampanja
+    owner_resource_client: stranka
+    owner_resource_dimension: dimenzija
+    owner_resource_mismatch: Lastnik %{child_resource} ni združljiv z lastnikom %{parent_resource}.
+    owner_resource_norm: norma
+    owner_resource_report: poročilo
+    owner_resource_report_bundle: paket poročil
     parsed_dependencies_help: Razčlenjene odvisnosti za uporabnika, ki ga uporablja AI Assistant za generiranje rezultatov artefaktov
     parsed_dependencies_title: Razčlenjene odvisnosti
     parsed_dependencies_view: Ogled razčlenjenih odvisnosti
@@ -2195,6 +2238,8 @@ sl:
     report_approval_columns_user_email: Uporabniški e-poštni naslov
     report_approval_columns_user_name: Uporabniško ime
     report_approval_digest_delivery_mode_form_label: Način dostave povzetka
+    report_approval_digest_delivery_mode_immediate: Takojšnje – Pošlji vsakič, ko je poslana množična pošiljka
+    report_approval_digest_delivery_mode_scheduled: Načrtovano – Pošljite e-poštno sporočilo s povzetkom ob načrtovanem času
     report_approval_digest_frequency_daily: Dnevno
     report_approval_digest_frequency_form_label: Pogostost izvlečka
     report_approval_digest_frequency_weekdays: Delavniki
@@ -2386,6 +2431,7 @@ sl:
     saml_settings_config_details_copied: Kopirano %{element}
     saml_settings_config_details_issuer: ID subjekta/izdajatelj
     saml_settings_config_details_title: Konfiguriranje IDP-ja z naslednjimi informacijami
+    saml_settings_download_metadata: Prenesi metapodatke
     saml_settings_email_pipetext: Pošljite e-poštno besedilo cevi
     saml_settings_enabled: Omogočeno
     saml_settings_enforced: Uveljavljanje SAML
@@ -3148,8 +3194,10 @@ sl:
     upload_success: Uspešno naloženo
     url_label: Spletni naslov
     url_name: Spletni naslov
+    url_whitelisting: Uvrstitev URL-jev na seznam dovoljenih
     used_tokens_input_tokens: Vhodni žetoni
     used_tokens_output_tokens: Izhodni žetoni
+    used_tokens_thinking_tokens: Žetoni za razmišljanje
     used_tokens_title: Uporaba žetonov
     user: Uporabnik
     user_agent: Uporabniški posrednik

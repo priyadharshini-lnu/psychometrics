@@ -17,6 +17,7 @@ module Administration
           required(:status).filled(:str?)
           required(:total_evaluations).filled(:int?)
           required(:completed_evaluations).filled(:int?)
+          required(:workshop_assessors_count).filled(:int?)
         end
       end
     end

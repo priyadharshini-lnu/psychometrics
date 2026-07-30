@@ -429,6 +429,7 @@ hi:
               invalid_header: अमान्य हेडर, निर्यात से हेडर लें
               invalid_reports_header: अमान्य हेडर, नमूना फ़ाइल से हेडर लें।
               manager_not_found: "%{row_number} पंक्ति: %{email} ईमेल वाले प्रबंधक अभियान में या CSV में मौजूद नहीं हैं।"
+              not_enough_licenses: आयात के लिए %{required_count} लाइसेंस की आवश्यकता है, लेकिन केवल %{available_count} ही उपलब्ध हैं। कृपया आयात करने से पहले नए उपयोगकर्ताओं की संख्या कम करें या अधिक लाइसेंस जोड़ें।
               user_update_failed: "%{email} के लिए उपयोगकर्ता अपडेट त्रुटि '%{error}' के साथ विफल हो गया।"
             locale:
               inclusion: गलत लोकेल

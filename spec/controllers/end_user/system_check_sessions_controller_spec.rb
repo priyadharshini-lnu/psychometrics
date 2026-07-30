@@ -30,10 +30,14 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
   end
 
+  def store_system_check_session_id(session_id)
+    controller.send(:store_session_id, session_id)
+  end
+
   describe '#show' do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
-    before { cookies.signed[:system_check_session_id] = system_check_session.id }
+    before { store_system_check_session_id(system_check_session.id) }
 
     it 'returns the serialized session' do
       get :show, params: { campaign_id: campaign.id, id: system_check_session.id }
@@ -44,7 +48,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
 
     context 'when session does not exist' do
-      before { cookies.signed[:system_check_session_id] = -1 }
+      before { store_system_check_session_id(-1) }
 
       it 'raises RecordNotFound' do
         expect do
@@ -113,7 +117,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
-        cookies.signed[:system_check_session_id] = system_check_session.id
+        store_system_check_session_id(system_check_session.id)
         create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
         create(:system_check_record, :network, system_check_session: system_check_session,
                                                passed: true,
@@ -139,7 +143,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
         allow_any_instance_of(Campaign).to receive(:allow_continue_with_warning?).and_return(true)
-        cookies.signed[:system_check_session_id] = system_check_session.id
+        store_system_check_session_id(system_check_session.id)
         create(:system_check_record, :browser, system_check_session: system_check_session, passed: true)
         create(:system_check_record, :network, system_check_session: system_check_session,
                                                passed: false,
@@ -178,7 +182,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
 
       before do
         allow_any_instance_of(Campaign).to receive(:system_check_validity).and_return(3600)
-        cookies.signed[:system_check_session_id] = system_check_session.id
+        store_system_check_session_id(system_check_session.id)
       end
 
       it 'returns is_valid false with nil session_id' do
@@ -208,7 +212,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
   describe '#add_record' do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
-    before { cookies.signed[:system_check_session_id] = system_check_session.id }
+    before { store_system_check_session_id(system_check_session.id) }
 
     it 'adds a record to the session with correct attributes' do
       expect do
@@ -246,7 +250,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
   describe '#complete' do
     let(:system_check_session) { create(:system_check_session, user: user, finished_at: nil) }
 
-    before { cookies.signed[:system_check_session_id] = system_check_session.id }
+    before { store_system_check_session_id(system_check_session.id) }
 
     it 'marks the session as finished' do
       post :complete, params: { campaign_id: campaign.id, id: system_check_session.id }
@@ -263,7 +267,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     let(:system_check_session) { create(:system_check_session, user: user) }
 
     before do
-      cookies.signed[:system_check_session_id] = system_check_session.id
+      store_system_check_session_id(system_check_session.id)
       create(:system_check_record,
              system_check_session: system_check_session,
              check_type: :browser,
@@ -296,7 +300,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       create(:system_check_record, :video, system_check_session: system_check_session)
     end
 
-    before { cookies.signed[:system_check_session_id] = system_check_session.id }
+    before { store_system_check_session_id(system_check_session.id) }
 
     context 'when successful' do
       let(:upload_data) { { 'upload_id' => 'upload_1', 'asset_key' => 'asset_1', 'urls' => ['https://example.com/part1'] } }
@@ -364,7 +368,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
       create(:system_check_record, :video, system_check_session: system_check_session, passed: false)
     end
 
-    before { cookies.signed[:system_check_session_id] = system_check_session.id }
+    before { store_system_check_session_id(system_check_session.id) }
 
     context 'when successful' do
       before do
@@ -447,7 +451,7 @@ RSpec.describe EndUser::SystemCheckSessionsController, type: :controller do
     end
 
     before do
-      cookies.signed[:system_check_session_id] = system_check_session.id
+      store_system_check_session_id(system_check_session.id)
       # Stub face detection settings on any Campaign instance: enabled with 80% threshold
       # So a ratio of 0.9 (90%) will pass
       allow_any_instance_of(Campaign).to receive(:face_detection_enabled?).and_return(true)

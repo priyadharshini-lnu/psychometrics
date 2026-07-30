@@ -429,6 +429,7 @@ hr:
               invalid_header: Nevažeće zaglavlje, preuzmi zaglavlje iz izvoza
               invalid_reports_header: Nevažeće zaglavlje, uzmite zaglavlje iz ogledne datoteke
               manager_not_found: 'Redak %{row_number}: upravitelj s e-poštom %{email} nije prisutan u kampanji ili u CSV-u'
+              not_enough_licenses: Za uvoz je potrebno %{required_count} licenci, ali dostupno je samo %{available_count}. Molimo smanjite broj novih korisnika ili dodajte više licenci prije uvoza.
               user_update_failed: Korisničko ažuriranje nije uspjelo za %{email} s pogreškom '%{error}'
             locale:
               inclusion: Pogrešna lokacija

@@ -7,6 +7,7 @@ id:
     add: Menambahkan
     advanced: Maju
     agree_and_continue: Setuju & Lanjutkan
+    ai_toolbar_disclaimer: Saran yang dihasilkan oleh AI mungkin mengandung ketidakakuratan atau perubahan yang tidak disengaja. Harap tinjau semua konten sebelum digunakan, sehingga Anda bertanggung jawab untuk memverifikasi hasil akhir.
     approval_status: Status Persetujuan
     approved: Disetujui
     approved_by: Disetujui oleh
@@ -99,9 +100,12 @@ id:
     icon: Ikon
     id: ID
     idp_ai_assistant_disclaimer: Asisten IDP Lighthouse AI dapat membuat kesalahan. Harap berhati-hati saat menggunakan tanggapan.
+    impersonation_banner_aria_label: Sesi peniruan identitas aktif
+    impersonation_end_session: KELUAR
     import: Mengimpor
     inactive: Aktif
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
+    is_impersonating: sedang menyamar
     issuer: Penerbit
     issuer_claim_label: Penerbit (iss)
     jwt_claims_details: Rincian Klaim JWT
@@ -185,6 +189,7 @@ id:
     reset: Reset
     reset_password: Atur Ulang Kata Sandi
     response_text: Teks Tanggapan
+    return_url_not_whitelisted: URL pengembalian tidak termasuk dalam daftar putih untuk aplikasi ini.
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     run: Lari

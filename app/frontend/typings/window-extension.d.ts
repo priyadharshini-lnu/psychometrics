@@ -40,6 +40,10 @@ declare global {
         has_active_session: boolean
       }[]
       recentClientIds?: number[]
+      impersonationData?: {
+        impersonator: { id: number; email: string; name: string }
+        target: { id: number; email: string; name: string; role: string }
+      } | null
     },
     Utils: {
       isElementInViewport: (HTMLElement) => boolean

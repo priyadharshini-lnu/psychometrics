@@ -18,7 +18,7 @@ module SheetRows
           opts[:without_types].exclude?(column.column_type)
         end
       end
-      rows = datasheet_row.sheet_row_data.where(sheet_column_id: valid_columns)
+      rows = datasheet_row.sheet_row_data.includes(:sheet_column).where(sheet_column_id: valid_columns)
       data = rows.each_with_object(default_column_attr) do |datum, acc|
         acc[datum.sheet_column.name] = datum.value
         acc

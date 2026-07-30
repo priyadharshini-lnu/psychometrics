@@ -16,6 +16,10 @@ class Api::V2::Administration::Dimensions::OccupationResource < Api::V2::Adminis
 
   def self.records(opts)
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Occupation]).
-      where(dimension_id: opts[:context][:params][:dimension_id])
+      where(dimension_id: opts[:context][:params][:dimension_id]).
+      with_attached_icon.
+      with_attached_alternative_icon.
+      with_attached_indicative_roles_image.
+      with_attached_key_career_tracks_image
   end
 end

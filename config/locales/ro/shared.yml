@@ -7,6 +7,7 @@ ro:
     add: Adăugați
     advanced: Avansat
     agree_and_continue: Acceptă și continuă
+    ai_toolbar_disclaimer: Sugestiile generate de inteligența artificială pot conține inexactități sau modificări neintenționate. Vă rugăm să verificați tot conținutul înainte de utilizare, asumându-vă astfel responsabilitatea pentru verificarea rezultatului final.
     approval_status: Starea aprobării
     approved: Aprobat
     approved_by: Aprobat de
@@ -99,9 +100,12 @@ ro:
     icon: Icoană
     id: ID
     idp_ai_assistant_disclaimer: Asistentul IDP Lighthouse AI poate face greșeli. Te rog să fii atent când folosești răspunsurile.
+    impersonation_banner_aria_label: Sesiune activă de uzurpare a identității
+    impersonation_end_session: Ieșire
     import: Importa
     inactive: Inactivă
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
+    is_impersonating: se preface
     issuer: Emitent
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Detalii privind cererile de despăgubire JWT
@@ -185,6 +189,7 @@ ro:
     reset: Reseta
     reset_password: Resetați parola
     response_text: Textul răspunsului
+    return_url_not_whitelisted: Adresa URL de retur nu este pe lista albă pentru această aplicație.
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     run: Alerga

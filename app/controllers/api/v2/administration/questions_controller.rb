@@ -6,11 +6,14 @@ module Api
     validate_crud_requests Api::V2::Question::Schema
 
     def copy
-      audit! :copy, model, payload: { source_id: model.id }
+      new_name = params.dig(:data, :attributes, :name)
+      owner_id = params.dig(:data, :relationships, :owner, :data, :id)
+      audit! :copy, model,
+             payload: { source_id: model.id, new_name: new_name, owner_id: owner_id }
       Questions::CopyQuestion.new(
         model.id,
-        new_name: params.dig(:data, :attributes, :name),
-        owner_id: params.dig(:data, :relationships, :owner, :data, :id)
+        new_name: new_name,
+        owner_id: owner_id
       ).on(:ok) do |new_question|
         jsonapi_render json: new_question
       end.on(:error) do |error|

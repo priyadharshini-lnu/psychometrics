@@ -128,10 +128,14 @@ ro:
     application_name_already_taken: Există deja pentru acest client
     application_name_format_hint: Sunt permise doar litere și cifre, cu un singur spațiu între cuvinte
     application_settings_at_least_one_ip_required: Vă rugăm să activați cel puțin o intrare de adresă IP înainte de a activa lista albă de adrese IP
+    application_settings_at_least_one_url_required: Vă rugăm să activați cel puțin o intrare URL înainte de a activa includerea URL pe lista albă.
     application_settings_confirm_delete_ip: Ești sigur că vrei să ștergi această adresă IP?
-    application_settings_edit_ip_address: Editare adresă IP / interval CIDR
+    application_settings_confirm_delete_url: Sigur vrei să ștergi această adresă URL?
     application_settings_enable_ip_whitelisting: Activare listă albă de adrese IP
+    application_settings_enable_url_whitelisting: Activează includerea URL în lista albă
     application_settings_invalid_ip_format: Adresă IP sau format CIDR nevalid(ă)
+    application_settings_invalid_url_format: Format URL nevalid
+    application_settings_ip_address: Adresă IP / Interval CIDR
     application_settings_ip_addresses: Adrese IP / Intervale CIDR
     application_settings_ip_deleted_successfully: Adresa IP a fost ștearsă cu succes
     application_settings_ip_description_placeholder: de exemplu, rețeaua de birou sau serverul de producție
@@ -141,6 +145,16 @@ ro:
     application_settings_ip_updated_successfully: Adresa IP a fost actualizată cu succes
     application_settings_ip_whitelisting_disabled_success: Lista albă IP a fost dezactivată cu succes
     application_settings_ip_whitelisting_enabled_success: Lista albă IP a fost activată cu succes
+    application_settings_url: URL-ul
+    application_settings_url_addresses: Adrese URL
+    application_settings_url_deleted_successfully: Adresa URL a fost ștearsă cu succes.
+    application_settings_url_description_placeholder: de exemplu, rețea de birou sau server de producție
+    application_settings_url_input_placeholder: de exemplu, https://exemplu.com sau https://sub.exemplu.com
+    application_settings_url_required: URL-ul este obligatoriu
+    application_settings_url_updated_successfully: URL-ul a fost actualizat cu succes
+    application_settings_url_whitelisting_disabled_success: Adresa URL pe lista albă a fost dezactivată cu succes
+    application_settings_url_whitelisting_enabled_success: Adăugarea URL la lista albă a fost activată cu succes
+    application_settings_urls: URL-uri
     applications: Aplicații
     apply_to_existing_users: Aplică această modificare utilizatorilor existenți din această campanie
     approve_all_questions: Aprobă toate întrebările
@@ -213,6 +227,8 @@ ro:
     assessor_overview: Prezentare generală
     assessor_placeholder: Căutați evaluator...
     assessor_remove_confirmation: Sigur doriți să eliminați evaluatorul cu e-mail %{email} din această campanie?
+    assessor_remove_has_evaluations: Acest evaluator are %{evaluation_count} formular(e) de evaluator atribuit(e). Toate evaluările pe care le-a completat se vor pierde.
+    assessor_remove_in_assessment_centers: Acest evaluator face parte din %{workshop_count} centre de evaluare. Continuarea procesului îl va elimina din toate centrele de evaluare.
     assessor_statuses_completed: Completat
     assessor_statuses_not_completed: Nefinalizat
     assessor_subjects_statuses_completed: Completat
@@ -625,6 +641,7 @@ ro:
       thursday: joi
       tuesday: marți
       wednesday: miercuri
+    dimension_errors_cannot_delete_with_assessments: Nu se poate șterge această dimensiune deoarece este încă asociată cu evaluări. Vă rugăm să ștergeți sau să actualizați mai întâi evaluările asociate.
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     dimensions_destroy_successfully: Parametrul %{name} a fost șters cu succes.
@@ -645,6 +662,7 @@ ro:
     dimensions_import_modal_import_dimension: Dimensiune import
     dimensions_import_modal_import_scheduled: Import programat
     dimensions_import_modal_operation: Operație
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Vă rugăm să selectați un proprietar
     dimensions_import_modal_owner_select: Selectați un proprietar
     dimensions_import_modal_select_json: Selectați fișierul JSON
@@ -1206,6 +1224,7 @@ ro:
     invite_workshop_list_remove_confirm_success: Centrul de evaluare a fost eliminat cu succes.
     invite_workshop_list_remove_confirm_title: Confirmați
     invite_workshop_title: Centre de evaluare
+    ip_whitelisting: Adăugarea pe lista albă a IP-urilor
     is_subject: Este subiect
     job_role_are_you_sure_to_remove: Sunteți sigur că doriți să eliminați?
     job_role_column_job_group: Grup de locuri de muncă
@@ -1279,6 +1298,7 @@ ro:
     mark_not_finalized: Marcaj nefinalizat
     mark_not_finalized_bulk_confirm: Dacă anulați finalizarea pentru toți utilizatorii selectați, rapoartele generate care utilizează artefacte AI vor fi șterse. Sunteți sigur că doriți să continuați?
     mark_not_finalized_confirm: Dacă eliminați finalizarea din contul utilizatorului „%{email}”, se va șterge raportul generat care utilizează artefactul AI pentru acest utilizator. Sunteți sigur că doriți să continuați?
+    mark_ready_button: Marchează ca gata
     mask_identity_for_examus: Date despre măști pentru supravegherea examenului
     mask_identity_for_hogan: Date despre măști pentru Hogan
     mask_identity_for_iiht: Date despre mască pentru IIHT
@@ -1337,6 +1357,21 @@ ro:
     modal_title: Conversie în șablon
     model_answer: Răspuns model
     model_answer_placeholder: Introduceți răspunsul model pentru evaluarea AI.
+    model_params_description: Lăsați necompletat pentru a utiliza valorile implicite definite de tipul de asistent.
+    model_params_max_tokens: Jetoane maxime
+    model_params_max_tokens_tooltip: Limitează numărul maxim de token-uri pe care modelul le poate genera per răspuns. Valorile mai mari permit ieșiri mai lungi, dar cresc costul și latența.
+    model_params_temperature: Temperatură
+    model_params_temperature_tooltip: Controlează aleatoriu în rezultat. 0 = determinist și concentrat; 2 = foarte creativ și variat. Folosiți valori mai mici pentru ca rezultatul să fie restricționat la contextul furnizat.
+    model_params_thinking_budget: Buget de gândire (jetoane)
+    model_params_thinking_budget_tooltip: Setează o limită fixă pentru numărul de token-uri pe care modelul le poate cheltui pentru raționament intern. Valorile mai mari permit o analiză mai profundă, dar cresc utilizarea token-urilor și timpul de răspuns.
+    model_params_thinking_budget_unsupported: Acest model folosește doar controlul raționamentului bazat pe efort. Bugetul de gândire (plafonul jetonelor) nu este acceptat.
+    model_params_thinking_effort: Efort de gândire
+    model_params_thinking_effort_high: Ridicat
+    model_params_thinking_effort_low: Scăzut
+    model_params_thinking_effort_medium: Mediu
+    model_params_thinking_effort_none: Nici unul
+    model_params_thinking_effort_tooltip: Controlează cât de mult raționament aplică modelul înainte de a răspunde. Un efort mai mare produce răspunsuri mai complete, dar durează mai mult. Folosește „Niciunul” pentru a dezactiva complet raționamentul.
+    model_params_title: Configurare avansată a modelului
     must_be_a_valid_url: Adresă URL nevalidă. Introduceți adresa URL completă, incluzând protocolul http sau https
     name: Nume
     name_max_length: Numele nu poate depăși %{length} caractere
@@ -1444,6 +1479,14 @@ ro:
     overall: În general
     overall_score: Scorul general
     overall_scoring: Punctaj general
+    owner_resource_assessment: evaluare
+    owner_resource_campaign: campanie
+    owner_resource_client: client
+    owner_resource_dimension: dimensiune
+    owner_resource_mismatch: Proprietarul %{child_resource} nu este compatibil cu proprietarul %{parent_resource}.
+    owner_resource_norm: normă
+    owner_resource_report: raport
+    owner_resource_report_bundle: pachet de rapoarte
     parsed_dependencies_help: Dependențe analizate pentru utilizator utilizate de AI Assistant pentru generarea rezultatelor artefactelor
     parsed_dependencies_title: Dependențe analizate
     parsed_dependencies_view: Vizualizarea dependențelor analizate
@@ -2195,6 +2238,8 @@ ro:
     report_approval_columns_user_email: E-mail utilizator
     report_approval_columns_user_name: Nume de utilizator
     report_approval_digest_delivery_mode_form_label: Modul de livrare a rezumatului
+    report_approval_digest_delivery_mode_immediate: Imediat - Trimiteți ori de câte ori există o trimitere în bloc
+    report_approval_digest_delivery_mode_scheduled: Programat - Trimiteți un e-mail rezumat la o oră programată
     report_approval_digest_frequency_daily: Zilnic
     report_approval_digest_frequency_form_label: Frecvența digestiei
     report_approval_digest_frequency_weekdays: Zile lucrătoare
@@ -2386,6 +2431,7 @@ ro:
     saml_settings_config_details_copied: Copiat %{element}
     saml_settings_config_details_issuer: ID-ul entității/emitentului
     saml_settings_config_details_title: Configurați Idp cu următoarele informații
+    saml_settings_download_metadata: Descărcați metadatele
     saml_settings_email_pipetext: Text de e-mail
     saml_settings_enabled: Activat
     saml_settings_enforced: Aplicarea SAML
@@ -3148,8 +3194,10 @@ ro:
     upload_success: Încărcat cu succes
     url_label: Adresa URL
     url_name: Adresa URL
+    url_whitelisting: Adăugarea URL-urilor pe lista albă
     used_tokens_input_tokens: Jetoane de intrare
     used_tokens_output_tokens: Jetoane de ieșire
+    used_tokens_thinking_tokens: Jetoane de gândire
     used_tokens_title: Utilizarea token-ului
     user: Utilizator
     user_agent: Agent utilizator

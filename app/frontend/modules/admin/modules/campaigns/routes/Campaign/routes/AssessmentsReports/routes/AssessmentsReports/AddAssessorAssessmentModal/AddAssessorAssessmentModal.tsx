@@ -23,12 +23,13 @@ interface OwnProps {
   close(): void
   addAssessorAssessment: CreateResource<CampaignAssessorAssessments>
   campaignId: string
+  campaignTenantId: number
 }
 
 export type Props = OwnProps
 
 const AddAssessorAssessmentModal: React.FC<Props> = ({
-  close, addAssessorAssessment, campaignId,
+  close, addAssessorAssessment, campaignId, campaignTenantId,
 }) => {
   const [assessmentCenterGroups, setAssessmentCenterGroups] = useState<AssessmentCenterGroup[]>([])
 
@@ -41,6 +42,7 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
     apiConfig: {
       filter: {
         category_in: ['assessor_form', 'lead_assessor_form'],
+        tenant_id: String(campaignTenantId),
         filterable_fields: value,
       },
     },
@@ -86,7 +88,12 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
       close={close}
       scrollToFirstError
       modalProps={{ width: 720 }}
-      request={{ createResource: values => addAssessorAssessment({ ...values }) }}
+      request={{
+        createResource: values => addAssessorAssessment({
+          ...values,
+          tenant_id: campaignTenantId,
+        }),
+      }}
     >
       {() => (
         <>

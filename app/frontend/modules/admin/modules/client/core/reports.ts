@@ -8,6 +8,16 @@ export const ReportBundleTR = t.type({
   name: t.string,
   createdAt: t.union([t.string, t.null]),
   updatedAt: t.union([t.string, t.null]),
+  clientId: t.union([t.string, t.number, t.null, t.undefined]),
+  tenantName: t.union([t.string, t.null, t.undefined]),
+  tenant: t.union([
+    t.type({
+      id: t.string,
+      name: t.string,
+    }),
+    t.undefined,
+    t.null,
+  ]),
   meta: t.type({
     permissions: t.type({
       manage: t.boolean,
@@ -86,6 +96,15 @@ export const Schema = {
       type: 'assessments',
       association: 'hasMany',
       singularName: 'assessment',
+    },
+  },
+}
+
+export const ReportBundleSchema = {
+  type: 'report_families',
+  relationships: {
+    owner: {
+      type: 'clients',
     },
   },
 }

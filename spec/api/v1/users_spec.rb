@@ -404,6 +404,8 @@ the campaign\'s default assessments and reports.'
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
+      parameter name: :'X-USER-ID-TYPE', in: :header, type: :string, required: false,
+                description: 'Specify "external_id" or "email" to use non-integer user identifiers'
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedUser' }, required: true
 
       response '200', 'User updated' do
@@ -463,6 +465,114 @@ the campaign\'s default assessments and reports.'
 
             expect(user_data['locale']).to eq('ar')
             expect(user_data['custom_profile_fields']).to eq('Home Office Location' => 'Delhi')
+          end
+        end
+
+        context 'allows partial value update i.e only first_name or last_name or email to be updated' do
+          context 'when only first_name is passed' do
+            let(:body) { { first_name: 'UpdatedFirstName' } }
+
+            run_test! do |response|
+              user_data = JSON.parse(response.body)
+
+              expect(user_data['first_name']).to eq('UpdatedFirstName')
+              expect(user_data['last_name']).to eq(user.last_name)
+              expect(user_data['email']).to eq(user.email)
+            end
+          end
+
+          context 'when only last_name is passed' do
+            let(:body) { { last_name: 'UpdatedLastName' } }
+
+            run_test! do |response|
+              user_data = JSON.parse(response.body)
+
+              expect(user_data['first_name']).to eq(user.first_name)
+              expect(user_data['last_name']).to eq('UpdatedLastName')
+              expect(user_data['email']).to eq(user.email)
+            end
+          end
+
+          context 'when only email is passed' do
+            let(:body) { { email: 'updated.user@example.com' } }
+
+            run_test! do |response|
+              user_data = JSON.parse(response.body)
+
+              expect(user_data['first_name']).to eq(user.first_name)
+              expect(user_data['last_name']).to eq(user.last_name)
+              expect(user_data['email']).to eq('updated.user@example.com')
+            end
+          end
+        end
+
+        context 'allows update using email as id in URL instead of user id' do
+          let(:user_id) { user.email }
+          let(:'X-USER-ID-TYPE') { 'email' }
+          let(:body) { { first_name: 'UpdatedViaEmailId' } }
+
+          run_test! do |response|
+            user_data = JSON.parse(response.body)
+
+            expect(user_data['id']).to eq(user.id)
+            expect(user_data['first_name']).to eq('UpdatedViaEmailId')
+          end
+        end
+      end
+
+      response '400', 'Validation error' do
+        schema '$ref' => '#/definitions/ApiError'
+
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+
+        context "doesn't allow null or blank values for email, first_name and last_name field" do
+          context 'when first_name is blank' do
+            let(:body) { { first_name: '' } }
+
+            run_test! do |response|
+              error = JSON.parse(response.body)
+
+              expect(error['code']).to eq(1002)
+              expect(error['message']).to eq('Validation error')
+              expect(error['more_info']).to eq("First name can't be blank")
+            end
+          end
+
+          context 'when last_name is blank' do
+            let(:body) { { last_name: '' } }
+
+            run_test! do |response|
+              error = JSON.parse(response.body)
+
+              expect(error['code']).to eq(1002)
+              expect(error['message']).to eq('Validation error')
+              expect(error['more_info']).to eq("Last name can't be blank")
+            end
+          end
+
+          context 'when email is blank' do
+            let(:body) { { email: '' } }
+
+            run_test! do |response|
+              error = JSON.parse(response.body)
+
+              expect(error['code']).to eq(1002)
+              expect(error['message']).to eq('Validation error')
+              expect(error['more_info']).to eq("Email can't be blank")
+            end
+          end
+
+          context 'when email is null' do
+            let(:body) { { email: nil } }
+
+            run_test! do |response|
+              error = JSON.parse(response.body)
+
+              expect(error['code']).to eq(1002)
+              expect(error['message']).to eq('Validation error')
+              expect(error['more_info']).to eq("Email can't be blank")
+            end
           end
         end
       end

@@ -429,6 +429,7 @@ es-ES:
               invalid_header: Cabecera no válida, tomar cabecera de exportación
               invalid_reports_header: Cabecera no válida, tomar cabecera del fichero de ejemplo
               manager_not_found: 'Fila %{row_number}: Manager con email %{email} no está presente en la campaña o en CSV'
+              not_enough_licenses: La importación requiere %{required_count} licencias, pero solo hay %{available_count} disponibles. Reduzca el número de usuarios nuevos o añada más licencias antes de importar.
               user_update_failed: Error de actualización de usuario para %{email} con error '%{error}'
             locale:
               inclusion: Localización incorrecta

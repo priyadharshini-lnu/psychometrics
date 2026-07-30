@@ -32,7 +32,11 @@ module Api
     end
 
     def copy_as_template
-      audit! :copy_as_template, @campaign, campaign: @campaign, user: current_user
+      new_name = params.dig(:data, :attributes, :name)
+      owner_id = params.dig(:data, :relationships, :owner, :data, :id)
+      audit! :copy_as_template, @campaign, campaign: @campaign, user: current_user,
+        payload: { source_id: @campaign.id, new_name: new_name,
+                   owner_id: owner_id }
       AdminJob.call(
         :copy_as_template_or_campaign,
         { campaign_id: params[:id], is_template: true },

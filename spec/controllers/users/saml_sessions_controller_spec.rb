@@ -76,7 +76,7 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
         allow(controller).to receive(:params).and_return(
           ActionController::Parameters.new(RelayState: token)
         )
-        allow(controller).to receive(:client_admin_context?).and_return(false)
+        allow(Current).to receive(:client_admin_context?).and_return(false)
 
         expect(controller.after_sign_in_path_for(user)).to eq('/admin/clients/123/projects')
       end
@@ -87,7 +87,7 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
         allow(controller).to receive(:params).and_return(
           ActionController::Parameters.new(RelayState: '/admin/projects/288/campaigns')
         )
-        allow(controller).to receive(:client_admin_context?).and_return(false)
+        allow(Current).to receive(:client_admin_context?).and_return(false)
 
         expect(controller.after_sign_in_path_for(user)).to eq('/admin/projects/288/campaigns')
       end
@@ -188,6 +188,56 @@ RSpec.describe Users::SamlSessionsController, type: :controller do
       it 'treats uppercase and lowercase emails as matching' do
         controller.after_saml_login
         expect(controller).not_to have_received(:sign_out)
+      end
+    end
+  end
+
+  describe 'GET #metadata' do
+    let(:xml_content) { '<md:EntityDescriptor></md:EntityDescriptor>' }
+
+    before do
+      allow_any_instance_of(OneLogin::RubySaml::Metadata).to receive(:generate).and_return(xml_content)
+      allow(controller).to receive(:saml_config).and_return(OneLogin::RubySaml::Settings.new)
+    end
+
+    context 'when download param is true' do
+      it 'sends the XML data as an attachment with the correct client-level filename' do
+        request.host = 'client-admin.example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('client-admin.example.com').and_return('client-admin')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).
+          to include('attachment; filename="sp-metadata-client-admin.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+
+      it 'sends the XML data as an attachment with the correct project-level filename' do
+        request.host = 'project.example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('project.example.com').and_return('project')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).to include('attachment; filename="sp-metadata-project.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+
+      it 'sends the XML data as an attachment with the default filename for root domain' do
+        request.host = 'example.com'
+        allow(AdminSubdomain).to receive(:extract_subdomain).with('example.com').and_return('')
+
+        get :metadata, params: { download: 'true' }
+
+        expect(response.headers['Content-Disposition']).to include('attachment; filename="sp-metadata.xml"')
+        expect(response.body).to eq(xml_content)
+      end
+    end
+
+    context 'when download param is not true' do
+      it 'delegates to the default behavior (inline rendering)' do
+        get :metadata
+        expect(response.headers['Content-Disposition']).to be_nil
+        expect(response.body).to eq(xml_content)
       end
     end
   end

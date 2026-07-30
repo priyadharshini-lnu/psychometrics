@@ -7,6 +7,7 @@ en-US:
     add: Add
     advanced: Advanced
     agree_and_continue: Agree & Continue
+    ai_toolbar_disclaimer: AI-generated suggestions may contain inaccuracies or unintended changes. Please review all content before use, thereby accepting responsibility for verifying the final output.
     approval_status: Approval Status
     approved: Approved
     approved_by: Approved By
@@ -99,9 +100,12 @@ en-US:
     icon: Icon
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse Development Guide can make mistakes. Please be careful while using the responses.
+    impersonation_banner_aria_label: Active impersonation session
+    impersonation_end_session: Exit
     import: Import
     inactive: Inactive
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    is_impersonating: is impersonating
     issuer: Issuer
     issuer_claim_label: Issuer (iss)
     jwt_claims_details: JWT Claims Details
@@ -185,6 +189,7 @@ en-US:
     reset: Reset
     reset_password: Reset Password
     response_text: Response Text
+    return_url_not_whitelisted: The return URL is not whitelisted for this application.
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     run: Run

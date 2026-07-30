@@ -8,6 +8,8 @@ import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDis
 import { RequestsPool } from '~/modules/survey/middleware/Socket'
 import Socket from '../../cable/socket'
 
+const { I18n } = window
+
 export const SUBSCRIBE_SOCKET = 'survey/temp/socket/SUBSCRIBE_SOCKET'
 export const SUBSCRIBED_SOCKET = 'survey/temp/socket/SUBSCRIBED_SOCKET'
 export const UNSUBSCRIBE_SOCKET = 'survey/temp/socket/UNSUBSCRIBE_SOCKET'
@@ -32,7 +34,10 @@ export const UnsubscribeSocket = () => ({ type: UNSUBSCRIBE_SOCKET })
 export const subscribed = () => ({ type: SUBSCRIBED_SOCKET })
 
 export const enableApp = () => ({ type: ENABLE })
-export const disableApp = () => ({ type: DISABLE })
+export const disableApp = ({ reason = 'unknown', message = null } = {}) => ({
+  type: DISABLE,
+  payload: { reason, message },
+})
 
 let count = 1
 
@@ -97,8 +102,9 @@ function* genSubsribeSocket ({ channel, data }: ReturnType<typeof subscribeSocke
       yield put(enableApp())
     }
     if (payload.type === 'disconnect') {
-      yield put(disableApp())
-      NotificationDispatcher.notify({ level: 'error', message: 'Connection lost' })
+      const disconnectMessage = I18n.t('shared.internet_disconnected_message')
+      yield put(disableApp({ reason: 'connection_lost', message: disconnectMessage }))
+      NotificationDispatcher.notify({ level: 'error', message: disconnectMessage })
     }
     if (payload.type === 'message') {
       yield put(socketMessage(payload.data))

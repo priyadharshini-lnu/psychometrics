@@ -42,7 +42,8 @@ module Communications
           end
 
           def format_time(time)
-            time = time.in_time_zone(workshop.timezone)
+            tzid = TimezoneHelper.normalize(workshop.timezone)
+            time = time.in_time_zone(tzid)
             return I18n.l(time, format: :with_time_zone) unless params['format']
 
             time.strftime(params['format'])

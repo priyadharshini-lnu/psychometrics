@@ -1,5 +1,5 @@
 import React, {
-  useRef, useState, useCallback,
+  useRef, useState, useCallback, useImperativeHandle,
 } from 'react'
 import {
   Button, Flex, Input, InputProps, InputRef,
@@ -25,6 +25,7 @@ interface AIInputWrapperProps {
   children: (props: AIInputWrapperRenderProps) => React.ReactNode
   className?: string
   editorRef?: React.RefObject<{ editor: FroalaEditorInstance }>
+  inputRef?: React.RefObject<InputRef | TextAreaRef>
 }
 
 export const ICON_COLOR = 'var(--white-bg)'
@@ -33,6 +34,7 @@ export const AIInputWrapper: React.FC<AIInputWrapperProps> = ({
   children,
   className,
   editorRef,
+  inputRef,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [modalVisible, setModalVisible] = useState(false)
@@ -44,12 +46,43 @@ export const AIInputWrapper: React.FC<AIInputWrapperProps> = ({
   const selection = editorRef ? froalaSelection : textSelection
   const hasSelection = selection.isSelected
 
-  const openToolbar = useCallback(() => {
-    if (!hasSelection) return
+  const buildSelectAllSelection = useCallback((): TextSelection | FroalaTextSelection | null => {
+    if (editorRef) {
+      const editor = editorRef.current?.editor
+      if (!editor) return null
+      editor.commands.selectAll()
+      const selectedHtml = editor.html.getSelected() || editor.html.get()
+      const selectedText = editor.selection.text() || ''
+      editor.selection.save()
+      return {
+        selectedText,
+        isSelected: true,
+        element: editor.$el?.[0] || editor.el,
+        froalaEditor: { instance: editor, selectedHtml },
+      }
+    }
 
-    setSelectionForModal(selection)
+    const antRef = inputRef?.current
+    const inputEl = (antRef as InputRef | null)?.input
+      ?? (antRef as TextAreaRef | null)?.resizableTextArea?.textArea
+    if (!inputEl) return null
+    inputEl.focus()
+    inputEl.select()
+    return {
+      selectedText: inputEl.value,
+      selectionStart: 0,
+      selectionEnd: inputEl.value.length,
+      isSelected: true,
+      element: inputEl,
+    }
+  }, [editorRef])
+
+  const openToolbar = useCallback(() => {
+    const activeSelection = hasSelection ? selection : buildSelectAllSelection()
+    if (!activeSelection) return
+    setSelectionForModal(activeSelection)
     setModalVisible(true)
-  }, [hasSelection, selection])
+  }, [hasSelection, selection, buildSelectAllSelection])
 
   return (
     <div className={className}>
@@ -65,56 +98,64 @@ export const AIInputWrapper: React.FC<AIInputWrapperProps> = ({
   )
 }
 
-export const AIInput = React.forwardRef<InputRef, InputProps>(({ className = '', ...inputProps }, ref) => (
-  <AIInputWrapper className={className}>
-    {({ hasSelection, openToolbar }) => (
-      <Flex gap="small" align="center">
-        <Input
-          ref={ref}
-          style={{ paddingRight: '5px' }}
-          {...inputProps}
-          suffix={(
-            <Button
-              onMouseDown={(event) => {
-                event.preventDefault()
-                openToolbar()
-              }}
-              type="primary"
-              title={I18n.t('admin.enhance_with_ai')}
-              icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
-              disabled={!hasSelection}
-            />
-          )}
-        />
-      </Flex>
-    )}
-  </AIInputWrapper>
-))
+export const AIInput = React.forwardRef<InputRef, InputProps>(({ className = '', ...inputProps }, forwardedRef) => {
+  const internalRef = useRef<InputRef>(null)
+  useImperativeHandle(forwardedRef, () => internalRef.current!)
+
+  return (
+    <AIInputWrapper className={className} inputRef={internalRef}>
+      {({ openToolbar }) => (
+        <Flex gap="small" align="center">
+          <Input
+            ref={internalRef}
+            style={{ paddingRight: '5px' }}
+            {...inputProps}
+            suffix={(
+              <Button
+                onMouseDown={(event) => {
+                  event.preventDefault()
+                  openToolbar()
+                }}
+                type="primary"
+                title={I18n.t('admin.enhance_with_ai')}
+                icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
+              />
+            )}
+          />
+        </Flex>
+      )}
+    </AIInputWrapper>
+  )
+})
 
 type AITextAreaProps = React.ComponentProps<typeof TextArea>
 
 export const AITextArea = React.forwardRef<TextAreaRef, AITextAreaProps>(
-  ({ className = '', ...textAreaProps }, ref) => (
-    <AIInputWrapper className={className}>
-      {({ hasSelection, openToolbar }) => (
-        <div style={{ border: '1px solid var(--light-grey-border)' }}>
-          <TextArea ref={ref} variant="borderless" {...textAreaProps} />
-          <Flex className="p-1" justify="end" align="center">
-            <Button
-              onMouseDown={(event) => {
-                event.preventDefault()
-                openToolbar()
-              }}
-              type="primary"
-              title={I18n.t('admin.enhance_with_ai')}
-              icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
-              disabled={!hasSelection}
-            />
-          </Flex>
-        </div>
-      )}
-    </AIInputWrapper>
-  ),
+  ({ className = '', ...textAreaProps }, forwardedRef) => {
+    const internalRef = useRef<TextAreaRef>(null)
+    useImperativeHandle(forwardedRef, () => internalRef.current!)
+
+    return (
+      <AIInputWrapper className={className} inputRef={internalRef}>
+        {({ openToolbar }) => (
+          <div style={{ border: '1px solid var(--light-grey-border)' }}>
+            <TextArea ref={internalRef} variant="borderless" {...textAreaProps} />
+            <Flex className="p-1" justify="end" align="center">
+              <Button
+                onMouseDown={(event) => {
+                  event.preventDefault()
+                  openToolbar()
+                }}
+                type="primary"
+                title={I18n.t('admin.enhance_with_ai')}
+                icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
+              />
+            </Flex>
+          </div>
+        )}
+      </AIInputWrapper>
+    )
+  },
 )
 
 interface AIFroalaWrapperProps {
@@ -135,7 +176,7 @@ export const AIFroalaWrapper: React.FC<AIFroalaWrapperProps> = ({
 
   return (
     <AIInputWrapper className={className} editorRef={editorRef}>
-      {({ hasSelection, openToolbar }) => (
+      {({ openToolbar }) => (
         <div style={{ position: 'relative' }}>
           {children}
           <Button
@@ -143,7 +184,6 @@ export const AIFroalaWrapper: React.FC<AIFroalaWrapperProps> = ({
             type="primary"
             title={I18n.t('admin.enhance_with_ai')}
             icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
-            disabled={!hasSelection}
             style={{
               position: 'absolute',
               bottom: hasCounterPlugins ? 45 : 35,

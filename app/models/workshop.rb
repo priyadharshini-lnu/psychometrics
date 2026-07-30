@@ -91,11 +91,13 @@ class Workshop < ApplicationRecord
   end
 
   def formatted_start_time
-    I18n.l(start_time.in_time_zone(timezone), format: :workshop_date)
+    normalized_tz = TimezoneHelper.normalize(timezone)
+    I18n.l(start_time.in_time_zone(normalized_tz), format: :workshop_date)
   end
 
   def formatted_end_time
-    I18n.l(end_time.in_time_zone(timezone), format: :workshop_date)
+    normalized_tz = TimezoneHelper.normalize(timezone)
+    I18n.l(end_time.in_time_zone(normalized_tz), format: :workshop_date)
   end
 
   def real_meeting_link(user)

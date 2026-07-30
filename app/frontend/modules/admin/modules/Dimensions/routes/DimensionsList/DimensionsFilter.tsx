@@ -16,6 +16,7 @@ export const DimensionsFilter: FC<Props> = ({
   const { resource } = useResourceContext<Dimension>()
 
   const tableLoading = resource.isLoading('fetch')
+  const canImport = resource.data[0]?.meta?.permissions?.canImport
 
   const handleCreateDimensionModal = () => {
     openModal('DimensionsFormModal')
@@ -35,10 +36,12 @@ export const DimensionsFilter: FC<Props> = ({
         {I18n.t('shared.create')}
       </Button>
 
-      <Button disabled={tableLoading} onClick={handleImportDimensionModal}>
-        <ImportOutlined />
-        {I18n.t('admin.dimensions_import_modal_import_dimension')}
-      </Button>
+      {canImport && (
+        <Button disabled={tableLoading} onClick={handleImportDimensionModal}>
+          <ImportOutlined />
+          {I18n.t('admin.dimensions_import_modal_import_dimension')}
+        </Button>
+      )}
     </Resource.Filter>
   )
 }

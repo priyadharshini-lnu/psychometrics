@@ -128,10 +128,14 @@ bg:
     application_name_already_taken: Вече съществува за този клиент
     application_name_format_hint: Допускат се само букви и цифри, като между думите се поставя едно пространство
     application_settings_at_least_one_ip_required: Моля, добавете поне един IP адрес, преди да активирате белия списък с IP адреси
+    application_settings_at_least_one_url_required: Моля, активирайте поне един запис за URL адрес, преди да активирате белия списък с URL адреси
     application_settings_confirm_delete_ip: Сигурен ли сте, че искате да изтриете този IP адрес?
-    application_settings_edit_ip_address: Редактиране на IP адрес / CIDR диапазон
+    application_settings_confirm_delete_url: Сигурни ли сте, че искате да изтриете този URL адрес?
     application_settings_enable_ip_whitelisting: Активиране на белия списък за IP адреси
+    application_settings_enable_url_whitelisting: Активиране на бял списък с URL адреси
     application_settings_invalid_ip_format: Невалиден IP адрес или CIDR формат
+    application_settings_invalid_url_format: Невалиден формат на URL адреса
+    application_settings_ip_address: Диапазон на IP адреси / CIDR
     application_settings_ip_addresses: IP адреси / CIDR диапазони
     application_settings_ip_deleted_successfully: IP адресът беше изтрит успешно
     application_settings_ip_description_placeholder: например, офисна мрежа или производствен сървър
@@ -141,6 +145,16 @@ bg:
     application_settings_ip_updated_successfully: IP адресът беше актуализиран успешно
     application_settings_ip_whitelisting_disabled_success: Добавянето в белия списък на IP адреса беше успешно деактивирано
     application_settings_ip_whitelisting_enabled_success: Добавянето в белия списък на IP адреси беше активирано успешно
+    application_settings_url: URL адрес
+    application_settings_url_addresses: URL адреси
+    application_settings_url_deleted_successfully: URL адресът е изтрит успешно
+    application_settings_url_description_placeholder: напр. офис мрежа или производствен сървър
+    application_settings_url_input_placeholder: напр. https://example.com или https://sub.example.com
+    application_settings_url_required: URL адресът е задължителен
+    application_settings_url_updated_successfully: URL адресът е актуализиран успешно
+    application_settings_url_whitelisting_disabled_success: Добавянето в белия списък на URL адресите е успешно деактивирано
+    application_settings_url_whitelisting_enabled_success: Добавянето в бял списък с URL адреси е успешно активирано
+    application_settings_urls: URL адреси
     applications: Приложения
     apply_to_existing_users: Приложи тази промяна към съществуващите потребители в тази кампания
     approve_all_questions: Одобри всички въпроси
@@ -213,6 +227,8 @@ bg:
     assessor_overview: Преглед
     assessor_placeholder: Търсене на оценител...
     assessor_remove_confirmation: Сигурни ли сте, че искате да премахнете оценителя с имейл %{email} от тази кампания?
+    assessor_remove_has_evaluations: Този оценител има %{evaluation_count} формуляра за оценител. Всички оценки, които е попълнил, ще бъдат загубени.
+    assessor_remove_in_assessment_centers: Този оценител е част от %{workshop_count} център(ове) за оценяване. Продължаването ще го премахне от всички центрове за оценяване.
     assessor_statuses_completed: Завършен
     assessor_statuses_not_completed: Не е завършено
     assessor_subjects_statuses_completed: Завършен
@@ -625,6 +641,7 @@ bg:
       thursday: четвъртък
       tuesday: вторник
       wednesday: сряда
+    dimension_errors_cannot_delete_with_assessments: Не може да се изтрие това измерение, защото то все още е свързано с оценки. Моля, първо изтрийте или актуализирайте свързаните оценки.
     dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
     dimensions_destroy_successfully: Измерението %{name} е изтрито успешно.
@@ -645,6 +662,7 @@ bg:
     dimensions_import_modal_import_dimension: Величина за импортиране
     dimensions_import_modal_import_scheduled: Планиран внос
     dimensions_import_modal_operation: Операция
+    dimensions_import_modal_owner_global: TTE (глобално)
     dimensions_import_modal_owner_input_validation: Моля, изберете собственик
     dimensions_import_modal_owner_select: Изберете собственик
     dimensions_import_modal_select_json: Изберете JSON файл
@@ -1206,6 +1224,7 @@ bg:
     invite_workshop_list_remove_confirm_success: Центърът за оценка беше премахнат успешно.
     invite_workshop_list_remove_confirm_title: Потвърдете
     invite_workshop_title: Центрове за оценяване
+    ip_whitelisting: Бял списък с IP адреси
     is_subject: Е предмет
     job_role_are_you_sure_to_remove: Сигурни ли сте, че ще премахнете?
     job_role_column_job_group: Работна група
@@ -1279,6 +1298,7 @@ bg:
     mark_not_finalized: Маркировката не е финализирана
     mark_not_finalized_bulk_confirm: Премахването на финализирането за всички избрани потребители ще доведе до изтриване на генерираните отчети, които използват AI артефакти. Сигурен ли сте, че искате да продължите?
     mark_not_finalized_confirm: Премахването на финализацията от потребителя „%{email}“ ще доведе до изтриване на генерирания отчет, който използва AI артефакта за този потребител. Сигурен ли сте, че искате да продължите?
+    mark_ready_button: Маркирай като готово
     mask_identity_for_examus: Данни за маски за Examus Proctoring
     mask_identity_for_hogan: Данни за маски за Хоган
     mask_identity_for_iiht: Данни за маски за IIHT
@@ -1337,6 +1357,21 @@ bg:
     modal_title: Преобразуване в шаблон
     model_answer: Модел на отговор
     model_answer_placeholder: Въведете моделния отговор за AI оценяване.
+    model_params_description: Оставете празно, за да използвате стойностите по подразбиране, определени от типа асистент.
+    model_params_max_tokens: Максимален брой жетони
+    model_params_max_tokens_tooltip: Ограничава максималния брой токени, които моделът може да генерира на отговор. По-високите стойности позволяват по-дълги изходи, но увеличават разходите и латентността.
+    model_params_temperature: Температура
+    model_params_temperature_tooltip: Контролира случайността в резултата. 0 = детерминистичен и фокусиран; 2 = силно креативен и разнообразен. Използвайте по-ниски стойности за резултатите, които ще бъдат ограничени до предоставения контекст.
+    model_params_thinking_budget: Бюджет за мислене (токени)
+    model_params_thinking_budget_tooltip: Задава твърдо ограничение на броя токени, които моделът може да изразходва за вътрешни разсъждения. По-високите стойности позволяват по-задълбочен анализ, но увеличават използването на токени и времето за реакция.
+    model_params_thinking_budget_unsupported: Този модел използва само контрол, базиран на усилие. Бюджетът за мислене (ограничение на токените) не се поддържа.
+    model_params_thinking_effort: Усилие за мислене
+    model_params_thinking_effort_high: Високо
+    model_params_thinking_effort_low: Ниско
+    model_params_thinking_effort_medium: Среден
+    model_params_thinking_effort_none: Няма
+    model_params_thinking_effort_tooltip: Контролира колко разсъждения прилага моделът, преди да отговори. По-големите усилия водят до по-задълбочени отговори, но отнемат повече време. Използвайте „Няма“, за да деактивирате напълно разсъжденията.
+    model_params_title: Разширена конфигурация на модела
     must_be_a_valid_url: Невалиден URL адрес. Посочете пълния URL адрес, включващ протокола http или https
     name: Име
     name_max_length: Името не може да надвишава %{length} символа
@@ -1444,6 +1479,14 @@ bg:
     overall: Общо
     overall_score: Общ резултат
     overall_scoring: Общо оценяване
+    owner_resource_assessment: оценка
+    owner_resource_campaign: кампания
+    owner_resource_client: клиент
+    owner_resource_dimension: измерение
+    owner_resource_mismatch: Собственикът на %{child_resource} не е съвместим със собственика на %{parent_resource}.
+    owner_resource_norm: норма
+    owner_resource_report: доклад
+    owner_resource_report_bundle: пакет от отчети
     parsed_dependencies_help: Анализирани зависимости за потребителя, използвани от AI Assistant за генериране на резултати от артефакти
     parsed_dependencies_title: Анализирани зависимости
     parsed_dependencies_view: Преглед на анализирани зависимости
@@ -2195,6 +2238,8 @@ bg:
     report_approval_columns_user_email: Потребителски имейл
     report_approval_columns_user_name: Потребителско име
     report_approval_digest_delivery_mode_form_label: Режим на доставка на дайджест
+    report_approval_digest_delivery_mode_immediate: Незабавно - Изпращане при всяко групово подаване
+    report_approval_digest_delivery_mode_scheduled: Планирано - Изпращане на имейл с обобщение в планирано време
     report_approval_digest_frequency_daily: Ежедневен
     report_approval_digest_frequency_form_label: Честота на смилане
     report_approval_digest_frequency_weekdays: Седмицата
@@ -2386,6 +2431,7 @@ bg:
     saml_settings_config_details_copied: Копирано %{element}
     saml_settings_config_details_issuer: ИД на предприятието/емитент
     saml_settings_config_details_title: Конфигуриране на Idp със следната информация
+    saml_settings_download_metadata: Изтегляне на метаданни
     saml_settings_email_pipetext: Имейл текст
     saml_settings_enabled: Разрешено
     saml_settings_enforced: Прилагане на SAML
@@ -3153,8 +3199,10 @@ bg:
     upload_success: Качено успешно
     url_label: URL адрес
     url_name: URL адрес
+    url_whitelisting: URL адреси в бял списък
     used_tokens_input_tokens: Входни токени
     used_tokens_output_tokens: Изходни токени
+    used_tokens_thinking_tokens: Мислещи жетони
     used_tokens_title: Използване на токени
     user: Потребител
     user_agent: Потребителски агент

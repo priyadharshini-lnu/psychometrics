@@ -21,6 +21,9 @@ html lang="en"
 
   body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
     = render 'shared/maintenance_alert_banner'
+    - if session[:impersonated_by_id].present?
+      #impersonation-banner-portal data-sign-out-path="#{destroy_administration_session_path}"
+      = vite_javascript_tag 'entrypoints/impersonation_banner.tsx'
     .page-container
       - unless @hide_navigation
         = render partial: 'left_sidebar'

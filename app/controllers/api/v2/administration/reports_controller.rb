@@ -29,12 +29,16 @@ module Api
     end
 
     def copy
+      new_name = params.dig(:data, :attributes, :name)
+      owner_id = params.dig(:data, :relationships, :owner, :data, :id)
+      audit! :copy, resource,
+             payload: { source_id: resource.id, new_name: new_name, owner_id: owner_id }
       AdminJob.call(
         :copy_report,
         {
           report_id: resource.id,
-          owner_id: params.dig(:data, :relationships, :owner, :data, :id),
-          name: params.dig(:data, :attributes, :name)
+          owner_id: owner_id,
+          name: new_name
         },
         current_user
       )

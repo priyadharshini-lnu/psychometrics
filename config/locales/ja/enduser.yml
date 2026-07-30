@@ -13,6 +13,7 @@ ja:
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
     approve_idp_plan: プランを承認
     assessment_misconfigured: 設定に誤りがあります
+    assessment_timing_duration_minutes: "%{duration}分"
     audio: 音声
     audio_check: マイクテスト
     audio_check_description: 録音のために、マイクが正常に動作しているか確認してください
@@ -268,7 +269,7 @@ ja:
     video_check_fix_sixth: ブラウザを再起動して、もう一度お試しください
     video_check_fix_third: カメラを使用している他のアプリケーション（Zoom、Teamsなど）を閉じてください
     video_overlay_label: マイクとカメラを選択し、「録画」をクリックしてから、録画ボタンを押したら以下のメッセージを読み上げてください
-    video_overlay_message: マイクとカメラを選択し、「録画」をクリックしてから、画面下部に表示される文章を声に出して読み上げてください。
+    video_overlay_message: マイクとカメラを選択し、「録画」をクリックしてから、画面下部に表示される文章を声に出して読み上げ、3回繰り返してください。
     video_recorder_label: ビデオレコーダー
     video_upload_failed_camera_access: カメラまたはマイクにアクセスできません。デバイスの権限設定を確認してから、もう一度お試しください。
     video_upload_failed_chunk_upload: 録画の一部がアップロードできませんでした。インターネット接続を確認の上、もう一度お試しください。

@@ -429,6 +429,7 @@ hu:
               invalid_header: Érvénytelen fejléc, fejléc exportálása
               invalid_reports_header: Érvénytelen fejléc, fejléc a mintafájlból
               manager_not_found: 'A(z) %{row_number} sor: A(z) %{email} e-mail-címmel rendelkező kezelő nem szerepel a kampányban vagy a CSV-fájlban'
+              not_enough_licenses: Az importáláshoz %{required_count} licenc szükséges, de csak %{available_count} érhető el. Kérjük, csökkentse az új felhasználók számát, vagy adjon hozzá több licencet az importálás előtt.
               user_update_failed: '%{email} felhasználói frissítése sikertelen "%{error}" hibával'
             locale:
               inclusion: Rossz területi beállítás

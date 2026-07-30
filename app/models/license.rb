@@ -11,6 +11,7 @@ class License < ApplicationRecord
   has_many :project_licenses, dependent: :destroy
 
   include Tenantable
+  include OwnerCompatibility
 
   validates :start_date, :end_date, presence: true, allow_nil: false
   validates :client, presence: true, allow_nil: false
@@ -20,6 +21,7 @@ class License < ApplicationRecord
   validates :report_family_id, presence: true, if: :type_common?
   validate :used_number_validation
   validate :license_expire_validation
+  validate :client_compatibility_with_report_family_owner, if: :validate_client_compatibility_with_report_family_owner?
 
   scope :with_report_family, lambda { |report_family_id|
     where(report_family_id: report_family_id)
@@ -27,12 +29,15 @@ class License < ApplicationRecord
   scope :active, -> { where(disabled: false) }
   scope :available, lambda {
                       active.
-                        where('end_date >= :date and start_date <= :date and number + overuse_number > used_number',
-                              date: Time.zone.today)
+                        where(
+                          'licenses.end_date >= :date AND licenses.start_date <= :date AND ' \
+                          'licenses.number + licenses.overuse_number > licenses.used_number',
+                          date: Time.zone.today
+                        )
                     }
   scope :not_expired, lambda {
     active.
-      where('end_date >= :date and start_date <= :date',
+      where('licenses.end_date >= :date AND licenses.start_date <= :date',
             date: Time.zone.today)
   }
 
@@ -118,5 +123,24 @@ class License < ApplicationRecord
 
   def used_number_validation
     errors.add(:used_number, :overused) if (number + overuse_number - used_number).negative?
+  end
+
+  def validate_client_compatibility_with_report_family_owner?
+    return false unless type_common?
+    return false if report_family.blank?
+    return false if client.blank?
+    return false if report_family.tenant_id.blank?
+
+    new_record? || will_save_change_to_client_id? || will_save_change_to_report_family_id?
+  end
+
+  def client_compatibility_with_report_family_owner
+    return if report_family.tenant_id == client_id
+
+    add_owner_compatibility_error(
+      :report_family,
+      child_resource: :client,
+      parent_resource: :report_bundle
+    )
   end
 end

@@ -7,6 +7,7 @@ sr-Cyrl:
     add: Додати
     advanced: Напредне
     agree_and_continue: Слажем се и настави
+    ai_toolbar_disclaimer: Предлози генерисани вештачком интелигенцијом могу садржати нетачности или ненамерне промене. Молимо вас да прегледате сав садржај пре употребе, чиме прихватате одговорност за проверу коначног резултата.
     approval_status: Статус одобрења
     approved: Одобрено
     approved_by: Одобрио
@@ -99,9 +100,12 @@ sr-Cyrl:
     icon: Икону
     id: ИД
     idp_ai_assistant_disclaimer: Лигхтхоусе АИ ИДП асистент може да прави грешке. Молимо вас да будете опрезни док користите одговоре.
+    impersonation_banner_aria_label: Активна сесија лажног представљања
+    impersonation_end_session: Излаз
     import: Увоз
     inactive: Неактиван
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
+    is_impersonating: се лажно представља
     issuer: Издавач
     issuer_claim_label: Издавач (iss)
     jwt_claims_details: Детаљи тврдњи JWT
@@ -185,6 +189,7 @@ sr-Cyrl:
     reset: Поништи
     reset_password: Поништавање лозинке
     response_text: Текст одговора
+    return_url_not_whitelisted: URL за повратак није на белој листи за ову апликацију.
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
     run: Трчати

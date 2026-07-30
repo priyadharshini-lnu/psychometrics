@@ -6,10 +6,17 @@ module PortableData
       class DimensionExportDefinition < ExportFields
         include SchemaConfiguration
 
-        all_attributes
+        all_attributes except: %w[
+          created_by_id
+          updated_by_id
+          tenant_id
+          default_occupation_condition_set_id
+        ]
         mappable_attribute :owner_id
+        deferred_relationship_attribute :default_occupation_condition_set_id, model: OccupationConditionSet
         related_resource :all_factors, model: Factor
         related_resource :factors_sub_factors, model: FactorsSubFactor
+        related_resource :occupation_condition_sets, model: OccupationConditionSet
         related_resource :occupations, model: Occupation
         related_resource :occupations_factors, model: OccupationsFactor
         related_resource :innovation_styles, model: InnovationStyle
@@ -19,6 +26,7 @@ module PortableData
           dimensions
           factors
           factors_sub_factors
+          occupation_condition_sets
           innovation_styles
           occupations
           innovation_styles_factors

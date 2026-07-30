@@ -52,10 +52,6 @@ module AdminJobs
         config['client_ids']
       end
 
-      def year_range
-        config['year_range']
-      end
-
       def report_scope
         @report_scope ||= data_report.scope
       end

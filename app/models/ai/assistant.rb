@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AI::Assistant < ApplicationRecord
-  audited only: %i[name user_prompt system_prompt assistant_type model_id]
+  audited only: %i[name user_prompt system_prompt assistant_type model_id model_params]
 
   include RansackSearchableFields
   include ::AI::RecalculatesArtifactDependenciesChecksum
@@ -99,11 +99,13 @@ class AI::Assistant < ApplicationRecord
 
     chat.with_tools(*options[:tools], replace: true) if options[:tools].present?
 
-    # Use provided params or fall back to default params for this type
+    # skip_default_params skips type-level defaults; DB model_params are always applied
     default_assistant_params = options[:skip_default_params] ? {} : default_params
-    params_to_use = default_assistant_params.merge(options[:params] || {})
+    params_to_use = default_assistant_params.merge(type_configuration.db_params).merge(options[:params] || {})
     chat.with_params(**params_to_use) if params_to_use.any?
     chat.with_headers(**ai_provider_for_model['headers']) if ai_provider_for_model['headers']
+
+    apply_thinking_config(chat)
   end
 
   private
@@ -139,6 +141,13 @@ class AI::Assistant < ApplicationRecord
 
   def default_params
     type_configuration.default_params
+  end
+
+  def apply_thinking_config(chat)
+    thinking = model_params.symbolize_keys.slice(:thinking_effort, :thinking_budget)
+    return if thinking[:thinking_effort].blank? && thinking[:thinking_budget].blank?
+
+    chat.with_thinking(effort: thinking[:thinking_effort], budget: thinking[:thinking_budget])
   end
 
   # Generate text-based schema context for system prompt

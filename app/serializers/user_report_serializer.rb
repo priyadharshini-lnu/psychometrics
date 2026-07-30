@@ -122,13 +122,14 @@ class UserReportSerializer < Panko::Serializer
         one_level_qc
         approvers_can_edit
         manage_approval
+        mark_ready
         translate
       ],
       {
         project_id: object.campaign.project_id,
         campaign_id: object.campaign_id
       }
-    )
+    ).merge(can_mark_ready: object.can_mark_ready?)
   end
 
   private

@@ -3,7 +3,6 @@
 module AdminAuth
   class GenerateHandoffToken < BaseCommand
     EXPIRY = 2.minutes
-    CACHE_PREFIX = 'admin_handoff'
 
     def initialize(user, client, impersonated_by: nil)
       @user = user
@@ -60,11 +59,11 @@ module AdminAuth
     end
 
     def cache_key(nonce)
-      "#{CACHE_PREFIX}:#{nonce}"
+      "#{AdminAuth::HANDOFF_CACHE_PREFIX}:#{nonce}"
     end
 
     def verifier_purpose
-      'admin_handoff_token'
+      AdminAuth::HANDOFF_VERIFIER_PURPOSE
     end
   end
 end

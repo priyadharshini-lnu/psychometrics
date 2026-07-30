@@ -128,10 +128,14 @@ sk:
     application_name_already_taken: Pre tohto klienta už existuje
     application_name_format_hint: Povolené sú iba písmená a čísla, medzi slovami je povolená iba jedna medzera
     application_settings_at_least_one_ip_required: Pred aktiváciou bieleho zoznamu IP adries prosím aktivujte aspoň jednu položku IP adresy
+    application_settings_at_least_one_url_required: Pred povolením bielej listiny adries URL povoľte aspoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Naozaj chcete túto IP adresu vymazať?
-    application_settings_edit_ip_address: Upraviť IP adresu / rozsah CIDR
+    application_settings_confirm_delete_url: Naozaj chcete odstrániť túto URL adresu?
     application_settings_enable_ip_whitelisting: Aktivovať zoznam povolených IP adries
+    application_settings_enable_url_whitelisting: Povoliť bielu listinu URL adries
     application_settings_invalid_ip_format: Neplatná IP adresa alebo formát CIDR
+    application_settings_invalid_url_format: Neplatný formát URL
+    application_settings_ip_address: Rozsah IP adries / CIDR
     application_settings_ip_addresses: IP adresy / rozsahy CIDR
     application_settings_ip_deleted_successfully: IP adresa bola úspešne odstránená
     application_settings_ip_description_placeholder: napr. kancelárska sieť alebo produkčný server
@@ -141,6 +145,16 @@ sk:
     application_settings_ip_updated_successfully: IP adresa bola úspešne aktualizovaná
     application_settings_ip_whitelisting_disabled_success: Biely zoznam IP adries bol úspešne deaktivovaný
     application_settings_ip_whitelisting_enabled_success: Biely zoznam IP adries bol úspešne aktivovaný
+    application_settings_url: URL
+    application_settings_url_addresses: URL adresy
+    application_settings_url_deleted_successfully: URL adresa bola úspešne odstránená
+    application_settings_url_description_placeholder: napr. kancelárska sieť alebo produkčný server
+    application_settings_url_input_placeholder: napr. https://example.com alebo https://sub.example.com
+    application_settings_url_required: URL adresa je povinná
+    application_settings_url_updated_successfully: URL adresa bola úspešne aktualizovaná
+    application_settings_url_whitelisting_disabled_success: Pridávanie URL na bielu listinu úspešne zakázané
+    application_settings_url_whitelisting_enabled_success: Pridanie URL na bielu listinu úspešne povolené
+    application_settings_urls: URL adresy
     applications: Aplikácie
     apply_to_existing_users: Túto zmenu aplikujte na existujúcich používateľov v tejto kampani.
     approve_all_questions: Schváliť všetky otázky
@@ -213,6 +227,8 @@ sk:
     assessor_overview: Prehľad
     assessor_placeholder: Vyhľadávanie hodnotiteľa...
     assessor_remove_confirmation: Naozaj chcete z tejto kampane odstrániť hodnotiteľa s e-mailom %{email}?
+    assessor_remove_has_evaluations: Tento hodnotiteľ má priradených %{evaluation_count} formulárov hodnotiteľa. Všetky hodnotenia, ktoré vyplnil, budú stratené.
+    assessor_remove_in_assessment_centers: Tento hodnotiteľ je súčasťou hodnotiaceho centra (centier) %{workshop_count}. Pokračovaním bude odstránený zo všetkých hodnotiacich centier.
     assessor_statuses_completed: Dokončené
     assessor_statuses_not_completed: Nie je dokončené
     assessor_subjects_statuses_completed: Dokončené
@@ -625,6 +641,7 @@ sk:
       thursday: štvrtok
       tuesday: utorok
       wednesday: streda
+    dimension_errors_cannot_delete_with_assessments: Túto dimenziu nie je možné odstrániť, pretože je stále spojená s hodnoteniami. Najprv odstráňte alebo aktualizujte súvisiace hodnotenia.
     dimension_translations_export_scheduled: Export prekladov naplánovaný pre dimenziu „%{name}“.
     dimensions: Rozmery
     dimensions_destroy_successfully: Dimenzia %{name} bola úspešne odstránená.
@@ -645,6 +662,7 @@ sk:
     dimensions_import_modal_import_dimension: Importovať dimenziu
     dimensions_import_modal_import_scheduled: Naplánovaný import
     dimensions_import_modal_operation: Operácia
+    dimensions_import_modal_owner_global: TTE (globálne)
     dimensions_import_modal_owner_input_validation: Prosím, vyberte vlastníka
     dimensions_import_modal_owner_select: Výber vlastníka
     dimensions_import_modal_select_json: Vyberte súbor JSON
@@ -1206,6 +1224,7 @@ sk:
     invite_workshop_list_remove_confirm_success: Assessment Center bolo úspešne odstránené.
     invite_workshop_list_remove_confirm_title: Potvrďte
     invite_workshop_title: Hodnotiace centrá
+    ip_whitelisting: Zoznam bielych IP adries
     is_subject: Je predmetom
     job_role_are_you_sure_to_remove: Určite ho chcete odstrániť?
     job_role_column_job_group: Pracovná skupina
@@ -1279,6 +1298,7 @@ sk:
     mark_not_finalized: Značka nie je definitívna
     mark_not_finalized_bulk_confirm: Odstránenie finalizácie u všetkých vybraných používateľov spôsobí odstránenie vygenerovaných správ, ktoré využívajú artefakty umelej inteligencie. Naozaj chcete pokračovať?
     mark_not_finalized_confirm: Odstránením položky „finalize“ z účtu používateľa „%{email}“ sa odstráni vygenerovaná správa, ktorá využíva artefakt umelej inteligencie pre daného používateľa. Naozaj chcete pokračovať?
+    mark_ready_button: Označiť ako pripravené
     mask_identity_for_examus: Údaje masky pre Examus Proctoring
     mask_identity_for_hogan: Údaje o maske pre Hogana
     mask_identity_for_iiht: Údaje masky pre IIHT
@@ -1337,6 +1357,21 @@ sk:
     modal_title: Konvertovať do šablóny
     model_answer: Vzorová odpoveď
     model_answer_placeholder: Zadajte vzorovú odpoveď pre hodnotenie umelou inteligenciou.
+    model_params_description: Ak chcete použiť predvolené hodnoty definované typom asistenta, ponechajte pole prázdne.
+    model_params_max_tokens: Maximálny počet žetónov
+    model_params_max_tokens_tooltip: Obmedzuje maximálny počet tokenov, ktoré môže model vygenerovať na jednu odpoveď. Vyššie hodnoty umožňujú dlhšie výstupy, ale zvyšujú náklady a latenciu.
+    model_params_temperature: Teplota
+    model_params_temperature_tooltip: Riadi náhodnosť výstupu. 0 = deterministický a cielený; 2 = vysoko kreatívny a rozmanitý. Použite nižšie hodnoty pre výstupy, ktoré sa obmedzia na poskytnutý kontext.
+    model_params_thinking_budget: Rozpočet na myslenie (žetóny)
+    model_params_thinking_budget_tooltip: Stanovuje pevný limit pre tokeny, ktoré môže model minúť na interné uvažovanie. Vyššie hodnoty umožňujú hlbšiu analýzu, ale zvyšujú využitie tokenov a čas odozvy.
+    model_params_thinking_budget_unsupported: Tento model používa iba riadenie založené na úsilí. Rozpočet na myslenie (striedok tokenov) nie je podporovaný.
+    model_params_thinking_effort: Úsilie o premýšľanie
+    model_params_thinking_effort_high: Vysoká
+    model_params_thinking_effort_low: Nízka
+    model_params_thinking_effort_medium: Stredné
+    model_params_thinking_effort_none: Žiadne
+    model_params_thinking_effort_tooltip: Riadi, koľko uvažovania model použije pred odpoveďou. Vyššie úsilie vedie k dôkladnejším odpovediam, ale trvá dlhšie. Na úplné vypnutie uvažovania použite možnosť „Žiadne“.
+    model_params_title: Pokročilá konfigurácia modelu
     must_be_a_valid_url: Neplatná URL adresa. Zadajte úplnú URL adresu s protokolom http alebo https
     name: Meno
     name_max_length: Názov nesmie presiahnuť %{length} znakov
@@ -1444,6 +1479,14 @@ sk:
     overall: Celkovo
     overall_score: Celkové skóre
     overall_scoring: Celkové skóre
+    owner_resource_assessment: posúdenie
+    owner_resource_campaign: kampaň
+    owner_resource_client: klient
+    owner_resource_dimension: rozmer
+    owner_resource_mismatch: Vlastník %{child_resource} nie je kompatibilný s vlastníkom %{parent_resource}.
+    owner_resource_norm: norma
+    owner_resource_report: správa
+    owner_resource_report_bundle: balík správ
     parsed_dependencies_help: Analyzované závislosti pre používateľa, ktoré používa AI Assistant na generovanie výsledkov artefaktov
     parsed_dependencies_title: Analyzované závislosti
     parsed_dependencies_view: Zobrazenie analyzovaných závislostí
@@ -2195,6 +2238,8 @@ sk:
     report_approval_columns_user_email: E-mail používateľa
     report_approval_columns_user_name: Používateľské meno
     report_approval_digest_delivery_mode_form_label: Režim doručenia súhrnu
+    report_approval_digest_delivery_mode_immediate: Okamžité – Odoslať vždy, keď dôjde k hromadnému odoslaniu
+    report_approval_digest_delivery_mode_scheduled: Naplánované – Odoslať e-mail s prehľadom v naplánovanom čase
     report_approval_digest_frequency_daily: Denne
     report_approval_digest_frequency_form_label: Frekvencia Digest
     report_approval_digest_frequency_weekdays: Vo všedné dni
@@ -2386,6 +2431,7 @@ sk:
     saml_settings_config_details_copied: Skopírované %{element}
     saml_settings_config_details_issuer: ID subjektu/emitenta
     saml_settings_config_details_title: Nakonfigurujte Idp s nasledujúcimi informáciami
+    saml_settings_download_metadata: Stiahnuť metadáta
     saml_settings_email_pipetext: Odoslanie e-mailu Pipetext
     saml_settings_enabled: Povolené
     saml_settings_enforced: Vynútenie SAML
@@ -3148,8 +3194,10 @@ sk:
     upload_success: Úspešne nahrané
     url_label: Adresa URL
     url_name: Adresa URL
+    url_whitelisting: Pridanie URL na bielu listinu
     used_tokens_input_tokens: Vstupné tokeny
     used_tokens_output_tokens: Výstupné tokeny
+    used_tokens_thinking_tokens: Žetóny myslenia
     used_tokens_title: Použitie tokenov
     user: Užívateľ
     user_agent: Používateľský agent

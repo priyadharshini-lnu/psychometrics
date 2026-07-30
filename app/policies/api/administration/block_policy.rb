@@ -61,6 +61,8 @@ module Api
             @user.has_permission?(:questions, :view, project_id: owner_id)
           end
 
+          return scope.where(owner_id: permitted_owner_ids) if @user.is?(:client_admin)
+
           scope.where(owner_id: permitted_owner_ids.push(nil))
         end
       end

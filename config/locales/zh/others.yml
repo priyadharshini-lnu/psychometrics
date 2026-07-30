@@ -429,6 +429,7 @@ zh:
               invalid_header: 无效标头，从导出中获取标头
               invalid_reports_header: 无效标头，从示例文件中获取标头
               manager_not_found: 行 %{row_number}：活动或 CSV 中不存在电子邮件 %{email} 的经理
+              not_enough_licenses: 导入需要 %{required_count} 个许可证，但只有 %{available_count} 个可用许可证。请在导入前减少新用户数量或添加更多许可证。
               user_update_failed: '%{email} 的用户更新失败，错误信息为"%{error}'
             locale:
               inclusion: 地点错误

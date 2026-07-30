@@ -38,6 +38,7 @@ RSpec.describe Administration::Campaigns::AssessorsController, type: :controller
         'status' => 'completed',
         'completed_evaluations' => 0,
         'total_evaluations' => 0,
+        'workshop_assessors_count' => 0,
         'permissions' => {
           'login_as' => true,
           'remove' => true

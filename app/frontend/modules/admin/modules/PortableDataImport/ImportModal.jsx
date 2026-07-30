@@ -293,8 +293,11 @@ const ImportModal = (props) => {
         }}
         notFoundContent={isClientsLoading ? <Spin size="small" /> : null}
         filterOption={false}
-        onChange={value => handleMappableValueChange('dimensions', 'owner_id', value)}
+        onChange={value => handleMappableValueChange('dimensions', 'owner_id', value === 'global' ? null : value)}
       >
+        <Select.Option key="global" value="global">
+          {I18n.t('admin.dimensions_import_modal_owner_global')}
+        </Select.Option>
         {clients.map(client => (
           <Select.Option key={client.id} value={client.id}>
             {client.attributes.name}

@@ -3,7 +3,7 @@
 class Api::V2::Administration::PublicKeyResource < Api::V2::Administration::BaseResource
   model_name 'ApplicationPublicKey'
 
-  attributes :key_id, :public_key, :fingerprint, :description, :disabled,
+  attributes :key_id, :public_key, :description, :disabled,
              :created_at, :updated_at, :created_by, :issuer, :audience
 
   audit_log_for :create, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }

@@ -429,6 +429,7 @@ ar:
               invalid_header: رأس غير صالح، خذ رأس من التصدير
               invalid_reports_header: رأس غير صالح، خذ رأسا من نموذج الملف
               manager_not_found: 'الصف %{row_number}: مدير يحتوي على بريد إلكتروني %{email} غير موجود في الحملة أو في ملف CSV'
+              not_enough_licenses: يتطلب الاستيراد %{required_count} ترخيصًا، ولكن لا يتوفر سوى %{available_count}. يُرجى تقليل عدد المستخدمين الجدد أو إضافة المزيد من التراخيص قبل الاستيراد.
               user_update_failed: تعذر تحديث المستخدم ل %{email} مع الخطأ '%{error}'
             locale:
               inclusion: لغة خاطئة

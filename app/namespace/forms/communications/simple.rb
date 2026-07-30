@@ -43,7 +43,8 @@ module Forms
       def validate_delivery_start_datetime_not_in_past
         return if delivery_start_date.blank? || delivery_time_of_day.blank?
 
-        tz = ActiveSupport::TimeZone[delivery_timezone] || Time.zone
+        normalized_tz = TimezoneHelper.normalize(delivery_timezone)
+        tz = ActiveSupport::TimeZone[normalized_tz] || Time.zone
         start_datetime = tz.local(
           delivery_start_date.year,
           delivery_start_date.month,

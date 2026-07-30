@@ -106,10 +106,26 @@ class Question < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  scope :filterable_fields, lambda { |search_term|
+    term = search_term.to_s
+    query = "%#{term}%"
+
+    searchable_sql = <<~SQL.squish
+      questions.name ILIKE :query
+      OR regexp_replace(COALESCE(questions.props ->> 'questionText', ''), '<[^>]*>', '', 'g') ILIKE :query
+    SQL
+
+    if (term !~ /\D/) && term.present?
+      where("questions.id = :id OR (#{searchable_sql})", id: term, query: query)
+    else
+      where(searchable_sql, query: query)
+    end
+  }
+
   scope :skill_rater, -> { where.not(skill_id: nil) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id name type created_at updated_at view]
+    %w[id name type created_at updated_at view deleted_at]
   end
 
   def self.ransackable_associations(_auth_object = nil)

@@ -16,7 +16,7 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # This example installs the PostgreSQL and SQLite libraries (two commonly used databases in Rails apps).
 #
 # We're also installing the latest nodejs and lua
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev \
+RUN apt-get update -qq && apt-get install -yq --no-install-recommends curl gnupg2 lsb-release python-is-python3 liblua5.4 zlib1g-dev unzip \
     && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
     && apt-get install -y nodejs \
     && corepack enable \
@@ -91,6 +91,7 @@ ENV RAILS_ENV=production
 ENV BUNDLE_WITHOUT 'development test'
 ENV NODE_ENV=production
 
+ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -99,7 +100,8 @@ RUN yarn global add modclean@3.0.0-beta.1
 
 COPY package.json yarn.lock .npmrc ./
 RUN git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/" \
-    && yarn install --pure-lockfile && modclean -r
+    && PUPPETEER_SKIP_DOWNLOAD=true PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install --pure-lockfile \
+    && modclean -r
 
 
 FROM ruby-base as bundle-assets

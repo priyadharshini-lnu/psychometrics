@@ -8,6 +8,7 @@ module Users
     has_many :public_keys, class_name: 'ApplicationPublicKey', foreign_key: :user_id, dependent: :destroy
     has_one :application_setting, class_name: 'ApplicationSetting', foreign_key: :user_id, dependent: :destroy
     has_many :ip_whitelist_entries, class_name: 'ApplicationIpWhitelistEntry', through: :application_setting
+    has_many :url_whitelist_entries, class_name: 'ApplicationUrlWhitelistEntry', through: :application_setting
 
     scope :active, -> { where(disabled: false) }
     scope :inactive, -> { where(disabled: true) }

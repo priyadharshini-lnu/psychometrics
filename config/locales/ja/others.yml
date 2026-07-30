@@ -429,6 +429,7 @@ ja:
               invalid_header: 無効なヘッダーです。
               invalid_reports_header: 無効なヘッダーです。
               manager_not_found: '行 %{row_number}: 電子メール %{email} を持つマネージャがキャンペーンまたは CSV に存在しません。'
+              not_enough_licenses: インポートには%{required_count}ライセンスが必要ですが、利用可能なライセンスは%{available_count}のみです。インポート前に新規ユーザー数を減らすか、ライセンスを追加してください。
               user_update_failed: エラー '%{error}' で %{email} のユーザ更新に失敗しました。
             locale:
               inclusion: 間違ったロケール

@@ -7,6 +7,7 @@ sr-Latn:
     add: Dodaj
     advanced: Napredne
     agree_and_continue: Slažem se i nastavi
+    ai_toolbar_disclaimer: Предлози генерисани вештачком интелигенцијом могу садржати нетачности или ненамерне промене. Молимо вас да прегледате сав садржај пре употребе, чиме прихватате одговорност за проверу коначног резултата.
     approval_status: Статус одобрења
     approved: Одобрено
     approved_by: Одобрио
@@ -99,9 +100,12 @@ sr-Latn:
     icon: Ikonu
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP asistent može da pravi greške. Molimo vas da budete oprezni dok koristite odgovore.
+    impersonation_banner_aria_label: Активна сесија лажног представљања
+    impersonation_end_session: Излаз
     import: Uvoz
     inactive: Neaktivni
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
+    is_impersonating: се лажно представља
     issuer: Издавач
     issuer_claim_label: Издавач (iss)
     jwt_claims_details: Детаљи тврдњи JWT
@@ -185,6 +189,7 @@ sr-Latn:
     reset: Poništi
     reset_password: Poništi lozinku
     response_text: Текст одговора
+    return_url_not_whitelisted: URL за повратак није на белој листи за ову апликацију.
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se nalepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje reči {{maxWordLimit}} i ne može se nalepiti.
     run: Trčati

@@ -14,13 +14,16 @@ module Administration
              offset(params[:offset] || 0).
              limit(20).
              all
-      render json: {
-        jobs: Panko::ArraySerializer.new(
-          jobs,
-          each_serializer: AdminJobRecordSerializer
-        ).to_a,
-        unread: policy_scope(AdminJobRecord).where(read: false).count
-      }
+
+      AdminJobs::Base.preload_campaigns_for(jobs) do
+        render json: {
+          jobs: Panko::ArraySerializer.new(
+            jobs,
+            each_serializer: AdminJobRecordSerializer
+          ).to_a,
+          unread: policy_scope(AdminJobRecord).where(read: false).count
+        }
+      end
     end
 
     def read_all

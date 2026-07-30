@@ -286,6 +286,7 @@ Rails.application.routes.draw do
               put :send_for_approval
               put :request_changes
               put :remove_approval
+              patch :mark_ready
               patch :toggle_user_access
               get :webhook_payload
               get :possible_webhook_events
@@ -1315,7 +1316,9 @@ as: :simulation_progress_notification
             end
           end
 
-          resources :users, only: %i[index create update] do
+          put 'users/*id', to: 'users#update', constraints: { id: %r{[^/]+} }
+
+          resources :users, only: %i[index create] do
             post :sso, on: :member
             collection do
               get :search
@@ -1383,6 +1386,11 @@ as: :simulation_progress_notification
             end
             jsonapi_resources :application_settings, only: %i[index create update]
             jsonapi_resources :application_ip_whitelist_entries, only: %i[index create update destroy] do
+              collection do
+                post :bulk_create
+              end
+            end
+            jsonapi_resources :application_url_whitelist_entries, only: %i[index create update destroy] do
               collection do
                 post :bulk_create
               end

@@ -127,3 +127,15 @@
     transform: rotate(180deg);
   }
 }
+
+:global(body.is-impersonating) .siderItemsContainer {
+  height: calc(var(--vh, 1vh) * 100 - var(--osano-banner-height, 0px) - 40px);
+}
+
+:global(body.is-impersonating) .sider-trigger {
+  top: calc(0.5rem + 40px);
+}
+
+:global(body.is-impersonating) .drawer-trigger {
+  top: calc(8px + 40px);
+}

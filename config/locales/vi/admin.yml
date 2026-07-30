@@ -128,10 +128,14 @@ vi:
     application_name_already_taken: Đã tồn tại cho khách hàng này
     application_name_format_hint: Chỉ được phép sử dụng chữ cái và số, với một khoảng trắng giữa các từ
     application_settings_at_least_one_ip_required: Vui lòng kích hoạt ít nhất một mục địa chỉ IP trước khi kích hoạt danh sách trắng IP
+    application_settings_at_least_one_url_required: Vui lòng cho phép ít nhất một mục URL trước khi cho phép danh sách URL được phép.
     application_settings_confirm_delete_ip: Bạn có chắc chắn muốn xóa địa chỉ IP này không?
-    application_settings_edit_ip_address: Chỉnh sửa địa chỉ IP / Phạm vi CIDR
+    application_settings_confirm_delete_url: Bạn có chắc chắn muốn xóa URL này không?
     application_settings_enable_ip_whitelisting: Bật tính năng danh sách trắng IP
+    application_settings_enable_url_whitelisting: Bật danh sách trắng URL
     application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ
+    application_settings_invalid_url_format: Định dạng URL không hợp lệ
+    application_settings_ip_address: Địa chỉ IP / Dải CIDR
     application_settings_ip_addresses: Địa chỉ IP / Phạm vi CIDR
     application_settings_ip_deleted_successfully: Đã xóa địa chỉ IP thành công
     application_settings_ip_description_placeholder: 'ví dụ: Mạng văn phòng hoặc máy chủ sản xuất'
@@ -141,6 +145,16 @@ vi:
     application_settings_ip_updated_successfully: Địa chỉ IP đã được cập nhật thành công
     application_settings_ip_whitelisting_disabled_success: Chức năng danh sách trắng IP đã được tắt thành công
     application_settings_ip_whitelisting_enabled_success: Chức năng danh sách trắng IP đã được kích hoạt thành công
+    application_settings_url: URL
+    application_settings_url_addresses: Địa chỉ URL
+    application_settings_url_deleted_successfully: URL đã được xóa thành công
+    application_settings_url_description_placeholder: 'Ví dụ: Mạng văn phòng hoặc máy chủ sản xuất'
+    application_settings_url_input_placeholder: 'Ví dụ: https://example.com hoặc https://sub.example.com'
+    application_settings_url_required: URL là bắt buộc
+    application_settings_url_updated_successfully: URL đã được cập nhật thành công
+    application_settings_url_whitelisting_disabled_success: Đã tắt tính năng cho phép URL thành công.
+    application_settings_url_whitelisting_enabled_success: Tính năng cho phép URL đã được kích hoạt thành công.
+    application_settings_urls: URL
     applications: Ứng dụng
     apply_to_existing_users: Áp dụng thay đổi này cho các người dùng hiện có trong chiến dịch này.
     approve_all_questions: Chấp thuận tất cả các câu hỏi
@@ -213,6 +227,8 @@ vi:
     assessor_overview: Tổng quan
     assessor_placeholder: Tìm kiếm thẩm định viên...
     assessor_remove_confirmation: Bạn có chắc chắn muốn xóa người đánh giá có email %{email} khỏi chiến dịch này không?
+    assessor_remove_has_evaluations: Người đánh giá này được giao %{evaluation_count} biểu mẫu đánh giá. Tất cả các đánh giá mà họ đã điền sẽ bị mất.
+    assessor_remove_in_assessment_centers: Người đánh giá này thuộc trung tâm đánh giá %{workshop_count}. Việc tiếp tục sẽ loại bỏ họ khỏi tất cả các trung tâm đánh giá.
     assessor_statuses_completed: Hoàn thành
     assessor_statuses_not_completed: Chưa hoàn thành
     assessor_subjects_statuses_completed: Hoàn thành
@@ -625,6 +641,7 @@ vi:
       thursday: Thứ Năm
       tuesday: Thứ Ba
       wednesday: Thứ Tư
+    dimension_errors_cannot_delete_with_assessments: Không thể xóa chiều dữ liệu này vì nó vẫn còn liên kết với các bài đánh giá. Vui lòng xóa hoặc cập nhật các bài đánh giá liên kết trước.
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
     dimensions_destroy_successfully: Thứ nguyên %{name} đã bị xóa thành công.
@@ -645,6 +662,7 @@ vi:
     dimensions_import_modal_import_dimension: Kích thước nhập khẩu
     dimensions_import_modal_import_scheduled: Nhập theo lịch trình
     dimensions_import_modal_operation: Hoạt động
+    dimensions_import_modal_owner_global: TTE (Toàn cầu)
     dimensions_import_modal_owner_input_validation: Vui lòng chọn chủ sở hữu.
     dimensions_import_modal_owner_select: Chọn chủ sở hữu
     dimensions_import_modal_select_json: Chọn tệp JSON
@@ -1206,6 +1224,7 @@ vi:
     invite_workshop_list_remove_confirm_success: Trung tâm Đánh giá đã được gỡ bỏ thành công.
     invite_workshop_list_remove_confirm_title: Xác nhận
     invite_workshop_title: Trung tâm đánh giá
+    ip_whitelisting: Danh sách trắng IP
     is_subject: Chủ đề là
     job_role_are_you_sure_to_remove: Bạn chắc chắn muốn xóa?
     job_role_column_job_group: Nhóm công việc
@@ -1279,6 +1298,7 @@ vi:
     mark_not_finalized: Chưa hoàn tất
     mark_not_finalized_bulk_confirm: Việc hủy xác nhận đối với tất cả người dùng đã chọn sẽ xóa các báo cáo đã tạo sử dụng các thành phần AI. Bạn có chắc chắn muốn tiếp tục không?
     mark_not_finalized_confirm: Việc xóa trạng thái "finalize" khỏi tài khoản người dùng "%{email}" sẽ xóa báo cáo đã tạo sử dụng tài nguyên AI của người dùng đó. Bạn có chắc chắn muốn tiếp tục không?
+    mark_ready_button: Đánh dấu là đã sẵn sàng
     mask_identity_for_examus: Dữ liệu mặt nạ cho Examus Proctoring
     mask_identity_for_hogan: Dữ liệu mặt nạ cho Hogan
     mask_identity_for_iiht: Dữ liệu mặt nạ cho IIHT
@@ -1337,6 +1357,21 @@ vi:
     modal_title: Chuyển đổi sang mẫu
     model_answer: Câu trả lời mẫu
     model_answer_placeholder: Nhập câu trả lời mẫu để đánh giá bằng AI.
+    model_params_description: Để trống nếu muốn sử dụng các giá trị mặc định được xác định bởi loại trợ lý.
+    model_params_max_tokens: Số token tối đa
+    model_params_max_tokens_tooltip: Giới hạn số lượng token tối đa mà mô hình có thể tạo ra cho mỗi phản hồi. Giá trị cao hơn cho phép đầu ra dài hơn nhưng làm tăng chi phí và độ trễ.
+    model_params_temperature: Nhiệt độ
+    model_params_temperature_tooltip: Tham số này kiểm soát tính ngẫu nhiên trong kết quả đầu ra. 0 = kết quả có tính xác định và tập trung; 2 = kết quả rất sáng tạo và đa dạng. Sử dụng các giá trị thấp hơn để kết quả đầu ra bị giới hạn trong ngữ cảnh được cung cấp.
+    model_params_thinking_budget: Ngân sách tư duy (mã thông báo)
+    model_params_thinking_budget_tooltip: Thiết lập giới hạn tối đa cho số token mà mô hình có thể sử dụng cho quá trình suy luận nội bộ. Giá trị cao hơn cho phép phân tích sâu hơn nhưng làm tăng mức sử dụng token và thời gian phản hồi.
+    model_params_thinking_budget_unsupported: Mô hình này chỉ sử dụng cơ chế điều khiển suy luận dựa trên nỗ lực. Ngân sách suy nghĩ (giới hạn token) không được hỗ trợ.
+    model_params_thinking_effort: Nỗ lực tư duy
+    model_params_thinking_effort_high: Cao
+    model_params_thinking_effort_low: Thấp
+    model_params_thinking_effort_medium: Trung bình
+    model_params_thinking_effort_none: Không có
+    model_params_thinking_effort_tooltip: Tham số này điều chỉnh mức độ suy luận mà mô hình áp dụng trước khi phản hồi. Càng nhiều nỗ lực càng tạo ra câu trả lời kỹ lưỡng hơn nhưng sẽ mất nhiều thời gian hơn. Sử dụng 'None' để tắt hoàn toàn khả năng suy luận.
+    model_params_title: Cấu hình mô hình nâng cao
     must_be_a_valid_url: URL không hợp lệ. Vui lòng nhập URL đầy đủ kèm theo giao thức http hoặc https
     name: Tên
     name_max_length: Tên không được vượt quá %{length} ký tự.
@@ -1444,6 +1479,14 @@ vi:
     overall: Tổng thể
     overall_score: Điểm tổng cộng
     overall_scoring: Điểm tổng thể
+    owner_resource_assessment: đánh giá
+    owner_resource_campaign: chiến dịch
+    owner_resource_client: khách hàng
+    owner_resource_dimension: kích thước
+    owner_resource_mismatch: Chủ sở hữu %{child_resource} không tương thích với chủ sở hữu %{parent_resource}.
+    owner_resource_norm: chuẩn mực
+    owner_resource_report: báo cáo
+    owner_resource_report_bundle: gói báo cáo
     parsed_dependencies_help: Các phần phụ thuộc được phân tích cú pháp cho người dùng được Trợ lý AI sử dụng để tạo kết quả tạo tác
     parsed_dependencies_title: Các phụ thuộc được phân tích cú pháp
     parsed_dependencies_view: Xem các phần phụ thuộc được phân tích cú pháp
@@ -2195,6 +2238,8 @@ vi:
     report_approval_columns_user_email: Email người dùng
     report_approval_columns_user_name: Tên người dùng
     report_approval_digest_delivery_mode_form_label: Chế độ phân phối thông báo
+    report_approval_digest_delivery_mode_immediate: Gửi ngay lập tức - Gửi bất cứ khi nào có dữ liệu được gửi hàng loạt.
+    report_approval_digest_delivery_mode_scheduled: Đã lên lịch - Gửi email tóm tắt vào thời gian đã định.
     report_approval_digest_frequency_daily: Nhật báo
     report_approval_digest_frequency_form_label: Tần số tiêu hóa
     report_approval_digest_frequency_weekdays: Các ngày trong tuần
@@ -2386,6 +2431,7 @@ vi:
     saml_settings_config_details_copied: Đã sao chép %{element}
     saml_settings_config_details_issuer: ID thực thể/Tổ chức phát hành
     saml_settings_config_details_title: Định cấu hình Idp với các thông tin sau
+    saml_settings_download_metadata: Tải xuống siêu dữ liệu
     saml_settings_email_pipetext: Văn bản đường ống email
     saml_settings_enabled: Kích hoạt
     saml_settings_enforced: Thực thi SAML
@@ -3148,8 +3194,10 @@ vi:
     upload_success: Tải lên thành công
     url_label: Địa chỉ
     url_name: Địa chỉ
+    url_whitelisting: Danh sách trắng URL
     used_tokens_input_tokens: Mã thông báo đầu vào
     used_tokens_output_tokens: Mã thông báo đầu ra
+    used_tokens_thinking_tokens: Thẻ tư duy
     used_tokens_title: Sử dụng token
     user: Người dùng
     user_agent: Tác nhân người dùng
