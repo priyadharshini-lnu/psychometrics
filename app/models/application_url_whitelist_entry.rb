@@ -33,7 +33,7 @@ class ApplicationUrlWhitelistEntry < ApplicationRecord
     return false if return_url.blank? || url.blank?
 
     whitelist = url.chomp('/')
-    target = return_url.chomp('/')
+    target = return_url.split(/[?#]/, 2).first.to_s.chomp('/')
 
     pattern = Regexp.escape(whitelist).
               gsub('\\*\\.', '__SUBDOMAIN_WILDCARD__').

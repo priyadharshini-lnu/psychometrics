@@ -43,6 +43,13 @@ RSpec.describe ApplicationUrlWhitelistEntry, type: :model do
       expect(entry.matches_url?('https://example.com/a')).to be false
     end
 
+    it 'matches exact host when return URL includes query params' do
+      entry.url = 'https://example.com'
+
+      expect(entry.matches_url?('https://example.com?status=ASSESSMENT_STATUS')).to be true
+      expect(entry.matches_url?('https://example.com/?status=ASSESSMENT_STATUS')).to be true
+    end
+
     it 'matches optional path for wildcard path entries' do
       entry.url = 'https://example.com/*'
 
@@ -50,6 +57,8 @@ RSpec.describe ApplicationUrlWhitelistEntry, type: :model do
       expect(entry.matches_url?('https://example.com/')).to be true
       expect(entry.matches_url?('https://example.com/a')).to be true
       expect(entry.matches_url?('https://example.com/a/b')).to be true
+      expect(entry.matches_url?('https://example.com?status=ASSESSMENT_STATUS')).to be true
+      expect(entry.matches_url?('https://example.com/a?status=ASSESSMENT_STATUS')).to be true
       expect(entry.matches_url?('https://api.example.com/v1')).to be false
     end
 
@@ -58,8 +67,11 @@ RSpec.describe ApplicationUrlWhitelistEntry, type: :model do
 
       expect(entry.matches_url?('https://api.example.com/')).to be true
       expect(entry.matches_url?('https://api.example.com/v1')).to be true
+      expect(entry.matches_url?('https://api.example.com/v1?status=ASSESSMENT_STATUS')).to be true
       expect(entry.matches_url?('https://foo.bar.example.com/x')).to be true
+      expect(entry.matches_url?('https://foo.bar.example.com/x?status=ASSESSMENT_STATUS')).to be true
       expect(entry.matches_url?('https://example.com')).to be true
+      expect(entry.matches_url?('https://example.com?status=ASSESSMENT_STATUS')).to be true
     end
   end
 
