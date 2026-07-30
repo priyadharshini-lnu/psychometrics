@@ -22,6 +22,8 @@ import { blocksWithoutDeleted } from './selectors'
 export const defaultState = {
   loaded: false,
   disabled: false,
+  disableReason: null,
+  disableMessage: null,
   saving: false,
   id: null,
   name: '',
@@ -94,8 +96,18 @@ const HANDLERS = {
   },
   [SELECT_QUESTION]: (state, { question, offset }) => setIn(state, ['propPanel'], { question: question.id, offset }),
   [UNSELECT_QUESTION]: state => setIn(state, ['propPanel'], { question: null, offset: null }),
-  [ENABLE]: state => ({ ...state, disabled: false }),
-  [DISABLE]: state => ({ ...state, disabled: true }),
+  [ENABLE]: state => ({
+    ...state,
+    disabled: false,
+    disableReason: null,
+    disableMessage: null,
+  }),
+  [DISABLE]: (state, { payload = {} }) => ({
+    ...state,
+    disabled: true,
+    disableReason: payload.reason || 'unknown',
+    disableMessage: payload.message || null,
+  }),
   [EMPTY_TRASH]: state => ({ ...state, trash: _.clone(state.trash).map((t) => { t.permanentRemove = true }) }),
   [MOVE_BLOCK_DOWN]: (state, { block }) => {
     const newState = _.cloneDeep(state)
