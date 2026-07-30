@@ -131,8 +131,6 @@ vi:
     application_settings_at_least_one_url_required: Vui lòng cho phép ít nhất một mục URL trước khi cho phép danh sách URL được phép.
     application_settings_confirm_delete_ip: Bạn có chắc chắn muốn xóa địa chỉ IP này không?
     application_settings_confirm_delete_url: Bạn có chắc chắn muốn xóa URL này không?
-    application_settings_edit_ip_address: Chỉnh sửa địa chỉ IP / Phạm vi CIDR
-    application_settings_edit_url: Chỉnh sửa URL
     application_settings_enable_ip_whitelisting: Bật tính năng danh sách trắng IP
     application_settings_enable_url_whitelisting: Bật danh sách trắng URL
     application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ

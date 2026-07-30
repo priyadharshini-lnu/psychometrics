@@ -22,7 +22,7 @@ export const EditUrlWhiteListModal: React.FC<Props> = ({ entry, close }) => {
   return (
     <ResourceFormModal
       resourceName="application_url_whitelist_entry"
-      readableResourceName={I18n.t('admin.application_settings_edit_url_address')}
+      readableResourceName={I18n.t('admin.application_settings_url')}
       resource={entry}
       showSuccessMessages
       close={close}

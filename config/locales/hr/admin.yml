@@ -131,8 +131,6 @@ hr:
     application_settings_at_least_one_url_required: Omogućite barem jedan unos URL-a prije omogućavanja stavljanja URL-ova na bijelu listu
     application_settings_confirm_delete_ip: Jeste li sigurni da želite izbrisati ovu IP adresu?
     application_settings_confirm_delete_url: Jeste li sigurni da želite izbrisati ovaj URL?
-    application_settings_edit_ip_address: Uređivanje IP adrese / CIDR raspona
-    application_settings_edit_url: Uredi URL
     application_settings_enable_ip_whitelisting: Omogući bijeli popis IP adresa
     application_settings_enable_url_whitelisting: Omogući stavljanje URL-ova na bijelu listu
     application_settings_invalid_ip_format: Neispravna IP adresa ili CIDR format

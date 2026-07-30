@@ -22,7 +22,7 @@ export const EditIpWhiteListModal: React.FC<Props> = ({ entry, close }) => {
   return (
     <ResourceFormModal
       resourceName="application_ip_whitelist_entry"
-      readableResourceName={I18n.t('admin.application_settings_edit_ip_address')}
+      readableResourceName={I18n.t('admin.application_settings_ip_address')}
       resource={entry}
       showSuccessMessages
       close={close}

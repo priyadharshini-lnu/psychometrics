@@ -131,8 +131,6 @@ cs:
     application_settings_at_least_one_url_required: Před povolením whitelistingu adres URL povolte alespoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Opravdu chcete tuto IP adresu smazat?
     application_settings_confirm_delete_url: Opravdu chcete smazat tuto URL adresu?
-    application_settings_edit_ip_address: Upravit IP adresu / rozsah CIDR
-    application_settings_edit_url: Upravit URL
     application_settings_enable_ip_whitelisting: Povolit seznam povolených IP adres
     application_settings_enable_url_whitelisting: Povolit whitelisting URL
     application_settings_invalid_ip_format: Neplatná IP adresa nebo formát CIDR

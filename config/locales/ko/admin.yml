@@ -131,8 +131,6 @@ ko:
     application_settings_at_least_one_url_required: URL 화이트리스트를 활성화하기 전에 최소 하나 이상의 URL 항목을 활성화하십시오.
     application_settings_confirm_delete_ip: 이 IP 주소를 정말 삭제하시겠습니까?
     application_settings_confirm_delete_url: 이 URL을 정말로 삭제하시겠습니까?
-    application_settings_edit_ip_address: IP 주소/CIDR 범위 편집
-    application_settings_edit_url: URL 수정
     application_settings_enable_ip_whitelisting: IP 허용 목록 활성화
     application_settings_enable_url_whitelisting: URL 화이트리스트 활성화
     application_settings_invalid_ip_format: IP 주소 또는 CIDR 형식이 올바르지 않습니다.

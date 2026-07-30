@@ -131,8 +131,6 @@ fr:
     application_settings_at_least_one_url_required: Veuillez activer au moins une entrée URL avant d'activer la liste blanche d'URL.
     application_settings_confirm_delete_ip: Êtes-vous sûr de vouloir supprimer cette adresse IP ?
     application_settings_confirm_delete_url: Êtes-vous sûr de vouloir supprimer cette URL ?
-    application_settings_edit_ip_address: Modifier l'adresse IP / la plage CIDR
-    application_settings_edit_url: Modifier l'URL
     application_settings_enable_ip_whitelisting: Activer la liste blanche d'adresses IP
     application_settings_enable_url_whitelisting: Activer la liste blanche d'URL
     application_settings_invalid_ip_format: Adresse IP ou format CIDR non valide

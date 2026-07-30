@@ -131,8 +131,6 @@ de:
     application_settings_at_least_one_url_required: Bitte aktivieren Sie mindestens einen URL-Eintrag, bevor Sie die URL-Whitelist aktivieren.
     application_settings_confirm_delete_ip: Möchten Sie diese IP-Adresse wirklich löschen?
     application_settings_confirm_delete_url: Sind Sie sicher, dass Sie diese URL löschen möchten?
-    application_settings_edit_ip_address: IP-Adresse / CIDR-Bereich bearbeiten
-    application_settings_edit_url: URL bearbeiten
     application_settings_enable_ip_whitelisting: IP-Whitelisting aktivieren
     application_settings_enable_url_whitelisting: URL-Whitelist aktivieren
     application_settings_invalid_ip_format: Ungültige IP-Adresse oder ungültiges CIDR-Format

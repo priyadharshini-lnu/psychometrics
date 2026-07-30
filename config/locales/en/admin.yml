@@ -131,12 +131,11 @@ en:
     application_settings_at_least_one_url_required: Please enable at least one URL entry before enabling URL whitelisting
     application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
     application_settings_confirm_delete_url: Are you sure you want to delete this URL?
-    application_settings_edit_ip_address: Edit IP Address / CIDR Range
-    application_settings_edit_url: Edit URL
     application_settings_enable_ip_whitelisting: Enable IP Whitelisting
     application_settings_enable_url_whitelisting: Enable URL Whitelisting
     application_settings_invalid_ip_format: Invalid IP address or CIDR format
     application_settings_invalid_url_format: Invalid URL format
+    application_settings_ip_address: IP Address / CIDR Range
     application_settings_ip_addresses: IP Addresses / CIDR Ranges
     application_settings_ip_deleted_successfully: IP address deleted successfully
     application_settings_ip_description_placeholder: e.g., Office network or Production server

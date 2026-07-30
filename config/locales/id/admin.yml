@@ -131,8 +131,6 @@ id:
     application_settings_at_least_one_url_required: Harap aktifkan setidaknya satu entri URL sebelum mengaktifkan daftar putih URL.
     application_settings_confirm_delete_ip: Apakah Anda yakin ingin menghapus alamat IP ini?
     application_settings_confirm_delete_url: Apakah Anda yakin ingin menghapus URL ini?
-    application_settings_edit_ip_address: Edit Alamat IP / Rentang CIDR
-    application_settings_edit_url: Edit URL
     application_settings_enable_ip_whitelisting: Aktifkan Daftar Putih IP
     application_settings_enable_url_whitelisting: Aktifkan Daftar Putih URL
     application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid

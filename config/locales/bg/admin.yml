@@ -131,8 +131,6 @@ bg:
     application_settings_at_least_one_url_required: Моля, активирайте поне един запис за URL адрес, преди да активирате белия списък с URL адреси
     application_settings_confirm_delete_ip: Сигурен ли сте, че искате да изтриете този IP адрес?
     application_settings_confirm_delete_url: Сигурни ли сте, че искате да изтриете този URL адрес?
-    application_settings_edit_ip_address: Редактиране на IP адрес / CIDR диапазон
-    application_settings_edit_url: Редактиране на URL адрес
     application_settings_enable_ip_whitelisting: Активиране на белия списък за IP адреси
     application_settings_enable_url_whitelisting: Активиране на бял списък с URL адреси
     application_settings_invalid_ip_format: Невалиден IP адрес или CIDR формат

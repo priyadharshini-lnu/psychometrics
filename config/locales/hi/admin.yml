@@ -131,8 +131,6 @@ hi:
     application_settings_at_least_one_url_required: यूआरएल व्हाइटलिस्टिंग को सक्षम करने से पहले कृपया कम से कम एक यूआरएल प्रविष्टि को सक्षम करें।
     application_settings_confirm_delete_ip: क्या आप निश्चित हैं कि आप इस आईपी पते को हटाना चाहते हैं?
     application_settings_confirm_delete_url: क्या आप वाकई इस यूआरएल को हटाना चाहते हैं?
-    application_settings_edit_ip_address: आईपी पता / सीआईडीआर रेंज संपादित करें
-    application_settings_edit_url: यूआरएल संपादित करें
     application_settings_enable_ip_whitelisting: आईपी व्हाइटलिस्टिंग सक्षम करें
     application_settings_enable_url_whitelisting: यूआरएल श्वेतसूचीकरण सक्षम करें
     application_settings_invalid_ip_format: अमान्य आईपी पता या सीआईडीआर प्रारूप

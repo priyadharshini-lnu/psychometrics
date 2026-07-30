@@ -131,8 +131,6 @@ pl:
     application_settings_at_least_one_url_required: Przed włączeniem białej listy adresów URL należy włączyć co najmniej jeden wpis adresu URL
     application_settings_confirm_delete_ip: Czy na pewno chcesz usunąć ten adres IP?
     application_settings_confirm_delete_url: Czy na pewno chcesz usunąć ten adres URL?
-    application_settings_edit_ip_address: Edytuj adres IP / zakres CIDR
-    application_settings_edit_url: Edytuj adres URL
     application_settings_enable_ip_whitelisting: Włącz białą listę adresów IP
     application_settings_enable_url_whitelisting: Włącz białą listę adresów URL
     application_settings_invalid_ip_format: Nieprawidłowy adres IP lub format CIDR

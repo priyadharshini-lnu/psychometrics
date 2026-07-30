@@ -131,8 +131,6 @@ nl:
     application_settings_at_least_one_url_required: Schakel ten minste één URL-item in voordat u de URL-whitelist inschakelt.
     application_settings_confirm_delete_ip: Weet je zeker dat je dit IP-adres wilt verwijderen?
     application_settings_confirm_delete_url: Weet je zeker dat je deze URL wilt verwijderen?
-    application_settings_edit_ip_address: IP-adres / CIDR-bereik bewerken
-    application_settings_edit_url: URL bewerken
     application_settings_enable_ip_whitelisting: IP-whitelisting inschakelen
     application_settings_enable_url_whitelisting: Schakel URL-whitelisting in
     application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat

@@ -131,8 +131,6 @@ pt:
     application_settings_at_least_one_url_required: Por favor, habilite pelo menos uma entrada de URL antes de habilitar a lista de URLs permitidas.
     application_settings_confirm_delete_ip: Tem a certeza de que quer eliminar este endereço IP?
     application_settings_confirm_delete_url: Tem certeza de que deseja excluir este URL?
-    application_settings_edit_ip_address: Editar endereço IP / intervalo CIDR
-    application_settings_edit_url: Editar URL
     application_settings_enable_ip_whitelisting: Ativar lista de endereços IP autorizados
     application_settings_enable_url_whitelisting: Ativar lista de URLs permitidas
     application_settings_invalid_ip_format: Endereço IP ou formato CIDR inválido

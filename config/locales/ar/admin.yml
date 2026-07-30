@@ -131,8 +131,6 @@ ar:
     application_settings_at_least_one_url_required: يرجى تفعيل إدخال عنوان URL واحد على الأقل قبل تفعيل قائمة عناوين URL المسموح بها
     application_settings_confirm_delete_ip: هل أنت متأكد من رغبتك في حذف عنوان IP هذا؟
     application_settings_confirm_delete_url: هل أنت متأكد من رغبتك في حذف هذا الرابط؟
-    application_settings_edit_ip_address: تعديل عنوان IP / نطاق CIDR
-    application_settings_edit_url: تعديل عنوان URL
     application_settings_enable_ip_whitelisting: تمكين قائمة العناوين المسموح بها
     application_settings_enable_url_whitelisting: تفعيل قائمة عناوين URL المسموح بها
     application_settings_invalid_ip_format: عنوان IP أو تنسيق CIDR غير صالح

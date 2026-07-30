@@ -131,8 +131,6 @@ zh-Hant:
     application_settings_at_least_one_url_required: 請先啟用至少一個URL條目，然後再啟用URL白名單。
     application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
     application_settings_confirm_delete_url: 您確定要刪除此網址嗎？
-    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
-    application_settings_edit_url: 編輯網址
     application_settings_enable_ip_whitelisting: 启用 IP 白名单
     application_settings_enable_url_whitelisting: 啟用網址白名單
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效

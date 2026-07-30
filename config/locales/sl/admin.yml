@@ -131,8 +131,6 @@ sl:
     application_settings_at_least_one_url_required: Preden omogočite seznam dovoljenih URL-jev, omogočite vsaj en vnos URL-ja.
     application_settings_confirm_delete_ip: Ali ste prepričani, da želite izbrisati ta IP-naslov?
     application_settings_confirm_delete_url: Ali ste prepričani, da želite izbrisati ta URL?
-    application_settings_edit_ip_address: Uredi IP-naslov / CIDR-območje
-    application_settings_edit_url: Uredi URL
     application_settings_enable_ip_whitelisting: Omogoči belo listo IP-naslovov
     application_settings_enable_url_whitelisting: Omogoči seznam dovoljenih URL-jev
     application_settings_invalid_ip_format: Neveljaven IP-naslov ali format CIDR
