@@ -8,6 +8,12 @@ import {
 } from '~/modules/admin/constants/campaignFactors'
 import { AiArtifact } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 
+const optionLabelStyle = {
+  whiteSpace: 'normal' as const,
+  wordBreak: 'break-word' as const,
+  overflow: 'visible' as const,
+  padding: '4px 0',
+}
 
 const { I18n } = window
 
@@ -43,6 +49,7 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
     ).map(cf => ({ ...cf, id: Number(cf.id) })), 'id') : campaignFactorData
 
   const debouncedFetchCampaignFactors = useCallback(debounce((value) => {
+    const normalizedSearchValue = value?.trim() || ''
     setIsLoading(true)
     fetchCampaignFactors({
       apiConfig: {
@@ -50,7 +57,7 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
           campaign_factors: ['name', 'code'],
         },
         page: { size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE },
-        filter: { filterable_fields: value },
+        filter: { filterable_fields: normalizedSearchValue },
       },
     }).finally(() => setIsLoading(false))
   }, 300), [fetchCampaignFactors])
@@ -73,7 +80,15 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
         showSearch={{ filterOption: false, onSearch: debouncedFetchCampaignFactors }}
         loading={isLoading}
         notFoundContent={isLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-        options={campaignFactorOptions.map(cf => ({ value: cf.id, label: cf.name }))}
+        options={campaignFactorOptions.map(cf => ({
+          value: cf.id,
+          title: cf.name,
+          label: (
+            <div style={optionLabelStyle}>
+              {cf.name}
+            </div>
+          ),
+        }))}
       />
     </Form.Item>
   )

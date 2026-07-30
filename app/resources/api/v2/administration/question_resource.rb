@@ -3,7 +3,7 @@
 class Api::V2::Administration::QuestionResource < Api::V2::Administration::BaseResource
   attributes :type, :name, :props, :position, :validation, :required_validation,
              :display_logic, :skip_logic, :template_id, :save_as_template, :disabled,
-             :created_at, :updated_at
+             :created_at, :updated_at, :deleted_at
 
   has_one :owner
   has_one :block
@@ -12,7 +12,7 @@ class Api::V2::Administration::QuestionResource < Api::V2::Administration::BaseR
   has_one :updated_by, class_name: 'User'
   has_many :linked_assessments
 
-  ransack_filters %i[assessment_id_eq type_in filterable_fields name_cont owner_id_eq view_eq]
+  ransack_filters %i[assessment_id_eq type_in filterable_fields name_cont owner_id_eq view_eq deleted_at_null]
 
   def self.records(opts = {})
     super.includes(
