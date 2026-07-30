@@ -128,10 +128,15 @@ th:
     application_name_already_taken: มีอยู่แล้วสำหรับลูกค้านี้
     application_name_format_hint: อนุญาตให้ใช้เฉพาะตัวอักษรและตัวเลขเท่านั้น โดยมีช่องว่างหนึ่งช่องระหว่างคำ
     application_settings_at_least_one_ip_required: โปรดเปิดใช้งานการบันทึกที่อยู่ IP อย่างน้อยหนึ่งรายการ ก่อนที่จะเปิดใช้งานการอนุญาต IP แบบ whitelist
+    application_settings_at_least_one_url_required: โปรดเปิดใช้งานรายการ URL อย่างน้อยหนึ่งรายการก่อนเปิดใช้งานการอนุญาตพิเศษ URL
     application_settings_confirm_delete_ip: คุณแน่ใจหรือไม่ว่าต้องการลบที่อยู่ IP นี้?
+    application_settings_confirm_delete_url: คุณแน่ใจหรือไม่ว่าต้องการลบ URL นี้?
     application_settings_edit_ip_address: แก้ไขที่อยู่ IP / ช่วง CIDR
+    application_settings_edit_url: แก้ไข URL
     application_settings_enable_ip_whitelisting: เปิดใช้งานการอนุญาต IP แบบ whitelist
+    application_settings_enable_url_whitelisting: เปิดใช้งานการอนุญาต URL
     application_settings_invalid_ip_format: ที่อยู่ IP หรือรูปแบบ CIDR ไม่ถูกต้อง
+    application_settings_invalid_url_format: รูปแบบ URL ไม่ถูกต้อง
     application_settings_ip_addresses: ที่อยู่ IP / ช่วง CIDR
     application_settings_ip_deleted_successfully: ที่อยู่ IP ได้ถูกลบเรียบร้อยแล้ว
     application_settings_ip_description_placeholder: เช่น เครือข่ายสำนักงาน หรือเซิร์ฟเวอร์การผลิต
@@ -141,6 +146,16 @@ th:
     application_settings_ip_updated_successfully: ที่อยู่ IP ได้รับการอัปเดตสำเร็จแล้ว
     application_settings_ip_whitelisting_disabled_success: การเพิ่ม IP เข้าสู่รายชื่ออนุญาตได้สำเร็จแล้ว
     application_settings_ip_whitelisting_enabled_success: การเพิ่มรายชื่ออนุญาต IP ได้สำเร็จแล้ว
+    application_settings_url: URL
+    application_settings_url_addresses: ที่อยู่ URL
+    application_settings_url_deleted_successfully: ลบ URL สำเร็จแล้ว
+    application_settings_url_description_placeholder: เช่น เครือข่ายสำนักงาน หรือ เซิร์ฟเวอร์สำหรับใช้งานจริง
+    application_settings_url_input_placeholder: เช่น https://example.com หรือ https://sub.example.com
+    application_settings_url_required: จำเป็นต้องระบุ URL
+    application_settings_url_updated_successfully: อัปเดต URL สำเร็จแล้ว
+    application_settings_url_whitelisting_disabled_success: การอนุญาต URL ถูกปิดใช้งานสำเร็จแล้ว
+    application_settings_url_whitelisting_enabled_success: เปิดใช้งานการอนุญาต URL สำเร็จแล้ว
+    application_settings_urls: URL
     applications: การประยุกต์ใช้
     apply_to_existing_users: นำการเปลี่ยนแปลงนี้ไปใช้กับผู้ใช้ที่มีอยู่ในแคมเปญนี้
     approve_all_questions: อนุมัติคำถามทั้งหมด
@@ -213,6 +228,8 @@ th:
     assessor_overview: ภาพรวม
     assessor_placeholder: ค้นหาผู้ประเมิน...
     assessor_remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินที่มีอีเมล %{email} ออกจากแคมเปญนี้?
+    assessor_remove_has_evaluations: ผู้ประเมินรายนี้ได้รับมอบหมายแบบฟอร์มประเมินจำนวน %{evaluation_count} แบบ การประเมินทั้งหมดที่ผู้ประเมินรายนี้ได้กรอกไว้จะสูญหายไป
+    assessor_remove_in_assessment_centers: ผู้ประเมินรายนี้เป็นส่วนหนึ่งของศูนย์ประเมิน %{workshop_count} แห่ง การดำเนินการต่อไปจะลบผู้ประเมินรายนี้ออกจากศูนย์ประเมินทั้งหมด
     assessor_statuses_completed: เสร็จสมบูรณ์
     assessor_statuses_not_completed: ยังไม่เสร็จสมบูรณ์
     assessor_subjects_statuses_completed: เสร็จสมบูรณ์
@@ -625,6 +642,7 @@ th:
       thursday: วันพฤหัสบดี
       tuesday: วันอังคาร
       wednesday: วันพุธ
+    dimension_errors_cannot_delete_with_assessments: ไม่สามารถลบมิติข้อมูลนี้ได้ เนื่องจากยังคงเชื่อมโยงกับการประเมินอยู่ โปรดลบหรืออัปเดตการประเมินที่เกี่ยวข้องก่อน
     dimension_translations_export_scheduled: ส่งออกการแปลที่กำหนดเวลาไว้สำหรับมิติ %{name}
     dimensions: มิติ
     dimensions_destroy_successfully: มิติ %{name} ถูกลบเรียบร้อยแล้ว
@@ -645,6 +663,7 @@ th:
     dimensions_import_modal_import_dimension: นำเข้ามิติ
     dimensions_import_modal_import_scheduled: นำเข้าตามกำหนดการ
     dimensions_import_modal_operation: การผ่าตัด
+    dimensions_import_modal_owner_global: ทีทีเอ (ทั่วโลก)
     dimensions_import_modal_owner_input_validation: กรุณาเลือกเจ้าของ
     dimensions_import_modal_owner_select: เลือกเจ้าของ
     dimensions_import_modal_select_json: เลือกไฟล์ JSON
@@ -1206,6 +1225,7 @@ th:
     invite_workshop_list_remove_confirm_success: ศูนย์การประเมินถูกลบออกเรียบร้อยแล้ว
     invite_workshop_list_remove_confirm_title: ยืนยัน
     invite_workshop_title: ศูนย์การประเมิน
+    ip_whitelisting: การอนุญาต IP
     is_subject: คือ หัวข้อ
     job_role_are_you_sure_to_remove: คุณแน่ใจหรือไม่ที่จะลบ?
     job_role_column_job_group: กลุ่มงาน
@@ -1279,6 +1299,7 @@ th:
     mark_not_finalized: ยังไม่ได้รับการอนุมัติขั้นสุดท้าย
     mark_not_finalized_bulk_confirm: การลบ finalize จากผู้ใช้ที่เลือกทั้งหมดจะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifacts คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
     mark_not_finalized_confirm: การลบ finalize จากผู้ใช้ '%{email}' จะลบรายงานที่สร้างขึ้นซึ่งใช้ AI artifact สำหรับผู้ใช้ คุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?
+    mark_ready_button: ทำเครื่องหมายว่าพร้อมใช้งาน
     mask_identity_for_examus: ข้อมูลหน้ากากสําหรับ Examus Proctoring
     mask_identity_for_hogan: ข้อมูลหน้ากากสําหรับ Hogan
     mask_identity_for_iiht: ข้อมูลหน้ากากสําหรับ IIHT
@@ -1337,6 +1358,21 @@ th:
     modal_title: แปลงเป็นเทมเพลต
     model_answer: คำตอบตัวอย่าง
     model_answer_placeholder: กรุณากรอกคำตอบตัวอย่างสำหรับการให้คะแนนโดย AI
+    model_params_description: เว้นว่างไว้เพื่อใช้ค่าเริ่มต้นที่กำหนดโดยประเภทผู้ช่วย
+    model_params_max_tokens: โทเค็นสูงสุด
+    model_params_max_tokens_tooltip: จำกัดจำนวนโทเค็นสูงสุดที่โมเดลสามารถสร้างได้ต่อการตอบสนอง ค่าที่สูงขึ้นจะทำให้ได้ผลลัพธ์ที่ยาวขึ้น แต่จะเพิ่มต้นทุนและเวลาแฝง
+    model_params_temperature: อุณหภูมิ
+    model_params_temperature_tooltip: ควบคุมความสุ่มของผลลัพธ์ 0 = กำหนดได้แน่นอนและเน้นเฉพาะจุด 2 = สร้างสรรค์และหลากหลายสูง ใช้ค่าที่ต่ำกว่าเพื่อจำกัดผลลัพธ์ให้อยู่ในบริบทที่กำหนด
+    model_params_thinking_budget: การวางแผนงบประมาณ (โทเค็น)
+    model_params_thinking_budget_tooltip: กำหนดขีดจำกัดสูงสุดสำหรับโทเค็นที่โมเดลสามารถใช้ในการวิเคราะห์ภายใน ค่าที่สูงขึ้นจะช่วยให้วิเคราะห์ได้ลึกขึ้น แต่จะเพิ่มการใช้โทเค็นและเวลาตอบสนอง
+    model_params_thinking_budget_unsupported: โมเดลนี้ใช้การควบคุมการให้เหตุผลโดยอิงจากความพยายามเท่านั้น ไม่รองรับงบประมาณการคิด (ขีดจำกัดโทเค็น)
+    model_params_thinking_effort: ความพยายามในการคิด
+    model_params_thinking_effort_high: สูง
+    model_params_thinking_effort_low: ต่ำ
+    model_params_thinking_effort_medium: ปานกลาง
+    model_params_thinking_effort_none: ไม่มี
+    model_params_thinking_effort_tooltip: ควบคุมระดับการใช้เหตุผลของโมเดลก่อนตอบคำถาม ยิ่งใช้เหตุผลมากเท่าไหร่ คำตอบก็จะยิ่งละเอียดมากขึ้น แต่ก็จะใช้เวลานานขึ้น ใช้ 'None' เพื่อปิดการใช้งานเหตุผลโดยสมบูรณ์
+    model_params_title: การกำหนดค่าโมเดลขั้นสูง
     must_be_a_valid_url: URL ไม่ถูกต้อง กรุณาระบุ URL ที่สมบูรณ์พร้อมโปรโตคอล http หรือ https
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
@@ -1444,6 +1480,14 @@ th:
     overall: โดยรวม
     overall_score: คะแนนรวม
     overall_scoring: คะแนนโดยรวม
+    owner_resource_assessment: การประเมิน
+    owner_resource_campaign: แคมเปญ
+    owner_resource_client: ลูกค้า
+    owner_resource_dimension: มิติ
+    owner_resource_mismatch: เจ้าของ %{child_resource} ไม่สามารถใช้งานร่วมกับเจ้าของ %{parent_resource} ได้
+    owner_resource_norm: นอร์ม
+    owner_resource_report: รายงาน
+    owner_resource_report_bundle: ชุดรายงาน
     parsed_dependencies_help: การพึ่งพาที่แยกวิเคราะห์สําหรับผู้ใช้ที่ใช้โดย AI Assistant สําหรับการสร้างผลลัพธ์สิ่งประดิษฐ์
     parsed_dependencies_title: การพึ่งพาที่แยกวิเคราะห์
     parsed_dependencies_view: ดูการพึ่งพาที่แยกวิเคราะห์
@@ -2195,6 +2239,8 @@ th:
     report_approval_columns_user_email: อีเมลผู้ใช้
     report_approval_columns_user_name: ชื่อผู้ใช้
     report_approval_digest_delivery_mode_form_label: โหมดการจัดส่ง Digest
+    report_approval_digest_delivery_mode_immediate: ส่งทันทีเมื่อมีการส่งข้อมูลจำนวนมาก
+    report_approval_digest_delivery_mode_scheduled: กำหนดเวลา - ส่งอีเมลสรุปตามเวลาที่กำหนด
     report_approval_digest_frequency_daily: ทุกวัน
     report_approval_digest_frequency_form_label: ความถี่ย่อย
     report_approval_digest_frequency_weekdays: วันธรรมดา
@@ -2386,6 +2432,7 @@ th:
     saml_settings_config_details_copied: คัดลอก %{element}
     saml_settings_config_details_issuer: รหัสเอนทิตี/ผู้ออก
     saml_settings_config_details_title: กําหนดค่า Idp ด้วยข้อมูลต่อไปนี้
+    saml_settings_download_metadata: ดาวน์โหลดข้อมูลเมตา
     saml_settings_email_pipetext: ข้อความไปป์อีเมล
     saml_settings_enabled: เปิด
     saml_settings_enforced: บังคับใช้ SAML
@@ -3148,8 +3195,10 @@ th:
     upload_success: อัปโหลดสําเร็จ
     url_label: URL
     url_name: URL
+    url_whitelisting: การอนุญาต URL
     used_tokens_input_tokens: โทเค็นอินพุต
     used_tokens_output_tokens: โทเค็นเอาต์พุต
+    used_tokens_thinking_tokens: โทเค็นความคิด
     used_tokens_title: การใช้โทเค็น
     user: ผู้ใช้
     user_agent: ตัวแทนผู้ใช้

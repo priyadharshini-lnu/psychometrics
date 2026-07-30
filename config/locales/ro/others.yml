@@ -429,6 +429,7 @@ ro:
               invalid_header: Antet nevalid, preluare antetul de la export
               invalid_reports_header: Antet nevalid, preluați antetul din fișierul eșantion
               manager_not_found: 'Rândul %{row_number}: Managerul cu e-mail %{email} nu este prezent în campanie sau în CSV'
+              not_enough_licenses: Importul necesită %{required_count} licențe, dar sunt disponibile doar %{available_count}. Vă rugăm să reduceți numărul de utilizatori noi sau să adăugați mai multe licențe înainte de import.
               user_update_failed: Actualizarea utilizatorului a eșuat pentru %{email} cu eroarea '%{error}'
             locale:
               inclusion: Localizare greșită

@@ -128,10 +128,15 @@ ru:
     application_name_already_taken: У этого клиента уже есть
     application_name_format_hint: Допускаются только буквы и цифры, с одним пробелом между словами
     application_settings_at_least_one_ip_required: Перед включением белого списка IP-адресов необходимо добавить хотя бы одну запись с IP-адресом
+    application_settings_at_least_one_url_required: Перед включением белого списка URL-адресов, пожалуйста, активируйте хотя бы одну запись URL.
     application_settings_confirm_delete_ip: Вы уверены, что хотите удалить этот IP-адрес?
+    application_settings_confirm_delete_url: Вы уверены, что хотите удалить этот URL?
     application_settings_edit_ip_address: Изменить IP-адрес / диапазон CIDR
+    application_settings_edit_url: Изменить URL
     application_settings_enable_ip_whitelisting: Включить белый список IP-адресов
+    application_settings_enable_url_whitelisting: Включить белый список URL-адресов
     application_settings_invalid_ip_format: Недопустимый IP-адрес или формат CIDR
+    application_settings_invalid_url_format: Неверный формат URL-адреса
     application_settings_ip_addresses: IP-адреса / диапазоны CIDR
     application_settings_ip_deleted_successfully: IP-адрес удален успешно
     application_settings_ip_description_placeholder: например, офисная сеть или производственный сервер
@@ -141,6 +146,16 @@ ru:
     application_settings_ip_updated_successfully: IP-адрес успешно обновлен
     application_settings_ip_whitelisting_disabled_success: Белый список IP-адресов успешно отключен
     application_settings_ip_whitelisting_enabled_success: Белый список IP-адресов успешно включен
+    application_settings_url: URL
+    application_settings_url_addresses: URL-адреса
+    application_settings_url_deleted_successfully: URL-адрес успешно удален
+    application_settings_url_description_placeholder: например, офисная сеть или производственный сервер.
+    application_settings_url_input_placeholder: например, https://example.com или https://sub.example.com
+    application_settings_url_required: URL-адрес обязателен
+    application_settings_url_updated_successfully: URL-адрес успешно обновлен.
+    application_settings_url_whitelisting_disabled_success: Добавление URL-адресов в белый список успешно отключено.
+    application_settings_url_whitelisting_enabled_success: Включение белого списка URL-адресов успешно завершено.
+    application_settings_urls: URL-адреса
     applications: Приложения
     apply_to_existing_users: Применить это изменение к существующим пользователям в этой кампании
     approve_all_questions: Утвердить все вопросы
@@ -213,6 +228,8 @@ ru:
     assessor_overview: Обзор
     assessor_placeholder: Поиск оценщика...
     assessor_remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
+    assessor_remove_has_evaluations: Этому оценщику назначено %{evaluation_count} форм оценки. Все заполненные им оценки будут утеряны.
+    assessor_remove_in_assessment_centers: Данный оценщик является сотрудником оценочного центра %{workshop_count}. Дальнейшие действия приведут к его исключению из всех оценочных центров.
     assessor_statuses_completed: Завершено
     assessor_statuses_not_completed: Не завершено
     assessor_subjects_statuses_completed: Завершено
@@ -625,6 +642,7 @@ ru:
       thursday: четверг
       tuesday: вторник
       wednesday: среда
+    dimension_errors_cannot_delete_with_assessments: Удалить это измерение невозможно, поскольку оно все еще связано с оценками. Пожалуйста, сначала удалите или обновите связанные с ним оценки.
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     dimensions_destroy_successfully: Размер «%{name}» удален успешно.
@@ -645,6 +663,7 @@ ru:
     dimensions_import_modal_import_dimension: Импорт измерения
     dimensions_import_modal_import_scheduled: Импорт запланирован
     dimensions_import_modal_operation: Операция
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Пожалуйста, выберите владельца
     dimensions_import_modal_owner_select: Выберите владельца
     dimensions_import_modal_select_json: Выберите файл JSON
@@ -1206,6 +1225,7 @@ ru:
     invite_workshop_list_remove_confirm_success: Центр оценки был удален успешно.
     invite_workshop_list_remove_confirm_title: Подтвердить
     invite_workshop_title: Центры оценки
+    ip_whitelisting: Внесение IP-адресов в белый список
     is_subject: Является предметом
     job_role_are_you_sure_to_remove: Вы уверены, что хотите удалить?
     job_role_column_job_group: Группа должностей
@@ -1279,6 +1299,7 @@ ru:
     mark_not_finalized: Отметка не утверждена
     mark_not_finalized_bulk_confirm: Удаление статуса «Завершено» у всех выбранных пользователей приведет к удалению сгенерированных отчетов, в которых используются артефакты ИИ. Вы действительно хотите продолжить?
     mark_not_finalized_confirm: Удаление статуса «Завершено» у пользователя «%{email}» приведет к удалению сгенерированного отчета, в котором используется артефакт ИИ для этого пользователя. Вы действительно хотите продолжить?
+    mark_ready_button: Отметить как готово
     mask_identity_for_examus: Данные маски для Examus Proctoring
     mask_identity_for_hogan: Данные маски для Hogan
     mask_identity_for_iiht: Данные маски для IIHT
@@ -1337,6 +1358,21 @@ ru:
     modal_title: Преобразовать в шаблон
     model_answer: Типовой ответ
     model_answer_placeholder: Введите образец ответа для оценки искусственным интеллектом.
+    model_params_description: Оставьте поле пустым, чтобы использовать значения по умолчанию, определенные типом помощника.
+    model_params_max_tokens: Максимальное количество токенов
+    model_params_max_tokens_tooltip: Ограничивает максимальное количество токенов, которые модель может сгенерировать за один ответ. Более высокие значения позволяют получать более длинные выходные данные, но увеличивают стоимость и задержку.
+    model_params_temperature: Температура
+    model_params_temperature_tooltip: Управляет случайностью выходных данных. 0 = детерминированный и целенаправленный; 2 = высококреативный и разнообразный. Используйте меньшие значения, чтобы ограничить выходные данные предоставленным контекстом.
+    model_params_thinking_budget: Бюджет для размышлений (токены)
+    model_params_thinking_budget_tooltip: Устанавливает жесткое ограничение на количество токенов, которые модель может потратить на внутренние рассуждения. Более высокие значения позволяют проводить более глубокий анализ, но увеличивают расход токенов и время отклика.
+    model_params_thinking_budget_unsupported: Данная модель использует только управление на основе рассуждений, основанное на затраченных усилиях. Бюджет мышления (ограничение количества токенов) не поддерживается.
+    model_params_thinking_effort: Усилия размышления
+    model_params_thinking_effort_high: Высокий
+    model_params_thinking_effort_low: Низкий
+    model_params_thinking_effort_medium: Середина
+    model_params_thinking_effort_none: Никто
+    model_params_thinking_effort_tooltip: Регулирует, насколько тщательно модель обрабатывает информацию перед ответом. Чем больше усилий, тем более полные ответы, но тем дольше ответ. Используйте «None», чтобы полностью отключить обработку информации.
+    model_params_title: Расширенная конфигурация модели
     must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
@@ -1444,6 +1480,14 @@ ru:
     overall: В целом
     overall_score: Общий балл
     overall_scoring: Общий балл
+    owner_resource_assessment: оценка
+    owner_resource_campaign: кампания
+    owner_resource_client: клиент
+    owner_resource_dimension: измерение
+    owner_resource_mismatch: Владелец %{child_resource} несовместим с владельцем %{parent_resource}.
+    owner_resource_norm: норма
+    owner_resource_report: отчет
+    owner_resource_report_bundle: пакет отчетов
     parsed_dependencies_help: Анализированные зависимости для пользователя, используемые ИИ-помощником для генерации результатов артефакта
     parsed_dependencies_title: Анализируемые зависимости
     parsed_dependencies_view: Просмотр проанализированных зависимостей
@@ -2195,6 +2239,8 @@ ru:
     report_approval_columns_user_email: Электронная почта пользователя
     report_approval_columns_user_name: Имя пользователя
     report_approval_digest_delivery_mode_form_label: Режим доставки дайджеста
+    report_approval_digest_delivery_mode_immediate: Мгновенно — отправляется при массовой отправке.
+    report_approval_digest_delivery_mode_scheduled: Запланированная отправка — рассылка сводной рассылки по электронной почте в запланированное время.
     report_approval_digest_frequency_daily: Ежедневно
     report_approval_digest_frequency_form_label: Периодичность выпуска дайджеста
     report_approval_digest_frequency_weekdays: Будние дни
@@ -2386,6 +2432,7 @@ ru:
     saml_settings_config_details_copied: Копировано с %{element}
     saml_settings_config_details_issuer: Идентификатор субъекта/эмитента
     saml_settings_config_details_title: Настройте Idp с помощью следующей информации
+    saml_settings_download_metadata: Скачать метаданные
     saml_settings_email_pipetext: Электронная почта Pipetext
     saml_settings_enabled: Включено
     saml_settings_enforced: Применять SAML
@@ -3156,8 +3203,10 @@ ru:
     upload_success: Загрузка успешно завершена
     url_label: URL
     url_name: URL
+    url_whitelisting: Внесение URL-адресов в белый список
     used_tokens_input_tokens: Входные токены
     used_tokens_output_tokens: Выходные токены
+    used_tokens_thinking_tokens: Мыслительные жетоны
     used_tokens_title: Использование токенов
     user: Пользователь
     user_agent: Пользовательский агент

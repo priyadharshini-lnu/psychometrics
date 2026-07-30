@@ -429,6 +429,7 @@ en-US:
               invalid_header: Invalid header, take header from export
               invalid_reports_header: Invalid header, take header from sample file
               manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
+              not_enough_licenses: Import requires %{required_count} licenses, but only %{available_count} are available. Please reduce the number of new users or add more licenses before importing.
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale

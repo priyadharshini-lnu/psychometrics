@@ -128,10 +128,15 @@ zh-HK:
     application_name_already_taken: 该客户已有此记录
     application_name_format_hint: 仅允许使用字母和数字，单词之间用一个空格分隔
     application_settings_at_least_one_ip_required: 在启用 IP 白名单功能之前，请先启用至少一个 IP 地址条目
+    application_settings_at_least_one_url_required: 請先啟用至少一個URL條目，然後再啟用URL白名單。
     application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
+    application_settings_confirm_delete_url: 您確定要刪除此網址嗎？
     application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
+    application_settings_edit_url: 編輯網址
     application_settings_enable_ip_whitelisting: 启用 IP 白名单
+    application_settings_enable_url_whitelisting: 啟用網址白名單
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
+    application_settings_invalid_url_format: 無效的 URL 格式
     application_settings_ip_addresses: IP 地址 / CIDR 范围
     application_settings_ip_deleted_successfully: IP地址已成功删除
     application_settings_ip_description_placeholder: 例如：办公室网络或生产服务器
@@ -141,6 +146,16 @@ zh-HK:
     application_settings_ip_updated_successfully: IP 地址已成功更新
     application_settings_ip_whitelisting_disabled_success: IP白名单已成功禁用
     application_settings_ip_whitelisting_enabled_success: 已成功启用 IP 白名单功能
+    application_settings_url: URL
+    application_settings_url_addresses: URL位址
+    application_settings_url_deleted_successfully: URL 已成功刪除
+    application_settings_url_description_placeholder: 例如，辦公室網路或生產伺服器
+    application_settings_url_input_placeholder: 例如，https://example.com 或 https://sub.example.com
+    application_settings_url_required: 必須提供網址
+    application_settings_url_updated_successfully: URL已成功更新
+    application_settings_url_whitelisting_disabled_success: URL 白名單已成功停用
+    application_settings_url_whitelisting_enabled_success: URL 白名單已成功啟用
+    application_settings_urls: 網址
     applications: 应用
     apply_to_existing_users: 将此更改应用于此活动中的现有用户
     approve_all_questions: 批准所有问题
@@ -213,6 +228,8 @@ zh-HK:
     assessor_overview: 概述
     assessor_placeholder: 搜索评估师...
     assessor_remove_confirmation: 您确定要将邮箱地址为 %{email} 的评估员从本次活动中共移除吗？
+    assessor_remove_has_evaluations: 該評估員已分配 %{evaluation_count} 份評估表。他們已填寫的所有評估表都將遺失。
+    assessor_remove_in_assessment_centers: 該評估員隸屬於 %{workshop_count} 個評估中心。繼續操作將使其從所有評估中心移除。
     assessor_statuses_completed: 已完成
     assessor_statuses_not_completed: 未完成
     assessor_subjects_statuses_completed: 已完成
@@ -625,6 +642,7 @@ zh-HK:
       thursday: 星期四
       tuesday: 星期二
       wednesday: 星期三
+    dimension_errors_cannot_delete_with_assessments: 由於此維度仍與評估相關聯，因此無法刪除。請先刪除或更新關聯的評估。
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     dimensions_destroy_successfully: 维度 %{name} 已成功删除。
@@ -645,6 +663,7 @@ zh-HK:
     dimensions_import_modal_import_dimension: 导入维度
     dimensions_import_modal_import_scheduled: 导入计划
     dimensions_import_modal_operation: 手術
+    dimensions_import_modal_owner_global: TTE（全球）
     dimensions_import_modal_owner_input_validation: 请选择所有者
     dimensions_import_modal_owner_select: 选择所有者
     dimensions_import_modal_select_json: 选择 JSON 文件
@@ -1206,6 +1225,7 @@ zh-HK:
     invite_workshop_list_remove_confirm_success: "“评估中心”已成功删除。"
     invite_workshop_list_remove_confirm_title: 確認
     invite_workshop_title: 评估中心
+    ip_whitelisting: IP白名單
     is_subject: 主题
     job_role_are_you_sure_to_remove: 确定要删除吗？
     job_role_column_job_group: 职位组
@@ -1279,6 +1299,7 @@ zh-HK:
     mark_not_finalized: 标记尚未最终确定
     mark_not_finalized_bulk_confirm: 从所有选定用户中移除“finalize”操作将删除使用 AI 生成内容的报告。您确定要继续吗？
     mark_not_finalized_confirm: 从用户“%{email}”中删除“finalize”操作将删除该用户使用 AI 生成物生成的报告。您确定要继续吗？
+    mark_ready_button: 標記為已完成
     mask_identity_for_examus: Examus监考系统面罩数据
     mask_identity_for_hogan: 霍根的面具数据
     mask_identity_for_iiht: IIHT的掩码数据
@@ -1337,6 +1358,21 @@ zh-HK:
     modal_title: 转换为模板
     model_answer: 示范答案
     model_answer_placeholder: 输入供AI评分的模范答案。
+    model_params_description: 留空則使用助手類型定義的預設值。
+    model_params_max_tokens: 最大代幣數
+    model_params_max_tokens_tooltip: 限制模型每次回應可產生的最大令牌數。值越高，輸出越長，但成本和延遲也越高。
+    model_params_temperature: 溫度
+    model_params_temperature_tooltip: 控制輸出的隨機性。 0 = 確定性且目標明確；2 = 高度創造性且變化多樣。較低的值會使輸出結果僅限於給定的上下文。
+    model_params_thinking_budget: 思考預算（代幣）
+    model_params_thinking_budget_tooltip: 為模型用於內部推理的令牌數量設定上限。更高的上限值允許進行更深入的分析，但會增加令牌使用量和回應時間。
+    model_params_thinking_budget_unsupported: 此模型僅使用基於努力程度的推理控制，不支持思維預算（代幣上限）。
+    model_params_thinking_effort: 思考努力
+    model_params_thinking_effort_high: 高的
+    model_params_thinking_effort_low: 低的
+    model_params_thinking_effort_medium: 中等的
+    model_params_thinking_effort_none: 沒有任何
+    model_params_thinking_effort_tooltip: 控制模型在做出回應前應用推理的程度。推理程度越高，產生的答案越詳盡，但耗時也越長。使用“無”可完全禁用推理。
+    model_params_title: 進階模型配置
     must_be_a_valid_url: URL 无效。请输入包含 http 或 https 协议的完整 URL
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
@@ -1444,6 +1480,14 @@ zh-HK:
     overall: 总体而言
     overall_score: 总分
     overall_scoring: 总分
+    owner_resource_assessment: 評估
+    owner_resource_campaign: 活動
+    owner_resource_client: 客戶
+    owner_resource_dimension: 方面
+    owner_resource_mismatch: "%{child_resource} 所有者與 %{parent_resource} 所有者不相容。"
+    owner_resource_norm: 規範
+    owner_resource_report: 報告
+    owner_resource_report_bundle: 報告包
     parsed_dependencies_help: AI 助手用于生成工件结果时所使用的用户的已解析依赖项
     parsed_dependencies_title: 解析的依赖项
     parsed_dependencies_view: 查看已解析的依赖项
@@ -2195,6 +2239,8 @@ zh-HK:
     report_approval_columns_user_email: 用户邮箱
     report_approval_columns_user_name: 用户名
     report_approval_digest_delivery_mode_form_label: 摘要交付模式
+    report_approval_digest_delivery_mode_immediate: 立即發送 - 在批量提交時立即發送
+    report_approval_digest_delivery_mode_scheduled: 定時發送 - 在預定時間發送摘要郵件
     report_approval_digest_frequency_daily: 每日
     report_approval_digest_frequency_form_label: 摘要频率
     report_approval_digest_frequency_weekdays: 工作日
@@ -2386,6 +2432,7 @@ zh-HK:
     saml_settings_config_details_copied: 复制自 %{element}
     saml_settings_config_details_issuer: 实体标识符/签发者
     saml_settings_config_details_title: 使用以下信息配置身份提供商
+    saml_settings_download_metadata: 下載元數據
     saml_settings_email_pipetext: 电子邮件 Pipetext
     saml_settings_enabled: 已啟用
     saml_settings_enforced: 强制执行SAML
@@ -3156,8 +3203,10 @@ zh-HK:
     upload_success: 上传成功
     url_label: URL
     url_name: URL
+    url_whitelisting: URL白名單
     used_tokens_input_tokens: 输入令牌
     used_tokens_output_tokens: 输出令牌
+    used_tokens_thinking_tokens: 思維代幣
     used_tokens_title: 代币使用
     user: 用户
     user_agent: 用户代理

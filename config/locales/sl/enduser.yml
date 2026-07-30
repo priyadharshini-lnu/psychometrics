@@ -13,6 +13,7 @@ sl:
     all_checks_must_pass: Preden lahko nadaljujete, morajo biti vsi pregledi uspešni.
     approve_idp_plan: Odobri načrt
     assessment_misconfigured: 'Ocena: napačna konfiguracija'
+    assessment_timing_duration_minutes: "%{duration} min"
     audio: Zvok
     audio_check: Preizkus mikrofona
     audio_check_description: Preverite, ali mikrofon pravilno deluje za snemanje

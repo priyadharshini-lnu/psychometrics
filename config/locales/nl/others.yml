@@ -429,6 +429,7 @@ nl:
               invalid_header: Ongeldige header, neem header over van export
               invalid_reports_header: Ongeldige header, neem header uit voorbeeldbestand
               manager_not_found: 'Rij %{row_number}: Manager met e-mailadres %{email} is niet aanwezig in de campagne of in CSV'
+              not_enough_licenses: Voor de import zijn %{required_count}-licenties vereist, maar er zijn alleen %{available_count}-licenties beschikbaar. Verminder het aantal nieuwe gebruikers of voeg meer licenties toe voordat u de import uitvoert.
               user_update_failed: Update gebruiker mislukt voor %{email} met fout '%{error}'
             locale:
               inclusion: Verkeerde locale

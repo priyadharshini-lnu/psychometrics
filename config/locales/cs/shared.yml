@@ -7,6 +7,7 @@ cs:
     add: Přidat
     advanced: Pokročilý
     agree_and_continue: Souhlasím a pokračujte
+    ai_toolbar_disclaimer: Návrhy generované umělou inteligencí mohou obsahovat nepřesnosti nebo nezamýšlené změny. Před použitím si prosím zkontrolujte veškerý obsah, čímž přebíráte odpovědnost za ověření konečného výstupu.
     approval_status: Stav schválení
     approved: Schváleno
     approved_by: Schváleno
@@ -99,9 +100,12 @@ cs:
     icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Asistent IDP v Lighthouse AI může dělat chyby. Buďte prosím opatrní při používání odpovědí.
+    impersonation_banner_aria_label: Aktivní relace zosobnění
+    impersonation_end_session: Výstup
     import: Import
     inactive: Neaktivní
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
+    is_impersonating: vydává se za
     issuer: Emitent
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Podrobnosti k reklamacím JWT
@@ -185,6 +189,7 @@ cs:
     reset: Obnovení
     reset_password: Obnovit heslo
     response_text: Odpověď
+    return_url_not_whitelisted: Zpáteční adresa URL není pro tuto aplikaci na seznamu povolených.
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
     run: Spustit

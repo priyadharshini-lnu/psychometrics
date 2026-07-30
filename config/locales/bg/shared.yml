@@ -7,6 +7,7 @@ bg:
     add: Добавете
     advanced: Напреднал
     agree_and_continue: Съгласен и продължи
+    ai_toolbar_disclaimer: Предложенията, генерирани от изкуствен интелект, може да съдържат неточности или нежелани промени. Моля, прегледайте цялото съдържание преди употреба, като по този начин поемете отговорност за проверката на крайния резултат.
     approval_status: Статус на одобрение
     approved: Одобрено
     approved_by: Одобрено от
@@ -99,9 +100,12 @@ bg:
     icon: Икона
     id: Идентификация
     idp_ai_assistant_disclaimer: Асистент за IDP в Lighthouse AI може да допуска грешки. Моля, бъдете внимателни, когато използвате отговорите.
+    impersonation_banner_aria_label: Активна сесия за представяне под чужда самоличност
+    impersonation_end_session: Изход
     import: Импортирам
     inactive: Неактивен
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
+    is_impersonating: се представя за
     issuer: Емитент
     issuer_claim_label: Емитент (iss)
     jwt_claims_details: Подробности за претенциите към JWT
@@ -185,6 +189,7 @@ bg:
     reset: Проучване
     reset_password: Възстановете на паролата
     response_text: Текст на отговора
+    return_url_not_whitelisted: URL адресът за връщане не е в белия списък за това приложение.
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
     run: Бягам

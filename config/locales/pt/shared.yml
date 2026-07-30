@@ -7,6 +7,7 @@ pt:
     add: Adicionar
     advanced: Avançado
     agree_and_continue: Concorde e continue
+    ai_toolbar_disclaimer: As sugestões geradas por IA podem conter imprecisões ou alterações não intencionais. Por favor, revise todo o conteúdo antes de usar, assumindo assim a responsabilidade de verificar o resultado final.
     approval_status: Status da aprovação
     approved: Aprovado
     approved_by: Aprovado por
@@ -99,9 +100,12 @@ pt:
     icon: Ícone
     id: ID
     idp_ai_assistant_disclaimer: O assistente IDP da IA do Farol pode cometer erros. Por favor, tenha cuidado ao usar as respostas.
+    impersonation_banner_aria_label: Sessão de representação ativa
+    impersonation_end_session: Saída
     import: Importação
     inactive: Inativo
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
+    is_impersonating: está se passando por
     issuer: Emitente
     issuer_claim_label: Emitente (iss)
     jwt_claims_details: Detalhes das reclamações da JWT
@@ -185,6 +189,7 @@ pt:
     reset: Reiniciar
     reset_password: Redefinir a palavra-passe
     response_text: Texto de resposta
+    return_url_not_whitelisted: O URL de retorno não está na lista de permissões para este aplicativo.
     rte_paste_content_exceeds_char_limit: O texto excede o limite de caracteres {{maxCharacterLimit}} e não pode ser colado.
     rte_paste_content_exceeds_word_limit: O texto excede o limite de palavras {{maxWordLimit}} e não pode ser colado.
     run: Correr

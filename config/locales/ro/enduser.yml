@@ -13,6 +13,7 @@ ro:
     all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
     approve_idp_plan: Aprobă planul
     assessment_misconfigured: Configurare incorectă a evaluării
+    assessment_timing_duration_minutes: "%{duration} minute"
     audio: Audio
     audio_check: Testarea microfonului
     audio_check_description: Verifică dacă microfonul funcționează corect pentru înregistrare

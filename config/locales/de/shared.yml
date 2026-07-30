@@ -7,6 +7,7 @@ de:
     add: Hinzufügen
     advanced: Fortgeschritten
     agree_and_continue: Zustimmen und fortfahren
+    ai_toolbar_disclaimer: KI-generierte Vorschläge können Ungenauigkeiten oder unbeabsichtigte Änderungen enthalten. Bitte überprüfen Sie alle Inhalte vor der Verwendung und übernehmen Sie damit die Verantwortung für die Überprüfung des Endergebnisses.
     approval_status: Genehmigungsstatus
     approved: Genehmigt
     approved_by: Genehmigt durch
@@ -99,9 +100,12 @@ de:
     icon: Icon
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDP-Assistent kann Fehler machen. Bitte seid vorsichtig beim Verwenden der Antworten.
+    impersonation_banner_aria_label: Aktive Identitätsimitationssitzung
+    impersonation_end_session: Ausfahrt
     import: Importieren
     inactive: Inaktiv
     internet_disconnected_message: Bitte überprüfen Sie Ihre Internet-Verbindung.
+    is_impersonating: gibt sich als
     issuer: Emittent
     issuer_claim_label: Emittent (iss)
     jwt_claims_details: Details zu JWT-Ansprüchen
@@ -185,6 +189,7 @@ de:
     reset: Zurücksetzen
     reset_password: Passwort zurücksetzen
     response_text: Antworttext
+    return_url_not_whitelisted: Die Rückleitungs-URL ist für diese Anwendung nicht auf der Whitelist.
     rte_paste_content_exceeds_char_limit: Der Text überschreitet das Zeichenlimit von {{maxCharacterLimit}} und kann nicht eingefügt werden.
     rte_paste_content_exceeds_word_limit: Der Text überschreitet das Wortlimit von {{maxWordLimit}} und kann nicht eingefügt werden.
     run: Ausführen

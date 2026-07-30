@@ -13,6 +13,7 @@ ar:
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
     approve_idp_plan: الموافقة على الخطة
     assessment_misconfigured: خطأ في تكوين التقييم
+    assessment_timing_duration_minutes: "%{duration} دقيقة"
     audio: صوتي
     audio_check: اختبار الميكروفون
     audio_check_description: تحقق من أن الميكروفون يعمل بشكل صحيح للتسجيل.

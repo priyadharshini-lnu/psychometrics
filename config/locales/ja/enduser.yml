@@ -13,6 +13,7 @@ ja:
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
     approve_idp_plan: プランを承認
     assessment_misconfigured: 設定に誤りがあります
+    assessment_timing_duration_minutes: "%{duration}分"
     audio: 音声
     audio_check: マイクテスト
     audio_check_description: 録音のために、マイクが正常に動作しているか確認してください

@@ -7,6 +7,7 @@ it:
     add: Aggiungi
     advanced: Avanzato
     agree_and_continue: Accetta e continua
+    ai_toolbar_disclaimer: I suggerimenti generati dall'IA potrebbero contenere imprecisioni o modifiche indesiderate. Si prega di rivedere tutti i contenuti prima dell'utilizzo, assumendosi pertanto la responsabilità della verifica del risultato finale.
     approval_status: Stato di approvazione
     approved: Approvato
     approved_by: Approvato da
@@ -99,9 +100,12 @@ it:
     icon: Icona
     id: ID
     idp_ai_assistant_disclaimer: L'assistente IDP AI di Lighthouse può commettere errori. Per favore, fai attenzione quando usi le risposte.
+    impersonation_banner_aria_label: Sessione di impersonificazione attiva
+    impersonation_end_session: Uscita
     import: Importazione
     inactive: Inattivo
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
+    is_impersonating: sta impersonando
     issuer: Emittente
     issuer_claim_label: Emittente (iss)
     jwt_claims_details: Dettagli dei sinistri JWT
@@ -185,6 +189,7 @@ it:
     reset: Reset
     reset_password: Reimpostare la password
     response_text: Testo di risposta
+    return_url_not_whitelisted: L'URL di ritorno non è incluso nella lista bianca per questa applicazione.
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     run: Correre

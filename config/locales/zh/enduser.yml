@@ -13,6 +13,7 @@ zh:
     all_checks_must_pass: 所有检查都必须通过后，您才能继续。
     approve_idp_plan: 批准计划
     assessment_misconfigured: 评估配置错误
+    assessment_timing_duration_minutes: "%{duration} 分钟"
     audio: 音频
     audio_check: 麦克风测试
     audio_check_description: 请确认您的麦克风能否正常录音

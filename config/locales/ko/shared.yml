@@ -7,6 +7,7 @@ ko:
     add: 추가
     advanced: 고급
     agree_and_continue: 동의하고 계속하세요
+    ai_toolbar_disclaimer: AI가 생성한 제안에는 부정확하거나 의도치 않은 내용이 포함될 수 있습니다. 사용 전에 모든 내용을 검토하시고, 최종 결과물의 정확성을 확인하는 것은 귀하의 책임입니다.
     approval_status: 승인 상태
     approved: 승인됨
     approved_by: 승인자
@@ -99,9 +100,12 @@ ko:
     icon: 아이콘
     id: ID
     idp_ai_assistant_disclaimer: 라이트하우스 AI IDP 어시스턴트는 실수를 할 수 있습니다. 답변을 사용할 때 조심해 주세요.
+    impersonation_banner_aria_label: 능동적 사칭 세션
+    impersonation_end_session: 출구
     import: 가져오기
     inactive: 비활성
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
+    is_impersonating: 사칭하고 있다
     issuer: 발행인
     issuer_claim_label: 발행자 (iss)
     jwt_claims_details: JWT 청구 내역
@@ -185,6 +189,7 @@ ko:
     reset: 초기화
     reset_password: 비밀번호 재설정
     response_text: 응답 텍스트
+    return_url_not_whitelisted: 반환 URL이 이 애플리케이션에 대해 허용 목록에 포함되어 있지 않습니다.
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     run: 실행

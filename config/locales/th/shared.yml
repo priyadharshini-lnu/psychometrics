@@ -7,6 +7,7 @@ th:
     add: เพิ่ม
     advanced: ดึก
     agree_and_continue: ตกลงและดําเนินการต่อ
+    ai_toolbar_disclaimer: คำแนะนำที่สร้างโดย AI อาจมีข้อผิดพลาดหรือการเปลี่ยนแปลงที่ไม่ได้ตั้งใจ โปรดตรวจสอบเนื้อหาทั้งหมดก่อนใช้งาน ซึ่งหมายความว่าคุณยอมรับความรับผิดชอบในการตรวจสอบผลลัพธ์สุดท้าย
     approval_status: สถานะการอนุมัติ
     approved: อนุมัติแล้ว
     approved_by: อนุมัติโดย
@@ -99,9 +100,12 @@ th:
     icon: ไอคอน
     id: รหัส
     idp_ai_assistant_disclaimer: ผู้ช่วย Lighthouse AI IDP สามารถทําผิดพลาดได้ โปรดใช้ความระมัดระวังขณะใช้คําตอบ
+    impersonation_banner_aria_label: เซสชันการปลอมตัวแบบแอคทีฟ
+    impersonation_end_session: ทางออก
     import: นําเข้า
     inactive: เกียจคร้าน
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
+    is_impersonating: กำลังแอบอ้าง
     issuer: ผู้ออก
     issuer_claim_label: ผู้ออก (iss)
     jwt_claims_details: รายละเอียดคำร้องของ JWT
@@ -185,6 +189,7 @@ th:
     reset: รี เซ็ต
     reset_password: รีเซ็ตรหัสผ่าน
     response_text: ข้อความตอบกลับ
+    return_url_not_whitelisted: URL สำหรับส่งคืนข้อมูลไม่ได้อยู่ในรายการที่อนุญาตสำหรับแอปพลิเคชันนี้
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     run: วิ่ง

@@ -429,6 +429,7 @@ zh-Hant:
               invalid_header: 無效標頭，從匯出中取得標頭
               invalid_reports_header: 無效標頭，從範例檔案取得標頭
               manager_not_found: 第 %{row_number} 行：電子郵件為 %{email} 的管理員不存在於活動或 CSV 中。
+              not_enough_licenses: 匯入需要 %{required_count} 個許可證，但只有 %{available_count} 個可用許可證。請在匯入前減少新使用者數量或新增更多授權。
               user_update_failed: "%{email} 的使用者更新失敗，並產生錯誤 '%{error}'"
             locale:
               inclusion: 錯誤的地區

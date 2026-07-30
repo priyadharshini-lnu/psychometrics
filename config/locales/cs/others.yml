@@ -429,6 +429,7 @@ cs:
               invalid_header: Neplatná hlavička, převezměte hlavičku z exportu
               invalid_reports_header: Neplatná hlavička, převezměte hlavičku ze vzorového souboru
               manager_not_found: 'Řádek %{row_number}: Manažer s e-mailem %{email} není přítomen v kampani ani v CSV'
+              not_enough_licenses: Import vyžaduje %{required_count} licencí, ale k dispozici je pouze %{available_count}. Před importem prosím snižte počet nových uživatelů nebo přidejte další licence.
               user_update_failed: Aktualizace uživatele se nezdařila pro %{email} s chybou '%{error}'
             locale:
               inclusion: Špatné umístění

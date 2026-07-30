@@ -7,6 +7,7 @@ zh-HK:
     add: 加
     advanced: 進階
     agree_and_continue: 同意並繼續
+    ai_toolbar_disclaimer: 人工智慧產生的建議可能包含不準確之處或意外更改。請在使用前仔細審核所有內容，並自行承擔驗證最終輸出結果的責任。
     approval_status: 审批状态
     approved: 已批准
     approved_by: 经批准
@@ -99,9 +100,12 @@ zh-HK:
     icon: 聖像
     id: 身分證
     idp_ai_assistant_disclaimer: Lighthouse AI IDP 助理可能會犯錯。使用回應時請小心。
+    impersonation_banner_aria_label: 主動模仿會話
+    impersonation_end_session: 出口
     import: 导入
     inactive: 非活动状态
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
+    is_impersonating: 冒充
     issuer: 发行人
     issuer_claim_label: 发行人 (iss)
     jwt_claims_details: JWT 索赔详情
@@ -185,6 +189,7 @@ zh-HK:
     reset: 重排
     reset_password: 重設密碼
     response_text: 响应文本
+    return_url_not_whitelisted: 此應用程式未將返回 URL 列入白名單。
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
     run: 跑

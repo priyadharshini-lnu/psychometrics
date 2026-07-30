@@ -429,6 +429,7 @@ sk:
               invalid_header: Neplatná hlavička, prevzatie hlavičky z exportu
               invalid_reports_header: Neplatná hlavička, prevezmite hlavičku zo vzorového súboru
               manager_not_found: 'Riadok %{row_number}: správca s e-mailom %{email} nie je prítomný v kampani ani v súbore CSV'
+              not_enough_licenses: Import vyžaduje %{required_count} licencií, ale k dispozícii je iba %{available_count}. Pred importom znížte počet nových používateľov alebo pridajte ďalšie licencie.
               user_update_failed: Aktualizácia používateľa zlyhala pre %{email} s chybou %{error}
             locale:
               inclusion: Nesprávna lokalita
