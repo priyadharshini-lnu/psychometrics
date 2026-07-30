@@ -71,7 +71,8 @@ class ReportSerializer < Panko::Serializer
   def factors
     object_assessment_ids = object.assessment_ids
     factors = Factor.where(dimension_id: object.dimension_ids).
-              includes({ factors_sub_factors: :sub_factor }, :translations, icon_attachment: :blob, skill: :job_roles).
+              includes({ factors_sub_factors: { sub_factor: :translations } }, :translations,
+                       icon_attachment: :blob, skill: :job_roles).
               order(name: :asc)
 
     question_ids = FactorsScoring.factor_question_ids(object_assessment_ids)
@@ -109,7 +110,7 @@ class ReportSerializer < Panko::Serializer
   end
 
   def innovation_styles
-    innovation_styles = InnovationStyle.includes(:innovation_styles_factors).
+    innovation_styles = InnovationStyle.includes(:innovation_styles_factors, icon_attachment: :blob).
                         where(dimension_id: object.assessments.pluck(:dimension_id)).
                         order(name: :asc)
     innovation_styles.group_by(&:dimension_id).transform_values do |group|

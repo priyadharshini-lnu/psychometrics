@@ -38,6 +38,7 @@ export interface CommonCampaignPermissions {
 export default interface Campaign {
   id: number
   projectId: number
+  tenantId?: number
   name: string
   type: string
   status: string

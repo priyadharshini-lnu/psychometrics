@@ -1,9 +1,7 @@
-import { useEffect, useState } from 'react'
-import {
-  Flex, Form, Select, Spin,
-} from 'antd'
+import { useCallback, useEffect, useState } from 'react'
+import { Form, Select, Spin } from 'antd'
 import { useParams } from 'react-router-dom'
-import { uniqBy } from 'lodash'
+import { debounce, uniqBy } from 'lodash'
 import { useResources } from '~/hooks/useResources'
 import {
   CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE,
@@ -44,23 +42,39 @@ export const CampaignFactorsForm: React.FC<Props> = ({ aiArtifact }) => {
       aiArtifact?.dependenciesAttributes.campaignFactors,
     ).map(cf => ({ ...cf, id: Number(cf.id) })), 'id') : campaignFactorData
 
+  const debouncedFetchCampaignFactors = useCallback(debounce((value) => {
+    setIsLoading(true)
+    fetchCampaignFactors({
+      apiConfig: {
+        fields: {
+          campaign_factors: ['name', 'code'],
+        },
+        page: { size: CAMPAIGN_FACTORS_AND_VALUE_PAGE_SIZE },
+        filter: { filterable_fields: value },
+      },
+    }).finally(() => setIsLoading(false))
+  }, 300), [fetchCampaignFactors])
+
   useEffect(() => {
     setIsLoading(true)
     fetchCampaignFactors().finally(() => setIsLoading(false))
   }, [])
+
+  useEffect(() => () => {
+    debouncedFetchCampaignFactors.cancel()
+  }, [debouncedFetchCampaignFactors])
+
   return (
-    isLoading ? (
-      <Flex justify="center"><Spin /></Flex>
-    ) : (
-      <Form.Item name="campaignFactors">
-        <Select
-          mode="multiple"
-          placeholder={I18n.t('admin.form_select_campaign_factors')}
-          allowClear
-          showSearch
-          filterOption={false}
-          options={campaignFactorOptions.map(cf => ({ value: cf.id, label: cf.name }))}
-        />
-      </Form.Item>
-    ))
+    <Form.Item name="campaignFactors">
+      <Select
+        mode="multiple"
+        placeholder={I18n.t('admin.form_select_campaign_factors')}
+        allowClear
+        showSearch={{ filterOption: false, onSearch: debouncedFetchCampaignFactors }}
+        loading={isLoading}
+        notFoundContent={isLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+        options={campaignFactorOptions.map(cf => ({ value: cf.id, label: cf.name }))}
+      />
+    </Form.Item>
+  )
 }

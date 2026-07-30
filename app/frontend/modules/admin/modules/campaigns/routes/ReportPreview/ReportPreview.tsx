@@ -56,6 +56,7 @@ export default function ReportPreview ({
   approveReport,
   requestChanges,
   removeApproval,
+  markReady,
   availableLanguages,
 }: Props) {
   const [pages, setPages] = useState([])
@@ -143,6 +144,11 @@ export default function ReportPreview ({
     }
   }
 
+  const onMarkReadyClick = () => {
+    markReady(userReport.campaignId, userReport.id)
+      .then(() => message.success(I18n.t('admin.settings_saved_successfully')))
+  }
+
   const actions = () => {
     const menuItems = [
       {
@@ -169,8 +175,19 @@ export default function ReportPreview ({
         </Button>
       </Dropdown>,
     ]
-
     if (userReport.requireApproval) {
+      if (userReport.approvalStatus === ApprovalStatuses.NotReady
+        && userReport.permissions.canMarkReady
+        && userReport.permissions.markReady) {
+        actionList.unshift(
+          <Button
+            type="primary"
+            onClick={onMarkReadyClick}
+          >
+            {I18n.t('admin.mark_ready_button')}
+          </Button>,
+        )
+      }
       if ((userReport.approvalStatus === ApprovalStatuses.PendingQC
           || userReport.approvalStatus === ApprovalStatuses.ChangeRequested)
         && userReport.permissions.startQc) {

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administration::BaseResource
-  attributes :name, :created_at, :updated_at, :report_id, :external_package_id, :bundle_name
+  attributes :name, :owner_name, :created_at, :updated_at, :report_id, :external_package_id, :bundle_name
 
   ransack_filters %i[filterable_fields]
 
@@ -19,6 +19,10 @@ class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administr
     @model.report_family.name
   end
 
+  def owner_name
+    @model.report.tenant&.name
+  end
+
   def created_at
     @model.report.decorate.created_at
   end
@@ -32,7 +36,7 @@ class Api::V2::Administration::ReportFamiliesReportResource < Api::V2::Administr
   end
 
   def self.records(opts)
-    super.includes(:report, :report_family).where(report_family: opts[:context][:params][:report_family_id])
+    super.includes({ report: :owner }, :report_family).where(report_family: opts[:context][:params][:report_family_id])
   end
 
   def meta_details

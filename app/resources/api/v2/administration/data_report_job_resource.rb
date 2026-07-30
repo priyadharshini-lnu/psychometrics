@@ -18,6 +18,6 @@ class Api::V2::Administration::DataReportJobResource < Api::V2::Administration::
       options[:context][:user],
       data_report.data_report_jobs,
       filter: { client_id: client_id }
-    ).resolve
+    ).resolve.includes(file_attachment: :blob)
   end
 end

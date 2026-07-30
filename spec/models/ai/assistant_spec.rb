@@ -161,6 +161,77 @@ RSpec.describe AI::Assistant, type: :model do
       end
     end
 
+    describe 'DB model_params overrides' do
+      before { allow(chat).to receive(:with_thinking) }
+
+      context 'when model_params sets max_tokens' do
+        before { assistant.model_params = { 'max_tokens' => 9999 } }
+
+        it 'passes the DB max_tokens to the chat' do
+          expect(chat).to receive(:with_params).with(hash_including(max_tokens: 9999))
+
+          assistant.for_user(user)
+        end
+      end
+
+      context 'when skip_default_params is true but model_params has max_tokens' do
+        before { assistant.model_params = { 'max_tokens' => 9999 } }
+
+        it 'still applies DB max_tokens even when type defaults are skipped' do
+          expect(chat).to receive(:with_params).with(hash_including(max_tokens: 9999))
+
+          assistant.for_user(user, skip_default_params: true)
+        end
+      end
+    end
+
+    describe 'thinking config' do
+      before do
+        allow(chat).to receive(:with_thinking)
+        allow(chat).to receive(:with_params)
+      end
+
+      context 'when model_params contains thinking_effort' do
+        before { assistant.model_params = { 'thinking_effort' => 'high' } }
+
+        it 'calls with_thinking on the chat with the configured effort' do
+          expect(chat).to receive(:with_thinking).with(effort: 'high', budget: nil)
+
+          assistant.for_user(user)
+        end
+      end
+
+      context 'when model_params contains thinking_budget' do
+        before { assistant.model_params = { 'thinking_budget' => 10_000 } }
+
+        it 'calls with_thinking on the chat with the configured budget' do
+          expect(chat).to receive(:with_thinking).with(effort: nil, budget: 10_000)
+
+          assistant.for_user(user)
+        end
+      end
+
+      context 'when model_params contains both thinking_effort and thinking_budget' do
+        before { assistant.model_params = { 'thinking_effort' => 'medium', 'thinking_budget' => 5000 } }
+
+        it 'passes both to with_thinking' do
+          expect(chat).to receive(:with_thinking).with(effort: 'medium', budget: 5000)
+
+          assistant.for_user(user)
+        end
+      end
+
+      context 'when model_params has no thinking config' do
+        before { assistant.model_params = {} }
+
+        it 'does not call with_thinking' do
+          expect(chat).not_to receive(:with_thinking)
+
+          assistant.for_user(user)
+        end
+      end
+    end
+
     describe 'advanced prompting' do
       let(:user) { create(:user) }
       let(:chat) { instance_double('AI::AssistantChat') }

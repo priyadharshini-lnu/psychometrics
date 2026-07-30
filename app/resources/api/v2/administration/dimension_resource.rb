@@ -21,6 +21,10 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
   audit_log_for :update, payload: '*'
   audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
 
+  def self.records(opts = {})
+    super.includes(owner: { client_design_setting: { logo_attachment: :blob } })
+  end
+
   def meta_details
     {
       permissions: lambda {
@@ -28,7 +32,7 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
           Api::Administration::DimensionPolicy,
           context[:user],
           @model,
-          %w[copy export_json],
+          %w[copy export_json] + [%w[can_import validate_import]],
           {
             project_id: @model.owner_id
           }

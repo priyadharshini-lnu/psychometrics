@@ -73,7 +73,6 @@ const UpdateConditionSetModal: React.FC<Props> = ({
             style={{ width: '100%' }}
             placeholder={I18n.t('admin.campaign_assessment_modals_update_occupation_condition_set_select')}
             showSearch
-            allowClear
             optionFilterProp="label"
             filterOption
           >

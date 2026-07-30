@@ -90,6 +90,7 @@ const Manage: React.FC<Props> = ({
   bulkDownload,
   bulkDownloadInProgress,
   campaignPermissions,
+  campaignTenantId,
   otherAsessorAssessments,
   otherReports,
   otherAssessments,
@@ -215,6 +216,7 @@ const Manage: React.FC<Props> = ({
                 () => openModal('AddAssessorAssessmentModal', {
                   addAssessorAssessment: createResource,
                   campaignId: parsedCampaignId,
+                  campaignTenantId,
                 })
               }
               >

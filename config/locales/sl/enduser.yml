@@ -268,7 +268,7 @@ sl:
     video_check_fix_sixth: Znova zaženi brskalnik in poskusi še enkrat
     video_check_fix_third: Zaprite druge programe, ki uporabljajo kamero (Zoom, Teams itd.)
     video_overlay_label: Izberite mikrofon in kamero, kliknite »Snemi«, nato pa, ko pritisnete gumb »Snemi«, preberite naslednje sporočilo
-    video_overlay_message: Izberite mikrofon in kamero, kliknite »Snemaj«, nato pa glasno preberite stavek, ki se prikaže na dnu zaslona.
+    video_overlay_message: Izberite mikrofon in kamero, kliknite »Snemaj«, nato pa glasno preberite in 3-krat ponovite stavek, ki se prikaže na dnu zaslona.
     video_recorder_label: Videorekorder
     video_upload_failed_camera_access: Dostop do kamere ali mikrofona ni mogoč. Preverite dovoljenja na napravi in poskusite znova.
     video_upload_failed_chunk_upload: Del posnetka se ni uspel naložiti. Preverite svojo internetno povezavo in poskusite znova.

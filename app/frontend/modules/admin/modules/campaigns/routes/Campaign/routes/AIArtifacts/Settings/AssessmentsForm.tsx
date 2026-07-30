@@ -17,8 +17,10 @@ import { AddAssessmentForm } from './AddAssessmentForm'
 import {
   transformQuestionsToAssessments,
 } from './helpers'
+import { getAvailableAssessments } from './assessmentSearchUtils'
 import Utils from '~/modules/reports/utils/Utils'
 import { Assessment } from '~/modules/admin/modules/client/core/assessments'
+import './assessmentSelect.css'
 
 const { I18n } = window
 
@@ -33,6 +35,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
   const [assessmentsAndQuestionsMap, setAssessmentsAndQuestionsMap] = useState({})
   const [assessmentsAndQuestionsOptionsMap, setAssessmentsAndQuestionsOptionsMap] = useState({})
   const [selectedAssessments, setSelectedAssessments] = useState<Set<string>>(new Set())
+  const [assessmentSearchStates, setAssessmentSearchStates] = useState<{ [key: string]: string }>({})
 
   const [open, setOpen] = useState(false)
 
@@ -184,10 +187,15 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
       updated.delete(assessmentId)
       return updated
     })
+    setAssessmentSearchStates((prev) => {
+      const updated = { ...prev }
+      delete updated[assessmentId]
+      return updated
+    })
   }
 
   const handleAssessmentChange = (prevAssessmentId: string, newAssessmentId: string) => {
-    if (prevAssessmentId === newAssessmentId) return
+    if (!newAssessmentId || prevAssessmentId === newAssessmentId) return
 
     setAssessmentsAndQuestionsMap((prev) => {
       const updated = { ...prev }
@@ -221,9 +229,20 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
       return updated
     })
 
+    setAssessmentSearchStates((prev) => {
+      const updated = { ...prev }
+      delete updated[prevAssessmentId]
+      updated[newAssessmentId] = ''
+      return updated
+    })
+
     searchQuestions(newAssessmentId)
   }
 
+  const handleAssessmentSearch = (searchValue: string, currentAssessmentId: string) => {
+    setAssessmentSearchStates(prev => ({ ...prev, [currentAssessmentId]: searchValue }))
+    debouncedSearchAssessments(searchValue)
+  }
 
   return (
     <Card
@@ -231,8 +250,8 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
       type="inner"
       className="mt-4"
       title={DEPENDENCY_LABELS.assessments}
-      extra={(!isLoading && (selectedAssessments.size === 0
-          || allAssessments.length > selectedAssessments.size)) ? (
+      extra={(open || (!isLoading && (selectedAssessments.size === 0
+          || allAssessments.length > selectedAssessments.size))) ? (
             <Popover
               style={{ width: '400px' }}
               content={(
@@ -247,6 +266,7 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
               title={I18n.t('admin.form_add_assessment')}
               placement="bottomRight"
               trigger="click"
+              destroyTooltipOnHide={false}
               open={open}
               onOpenChange={handleOpenChange}
             >
@@ -264,6 +284,16 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
         assessmentId: string,
       ) => {
         const item = assessmentsAndQuestionsMap[assessmentId]
+        const rowSearch = assessmentSearchStates[assessmentId] || ''
+        const handleSearch = (searchValue: string) => {
+          handleAssessmentSearch(searchValue, assessmentId)
+        }
+
+        const availableAssessmentsPool = getAvailableAssessments(allAssessments, selectedAssessments, assessmentId)
+        const availableAssessments = availableAssessmentsPool.some(a => a.id.toString() === assessmentId)
+          ? availableAssessmentsPool
+          : [{ id: assessmentId, name: item?.name || '' }, ...availableAssessmentsPool]
+
         return (
           <Row key={item.id} gutter={16} style={{ marginBottom: 16 }}>
             <Col span={22}>
@@ -282,22 +312,41 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                 <Select
                   placeholder={I18n.t('admin.form_select_assessment')}
                   allowClear
-                  showSearch
-                  onChange={value => handleAssessmentChange(item.id, value)}
-                  filterOption={(input, option) => {
-                    const label = String(option?.label || '')
-                    return label.toLowerCase().includes(input.toLowerCase())
+                  showSearch={{
+                    filterOption: false,
                   }}
-                  optionFilterProp="label"
+                  searchValue={rowSearch}
+                  onSearch={handleSearch}
+                  onChange={value => handleAssessmentChange(item.id, value)}
+                  onOpenChange={(dropdownOpen) => {
+                    if (!dropdownOpen && rowSearch) handleAssessmentSearch('', assessmentId)
+                  }}
                   style={{ width: '100%' }}
-                  options={(allAssessments || [])
-                    .filter(assessment => !selectedAssessments.has(assessment.id.toString())
-                              || assessment.id.toString() === item.id)
-                    .map(assessment => ({
-                      key: assessment.id,
-                      label: assessment.name,
-                      value: assessment.id.toString(),
-                    }))}
+                  popupMatchSelectWidth={false}
+                  popupClassName="assessment-select-popup"
+                  loading={isLoadingAllAssessments('fetch')}
+                  notFoundContent={
+                    isLoadingAllAssessments('fetch') ? (
+                      <div style={{ textAlign: 'center', padding: '10px 0' }}>
+                        <Spin size="small" />
+                      </div>
+                    ) : (
+                      I18n.t('admin.no_assessments_found')
+                    )
+                  }
+                  options={availableAssessments.map(assessment => ({
+                    key: assessment.id,
+                    label: (
+                      <div style={{
+                        whiteSpace: 'normal', wordBreak: 'break-word', overflow: 'visible', padding: '4px 0',
+                      }}
+                      >
+                        {assessment.name}
+                      </div>
+                    ),
+                    value: assessment.id.toString(),
+                    title: assessment.name,
+                  }))}
                 />
               </Form.Item>
               <Form.Item
@@ -322,9 +371,9 @@ export const AssessmentsForm: React.FC<Props> = ({ questions, form }: Props) => 
                   optionFilterProp="label"
                   onSearch={searchValue => searchQuestions(assessmentId, searchValue)}
                   options={uniqBy((assessmentsAndQuestionsOptionsMap[assessmentId]?.questions || []).map(q => ({
-                    label: `${q.name} ${(Utils.stripHTML(q.props?.questionText || q.questionText) || '')
-                      .substring(0, 24)}...`,
+                    label: `${q.name} ${Utils.stripHTML(q.props?.questionText || q.questionText) || ''}`.trim(),
                     value: q.id,
+                    title: `${q.name} ${Utils.stripHTML(q.props?.questionText || q.questionText) || ''}`.trim(),
                   })), 'value')}
                 />
               </Form.Item>

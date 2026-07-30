@@ -4,8 +4,11 @@
 class UserAssessment < ApplicationRecord
   audited
 
+  attr_accessor :skip_owner_validation
+
   include HoganResource
   include EncodableId
+  include OwnerCompatibility
 
   DEEMED_COMPLETED_STATUS = %w[completed timed_out ineligible].freeze
   MAX_RESET_COUNT = 3
@@ -130,6 +133,8 @@ class UserAssessment < ApplicationRecord
   }
 
   before_save :set_default_relationship
+  validate :campaign_owner_compatibility_with_assessment_owner,
+           if: :validate_campaign_owner_compatibility_with_assessment_owner?
   after_create :backfill_users_result_tenant_id
   after_destroy :reset_user_report_approval_status
 
@@ -619,6 +624,23 @@ class UserAssessment < ApplicationRecord
 
       user_report.update!(approval_status: :not_ready) unless user_report.all_assessments_are_scored?
     end
+  end
+
+  def validate_campaign_owner_compatibility_with_assessment_owner?
+    return false if skip_owner_validation == true
+    return false if campaign.blank? || assessment.blank?
+
+    new_record? || will_save_change_to_campaign_id? || will_save_change_to_assessment_id?
+  end
+
+  def campaign_owner_compatibility_with_assessment_owner
+    return if compatible_owner_ids?(campaign.tenant_id, assessment.owner_id)
+
+    add_owner_compatibility_error(
+      :assessment_id,
+      child_resource: :assessment,
+      parent_resource: :campaign
+    )
   end
 end
 # rubocop:enable Metrics/ClassLength

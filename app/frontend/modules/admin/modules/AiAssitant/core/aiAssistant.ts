@@ -1,6 +1,13 @@
 import * as t from 'io-ts'
 import { ResourceIdentifierTR } from '~/modules/admin/core/types/resource'
 
+export const ModelParamsTR = t.partial({
+  maxTokens: t.union([t.number, t.null]),
+  temperature: t.union([t.number, t.null]),
+  thinkingEffort: t.union([t.string, t.null]),
+  thinkingBudget: t.union([t.number, t.null]),
+})
+
 export const AiAssistantTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -20,6 +27,7 @@ export const AiAssistantTR = t.intersection([
       keyType: t.string,
     })),
     dependencies: t.union([t.array(t.string), t.null]),
+    modelParams: t.union([ModelParamsTR, t.null]),
   }),
 ])
 
@@ -44,6 +52,7 @@ export const AIAssistantRevisionTR = t.type({
     systemPrompt: ChangeValueTR,
     modelId: ChangeValueTR,
     assistantType: ChangeValueTR,
+    modelParams: t.array(t.union([ModelParamsTR, t.null])),
   }),
 })
 

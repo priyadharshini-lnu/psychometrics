@@ -136,8 +136,12 @@ const AudioCheckComponent: React.FC<Props> = ({
   const isUploadingInProgress = state.uploading === CheckListStatus.InProgress
 
   const uploadPart = async (blob:Blob) => {
-    const url = urlsRef.current[partIndexRef.current]
-    const partNumber = partIndexRef.current + 1
+    const partIndex = partIndexRef.current
+    const url = urlsRef.current[partIndex]
+    const partNumber = partIndex + 1
+
+    // Reserve the index before upload starts so overlapping calls cannot reuse it.
+    partIndexRef.current += 1
 
     try {
       const res = await axios.put(url, blob, {
@@ -148,7 +152,6 @@ const AudioCheckComponent: React.FC<Props> = ({
 
       const { etag } = res.headers
       uploadedPartsRef.current.push({ part_number: partNumber, etag })
-      partIndexRef.current += 1
       fileSizeRef.current += blob.size
     } catch (error) {
       console.error('[AudioCheck] uploadPart failed:', error)

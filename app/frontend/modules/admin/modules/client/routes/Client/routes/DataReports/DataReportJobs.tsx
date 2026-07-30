@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import { Space, Button } from 'antd'
-import { useParams } from 'react-router-dom'
-import { EyeOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import React, { useEffect, useState } from 'react'
+import {
+  Space, Button, message, Card, Row, Col, Typography, Flex,
+} from 'antd'
+import { useParams, useNavigate } from 'react-router-dom'
+import {
+  EyeOutlined, DownloadOutlined, CopyOutlined, LeftOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import {
-  DataReportJob, DataReportJobTR, Password, PasswordTR,
+  DataReportJob, DataReportJobTR, Password, PasswordTR, DataReport, DataReportTR,
 } from '~/modules/admin/modules/DataReports/core/index'
 import { formatedDate } from '~/utils/time'
 import { SelfDestroyText } from '~/glint'
@@ -15,12 +19,14 @@ const { I18n } = window
 
 export const DataReportJobs: React.FC<{}> = () => {
   const { id, clientId } = useParams<{id: string, clientId?: string}>()
+  const navigate = useNavigate()
 
   const [passwords, setPasswords] = useState<{ [key: string]: string | null }>({})
 
   const baseApiConfig: Record<string, unknown> = {
     include: ['created_by'],
     fields: { users: ['name', 'email'] },
+    sort: '-created_at',
   }
   if (clientId) {
     baseApiConfig.filter = {
@@ -42,6 +48,42 @@ export const DataReportJobs: React.FC<{}> = () => {
     config,
   )
 
+  const {
+    data: reportData,
+    fetchSingle,
+  } = useResources<DataReport>(
+    'data_reports',
+    {
+      trackUrl: false,
+      responseType: DataReportTR,
+      apiConfig: {
+        include: ['last_updated_by', 'owner'],
+        fields: {
+          users: ['name', 'email'],
+          clients: ['name'],
+        },
+      },
+    },
+  )
+
+  useEffect(() => {
+    if (!id) return
+
+    fetchSingle({
+      id,
+      responseType: DataReportTR,
+    })
+  }, [id])
+
+  const report = reportData[0]
+  let scopeLabel = '-'
+
+  if (report) {
+    scopeLabel = report.scope === 'global'
+      ? I18n.t('admin.scope_global')
+      : I18n.t('admin.scope_client')
+  }
+
   const showPassword = (jobId) => {
     memberAction({
       id: jobId,
@@ -51,6 +93,21 @@ export const DataReportJobs: React.FC<{}> = () => {
     }).then((response) => {
       const { password } = response as Password
       setPasswords({ [jobId]: password })
+    })
+  }
+  const copyPassword = (jobId) => {
+    memberAction({
+      id: jobId,
+      action: 'get_password',
+      method: 'get',
+      responseType: PasswordTR,
+    }).then(async (response) => {
+      const { password } = response as Password
+
+      if (password) {
+        await navigator.clipboard.writeText(password)
+        message.success('Password copied to clipboard')
+      }
     })
   }
 
@@ -93,20 +150,30 @@ export const DataReportJobs: React.FC<{}> = () => {
           const password = passwords[record.id]
           return (
             <Space key={record.id}>
-              {password
-                ? <SelfDestroyText text={password} onDestroy={() => hidePassword(record.id)} />
-                : (
-                  <>
-                    ************
-                    <Button
-                      disabled={loading}
-                      loading={loading}
-                      type="link"
-                      icon={<EyeOutlined />}
-                      onClick={() => showPassword(record.id)}
-                    />
-                  </>
-                )}
+              {password ? (
+                <SelfDestroyText
+                  text={password}
+                  onDestroy={() => hidePassword(record.id)}
+                />
+              ) : (
+                <>
+                  ************
+                  <Button
+                    disabled={loading}
+                    loading={loading}
+                    type="link"
+                    icon={<CopyOutlined />}
+                    onClick={() => copyPassword(record.id)}
+                  />
+                  <Button
+                    disabled={loading}
+                    loading={loading}
+                    type="link"
+                    icon={<EyeOutlined />}
+                    onClick={() => showPassword(record.id)}
+                  />
+                </>
+              )}
             </Space>
           )
         }}
@@ -149,9 +216,96 @@ export const DataReportJobs: React.FC<{}> = () => {
           ]}
         />
       )}
-      <Resource config={config} name="data_report_jobs">
-        {Table}
-      </Resource>
+      <Row>
+        <Col flex={1} style={{ padding: 16 }}>
+          <Flex vertical gap={12}>
+            <Flex>
+              <Button
+                type="text"
+                style={{ padding: 0 }}
+                icon={<LeftOutlined />}
+                onClick={() => navigate(-1)}
+              >
+                {I18n.t('shared.back')}
+              </Button>
+            </Flex>
+            <Card
+              style={{ marginBottom: 24 }}
+              bodyStyle={{ padding: '24px 24px' }}
+            >
+              <Row gutter={[32, 24]} align="middle">
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('shared.name')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {report?.name || '-'}
+                    </Typography.Text>
+                  </div>
+                </Col>
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('admin.report_type')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {report
+                        ? I18n.t(`admin.report_types.${report.reportType}`)
+                        : '-'}
+                    </Typography.Text>
+                  </div>
+                </Col>
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('admin.scope')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {scopeLabel}
+                    </Typography.Text>
+                  </div>
+                </Col>
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('shared.owner')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {report?.owner?.name || '-'}
+                    </Typography.Text>
+                  </div>
+                </Col>
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('admin.data_reports_columns_last_updated_by')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {report?.lastUpdatedBy?.email || '-'}
+                    </Typography.Text>
+                  </div>
+                </Col>
+                <Col xs={24} sm={12} lg={8}>
+                  <Typography.Text type="secondary">
+                    {I18n.t('admin.data_reports_columns_udpated_at')}
+                  </Typography.Text>
+                  <div>
+                    <Typography.Text strong>
+                      {report?.updatedAt
+                        ? formatedDate(report.updatedAt)
+                        : '-'}
+                    </Typography.Text>
+                  </div>
+                </Col>
+              </Row>
+            </Card>
+            <Resource config={config} name="data_report_jobs">
+              {Table}
+            </Resource>
+          </Flex>
+        </Col>
+      </Row>
     </>
   )
 }

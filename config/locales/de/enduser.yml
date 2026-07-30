@@ -268,7 +268,7 @@ de:
     video_check_fix_sixth: Starten Sie Ihren Browser neu und versuchen Sie es erneut
     video_check_fix_third: Schließen Sie andere Anwendungen, die die Kamera nutzen (Zoom, Teams usw.)
     video_overlay_label: Wählen Sie Ihr Mikrofon und Ihre Kamera aus, klicken Sie auf „Aufnehmen“ und lesen Sie die folgende Nachricht vor, sobald Sie die Aufnahmetaste gedrückt haben
-    video_overlay_message: Wähle dein Mikrofon und deine Kamera aus, klicke auf „Aufnehmen“ und lies dann den Satz vor, der unten angezeigt wird.
+    video_overlay_message: Wähle dein Mikrofon und deine Kamera aus, klicke auf „Aufnehmen“ und lies dann den unten angezeigten Satz laut vor und wiederhole ihn 3 Mal.
     video_recorder_label: Videorekorder
     video_upload_failed_camera_access: Der Zugriff auf Ihre Kamera oder Ihr Mikrofon ist nicht möglich. Bitte überprüfen Sie die Berechtigungen Ihres Geräts und versuchen Sie es erneut.
     video_upload_failed_chunk_upload: Ein Teil der Aufnahme konnte nicht hochgeladen werden. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.

@@ -5,7 +5,10 @@ FactoryBot.define do
     sequence(:name) { |i| "report #{i}" }
     description { Faker::Lorem.characters(number: 5) }
     extra { { icon_color: '#845EC2' } }
-    report_families { [association(:report_family)] }
+    report_families do
+      family_owner_id = owner&.id || owner_id
+      [association(:report_family, tenant_id: family_owner_id)]
+    end
     assessments { build_list(:assessment, 1) }
     provider { 'internal' }
 

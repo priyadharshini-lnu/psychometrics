@@ -6,7 +6,7 @@ module Administration
       before_action :set_resource, only: %i[update show destroy spoof]
 
       def index
-        assessors = campaign.assessors.ransack(params[:filters]).result
+        assessors = campaign.assessors.ransack(params[:filters]).result.preload(:user)
         paginated_assessors = assessors.page(params[:page])
 
         # rubocop:disable Metrics/BlockLength
@@ -26,6 +26,7 @@ module Administration
             }
           end
           format.json do
+            paginated_user_ids = paginated_assessors.pluck(:user_id)
             serialized_assessors = Panko::ArraySerializer.new(
               paginated_assessors,
               each_serializer: Administration::Campaigns::AssessorSerializer,
@@ -33,7 +34,8 @@ module Administration
                 current_user: current_user,
                 campaign_id: campaign.id,
                 project_id: campaign.project_id,
-                evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_assessors.pluck(:user_id), campaign)
+                evalutions_count: ::Assessors::EvaluationsCount.call!(paginated_user_ids, campaign),
+                workshop_assessors_count: ::Assessors::WorkshopAssessorsCount.call!(paginated_user_ids, campaign)
               }
             ).to_a
             render json: { list: serialized_assessors, total: assessors.count, permissions: permissions }

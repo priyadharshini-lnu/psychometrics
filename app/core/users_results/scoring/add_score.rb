@@ -20,6 +20,7 @@ module UsersResults
 
       def call # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
         extended_scoring = factors_sorted_by_formula_factors_at_end.reduce(scoring) do |extending_scoring, factor_data| # rubocop:disable Metrics/BlockLength
+          extending_scoring ||= {}
           factor = factor_data[:factor]
           factor_scoring = extending_scoring[factor.id.to_s]
           factor_norm = factor_norm_hash[factor.id]

@@ -1152,4 +1152,35 @@ describe UsersResults::Scoring::AddScore do
       factor5.id.to_s => hash_including('results' => [], 'score' => nil, 'norm_score' => nil)
     )
   end
+
+  context 'when strategy module returns nil' do
+    it 'handles nil extending_scoring gracefully during reduce' do
+      factor1 = create(:factor, scoring_strategy: :questions)
+      factor2 = create(:factor, scoring_strategy: :questions)
+
+      factor_hash = {
+        factor1.id => { factor: factor1, sub_factor_hash: {} },
+        factor2.id => { factor: factor2, sub_factor_hash: {} }
+      }
+
+      scoring = {
+        factor1.id.to_s => { 'results' => [{ 'value' => [2, 3, 4], 'question_id' => 1 }] }
+      }
+
+      strategy_module = '::UsersResults::Scoring::AddScoreByStrategy::Questions'.constantize
+      allow(strategy_module).to receive(:call!).and_return(nil,
+                                                           scoring.merge(factor2.id.to_s => { 'results' => [{
+                                                             'value' => [1, 2], 'question_id' => 2
+                                                           }] }))
+
+      result = described_class.call!({
+        factor_hash: factor_hash,
+        factor_ids: factor_hash.keys,
+        scoring: scoring,
+        norm: nil
+      })
+
+      expect(result).to be_a(Hash)
+    end
+  end
 end

@@ -95,7 +95,7 @@ export const CommentSchema = {
 export type ModuleOverride = t.TypeOf<typeof ModuleOverrideTR>
 
 export enum ApprovalStatuses {
-  NotRead = 'not_ready',
+  NotReady = 'not_ready',
   PendingQC = 'pending_qc',
   QCInProgress = 'qc_in_progress',
   QCCompleted = 'qc_completed',
@@ -133,6 +133,7 @@ interface UserReportDetails {
   threesixtyCampaignId?: number
   permissions: {
     download: boolean
+    canMarkReady: boolean
     startQc: boolean
     abortQc: boolean
     editQc: boolean
@@ -140,6 +141,7 @@ interface UserReportDetails {
     oneLevelQc: boolean
     approversCanEdit: boolean
     translate: boolean
+    markReady: boolean
   }
   possibleWebhookEvents?: string[]
 }
@@ -157,7 +159,7 @@ const defaultState: State = {
   selectedIds: [],
   externalReport: {} as ExternalReportDetails,
   current: {
-    approvalStatus: ApprovalStatuses.NotRead,
+    approvalStatus: ApprovalStatuses.NotReady,
     user: { },
     options: { reports: { approval: {} } },
     report: {
@@ -172,6 +174,7 @@ const defaultState: State = {
     richEditorOpened: false,
     permissions: {
       download: false,
+      canMarkReady: false,
       startQc: false,
       abortQc: false,
       editQc: false,
@@ -179,6 +182,7 @@ const defaultState: State = {
       oneLevelQc: false,
       approversCanEdit: false,
       translate: false,
+      markReady: false,
     },
     possibleWebhookEvents: [],
   },
@@ -236,6 +240,7 @@ export const ABORT_QC = 'campaigns/userReports/ABORT_QC'
 export const SEND_TO_APPROVE = 'campaigns/userReports/SEND_TO_APPROVE'
 export const REQUEST_CHANGES = 'campaigns/userReports/REQUEST_CHANGES'
 export const REMOVE_APPROVAL = 'campaigns/userReports/REMOVE_APPROVAL'
+export const MARK_READY = 'campaigns/userReports/MARK_READY'
 export const SELECT_MODULE = 'campaigns/userReports/SELECT_MODULE'
 export const NEW_COMMENT = 'campaigns/userReports/NEW_COMMENT'
 export const UPDATE_COMMENT = 'campaigns/userReports/UPDATE_COMMENT'
@@ -397,6 +402,15 @@ export const removeApproval = (campaignId?: number, id?: number) => ({
   },
 })
 
+export const markReady = (campaignId?: number, id?: number) => ({
+  type: MARK_READY,
+  id,
+  request: {
+    method: 'patch',
+    url: `/administration/new_campaigns/${campaignId}/user_reports/${id}/mark_ready`,
+  },
+})
+
 export const asyncDownload = (campaignId: number, id: number, params = {}) => ({
   type: ASYNC_DOWNLOAD,
   request: {
@@ -490,6 +504,7 @@ type ApproveReport = ApiActionResponse<{status: string}>
 type RequestChanges = ApiActionResponse<{status: string}>
 type SendToApprove = ApiActionResponse<{status: string}>
 type RemoveApproval = ApiActionResponse<{status: string}>
+type MarkReady = ApiActionResponse<{status: string}>
 
 const ExternalReportDetailsTR = t.type({
   id: t.number,
@@ -611,6 +626,15 @@ const HANDLERS = {
   ),
   [REMOVE_APPROVAL]: (state: State, { response }: RemoveApproval) => setIn(
     state, ['current', 'approvalStatus'], response.status,
+  ),
+  [MARK_READY]: (state: State, { response }: MarkReady) => setIn(
+    setIn(
+      setIn(state, ['current', 'approvalStatus'], response.status),
+      ['current', 'permissions', 'markReady'],
+      false,
+    ),
+    ['current', 'permissions', 'canMarkReady'],
+    false,
   ),
   [SELECT_MODULE]: (state: State, { id }: ReturnType<typeof selectModule>) => setIn(
     state, ['selectedModule'], id,

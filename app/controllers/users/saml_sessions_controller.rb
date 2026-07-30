@@ -7,6 +7,18 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
   before_action :ensure_sso_enabled_for_client_admin, only: [:new]
   after_action :after_saml_login, only: [:create]
 
+  def metadata
+    return super unless params[:download] == 'true'
+
+    meta = OneLogin::RubySaml::Metadata.new
+    xml = meta.generate(saml_config(params[:idp_entity_id], request))
+
+    send_data xml,
+              filename: metadata_filename,
+              type: 'application/xml',
+              disposition: 'attachment'
+  end
+
   def force_logout_existing_user
     if user_signed_in?
       sign_out(current_user)
@@ -25,7 +37,7 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
       return
     end
 
-    setup_client_admin_after_saml_login(user) if client_admin_context?
+    setup_client_admin_after_saml_login(user) if Current.client_admin_context?
     return unless user_signed_in?
 
     audit! :saml_login, user, user: user, payload: params.except('SAMLResponse', 'RelayState').
@@ -43,7 +55,7 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
     return_url = extract_return_url_from_relay_state || stored_location_for(resource)
     return return_url if return_url.present?
 
-    if client_admin_context? && Current.client
+    if Current.client_admin_context? && Current.client
       access = AdminAuth::ResolveClientAccess.call(resource, Current.client)
       return assessors_dashboard_path if access[:ok] && assessor_dashboard_after_handoff?(resource, access[:ok])
 
@@ -61,12 +73,14 @@ class Users::SamlSessionsController < Devise::SamlSessionsController
 
   private
 
-  def client_admin_context?
-    Current.client_admin_context?
+  def metadata_filename
+    subdomain = AdminSubdomain.extract_subdomain(request.host)
+
+    subdomain.present? ? "sp-metadata-#{subdomain}.xml" : 'sp-metadata.xml'
   end
 
   def ensure_sso_enabled_for_client_admin
-    return unless client_admin_context?
+    return unless Current.client_admin_context?
 
     sso_setting = Current.client&.client_sso_setting
     return if sso_setting&.saml_login_allowed?

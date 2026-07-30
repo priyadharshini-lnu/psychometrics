@@ -39,6 +39,6 @@ class Api::V2::Administration::ProjectAssessmentResource < Api::V2::Administrati
       opts[:context][:user],
       ProjectAssessment,
       project_id: opts[:context][:project].id
-    ).resolve
+    ).resolve.includes(assessment: :translations)
   end
 end

@@ -103,12 +103,18 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
           sorter
         />
         <Resource.Column<Norm>
-          title={`${I18n.t('shared.owner')}`}
+          title={I18n.t('shared.owner')}
           id="owner.name"
           width={200}
           sorter
-          render={(_, { owner }) => owner?.id && (
-            <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
+          render={(_, { owner }) => (
+            owner?.id ? (
+              <Link to={`/admin/clients/${owner.id}/projects`}>
+                {owner.name}
+              </Link>
+            ) : (
+              I18n.t('admin.tte')
+            )
           )}
         />
         <Resource.Column<Norm>

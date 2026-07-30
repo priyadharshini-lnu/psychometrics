@@ -15,6 +15,7 @@ module Campaigns
       validate :validate_duplicated_emails
       validate :validate_manager_emails
       validate :validate_overwrite_permission
+      validate :validate_available_licenses
 
       private
 
@@ -62,6 +63,37 @@ module Campaigns
             errors.add(:import_data, :invalid_email, row_number: (index + 1), email: manager_email)
           end
         end
+      end
+
+      def validate_available_licenses
+        return if errors.any?
+        return unless licenses_required?
+        return if new_user_emails.empty?
+        return if available_license_count >= new_user_emails.size
+
+        errors.add(
+          :import_data,
+          :not_enough_licenses,
+          required_count: new_user_emails.size,
+          available_count: available_license_count
+        )
+      end
+
+      def licenses_required?
+        operation != 'skip_existing' && campaign.campaign_reports.any?(&:auto_assign?)
+      end
+
+      def new_user_emails
+        @new_user_emails ||= import_data[1..].pluck(:email).
+                             compact.uniq - campaign.users.where(email: import_data[1..].
+                              pluck(:email)).pluck(:email)
+      end
+
+      def available_license_count
+        @available_license_count ||= License.available.
+                                     for_project(campaign.project_id).
+                                     where(client_id: campaign.client_id).
+                                     sum('licenses.number + licenses.overuse_number - licenses.used_number')
       end
 
       def campaign

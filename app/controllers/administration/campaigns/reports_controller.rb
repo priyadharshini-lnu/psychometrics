@@ -153,7 +153,7 @@ module Administration
 
       def assessments_and_reports
         reports = Panko::ArraySerializer.new(
-          campaign.campaign_reports.includes(:report, :report_family),
+          campaign.campaign_reports.includes(:report_family, report: :assessments),
           each_serializer: Administration::CampaignReportSerializer,
           context: {
             current_user: current_user,

@@ -6,6 +6,9 @@ module Api
       class CreateForm < BaseForm
         attribute :existing_record, String, default: 'reject'
 
+        validates :first_name, presence: true
+        validates :last_name, presence: true
+        validates :email, presence: true
         validate :uniq_email, if: -> { existing_record != 'accept' && email.present? }
 
         def uniq_email

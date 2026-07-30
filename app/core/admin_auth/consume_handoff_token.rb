@@ -2,8 +2,6 @@
 
 module AdminAuth
   class ConsumeHandoffToken < BaseCommand
-    CACHE_PREFIX = 'admin_handoff'
-
     def initialize(token, expected_client_id:)
       @token = token
       @expected_client_id = expected_client_id
@@ -65,11 +63,11 @@ module AdminAuth
     end
 
     def cache_key(nonce)
-      "#{CACHE_PREFIX}:#{nonce}"
+      "#{AdminAuth::HANDOFF_CACHE_PREFIX}:#{nonce}"
     end
 
     def verifier_purpose
-      'admin_handoff_token'
+      AdminAuth::HANDOFF_VERIFIER_PURPOSE
     end
   end
 end

@@ -17,5 +17,7 @@ html
     = render 'shared/webspellchecker'
 
   body
+    #impersonation-banner-portal data-sign-out-path="#{destroy_administration_session_path}"
+    = vite_javascript_tag 'entrypoints/impersonation_banner.tsx'
     = yield
     #modal-container

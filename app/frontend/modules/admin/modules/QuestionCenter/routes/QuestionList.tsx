@@ -111,7 +111,7 @@ const QuestionList: React.FC = () => {
   const handleNewQuestion = () => dispatch(openModal('CreateQuestionFormModal'))
 
   const Filter = (
-    <Resource.Filter name="name_cont" placeholder={I18n.t('shared.search')}>
+    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
       <Button
         type="primary"
         icon={<PlusOutlined />}

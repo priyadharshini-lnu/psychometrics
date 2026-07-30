@@ -268,7 +268,7 @@ ko:
     video_check_fix_sixth: 브라우저를 다시 시작하고 다시 시도해 주세요
     video_check_fix_third: 카메라를 사용하는 다른 애플리케이션(Zoom, Teams 등)을 닫으세요.
     video_overlay_label: 마이크와 카메라를 선택한 후 ‘녹화’를 클릭하고, 녹화 버튼을 누르면 다음 메시지를 한 번 읽어주세요.
-    video_overlay_message: 마이크와 카메라를 선택한 후 ‘녹화’를 클릭하고, 화면 하단에 표시되는 문장을 소리 내어 읽어주세요.
+    video_overlay_message: 마이크와 카메라를 선택한 후 ‘녹화’를 클릭하고, 화면 하단에 표시되는 문장을 소리 내어 읽고 3번 반복해 주세요.
     video_recorder_label: 비디오 레코더
     video_upload_failed_camera_access: 카메라나 마이크에 접근할 수 없습니다. 기기의 권한 설정을 확인한 후 다시 시도해 주세요.
     video_upload_failed_chunk_upload: 녹화 파일 중 일부가 업로드되지 않았습니다. 인터넷 연결 상태를 확인하신 후 다시 시도해 주세요.

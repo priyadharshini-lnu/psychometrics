@@ -47,7 +47,9 @@ module Api
 
       def update
         normalized_params = Api::NormalizeCampaignParams.call!(params)
-        form = Api::V1::Users::UpdateForm.new(normalized_params).with_context(project: project, user: user)
+        form = Api::V1::Users::UpdateForm.new(normalized_params).with_context(
+          project: project, user: user, passed_attributes: normalized_params.keys.map(&:to_sym)
+        )
 
         if form.valid?
           Api::Campaigns::Users::Upsert.call(

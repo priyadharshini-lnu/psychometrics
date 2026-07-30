@@ -11,6 +11,7 @@ import {
 } from '~/modules/admin/modules/client/core/applications'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { User } from '~/modules/admin/modules/client/core/users'
+import { setApplication } from '~/modules/admin/core/ui/breadcrumbs'
 import {
   ApplicationOverview,
   ApplicationAPIKeys,
@@ -33,13 +34,14 @@ type Props = {
   applicationId: string
   baseUrl: string
   permissionsConfig: PermissionsConfig
+  setApplication: (application: { id?: number; name?: string }) => void
 }
 
 const connecter = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
   }),
-  {},
+  { setApplication },
 )
 
 const ApplicationDetailsComponent: React.FC<Props> = ({
@@ -47,6 +49,7 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   applicationId,
   baseUrl,
   permissionsConfig,
+  setApplication,
 }) => {
   const { pathname } = useLocation()
   const { projectId, clientId } = useParams() as { projectId?: string, clientId?: string }
@@ -69,7 +72,16 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
     }
   }, [applicationId])
 
+  useEffect(() => {
+    if (application) {
+      setApplication({ id: parseInt(application.id, 10), name: application.name })
+    }
+    return () => { setApplication({}) }
+  }, [application?.name])
+
   const [isTogglingStatus, setIsTogglingStatus] = useState(false)
+
+  const SETTINGS_SUB_TABS = ['ip_whitelisting', 'url_whitelisting']
 
   const handleToggleDisabled = async (checked: boolean) => {
     setIsTogglingStatus(true)
@@ -87,18 +99,20 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
   }
 
   const getActiveTab = (): string => {
-    const lastSegment = pathname.split('/').filter(Boolean).pop()
+    const lastSegment = pathname.split('/').filter(Boolean).pop() || ''
 
     if (lastSegment === 'api_keys') return 'api_keys'
     if (lastSegment === 'public_keys' && application_public_keys_settings_enabled) return 'public_keys'
     if (lastSegment === 'permissions') return 'permissions'
-    if (lastSegment === 'settings' && application_public_keys_settings_enabled) return 'settings'
+    if (SETTINGS_SUB_TABS.includes(lastSegment) && application_public_keys_settings_enabled) return 'settings'
     return 'overview'
   }
 
   const handleTabChange = (key: string) => {
     if (key === 'overview') {
       navigate(baseUrl)
+    } else if (key === 'settings') {
+      navigate(`${baseUrl}/settings/ip_whitelisting`)
     } else {
       navigate(`${baseUrl}/${key}`)
     }
@@ -151,7 +165,7 @@ const ApplicationDetailsComponent: React.FC<Props> = ({
           {
             key: 'settings',
             label: I18n.t('admin.settings'),
-            children: <ApplicationSettings applicationId={applicationId} />,
+            children: <ApplicationSettings applicationId={applicationId} baseUrl={`${baseUrl}/settings`} />,
           },
         ] : []),
       ]

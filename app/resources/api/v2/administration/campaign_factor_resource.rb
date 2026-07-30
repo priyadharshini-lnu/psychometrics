@@ -11,7 +11,7 @@ class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration:
   has_one :factor
   has_one :dimension
 
-  ransack_filters %i[factor_type_eq]
+  ransack_filters %i[factor_type_eq filterable_fields]
 
   def assessment_id
     @model.assessment&.id.to_s
@@ -48,7 +48,7 @@ class Api::V2::Administration::CampaignFactorResource < Api::V2::Administration:
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, CampaignFactor]).
       where(campaign_id: opts[:context][:campaign].id).
-      includes(:assessment, :factor).
+      includes({ assessment: :translations }, factor: %i[translations dimension]).
       order(:position)
   end
 end

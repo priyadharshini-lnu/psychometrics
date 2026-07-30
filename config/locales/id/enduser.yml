@@ -268,7 +268,7 @@ id:
     video_check_fix_sixth: Mulai ulang browser Anda dan coba lagi
     video_check_fix_third: Tutup aplikasi lain yang menggunakan kamera (Zoom, Teams, dll.)
     video_overlay_label: Pilih mikrofon dan kamera Anda, klik Rekam, lalu bacalah pesan berikut setelah Anda menekan tombol Rekam
-    video_overlay_message: Pilih mikrofon dan kamera Anda, klik "Rekam", lalu bacalah dengan lantang kalimat yang muncul di bagian bawah.
+    video_overlay_message: Pilih mikrofon dan kamera Anda, klik "Rekam", lalu bacalah dengan lantang dan ulangi 3 kali kalimat yang muncul di bagian bawah.
     video_recorder_label: Perekam Video
     video_upload_failed_camera_access: Tidak dapat mengakses kamera atau mikrofon Anda. Silakan periksa izin perangkat Anda dan coba lagi.
     video_upload_failed_chunk_upload: Sebagian rekaman tidak berhasil diunggah. Silakan periksa koneksi internet Anda dan coba lagi.

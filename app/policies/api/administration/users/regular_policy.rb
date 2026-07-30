@@ -6,8 +6,7 @@ module Api
       class RegularPolicy < Api::Administration::UserPolicy
         class Scope < BasePolicy::Scope
           def resolve
-            geo_filtered_scope = scope.geo_scoped(Current.user_country).
-                                 includes(user_profile: { photo_attachment: :blob })
+            geo_filtered_scope = scope.geo_scoped(Current.user_country)
 
             return geo_filtered_scope if @user.is?(:superadmin)
 

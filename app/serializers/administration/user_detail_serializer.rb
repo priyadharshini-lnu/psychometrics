@@ -7,10 +7,10 @@ module Administration
                :completed_at, :proctoring_sessions, :user_assessments, :user_reports, :manager,
                :level, :current_job_role, :target_job_role
 
-    delegate :active, :completion_status, :additional_time, :level, to: :campaign_user
+    delegate :active, :completion_status, :additional_time, :level, to: :campaign_user, allow_nil: true
 
     def status
-      campaign_user.real_status
+      campaign_user&.real_status
     end
 
     def full_name
@@ -82,8 +82,9 @@ module Administration
     end
 
     def proctoring_sessions
-      proctoring_sessions = campaign_user.proctoring_sessions.order(started_at: :desc)
+      return [] unless campaign_user
 
+      proctoring_sessions = campaign_user.proctoring_sessions.order(started_at: :desc)
       Panko::ArraySerializer.new(
         proctoring_sessions,
         each_serializer: Administration::ProctoringSessionSerializer

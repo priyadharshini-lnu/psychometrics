@@ -25,6 +25,9 @@ html dir=dir lang="#{I18n.locale}"
 
   body.end-user class=(I18n.locale == :ar ? 'rtl' : 'ltr' )  data-locale="#{I18n.locale}"
     = render 'shared/maintenance_alert_banner'
+    - if session[:impersonated_by_id].present?
+      #impersonation-banner-portal data-sign-out-path="#{destroy_user_session_path}"
+      = vite_javascript_tag 'entrypoints/impersonation_banner.tsx'
     = yield
     / #notification-center-container
     / = vite_javascript_tag 'notification_center.jsx'

@@ -30,7 +30,7 @@ RSpec.describe JwtLoginController, type: :controller do
     it 'rejects missing token' do
       post :login_jwt, params: {}
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'authenticates and redirects to campaign for valid cmp token' do
@@ -105,7 +105,7 @@ RSpec.describe JwtLoginController, type: :controller do
       sign_out(participant)
       post :login_jwt, params: { token: token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
     end
 
@@ -122,7 +122,7 @@ RSpec.describe JwtLoginController, type: :controller do
     it 'rejects malformed token safely' do
       post :login_jwt, params: { token: 'invalid' }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
       expect(response.body).not_to include('invalid')
     end
@@ -147,7 +147,7 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: forged_token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
       expect(response).not_to be_redirect
     end
@@ -157,7 +157,7 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: hs_token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'rejects audience with path' do
@@ -169,7 +169,7 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it 'rejects expired token' do
@@ -181,7 +181,7 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
     end
 
@@ -196,7 +196,7 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
     end
 
@@ -217,9 +217,44 @@ RSpec.describe JwtLoginController, type: :controller do
 
       post :login_jwt, params: { token: forged_token }
 
-      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response).to have_http_status(:unauthorized)
       expect(response.body).to eq(I18n.t('shared.authentication_failed'))
       expect(response).not_to be_redirect
+    end
+
+    context 'when URL whitelisting is enabled' do
+      before do
+        create(:application_url_whitelist_entry,
+               application_setting: application_user.application_setting,
+               url: 'https://example.com/api/*')
+        application_user.application_setting.update(url_whitelisting_enabled: true)
+      end
+
+      it 'rejects return_url not in the whitelist' do
+        token = build_token(
+          'tg' => 'cmp',
+          'tg_cmp_id' => campaign.id.to_s,
+          'ret_url' => 'https://unauthorized.com/callback'
+        )
+
+        post :login_jwt, params: { token: token }
+
+        expect(response).to have_http_status(:bad_request)
+        expect(response.body).to eq(I18n.t('shared.return_url_not_whitelisted'))
+      end
+
+      it 'accepts return_url matching a whitelisted wildcard pattern' do
+        token = build_token(
+          'tg' => 'cmp',
+          'tg_cmp_id' => campaign.id.to_s,
+          'ret_url' => 'https://example.com/api/v1/callback'
+        )
+
+        post :login_jwt, params: { token: token }
+
+        expect(response).to redirect_to(campaign_path(campaign))
+        expect(controller.current_user).to eq(participant)
+      end
     end
   end
 

@@ -268,7 +268,7 @@ pl:
     video_check_fix_sixth: Uruchom ponownie przeglądarkę i spróbuj jeszcze raz
     video_check_fix_third: Zamknij inne aplikacje korzystające z kamery (Zoom, Teams itp.)
     video_overlay_label: Wybierz mikrofon i kamerę, kliknij przycisk „Nagrywaj”, a po jego naciśnięciu przeczytaj poniższą wiadomość
-    video_overlay_message: Wybierz mikrofon i kamerę, kliknij „Nagraj”, a następnie przeczytaj na głos zdanie wyświetlone na dole ekranu.
+    video_overlay_message: Wybierz mikrofon i kamerę, kliknij „Nagraj”, a następnie przeczytaj na głos i powtórz 3 razy zdanie wyświetlone na dole ekranu.
     video_recorder_label: Rejestrator wideo
     video_upload_failed_camera_access: Nie można uzyskać dostępu do kamery lub mikrofonu. Sprawdź uprawnienia urządzenia i spróbuj ponownie.
     video_upload_failed_chunk_upload: Nie udało się przesłać części nagrania. Sprawdź połączenie internetowe i spróbuj ponownie.

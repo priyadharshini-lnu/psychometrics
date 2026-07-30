@@ -14,6 +14,6 @@ class GetProjectBySubdomain < BaseCommand
     project_subdomain = subdomain.gsub(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     return broadcast(:ok, nil) if project_subdomain.nil?
 
-    broadcast :ok, Client.find_by(subdomain: project_subdomain)
+    broadcast :ok, Client.projects.find_by(subdomain: project_subdomain)
   end
 end

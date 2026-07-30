@@ -6,7 +6,7 @@ module Administration
       before_action :set_resource, only: %i[update destroy]
 
       def index
-        integrations = policy_scope(resource_class).where(project_id: project.id)
+        integrations = policy_scope(resource_class).where(project_id: project.id).includes(:project)
         render json: Panko::ArraySerializer.new(
           integrations,
           each_serializer: ::Administration::Projects::IntegrationSerializer

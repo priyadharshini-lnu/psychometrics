@@ -21,21 +21,14 @@ module Administration
         unless current_user.campaign_admin_campaigns.exists?(project_id: params[:project_id])
           authorize(Campaign, nil, { project_id: params[:project_id] })
         end
-        respond_to do |format| # rubocop:disable Metrics/BlockLength
+        respond_to do |format|
           format.html
           format.json do
             campaigns = policy_scope(resource_class).where(project_id: project.id)
             if params.dig(:filters, :tagged_with).present?
               campaigns = campaigns.tagged_with(params[:filters][:tagged_with])
             end
-            campaigns = campaigns.ransack(ransack_filters).
-                        result.
-                        includes(
-                          :project, :threesixty_campaign, :campaign_options,
-                          taggings: :tag,
-                          assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
-                          reports: { icon_attachment: { blob: :variant_records } }
-                        )
+            campaigns = apply_campaign_index_query(campaigns)
 
             serialized_campaigns = Panko::ArraySerializer.new(
               campaigns.page(params[:page]).per(params[:size] || 25),
@@ -106,6 +99,12 @@ module Administration
       end
 
       def copy
+        audit! :copy, @campaign, payload: {
+          source_id: @campaign.id,
+          new_name: params.dig(:resource, :name),
+          copy_ai_artifacts: params.dig(:resource, :copy_campaign_ai_artifacts),
+          copy_factors: params.dig(:resource, :copy_campaign_factors)
+        }
         form = ::Campaigns::CopyForm.from_params(campaign_params)
         ::Campaigns::Copy.call!(form, @campaign)
 
@@ -202,13 +201,30 @@ module Administration
       def set_campaign
         @campaign = policy_scope(Campaign).includes(
           taggings: :tag,
-          assessments: [:translations, { icon_attachment: { blob: :variant_records } }],
-          reports: { icon_attachment: { blob: :variant_records } }
+          assessments: [
+            :translations,
+            { icon_attachment: { blob: { variant_records: :image_attachment } } }
+          ],
+          reports: { icon_attachment: { blob: { variant_records: :image_attachment } } }
         ).find_by(project_id: params[:project_id], id: params[:id])
       end
 
       def ransack_filters
         params[:filters]&.except(:tagged_with)
+      end
+
+      def apply_campaign_index_query(campaigns)
+        campaigns.ransack(ransack_filters).
+          result.
+          includes(
+            :project, :threesixty_campaign, :campaign_options,
+            taggings: :tag,
+            assessments: [
+              :translations,
+              { icon_attachment: { blob: { variant_records: :image_attachment } } }
+            ],
+            reports: { icon_attachment: { blob: { variant_records: :image_attachment } } }
+          )
       end
 
       def save_campaign_tags(campaign)

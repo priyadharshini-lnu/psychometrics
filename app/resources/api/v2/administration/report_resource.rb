@@ -38,7 +38,7 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   end
 
   def self.records(opts)
-    super.with_attached_icon.with_attached_poster.includes(:assessments, :owner)
+    super.with_attached_icon.with_attached_poster.includes(:assessments, :owner, taggings: :tag)
   end
 
   def icon_url

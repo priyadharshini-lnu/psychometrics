@@ -268,7 +268,7 @@ nl:
     video_check_fix_sixth: Start je browser opnieuw op en probeer het nog eens
     video_check_fix_third: Sluit andere programma’s die de camera gebruiken (Zoom, Teams, enz.)
     video_overlay_label: Kies je microfoon en camera, klik op ‘Opnemen’ en lees het volgende bericht voor zodra je op de opnameknop hebt gedrukt
-    video_overlay_message: Kies je microfoon en camera, klik op ‘Opnemen’ en lees vervolgens de zin die onderaan verschijnt hardop voor.
+    video_overlay_message: Kies je microfoon en camera, klik op ‘Opnemen’ en lees vervolgens de zin die onderaan verschijnt hardop voor en herhaal die 3 keer.
     video_recorder_label: Videorecorder
     video_upload_failed_camera_access: Er kan geen toegang worden verkregen tot je camera of microfoon. Controleer de machtigingen van je apparaat en probeer het opnieuw.
     video_upload_failed_chunk_upload: Een deel van de opname is niet geüpload. Controleer je internetverbinding en probeer het nog eens.

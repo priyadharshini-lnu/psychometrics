@@ -3,7 +3,6 @@
 module Jwt
   module SingleUse
     class SingleUseJtiGuard < BaseCommand
-      API_V1_CACHE_PREFIX = 'api:v1:jwt:jti'
       SSO_CACHE_PREFIX = 'jwt_sso_single_use'
       private_attr_reader :token_type, :issuer, :jti, :exp, :single_use
 
@@ -30,8 +29,7 @@ module Jwt
       private
 
       def cache_key
-        prefix = token_type == :api_v1 ? API_V1_CACHE_PREFIX : SSO_CACHE_PREFIX
-        "#{prefix}:#{issuer}:#{jti}"
+        "#{SSO_CACHE_PREFIX}:#{issuer}:#{jti}"
       end
     end
   end

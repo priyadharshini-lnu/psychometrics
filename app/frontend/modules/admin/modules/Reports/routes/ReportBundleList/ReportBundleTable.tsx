@@ -37,6 +37,12 @@ export const ReportBundleTable: React.FC<Props> = ({
       sorter
     />
     <Resource.Column<ReportBundle>
+      title={I18n.t('common.column.owner')}
+      id="tenant"
+      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.tte')}
+      width={200}
+    />
+    <Resource.Column<ReportBundle>
       title={I18n.t('common.column.created_at')}
       id="created_at"
       width={300}

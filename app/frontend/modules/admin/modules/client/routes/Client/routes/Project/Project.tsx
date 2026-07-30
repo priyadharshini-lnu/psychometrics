@@ -123,9 +123,19 @@ const Project: FC<Props> = ({
       case 'datasheet':
         return I18n.t('shared.datasheet')
       case 'settings': {
-        if (pathname.includes('smtp')) {
-          return I18n.t('admin.smtp_settings')
-        }
+        if (pathname.includes('/general')) return I18n.t('admin.project_tabs_general')
+        if (pathname.includes('/smtp')) return I18n.t('admin.smtp_settings_smtp')
+        if (pathname.includes('/saml')) return I18n.t('admin.sso_settings_tab')
+        if (pathname.includes('/integrations')) return I18n.t('admin.integrations_integrations')
+        if (pathname.includes('/security')) return I18n.t('admin.security_setting_security')
+        if (pathname.includes('/design')) return I18n.t('admin.project_tabs_design')
+        if (pathname.includes('/profile')) return I18n.t('admin.project_tabs_profile')
+        if (pathname.includes('/registration')) return I18n.t('admin.project_tabs_registration')
+        if (pathname.includes('/webhooks')) return I18n.t('admin.project_tabs_webhooks_title')
+        if (pathname.includes('/privacy')) return I18n.t('admin.project_tabs_privacy')
+        if (pathname.includes('/assessments')) return I18n.t('admin.project_tabs_assessments_title')
+        if (pathname.includes('/features')) return I18n.t('admin.settings_tabs_feature_flags')
+        if (pathname.includes('/applications')) return I18n.t('admin.applications')
         return I18n.t('admin.settings')
       }
       case 'audit_reports':
@@ -212,33 +222,67 @@ const Project: FC<Props> = ({
     })
   }
 
+  const getBreadcrumbRequest = () => ({
+    fields: ['project', 'client'],
+    data: { projectId: parseInt(projectId, 10) },
+  })
+
+  const getProjectBreadcrumbCrumbs = () => {
+    const baseCrumbs = [
+      {
+        link: () => '/admin',
+        label: () => I18n.t('admin.clients'),
+      },
+      {
+        link: state => `/admin/clients/${state.client.id}/projects`,
+        label: state => state.client.name,
+      },
+      {
+        link: state => `/admin/projects/${state.project?.id}/new_campaigns?filters[statusEq]=active`,
+        label: state => state.project?.name,
+      },
+    ]
+
+    if (pathname.includes('/settings/')) {
+      const settingsUrl = `${settings.urlPrefix}/${projectId}/settings`
+      const applicationsListUrl = `${settingsUrl}/applications`
+      const isOnApplicationDetails = /\/settings\/applications\/\d+/.test(pathname)
+
+      return [
+        ...baseCrumbs,
+        {
+          link: () => settingsUrl,
+          label: () => I18n.t('admin.settings'),
+        },
+        ...(isOnApplicationDetails ? [
+          {
+            link: () => applicationsListUrl,
+            label: () => I18n.t('admin.applications'),
+          },
+          {
+            label: state => state.application?.name,
+          },
+        ] : [
+          {
+            label: () => getPageTitle(pathname),
+          },
+        ]),
+      ]
+    }
+
+    return [
+      ...baseCrumbs,
+      {
+        label: () => getPageTitle(pathname),
+      },
+    ]
+  }
 
   return (
     <div>
       <Breadcrumb
-        request={{
-          fields: ['project', 'client'],
-          data: {
-            projectId: parseInt(projectId, 10),
-          },
-        }}
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.clients'),
-          },
-          {
-            link: state => `/admin/clients/${state.client.id}/projects`,
-            label: state => state.client.name,
-          },
-          {
-            link: state => `/admin/projects/${state.project?.id}/new_campaigns?filters[statusEq]=active`,
-            label: state => state.project?.name,
-          },
-          {
-            label: () => getPageTitle(pathname),
-          },
-        ]}
+        request={getBreadcrumbRequest()}
+        crumbs={getProjectBreadcrumbCrumbs()}
       />
       <Menu
         items={menuItems}

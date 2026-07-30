@@ -154,9 +154,21 @@ module Administration
       end
 
       def permitted_campaign_admin_project_ids
-        @user.campaign_admin_campaigns.select do |campaign|
-          @user.has_permission?(:campaigns, :view, project_id: campaign.project_id, campaign_id: campaign.id)
-        end.pluck(:project_id)
+        campaign_admin_memberships = @user.memberships.includes(:campaign).where(
+          role: Membership::CAMPAIGN_ADMIN_ROLE,
+          disabled: false
+        )
+        campaign_admin_memberships.filter_map do |membership|
+          campaign = membership.campaign
+          next unless campaign
+
+          campaign.project_id if @user.has_permission?(
+            :campaigns,
+            :view,
+            project_id: campaign.project_id,
+            campaign_id: campaign.id
+          )
+        end
       end
 
       def assessor_campaigns_project_ids

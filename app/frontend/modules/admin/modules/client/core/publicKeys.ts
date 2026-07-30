@@ -6,7 +6,6 @@ export const PublicKeyTR = t.type({
   issuer: t.union([t.string, t.null]),
   audience: t.union([t.string, t.null]),
   publicKey: t.union([t.string, t.null]),
-  fingerprint: t.union([t.string, t.null]),
   description: t.union([t.string, t.null]),
   disabled: t.boolean,
   createdAt: t.union([t.string, t.null]),

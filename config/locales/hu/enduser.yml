@@ -268,7 +268,7 @@ hu:
     video_check_fix_sixth: Indítsd újra a böngészőt, és próbáld meg újra
     video_check_fix_third: Zárja be a kamerát használó egyéb alkalmazásokat (Zoom, Teams stb.)
     video_overlay_label: Válassza ki a mikrofont és a kamerát, kattintson a „Felvétel” gombra, majd miután megnyomta a „Felvétel” gombot, olvassa fel az alábbi üzenetet
-    video_overlay_message: Válaszd ki a mikrofont és a kamerát, kattints a „Felvétel” gombra, majd olvasd fel hangosan az alul megjelenő mondatot.
+    video_overlay_message: Válaszd ki a mikrofont és a kamerát, kattints a „Felvétel” gombra, majd olvasd fel hangosan, és ismételd meg 3 alkalommal az alul megjelenő mondatot.
     video_recorder_label: Videofelvevő
     video_upload_failed_camera_access: Nem sikerült hozzáférni a kamerádhoz vagy a mikrofonodhoz. Kérjük, ellenőrizd a készülék engedélyeit, majd próbáld meg újra.
     video_upload_failed_chunk_upload: A felvétel egy része nem sikerült feltölteni. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.

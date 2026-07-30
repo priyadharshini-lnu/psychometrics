@@ -18,6 +18,10 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
     @model.client_design_setting&.logo_url
   end
 
+  def self.records(*args)
+    super.includes(client_design_setting: { logo_attachment: :blob })
+  end
+
   def meta_details
     {
       permissions: lambda {

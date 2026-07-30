@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { DatePicker, Form } from 'antd'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
 import dayjs from '~/utils/dayjs'
-import { RangeValueType } from '~/interfaces/Antd'
 
 const { I18n } = window
 
@@ -32,21 +31,6 @@ const ActiveClientsProjectsConfig: React.FC<ActiveClientsProjectsConfigProps> = 
     ? [dayjs(parsedRange[0]), dayjs(parsedRange[1])]
     : defaultRange
 
-  const [range, setRange] = useState<RangeValueType | null>(initialRange)
-
-  const onCalendarChange = (dates: RangeValueType | null) => {
-    setRange(dates)
-  }
-
-  const disabledDate = (current: dayjs.Dayjs) => {
-    if (!range || !range[0]) {
-      return current > dayjs().endOf('day')
-    }
-
-    const tooLate = current.diff(range[0], 'days') > 30
-    return Boolean(tooLate || current > dayjs().endOf('day'))
-  }
-
   return (
     <Form.Item
       name="activityPeriod"
@@ -55,8 +39,6 @@ const ActiveClientsProjectsConfig: React.FC<ActiveClientsProjectsConfigProps> = 
       rules={[{ required: true }]}
     >
       <DatePicker.RangePicker
-        onCalendarChange={onCalendarChange}
-        disabledDate={disabledDate}
         allowClear={false}
         ranges={{
           [I18n.t('admin.date_presets_today')]: [

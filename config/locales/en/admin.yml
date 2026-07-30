@@ -128,10 +128,15 @@ en:
     application_name_already_taken: Already exists for this client
     application_name_format_hint: Only letters and numbers are allowed, with a single space between words
     application_settings_at_least_one_ip_required: Please enable at least one IP address entry before enabling IP whitelisting
+    application_settings_at_least_one_url_required: Please enable at least one URL entry before enabling URL whitelisting
     application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
+    application_settings_confirm_delete_url: Are you sure you want to delete this URL?
     application_settings_edit_ip_address: Edit IP Address / CIDR Range
+    application_settings_edit_url: Edit URL
     application_settings_enable_ip_whitelisting: Enable IP Whitelisting
+    application_settings_enable_url_whitelisting: Enable URL Whitelisting
     application_settings_invalid_ip_format: Invalid IP address or CIDR format
+    application_settings_invalid_url_format: Invalid URL format
     application_settings_ip_addresses: IP Addresses / CIDR Ranges
     application_settings_ip_deleted_successfully: IP address deleted successfully
     application_settings_ip_description_placeholder: e.g., Office network or Production server
@@ -141,6 +146,16 @@ en:
     application_settings_ip_updated_successfully: IP address updated successfully
     application_settings_ip_whitelisting_disabled_success: IP whitelisting disabled successfully
     application_settings_ip_whitelisting_enabled_success: IP whitelisting enabled successfully
+    application_settings_url: URL
+    application_settings_url_addresses: URL Addresses
+    application_settings_url_deleted_successfully: URL deleted successfully
+    application_settings_url_description_placeholder: e.g., Office network or Production server
+    application_settings_url_input_placeholder: e.g., https://example.com or https://sub.example.com
+    application_settings_url_required: URL is required
+    application_settings_url_updated_successfully: URL updated successfully
+    application_settings_url_whitelisting_disabled_success: URL whitelisting disabled successfully
+    application_settings_url_whitelisting_enabled_success: URL whitelisting enabled successfully
+    application_settings_urls: URLs
     applications: Applications
     apply_to_existing_users: Apply this change to existing users in this campaign
     approve_all_questions: Approve All Questions
@@ -213,6 +228,8 @@ en:
     assessor_overview: Overview
     assessor_placeholder: Search Assessor...
     assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
+    assessor_remove_has_evaluations: This assessor has %{evaluation_count} assessor form(s) assigned. All evaluations they have filled will be lost.
+    assessor_remove_in_assessment_centers: This assessor is part of %{workshop_count} assessment center(s). Proceeding will remove them from all assessment centers.
     assessor_statuses_completed: Completed
     assessor_statuses_not_completed: Not Completed
     assessor_subjects_statuses_completed: Completed
@@ -654,6 +671,7 @@ en:
     dimensions_import_modal_import_dimension: Import Dimension
     dimensions_import_modal_import_scheduled: Import scheduled
     dimensions_import_modal_operation: Operation
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Please select an owner
     dimensions_import_modal_owner_select: Select an owner
     dimensions_import_modal_select_json: Select JSON file
@@ -1215,6 +1233,7 @@ en:
     invite_workshop_list_remove_confirm_success: Assessment Center was removed successfully.
     invite_workshop_list_remove_confirm_title: Confirm
     invite_workshop_title: Assessment Centers
+    ip_whitelisting: IP Whitelisting
     is_subject: Is Subject
     job_role_are_you_sure_to_remove: Are you sure to remove?
     job_role_column_job_group: Job Group
@@ -1288,6 +1307,7 @@ en:
     mark_not_finalized: Mark Not Finalized
     mark_not_finalized_bulk_confirm: Removing finalize from all selected users will remove the generated reports which use AI artifacts. Are you sure you want to proceed?
     mark_not_finalized_confirm: Removing finalize from the user '%{email}' will remove the generated report which uses AI artifact for the user. Are you sure you want to proceed?
+    mark_ready_button: Mark as Ready
     mask_identity_for_examus: Mask data for Examus Proctoring
     mask_identity_for_hogan: Mask data for Hogan
     mask_identity_for_iiht: Mask data for IIHT
@@ -1346,6 +1366,21 @@ en:
     modal_title: Convert to Template
     model_answer: Model Answer
     model_answer_placeholder: Enter the model answer for AI scoring.
+    model_params_description: Leave blank to use the default values defined by the assistant type.
+    model_params_max_tokens: Max Tokens
+    model_params_max_tokens_tooltip: Limits the maximum number of tokens the model can generate per response. Higher values allow longer outputs but increase cost and latency.
+    model_params_temperature: Temperature
+    model_params_temperature_tooltip: Controls randomness in the output. 0 = deterministic and focused; 2 = highly creative and varied. Use lower values for outputs to be restricted to the context provided.
+    model_params_thinking_budget: Thinking Budget (tokens)
+    model_params_thinking_budget_tooltip: Sets a hard cap on tokens the model can spend on internal reasoning. Higher values allow deeper analysis but increase token usage and response time.
+    model_params_thinking_budget_unsupported: This model uses effort-based reasoning control only. Thinking budget (token cap) is not supported.
+    model_params_thinking_effort: Thinking Effort
+    model_params_thinking_effort_high: High
+    model_params_thinking_effort_low: Low
+    model_params_thinking_effort_medium: Medium
+    model_params_thinking_effort_none: None
+    model_params_thinking_effort_tooltip: Controls how much reasoning the model applies before responding. Higher effort produces more thorough answers but takes longer. Use 'None' to disable reasoning entirely.
+    model_params_title: Advanced Model Configuration
     must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
@@ -1453,6 +1488,14 @@ en:
     overall: Overall
     overall_score: Overall Score
     overall_scoring: Overall Scoring
+    owner_resource_assessment: assessment
+    owner_resource_campaign: campaign
+    owner_resource_client: client
+    owner_resource_dimension: dimension
+    owner_resource_mismatch: "%{child_resource} owner is not compatible with %{parent_resource} owner."
+    owner_resource_norm: norm
+    owner_resource_report: report
+    owner_resource_report_bundle: report bundle
     parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
     parsed_dependencies_title: Parsed Dependencies
     parsed_dependencies_view: View Parsed Dependencies
@@ -2204,6 +2247,8 @@ en:
     report_approval_columns_user_email: User Email
     report_approval_columns_user_name: User Name
     report_approval_digest_delivery_mode_form_label: Digest Delivery Mode
+    report_approval_digest_delivery_mode_immediate: Immediate - Send whenever there is a bulk submission
+    report_approval_digest_delivery_mode_scheduled: Scheduled - Send a digest email at a scheduled time
     report_approval_digest_frequency_daily: Daily
     report_approval_digest_frequency_form_label: Digest Frequency
     report_approval_digest_frequency_weekdays: Weekdays
@@ -2395,6 +2440,7 @@ en:
     saml_settings_config_details_copied: Copied %{element}
     saml_settings_config_details_issuer: Entity ID/Issuer
     saml_settings_config_details_title: Configure Idp with following info
+    saml_settings_download_metadata: Download Metadata
     saml_settings_email_pipetext: Email Pipetext
     saml_settings_enabled: Enabled
     saml_settings_enforced: Enforce SAML
@@ -3165,8 +3211,10 @@ en:
     upload_success: Uploaded successfully
     url_label: URL
     url_name: url
+    url_whitelisting: URL Whitelisting
     used_tokens_input_tokens: Input Tokens
     used_tokens_output_tokens: Output Tokens
+    used_tokens_thinking_tokens: Thinking Tokens
     used_tokens_title: Token usage
     user: User
     user_agent: User Agent

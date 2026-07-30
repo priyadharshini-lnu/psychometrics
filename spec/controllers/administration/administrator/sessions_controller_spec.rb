@@ -105,7 +105,6 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       before do
         ActsAsTenant.current_tenant = client
-        allow(controller).to receive(:client_admin_context?).and_return(true)
         allow(Current).to receive(:client_admin_context?).and_return(true)
         allow(Current).to receive(:client).and_return(client)
       end
@@ -136,7 +135,6 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       before do
         ActsAsTenant.current_tenant = client
-        allow(controller).to receive(:client_admin_context?).and_return(true)
         allow(Current).to receive(:client_admin_context?).and_return(true)
         allow(Current).to receive(:client).and_return(client)
       end
@@ -151,7 +149,7 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       before do
         ActsAsTenant.current_tenant = client
-        allow(controller).to receive(:client_admin_context?).and_return(true)
+        allow(Current).to receive(:client_admin_context?).and_return(true)
       end
 
       it 'redirects to the administration session path' do

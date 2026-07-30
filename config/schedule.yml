@@ -135,3 +135,8 @@ session_cleanup:
   cron: "0 3 * * *" # Runs daily at 3 AM
   class: SessionCleanupJob
   queue_as: cron_tasks
+
+data_report_job_cleanup_job:
+  cron: "0 1 * * *" # Runs daily at 01:00 AM
+  class: DataReports::DataReportJobCleanupJob
+  queue_as: cron_tasks
