@@ -15,6 +15,12 @@ module Api
         index?
       end
 
+      def destroy?
+        return has_permission?(:dimensions, :manage, project_id: record_owner_id) if record_owner_id
+
+        super
+      end
+
       def copy?
         return has_permission?(:dimensions, :manage, project_id: record_owner_id) if record_owner_id
 

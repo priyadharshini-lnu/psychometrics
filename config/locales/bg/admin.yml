@@ -56,6 +56,7 @@ bg:
     advanced: Разширени
     advanced_mode_tooltip: Използвайте разширен режим за шаблониране на prompt с течен шаблон с налични променливи. Вижте документацията за повече подробности.
     agile: ПОДВИЖЕН
+    agile_time_config_msg: При оценките по метода „Agile“ могат да се използват таймери за отделните секции (настроени в конфигурационните настройки). Уверете се, че сте предвидили достатъчно време, за да може всяка секция да бъде завършена без затруднения.
     ai_artifact_result_generation_admin_job_failed: Артефактът „%{artifact_name}” не може да бъде генериран за потребителя „%{user_email}”.
     ai_artifact_result_stale: Резултатът може да е неактуален, тъй като зависимостите на AI артефакта са се променили от момента на генериране на последния резултат. Обмислете да генерирате артефакта отново, за да използвате най-новите зависимости.
     ai_artifacts: Артефакти с изкуствен интелект
@@ -731,6 +732,7 @@ bg:
     enter_schema_key: Въвеждане на ключ на схемата
     error: Грешка
     error_color: Цвят на грешката
+    errors_csv_file_import: Моля, качите CSV файл, преди да кликнете върху „Импортирай“
     errors_csv_file_required: Файлът трябва да е CSV файл
     errors_error_msg: Нещо се обърка. Моля, опреснете страницата и ако проблемът продължава, свържете се с вашия администратор
     errors_min_retention: Не може да бъде по-малко от 1 ден
@@ -778,6 +780,7 @@ bg:
     factor_feedback: Обратна връзка по фактори
     factor_selection: Избор на фактори
     factors: Фактори
+    factors_filter_strategy: Стратегия
     factors_form_components_ExternalList_table_jsonpath: JSON път
     factors_form_components_ExternalList_table_types_norm_score: Нормиран резултат
     factors_form_components_ExternalList_table_types_percentage: Процент
@@ -1260,6 +1263,7 @@ bg:
     maintenance_settings: Настройки за поддръжка
     maintenance_settings_description: Управление на прозорците и настройките за поддръжка на системата
     make_report_available_to_subject_when: 'Предоставете доклада на субекта, когато:'
+    manage_condition_sets: Управление на набори от условия
     manager_approval_required: Докладът за %{user} изисква одобрение от мениджъра преди изтегляне
     manager_approves_reports: Мениджърът одобрява докладите
     manager_can_access_subject_reports: Мениджърът има достъп до отчетите на субектите
@@ -1370,6 +1374,7 @@ bg:
     norm_region: Нормална област
     norm_region_form_select: Изберете нормална област
     norm_region_update_success: Регионът Norm е актуализиран успешно
+    norm_score: Нормативен резултат
     normal: Нормален
     normalize_factor_scores: Нормализиране на факторните резултати
     norms: Норми
@@ -1408,12 +1413,14 @@ bg:
     occupation_factors_condition_set: Набор от условия
     occupation_factors_title: Фактори, свързани с професията
     occupations: Професии
+    occupations_factor_uniqueness: Факторът вече е взет предвид
     occupations_factors_list_condition: Условие
     occupations_factors_list_position: Положение
     occupations_factors_list_weight: Тегло
     occupations_form_alternative_icon: Алтернативна икона
     occupations_form_color: Цвят
     occupations_form_indicative_roles_image: Илюстративна картинка на роли
+    occupations_form_key_career_tracks_hint: '"+" – списък, "*" – удебелен шрифт. Пример: + *Биология* – кратко описание...'
     occupations_form_key_career_tracks_image: Изображение на основните кариерни пътеки
     occupations_index_title: Професии
     occupations_resource_confirmations_delete_body: "<p>Сигурни ли сте, че искате да изтриете тази професия?</p>\n"
@@ -2125,6 +2132,7 @@ bg:
     range_min_max: ДИАПАЗОН%{min} - %{max}
     rationale: Обосновка
     raw: СУРОВИ
+    raw_score: Суров резултат
     reason_for_changes: Причина за промените
     recents: Последни
     record_id: Идентификатор на записа
@@ -2156,6 +2164,7 @@ bg:
     remove_confirm_success: Темата с имейл '%{subjectEmail}'' беше успешно премахната.
     remove_confirm_title: Премахнете темата
     remove_confirmation: Сигурен ли сте, че искате да премахнете този елемент?
+    remove_icon: Премахване на иконата
     remove_output_schema_key: Премахване на ключа на изходната схема
     remove_successfully: Медийният елемент беше успешно премахнат.
     render_button: Шаблон за рендериране
@@ -2406,6 +2415,11 @@ bg:
       user_full_name_cont: Потребителско име
     saville: Савил
     saville_assessment: Оценка на Saville
+    scale_max: Максимален мащаб
+    scale_max_must_be_greater_than_scale_min: Максималната стойност на мащаба трябва да е по-голяма от минималната стойност на мащаба
+    scale_min: Минимална скала
+    scale_min_must_be_less_than_scale_max: Минималната стойност на мащаба трябва да е по-малка от максималната стойност на мащаба
+    scale_value_must_not_be_negative: Стойността не трябва да е отрицателна
     schedule: Разписание
     schedule_email: Насрочете имейл
     schedule_email_title: Насрочете имейл
@@ -2542,10 +2556,13 @@ bg:
     score_definition_placeholder: Въведете определението за това ниво на оценка
     score_definitions: Определения на резултатите
     score_max: Максимален резултат
+    score_max_must_be_greater_than_score_min: Максималната оценка трябва да е по-голяма от минималната оценка
     score_min: Резултат Мин
+    score_min_must_be_less_than_score_max: Минималният резултат трябва да е по-малък от максималния резултат
     score_must_be_in_between_min_and_max: Резултатът трябва да е между %{min} и %{max}.
     score_not_applicable: Резултатът не се прилага
     score_range_info: 'Диапазон на резултатите: %{min} - %{max}'
+    score_type: Тип резултат
     score_with_ai: Резултат с AI
     scores_finalized: Резултатите са окончателни и не могат да бъдат променяни
     scoring: Точкуване
@@ -3114,6 +3131,7 @@ bg:
     translated_with_ai_notice: Преведено от AI
     translation_assistant_not_configured: Помощникът за превод не е конфигуриран
     translations:
+      import: Импортиране на преводи
       title: Преводи
     translations_export_failure_msg: Грешка при експортиране на преводи
     translations_export_success_msg: Текущи действия за развитие на износа.

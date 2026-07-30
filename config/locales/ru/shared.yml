@@ -176,6 +176,11 @@ ru:
     remove: Удалить
     removed: Удалено
     replace: Заменить
+    reports_show_values_inside_bar: Показать значения внутри столбца
+    reports_value_label_position: Положение метки значения
+    reports_value_label_position_center: Центр
+    reports_value_label_position_left: Влево
+    reports_value_label_position_right: Верно
     required: требуемый
     reset: Сброс
     reset_password: Сбросить пароль

@@ -7,6 +7,10 @@ describe CampaignUsers::Remove do
   let(:campaign) { campaign_user.campaign }
   let(:user) { campaign_user.user }
   let!(:user_assessment) { create :user_assessment, campaign: campaign, subject: user }
+  let!(:campaign_factor) { create(:campaign_factor, campaign: campaign) }
+  let!(:campaign_factor_value) do
+    create(:campaign_factor_value, campaign: campaign, user: user, campaign_factor: campaign_factor)
+  end
   let(:options) { { campaign_user: campaign_user } }
 
   it 'deletes campaign_user record' do
@@ -26,6 +30,12 @@ describe CampaignUsers::Remove do
     described_class.call!(options)
 
     expect(UserAssessment.find_by(id: user_assessment.id)).to be_nil
+  end
+
+  it 'removes campaign factor values' do
+    described_class.call!(options)
+
+    expect(CampaignFactorValue.find_by(id: campaign_factor_value.id)).to be_nil
   end
 
   context 'remove user result' do

@@ -24,6 +24,20 @@ const Formats = {
   Percentile: precision => (_.isNil(precision) ? '{point.y:.1f}%' : `{point.y:.${precision}f}%`),
 }
 
+const getDataLabelAlign = (valueLabelPosition: string | undefined, isRTL: boolean) => {
+  if (valueLabelPosition === 'center') {
+    return 'center'
+  }
+  if (valueLabelPosition === 'left') {
+    return isRTL ? 'right' : 'left'
+  }
+  if (valueLabelPosition === 'right') {
+    return isRTL ? 'left' : 'right'
+  }
+
+  return isRTL ? 'right' : 'left'
+}
+
 interface Props {
   model: PropertiesModel
   animation?: boolean
@@ -178,6 +192,8 @@ export const Bar: React.FC<Props> = ({
     if (legendHorizontalPosition === 'Middle') {
       legendHorizontalPosition = 'Center'
     }
+    const dataLabelAlign = getDataLabelAlign(model.props.valueLabelPosition, isRTL)
+
     chartRef.current = containerRef.current ? Highcharts.chart(
       containerRef.current,
       merge(
@@ -213,6 +229,8 @@ export const Bar: React.FC<Props> = ({
               dataLabels: {
                 enabled: !!model.props.showValues,
                 format,
+                inside: !!model.props.showValuesInsideBar,
+                align: dataLabelAlign,
                 ...(preventValueOverlap && {
                   overflow: 'allow',
                   crop: false,

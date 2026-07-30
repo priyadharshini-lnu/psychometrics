@@ -56,6 +56,7 @@ ko:
     advanced: 고급
     advanced_mode_tooltip: 고급 모드를 사용해 액체 템플릿과 사용 가능한 변수를 사용해 프롬프트 템플릿을 작성하세요. 자세한 내용은 문서를 참고하세요.
     agile: AGILE
+    agile_time_config_msg: 애자일 평가에서는 섹션별 타이머(구성 설정에서 설정)를 사용할 수 있습니다. 각 섹션을 여유 있게 완료할 수 있도록 충분한 시간을 할당해야 합니다.
     ai_artifact_result_generation_admin_job_failed: 사용자 '%{user_email}'에 대해 '%{artifact_name}' 아티팩트를 생성할 수 없습니다.
     ai_artifact_result_stale: AI 아티팩트 종속성이 마지막 결과 생성 이후 변경되었으므로 결과가 오래되었을 수 있습니다. 최신 종속성으로 생성하려면 아티팩트를 재생성하는 것을 고려하십시오.
     ai_artifacts: AI 아티팩트
@@ -731,6 +732,7 @@ ko:
     enter_schema_key: 스키마 키 입력
     error: 오류
     error_color: 오류 색상
+    errors_csv_file_import: "“가져오기”를 클릭하기 전에 CSV 파일을 업로드해 주세요."
     errors_csv_file_required: 파일은 CSV 파일이어야 합니다.
     errors_error_msg: 문제가 발생했습니다. 페이지를 새로 고친 후 문제가 지속되면 관리자에게 문의하세요
     errors_min_retention: 1일 미만일 수 없음
@@ -778,6 +780,7 @@ ko:
     factor_feedback: 요인 피드백
     factor_selection: 요인 선정
     factors: 요인
+    factors_filter_strategy: 전략
     factors_form_components_ExternalList_table_jsonpath: JSON 경로
     factors_form_components_ExternalList_table_types_norm_score: 표준 점수
     factors_form_components_ExternalList_table_types_percentage: 백분율
@@ -1260,6 +1263,7 @@ ko:
     maintenance_settings: 유지보수 설정
     maintenance_settings_description: 시스템 유지보수 시간대와 설정 관리
     make_report_available_to_subject_when: '다음과 같은 경우 피조사자에게 보고서를 공개하십시오:'
+    manage_condition_sets: 조건 집합 관리
     manager_approval_required: "%{user} 보고서는 다운로드 전에 관리자의 승인이 필요합니다"
     manager_approves_reports: 관리자가 보고서를 승인합니다.
     manager_can_access_subject_reports: 관리자가 주제 보고서에 액세스할 수 있습니다.
@@ -1370,6 +1374,7 @@ ko:
     norm_region: 노름 지역
     norm_region_form_select: 표준 영역 선택
     norm_region_update_success: Norm Region이 성공적으로 업데이트되었습니다.
+    norm_score: 표준화 점수
     normal: 보통
     normalize_factor_scores: 팩터 점수 정규화
     norms: 규범
@@ -1408,12 +1413,14 @@ ko:
     occupation_factors_condition_set: 조건 집합
     occupation_factors_title: 직업적 요인
     occupations: 직업
+    occupations_factor_uniqueness: 해당 인자는 이미 고려되었습니다
     occupations_factors_list_condition: 조건
     occupations_factors_list_position: 위치
     occupations_factors_list_weight: 무게
     occupations_form_alternative_icon: 대체 아이콘
     occupations_form_color: 색상
     occupations_form_indicative_roles_image: 역할 예시 이미지
+    occupations_form_key_career_tracks_hint: '"+" - 목록, "*" - 굵은 글씨. 예: + *생물학* - 설명...'
     occupations_form_key_career_tracks_image: 주요 경력 경로 이미지
     occupations_index_title: 직업
     occupations_resource_confirmations_delete_body: "<p>이 직업을 정말 삭제하시겠습니까?</p>\n"
@@ -2125,6 +2132,7 @@ ko:
     range_min_max: RANGE %{min} - %{max}
     rationale: 이유
     raw: 날것의
+    raw_score: 원점수
     reason_for_changes: 변경 사유
     recents: 최근 게시물
     record_id: 레코드 ID
@@ -2156,6 +2164,7 @@ ko:
     remove_confirm_success: 이메일 '%{subjectEmail}''이 포함된 제목을 성공적으로 제거했습니다.
     remove_confirm_title: 제목 제거
     remove_confirmation: 이 항목을 정말로 삭제하시겠습니까?
+    remove_icon: 아이콘 제거
     remove_output_schema_key: 출력 스키마 키 제거
     remove_successfully: 미디어 항목이 성공적으로 삭제되었습니다.
     render_button: 렌더 템플릿
@@ -2406,6 +2415,11 @@ ko:
       user_full_name_cont: 사용자 이름
     saville: Saville
     saville_assessment: 새빌 평가
+    scale_max: 최대 눈금
+    scale_max_must_be_greater_than_scale_min: 스케일 최대값은 스케일 최소값보다 커야 합니다.
+    scale_min: 눈금 최소값
+    scale_min_must_be_less_than_scale_max: 스케일 최소값은 스케일 최대값보다 작아야 합니다.
+    scale_value_must_not_be_negative: 값은 음수가 되어서는 안 됩니다
     schedule: 일정
     schedule_email: 이메일 예약
     schedule_email_title: 이메일 예약
@@ -2545,10 +2559,13 @@ ko:
     score_definition_placeholder: 이 점수 레벨에 대한 정의를 입력하세요
     score_definitions: 점수 정의
     score_max: 점수 최대
+    score_max_must_be_greater_than_score_min: 최대 점수는 최소 점수보다 커야 합니다.
     score_min: 점수 최소값
+    score_min_must_be_less_than_score_max: 최소 점수는 최대 점수보다 작아야 합니다.
     score_must_be_in_between_min_and_max: 점수는 %{min}와 %{max} 사이여야 합니다.
     score_not_applicable: 점수 미적용
     score_range_info: '점수 범위: %{min} - %{max}'
+    score_type: 점수 유형
     score_with_ai: AI로 점수 따기
     scores_finalized: 점수가 확정되었으며 변경할 수 없습니다
     scoring: 채점
@@ -3117,6 +3134,7 @@ ko:
     translated_with_ai_notice: AI 번역
     translation_assistant_not_configured: 번역 보조 기능이 설정되지 않았습니다.
     translations:
+      import: 번역 내용 가져오기
       title: 번역
     translations_export_failure_msg: 번역 내보내기 중 오류 발생
     translations_export_success_msg: 진행 중인 개발 작업 내보내기.

@@ -136,6 +136,8 @@ ro:
     no_audio_detected: Nu s-a detectat niciun semnal audio. Vă rugăm să verificați dacă microfonul este conectat și funcționează corect.
     pass: Treci
     pause: Pauză
+    pearson_timing_duration_minutes: Cu limită de timp – %{duration} minute pentru finalizare
+    pearson_timing_untimed_duration: Fără limită de timp – durează între 20 și 25 de minute
     pending: În așteptare
     personal_readiness: Pregătirea personală
     plan_text: Planificați-vă pentru întreaga durată. Odată ce ați început, este posibil să nu vi se permită pauze, în funcție de tipul de evaluare.

@@ -56,6 +56,7 @@ hu:
     advanced: Haladó
     advanced_mode_tooltip: Használj fejlett módot prompt templáláshoz liquid sablon használatával, elérhető változókkal. További részletekért lásd a dokumentációt.
     agile: FÜRGE
+    agile_time_config_msg: Az agilis értékelések során szakaszokra lebontott időzítők használhatók (a konfigurációs beállításokban állíthatók be). Ügyeljen arra, hogy elegendő időt állítson be az egyes szakaszok kényelmes elvégzéséhez.
     ai_artifact_result_generation_admin_job_failed: A „%{artifact_name}” műtárgy nem hozható létre a „%{user_email}” felhasználó számára.
     ai_artifact_result_stale: Az eredmény elavult lehet, mivel az AI-artefaktum függőségei az utolsó eredmény generálása óta megváltoztak. Fontolja meg az artefaktum újragenerálását a legfrissebb függőségekkel.
     ai_artifacts: AI-összetevők
@@ -731,6 +732,7 @@ hu:
     enter_schema_key: Sémakulcs megadása
     error: Hiba
     error_color: Hibás szín
+    errors_csv_file_import: Kérjük, töltsön fel egy CSV-fájlt, mielőtt az „Importálás” gombra kattintana.
     errors_csv_file_required: A fájlnak CSV-fájlnak kell lennie
     errors_error_msg: Valami elromlott. Kérjük, frissítse az oldalt, és ha a probléma továbbra is fennáll, forduljon az adminisztrátorhoz
     errors_min_retention: Nem lehet kevesebb, mint 1 nap
@@ -778,6 +780,7 @@ hu:
     factor_feedback: Tényező-visszacsatolás
     factor_selection: Tényezők kiválasztása
     factors: Tényezők
+    factors_filter_strategy: Stratégia
     factors_form_components_ExternalList_table_jsonpath: JSON elérési út
     factors_form_components_ExternalList_table_types_norm_score: Átlaghoz viszonyított pontszám
     factors_form_components_ExternalList_table_types_percentage: Százalék
@@ -1260,6 +1263,7 @@ hu:
     maintenance_settings: Karbantartási beállítások
     maintenance_settings_description: A rendszer karbantartási ablakainak és beállításainak kezelése
     make_report_available_to_subject_when: 'A jelentést akkor kell az érintett rendelkezésére bocsátani, amikor:'
+    manage_condition_sets: Feltételkészletek kezelése
     manager_approval_required: A jelentés %{user} letöltése előtt menedzser jóváhagyását igényel
     manager_approves_reports: A menedzser jóváhagyja a jelentéseket
     manager_can_access_subject_reports: A menedzser hozzáférhet a témajelentésekhez
@@ -1370,6 +1374,7 @@ hu:
     norm_region: Norm régió
     norm_region_form_select: Norm régió kiválasztása
     norm_region_update_success: Norm Region frissítése sikeresen megtörtént
+    norm_score: Normál pontszám
     normal: Normál
     normalize_factor_scores: Faktorpontszámok normalizálása
     norms: Normák
@@ -1408,12 +1413,14 @@ hu:
     occupation_factors_condition_set: Feltételkészlet
     occupation_factors_title: Foglalkozási tényezők
     occupations: Foglalkozások
+    occupations_factor_uniqueness: A tényezőt már figyelembe vették
     occupations_factors_list_condition: Feltétel
     occupations_factors_list_position: Pozíció
     occupations_factors_list_weight: Súly
     occupations_form_alternative_icon: Alternatív ikon
     occupations_form_color: Szín
     occupations_form_indicative_roles_image: Példakénti szerepek képe
+    occupations_form_key_career_tracks_hint: "„+” – lista, „*” – félkövér. Példa: + *Biológia* – néhány leírás..."
     occupations_form_key_career_tracks_image: A főbb karrierpályák ábrája
     occupations_index_title: Foglalkozások
     occupations_resource_confirmations_delete_body: "<p>Biztosan törölni szeretné ezt a foglalkozást?</p>\n"
@@ -2125,6 +2132,7 @@ hu:
     range_min_max: RANGE %{min} - %{max}
     rationale: Indoklás
     raw: NYERS
+    raw_score: Nyers pontszám
     reason_for_changes: A változások oka
     recents: Legutóbbi bejegyzések
     record_id: Bejegyzés azonosítója
@@ -2156,6 +2164,7 @@ hu:
     remove_confirm_success: A(z) "%{subjectEmail}" e-mail tárgya sikeresen el lett távolítva.
     remove_confirm_title: Tárgy eltávolítása
     remove_confirmation: Biztosan el akarja távolítani ezt az elemet?
+    remove_icon: Ikon eltávolítása
     remove_output_schema_key: Kimeneti séma kulcs eltávolítása
     remove_successfully: A médiaelem sikeresen eltávolításra került.
     render_button: Render sablon
@@ -2406,6 +2415,11 @@ hu:
       user_full_name_cont: Felhasználónév
     saville: Saville
     saville_assessment: Saville-értékelés
+    scale_max: Maximális skála
+    scale_max_must_be_greater_than_scale_min: A skála maximális értékének nagyobbnak kell lennie, mint a skála minimális értékének
+    scale_min: Skála Min.
+    scale_min_must_be_less_than_scale_max: A skála minimális értékének kisebbnek kell lennie, mint a skála maximális értékének
+    scale_value_must_not_be_negative: Az érték nem lehet negatív
     schedule: Menetrend
     schedule_email: E-mail ütemezése
     schedule_email_title: E-mail ütemezése
@@ -2542,10 +2556,13 @@ hu:
     score_definition_placeholder: Írja be a pontszám szintjének meghatározását
     score_definitions: Pontszámok meghatározása
     score_max: Pontszám Max
+    score_max_must_be_greater_than_score_min: A maximális pontszámnak nagyobbnak kell lennie, mint a minimális pontszámnak
     score_min: Pontszám Min
+    score_min_must_be_less_than_score_max: A minimális pontszámnak kisebbnek kell lennie, mint a maximális pontszámnak
     score_must_be_in_between_min_and_max: A pontszámnak %{min} és %{max} között kell lennie.
     score_not_applicable: Pontszám nem alkalmazható
     score_range_info: 'Pontszámtartomány: %{min} - %{max}'
+    score_type: Pontszámtípus
     score_with_ai: Pontszám az AI segítségével
     scores_finalized: Az eredmények véglegesek, és már nem módosíthatók
     scoring: Pontozás
@@ -3114,6 +3131,7 @@ hu:
     translated_with_ai_notice: AI fordítás
     translation_assistant_not_configured: Fordítási segédprogram nincs konfigurálva
     translations:
+      import: Fordítások importálása
       title: Fordítások
     translations_export_failure_msg: Hiba a fordítások exportálása során
     translations_export_success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.

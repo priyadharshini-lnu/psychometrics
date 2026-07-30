@@ -136,6 +136,8 @@ hu:
     no_audio_detected: Nem érzékelhető hang. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
     pass: Tovább
     pause: Szünet
+    pearson_timing_duration_minutes: Időkorlát – %{duration} perc a feladat elvégzésére
+    pearson_timing_untimed_duration: Időkorlát nélkül – a feladat elvégzéséhez 20–25 perc szükséges
     pending: Függőben
     personal_readiness: Személyes felkészültség
     plan_text: Tervezzen a teljes időtartamra. A vizsga megkezdése után – a vizsga típusától függően – szünetek nem engedélyezettek.

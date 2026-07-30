@@ -56,6 +56,7 @@ id:
     advanced: Lanjutan
     advanced_mode_tooltip: Gunakan mode lanjutan untuk templat prompt menggunakan templat cair dengan variabel yang tersedia. Lihat dokumentasi untuk detail selengkapnya.
     agile: LINCAH
+    agile_time_config_msg: Penilaian Agile dapat menggunakan pengatur waktu per bagian (yang diatur dalam pengaturan konfigurasi). Pastikan untuk mengalokasikan waktu yang cukup di sini agar setiap bagian dapat diselesaikan dengan nyaman.
     ai_artifact_result_generation_admin_job_failed: Artefak '%{artifact_name}' tidak dapat dihasilkan untuk Pengguna '%{user_email}'
     ai_artifact_result_stale: Hasil mungkin sudah tidak relevan karena dependensi artefak AI telah berubah sejak hasil terakhir dihasilkan. Pertimbangkan untuk menghasilkan ulang artefak tersebut dengan dependensi terbaru.
     ai_artifacts: Artefak AI
@@ -731,6 +732,7 @@ id:
     enter_schema_key: Masukkan Kunci Skema
     error: Kesalahan
     error_color: Warna Kesalahan
+    errors_csv_file_import: Silakan unggah berkas CSV sebelum mengklik "Impor"
     errors_csv_file_required: File harus berupa file CSV
     errors_error_msg: Ada yang tidak beres. Silakan segarkan halaman dan jika masalah masih berlanjut, hubungi administrator Anda
     errors_min_retention: Tidak boleh kurang dari 1 hari
@@ -778,6 +780,7 @@ id:
     factor_feedback: Umpan Balik Faktor
     factor_selection: Pemilihan Faktor
     factors: Faktor-faktor
+    factors_filter_strategy: Strategi
     factors_form_components_ExternalList_table_jsonpath: Jalur JSON
     factors_form_components_ExternalList_table_types_norm_score: Skor Norma
     factors_form_components_ExternalList_table_types_percentage: Persentase
@@ -1260,6 +1263,7 @@ id:
     maintenance_settings: Pengaturan Pemeliharaan
     maintenance_settings_description: Mengelola jendela pemeliharaan sistem dan pengaturan
     make_report_available_to_subject_when: 'Membuat laporan tersedia untuk subjek ketika:'
+    manage_condition_sets: Kelola Kumpulan Kondisi
     manager_approval_required: Laporan untuk %{user} memerlukan persetujuan manajer sebelum diunduh
     manager_approves_reports: Manajer menyetujui laporan
     manager_can_access_subject_reports: Manajer dapat mengakses laporan subjek
@@ -1370,6 +1374,7 @@ id:
     norm_region: Wilayah Norma
     norm_region_form_select: Pilih Wilayah Standar
     norm_region_update_success: Wilayah Norm telah diperbarui dengan sukses.
+    norm_score: Skor Norma
     normal: Normal
     normalize_factor_scores: Menormalkan Skor Faktor
     norms: Norma
@@ -1408,12 +1413,14 @@ id:
     occupation_factors_condition_set: Himpunan Kondisi
     occupation_factors_title: Faktor-Faktor Pekerjaan
     occupations: Pekerjaan
+    occupations_factor_uniqueness: Faktor tersebut sudah diperhitungkan
     occupations_factors_list_condition: Status
     occupations_factors_list_position: Posisi
     occupations_factors_list_weight: Berat
     occupations_form_alternative_icon: Ikon alternatif
     occupations_form_color: Warna
     occupations_form_indicative_roles_image: Gambar ilustrasi peran
+    occupations_form_key_career_tracks_hint: '"+" - daftar, "*" - huruf tebal. Contoh: + *Biologi* - deskripsi singkat...'
     occupations_form_key_career_tracks_image: Gambar jalur karier utama
     occupations_index_title: Pekerjaan
     occupations_resource_confirmations_delete_body: "<p>Apakah Anda yakin ingin menghapus pekerjaan ini?</p>\n"
@@ -2125,6 +2132,7 @@ id:
     range_min_max: RANGE %{min} - %{max}
     rationale: Alasan
     raw: MENTAH
+    raw_score: Nilai Mentah
     reason_for_changes: Alasan perubahan
     recents: Terbaru
     record_id: Rekor ID
@@ -2156,6 +2164,7 @@ id:
     remove_confirm_success: Subjek dengan email '%{subjectEmail}'' berhasil dihapus.
     remove_confirm_title: Hapus subjek
     remove_confirmation: Apakah Anda yakin ingin menghapus item ini?
+    remove_icon: Hapus ikon
     remove_output_schema_key: Hapus Kunci Skema Keluaran
     remove_successfully: Item media telah dihapus dengan sukses.
     render_button: Templat Render
@@ -2406,6 +2415,11 @@ id:
       user_full_name_cont: Nama Pengguna
     saville: Saville
     saville_assessment: Penilaian Saville
+    scale_max: Skala Maksimum
+    scale_max_must_be_greater_than_scale_min: Nilai maksimum skala harus lebih besar daripada nilai minimum skala
+    scale_min: Skala Min
+    scale_min_must_be_less_than_scale_max: Nilai minimum skala harus lebih kecil dari nilai maksimum skala
+    scale_value_must_not_be_negative: Nilai tidak boleh negatif
     schedule: Jadwal
     schedule_email: Jadwalkan Email
     schedule_email_title: Jadwalkan Email
@@ -2542,10 +2556,13 @@ id:
     score_definition_placeholder: Masukkan definisi untuk tingkat skor ini.
     score_definitions: Definisi Skor
     score_max: Skor Maksimum
+    score_max_must_be_greater_than_score_min: Nilai maksimum harus lebih besar dari nilai minimum
     score_min: Skor Minimum
+    score_min_must_be_less_than_score_max: Nilai minimum harus lebih kecil dari nilai maksimum
     score_must_be_in_between_min_and_max: Skor harus berada di antara %{min} dan %{max}.
     score_not_applicable: Skor tidak berlaku
     score_range_info: 'Rentang Skor: %{min} - %{max}'
+    score_type: Jenis Skor
     score_with_ai: Mencetak gol dengan kecerdasan buatan
     scores_finalized: Nilai telah ditetapkan dan tidak dapat diubah
     scoring: Penilaian
@@ -3109,6 +3126,7 @@ id:
     translated_with_ai_notice: Diterjemahkan oleh AI
     translation_assistant_not_configured: Asisten Terjemahan belum dikonfigurasi
     translations:
+      import: Impor Terjemahan
       title: Terjemahan
     translations_export_failure_msg: Kesalahan saat mengekspor terjemahan
     translations_export_success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.

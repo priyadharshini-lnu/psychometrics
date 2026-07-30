@@ -39,9 +39,9 @@ export const RemoveSubFactorsModal: React.FC<Props> = ({
     },
   )
 
-  const { id, name } = subFact
+  const { id, name, factorName } = subFact
 
-  const displayName = slug === 'occupations' ? (subFact.factorName || '') : (name || '')
+  const displayName = factorName || name || ''
 
   const handleOnConfirm = () => resource.removeResource(id).then(() => {
     message.info(I18n.t('admin.factors_resource_removal_success', { name: displayName }))

@@ -56,6 +56,7 @@ pl:
     advanced: Zaawansowane
     advanced_mode_tooltip: Użyj zaawansowanego trybu szablonowego promptu za pomocą szablonu płynnego z dostępnymi zmiennymi. Więcej szczegółów można znaleźć w dokumentacji.
     agile: ZWINNY
+    agile_time_config_msg: W ramach ocen metodologii Agile można korzystać z liczników czasu dla poszczególnych sekcji (konfigurowanych w ustawieniach). Należy zadbać o to, by przeznaczyć na każdą sekcję wystarczającą ilość czasu, aby można ją było spokojnie ukończyć.
     ai_artifact_result_generation_admin_job_failed: Nie można wygenerować artefaktu „%{artifact_name}” dla użytkownika „%{user_email}”.
     ai_artifact_result_stale: Wynik może być nieaktualny, ponieważ zależności artefaktu AI uległy zmianie od czasu wygenerowania ostatniego wyniku. Rozważ ponowne wygenerowanie artefaktu, aby uwzględnić najnowsze zależności.
     ai_artifacts: Artefakty SI
@@ -731,6 +732,7 @@ pl:
     enter_schema_key: Wprowadź klucz schematu
     error: Błąd
     error_color: Kolor błędu
+    errors_csv_file_import: Przed kliknięciem przycisku „Importuj” proszę załadować plik CSV
     errors_csv_file_required: Plik musi być plikiem CSV
     errors_error_msg: Coś poszło nie tak. Odśwież stronę, a jeśli problem nadal występuje, skontaktuj się z administratorem
     errors_min_retention: Nie może być krótszy niż 1 dzień
@@ -778,6 +780,7 @@ pl:
     factor_feedback: Informacja zwrotna dotycząca czynników
     factor_selection: Wybór czynników
     factors: Czynniki
+    factors_filter_strategy: Strategia
     factors_form_components_ExternalList_table_jsonpath: Ścieżka JSON
     factors_form_components_ExternalList_table_types_norm_score: Wynik znormalizowany
     factors_form_components_ExternalList_table_types_percentage: Procent
@@ -1260,6 +1263,7 @@ pl:
     maintenance_settings: Ustawienia konserwacji
     maintenance_settings_description: Zarządzanie oknami konserwacji systemu i ustawieniami
     make_report_available_to_subject_when: 'Udostępnić raport podmiotowi, gdy:'
+    manage_condition_sets: Zarządzaj zestawami warunków
     manager_approval_required: Raport %{user} wymaga zgody menedżera przed pobraniem
     manager_approves_reports: Menedżer zatwierdza raporty
     manager_can_access_subject_reports: Menedżer może uzyskać dostęp do raportów tematycznych
@@ -1370,6 +1374,7 @@ pl:
     norm_region: Region norm
     norm_region_form_select: Wybierz region normy
     norm_region_update_success: Region Norm zaktualizowany pomyślnie
+    norm_score: Wynik normatywny
     normal: Normalny
     normalize_factor_scores: Normalizowanie wyników czynników
     norms: Normy
@@ -1408,12 +1413,14 @@ pl:
     occupation_factors_condition_set: Zbiór warunków
     occupation_factors_title: Czynniki związane z zawodem
     occupations: Zawodów
+    occupations_factor_uniqueness: Czynnik ten został już uwzględniony
     occupations_factors_list_condition: Warunek
     occupations_factors_list_position: Pozycja
     occupations_factors_list_weight: Ciężar
     occupations_form_alternative_icon: Alternatywna ikona
     occupations_form_color: Kolor
     occupations_form_indicative_roles_image: Przykładowe role – ilustracja
+    occupations_form_key_career_tracks_hint: "„+” – lista, „*” – pogrubienie. Przykład: + *Biologia* – krótki opis..."
     occupations_form_key_career_tracks_image: Ilustracja przedstawiająca główne ścieżki kariery
     occupations_index_title: Zawodów
     occupations_resource_confirmations_delete_body: "<p>Czy na pewno chcesz usunąć ten zawód?</p>\n"
@@ -2125,6 +2132,7 @@ pl:
     range_min_max: ZAKRES %{min} - %{max}
     rationale: Uzasadnienie
     raw: SUROWY
+    raw_score: Wynik surowy
     reason_for_changes: Powód zmian
     recents: Ostatnio dodane
     record_id: Identyfikator rekordu
@@ -2156,6 +2164,7 @@ pl:
     remove_confirm_success: Temat z adresem e-mail "%{subjectEmail}" został pomyślnie usunięty.
     remove_confirm_title: Usuń temat
     remove_confirmation: Czy na pewno chcesz usunąć ten element?
+    remove_icon: Usuń ikonę
     remove_output_schema_key: Usuń klucz schematu wyjściowego
     remove_successfully: Element multimedialny został pomyślnie usunięty.
     render_button: Szablon renderowania
@@ -2406,6 +2415,11 @@ pl:
       user_full_name_cont: Nazwa użytkownika
     saville: Saville (Wyspa Saville
     saville_assessment: Ocena Saville'a
+    scale_max: Maksymalna skala
+    scale_max_must_be_greater_than_scale_min: Maksymalna wartość skali powinna być większa od minimalnej wartości skali
+    scale_min: Skala min.
+    scale_min_must_be_less_than_scale_max: Minimalna wartość skali powinna być mniejsza od maksymalnej wartości skali
+    scale_value_must_not_be_negative: Wartość nie powinna być ujemna
     schedule: Harmonogram
     schedule_email: Zaplanuj wiadomość e-mail
     schedule_email_title: Zaplanuj wiadomość e-mail
@@ -2542,10 +2556,13 @@ pl:
     score_definition_placeholder: Wprowadź definicję dla tego poziomu punktacji.
     score_definitions: Definicje wyników
     score_max: Maksymalna liczba punktów
+    score_max_must_be_greater_than_score_min: Wartość maksymalna wyniku musi być większa od wartości minimalnej wyniku
     score_min: Wynik min.
+    score_min_must_be_less_than_score_max: Minimalna liczba punktów musi być mniejsza niż maksymalna liczba punktów
     score_must_be_in_between_min_and_max: Wynik musi mieścić się w przedziale od %{min} do %{max}.
     score_not_applicable: Wynik nie ma zastosowania
     score_range_info: 'Zakres wyników: %{min} - %{max}'
+    score_type: Rodzaj wyniku
     score_with_ai: Zdobądź punkty dzięki sztucznej inteligencji
     scores_finalized: Wyniki są ostateczne i nie można ich zmienić
     scoring: Punktacji
@@ -3109,6 +3126,7 @@ pl:
     translated_with_ai_notice: Tłumaczenie AI
     translation_assistant_not_configured: Asystent tłumaczenia nie został skonfigurowany.
     translations:
+      import: Importuj tłumaczenia
       title: Tłumaczenia
     translations_export_failure_msg: Błąd podczas eksportowania tłumaczeń
     translations_export_success_msg: Eksport działań rozwojowych w toku.

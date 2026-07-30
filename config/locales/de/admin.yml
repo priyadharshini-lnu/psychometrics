@@ -56,6 +56,7 @@ de:
     advanced: Erweitert
     advanced_mode_tooltip: Nutze den erweiterten Modus für Prompt-Template-Erstellung mit flüssiger Vorlage und verfügbaren Variablen. Weitere Details finden Sie in der Dokumentation.
     agile: AGILE
+    agile_time_config_msg: Bei agilen Bewertungen können für die einzelnen Abschnitte Zeitlimits verwendet werden (die in den Konfigurationseinstellungen festgelegt werden). Achten Sie darauf, hier genügend Zeit einzuplanen, damit jeder Abschnitt in Ruhe bearbeitet werden kann.
     ai_artifact_result_generation_admin_job_failed: Das Artefakt „%{artifact_name}“ kann für den Benutzer „%{user_email}“ nicht generiert werden.
     ai_artifact_result_stale: Das Ergebnis kann veraltet sein, da sich die Abhängigkeiten des KI-Artefakts seit der letzten Ergebnisgenerierung geändert haben. Erwägen Sie, das Artefakt neu zu generieren, um es mit den neuesten Abhängigkeiten zu erstellen.
     ai_artifacts: KI-Artefakte
@@ -731,6 +732,7 @@ de:
     enter_schema_key: Schema-Schlüssel eingeben
     error: Fehler
     error_color: Fehler Farbe
+    errors_csv_file_import: Bitte laden Sie eine CSV-Datei hoch, bevor Sie auf „Importieren“ klicken.
     errors_csv_file_required: Datei muss eine CSV-Datei sein
     errors_error_msg: Bitte aktualisieren Sie die Seite und wenden Sie sich an Ihren Administrator, wenn das Problem weiterhin besteht
     errors_min_retention: Nicht weniger als 1 Tag betragen
@@ -778,6 +780,7 @@ de:
     factor_feedback: Faktor-Feedback
     factor_selection: Faktorauswahl
     factors: Faktoren
+    factors_filter_strategy: Strategie
     factors_form_components_ExternalList_table_jsonpath: JSON-Pfad
     factors_form_components_ExternalList_table_types_norm_score: Normierte Punktzahl
     factors_form_components_ExternalList_table_types_percentage: Prozentsatz
@@ -1260,6 +1263,7 @@ de:
     maintenance_settings: Wartungseinstellungen
     maintenance_settings_description: Systemwartungsfenster und -einstellungen verwalten
     make_report_available_to_subject_when: 'Den Bericht der betroffenen Person zur Verfügung stellen, wenn:'
+    manage_condition_sets: Bedingungssätze verwalten
     manager_approval_required: Report for %{user} erfordert die Zustimmung des Managers vor dem Download
     manager_approves_reports: Der Manager genehmigt die Berichte
     manager_can_access_subject_reports: Manager kann auf Fachberichte zugreifen
@@ -1370,6 +1374,7 @@ de:
     norm_region: Norm Region
     norm_region_form_select: Normregion auswählen
     norm_region_update_success: Norm Region erfolgreich aktualisiert
+    norm_score: Normwert
     normal: Normal
     normalize_factor_scores: Faktorwerte normalisieren
     norms: Normen
@@ -1408,12 +1413,14 @@ de:
     occupation_factors_condition_set: Bedingungsmenge
     occupation_factors_title: Beschäftigungsfaktoren
     occupations: Berufe
+    occupations_factor_uniqueness: Der Faktor wurde bereits berücksichtigt
     occupations_factors_list_condition: Zustand
     occupations_factors_list_position: Position
     occupations_factors_list_weight: Gewicht
     occupations_form_alternative_icon: Alternatives Symbol
     occupations_form_color: Farbe
     occupations_form_indicative_roles_image: Beispielbild für Rollen
+    occupations_form_key_career_tracks_hint: "„+“ – Aufzählung, „*“ – fett. Beispiel: + *Biologie* – eine Beschreibung..."
     occupations_form_key_career_tracks_image: 'Bild: Wichtige Karrierewege'
     occupations_index_title: Berufe
     occupations_resource_confirmations_delete_body: "<p>Möchten Sie diesen Beruf wirklich löschen?</p>\n"
@@ -2125,6 +2132,7 @@ de:
     range_min_max: REICHWEITE %{min} - %{max}
     rationale: Begründung
     raw: ROH
+    raw_score: Rohpunktzahl
     reason_for_changes: Grund für die Änderungen
     recents: Zuletzt
     record_id: Datensatz-ID
@@ -2156,6 +2164,7 @@ de:
     remove_confirm_success: Betreff mit E-Mail '%{subjectEmail}'' wurde erfolgreich entfernt.
     remove_confirm_title: Entfernen Betreff
     remove_confirmation: Möchten Sie diesen Eintrag wirklich löschen?
+    remove_icon: Symbol entfernen
     remove_output_schema_key: Ausgabeschema-Schlüssel entfernen
     remove_successfully: Das Medienelement wurde erfolgreich entfernt.
     render_button: Render-Vorlage
@@ -2406,6 +2415,11 @@ de:
       user_full_name_cont: Benutzername
     saville: Saville
     saville_assessment: Saville-Bewertung
+    scale_max: Skala Max
+    scale_max_must_be_greater_than_scale_min: Der maximale Skalenwert sollte größer sein als der minimale Skalenwert.
+    scale_min: Skala Min.
+    scale_min_must_be_less_than_scale_max: Der Mindestwert der Skala sollte kleiner sein als der Höchstwert der Skala.
+    scale_value_must_not_be_negative: Der Wert darf nicht negativ sein
     schedule: Zeitplan
     schedule_email: Zeitplan E-Mail
     schedule_email_title: Zeitplan E-Mail
@@ -2545,10 +2559,13 @@ de:
     score_definition_placeholder: Geben Sie die Definition für diese Punktzahl ein.
     score_definitions: Punktedefinitionen
     score_max: Maximale Punktzahl
+    score_max_must_be_greater_than_score_min: Die maximale Punktzahl muss größer sein als die minimale Punktzahl.
     score_min: Punktzahl Min
+    score_min_must_be_less_than_score_max: Die Mindestpunktzahl muss kleiner sein als die Höchstpunktzahl.
     score_must_be_in_between_min_and_max: Die Punktzahl muss zwischen %{min} und %{max} liegen.
     score_not_applicable: Punktzahl nicht zutreffend
     score_range_info: 'Punktespannweite: %{min} - %{max}'
+    score_type: Bewertungsart
     score_with_ai: Mit KI punkten
     scores_finalized: Die Ergebnisse stehen fest und können nicht mehr geändert werden
     scoring: Punktevergabe
@@ -3117,6 +3134,7 @@ de:
     translated_with_ai_notice: KI-Übersetzung
     translation_assistant_not_configured: Übersetzungsassistent nicht konfiguriert
     translations:
+      import: Übersetzungen importieren
       title: Übersetzungen
     translations_export_failure_msg: Fehler beim Exportieren von Übersetzungen
     translations_export_success_msg: Export von laufenden Entwicklungsmaßnahmen.

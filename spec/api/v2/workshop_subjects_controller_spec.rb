@@ -76,4 +76,120 @@ RSpec.describe Api::V2::Administration::WorkshopSubjectsController, type: :reque
       expect { WorkshopSubject.find(subject_id) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe 'POST /campaigns/:campaign_id/workshops/:workshop_id/workshop_subjects' do
+    let(:candidate) { create(:user, project: campaign.project) }
+    let!(:campaign_user) { create(:campaign_user, campaign: campaign, user: candidate) }
+    let!(:group_one) { create(:campaign_assessment_group, campaign: campaign) }
+    let!(:group_two) { create(:campaign_assessment_group, campaign: campaign) }
+    let!(:workshop_one) { create(:workshop, campaign: campaign, campaign_assessment_group: group_one) }
+    let!(:workshop_two) { create(:workshop, campaign: campaign, campaign_assessment_group: group_two) }
+
+    def create_workshop_subject_payload(user_id, selected_workshop_id)
+      {
+        data: {
+          type: 'workshop_subjects',
+          attributes: {
+            attended: false,
+            attendance_status: 'no_status'
+          },
+          relationships: {
+            user: {
+              data: {
+                id: user_id.to_s,
+                type: 'users'
+              }
+            },
+            workshop: {
+              data: {
+                id: selected_workshop_id.to_s,
+                type: 'workshops'
+              }
+            }
+          }
+        }
+      }
+    end
+
+    it 'links to pending invite from same group and workshop only' do
+      invite_group_one = create(
+        :workshop_invite,
+        campaign: campaign,
+        campaign_assessment_group: group_one,
+        workshops: [workshop_one]
+      )
+      invite_group_two = create(
+        :workshop_invite,
+        campaign: campaign,
+        campaign_assessment_group: group_two,
+        workshops: [workshop_two]
+      )
+
+      group_one_invited_subject = create(
+        :workshop_invited_subject,
+        workshop_invite: invite_group_one,
+        user: candidate,
+        status: :pending
+      )
+      group_two_invited_subject = create(
+        :workshop_invited_subject,
+        workshop_invite: invite_group_two,
+        user: candidate,
+        status: :pending
+      )
+
+      post "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_one.id}/workshop_subjects",
+           params: create_workshop_subject_payload(candidate.id, workshop_one.id).to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response.status).to eq(201), response.body
+
+      created_subject_id = JSON.parse(response.body).dig('data', 'id')
+      created_subject = WorkshopSubject.find(created_subject_id)
+
+      expect(created_subject.workshop_invited_subject_id).to eq(group_one_invited_subject.id)
+      expect(group_one_invited_subject.reload.status).to eq('accepted')
+      expect(group_two_invited_subject.reload.status).to eq('pending')
+    end
+
+    it 'does not link to pending invite from another group when same-group invite is not pending' do
+      invite_group_one = create(
+        :workshop_invite,
+        campaign: campaign,
+        campaign_assessment_group: group_one,
+        workshops: [workshop_one]
+      )
+      invite_group_two = create(
+        :workshop_invite,
+        campaign: campaign,
+        campaign_assessment_group: group_two,
+        workshops: [workshop_two]
+      )
+
+      create(
+        :workshop_invited_subject,
+        workshop_invite: invite_group_one,
+        user: candidate,
+        status: :accepted
+      )
+      group_two_invited_subject = create(
+        :workshop_invited_subject,
+        workshop_invite: invite_group_two,
+        user: candidate,
+        status: :pending
+      )
+
+      post "/api/v2/administration/campaigns/#{campaign_id}/workshops/#{workshop_one.id}/workshop_subjects",
+           params: create_workshop_subject_payload(candidate.id, workshop_one.id).to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response.status).to eq(201), response.body
+
+      created_subject_id = JSON.parse(response.body).dig('data', 'id')
+      created_subject = WorkshopSubject.find(created_subject_id)
+
+      expect(created_subject.workshop_invited_subject_id).to be_nil
+      expect(group_two_invited_subject.reload.status).to eq('pending')
+    end
+  end
 end

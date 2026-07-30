@@ -5,7 +5,7 @@ module Reports
     private_attr_reader :report, :owner_id, :user, :new_report_name
 
     def initialize(report_id, user, owner_id = nil, new_report_name: nil)
-      @report = Report.includes(:pages, :modules, :filters).find_by(id: report_id)
+      @report = Report.includes(:pages, :modules, :filters, :campaign_factors).find_by(id: report_id)
       @user = user
       @new_report_name = new_report_name
       @owner_id = owner_id
@@ -23,6 +23,7 @@ module Reports
 
         filter_map = copy_filters(report, new_report)
         update_modules(new_report, filter_map)
+        copy_campaign_factors(report, new_report)
         %w[Factor Occupation].map { |type| copy_translations(type, report, new_report) }
 
         new_report
@@ -44,7 +45,7 @@ module Reports
     end
 
     def make_copy(object, resource, resource_key = 'resource_id')
-      copy = object.clone(false)
+      copy = object.dup
       copy[resource_key] = resource.id
       copy
     end
@@ -63,7 +64,7 @@ module Reports
       old_page.modules.each do |mod|
         new_module = make_copy(mod, new_page, 'page_id')
 
-        mod.translations.each do |translation|
+        mod.translations.for_report(old_page.report_id).each do |translation|
           new_translation = make_copy(translation, of_report)
 
           new_module.translations << new_translation
@@ -81,7 +82,7 @@ module Reports
         new_filter = make_copy(filter, new_report, 'report_id')
         new_filter.save!
         filter_map[filter.id] = new_filter.id
-        filter.translations.each do |translation|
+        filter.translations.for_report(old_report.id).each do |translation|
           new_translation = make_copy(translation, new_report)
 
           new_filter.translations << new_translation
@@ -90,6 +91,21 @@ module Reports
         new_report.filters << new_filter
       end
       filter_map
+    end
+
+    def copy_campaign_factors(old_report, new_report)
+      old_report.campaign_factors.each do |campaign_factor|
+        new_campaign_factor = make_copy(campaign_factor, new_report, 'report_id')
+        new_campaign_factor.save!
+
+        campaign_factor.translations.for_report(old_report.id).each do |translation|
+          new_translation = make_copy(translation, new_report)
+
+          new_campaign_factor.translations << new_translation
+        end
+
+        new_report.campaign_factors << new_campaign_factor
+      end
     end
 
     def update_modules(report, filter_map) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

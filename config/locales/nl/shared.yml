@@ -176,6 +176,11 @@ nl:
     remove: Verwijder
     removed: Verwijderd
     replace: Vervangen
+    reports_show_values_inside_bar: Waarden in de balk weergeven
+    reports_value_label_position: Positie van het waarde-etiket
+    reports_value_label_position_center: Midden
+    reports_value_label_position_left: Links
+    reports_value_label_position_right: Juist
     required: vereist
     reset: Reset
     reset_password: Wachtwoord opnieuw instellen

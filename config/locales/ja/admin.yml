@@ -56,6 +56,7 @@ ja:
     advanced: 上級
     advanced_mode_tooltip: リキッドテンプレートと利用可能な変数を使ってプロンプトテンプレートを作成するには、アドバンスドモードを使いましょう。詳細はドキュメントを参照してください。
     agile: AGILE
+    agile_time_config_msg: アジャイル評価では、セクションごとのタイマー（設定画面で設定）が使用される場合があります。各セクションを余裕を持って完了できるよう、十分な時間を確保してください。
     ai_artifact_result_generation_admin_job_failed: アーティファクト '%{artifact_name}' はユーザー '%{user_email}' に対して生成できません
     ai_artifact_result_stale: AIアーティファクトの依存関係が前回結果生成時から変更されているため、結果が古くなっている可能性があります。最新の依存関係で生成するため、アーティファクトの再生成をご検討ください。
     ai_artifacts: AIアーティファクト
@@ -731,6 +732,7 @@ ja:
     enter_schema_key: スキーマ・キーを入力
     error: エラー
     error_color: エラーカラー
+    errors_csv_file_import: "「インポート」をクリックする前に、CSVファイルをアップロードしてください"
     errors_csv_file_required: ファイルはCSVファイルでなければならない
     errors_error_msg: ページを更新し、それでも問題が解決しない場合は、管理者に連絡してください。
     errors_min_retention: 1日未満にすることはできません
@@ -778,6 +780,7 @@ ja:
     factor_feedback: 要因フィードバック
     factor_selection: 因子の選択
     factors: 要因
+    factors_filter_strategy: 戦略
     factors_form_components_ExternalList_table_jsonpath: JSONパス
     factors_form_components_ExternalList_table_types_norm_score: 標準スコア
     factors_form_components_ExternalList_table_types_percentage: パーセント
@@ -1260,6 +1263,7 @@ ja:
     maintenance_settings: メンテナンス設定
     maintenance_settings_description: システムメンテナンスの時間帯と設定を管理する
     make_report_available_to_subject_when: 対象者に報告書を提出する：
+    manage_condition_sets: 条件セットの管理
     manager_approval_required: "%{user}レポートはダウンロード前にマネージャーの承認が必要です"
     manager_approves_reports: マネージャーが報告書を承認
     manager_can_access_subject_reports: 管理者は対象レポートにアクセスできる
@@ -1370,6 +1374,7 @@ ja:
     norm_region: ノーム地域
     norm_region_form_select: 標準地域を選択
     norm_region_update_success: Norm Region の更新に成功しました
+    norm_score: 標準化スコア
     normal: ノーマル
     normalize_factor_scores: 因子スコアを正規化する
     norms: 規範
@@ -1408,12 +1413,14 @@ ja:
     occupation_factors_condition_set: 条件集合
     occupation_factors_title: 職業上の要因
     occupations: 職業
+    occupations_factor_uniqueness: その因子はすでに考慮済みです
     occupations_factors_list_condition: コンディション
     occupations_factors_list_position: ポジション
     occupations_factors_list_weight: 重量
     occupations_form_alternative_icon: 別のアイコン
     occupations_form_color: 色
     occupations_form_indicative_roles_image: 役割のイメージ図
+    occupations_form_key_career_tracks_hint: "「+」 - リスト、「*」 - 太字。例：+ *生物学* - 説明文…"
     occupations_form_key_career_tracks_image: 主なキャリアパス（画像）
     occupations_index_title: 職業
     occupations_resource_confirmations_delete_body: "<p>本当にこの職業を削除しますか？</p>\n"
@@ -2125,6 +2132,7 @@ ja:
     range_min_max: 範囲 %{min} - %{max}
     rationale: 根拠
     raw: 生
+    raw_score: 素点
     reason_for_changes: 変更の理由
     recents: 最近の投稿
     record_id: レコードID
@@ -2156,6 +2164,7 @@ ja:
     remove_confirm_success: 電子メール '%{subjectEmail}' を含む件名が正常に削除されました。
     remove_confirm_title: 課題を削除する
     remove_confirmation: このアイテムを削除してもよろしいですか？
+    remove_icon: アイコンを削除
     remove_output_schema_key: 出力スキーマ・キーの削除
     remove_successfully: メディアアイテムが正常に削除されました。
     render_button: レンダーテンプレート
@@ -2406,6 +2415,11 @@ ja:
       user_full_name_cont: ユーザー名
     saville: サヴィル
     saville_assessment: サヴィル査定
+    scale_max: 最大スケール
+    scale_max_must_be_greater_than_scale_min: "「スケールの最大値」は「スケールの最小値」よりも大きくなければなりません。"
+    scale_min: 目盛最小値
+    scale_min_must_be_less_than_scale_max: "「スケールの最小値」は「スケールの最大値」より小さくなければなりません。"
+    scale_value_must_not_be_negative: 値は負であってはなりません
     schedule: スケジュール
     schedule_email: スケジュールメール
     schedule_email_title: スケジュールメール
@@ -2545,10 +2559,13 @@ ja:
     score_definition_placeholder: このスコアレベルの定義を入力してください
     score_definitions: スコアの定義
     score_max: スコア・マックス
+    score_max_must_be_greater_than_score_min: スコアの上限は、スコアの下限よりも大きくなければなりません
     score_min: スコア最小値
+    score_min_must_be_less_than_score_max: スコアの下限はスコアの上限より小さくなければなりません
     score_must_be_in_between_min_and_max: スコアは%{min}と%{max}の間でなければなりません。
     score_not_applicable: スコアは適用されません
     score_range_info: スコア範囲：%{min} - %{max}
+    score_type: スコアの種類
     score_with_ai: AIで得点する
     scores_finalized: スコアは確定しており、変更することはできません
     scoring: 採点
@@ -3117,6 +3134,7 @@ ja:
     translated_with_ai_notice: AI翻訳
     translation_assistant_not_configured: 翻訳アシスタントが設定されていません
     translations:
+      import: 翻訳をインポートする
       title: 翻訳
     translations_export_failure_msg: 翻訳のエクスポート時のエラー
     translations_export_success_msg: 進行中の開発アクションをエクスポートする。

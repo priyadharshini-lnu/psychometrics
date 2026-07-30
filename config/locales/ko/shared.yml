@@ -176,6 +176,11 @@ ko:
     remove: 제거
     removed: 제거됨
     replace: 교체
+    reports_show_values_inside_bar: 막대 내부의 값 표시
+    reports_value_label_position: 값 레이블 위치
+    reports_value_label_position_center: 중앙
+    reports_value_label_position_left: 왼쪽
+    reports_value_label_position_right: 맞아요
     required: 필수
     reset: 초기화
     reset_password: 비밀번호 재설정

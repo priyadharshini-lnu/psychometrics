@@ -136,6 +136,8 @@ ja:
     no_audio_detected: 音声が検出されません。マイクが接続されており、正常に動作しているかご確認ください。
     pass: スキップ
     pause: 一時停止
+    pearson_timing_duration_minutes: 制限時間あり - %{duration} 分で完了
+    pearson_timing_untimed_duration: 制限時間なし - 所要時間は20～25分
     pending: 保留中
     personal_readiness: 個人の準備状況
     plan_text: 試験の全期間を見据えて計画を立ててください。試験開始後は、試験の種類によっては休憩が認められない場合があります。

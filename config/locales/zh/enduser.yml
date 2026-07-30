@@ -136,6 +136,8 @@ zh:
     no_audio_detected: 未检测到声音。请检查麦克风是否已连接且工作正常。
     pass: 跳过
     pause: 暂停
+    pearson_timing_duration_minutes: 限时 - %{duration} 分钟内完成
+    pearson_timing_untimed_duration: 不限时——完成需20-25分钟
     pending: 待定
     personal_readiness: 个人准备情况
     plan_text: 请为整个考试时长做好准备。考试开始后，根据考试类型的不同，可能不允许中途休息。

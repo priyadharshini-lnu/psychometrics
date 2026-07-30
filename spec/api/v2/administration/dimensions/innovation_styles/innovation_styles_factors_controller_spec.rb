@@ -111,5 +111,37 @@ RSpec.describe Api::V2::Administration::Dimensions::InnovationStyles::Innovation
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to have_key('data')
     end
+
+    it 'sorts by value regardless of default position ordering' do
+      value_two = create(
+        :innovation_styles_factor,
+        innovation_style: innovation_style,
+        factor: alpha_factor,
+        value: 2,
+        position: 2
+      )
+      value_three = create(
+        :innovation_styles_factor,
+        innovation_style: innovation_style,
+        factor: zeta_factor,
+        value: 3,
+        position: 1
+      )
+      value_five = create(
+        :innovation_styles_factor,
+        innovation_style: innovation_style,
+        factor: factor,
+        value: 5,
+        position: 3
+      )
+
+      get index_path, params: { sort: 'value' }
+
+      expect(response).to have_http_status(:ok)
+
+      response_ids = JSON.parse(response.body).fetch('data').map { |item| item.fetch('id').to_i }
+      expect(response_ids.index(value_two.id)).to be < response_ids.index(value_three.id)
+      expect(response_ids.index(value_three.id)).to be < response_ids.index(value_five.id)
+    end
   end
 end
