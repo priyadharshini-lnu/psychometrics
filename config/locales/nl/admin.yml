@@ -135,6 +135,7 @@ nl:
     application_settings_enable_url_whitelisting: Schakel URL-whitelisting in
     application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat
     application_settings_invalid_url_format: Ongeldige URL-indeling
+    application_settings_ip_address: IP-adres / CIDR-bereik
     application_settings_ip_addresses: IP-adressen / CIDR-bereiken
     application_settings_ip_deleted_successfully: IP-adres succesvol verwijderd
     application_settings_ip_description_placeholder: bijv. het kantoornetwerk of de productieserver

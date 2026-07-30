@@ -135,6 +135,7 @@ id:
     application_settings_enable_url_whitelisting: Aktifkan Daftar Putih URL
     application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid
     application_settings_invalid_url_format: Format URL tidak valid
+    application_settings_ip_address: Alamat IP / Rentang CIDR
     application_settings_ip_addresses: Alamat IP / Rentang CIDR
     application_settings_ip_deleted_successfully: Alamat IP telah dihapus dengan sukses
     application_settings_ip_description_placeholder: misalnya, jaringan kantor atau server produksi

@@ -135,6 +135,7 @@ ro:
     application_settings_enable_url_whitelisting: Activează includerea URL în lista albă
     application_settings_invalid_ip_format: Adresă IP sau format CIDR nevalid(ă)
     application_settings_invalid_url_format: Format URL nevalid
+    application_settings_ip_address: Adresă IP / Interval CIDR
     application_settings_ip_addresses: Adrese IP / Intervale CIDR
     application_settings_ip_deleted_successfully: Adresa IP a fost ștearsă cu succes
     application_settings_ip_description_placeholder: de exemplu, rețeaua de birou sau serverul de producție

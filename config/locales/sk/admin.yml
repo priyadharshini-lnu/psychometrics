@@ -135,6 +135,7 @@ sk:
     application_settings_enable_url_whitelisting: Povoliť bielu listinu URL adries
     application_settings_invalid_ip_format: Neplatná IP adresa alebo formát CIDR
     application_settings_invalid_url_format: Neplatný formát URL
+    application_settings_ip_address: Rozsah IP adries / CIDR
     application_settings_ip_addresses: IP adresy / rozsahy CIDR
     application_settings_ip_deleted_successfully: IP adresa bola úspešne odstránená
     application_settings_ip_description_placeholder: napr. kancelárska sieť alebo produkčný server

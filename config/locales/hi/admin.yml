@@ -135,6 +135,7 @@ hi:
     application_settings_enable_url_whitelisting: यूआरएल श्वेतसूचीकरण सक्षम करें
     application_settings_invalid_ip_format: अमान्य आईपी पता या सीआईडीआर प्रारूप
     application_settings_invalid_url_format: अमान्य यूआरएल प्रारूप
+    application_settings_ip_address: आईपी पता / सीआईडीआर रेंज
     application_settings_ip_addresses: आईपी पते / सीआईडीआर रेंज
     application_settings_ip_deleted_successfully: आईपी पता सफलतापूर्वक हटा दिया गया
     application_settings_ip_description_placeholder: उदाहरण के लिए, ऑफिस नेटवर्क या प्रोडक्शन सर्वर

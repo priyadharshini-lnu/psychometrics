@@ -135,6 +135,7 @@ sl:
     application_settings_enable_url_whitelisting: Omogoči seznam dovoljenih URL-jev
     application_settings_invalid_ip_format: Neveljaven IP-naslov ali format CIDR
     application_settings_invalid_url_format: Neveljavna oblika URL-ja
+    application_settings_ip_address: Območje IP-naslovov/CIDR
     application_settings_ip_addresses: IP-naslovi / CIDR-območja
     application_settings_ip_deleted_successfully: IP-naslov je bil uspešno izbrisan
     application_settings_ip_description_placeholder: npr. pisarniško omrežje ali produkcijski strežnik

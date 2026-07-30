@@ -135,6 +135,7 @@ ar:
     application_settings_enable_url_whitelisting: تفعيل قائمة عناوين URL المسموح بها
     application_settings_invalid_ip_format: عنوان IP أو تنسيق CIDR غير صالح
     application_settings_invalid_url_format: تنسيق عنوان URL غير صالح
+    application_settings_ip_address: نطاق عناوين IP / CIDR
     application_settings_ip_addresses: عناوين IP / نطاقات CIDR
     application_settings_ip_deleted_successfully: تم حذف عنوان IP بنجاح
     application_settings_ip_description_placeholder: على سبيل المثال، شبكة المكتب أو خادم الإنتاج

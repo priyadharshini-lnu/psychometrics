@@ -135,6 +135,7 @@ pt:
     application_settings_enable_url_whitelisting: Ativar lista de URLs permitidas
     application_settings_invalid_ip_format: Endereço IP ou formato CIDR inválido
     application_settings_invalid_url_format: Formato de URL inválido
+    application_settings_ip_address: Endereço IP / Intervalo CIDR
     application_settings_ip_addresses: Endereços IP / Intervalos CIDR
     application_settings_ip_deleted_successfully: O endereço IP foi eliminado com sucesso
     application_settings_ip_description_placeholder: por exemplo, rede do escritório ou servidor de produção

@@ -135,6 +135,7 @@ ru:
     application_settings_enable_url_whitelisting: Включить белый список URL-адресов
     application_settings_invalid_ip_format: Недопустимый IP-адрес или формат CIDR
     application_settings_invalid_url_format: Неверный формат URL-адреса
+    application_settings_ip_address: IP-адрес / Диапазон CIDR
     application_settings_ip_addresses: IP-адреса / диапазоны CIDR
     application_settings_ip_deleted_successfully: IP-адрес удален успешно
     application_settings_ip_description_placeholder: например, офисная сеть или производственный сервер

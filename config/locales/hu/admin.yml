@@ -135,6 +135,7 @@ hu:
     application_settings_enable_url_whitelisting: URL-engedélyezés engedélyezése
     application_settings_invalid_ip_format: Érvénytelen IP-cím vagy CIDR-formátum
     application_settings_invalid_url_format: Érvénytelen URL-formátum
+    application_settings_ip_address: IP-cím / CIDR-tartomány
     application_settings_ip_addresses: IP-címek / CIDR-tartományok
     application_settings_ip_deleted_successfully: Az IP-cím törlése sikeresen megtörtént
     application_settings_ip_description_placeholder: pl. irodai hálózat vagy termelési szerver

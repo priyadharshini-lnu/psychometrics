@@ -135,6 +135,7 @@ bg:
     application_settings_enable_url_whitelisting: Активиране на бял списък с URL адреси
     application_settings_invalid_ip_format: Невалиден IP адрес или CIDR формат
     application_settings_invalid_url_format: Невалиден формат на URL адреса
+    application_settings_ip_address: Диапазон на IP адреси / CIDR
     application_settings_ip_addresses: IP адреси / CIDR диапазони
     application_settings_ip_deleted_successfully: IP адресът беше изтрит успешно
     application_settings_ip_description_placeholder: например, офисна мрежа или производствен сървър

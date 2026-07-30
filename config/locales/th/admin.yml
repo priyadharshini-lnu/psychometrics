@@ -135,6 +135,7 @@ th:
     application_settings_enable_url_whitelisting: เปิดใช้งานการอนุญาต URL
     application_settings_invalid_ip_format: ที่อยู่ IP หรือรูปแบบ CIDR ไม่ถูกต้อง
     application_settings_invalid_url_format: รูปแบบ URL ไม่ถูกต้อง
+    application_settings_ip_address: ที่อยู่ IP / ช่วง CIDR
     application_settings_ip_addresses: ที่อยู่ IP / ช่วง CIDR
     application_settings_ip_deleted_successfully: ที่อยู่ IP ได้ถูกลบเรียบร้อยแล้ว
     application_settings_ip_description_placeholder: เช่น เครือข่ายสำนักงาน หรือเซิร์ฟเวอร์การผลิต

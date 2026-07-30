@@ -135,6 +135,7 @@ ko:
     application_settings_enable_url_whitelisting: URL 화이트리스트 활성화
     application_settings_invalid_ip_format: IP 주소 또는 CIDR 형식이 올바르지 않습니다.
     application_settings_invalid_url_format: 잘못된 URL 형식입니다
+    application_settings_ip_address: IP 주소/CIDR 범위
     application_settings_ip_addresses: IP 주소 / CIDR 범위
     application_settings_ip_deleted_successfully: IP 주소가 성공적으로 삭제되었습니다.
     application_settings_ip_description_placeholder: '예: 사무실 네트워크 또는 운영 서버'

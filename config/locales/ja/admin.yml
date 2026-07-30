@@ -135,6 +135,7 @@ ja:
     application_settings_enable_url_whitelisting: URLホワイトリストを有効にする
     application_settings_invalid_ip_format: IPアドレスまたはCIDR形式が不正です
     application_settings_invalid_url_format: 無効なURL形式
+    application_settings_ip_address: IPアドレス/CIDR範囲
     application_settings_ip_addresses: IPアドレス／CIDR範囲
     application_settings_ip_deleted_successfully: IPアドレスの削除に成功しました
     application_settings_ip_description_placeholder: 例：オフィスネットワークや本番サーバーなど

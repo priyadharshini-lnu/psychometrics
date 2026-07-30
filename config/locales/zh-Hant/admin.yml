@@ -135,6 +135,7 @@ zh-Hant:
     application_settings_enable_url_whitelisting: 啟用網址白名單
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
     application_settings_invalid_url_format: 無效的 URL 格式
+    application_settings_ip_address: IP位址/CIDR範圍
     application_settings_ip_addresses: IP 地址 / CIDR 范围
     application_settings_ip_deleted_successfully: IP地址已成功删除
     application_settings_ip_description_placeholder: 例如：办公网络或生产服务器

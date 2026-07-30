@@ -135,6 +135,7 @@ vi:
     application_settings_enable_url_whitelisting: Bật danh sách trắng URL
     application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ
     application_settings_invalid_url_format: Định dạng URL không hợp lệ
+    application_settings_ip_address: Địa chỉ IP / Dải CIDR
     application_settings_ip_addresses: Địa chỉ IP / Phạm vi CIDR
     application_settings_ip_deleted_successfully: Đã xóa địa chỉ IP thành công
     application_settings_ip_description_placeholder: 'ví dụ: Mạng văn phòng hoặc máy chủ sản xuất'
