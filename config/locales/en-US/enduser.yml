@@ -108,6 +108,10 @@ en-US:
     localstorage_fix_title: Local Storage is not enabled in your browser
     localstorage_not_enabled_detail: Local Storage is not enabled in your browser. Please ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_support: LocalStorage Enabled
+    login_sign_in_btn: Sign in
+    login_sign_up_link: Sign up
+    login_welcome_description: Sign in to your leadership assessment account
+    login_welcome_title: Welcome back
     magic_link_interstitial_description: For your security, we require you to confirm this sign-in. Automated systems cannot complete this step.
     magic_link_interstitial_title: To complete your sign-in, please click the button below.
     max_word_limit: Must be at most %{max} words
@@ -170,6 +174,7 @@ en-US:
     select_audio_device: Select Audio Device
     select_video_device: Select Video Device
     selected_count: Selected
+    signup_sign_in_link: Sign in
     skill_type: Skill Type
     speech_verification_error: An error occurred while verifying your speech. Please try again.
     speech_verification_failed: Your speech did not match the test phrase. Please try again and speak the phrase clearly.

@@ -4,29 +4,35 @@ import {
 } from 'react-router-dom'
 import ErrorModal from '~/components/ErrorModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
-import { MainMenu } from '~/components/MainMenu'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { AdminShell } from '~/components/AdminShell'
+import { PageLoadSpinner } from '~/glint'
 import routes from './routes'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 
 const { I18n } = window
 
-const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <title>{I18n.t('admin.meta_title')}</title>
-    <MainMenu />
-    <Outlet />
+const modals = (
+  <>
     <IncorrectResponseErrorModal />
     <SessionTimeoutModal />
     <DisplayExceptionModal />
     <ErrorModal />
-  </Suspense>
+  </>
+)
+
+// AppShell owns the shell and the routed page is its child — only glint's Sider can theme the rail.
+const Main: React.FC = () => (
+  <>
+    <title>{I18n.t('admin.meta_title')}</title>
+    <AdminShell>
+      {/* Boundary inside the shell so a route chunk load swaps only the page area, never the shell. */}
+      <Suspense fallback={<PageLoadSpinner size="large" />}>
+        <Outlet />
+      </Suspense>
+      {modals}
+    </AdminShell>
+  </>
 )
 
 export const router = createBrowserRouter([

@@ -2,23 +2,20 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Outlet, RouterProvider,
 } from 'react-router-dom'
-import { PortalMenu } from '~/components/MainMenu'
+import { AdminShell } from '~/components/AdminShell'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { PageLoadSpinner } from '~/glint'
 import { settings } from './settings'
 import { DashboardReport } from './routes/DashboardReport'
 
+// Boundary inside the shell so the fallback renders glint-themed and only the page area swaps.
 const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <PortalMenu />
-    <Outlet />
+  <AdminShell>
+    <Suspense fallback={<PageLoadSpinner size="large" />}>
+      <Outlet />
+    </Suspense>
     <IncorrectResponseErrorModal />
-  </Suspense>
+  </AdminShell>
 )
 
 export const router = createBrowserRouter([

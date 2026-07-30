@@ -122,6 +122,12 @@ en-US:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    appearance: Appearance
+    appearance_dark: Dark
+    appearance_dark_theme: Dark theme
+    appearance_light: Light
+    appearance_light_theme: Light theme
+    appearance_system: System
     application: Application
     application_add: Add Application
     application_name: Application Name
@@ -891,6 +897,7 @@ en-US:
     generated_value: Generated Value
     global_skills: Global Skills
     global_skills_disabled_by_client: Global Skills is disabled by client
+    go_back: Back
     grant_type_label: Grant Type
     grant_type_name: oauth_grant_type
     graphic: Graphic
@@ -3096,6 +3103,9 @@ en-US:
     text_danger: Text(danger)
     text_success: Text (success)
     text_warning: Text(warning)
+    themes:
+      marsh-dark: Marsh Dark
+      marsh-light: Marsh Light
     this_field_is_required: This field is required
     threesixity_advance_settings_campaign_template: Campaign Template
     threesixity_advance_settings_factors: Factors

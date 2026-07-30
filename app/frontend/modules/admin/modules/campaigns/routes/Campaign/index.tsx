@@ -1,7 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { createPortal } from 'react-dom'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import RouteList from '~/components/RouteList'
@@ -24,7 +23,6 @@ type Props = PropsFromRedux
 
 const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
   const { campaignId } = useParams() as { campaignId: string }
-  const node = document.getElementById('sub_navigation')
 
 
   return (
@@ -54,10 +52,7 @@ const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
           },
         ]}
       />
-      {node && createPortal(<Navigation
-        prefix={`${settings.urlPrefix}/${campaignId}`}
-        permissions={campaignPermissions}
-      />, node)}
+      <Navigation prefix={`${settings.urlPrefix}/${campaignId}`} permissions={campaignPermissions} />
       <section data-testid="admin_campaign_section">
         <RouteList
           routes={routes}

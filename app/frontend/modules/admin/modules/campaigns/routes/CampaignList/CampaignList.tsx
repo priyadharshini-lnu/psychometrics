@@ -13,6 +13,7 @@ import {
   Space,
 } from 'antd'
 import map from 'lodash/map'
+import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
@@ -163,7 +164,7 @@ const CampaignListComponent: React.FC<Props> = ({
             pagination={false}
             scroll={{ x: 'max-content' }}
             loading={isLoading}
-            sticky={{ offsetHeader: 50 }}
+            sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
           >
             <Column
               title={I18n.t('shared.id')}

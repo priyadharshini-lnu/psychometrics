@@ -1,9 +1,0 @@
-#global-navigation
-  #main_menu
-  #sub_navigation style="position: absolute; left:0;top:0;bottom:0"
-
-- unless @do_not_render_rails_menu
-  javascript [nonce=content_security_policy_nonce]:
-    window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
-
-  = vite_javascript_tag "entrypoints/admin/menu.jsx"

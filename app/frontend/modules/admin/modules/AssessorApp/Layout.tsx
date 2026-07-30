@@ -3,8 +3,8 @@ import { Layout as AntdLayout } from 'antd'
 import {
   createBrowserRouter, Outlet, RouterProvider,
 } from 'react-router-dom'
-import { PortalMenu } from '~/components/MainMenu'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { AdminShell } from '~/components/AdminShell'
+import { PageLoadSpinner } from '~/glint'
 import RouteList from '~/components/RouteList'
 import routes from './routes'
 import settings from './settings'
@@ -14,23 +14,20 @@ import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import ErrorModal from '~/components/ErrorModal'
 
 
+// Boundary inside the shell so the fallback renders glint-themed and only the page area swaps.
 const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <PortalMenu />
-    <AntdLayout.Content>
-      <Outlet />
-      <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-    </AntdLayout.Content>
+  <AdminShell>
+    <Suspense fallback={<PageLoadSpinner size="large" />}>
+      <AntdLayout.Content>
+        <Outlet />
+        <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+      </AntdLayout.Content>
+    </Suspense>
     <IncorrectResponseErrorModal />
     <DisplayExceptionModal />
     <SessionTimeoutModal />
     <ErrorModal />
-  </Suspense>
+  </AdminShell>
 )
 
 export const router = createBrowserRouter([

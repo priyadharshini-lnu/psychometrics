@@ -30,6 +30,9 @@ export const UserAvatar = ({
 }) => {
   const customLogo = window.PsyGlobalState?.clientContextData?.logo_url
 
+  // Kept for the sub-navigation, which still renders on a light surface.
+  const defaultLogo = collapsed ? logoSmall : logo
+
   return (
     <>
       <div className={cs(styles.logo, { [styles.small]: collapsed })}>
@@ -37,7 +40,7 @@ export const UserAvatar = ({
           ariaLabel={`${I18n.t('frontend.aria.back_to_dashboard')}`}
           href={currentUser.roleTitle === 'Assessor' ? '/assessors' : '/admin'}
         >
-          <img alt="Lighthouse logo" src={customLogo || (collapsed ? logoSmall : logo)} />
+          <img alt="Lighthouse logo" src={customLogo || defaultLogo} />
         </Link>
       </div>
     </>

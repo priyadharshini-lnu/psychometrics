@@ -25,7 +25,7 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
     } else {
       const {
         colorPrimary, colorWarning, colorError, colorPrimaryBg, colorText, colorSuccess, colorSuccessBg,
-        colorBgContainerDisabled, colorWhite,
+        colorBgContainerDisabled, colorWhite, colorSplit, colorTextSecondary, colorLink, colorLinkHover,
       } = token
       const colorPalette = generate(colorPrimary)
       const lightColorPalette = generate(colorPalette[0])
@@ -44,8 +44,14 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
         { varName: '--ant-success-color', value: colorSuccess },
         { varName: '--ant-success-color-bg', value: colorSuccessBg },
         { varName: '--ant-disabled-bg', value: colorBgContainerDisabled },
+        // Referenced by stylesheets but never written before — rules using them fell back to inherit.
+        { varName: '--ant-border-color-base', value: colorSplit },
+        { varName: '--ant-text-color-secondary', value: colorTextSecondary },
+        { varName: '--ant-link-color', value: colorLink },
+        { varName: '--ant-link-hover-color', value: colorLinkHover },
       ]
       const cssVarColors = [
+        { varName: '--brand-navy', value: '#061047' },
         { varName: '--grey-text', value: '#757575' },
         { varName: '--bright-green-bg', value: '#038731' },
         { varName: '--green-bg', value: '#00807D' },
@@ -57,5 +63,6 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
       ]
       addCssVars(rootElement, [...cssVarsFromToken, ...cssVarColors])
     }
-  }, [])
+    // token mirrors the ACTIVE theme; an empty dep list froze the vars at first paint. Rewrites are idempotent.
+  }, [token, cssVars, rootElement])
 }

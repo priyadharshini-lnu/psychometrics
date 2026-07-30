@@ -27,6 +27,7 @@ interface State {
   enable_recaptcha?: boolean,
   external_logout_redirect_enabled?: boolean,
   external_logout_url?: string
+  glint_ui?: boolean,
 }
 
 export const defaultState: State = {
@@ -45,6 +46,7 @@ export const defaultState: State = {
   disallow_password_login: false,
   enable_recaptcha: false,
   external_logout_redirect_enabled: false,
+  glint_ui: false,
 }
 
 export default createReducer({}, defaultState)

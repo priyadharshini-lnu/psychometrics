@@ -1529,6 +1529,7 @@ as: :simulation_progress_notification
               get :datasheet_for_assessor
             end
           end
+          jsonapi_resources :user_preferences
           jsonapi_resources :design_settings, only: %i[index update] do
             scope module: :design_settings do
               resource :uploads, only: %i[update]

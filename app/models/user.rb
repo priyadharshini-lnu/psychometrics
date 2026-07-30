@@ -143,6 +143,7 @@ class User < ApplicationRecord
   has_many :campaign_factor_values, dependent: :destroy
   has_many :bulk_reports
   has_many :user_saved_filters
+  has_many :user_preferences, dependent: :destroy
   has_many :temporary_uploads, dependent: :destroy
 
   has_one :security_setting, through: :project

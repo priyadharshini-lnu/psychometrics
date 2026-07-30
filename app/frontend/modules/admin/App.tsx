@@ -25,7 +25,8 @@ function App () {
       locale={antdLocale}
       direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
     >
-      <div style={{ background: 'white' }}>
+      {/* No background here — a literal white flashed before the themed shell painted. */}
+      <div>
         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <Provider store={store as any}>
           <ApiProvider client={client}>

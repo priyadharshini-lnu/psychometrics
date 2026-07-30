@@ -9,27 +9,17 @@ import { useMedia } from 'use-media'
 import {
   UserOutlined, LockOutlined, LogoutOutlined, DownOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import { fetchCurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
+import type { CurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
 
 const { I18n } = window
-
-type UserDetails = {
-  id: string
-  name: string
-  email: string
-  firstName: string
-  lastName: string
-  roleTitle: string
-  photo?: string
-}
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 interface Props {
   hideProfileLinks?: boolean
 }
 
 export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false }) => {
-  const [user, setUser] = useState<UserDetails | null>(null)
+  const [user, setUser] = useState<CurrentUserDetails | null>(null)
   const isMobile = useMedia({ maxWidth: 600 })
 
   const avatarSrc = useMemo(() => {
@@ -38,22 +28,7 @@ export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false 
   }, [user?.email])
 
   useEffect(() => {
-    fetch('/api/v2/administration/users/current_user_details', {
-      headers: { 'X-CSRF-Token': csrfToken() },
-    })
-      .then(res => res.json())
-      .then(({ data }) => {
-        const attr = data?.attributes || {}
-        setUser({
-          id: data.id,
-          name: attr.name,
-          email: attr.email,
-          firstName: attr.first_name,
-          lastName: attr.last_name,
-          roleTitle: attr.role_title,
-          photo: attr.photo,
-        })
-      })
+    fetchCurrentUserDetails().then(setUser)
   }, [])
 
   const handleLogout = () => {

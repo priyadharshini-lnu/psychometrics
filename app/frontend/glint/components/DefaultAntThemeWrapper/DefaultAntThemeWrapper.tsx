@@ -10,6 +10,7 @@ type Props = {
   children: React.ReactNode
 } & ConfigProviderProps
 
+// Not flag-switched: only the shell is glint-themed; unmigrated page content keeps this legacy theme.
 export const DefaultAntThemeWrapper:FC<Props> = ({ theme, children, ...props }) => (
   <ConfigProvider
     theme={{

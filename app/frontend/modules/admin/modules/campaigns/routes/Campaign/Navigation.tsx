@@ -16,7 +16,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
-import { Subnavigation } from '~/components/Subnavigation'
+import { useRegisterSubnav } from '~/components/AdminShell/SubnavContext'
 import { MenuItem } from '~/interfaces/Antd'
 
 
@@ -150,10 +150,7 @@ export const Navigation: FC<Props> = ({
   prefix, permissions,
 }) => {
   const { pathname } = useLocation()
-  return (
-    <Subnavigation
-      selectedKeys={[getSelected(pathname)]}
-      items={menuItems(permissions, routeUtils.getBasePath(prefix))}
-    />
-  )
+  // Publishes into the shell's rail rather than rendering its own; renders nothing itself.
+  useRegisterSubnav(menuItems(permissions, routeUtils.getBasePath(prefix)), [getSelected(pathname)])
+  return null
 }

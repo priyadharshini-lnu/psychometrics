@@ -44,6 +44,10 @@ export default defineConfig({
     outputFile: 'coverage/sonar-report.xml',
     globals: true,
     alias: {
+      // The tsconfig .d.ts alias is types-only, but tsconfigPaths applies it at runtime; use the built module.
+      '@thetalententerprise/glint/icons': new URL(
+        './node_modules/@thetalententerprise/glint/dist/icons.js', import.meta.url,
+      ).pathname,
       '*': './*',
       '@/': new URL('./app/frontend/', import.meta.url).pathname,
       '~/': new URL('./app/frontend/', import.meta.url).pathname,

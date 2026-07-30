@@ -58,6 +58,11 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@ant-design/icons-svg/-/icons-svg-4.4.2.tgz#ed2be7fb4d82ac7e1d45a54a5b06d6cecf8be6f6"
   integrity sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==
 
+"@ant-design/icons-svg@^4.5.0":
+  version "4.5.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@ant-design/icons-svg/-/icons-svg-4.5.0.tgz#7b1c567e489840d747f211d3688949bcba363ad2"
+  integrity sha512-1BTUFyKPTBZ53MuTP8s0k5SFEXL7o3VHEOwLgzaoWKwnBeqIcqUtVshc4SKzhI6uACfqhJqBwBUE9FsWR3uULA==
+
 "@ant-design/icons@^6.0.0", "@ant-design/icons@^6.1.0":
   version "6.1.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@ant-design/icons/-/icons-6.1.0.tgz#97cc14a3c0528b8e2b37f41f232b019f2ca38c2c"
@@ -66,6 +71,16 @@
     "@ant-design/colors" "^8.0.0"
     "@ant-design/icons-svg" "^4.4.0"
     "@rc-component/util" "^1.3.0"
+    clsx "^2.1.1"
+
+"@ant-design/icons@^6.3.2":
+  version "6.3.2"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@ant-design/icons/-/icons-6.3.2.tgz#8291dffc53003db9a5df59f80ed758473cd5c8df"
+  integrity sha512-B6O5a5XJ4wjtNOfZejXYwHW5zvKV5gYkjGf11dHGLEbKn0ABDGndo41+gfIiXyTFhvESj4XTotuud33mUFid0g==
+  dependencies:
+    "@ant-design/colors" "^8.0.1"
+    "@ant-design/icons-svg" "^4.5.0"
+    "@rc-component/util" "^1.11.0"
     clsx "^2.1.1"
 
 "@ant-design/pro-components@^3.1.0-0":
@@ -1605,7 +1620,7 @@
 
 "@mediapipe/tasks-vision@^0.10.34":
   version "0.10.34"
-  resolved "https://registry.yarnpkg.com/@mediapipe/tasks-vision/-/tasks-vision-0.10.34.tgz#ba90710a9396b795a7f52435a3c1fea71a439585"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@mediapipe/tasks-vision/-/tasks-vision-0.10.34.tgz#ba90710a9396b795a7f52435a3c1fea71a439585"
   integrity sha512-KFGyhDsjJ+9WUMcMfjTOpcEp3LJNS3KwC7BfvKrCYELn/7G/5kmwnU7z6Spps+iWQoTGL8xW8i68r65OTa3DwA==
 
 "@microsoft/api-extractor-model@7.33.6":
@@ -2124,6 +2139,14 @@
   dependencies:
     is-mobile "^5.0.0"
     react-is "^18.2.0"
+
+"@rc-component/util@^1.11.0":
+  version "1.12.0"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@rc-component/util/-/util-1.12.0.tgz#58e453585810bcb8a35ff1aafd5e01187457b86f"
+  integrity sha512-AEjPL8JVdohIITaiXokyjL9WQ6tKWWjAYK9QU16tGNE9JaQABBQy+hA4H2Lup5MgXy9yY3iLrbZJheuU13hTdQ==
+  dependencies:
+    is-mobile "^5.0.0"
+    react-is "^19.2.7"
 
 "@rc-component/util@^1.3.0", "@rc-component/util@^1.4.0":
   version "1.6.0"
@@ -2929,6 +2952,14 @@
   version "14.5.2"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
+
+"@thetalententerprise/glint@0.44.5":
+  version "0.44.5"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/glint/0.44.5/29cea2895d1ba5f47d2e15c2ff119141e4c4ddba#29cea2895d1ba5f47d2e15c2ff119141e4c4ddba"
+  integrity sha512-qklWn8QIN6kUw8xPR6P8EG5zUjVWQ9gBfHw98vIMZAkicCIpvaD96SPbk1esL3pMl/BvwrJiosN1ivd9Eb03MA==
+  dependencies:
+    "@ant-design/colors" "^8.0.1"
+    "@ant-design/icons" "^6.3.2"
 
 "@thetalententerprise/green-audio-player@2.0.0":
   version "2.0.0"
@@ -7708,7 +7739,7 @@ lodash.throttle@^4.1.1:
 
 lodash@^4.17.15, lodash@^4.17.21, lodash@^4.18.1, lodash@~4.18.1:
   version "4.18.1"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.18.1.tgz#ff2b66c1f6326d59513de2407bf881439812771c"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/lodash/-/lodash-4.18.1.tgz#ff2b66c1f6326d59513de2407bf881439812771c"
   integrity sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.4.0:
@@ -9377,6 +9408,11 @@ react-is@^18.2.0:
   version "18.2.0"
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
+
+react-is@^19.2.7:
+  version "19.2.8"
+  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/react-is/-/react-is-19.2.8.tgz#09826f9fbc187bc668e3e5c62edc001f804d5018"
+  integrity sha512-s5un28nYxKJw5gvUHyW5PCC28CvBqLu9r3cWgzHT4Vo/5fqqkFcdRYsGcKf50WMPpjjFZS5d76fn3YCo2njKwQ==
 
 react-layout-kit@^1.9.2:
   version "1.9.2"
