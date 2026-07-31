@@ -8,6 +8,7 @@ import { getFeatures } from '~/core/config'
 import type { RootState } from '~/modules/admin/core/rootReducers'
 import { closeSubmenu, openSubmenu } from '~/modules/admin/core/ui/menu'
 import { useSubnav } from './SubnavContext'
+import { isOwnedPath } from './ownedPaths'
 
 const { I18n } = window
 
@@ -74,7 +75,7 @@ const activeKeyFor = (pathname: string): string | undefined => (
   ROUTE_KEYS.find(([pattern]) => pattern.test(pathname))?.[1]
 )
 
-export const useAdminNav = (): AppShellNav => {
+export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const links: Permissions = useSelector((state: RootState) => state.ui.menu.links)
@@ -103,10 +104,10 @@ export const useAdminNav = (): AppShellNav => {
       : links.clients
     const clientsLabel = clientContext ? I18n.t('admin.projects') : I18n.t('admin.clients')
 
-    // A route the SPA owns is pushed; anything Rails still renders is a full load.
+    // Several apps mount this shell, each with its own router — only a path that router owns can be pushed.
     const go = (path?: string) => () => {
       if (!path) return
-      if (path.startsWith('/admin/')) navigate(path)
+      if (isOwnedPath(path, ownedPathPrefixes)) navigate(path)
       else window.location.href = path
     }
 
@@ -274,5 +275,5 @@ export const useAdminNav = (): AppShellNav => {
       openKeys,
       onOpenChange: (keys: string[]) => setOpenKeys(keys),
     }
-  }, [pathname, links, features, navigate, openKeys, hasSubmenu, showSubmenu, subnav, dispatch])
+  }, [pathname, links, features, navigate, ownedPathPrefixes, openKeys, hasSubmenu, showSubmenu, subnav, dispatch])
 }

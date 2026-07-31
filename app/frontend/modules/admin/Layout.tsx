@@ -12,6 +12,8 @@ import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 
 const { I18n } = window
 
+const OWNED_PATH_PREFIXES = ['/admin']
+
 const modals = (
   <>
     <IncorrectResponseErrorModal />
@@ -25,7 +27,7 @@ const modals = (
 const Main: React.FC = () => (
   <>
     <title>{I18n.t('admin.meta_title')}</title>
-    <AdminShell>
+    <AdminShell ownedPathPrefixes={OWNED_PATH_PREFIXES}>
       {/* Boundary inside the shell so a route chunk load swaps only the page area, never the shell. */}
       <Suspense fallback={<PageLoadSpinner size="large" />}>
         <Outlet />

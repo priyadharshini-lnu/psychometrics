@@ -1,12 +1,15 @@
 import { FC, ReactNode } from 'react'
 import { connect, ConnectedProps, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { AppShell, useSiderAppearance } from '@thetalententerprise/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { triggerCollapse } from '~/modules/admin/core/ui/menu'
 import { AdminTheme } from './AdminTheme'
 import { useAdminNav } from './useAdminNav'
 import { useSiderWidth } from './useSiderWidth'
+import { useSiderCollapsed } from './useSiderCollapsed'
 import { SubnavProvider } from './SubnavContext'
+import { OwnedPathsProvider, useIsOwnedPath } from './ownedPaths'
 import { AdminTopBarStart, AdminTopBarEnd } from './AdminTopBar'
 import MarshLogo from '~/assets/marsh-logo.svg?react'
 import MarshMark from '~/assets/marsh-mark.svg?react'
@@ -19,31 +22,45 @@ const SIDER_WIDTH = '280px'
 // The shell top bar's rendered height (paddingSM x2 + controlHeightLG + border) — sticky table headers offset by this.
 export const TOP_BAR_STICKY_OFFSET = 65
 
+const ADMIN_HOME = '/admin'
+
+// Every user gets the profile links, so only a permission-gated entry says this shell belongs to an admin.
+// Key names track Administration::NavigationLinksSerializer; its spec pins them literally.
+const ADMIN_MENU_KEYS = ['dashboards', 'clients', 'users']
+
+/** Where the logo goes: an assessor-only user has no admin menu entries, so they land on their own dashboard. */
+export const brandHomePath = (links: Record<string, string>): string => (
+  ADMIN_MENU_KEYS.some(key => links[key]) ? ADMIN_HOME : (links.assessorDashboard || ADMIN_HOME)
+)
+
 // A component so useSiderAppearance runs inside the theme provider (AppShell calls brand from within Sider).
 const AdminBrand: FC<{ collapsed: boolean }> = ({ collapsed }) => {
   const appearance = useSiderAppearance()
+  const links = useSelector((state: RootState) => state.ui.menu.links)
+  const isOwned = useIsOwnedPath()
 
-  return (
-    <a
-      href="/admin"
-      aria-label={I18n.t('frontend.aria.back_to_dashboard')}
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        color: appearance === 'dark' ? 'var(--white-bg)' : 'var(--brand-navy)',
-      }}
-    >
-      {collapsed ? (
-        <MarshMark role="img" aria-label="Marsh" style={{ blockSize: '1.875rem', inlineSize: 'auto' }} />
-      ) : (
-        <MarshLogo
-          role="img"
-          aria-label="Marsh"
-          style={{ blockSize: '1.875rem', inlineSize: 'auto', maxInlineSize: '100%' }}
-        />
-      )}
-    </a>
+  const home = brandHomePath(links)
+  const label = I18n.t('frontend.aria.back_to_dashboard')
+  const style = {
+    display: 'flex',
+    justifyContent: 'center',
+    color: appearance === 'dark' ? 'var(--white-bg)' : 'var(--brand-navy)',
+  }
+  const mark = collapsed ? (
+    <MarshMark role="img" aria-label="Marsh" style={{ blockSize: '1.875rem', inlineSize: 'auto' }} />
+  ) : (
+    <MarshLogo
+      role="img"
+      aria-label="Marsh"
+      style={{ blockSize: '1.875rem', inlineSize: 'auto', maxInlineSize: '100%' }}
+    />
   )
+
+  if (isOwned(home)) {
+    return <Link to={home} aria-label={label} style={style}>{mark}</Link>
+  }
+
+  return <a href={home} aria-label={label} style={style}>{mark}</a>
 }
 
 // The product wordmark, pinned under the nav; the theme's sans at its thinnest.
@@ -82,6 +99,8 @@ type Props = PropsFromRedux & {
   /** Rendered in the top bar's inline-end slot (notifications, profile). */
   topBarEnd?: ReactNode
   topBarStart?: ReactNode
+  /** Paths under these prefixes are pushed to the mounting app's router; everything else is a full page load. */
+  ownedPathPrefixes?: string[]
 }
 
 // The admin shell on glint's AppShell; the rail's theme is why it cannot be themed from outside.
@@ -91,6 +110,7 @@ const AdminShellComponent: FC<Props> = ({
   children,
   topBarEnd,
   topBarStart,
+  ownedPathPrefixes,
 }) => (
   // ShellBody sits inside AdminTheme so preference-reading hooks mount behind its gate.
   <AdminTheme>
@@ -99,6 +119,7 @@ const AdminShellComponent: FC<Props> = ({
       triggerCollapse={triggerCollapse}
       topBarEnd={topBarEnd}
       topBarStart={topBarStart}
+      ownedPathPrefixes={ownedPathPrefixes}
     >
       {children}
     </ShellBody>
@@ -111,9 +132,11 @@ const ShellBody: FC<Props> = ({
   children,
   topBarEnd,
   topBarStart,
+  ownedPathPrefixes,
 }) => {
-  const nav = useAdminNav()
+  const nav = useAdminNav(ownedPathPrefixes)
   const { width, save } = useSiderWidth(SIDER_WIDTH)
+  const { collapsed: initialCollapsed, save: saveCollapsed } = useSiderCollapsed(collapsed)
   const showSubmenu = useSelector((state: RootState) => state.ui.menu.showSubmenu)
 
   return (
@@ -126,8 +149,9 @@ const ShellBody: FC<Props> = ({
       navKey={showSubmenu ? 'subnav' : 'main'}
       topBarStart={topBarStart ?? <AdminTopBarStart />}
       topBarEnd={topBarEnd ?? <AdminTopBarEnd />}
-      defaultCollapsed={collapsed}
-      onCollapsedChange={() => triggerCollapse()}
+      defaultCollapsed={initialCollapsed}
+      // Only the user's own toggle reaches here, so this is the one collapse worth storing.
+      onCollapsedChange={(next) => { saveCollapsed(next); triggerCollapse() }}
       collapseLabel={I18n.t('frontend.aria.collapse_menu')}
       expandLabel={I18n.t('frontend.aria.expand_menu')}
       skipToContentLabel={I18n.t('frontend.aria.skip_to_content', { defaultValue: 'Skip to content' })}
@@ -141,9 +165,11 @@ const ShellBody: FC<Props> = ({
 
 const ConnectedAdminShell = connecter(AdminShellComponent)
 
-// Provider sits above the shell so routed pages can publish their own nav into the rail.
-export const AdminShell: FC<Omit<Props, keyof PropsFromRedux>> = props => (
-  <SubnavProvider><ConnectedAdminShell {...props} /></SubnavProvider>
+// Providers sit above the shell so routed pages can publish their own nav and read which paths the router owns.
+export const AdminShell: FC<Omit<Props, keyof PropsFromRedux>> = ({ ownedPathPrefixes, ...props }) => (
+  <OwnedPathsProvider prefixes={ownedPathPrefixes}>
+    <SubnavProvider><ConnectedAdminShell ownedPathPrefixes={ownedPathPrefixes} {...props} /></SubnavProvider>
+  </OwnedPathsProvider>
 )
 
 export default AdminShell

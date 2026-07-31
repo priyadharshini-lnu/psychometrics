@@ -13,6 +13,7 @@ import Messages from './routes/Messages'
 import { AIArtifacts } from './routes/AIArtifacts'
 
 // Boundary inside the shell so the fallback renders glint-themed and only the page area swaps.
+// No ownedPathPrefixes: this router owns only the campaign subtree, so every main-menu target needs a full load.
 const Main: React.FC = () => (
   <AdminShell>
     <Suspense fallback={<PageLoadSpinner size="large" />}>
