@@ -1,4 +1,5 @@
 export const PSYCHOMETRIC = 'psychometric'
+export const MICROSITE = 'microsite'
 export const ORG_SURVEYS = 'organisational'
 export const CASE_STUDIES = 'case_study'
 export const HOGAN = 'hogan'

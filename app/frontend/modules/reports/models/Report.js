@@ -6,6 +6,7 @@ import {
   PSYCHOMETRIC, HOGAN, THREESIXTY, AGILE, SAVILLE,
   ORG_SURVEYS, CASE_STUDIES, PEARSON,
   ASSESSOR_FORM,
+  MICROSITE,
 } from '~/modules/reports/models/Assessment'
 import Filter from './Filter'
 
@@ -26,6 +27,11 @@ const BASE_FONT_SIZE = 14
 
 export const SOURCE_TYPES = {
   [ASSESSOR_FORM]: [
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [MICROSITE]: [
+    { value: 'Question', label: 'Question', condition: false },
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },
   ],
