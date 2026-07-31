@@ -50,7 +50,7 @@ const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS } = constants
 const { useToken } = theme
 
 const SplitSpace: React.FC<SpaceProps> = props => (
-  <Space separator={<Divider type="vertical" />} size={4} {...props} />
+  <Space separator={<Divider orientation="vertical" />} size={4} {...props} />
 )
 
 export const DesignPreview: React.FC<Props> = ({ config }) => {

@@ -9,7 +9,7 @@ type Props = {
   message: string | ReactElement,
   open: boolean
   onConfirm: () => void
-  onCancel?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
+  onCancel?: (e: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement>) => void
   children?: ReactElement
   close: () => void
 }
@@ -27,7 +27,7 @@ export const ConfirmationModal: FC<Props> = ({
     onConfirm()
     close()
   }
-  const handleCancel = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const handleCancel = (e: React.MouseEvent<HTMLElement, MouseEvent> | React.KeyboardEvent<HTMLElement>) => {
     onCancel && onCancel(e)
     close()
   }

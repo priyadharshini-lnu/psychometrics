@@ -334,7 +334,7 @@ const BrowserCompatibilityComponent = ({ onPrev, onNext, fetchCampaign }) => {
           <Spin
             className="justify-center items-center"
             style={{ width: '100%', height: '100%', display: 'flex' }}
-            tip={I18n.t('enduser.checking_browser_compatibility')}
+            description={I18n.t('enduser.checking_browser_compatibility')}
           />
         </Flex>
       )}

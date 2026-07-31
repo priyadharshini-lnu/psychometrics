@@ -7,35 +7,30 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       class="m-4"
     >
       <span
-        class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+        class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
       >
         <strong>
           Answer type
         </strong>
       </span>
       <div
-        class="ant-select ant-select-sm ant-select-outlined w-100 css-var-root ant-select-css-var css-dev-only-do-not-override-p45i5k ant-select-single ant-select-show-arrow"
+        class="ant-select ant-select-sm ant-select-outlined w-100 css-var-root ant-select-css-var css-dev-only-do-not-override-ry7cab ant-select-single ant-select-show-arrow"
       >
         <div
-          class="ant-select-content"
+          class="ant-select-content ant-select-content-has-value"
+          title="Single answer"
         >
-          <div
-            class="ant-select-content-value"
-            style="visibility: visible;"
-            title="Single answer"
-          >
-            Single answer
-          </div>
+          Single answer
           <input
             aria-autocomplete="list"
             aria-expanded="false"
             aria-haspopup="listbox"
-            autocomplete="off"
+            autocomplete="new-password"
             class="ant-select-input"
             id="test-id"
             readonly=""
             role="combobox"
-            type="search"
+            type="text"
             value=""
           />
         </div>
@@ -65,23 +60,23 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </div>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-p45i5k css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-ry7cab css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
       role="separator"
     />
     <div
-      class="ant-space css-dev-only-do-not-override-p45i5k ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+      class="ant-space css-dev-only-do-not-override-ry7cab ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small css-var-root"
     >
       <div
         class="ant-space-item"
       >
         <div
-          class="ant-space css-dev-only-do-not-override-p45i5k ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4 css-var-root"
+          class="ant-space css-dev-only-do-not-override-ry7cab ant-space-vertical ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4 css-var-root"
         >
           <div
             class="ant-space-item"
           >
             <span
-              class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+              class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
             >
               <strong>
                 No. of choices
@@ -92,13 +87,13 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
             class="ant-space-item"
           >
             <div
-              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle css-dev-only-do-not-override-p45i5k css-var-root"
+              class="ant-row ant-row-no-wrap ant-row-space-between ant-row-middle css-dev-only-do-not-override-ry7cab css-var-root"
             >
               <div
-                class="ant-col css-dev-only-do-not-override-p45i5k css-var-root"
+                class="ant-col css-dev-only-do-not-override-ry7cab css-var-root"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -124,19 +119,19 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                 </button>
               </div>
               <div
-                class="ant-col ant-col-8 css-dev-only-do-not-override-p45i5k css-var-root"
+                class="ant-col ant-col-8 css-dev-only-do-not-override-ry7cab css-var-root"
               >
                 <input
-                  class="ant-input ant-input-sm css-dev-only-do-not-override-p45i5k ant-input-outlined ta-c css-var-root ant-input-css-var"
+                  class="ant-input ant-input-sm css-dev-only-do-not-override-ry7cab ant-input-outlined ta-c css-var-root ant-input-css-var"
                   type="text"
                   value="2"
                 />
               </div>
               <div
-                class="ant-col css-dev-only-do-not-override-p45i5k css-var-root"
+                class="ant-col css-dev-only-do-not-override-ry7cab css-var-root"
               >
                 <button
-                  class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm"
+                  class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm"
                   type="button"
                 >
                   <span
@@ -172,13 +167,13 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
         class="ant-space-item"
       >
         <div
-          class="ant-space css-dev-only-do-not-override-p45i5k ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4 css-var-root"
+          class="ant-space css-dev-only-do-not-override-ry7cab ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ms-4 me-4 css-var-root"
         >
           <div
             class="ant-space-item"
           >
             <button
-              class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
+              class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-primary ant-btn-color-primary ant-btn-variant-solid"
               type="button"
             >
               <span
@@ -212,17 +207,15 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
         class="ant-space-item"
       >
         <label
-          class="ant-checkbox-wrapper ms-4 me-4 css-var-root ant-checkbox-css-var css-dev-only-do-not-override-p45i5k"
+          class="ant-checkbox-wrapper ms-4 me-4 css-var-root ant-checkbox-css-var css-dev-only-do-not-override-ry7cab"
         >
           <span
-            class="ant-checkbox ant-wave-target css-dev-only-do-not-override-p45i5k"
+            class="ant-checkbox ant-wave-target css-dev-only-do-not-override-ry7cab"
           >
             <input
               class="ant-checkbox-input"
               type="checkbox"
-            />
-            <span
-              class="ant-checkbox-inner"
+              value=""
             />
           </span>
           <span
@@ -239,18 +232,18 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           class="ms-4 me-4"
         >
           <span
-            class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+            class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
           >
             <strong>
               Orientation
             </strong>
           </span>
           <div
-            class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+            class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
             role="radiogroup"
           >
             <label
-              class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+              class="ant-radio-wrapper ant-radio-wrapper-checked css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
             >
               <span
                 class="ant-radio ant-wave-target ant-radio-checked"
@@ -262,9 +255,6 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                   type="radio"
                   value="Vertical"
                 />
-                <span
-                  class="ant-radio-inner"
-                />
               </span>
               <span
                 class="ant-radio-label"
@@ -273,7 +263,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
               </span>
             </label>
             <label
-              class="ant-radio-wrapper css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+              class="ant-radio-wrapper css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
             >
               <span
                 class="ant-radio ant-wave-target"
@@ -283,9 +273,6 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
                   name="test-id"
                   type="radio"
                   value="Horizontal"
-                />
-                <span
-                  class="ant-radio-inner"
                 />
               </span>
               <span
@@ -299,24 +286,22 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </div>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-p45i5k css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-ry7cab css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
       role="separator"
     />
     <div
       class="ms-4 me-4"
     >
       <label
-        class="ant-checkbox-wrapper css-var-root ant-checkbox-css-var css-dev-only-do-not-override-p45i5k"
+        class="ant-checkbox-wrapper css-var-root ant-checkbox-css-var css-dev-only-do-not-override-ry7cab"
       >
         <span
-          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-p45i5k"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-ry7cab"
         >
           <input
             class="ant-checkbox-input"
             type="checkbox"
-          />
-          <span
-            class="ant-checkbox-inner"
+            value=""
           />
         </span>
         <span
@@ -327,24 +312,22 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       </label>
     </div>
     <div
-      class="ant-divider css-dev-only-do-not-override-p45i5k css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
+      class="ant-divider css-dev-only-do-not-override-ry7cab css-var-root ant-divider-horizontal ant-divider-rail mt-4 mb-4"
       role="separator"
     />
     <section
       class="ms-4 me-4 mb-4"
     >
       <label
-        class="ant-checkbox-wrapper mt-2 css-var-root ant-checkbox-css-var css-dev-only-do-not-override-p45i5k"
+        class="ant-checkbox-wrapper mt-2 css-var-root ant-checkbox-css-var css-dev-only-do-not-override-ry7cab"
       >
         <span
-          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-p45i5k"
+          class="ant-checkbox ant-wave-target css-dev-only-do-not-override-ry7cab"
         >
           <input
             class="ant-checkbox-input"
             type="checkbox"
-          />
-          <span
-            class="ant-checkbox-inner"
+            value=""
           />
         </span>
         <span
@@ -358,18 +341,18 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
       class="ms-4 me-4 mb-4"
     >
       <span
-        class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+        class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
       >
         <strong>
           Validation type
         </strong>
       </span>
       <div
-        class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+        class="ant-radio-group ant-radio-group-outline mt-2 css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
         role="radiogroup"
       >
         <label
-          class="ant-radio-wrapper css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+          class="ant-radio-wrapper css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
         >
           <span
             class="ant-radio ant-wave-target"
@@ -380,9 +363,6 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
               type="radio"
               value="None"
             />
-            <span
-              class="ant-radio-inner"
-            />
           </span>
           <span
             class="ant-radio-label"
@@ -391,7 +371,7 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
           </span>
         </label>
         <label
-          class="ant-radio-wrapper css-dev-only-do-not-override-p45i5k css-var-root ant-radio-css-var"
+          class="ant-radio-wrapper css-dev-only-do-not-override-ry7cab css-var-root ant-radio-css-var"
         >
           <span
             class="ant-radio ant-wave-target"
@@ -402,15 +382,12 @@ exports[`Assessment builder - MultipleChoice - Property panel > Should match sna
               type="radio"
               value="Custom"
             />
-            <span
-              class="ant-radio-inner"
-            />
           </span>
           <span
             class="ant-radio-label"
           >
             <div
-              class="ant-space css-dev-only-do-not-override-p45i5k ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
+              class="ant-space css-dev-only-do-not-override-ry7cab ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small css-var-root"
             >
               <div
                 class="ant-space-item"

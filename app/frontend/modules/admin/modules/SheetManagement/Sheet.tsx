@@ -187,7 +187,7 @@ const SheetComponent: FC<Props> = ({
               parentResourceId={parentResourceId}
               sheetType={sheetType}
             />
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
             <Input.Search
               placeholder={I18n.t(
                 'admin.sheets_list_header_search_record',

@@ -16,34 +16,28 @@
 
 .tte-text-checkbox {
   :global {
-
-    .ant-checkbox-inner{
-      padding: 10px;
+    // antd 6.5: the box is .ant-checkbox itself, the tick is its ::after, the label span is .ant-checkbox-label
+    .ant-checkbox-wrapper {
+      position: relative;
+    }
+    .ant-checkbox {
       border-radius: 50%;
       width: 28px;
       height: 28px;
     }
-    .ant-checkbox-checked {
-      &::after{
-        border-radius: 12px;
-      }
-      .ant-checkbox-inner {
-        &::after {
-          display: none;
-        }
-      }
+    .ant-checkbox-checked::after {
+      display: none;
     }
-    .ant-checkbox + span {
-      width: 28px;
-      height: 30px;
-      padding: 0;
+    .ant-checkbox-label {
       position: absolute;
+      inset: 0;
+      padding: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .ant-checkbox-wrapper-checked{
-      .ant-checkbox + span {
+    .ant-checkbox-wrapper-checked {
+      .ant-checkbox-label {
         color: @white;
       }
     }

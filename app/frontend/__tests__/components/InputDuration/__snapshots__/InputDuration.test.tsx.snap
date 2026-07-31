@@ -3,10 +3,10 @@
 exports[`should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ant-flex css-dev-only-do-not-override-p45i5k css-var-root ant-flex-align-stretch ant-flex-vertical"
+    class="ant-flex css-dev-only-do-not-override-ry7cab css-var-root ant-flex-align-stretch ant-flex-vertical"
   >
     <input
-      class="ant-input css-dev-only-do-not-override-p45i5k ant-input-outlined user-defined-class css-var-root ant-input-css-var"
+      class="ant-input css-dev-only-do-not-override-ry7cab ant-input-outlined user-defined-class css-var-root ant-input-css-var"
       placeholder="Enter as 4d 3h 2m 1s"
       style="z-index: initial;"
       type="text"

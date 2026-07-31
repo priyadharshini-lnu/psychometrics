@@ -153,7 +153,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
         aria-live="polite"
         aria-label={I18n.t('idp.development_actions.generating_development_actions')}
         spinning={isLoading}
-        tip={I18n.t('idp.development_actions.generating_development_actions')}
+        description={I18n.t('idp.development_actions.generating_development_actions')}
         size="large"
       >
         <Flex

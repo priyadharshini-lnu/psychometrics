@@ -97,13 +97,21 @@ describe('Add button should be ', () => {
     const startTimePicker = screen.getByPlaceholderText(/to/i)
     const endTimePicker = screen.getByPlaceholderText(/from/i)
 
+    // each picker owns its clear button, so resolve it from the picker root
+    const clearButtonFor = (picker: HTMLElement) => {
+      const clear = picker.closest('.ant-picker')?.querySelector<HTMLElement>('.ant-picker-clear')
+      if (!clear) throw new Error('picker clear button not found')
+      return clear
+    }
+
     await act(async () => {
       await user.hover(startTimePicker).then(async () => {
-        const close = screen.getAllByRole('img')[1]
+        const close = clearButtonFor(startTimePicker)
+        close.style['pointer-events'] = 'auto'
         await user.click(close)
       })
       await user.hover(endTimePicker).then(async () => {
-        const close = screen.getAllByRole('img')[1]
+        const close = clearButtonFor(endTimePicker)
         close.style['pointer-events'] = 'auto'
         await user.click(close)
       })
