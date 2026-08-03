@@ -1,54 +1,32 @@
 import {
   FC, ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState,
 } from 'react'
-import {
-  GlintThemeProvider,
-  MARSH_LIGHT,
-  MARSH_DARK,
-  THEME_CATALOG,
-} from '@thetalententerprise/glint'
-import type { GlintMode, GlintThemeTokens } from '@thetalententerprise/glint'
-import { isRtl } from '~/utils/locales'
+import type { GlintMode } from '@thetalententerprise/glint'
 import { useSetCssVars } from '~/hooks/useSetCssVars'
 import { THEME_CATEGORY, THEME_CONFIG_KEY, useThemePreference } from './useThemePreference'
 import { fetchCurrentUserDetails, findPreference } from './currentUserDetails'
 import type { CurrentUserDetails } from './currentUserDetails'
-// Brand faces + Material Symbols; without it every <Icon> renders its ligature text.
-import '@thetalententerprise/glint/fonts.css'
+import {
+  DARK_THEMES,
+  DEFAULT_DARK,
+  DEFAULT_LIGHT,
+  DEFAULT_THEME_CHOICE,
+  GlintAdminTheme,
+  LIGHT_THEMES,
+} from './GlintAdminTheme'
+import type { ThemeChoice } from './GlintAdminTheme'
 
-const { antdLocale, I18n } = window
+export {
+  LIGHT_THEMES, DARK_THEMES, THEME_LABELS, DEFAULT_LIGHT, DEFAULT_DARK,
+} from './GlintAdminTheme'
+export type { ThemeChoice } from './GlintAdminTheme'
 
-// Glass reads as haze over dense admin tables; the participant side still ships it.
-const HIDDEN_THEME_KEYS = ['glass-light', 'glass-dark']
-
-const byAppearance = (appearance: 'light' | 'dark'): Record<string, GlintThemeTokens> => Object.fromEntries(
-  THEME_CATALOG
-    .filter(entry => entry.appearance === appearance && !HIDDEN_THEME_KEYS.includes(entry.key))
-    .map(entry => [entry.key, entry.theme]),
-)
-
-export const LIGHT_THEMES: Record<string, GlintThemeTokens> = byAppearance('light')
-export const DARK_THEMES: Record<string, GlintThemeTokens> = byAppearance('dark')
-
-/** Human labels for the catalog, keyed the same way. */
-export const THEME_LABELS: Record<string, string> = Object.fromEntries(
-  THEME_CATALOG.map(entry => [entry.key, entry.name]),
-)
-
-const DEFAULT_LIGHT = 'marsh-light'
-const DEFAULT_DARK = 'marsh-dark'
 const MODES: GlintMode[] = ['system', 'light', 'dark']
 
 export const THEME_SWITCHER_ENABLED = window.PsyGlobalState?.features?.theme_switcher === true
 
-type ThemeChoice = {
-  mode: GlintMode
-  light: string
-  dark: string
-}
-
 const choiceFrom = (stored: Record<string, unknown> | null): ThemeChoice => {
-  if (!THEME_SWITCHER_ENABLED) return { mode: 'light', light: DEFAULT_LIGHT, dark: DEFAULT_DARK }
+  if (!THEME_SWITCHER_ENABLED) return DEFAULT_THEME_CHOICE
   return {
     mode: MODES.find(mode => mode === stored?.mode) ?? 'system',
     light: typeof stored?.light === 'string' && stored.light in LIGHT_THEMES ? stored.light : DEFAULT_LIGHT,
@@ -106,16 +84,11 @@ const ThemedShell: FC<{ initialChoice: ThemeChoice, children: ReactNode }> = ({ 
 
   return (
     <ThemeContext.Provider value={value}>
-      <GlintThemeProvider
-        light={LIGHT_THEMES[choice.light] ?? MARSH_LIGHT}
-        dark={DARK_THEMES[choice.dark] ?? MARSH_DARK}
-        mode={choice.mode}
-        direction={isRtl(I18n.currentLocale()) ? 'rtl' : 'ltr'}
-        locale={antdLocale}
-      >
+      <GlintAdminTheme choice={choice}>
+        {/* Ordering dependency: must write --ant-* after DefaultAntThemeWrapper's useSetCssVars. */}
         <LegacyCssVarBridge />
         {children}
-      </GlintThemeProvider>
+      </GlintAdminTheme>
     </ThemeContext.Provider>
   )
 }

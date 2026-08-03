@@ -10,7 +10,7 @@ type Props = {
   children: React.ReactNode
 } & ConfigProviderProps
 
-// Not flag-switched: only the shell is glint-themed; unmigrated page content keeps this legacy theme.
+// Outermost antd provider; AdminTheme nests inside and overrides its tokens, so these apply outside the admin shell.
 export const DefaultAntThemeWrapper:FC<Props> = ({ theme, children, ...props }) => (
   <ConfigProvider
     theme={{

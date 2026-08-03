@@ -20,6 +20,7 @@ const { locale } = document.body.dataset
 I18n.locale = locale || I18n.defaultLocale
 
 function App () {
+  // Ordering dependency: its useSetCssVars runs before AdminTheme's bridge, which then wins on --ant-*.
   return (
     <DefaultAntThemeWrapper
       locale={antdLocale}
