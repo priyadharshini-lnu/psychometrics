@@ -72,6 +72,7 @@ class Administration::NormsController < Administration::BaseController
     @cloned_resource = resource.clone
     @cloned_resource.updated_by = current_user
     @cloned_resource.created_by = current_user
+    @cloned_resource.skip_owner_validation = true
     respond_to do |format|
       if @cloned_resource.save
         audit! :copy, resource, payload: { source_id: resource.id }

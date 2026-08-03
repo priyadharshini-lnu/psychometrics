@@ -96,7 +96,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def copy
     audit! :copy, resource, payload: { source_id: resource.id }
-    AdminJob.call(:copy_dimension, { dimension_id: resource.id }, current_user)
+    AdminJob.call(:copy_dimension, { dimension_id: resource.id, skip_owner_validation: true }, current_user)
   end
 
   def import_factors

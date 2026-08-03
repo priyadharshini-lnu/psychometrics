@@ -3,7 +3,10 @@
 module AdminJobs
   class CopyDimension < AdminJobs::Base
     def call
-      dimension.clone_and_save(user_id: record.owner_id)
+      dimension.clone_and_save(
+        user_id: record.owner_id,
+        skip_owner_validation: record.data.fetch('skip_owner_validation', false)
+      )
 
       broadcast :ok
     end

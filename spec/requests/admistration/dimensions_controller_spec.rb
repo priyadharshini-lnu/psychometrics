@@ -27,4 +27,19 @@ RSpec.describe Administration::DimensionsController, type: :request do
       end
     end
   end
+
+  describe 'POST /administration/dimensions/:id/copy' do
+    it 'creates copy job with skip_owner_validation enabled' do
+      dimension = create(:dimension, owner: client)
+
+      expect do
+        post "/administration/dimensions/#{dimension.id}/copy"
+      end.to change(AdminJobRecord, :count).by(1)
+
+      job = AdminJobRecord.order(:created_at).last
+      expect(job.operation).to eq('copy_dimension')
+      expect(job.data['dimension_id']).to eq(dimension.id)
+      expect(job.data['skip_owner_validation']).to eq(true)
+    end
+  end
 end

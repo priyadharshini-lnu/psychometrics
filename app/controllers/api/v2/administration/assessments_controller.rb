@@ -72,6 +72,7 @@ module Api
           assessment_id: resource.id,
           owner_id: owner_id,
           name: name,
+          skip_owner_validation: true,
           microsite_settings: microsite_copy_settings
         },
         current_user

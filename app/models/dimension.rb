@@ -54,7 +54,7 @@ class Dimension < ApplicationRecord
     slice(:owner_id, :name)
   end
 
-  def clone_and_save(user_id:)
+  def clone_and_save(user_id:, skip_owner_validation: false)
     dictionary = {}
     @cloned_dimension = deep_clone(
       include: [
@@ -81,6 +81,7 @@ class Dimension < ApplicationRecord
 
     @cloned_dimension.gen_uniq_name
     @cloned_dimension.created_by_id = @cloned_dimension.updated_by_id = user_id
+    @cloned_dimension.skip_owner_validation = skip_owner_validation
     if @cloned_dimension.save
       remap_factors_relationships_post_save(factor_id_mapping, condition_set_id_mapping)
       @cloned_dimension

@@ -13,7 +13,7 @@ RSpec.describe Dimension, type: :model do
 
   context '#clone_and_save' do
     it 'should be copy all relative factors, sub-factors and occupation' do
-      cloned_dimension = dimension.clone_and_save(user_id: user.id)
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
 
       expect(cloned_dimension.factors.count).to be 1
       expect(cloned_dimension.all_factors.count).to be 2
@@ -21,7 +21,7 @@ RSpec.describe Dimension, type: :model do
     end
 
     it 'remaps sub_factor_ids and parent_ids to the cloned factors' do
-      cloned_dimension = dimension.clone_and_save(user_id: user.id)
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
       cloned_parent = cloned_dimension.factors.first
       cloned_sub = (cloned_dimension.all_factors - [cloned_parent]).first
 
@@ -31,6 +31,12 @@ RSpec.describe Dimension, type: :model do
       expect(cloned_parent.sub_factor_ids).to include(cloned_sub.id)
       expect(cloned_parent.sub_factor_ids).not_to include(sub_factor.id)
       expect(cloned_sub.dimension_id).to eq(cloned_dimension.id)
+    end
+
+    it 'marks cloned dimension to skip owner compatibility validation' do
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
+
+      expect(cloned_dimension.skip_owner_validation).to eq(true)
     end
   end
 
