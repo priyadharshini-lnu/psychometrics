@@ -13,7 +13,8 @@ module AdminJobs
       'client_assessment_counts' => DataReportHandlers::ClientAssessmentsCountHandler,
       'active_clients_projects' => DataReportHandlers::ActiveClientsProjectsHandler,
       'user_access_review' => DataReportHandlers::UserAccessReviewHandler,
-      'campaign_factor_scores' => DataReportHandlers::CampaignFactorScoresHandler
+      'campaign_factor_scores' => DataReportHandlers::CampaignFactorScoresHandler,
+      'campaign_user_creation' => DataReportHandlers::CampaignUserCreationHandler
     }.freeze
 
     def initialize(record, _stage = nil)
