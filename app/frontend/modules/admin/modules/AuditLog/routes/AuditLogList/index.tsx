@@ -3,7 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import {
   Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin, App,
 } from 'antd'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import qs from 'qs'
 import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RangeValueType } from '~/interfaces/Antd'
@@ -86,7 +86,9 @@ const AuditLogList: React.FC<Props> = (
   }, [tableConfig])
 
   const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const auditLogPath = settings.urlPrefix.startsWith('/')
+    ? settings.urlPrefix
+    : `/${settings.urlPrefix}`
 
   const today = dayjs()
   const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
@@ -145,14 +147,17 @@ const AuditLogList: React.FC<Props> = (
 
     const activeFilters = Object.fromEntries(Object.entries(filters).filter(([, v]) => v))
     const queryString = qs.stringify({ filters: activeFilters })
-    navigate(queryString ? `${pathname}?${queryString}` : pathname, { replace: true })
+    navigate({
+      pathname: auditLogPath,
+      search: queryString ? `?${queryString}` : '',
+    }, { replace: true })
   }
 
   const handleReset = () => {
     form.resetFields()
     removeAllFilters('auditLogList')
     setRange(initialRange)
-    navigate(pathname, { replace: true })
+    navigate(auditLogPath, { replace: true })
   }
 
   const handleExportCsv = () => {
