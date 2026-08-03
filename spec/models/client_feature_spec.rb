@@ -27,4 +27,26 @@ RSpec.describe ClientFeature, type: :model do
       expect(feature).to be_valid
     end
   end
+
+  describe '#update_project_feature' do
+    let(:project) { create(:project) }
+    let(:client_feature) { project.parent.client_feature }
+
+    before do
+      client_feature.update!(glint_ui: true)
+      project.project_feature.update!(glint_ui: true)
+    end
+
+    it 'disables glint_ui on the child projects when the client flag is switched off' do
+      client_feature.update!(glint_ui: false)
+
+      expect(project.project_feature.reload.glint_ui).to be(false)
+    end
+
+    it 'leaves the project flag alone while the client flag stays on' do
+      client_feature.update!(sms_notification: true)
+
+      expect(project.project_feature.reload.glint_ui).to be(true)
+    end
+  end
 end

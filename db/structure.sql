@@ -3152,7 +3152,8 @@ CREATE TABLE public.client_features (
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    glint_ui boolean DEFAULT false NOT NULL
 );
 
 
@@ -6559,7 +6560,8 @@ CREATE TABLE public.project_features (
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    glint_ui boolean DEFAULT false NOT NULL
 );
 
 
@@ -25007,6 +25009,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260803093002'),
+('20260803093001'),
 ('20260724095212'),
 ('20260724091252'),
 ('20260724075701'),

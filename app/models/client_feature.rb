@@ -22,6 +22,7 @@ class ClientFeature < ApplicationRecord
     enhance_with_ai
     idp
     ai_content_analysis
+    glint_ui
   ].freeze
 
   def update_project_feature

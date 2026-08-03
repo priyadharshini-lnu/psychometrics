@@ -836,6 +836,7 @@ en-US:
     feature_flags_ai_group: AI Features
     feature_flags_communication_group: Communication
     feature_flags_platform_group: Platform Features
+    feature_glint_ui_description: Render the participant experience with the Glint design system
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
@@ -895,6 +896,8 @@ en-US:
     generate_transcription: Generate Transcription
     generated_at_time: Generated at %{time}
     generated_value: Generated Value
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI is disabled by client
     global_skills: Global Skills
     global_skills_disabled_by_client: Global Skills is disabled by client
     go_back: Back
