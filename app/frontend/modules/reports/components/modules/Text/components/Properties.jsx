@@ -14,6 +14,8 @@ import localStyles from './Properties.less'
 import ResponseText from './SourceTypeForms/ResponseText'
 import ResultText from './SourceTypeForms/ResultText'
 import AIContent from './SourceTypeForms/AIContent'
+import AIRationaleEvidence from './SourceTypeForms/AIRationaleEvidence'
+import AITranscript from './SourceTypeForms/AITranscript'
 import connect from '../connect'
 import { rgba2hex } from '~/utils/color'
 import DefaultProps from '~/modules/reports/consts/DefaultProps'
@@ -27,6 +29,8 @@ const SELECT_OPTIONS = [
   { label: 'Response Text', value: 'ResponseText' },
   { label: 'Result/DataSheet Text', value: 'ResultText' },
   isAiAssistantEnabled() && { label: 'AI Content', value: 'AIContent' },
+  isAiAssistantEnabled() && { label: 'AI Rationale & Evidence', value: 'AIRationaleEvidence' },
+  isAiAssistantEnabled() && { label: 'AI Transcript', value: 'AITranscript' },
 ].filter(Boolean)
 
 const Properties = ({
@@ -161,6 +165,20 @@ const Properties = ({
     })
   }
 
+  const changeHideRationale = (e) => {
+    updateAll((model) => {
+      model.props.hideRationale = e.currentTarget.checked
+      model.update()
+    })
+  }
+
+  const changeHideEvidence = (e) => {
+    updateAll((model) => {
+      model.props.hideEvidence = e.currentTarget.checked
+      model.update()
+    })
+  }
+
   const changeModelIn = (keys, value) => {
     // TODO (atanych): update model by link directly in the component is not good
     // practice. We should avoid mutations in future.
@@ -242,6 +260,20 @@ const Properties = ({
     )
   }
 
+  const renderAIRationaleEvidenceForm = () => {
+    if (model.props.sourceType !== 'AIRationaleEvidence') { return null }
+    return (
+      <AIRationaleEvidence model={model} onChangeModelIn={changeModelIn} questions={questions} />
+    )
+  }
+
+  const renderAITranscriptForm = () => {
+    if (model.props.sourceType !== 'AITranscript') { return null }
+    return (
+      <AITranscript model={model} onChangeModelIn={changeModelIn} questions={questions} />
+    )
+  }
+
   const renderDataSourceOptions = () => {
     if (model.props.sourceType === 'ResultText' || model.props.sourceType === 'AIContent') return null
 
@@ -293,6 +325,8 @@ const Properties = ({
         {renderResponseTextForm()}
         {renderResultTextForm()}
         {renderAIContentForm()}
+        {renderAIRationaleEvidenceForm()}
+        {renderAITranscriptForm()}
         {
           model.props.sourceType === 'PipedText'
           && (
@@ -401,6 +435,30 @@ const Properties = ({
           />
           {I18n.t('administration.report_builder.property_panel.translate_with_ai')}
         </label>
+        {model.props.sourceType === 'AIRationaleEvidence' && (
+          <>
+            <label className={styles.inputLabel}>
+              <input
+                style={{ marginRight: '5px' }}
+                type="checkbox"
+                checked={model.props.hideRationale ?? false}
+                onChange={changeHideRationale}
+                disabled={model.props.hideEvidence}
+              />
+              {I18n.t('shared.reports.ai_rationale_evidence.hide_rationale')}
+            </label>
+            <label className={styles.inputLabel}>
+              <input
+                style={{ marginRight: '5px' }}
+                type="checkbox"
+                checked={model.props.hideEvidence ?? false}
+                onChange={changeHideEvidence}
+                disabled={model.props.hideRationale}
+              />
+              {I18n.t('shared.reports.ai_rationale_evidence.hide_evidence')}
+            </label>
+          </>
+        )}
       </div>
       <hr className={styles.divider} />
       <div className={styles.block} style={{ position: 'relative' }}>

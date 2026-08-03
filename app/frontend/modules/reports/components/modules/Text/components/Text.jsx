@@ -109,6 +109,12 @@ class Text extends Component {
     if (sourceType === 'AIContent') {
       return renderToStaticMarkup(LookupResultTextValue.run(model))
     }
+    if (sourceType === 'AIRationaleEvidence') {
+      return this.renderAIRationaleEvidence(model)
+    }
+    if (sourceType === 'AITranscript') {
+      return this.renderAITranscript(model)
+    }
     return I18nStore.tModule(model, 'text')
   }
 
@@ -149,6 +155,65 @@ class Text extends Component {
       module,
       { page_number: pageNumber, total_pages: totalPages },
     )
+  }
+
+  renderAIRationaleEvidence (model) {
+    const questionId = model.props.question
+    if (!questionId) return I18n.t('shared.reports.ai_rationale_evidence.no_question_selected')
+
+    let aiMetadata = _.get(ResultStore, ['results', model.assessment_id, 'aiMetadataByQuestion', String(questionId)])
+    if (!aiMetadata || aiMetadata.length === 0) {
+      return I18n.t('shared.reports.ai_rationale_evidence.no_data')
+    }
+
+    const { hideRationale, hideEvidence, selectedFactors } = model.props
+
+    if (selectedFactors && selectedFactors.length > 0) {
+      aiMetadata = aiMetadata.filter(entry => selectedFactors.includes(entry.factorId))
+    }
+
+    if (aiMetadata.length === 0) {
+      return I18n.t('shared.reports.ai_rationale_evidence.no_data')
+    }
+
+    const parts = []
+
+    aiMetadata.forEach((entry) => {
+      parts.push(`<div style="margin-bottom: 12px;"><strong>${_.escape(entry.factorName)}</strong>`)
+
+      if (!hideRationale && entry.rationale) {
+        parts.push(`<div style="margin-top: 4px;">${_.escape(entry.rationale)}</div>`)
+      }
+
+      if (!hideEvidence && entry.citations && entry.citations.length > 0) {
+        parts.push('<ul style="margin-top: 4px; padding-left: 20px;">')
+        entry.citations.forEach((citation) => {
+          const text = typeof citation === 'string' ? citation : citation.text
+          if (text) {
+            parts.push(`<li>${_.escape(text)}</li>`)
+          }
+        })
+        parts.push('</ul>')
+      }
+
+      parts.push('</div>')
+    })
+
+    return parts.join('')
+  }
+
+  renderAITranscript (model) {
+    const questionId = model.props.question
+    if (!questionId) return I18n.t('shared.reports.ai_transcript.no_question_selected')
+
+    const mediaResponses = _.get(ResultStore, ['results', model.assessment_id, 'mediaResponses']) || []
+    const mediaResponse = _.findLast(mediaResponses, { question_id: questionId })
+
+    if (!mediaResponse || !mediaResponse.transcription_text) {
+      return I18n.t('shared.reports.ai_transcript.no_data')
+    }
+
+    return mediaResponse.transcription_text
   }
 
   buildStyles (styles, overrides) {
@@ -330,6 +395,19 @@ class Text extends Component {
           <div ref={(ref) => { this.editor = ref }} className={cs(styles.editor, 'fr-view')} data-ai-translation="0">
             <div>{textValue}</div>
           </div>
+        )
+      } if (sourceType === 'AIRationaleEvidence' || sourceType === 'AITranscript') {
+        const htmlContent = sourceType === 'AIRationaleEvidence'
+          ? this.renderAIRationaleEvidence(model)
+          : this.renderAITranscript(model)
+        return (
+          <SafeHTML
+            ref={(ref) => { this.editor = ref }}
+            className={cs(styles.editor)}
+            html={htmlContent}
+            config="adminRichText"
+            data-ai-translation="0"
+          />
         )
       }
 

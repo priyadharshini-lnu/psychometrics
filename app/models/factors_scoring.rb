@@ -28,7 +28,8 @@ class FactorsScoring < ApplicationRecord
 
   def self.factor_question_ids(assessment_ids)
     FactorsScoring.where(assessment_id: assessment_ids).
-      where('json_array_length(props) > 0').group(:factor_id).pluck(
+      where('json_array_length(props) > 0 OR (ai_scoring_config IS NOT NULL AND ai_scoring_config != \'{}\'::jsonb)').
+      group(:factor_id).pluck(
         :factor_id, 'array_agg(question_id)'
       ).to_h
   end
