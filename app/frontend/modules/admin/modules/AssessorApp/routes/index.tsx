@@ -1,49 +1,57 @@
-import CampaignList from './CampaignList'
-import UserList from './UserList'
-import UserDetails from './UserDetails'
-import Evaluation from './Evaluation'
-import ReportPreview from './ReportPreview'
-import { ExternalReportPreview } from './ExternalReportPreview'
-import { WorkshopList } from './AssessmentCenter'
-import { ModerateScoring } from './ModerateScoring/ModerateScoring'
+import { lazy } from 'react'
+import { Navigate } from 'react-router-dom'
+
+const CampaignList = lazy(() => import('./CampaignList'))
+const UserList = lazy(() => import('./UserList'))
+const UserDetails = lazy(() => import('./UserDetails'))
+const Evaluation = lazy(() => import('./Evaluation'))
+const ReportPreview = lazy(() => import('./ReportPreview'))
+const ExternalReportPreview = lazy(
+  () => import('./ExternalReportPreview').then(({ ExternalReportPreview: component }) => ({ default: component })),
+)
+const WorkshopList = lazy(
+  () => import('./AssessmentCenter').then(({ WorkshopList: component }) => ({ default: component })),
+)
+const ModerateScoring = lazy(
+  () => import('./ModerateScoring').then(({ ModerateScoring: component }) => ({ default: component })),
+)
 
 const routes = [
   {
-    path: '/',
-    component: <CampaignList />,
+    path: '',
+    element: <CampaignList />,
   },
   {
-    redirect: true,
-    from: '/assessors/assessment_centers',
-    to: 'campaigns',
+    path: 'assessment_centers',
+    element: <Navigate to="campaigns" replace />,
   },
   {
-    path: '/assessment_centers/:tab',
-    component: <WorkshopList />,
+    path: 'assessment_centers/:tab',
+    element: <WorkshopList />,
   },
   {
-    path: '/campaigns/:campaignId/users/:userId',
-    component: <UserDetails />,
+    path: 'campaigns/:campaignId/users/:userId',
+    element: <UserDetails />,
   },
   {
-    path: '/campaigns/:campaignId/users',
-    component: <UserList />,
+    path: 'campaigns/:campaignId/users',
+    element: <UserList />,
   },
   {
-    path: '/campaigns/:campaignId/user_reports/:id',
-    component: <ReportPreview />,
+    path: 'campaigns/:campaignId/user_reports/:id',
+    element: <ReportPreview />,
   },
   {
-    path: '/campaigns/:campaignId/external_user_report/:id',
-    component: <ExternalReportPreview />,
+    path: 'campaigns/:campaignId/external_user_report/:id',
+    element: <ExternalReportPreview />,
   },
   {
-    path: '/campaigns/:campaignId/evaluations/:userId',
-    component: <Evaluation />,
+    path: 'campaigns/:campaignId/evaluations/:userId',
+    element: <Evaluation />,
   },
   {
-    path: '/campaigns/:campaignId/moderate_scoring/:userId',
-    component: <ModerateScoring />,
+    path: 'campaigns/:campaignId/moderate_scoring/:userId',
+    element: <ModerateScoring />,
   },
 ]
 

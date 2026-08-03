@@ -2,5 +2,5 @@
 
 class Assessors::WorkshopsController < Assessors::BaseController
   skip_before_action :enforce_geo_restriction
-  render_entrypoint :index, element: 'assessor-app-container', entry: 'admin/assessor_app'
+  render_entrypoint :index, element: 'admin-app-container', entry: 'admin/admin'
 end

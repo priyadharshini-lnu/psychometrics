@@ -17,6 +17,25 @@ RSpec.describe Assessors::UsersController, type: :controller do
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
+  describe 'dashboard' do
+    it 'renders the shared admin entrypoint' do
+      get :dashboard
+
+      expect(response).to render_template('shared/frontend_entry')
+      expect(assigns(:init_state)[:config]).to include(:availableLocales, :availableAiProviders, :features, :project)
+    end
+
+    it 'forbids a non-assessor before the entrypoint renders' do
+      sign_out(current_user)
+      login_user(create(:superadmin))
+
+      get :dashboard
+
+      expect(response).to have_http_status(:forbidden)
+      expect(response).not_to render_template('shared/frontend_entry')
+    end
+  end
+
   describe 'index' do
     it 'returns users which assessor have access to' do
       get :index, params: { campaign_id: assessors_campaign.id }
