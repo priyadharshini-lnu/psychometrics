@@ -47,7 +47,6 @@ export const Client: FC<Props> = ({ currentUser }) => {
   } = useResources<ClientType>(
     'clients',
     {
-      trackUrl: true,
       responseType: ClientTR,
       apiConfig: baseApiConfig,
     },
