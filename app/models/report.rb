@@ -342,7 +342,6 @@ class Report < ApplicationRecord
     return if assessment_not_applicable?
 
     assessment_owner_compatibility_assessments
-    assessment_owner_compatibility_report_families
   end
 
   def assessment_owner_compatibility_assessments
@@ -358,21 +357,6 @@ class Report < ApplicationRecord
       :assessments,
       child_resource: :assessment,
       parent_resource: :report
-    )
-  end
-
-  def assessment_owner_compatibility_report_families
-    return if report_families.blank?
-
-    incompatible_report_families = report_families.reject do |report_family|
-      compatible_owner_ids?(report_family.tenant_id, owner_id)
-    end.uniq(&:id)
-    return if incompatible_report_families.blank?
-
-    add_owner_compatibility_error(
-      :owner,
-      child_resource: :report,
-      parent_resource: :report_bundle
     )
   end
 

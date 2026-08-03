@@ -122,4 +122,20 @@ RSpec.describe Dimension, type: :model do
       expect { dimension_to_destroy.destroy! }.not_to raise_error
     end
   end
+
+  describe 'owner updates with linked records' do
+    let(:owner_a) { create(:tenancy) }
+    let(:owner_b) { create(:tenancy) }
+
+    it 'allows owner change even when linked assessment and norm owners differ after update' do
+      dimension = create(:dimension, owner: owner_a)
+      create(:assessment, owner: owner_a, dimension: dimension)
+      create(:norm, owner: owner_a, dimension: dimension, skip_owner_validation: true)
+
+      dimension.owner = owner_b
+
+      expect(dimension).to be_valid
+      expect(dimension.save).to eq(true)
+    end
+  end
 end
