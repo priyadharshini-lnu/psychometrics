@@ -3,6 +3,8 @@
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
     skip_before_action :enforce_geo_restriction
+    # The root domain client selection page renders the profile dropdown for users it is funneling to a client.
+    skip_before_action :enforce_root_domain_api_isolation, only: :current_user_details
     validates_request_schema :create_superadmin, -> { Api::V2::User::CreateSuperadminContract.new }
     validates_request_schema :create_global_assessor, -> { Api::V2::User::CreateGlobalAssessorContract.new }
     validates_request_schema :reset_password, -> { Api::V2::User::ResetPasswordContract.new }

@@ -25,14 +25,13 @@ RSpec.describe Assessors::UsersController, type: :controller do
       expect(assigns(:init_state)[:config]).to include(:availableLocales, :availableAiProviders, :features, :project)
     end
 
-    it 'forbids a non-assessor before the entrypoint renders' do
+    it 'renders the entrypoint for a non-assessor too — the SPA gates on menu permissions' do
       sign_out(current_user)
       login_user(create(:superadmin))
 
       get :dashboard
 
-      expect(response).to have_http_status(:forbidden)
-      expect(response).not_to render_template('shared/frontend_entry')
+      expect(response).to render_template('shared/frontend_entry')
     end
   end
 

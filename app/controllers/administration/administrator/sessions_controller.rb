@@ -112,6 +112,8 @@ module Administration
       def central_admin_redirection(resource)
         return nil unless AdminSubdomain.client_admin_sso_enabled?
         return nil if resource.is?(:superadmin)
+        # A root domain assessor has no client and no assignment, so their dashboard would be empty.
+        return "#{admin_path}/user_availabilities" if resource.root_domain_assessor?
 
         has_client_access = resource.clients_with_admin_access.exists?
 

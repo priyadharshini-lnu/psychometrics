@@ -2,7 +2,9 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Navigate, Outlet, RouterProvider, useMatches,
 } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import ErrorModal from '~/components/ErrorModal'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { AdminShell } from '~/components/AdminShell'
 import RouteErrorBoundary from '~/components/RouteErrorBoundary'
@@ -25,6 +27,15 @@ const modals = (
     <ErrorModal />
   </>
 )
+
+// The server no longer gates assessor page loads; the permission-gated menu link is the access signal here.
+const AssessorGate: React.FC = () => {
+  const links = useSelector((state: RootState) => state.ui.menu.links)
+
+  if (!links.assessorDashboard) return <Navigate to="/admin" replace />
+
+  return <Outlet />
+}
 
 // Keyed by matched route so an error clears on navigation, as it did when every route carried its own boundary.
 const RoutedPage: React.FC = () => {
@@ -66,7 +77,7 @@ export const router = createBrowserRouter([
   {
     path: `${assessorSettings.urlPrefix}/*`,
     element: <Main />,
-    children: assessorRoutes,
+    children: [{ element: <AssessorGate />, children: assessorRoutes }],
   },
   { path: '*', element: <Main /> },
 ])

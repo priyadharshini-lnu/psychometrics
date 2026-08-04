@@ -135,8 +135,19 @@ class Assessors::EvaluationsController < Assessors::BaseController
   end
 
   def set_subject_user_assessment
-    @subject_user_assessment = UserAssessment.find(params[:id] || params[:evaluation_id])
+    @subject_user_assessment = evaluated_subject_assessments.find(params[:id] || params[:evaluation_id])
     authorize([@subject_user_assessment])
+  end
+
+  # A subject's own assessment is readable only for subjects the current assessor is assigned to evaluate.
+  def evaluated_subject_assessments
+    UserAssessment.where(
+      'EXISTS (SELECT 1 FROM user_assessments evaluations ' \
+      'WHERE evaluations.evaluator_id = :assessor_id ' \
+      'AND evaluations.campaign_id = user_assessments.campaign_id ' \
+      'AND evaluations.subject_id = user_assessments.subject_id)',
+      assessor_id: current_user.id
+    )
   end
 
   def build_piped_context(user_assessment)

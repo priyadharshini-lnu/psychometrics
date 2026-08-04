@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
 import { act, render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
 
 const stub = (testId: string) => () => <div data-testid={testId} />
 
@@ -35,13 +37,20 @@ vi.mock('~/modules/admin/modules/AssessorApp/routes/AssessmentCenter', () => ({
   WorkshopList: stub('workshop-list'),
 }))
 
+// The assessor gate reads the permission-gated menu links, so each case declares who is looking.
+const ASSESSOR_LINKS = { clients: '/admin/clients', assessorDashboard: '/assessors' }
+
+const makeStore = (links: Record<string, string>) => configureStore({
+  reducer: () => ({ ui: { menu: { links, collapsed: false } }, features: {} }),
+})
+
 // The router is built from window.location at import time, so each case re-imports at the URL under test.
-const renderAt = async (pathname: string) => {
+const renderAt = async (pathname: string, links: Record<string, string> = ASSESSOR_LINKS) => {
   window.history.pushState({}, '', pathname)
   vi.resetModules()
   const { Layout, router } = await import('~/modules/admin/Layout')
 
-  await act(async () => { render(<Layout />) })
+  await act(async () => { render(<Provider store={makeStore(links)}><Layout /></Provider>) })
   // Legacy-mode render: the lazy chunk only commits on a second flush, after its Suspense fallback painted.
   await act(async () => {})
 
@@ -72,5 +81,12 @@ describe('admin Layout router', () => {
     await renderAt('/admin/clients')
 
     expect(ownedPathPrefixes).toEqual(['/admin', '/assessors'])
+  })
+
+  it('sends a user without assessor permission from /assessors to the admin shell', async () => {
+    const router = await renderAt('/assessors', { clients: '/admin/clients' })
+
+    expect(router.state.location.pathname).toEqual('/admin/clients')
+    expect(screen.getByTestId('clients')).toBeInTheDocument()
   })
 })

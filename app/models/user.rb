@@ -219,6 +219,13 @@ class User < ApplicationRecord
     end
   end
 
+  # Only a global assessor with no campaign assignment and no client access belongs to the root domain.
+  def root_domain_assessor?
+    return false if is?(:superadmin) || !is?(:assessor)
+
+    ActsAsTenant.without_tenant { !assessors.exists? } && clients_with_admin_access.empty?
+  end
+
   def sole_admin_client
     return nil if is?(:superadmin)
 
