@@ -424,6 +424,9 @@ Rails.application.routes.draw do
           end
 
           resources :campaign_assessment_groups, only: %i[index create update destroy] do
+            member do
+              get :fetch_name_translations
+            end
             collection do
               post :update_positions
             end

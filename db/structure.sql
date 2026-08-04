@@ -2529,6 +2529,40 @@ ALTER SEQUENCE public.campaign_ai_artifacts_id_seq OWNED BY public.campaign_ai_a
 
 
 --
+-- Name: campaign_assessment_group_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessment_group_translations (
+    id bigint NOT NULL,
+    name character varying,
+    locale character varying NOT NULL,
+    campaign_assessment_group_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_assessment_group_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessment_group_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessment_group_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessment_group_translations_id_seq OWNED BY public.campaign_assessment_group_translations.id;
+
+
+--
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10520,6 +10554,13 @@ ALTER TABLE ONLY public.campaign_ai_artifacts ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: campaign_assessment_group_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessment_group_translations_id_seq'::regclass);
+
+
+--
 -- Name: campaign_assessment_groups id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12314,6 +12355,14 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
 
 ALTER TABLE ONLY public.campaign_ai_artifacts
     ADD CONSTRAINT campaign_ai_artifacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_assessment_group_translations campaign_assessment_group_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations
+    ADD CONSTRAINT campaign_assessment_group_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -15184,6 +15233,13 @@ CREATE INDEX index_bulk_reports_on_user_id ON public.bulk_reports USING btree (u
 
 
 --
+-- Name: index_cag_t18n_on_campaign_assessment_group_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_cag_t18n_on_campaign_assessment_group_id_and_locale ON public.campaign_assessment_group_translations USING btree (campaign_assessment_group_id, locale);
+
+
+--
 -- Name: index_campaign_ai_artifact_dependencies_on_dependency; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15223,6 +15279,20 @@ CREATE UNIQUE INDEX index_campaign_ai_artifacts_on_campaign_id_and_code ON publi
 --
 
 CREATE INDEX index_campaign_ai_artifacts_on_tenant_id ON public.campaign_ai_artifacts USING btree (tenant_id);
+
+
+--
+-- Name: index_campaign_assessment_group_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessment_group_translations_on_locale ON public.campaign_assessment_group_translations USING btree (locale);
+
+
+--
+-- Name: index_campaign_assessment_group_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessment_group_translations_on_tenant_id ON public.campaign_assessment_group_translations USING btree (tenant_id);
 
 
 --
@@ -24619,6 +24689,14 @@ ALTER TABLE ONLY public.audit_logs
 
 
 --
+-- Name: campaign_assessment_group_translations fk_rails_eec8708928; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations
+    ADD CONSTRAINT fk_rails_eec8708928 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id);
+
+
+--
 -- Name: skill_groups fk_rails_eee5517ca5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -25009,6 +25087,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260731120500'),
+('20260731120000'),
 ('20260803093002'),
 ('20260803093001'),
 ('20260724095212'),
@@ -26092,4 +26172,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

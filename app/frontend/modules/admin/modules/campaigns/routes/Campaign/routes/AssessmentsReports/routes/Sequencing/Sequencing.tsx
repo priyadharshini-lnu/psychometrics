@@ -33,6 +33,7 @@ import {
   create as createGroup,
   remove as removeGroup,
   update as updateGroup,
+  fetchNameTranslations,
   CampaignAssessment,
   updatePosition as updateGroupPosition,
   updateAssessmentPosition,
@@ -51,10 +52,12 @@ import { getGroupById, getItemIdFromSortingId, updateArrayItemsPositionOnIndices
 import { AddWorkshopActivityDurationModal } from './AddWorkshopActivityDurationModal'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { GroupNameTranslationsModal } from './GroupNameTranslations'
 
 const connecter = connect(
   (state: RootState) => ({
     isAssessmentGroupsLoading: isRequestInProgress(state, FETCH),
+    availableLocales: state.config.availableLocales,
   }),
   {
     fetchAssessmentGroups,
@@ -63,6 +66,7 @@ const connecter = connect(
     createGroup,
     removeGroup,
     updateGroup,
+    fetchNameTranslations,
     openModal,
   },
 )
@@ -72,8 +76,10 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 const GROUP_ID_PREFIX = 'g_'
 const ASSESSMENT_ID_PREFIX = 'a_'
 const UNGROUPED_ID = 'ungrouped'
+
 const MODALS = {
   AddWorkshopActivityDurationModal,
+  GroupNameTranslationsModal,
 }
 
 const SequencingComponent: FC<PropsFromRedux> = ({
@@ -84,7 +90,9 @@ const SequencingComponent: FC<PropsFromRedux> = ({
   createGroup,
   removeGroup,
   updateGroup,
+  fetchNameTranslations,
   openModal,
+  availableLocales,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -172,6 +180,17 @@ const SequencingComponent: FC<PropsFromRedux> = ({
         setGroups(prevGroups => getUpdatedGroups(prevGroups, response))
         setPastGroups(prevGroups => getUpdatedGroups(prevGroups, response))
       })
+    })
+  }
+
+  const handleUpdateGroupsFromTranslations = (updatedGroups: CampaignAssessmentGroup[]) => {
+    const updatedGroupsById = updatedGroups.reduce((groupMap, currentGroup) => (
+      { ...groupMap, [currentGroup.id]: currentGroup }
+    ), {})
+
+    unstable_batchedUpdates(() => {
+      setGroups(prevGroups => prevGroups.map(group => updatedGroupsById[group.id] || group))
+      setPastGroups(prevGroups => prevGroups.map(group => updatedGroupsById[group.id] || group))
     })
   }
 
@@ -537,6 +556,14 @@ const SequencingComponent: FC<PropsFromRedux> = ({
                       groupdId, data,
                     )}
                     updateAssessmentGroups={groupId => handleRemoveGroup(groupId)}
+                    onManageTranslations={() => openModal('GroupNameTranslationsModal', {
+                      groups: sortedGroups,
+                      campaignId: parsedCampaignId,
+                      availableLocales,
+                      fetchNameTranslations,
+                      updateGroup,
+                      onGroupsUpdated: handleUpdateGroupsFromTranslations,
+                    })}
                   >
                     <SortableContext
                       items={prefixedAssessmentIds}

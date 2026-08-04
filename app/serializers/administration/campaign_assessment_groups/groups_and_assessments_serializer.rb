@@ -6,7 +6,7 @@ module Administration
       attributes :groups, :assessments
 
       def groups
-        object.campaign_assessment_groups.includes(:campaign_assessments).map do |g|
+        object.campaign_assessment_groups.includes(:campaign_assessments, :translations).map do |g|
           CampaignAssessmentGroups::GroupSerializer.new.serialize(g)
         end
       end

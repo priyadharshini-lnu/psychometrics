@@ -1,0 +1,1 @@
+export { GroupNameTranslationsModal } from './GroupNameTranslationsModal'
