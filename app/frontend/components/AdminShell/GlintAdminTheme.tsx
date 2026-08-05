@@ -1,5 +1,8 @@
 import { FC, ReactNode } from 'react'
+import { ConfigProvider, theme as antdTheme } from 'antd'
+import type { ThemeConfig } from 'antd'
 import {
+  GLINT_CONFIG,
   GlintThemeProvider,
   MARSH_LIGHT,
   MARSH_DARK,
@@ -40,6 +43,25 @@ export type ThemeChoice = {
 
 /** What the admin renders with the theme switcher off — also the standalone-page default. */
 export const DEFAULT_THEME_CHOICE: ThemeChoice = { mode: 'light', light: DEFAULT_LIGHT, dark: DEFAULT_DARK }
+
+/** The antd config a glint theme resolves to — the same object GlintThemeProvider hands its own ConfigProvider. */
+const antdThemeConfig = (tokens: GlintThemeTokens): ThemeConfig => ({
+  ...GLINT_CONFIG.theme,
+  token: tokens.token,
+  components: tokens.components,
+  algorithm: tokens.appearance === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+})
+
+let staticThemeConfig: ThemeConfig = antdThemeConfig(MARSH_LIGHT)
+
+/** antd's statics render in detached roots; the global config is the only channel that reaches them. */
+export const applyStaticTheme = (tokens: GlintThemeTokens) => {
+  staticThemeConfig = antdThemeConfig(tokens)
+  ConfigProvider.config({ theme: staticThemeConfig })
+}
+
+/** Puts the admin theme back after something else has overwritten the global static config. */
+export const restoreStaticTheme = () => ConfigProvider.config({ theme: staticThemeConfig })
 
 type Props = {
   choice?: ThemeChoice

@@ -1,6 +1,7 @@
 import {
   FC, ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState,
 } from 'react'
+import { GlintThemeContext } from '@thetalententerprise/glint'
 import type { GlintMode } from '@thetalententerprise/glint'
 import { useSetCssVars } from '~/hooks/useSetCssVars'
 import { THEME_CATEGORY, THEME_CONFIG_KEY, useThemePreference } from './useThemePreference'
@@ -13,6 +14,7 @@ import {
   DEFAULT_THEME_CHOICE,
   GlintAdminTheme,
   LIGHT_THEMES,
+  applyStaticTheme,
 } from './GlintAdminTheme'
 import type { ThemeChoice } from './GlintAdminTheme'
 
@@ -62,6 +64,16 @@ const LegacyCssVarBridge = () => {
   return null
 }
 
+// Feeds the active theme to antd's detached statics; reads the resolved appearance, so 'system' follows the OS.
+const StaticThemeBridge = () => {
+  const { light, dark, mode } = useContext(GlintThemeContext)
+  const active = mode === 'dark' ? dark : light
+
+  useEffect(() => { applyStaticTheme(active) }, [active])
+
+  return null
+}
+
 const ThemedShell: FC<{ initialChoice: ThemeChoice, children: ReactNode }> = ({ initialChoice, children }) => {
   const [choice, setChoice] = useState<ThemeChoice>(initialChoice)
   const { persist } = useThemePreference()
@@ -87,6 +99,7 @@ const ThemedShell: FC<{ initialChoice: ThemeChoice, children: ReactNode }> = ({ 
       <GlintAdminTheme choice={choice}>
         {/* Ordering dependency: must write --ant-* after DefaultAntThemeWrapper's useSetCssVars. */}
         <LegacyCssVarBridge />
+        <StaticThemeBridge />
         {children}
       </GlintAdminTheme>
     </ThemeContext.Provider>

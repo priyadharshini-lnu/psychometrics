@@ -1,7 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import { theme } from 'antd'
-import { describe, expect, it } from 'vitest'
-import { GlintAdminTheme } from '~/components/AdminShell/GlintAdminTheme'
+import { ConfigProvider, theme } from 'antd'
+import { MARSH_DARK } from '@thetalententerprise/glint'
+import {
+  afterEach, describe, expect, it, vi,
+} from 'vitest'
+import {
+  GlintAdminTheme, applyStaticTheme, restoreStaticTheme,
+} from '~/components/AdminShell/GlintAdminTheme'
 
 const MARSH_PRIMARY = '#061047'
 
@@ -39,5 +44,31 @@ describe('GlintAdminTheme', () => {
     )
 
     expect(screen.getByTestId('primary')).not.toHaveTextContent(MARSH_PRIMARY)
+  })
+})
+
+describe('the static theme config', () => {
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  it('carries the theme\'s tokens and algorithm to antd\'s global config', () => {
+    const config = vi.spyOn(ConfigProvider, 'config')
+
+    applyStaticTheme(MARSH_DARK)
+
+    expect(config.mock.lastCall?.[0].theme?.token?.colorPrimary).toBe(MARSH_DARK.token.colorPrimary)
+    expect(config.mock.lastCall?.[0].theme?.algorithm).toBe(theme.darkAlgorithm)
+  })
+
+  // DesignSettingsForm resets the global config on unmount; restoring must not leave the statics unthemed.
+  it('is re-applied by restoreStaticTheme', () => {
+    applyStaticTheme(MARSH_DARK)
+    ConfigProvider.config({ theme: {} })
+
+    const config = vi.spyOn(ConfigProvider, 'config')
+    restoreStaticTheme()
+
+    expect(config.mock.lastCall?.[0].theme?.token?.colorPrimary).toBe(MARSH_DARK.token.colorPrimary)
   })
 })
