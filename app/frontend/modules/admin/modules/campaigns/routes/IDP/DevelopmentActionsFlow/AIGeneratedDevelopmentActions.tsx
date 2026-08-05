@@ -139,7 +139,7 @@ const AIGeneratedDevelopmentActionsModal = ({
     >
       <Spin
         spinning={isLoading}
-        description={I18n.t('idp.development_actions.generating_development_actions')}
+        tip={I18n.t('idp.development_actions.generating_development_actions')}
         size="large"
       >
         <Flex

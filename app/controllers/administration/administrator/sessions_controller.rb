@@ -136,6 +136,12 @@ module Administration
 
       private
 
+      # Signed-in admins bounce straight back to the shell, which renders no flash — drop the dead alert.
+      def require_no_authentication
+        super
+        flash.delete(:alert) if performed?
+      end
+
       def reject_superadmin_on_client_subdomain
         return unless Current.client_admin_context?
 

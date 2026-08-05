@@ -125,7 +125,6 @@ class Administration::UsersController < Administration::BaseController
                             else
                               "#{admin_path}/user_availabilities"
                             end
-    flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
 
     spoof_admin_routing(resource, fallback_redirect_url: fallback_redirect_url)
   end

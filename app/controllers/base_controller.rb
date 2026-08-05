@@ -217,7 +217,8 @@ class BaseController < ActionController::Base
     respond_to do |f|
       f.html do
         flash[:notice] = t('errors.try_again')
-        redirect_back(fallback_location: root_path)
+        redirect_to Utility::Url.with_query_params(request.referer || root_path, 'notice' => 'csrf_retry'),
+                    allow_other_host: true
       end
       f.js { render(:error, locals: { message: t('errors.invalid_token') }) }
     end

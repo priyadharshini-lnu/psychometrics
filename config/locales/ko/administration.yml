@@ -15,11 +15,6 @@ ko:
         simple_design:
           design: 디자인
           or: 또는
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: 로그인에 성공했습니다.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ ko:
           modal_title: 점수 승인 설정
           remove_modal_success: '평가 ID: %{assessmentId}에 대한 승인 설정이 성공적으로 삭제되었습니다.'
           remove_modal_text: '평가 ID: %{assessmentId}에 대한 이 설정을 삭제하시겠습니까?'
-      assessors:
-        spoof:
-          successfully: 이름 %{name}으로 로그인했습니다
       validations:
         dates:
           end: 시작일 이후여야 합니다

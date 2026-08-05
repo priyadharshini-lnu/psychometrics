@@ -67,7 +67,7 @@ export const MetadataUpload: React.FC<Props> = ({ onParsed, parseMetadata, isLoa
 
   const draggerContent = () => {
     if (status === 'parsing' || isLoading) {
-      return <Spin description={I18n.t('admin.sso_settings_metadata_parsing')} />
+      return <Spin tip={I18n.t('admin.sso_settings_metadata_parsing')} />
     }
     if (status === 'success') {
       return (

@@ -13,6 +13,12 @@ module Utility
       uri.to_s
     end
 
+    def self.with_query_params(url, params = {})
+      uri = Addressable::URI.parse(url)
+      uri.query_values = (uri.query_values || {}).merge(params.stringify_keys)
+      uri.to_s
+    end
+
     def self.valid?(url)
       uri = URI.parse(url)
       return false unless VALID_SCHEMES.include?(uri.scheme)

@@ -15,11 +15,6 @@ zh-Hant:
         simple_design:
           design: 設計
           or: 或
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: 登入成功。
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ zh-Hant:
           modal_title: 评分审批设置
           remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
           remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
-      assessors:
-        spoof:
-          successfully: 您已成功登入 %{name}
       validations:
         dates:
           end: 必須在開始日期之後

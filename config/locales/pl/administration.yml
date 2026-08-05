@@ -15,11 +15,6 @@ pl:
         simple_design:
           design: Projekt
           or: Lub
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Logowanie powiodło się.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ pl:
           modal_title: Ustawienia zatwierdzania punktacji
           remove_modal_success: 'Ustawienie zatwierdzenia dla identyfikatora oceny: %{assessmentId} zostało pomyślnie usunięte.'
           remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora oceny: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Udało Ci się zalogować jako %{name}
       validations:
         dates:
           end: Musi być po dacie rozpoczęcia

@@ -30,9 +30,6 @@ html lang="en" style=shell_html_style
     / React owns the whole shell (glint AppShell); Rails renders no chrome around it.
     - if react_shell?
       = render 'layouts/admin_splash'
-      #flash-messages-container
-        #flash-messages.col-md-12
-            = flash_messages
       = yield
     / Rails-rendered pages get no shell — just a way back — until they join the SPA.
     - else

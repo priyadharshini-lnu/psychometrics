@@ -15,11 +15,6 @@ hu:
         simple_design:
           design: Tervezés
           or: Vagy
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: A bejelentkezés sikeres.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ hu:
           modal_title: Pontszám jóváhagyási beállítások
           remove_modal_success: 'Az értékelés azonosítószámának jóváhagyási beállítása: %{assessmentId} sikeresen törölve.'
           remove_modal_text: 'Biztosan törölni szeretné ezt a beállítást az értékelési azonosítóhoz: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Sikeresen bejelentkezett a(z) %{name} néven
       validations:
         dates:
           end: a kezdő dátum után kell lennie

@@ -83,7 +83,7 @@ module Administration
       def ensure_feature_enabled
         return if AdminSubdomain.client_admin_sso_enabled?
 
-        redirect_to admin_path, alert: I18n.t('admin.feature_not_available')
+        redirect_to admin_path(notice: :feature_unavailable)
       end
 
       def hide_navigation

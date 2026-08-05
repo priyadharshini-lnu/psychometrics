@@ -15,11 +15,6 @@ id:
         simple_design:
           design: Desain
           or: Atau
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Login berhasil.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ id:
           modal_title: Pengaturan Persetujuan Penilaian
           remove_modal_success: 'Pengaturan persetujuan untuk ID penilaian: %{assessmentId} telah dihapus dengan sukses.'
           remove_modal_text: 'Apakah Anda yakin ingin menghapus pengaturan ini untuk ID penilaian: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Anda berhasil masuk sebagai %{name}
       validations:
         dates:
           end: harus setelah tanggal mulai

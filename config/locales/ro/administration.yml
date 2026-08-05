@@ -15,11 +15,6 @@ ro:
         simple_design:
           design: Design
           or: Sau
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Autentificare reușită.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ ro:
           modal_title: Setări de aprobare a punctajului
           remove_modal_success: 'Setarea de aprobare pentru ID-ul evaluării: %{assessmentId} a fost șters cu succes.'
           remove_modal_text: 'Sunteți sigur că doriți să ștergeți această setare pentru ID-ul de evaluare: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: V-ați autentificat cu succes ca %{name}
       validations:
         dates:
           end: trebuie să fie după data de începere

@@ -15,11 +15,6 @@ hi:
         simple_design:
           design: डिज़ाइन
           or: या
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: लॉगिन सफल।
     ai_assistants:
       artifacts:
         parsers:
@@ -501,9 +496,6 @@ hi:
           modal_title: स्कोरिंग अनुमोदन सेटिंग्स
           remove_modal_success: 'मूल्यांकन आईडी के लिए अनुमोदन सेटिंग: %{assessmentId} सफलतापूर्वक हटा दी गई'
           remove_modal_text: 'क्या आप सुनिश्चित हैं कि आप मूल्यांकन आईडी: %{assessmentId} के लिए इस सेटिंग को हटाना चाहते हैं?'
-      assessors:
-        spoof:
-          successfully: आप सफलतापूर्वक %{name} के रूप में लॉगिन हो गए।
       validations:
         dates:
           end: शुरुआत की तारीख के बाद होना चाहिए

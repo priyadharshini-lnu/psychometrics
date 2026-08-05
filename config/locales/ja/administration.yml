@@ -15,11 +15,6 @@ ja:
         simple_design:
           design: デザイン
           or: あるいは
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: ログインに成功しました。
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ ja:
           modal_title: スコア承認設定
           remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
           remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
-      assessors:
-        spoof:
-          successfully: "%{name} としてログインしました"
       validations:
         dates:
           end: 開始日以降であること

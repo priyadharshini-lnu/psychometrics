@@ -79,6 +79,7 @@ module Api
     end
 
     def current_user_details
+      @sign_in_notice = ::Users::SignInNotice.consume(session)
       jsonapi_render json: current_user, options: { resource: Api::V2::Administration::CurrentUserResource }
     end
 
@@ -93,6 +94,10 @@ module Api
     end
 
     private
+
+    def context
+      super.merge(sign_in_notice: @sign_in_notice)
+    end
 
     def campaign_id
       params[:campaign_id] || params.dig(:data, :attributes, :campaign_id)

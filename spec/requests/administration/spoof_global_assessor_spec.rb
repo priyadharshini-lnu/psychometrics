@@ -30,7 +30,7 @@ RSpec.describe 'Spoofing into a global assessor', type: :request do
       get spoof_administration_user_path(client_less_admin)
 
       expect(session[:impersonated_by_id]).to be_nil
-      expect(response).to redirect_to(root_url)
+      expect(response).to redirect_to(admin_path(notice: :no_client_access_root))
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Spoofing into a global assessor', type: :request do
       get spoof_administration_user_path(orphaned_assessor)
 
       expect(session[:impersonated_by_id]).to be_nil
-      expect(response).to redirect_to(root_url)
+      expect(response).to redirect_to(admin_path(notice: :no_client_access_root))
     end
 
     it 'is not treated as a root domain assessor' do

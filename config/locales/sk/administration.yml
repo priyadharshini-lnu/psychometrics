@@ -15,11 +15,6 @@ sk:
         simple_design:
           design: Dizajn
           or: Alebo
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prihlásenie bolo úspešné.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ sk:
           modal_title: Nastavenia schvaľovania bodovania
           remove_modal_success: 'Nastavenie schválenia pre identifikátor hodnotenia: %{assessmentId} bolo úspešne odstránené.'
           remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre identifikačný kód hodnotenia: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Úspešne ste sa prihlásili ako %{name}
       validations:
         dates:
           end: musí byť po dátume začiatku

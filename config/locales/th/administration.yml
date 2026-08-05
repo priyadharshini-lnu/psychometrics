@@ -15,11 +15,6 @@ th:
         simple_design:
           design: การออกแบบ
           or: หรือ
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: เข้าสู่ระบบสําเร็จ
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ th:
           modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
           remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
           remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: คุณเข้าสู่ระบบเป็น %{name} เรียบร้อยแล้ว
       validations:
         dates:
           end: ต้องอยู่หลังวันที่เริ่มต้น

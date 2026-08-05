@@ -15,11 +15,6 @@ bg:
         simple_design:
           design: Проектирам
           or: Или
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Влизането е успешно.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ bg:
           modal_title: Настройки за одобрение на оценки
           remove_modal_success: 'Настройката за одобрение за идентификационен номер на оценката: %{assessmentId} беше успешно изтрита.'
           remove_modal_text: 'Сигурен ли сте, че искате да изтриете тази настройка за идентификационен номер на оценката: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Вие влязохте успешно като %{name}
       validations:
         dates:
           end: трябва да е след началната дата

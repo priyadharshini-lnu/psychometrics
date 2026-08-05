@@ -4,10 +4,19 @@ class Api::V2::Administration::CurrentUserResource < Api::V2::Administration::Ba
   model_name 'User'
 
   attributes :name, :email, :first_name, :last_name, :navigation_links, :role, :photo, :role_title,
-             :library_owner_field_visible, :client_admin_client_ids, :support_admin, :preferences
+             :library_owner_field_visible, :client_admin_client_ids, :support_admin, :preferences,
+             :sign_in_notice
 
   def support_admin
     @model.support_admin?
+  end
+
+  # Null on every request but the first one after a sign-in; the shell toasts it and it is gone.
+  def sign_in_notice
+    notice = context[:sign_in_notice]
+    return nil if notice.blank?
+
+    { kind: notice[:kind], at: notice[:at].iso8601 }
   end
 
   def navigation_links

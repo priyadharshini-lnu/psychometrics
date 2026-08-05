@@ -15,11 +15,6 @@ sl:
         simple_design:
           design: Dizajn
           or: Ali
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prijava je bila uspešna.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ sl:
           modal_title: Nastavitve odobritve točkovanja
           remove_modal_success: 'Nastavitev odobritve za identifikacijsko številko ocene: %{assessmentId} je bila uspešno izbrisana.'
           remove_modal_text: 'Ali ste prepričani, da želite izbrisati to nastavitev za identifikacijsko številko ocene: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Uspešno ste bili prijavljeni kot %{name}
       validations:
         dates:
           end: mora biti po datumu začetka

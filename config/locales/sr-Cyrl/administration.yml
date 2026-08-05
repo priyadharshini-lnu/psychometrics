@@ -15,11 +15,6 @@ sr-Cyrl:
         simple_design:
           design: Дизајн
           or: Или
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Пријава успешна.
     ai_assistants:
       artifacts:
         parsers:
@@ -501,9 +496,6 @@ sr-Cyrl:
           modal_title: Подешавања за одобравање бодовања
           remove_modal_success: 'Подешавање за одобрење ИД процене: %{assessmentId} је успешно избрисано'
           remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Успешно сте се пријавили као %{name}
       validations:
         dates:
           end: мора да буде након датума почетка

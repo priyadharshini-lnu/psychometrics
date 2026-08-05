@@ -11,6 +11,7 @@ import { useSiderCollapsed } from './useSiderCollapsed'
 import { SubnavProvider } from './SubnavContext'
 import { OwnedPathsProvider, useIsOwnedPath } from './ownedPaths'
 import { AdminTopBarStart, AdminTopBarEnd } from './AdminTopBar'
+import { SignInNotice } from './SignInNotice'
 import MarshLogo from '~/assets/marsh-logo.svg?react'
 import MarshMark from '~/assets/marsh-mark.svg?react'
 
@@ -114,6 +115,7 @@ const AdminShellComponent: FC<Props> = ({
 }) => (
   // ShellBody sits inside AdminTheme so preference-reading hooks mount behind its gate.
   <AdminTheme>
+    <SignInNotice />
     <ShellBody
       collapsed={collapsed}
       triggerCollapse={triggerCollapse}

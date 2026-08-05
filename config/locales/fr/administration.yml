@@ -15,11 +15,6 @@ fr:
         simple_design:
           design: Conception
           or: Ou
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Connexion réussie.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ fr:
           modal_title: Paramètres d'approbation des notes
           remove_modal_success: 'Le paramètre d''approbation pour l''identifiant d''évaluation : %{assessmentId} a été supprimé avec succès.'
           remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant d''évaluation : %{assessmentId} ?'
-      assessors:
-        spoof:
-          successfully: Vous vous êtes connecté avec succès en tant que %{name}
       validations:
         dates:
           end: doit être postérieure à la date de début

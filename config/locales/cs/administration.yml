@@ -15,11 +15,6 @@ cs:
         simple_design:
           design: Design
           or: Nebo
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Přihlášení proběhlo úspěšně.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ cs:
           modal_title: Nastavení schvalování bodování
           remove_modal_success: 'Nastavení schválení pro identifikační číslo hodnocení: %{assessmentId} bylo úspěšně smazáno.'
           remove_modal_text: 'Opravdu chcete smazat toto nastavení pro identifikační číslo hodnocení: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Byl jste úspěšně přihlášen jako %{name}
       validations:
         dates:
           end: musí být po datu zahájení

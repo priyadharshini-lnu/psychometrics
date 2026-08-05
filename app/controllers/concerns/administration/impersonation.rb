@@ -26,8 +26,7 @@ module Administration
       end
 
       if AdminSubdomain.client_admin_sso_enabled? && target_user.clients_with_admin_access.empty?
-        flash[:alert] = I18n.t('admin.no_client_access_root')
-        redirect_to root_url
+        redirect_to admin_path(notice: :no_client_access_root)
         return
       end
 

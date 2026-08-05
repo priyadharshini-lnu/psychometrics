@@ -4,6 +4,14 @@ export type PreferenceRow = {
   payload: Record<string, unknown>
 }
 
+export type SignInNoticeKind = 'last_sign_in' | 'last_unsuccessful'
+
+/** Set only on the first details fetch after a sign-in; the server clears it on read. */
+export type SignInNotice = {
+  kind: SignInNoticeKind
+  at: string
+}
+
 export type CurrentUserDetails = {
   id: string
   name: string
@@ -13,6 +21,12 @@ export type CurrentUserDetails = {
   roleTitle: string
   photo?: string
   preferences: PreferenceRow[]
+  signInNotice: SignInNotice | null
+}
+
+type RawSignInNotice = {
+  kind?: string
+  at?: string
 }
 
 type RawDetails = {
@@ -26,8 +40,17 @@ type RawDetails = {
       role_title?: string
       photo?: string | null
       preferences?: PreferenceRow[]
+      sign_in_notice?: RawSignInNotice | null
     }
   } | null
+}
+
+const KINDS: SignInNoticeKind[] = ['last_sign_in', 'last_unsuccessful']
+
+const toSignInNotice = (raw: RawSignInNotice | null | undefined): SignInNotice | null => {
+  const kind = KINDS.find(candidate => candidate === raw?.kind)
+  if (kind == null || raw?.at == null) return null
+  return { kind, at: raw.at }
 }
 
 const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
@@ -53,6 +76,7 @@ export const fetchCurrentUserDetails = (): Promise<CurrentUserDetails | null> =>
         roleTitle: attributes.role_title ?? '',
         photo: attributes.photo ?? undefined,
         preferences: attributes.preferences ?? [],
+        signInNotice: toSignInNotice(attributes.sign_in_notice),
       }
     })
     .catch(() => null)
