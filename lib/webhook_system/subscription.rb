@@ -9,10 +9,10 @@ module WebhookSystem
 
     validates :url, presence: true, url: { no_local: true }
     validates :secret, presence: true
-    attr_encrypted :password, key: Base64.decode64(Settings.secrets[:encrypted_key])
-    attr_encrypted :api_key, key: Base64.decode64(Settings.secrets[:encrypted_key])
-    attr_encrypted :oauth_client_id, key: Base64.decode64(Settings.secrets[:encrypted_key])
-    attr_encrypted :oauth_client_secret, key: Base64.decode64(Settings.secrets[:encrypted_key])
+    attr_encrypted :password, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
+    attr_encrypted :api_key, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
+    attr_encrypted :oauth_client_id, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
+    attr_encrypted :oauth_client_secret, key: Base64.decode64(Settings.secrets.encrypted_key.to_s)
 
     has_many :topics, class_name: 'WebhookSystem::SubscriptionTopic', dependent: :destroy
     has_many :event_logs, class_name: 'WebhookSystem::EventLog', dependent: :delete_all
