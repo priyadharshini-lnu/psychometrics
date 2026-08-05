@@ -11,7 +11,7 @@ type ThemePayload = {
   dark: string
 }
 
-// Read side is the boot payload (no flash on first paint); creates upsert server-side.
+// Read side is the server-seeded initial state (no flash on first paint); creates upsert server-side.
 export const useThemePreference = () => {
   const { createResource } = useResources<UserPreference>('user_preferences')
 

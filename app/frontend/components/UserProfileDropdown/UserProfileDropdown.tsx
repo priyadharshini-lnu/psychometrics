@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
   Avatar, Dropdown, Button, Typography, Flex, Modal,
 } from 'antd'
@@ -9,8 +9,7 @@ import { useMedia } from 'use-media'
 import {
   UserOutlined, LockOutlined, LogoutOutlined, DownOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { fetchCurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
-import type { CurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
+import { currentUserFromInitialState } from '~/components/AdminShell/currentUserDetails'
 
 const { I18n } = window
 
@@ -19,17 +18,14 @@ interface Props {
 }
 
 export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false }) => {
-  const [user, setUser] = useState<CurrentUserDetails | null>(null)
+  // Server-seeded, so the menu renders complete on first paint instead of filling in after a round trip.
+  const user = useMemo(currentUserFromInitialState, [])
   const isMobile = useMedia({ maxWidth: 600 })
 
   const avatarSrc = useMemo(() => {
     if (!user?.email) return null
     return createAvatar(shapes, { size: 48, seed: user.email }).toDataUri()
   }, [user?.email])
-
-  useEffect(() => {
-    fetchCurrentUserDetails().then(setUser)
-  }, [])
 
   const handleLogout = () => {
     Modal.confirm({
@@ -53,9 +49,11 @@ export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false 
               {user?.name}
             </Typography.Title>
             <Typography.Text>{user?.email}</Typography.Text>
-            <Typography.Text style={{ fontSize: 12 }}>
-              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
-            </Typography.Text>
+            {user?.roleTitle && (
+              <Typography.Text style={{ fontSize: 12 }}>
+                {`${I18n.t('admin.role')} - ${user.roleTitle}`}
+              </Typography.Text>
+            )}
           </Flex>
         </Flex>
       ),

@@ -6,6 +6,7 @@ const visit = (search: string) => window.history.replaceState({}, '', `/admin${s
 describe('consumeBootNotice', () => {
   it.each([
     ['handoff_failed', 'error', 'admin.handoff_invalid_token'],
+    ['no_client_access', 'error', 'admin.no_client_access'],
     ['no_client_access_root', 'error', 'admin.no_client_access_root'],
     ['feature_unavailable', 'error', 'admin.feature_not_available'],
     ['password_updated', 'success', 'devise.password_expired.updated'],

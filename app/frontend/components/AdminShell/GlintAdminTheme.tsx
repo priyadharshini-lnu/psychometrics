@@ -9,6 +9,7 @@ import {
   THEME_CATALOG,
 } from '@thetalententerprise/glint'
 import type { GlintMode, GlintThemeTokens } from '@thetalententerprise/glint'
+import { useSetCssVars } from '~/hooks/useSetCssVars'
 import { isRtl } from '~/utils/locales'
 // Brand faces + Material Symbols; without it every <Icon> renders its ligature text.
 import '@thetalententerprise/glint/fonts.css'
@@ -44,6 +45,20 @@ export type ThemeChoice = {
 /** What the admin renders with the theme switcher off — also the standalone-page default. */
 export const DEFAULT_THEME_CHOICE: ThemeChoice = { mode: 'light', light: DEFAULT_LIGHT, dark: DEFAULT_DARK }
 
+const MODES: GlintMode[] = ['system', 'light', 'dark']
+
+export const THEME_SWITCHER_ENABLED = window.PsyGlobalState?.features?.theme_switcher === true
+
+/** Narrows a stored `theme/appearance` payload — from the boot state or the details fetch — to a valid choice. */
+export const choiceFrom = (stored: Record<string, unknown> | null): ThemeChoice => {
+  if (!THEME_SWITCHER_ENABLED) return DEFAULT_THEME_CHOICE
+  return {
+    mode: MODES.find(mode => mode === stored?.mode) ?? 'system',
+    light: typeof stored?.light === 'string' && stored.light in LIGHT_THEMES ? stored.light : DEFAULT_LIGHT,
+    dark: typeof stored?.dark === 'string' && stored.dark in DARK_THEMES ? stored.dark : DEFAULT_DARK,
+  }
+}
+
 /** The antd config a glint theme resolves to — the same object GlintThemeProvider hands its own ConfigProvider. */
 const antdThemeConfig = (tokens: GlintThemeTokens): ThemeConfig => ({
   ...GLINT_CONFIG.theme,
@@ -68,6 +83,12 @@ type Props = {
   children: ReactNode
 }
 
+// Mirrors the active theme onto the legacy --brand-*/--ant-* vars the pre-glint stylesheets still read.
+const LegacyCssVarBridge = () => {
+  useSetCssVars()
+  return null
+}
+
 // Provider-free marsh theming: no redux, router or api, so standalone pages can mount it too.
 export const GlintAdminTheme: FC<Props> = ({ choice = DEFAULT_THEME_CHOICE, children }) => (
   <GlintThemeProvider
@@ -77,6 +98,8 @@ export const GlintAdminTheme: FC<Props> = ({ choice = DEFAULT_THEME_CHOICE, chil
     direction={isRtl(I18n.currentLocale()) ? 'rtl' : 'ltr'}
     locale={antdLocale}
   >
+    {/* Ordering dependency: nested here so it writes --ant-* after DefaultAntThemeWrapper's useSetCssVars. */}
+    <LegacyCssVarBridge />
     {children}
   </GlintThemeProvider>
 )

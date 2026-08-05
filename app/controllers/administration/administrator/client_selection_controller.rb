@@ -11,7 +11,7 @@ module Administration
 
       around_action :skip_tenant_scoping
       before_action :ensure_feature_enabled
-      before_action :hide_navigation
+      before_action :render_react_shell
       before_action :redirect_superadmin_without_spoof
 
       def index
@@ -86,8 +86,9 @@ module Administration
         redirect_to admin_path(notice: :feature_unavailable)
       end
 
-      def hide_navigation
-        @hide_navigation = true
+      # React owns this whole page, so it takes the shell branch: splash and brand backdrop, no Rails chrome.
+      def render_react_shell
+        @do_not_render_rails_menu = true
       end
 
       def redirect_superadmin_without_spoof
@@ -114,8 +115,7 @@ module Administration
         impersonator = impersonated_by || (spoofing ? current_user : nil)
 
         redirect_via_handoff(target_user, client, impersonated_by: impersonator, on_error: lambda {
-          flash[:alert] = I18n.t('admin.no_client_access')
-          redirect_to administration_client_selection_path
+          redirect_to administration_client_selection_path(notice: :no_client_access)
         }, locale: LocaleValidator.sanitize(cookies[:locale]))
       end
 

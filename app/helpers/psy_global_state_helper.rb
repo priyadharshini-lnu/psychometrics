@@ -28,10 +28,10 @@ module PsyGlobalStateHelper
 
   # Shell pages paint the brand backdrop (Marsh pattern on a scheme-picked surface) from the first byte.
   def shell_html_style
-    style = +'color-scheme: light dark'
+    style = 'color-scheme: light dark'
     if react_shell?
       pattern = image_url('marsh-pattern.png')
-      style << "; background: light-dark(#F7F4EF, #061047) url(#{pattern}) center / cover no-repeat"
+      style += "; background: light-dark(#F7F4EF, #061047) url(#{pattern}) center / cover no-repeat"
     end
     style
   end

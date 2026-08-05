@@ -6,6 +6,7 @@ export type BootNotice = {
 // A closed allow-list: server redirects that land on the shell say why via ?notice=, never via flash.
 const BOOT_NOTICES: Record<string, BootNotice> = {
   handoff_failed: { type: 'error', i18nKey: 'admin.handoff_invalid_token' },
+  no_client_access: { type: 'error', i18nKey: 'admin.no_client_access' },
   no_client_access_root: { type: 'error', i18nKey: 'admin.no_client_access_root' },
   feature_unavailable: { type: 'error', i18nKey: 'admin.feature_not_available' },
   password_updated: { type: 'success', i18nKey: 'devise.password_expired.updated' },

@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux'
 import '~/styles/utils.less'
 import '~/styles/common.less'
 
-import { AuthLayout } from './Layout'
 import { isAdminGlintRoute } from './adminGlintRoutes'
 import { RootState } from './core/reducers'
 
@@ -18,6 +17,8 @@ const px2rem = px2remTransformer({
 
 // Lazy so an unflagged project pulls in zero glint CSS/font side-effects and stays byte-for-byte legacy.
 const AuthApp = lazy(() => import('./AuthApp'))
+// Lazy for the mirror reason: a glint route must not download and evaluate the legacy tree it never renders.
+const AuthLayout = lazy(() => import('./Layout').then(m => ({ default: m.AuthLayout })))
 
 const LegacyAuthApp = () => {
   const direction = I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'
@@ -37,15 +38,11 @@ export const App = () => {
   const glintUi = useSelector((state: RootState) => Boolean(state.projectConfig?.glint_ui))
   const onAdminRoute = isAdminGlintRoute(window.location.pathname)
 
-  if (glintUi || onAdminRoute) {
-    return (
-      <Suspense fallback={null}>
-        <AuthApp />
-      </Suspense>
-    )
-  }
-
-  return <LegacyAuthApp />
+  return (
+    <Suspense fallback={null}>
+      {glintUi || onAdminRoute ? <AuthApp /> : <LegacyAuthApp />}
+    </Suspense>
+  )
 }
 
 export default App

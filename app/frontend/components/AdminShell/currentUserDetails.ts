@@ -53,6 +53,37 @@ const toSignInNotice = (raw: RawSignInNotice | null | undefined): SignInNotice |
   return { kind, at: raw.at }
 }
 
+type InitialStateUser = {
+  id?: number | string
+  name?: string
+  email?: string
+  first_name?: string
+  last_name?: string
+  role_title?: string
+  photo?: string | null
+  preferences?: PreferenceRow[]
+}
+
+/** The server-seeded user, already in the page — the same payload the SPA store preloads from. */
+export const currentUserFromInitialState = (): CurrentUserDetails | null => {
+  // eslint-disable-next-line no-underscore-dangle
+  const raw: InitialStateUser | null | undefined = window.__INITIAL_STATE__?.currentUser
+  if (raw == null) return null
+
+  return {
+    id: String(raw.id ?? ''),
+    name: raw.name ?? '',
+    email: raw.email ?? '',
+    firstName: raw.first_name ?? '',
+    lastName: raw.last_name ?? '',
+    roleTitle: raw.role_title ?? '',
+    photo: raw.photo ?? undefined,
+    preferences: raw.preferences ?? [],
+    // One-shot and session-backed: only the API may consume it, so it is never seeded here.
+    signInNotice: null,
+  }
+}
+
 const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 let inflight: Promise<CurrentUserDetails | null> | null = null

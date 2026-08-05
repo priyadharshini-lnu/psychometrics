@@ -8,7 +8,9 @@ const mapType = (type: string): AuthAlertItem['type'] => {
     case 'alert':
     case 'error':
       return 'error'
+    // Rails' `notice` is neutral information, not an outcome — same mapping FormHelper#flash_messages uses.
     case 'notice':
+      return 'info'
     case 'success':
       return 'success'
     case 'warning':

@@ -2,12 +2,17 @@ import { ADMIN_GLINT_ROUTES, isAdminGlintRoute } from '~/modules/auth/adminGlint
 
 describe('adminGlintRoutes', () => {
   describe('ADMIN_GLINT_ROUTES', () => {
-    test('lists the admin login paths and the admin forgot-password path', () => {
+    test('lists every admin path served by a glint page', () => {
       expect(ADMIN_GLINT_ROUTES).toEqual([
         '/',
         '/administration',
         '/administration/sign_in',
         '/administration/passwords/new',
+        '/administration/invitations/accept',
+        '/administration/invitations',
+        '/administration/passwords/edit',
+        '/administration/passwords',
+        '/administration/password_expired',
       ])
     })
   })
@@ -19,13 +24,18 @@ describe('adminGlintRoutes', () => {
       '/administration/',
       '/administration/sign_in',
       '/administration/passwords/new',
+      '/administration/passwords/edit',
+      '/administration/passwords',
+      '/administration/invitations/accept',
+      '/administration/invitations',
+      '/administration/password_expired',
     ])('matches %s', (pathname) => {
       expect(isAdminGlintRoute(pathname)).toBe(true)
     })
 
     test.each([
       '/users/sign_in',
-      '/administration/passwords/edit',
+      '/users/password/edit',
       '/users',
     ])('does not match %s', (pathname) => {
       expect(isAdminGlintRoute(pathname)).toBe(false)

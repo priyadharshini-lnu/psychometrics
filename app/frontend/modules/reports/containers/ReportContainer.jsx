@@ -70,7 +70,8 @@ class ReportContainer extends Component {
     return (
       <Provider store={rstore} key={userReport.id}>
         <ErrorBoundary fallbackRender={() => <ErrorWarning />}>
-          <div className="row" style={{ direction: 'ltr' }}>
+          {/* Own stacking context so the report's own z-indexes cannot reach the admin shell's top bar. */}
+          <div className="row" style={{ direction: 'ltr', isolation: 'isolate' }}>
             <Preview
               key={userReport.id}
               rstore={globalStore}

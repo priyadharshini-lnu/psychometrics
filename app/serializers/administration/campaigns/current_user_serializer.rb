@@ -3,8 +3,19 @@
 module Administration
   module Campaigns
     class CurrentUserSerializer < Panko::Serializer
+      # Mirrors Api::V2::Administration::CurrentUserResource minus sign_in_notice, which must stay one-shot.
       attributes :id, :grants, :role, :role_title, :permissions, :name, :client_admin_client_ids,
-                 :library_owner_field_visible, :support_admin
+                 :library_owner_field_visible, :support_admin, :email, :first_name, :last_name,
+                 :photo, :preferences
+
+      # The delegate, not user_profile.photo: init_state runs on every admin page and a missing profile must not raise.
+      def photo
+        object.photo&.url
+      end
+
+      def preferences
+        object.user_preferences.map { |preference| preference.slice(:category, :config_key, :payload) }
+      end
 
       def support_admin
         object.support_admin?

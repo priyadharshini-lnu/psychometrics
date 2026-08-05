@@ -31,10 +31,10 @@ RSpec.describe 'the administration layout', type: :controller do
       sign_in user
     end
 
-    it 'still renders the flash container on a Rails-rendered page' do
+    it 'renders no flash container now that React owns this page too' do
       get :index
 
-      expect(response.body).to include('flash-messages')
+      expect(response.body).not_to include('flash-messages')
     end
   end
 end
