@@ -1,7 +1,12 @@
 import { ReactNode } from 'react'
-import { act, render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { createRoot } from 'react-dom/client'
+import { act } from 'react-dom/test-utils'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
+
+// Every case re-imports the whole admin route graph, which costs seconds on a cold module cache.
+vi.setConfig({ testTimeout: 30000 })
 
 const stub = (testId: string) => () => <div data-testid={testId} />
 
@@ -44,20 +49,38 @@ const makeStore = (links: Record<string, string>) => configureStore({
   reducer: () => ({ ui: { menu: { links, collapsed: false } }, features: {} }),
 })
 
+let cleanup = () => {}
+
 // The router is built from window.location at import time, so each case re-imports at the URL under test.
 const renderAt = async (pathname: string, links: Record<string, string> = ASSESSOR_LINKS) => {
   window.history.pushState({}, '', pathname)
   vi.resetModules()
   const { Layout, router } = await import('~/modules/admin/Layout')
 
-  await act(async () => { render(<Provider store={makeStore(links)}><Layout /></Provider>) })
-  // Legacy-mode render: the lazy chunk only commits on a second flush, after its Suspense fallback painted.
-  await act(async () => {})
+  const container = document.body.appendChild(document.createElement('div'))
+  const root = createRoot(container)
+  cleanup = () => { act(() => { root.unmount() }); container.remove() }
+
+  await act(async () => { root.render(<Provider store={makeStore(links)}><Layout /></Provider>) })
 
   return router
 }
 
+// Each pass leaves act, which is the only point at which the page chunk's pending import can settle.
+const findPage = async (testId: string, passes = 100): Promise<HTMLElement> => {
+  if (passes > 0 && !screen.queryByTestId(testId)) {
+    await act(async () => { await new Promise((resume) => { setTimeout(resume, 10) }) })
+
+    return findPage(testId, passes - 1)
+  }
+
+  return screen.getByTestId(testId)
+}
+
 describe('admin Layout router', () => {
+  beforeEach(() => { globalThis.IS_REACT_ACT_ENVIRONMENT = true })
+  afterEach(() => { cleanup() })
+
   it.each([
     ['/admin/clients', 'clients'],
     ['/assessors', 'campaign-list'],
@@ -67,8 +90,8 @@ describe('admin Layout router', () => {
   ])('serves %s from the single admin router', async (pathname, testId) => {
     await renderAt(pathname)
 
+    expect(await findPage(testId)).toBeInTheDocument()
     expect(screen.getByTestId('admin-shell')).toBeInTheDocument()
-    expect(screen.getByTestId(testId)).toBeInTheDocument()
   })
 
   it('redirects the admin root to clients', async () => {

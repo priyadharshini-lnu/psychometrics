@@ -1,10 +1,7 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { WorkshopList } from './Workshop'
-import { Invites } from './Invites'
-import RouteList from '~/components/RouteList'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import routeUtils from '~/utils/route'
@@ -48,14 +45,7 @@ const SchedulingComponent: React.FC<Props> = ({ campaignPermissions }) => {
           className="w-100"
         />
       </div>
-      <RouteList
-        routes={[
-          { redirect: true, from: '', to: 'assessment_center' },
-          { path: '/assessment_center', component: <WorkshopList /> },
-          { path: '/:tab', component: <Invites /> },
-        ]}
-        urlPrefix=""
-      />
+      <Outlet />
     </div>
   )
 }

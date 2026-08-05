@@ -8,7 +8,8 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { AdminShell } from '~/components/AdminShell'
 import RouteErrorBoundary from '~/components/RouteErrorBoundary'
-import { PageLoadSpinner } from '~/glint'
+import { PageFallback } from '~/components/PageFallback'
+import { usePageChunk } from '~/utils/usePageChunk'
 import routes from './routes'
 import assessorRoutes from './modules/AssessorApp/routes'
 import assessorSettings from './modules/AssessorApp/settings'
@@ -37,7 +38,7 @@ const AssessorGate: React.FC = () => {
   return <Outlet />
 }
 
-// Keyed by matched route so an error clears on navigation, as it did when every route carried its own boundary.
+// Keyed by matched route so an error clears on navigation.
 const RoutedPage: React.FC = () => {
   const matches = useMatches()
 
@@ -48,19 +49,22 @@ const RoutedPage: React.FC = () => {
   )
 }
 
-// AppShell owns the shell and the routed page is its child — only glint's Sider can theme the rail.
-const Main: React.FC = () => (
-  <>
-    <title>{I18n.t('admin.meta_title')}</title>
-    <AdminShell ownedPathPrefixes={OWNED_PATH_PREFIXES}>
-      {/* Boundary inside the shell so a route chunk load swaps only the page area, never the shell. */}
-      <Suspense fallback={<PageLoadSpinner size="large" />}>
-        <RoutedPage />
-      </Suspense>
-      {modals}
-    </AdminShell>
-  </>
-)
+const Main: React.FC = () => {
+  // Keyed by chunk: a page waiting on a download gets a fresh boundary, which React fills with the fallback.
+  const chunk = usePageChunk(router.routes)
+
+  return (
+    <>
+      <title>{I18n.t('admin.meta_title')}</title>
+      <AdminShell ownedPathPrefixes={OWNED_PATH_PREFIXES} routes={router.routes}>
+        <Suspense key={chunk} fallback={<PageFallback />}>
+          <RoutedPage />
+        </Suspense>
+        {modals}
+      </AdminShell>
+    </>
+  )
+}
 
 export const router = createBrowserRouter([
   {
@@ -83,5 +87,9 @@ export const router = createBrowserRouter([
 ])
 
 export function Layout () {
-  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+  return (
+    <Suspense fallback="loading...">
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

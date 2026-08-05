@@ -1,12 +1,10 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import RouteList from '~/components/RouteList'
 import Breadcrumb from '../../components/Breadcrumb'
 import settings from '../../settings'
-import routes from './routes'
 import { Navigation } from './Navigation'
 
 const { I18n } = window
@@ -54,10 +52,7 @@ const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
       />
       <Navigation prefix={`${settings.urlPrefix}/${campaignId}`} permissions={campaignPermissions} />
       <section data-testid="admin_campaign_section">
-        <RouteList
-          routes={routes}
-          urlPrefix=""
-        />
+        <Outlet />
       </section>
     </div>
   )

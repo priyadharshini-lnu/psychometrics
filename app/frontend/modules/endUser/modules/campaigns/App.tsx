@@ -1,7 +1,9 @@
 import { lazy, Suspense } from 'react'
 import { theme } from 'antd'
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
-import { BrowserRouter as Router, useLocation } from 'react-router-dom'
+import {
+  BrowserRouter as Router, matchRoutes, useLocation, useRoutes,
+} from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from '~/modules/endUser/store'
 
@@ -16,7 +18,7 @@ import routes from './routes'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import '~/styles/common.less'
-import RouteList from '~/components/RouteList'
+import RouteErrorBoundary from '~/components/RouteErrorBoundary'
 import ErrorModal from '~/components/ErrorModal'
 
 // Loaded (and their glint CSS/font side-effects incurred) only when the flag is on, so an
@@ -45,6 +47,18 @@ const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS, GREY_BORDER } = constants
 const px2rem = px2remTransformer({
   rootValue: 16,
 })
+
+const RoutedPage = () => {
+  const { pathname } = useLocation()
+  const routedPage = useRoutes(routes)
+  const matched = matchRoutes(routes, pathname)
+
+  return (
+    <RouteErrorBoundary key={matched?.map(({ route }) => route.path ?? 'index').join('/')}>
+      {routedPage}
+    </RouteErrorBoundary>
+  )
+}
 
 // The page-level flag swap: the flag swaps WHOLE PAGES, never branches inside the legacy
 // chrome. Flag on + dashboard route → the self-contained glint DashboardPage (under its own
@@ -81,7 +95,7 @@ const AppBody = ({ glintUi }: { glintUi: boolean }) => {
   return (
     <StyleProvider transformers={[px2rem]}>
       <UserPageLayout>
-        <RouteList routes={routes} urlPrefix="/" />
+        <RoutedPage />
       </UserPageLayout>
     </StyleProvider>
   )

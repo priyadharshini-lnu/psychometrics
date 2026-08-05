@@ -1,8 +1,7 @@
 import React from 'react'
 import { Menu as AntMenu } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import routeUtils from '~/utils/route'
-import routes from '../routes'
 import { PropsFromRedux } from './connect'
 
 const { I18n } = window
@@ -14,6 +13,7 @@ const Menu: React.FC<OwnProps & PropsFromRedux> = ({
   prefix, campaignPermissions,
 }) => {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
 
   const menuItems = [{ key: '/manage', label: I18n.t('assessments_reports.menu.manage') }]
@@ -27,12 +27,14 @@ const Menu: React.FC<OwnProps & PropsFromRedux> = ({
     menuItems.push({ key: '/ai_scoring_approval', label: I18n.t('admin.ai_scoring_approval_settings') })
   }
 
+  const activeTab = menuItems.find(({ key }) => pathname.includes(key))
+
   return (
     <div className="position-relative">
       <AntMenu
         className="mbm"
         onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        selectedKeys={activeTab ? [activeTab.key] : []}
         mode="horizontal"
         items={menuItems}
       />

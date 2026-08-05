@@ -48,6 +48,8 @@ export default defineConfig({
       '@thetalententerprise/glint/icons': new URL(
         './node_modules/@thetalententerprise/glint/dist/icons.js', import.meta.url,
       ).pathname,
+      // scroll-js resolves to a CJS entry that requires an undeclared core-js; use its ESM build.
+      'scroll-js': new URL('./node_modules/scroll-js/dist/scroll.js', import.meta.url).pathname,
       '*': './*',
       '@/': new URL('./app/frontend/', import.meta.url).pathname,
       '~/': new URL('./app/frontend/', import.meta.url).pathname,

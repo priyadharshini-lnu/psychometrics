@@ -1,13 +1,18 @@
-import { lazy } from 'react'
-import Campaign from './Campaigns'
+import { lazyPages } from '~/utils/lazyPages'
+import { routes as campaignRoutes } from '~/modules/admin/modules/campaigns/routes/Campaign/routes'
+import { routes as clientRoutes } from './Client/routes'
+import { routes as projectRoutes } from './Client/routes/Project/routes'
 
-const Project = lazy(() => import('~/modules/admin/modules/client/routes/Client/routes/Project'))
+const page = lazyPages('client', () => import('../pages'))
+const campaignPage = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
 
-const ReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ReportPreview'))
-const ExternalReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ExternalReportPreview'))
-const Client = lazy(() => import('./Client'))
-const ClientList = lazy(() => import('./ClientList'))
-const LicenseUsageList = lazy(() => import('./LicenseList/LicenseUsage'))
+const ClientList = page(m => m.ClientList)
+const Client = page(m => m.Client)
+const LicenseUsageList = page(m => m.LicenseUsageList)
+const Project = page(m => m.Project)
+const Campaign = page(m => m.Campaign)
+const ReportPreview = campaignPage(m => m.ReportPreview)
+const ExternalReportPreview = campaignPage(m => m.ExternalReportPreview)
 
 const routes = [
   {
@@ -17,18 +22,16 @@ const routes = [
   {
     path: 'clients/:clientId',
     element: <Client />,
+    children: clientRoutes,
   },
   {
     path: 'clients/:clientId/licenses/:licenseId/license_usages',
     element: <LicenseUsageList />,
   },
   {
-    path: 'clients/:clientId/*',
-    element: <Client />,
-  },
-  {
     path: 'projects/:projectId',
     element: <Project />,
+    children: projectRoutes,
   },
   {
     path: 'projects/:projectId/new_campaigns/:campaignId/user_reports/:id',
@@ -39,16 +42,10 @@ const routes = [
     element: <ExternalReportPreview />,
   },
   {
+    // The splat stays because a threesixty campaign renders its own descendant Routes under this url.
     path: 'projects/:projectId/new_campaigns/:campaignId/*',
     element: <Campaign />,
-    // loader: async ({ request, params }) => fetch(
-    //   `/administration/projects/${params.projectId}/new_campaigns/${params.campaignId}.json`,
-    //   { signal: request.signal },
-    // ),
-  },
-  {
-    path: 'projects/:projectId/*',
-    element: <Project />,
+    children: campaignRoutes,
   },
 ]
 

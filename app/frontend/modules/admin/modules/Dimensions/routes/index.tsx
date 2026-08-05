@@ -1,38 +1,38 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const DimensionsList = lazy(() => import('./DimensionsList'))
-const DimensionComponent = lazy(() => import('./Dimension'))
-const SubFactorsList = lazy(() => import('./SubFactorsList'))
-const OccupationConditionSetsList = lazy(() => import('./OccupationConditionSetsList'))
+const page = lazyPages('dimensions', () => import('../pages'))
 
-const routes = [
-  {
-    path: '/',
-    component: <DimensionsList />,
-  },
-  {
-    path: '/:dimensionId/:slug/:tagId/factors',
-    component: <SubFactorsList />,
-  },
-  {
-    path: '/:dimensionId/occupations/condition_sets',
-    component: <OccupationConditionSetsList />,
-  },
-  {
-    path: '/:dimensionId/*',
-    component: <DimensionComponent />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const DimensionsList = page(m => m.DimensionsList)
+const SubFactorsList = page(m => m.SubFactorsList)
+const OccupationConditionSetsList = page(m => m.OccupationConditionSetsList)
+const Dimension = page(m => m.Dimension)
+const FactorsList = page(m => m.FactorsList)
+const OccupationsList = page(m => m.OccupationsList)
+const InnovationStylesList = page(m => m.InnovationStylesList)
 
 const DimensionsRoutes = [
   {
-    path: 'dimensions/*',
-    element: <Layout />,
+    path: 'dimensions',
+    children: [
+      { index: true, element: <DimensionsList /> },
+      { path: ':dimensionId/:slug/:tagId/factors', element: <SubFactorsList /> },
+      {
+        path: ':dimensionId/occupations/condition_sets',
+        element: <OccupationConditionSetsList />,
+      },
+      {
+        path: ':dimensionId',
+        element: <Dimension />,
+        children: [
+          { index: true, element: <Navigate to="factors" replace /> },
+          { path: 'factors', element: <FactorsList /> },
+          { path: 'occupations', element: <OccupationsList /> },
+          { path: 'innovation_styles', element: <InnovationStylesList /> },
+        ],
+      },
+    ],
   },
 ]
-
 
 export default DimensionsRoutes

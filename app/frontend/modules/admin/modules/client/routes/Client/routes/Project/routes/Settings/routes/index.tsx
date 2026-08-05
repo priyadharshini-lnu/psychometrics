@@ -1,82 +1,59 @@
-import { Smtp } from './Smtp'
-import { SamlTabbed } from './Saml'
-import { Integrations } from './Integrations'
-import { General } from './General'
-import { Webhooks } from './Webhooks'
-import { Design } from './Design'
-import { Profile } from './Profile'
-import { SecuritySettings } from './Security'
-import { Privacy } from './Privacy'
-import { Registration } from './Registration'
-import { Assessments } from './Assessments'
-import { MettlScheduleRecords } from './MettlScheduleRecords'
-import { Features } from './Features'
-import { Applications, ApplicationDetails } from './Applications'
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { lazyPages } from '~/utils/lazyPages'
+
+const page = lazyPages('client', () => import('~/modules/admin/modules/client/pages'))
+
+const Smtp = page(m => m.Smtp)
+const SamlTabbed = page(m => m.SamlTabbed)
+const Integrations = page(m => m.Integrations)
+const MettlScheduleRecords = page(m => m.MettlScheduleRecords)
+const SecuritySettings = page(m => m.SecuritySettings)
+const General = page(m => m.General)
+const Webhooks = page(m => m.Webhooks)
+const Design = page(m => m.Design)
+const Profile = page(m => m.Profile)
+const Registration = page(m => m.Registration)
+const Privacy = page(m => m.Privacy)
+const Assessments = page(m => m.Assessments)
+const Features = page(m => m.Features)
+const Applications = page(m => m.Applications)
+const ApplicationDetails = page(m => m.ApplicationDetails)
+
+const FIRST_TAB_BY_PERMISSION = [
+  { permission: 'manageProjectGeneralSettings', tab: 'general' },
+  { permission: 'manageProjectSmtpSettings', tab: 'smtp' },
+  { permission: 'manageProjectSamlSetting', tab: 'saml' },
+  { permission: 'manageProjectIntegrations', tab: 'integrations' },
+  { permission: 'manageProjectSecuritySettings', tab: 'security' },
+  { permission: 'manageProjectWebhooks', tab: 'webhooks' },
+  { permission: 'manageProjectPrivacySetting', tab: 'privacy' },
+]
+
+const SettingsIndex = () => {
+  const permissions = useSelector((state: RootState) => state.currentUser.permissions)
+  const firstTab = FIRST_TAB_BY_PERMISSION.find(({ permission }) => permissions[permission])
+
+  return firstTab ? <Navigate to={firstTab.tab} replace /> : null
+}
 
 export const routes = [
-  {
-    path: '/smtp',
-    component: <Smtp />,
-  },
-  {
-    path: '/saml',
-    component: <SamlTabbed />,
-  },
-  {
-    path: '/integrations',
-    component: <Integrations />,
-  },
-  {
-    path: 'integrations/mettl_schedule_records',
-    component: <MettlScheduleRecords />,
-  },
-  {
-    path: '/security',
-    component: <SecuritySettings />,
-  },
-  {
-    path: '/general',
-    component: <General />,
-  },
-  {
-    path: '/webhooks',
-    component: <Webhooks />,
-  },
-
-  {
-    path: '/design',
-    component: <Design />,
-  },
-  {
-    path: '/profile',
-    component: <Profile />,
-  },
-  {
-    path: '/registration',
-    component: <Registration />,
-  },
-  {
-    path: '/privacy',
-    component: <Privacy />,
-  },
-  {
-    path: '/assessments',
-    component: <Assessments />,
-  },
-  {
-    path: '/features',
-    component: <Features />,
-  },
-  {
-    path: '/applications',
-    component: <Applications />,
-  },
-  {
-    path: '/applications/:applicationId',
-    component: <ApplicationDetails />,
-  },
-  {
-    path: '/applications/:applicationId/*',
-    component: <ApplicationDetails />,
-  },
+  { index: true, element: <SettingsIndex /> },
+  { path: 'smtp', element: <Smtp /> },
+  { path: 'saml', element: <SamlTabbed /> },
+  { path: 'integrations', element: <Integrations /> },
+  { path: 'integrations/mettl_schedule_records', element: <MettlScheduleRecords /> },
+  { path: 'security', element: <SecuritySettings /> },
+  { path: 'general', element: <General /> },
+  { path: 'webhooks', element: <Webhooks /> },
+  { path: 'design', element: <Design /> },
+  { path: 'profile', element: <Profile /> },
+  { path: 'registration', element: <Registration /> },
+  { path: 'privacy', element: <Privacy /> },
+  { path: 'assessments', element: <Assessments /> },
+  { path: 'features', element: <Features /> },
+  { path: 'applications', element: <Applications /> },
+  { path: 'applications/:applicationId', element: <ApplicationDetails /> },
+  { path: 'applications/:applicationId/*', element: <ApplicationDetails /> },
 ]

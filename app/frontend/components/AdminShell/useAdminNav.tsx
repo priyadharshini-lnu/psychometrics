@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import type { RouteObject } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppShellNav } from '@thetalententerprise/glint'
 import { Icon } from '@thetalententerprise/glint/icons'
@@ -7,6 +8,7 @@ import { camelizeKeys } from '~/utils/object'
 import { getFeatures } from '~/core/config'
 import type { RootState } from '~/modules/admin/core/rootReducers'
 import { closeSubmenu, openSubmenu } from '~/modules/admin/core/ui/menu'
+import { usePagePrefetch } from '~/utils/usePagePrefetch'
 import { useSubnav } from './SubnavContext'
 import { isOwnedPath } from './ownedPaths'
 
@@ -75,7 +77,7 @@ const activeKeyFor = (pathname: string): string | undefined => (
   ROUTE_KEYS.find(([pattern]) => pattern.test(pathname))?.[1]
 )
 
-export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
+export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]): AppShellNav => {
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const links: Permissions = useSelector((state: RootState) => state.ui.menu.links)
@@ -85,6 +87,7 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
   const subnav = useSubnav()
   const hasSubmenu = subnav != null
   const dispatch = useDispatch()
+  const { prefetch, cancel } = usePagePrefetch(routes)
 
   // openKeys is controlled and user-driven; the route only seeds and augments it.
   const routeParent = PARENT_OF[activeKeyFor(pathname) ?? ''] ?? undefined
@@ -111,11 +114,20 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       else window.location.href = path
     }
 
+    // rc-menu forwards these to the item's element; antd's item type only declares the pointer pair.
+    const intent = (path: string) => ({
+      onMouseEnter: () => prefetch(path),
+      onMouseLeave: cancel,
+      onFocus: () => prefetch(path),
+      onBlur: cancel,
+    })
+
     const entry = (e: Entry): NavItem | null => (e.path ? {
       key: e.key,
       label: e.label,
       icon: e.icon,
       onClick: go(e.path),
+      ...intent(e.path),
     } : null)
 
     const group = (key: string, label: string, icon: JSX.Element, children: (NavItem | null)[]): NavItem | null => {
@@ -275,5 +287,6 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       openKeys,
       onOpenChange: (keys: string[]) => setOpenKeys(keys),
     }
-  }, [pathname, links, features, navigate, ownedPathPrefixes, openKeys, hasSubmenu, showSubmenu, subnav, dispatch])
+  }, [pathname, links, features, navigate, ownedPathPrefixes, openKeys, hasSubmenu, showSubmenu, subnav, dispatch,
+    prefetch, cancel])
 }

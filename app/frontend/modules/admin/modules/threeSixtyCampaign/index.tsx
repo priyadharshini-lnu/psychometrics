@@ -1,16 +1,17 @@
 import React from 'react'
-import RouteList from '~/components/RouteList'
+import { useRoutes } from 'react-router-dom'
 import routes from './routes'
 
-const Campaign: React.FC = () => (
-  <div>
-    <section data-testid="admin_campaign_section">
-      <RouteList
-        routes={routes}
-        urlPrefix=""
-      />
-    </section>
-  </div>
-)
+const Campaign: React.FC = () => {
+  const routedPage = useRoutes(routes)
+
+  return (
+    <div>
+      <section data-testid="admin_campaign_section">
+        {routedPage}
+      </section>
+    </div>
+  )
+}
 
 export default Campaign

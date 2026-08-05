@@ -1,27 +1,19 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const Profile = lazy(() => import('./Details'))
-const ChangePassword = lazy(() => import('./ChangePassword'))
+const page = lazyPages('profile', () => import('../pages'))
 
-const routes = [
-  { redirect: true, from: '/', to: 'details' },
-  {
-    path: '/details',
-    component: <Profile />,
-  },
-  {
-    path: '/change_password',
-    component: <ChangePassword />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const Details = page(m => m.Details)
+const ChangePassword = page(m => m.ChangePassword)
 
 const ProfileRoutes = [
   {
-    path: 'profile/*',
-    element: <Layout />,
+    path: 'profile',
+    children: [
+      { index: true, element: <Navigate to="details" replace /> },
+      { path: 'details', element: <Details /> },
+      { path: 'change_password', element: <ChangePassword /> },
+    ],
   },
 ]
 

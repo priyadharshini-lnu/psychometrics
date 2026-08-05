@@ -1,20 +1,16 @@
-import { lazy } from 'react'
 import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const CampaignList = lazy(() => import('./CampaignList'))
-const UserList = lazy(() => import('./UserList'))
-const UserDetails = lazy(() => import('./UserDetails'))
-const Evaluation = lazy(() => import('./Evaluation'))
-const ReportPreview = lazy(() => import('./ReportPreview'))
-const ExternalReportPreview = lazy(
-  () => import('./ExternalReportPreview').then(({ ExternalReportPreview: component }) => ({ default: component })),
-)
-const WorkshopList = lazy(
-  () => import('./AssessmentCenter').then(({ WorkshopList: component }) => ({ default: component })),
-)
-const ModerateScoring = lazy(
-  () => import('./ModerateScoring').then(({ ModerateScoring: component }) => ({ default: component })),
-)
+const page = lazyPages('assessorApp', () => import('../pages'))
+
+const CampaignList = page(m => m.CampaignList)
+const WorkshopList = page(m => m.WorkshopList)
+const UserDetails = page(m => m.UserDetails)
+const UserList = page(m => m.UserList)
+const ReportPreview = page(m => m.ReportPreview)
+const ExternalReportPreview = page(m => m.ExternalReportPreview)
+const Evaluation = page(m => m.Evaluation)
+const ModerateScoring = page(m => m.ModerateScoring)
 
 const routes = [
   {

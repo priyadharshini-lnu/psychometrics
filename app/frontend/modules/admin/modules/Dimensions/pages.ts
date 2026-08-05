@@ -1,0 +1,7 @@
+export { default as DimensionsList } from './routes/DimensionsList'
+export { default as Dimension } from './routes/Dimension'
+export { default as SubFactorsList } from './routes/SubFactorsList'
+export { default as OccupationConditionSetsList } from './routes/OccupationConditionSetsList'
+export { default as FactorsList } from './routes/Dimension/FactorsList'
+export { default as OccupationsList } from './routes/Dimension/OccupationsList'
+export { default as InnovationStylesList } from './routes/Dimension/InnovationStylesList'

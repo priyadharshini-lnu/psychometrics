@@ -3,16 +3,7 @@ import { BookingsAndInvitesDetails } from './BookingsAndInvitesDetails'
 import { BookingsSuccess } from './BookingsSuccess'
 
 export const routes = [
-  {
-    path: '/',
-    component: <BookingsAndInvitesList />,
-  },
-  {
-    path: '/:inviteOrBookingId/details',
-    component: <BookingsAndInvitesDetails />,
-  },
-  {
-    path: '/:inviteOrBookingId/success',
-    component: <BookingsSuccess />,
-  },
+  { index: true, element: <BookingsAndInvitesList /> },
+  { path: ':inviteOrBookingId/details', element: <BookingsAndInvitesDetails /> },
+  { path: ':inviteOrBookingId/success', element: <BookingsSuccess /> },
 ]

@@ -1,11 +1,17 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { render, screen } from '@testing-library/react'
+import {
+  act, fireEvent, render, screen,
+} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import { FC, ReactNode } from 'react'
+import { Menu } from 'antd'
+import type { RouteObject } from 'react-router-dom'
 import { useAdminNav } from '~/components/AdminShell/useAdminNav'
+import { lazyPages } from '~/utils/lazyPages'
+import { PREFETCH_DWELL } from '~/utils/usePagePrefetch'
 
 type NavItems = ReturnType<typeof useAdminNav>['items']
 type NavItem = NonNullable<NavItems>[number]
@@ -252,6 +258,81 @@ describe('useAdminNav', () => {
       expect(window.location.href).toEqual('/admin/users')
 
       expect(currentPathname()).toEqual('/admin/projects/1/new_campaigns/2/participants')
+    })
+  })
+
+  describe('prefetching', () => {
+    const probe = () => {
+      const started: string[] = []
+      const UsersPage = lazyPages('users', () => {
+        started.push('users')
+
+        return Promise.resolve({ Page: () => null })
+      })(m => m.Page)
+      const routes: RouteObject[] = [{ path: '/admin/users', element: <UsersPage /> }]
+
+      const NavMenu: FC = () => <Menu mode="inline" items={useAdminNav(['/admin'], routes).items} />
+
+      const { container } = render(
+        <Provider store={makeStore(ALL_LINKS)}>
+          <MemoryRouter initialEntries={['/admin/clients']}>
+            <NavMenu />
+          </MemoryRouter>
+        </Provider>,
+      )
+      const item = container.querySelector('li[data-menu-id$="-users"]')
+
+      if (!(item instanceof HTMLElement)) throw new Error('the users nav item did not render')
+
+      vi.useFakeTimers()
+
+      return { started, item }
+    }
+
+    const dwell = (ms: number) => act(() => { vi.advanceTimersByTime(ms) })
+
+    afterEach(() => { vi.useRealTimers() })
+
+    it('downloads the page once the pointer has settled on its item', () => {
+      const { started, item } = probe()
+
+      fireEvent.mouseOver(item)
+      dwell(PREFETCH_DWELL - 1)
+
+      expect(started).toEqual([])
+
+      dwell(1)
+
+      expect(started).toEqual(['users'])
+    })
+
+    it('downloads the page once the item takes keyboard focus', () => {
+      const { started, item } = probe()
+
+      fireEvent.focusIn(item)
+      dwell(PREFETCH_DWELL)
+
+      expect(started).toEqual(['users'])
+    })
+
+    it('downloads nothing when the pointer moves away first', () => {
+      const { started, item } = probe()
+
+      fireEvent.mouseOver(item)
+      fireEvent.mouseOut(item)
+      dwell(PREFETCH_DWELL)
+
+      expect(started).toEqual([])
+    })
+
+    it('downloads nothing when focus moves away first', () => {
+      const { started, item } = probe()
+
+      fireEvent.focusIn(item)
+      fireEvent.focusOut(item)
+      dwell(PREFETCH_DWELL)
+
+      expect(started).toEqual([])
     })
   })
 })

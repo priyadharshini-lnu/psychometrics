@@ -1,0 +1,8 @@
+export { default as CampaignList } from './routes/CampaignList'
+export { default as UserList } from './routes/UserList'
+export { default as UserDetails } from './routes/UserDetails'
+export { default as Evaluation } from './routes/Evaluation'
+export { default as ReportPreview } from './routes/ReportPreview'
+export { ExternalReportPreview } from './routes/ExternalReportPreview'
+export { WorkshopList } from './routes/AssessmentCenter'
+export { ModerateScoring } from './routes/ModerateScoring'

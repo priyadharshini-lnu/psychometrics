@@ -1,26 +1,36 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, RouterProvider,
+  createBrowserRouter, Outlet, RouterProvider, useMatches,
 } from 'react-router-dom'
 import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
-import RouteList from '~/components/RouteList'
+import RouteErrorBoundary from '~/components/RouteErrorBoundary'
 import routes from './routes'
 
-const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <RouteList routes={routes} urlPrefix="" />
-  </Suspense>
-)
+const Main: React.FC = () => {
+  const matches = useMatches()
+
+  return (
+    <RouteErrorBoundary key={matches[matches.length - 1]?.id}>
+      <Suspense fallback={(
+        <DefaultAntThemeWrapper>
+          <PageLoadSpinner size="large" />
+        </DefaultAntThemeWrapper>
+        )}
+      >
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
+  )
+}
 
 export const router = createBrowserRouter([
-  { path: '*', element: <Main /> },
+  { path: '/', element: <Main />, children: routes },
 ])
 
 export function Layout () {
-  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+  return (
+    <Suspense fallback="loading...">
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

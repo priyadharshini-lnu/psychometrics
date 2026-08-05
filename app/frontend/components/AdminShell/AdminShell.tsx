@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 import { connect, ConnectedProps, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import type { RouteObject } from 'react-router-dom'
 import { AppShell, useSiderAppearance } from '@thetalententerprise/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { triggerCollapse } from '~/modules/admin/core/ui/menu'
@@ -102,6 +103,8 @@ type Props = PropsFromRedux & {
   topBarStart?: ReactNode
   /** Paths under these prefixes are pushed to the mounting app's router; everything else is a full page load. */
   ownedPathPrefixes?: string[]
+  /** The mounting app's route table, so hovering a nav item can start its page download. */
+  routes?: RouteObject[]
 }
 
 // The admin shell on glint's AppShell; the rail's theme is why it cannot be themed from outside.
@@ -112,6 +115,7 @@ const AdminShellComponent: FC<Props> = ({
   topBarEnd,
   topBarStart,
   ownedPathPrefixes,
+  routes,
 }) => (
   // ShellBody sits inside AdminTheme so preference-reading hooks mount behind its gate.
   <AdminTheme>
@@ -122,6 +126,7 @@ const AdminShellComponent: FC<Props> = ({
       topBarEnd={topBarEnd}
       topBarStart={topBarStart}
       ownedPathPrefixes={ownedPathPrefixes}
+      routes={routes}
     >
       {children}
     </ShellBody>
@@ -135,8 +140,9 @@ const ShellBody: FC<Props> = ({
   topBarEnd,
   topBarStart,
   ownedPathPrefixes,
+  routes,
 }) => {
-  const nav = useAdminNav(ownedPathPrefixes)
+  const nav = useAdminNav(ownedPathPrefixes, routes)
   const { width, save } = useSiderWidth(SIDER_WIDTH)
   const { collapsed: initialCollapsed, save: saveCollapsed } = useSiderCollapsed(collapsed)
   const showSubmenu = useSelector((state: RootState) => state.ui.menu.showSubmenu)

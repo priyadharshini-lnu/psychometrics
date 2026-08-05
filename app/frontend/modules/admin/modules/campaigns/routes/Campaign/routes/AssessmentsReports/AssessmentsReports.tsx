@@ -1,8 +1,6 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import RouteList from '~/components/RouteList'
+import { Outlet, useParams } from 'react-router-dom'
 import Menu from './Menu'
-import routes from './routes'
 import settings from '../../../../settings'
 
 const AssessmentsReports: React.FC = () => {
@@ -10,7 +8,7 @@ const AssessmentsReports: React.FC = () => {
   return (
     <div>
       <Menu prefix={`${settings.urlPrefix}/${campaignId}/assessments_reports`} />
-      <RouteList routes={routes} urlPrefix="" />
+      <Outlet />
     </div>
   )
 }

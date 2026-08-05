@@ -1,8 +1,10 @@
-import { lazy } from 'react'
+import { lazyPages } from '~/utils/lazyPages'
 
-const AuditLogList = lazy(() => import('./AuditLogList'))
-const AuditLogInfo = lazy(() => import('./AuditLogInfo'))
-const RecordHistory = lazy(() => import('./RecordHistory'))
+const page = lazyPages('auditLog', () => import('../pages'))
+
+const AuditLogList = page(m => m.AuditLogList)
+const AuditLogInfo = page(m => m.AuditLogInfo)
+const RecordHistory = page(m => m.RecordHistory)
 
 const routes = [
   {

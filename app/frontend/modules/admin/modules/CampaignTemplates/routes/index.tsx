@@ -1,6 +1,8 @@
-import { lazy } from 'react'
+import { lazyPages } from '~/utils/lazyPages'
 
-const CampaignTemplateList = lazy(() => import('./CampaignTemplateList'))
+const page = lazyPages('campaignTemplates', () => import('./CampaignTemplateList'))
+
+const CampaignTemplateList = page(m => m.default)
 
 const CampaignTemplateRoutes = [
   {
