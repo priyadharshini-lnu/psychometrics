@@ -51,15 +51,13 @@ RSpec.describe HomeController, type: :controller do
       campaign_user.update!(completion_status: :completed)
       session[:sso] = {
         'user_id' => user.id,
-        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'return_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'source' => 'jwt_post'
       }
 
       get :assessment_completed
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=campaign_completed"
-      )
+      expect(response).to redirect_to('https://example.com/done?status=campaign_completed')
     end
 
     it 'redirects to return_url with assessment_completed for jwt_post assessment session' do
@@ -72,29 +70,27 @@ RSpec.describe HomeController, type: :controller do
       )
       session[:sso] = {
         'user_id' => user.id,
-        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'return_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'user_assessment_id' => user_assessment.id,
         'source' => 'jwt_post'
       }
 
       get :assessment_completed
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_completed"
-      )
+      expect(response).to redirect_to('https://example.com/done?status=assessment_completed')
     end
 
     it 'redirects to valid optional return_url after successful completion without placeholder substitution' do
       campaign_user.update!(completion_status: :completed)
       session[:sso] = {
         'user_id' => user.id,
-        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done",
+        'return_url' => 'https://example.com/done',
         'source' => 'jwt_post'
       }
 
       get :assessment_completed
 
-      expect(response).to redirect_to("https://#{project.subdomain}.#{Settings.domain}/done")
+      expect(response).to redirect_to('https://example.com/done')
     end
   end
 
@@ -115,16 +111,14 @@ RSpec.describe HomeController, type: :controller do
       )
       session[:sso] = {
         'user_id' => user.id,
-        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'return_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'user_assessment_id' => user_assessment.id,
         'source' => 'jwt_post'
       }
 
       get :assessment_completed
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_pending"
-      )
+      expect(response).to redirect_to('https://example.com/done?status=assessment_pending')
     end
 
     it 'keeps unsupported assessment status as-is when source is not jwt_post' do
@@ -137,16 +131,14 @@ RSpec.describe HomeController, type: :controller do
       )
       session[:sso] = {
         'user_id' => user.id,
-        'return_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'return_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'user_assessment_id' => user_assessment.id,
         'source' => 'sso'
       }
 
       get :assessment_completed
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_ineligible"
-      )
+      expect(response).to redirect_to('https://example.com/done?status=assessment_ineligible')
     end
   end
 end
