@@ -37,6 +37,16 @@ module Api
     def run
       AdminJob.call(:data_report_export, { data_report_id: model.id, client_id: model.owner_id }, current_user)
 
+      audit!(
+        'run',
+        model,
+        user: current_user,
+        payload: {
+          report_name: model.name,
+          report_type: model.report_type
+        }
+      )
+
       render json: :ok
     end
 

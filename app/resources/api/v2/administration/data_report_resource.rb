@@ -8,6 +8,9 @@ class Api::V2::Administration::DataReportResource < Api::V2::Administration::Bas
 
   ransack_filters %i[filterable_fields owner_id_eq scope_eq]
 
+  audit_log_for :create, payload: '*'
+  audit_log_for :update, payload: '*'
+
   def self.creatable_fields(_)
     super - %i[updated_at]
   end

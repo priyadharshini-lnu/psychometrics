@@ -1817,6 +1817,7 @@ only: %i[index create update]
             end
             resources :data_report_jobs, only: %i[index] do
               get :get_password, on: :member
+              get :download, on: :member
             end
           end
           jsonapi_resources :user_idp_plans, only: %i[create show update] do
