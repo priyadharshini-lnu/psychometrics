@@ -98,7 +98,7 @@ namespace :key_rotation do
       'skillvue' => %w[api_key],
       'microsite' => %w[api_key]
     }.each do |integration_name, config_keys|
-      KeyRotation::IntegrationConfigRotator.call(
+      KeyRotation::EncryptorIntegrationConfigRotator.call(
         scope:       Integration.where(name: integration_name),
         config_keys: config_keys,
         old_key:     old_key,
