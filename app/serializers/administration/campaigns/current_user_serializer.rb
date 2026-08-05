@@ -4,7 +4,11 @@ module Administration
   module Campaigns
     class CurrentUserSerializer < Panko::Serializer
       attributes :id, :grants, :role, :role_title, :permissions, :name, :client_admin_client_ids,
-                 :library_owner_field_visible
+                 :library_owner_field_visible, :support_admin
+
+      def support_admin
+        object.support_admin?
+      end
 
       def grants
         context[:current_membership]&.grants&.data || {}

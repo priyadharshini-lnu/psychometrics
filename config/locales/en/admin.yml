@@ -2196,6 +2196,38 @@ en:
     raw_score: Raw Score
     reason_for_changes: Reason for changes
     recents: Recents
+    record_history_changes: changes
+    record_history_changes_in_request: changes in this request
+    record_history_date_range_invalid: End date must be on or after the start date.
+    record_history_date_range_required: Please select a date range.
+    record_history_date_range_too_large: Date range cannot exceed %{days} days. Please narrow your search.
+    record_history_filter_actor: Filter by actor email
+    record_history_filter_field: Filter by changed field
+    record_history_filter_type: Filter by record type
+    record_history_id_required: Please enter a record ID
+    record_history_include_related: Include related records
+    record_history_last_30_days: Last 30 days
+    record_history_last_7_days: Last 7 days
+    record_history_no_results: No change history found for this record.
+    record_history_no_results_for: No changes found for
+    record_history_records_changed: records changed
+    record_history_related_tag: Related
+    record_history_request_banner: Showing all changes in request
+    record_history_request_label: 'Request:'
+    record_history_request_or_record_required: Enter a request UUID or choose a record type and ID.
+    record_history_request_uuid: Request UUID
+    record_history_request_uuid_placeholder: Enter request UUID
+    record_history_revision_failed: Failed to load the record state for this version.
+    record_history_search_hint: Enter a request UUID, or select a record type and record ID to trace change history.
+    record_history_select_type: Select record type
+    record_history_state_at_version: State at version
+    record_history_system: System
+    record_history_title: Record Change History
+    record_history_type_required: Please select a record type
+    record_history_version: Version
+    record_history_view_audit_log: View in Audit Logs
+    record_history_view_full: View full history
+    record_history_view_request: View request
     record_id: Record ID
     recordings: Recordings
     reflection_questions: Reflection Questions

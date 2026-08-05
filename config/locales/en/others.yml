@@ -958,6 +958,7 @@ en:
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin External Assessment Export
+        superadmin_record_change_history: Record Change History
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export

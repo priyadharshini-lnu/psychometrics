@@ -121,7 +121,8 @@ class AdminJob < ApplicationJob
     export_audit_logs: AdminJobs::ExportAuditLogs,
     copy_report: AdminJobs::CopyReport,
     import_client_assessors: AdminJobs::ImportClientAssessors,
-    copy_assessment: AdminJobs::CopyAssessment
+    copy_assessment: AdminJobs::CopyAssessment,
+    superadmin_record_change_history: AdminJobs::RecordChangeHistory
   }.freeze
 
   def perform(record, stage = nil)

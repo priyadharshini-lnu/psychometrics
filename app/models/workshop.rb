@@ -13,7 +13,7 @@ class Workshop < ApplicationRecord
 
   has_one :project, through: :campaign
   has_and_belongs_to_many :workshop_invites, dependent: :destroy
-  has_many :workshop_invite_logs
+  has_many :workshop_invite_logs, through: :workshop_invites
   has_many :workshop_invited_subjects, through: :workshop_invites
   has_many :workshop_subjects
   has_many :subjects, through: :workshop_subjects, source: :user

@@ -1918,6 +1918,15 @@ only: %i[index create update]
             end
           end
 
+          jsonapi_resources :record_change_histories, only: [] do
+            collection do
+              get :auditable_types
+              post :search
+              post :export
+              get :revision
+            end
+          end
+
           namespace :ai do
             jsonapi_resources :assistants do
               jsonapi_relationships

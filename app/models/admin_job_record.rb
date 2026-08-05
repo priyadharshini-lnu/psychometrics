@@ -129,7 +129,8 @@ class AdminJobRecord < ApplicationRecord
     export_audit_logs: 103,
     assessment_raw_ai_factor_export: 104,
     import_client_assessors: 105,
-    copy_assessment: 106
+    copy_assessment: 106,
+    superadmin_record_change_history: 107
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

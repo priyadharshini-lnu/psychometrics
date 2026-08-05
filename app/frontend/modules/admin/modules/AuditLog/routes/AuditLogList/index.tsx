@@ -20,6 +20,7 @@ import { isRequestInProgress } from '~/core/request'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import settings from '../../settings'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import AuditLogTabs from '../../components/Tabs'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
@@ -205,6 +206,8 @@ const AuditLogList: React.FC<Props> = (
           },
         ]}
       />
+
+      <AuditLogTabs />
 
       <div style={{ marginTop: '30px' }}>
         <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">

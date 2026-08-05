@@ -4,7 +4,11 @@ class Api::V2::Administration::CurrentUserResource < Api::V2::Administration::Ba
   model_name 'User'
 
   attributes :name, :email, :first_name, :last_name, :navigation_links, :role, :photo, :role_title,
-             :library_owner_field_visible, :client_admin_client_ids, :preferences
+             :library_owner_field_visible, :client_admin_client_ids, :support_admin, :preferences
+
+  def support_admin
+    @model.support_admin?
+  end
 
   def navigation_links
     ::Administration::NavigationLinksSerializer.new(
