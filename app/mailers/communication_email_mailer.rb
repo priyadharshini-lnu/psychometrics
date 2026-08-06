@@ -178,9 +178,7 @@ class CommunicationEmailMailer < ApplicationMailer
       recipient.send(:generate_invitation_token!)
       recipient.update_column(:invitation_sent_at, DateTime.current)
     end
-    Rails.application.
-      message_verifier(Settings.secrets.secret_token_for_generate).
-      verify(recipient.encrypted_invitation_raw)
+    KeyRotation::InvitationTokenVerifier.verify(recipient.encrypted_invitation_raw)
   end
 
   def campaign

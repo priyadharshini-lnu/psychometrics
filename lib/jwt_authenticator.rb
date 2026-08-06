@@ -32,8 +32,8 @@ class JwtAuthenticator
   end
 
   def self.get_user_by_lighthouse_jwt(jwt_token, project)
-    decoded_jwt = JWT.decode(jwt_token, Settings.secrets.encrypted_key.to_s, true,
-                             { verify_expiration: true, algorithm: 'HS256' })
+    decoded_jwt = KeyRotation::JwtVerifier.decode(jwt_token,
+                                                  { verify_expiration: true, algorithm: 'HS256' })
     check_expiration(decoded_jwt[0]['exp'])
 
     find_user_from_subject(decoded_jwt[0]['sub'], project)
