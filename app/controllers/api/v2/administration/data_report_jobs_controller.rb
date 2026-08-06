@@ -20,7 +20,7 @@ module Api
         }
       )
 
-      redirect_to model.file.url, allow_other_host: true
+      redirect_to model.file.url
     end
 
     def model
