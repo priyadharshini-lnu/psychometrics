@@ -3,18 +3,18 @@ import {
   act, fireEvent, render, screen,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter, useLocation } from 'react-router-dom'
+import { BrowserRouter, MemoryRouter, useLocation } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import { Menu } from 'antd'
 import type { RouteObject } from 'react-router-dom'
 import { useAdminNav } from '~/components/AdminShell/useAdminNav'
+import { SubnavProvider, useRegisterSubnav } from '~/components/AdminShell/SubnavContext'
 import { lazyPages } from '~/utils/lazyPages'
 import { PREFETCH_DWELL } from '~/utils/usePagePrefetch'
 
 type NavItems = ReturnType<typeof useAdminNav>['items']
-type NavItem = NonNullable<NavItems>[number]
 
 // `state.ui.menu.links` is the permission gate: a key exists only when the user may see it.
 const ALL_LINKS = {
@@ -57,52 +57,80 @@ const flatKeys = (items: NavItems): string[] => (items ?? []).flatMap((item) => 
   return [String(item.key), ...children]
 })
 
-// Stands in for the antd Menu: it supplies the MenuInfo antd would pass so an entry can be clicked by key.
-const navButton = (item: NavItem) => {
-  if (item == null || !('onClick' in item) || item.onClick == null) return null
-  const { key, onClick } = item
-
-  return (
-    <button
-      key={String(key)}
-      type="button"
-      data-testid={String(key)}
-      onClick={event => onClick({
-        key: String(key), keyPath: [String(key)], item: event.currentTarget, domEvent: event,
-      })}
-    />
-  )
-}
-
-const Probe: FC<{ ownedPathPrefixes?: string[] }> = ({ ownedPathPrefixes }) => {
-  const { items } = useAdminNav(ownedPathPrefixes)
-  const { pathname } = useLocation()
-
-  return (
-    <>
-      <span data-testid="pathname">{pathname}</span>
-      {(items ?? []).map(navButton)}
-    </>
-  )
-}
-
 type ProbeOptions = { pathname: string, ownedPathPrefixes?: string[] }
 
-const renderProbe = (links: Record<string, string>, { pathname, ownedPathPrefixes }: ProbeOptions) => {
-  const store = makeStore(links)
+const NavMenu: FC<{ ownedPathPrefixes?: string[] }> = ({ ownedPathPrefixes }) => (
+  <Menu mode="inline" items={useAdminNav(ownedPathPrefixes).items} />
+)
+
+const Pathname: FC = () => <span data-testid="pathname">{useLocation().pathname}</span>
+
+const SectionNav: FC = () => {
+  useRegisterSubnav([{ key: 'participants', label: 'Participants' }], ['participants'])
+
+  return null
+}
+
+type MenuOptions = { withSubnav?: boolean }
+
+// The real antd Menu is the assertion surface: whether an item is a link is a fact about its own markup.
+const renderMenu = (
+  links: Record<string, string>,
+  { pathname, ownedPathPrefixes }: ProbeOptions,
+  { withSubnav }: MenuOptions = {},
+) => render(
+  <Provider store={makeStore(links)}>
+    <MemoryRouter initialEntries={[pathname]}>
+      <SubnavProvider>
+        {withSubnav ? <SectionNav /> : null}
+        <NavMenu ownedPathPrefixes={ownedPathPrefixes} />
+      </SubnavProvider>
+      <Pathname />
+    </MemoryRouter>
+  </Provider>,
+)
+
+// React batches a double navigate into one render, so only the history calls themselves can count the pushes.
+const renderOnRealHistory = (links: Record<string, string>, { pathname, ownedPathPrefixes }: ProbeOptions) => {
+  window.history.pushState({}, '', pathname)
+  const pushes = vi.spyOn(window.history, 'pushState')
 
   render(
-    <Provider store={store}>
-      <MemoryRouter initialEntries={[pathname]}>
-        <Probe ownedPathPrefixes={ownedPathPrefixes} />
-      </MemoryRouter>
+    <Provider store={makeStore(links)}>
+      <BrowserRouter>
+        <NavMenu ownedPathPrefixes={ownedPathPrefixes} />
+      </BrowserRouter>
     </Provider>,
   )
+
+  return pushes
+}
+
+const navItem = (key: string): HTMLElement => {
+  const item = document.querySelector(`li[data-menu-id$="-${key}"]`)
+
+  if (!(item instanceof HTMLElement)) throw new Error(`the ${key} nav item did not render`)
+
+  return item
+}
+
+const navLink = (key: string): HTMLAnchorElement => {
+  const link = navItem(key).querySelector('a')
+
+  if (!(link instanceof HTMLAnchorElement)) throw new Error(`the ${key} nav item is not a link`)
+
+  return link
 }
 
 const currentPathname = () => screen.getByTestId('pathname').textContent
 
 describe('useAdminNav', () => {
+  // jsdom cannot follow an anchor, so swallow the default and read the router instead of a would-be page load.
+  const swallow = (event: Event) => event.preventDefault()
+
+  beforeEach(() => { document.addEventListener('click', swallow) })
+  afterEach(() => { document.removeEventListener('click', swallow); vi.restoreAllMocks() })
+
   it('omits entries the user has no permission for', () => {
     const { result } = renderNav({ clients: '/admin/clients' })
     const keys = flatKeys(result.current.items)
@@ -153,111 +181,56 @@ describe('useAdminNav', () => {
     expect(result.current.openKeys).toContain('content')
   })
 
-  describe('navigation', () => {
-    const originalLocation = window.location
+  describe('links', () => {
+    it('renders an owned path as a router link that navigates without a page load', async () => {
+      renderMenu(ALL_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
 
-    beforeEach(() => {
-      Object.defineProperty(window, 'location', {
-        value: { href: '' },
-        writable: true,
-        configurable: true,
-      })
-    })
+      expect(navLink('users')).toHaveAttribute('href', '/admin/users')
 
-    afterEach(() => {
-      Object.defineProperty(window, 'location', {
-        value: originalLocation,
-        writable: true,
-        configurable: true,
-      })
-    })
-
-    it('pushes a path the mounted router owns', async () => {
-      renderProbe(ALL_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
-
-      await userEvent.click(screen.getByTestId('users'))
+      await userEvent.click(navLink('users'))
 
       expect(currentPathname()).toEqual('/admin/users')
-      expect(window.location.href).toEqual('')
     })
 
-    it('pushes the prefix itself', async () => {
-      renderProbe({ ...ALL_LINKS, dashboards: '/admin' }, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
-
-      await userEvent.click(screen.getByTestId('dashboards'))
-
-      expect(currentPathname()).toEqual('/admin')
-      expect(window.location.href).toEqual('')
-    })
-
-    it('accepts a prefix written with a trailing slash', async () => {
-      renderProbe(ALL_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin/'] })
-
-      await userEvent.click(screen.getByTestId('users'))
-
-      expect(currentPathname()).toEqual('/admin/users')
-      expect(window.location.href).toEqual('')
-    })
-
-    it('full-loads a path that only shares a string prefix', async () => {
+    it('renders a path the router does not own as a plain anchor it leaves alone', async () => {
       const links = { ...ALL_LINKS, communicationCenter: '/administration/communications' }
-      renderProbe(links, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
+      renderMenu(links, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
 
-      await userEvent.click(screen.getByTestId('communicationCenter'))
+      expect(navLink('communicationCenter')).toHaveAttribute('href', '/administration/communications')
 
-      expect(window.location.href).toEqual('/administration/communications')
+      await userEvent.click(navLink('communicationCenter'))
+
       expect(currentPathname()).toEqual('/admin/clients')
     })
 
-    it('full-loads a path the mounted router does not own', async () => {
-      renderProbe(ASSESSOR_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
+    it('links a path under any of several owned prefixes', async () => {
+      renderMenu(ASSESSOR_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin', '/assessors'] })
 
-      await userEvent.click(screen.getByTestId('assessorDashboard'))
-
-      expect(window.location.href).toEqual('/assessors')
-      expect(currentPathname()).toEqual('/admin/clients')
-    })
-
-    it('pushes a path under any of several owned prefixes', async () => {
-      renderProbe(ASSESSOR_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin', '/assessors'] })
-
-      await userEvent.click(screen.getByTestId('assessorWorkshops'))
-      expect(currentPathname()).toEqual('/assessors/assessment_centers')
-
-      await userEvent.click(screen.getByTestId('users'))
-      expect(currentPathname()).toEqual('/admin/users')
-
-      expect(window.location.href).toEqual('')
-    })
-
-    it('pushes an assessor path inside the assessor app', async () => {
-      renderProbe(ASSESSOR_LINKS, { pathname: '/assessors', ownedPathPrefixes: ['/assessors'] })
-
-      await userEvent.click(screen.getByTestId('assessorWorkshops'))
+      await userEvent.click(navLink('assessorWorkshops'))
 
       expect(currentPathname()).toEqual('/assessors/assessment_centers')
-      expect(window.location.href).toEqual('')
     })
 
-    it('full-loads an admin path from inside the assessor app', async () => {
-      renderProbe(ASSESSOR_LINKS, { pathname: '/assessors', ownedPathPrefixes: ['/assessors'] })
+    it('gives every entry an anchor even when the router owns none of them', () => {
+      renderMenu(ASSESSOR_LINKS, { pathname: '/assessors' })
 
-      await userEvent.click(screen.getByTestId('clients'))
-
-      expect(window.location.href).toEqual('/admin/clients')
-      expect(currentPathname()).toEqual('/assessors')
+      expect(navLink('clients')).toHaveAttribute('href', '/admin/clients')
+      expect(navLink('assessorDashboard')).toHaveAttribute('href', '/assessors')
     })
 
-    it('full-loads every main-menu target when the router owns none of them', async () => {
-      renderProbe(ASSESSOR_LINKS, { pathname: '/admin/projects/1/new_campaigns/2/participants' })
+    it('leaves the submenu toggle an action rather than a link', () => {
+      renderMenu(ALL_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] }, { withSubnav: true })
 
-      await userEvent.click(screen.getByTestId('clients'))
-      expect(window.location.href).toEqual('/admin/clients')
+      expect(navItem('showSubmenu').querySelector('a')).toBeNull()
+    })
 
-      await userEvent.click(screen.getByTestId('users'))
-      expect(window.location.href).toEqual('/admin/users')
+    it('adds exactly one history entry for a click on the anchor', async () => {
+      const pushes = renderOnRealHistory(ALL_LINKS, { pathname: '/admin/clients', ownedPathPrefixes: ['/admin'] })
 
-      expect(currentPathname()).toEqual('/admin/projects/1/new_campaigns/2/participants')
+      await userEvent.click(navLink('users'))
+
+      expect(window.location.pathname).toEqual('/admin/users')
+      expect(pushes).toHaveBeenCalledTimes(1)
     })
   })
 

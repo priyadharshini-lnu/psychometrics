@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppShellNav } from '@thetalententerprise/glint'
@@ -14,7 +14,8 @@ import { isOwnedPath } from './ownedPaths'
 
 const { I18n } = window
 
-// Items navigate via onClick and selection derives from the route — keyboard semantics and SPA navigation both work.
+// No onClick: antd stretches the label anchor over the whole row (.ant-menu-item a::before), collapsed rail
+// included — verified on antd 6.5.1 + glint 0.46.1. Selection derives from the route.
 
 type Permissions = Record<string, string | undefined>
 
@@ -79,7 +80,6 @@ const activeKeyFor = (pathname: string): string | undefined => (
 
 export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]): AppShellNav => {
   const { pathname } = useLocation()
-  const navigate = useNavigate()
   const links: Permissions = useSelector((state: RootState) => state.ui.menu.links)
   const features = useSelector(getFeatures)
   const showSubmenu = useSelector((state: RootState) => state.ui.menu.showSubmenu)
@@ -107,13 +107,6 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
       : links.clients
     const clientsLabel = clientContext ? I18n.t('admin.projects') : I18n.t('admin.clients')
 
-    // Several apps mount this shell, each with its own router — only a path that router owns can be pushed.
-    const go = (path?: string) => () => {
-      if (!path) return
-      if (isOwnedPath(path, ownedPathPrefixes)) navigate(path)
-      else window.location.href = path
-    }
-
     // rc-menu forwards these to the item's element; antd's item type only declares the pointer pair.
     const intent = (path: string) => ({
       onMouseEnter: () => prefetch(path),
@@ -122,11 +115,17 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
       onBlur: cancel,
     })
 
+    // Several apps mount this shell, each with its own router — only a path that router owns can be a SPA link.
+    const link = (path: string, label: string): JSX.Element => (
+      isOwnedPath(path, ownedPathPrefixes) ? <Link to={path}>{label}</Link> : <a href={path}>{label}</a>
+    )
+
+    // A plain-string title keeps the collapsed rail's tooltip from rendering the anchor a second time.
     const entry = (e: Entry): NavItem | null => (e.path ? {
       key: e.key,
-      label: e.label,
+      label: link(e.path, e.label),
+      title: e.label,
       icon: e.icon,
-      onClick: go(e.path),
       ...intent(e.path),
     } : null)
 
@@ -287,6 +286,6 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
       openKeys,
       onOpenChange: (keys: string[]) => setOpenKeys(keys),
     }
-  }, [pathname, links, features, navigate, ownedPathPrefixes, openKeys, hasSubmenu, showSubmenu, subnav, dispatch,
+  }, [pathname, links, features, ownedPathPrefixes, openKeys, hasSubmenu, showSubmenu, subnav, dispatch,
     prefetch, cancel])
 }

@@ -16,8 +16,7 @@ import {
   DownOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { AdminLanguageSwitcher } from '~/components/AdminShell/AdminLanguageSwitcher'
-import { fetchCurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
-import type { CurrentUserDetails } from '~/components/AdminShell/currentUserDetails'
+import { currentUserFromInitialState } from '~/components/AdminShell/currentUserDetails'
 import { AppearanceMenuItem } from '~/modules/admin/components/AppearanceMenuItem'
 import { THEME_SWITCHER_ENABLED } from '~/components/AdminShell'
 import styles from './styles.less'
@@ -42,7 +41,8 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 }) => {
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false) // State to control Popover visibility
-  const [user, setUser] = useState<CurrentUserDetails | null>(null)
+  // Server-seeded, so the menu renders complete on first paint instead of filling in after a round trip.
+  const user = useMemo(currentUserFromInitialState, [])
   const {
     features,
     adminLocales,
@@ -61,7 +61,6 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
   }, [user?.email])
 
   useEffect(() => {
-    fetchCurrentUserDetails().then(setUser)
     fetch(adminJobs.length)
     if (consumer()) {
       consumer().subscriptions.create({ channel: 'AdminJobChannel' }, {
@@ -165,9 +164,11 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
             <Typography.Text>
               {user?.email}
             </Typography.Text>
-            <Typography.Text style={{ fontSize: 12 }}>
-              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
-            </Typography.Text>
+            {user?.roleTitle && (
+              <Typography.Text style={{ fontSize: 12 }}>
+                {`${I18n.t('admin.role')} - ${user.roleTitle}`}
+              </Typography.Text>
+            )}
           </Flex>
         </Flex>
       ),

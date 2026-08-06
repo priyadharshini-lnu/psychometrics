@@ -38,12 +38,12 @@ const AssessorGate: React.FC = () => {
   return <Outlet />
 }
 
-// Keyed by matched route so an error clears on navigation.
+// Reset (not remounted) on navigation: a key here would tear down the whole routed subtree on every click.
 const RoutedPage: React.FC = () => {
   const matches = useMatches()
 
   return (
-    <RouteErrorBoundary key={matches[matches.length - 1]?.id}>
+    <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
       <Outlet />
     </RouteErrorBoundary>
   )

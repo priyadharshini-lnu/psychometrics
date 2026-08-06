@@ -18,13 +18,14 @@ const Main: React.FC = () => (
   </AdminShell>
 )
 
+// Reset (not remounted) on navigation: a key here would tear down the campaign page on every subnav click.
 const CampaignPage: React.FC = () => {
   const matches = useMatches()
   // Keyed by chunk: a page waiting on a download gets a fresh boundary, which React fills with the fallback.
   const chunk = usePageChunk(router.routes)
 
   return (
-    <RouteErrorBoundary key={matches[matches.length - 1]?.id}>
+    <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
       <Suspense key={chunk} fallback={<PageFallback />}>
         <Outlet />
       </Suspense>

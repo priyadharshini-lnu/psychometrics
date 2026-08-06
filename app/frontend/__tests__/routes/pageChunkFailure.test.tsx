@@ -35,7 +35,7 @@ const setup = () => {
     const matches = useMatches()
 
     return (
-      <RouteErrorBoundary key={matches[matches.length - 1]?.id}>
+      <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
         <Outlet />
       </RouteErrorBoundary>
     )

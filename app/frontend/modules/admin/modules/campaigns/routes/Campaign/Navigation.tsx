@@ -26,22 +26,23 @@ const Link = ({ route, children }) => (
   <RouterLink to={route}>{children}</RouterLink>
 )
 
+// Links point at each section's landing leaf, not its root: a root url index-redirects, costing a second transition.
 const menuItems = (permissions: Campaign['permissions'], basePath: string): MenuItem[] => [
   permissions.viewCampaign ? {
     key: 'participants',
-    label: <Link route={`${basePath}/participants`}>{I18n.t('admin.participants')}</Link>,
+    label: <Link route={`${basePath}/participants/subjects`}>{I18n.t('admin.participants')}</Link>,
     icon: <UserOutlined />,
   } : null,
   permissions.viewWorkshops ? {
     key: 'scheduling',
     label:
-    <Link route={`${basePath}/scheduling`}>{I18n.t('admin.scheduling')}</Link>,
+    <Link route={`${basePath}/scheduling/assessment_center`}>{I18n.t('admin.scheduling')}</Link>,
     icon: <CalendarOutlined />,
   } : null,
   permissions.viewAssessmentsAndReports ? {
     key: 'assessments_reports',
     label:
-    <Link route={`${basePath}/assessments_reports`}>{I18n.t('admin.assessments_reports')}</Link>,
+    <Link route={`${basePath}/assessments_reports/manage`}>{I18n.t('admin.assessments_reports')}</Link>,
     icon: <PieChartOutlined />,
   } : null,
   permissions.viewRegistrationCodes ? {
@@ -55,6 +56,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     label: <Link route={`${basePath}/stats`}>{I18n.t('admin.stats')}</Link>,
     icon: <LineChartOutlined />,
   } : null,
+  // Dashboard keeps the section root: which tab it lands on depends on this admin's permissions.
   (permissions.viewDashboard || permissions.viewAccesssheet || permissions.viewAccesssheetSettings) ? {
     key: 'dashboard',
     label:
@@ -69,12 +71,12 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
   } : null,
   permissions.viewCampaignScoring ? {
     key: 'scoring',
-    label: <Link route={`${basePath}/scoring`}>{I18n.t('admin.scoring')}</Link>,
+    label: <Link route={`${basePath}/scoring/subject_scores`}>{I18n.t('admin.scoring')}</Link>,
     icon: <RadarChartOutlined />,
   } : null,
   permissions.viewAiArtifacts ? {
     key: 'ai_artifacts',
-    label: <Link route={`${basePath}/ai_artifacts`}>{I18n.t('admin.ai_artifacts')}</Link>,
+    label: <Link route={`${basePath}/ai_artifacts/results`}>{I18n.t('admin.ai_artifacts')}</Link>,
     icon: <RobotOutlined />,
   } : null,
   permissions.manageCampaignAdmins ? {
