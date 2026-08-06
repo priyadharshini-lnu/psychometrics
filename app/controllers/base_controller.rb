@@ -68,9 +68,7 @@ class BaseController < ActionController::Base
     return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
     return if @current_project.nil? && request.controller_class.to_s == 'Users::SamlSessionsController'
 
-    unless @current_project
-      return redirect_to root_url(subdomain: Settings.subdomain)
-    end
+    raise ActionController::RoutingError, 'Not Found' unless @current_project
 
     Current.project = @current_project
     @current_client = @current_project.client
