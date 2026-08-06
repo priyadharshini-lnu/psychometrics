@@ -1796,6 +1796,7 @@ only: %i[index create update]
               post :discard_question
               post :discard_all_questions
               post :rescore
+              post :reset_approval
               get :subject_assessment
             end
           end

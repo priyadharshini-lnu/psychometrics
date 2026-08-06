@@ -2653,6 +2653,12 @@ en:
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_approval_not_allowed_to_discard: You are not allowed to discard this score.
+    score_approval_reset: Reset approval
+    score_approval_reset_description: This will move the approval back to pending. The scores will not change. This action cannot be undone.
+    score_approval_reset_not_allowed: This score approval cannot be reset in its current state.
+    score_approval_reset_recompute_description: This will reset the approval, remove AI scores from user's results, and delete any generated reports. This action cannot be undone.
+    score_approval_reset_success: Score approval has been reset.
+    score_approval_reset_title: Reset score approval?
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max
