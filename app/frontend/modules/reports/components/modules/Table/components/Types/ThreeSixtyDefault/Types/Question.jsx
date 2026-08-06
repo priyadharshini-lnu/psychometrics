@@ -89,7 +89,7 @@ function FilterTable ({
 
     if (!answers) return null
 
-    results = _.compact(answers).map(answer => answer[0].value)
+    results = _.compact(answers).flatMap(answer => answer.map(item => item.value))
 
     if (model.props.randomizeAnswers) {
       results = array.shuffle(results, seedrandom(ResultStore.user.id.toString() + model.id))

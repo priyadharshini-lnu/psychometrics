@@ -128,14 +128,10 @@ pt:
     application_name_already_taken: Já existe para este cliente
     application_name_format_hint: Só são permitidas letras e números, com um único espaço entre as palavras
     application_settings_at_least_one_ip_required: Por favor, ative pelo menos uma entrada de endereço IP antes de ativar a lista de endereços IP autorizados
-    application_settings_at_least_one_url_required: Por favor, habilite pelo menos uma entrada de URL antes de habilitar a lista de URLs permitidas.
     application_settings_confirm_delete_ip: Tem a certeza de que quer eliminar este endereço IP?
-    application_settings_confirm_delete_url: Tem certeza de que deseja excluir este URL?
+    application_settings_edit_ip_address: Editar endereço IP / intervalo CIDR
     application_settings_enable_ip_whitelisting: Ativar lista de endereços IP autorizados
-    application_settings_enable_url_whitelisting: Ativar lista de URLs permitidas
     application_settings_invalid_ip_format: Endereço IP ou formato CIDR inválido
-    application_settings_invalid_url_format: Formato de URL inválido
-    application_settings_ip_address: Endereço IP / Intervalo CIDR
     application_settings_ip_addresses: Endereços IP / Intervalos CIDR
     application_settings_ip_deleted_successfully: O endereço IP foi eliminado com sucesso
     application_settings_ip_description_placeholder: por exemplo, rede do escritório ou servidor de produção
@@ -145,16 +141,6 @@ pt:
     application_settings_ip_updated_successfully: O endereço IP foi atualizado com sucesso
     application_settings_ip_whitelisting_disabled_success: A lista de endereços IP autorizados foi desativada com sucesso
     application_settings_ip_whitelisting_enabled_success: A lista de endereços IP autorizados foi ativada com sucesso
-    application_settings_url: URL
-    application_settings_url_addresses: Endereços URL
-    application_settings_url_deleted_successfully: URL excluída com sucesso
-    application_settings_url_description_placeholder: Por exemplo, rede de escritório ou servidor de produção.
-    application_settings_url_input_placeholder: Por exemplo, https://example.com ou https://sub.example.com
-    application_settings_url_required: É necessário um URL.
-    application_settings_url_updated_successfully: URL atualizada com sucesso
-    application_settings_url_whitelisting_disabled_success: Lista de permissões de URLs desativada com sucesso
-    application_settings_url_whitelisting_enabled_success: A lista de URLs permitidas foi ativada com sucesso.
-    application_settings_urls: URLs
     applications: Aplicações
     apply_to_existing_users: Aplicar esta alteração aos usuários existentes nesta campanha
     approve_all_questions: Aprovar todas as perguntas
@@ -227,8 +213,6 @@ pt:
     assessor_overview: Visão geral
     assessor_placeholder: Pesquisar Assessor...
     assessor_remove_confirmation: Tem a certeza de que pretende remover o avaliador com o e-mail %{email} desta campanha?
-    assessor_remove_has_evaluations: Este avaliador tem %{evaluation_count} formulário(s) de avaliação atribuídos. Todas as avaliações que ele preencheu serão perdidas.
-    assessor_remove_in_assessment_centers: Este avaliador faz parte do(s) centro(s) de avaliação %{workshop_count}. Ao prosseguir, ele será removido de todos os centros de avaliação.
     assessor_statuses_completed: Concluído
     assessor_statuses_not_completed: Não concluído
     assessor_subjects_statuses_completed: Concluído
@@ -641,7 +625,7 @@ pt:
       thursday: quinta-feira
       tuesday: terça-feira
       wednesday: Quarta-feira
-    dimension_errors_cannot_delete_with_assessments: Não é possível excluir esta dimensão porque ela ainda está associada a avaliações. Exclua ou atualize as avaliações associadas primeiro.
+    dimension_errors_cannot_delete_with_assessments: Não é possível eliminar esta dimensão porque ainda está associada a avaliações. Por favor, elimine ou atualize primeiro as avaliações associadas.
     dimension_translations_export_scheduled: Exportar traduções agendadas para a dimensão «%{name}».
     dimensions: Dimensões
     dimensions_destroy_successfully: A dimensão %{name} foi eliminada com êxito.
@@ -662,7 +646,6 @@ pt:
     dimensions_import_modal_import_dimension: Dimensão da importação
     dimensions_import_modal_import_scheduled: Importação programada
     dimensions_import_modal_operation: Funcionamento
-    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Selecionar um proprietário
     dimensions_import_modal_owner_select: Selecionar um proprietário
     dimensions_import_modal_select_json: Selecionar ficheiro JSON
@@ -1224,7 +1207,6 @@ pt:
     invite_workshop_list_remove_confirm_success: O Centro de Avaliação foi removido com êxito.
     invite_workshop_list_remove_confirm_title: Confirmar
     invite_workshop_title: Centros de avaliação
-    ip_whitelisting: Lista branca de IPs
     is_subject: É objeto
     job_role_are_you_sure_to_remove: Tem a certeza de que vai retirar?
     job_role_column_job_group: Grupo de trabalho
@@ -1298,7 +1280,6 @@ pt:
     mark_not_finalized: Nota não finalizada
     mark_not_finalized_bulk_confirm: A remoção da finalização de todos os utilizadores selecionados irá eliminar os relatórios gerados que utilizam artefactos de IA. Tem a certeza de que deseja continuar?
     mark_not_finalized_confirm: A remoção da finalização do utilizador «%{email}» irá eliminar o relatório gerado que utiliza o artefacto de IA desse utilizador. Tem a certeza de que deseja continuar?
-    mark_ready_button: Marcar como pronto
     mask_identity_for_examus: Dados de máscara para Examus Proctoring
     mask_identity_for_hogan: Dados de máscara para Hogan
     mask_identity_for_iiht: Dados da máscara para IIHT
@@ -1357,21 +1338,6 @@ pt:
     modal_title: Converter para modelo
     model_answer: Resposta modelo
     model_answer_placeholder: Insira a resposta modelo para pontuação da IA.
-    model_params_description: Deixe em branco para usar os valores padrão definidos pelo tipo de assistente.
-    model_params_max_tokens: Fichas Máximas
-    model_params_max_tokens_tooltip: Limita o número máximo de tokens que o modelo pode gerar por resposta. Valores mais altos permitem saídas mais longas, mas aumentam o custo e a latência.
-    model_params_temperature: Temperatura
-    model_params_temperature_tooltip: Controla a aleatoriedade na saída. 0 = determinístico e focado; 2 = altamente criativo e variado. Use valores mais baixos para que as saídas sejam restritas ao contexto fornecido.
-    model_params_thinking_budget: Orçamento de reflexão (tokens)
-    model_params_thinking_budget_tooltip: Define um limite máximo de tokens que o modelo pode gastar em raciocínio interno. Valores mais altos permitem análises mais profundas, mas aumentam o consumo de tokens e o tempo de resposta.
-    model_params_thinking_budget_unsupported: Este modelo utiliza apenas controle de raciocínio baseado em esforço. O orçamento de raciocínio (limite de fichas) não é suportado.
-    model_params_thinking_effort: Esforço de Pensamento
-    model_params_thinking_effort_high: Alto
-    model_params_thinking_effort_low: Baixo
-    model_params_thinking_effort_medium: Médio
-    model_params_thinking_effort_none: Nenhum
-    model_params_thinking_effort_tooltip: Controla o nível de raciocínio que o modelo aplica antes de responder. Um esforço maior resulta em respostas mais completas, porém mais demoradas. Use 'Nenhum' para desativar o raciocínio completamente.
-    model_params_title: Configuração Avançada do Modelo
     must_be_a_valid_url: URL inválida. Indique o URL completo, incluindo o protocolo http ou https
     name: Nome
     name_max_length: O nome não pode exceder %{length} caracteres
@@ -1479,14 +1445,6 @@ pt:
     overall: No geral
     overall_score: Pontuação geral
     overall_scoring: Pontuação global
-    owner_resource_assessment: avaliação
-    owner_resource_campaign: campanha
-    owner_resource_client: cliente
-    owner_resource_dimension: dimensão
-    owner_resource_mismatch: O proprietário %{child_resource} não é compatível com o proprietário %{parent_resource}.
-    owner_resource_norm: norma
-    owner_resource_report: relatório
-    owner_resource_report_bundle: pacote de relatórios
     parsed_dependencies_help: Dependências analisadas para o usuário usadas pelo AI Assistant para geração de resultados de artefato
     parsed_dependencies_title: Dependências analisadas
     parsed_dependencies_view: Exibir dependências analisadas
@@ -2238,8 +2196,6 @@ pt:
     report_approval_columns_user_email: E-mail do utilizador
     report_approval_columns_user_name: Nome do utilizador
     report_approval_digest_delivery_mode_form_label: Modo de entrega de resumo
-    report_approval_digest_delivery_mode_immediate: Imediato - Enviar sempre que houver um envio em massa.
-    report_approval_digest_delivery_mode_scheduled: Agendado - Enviar um e-mail com um resumo das informações em um horário agendado.
     report_approval_digest_frequency_daily: Diário
     report_approval_digest_frequency_form_label: Frequência de digestão
     report_approval_digest_frequency_weekdays: Semana
@@ -2431,7 +2387,6 @@ pt:
     saml_settings_config_details_copied: Copiado %{element}
     saml_settings_config_details_issuer: ID da entidade/emissor
     saml_settings_config_details_title: Configurar o Idp com as seguintes informações
-    saml_settings_download_metadata: Baixar metadados
     saml_settings_email_pipetext: Email Pipetext
     saml_settings_enabled: Ativado
     saml_settings_enforced: Aplicar SAML
@@ -3202,10 +3157,8 @@ pt:
     upload_success: Carregado com sucesso
     url_label: URL
     url_name: URL
-    url_whitelisting: Lista de URLs permitidas
     used_tokens_input_tokens: Tokens de Entrada
     used_tokens_output_tokens: Tokens de Saída
-    used_tokens_thinking_tokens: Fichas de Pensamento
     used_tokens_title: Uso do token
     user: Utilizador
     user_agent: Agente do utilizador

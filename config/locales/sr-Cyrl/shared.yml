@@ -89,6 +89,7 @@ sr-Cyrl:
     failed: Неуспело
     'false': false
     file: Датотека
+    file_upload_button: Изабери фајл
     first_name: Презиме
     formal_learning: Формално учење
     generate: Генериши

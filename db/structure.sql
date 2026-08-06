@@ -23777,6 +23777,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_histories fk_rails_d00d71891f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 

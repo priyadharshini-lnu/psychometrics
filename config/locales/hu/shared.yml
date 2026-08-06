@@ -89,6 +89,7 @@ hu:
     failed: Sikertelen
     'false': false
     file: Fájl
+    file_upload_button: Fájl kiválasztása
     first_name: Keresztnév
     formal_learning: Formális tanulás
     generate: Generálás

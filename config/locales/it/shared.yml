@@ -89,6 +89,7 @@ it:
     failed: Fallito
     'false': false
     file: File
+    file_upload_button: Seleziona file
     first_name: Nome
     formal_learning: Apprendimento Formale
     generate: Generare

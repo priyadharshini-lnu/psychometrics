@@ -641,7 +641,7 @@ ar:
       thursday: الخميس
       tuesday: الثلاثاء
       wednesday: الأربعاء
-    dimension_errors_cannot_delete_with_assessments: لا يمكن حذف هذا البُعد لأنه لا يزال مرتبطًا بالتقييمات. يُرجى حذف التقييمات المرتبطة به أو تحديثها أولًا.
+    dimension_errors_cannot_delete_with_assessments: لا يمكن حذف هذا البعد لأنه لا يزال مرتبطًا بالتقييمات. يرجى حذف التقييمات المرتبطة به أو تحديثها أولاً.
     dimension_translations_export_scheduled: تصدير الترجمات المجدولة للبعد %{name}.
     dimensions: الأبعاد
     dimensions_destroy_successfully: تم حذف البعد %{name} بنجاح.

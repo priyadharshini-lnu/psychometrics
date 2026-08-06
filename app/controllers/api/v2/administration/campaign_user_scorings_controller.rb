@@ -117,9 +117,7 @@ module Api
         :export_campaign_scorings,
         {
           campaign_id: campaign.id,
-          filters: {
-            campaign_users_active_in: params.dig(:filters, :campaign_users_active_in)
-          }
+          filters: params.dig(:data, :attributes, :filters) || {}
         },
         current_user
       )
