@@ -59,6 +59,7 @@ export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const { I18n } = window
+const RECORD_HISTORY_ROUTE_PATH = '/admin/audit_logs/record_trace'
 
 const RecordHistory: React.FC<Props> = ({
   entries,
@@ -73,7 +74,7 @@ const RecordHistory: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { pathname, search } = useLocation()
+  const { search } = useLocation()
   const parsed = qs.parse(search, { ignoreQueryPrefix: true }) as Record<string, string>
 
   const { message: messageApi } = App.useApp()
@@ -86,6 +87,7 @@ const RecordHistory: React.FC<Props> = ({
 
   const { asyncLoading: isLoading, makeAsyncRequest } = useAsyncRequestResponse<RecordHistorySearchStatus>({
     url: RECORD_HISTORY_SEARCH_URL,
+    data: {},
     responseType: RecordHistorySearchStatusTR,
     pollingInterval: 2,
     numberOfTimesToPoll: 50,
@@ -167,7 +169,7 @@ const RecordHistory: React.FC<Props> = ({
     const currentQueryString = search.replace(/^\?/, '')
     const changed = queryString !== currentQueryString
 
-    navigate(queryString ? `${pathname}?${queryString}` : pathname, { replace: true })
+    navigate(queryString ? `${RECORD_HISTORY_ROUTE_PATH}?${queryString}` : RECORD_HISTORY_ROUTE_PATH, { replace: true })
 
     return changed
   }
@@ -254,7 +256,7 @@ const RecordHistory: React.FC<Props> = ({
     form.resetFields()
     setRange(defaultDateRange())
     setPage(1)
-    navigate(pathname, { replace: true })
+    navigate(RECORD_HISTORY_ROUTE_PATH, { replace: true })
   }
 
   const disabledDate = (current) => {
