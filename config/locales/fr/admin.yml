@@ -128,10 +128,15 @@ fr:
     application_name_already_taken: Cela existe déjà pour ce client
     application_name_format_hint: Seules les lettres et les chiffres sont autorisés, avec un seul espace entre les mots
     application_settings_at_least_one_ip_required: Veuillez ajouter au moins une adresse IP avant d'activer la liste blanche d'adresses IP.
+    application_settings_at_least_one_url_required: Veuillez activer au moins une entrée URL avant d'activer la liste blanche d'URL.
     application_settings_confirm_delete_ip: Êtes-vous sûr de vouloir supprimer cette adresse IP ?
+    application_settings_confirm_delete_url: Êtes-vous sûr de vouloir supprimer cette URL ?
     application_settings_edit_ip_address: Modifier l'adresse IP / la plage CIDR
     application_settings_enable_ip_whitelisting: Activer la liste blanche d'adresses IP
+    application_settings_enable_url_whitelisting: Activer la liste blanche d'URL
     application_settings_invalid_ip_format: Adresse IP ou format CIDR non valide
+    application_settings_invalid_url_format: Format d'URL invalide
+    application_settings_ip_address: Plage d'adresses IP / CIDR
     application_settings_ip_addresses: Adresses IP / Plages CIDR
     application_settings_ip_deleted_successfully: L'adresse IP a été supprimée avec succès
     application_settings_ip_description_placeholder: par exemple, réseau de bureau ou serveur de production
@@ -141,6 +146,16 @@ fr:
     application_settings_ip_updated_successfully: L'adresse IP a été mise à jour avec succès
     application_settings_ip_whitelisting_disabled_success: La liste blanche d'adresses IP a été désactivée avec succès
     application_settings_ip_whitelisting_enabled_success: La liste blanche d'adresses IP a été activée avec succès
+    application_settings_url: URL
+    application_settings_url_addresses: Adresses URL
+    application_settings_url_deleted_successfully: URL supprimée avec succès
+    application_settings_url_description_placeholder: Par exemple, un réseau de bureau ou un serveur de production
+    application_settings_url_input_placeholder: Par exemple, https://example.com ou https://sub.example.com
+    application_settings_url_required: L'URL est requise.
+    application_settings_url_updated_successfully: URL mise à jour avec succès
+    application_settings_url_whitelisting_disabled_success: Liste blanche d'URL désactivée avec succès
+    application_settings_url_whitelisting_enabled_success: Liste blanche d'URL activée avec succès
+    application_settings_urls: URL
     applications: Applications
     apply_to_existing_users: Appliquer cette modification aux utilisateurs existants dans cette campagne
     approve_all_questions: Approuver toutes les questions
@@ -213,6 +228,8 @@ fr:
     assessor_overview: Vue d'ensemble
     assessor_placeholder: Recherche Assesseur...
     assessor_remove_confirmation: Êtes-vous sûr de vouloir supprimer de cette campagne l'évaluateur dont l'adresse électronique est %{email} ?
+    assessor_remove_has_evaluations: Cet évaluateur a %{evaluation_count} formulaires d'évaluation attribués. Toutes les évaluations qu'il a remplies seront perdues.
+    assessor_remove_in_assessment_centers: Cet évaluateur fait partie du ou des centres d'évaluation %{workshop_count}. La procédure suivante le retirera de tous les centres d'évaluation.
     assessor_statuses_completed: Terminé
     assessor_statuses_not_completed: Non achevé
     assessor_subjects_statuses_completed: Terminé
@@ -646,6 +663,7 @@ fr:
     dimensions_import_modal_import_dimension: Dimension de l'importation
     dimensions_import_modal_import_scheduled: Importation programmée
     dimensions_import_modal_operation: Fonctionnement
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Veuillez sélectionner un propriétaire
     dimensions_import_modal_owner_select: Sélectionner un propriétaire
     dimensions_import_modal_select_json: Sélectionner le fichier JSON
@@ -1207,6 +1225,7 @@ fr:
     invite_workshop_list_remove_confirm_success: Assessment Center a été supprimé avec succès.
     invite_workshop_list_remove_confirm_title: Confirmer
     invite_workshop_title: Centres d'évaluation
+    ip_whitelisting: Liste blanche d'adresses IP
     is_subject: Est le sujet
     job_role_are_you_sure_to_remove: Êtes-vous sûr de vouloir le supprimer ?
     job_role_column_job_group: Groupe de travail
@@ -1280,6 +1299,7 @@ fr:
     mark_not_finalized: Note non définitive
     mark_not_finalized_bulk_confirm: La suppression de « finalize » pour tous les utilisateurs sélectionnés entraînera la suppression des rapports générés qui utilisent des artefacts d'IA. Voulez-vous vraiment continuer ?
     mark_not_finalized_confirm: La suppression de la finalisation de l'« %{email} » de l'utilisateur entraînera la suppression du rapport généré qui utilise l'artefact IA pour cet utilisateur. Voulez-vous vraiment continuer ?
+    mark_ready_button: Marquer comme prêt
     mask_identity_for_examus: Données sur les masques pour Examus Proctoring
     mask_identity_for_hogan: Données sur les masques pour Hogan
     mask_identity_for_iiht: Données de masque pour l'IIHT
@@ -1338,6 +1358,21 @@ fr:
     modal_title: Convertir en modèle
     model_answer: Réponse type
     model_answer_placeholder: Entrez la réponse type pour la notation par l'IA.
+    model_params_description: Laisser vide pour utiliser les valeurs par défaut définies par le type d'assistant.
+    model_params_max_tokens: Jetons maximum
+    model_params_max_tokens_tooltip: Limite le nombre maximal de jetons que le modèle peut générer par réponse. Des valeurs plus élevées permettent des sorties plus longues, mais augmentent le coût et la latence.
+    model_params_temperature: Température
+    model_params_temperature_tooltip: Contrôle le caractère aléatoire du résultat. 0 = déterministe et ciblé ; 2 = très créatif et varié. Utilisez des valeurs faibles pour que les résultats soient limités au contexte fourni.
+    model_params_thinking_budget: Budget de réflexion (jetons)
+    model_params_thinking_budget_tooltip: Définit une limite maximale au nombre de jetons que le modèle peut utiliser pour le raisonnement interne. Des valeurs plus élevées permettent une analyse plus approfondie, mais augmentent la consommation de jetons et le temps de réponse.
+    model_params_thinking_budget_unsupported: Ce modèle utilise uniquement un contrôle du raisonnement basé sur l'effort. Le budget de réflexion (limite de jetons) n'est pas pris en charge.
+    model_params_thinking_effort: Effort de réflexion
+    model_params_thinking_effort_high: Haut
+    model_params_thinking_effort_low: Faible
+    model_params_thinking_effort_medium: Moyen
+    model_params_thinking_effort_none: Aucun
+    model_params_thinking_effort_tooltip: Contrôle le niveau de raisonnement appliqué par le modèle avant de répondre. Un niveau de raisonnement plus élevé produit des réponses plus complètes, mais prend plus de temps. Utilisez « Aucun » pour désactiver complètement le raisonnement.
+    model_params_title: Configuration du modèle avancé
     must_be_a_valid_url: URL non valide. Veuillez indiquer l'URL complète en précisant le protocole http ou https.
     name: Nom
     name_max_length: Le nom ne peut pas dépasser %{length} caractères.
@@ -1445,6 +1480,14 @@ fr:
     overall: Dans l'ensemble
     overall_score: Note globale
     overall_scoring: Note globale
+    owner_resource_assessment: évaluation
+    owner_resource_campaign: campagne
+    owner_resource_client: client
+    owner_resource_dimension: dimension
+    owner_resource_mismatch: Le propriétaire du %{child_resource} n'est pas compatible avec le propriétaire du %{parent_resource}.
+    owner_resource_norm: norme
+    owner_resource_report: rapport
+    owner_resource_report_bundle: ensemble de rapports
     parsed_dependencies_help: Dépendances analysées pour l’utilisateur utilisé par l’assistant IA pour la génération des résultats d’artefact
     parsed_dependencies_title: Dépendances analysées
     parsed_dependencies_view: Afficher les dépendances analysées
@@ -2196,6 +2239,8 @@ fr:
     report_approval_columns_user_email: Courriel de l'utilisateur
     report_approval_columns_user_name: Nom de l'utilisateur
     report_approval_digest_delivery_mode_form_label: Mode de diffusion du résumé
+    report_approval_digest_delivery_mode_immediate: Immédiat - Envoyer à chaque soumission groupée
+    report_approval_digest_delivery_mode_scheduled: Programmé - Envoi d'un courriel récapitulatif à une heure programmée
     report_approval_digest_frequency_daily: Quotidien
     report_approval_digest_frequency_form_label: Fréquence de publication du résumé
     report_approval_digest_frequency_weekdays: Semaine
@@ -2387,6 +2432,7 @@ fr:
     saml_settings_config_details_copied: Copié %{element}
     saml_settings_config_details_issuer: ID de l'entité/émetteur
     saml_settings_config_details_title: Configurer Idp avec les informations suivantes
+    saml_settings_download_metadata: Télécharger les métadonnées
     saml_settings_email_pipetext: Envoyer un courriel à Pipetext
     saml_settings_enabled: Activé
     saml_settings_enforced: Appliquer SAML
@@ -3157,8 +3203,10 @@ fr:
     upload_success: Téléversement réussi
     url_label: URL
     url_name: URL
+    url_whitelisting: Liste blanche d'URL
     used_tokens_input_tokens: Jetons d’entrée
     used_tokens_output_tokens: Jetons de sortie
+    used_tokens_thinking_tokens: Jetons de réflexion
     used_tokens_title: Utilisation du jeton
     user: Utilisateur
     user_agent: Agent utilisateur
