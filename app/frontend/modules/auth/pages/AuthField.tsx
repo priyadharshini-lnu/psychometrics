@@ -44,6 +44,7 @@ export const AuthField: FC<AuthFieldProps> = ({
         <Input.Password
           id={id}
           name={name}
+          size="large"
           placeholder={placeholder}
           defaultValue={defaultValue}
           autoComplete={autoComplete}
@@ -54,6 +55,7 @@ export const AuthField: FC<AuthFieldProps> = ({
         <Input
           id={id}
           name={name}
+          size="large"
           type={type}
           placeholder={placeholder}
           defaultValue={defaultValue}

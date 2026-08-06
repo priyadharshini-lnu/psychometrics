@@ -59,6 +59,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
     <Button
       scheme="primary"
       variant={ssoEnforced ? 'solid' : 'outlined'}
+      size="large"
       href="/users/saml/sign_in"
       block
     >

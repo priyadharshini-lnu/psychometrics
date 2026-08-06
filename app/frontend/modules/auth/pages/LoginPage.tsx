@@ -72,6 +72,7 @@ const LoginPageComponent: React.FC<Props> = ({
         <Button
           scheme="primary"
           variant={projectConfig.saml_enforced ? 'solid' : 'outlined'}
+          size="large"
           href="/users/saml/sign_in"
           block
         >

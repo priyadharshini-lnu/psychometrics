@@ -103,6 +103,7 @@ export const ClientSelection: React.FC<Props> = ({ clients, spoofUserId }) => {
                 <Input
                   placeholder={I18n.t('admin.clients_search_placeholder')}
                   prefix={<SearchOutlined />}
+                  size="large"
                   allowClear
                   onChange={e => setSearchTerm(e.target.value)}
                 />
