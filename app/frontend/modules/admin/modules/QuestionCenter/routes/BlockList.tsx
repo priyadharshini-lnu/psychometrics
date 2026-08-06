@@ -161,7 +161,7 @@ const BlockList: React.FC = () => {
   }
 
   const Filter = (
-    <Resource.Filter name="name_cont" placeholder={I18n.t('shared.search')}>
+    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
       <CreateBlockButton />
     </Resource.Filter>
   )
@@ -226,7 +226,7 @@ const BlockList: React.FC = () => {
       />
       <Resource.Column<Block>
         id="created_at"
-        dataIndex="created_at"
+        dataIndex="createdAt"
         title={I18n.t('shared.created_at')}
         render={createdAt => (
           dayjs(createdAt).format('lll')

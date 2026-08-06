@@ -4,6 +4,7 @@ class Block < ApplicationRecord
   audited
 
   include Copyable
+  include RansackSearchableFields
 
   # For assessment builder
   attr_accessor :save_as_template, :permanent_remove
@@ -39,6 +40,21 @@ class Block < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
+  scope :filterable_fields, lambda { |search_term|
+    term = search_term.to_s
+    query = "%#{term}%"
+
+    searchable_sql = <<~SQL.squish
+      blocks.name ILIKE :query
+    SQL
+
+    if (term !~ /\D/) && term.present?
+      where("blocks.id = :id OR (#{searchable_sql})", id: term, query: query)
+    else
+      where(searchable_sql, query: query)
+    end
+  }
+
   enum :block_type, {
     regular: 0,
     skill_rater: 1
@@ -46,6 +62,10 @@ class Block < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name created_at view]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[assessment owner]
   end
 
   # Ransacker for view enum - converts string values to integers for filtering

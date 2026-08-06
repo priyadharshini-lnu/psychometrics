@@ -10,7 +10,7 @@ class Api::V2::Administration::BlockResource < Api::V2::Administration::BaseReso
   has_many :linked_assessments
   has_one :owner
 
-  ransack_filters %i[assessment_id_eq name_cont owner_id_eq view_eq]
+  ransack_filters %i[assessment_id_eq filterable_fields name_cont owner_id_eq view_eq]
 
   before_create do
     @model.view = :templates if context.dig(:params, :filter, :view_eq) == 'templates'
