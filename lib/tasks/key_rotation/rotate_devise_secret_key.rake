@@ -41,28 +41,17 @@ namespace :key_rotation do
     puts "\n== Re-hashing invitation tokens with new DEVISE_SECRET_KEY =="
     puts "Scope: #{pending_invitations.count} users (limit=#{limit || 'none'}, offset=#{offset})"
 
-    pending_invitations.find_in_batches(batch_size: 100) do |batch|
-      users_to_update = []
-      batch.each do |user|
-        raw_token = Rails.application.message_verifier(
-          Settings.secrets.secret_token_for_generate
-        ).verify(user.encrypted_invitation_raw)
-        user.invitation_token = Devise.token_generator.digest(User, :invitation_token, raw_token)
-        users_to_update << user
-      rescue StandardError => e
-        puts "  User #{user.id} failed: #{e.message}"
-        failed_user_ids << user.id
-      end
+    KeyRotation::DeviseSecretKeyRotator.call(
+      scope:  pending_invitations,
+      failed: failed_user_ids
+    )
 
-      unless users_to_update.empty?
-        User.import users_to_update, on_duplicate_key_update: [:invitation_token], validate: false
-        puts "  Batch done. Last user ID: #{users_to_update.last.id}"
-      end
-    end
-
-    puts "\nDone re-hashing invitation tokens."
-    unless failed_user_ids.empty?
-      puts "Failed user IDs: #{failed_user_ids.inspect}"
+    if failed_user_ids.empty?
+      puts "\nAll pending invitation tokens re-hashed successfully."
+    else
+      puts "\nFailed user IDs (#{failed_user_ids.size}): #{failed_user_ids.inspect}"
+      puts 'Re-run the task for those users or investigate individually.'
+      exit 1
     end
   end
 end
