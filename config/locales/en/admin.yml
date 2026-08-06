@@ -856,6 +856,7 @@ en:
     form_datasheet: Datasheet
     form_datasheet_columns: Datasheet Columns
     form_end_date: End Date
+    form_fields_to_display: Fields to display
     form_include_all_datasheet_columns: Include All Datasheet Columns
     form_name: Name
     form_no_assessment_selected: No assessments added yet. Click "Add" to get started.
@@ -2811,6 +2812,7 @@ en:
     sheets_tabs_settings: Settings
     show_all: Show All
     show_all_assessment_responses: Show All Assessment Responses
+    show_form_field_titles: Show form field titles
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu
