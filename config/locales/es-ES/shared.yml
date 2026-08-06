@@ -89,6 +89,7 @@ es-ES:
     failed: Fallido
     'false': false
     file: Archivo
+    file_upload_button: Seleccionar archivo
     first_name: Nombre
     formal_learning: Aprendizaje formal
     generate: Generar

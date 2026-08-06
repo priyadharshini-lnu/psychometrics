@@ -128,14 +128,10 @@ hu:
     application_name_already_taken: Ez az ügyfél számára már létezik
     application_name_format_hint: Csak betűk és számok használhatók, a szavak között egyetlen szóközzel
     application_settings_at_least_one_ip_required: Kérjük, legalább egy IP-címet adjon meg, mielőtt engedélyezné az IP-címek fehérlistáját.
-    application_settings_at_least_one_url_required: Kérjük, engedélyezzen legalább egy URL-bejegyzést az URL-engedélyezési listára való felkerülés előtt.
     application_settings_confirm_delete_ip: Biztosan törölni szeretné ezt az IP-címet?
-    application_settings_confirm_delete_url: Biztosan törölni szeretné ezt az URL-t?
+    application_settings_edit_ip_address: IP-cím / CIDR-tartomány szerkesztése
     application_settings_enable_ip_whitelisting: IP-címek fehérlistájának engedélyezése
-    application_settings_enable_url_whitelisting: URL-engedélyezés engedélyezése
     application_settings_invalid_ip_format: Érvénytelen IP-cím vagy CIDR-formátum
-    application_settings_invalid_url_format: Érvénytelen URL-formátum
-    application_settings_ip_address: IP-cím / CIDR-tartomány
     application_settings_ip_addresses: IP-címek / CIDR-tartományok
     application_settings_ip_deleted_successfully: Az IP-cím törlése sikeresen megtörtént
     application_settings_ip_description_placeholder: pl. irodai hálózat vagy termelési szerver
@@ -145,16 +141,6 @@ hu:
     application_settings_ip_updated_successfully: Az IP-cím frissítése sikeresen megtörtént
     application_settings_ip_whitelisting_disabled_success: Az IP-címek fehérlistájának engedélyezése sikeresen lezárult
     application_settings_ip_whitelisting_enabled_success: Az IP-címek fehérlistájának engedélyezése sikeresen megtörtént
-    application_settings_url: URL-cím
-    application_settings_url_addresses: URL-címek
-    application_settings_url_deleted_successfully: URL sikeresen törölve
-    application_settings_url_description_placeholder: pl. irodai hálózat vagy termelési szerver
-    application_settings_url_input_placeholder: pl. https://example.com vagy https://sub.example.com
-    application_settings_url_required: URL megadása kötelező
-    application_settings_url_updated_successfully: URL sikeresen frissítve
-    application_settings_url_whitelisting_disabled_success: Az URL-engedélyezési lista letiltása sikeresen megtörtént.
-    application_settings_url_whitelisting_enabled_success: Az URL-engedélyezési lista sikeresen engedélyezve
-    application_settings_urls: URL-ek
     applications: Alkalmazások
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
     approve_all_questions: Minden kérdés jóváhagyása
@@ -227,8 +213,6 @@ hu:
     assessor_overview: Áttekintés
     assessor_placeholder: Értékelő keresése...
     assessor_remove_confirmation: Biztos vagy benne, hogy el akarod távolítani a(z) %{email} e-mail címmel rendelkező értékelőt ebből a kampányból?
-    assessor_remove_has_evaluations: Ehhez az értékelőhöz %{evaluation_count} értékelői űrlap van hozzárendelve. Az összes kitöltött értékelése elvész.
-    assessor_remove_in_assessment_centers: Ez az értékelő %{workshop_count} értékelőközpontban vesz részt. A folytatás az összes értékelőközpontból eltávolítja.
     assessor_statuses_completed: Befejezett
     assessor_statuses_not_completed: Nem fejeződött be
     assessor_subjects_statuses_completed: Befejezett
@@ -641,7 +625,7 @@ hu:
       thursday: csütörtök
       tuesday: kedd
       wednesday: Szerda
-    dimension_errors_cannot_delete_with_assessments: Ez a dimenzió nem törölhető, mert még mindig értékelésekhez van társítva. Kérjük, először törölje vagy frissítse a kapcsolódó értékeléseket.
+    dimension_errors_cannot_delete_with_assessments: Ezt a dimenziót nem lehet törölni, mert még mindig értékelésekhez van társítva. Kérjük, először törölje vagy frissítse a hozzá tartozó értékeléseket.
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     dimensions_destroy_successfully: A(z) %{name} dimenzió törlése sikeresen megtörtént.
@@ -662,7 +646,6 @@ hu:
     dimensions_import_modal_import_dimension: Dimenzió importálása
     dimensions_import_modal_import_scheduled: Tervezett importálás
     dimensions_import_modal_operation: Művelet
-    dimensions_import_modal_owner_global: TTE (globális)
     dimensions_import_modal_owner_input_validation: Kérjük, válasszon egy tulajdonost
     dimensions_import_modal_owner_select: Tulajdonos kiválasztása
     dimensions_import_modal_select_json: JSON fájl kiválasztása
@@ -1224,7 +1207,6 @@ hu:
     invite_workshop_list_remove_confirm_success: Az értékelési központot sikeresen eltávolították.
     invite_workshop_list_remove_confirm_title: Megerősítés
     invite_workshop_title: Értékelési központok
-    ip_whitelisting: IP-címek engedélyezési listája
     is_subject: Is Subject
     job_role_are_you_sure_to_remove: Biztos, hogy el akarja távolítani?
     job_role_column_job_group: Munkacsoport
@@ -1298,7 +1280,6 @@ hu:
     mark_not_finalized: A jelölés még nem végleges
     mark_not_finalized_bulk_confirm: Ha a „finalize” jelölést eltávolítja az összes kijelölt felhasználóról, az AI-műalkotásokat tartalmazó generált jelentések is törlődnek. Biztosan folytatni szeretné?
     mark_not_finalized_confirm: A „%{email}” felhasználóhoz tartozó „finalize” művelet eltávolításával törlődik az a generált jelentés, amely az adott felhasználó AI-műalkotását használja. Biztosan folytatni szeretné?
-    mark_ready_button: Készként megjelölni
     mask_identity_for_examus: Adatok maszkolása az Examus Proctoring számára
     mask_identity_for_hogan: Adatok maszkolása a Hogan számára
     mask_identity_for_iiht: Adatok maszkolása az IIHT számára
@@ -1357,21 +1338,6 @@ hu:
     modal_title: Átalakítás sablonba
     model_answer: Minta válasz
     model_answer_placeholder: Írja be a modellválaszt az AI pontozáshoz.
-    model_params_description: Hagyja üresen az asszisztens típusa által meghatározott alapértelmezett értékek használatához.
-    model_params_max_tokens: Max. tokenek
-    model_params_max_tokens_tooltip: Korlátozza a modell által válaszonként generálható tokenek maximális számát. A magasabb értékek hosszabb kimeneteket tesznek lehetővé, de növelik a költségeket és a késleltetést.
-    model_params_temperature: Hőmérséklet
-    model_params_temperature_tooltip: A kimenet véletlenszerűségét szabályozza. 0 = determinisztikus és fókuszált; 2 = rendkívül kreatív és változatos. Alacsonyabb értékeket használjon, ha a kimenet a megadott kontextusra korlátozódik.
-    model_params_thinking_budget: Gondolkodó Költségvetés (tokenek)
-    model_params_thinking_budget_tooltip: Szigorúan korlátozza a modell által belső gondolkodásra költhető tokenek számát. A magasabb értékek mélyebb elemzést tesznek lehetővé, de növelik a tokenek használatát és a válaszidőt.
-    model_params_thinking_budget_unsupported: Ez a modell csak erőfeszítésalapú gondolkodásvezérlést használ. A gondolkodási költségvetés (token-korlát) nem támogatott.
-    model_params_thinking_effort: Gondolkodási erőfeszítés
-    model_params_thinking_effort_high: Magas
-    model_params_thinking_effort_low: Alacsony
-    model_params_thinking_effort_medium: Közepes
-    model_params_thinking_effort_none: Egyik sem
-    model_params_thinking_effort_tooltip: Azt szabályozza, hogy a modell mennyi érvelést alkalmazzon a válaszadás előtt. Nagyobb erőfeszítés esetén alaposabb válaszok jönnek létre, de ez tovább tart. A „Nincs” beállítással teljesen kikapcsolhatja az érvelést.
-    model_params_title: Speciális modellkonfiguráció
     must_be_a_valid_url: Érvénytelen URL. Adja meg a teljes URL-címet, beleértve az http vagy https protokollt is
     name: Név
     name_max_length: A név nem haladhatja meg a %{length} karaktert.
@@ -1479,14 +1445,6 @@ hu:
     overall: Összességében
     overall_score: Összes pontszám
     overall_scoring: Összesített pontozás
-    owner_resource_assessment: értékelés
-    owner_resource_campaign: kampány
-    owner_resource_client: ügyfél
-    owner_resource_dimension: dimenzió
-    owner_resource_mismatch: Az %{child_resource} tulajdonos nem kompatibilis az %{parent_resource} tulajdonossal.
-    owner_resource_norm: norma
-    owner_resource_report: jelentés
-    owner_resource_report_bundle: jelentéscsomag
     parsed_dependencies_help: Az AI Assistant által az összetevő-eredmények létrehozásához használt felhasználó elemzett függőségei
     parsed_dependencies_title: Elemzett függőségek
     parsed_dependencies_view: Elemzett függőségek megtekintése
@@ -2238,8 +2196,6 @@ hu:
     report_approval_columns_user_email: Felhasználói e-mail cím
     report_approval_columns_user_name: Felhasználónév
     report_approval_digest_delivery_mode_form_label: Összefoglaló kézbesítési módja
-    report_approval_digest_delivery_mode_immediate: Azonnali - Küldés, amikor tömeges beküldés történik
-    report_approval_digest_delivery_mode_scheduled: Ütemezett - Összefoglaló e-mail küldése ütemezett időpontban
     report_approval_digest_frequency_daily: Mindennapi
     report_approval_digest_frequency_form_label: A hírlevél megjelenési gyakorisága
     report_approval_digest_frequency_weekdays: Hétköznap
@@ -2431,7 +2387,6 @@ hu:
     saml_settings_config_details_copied: Másolt %{element}
     saml_settings_config_details_issuer: Szervezet azonosítója/kibocsátó
     saml_settings_config_details_title: Az Idp konfigurálása a következő információkkal
-    saml_settings_download_metadata: Metaadatok letöltése
     saml_settings_email_pipetext: E-mail küldése a Pipetextnek
     saml_settings_enabled: Engedélyezve
     saml_settings_enforced: Az SAML kényszerítése
@@ -3199,10 +3154,8 @@ hu:
     upload_success: Sikeresen feltöltve
     url_label: URL-cím
     url_name: URL-cím
-    url_whitelisting: URL-engedélyezés
     used_tokens_input_tokens: Bemeneti tokenek
     used_tokens_output_tokens: Kimeneti tokenek
-    used_tokens_thinking_tokens: Gondolkodó zsetonok
     used_tokens_title: Token használat
     user: Felhasználó
     user_agent: Felhasználói ágens

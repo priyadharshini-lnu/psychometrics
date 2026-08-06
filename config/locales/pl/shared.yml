@@ -89,6 +89,7 @@ pl:
     failed: Niepowodzenie
     'false': false
     file: Plik
+    file_upload_button: Wybierz plik
     first_name: Imię
     formal_learning: Uczenie się formalne
     generate: Generuj

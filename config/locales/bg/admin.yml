@@ -641,7 +641,7 @@ bg:
       thursday: четвъртък
       tuesday: вторник
       wednesday: сряда
-    dimension_errors_cannot_delete_with_assessments: Не може да се изтрие това измерение, защото то все още е свързано с оценки. Моля, първо изтрийте или актуализирайте свързаните оценки.
+    dimension_errors_cannot_delete_with_assessments: Не е възможно да се изтрие това измерение, тъй като все още е свързано с оценки. Моля, първо изтрийте или актуализирайте свързаните с него оценки.
     dimension_translations_export_scheduled: Запланирани преводи за износ за измерение „%{name}“.
     dimensions: Размери
     dimensions_destroy_successfully: Измерението %{name} е изтрито успешно.

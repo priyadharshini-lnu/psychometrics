@@ -23777,6 +23777,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 
 --
+-- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: threesixty_email_histories fk_rails_d00d71891f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24901,6 +24909,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260717000000'),
 ('20260713060835'),
 ('20260713060508'),
+('20260717000000'),
 ('20260709000000'),
 ('20260702091252'),
 ('20260702075701'),

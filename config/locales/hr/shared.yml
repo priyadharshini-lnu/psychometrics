@@ -89,6 +89,7 @@ hr:
     failed: Neuspjelo
     'false': false
     file: Datoteka
+    file_upload_button: Odabir datoteke
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Generiraj

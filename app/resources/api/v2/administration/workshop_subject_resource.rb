@@ -48,18 +48,41 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
   after_create :link_to_workshop_invite
 
   def link_to_workshop_invite
-    workshop_invited_subject = WorkshopInvitedSubject.
+    return if @model.workshop_invited_subject_id.present?
+
+    grouped_invites = WorkshopInvitedSubject.joins(:workshop_invite).where(
+      user_id: @model.user_id,
+      workshop_invites: {
+        campaign_id: @model.campaign_id,
+        campaign_assessment_group_id: @model.workshop.campaign_assessment_group_id
+      }
+    )
+
+    # For manual admin move flows, preserve an already established booking linkage only.
+    linked_booking_ids = WorkshopSubject.joins(:workshop).where(
+      user_id: @model.user_id,
+      campaign_id: @model.campaign_id,
+      workshops: { campaign_assessment_group_id: @model.workshop.campaign_assessment_group_id }
+    ).where.not(workshop_invited_subject_id: nil).select(:workshop_invited_subject_id)
+
+    workshop_invited_subject = grouped_invites.bookings.
+                               where(id: linked_booking_ids).
+                               order(updated_at: :desc).
+                               first
+
+    if workshop_invited_subject
+      ApplicationRecord.transaction do
+        @model.update!(workshop_invited_subject_id: workshop_invited_subject.id)
+        # Update status back to accepted if it was cancelled during re-booking
+        workshop_invited_subject.update!(status: :accepted) if workshop_invited_subject.cancelled?
+      end
+      return
+    end
+
+    workshop_invited_subject = grouped_invites.invites.
                                joins(workshop_invite: :workshops).
-                               where(
-                                 user_id: @model.user_id,
-                                 status: :pending,
-                                 workshop_invites: {
-                                   campaign_id: @model.campaign_id,
-                                   campaign_assessment_group_id: @model.workshop.campaign_assessment_group_id
-                                 },
-                                 workshops: { id: @model.workshop_id }
-                               ).
-                               order(created_at: :desc).
+                               where(workshops: { id: @model.workshop_id }).
+                               order(updated_at: :desc).
                                first
     return unless workshop_invited_subject
 

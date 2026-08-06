@@ -89,6 +89,7 @@ zh:
     failed: 失败
     'false': false
     file: 文件
+    file_upload_button: 选择文件
     first_name: 名
     formal_learning: 正规学习
     generate: 生成

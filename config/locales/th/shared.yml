@@ -89,6 +89,7 @@ th:
     failed: ล้มเหลว
     'false': false
     file: ไฟล์
+    file_upload_button: เลือกไฟล์
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง

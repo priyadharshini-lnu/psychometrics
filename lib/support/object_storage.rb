@@ -2,7 +2,7 @@
 
 module Support
   class ObjectStorage
-    STORAGE_PATH = 'tmp/support'
+    STORAGE_PATH = 'private/tmp/support'
     DEFAULT_EXPIRY = 15.minutes
 
     def initialize(file_name, io, content_type:, expires_in: DEFAULT_EXPIRY)

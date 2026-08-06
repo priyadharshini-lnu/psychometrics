@@ -89,6 +89,7 @@ de:
     failed: Fehlgeschlagen
     'false': false
     file: Datei
+    file_upload_button: Datei auswählen
     first_name: Vorname
     formal_learning: Formales Lernen
     generate: Generieren
