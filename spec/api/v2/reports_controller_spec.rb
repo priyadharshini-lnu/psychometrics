@@ -61,6 +61,38 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
       expect(report_response).to have_key('id')
       expect(report_response).to have_attribute(:name).with_value('name')
     end
+
+    it 'returns owner incompatibility error when report owner and assessment owner differ' do
+      assessment_owner = create(:tenancy)
+      report_owner = create(:tenancy)
+      owner_scoped_assessment = create(:assessment, owner: assessment_owner, project: assessment_owner)
+      body = {
+        data: {
+          type: 'reports',
+          attributes: {
+            description: 'name',
+            name: 'name',
+            provider: 'internal',
+            icon_color: 'color'
+          },
+          relationships: {
+            assessments: { data: [{ type: 'assessments', id: owner_scoped_assessment.id.to_s }] },
+            owner: { data: { type: 'clients', id: report_owner.id.to_s } }
+          }
+        }
+      }
+
+      post '/api/v2/administration/reports/',
+           params: body.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(errors.size).to eq(1)
+      expect(error_titles).to include('assessment owner is not compatible with report owner.')
+      expect(error_titles).not_to include('is invalid')
+    end
   end
 
   describe 'PATCH /reports/{report_id}' do
@@ -85,6 +117,41 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
       expect(report_response).to have_key('id')
       expect(report_response).to have_attribute(:name).with_value('new name')
       expect(report_response).to have_attribute(:icon_color).with_value('#111')
+    end
+
+    it 'returns owner incompatibility error when updating owner with owner-scoped assessment attached' do
+      assessment_owner = create(:tenancy)
+      updated_owner = create(:tenancy)
+      owner_scoped_assessment = create(:assessment, owner: assessment_owner, project: assessment_owner)
+      scoped_report = create(
+        :report,
+        owner: assessment_owner,
+        assessments: [owner_scoped_assessment],
+        report_families: []
+      )
+      body = {
+        data: {
+          type: 'reports',
+          id: scoped_report.id.to_s,
+          attributes: {
+            provider: scoped_report.provider
+          },
+          relationships: {
+            owner: { data: { type: 'clients', id: updated_owner.id.to_s } }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/reports/#{scoped_report.id}",
+            params: body.to_json,
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(errors.size).to eq(1)
+      expect(error_titles).to include('assessment owner is not compatible with report owner.')
+      expect(error_titles).not_to include('is invalid')
     end
   end
 
@@ -129,6 +196,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
       expect(job.data['report_id']).to eq(report.id)
       expect(job.data['owner_id']).to eq(client.id)
       expect(job.data['name']).to eq('Copy of First Report')
+      expect(job.data['skip_owner_validation']).to eq(true)
     end
   end
 

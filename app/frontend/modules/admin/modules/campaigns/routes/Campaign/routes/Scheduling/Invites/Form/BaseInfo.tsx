@@ -119,11 +119,24 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
   const changeWorkshops = (value) => {
     const values = form.getFieldValue('workshopIds') || []
     setSearchValue('')
-    setData([])
     if (_.find(values, { id: value })) { return }
 
     form.setFieldValue('workshopIds', [...values, getResource(value)])
     setSelectedWorkshops(form.getFieldValue('workshopIds'))
+  }
+
+  const handleWorkshopSelectOpenChange = (open: boolean) => {
+    if (open && assessmentCenters.length === 0 && !searchValue) {
+      // Refetch available workshops when dropdown opens and no data is loaded
+      fetchWorkshops({
+        apiConfig: {
+          filter: {
+            date_filter: 'upcoming',
+            campaign_assessment_group_id_eq: form.getFieldValue('campaignAssessmentGroupId'),
+          },
+        },
+      })
+    }
   }
 
   const removeWorkshop = (id) => {
@@ -250,10 +263,13 @@ export const BaseInfoFormComponent: React.FC<Props> = ({
                       placeholder={
                         I18n.t('admin.invite_basic_info_assessment_centers_placeholder')
                       }
-                      options={assessmentCenters.map(workshop => ({
-                        label: workshop.name, value: workshop.id,
-                      }))}
+                      options={assessmentCenters
+                        .filter(workshop => !_.find(form.getFieldValue('workshopIds') || [], { id: workshop.id }))
+                        .map(workshop => ({
+                          label: workshop.name, value: workshop.id,
+                        }))}
                       onSelect={changeWorkshops}
+                      onDropdownVisibleChange={handleWorkshopSelectOpenChange}
                       value={null}
                     />
                   </Col>

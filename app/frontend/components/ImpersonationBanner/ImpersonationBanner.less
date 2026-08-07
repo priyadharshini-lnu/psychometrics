@@ -1,0 +1,22 @@
+:global(body.is-impersonating) {
+  padding-top: 40px;
+}
+
+.banner {
+  :global(.ant-alert-content) {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+  }
+}
+
+.exitButton {
+  background-color: #820014;
+
+  &:hover,
+  &:focus {
+    background-color: #5c000e !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+}

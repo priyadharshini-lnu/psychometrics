@@ -1,7 +1,7 @@
 import { connect, ConnectedProps } from 'react-redux'
 import {
   fetchSingle as fetchReport, getCurrent, download, DOWNLOAD, asyncDownload, clearUseReportDetails,
-  startQC, sendToReview, abortQC, approveReport, requestChanges, removeApproval,
+  startQC, sendToReview, abortQC, approveReport, requestChanges, removeApproval, markReady,
 } from '~/modules/admin/modules/campaigns/core/userReports'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isRequestInProgress } from '~/core/request'
@@ -24,6 +24,7 @@ const connecter = connect((state: RootState) => ({
   approveReport,
   requestChanges,
   removeApproval,
+  markReady,
 })
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>

@@ -27,6 +27,12 @@ export const ReportBundleReportTable: React.FC = () => (
       minWidth={400}
     />
     <Resource.Column<ReportBundleReport>
+      title={I18n.t('common.column.owner')}
+      id="ownerName"
+      render={reportBundleReport => reportBundleReport.ownerName || I18n.t('admin.tte')}
+      width={240}
+    />
+    <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.package_id')}
       id="externalPackageId"
       width={300}

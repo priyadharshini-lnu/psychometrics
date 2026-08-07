@@ -128,10 +128,15 @@ hr:
     application_name_already_taken: Već postoji za ovog klijenta
     application_name_format_hint: Dopušteni su samo slova i brojevi, s jednim razmakom između riječi.
     application_settings_at_least_one_ip_required: Molimo omogućite barem jedan unos IP adrese prije omogućavanja IP bijele liste.
+    application_settings_at_least_one_url_required: Omogućite barem jedan unos URL-a prije omogućavanja stavljanja URL-ova na bijelu listu
     application_settings_confirm_delete_ip: Jeste li sigurni da želite izbrisati ovu IP adresu?
+    application_settings_confirm_delete_url: Jeste li sigurni da želite izbrisati ovaj URL?
     application_settings_edit_ip_address: Uređivanje IP adrese / CIDR raspona
     application_settings_enable_ip_whitelisting: Omogući bijeli popis IP adresa
+    application_settings_enable_url_whitelisting: Omogući stavljanje URL-ova na bijelu listu
     application_settings_invalid_ip_format: Neispravna IP adresa ili CIDR format
+    application_settings_invalid_url_format: Nevažeći format URL-a
+    application_settings_ip_address: Raspon IP adresa / CIDR-a
     application_settings_ip_addresses: IP adrese / CIDR rasponi
     application_settings_ip_deleted_successfully: IP adresa uspješno izbrisana
     application_settings_ip_description_placeholder: npr. mreža ureda ili produkcijski poslužitelj
@@ -141,6 +146,16 @@ hr:
     application_settings_ip_updated_successfully: IP adresa uspješno ažurirana
     application_settings_ip_whitelisting_disabled_success: Uspješno onemogućeno bijelo popisivanje IP adresa
     application_settings_ip_whitelisting_enabled_success: Uspješno omogućeno bijelo popisivanje IP adresa
+    application_settings_url: URL
+    application_settings_url_addresses: URL adrese
+    application_settings_url_deleted_successfully: URL uspješno izbrisan
+    application_settings_url_description_placeholder: npr. uredska mreža ili produkcijski poslužitelj
+    application_settings_url_input_placeholder: npr. https://example.com ili https://sub.example.com
+    application_settings_url_required: URL je obavezan
+    application_settings_url_updated_successfully: URL je uspješno ažuriran
+    application_settings_url_whitelisting_disabled_success: Stavljanje URL-ova na bijelu listu uspješno je onemogućeno
+    application_settings_url_whitelisting_enabled_success: Uspješno omogućeno stavljanje URL-ova na bijelu listu
+    application_settings_urls: URL-ovi
     applications: Primjene
     apply_to_existing_users: Primijeni ovu promjenu na postojeće korisnike u ovoj kampanji.
     approve_all_questions: Odobri sva pitanja
@@ -213,6 +228,8 @@ hr:
     assessor_overview: Opći pregled
     assessor_placeholder: Pretraži procjenitelja...
     assessor_remove_confirmation: Jeste li sigurni da želite ukloniti procjenitelja s e-poštom %{email} iz ove kampanje?
+    assessor_remove_has_evaluations: Ovom ocjenjivaču je dodijeljeno %{evaluation_count} obrazaca za ocjenjivanje. Sve evaluacije koje je ispunio bit će izgubljene.
+    assessor_remove_in_assessment_centers: Ovaj procjenitelj je dio %{workshop_count} procjenskih centara. Nastavkom će biti uklonjen iz svih procjenskih centara.
     assessor_statuses_completed: Završeno
     assessor_statuses_not_completed: Nije dovršeno
     assessor_subjects_statuses_completed: Završeno
@@ -646,6 +663,7 @@ hr:
     dimensions_import_modal_import_dimension: Dimenzija uvoza
     dimensions_import_modal_import_scheduled: Uvoz zakazan
     dimensions_import_modal_operation: Aktivnost
+    dimensions_import_modal_owner_global: TTE (globalno)
     dimensions_import_modal_owner_input_validation: Molimo odaberite vlasnika
     dimensions_import_modal_owner_select: Odaberite vlasnika
     dimensions_import_modal_select_json: Odaberite JSON datoteku
@@ -1207,6 +1225,7 @@ hr:
     invite_workshop_list_remove_confirm_success: Centar za procjenu uspješno je uklonjen.
     invite_workshop_list_remove_confirm_title: Potvrditi
     invite_workshop_title: Centri za procjenu
+    ip_whitelisting: Stavljanje na bijelu listu IP adresa
     is_subject: Je ispitanik
     job_role_are_you_sure_to_remove: Jeste li sigurni da želite ukloniti?
     job_role_column_job_group: Grupa poslova
@@ -1280,6 +1299,7 @@ hr:
     mark_not_finalized: Znak nije finaliziran
     mark_not_finalized_bulk_confirm: Uklanjanje finalize sa svih odabranih korisnika uklonit će generirana izvješća koja koriste AI artefakte. Jeste li sigurni da želite nastaviti?
     mark_not_finalized_confirm: Uklanjanje finalize za korisnika '%{email}' uklonit će generirano izvješće koje koristi AI artefakt za korisnika. Jeste li sigurni da želite nastaviti?
+    mark_ready_button: Označi kao spremno
     mask_identity_for_examus: Podaci o maski za Examus Proctoring
     mask_identity_for_hogan: Podaci o maski za Hogana
     mask_identity_for_iiht: Podaci o maski za IIHT
@@ -1338,6 +1358,21 @@ hr:
     modal_title: Pretvori u predložak
     model_answer: Primjer odgovora
     model_answer_placeholder: Unesite modelni odgovor za ocjenjivanje umjetne inteligencije.
+    model_params_description: Ostavite prazno za korištenje zadanih vrijednosti definiranih vrstom asistenta.
+    model_params_max_tokens: Maksimalan broj tokena
+    model_params_max_tokens_tooltip: Ograničava maksimalni broj tokena koje model može generirati po odgovoru. Veće vrijednosti omogućuju dulje izlaze, ali povećavaju trošak i latenciju.
+    model_params_temperature: Temperatura
+    model_params_temperature_tooltip: Kontrolira slučajnost u izlazu. 0 = deterministički i fokusiran; 2 = vrlo kreativan i raznolik. Koristite niže vrijednosti za izlaze koji će biti ograničeni na zadani kontekst.
+    model_params_thinking_budget: Proračun za razmišljanje (tokeni)
+    model_params_thinking_budget_tooltip: Postavlja fiksno ograničenje na tokene koje model može potrošiti na interno zaključivanje. Veće vrijednosti omogućuju dublju analizu, ali povećavaju korištenje tokena i vrijeme odziva.
+    model_params_thinking_budget_unsupported: Ovaj model koristi samo kontrolu zasnovanu na trudu. Proračun za razmišljanje (ograničenje tokena) nije podržan.
+    model_params_thinking_effort: Napor razmišljanja
+    model_params_thinking_effort_high: Visoko
+    model_params_thinking_effort_low: Nisko
+    model_params_thinking_effort_medium: Srednji
+    model_params_thinking_effort_none: Ništa
+    model_params_thinking_effort_tooltip: Kontrolira koliko obrazloženja model primjenjuje prije odgovora. Veći napor daje temeljitije odgovore, ali traje dulje. Koristite 'Ništa' da biste potpuno onemogućili obrazloženje.
+    model_params_title: Napredna konfiguracija modela
     must_be_a_valid_url: Neispravan URL. Navedite potpuni URL s http ili https protokolom.
     name: Ime
     name_max_length: Naziv ne smije biti duži od %{length} znakova
@@ -1445,6 +1480,14 @@ hr:
     overall: Sveukupno
     overall_score: Ukupna ocjena
     overall_scoring: Ukupno bodovanje
+    owner_resource_assessment: procjena
+    owner_resource_campaign: kampanja
+    owner_resource_client: klijent
+    owner_resource_dimension: dimenzija
+    owner_resource_mismatch: Vlasnik %{child_resource} nije kompatibilan s vlasnikom %{parent_resource}.
+    owner_resource_norm: norma
+    owner_resource_report: izvješće
+    owner_resource_report_bundle: paket izvješća
     parsed_dependencies_help: Raščlanjene ovisnosti za korisnika koje koristi AI Assistant za generiranje rezultata artefakata
     parsed_dependencies_title: Raščlanjene ovisnosti
     parsed_dependencies_view: Prikaz raščlanjenih ovisnosti
@@ -2196,6 +2239,8 @@ hr:
     report_approval_columns_user_email: Email adresa korisnika
     report_approval_columns_user_name: Korisničko ime
     report_approval_digest_delivery_mode_form_label: Način isporuke sažetka
+    report_approval_digest_delivery_mode_immediate: Odmah - Pošalji kad god postoji skupno slanje
+    report_approval_digest_delivery_mode_scheduled: Planirano - Pošaljite sažetak e-pošte u zakazano vrijeme
     report_approval_digest_frequency_daily: Dnevni
     report_approval_digest_frequency_form_label: Učestalost digesta
     report_approval_digest_frequency_weekdays: Radnim danom
@@ -2387,6 +2432,7 @@ hr:
     saml_settings_config_details_copied: Kopirano %{element}
     saml_settings_config_details_issuer: ID subjekta/izdavatelj
     saml_settings_config_details_title: Konfigurirajte Idp-a sa sljedećim informacijama
+    saml_settings_download_metadata: Preuzimanje metapodataka
     saml_settings_email_pipetext: E-pošta Pipetext
     saml_settings_enabled: Omogućeno
     saml_settings_enforced: Provođenje SAML-a
@@ -3149,8 +3195,10 @@ hr:
     upload_success: Uspješno učitano
     url_label: URL
     url_name: URL
+    url_whitelisting: Stavljanje URL-ova na bijelu listu
     used_tokens_input_tokens: Ulazni tokeni
     used_tokens_output_tokens: Izlazni tokeni
+    used_tokens_thinking_tokens: Žetoni za razmišljanje
     used_tokens_title: Korištenje tokena
     user: Korisnik
     user_agent: Korisnički agent

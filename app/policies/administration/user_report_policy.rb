@@ -81,6 +81,12 @@ module Administration
       manage_approval?
     end
 
+    def mark_ready?
+      return true if @user.is?(:superadmin)
+
+      user_qc?
+    end
+
     def regenerate?
       @user.is?(:superadmin) || has_permission?(:results, :regenerate_report)
     end

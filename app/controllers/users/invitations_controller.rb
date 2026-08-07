@@ -25,6 +25,9 @@ module Users
     def verify_recaptcha_or_render
       return if SkipRecaptcha.call!(request)
 
+      @current_project = GetProjectBySubdomain.call!(request.subdomain)
+      return unless @current_project&.security_setting&.enable_recaptcha
+
       unless verify_recaptcha(response: params[:recaptcha_token])
         flash[:alert] = I18n.t('administration.administrator.sessions.errors.recaptcha')
         self.resource = resource_class.new

@@ -126,4 +126,39 @@ describe Campaigns::Users::ImportForm do
       )
     end
   end
+
+  describe 'validate_available_licenses' do
+    let(:form) { described_class.new(options).with_context(campaign: campaign, current_user: user) }
+
+    before do
+      create(:campaign_report, campaign: campaign, auto_assign: true)
+    end
+
+    it 'adds an error when available licenses are less than new users count' do
+      License.where(client_id: campaign.client_id).update_all('used_number = number + overuse_number')
+
+      expect(form.valid?).to eq(false)
+      expect(form.errors.details[:import_data]).to include(
+        hash_including(error: :not_enough_licenses, required_count: 1, available_count: 0)
+      )
+    end
+
+    it 'passes when enough licenses are available' do
+      create(:license, client: campaign.client, number: 1, used_number: 0, overuse_number: 0)
+
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'skips license validation when operation is skip_existing' do
+      options[:operation] = 'skip_existing'
+
+      expect(form.valid?).to eq(true)
+    end
+
+    it 'skips license validation when no auto assign report exists' do
+      campaign.campaign_reports.update_all(auto_assign: false)
+
+      expect(form.valid?).to eq(true)
+    end
+  end
 end

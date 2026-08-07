@@ -145,6 +145,22 @@ describe Reports::CopyReport do
 
         expect(copy.assessments.length).to eq(report.assessments.length)
       end
+
+      it 'copies report for a different owner even when linked assessment owner differs' do
+        other_owner = create(:tenancy)
+        report.assessments.each { |assessment| assessment.update!(owner_id: client.id) }
+
+        copy = described_class.call!(
+          report.id,
+          user,
+          other_owner.id,
+          skip_owner_validation: true,
+          new_report_name: "Copy of #{report.name}"
+        )
+
+        expect(copy).to be_persisted
+        expect(copy.owner_id).to eq(other_owner.id)
+      end
     end
   end
 end

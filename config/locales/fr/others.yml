@@ -429,6 +429,7 @@ fr:
               invalid_header: En-tête non valide, reprendre l'en-tête de l'exportation
               invalid_reports_header: En-tête non valide, prendre l'en-tête du fichier d'exemple
               manager_not_found: 'Row %{row_number} : Manager with email %{email} is not present in the campaign or in CSV'
+              not_enough_licenses: L'importation nécessite %{required_count} licences, mais seules %{available_count} sont disponibles. Veuillez réduire le nombre de nouveaux utilisateurs ou ajouter des licences avant d'importer.
               user_update_failed: La mise à jour de l'utilisateur a échoué pour %{email} avec l'erreur '%{error}'
             locale:
               inclusion: Localité incorrecte

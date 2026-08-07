@@ -128,10 +128,14 @@ ar:
     application_name_already_taken: موجود بالفعل لهذا العميل
     application_name_format_hint: يُسمح فقط باستخدام الحروف والأرقام، مع ترك مسافة واحدة بين الكلمات
     application_settings_at_least_one_ip_required: يرجى تفعيل إدخال عنوان IP واحد على الأقل قبل تفعيل قائمة العناوين المسموح بها
+    application_settings_at_least_one_url_required: يرجى تفعيل إدخال عنوان URL واحد على الأقل قبل تفعيل قائمة عناوين URL المسموح بها
     application_settings_confirm_delete_ip: هل أنت متأكد من رغبتك في حذف عنوان IP هذا؟
-    application_settings_edit_ip_address: تعديل عنوان IP / نطاق CIDR
+    application_settings_confirm_delete_url: هل أنت متأكد من رغبتك في حذف هذا الرابط؟
     application_settings_enable_ip_whitelisting: تمكين قائمة العناوين المسموح بها
+    application_settings_enable_url_whitelisting: تفعيل قائمة عناوين URL المسموح بها
     application_settings_invalid_ip_format: عنوان IP أو تنسيق CIDR غير صالح
+    application_settings_invalid_url_format: تنسيق عنوان URL غير صالح
+    application_settings_ip_address: نطاق عناوين IP / CIDR
     application_settings_ip_addresses: عناوين IP / نطاقات CIDR
     application_settings_ip_deleted_successfully: تم حذف عنوان IP بنجاح
     application_settings_ip_description_placeholder: على سبيل المثال، شبكة المكتب أو خادم الإنتاج
@@ -141,6 +145,16 @@ ar:
     application_settings_ip_updated_successfully: تم تحديث عنوان IP بنجاح
     application_settings_ip_whitelisting_disabled_success: تم تعطيل قائمة العناوين IP المسموح بها بنجاح
     application_settings_ip_whitelisting_enabled_success: تم تمكين قائمة العناوين IP المسموح بها بنجاح
+    application_settings_url: عنوان URL
+    application_settings_url_addresses: عناوين URL
+    application_settings_url_deleted_successfully: تم حذف عنوان URL بنجاح
+    application_settings_url_description_placeholder: على سبيل المثال، شبكة المكتب أو خادم الإنتاج
+    application_settings_url_input_placeholder: على سبيل المثال، https://example.com أو https://sub.example.com
+    application_settings_url_required: عنوان URL مطلوب
+    application_settings_url_updated_successfully: تم تحديث عنوان URL بنجاح
+    application_settings_url_whitelisting_disabled_success: تم تعطيل قائمة عناوين URL المسموح بها بنجاح
+    application_settings_url_whitelisting_enabled_success: تم تفعيل قائمة عناوين URL المسموح بها بنجاح
+    application_settings_urls: عناوين URL
     applications: التطبيقات
     apply_to_existing_users: تطبيق هذا التغيير على المستخدمين الحاليين في هذه الحملة
     approve_all_questions: الموافقة على جميع الأسئلة
@@ -213,6 +227,8 @@ ar:
     assessor_overview: لمحة عامة
     assessor_placeholder: البحث عن مقيم...
     assessor_remove_confirmation: هل أنت متأكد أنك تريد إزالة المقيم بالبريد الإلكتروني %{email} من هذه الحملة؟
+    assessor_remove_has_evaluations: تم تخصيص %{evaluation_count} نموذج تقييم لهذا المُقيِّم. ستُفقد جميع التقييمات التي قام بتعبئتها.
+    assessor_remove_in_assessment_centers: هذا المُقيِّم جزء من مركز (مراكز) التقييم %{workshop_count}. سيؤدي المتابعة إلى إزالته من جميع مراكز التقييم.
     assessor_statuses_completed: تم اكماله
     assessor_statuses_not_completed: لم يتم اكماله
     assessor_subjects_statuses_completed: تم اكماله
@@ -646,6 +662,7 @@ ar:
     dimensions_import_modal_import_dimension: بُعد الاستيراد
     dimensions_import_modal_import_scheduled: الاستيراد المجدول
     dimensions_import_modal_operation: عملية
+    dimensions_import_modal_owner_global: تي تي إي (عالمي)
     dimensions_import_modal_owner_input_validation: يرجى اختيار المالك
     dimensions_import_modal_owner_select: اختر مالكاً
     dimensions_import_modal_select_json: تحديد ملف JSON
@@ -1207,6 +1224,7 @@ ar:
     invite_workshop_list_remove_confirm_success: تم إزالة مركز التقييم بنجاح.
     invite_workshop_list_remove_confirm_title: تأكيد
     invite_workshop_title: مراكز التقييم
+    ip_whitelisting: قائمة عناوين IP المسموح بها
     is_subject: هل الموضوع
     job_role_are_you_sure_to_remove: هل أنت متأكد من الإزالة؟
     job_role_column_job_group: مجموعة الوظائف
@@ -1280,6 +1298,7 @@ ar:
     mark_not_finalized: لم يتم إتمام العلامة
     mark_not_finalized_bulk_confirm: ستؤدي إزالة "finalize" من جميع المستخدمين المحددين إلى حذف التقارير التي تم إنشاؤها والتي تستخدم عناصر الذكاء الاصطناعي. هل أنت متأكد من أنك تريد المتابعة؟
     mark_not_finalized_confirm: ستؤدي إزالة الإعداد النهائي للمستخدم "%{email}" إلى حذف التقرير الذي تم إنشاؤه والذي يستخدم أداة الذكاء الاصطناعي الخاصة بهذا المستخدم. هل أنت متأكد من أنك تريد المتابعة؟
+    mark_ready_button: ضع علامة "جاهز"
     mask_identity_for_examus: بيانات القناع للمراقبة في Examus
     mask_identity_for_hogan: بيانات القناع لـ Hogan
     mask_identity_for_iiht: بيانات القناع لـ IIHT
@@ -1338,6 +1357,21 @@ ar:
     modal_title: التحويل إلى قالب
     model_answer: نموذج الإجابة
     model_answer_placeholder: أدخل الإجابة النموذجية لتقييم الذكاء الاصطناعي.
+    model_params_description: اترك هذا الحقل فارغًا لاستخدام القيم الافتراضية المحددة بواسطة نوع المساعد.
+    model_params_max_tokens: أقصى عدد من الرموز
+    model_params_max_tokens_tooltip: يحد هذا الخيار من الحد الأقصى لعدد الرموز التي يمكن للنموذج توليدها لكل استجابة. تسمح القيم الأعلى بمخرجات أطول ولكنها تزيد من التكلفة وزمن الاستجابة.
+    model_params_temperature: درجة حرارة
+    model_params_temperature_tooltip: يتحكم هذا الخيار في عشوائية المخرجات. 0 = محدد ومركز؛ 2 = إبداعي ومتنوع للغاية. استخدم قيمًا أقل للمخرجات التي يجب أن تقتصر على السياق المحدد.
+    model_params_thinking_budget: ميزانية التفكير (الرموز)
+    model_params_thinking_budget_tooltip: يحدد هذا الحد الأقصى لعدد الرموز التي يمكن للنموذج إنفاقها على الاستدلال الداخلي. تسمح القيم الأعلى بتحليل أعمق ولكنها تزيد من استخدام الرموز ووقت الاستجابة.
+    model_params_thinking_budget_unsupported: يعتمد هذا النموذج على التحكم في الاستدلال القائم على الجهد فقط. ولا يدعم تحديد ميزانية التفكير (الحد الأقصى للرموز).
+    model_params_thinking_effort: جهد التفكير
+    model_params_thinking_effort_high: عالي
+    model_params_thinking_effort_low: قليل
+    model_params_thinking_effort_medium: واسطة
+    model_params_thinking_effort_none: لا أحد
+    model_params_thinking_effort_tooltip: يتحكم هذا الخيار في مقدار الاستدلال الذي يطبقه النموذج قبل الاستجابة. كلما زاد الجهد المبذول، كانت الإجابات أكثر شمولاً، ولكن استغرقت وقتًا أطول. استخدم "بلا" لتعطيل الاستدلال تمامًا.
+    model_params_title: تكوين النموذج المتقدم
     must_be_a_valid_url: عنوان URL غير صالح. يرجى تحديد عنوان URL الكامل مع تضمين بروتوكول http أو https فيه
     name: الاسم
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
@@ -1445,6 +1479,14 @@ ar:
     overall: بشكل عام
     overall_score: النتيجة الإجمالية
     overall_scoring: التقييم العام
+    owner_resource_assessment: تقدير
+    owner_resource_campaign: حملة
+    owner_resource_client: عميل
+    owner_resource_dimension: البعد
+    owner_resource_mismatch: مالك %{child_resource} غير متوافق مع مالك %{parent_resource}.
+    owner_resource_norm: معيار
+    owner_resource_report: تقرير
+    owner_resource_report_bundle: مجموعة تقارير
     parsed_dependencies_help: التبعيات التي تم تحليلها للمستخدم المستخدم من قبل مساعد الذكاء الاصطناعي لإنشاء نتائج البيانات الاصطناعية
     parsed_dependencies_title: التبعيات التي تم تحليلها
     parsed_dependencies_view: عرض التبعيات التي تم تحليلها
@@ -2196,6 +2238,8 @@ ar:
     report_approval_columns_user_email: User Email
     report_approval_columns_user_name: User Name
     report_approval_digest_delivery_mode_form_label: وضع تسليم الملخص
+    report_approval_digest_delivery_mode_immediate: فوري - أرسل عند وجود طلب جماعي
+    report_approval_digest_delivery_mode_scheduled: مُجدول - إرسال ملخص عبر البريد الإلكتروني في وقت مُحدد
     report_approval_digest_frequency_daily: يومي
     report_approval_digest_frequency_form_label: تردد الملخص
     report_approval_digest_frequency_weekdays: ايام الاسبوع
@@ -2387,6 +2431,7 @@ ar:
     saml_settings_config_details_copied: تم نسخ %{element}
     saml_settings_config_details_issuer: معرّف الكيان/المُصدر
     saml_settings_config_details_title: تكوين Idp بالمعلومات التالية
+    saml_settings_download_metadata: تنزيل البيانات الوصفية
     saml_settings_email_pipetext: البريد الإلكتروني Pipetext
     saml_settings_enabled: تمكين
     saml_settings_enforced: إنفاذ SAML
@@ -3157,8 +3202,10 @@ ar:
     upload_success: تم الرفع بنجاح
     url_label: الرابط
     url_name: الرابط
+    url_whitelisting: قائمة عناوين المواقع المسموح بها
     used_tokens_input_tokens: رموز الإدخال
     used_tokens_output_tokens: رموز الإخراج
+    used_tokens_thinking_tokens: رموز التفكير
     used_tokens_title: استخدام الرموز
     user: المستخدم
     user_agent: وكيل المستخدم

@@ -150,7 +150,7 @@ module Administration
                 campaign: resource.campaign,
                 current_user: current_user
               }
-            ).serialize(resource.user)
+            ).serialize(resource.subject)
           end
           on(:error) do |error|
             return render json: { errors: error }, status: 422
@@ -167,7 +167,7 @@ module Administration
             campaign: resource.campaign,
             current_user: current_user
           }
-        ).serialize(resource.user)
+        ).serialize(resource.subject)
       end
 
       def normalize_factor_scores

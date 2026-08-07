@@ -50,11 +50,11 @@ module Administration
 
         if builder.save
           audit! :update, builder.block, payload: block_params
-          render json: { data: BlockSerializer.new(
+          render json: BlockSerializer.new(
             context: {
               include: '**'
             }
-          ).serialize(resource) }
+          ).serialize(resource)
         else
           render json: { error: true }, status: 400
         end
@@ -134,17 +134,17 @@ module Administration
       end
 
       def block_params
-        params.expect(
-          block: [:id, :name, :position, :template_id, :save_as_template, :block_type,
-                  { props: {},
-                    questions: [
-                      :id, :block_id, :name, :position, :type, :display_logic, :save_as_template, :template_id,
-                      { props: {},
-                        validation: {},
-                        required_validation: {},
-                        skip_logic: [] }
-                    ] }]
+        # rubocop:disable Rails/StrongParametersExpect
+        params.require(:block).permit(
+          :id, :name, :position, :template_id, :save_as_template, :block_type,
+          props: {},
+          questions: [
+            :id, :block_id, :name, :position, :type, :display_logic,
+            :save_as_template, :template_id, :deleted_at,
+            { props: {}, validation: {}, required_validation: {}, skip_logic: [] }
+          ]
         )
+        # rubocop:enable Rails/StrongParametersExpect
       end
     end
   end

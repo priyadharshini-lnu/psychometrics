@@ -2,6 +2,7 @@
 
 class CampaignFactor < ApplicationRecord
   audited
+  include RansackSearchableFields
 
   MAX_CAMPAIGN_FACTORS = 300
 
@@ -31,7 +32,7 @@ class CampaignFactor < ApplicationRecord
   scope :manually_moderated, -> { where(disallow_lead_assessor_moderation: false) }
 
   def self.ransackable_attributes(_auth_object = nil)
-    %w[id factor_type]
+    %w[id factor_type name]
   end
 
   def auto_moderated?

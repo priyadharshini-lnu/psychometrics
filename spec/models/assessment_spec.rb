@@ -221,6 +221,42 @@ RSpec.describe Assessment, type: :model do
       end
     end
   end
+
+  describe 'owner compatibility with dimension' do
+    let(:owner_mismatch_message) do
+      I18n.t('admin.owner_resource_mismatch',
+             child_resource: I18n.t('admin.owner_resource_assessment'),
+             parent_resource: I18n.t('admin.owner_resource_dimension'))
+    end
+
+    let(:owner_a) { create(:tenancy) }
+    let(:owner_b) { create(:tenancy) }
+
+    it 'is invalid when assessment owner differs from dimension owner' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = build(:assessment, dimension: dimension, owner: owner_b)
+
+      expect(assessment).not_to be_valid
+      expect(assessment.errors[:dimension]).to include(owner_mismatch_message)
+    end
+
+    it 'is valid when owner is unchanged after update' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = create(:assessment, dimension: dimension, owner: owner_a)
+
+      assessment.name = 'Updated name'
+
+      expect(assessment).to be_valid
+    end
+
+    it 'skips compatibility validation when skip_owner_validation is true' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = build(:assessment, dimension: dimension, owner: owner_b)
+      assessment.skip_owner_validation = true
+
+      expect(assessment).to be_valid
+    end
+  end
 end
 
 describe '#score_validity_period' do

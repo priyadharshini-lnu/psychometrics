@@ -3,6 +3,7 @@ export type Question = {
     name: string
     assessmentId: string
     assessmentName: string
+    deletedAt?: string | null
 }
 
 export type Assessment = {

@@ -44,9 +44,23 @@ module PortableData
       end
 
       def import_resources
+        all_deferred_updates = []
         json_file_content.dig(:meta, :resource_import_order)&.each do |resource_name|
           resource_data = json_file_content.dig(:resources, resource_name)
-          errors.concat(ResourceImporter.new(resource_data, mappable_values).import)
+          next if resource_data.nil?
+
+          importer = ResourceImporter.new(resource_data, mappable_values)
+          errors.concat(importer.import)
+          all_deferred_updates.concat(importer.deferred_updates)
+        end
+        apply_deferred_updates(all_deferred_updates) if errors.empty?
+      end
+
+      def apply_deferred_updates(deferred_updates)
+        deferred_updates.each do |update|
+          update[:model_class].where(id: update[:id]).update_all(update[:attributes])
+        rescue StandardError => e
+          errors << { message: "Deferred update failed for #{update[:model_class].name}##{update[:id]}: #{e.message}" }
         end
       end
 

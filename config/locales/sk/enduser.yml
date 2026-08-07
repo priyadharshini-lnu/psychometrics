@@ -13,6 +13,7 @@ sk:
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
     approve_idp_plan: Schváliť plán
     assessment_misconfigured: Hodnotenie je nesprávne nakonfigurované
+    assessment_timing_duration_minutes: "%{duration} minút"
     audio: Audio
     audio_check: Test mikrofónu
     audio_check_description: Skontrolujte, či mikrofón správne funguje pri nahrávaní
@@ -268,7 +269,7 @@ sk:
     video_check_fix_sixth: Reštartujte prehliadač a skúste to znova
     video_check_fix_third: Zatvorte ostatné aplikácie, ktoré používajú kameru (Zoom, Teams atď.)
     video_overlay_label: Vyberte mikrofón a kameru, kliknite na tlačidlo Nahrávať a po stlačení tohto tlačidla prečítajte nasledujúcu správu
-    video_overlay_message: Vyberte mikrofón a kameru, kliknite na tlačidlo Nahrávať a potom nahlas prečítajte vetu, ktorá sa zobrazí v spodnej časti obrazovky.
+    video_overlay_message: Vyberte mikrofón a kameru, kliknite na tlačidlo Nahrávať a potom nahlas prečítajte a 3-krát zopakujte vetu, ktorá sa zobrazí v spodnej časti obrazovky.
     video_recorder_label: Videorekordér
     video_upload_failed_camera_access: Nie je možné získať prístup k vašej kamere alebo mikrofónu. Skontrolujte oprávnenia vášho zariadenia a skúste to znova.
     video_upload_failed_chunk_upload: Časť nahrávky sa nepodarilo nahrať. Skontrolujte si pripojenie k internetu a skúste to znova.

@@ -12,6 +12,7 @@ module Workshops
 
     def call
       tzid = workshop.timezone
+      tzid = TimezoneHelper.normalize(tzid)
       start_time = workshop.start_time.in_time_zone(tzid)
       end_time = workshop.end_time.in_time_zone(tzid)
       cal = Icalendar::Calendar.new

@@ -429,6 +429,7 @@ sr-Latn:
               invalid_header: Neispravan zaglavlje, uzmi zaglavlje iz izvoza
               invalid_reports_header: Neispravan zaglavlje, uzmite zaglavlje iz datoteke uzorka
               manager_not_found: 'Red %{row_number}: Menadžer sa e-poštom %{email} nije prisutan u kampanji ili u CSV-u'
+              not_enough_licenses: За увоз је потребно %{required_count} лиценци, али је доступно само %{available_count}. Молимо вас да смањите број нових корисника или додате још лиценци пре увоза.
               user_update_failed: Ažuriranje korisnika nije uspelo za %{email} sa greškom '%{error}'
             locale:
               inclusion: Pogrešan lokal

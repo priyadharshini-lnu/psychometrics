@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::ApplicationSettingResource < Api::V2::Administration::BaseResource
-  attributes :ip_whitelisting_enabled
+  attributes :ip_whitelisting_enabled, :url_whitelisting_enabled
 
   audit_log_for :create, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }
   audit_log_for :update, payload: '*', parent_resource: ->(_, record) { { client: record.tenant } }

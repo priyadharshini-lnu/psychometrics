@@ -9,7 +9,8 @@ class MaintenanceSetting < ApplicationRecord
     return false unless maintenance_window_enabled
     return false if start_time.blank? || end_time.blank?
 
-    current_time = Time.current.in_time_zone(time_zone)
+    normalized_tz = TimezoneHelper.normalize(time_zone)
+    current_time = Time.current.in_time_zone(normalized_tz)
     current_time.between?(start_time, end_time)
   end
 end

@@ -2,12 +2,11 @@
 import React, { useState } from 'react'
 import { FirstLevelTabs } from '../components/FirstLevelTabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
-import { ReportFamilyTR } from '~/modules/admin/modules/client/core/reportFamilies'
 import { Resource } from '~/modules/admin/components/Resource'
 import { ReportBundleFilter } from './ReportBundleFilter'
 import { ReportBundleTable } from './ReportBundleTable'
 import { ReportBundleFormModal } from './ReportBundleFormModal'
-import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
+import { ReportBundle, ReportBundleTR } from '~/modules/admin/modules/client/core/reports'
 
 const { I18n } = window
 
@@ -16,9 +15,10 @@ const ReportBundleList: React.FC = () => {
   const [currentReportBundle, setCurrentReportBundle] = useState<ReportBundle | undefined>()
   const config = {
     trackUrl: true,
-    responseType: ReportFamilyTR,
+    responseType: ReportBundleTR,
     apiConfig: {
       include_resource_meta: ['permissions'],
+      include: ['tenant'],
     },
   }
 
@@ -45,7 +45,13 @@ const ReportBundleList: React.FC = () => {
         }
         />
         {!closed && (
-          <ReportBundleFormModal currentReportBundle={currentReportBundle} close={() => { closeModal(true) }} />
+          <ReportBundleFormModal
+            currentReportBundle={currentReportBundle}
+            close={() => {
+              closeModal(true)
+              setCurrentReportBundle(undefined)
+            }}
+          />
         )}
       </Resource>
     </>

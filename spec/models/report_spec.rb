@@ -113,4 +113,44 @@ RSpec.describe Report, type: :model do
       end
     end
   end
+
+  describe 'owner compatibility with assessments' do
+    let(:owner_mismatch_message) do
+      I18n.t('admin.owner_resource_mismatch',
+             child_resource: I18n.t('admin.owner_resource_assessment'),
+             parent_resource: I18n.t('admin.owner_resource_report'))
+    end
+
+    let(:owner_a) { create(:tenancy) }
+    let(:owner_b) { create(:tenancy) }
+
+    it 'is invalid when report owner is incompatible with linked assessment owner' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = create(:assessment, owner: owner_a, dimension: dimension)
+      report = build(:report, owner: owner_b, assessments: [assessment], report_families: [])
+
+      expect(report).not_to be_valid
+      expect(report.errors[:assessments]).to include(owner_mismatch_message)
+    end
+
+    it 'is valid when owner is unchanged on update' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = create(:assessment, owner: owner_a, dimension: dimension)
+      report = create(:report, owner: owner_a, assessments: [assessment], report_families: [],
+skip_owner_validation: true)
+
+      report.name = 'Updated report name'
+
+      expect(report).to be_valid
+    end
+
+    it 'skips compatibility validation when skip_owner_validation is true' do
+      dimension = create(:dimension, owner: owner_a)
+      assessment = create(:assessment, owner: owner_a, dimension: dimension)
+      report = build(:report, owner: owner_b, assessments: [assessment], report_families: [])
+      report.skip_owner_validation = true
+
+      expect(report).to be_valid
+    end
+  end
 end

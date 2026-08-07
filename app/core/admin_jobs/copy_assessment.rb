@@ -7,6 +7,7 @@ module AdminJobs
         record.data['assessment_id'],
         owner,
         record.data['owner_id'],
+        skip_owner_validation: record.data.fetch('skip_owner_validation', false),
         new_assessment_name: record.data['name'],
         microsite_settings: record.data['microsite_settings']&.symbolize_keys
       )

@@ -57,6 +57,37 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
         { 'id' => dimension.id.to_s, 'type' => 'dimensions' }
       )
     end
+
+    it 'returns owner incompatibility error when norm owner and dimension owner differ' do
+      dimension_owner = create(:tenancy)
+      norm_owner = create(:tenancy)
+      dimension = create(:dimension, owner: dimension_owner)
+
+      body = {
+        data: {
+          type: 'norms',
+          attributes: {
+            name: 'Norm Name',
+            norm_type: 'five_scale'
+          },
+          relationships: {
+            dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
+            owner: { data: { type: 'clients', id: norm_owner.id.to_s } }
+          }
+        }
+      }
+
+      post '/api/v2/administration/norms',
+           params: body.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(
+        error_titles.any? { |title| title.include?('norm owner is not compatible with dimension owner') }
+      ).to eq(true)
+    end
   end
 
   describe 'PATCH /api/v2/norms/:id' do
@@ -79,6 +110,37 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
       norm_response = JSON.parse(response.body)
       expect(norm_response['data']).to have_key('id')
       expect(norm_response['data']['attributes']).to include('name' => 'Updated Norm Name')
+    end
+
+    it 'returns owner incompatibility error when updating owner with incompatible dimension owner' do
+      dimension_owner = create(:tenancy)
+      new_owner = create(:tenancy)
+      dimension = create(:dimension, owner: dimension_owner)
+      norm = create(:norm, dimension: dimension, owner: dimension_owner)
+
+      body = {
+        data: {
+          id: norm.id.to_s,
+          type: 'norms',
+          attributes: {
+            name: norm.name
+          },
+          relationships: {
+            owner: { data: { type: 'clients', id: new_owner.id.to_s } }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/norms/#{norm.id}",
+            params: body.to_json,
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(
+        error_titles.any? { |title| title.include?('norm owner is not compatible with dimension owner') }
+      ).to eq(true)
     end
   end
 
@@ -104,6 +166,14 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
           }
         }
       }
+
+      expect(Norms::CopyNorm).to receive(:call!).with(
+        norm: norm,
+        user: superadmin,
+        owner_id: nil,
+        new_norm_name: 'Copied Norm Name',
+        skip_owner_validation: true
+      ).and_call_original
 
       post "/api/v2/administration/norms/#{norm.id}/copy",
            params: body.to_json,

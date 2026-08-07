@@ -13,6 +13,7 @@ it:
     all_checks_must_pass: È necessario che tutti i controlli abbiano esito positivo prima di poter procedere.
     approve_idp_plan: Approva Piano
     assessment_misconfigured: Configurazione errata della valutazione
+    assessment_timing_duration_minutes: "%{duration} minuti"
     audio: Audio
     audio_check: Prova del microfono
     audio_check_description: Verifica che il microfono funzioni correttamente per la registrazione
@@ -268,7 +269,7 @@ it:
     video_check_fix_sixth: Riavvia il browser e riprova
     video_check_fix_third: Chiudi le altre applicazioni che utilizzano la fotocamera (Zoom, Teams, ecc.)
     video_overlay_label: Seleziona il microfono e la videocamera, clicca su "Registra", quindi leggi il seguente messaggio dopo aver premuto il pulsante "Registra"
-    video_overlay_message: Seleziona il microfono e la videocamera, clicca su "Registra", quindi leggi ad alta voce la frase che appare in basso.
+    video_overlay_message: Seleziona il microfono e la videocamera, clicca su "Registra", quindi leggi ad alta voce e ripeti 3 volte la frase che appare in basso.
     video_recorder_label: Videoregistratore
     video_upload_failed_camera_access: Impossibile accedere alla fotocamera o al microfono. Controlla le autorizzazioni del dispositivo e riprova.
     video_upload_failed_chunk_upload: Una parte della registrazione non è stata caricata. Verifica la tua connessione a Internet e riprova.

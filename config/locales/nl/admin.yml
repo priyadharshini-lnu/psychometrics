@@ -128,10 +128,15 @@ nl:
     application_name_already_taken: Bestaat al voor deze klant
     application_name_format_hint: Alleen letters en cijfers zijn toegestaan, met één spatie tussen de woorden
     application_settings_at_least_one_ip_required: Schakel ten minste één IP-adres in voordat u de IP-whitelist inschakelt
+    application_settings_at_least_one_url_required: Schakel ten minste één URL-item in voordat u de URL-whitelist inschakelt.
     application_settings_confirm_delete_ip: Weet je zeker dat je dit IP-adres wilt verwijderen?
+    application_settings_confirm_delete_url: Weet je zeker dat je deze URL wilt verwijderen?
     application_settings_edit_ip_address: IP-adres / CIDR-bereik bewerken
     application_settings_enable_ip_whitelisting: IP-whitelisting inschakelen
+    application_settings_enable_url_whitelisting: Schakel URL-whitelisting in
     application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat
+    application_settings_invalid_url_format: Ongeldige URL-indeling
+    application_settings_ip_address: IP-adres / CIDR-bereik
     application_settings_ip_addresses: IP-adressen / CIDR-bereiken
     application_settings_ip_deleted_successfully: IP-adres succesvol verwijderd
     application_settings_ip_description_placeholder: bijv. het kantoornetwerk of de productieserver
@@ -141,6 +146,16 @@ nl:
     application_settings_ip_updated_successfully: IP-adres succesvol bijgewerkt
     application_settings_ip_whitelisting_disabled_success: IP-whitelisting is succesvol uitgeschakeld
     application_settings_ip_whitelisting_enabled_success: IP-whitelisting is succesvol ingeschakeld
+    application_settings_url: URL
+    application_settings_url_addresses: URL-adressen
+    application_settings_url_deleted_successfully: URL succesvol verwijderd
+    application_settings_url_description_placeholder: bijv. kantoornetwerk of productieserver
+    application_settings_url_input_placeholder: bijvoorbeeld https://example.com of https://sub.example.com
+    application_settings_url_required: URL is verplicht
+    application_settings_url_updated_successfully: URL succesvol bijgewerkt
+    application_settings_url_whitelisting_disabled_success: URL-whitelisting succesvol uitgeschakeld
+    application_settings_url_whitelisting_enabled_success: URL-whitelisting succesvol ingeschakeld
+    application_settings_urls: URL's
     applications: Toepassingen
     apply_to_existing_users: Pas deze wijziging toe op bestaande gebruikers in deze campagne
     approve_all_questions: Alle vragen goedkeuren
@@ -213,6 +228,8 @@ nl:
     assessor_overview: Overzicht
     assessor_placeholder: Assessor zoeken...
     assessor_remove_confirmation: Weet je zeker dat je de beoordelaar met e-mailadres %{email} uit deze campagne wilt verwijderen?
+    assessor_remove_has_evaluations: Aan deze beoordelaar zijn %{evaluation_count} beoordelingsformulieren toegewezen. Alle door hem/haar ingevulde evaluaties gaan verloren.
+    assessor_remove_in_assessment_centers: Deze beoordelaar maakt deel uit van beoordelingscentrum(s) %{workshop_count}. Door verder te gaan, wordt deze beoordelaar van alle beoordelingscentra verwijderd.
     assessor_statuses_completed: Voltooid
     assessor_statuses_not_completed: Niet voltooid
     assessor_subjects_statuses_completed: Voltooid
@@ -646,6 +663,7 @@ nl:
     dimensions_import_modal_import_dimension: Dimensie importeren
     dimensions_import_modal_import_scheduled: Geplande import
     dimensions_import_modal_operation: Operatie
+    dimensions_import_modal_owner_global: TTE (Wereldwijd)
     dimensions_import_modal_owner_input_validation: Selecteer een eigenaar
     dimensions_import_modal_owner_select: Selecteer een eigenaar
     dimensions_import_modal_select_json: Selecteer JSON-bestand
@@ -1207,6 +1225,7 @@ nl:
     invite_workshop_list_remove_confirm_success: Assessment Center is succesvol verwijderd.
     invite_workshop_list_remove_confirm_title: Bevestig
     invite_workshop_title: Beoordelingscentra
+    ip_whitelisting: IP-whitelisting
     is_subject: Is Onderwerp
     job_role_are_you_sure_to_remove: Weet je zeker dat je moet verwijderen?
     job_role_column_job_group: Functiegroep
@@ -1280,6 +1299,7 @@ nl:
     mark_not_finalized: Markering nog niet definitief
     mark_not_finalized_bulk_confirm: Als u de status ‘voltooid’ bij alle geselecteerde gebruikers verwijdert, worden de gegenereerde rapporten waarin AI-artefacten zijn gebruikt, verwijderd. Weet u zeker dat u door wilt gaan?
     mark_not_finalized_confirm: Als u 'finalize' verwijdert uit de gebruikersmap '%{email}', wordt het gegenereerde rapport verwijderd dat gebruikmaakt van het AI-artefact voor de gebruiker. Weet u zeker dat u door wilt gaan?
+    mark_ready_button: Markeer als gereed
     mask_identity_for_examus: Maskergegevens voor Examus Proctoring
     mask_identity_for_hogan: Maskergegevens voor Hogan
     mask_identity_for_iiht: Maskergegevens voor IIHT
@@ -1338,6 +1358,21 @@ nl:
     modal_title: Omzetten naar sjabloon
     model_answer: Modelantwoord
     model_answer_placeholder: Voer het modelantwoord in voor AI-scoring.
+    model_params_description: Laat dit veld leeg om de standaardwaarden te gebruiken die zijn gedefinieerd door het assistenttype.
+    model_params_max_tokens: Max Tokens
+    model_params_max_tokens_tooltip: Hiermee wordt het maximale aantal tokens beperkt dat het model per reactie kan genereren. Hogere waarden maken langere uitvoer mogelijk, maar verhogen de kosten en de latentie.
+    model_params_temperature: Temperatuur
+    model_params_temperature_tooltip: Regelt de willekeurigheid in de output. 0 = deterministisch en gefocust; 2 = zeer creatief en gevarieerd. Gebruik lagere waarden voor outputs die beperkt moeten blijven tot de opgegeven context.
+    model_params_thinking_budget: Denkbudget (tokens)
+    model_params_thinking_budget_tooltip: Stelt een harde limiet in voor het aantal tokens dat het model kan besteden aan interne redeneringen. Hogere waarden maken een diepere analyse mogelijk, maar verhogen het tokenverbruik en de reactietijd.
+    model_params_thinking_budget_unsupported: Dit model maakt uitsluitend gebruik van inspanningsgebaseerde redeneercontrole. Denkbudget (tokenlimiet) wordt niet ondersteund.
+    model_params_thinking_effort: Denkinspanning
+    model_params_thinking_effort_high: Hoog
+    model_params_thinking_effort_low: Laag
+    model_params_thinking_effort_medium: Medium
+    model_params_thinking_effort_none: Geen
+    model_params_thinking_effort_tooltip: Hiermee bepaalt u hoeveel redenering het model toepast voordat het antwoord geeft. Meer inspanning leidt tot grondigere antwoorden, maar duurt langer. Gebruik 'Geen' om de redenering volledig uit te schakelen.
+    model_params_title: Geavanceerde modelconfiguratie
     must_be_a_valid_url: Ongeldige URL. Voer de volledige URL in, inclusief het http- of https-protocol
     name: Naam
     name_max_length: De naam mag niet langer zijn dan %{length} tekens.
@@ -1445,6 +1480,14 @@ nl:
     overall: Totaal
     overall_score: Totale score
     overall_scoring: Algemene score
+    owner_resource_assessment: onderzoek
+    owner_resource_campaign: campagne
+    owner_resource_client: cliënt
+    owner_resource_dimension: dimensie
+    owner_resource_mismatch: De eigenaar van %{child_resource} is niet compatibel met de eigenaar van %{parent_resource}.
+    owner_resource_norm: norm
+    owner_resource_report: rapport
+    owner_resource_report_bundle: rapportbundel
     parsed_dependencies_help: Geparseerde afhankelijkheden voor de gebruiker die door de AI-assistent wordt gebruikt voor het genereren van artefactresultaten
     parsed_dependencies_title: Geparseerde afhankelijkheden
     parsed_dependencies_view: Geparseerde afhankelijkheden weergeven
@@ -2196,6 +2239,8 @@ nl:
     report_approval_columns_user_email: Gebruiker e-mail
     report_approval_columns_user_name: Gebruikersnaam
     report_approval_digest_delivery_mode_form_label: Digest Leveringsmodus
+    report_approval_digest_delivery_mode_immediate: Direct verzenden - Verzenden zodra er een bulkinzending is.
+    report_approval_digest_delivery_mode_scheduled: Gepland - Verstuur een samenvattende e-mail op een gepland tijdstip.
     report_approval_digest_frequency_daily: Dagelijks
     report_approval_digest_frequency_form_label: Digest Frequentie
     report_approval_digest_frequency_weekdays: Weekdagen
@@ -2387,6 +2432,7 @@ nl:
     saml_settings_config_details_copied: Gekopieerd %{element}
     saml_settings_config_details_issuer: Entiteits-ID/instantie
     saml_settings_config_details_title: Idp configureren met volgende info
+    saml_settings_download_metadata: Metagegevens downloaden
     saml_settings_email_pipetext: E-mail Pipetext
     saml_settings_enabled: Ingeschakeld
     saml_settings_enforced: SAML afdwingen
@@ -3157,8 +3203,10 @@ nl:
     upload_success: Succesvol geüpload
     url_label: URL
     url_name: URL
+    url_whitelisting: URL-whitelisting
     used_tokens_input_tokens: Invoertokens
     used_tokens_output_tokens: Uitvoertokens
+    used_tokens_thinking_tokens: Denkende Tokens
     used_tokens_title: Tokengebruik
     user: Gebruiker
     user_agent: Gebruikersagent

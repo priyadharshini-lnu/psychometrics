@@ -245,4 +245,32 @@ describe Campaigns::Users::ProcessImport do
       expect(fedor_user).to have_attributes(mobile_verified: true)
     end
   end
+
+  describe 'chunked processing' do
+    let(:strong_password) { 'A!newpass123' }
+
+    it 'processes records across chunk boundaries' do
+      chunked_rows = (1..501).map do |i|
+        {
+          active: true,
+          first_name: "User#{i}",
+          last_name: 'Chunk',
+          email: "chunk_user_#{i}@example.com",
+          mobile_number: nil,
+          password: strong_password,
+          created_at: '11 Jul 2020 / 17:25',
+          manager_email: nil
+        }
+      end
+
+      _data, imported_users = described_class.call!(
+        campaign, current_user, chunked_rows, 'add_with_existing_response', admin_job_record
+      )
+
+      expect(imported_users.size).to eq(501)
+      expect(campaign.users.find_by(email: 'chunk_user_500@example.com')).to be_present
+      expect(campaign.users.find_by(email: 'chunk_user_501@example.com')).to be_present
+      expect(admin_job_record.reload.completed_tasks).to eq(501)
+    end
+  end
 end

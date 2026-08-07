@@ -7,6 +7,7 @@ pl:
     add: Dodaj
     advanced: Zaawansowany
     agree_and_continue: Zgadzam się i kontynuuj
+    ai_toolbar_disclaimer: Sugestie generowane przez sztuczną inteligencję mogą zawierać nieścisłości lub niezamierzone zmiany. Przed użyciem prosimy o zapoznanie się z całą treścią, tym samym przyjmując odpowiedzialność za weryfikację ostatecznego rezultatu.
     approval_status: Status zatwierdzenia
     approved: Zatwierdzone
     approved_by: Zatwierdzone przez
@@ -100,9 +101,12 @@ pl:
     icon: Ikona
     id: ID
     idp_ai_assistant_disclaimer: Asystent IDP AI w Lighthouse może popełniać błędy. Proszę, bądźcie ostrożni podczas korzystania z odpowiedzi.
+    impersonation_banner_aria_label: Aktywna sesja podszywania się
+    impersonation_end_session: Wyjście
     import: Import
     inactive: Nieaktywny
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
+    is_impersonating: podszywa się
     issuer: Emitent
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Szczegóły roszczeń JWT
@@ -186,6 +190,7 @@ pl:
     reset: Resetować
     reset_password: Zresetuj hasło
     response_text: Tekst odpowiedzi
+    return_url_not_whitelisted: Adres URL zwrotny nie znajduje się na białej liście dla tej aplikacji.
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
     run: Biegać

@@ -429,6 +429,7 @@ de:
               invalid_header: Ungültige Kopfzeile, Kopfzeile aus dem Export übernehmen
               invalid_reports_header: Ungültiger Header, Header aus Beispieldatei übernehmen
               manager_not_found: 'Zeile %{row_number}: Manager mit E-Mail %{email} ist weder in der Kampagne noch in der CSV vorhanden'
+              not_enough_licenses: Für den Import werden %{required_count}-Lizenzen benötigt, es sind jedoch nur %{available_count}-Lizenzen verfügbar. Bitte reduzieren Sie die Anzahl neuer Benutzer oder fügen Sie weitere Lizenzen hinzu, bevor Sie importieren.
               user_update_failed: Benutzeraktualisierung für %{email} mit Fehler '%{error}' fehlgeschlagen
             locale:
               inclusion: Falsches Gebietsschema

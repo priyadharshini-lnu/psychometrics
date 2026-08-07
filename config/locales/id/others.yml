@@ -429,6 +429,7 @@ id:
               invalid_header: Header tidak valid, ambil header dari ekspor
               invalid_reports_header: Header tidak valid, ambil header dari file sampel
               manager_not_found: 'Baris %{row_number}: Pengelola dengan email %{email} tidak ada dalam kampanye atau di CSV'
+              not_enough_licenses: Impor membutuhkan %{required_count} lisensi, tetapi hanya %{available_count} yang tersedia. Harap kurangi jumlah pengguna baru atau tambahkan lebih banyak lisensi sebelum melakukan impor.
               user_update_failed: Pembaruan pengguna gagal untuk %{email} dengan kesalahan '%{error}'
             locale:
               inclusion: Lokasi yang salah

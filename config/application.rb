@@ -9,6 +9,9 @@ require_relative '../lib/middlewares/set_timeout_header_middleware'
 require_relative '../lib/middlewares/sidekiq_auth_middleware'
 require_relative '../lib/middlewares/admin_context_resolver'
 
+# Load application constants
+require_relative '../lib/timezone_helper'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)

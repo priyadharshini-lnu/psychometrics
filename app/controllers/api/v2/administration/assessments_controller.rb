@@ -62,13 +62,17 @@ module Api
     end
 
     def copy
-      audit! :copy, resource, payload: { source_id: resource.id }
+      owner_id = params.dig(:data, :relationships, :owner, :data, :id)
+      name = params.dig(:data, :attributes, :name)
+      audit! :copy, resource,
+             payload: { source_id: resource.id, new_name: name, owner_id: owner_id }
       AdminJob.call(
         :copy_assessment,
         {
           assessment_id: resource.id,
-          owner_id: params.dig(:data, :relationships, :owner, :data, :id),
-          name: params.dig(:data, :attributes, :name),
+          owner_id: owner_id,
+          name: name,
+          skip_owner_validation: true,
           microsite_settings: microsite_copy_settings
         },
         current_user

@@ -112,7 +112,13 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
       opts[:context][:user], WorkshopSubject, campaign_id: opts[:context][:params][:campaign_id]
     ).resolve
 
-    scope = scope.includes(:workshop, :user, :campaign, workshop: :campaign_assessment_group)
+    scope = scope.includes(
+      { user: { user_profile: { photo_attachment: :blob } } },
+      { campaign: %i[default_idp_template dashboard threesixty_campaign] },
+      {
+        workshop: %i[campaign_assessment_group meeting_room tenant]
+      }
+    )
 
     if opts[:context][:params][:workshop_id].present?
       scope = scope.where(workshop_id: opts[:context][:params][:workshop_id])
@@ -216,7 +222,7 @@ class Api::V2::Administration::WorkshopSubjectResource < Api::V2::Administration
     @subject_workshop_activities ||= UserAssessment.with_campaign_assessments.with_workshop_activities.
                                      where(campaign_id: @model.campaign_id, subject_id: @model.user_id).
                                      where.not(evaluator_id: @model.user_id).
-                                     includes(:assessment, :evaluator)
+                                     includes({ assessment: %i[translations linked_assessment] }, :evaluator)
   end
 
   def activity_evaluator(activity)

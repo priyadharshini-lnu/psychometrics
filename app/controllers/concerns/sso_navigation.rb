@@ -73,7 +73,7 @@ module SsoNavigation
                                   count
       return { redirect: true } unless incomplete_campaign_count.zero?
 
-      { assessment_status: 'assessment_completed' } if incomplete_campaign_count.zero?
+      { assessment_status: 'campaign_completed' } if incomplete_campaign_count.zero?
     else
       user_assessment = UserAssessment.find_by(id: sso_user_assessment_id, evaluator_id: current_user.id)
       { assessment_status: "assessment_#{user_assessment.status}" }

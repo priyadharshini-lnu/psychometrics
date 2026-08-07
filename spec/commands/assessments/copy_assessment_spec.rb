@@ -241,6 +241,22 @@ describe Assessments::CopyAssessment do
       expect(copy.owner_id).to eq(nil)
     end
 
+    it 'copies assessment for a different owner even when source report owner differs' do
+      other_owner = create(:tenancy)
+      create(:report, owner_id: client.id, assessments: [assessment], skip_owner_validation: true)
+
+      copy_result = described_class.call!(
+        assessment.id,
+        user,
+        other_owner.id,
+        skip_owner_validation: true,
+        new_assessment_name: "Copy of #{assessment.name}"
+      )
+
+      expect(copy_result[:assessment]).to be_persisted
+      expect(copy_result[:assessment].owner_id).to eq(other_owner.id)
+    end
+
     context 'with microsite_settings' do
       let(:project) { create(:project) }
       let(:microsite_settings) { { project_id: project.id, assessment_id: 'ms-product-123' } }

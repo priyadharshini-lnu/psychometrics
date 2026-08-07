@@ -429,6 +429,7 @@ it:
               invalid_header: Intestazione non valida, prendere l'intestazione dall'esportazione
               invalid_reports_header: Intestazione non valida, prendere l'intestazione dal file di esempio
               manager_not_found: 'Riga %{row_number}: il gestore con email %{email} non è presente nella campagna o nel CSV'
+              not_enough_licenses: L'importazione richiede %{required_count} licenze, ma sono disponibili solo %{available_count}. Si prega di ridurre il numero di nuovi utenti o di aggiungere altre licenze prima di procedere con l'importazione.
               user_update_failed: Aggiorna utente fallito per %{email} con l'errore "%{error}"
             locale:
               inclusion: Localizzazione errata

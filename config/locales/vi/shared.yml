@@ -7,6 +7,7 @@ vi:
     add: Thêm vào
     advanced: Tiên tiến
     agree_and_continue: Đồng ý và tiếp tục
+    ai_toolbar_disclaimer: Các đề xuất do AI tạo ra có thể chứa thông tin không chính xác hoặc những thay đổi ngoài ý muốn. Vui lòng xem xét kỹ toàn bộ nội dung trước khi sử dụng, và chấp nhận trách nhiệm xác minh kết quả cuối cùng.
     approval_status: Tình trạng phê duyệt
     approved: Được phê duyệt
     approved_by: Được phê duyệt bởi
@@ -100,9 +101,12 @@ vi:
     icon: Biểu tượng
     id: ID
     idp_ai_assistant_disclaimer: Trợ lý IDP AI của Lighthouse có thể mắc sai lầm. Hãy cẩn thận khi sử dụng các câu trả lời.
+    impersonation_banner_aria_label: Phiên giả mạo tích cực
+    impersonation_end_session: Ra
     import: Nhập khẩu
     inactive: Không hoạt động
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
+    is_impersonating: đang mạo danh
     issuer: Tổ chức phát hành
     issuer_claim_label: Tổ chức phát hành (iss)
     jwt_claims_details: Chi tiết yêu cầu bồi thường của JWT
@@ -186,6 +190,7 @@ vi:
     reset: Reset
     reset_password: Đặt lại mật khẩu
     response_text: Nội dung phản hồi
+    return_url_not_whitelisted: URL trả về không nằm trong danh sách cho phép đối với ứng dụng này.
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     run: Chạy

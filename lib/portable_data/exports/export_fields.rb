@@ -7,6 +7,8 @@ module PortableData
       include SerializationStrategies::AttachmentStrategy
       include SerializationStrategies::RelatedResourceStrategy
 
+      GLOBALLY_EXCLUDED_COLUMNS = %w[tenant_id].freeze
+
       def serialize
         _raw_schema.each do |schema|
           serialize_by_type(schema)
@@ -65,7 +67,8 @@ module PortableData
       def serialize_all_attributes_if_enabled
         return unless self.class._all_attributes[:enabled]
 
-        column_names = self.class.resource_class.column_names - self.class._all_attributes[:except]
+        excluded = (self.class._all_attributes[:except] + GLOBALLY_EXCLUDED_COLUMNS).uniq
+        column_names = self.class.resource_class.column_names - excluded
         column_names.map do |column_name|
           serialize_column_data(column_name.to_sym)
         end

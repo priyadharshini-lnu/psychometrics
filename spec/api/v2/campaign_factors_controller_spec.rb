@@ -29,6 +29,47 @@ RSpec.describe Api::V2::Administration::CampaignFactorsController, type: :reques
       expect(cf).to have_relationship(:campaign_factor_group).
         with_data({ 'id' => campaign_factor_group_id, 'type' => 'campaign_factor_groups' })
     end
+
+    it 'returns matching factors for partial search case-insensitively' do
+      create(:campaign_factor, campaign: campaign, name: 'Leadership Potential', code: 'lead_potential')
+      create(:campaign_factor, campaign: campaign, name: 'Learning Agility', code: 'learn_agility')
+      create(:campaign_factor, campaign: campaign, name: 'Communication', code: 'communication')
+
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
+          params: { filter: { filterable_fields: 'LEAD' } }
+
+      expect(response).to have_http_status(:ok)
+
+      names = JSON.parse(response.body)['data'].map { |factor| factor.dig('attributes', 'name') }
+      expect(names).to include('Leadership Potential')
+      expect(names).not_to include('Communication')
+    end
+
+    it 'returns empty list when no matching factor exists' do
+      create(:campaign_factor, campaign: campaign, name: 'Leadership Potential', code: 'lead_potential')
+
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
+          params: { filter: { filterable_fields: 'does-not-match' } }
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body)['data']).to eq([])
+    end
+
+    it 'returns factors only from the requested campaign scope during search' do
+      other_campaign = create(:campaign)
+      create(:campaign_factor_group, campaign: other_campaign)
+      create(:campaign_factor, campaign: campaign, name: 'Focus', code: 'focus')
+      create(:campaign_factor, campaign: other_campaign, name: 'Focus Other Campaign', code: 'focus_other')
+
+      get "/api/v2/administration/campaigns/#{campaign_id}/campaign_factors",
+          params: { filter: { filterable_fields: 'focus' } }
+
+      expect(response).to have_http_status(:ok)
+
+      names = JSON.parse(response.body)['data'].map { |factor| factor.dig('attributes', 'name') }
+      expect(names).to include('Focus')
+      expect(names).not_to include('Focus Other Campaign')
+    end
   end
 
   describe 'POST /api/v2/administration/campaigns/:campaign_id/campaign_factors' do

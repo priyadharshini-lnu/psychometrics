@@ -16,7 +16,7 @@ class HoganCredential < ApplicationRecord
   validates :encrypted_password, presence: true
   validates :participant_id, presence: true
 
-  attr_encrypted :password, key: Base64.decode64(Settings.secrets.hogan[:encrypted_key])
+  attr_encrypted :password, key: Base64.decode64(Settings.secrets.hogan.encrypted_key.to_s)
 
   enum :provider, { phoenix: 0, mentis: 1, mercer: 2 }
 

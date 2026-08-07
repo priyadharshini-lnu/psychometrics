@@ -57,7 +57,7 @@ module Administration
     end
 
     def verify_client_access(user)
-      if superadmin_without_client_role?(user)
+      if user.is?(:superadmin) && !AdminAuth::ResolveClientAccess.superadmin_has_role_on?(user, Current.client)
         flash[:alert] = I18n.t('admin.superadmin_use_root_domain', default: I18n.t('errors.forbidden'))
         redirect_to new_administration_session_path
         return nil
@@ -83,11 +83,10 @@ module Administration
     end
 
     def store_client_session_data(access, impersonated_by_id: nil)
-      session[:client_id] = Current.client.id
-      session[:authenticated_at] = Time.current.to_i
-      session[:impersonated_by_id] = impersonated_by_id
+      AdminAuth::SessionRegistry.register(session, client: Current.client,
+                                          impersonated_by_id: impersonated_by_id)
 
-      Current.memberships = access[:memberships]
+      Current.memberships      = access[:memberships]
       Current.membership_roles = access[:roles]
     end
 
@@ -118,15 +117,6 @@ module Administration
 
       store_client_session_data(access[:ok])
       true
-    end
-
-    def superadmin_without_client_role?(user)
-      return false unless user.is?(:superadmin)
-
-      admin_roles = [Membership::CLIENT_ADMIN_ROLE, Membership::PROJECT_ADMIN_ROLE, Membership::CAMPAIGN_ADMIN_ROLE]
-      user.memberships.
-        where(client_id: Current.client.subtree_ids, role: admin_roles).
-        none?
     end
 
     def audit_handoff_login(user, handoff_data)

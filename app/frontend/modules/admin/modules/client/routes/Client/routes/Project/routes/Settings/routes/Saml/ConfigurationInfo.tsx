@@ -1,9 +1,9 @@
 import React from 'react'
 import {
-  Alert, Form, Input, message,
+  Alert, Form, Input, message, Button,
 } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { CopyOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CopyOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 type Props = {
   assertionConsumerServiceUrl: string
@@ -62,6 +62,12 @@ export const ConfigurationInfo: React.FC<Props> = ({ assertionConsumerServiceUrl
             )}
           />
         </Form.Item>
+
+        <div style={{ marginTop: 16 }}>
+          <Button href={`${issuer}?download=true`} type="default" icon={<DownloadOutlined />}>
+            {I18n.t('admin.saml_settings_download_metadata')}
+          </Button>
+        </div>
       </Form>
     )}
     type="info"

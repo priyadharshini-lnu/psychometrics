@@ -33,9 +33,6 @@ module Api
           )
           return broadcast(:error, standard_claims[:error]) if standard_claims[:error]
 
-          replay_error = enforce_single_use_jti_guard(verified[:ok][:payload])
-          return broadcast(:error, replay_error) if replay_error
-
           broadcast :ok, signing_key_data[:application]
         rescue ::JWT::DecodeError, JSON::ParserError, ArgumentError
           broadcast(:error, :invalid_bearer_token)
@@ -91,23 +88,6 @@ module Api
             payload: payload,
             expected_audience: audience
           )
-        end
-
-        def enforce_single_use_jti_guard(payload)
-          return nil unless payload['single_use'] == true
-
-          replay_result = ::Jwt::SingleUse::SingleUseJtiGuard.call(
-            token_type: :api_v1,
-            issuer: payload['iss'],
-            jti: payload['jti'],
-            exp: payload['exp'],
-            single_use: payload['single_use']
-          )
-
-          return nil if replay_result[:ok]
-
-          replay_reason = replay_result.dig(:replayed, :reason)
-          replay_reason == :expired ? :token_expired : :token_replayed
         end
       end
     end

@@ -7,6 +7,7 @@ ru:
     add: Добавить
     advanced: Продвинутый
     agree_and_continue: Согласен и продолжить
+    ai_toolbar_disclaimer: Предложенные ИИ варианты могут содержать неточности или непреднамеренные изменения. Пожалуйста, проверьте весь контент перед использованием, принимая на себя ответственность за проверку конечного результата.
     approval_status: Статус утверждения
     approved: Утверждено
     approved_by: Утверждено
@@ -100,9 +101,12 @@ ru:
     icon: Икона
     id: ID
     idp_ai_assistant_disclaimer: Помощник Lighthouse AI IDP может допускать ошибки. Пожалуйста, будьте осторожны при использовании ответов.
+    impersonation_banner_aria_label: Активная сессия имитации
+    impersonation_end_session: Выход
     import: Импорт
     inactive: Неактивный
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
+    is_impersonating: выдает себя за другого.
     issuer: Эмитент
     issuer_claim_label: Эмитент (iss)
     jwt_claims_details: Сведения о претензиях JWT
@@ -186,6 +190,7 @@ ru:
     reset: Сброс
     reset_password: Сбросить пароль
     response_text: Текст ответа
+    return_url_not_whitelisted: URL-адрес возврата не включен в белый список для данного приложения.
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
     run: Запустить

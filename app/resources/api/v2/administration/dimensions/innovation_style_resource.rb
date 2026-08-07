@@ -13,6 +13,7 @@ class Api::V2::Administration::Dimensions::InnovationStyleResource < Api::V2::Ad
 
   def self.records(opts)
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, InnovationStyle]).
-      where(dimension_id: opts[:context][:params][:dimension_id])
+      where(dimension_id: opts[:context][:params][:dimension_id]).
+      with_attached_icon
   end
 end

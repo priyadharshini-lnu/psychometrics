@@ -46,14 +46,6 @@ export const PublicKeysTable: React.FC = () => {
           dataIndex="description"
         />
         <Resource.Column<PublicKey>
-          title={I18n.t('admin.fingerprint')}
-          id="fingerprint"
-          dataIndex="fingerprint"
-          render={(fingerprint: string | null) => (
-            fingerprint ? <code>{fingerprint}</code> : '—'
-          )}
-        />
-        <Resource.Column<PublicKey>
           title={I18n.t('shared.created_at')}
           id="created_at"
           dataIndex="createdAt"

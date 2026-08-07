@@ -15,7 +15,7 @@ class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseRe
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, License]).where(
       client_id: opts[:context][:client].id
-    )
+    ).includes(:project_licenses)
   end
 
   def enabled

@@ -429,6 +429,7 @@ sl:
               invalid_header: Neveljavna glava, vzemite glavo iz izvoza
               invalid_reports_header: Neveljavna glava, vzemite glavo iz vzorčne datoteke
               manager_not_found: 'Vrstica %{row_number}: upravitelj z e-poštnim naslovom %{email} ni prisoten v oglaševalski akciji ali v datoteki CSV'
+              not_enough_licenses: Za uvoz je potrebnih %{required_count} licenc, na voljo pa je le %{available_count}. Pred uvozom zmanjšajte število novih uporabnikov ali dodajte več licenc.
               user_update_failed: Posodobitev uporabnika ni uspela za %{email} z napako »%{error}«
             locale:
               inclusion: Napačno območje

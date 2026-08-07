@@ -6,11 +6,14 @@ module Api
     validate_crud_requests Api::V2::Block::Schema
 
     def copy
-      audit! :copy, model, payload: { source_id: model.id }
+      new_name = params.dig(:data, :attributes, :name)
+      owner_id = params.dig(:data, :relationships, :owner, :data, :id)
+      audit! :copy, model,
+             payload: { source_id: model.id, new_name: new_name, owner_id: owner_id }
       Blocks::CopyBlock.new(
         model.id,
-        new_name: params.dig(:data, :attributes, :name),
-        owner_id: params.dig(:data, :relationships, :owner, :data, :id)
+        new_name: new_name,
+        owner_id: owner_id
       ).on(:ok) do |new_block|
         jsonapi_render json: new_block
       end.on(:error) do |error|

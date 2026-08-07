@@ -429,6 +429,7 @@ vi:
               invalid_header: Tiêu đề không hợp lệ, lấy tiêu đề từ xuất
               invalid_reports_header: Tiêu đề không hợp lệ, lấy tiêu đề từ tệp mẫu
               manager_not_found: 'Hàng %{row_number}: Người quản lý có email %{email} không có trong chiến dịch hoặc trong CSV'
+              not_enough_licenses: Việc nhập khẩu yêu cầu %{required_count} giấy phép, nhưng chỉ có %{available_count} giấy phép khả dụng. Vui lòng giảm số lượng người dùng mới hoặc thêm giấy phép trước khi nhập khẩu.
               user_update_failed: Cập nhật người dùng không thành công cho %{email} với lỗi '%{error}'
             locale:
               inclusion: Sai ngôn ngữ

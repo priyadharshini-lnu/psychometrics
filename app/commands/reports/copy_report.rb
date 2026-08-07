@@ -2,13 +2,14 @@
 
 module Reports
   class CopyReport < BaseCommand
-    private_attr_reader :report, :owner_id, :user, :new_report_name
+    private_attr_reader :report, :owner_id, :user, :new_report_name, :skip_owner_validation
 
-    def initialize(report_id, user, owner_id = nil, new_report_name: nil)
+    def initialize(report_id, user, owner_id = nil, new_report_name: nil, skip_owner_validation: false)
       @report = Report.includes(:pages, :modules, :filters, :campaign_factors).find_by(id: report_id)
       @user = user
       @new_report_name = new_report_name
       @owner_id = owner_id
+      @skip_owner_validation = skip_owner_validation
     end
 
     def call
@@ -17,6 +18,7 @@ module Reports
         new_report.name = new_report_name if new_report_name
         new_report.created_by = user
         new_report.owner_id = owner_id
+        new_report.skip_owner_validation = skip_owner_validation
         new_report.save!
 
         copy_pages(report, new_report)

@@ -52,7 +52,7 @@ RSpec.describe Jwt::SingleUse::SingleUseJtiGuard do
         expect(call_service).to include(ok: [])
 
         expect(redis).to have_received(:set).with(
-          "api:v1:jwt:jti:#{issuer}:#{jti}",
+          "jwt_sso_single_use:#{issuer}:#{jti}",
           '1',
           nx: true,
           ex: exp - now
@@ -96,14 +96,14 @@ RSpec.describe Jwt::SingleUse::SingleUseJtiGuard do
         described_class.call(token_type: :api_v1, issuer: 200, jti: shared_jti, exp: now + 300, single_use: true)
 
         expect(redis).to have_received(:set).with(
-          "api:v1:jwt:jti:100:#{shared_jti}",
+          "jwt_sso_single_use:100:#{shared_jti}",
           '1',
           nx: true,
           ex: 300
         )
 
         expect(redis).to have_received(:set).with(
-          "api:v1:jwt:jti:200:#{shared_jti}",
+          "jwt_sso_single_use:200:#{shared_jti}",
           '1',
           nx: true,
           ex: 300

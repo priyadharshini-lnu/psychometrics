@@ -152,7 +152,7 @@ module Users
       end
 
       def saml_enforced_for_admins?
-        return false if Settings.features.disable_saml_for_admins
+        return false if AdminAuth.saml_disabled_for_admins?
         return false unless admin?
         return true if superadmin?
 

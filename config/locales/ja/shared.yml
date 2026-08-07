@@ -7,6 +7,7 @@ ja:
     add: 追加
     advanced: アドバンスド
     agree_and_continue: 同意して続けてください
+    ai_toolbar_disclaimer: AIが生成した提案には、不正確な情報や意図しない変更が含まれている可能性があります。使用前にすべての内容をご確認いただき、最終的な出力結果を確認する責任はご自身で負うものとします。
     approval_status: 承認ステータス
     approved: 承認済み
     approved_by: 承認者
@@ -100,9 +101,12 @@ ja:
     icon: アイコン
     id: ID
     idp_ai_assistant_disclaimer: Lighthouse AI IDPアシスタントはミスを犯すことがあります。回答を使う際はご注意ください。
+    impersonation_banner_aria_label: アクティブなりすましセッション
+    impersonation_end_session: 出口
     import: 輸入
     inactive: 活動休止中
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
+    is_impersonating: なりすましをしている
     issuer: 発行者
     issuer_claim_label: 発行体 (iss)
     jwt_claims_details: JWTの請求明細
@@ -186,6 +190,7 @@ ja:
     reset: リセット
     reset_password: パスワードをリセット
     response_text: 応答テキスト
+    return_url_not_whitelisted: このアプリケーションでは、戻りURLがホワイトリストに登録されていません。
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
     run: 走る

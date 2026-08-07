@@ -84,6 +84,9 @@ class Api::V2::Administration::Dimensions::FactorResource < Api::V2::Administrat
 
   def self.records(opts)
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, Factor]).
-      where(dimension_id: opts[:context][:params][:dimension_id]).without_indicators
+      where(dimension_id: opts[:context][:params][:dimension_id]).
+      without_indicators.
+      with_attached_icon.
+      includes(:translations, :dimension)
   end
 end

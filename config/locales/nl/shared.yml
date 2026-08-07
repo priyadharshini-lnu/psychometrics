@@ -7,6 +7,7 @@ nl:
     add: Voeg  toe
     advanced: Geavanceerd
     agree_and_continue: Akkoord en Ga Door.
+    ai_toolbar_disclaimer: Door AI gegenereerde suggesties kunnen onnauwkeurigheden of onbedoelde wijzigingen bevatten. Controleer alle inhoud voordat u deze gebruikt, en aanvaard daarmee de verantwoordelijkheid voor het controleren van het uiteindelijke resultaat.
     approval_status: Goedkeuringsstatus
     approved: Goedgekeurd
     approved_by: Goedgekeurd door
@@ -100,9 +101,12 @@ nl:
     icon: Pictogram
     id: ID
     idp_ai_assistant_disclaimer: De AI-assistent van de Lighthouse IDP kan fouten maken. Wees alsjeblieft voorzichtig met het gebruik van de reacties.
+    impersonation_banner_aria_label: Actieve imitatiesessie
+    impersonation_end_session: Uitgang
     import: Importeren
     inactive: Inactief
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
+    is_impersonating: is zich voordoen als
     issuer: Uitgever
     issuer_claim_label: Emittent (iss)
     jwt_claims_details: Gegevens over de vorderingen van JWT
@@ -186,6 +190,7 @@ nl:
     reset: Reset
     reset_password: Wachtwoord opnieuw instellen
     response_text: Antwoordtekst
+    return_url_not_whitelisted: De retour-URL staat niet op de whitelist voor deze applicatie.
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
     run: Ren

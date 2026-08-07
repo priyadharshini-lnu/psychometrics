@@ -45,7 +45,7 @@ class Api::V2::Administration::Dimensions::Occupations::OccupationsFactorResourc
     ::Pundit.policy_scope!(
       opts[:context][:user],
       [:api, :administration, OccupationsFactor]
-    ).includes(:factor).
+    ).includes(factor: :translations).
       where(occupation_id: opts[:context][:params][:occupation_id])
   end
 end

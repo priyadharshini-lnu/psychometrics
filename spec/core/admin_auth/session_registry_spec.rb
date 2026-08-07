@@ -6,6 +6,29 @@ RSpec.describe AdminAuth::SessionRegistry do
   let(:user) { create(:client_admin) }
   let(:client) { user.memberships.first.client }
 
+  describe '.register' do
+    let(:client) { create(:tenancy) }
+    let(:session_hash) { {} }
+
+    it 'writes client_id into the session hash' do
+      described_class.register(session_hash, client: client)
+
+      expect(session_hash[:client_id]).to eq(client.id)
+    end
+
+    it 'sets impersonated_by_id to nil by default' do
+      described_class.register(session_hash, client: client)
+
+      expect(session_hash[:impersonated_by_id]).to be_nil
+    end
+
+    it 'writes impersonated_by_id when provided' do
+      described_class.register(session_hash, client: client, impersonated_by_id: 42)
+
+      expect(session_hash[:impersonated_by_id]).to eq(42)
+    end
+  end
+
   describe '.active_client_ids' do
     it 'returns client ids with active real sessions' do
       create(:session, user: user, client: client, impersonator: nil)

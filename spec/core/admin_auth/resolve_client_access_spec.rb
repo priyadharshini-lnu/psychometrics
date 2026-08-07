@@ -188,4 +188,68 @@ RSpec.describe AdminAuth::ResolveClientAccess do
       end
     end
   end
+
+  describe '.superadmin_has_role_on?' do
+    let(:superadmin) { create(:superadmin) }
+
+    context 'when user is not a superadmin' do
+      let(:regular_user) { create(:user) }
+
+      it 'returns false regardless of memberships' do
+        create(:membership, user: regular_user, client: client, role: 'client_admin')
+
+        expect(described_class.superadmin_has_role_on?(regular_user, client)).to be false
+      end
+    end
+
+    context 'when superadmin has no memberships on the client' do
+      it 'returns false' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be false
+      end
+    end
+
+    context 'when superadmin has a client_admin membership on the client' do
+      before { create(:membership, user: superadmin, client: client, role: 'client_admin') }
+
+      it 'returns true' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be true
+      end
+    end
+
+    context 'when superadmin has a project_admin membership on a child project' do
+      before { create(:membership, user: superadmin, client: project, role: 'project_admin') }
+
+      it 'returns true' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be true
+      end
+    end
+
+    context 'when superadmin has a campaign_admin membership on a child project' do
+      let(:campaign) { create(:campaign, project: project) }
+
+      before { create(:membership, user: superadmin, campaign: campaign, client: project, role: 'campaign_admin') }
+
+      it 'returns true' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be true
+      end
+    end
+
+    context 'when superadmin has a membership only on a different client' do
+      let(:other_client) { create(:tenancy) }
+
+      before { create(:membership, user: superadmin, client: other_client, role: 'client_admin') }
+
+      it 'returns false' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be false
+      end
+    end
+
+    context 'when superadmin has a non-admin role (client_assessor) on the client' do
+      before { create(:membership, user: superadmin, client: client, role: 'client_assessor') }
+
+      it 'returns false' do
+        expect(described_class.superadmin_has_role_on?(superadmin, client)).to be false
+      end
+    end
+  end
 end

@@ -13,6 +13,7 @@ hr:
     all_checks_must_pass: Svi testovi moraju biti uspješni prije nego što možete nastaviti.
     approve_idp_plan: Odobri plan
     assessment_misconfigured: Procjena je nepravilno konfigurirana
+    assessment_timing_duration_minutes: "%{duration} min"
     audio: Audio
     audio_check: Test mikrofona
     audio_check_description: Provjerite radi li vaš mikrofon ispravno za snimanje.
@@ -268,7 +269,7 @@ hr:
     video_check_fix_sixth: Ponovno pokrenite preglednik i pokušajte ponovno.
     video_check_fix_third: Zatvorite ostale aplikacije koje koriste kameru (Zoom, Teams itd.).
     video_overlay_label: Odaberite mikrofon i kameru, kliknite na Snimi, a zatim pročitajte sljedeću poruku čim pritisnete gumb Snimi.
-    video_overlay_message: Odaberite mikrofon i kameru, kliknite na Snimi, a zatim naglas pročitajte rečenicu koja se pojavljuje na dnu.
+    video_overlay_message: Odaberite mikrofon i kameru, kliknite na Snimi, a zatim naglas pročitajte i ponovite 3 puta rečenicu koja se pojavljuje na dnu.
     video_recorder_label: Videorekorder
     video_upload_failed_camera_access: Nije moguće pristupiti vašoj kameri ili mikrofona. Provjerite dozvole na svom uređaju i pokušajte ponovno.
     video_upload_failed_chunk_upload: Dio snimke nije uspio biti prenesen. Molimo provjerite svoju internetsku vezu i pokušajte ponovno.

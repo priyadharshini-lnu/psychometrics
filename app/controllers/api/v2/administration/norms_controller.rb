@@ -31,12 +31,16 @@ module Api
     end
 
     def copy
-      audit! :copy, @resource, payload: { source_id: @resource.id }
+      new_name = params.dig(:data, :attributes, :name)
+      owner_id = params.dig(:data, :attributes, :owner_id)
+      audit! :copy, @resource,
+             payload: { source_id: @resource.id, new_name: new_name, owner_id: owner_id }
       result = ::Norms::CopyNorm.call!(
         norm: @resource,
         user: current_user,
-        owner_id: params.dig(:data, :attributes, :owner_id),
-        new_norm_name: params.dig(:data, :attributes, :name)
+        owner_id: owner_id,
+        new_norm_name: new_name,
+        skip_owner_validation: true
       )
 
       jsonapi_render json: result

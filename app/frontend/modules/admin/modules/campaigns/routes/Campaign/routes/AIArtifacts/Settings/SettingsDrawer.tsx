@@ -40,6 +40,9 @@ export const SettingsDrawer: React.FC<Props> = ({ onClose, isOpen, aiArtifact })
       open={isOpen}
       onClose={handleClose}
       maskClosable={false}
+      focusable={{
+        trap: false,
+      }}
       closable={false}
       styles={{
         body: {

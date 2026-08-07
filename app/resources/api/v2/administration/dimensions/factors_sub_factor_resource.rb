@@ -5,6 +5,10 @@ class Api::V2::Administration::Dimensions::FactorsSubFactorResource < Api::V2::A
              :description, :what_to_look_for, :precision, :scale_min, :scale_max,
              :score_definitions
 
+  def self.records(opts = {})
+    super.includes(sub_factor: :translations)
+  end
+
   def description
     @model.sub_factor&.description
   end

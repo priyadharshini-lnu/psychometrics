@@ -6,6 +6,7 @@ class Dimension < ApplicationRecord
   include Copyable
   include RansackSearchableFields
   include OwnerValidations
+  include OwnerCompatibility
 
   belongs_to :owner, class_name: 'Client'
   has_many :factors, -> { roots.order(id: :asc) }
@@ -22,7 +23,9 @@ class Dimension < ApplicationRecord
   belongs_to :created_by, class_name: 'User'
   belongs_to :updated_by, class_name: 'User'
 
-  after_create :create_default_occupation_condition_set, if: :occupations_enabled?
+  attr_accessor :skip_default_ocs_creation
+
+  after_create :create_default_occupation_condition_set, if: -> { occupations_enabled? && !skip_default_ocs_creation }
   after_update :ensure_default_occupation_condition_set, if: :occupations_just_enabled?
   before_destroy :clear_default_condition_set_reference, prepend: true
 
@@ -51,7 +54,7 @@ class Dimension < ApplicationRecord
     slice(:owner_id, :name)
   end
 
-  def clone_and_save(user_id:)
+  def clone_and_save(user_id:, skip_owner_validation: false)
     dictionary = {}
     @cloned_dimension = deep_clone(
       include: [
@@ -78,6 +81,7 @@ class Dimension < ApplicationRecord
 
     @cloned_dimension.gen_uniq_name
     @cloned_dimension.created_by_id = @cloned_dimension.updated_by_id = user_id
+    @cloned_dimension.skip_owner_validation = skip_owner_validation
     if @cloned_dimension.save
       remap_factors_relationships_post_save(factor_id_mapping, condition_set_id_mapping)
       @cloned_dimension

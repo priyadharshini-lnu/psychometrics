@@ -128,10 +128,15 @@ id:
     application_name_already_taken: Sudah ada untuk klien ini
     application_name_format_hint: Hanya huruf dan angka yang diperbolehkan, dengan satu spasi di antara kata-kata
     application_settings_at_least_one_ip_required: Harap aktifkan setidaknya satu entri alamat IP sebelum mengaktifkan daftar putih IP
+    application_settings_at_least_one_url_required: Harap aktifkan setidaknya satu entri URL sebelum mengaktifkan daftar putih URL.
     application_settings_confirm_delete_ip: Apakah Anda yakin ingin menghapus alamat IP ini?
+    application_settings_confirm_delete_url: Apakah Anda yakin ingin menghapus URL ini?
     application_settings_edit_ip_address: Edit Alamat IP / Rentang CIDR
     application_settings_enable_ip_whitelisting: Aktifkan Daftar Putih IP
+    application_settings_enable_url_whitelisting: Aktifkan Daftar Putih URL
     application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid
+    application_settings_invalid_url_format: Format URL tidak valid
+    application_settings_ip_address: Alamat IP / Rentang CIDR
     application_settings_ip_addresses: Alamat IP / Rentang CIDR
     application_settings_ip_deleted_successfully: Alamat IP telah dihapus dengan sukses
     application_settings_ip_description_placeholder: misalnya, jaringan kantor atau server produksi
@@ -141,6 +146,16 @@ id:
     application_settings_ip_updated_successfully: Alamat IP telah diperbarui dengan sukses
     application_settings_ip_whitelisting_disabled_success: Daftar putih IP telah dinonaktifkan dengan sukses
     application_settings_ip_whitelisting_enabled_success: Daftar putih IP telah diaktifkan dengan sukses
+    application_settings_url: URL
+    application_settings_url_addresses: Alamat URL
+    application_settings_url_deleted_successfully: URL berhasil dihapus
+    application_settings_url_description_placeholder: misalnya, jaringan kantor atau server produksi
+    application_settings_url_input_placeholder: misalnya, https://example.com atau https://sub.example.com
+    application_settings_url_required: URL wajib diisi.
+    application_settings_url_updated_successfully: URL berhasil diperbarui
+    application_settings_url_whitelisting_disabled_success: Daftar putih URL berhasil dinonaktifkan.
+    application_settings_url_whitelisting_enabled_success: Daftar putih URL berhasil diaktifkan.
+    application_settings_urls: URL
     applications: Aplikasi
     apply_to_existing_users: Terapkan perubahan ini kepada pengguna yang sudah ada dalam kampanye ini.
     approve_all_questions: Setujui Semua Pertanyaan
@@ -213,6 +228,8 @@ id:
     assessor_overview: Ikhtisar
     assessor_placeholder: Cari Penilai...
     assessor_remove_confirmation: Apakah Anda yakin ingin menghapus penilai dengan email %{email} dari kampanye ini?
+    assessor_remove_has_evaluations: Penilai ini memiliki %{evaluation_count} formulir penilaian yang ditugaskan. Semua evaluasi yang telah mereka isi akan hilang.
+    assessor_remove_in_assessment_centers: Penilai ini merupakan bagian dari pusat penilaian %{workshop_count}. Melanjutkan proses akan menghapus mereka dari semua pusat penilaian.
     assessor_statuses_completed: Selesai
     assessor_statuses_not_completed: Tidak Selesai
     assessor_subjects_statuses_completed: Selesai
@@ -646,6 +663,7 @@ id:
     dimensions_import_modal_import_dimension: Dimensi Impor
     dimensions_import_modal_import_scheduled: Impor terjadwal
     dimensions_import_modal_operation: Operasi
+    dimensions_import_modal_owner_global: TTE (Global)
     dimensions_import_modal_owner_input_validation: Pilih pemilik
     dimensions_import_modal_owner_select: Pilih pemilik
     dimensions_import_modal_select_json: Pilih file JSON
@@ -1207,6 +1225,7 @@ id:
     invite_workshop_list_remove_confirm_success: Pusat Penilaian berhasil dihapus.
     invite_workshop_list_remove_confirm_title: Konfirmasi
     invite_workshop_title: Pusat Penilaian
+    ip_whitelisting: Daftar Putih IP
     is_subject: Apakah Subjek
     job_role_are_you_sure_to_remove: Apakah Anda yakin untuk menghapusnya?
     job_role_column_job_group: Kelompok Pekerjaan
@@ -1280,6 +1299,7 @@ id:
     mark_not_finalized: Tanda Belum Final
     mark_not_finalized_bulk_confirm: Menghapus status "finalize" dari semua pengguna yang dipilih akan menghapus laporan yang dihasilkan yang menggunakan artefak AI. Apakah Anda yakin ingin melanjutkan?
     mark_not_finalized_confirm: Menghapus status "finalize" dari pengguna '%{email}' akan menghapus laporan yang dihasilkan yang menggunakan artefak AI untuk pengguna tersebut. Apakah Anda yakin ingin melanjutkan?
+    mark_ready_button: Tandai sebagai Siap
     mask_identity_for_examus: Data masker untuk Examus Proctoring
     mask_identity_for_hogan: Data topeng untuk Hogan
     mask_identity_for_iiht: Data masker untuk IIHT
@@ -1338,6 +1358,21 @@ id:
     modal_title: Mengonversi ke Templat
     model_answer: Jawaban Contoh
     model_answer_placeholder: Masukkan jawaban contoh untuk penilaian AI.
+    model_params_description: Biarkan kosong untuk menggunakan nilai default yang ditentukan oleh tipe asisten.
+    model_params_max_tokens: Token Maksimum
+    model_params_max_tokens_tooltip: Membatasi jumlah maksimum token yang dapat dihasilkan model per respons. Nilai yang lebih tinggi memungkinkan keluaran yang lebih panjang tetapi meningkatkan biaya dan latensi.
+    model_params_temperature: Suhu
+    model_params_temperature_tooltip: Mengontrol keacakan dalam output. 0 = deterministik dan terfokus; 2 = sangat kreatif dan bervariasi. Gunakan nilai yang lebih rendah agar output terbatas pada konteks yang diberikan.
+    model_params_thinking_budget: Anggaran Berpikir (token)
+    model_params_thinking_budget_tooltip: Menetapkan batasan maksimal pada jumlah token yang dapat digunakan model untuk penalaran internal. Nilai yang lebih tinggi memungkinkan analisis yang lebih mendalam tetapi meningkatkan penggunaan token dan waktu respons.
+    model_params_thinking_budget_unsupported: Model ini hanya menggunakan kontrol penalaran berbasis upaya. Anggaran berpikir (batas token) tidak didukung.
+    model_params_thinking_effort: Upaya Berpikir
+    model_params_thinking_effort_high: Tinggi
+    model_params_thinking_effort_low: Rendah
+    model_params_thinking_effort_medium: Sedang
+    model_params_thinking_effort_none: Tidak ada
+    model_params_thinking_effort_tooltip: Mengontrol seberapa banyak penalaran yang diterapkan model sebelum memberikan respons. Upaya yang lebih tinggi menghasilkan jawaban yang lebih menyeluruh tetapi membutuhkan waktu lebih lama. Gunakan 'Tidak Ada' untuk menonaktifkan penalaran sepenuhnya.
+    model_params_title: Konfigurasi Model Lanjutan
     must_be_a_valid_url: URL tidak valid. Cantumkan URL lengkap yang menyertakan protokol http atau https
     name: Nama
     name_max_length: Nama tidak boleh melebihi %{length} karakter
@@ -1445,6 +1480,14 @@ id:
     overall: Secara keseluruhan
     overall_score: Skor Total
     overall_scoring: Skor Keseluruhan
+    owner_resource_assessment: penilaian
+    owner_resource_campaign: kampanye
+    owner_resource_client: klien
+    owner_resource_dimension: dimensi
+    owner_resource_mismatch: Pemilik %{child_resource} tidak kompatibel dengan pemilik %{parent_resource}.
+    owner_resource_norm: norma
+    owner_resource_report: laporan
+    owner_resource_report_bundle: bundel laporan
     parsed_dependencies_help: Dependensi yang diurai untuk pengguna yang digunakan oleh Asisten AI untuk pembuatan hasil artefak
     parsed_dependencies_title: Dependensi yang diurai
     parsed_dependencies_view: Lihat dependensi yang diurai
@@ -2196,6 +2239,8 @@ id:
     report_approval_columns_user_email: Email Pengguna
     report_approval_columns_user_name: Nama pengguna
     report_approval_digest_delivery_mode_form_label: Mode Pengiriman Intisari
+    report_approval_digest_delivery_mode_immediate: Langsung - Kirim setiap kali ada pengajuan massal.
+    report_approval_digest_delivery_mode_scheduled: Terjadwal - Kirim email ringkasan pada waktu yang telah dijadwalkan.
     report_approval_digest_frequency_daily: Harian
     report_approval_digest_frequency_form_label: Frekuensi Digest
     report_approval_digest_frequency_weekdays: Hari kerja
@@ -2387,6 +2432,7 @@ id:
     saml_settings_config_details_copied: Disalin %{element}
     saml_settings_config_details_issuer: ID Entitas/Penerbit
     saml_settings_config_details_title: Konfigurasikan Idp dengan info berikut
+    saml_settings_download_metadata: Unduh Metadata
     saml_settings_email_pipetext: Email Pipetext
     saml_settings_enabled: Diaktifkan
     saml_settings_enforced: Terapkan SAML
@@ -3149,8 +3195,10 @@ id:
     upload_success: Berhasil diunggah
     url_label: URL
     url_name: URL
+    url_whitelisting: Daftar Putih URL
     used_tokens_input_tokens: Token Masukan
     used_tokens_output_tokens: Token Keluaran
+    used_tokens_thinking_tokens: Token Pemikiran
     used_tokens_title: Penggunaan token
     user: Pengguna
     user_agent: Agen Pengguna

@@ -429,6 +429,7 @@ zh-HK:
               invalid_header: 標頭無效，請從匯出中取標頭
               invalid_reports_header: 標頭無效，請從範例檔案取標頭
               manager_not_found: 第 %{row_number} 列：沒有 email %{email} 的經理出現在活動或 CSV 裡
+              not_enough_licenses: 匯入需要 %{required_count} 個許可證，但只有 %{available_count} 個可用許可證。請在匯入前減少新使用者數量或新增更多授權。
               user_update_failed: 使用者更新失敗，%{email} 因錯誤「%{error}」而失敗
             locale:
               inclusion: 地點錯誤

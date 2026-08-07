@@ -56,6 +56,41 @@ RSpec.describe Api::V2::Administration::AssessmentsController, type: :request do
         with_data({ 'id' => dimension.id.to_s, 'type' => 'dimensions' })
       expect(assessment_response).to have_attribute(:tag_list).with_value(['psychometric'])
     end
+
+    it 'returns owner incompatibility error when assessment owner and dimension owner differ' do
+      dimension_owner = create(:tenancy)
+      assessment_owner = create(:tenancy)
+      dimension = create(:dimension, owner: dimension_owner)
+
+      body = {
+        data: {
+          type: 'assessments',
+          attributes: {
+            category: 'psychometric',
+            description: 'name',
+            name: 'name',
+            type: 'common',
+            extra: { icon_color: 'color' }
+          },
+          relationships: {
+            dimension: { data: { type: 'dimensions', id: dimension.id.to_s } },
+            owner: { data: { type: 'clients', id: assessment_owner.id.to_s } }
+          }
+        }
+      }
+
+      post '/api/v2/administration/assessments', params: body.to_json,
+                                                headers: {
+                                                  'Content-Type' => 'application/vnd.api+json'
+                                                }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(
+        error_titles.any? { |title| title.include?('assessment owner is not compatible with dimension owner') }
+      ).to eq(true)
+    end
   end
 
   describe 'PATCH /api/v2/administration/assessments/:assessment_id' do
@@ -83,6 +118,38 @@ headers: { 'Content-Type' => 'application/vnd.api+json' }
       expect(assessment_response).to have_attribute(:enable_video_check).with_value(true)
       expect(assessment_response).to have_attribute(:enable_audio_check).with_value(true)
       expect(assessment_response).to have_attribute(:enable_network_check).with_value(true)
+    end
+
+    it 'returns owner incompatibility error when updating owner with incompatible dimension owner' do
+      dimension_owner = create(:tenancy)
+      new_owner = create(:tenancy)
+      compatible_dimension = create(:dimension, owner: dimension_owner)
+      assessment = create(:assessment, dimension: compatible_dimension, owner: dimension_owner)
+
+      body = {
+        data: {
+          type: 'assessments',
+          id: assessment.id.to_s,
+          attributes: {
+            type: 'common'
+          },
+          relationships: {
+            owner: { data: { type: 'clients', id: new_owner.id.to_s } }
+          }
+        }
+      }
+
+      patch "/api/v2/administration/assessments/#{assessment.id}", params: body.to_json,
+                                                             headers: {
+                                                               'Content-Type' => 'application/vnd.api+json'
+                                                             }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      errors = JSON.parse(response.body)['errors']
+      error_titles = errors.pluck('title')
+      expect(
+        error_titles.any? { |title| title.include?('assessment owner is not compatible with dimension owner') }
+      ).to eq(true)
     end
 
     it 'deletes an assessment' do
@@ -126,6 +193,7 @@ headers: { 'Content-Type' => 'application/vnd.api+json' }
       expect(job.data['assessment_id']).to eq(assessment.id)
       expect(job.data['owner_id']).to eq(client.id)
       expect(job.data['name']).to eq('Copy of First Assessment')
+      expect(job.data['skip_owner_validation']).to eq(true)
     end
   end
 

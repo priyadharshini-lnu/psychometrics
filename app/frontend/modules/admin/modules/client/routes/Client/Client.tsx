@@ -47,7 +47,6 @@ export const Client: FC<Props> = ({ currentUser }) => {
   } = useResources<ClientType>(
     'clients',
     {
-      trackUrl: true,
       responseType: ClientTR,
       apiConfig: baseApiConfig,
     },
@@ -106,8 +105,18 @@ export const Client: FC<Props> = ({ currentUser }) => {
         return I18n.t('admin.admins')
       case 'assessors':
         return I18n.t('admin.assessors')
-      case 'settings':
+      case 'settings': {
+        if (pathname.includes('/smtp')) return I18n.t('admin.smtp_settings_smtp')
+        if (pathname.includes('/sso_settings')) return I18n.t('admin.sso_settings_tab')
+        if (pathname.includes('/login_page_design')) return I18n.t('admin.login_page_design_tab')
+        if (pathname.includes('/siem')) return I18n.t('admin.settings_tabs_siem')
+        if (pathname.includes('/skill_aliases')) return I18n.t('admin.settings_tabs_skill_aliases')
+        if (pathname.includes('/privacy_settings')) return I18n.t('admin.project_tabs_privacy')
+        if (pathname.includes('/features')) return I18n.t('admin.settings_tabs_feature_flags')
+        if (pathname.includes('/roles')) return I18n.t('admin.settings_tabs_admin_roles')
+        if (pathname.includes('/applications')) return I18n.t('admin.applications')
         return I18n.t('admin.settings')
+      }
       case 'data_reports':
         return I18n.t('admin.data_reports')
       case 'audit_reports':
@@ -163,28 +172,63 @@ export const Client: FC<Props> = ({ currentUser }) => {
     },
   )
 
-  return (
-    <div>
-      <Breadcrumb
-        request={{
-          fields: ['client'],
-          data: {
-            clientId: parseInt(clientId, 10),
-          },
-        }}
-        crumbs={[
+  const getBreadcrumbRequest = () => ({
+    fields: ['client'],
+    data: { clientId: parseInt(clientId, 10) },
+  })
+
+  const getBreadcrumbCrumbs = () => {
+    const baseCrumbs = [
+      {
+        link: window.PsyGlobalState?.clientContextData ? undefined : () => '/admin',
+        label: () => I18n.t('admin.clients'),
+      },
+      {
+        link: state => `/admin/clients/${state.client.id}/projects`,
+        label: state => state.client.name,
+      },
+    ]
+
+    if (pathname.includes('/settings/')) {
+      const settingsUrl = `${settings.urlPrefix}/clients/${clientId}/settings`
+      const applicationsListUrl = `${settingsUrl}/applications`
+      const isOnApplicationDetails = /\/settings\/applications\/\d+/.test(pathname)
+
+      return [
+        ...baseCrumbs,
+        {
+          link: () => settingsUrl,
+          label: () => I18n.t('admin.settings'),
+        },
+        ...(isOnApplicationDetails ? [
           {
-            link: window.PsyGlobalState?.clientContextData ? undefined : () => '/admin',
-            label: () => I18n.t('admin.clients'),
+            link: () => applicationsListUrl,
+            label: () => I18n.t('admin.applications'),
           },
           {
-            link: state => `/admin/clients/${state.client.id}/projects`,
-            label: state => state.client.name,
+            label: state => state.application?.name,
           },
+        ] : [
           {
             label: () => getPageTitle(pathname),
           },
-        ]}
+        ]),
+      ]
+    }
+
+    return [
+      ...baseCrumbs,
+      {
+        label: () => getPageTitle(pathname),
+      },
+    ]
+  }
+
+  return (
+    <div>
+      <Breadcrumb
+        request={getBreadcrumbRequest()}
+        crumbs={getBreadcrumbCrumbs()}
       />
       <Menu
         items={menuItems}

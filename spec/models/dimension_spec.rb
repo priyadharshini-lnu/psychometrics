@@ -13,7 +13,7 @@ RSpec.describe Dimension, type: :model do
 
   context '#clone_and_save' do
     it 'should be copy all relative factors, sub-factors and occupation' do
-      cloned_dimension = dimension.clone_and_save(user_id: user.id)
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
 
       expect(cloned_dimension.factors.count).to be 1
       expect(cloned_dimension.all_factors.count).to be 2
@@ -21,7 +21,7 @@ RSpec.describe Dimension, type: :model do
     end
 
     it 'remaps sub_factor_ids and parent_ids to the cloned factors' do
-      cloned_dimension = dimension.clone_and_save(user_id: user.id)
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
       cloned_parent = cloned_dimension.factors.first
       cloned_sub = (cloned_dimension.all_factors - [cloned_parent]).first
 
@@ -31,6 +31,12 @@ RSpec.describe Dimension, type: :model do
       expect(cloned_parent.sub_factor_ids).to include(cloned_sub.id)
       expect(cloned_parent.sub_factor_ids).not_to include(sub_factor.id)
       expect(cloned_sub.dimension_id).to eq(cloned_dimension.id)
+    end
+
+    it 'marks cloned dimension to skip owner compatibility validation' do
+      cloned_dimension = dimension.clone_and_save(user_id: user.id, skip_owner_validation: true)
+
+      expect(cloned_dimension.skip_owner_validation).to eq(true)
     end
   end
 
@@ -120,6 +126,22 @@ RSpec.describe Dimension, type: :model do
       dimension_to_destroy = create(:dimension)
 
       expect { dimension_to_destroy.destroy! }.not_to raise_error
+    end
+  end
+
+  describe 'owner updates with linked records' do
+    let(:owner_a) { create(:tenancy) }
+    let(:owner_b) { create(:tenancy) }
+
+    it 'allows owner change even when linked assessment and norm owners differ after update' do
+      dimension = create(:dimension, owner: owner_a)
+      create(:assessment, owner: owner_a, dimension: dimension)
+      create(:norm, owner: owner_a, dimension: dimension, skip_owner_validation: true)
+
+      dimension.owner = owner_b
+
+      expect(dimension).to be_valid
+      expect(dimension.save).to eq(true)
     end
   end
 end

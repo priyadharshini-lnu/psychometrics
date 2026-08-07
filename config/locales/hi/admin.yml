@@ -128,10 +128,14 @@ hi:
     application_name_already_taken: इस क्लाइंट के लिए पहले से ही मौजूद है
     application_name_format_hint: केवल अक्षर और अंक ही अनुमत हैं, शब्दों के बीच एक खाली स्थान के साथ।
     application_settings_at_least_one_ip_required: कृपया आईपी व्हाइटलिस्टिंग सक्षम करने से पहले कम से कम एक आईपी पता प्रविष्टि सक्षम करें।
+    application_settings_at_least_one_url_required: यूआरएल व्हाइटलिस्टिंग को सक्षम करने से पहले कृपया कम से कम एक यूआरएल प्रविष्टि को सक्षम करें।
     application_settings_confirm_delete_ip: क्या आप निश्चित हैं कि आप इस आईपी पते को हटाना चाहते हैं?
-    application_settings_edit_ip_address: आईपी पता / सीआईडीआर रेंज संपादित करें
+    application_settings_confirm_delete_url: क्या आप वाकई इस यूआरएल को हटाना चाहते हैं?
     application_settings_enable_ip_whitelisting: आईपी व्हाइटलिस्टिंग सक्षम करें
+    application_settings_enable_url_whitelisting: यूआरएल श्वेतसूचीकरण सक्षम करें
     application_settings_invalid_ip_format: अमान्य आईपी पता या सीआईडीआर प्रारूप
+    application_settings_invalid_url_format: अमान्य यूआरएल प्रारूप
+    application_settings_ip_address: आईपी पता / सीआईडीआर रेंज
     application_settings_ip_addresses: आईपी पते / सीआईडीआर रेंज
     application_settings_ip_deleted_successfully: आईपी पता सफलतापूर्वक हटा दिया गया
     application_settings_ip_description_placeholder: उदाहरण के लिए, ऑफिस नेटवर्क या प्रोडक्शन सर्वर
@@ -141,6 +145,16 @@ hi:
     application_settings_ip_updated_successfully: आईपी पता सफलतापूर्वक अपडेट हो गया
     application_settings_ip_whitelisting_disabled_success: आईपी व्हाइटलिस्टिंग सफलतापूर्वक अक्षम कर दी गई
     application_settings_ip_whitelisting_enabled_success: आईपी व्हाइटलिस्टिंग सफलतापूर्वक सक्षम हो गई।
+    application_settings_url: यूआरएल
+    application_settings_url_addresses: यूआरएल पते
+    application_settings_url_deleted_successfully: यूआरएल सफलतापूर्वक हटा दिया गया
+    application_settings_url_description_placeholder: उदाहरण के लिए, ऑफिस नेटवर्क या प्रोडक्शन सर्वर
+    application_settings_url_input_placeholder: उदाहरण के लिए, https://example.com या https://sub.example.com
+    application_settings_url_required: यूआरएल आवश्यक है
+    application_settings_url_updated_successfully: यूआरएल सफलतापूर्वक अपडेट हो गया
+    application_settings_url_whitelisting_disabled_success: यूआरएल श्वेतसूचीकरण सफलतापूर्वक अक्षम कर दिया गया
+    application_settings_url_whitelisting_enabled_success: यूआरएल श्वेतसूचीकरण सफलतापूर्वक सक्षम हो गया
+    application_settings_urls: यूआरएल
     applications: आवेदन
     apply_to_existing_users: इस अभियान में मौजूदा उपयोगकर्ताओं पर यह परिवर्तन लागू करें।
     approve_all_questions: सभी प्रश्नों को अनुमोदित करें
@@ -213,6 +227,8 @@ hi:
     assessor_overview: अवलोकन
     assessor_placeholder: आकलनकर्ता खोजें...
     assessor_remove_confirmation: क्या आप सुनिश्चित हैं कि आप इस अभियान से %{email} ईमेल वाले आकलनकर्ता को हटाना चाहते हैं?
+    assessor_remove_has_evaluations: इस मूल्यांकनकर्ता को %{evaluation_count} मूल्यांकनकर्ता प्रपत्र आवंटित किए गए हैं। उनके द्वारा भरे गए सभी मूल्यांकन नष्ट हो जाएंगे।
+    assessor_remove_in_assessment_centers: यह मूल्यांकनकर्ता %{workshop_count} मूल्यांकन केंद्रों का हिस्सा है। आगे की कार्यवाही में इन्हें सभी मूल्यांकन केंद्रों से हटा दिया जाएगा।
     assessor_statuses_completed: पूर्ण
     assessor_statuses_not_completed: पूर्ण नहीं
     assessor_subjects_statuses_completed: पूर्ण
@@ -646,6 +662,7 @@ hi:
     dimensions_import_modal_import_dimension: आयाम आयात करें
     dimensions_import_modal_import_scheduled: आयात निर्धारित
     dimensions_import_modal_operation: संचालन
+    dimensions_import_modal_owner_global: टीटीई (वैश्विक)
     dimensions_import_modal_owner_input_validation: कृपया एक मालिक चुनें
     dimensions_import_modal_owner_select: एक मालिक चुनें
     dimensions_import_modal_select_json: JSON फ़ाइल चुनें
@@ -1209,6 +1226,7 @@ hi:
     invite_workshop_list_remove_confirm_success: मूल्यांकन केंद्र को सफलतापूर्वक हटा दिया गया।
     invite_workshop_list_remove_confirm_title: पुष्टि करें
     invite_workshop_title: मूल्यांकन केंद्र
+    ip_whitelisting: आईपी श्वेतसूचीकरण
     is_subject: क्या विषय है
     job_role_are_you_sure_to_remove: क्या आप हटाने के लिए निश्चित हैं?
     job_role_column_job_group: नौकरी समूह
@@ -1282,6 +1300,7 @@ hi:
     mark_not_finalized: चिह्न अंतिम नहीं
     mark_not_finalized_bulk_confirm: सभी चयनित उपयोगकर्ताओं से फाइनलाइज़ हटाने पर वे उत्पन्न रिपोर्टें हटा दी जाएँगी जो एआई आर्टिफैक्ट्स का उपयोग करती हैं। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
     mark_not_finalized_confirm: उपयोगकर्ता '%{email}' से finalize हटाने से उस उपयोगकर्ता के लिए AI आर्टिफैक्ट का उपयोग करके तैयार की गई रिपोर्ट हटा दी जाएगी। क्या आप वास्तव में आगे बढ़ना चाहते हैं?
+    mark_ready_button: तैयार के रूप में चिह्नित करें
     mask_identity_for_examus: एग्ज़ामस प्रॉक्टरिंग के लिए मास्क डेटा
     mask_identity_for_hogan: होगन के लिए मास्क डेटा
     mask_identity_for_iiht: आईआईएचटी के लिए मास्क डेटा
@@ -1340,6 +1359,21 @@ hi:
     modal_title: टेम्पलेट में बदलें
     model_answer: आदर्श उत्तर
     model_answer_placeholder: AI स्कोरिंग के लिए मॉडल उत्तर दर्ज करें।
+    model_params_description: सहायक प्रकार द्वारा परिभाषित डिफ़ॉल्ट मानों का उपयोग करने के लिए इसे खाली छोड़ दें।
+    model_params_max_tokens: अधिकतम टोकन
+    model_params_max_tokens_tooltip: यह प्रति प्रतिक्रिया मॉडल द्वारा उत्पन्न किए जा सकने वाले टोकन की अधिकतम संख्या को सीमित करता है। उच्च मान लंबे आउटपुट की अनुमति देते हैं लेकिन लागत और विलंबता को बढ़ाते हैं।
+    model_params_temperature: तापमान
+    model_params_temperature_tooltip: आउटपुट में अनियमितता को नियंत्रित करता है। 0 = निश्चित और केंद्रित; 2 = अत्यधिक रचनात्मक और विविध। आउटपुट को दिए गए संदर्भ तक सीमित रखने के लिए कम मानों का उपयोग करें।
+    model_params_thinking_budget: बजट पर विचार करना (टोकन)
+    model_params_thinking_budget_tooltip: यह मॉडल द्वारा आंतरिक तर्क-वितर्क पर खर्च किए जा सकने वाले टोकन की अधिकतम सीमा निर्धारित करता है। उच्च मान गहन विश्लेषण की अनुमति देते हैं, लेकिन टोकन के उपयोग और प्रतिक्रिया समय को बढ़ाते हैं।
+    model_params_thinking_budget_unsupported: यह मॉडल केवल प्रयास-आधारित तर्क नियंत्रण का उपयोग करता है। इसमें सोचने की क्षमता (टोकन सीमा) समर्थित नहीं है।
+    model_params_thinking_effort: चिंतन प्रयास
+    model_params_thinking_effort_high: उच्च
+    model_params_thinking_effort_low: कम
+    model_params_thinking_effort_medium: मध्यम
+    model_params_thinking_effort_none: कोई नहीं
+    model_params_thinking_effort_tooltip: यह नियंत्रित करता है कि मॉडल प्रतिक्रिया देने से पहले कितनी तर्कशक्ति का उपयोग करता है। अधिक प्रयास करने पर अधिक विस्तृत उत्तर मिलते हैं, लेकिन इसमें अधिक समय लगता है। तर्कशक्ति को पूरी तरह से निष्क्रिय करने के लिए 'None' का उपयोग करें।
+    model_params_title: उन्नत मॉडल कॉन्फ़िगरेशन
     must_be_a_valid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
     name: नाम
     name_max_length: नाम %{length} वर्णों से अधिक नहीं हो सकता।
@@ -1449,6 +1483,14 @@ hi:
     overall: कुल मिलाकर
     overall_score: कुल स्कोर
     overall_scoring: कुल स्कोरिंग
+    owner_resource_assessment: आकलन
+    owner_resource_campaign: अभियान
+    owner_resource_client: ग्राहक
+    owner_resource_dimension: आयाम
+    owner_resource_mismatch: "%{child_resource} का स्वामी %{parent_resource} के स्वामी के साथ संगत नहीं है।"
+    owner_resource_norm: आदर्श
+    owner_resource_report: प्रतिवेदन
+    owner_resource_report_bundle: रिपोर्ट बंडल
     parsed_dependencies_help: आर्टिफैक्ट परिणामों के निर्माण के लिए AI सहायक द्वारा उपयोग किए गए उपयोगकर्ता की पार्स की गई निर्भरताएँ
     parsed_dependencies_title: विश्लेषित निर्भरताएँ
     parsed_dependencies_view: पार्स की गई निर्भरताएँ देखें
@@ -2200,6 +2242,8 @@ hi:
     report_approval_columns_user_email: उपयोगकर्ता ईमेल
     report_approval_columns_user_name: उपयोगकर्ता नाम
     report_approval_digest_delivery_mode_form_label: डाइजेस्ट वितरण मोड
+    report_approval_digest_delivery_mode_immediate: तत्काल - जब भी बड़ी संख्या में आवेदन प्राप्त हों, तब भेजें
+    report_approval_digest_delivery_mode_scheduled: निर्धारित समय पर ईमेल का सारांश भेजें
     report_approval_digest_frequency_daily: दैनिक
     report_approval_digest_frequency_form_label: पाचन आवृत्ति
     report_approval_digest_frequency_weekdays: सप्ताह के दिन
@@ -2391,6 +2435,7 @@ hi:
     saml_settings_config_details_copied: "%{element} से कॉपी किया गया"
     saml_settings_config_details_issuer: इकाई आईडी/जारीकर्ता
     saml_settings_config_details_title: निम्नलिखित जानकारी के साथ Idp कॉन्फ़िगर करें
+    saml_settings_download_metadata: मेटाडेटा डाउनलोड करें
     saml_settings_email_pipetext: ईमेल पिपेटटेक्स्ट
     saml_settings_enabled: सक्षम
     saml_settings_enforced: SAML लागू करें
@@ -3161,8 +3206,10 @@ hi:
     upload_success: सफलतापूर्वक अपलोड किया गया
     url_label: यूआरएल
     url_name: यूआरएल
+    url_whitelisting: यूआरएल श्वेतसूचीकरण
     used_tokens_input_tokens: इनपुट टोकन
     used_tokens_output_tokens: आउटपुट टोकन
+    used_tokens_thinking_tokens: थिंकिंग टोकन
     used_tokens_title: टोकन उपयोग
     user: उपयोगकर्ता
     user_agent: उपयोगकर्ता एजेंट

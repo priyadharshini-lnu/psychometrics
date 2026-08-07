@@ -429,6 +429,7 @@ ko:
               invalid_header: 잘못된 헤더, 내보내기에서 헤더 가져옴
               invalid_reports_header: 헤더가 잘못되었습니다. 샘플 파일에서 헤더를 가져옵니다
               manager_not_found: '행 %{row_number}: 이메일 %{email}을 사용하는 관리자가 캠페인 또는 CSV에 없습니다'
+              not_enough_licenses: 가져오기에는 %{required_count}개의 라이선스가 필요하지만, %{available_count}개만 사용 가능합니다. 가져오기 전에 신규 사용자 수를 줄이거나 라이선스를 추가하십시오.
               user_update_failed: 오류 '%{email}'로 %{error}에 대한 사용자 업데이트에 실패했습니다
             locale:
               inclusion: 잘못된 로캘

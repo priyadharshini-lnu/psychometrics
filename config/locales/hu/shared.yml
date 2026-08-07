@@ -7,6 +7,7 @@ hu:
     add: Add
     advanced: Haladó
     agree_and_continue: Egyetértek és folytatjuk
+    ai_toolbar_disclaimer: A mesterséges intelligencia által generált javaslatok pontatlanságokat vagy nem szándékos változtatásokat tartalmazhatnak. Kérjük, használat előtt tekintse át az összes tartalmat, ezzel vállalva a felelősséget a végső eredmény ellenőrzéséért.
     approval_status: Jóváhagyási állapot
     approved: Jóváhagyva
     approved_by: Jóváhagyta
@@ -100,9 +101,12 @@ hu:
     icon: Ikon
     id: ID
     idp_ai_assistant_disclaimer: A Lighthouse AI IDP asszisztense hibázhat. Kérlek, légy óvatos a válaszok használatakor.
+    impersonation_banner_aria_label: Aktív megszemélyesítési munkamenet
+    impersonation_end_session: Kijárat
     import: Importál
     inactive: Inaktív
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
+    is_impersonating: személyes adatokkal rendelkezik
     issuer: Kibocsátó
     issuer_claim_label: Kibocsátó (iss)
     jwt_claims_details: A JWT-igénylések részletei
@@ -186,6 +190,7 @@ hu:
     reset: Átszed
     reset_password: Jelszó visszaállítása
     response_text: Válasz szöveg
+    return_url_not_whitelisted: A visszatérési URL nincs engedélyezőlistán ennél az alkalmazásnál.
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     run: Fut

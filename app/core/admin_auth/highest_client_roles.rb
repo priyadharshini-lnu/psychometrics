@@ -2,7 +2,7 @@
 
 module AdminAuth
   class HighestClientRoles
-    ROLE_PRIORITY = %w[client_admin project_admin campaign_admin].freeze
+    ROLE_PRIORITY = ResolveClientAccess::ADMIN_ROLES
 
     def self.for_user(user, clients)
       return {} if user.blank? || clients.blank?
@@ -29,7 +29,7 @@ module AdminAuth
     end
 
     def self.superadmin_roles(clients)
-      clients.each_with_object({}) { |c, h| h[c.id] = 'superadmin' }
+      clients.to_h { |c| [c.id, 'superadmin'] }
     end
 
     def self.build_subtree_mapping(clients)

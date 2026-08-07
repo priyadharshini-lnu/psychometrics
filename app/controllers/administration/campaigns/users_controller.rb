@@ -250,8 +250,8 @@ module Administration
         siem_log_impersonation_event(resource, 'End User')
         spoof_token = impersonate_as_end_user(resource)
 
-        redirect_to root_url(domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token),
-                    allow_other_host: true
+        url_options = { domain: Settings.domain, subdomain: project.subdomain, spoof_token: spoof_token }
+        redirect_to root_url(url_options), allow_other_host: true
       end
 
       def extend_time

@@ -47,7 +47,7 @@ RSpec.describe HomeController, type: :controller do
       request.host = "#{project.subdomain}.#{Settings.domain}"
     end
 
-    it 'redirects to return_url with assessment_completed for jwt_post session' do
+    it 'redirects to return_url with campaign_completed for jwt_post session' do
       campaign_user.update!(completion_status: :completed)
       session[:sso] = {
         'user_id' => user.id,
@@ -58,7 +58,7 @@ RSpec.describe HomeController, type: :controller do
       get :assessment_completed
 
       expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_completed"
+        "https://#{project.subdomain}.#{Settings.domain}/done?status=campaign_completed"
       )
     end
 

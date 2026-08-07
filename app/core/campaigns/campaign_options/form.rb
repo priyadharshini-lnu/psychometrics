@@ -36,8 +36,11 @@ module Campaigns
                 allow_nil: true
 
       validate :time_zone do
-        unless time_zone.nil? || ActiveSupport::TimeZone[time_zone]
-          errors.add(:time_zone, :invalid)
+        if time_zone
+          normalized_tz = TimezoneHelper.normalize(time_zone)
+          unless ActiveSupport::TimeZone[normalized_tz]
+            errors.add(:time_zone, :invalid)
+          end
         end
       end
 

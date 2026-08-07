@@ -4,7 +4,8 @@ module RecurringScheduling
   extend ActiveSupport::Concern
 
   def schedule_repeated_emails(job:, last_run_date: nil)
-    tz = ActiveSupport::TimeZone[delivery_timezone]
+    normalized_tz = TimezoneHelper.normalize(delivery_timezone)
+    tz = ActiveSupport::TimeZone[normalized_tz]
     return unless tz && delivery_start_date && delivery_end_date && delivery_time_of_day
 
     next_date = next_scheduled_date(last_run_date)

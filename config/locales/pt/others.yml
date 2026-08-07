@@ -429,6 +429,7 @@ pt:
               invalid_header: Cabeçalho inválido, retirar cabeçalho da exportação
               invalid_reports_header: Cabeçalho inválido, retirar cabeçalho do ficheiro de amostra
               manager_not_found: 'Linha %{row_number}: o gestor com o correio eletrónico %{email} não está presente na campanha ou no CSV'
+              not_enough_licenses: A importação requer %{required_count} licenças, mas apenas %{available_count} estão disponíveis. Por favor, reduza o número de novos usuários ou adicione mais licenças antes de importar.
               user_update_failed: A atualização do utilizador falhou para %{email} com o erro "%{error}
             locale:
               inclusion: Localidade incorrecta

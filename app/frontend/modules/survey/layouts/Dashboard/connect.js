@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { subscribeSocket } from '~/modules/survey/core/temp/socket'
+import { subscribeSocket, enableApp, disableApp } from '~/modules/survey/core/temp/socket'
 import {
   fetch, init, SAVE, FETCH,
 } from '~/modules/survey/core/builder/assessment/actions'
@@ -11,6 +11,8 @@ export default connect(
     const { survey } = state
     return ({
       disabled: survey.builder.assessment.disabled,
+      disableReason: survey.builder.assessment.disableReason,
+      disableMessage: survey.builder.assessment.disableMessage,
       socketInitialized: survey.ui.socket.initialized,
       defaultLocale: survey.builder.assessment.defaultLanguage,
       currentLocale: survey.builder.assessment.locale,
@@ -21,6 +23,8 @@ export default connect(
     subscribeSocket,
     fetch,
     init,
+    enableApp,
+    disableApp,
     resetFlow: actions.reset,
   },
 )

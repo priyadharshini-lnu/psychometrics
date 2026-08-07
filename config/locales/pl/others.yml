@@ -429,6 +429,7 @@ pl:
               invalid_header: Nieprawidłowy nagłówek, weź nagłówek z eksportu
               invalid_reports_header: Nieprawidłowy nagłówek, weź nagłówek z przykładowego pliku
               manager_not_found: 'Wiersz %{row_number}: Menedżer z adresem e-mail %{email} nie jest obecny w kampanii ani w pliku CSV'
+              not_enough_licenses: Import wymaga %{required_count} licencji, ale dostępnych jest tylko %{available_count}. Przed importem zmniejsz liczbę nowych użytkowników lub dodaj więcej licencji.
               user_update_failed: Aktualizacja użytkownika nie powiodła się dla %{email} z powodu błędu "%{error}"
             locale:
               inclusion: Nieprawidłowe ustawienia regionalne

@@ -29,6 +29,10 @@ class DataReportJob < ApplicationRecord
       )
   end
 
+  def self.cleanup_old_jobs(older_than: 30.days.ago)
+    where('created_at <= ?', older_than).destroy_all.count
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[owner_id]
   end

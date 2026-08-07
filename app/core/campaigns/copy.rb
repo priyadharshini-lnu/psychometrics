@@ -32,9 +32,11 @@ module Campaigns
 
     def copy_campaign(campaign)
       campaign.dup.tap do |new_campaign|
-        new_campaign.campaign_options = campaign.campaign_options.dup
         attrs = form.attributes.except(:copy_campaign_factors, :copy_campaign_ai_artifacts)
         new_campaign.update!(attrs)
+        new_options = campaign.campaign_options.dup
+        new_options.campaign = new_campaign
+        new_options.save!
       end
     end
 

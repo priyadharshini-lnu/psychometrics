@@ -5,7 +5,7 @@ require 'rails_helper'
 describe OracleAnalytics::GetEmbedToken do
   let(:client_id) { Faker::Lorem.sentence }
   let(:client_secret) { Faker::Lorem.sentence }
-  let(:private_key) { OpenSSL::PKey::RSA.generate(1024) }
+  let(:private_key) { OpenSSL::PKey::RSA.generate(2048) }
   let(:secrets) { { client_id: client_id, client_secret: client_secret } }
   let(:basic_auth_token) { Base64.strict_encode64("#{secrets[:client_id]}:#{secrets[:client_secret]}") }
   let(:config) { Settings.oac }

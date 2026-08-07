@@ -127,4 +127,68 @@ RSpec.describe Middlewares::AdminContextResolver do
       expect(Current.admin_context).to be_nil
     end
   end
+
+  describe 'superadmin client scoping' do
+    let!(:tenant) { create(:tenancy) }
+
+    def tenant_during_request(url)
+      captured = :not_checked
+
+      app_with_capture = lambda do |e|
+        captured = ActsAsTenant.current_tenant
+        [200, e, ['OK']]
+      end
+
+      described_class.new(app_with_capture).call(Rack::MockRequest.env_for(url))
+      captured
+    end
+
+    context 'when the feature flag is enabled' do
+      before { allow(TenantEnforcement).to receive(:superadmin_scoping_disabled?).and_return(false) }
+
+      it 'scopes the tenant on a client page' do
+        tenant_from_request = tenant_during_request("http://app.tte.com/administration/clients/#{tenant.id}")
+
+        expect(tenant_from_request).to eq(tenant)
+      end
+
+      it 'does not scope the tenant on a non-client page' do
+        tenant_from_request = tenant_during_request('http://app.tte.com/administration/admin_jobs')
+
+        expect(tenant_from_request).to be_nil
+      end
+
+      it 'does not scope when the client subdomain is bypassed' do
+        allow(TenantEnforcement).to receive(:subdomain_bypassed?).and_return(true)
+
+        tenant_from_request = tenant_during_request("http://app.tte.com/administration/clients/#{tenant.id}")
+
+        expect(tenant_from_request).to be_nil
+      end
+
+      it 'does not set Current.client on a client page' do
+        client_during_request = :not_checked
+
+        app_with_capture = lambda do |e|
+          client_during_request = Current.client
+          [200, e, ['OK']]
+        end
+
+        env = Rack::MockRequest.env_for("http://app.tte.com/administration/clients/#{tenant.id}")
+        described_class.new(app_with_capture).call(env)
+
+        expect(client_during_request).to be_nil
+      end
+    end
+
+    context 'when the feature flag is disabled' do
+      before { allow(TenantEnforcement).to receive(:superadmin_scoping_disabled?).and_return(true) }
+
+      it 'does not scope the tenant on a client page' do
+        tenant_from_request = tenant_during_request("http://app.tte.com/administration/clients/#{tenant.id}")
+
+        expect(tenant_from_request).to be_nil
+      end
+    end
+  end
 end

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Input, Pagination, Button,
+  Table, Row, Col, Input, Pagination, Button, message,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import {
@@ -17,6 +17,7 @@ import {
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import settings from '~/modules/admin/settings'
@@ -51,6 +52,13 @@ const { Column } = Table
 const { Search } = Input
 const { I18n } = window
 
+interface AssessorToDelete {
+  id: number
+  email: string
+  workshopAssessorsCount: number
+  totalEvaluations: number
+}
+
 interface Props extends ConnectedProps<typeof connecter> {
   tableConfig: TableConfig
   changeFilter(filterName: string, filterValue: string): void
@@ -80,9 +88,37 @@ const AssessorList: React.FC<Props> = ({
   remove,
 }) => {
   const { campaignId, projectId } = useParams() as { projectId: string, campaignId: string }
+  const [assessorToDelete, setAssessorToDelete] = useState<AssessorToDelete | null>(null)
+
   useEffect(() => {
     fetch(campaignId, tableConfig)
   }, [tableConfig])
+
+  const handleConfirmRemove = async () => {
+    if (!assessorToDelete) return
+    await remove(campaignId, assessorToDelete.id)
+    message.success(I18n.t('campaign_users.details.modals.remove.successfully', { email: assessorToDelete.email }))
+    setAssessorToDelete(null)
+  }
+
+  const buildWarningMessage = (workshopAssessorsCount: number, totalEvaluations: number) => {
+    if (workshopAssessorsCount === 0 && totalEvaluations === 0) return undefined
+
+    return (
+      <div>
+        {workshopAssessorsCount > 0 && (
+          <p>
+            {I18n.t('admin.assessor_remove_in_assessment_centers', { workshop_count: workshopAssessorsCount })}
+          </p>
+        )}
+        {totalEvaluations > 0 && (
+          <p>
+            {I18n.t('admin.assessor_remove_has_evaluations', { evaluation_count: totalEvaluations })}
+          </p>
+        )}
+      </div>
+    )
+  }
 
   return (
     <div>
@@ -161,9 +197,13 @@ const AssessorList: React.FC<Props> = ({
                     getActionsMenuProps({
                       campaignId,
                       id: assessor.id,
-                      email: assessor.email,
                       permissions: assessor.permissions,
-                      remove: () => remove(campaignId, assessor.id),
+                      onRemoveClick: () => setAssessorToDelete({
+                        id: assessor.id,
+                        email: assessor.email,
+                        workshopAssessorsCount: assessor.workshopAssessorsCount,
+                        totalEvaluations: assessor.totalEvaluations,
+                      }),
                     })
                   }
                   innerElement={(
@@ -187,6 +227,18 @@ const AssessorList: React.FC<Props> = ({
         />
       </div>
       <Modals modals={MODALS} />
+      {assessorToDelete && (
+        <AnswerableConfirmationModal
+          confirmationMessage={I18n.t('admin.assessor_remove_confirmation', { email: assessorToDelete.email })}
+          warningMessage={buildWarningMessage(
+            assessorToDelete.workshopAssessorsCount,
+            assessorToDelete.totalEvaluations,
+          )}
+          requiredAnswer={assessorToDelete.email}
+          onConfirm={handleConfirmRemove}
+          onCancel={() => setAssessorToDelete(null)}
+        />
+      )}
     </div>
   )
 }

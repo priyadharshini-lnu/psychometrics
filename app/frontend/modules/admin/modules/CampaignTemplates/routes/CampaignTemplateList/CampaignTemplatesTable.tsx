@@ -104,7 +104,9 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
           >
             {campaignTemplate.owner?.name}
           </Typography.Link>
-        ) : null)}
+        ) : (
+          <Typography.Text>{I18n.t('admin.tte')}</Typography.Text>
+        ))}
         width={400}
         sorter
       />

@@ -18,6 +18,34 @@ CREATE SCHEMA bi_models;
 
 
 --
+-- Name: c_10313; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10313;
+
+
+--
+-- Name: c_10463; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10463;
+
+
+--
+-- Name: c_10501; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10501;
+
+
+--
+-- Name: c_10542; Type: SCHEMA; Schema: -; Owner: -
+--
+
+CREATE SCHEMA c_10542;
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -142,8 +170,8 @@ CREATE TABLE public.assessments (
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     deleted_at timestamp without time zone,
     deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
     options json DEFAULT '{}'::json,
+    instructions json DEFAULT '{}'::json,
     default_norm_id integer,
     poster character varying,
     project_id bigint,
@@ -235,8 +263,8 @@ CREATE TABLE public.campaigns (
     uniq_code character varying,
     encrypted_pdf_password character varying,
     encrypted_pdf_password_iv character varying,
-    practice_campaign boolean DEFAULT false,
     default_idp_template_id bigint,
+    practice_campaign boolean DEFAULT false,
     is_template boolean DEFAULT false,
     tenant_id bigint
 );
@@ -677,8 +705,7 @@ CREATE TABLE public.questions (
     updated_by_id bigint,
     skill_id bigint,
     tenant_id bigint
-)
-WITH (autovacuum_vacuum_threshold='2000', autovacuum_vacuum_scale_factor='0.05', autovacuum_vacuum_insert_threshold='2000', autovacuum_vacuum_insert_scale_factor='0.05');
+);
 
 
 --
@@ -839,14 +866,14 @@ CREATE TABLE public.users (
     force_password_change boolean DEFAULT false,
     global_assessor boolean DEFAULT false,
     last_unsuccessful_attempt timestamp without time zone,
+    manager_id bigint,
     mobile_number character varying,
     mobile_verified boolean DEFAULT false,
-    manager_id bigint,
     unique_session_id character varying,
     external_id character varying,
     disabled_at timestamp(6) without time zone,
-    spoofed_by_id bigint,
-    tenant_id bigint
+    tenant_id bigint,
+    spoofed_by_id bigint
 );
 
 
@@ -861,6 +888,89 @@ CREATE VIEW bi_models.users AS
     last_name,
     email
    FROM public.users;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10313; Owner: -
+--
+
+CREATE VIEW c_10313.datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 69)
+  ORDER BY id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10463; Owner: -
+--
+
+CREATE VIEW c_10463.datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 65)
+  ORDER BY id;
+
+
+--
+-- Name: accesssheet; Type: VIEW; Schema: c_10501; Owner: -
+--
+
+CREATE VIEW c_10501.accesssheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
+    (data_deprecated_on_11_07_2025 ->> 'full name'::text) AS "full name",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'roll number'::text) AS "roll number",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'sample'::text) AS sample
+   FROM public.sheet_rows
+  WHERE (sheet_id = 61)
+  ORDER BY id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10501; Owner: -
+--
+
+CREATE VIEW c_10501.datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 62)
+  ORDER BY id;
+
+
+--
+-- Name: datasheet; Type: VIEW; Schema: c_10542; Owner: -
+--
+
+CREATE VIEW c_10542.datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 70)
+  ORDER BY id;
 
 
 --
@@ -1672,7 +1782,8 @@ CREATE TABLE public.application_settings (
     tenant_id bigint NOT NULL,
     ip_whitelisting_enabled boolean DEFAULT false NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    url_whitelisting_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -1693,6 +1804,41 @@ CREATE SEQUENCE public.application_settings_id_seq
 --
 
 ALTER SEQUENCE public.application_settings_id_seq OWNED BY public.application_settings.id;
+
+
+--
+-- Name: application_url_whitelist_entries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.application_url_whitelist_entries (
+    id bigint NOT NULL,
+    application_setting_id bigint NOT NULL,
+    tenant_id bigint NOT NULL,
+    url character varying NOT NULL,
+    description text,
+    enabled boolean DEFAULT true NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: application_url_whitelist_entries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.application_url_whitelist_entries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: application_url_whitelist_entries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.application_url_whitelist_entries_id_seq OWNED BY public.application_url_whitelist_entries.id;
 
 
 --
@@ -1999,12 +2145,12 @@ CREATE TABLE public.assigns (
     campaign_id bigint,
     evaluator_id bigint,
     subject_id bigint,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
     expiry_date timestamp without time zone,
     last_activity_at timestamp without time zone,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     additional_time integer,
     reset_count integer DEFAULT 0,
     prev_pages json DEFAULT '[]'::json
@@ -2091,8 +2237,8 @@ CREATE TABLE public.audit_logs (
     client_ip character varying,
     outcome integer DEFAULT 1,
     failure_reason character varying,
-    impersonated_by_id bigint,
-    tenant_id bigint
+    tenant_id bigint,
+    impersonated_by_id bigint
 );
 
 
@@ -2234,6 +2380,82 @@ ALTER SEQUENCE public.bulk_reports_id_seq OWNED BY public.bulk_reports.id;
 
 
 --
+-- Name: c_10313_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10313_datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 69)
+  ORDER BY id;
+
+
+--
+-- Name: c_10463_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10463_datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 65)
+  ORDER BY id;
+
+
+--
+-- Name: c_10501_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10501_datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 62)
+  ORDER BY id;
+
+
+--
+-- Name: c_10542_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10542_datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade",
+    (data_deprecated_on_11_07_2025 ->> 'Position'::text) AS "Position",
+    (data_deprecated_on_11_07_2025 ->> 'Last Name'::text) AS "Last Name",
+    (data_deprecated_on_11_07_2025 ->> 'Department'::text) AS "Department",
+    (data_deprecated_on_11_07_2025 ->> 'First Name'::text) AS "First Name"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 70)
+  ORDER BY id;
+
+
+--
+-- Name: c_10543_datasheet; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.c_10543_datasheet AS
+ SELECT id,
+    email AS "Email",
+    (data_deprecated_on_11_07_2025 ->> 'Grade'::text) AS "Grade"
+   FROM public.sheet_rows
+  WHERE (sheet_id = 72)
+  ORDER BY id;
+
+
+--
 -- Name: campaign_ai_artifact_dependencies; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2362,13 +2584,13 @@ CREATE TABLE public.campaign_assessments (
     norm_id bigint,
     campaign_assessment_group_id bigint,
     assessor_form_id bigint,
-    available_locales text[] DEFAULT '{}'::text[],
     external_norm_id character varying,
+    available_locales text[] DEFAULT '{}'::text[],
     external_config jsonb,
     prework boolean DEFAULT false,
-    allow_multiple_responses boolean DEFAULT false,
     workshop_activity boolean DEFAULT false NOT NULL,
     workshop_activity_duration integer,
+    allow_multiple_responses boolean DEFAULT false,
     require_scheduling boolean DEFAULT false,
     auto_assign boolean DEFAULT true,
     mettl_schedule_record_id bigint,
@@ -2660,12 +2882,12 @@ CREATE TABLE public.campaign_options (
     allow_continue_with_warning boolean DEFAULT false NOT NULL,
     minimum_upload_speed integer,
     minimum_download_speed integer,
-    face_detection_enabled boolean DEFAULT false NOT NULL,
-    minimum_face_detection_ratio integer DEFAULT 85,
-    phrase_verification_enabled boolean DEFAULT false NOT NULL,
     skip_assessment_level_checks boolean DEFAULT true NOT NULL,
     selective_proctoring_enabled boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    face_detection_enabled boolean DEFAULT false NOT NULL,
+    minimum_face_detection_ratio integer DEFAULT 85,
+    phrase_verification_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -4516,12 +4738,12 @@ CREATE TABLE public.idp_templates (
     skill_source_preference integer DEFAULT 0,
     document_analysis_ai_assistant_id bigint,
     skill_gap_report_analysis_ai_assistant_id bigint,
+    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
+    show_chat_instructions boolean DEFAULT false,
     guideline_position integer DEFAULT 0,
     flip_background boolean DEFAULT false,
     page_styles jsonb DEFAULT '{}'::jsonb NOT NULL,
     show_guidelines boolean DEFAULT true,
-    chat_instructions jsonb DEFAULT '{"content": ""}'::jsonb,
-    show_chat_instructions boolean DEFAULT false,
     tenant_id bigint
 );
 
@@ -5501,6 +5723,44 @@ ALTER SEQUENCE public.microsite_user_assessments_id_seq OWNED BY public.microsit
 
 
 --
+-- Name: normalized_campaign_accessheets; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_accessheets AS
+ SELECT sheets.campaign_id,
+    sheet_rows.email,
+    sheet_columns.name AS field,
+    sheet_row_data.numeric_value,
+    sheet_row_data.string_value
+   FROM (((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON (((sheet_columns.sheet_id = sheets.id) AND (sheet_columns.id = sheet_row_data.sheet_column_id))))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Accesssheet'::text));
+
+
+--
+-- Name: normalized_campaign_datasheets; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.normalized_campaign_datasheets AS
+ SELECT sheets.campaign_id,
+    campaign_users.id AS campaign_user_id,
+    users.id AS user_id,
+    sheet_rows.email,
+    sheet_columns.name AS field,
+    sheet_row_data.numeric_value,
+    sheet_row_data.string_value
+   FROM (((((public.sheet_row_data
+     JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
+     JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
+     JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
+     JOIN public.campaign_users ON ((campaign_users.campaign_id = sheets.campaign_id)))
+     JOIN public.users ON (((users.id = campaign_users.user_id) AND (users.email OPERATOR(public.=) sheet_rows.email))))
+  WHERE ((sheets.campaign_id IS NOT NULL) AND ((sheets.type)::text = 'Datasheet'::text));
+
+
+--
 -- Name: normalized_factor_scores; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -5585,6 +5845,32 @@ CREATE SEQUENCE public.notifications_id_seq
 --
 
 ALTER SEQUENCE public.notifications_id_seq OWNED BY public.notifications.id;
+
+
+--
+-- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.oracle_credentials (
+    id bigint NOT NULL,
+    idcs_user_id character varying NOT NULL,
+    idcs_user_name character varying NOT NULL,
+    user_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    last_accessed_at timestamp(6) without time zone
+);
+
+
+--
+-- Name: oac_users; Type: VIEW; Schema: public; Owner: -
+--
+
+CREATE VIEW public.oac_users AS
+ SELECT oracle_credentials.idcs_user_name AS user_name,
+    users.email
+   FROM (public.oracle_credentials
+     JOIN public.users ON ((users.id = oracle_credentials.user_id)));
 
 
 --
@@ -5737,21 +6023,6 @@ CREATE SEQUENCE public.old_passwords_id_seq
 --
 
 ALTER SEQUENCE public.old_passwords_id_seq OWNED BY public.old_passwords.id;
-
-
---
--- Name: oracle_credentials; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.oracle_credentials (
-    id bigint NOT NULL,
-    idcs_user_id character varying NOT NULL,
-    idcs_user_name character varying NOT NULL,
-    user_id bigint,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL,
-    last_accessed_at timestamp(6) without time zone
-);
 
 
 --
@@ -6620,7 +6891,8 @@ CREATE TABLE public.report_families (
     id integer NOT NULL,
     name character varying NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    tenant_id integer
 );
 
 
@@ -7205,9 +7477,11 @@ CREATE TABLE public.security_settings (
     disallow_password_login boolean DEFAULT false,
     session_inactivity_timeout_in_seconds integer DEFAULT 7200 NOT NULL,
     enable_recaptcha boolean DEFAULT false,
-    tenant_id bigint,
     external_logout_redirect_enabled boolean DEFAULT false,
-    external_logout_url character varying
+    external_logout_url character varying,
+    tenant_id bigint,
+    enforce_return_url_whitelist boolean DEFAULT false NOT NULL,
+    return_url_whitelist text DEFAULT ''::text NOT NULL
 );
 
 
@@ -8313,7 +8587,6 @@ CREATE TABLE public.threesixty_evaluators (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     approved_evaluations_count integer DEFAULT 0,
-    evaluators_count integer DEFAULT 0,
     tenant_id bigint
 );
 
@@ -9266,10 +9539,10 @@ CREATE TABLE public.users_results (
     step integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    meta_data jsonb DEFAULT '{}'::jsonb,
     current_element character varying,
     current_page integer,
     seedrandom character varying,
+    meta_data jsonb DEFAULT '{}'::jsonb,
     external_results jsonb DEFAULT '{}'::jsonb,
     innovation_styles jsonb DEFAULT '[]'::jsonb,
     prev_pages json DEFAULT '[]'::json,
@@ -10084,6 +10357,13 @@ ALTER TABLE ONLY public.application_public_keys ALTER COLUMN id SET DEFAULT next
 --
 
 ALTER TABLE ONLY public.application_settings ALTER COLUMN id SET DEFAULT nextval('public.application_settings_id_seq'::regclass);
+
+
+--
+-- Name: application_url_whitelist_entries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries ALTER COLUMN id SET DEFAULT nextval('public.application_url_whitelist_entries_id_seq'::regclass);
 
 
 --
@@ -11842,6 +12122,14 @@ ALTER TABLE ONLY public.application_public_keys
 
 ALTER TABLE ONLY public.application_settings
     ADD CONSTRAINT application_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: application_url_whitelist_entries application_url_whitelist_entries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries
+    ADD CONSTRAINT application_url_whitelist_entries_pkey PRIMARY KEY (id);
 
 
 --
@@ -13741,10 +14029,24 @@ CREATE UNIQUE INDEX idx_on_ai_assistant_id_key_1d1a169fc1 ON public.ai_assistant
 
 
 --
+-- Name: idx_on_application_setting_id_c2c1c3f547; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_c2c1c3f547 ON public.application_url_whitelist_entries USING btree (application_setting_id);
+
+
+--
 -- Name: idx_on_application_setting_id_e570a8a095; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX idx_on_application_setting_id_e570a8a095 ON public.application_ip_whitelist_entries USING btree (application_setting_id);
+
+
+--
+-- Name: idx_on_application_setting_id_enabled_bef3a46920; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_application_setting_id_enabled_bef3a46920 ON public.application_url_whitelist_entries USING btree (application_setting_id, enabled);
 
 
 --
@@ -14459,6 +14761,20 @@ CREATE INDEX index_application_settings_on_tenant_id ON public.application_setti
 --
 
 CREATE UNIQUE INDEX index_application_settings_on_user_id ON public.application_settings USING btree (user_id);
+
+
+--
+-- Name: index_application_url_whitelist_entries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_url_whitelist_entries_on_tenant_id ON public.application_url_whitelist_entries USING btree (tenant_id);
+
+
+--
+-- Name: index_application_url_whitelist_entries_on_url; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_application_url_whitelist_entries_on_url ON public.application_url_whitelist_entries USING btree (url);
 
 
 --
@@ -15299,6 +15615,13 @@ CREATE INDEX index_client_features_on_tenant_id ON public.client_features USING 
 --
 
 CREATE INDEX index_client_privacy_settings_on_client_id ON public.client_privacy_settings USING btree (client_id);
+
+
+--
+-- Name: index_client_privacy_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_client_privacy_settings_on_tenant_id ON public.client_privacy_settings USING btree (tenant_id);
 
 
 --
@@ -17416,6 +17739,13 @@ CREATE INDEX index_report_approval_settings_on_tenant_id ON public.report_approv
 
 
 --
+-- Name: index_report_families_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_report_families_on_tenant_id ON public.report_families USING btree (tenant_id);
+
+
+--
 -- Name: index_report_families_reports_on_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17682,6 +18012,13 @@ CREATE INDEX index_saville_user_assessments_on_user_assessment_id ON public.savi
 
 
 --
+-- Name: index_security_settings_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_security_settings_on_tenant_id ON public.security_settings USING btree (tenant_id);
+
+
+--
 -- Name: index_sessions_on_impersonator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -17693,13 +18030,6 @@ CREATE INDEX index_sessions_on_impersonator_id ON public.sessions USING btree (i
 --
 
 CREATE UNIQUE INDEX index_sessions_on_session_id ON public.sessions USING btree (session_id);
-
-
---
--- Name: index_sessions_on_tenant_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_sessions_on_tenant_id ON public.sessions USING btree (tenant_id);
 
 
 --
@@ -19707,7 +20037,7 @@ ALTER TABLE ONLY public.profile_settings
 --
 
 ALTER TABLE ONLY public.user_assessments
-    ADD CONSTRAINT fk_rails_00bab7d492 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_00bab7d492 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19715,7 +20045,7 @@ ALTER TABLE ONLY public.user_assessments
 --
 
 ALTER TABLE ONLY public.mettl_user_assessments
-    ADD CONSTRAINT fk_rails_010752ae59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_010752ae59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19723,7 +20053,7 @@ ALTER TABLE ONLY public.mettl_user_assessments
 --
 
 ALTER TABLE ONLY public.skill_translations
-    ADD CONSTRAINT fk_rails_0180bb7b05 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0180bb7b05 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19731,7 +20061,7 @@ ALTER TABLE ONLY public.skill_translations
 --
 
 ALTER TABLE ONLY public.saml_settings
-    ADD CONSTRAINT fk_rails_01ff451dbb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_01ff451dbb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19739,7 +20069,7 @@ ALTER TABLE ONLY public.saml_settings
 --
 
 ALTER TABLE ONLY public.workshop_invited_subjects
-    ADD CONSTRAINT fk_rails_0236e105b0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0236e105b0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19835,7 +20165,7 @@ ALTER TABLE ONLY public.assigns
 --
 
 ALTER TABLE ONLY public.system_check_sessions
-    ADD CONSTRAINT fk_rails_061c27fb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_061c27fb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19843,7 +20173,7 @@ ALTER TABLE ONLY public.system_check_sessions
 --
 
 ALTER TABLE ONLY public.versions
-    ADD CONSTRAINT fk_rails_06b8b76679 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_06b8b76679 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19851,7 +20181,7 @@ ALTER TABLE ONLY public.versions
 --
 
 ALTER TABLE ONLY public.iiht_user_assessments
-    ADD CONSTRAINT fk_rails_071fc242ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_071fc242ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19899,7 +20229,7 @@ ALTER TABLE ONLY public.idp_templates
 --
 
 ALTER TABLE ONLY public.skillvue_assessments
-    ADD CONSTRAINT fk_rails_0b2142735a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0b2142735a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19907,7 +20237,7 @@ ALTER TABLE ONLY public.skillvue_assessments
 --
 
 ALTER TABLE ONLY public.meeting_recordings
-    ADD CONSTRAINT fk_rails_0b64b80f51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0b64b80f51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19923,7 +20253,7 @@ ALTER TABLE ONLY public.workshop_resources
 --
 
 ALTER TABLE ONLY public.profile_settings
-    ADD CONSTRAINT fk_rails_0ca0529d6f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0ca0529d6f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19939,7 +20269,7 @@ ALTER TABLE ONLY public.workshop_invite_logs
 --
 
 ALTER TABLE ONLY public.skillvue_user_assessments
-    ADD CONSTRAINT fk_rails_0d404785ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0d404785ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19947,7 +20277,7 @@ ALTER TABLE ONLY public.skillvue_user_assessments
 --
 
 ALTER TABLE ONLY public.sms_histories
-    ADD CONSTRAINT fk_rails_0defde8966 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0defde8966 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19955,7 +20285,7 @@ ALTER TABLE ONLY public.sms_histories
 --
 
 ALTER TABLE ONLY public.communications_copy_memberships
-    ADD CONSTRAINT fk_rails_0df4abe90c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0df4abe90c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19963,7 +20293,7 @@ ALTER TABLE ONLY public.communications_copy_memberships
 --
 
 ALTER TABLE ONLY public.relationships
-    ADD CONSTRAINT fk_rails_0e33db3c74 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0e33db3c74 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -19987,7 +20317,7 @@ ALTER TABLE ONLY public.user_idp_development_actions
 --
 
 ALTER TABLE ONLY public.campaign_assessor_assessments
-    ADD CONSTRAINT fk_rails_0f3a69b748 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0f3a69b748 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20003,7 +20333,7 @@ ALTER TABLE ONLY public.user_bookings
 --
 
 ALTER TABLE ONLY public.ai_scoring_approval_settings
-    ADD CONSTRAINT fk_rails_0fab93dd72 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_0fab93dd72 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20027,7 +20357,7 @@ ALTER TABLE ONLY public.assessments_reports
 --
 
 ALTER TABLE ONLY public.idp_template_development_actions
-    ADD CONSTRAINT fk_rails_108b41b8fc FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_108b41b8fc FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20059,7 +20389,7 @@ ALTER TABLE ONLY public.user_reports
 --
 
 ALTER TABLE ONLY public.users
-    ADD CONSTRAINT fk_rails_135c8f54b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_135c8f54b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20075,7 +20405,7 @@ ALTER TABLE ONLY public.licenses
 --
 
 ALTER TABLE ONLY public.campaign_reports
-    ADD CONSTRAINT fk_rails_13aa9f63fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_13aa9f63fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20083,7 +20413,7 @@ ALTER TABLE ONLY public.campaign_reports
 --
 
 ALTER TABLE ONLY public.threesixty_email_histories
-    ADD CONSTRAINT fk_rails_14d2e43e9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_14d2e43e9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20091,7 +20421,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.communication_cc_users
-    ADD CONSTRAINT fk_rails_1530ab8a7e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1530ab8a7e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20099,7 +20429,7 @@ ALTER TABLE ONLY public.communication_cc_users
 --
 
 ALTER TABLE ONLY public.campaign_assessment_groups
-    ADD CONSTRAINT fk_rails_154a268175 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_154a268175 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20115,7 +20445,7 @@ ALTER TABLE ONLY public.ai_assistant_chats
 --
 
 ALTER TABLE ONLY public.user_report_pdfs
-    ADD CONSTRAINT fk_rails_16b14d3148 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_16b14d3148 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20139,7 +20469,7 @@ ALTER TABLE ONLY public.admin_jobs
 --
 
 ALTER TABLE ONLY public.client_features
-    ADD CONSTRAINT fk_rails_16fbe20b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_16fbe20b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20155,7 +20485,7 @@ ALTER TABLE ONLY public.privacy_settings
 --
 
 ALTER TABLE ONLY public.workshop_assessors
-    ADD CONSTRAINT fk_rails_176303cc7d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_176303cc7d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20171,7 +20501,7 @@ ALTER TABLE ONLY public.reports
 --
 
 ALTER TABLE ONLY public.questions
-    ADD CONSTRAINT fk_rails_182a857994 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_182a857994 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20187,7 +20517,7 @@ ALTER TABLE ONLY public.project_features
 --
 
 ALTER TABLE ONLY public.hogan_report_settings
-    ADD CONSTRAINT fk_rails_1a1f1f15cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1a1f1f15cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20227,7 +20557,7 @@ ALTER TABLE ONLY public.campaign_templates
 --
 
 ALTER TABLE ONLY public.threesixty_email_schedules
-    ADD CONSTRAINT fk_rails_1d28372050 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1d28372050 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20235,7 +20565,7 @@ ALTER TABLE ONLY public.threesixty_email_schedules
 --
 
 ALTER TABLE ONLY public.idp_settings
-    ADD CONSTRAINT fk_rails_1d8833379b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1d8833379b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20243,7 +20573,7 @@ ALTER TABLE ONLY public.idp_settings
 --
 
 ALTER TABLE ONLY public.proficiency_level_translations
-    ADD CONSTRAINT fk_rails_1dbceeb51b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1dbceeb51b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20251,7 +20581,7 @@ ALTER TABLE ONLY public.proficiency_level_translations
 --
 
 ALTER TABLE ONLY public.privacy_consents
-    ADD CONSTRAINT fk_rails_1dc6eadc30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1dc6eadc30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20283,7 +20613,7 @@ ALTER TABLE ONLY public.admin_jobs
 --
 
 ALTER TABLE ONLY public.agiles
-    ADD CONSTRAINT fk_rails_1e58a4732c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1e58a4732c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20307,7 +20637,7 @@ ALTER TABLE ONLY public.communication_email_resources
 --
 
 ALTER TABLE ONLY public.saville_factors
-    ADD CONSTRAINT fk_rails_1ee38b5608 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_1ee38b5608 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20355,7 +20685,7 @@ ALTER TABLE ONLY public.client_privacy_settings
 --
 
 ALTER TABLE ONLY public.innovation_styles
-    ADD CONSTRAINT fk_rails_23071c14a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_23071c14a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20371,7 +20701,7 @@ ALTER TABLE ONLY public.assessors
 --
 
 ALTER TABLE ONLY public.skills
-    ADD CONSTRAINT fk_rails_232b6298ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_232b6298ae FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20379,7 +20709,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.mettl_schedule_records
-    ADD CONSTRAINT fk_rails_237b56bea4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_237b56bea4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20395,7 +20725,7 @@ ALTER TABLE ONLY public.license_usages
 --
 
 ALTER TABLE ONLY public.transcriptions
-    ADD CONSTRAINT fk_rails_23b8230a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_23b8230a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20411,7 +20741,7 @@ ALTER TABLE ONLY public.idp_template_reflection_questions
 --
 
 ALTER TABLE ONLY public.data_reports
-    ADD CONSTRAINT fk_rails_2417dda3dd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_2417dda3dd FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20427,7 +20757,7 @@ ALTER TABLE ONLY public.communication_emails
 --
 
 ALTER TABLE ONLY public.dimensions
-    ADD CONSTRAINT fk_rails_24904426c2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_24904426c2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20435,7 +20765,7 @@ ALTER TABLE ONLY public.dimensions
 --
 
 ALTER TABLE ONLY public.assessment_consent_settings
-    ADD CONSTRAINT fk_rails_24a0bd06fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_24a0bd06fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20451,7 +20781,7 @@ ALTER TABLE ONLY public.sms_invites
 --
 
 ALTER TABLE ONLY public.communications
-    ADD CONSTRAINT fk_rails_255082bfab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_255082bfab FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20531,7 +20861,7 @@ ALTER TABLE ONLY public.communication_emails
 --
 
 ALTER TABLE ONLY public.data_report_jobs
-    ADD CONSTRAINT fk_rails_2a7c0b49ad FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_2a7c0b49ad FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20571,7 +20901,7 @@ ALTER TABLE ONLY public.power_bi_settings
 --
 
 ALTER TABLE ONLY public.resource_hogan_credentials
-    ADD CONSTRAINT fk_rails_2ca37623d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_2ca37623d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20595,7 +20925,7 @@ ALTER TABLE ONLY public.innovation_styles_factors
 --
 
 ALTER TABLE ONLY public.power_bi_settings
-    ADD CONSTRAINT fk_rails_2f05b80bd4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_2f05b80bd4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20627,7 +20957,7 @@ ALTER TABLE ONLY public.memberships_admin_roles
 --
 
 ALTER TABLE ONLY public.bulk_reports
-    ADD CONSTRAINT fk_rails_305b903068 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_305b903068 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20635,7 +20965,7 @@ ALTER TABLE ONLY public.bulk_reports
 --
 
 ALTER TABLE ONLY public.idp_template_reflection_questions
-    ADD CONSTRAINT fk_rails_30bc07fffb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_30bc07fffb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20659,7 +20989,7 @@ ALTER TABLE ONLY public.client_features
 --
 
 ALTER TABLE ONLY public.workshop_subjects
-    ADD CONSTRAINT fk_rails_3180e6c333 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_3180e6c333 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20675,7 +21005,7 @@ ALTER TABLE ONLY public.system_check_records
 --
 
 ALTER TABLE ONLY public.ai_translation_results
-    ADD CONSTRAINT fk_rails_321d4a2d21 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_321d4a2d21 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20731,7 +21061,7 @@ ALTER TABLE ONLY public.workshop_invites
 --
 
 ALTER TABLE ONLY public.datasheet_column_preferences
-    ADD CONSTRAINT fk_rails_34f958abd8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_34f958abd8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20739,7 +21069,7 @@ ALTER TABLE ONLY public.datasheet_column_preferences
 --
 
 ALTER TABLE ONLY public.ai_assistants
-    ADD CONSTRAINT fk_rails_35091bc14b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_35091bc14b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20747,7 +21077,7 @@ ALTER TABLE ONLY public.ai_assistants
 --
 
 ALTER TABLE ONLY public.reports
-    ADD CONSTRAINT fk_rails_3523aa4198 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_3523aa4198 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20755,7 +21085,7 @@ ALTER TABLE ONLY public.reports
 --
 
 ALTER TABLE ONLY public.question_recoding
-    ADD CONSTRAINT fk_rails_353fbe9a3f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_353fbe9a3f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20771,7 +21101,7 @@ ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
 --
 
 ALTER TABLE ONLY public.development_action_translations
-    ADD CONSTRAINT fk_rails_355bf2e419 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_355bf2e419 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20883,7 +21213,7 @@ ALTER TABLE ONLY public.highlights
 --
 
 ALTER TABLE ONLY public.assessment_assistants
-    ADD CONSTRAINT fk_rails_3ba0082822 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_3ba0082822 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20923,7 +21253,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.mettl_assessments
-    ADD CONSTRAINT fk_rails_3d11060354 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_3d11060354 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20931,7 +21261,7 @@ ALTER TABLE ONLY public.mettl_assessments
 --
 
 ALTER TABLE ONLY public.user_idp_skills
-    ADD CONSTRAINT fk_rails_3da8352e19 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_3da8352e19 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20955,7 +21285,7 @@ ALTER TABLE ONLY public.campaign_reports
 --
 
 ALTER TABLE ONLY public.registration_settings
-    ADD CONSTRAINT fk_rails_40695b33e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_40695b33e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20963,7 +21293,7 @@ ALTER TABLE ONLY public.registration_settings
 --
 
 ALTER TABLE ONLY public.workshop_resources
-    ADD CONSTRAINT fk_rails_4101702f57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_4101702f57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20979,7 +21309,7 @@ ALTER TABLE ONLY public.yoodli_user_assessments
 --
 
 ALTER TABLE ONLY public.active_storage_attachments
-    ADD CONSTRAINT fk_rails_416c0e3daf FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_416c0e3daf FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -20995,7 +21325,7 @@ ALTER TABLE ONLY public.communications
 --
 
 ALTER TABLE ONLY public.job_roles
-    ADD CONSTRAINT fk_rails_41e0791cf4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_41e0791cf4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21011,7 +21341,7 @@ ALTER TABLE ONLY public.workshop_assessors
 --
 
 ALTER TABLE ONLY public.meeting_rooms
-    ADD CONSTRAINT fk_rails_43d463df7a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_43d463df7a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21027,7 +21357,7 @@ ALTER TABLE ONLY public.user_availability_dates
 --
 
 ALTER TABLE ONLY public.factors_scoring
-    ADD CONSTRAINT fk_rails_44210345ff FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_44210345ff FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21059,7 +21389,7 @@ ALTER TABLE ONLY public.users
 --
 
 ALTER TABLE ONLY public.skills_development_actions
-    ADD CONSTRAINT fk_rails_4593dac76e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_4593dac76e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21083,7 +21413,7 @@ ALTER TABLE ONLY public.clients
 --
 
 ALTER TABLE ONLY public.threesixty_options
-    ADD CONSTRAINT fk_rails_481a08952d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_481a08952d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21099,7 +21429,7 @@ ALTER TABLE ONLY public.sheets
 --
 
 ALTER TABLE ONLY public.clients
-    ADD CONSTRAINT fk_rails_4904dbddb8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_4904dbddb8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21107,7 +21437,7 @@ ALTER TABLE ONLY public.clients
 --
 
 ALTER TABLE ONLY public.libraries
-    ADD CONSTRAINT fk_rails_491d7a5b1f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_491d7a5b1f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21139,7 +21469,7 @@ ALTER TABLE ONLY public.resource_hogan_credentials
 --
 
 ALTER TABLE ONLY public.sheet_columns
-    ADD CONSTRAINT fk_rails_49d87605e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_49d87605e5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21148,6 +21478,14 @@ ALTER TABLE ONLY public.sheet_columns
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_4a3b56dde9 FOREIGN KEY (user_report_id) REFERENCES public.user_reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: application_url_whitelist_entries fk_rails_4ab0221ecf; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.application_url_whitelist_entries
+    ADD CONSTRAINT fk_rails_4ab0221ecf FOREIGN KEY (application_setting_id) REFERENCES public.application_settings(id) ON DELETE CASCADE;
 
 
 --
@@ -21163,7 +21501,7 @@ ALTER TABLE ONLY public.simulation_user_assessments
 --
 
 ALTER TABLE ONLY public.factor_benchmark_scores
-    ADD CONSTRAINT fk_rails_4c3153b621 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_4c3153b621 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21227,7 +21565,7 @@ ALTER TABLE ONLY public.idp_templates
 --
 
 ALTER TABLE ONLY public.project_licenses
-    ADD CONSTRAINT fk_rails_4fca944b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_4fca944b71 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21259,7 +21597,7 @@ ALTER TABLE ONLY public.assessments
 --
 
 ALTER TABLE ONLY public.client_auditlog_export_settings
-    ADD CONSTRAINT fk_rails_51a5f6cc28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_51a5f6cc28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21267,7 +21605,7 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 --
 
 ALTER TABLE ONLY public.taggings
-    ADD CONSTRAINT fk_rails_51de8abb84 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_51de8abb84 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21283,7 +21621,7 @@ ALTER TABLE ONLY public.workshop_assessors
 --
 
 ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
-    ADD CONSTRAINT fk_rails_527a9ce116 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_527a9ce116 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21299,7 +21637,7 @@ ALTER TABLE ONLY public.interview_questions
 --
 
 ALTER TABLE ONLY public.user_report_comments
-    ADD CONSTRAINT fk_rails_54fe2d8f31 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_54fe2d8f31 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21307,7 +21645,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.campaign_factor_values
-    ADD CONSTRAINT fk_rails_576c8dd023 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_576c8dd023 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21331,7 +21669,7 @@ ALTER TABLE ONLY public.workshop_invited_subjects
 --
 
 ALTER TABLE ONLY public.workshops
-    ADD CONSTRAINT fk_rails_5a18ed4b75 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5a18ed4b75 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21347,7 +21685,7 @@ ALTER TABLE ONLY public.lti_oauth2_access_tokens
 --
 
 ALTER TABLE ONLY public.admin_roles
-    ADD CONSTRAINT fk_rails_5ac63da10f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5ac63da10f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21355,7 +21693,7 @@ ALTER TABLE ONLY public.admin_roles
 --
 
 ALTER TABLE ONLY public.membership_grants
-    ADD CONSTRAINT fk_rails_5ae73a639d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5ae73a639d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21403,7 +21741,7 @@ ALTER TABLE ONLY public.user_idp_plans
 --
 
 ALTER TABLE ONLY public.idp_template_interview_questions
-    ADD CONSTRAINT fk_rails_5c13980b03 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5c13980b03 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21419,7 +21757,7 @@ ALTER TABLE ONLY public.communication_emails
 --
 
 ALTER TABLE ONLY public.taxonomy_levels
-    ADD CONSTRAINT fk_rails_5ceb3c0449 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5ceb3c0449 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21451,7 +21789,7 @@ ALTER TABLE ONLY public.workshop_invite_logs
 --
 
 ALTER TABLE ONLY public.factors_sub_factors
-    ADD CONSTRAINT fk_rails_5f180a6f59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_5f180a6f59 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21491,7 +21829,7 @@ ALTER TABLE ONLY public.saville_user_assessments
 --
 
 ALTER TABLE ONLY public.threesixty_email_template_translations
-    ADD CONSTRAINT fk_rails_620a591be5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_620a591be5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21539,7 +21877,7 @@ ALTER TABLE ONLY public.communications
 --
 
 ALTER TABLE ONLY public.occupations
-    ADD CONSTRAINT fk_rails_63bf08b91c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_63bf08b91c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21555,7 +21893,7 @@ ALTER TABLE ONLY public.reports
 --
 
 ALTER TABLE ONLY public.workshop_invite_translations
-    ADD CONSTRAINT fk_rails_6453ada747 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6453ada747 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21563,7 +21901,7 @@ ALTER TABLE ONLY public.workshop_invite_translations
 --
 
 ALTER TABLE ONLY public.communication_translations
-    ADD CONSTRAINT fk_rails_649fbaaf30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_649fbaaf30 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21579,7 +21917,7 @@ ALTER TABLE ONLY public.workshop_managers
 --
 
 ALTER TABLE ONLY public.factors_norms
-    ADD CONSTRAINT fk_rails_65037f07dc FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_65037f07dc FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21587,7 +21925,7 @@ ALTER TABLE ONLY public.factors_norms
 --
 
 ALTER TABLE ONLY public.user_reports
-    ADD CONSTRAINT fk_rails_662ac624d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_662ac624d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21603,7 +21941,7 @@ ALTER TABLE ONLY public.campaign_factors
 --
 
 ALTER TABLE ONLY public.profile_field_values
-    ADD CONSTRAINT fk_rails_67bd976b7b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_67bd976b7b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21635,7 +21973,7 @@ ALTER TABLE ONLY public.webhook_subscriptions
 --
 
 ALTER TABLE ONLY public.users_results
-    ADD CONSTRAINT fk_rails_68864abce3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_68864abce3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21643,7 +21981,7 @@ ALTER TABLE ONLY public.users_results
 --
 
 ALTER TABLE ONLY public.campaign_templates
-    ADD CONSTRAINT fk_rails_6914dfd8eb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6914dfd8eb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21675,7 +22013,7 @@ ALTER TABLE ONLY public.campaign_factor_values
 --
 
 ALTER TABLE ONLY public.campaign_idp_dependencies
-    ADD CONSTRAINT fk_rails_6a5f6a838e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6a5f6a838e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21683,7 +22021,7 @@ ALTER TABLE ONLY public.campaign_idp_dependencies
 --
 
 ALTER TABLE ONLY public.registration_codes
-    ADD CONSTRAINT fk_rails_6b0d3224cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6b0d3224cb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21691,7 +22029,7 @@ ALTER TABLE ONLY public.registration_codes
 --
 
 ALTER TABLE ONLY public.user_reflection_question_answers
-    ADD CONSTRAINT fk_rails_6b85256d6b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6b85256d6b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21707,7 +22045,7 @@ ALTER TABLE ONLY public.profile_field_values
 --
 
 ALTER TABLE ONLY public.privacy_setting_translations
-    ADD CONSTRAINT fk_rails_6bc706fc4d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6bc706fc4d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21723,7 +22061,7 @@ ALTER TABLE ONLY public.email_templates
 --
 
 ALTER TABLE ONLY public.development_actions
-    ADD CONSTRAINT fk_rails_6c3ca0d8a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6c3ca0d8a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21787,7 +22125,7 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
 --
 
 ALTER TABLE ONLY public.security_settings
-    ADD CONSTRAINT fk_rails_6e59d3360c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6e59d3360c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21803,7 +22141,7 @@ ALTER TABLE ONLY public.questions
 --
 
 ALTER TABLE ONLY public.workshop_invites
-    ADD CONSTRAINT fk_rails_6f5632544f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_6f5632544f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21835,7 +22173,7 @@ ALTER TABLE ONLY public.skills_development_actions
 --
 
 ALTER TABLE ONLY public.memberships_admin_roles
-    ADD CONSTRAINT fk_rails_712aed4296 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_712aed4296 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21867,7 +22205,7 @@ ALTER TABLE ONLY public.assessment_consent_settings
 --
 
 ALTER TABLE ONLY public.assessment_translations
-    ADD CONSTRAINT fk_rails_73d33bf7fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_73d33bf7fd FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21875,7 +22213,7 @@ ALTER TABLE ONLY public.assessment_translations
 --
 
 ALTER TABLE ONLY public.norms
-    ADD CONSTRAINT fk_rails_745f8fa5e7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_745f8fa5e7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21892,6 +22230,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 ALTER TABLE ONLY public.text_module_overrides
     ADD CONSTRAINT fk_rails_7558551b5d FOREIGN KEY (module_id) REFERENCES public.reports_modules(id) ON DELETE CASCADE;
+
+
+--
+-- Name: design_settings fk_rails_7751627d9c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.design_settings
+    ADD CONSTRAINT fk_rails_7751627d9c FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -21915,7 +22261,7 @@ ALTER TABLE ONLY public.sheet_rows
 --
 
 ALTER TABLE ONLY public.hogan_credentials
-    ADD CONSTRAINT fk_rails_783b6b7a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_783b6b7a7c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21931,7 +22277,7 @@ ALTER TABLE ONLY public.privacy_consents
 --
 
 ALTER TABLE ONLY public.hogan_logs
-    ADD CONSTRAINT fk_rails_7920aef002 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7920aef002 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21939,7 +22285,7 @@ ALTER TABLE ONLY public.hogan_logs
 --
 
 ALTER TABLE ONLY public.text_module_overrides
-    ADD CONSTRAINT fk_rails_79319e5680 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_79319e5680 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21963,7 +22309,7 @@ ALTER TABLE ONLY public.sms_histories
 --
 
 ALTER TABLE ONLY public.ai_assistant_tool_calls
-    ADD CONSTRAINT fk_rails_79c54a9dce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_79c54a9dce FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -21987,7 +22333,7 @@ ALTER TABLE ONLY public.factors
 --
 
 ALTER TABLE ONLY public.user_idp_plans
-    ADD CONSTRAINT fk_rails_7b601e5428 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7b601e5428 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22011,7 +22357,7 @@ ALTER TABLE ONLY public.iiht_user_assessments
 --
 
 ALTER TABLE ONLY public.notifications
-    ADD CONSTRAINT fk_rails_7c99fe0556 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7c99fe0556 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22027,7 +22373,7 @@ ALTER TABLE ONLY public.saml_settings
 --
 
 ALTER TABLE ONLY public.idp_template_skills
-    ADD CONSTRAINT fk_rails_7d3a970a77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7d3a970a77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22035,7 +22381,7 @@ ALTER TABLE ONLY public.idp_template_skills
 --
 
 ALTER TABLE ONLY public.system_check_records
-    ADD CONSTRAINT fk_rails_7d46b13fcb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7d46b13fcb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22067,7 +22413,7 @@ ALTER TABLE ONLY public.saml_service_providers
 --
 
 ALTER TABLE ONLY public.reports_campaign_ai_artifacts
-    ADD CONSTRAINT fk_rails_7dd73ea1a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7dd73ea1a6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22091,7 +22437,7 @@ ALTER TABLE ONLY public.mettl_assessments
 --
 
 ALTER TABLE ONLY public.highlights
-    ADD CONSTRAINT fk_rails_7f297908a0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_7f297908a0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22099,7 +22445,7 @@ ALTER TABLE ONLY public.highlights
 --
 
 ALTER TABLE ONLY public.communications_assessments
-    ADD CONSTRAINT fk_rails_8164f9bc1a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8164f9bc1a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22131,7 +22477,7 @@ ALTER TABLE ONLY public.ai_assistant_requests
 --
 
 ALTER TABLE ONLY public.sheet_row_data
-    ADD CONSTRAINT fk_rails_82211a7ad0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_82211a7ad0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22147,7 +22493,7 @@ ALTER TABLE ONLY public.user_idp_comments
 --
 
 ALTER TABLE ONLY public.profile_fields
-    ADD CONSTRAINT fk_rails_837627e94f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_837627e94f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22243,7 +22589,7 @@ ALTER TABLE ONLY public.privacy_consents
 --
 
 ALTER TABLE ONLY public.webhook_event_logs
-    ADD CONSTRAINT fk_rails_8b120bcf25 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8b120bcf25 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22299,7 +22645,7 @@ ALTER TABLE ONLY public.design_settings
 --
 
 ALTER TABLE ONLY public.client_ai_assistants
-    ADD CONSTRAINT fk_rails_8c95cbfa65 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8c95cbfa65 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22315,7 +22661,7 @@ ALTER TABLE ONLY public.occupations_factors
 --
 
 ALTER TABLE ONLY public.campaigns
-    ADD CONSTRAINT fk_rails_8de91ec8d1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8de91ec8d1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22339,7 +22685,7 @@ ALTER TABLE ONLY public.campaign_factors
 --
 
 ALTER TABLE ONLY public.job_role_translations
-    ADD CONSTRAINT fk_rails_8e86d5b5e3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8e86d5b5e3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22355,7 +22701,7 @@ ALTER TABLE ONLY public.workshop_invited_subjects
 --
 
 ALTER TABLE ONLY public.vector_embeddings
-    ADD CONSTRAINT fk_rails_8edacfd04b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8edacfd04b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22363,7 +22709,7 @@ ALTER TABLE ONLY public.vector_embeddings
 --
 
 ALTER TABLE ONLY public.project_assessments
-    ADD CONSTRAINT fk_rails_8fd810d074 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_8fd810d074 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22403,7 +22749,7 @@ ALTER TABLE ONLY public.norms
 --
 
 ALTER TABLE ONLY public.saville_report_settings
-    ADD CONSTRAINT fk_rails_92d211f01b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_92d211f01b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22419,7 +22765,7 @@ ALTER TABLE ONLY public.threesixty_email_templates
 --
 
 ALTER TABLE ONLY public.campaign_idps
-    ADD CONSTRAINT fk_rails_93f035e4b1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_93f035e4b1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22428,6 +22774,14 @@ ALTER TABLE ONLY public.campaign_idps
 
 ALTER TABLE ONLY public.assigns_reports
     ADD CONSTRAINT fk_rails_9418a5a870 FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: threesixty_instruction_templates fk_rails_945b478737; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates
+    ADD CONSTRAINT fk_rails_945b478737 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22475,7 +22829,7 @@ ALTER TABLE ONLY public.workshop_invite_translations
 --
 
 ALTER TABLE ONLY public.reports_modules
-    ADD CONSTRAINT fk_rails_9748809208 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9748809208 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22499,7 +22853,7 @@ ALTER TABLE ONLY public.membership_grants
 --
 
 ALTER TABLE ONLY public.sheets
-    ADD CONSTRAINT fk_rails_987c02568d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_987c02568d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22507,7 +22861,7 @@ ALTER TABLE ONLY public.sheets
 --
 
 ALTER TABLE ONLY public.threesixty_instruction_template_translations
-    ADD CONSTRAINT fk_rails_98be498569 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_98be498569 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22515,7 +22869,7 @@ ALTER TABLE ONLY public.threesixty_instruction_template_translations
 --
 
 ALTER TABLE ONLY public.threesixty_evaluators
-    ADD CONSTRAINT fk_rails_991c04b7d6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_991c04b7d6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22579,7 +22933,7 @@ ALTER TABLE ONLY public.skillvue_assessments
 --
 
 ALTER TABLE ONLY public.idp_report_pdfs
-    ADD CONSTRAINT fk_rails_9bef385cc9 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9bef385cc9 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22595,7 +22949,7 @@ ALTER TABLE ONLY public.reports
 --
 
 ALTER TABLE ONLY public.communications_memberships
-    ADD CONSTRAINT fk_rails_9c70af2c70 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9c70af2c70 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22619,7 +22973,7 @@ ALTER TABLE ONLY public.saville_report_settings
 --
 
 ALTER TABLE ONLY public.factor_translations
-    ADD CONSTRAINT fk_rails_9dc88c24b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9dc88c24b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22627,7 +22981,7 @@ ALTER TABLE ONLY public.factor_translations
 --
 
 ALTER TABLE ONLY public.assessments_reports
-    ADD CONSTRAINT fk_rails_9de6d6093f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9de6d6093f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22639,19 +22993,11 @@ ALTER TABLE ONLY public.ai_assistant_chats
 
 
 --
--- Name: sessions fk_rails_9e410b9855; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sessions
-    ADD CONSTRAINT fk_rails_9e410b9855 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
-
-
---
 -- Name: user_idp_comments fk_rails_9e711aa4d5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_idp_comments
-    ADD CONSTRAINT fk_rails_9e711aa4d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_9e711aa4d5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22691,7 +23037,7 @@ ALTER TABLE ONLY public.api_keys
 --
 
 ALTER TABLE ONLY public.project_features
-    ADD CONSTRAINT fk_rails_a12db21c61 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a12db21c61 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22715,7 +23061,7 @@ ALTER TABLE ONLY public.idp_template_development_actions
 --
 
 ALTER TABLE ONLY public.idp_templates
-    ADD CONSTRAINT fk_rails_a2aec4f928 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a2aec4f928 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22747,7 +23093,7 @@ ALTER TABLE ONLY public.workshops
 --
 
 ALTER TABLE ONLY public.skills_job_roles
-    ADD CONSTRAINT fk_rails_a518d3f016 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a518d3f016 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22771,7 +23117,7 @@ ALTER TABLE ONLY public.campaign_assessor_assessments
 --
 
 ALTER TABLE ONLY public.user_report_events
-    ADD CONSTRAINT fk_rails_a5eeb9e965 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a5eeb9e965 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22787,7 +23133,7 @@ ALTER TABLE ONLY public.assessments_clients
 --
 
 ALTER TABLE ONLY public.saml_service_providers
-    ADD CONSTRAINT fk_rails_a926eacb83 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a926eacb83 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22803,7 +23149,7 @@ ALTER TABLE ONLY public.ai_assistant_chats
 --
 
 ALTER TABLE ONLY public.memberships
-    ADD CONSTRAINT fk_rails_a959f0d1fb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a959f0d1fb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22811,7 +23157,15 @@ ALTER TABLE ONLY public.memberships
 --
 
 ALTER TABLE ONLY public.communications_users
-    ADD CONSTRAINT fk_rails_a984a80778 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_a984a80778 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: report_families fk_rails_aadaa73397; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.report_families
+    ADD CONSTRAINT fk_rails_aadaa73397 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -22859,7 +23213,7 @@ ALTER TABLE ONLY public.campaign_users
 --
 
 ALTER TABLE ONLY public.user_assessment_verification_images
-    ADD CONSTRAINT fk_rails_ac7695fcce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ac7695fcce FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22867,7 +23221,7 @@ ALTER TABLE ONLY public.user_assessment_verification_images
 --
 
 ALTER TABLE ONLY public.campaign_factor_groups
-    ADD CONSTRAINT fk_rails_ac7ac4c1fa FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ac7ac4c1fa FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22907,7 +23261,7 @@ ALTER TABLE ONLY public.dimensions
 --
 
 ALTER TABLE ONLY public.simulation_user_assessments
-    ADD CONSTRAINT fk_rails_ae6b550ac4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ae6b550ac4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22923,7 +23277,7 @@ ALTER TABLE ONLY public.communication_translations
 --
 
 ALTER TABLE ONLY public.design_settings
-    ADD CONSTRAINT fk_rails_af556142e4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_af556142e4 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22939,7 +23293,7 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 --
 
 ALTER TABLE ONLY public.sms_records
-    ADD CONSTRAINT fk_rails_b03234e439 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_b03234e439 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22947,7 +23301,7 @@ ALTER TABLE ONLY public.sms_records
 --
 
 ALTER TABLE ONLY public.webhook_subscriptions
-    ADD CONSTRAINT fk_rails_b079b5ac77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_b079b5ac77 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22979,7 +23333,7 @@ ALTER TABLE ONLY public.threesixty_evaluators
 --
 
 ALTER TABLE ONLY public.communication_emails
-    ADD CONSTRAINT fk_rails_b0fa8c7a1b FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_b0fa8c7a1b FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -22995,7 +23349,7 @@ ALTER TABLE ONLY public.question_recoding
 --
 
 ALTER TABLE ONLY public.threesixty_campaigns
-    ADD CONSTRAINT fk_rails_b2d78bd457 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_b2d78bd457 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23004,6 +23358,22 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.norms
     ADD CONSTRAINT fk_rails_b3f9f037c2 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: blocks fk_rails_b464d88af5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blocks
+    ADD CONSTRAINT fk_rails_b464d88af5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: innovation_styles_factors fk_rails_b67c448aab; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles_factors
+    ADD CONSTRAINT fk_rails_b67c448aab FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23091,7 +23461,7 @@ ALTER TABLE ONLY public.idp_templates
 --
 
 ALTER TABLE ONLY public.threesixty_subjects
-    ADD CONSTRAINT fk_rails_bdd0f9c656 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_bdd0f9c656 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23099,7 +23469,7 @@ ALTER TABLE ONLY public.threesixty_subjects
 --
 
 ALTER TABLE ONLY public.campaign_options
-    ADD CONSTRAINT fk_rails_be239b96ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_be239b96ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23115,7 +23485,7 @@ ALTER TABLE ONLY public.proctoring_sessions
 --
 
 ALTER TABLE ONLY public.reports_filters
-    ADD CONSTRAINT fk_rails_be92bb6806 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_be92bb6806 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23123,7 +23493,7 @@ ALTER TABLE ONLY public.reports_filters
 --
 
 ALTER TABLE ONLY public.smtp_settings
-    ADD CONSTRAINT fk_rails_bf519d8986 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_bf519d8986 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23139,7 +23509,15 @@ ALTER TABLE ONLY public.user_reports
 --
 
 ALTER TABLE ONLY public.report_approval_settings
-    ADD CONSTRAINT fk_rails_c0e49f8ff2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c0e49f8ff2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: occupation_condition_sets fk_rails_c1f1e397b2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.occupation_condition_sets
+    ADD CONSTRAINT fk_rails_c1f1e397b2 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
 
 
 --
@@ -23155,7 +23533,7 @@ ALTER TABLE ONLY public.user_idp_plans
 --
 
 ALTER TABLE ONLY public.media_responses
-    ADD CONSTRAINT fk_rails_c34a28fea5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c34a28fea5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23187,7 +23565,7 @@ ALTER TABLE ONLY public.smtp_settings
 --
 
 ALTER TABLE ONLY public.idp_template_translations
-    ADD CONSTRAINT fk_rails_c4b210f807 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c4b210f807 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23203,7 +23581,7 @@ ALTER TABLE ONLY public.campaign_idps
 --
 
 ALTER TABLE ONLY public.proctoring_sessions
-    ADD CONSTRAINT fk_rails_c63aaef42d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c63aaef42d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23251,7 +23629,7 @@ ALTER TABLE ONLY public.factor_benchmark_scores
 --
 
 ALTER TABLE ONLY public.proficiency_levels
-    ADD CONSTRAINT fk_rails_c8ae3f4099 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c8ae3f4099 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23275,7 +23653,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.job_groups
-    ADD CONSTRAINT fk_rails_c9bd10dd9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_c9bd10dd9e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23291,7 +23669,7 @@ ALTER TABLE ONLY public.skills
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE SET NULL;
+    ADD CONSTRAINT fk_rails_cabfb7f2da FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id) ON DELETE CASCADE;
 
 
 --
@@ -23307,7 +23685,7 @@ ALTER TABLE ONLY public.taxonomy_levels
 --
 
 ALTER TABLE ONLY public.workshop_managers
-    ADD CONSTRAINT fk_rails_cb61879a66 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cb61879a66 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23339,7 +23717,7 @@ ALTER TABLE ONLY public.assessments_clients
 --
 
 ALTER TABLE ONLY public.user_idp_development_actions
-    ADD CONSTRAINT fk_rails_cc6a771861 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cc6a771861 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23355,7 +23733,7 @@ ALTER TABLE ONLY public.ai_scoring_approval_settings
 --
 
 ALTER TABLE ONLY public.privacy_settings
-    ADD CONSTRAINT fk_rails_cd3488c540 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cd3488c540 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23363,7 +23741,7 @@ ALTER TABLE ONLY public.privacy_settings
 --
 
 ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
-    ADD CONSTRAINT fk_rails_ce86ab4ccb FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ce86ab4ccb FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23395,7 +23773,7 @@ ALTER TABLE ONLY public.threesixty_campaigns
 --
 
 ALTER TABLE ONLY public.campaign_factors
-    ADD CONSTRAINT fk_rails_cff428b57f FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_cff428b57f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23419,7 +23797,7 @@ ALTER TABLE ONLY public.threesixty_email_histories
 --
 
 ALTER TABLE ONLY public.licenses
-    ADD CONSTRAINT fk_rails_d0e4537c54 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d0e4537c54 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23459,7 +23837,7 @@ ALTER TABLE ONLY public.assigns
 --
 
 ALTER TABLE ONLY public.integrations
-    ADD CONSTRAINT fk_rails_d329ca1b17 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d329ca1b17 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23619,7 +23997,7 @@ ALTER TABLE ONLY public.idp_template_skills
 --
 
 ALTER TABLE ONLY public.ai_factor_scores
-    ADD CONSTRAINT fk_rails_d8ab2df12d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d8ab2df12d FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23635,7 +24013,7 @@ ALTER TABLE ONLY public.libraries
 --
 
 ALTER TABLE ONLY public.client_translations
-    ADD CONSTRAINT fk_rails_d90d0664a3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d90d0664a3 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23651,7 +24029,7 @@ ALTER TABLE ONLY public.threesixty_subjects
 --
 
 ALTER TABLE ONLY public.campaign_assessments
-    ADD CONSTRAINT fk_rails_d92726ee86 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d92726ee86 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23667,7 +24045,7 @@ ALTER TABLE ONLY public.communications_assessments
 --
 
 ALTER TABLE ONLY public.campaign_option_translations
-    ADD CONSTRAINT fk_rails_d98986c45a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_d98986c45a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23691,7 +24069,7 @@ ALTER TABLE ONLY public.application_settings
 --
 
 ALTER TABLE ONLY public.assessments
-    ADD CONSTRAINT fk_rails_da7f5005f0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_da7f5005f0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23699,7 +24077,7 @@ ALTER TABLE ONLY public.assessments
 --
 
 ALTER TABLE ONLY public.factors_aliases
-    ADD CONSTRAINT fk_rails_da816dc3ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_da816dc3ab FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23707,7 +24085,7 @@ ALTER TABLE ONLY public.factors_aliases
 --
 
 ALTER TABLE ONLY public.skill_aliases
-    ADD CONSTRAINT fk_rails_dae6991e57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_dae6991e57 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23715,7 +24093,7 @@ ALTER TABLE ONLY public.skill_aliases
 --
 
 ALTER TABLE ONLY public.campaign_ai_artifacts
-    ADD CONSTRAINT fk_rails_db2057ad60 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_db2057ad60 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23723,7 +24101,7 @@ ALTER TABLE ONLY public.campaign_ai_artifacts
 --
 
 ALTER TABLE ONLY public.user_profiles
-    ADD CONSTRAINT fk_rails_db79de0ef5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_db79de0ef5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23731,7 +24109,7 @@ ALTER TABLE ONLY public.user_profiles
 --
 
 ALTER TABLE ONLY public.reports_pages
-    ADD CONSTRAINT fk_rails_db7fa0a509 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_db7fa0a509 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23763,7 +24141,7 @@ ALTER TABLE ONLY public.user_report_comments
 --
 
 ALTER TABLE ONLY public.skill_groups
-    ADD CONSTRAINT fk_rails_dc4f438553 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_dc4f438553 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23771,7 +24149,7 @@ ALTER TABLE ONLY public.skill_groups
 --
 
 ALTER TABLE ONLY public.campaign_users
-    ADD CONSTRAINT fk_rails_dd0d199f89 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_dd0d199f89 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23779,7 +24157,7 @@ ALTER TABLE ONLY public.campaign_users
 --
 
 ALTER TABLE ONLY public.webhook_subscription_topics
-    ADD CONSTRAINT fk_rails_dd33716dd0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_dd33716dd0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23851,7 +24229,7 @@ ALTER TABLE ONLY public.assessments_reports
 --
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
-    ADD CONSTRAINT fk_rails_e12dc4543e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e12dc4543e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23867,7 +24245,7 @@ ALTER TABLE ONLY public.user_saved_filters
 --
 
 ALTER TABLE ONLY public.ai_assistant_requests
-    ADD CONSTRAINT fk_rails_e310ce83f8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e310ce83f8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23875,7 +24253,7 @@ ALTER TABLE ONLY public.ai_assistant_requests
 --
 
 ALTER TABLE ONLY public.version_associations
-    ADD CONSTRAINT fk_rails_e35f5b7625 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e35f5b7625 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23883,7 +24261,7 @@ ALTER TABLE ONLY public.version_associations
 --
 
 ALTER TABLE ONLY public.reflection_questions
-    ADD CONSTRAINT fk_rails_e37d558366 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e37d558366 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23907,7 +24285,7 @@ ALTER TABLE ONLY public.user_idp_plans
 --
 
 ALTER TABLE ONLY public.user_assessment_factor_scores
-    ADD CONSTRAINT fk_rails_e405efb3a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e405efb3a1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23947,7 +24325,7 @@ ALTER TABLE ONLY public.communications_assessments
 --
 
 ALTER TABLE ONLY public.workshop_invite_logs
-    ADD CONSTRAINT fk_rails_e5676f2fa7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e5676f2fa7 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23955,7 +24333,7 @@ ALTER TABLE ONLY public.workshop_invite_logs
 --
 
 ALTER TABLE ONLY public.sms_invites
-    ADD CONSTRAINT fk_rails_e5ead21bf8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e5ead21bf8 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23963,7 +24341,7 @@ ALTER TABLE ONLY public.sms_invites
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats
-    ADD CONSTRAINT fk_rails_e6115669f1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e6115669f1 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -23979,7 +24357,7 @@ ALTER TABLE ONLY public.license_usages
 --
 
 ALTER TABLE ONLY public.mhs_user_assessments
-    ADD CONSTRAINT fk_rails_e7d7ca1dde FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e7d7ca1dde FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24011,7 +24389,7 @@ ALTER TABLE ONLY public.assessment_translations
 --
 
 ALTER TABLE ONLY public.sheet_rows
-    ADD CONSTRAINT fk_rails_e8feaeff28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_e8feaeff28 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24035,7 +24413,7 @@ ALTER TABLE ONLY public.threesixty_evaluators
 --
 
 ALTER TABLE ONLY public.dashboards
-    ADD CONSTRAINT fk_rails_ea67961578 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ea67961578 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24091,7 +24469,7 @@ ALTER TABLE ONLY public.idp_report_pdfs
 --
 
 ALTER TABLE ONLY public.audit_logs
-    ADD CONSTRAINT fk_rails_ecbd71e2ce FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ecbd71e2ce FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24123,7 +24501,7 @@ ALTER TABLE ONLY public.campaign_assessor_assessments
 --
 
 ALTER TABLE ONLY public.threesixty_email_templates
-    ADD CONSTRAINT fk_rails_ee64242b49 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_ee64242b49 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24187,7 +24565,7 @@ ALTER TABLE ONLY public.communications
 --
 
 ALTER TABLE ONLY public.admin_jobs
-    ADD CONSTRAINT fk_rails_f051f81fee FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f051f81fee FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24203,7 +24581,7 @@ ALTER TABLE ONLY public.assessments
 --
 
 ALTER TABLE ONLY public.threesixty_nomination_requirements
-    ADD CONSTRAINT fk_rails_f0f1000797 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f0f1000797 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24227,7 +24605,7 @@ ALTER TABLE ONLY public.idp_template_development_actions
 --
 
 ALTER TABLE ONLY public.interview_questions
-    ADD CONSTRAINT fk_rails_f179bb7be6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f179bb7be6 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24235,7 +24613,7 @@ ALTER TABLE ONLY public.interview_questions
 --
 
 ALTER TABLE ONLY public.occupations_factors
-    ADD CONSTRAINT fk_rails_f1834f8dbf FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f1834f8dbf FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24259,7 +24637,7 @@ ALTER TABLE ONLY public.clients
 --
 
 ALTER TABLE ONLY public.yoodli_user_assessments
-    ADD CONSTRAINT fk_rails_f2ce628c93 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f2ce628c93 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24275,7 +24653,7 @@ ALTER TABLE ONLY public.client_auditlog_export_settings
 --
 
 ALTER TABLE ONLY public.saville_user_assessments
-    ADD CONSTRAINT fk_rails_f33a76b413 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f33a76b413 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24299,7 +24677,7 @@ ALTER TABLE ONLY public.project_assessments
 --
 
 ALTER TABLE ONLY public.license_usages
-    ADD CONSTRAINT fk_rails_f412a5330c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f412a5330c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24323,7 +24701,7 @@ ALTER TABLE ONLY public.client_translations
 --
 
 ALTER TABLE ONLY public.user_assessment_verification_media
-    ADD CONSTRAINT fk_rails_f4738fdb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f4738fdb51 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24339,7 +24717,7 @@ ALTER TABLE ONLY public.license_usages
 --
 
 ALTER TABLE ONLY public.reflection_question_translations
-    ADD CONSTRAINT fk_rails_f5a66c415e FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f5a66c415e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24347,7 +24725,7 @@ ALTER TABLE ONLY public.reflection_question_translations
 --
 
 ALTER TABLE ONLY public.assessors
-    ADD CONSTRAINT fk_rails_f693f76e0a FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f693f76e0a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24355,7 +24733,7 @@ ALTER TABLE ONLY public.assessors
 --
 
 ALTER TABLE ONLY public.ai_assistant_output_schema_keys
-    ADD CONSTRAINT fk_rails_f6e524851c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f6e524851c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24379,7 +24757,7 @@ ALTER TABLE ONLY public.agile_events
 --
 
 ALTER TABLE ONLY public.communication_email_resources
-    ADD CONSTRAINT fk_rails_f7eb156bc0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f7eb156bc0 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24387,7 +24765,7 @@ ALTER TABLE ONLY public.communication_email_resources
 --
 
 ALTER TABLE ONLY public.reports_campaign_factors
-    ADD CONSTRAINT fk_rails_f82d6f32ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f82d6f32ac FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24403,7 +24781,7 @@ ALTER TABLE ONLY public.campaign_factor_groups
 --
 
 ALTER TABLE ONLY public.ai_assisted_user_sessions
-    ADD CONSTRAINT fk_rails_f8424d4f42 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_f8424d4f42 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24443,7 +24821,7 @@ ALTER TABLE ONLY public.campaigns
 --
 
 ALTER TABLE ONLY public.pearson_user_assessments
-    ADD CONSTRAINT fk_rails_fa0873e37c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_fa0873e37c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24451,7 +24829,7 @@ ALTER TABLE ONLY public.pearson_user_assessments
 --
 
 ALTER TABLE ONLY public.factors
-    ADD CONSTRAINT fk_rails_fade5b73f5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_fade5b73f5 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24459,7 +24837,7 @@ ALTER TABLE ONLY public.factors
 --
 
 ALTER TABLE ONLY public.assessment_consent_setting_translations
-    ADD CONSTRAINT fk_rails_fb98bf721c FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_fb98bf721c FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24467,7 +24845,7 @@ ALTER TABLE ONLY public.assessment_consent_setting_translations
 --
 
 ALTER TABLE ONLY public.client_privacy_settings
-    ADD CONSTRAINT fk_rails_fbcbbfe438 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_fbcbbfe438 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24491,7 +24869,7 @@ ALTER TABLE ONLY public.user_assessment_factor_scores
 --
 
 ALTER TABLE ONLY public.user_bookings
-    ADD CONSTRAINT fk_rails_fd5eac44ec FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+    ADD CONSTRAINT fk_rails_fd5eac44ec FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
 
 
 --
@@ -24525,8 +24903,16 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260806000001'),
+('20260724095212'),
+('20260724091252'),
+('20260724075701'),
 ('20260717000000'),
+('20260713060835'),
+('20260713060508'),
 ('20260709000000'),
+('20260702091252'),
+('20260702075701'),
 ('20260630180650'),
 ('20260630180649'),
 ('20260630180648'),
@@ -24544,7 +24930,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260602120000'),
 ('20260602000002'),
 ('20260602000001'),
-('20260601000001'),
 ('20260527180000'),
 ('20260526000001'),
 ('20260520094000'),
@@ -24553,15 +24938,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260513115038'),
 ('20260513115037'),
 ('20260512165457'),
+('20260511093000'),
 ('20260511092923'),
-('20260507171301'),
 ('20260507171240'),
 ('20260507171239'),
 ('20260507091734'),
 ('20260504120000'),
-('20260429130533'),
 ('20260424120000'),
-('20260423120000'),
 ('20260423084117'),
 ('20260417093000'),
 ('20260415153054'),
@@ -25601,4 +25984,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
