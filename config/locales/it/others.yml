@@ -2941,8 +2941,6 @@ it:
     zh-HK: Cinese (Hong Kong)
     zh-Hant: Cinese tradizionale
     zh-TW: Cinese (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nome della campagna
     status_updated_at: Ultimo aggiornamento di stato

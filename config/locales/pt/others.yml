@@ -2953,8 +2953,6 @@ pt:
     zh-HK: Chinês (Hong Kong)
     zh-Hant: Chinês - Tradicional
     zh-TW: Chinês (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nome da campanha
     status_updated_at: Última atualização do estado
