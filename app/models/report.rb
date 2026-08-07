@@ -77,7 +77,9 @@ class Report < ApplicationRecord
   scope :with_campaign, lambda { |campaign_id|
     joins(:campaign_reports).where(campaign_reports: { campaign_id: campaign_id })
   }
-
+  scope :owned_by_client_or_tte, lambda { |client_id|
+    where('owner_id IS NULL OR owner_id = ?', client_id)
+  }
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
   has_many :campaign_templates, dependent: :destroy

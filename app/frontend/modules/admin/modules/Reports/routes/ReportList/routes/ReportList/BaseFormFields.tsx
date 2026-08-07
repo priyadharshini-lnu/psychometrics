@@ -69,6 +69,8 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
 
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
   const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
+  const ownerId = Form.useWatch('ownerId', form)
+  const selectedOwnerId = ownerId ?? report?.owner?.id
 
   useEffect(() => {
     setAssessmentCache([...assessmentCache, ...assessments.filter(a => assessmentIds.includes(a.id))])
@@ -237,7 +239,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
                 filterOption: false,
                 onSearch: (value) => {
                   fetchAssessments({
-                    apiConfig: { filter: { filterable_fields: value }, fields: { assessments: ['name'] } },
+                    apiConfig: {
+                      filter: {
+                        filterable_fields: value,
+                        owner_id: selectedOwnerId,
+                      },
+                      fields: {
+                        assessments: ['name'],
+                      },
+                    },
                   })
                 },
               }}

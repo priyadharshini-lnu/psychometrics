@@ -19,6 +19,9 @@ class ReportFamily < ApplicationRecord
   validate :owner_compatibility_with_reports, if: :validate_owner_compatibility_with_reports?
   validate :owner_compatibility_with_licenses, if: :validate_owner_compatibility_with_licenses?
 
+  scope :owned_by_client_or_tte, lambda { |client_id|
+    where('tenant_id IS NULL OR tenant_id = ?', client_id)
+  }
   tenant_config has_global_records: true, optional: true
   include Tenantable
 
