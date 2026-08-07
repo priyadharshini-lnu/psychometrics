@@ -1,6 +1,5 @@
-import { renderHook } from '@testing-library/react-hooks'
 import {
-  act, fireEvent, render, screen,
+  act, fireEvent, render, renderHook, screen,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter, MemoryRouter, useLocation } from 'react-router-dom'

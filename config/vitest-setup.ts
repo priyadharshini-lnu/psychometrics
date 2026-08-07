@@ -6,6 +6,9 @@ import React from 'react'
 global.I18n = I18n
 global.React = React
 
+// React 18 needs this flag for act() to batch updates instead of warning.
+globalThis.IS_REACT_ACT_ENVIRONMENT = true
+
 const modules = import.meta.glob('../app/assets/javascripts/administration/i18n/*.js')
 
 await Promise.all(Object.values(modules).map(loader => loader()))

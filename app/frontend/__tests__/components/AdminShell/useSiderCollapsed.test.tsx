@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 import { useSiderCollapsed } from '~/components/AdminShell/useSiderCollapsed'
 import type { PreferenceRow } from '~/components/AdminShell/currentUserDetails'
 
