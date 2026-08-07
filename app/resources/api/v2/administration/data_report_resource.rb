@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DataReportResource < Api::V2::Administration::BaseResource
-  attributes :name, :configuration, :report_type, :scope, :updated_at
+  attributes :name,
+             :configuration,
+             :report_type,
+             :scope,
+             :updated_at,
+             :runtime_parameters_enabled,
+             :runtime_parameters
 
   has_one :owner, class_name: 'Client'
   has_one :last_updated_by, class_name: 'User'
@@ -17,5 +23,12 @@ class Api::V2::Administration::DataReportResource < Api::V2::Administration::Bas
 
   def self.updatable_fields(opts)
     creatable_fields(opts)
+  end
+
+  delegate :runtime_parameters_enabled, to: :@model
+
+  def runtime_parameters
+    handler_class = AdminJobs::DataReportExport::REPORT_TYPE_HANDLERS[@model.report_type]
+    handler_class&.runtime_parameters || []
   end
 end

@@ -1,5 +1,13 @@
 import * as t from 'io-ts'
 
+export const RuntimeParameterTR = t.type({
+  name: t.string,
+  type: t.string,
+  description: t.union([t.string, t.null, t.undefined]),
+  runtimeUpdatable: t.boolean,
+  required: t.boolean,
+})
+
 export const DataReportTR = t.type({
   id: t.string,
   name: t.string,
@@ -7,6 +15,10 @@ export const DataReportTR = t.type({
   configuration: t.union([t.string, t.null]),
   reportType: t.string,
   scope: t.string,
+
+  runtimeParametersEnabled: t.boolean,
+  runtimeParameters: t.array(RuntimeParameterTR),
+
   owner: t.union([
     t.type({
       id: t.string,
@@ -21,7 +33,8 @@ export const DataReportTR = t.type({
       name: t.string,
       email: t.string,
     }),
-    t.undefined]),
+    t.undefined,
+  ]),
 })
 
 export const OkResponse = t.string
@@ -38,6 +51,8 @@ export const PasswordTR = t.type({
   password: t.string,
 })
 export type Password = t.TypeOf<typeof PasswordTR>
+
+export type RuntimeParameter = t.TypeOf<typeof RuntimeParameterTR>
 
 export type DataReportJob = t.TypeOf<typeof DataReportJobTR>
 

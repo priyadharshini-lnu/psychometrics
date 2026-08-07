@@ -432,6 +432,7 @@ en:
     category: Category
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     change_reason: Change reason
+    change_report_dates_message: Do you want to change the report date range?
     change_score: changed score
     change_score_log: Change Score Log
     characters: characters
@@ -2427,6 +2428,17 @@ en:
     role_project_admin: Project Admin
     role_superadmin: Super Admin
     run: Run
+    runtime_configuration_invalid_json_object: runtime_configuration must be a valid JSON object
+    runtime_configuration_invalid_parameter: is not a runtime-updatable parameter
+    runtime_parameter_date_range_required: Please select both Start Date and End Date
+    runtime_parameter_editable_section_title: Date range
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Included filters
+    runtime_parameter_modal_subtitle: Review details and update the date range if needed.
+    runtime_parameter_modal_title: Run Report
+    runtime_parameter_not_set: Not provided
+    runtime_parameter_submit_button: Run Now
+    runtime_parameter_value_column: Value
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
