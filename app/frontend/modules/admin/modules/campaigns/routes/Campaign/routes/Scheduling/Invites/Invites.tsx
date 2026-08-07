@@ -21,8 +21,8 @@ export const Invites = () => {
   }
 
   return (
-    <div style={{ padding: 20 }}>
-      <div className={styles.controls}>
+    <div>
+      <div className={styles.controls} style={{ padding: 20 }}>
         <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
           <Radio.Button value="invites">{I18n.t('admin.invite_invites')}</Radio.Button>
           <Radio.Button value="requests">{I18n.t('admin.invite_requests')}</Radio.Button>

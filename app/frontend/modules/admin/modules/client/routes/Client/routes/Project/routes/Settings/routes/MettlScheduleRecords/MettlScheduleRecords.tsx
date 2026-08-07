@@ -165,8 +165,8 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
 
 
   return (
-    <div style={{ padding: 20 }}>
-      <Space>
+    <div>
+      <Space style={{ padding: 20 }}>
         <DirectionalNavigateBackIcon onClick={() => handleTabChange('integrations')} />
         <Typography.Title level={5}>
           {I18n.t('admin.integrations_actions_back')}

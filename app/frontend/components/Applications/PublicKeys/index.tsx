@@ -51,7 +51,7 @@ const PublicKeysContent: React.FC<ContentProps> = ({ applicationId }) => {
   }
 
   return (
-    <div className="pl">
+    <div>
       <PublicKeysFilter
         onAddClick={() => setAddModalOpen(true)}
         onGenerateClick={() => setGenerateModalOpen(true)}

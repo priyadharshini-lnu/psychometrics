@@ -42,8 +42,8 @@ export const IpSettings: React.FC<Props> = ({
 
   return (
     <Resource<ApplicationIpWhitelistEntry, BaseMeta> config={config} name="application_ip_whitelist_entries">
-      <div className="pl">
-        <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8">
+      <div>
+        <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8 pl">
           <div>
             <p>
               <Text strong className="mb4">
