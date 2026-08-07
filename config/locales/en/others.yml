@@ -2151,6 +2151,7 @@ en:
       max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    csrf_retry: Please try again
     equal_to_current_password: must be different than the current password.
     equal_to_email: must be different than the email.
     error: Error
