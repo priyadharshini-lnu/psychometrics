@@ -47,6 +47,13 @@ Object.defineProperty(window.navigator, 'mediaDevices', {
   },
 })
 
+// jsdom has no pseudo-element styles, so antd's scrollbar probe ('::-webkit-scrollbar') throws.
+const nativeGetComputedStyle = window.getComputedStyle.bind(window)
+
+window.getComputedStyle = (element: Element, pseudoElement?: string | null) => (
+  pseudoElement ? document.createElement('div').style : nativeGetComputedStyle(element)
+)
+
 // Mock ResizeObserver for Ant Design components
 global.ResizeObserver = class ResizeObserver {
   observe = vi.fn()
