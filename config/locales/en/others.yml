@@ -1282,7 +1282,7 @@ en:
     lighthouse_logo_alt_text: Lighthouse logo
     login:
       continue_btn: Continue
-      description: Please login with your personal account information
+      description: Please login with your Lighthouse account information
       forgot_password: Forgot Password?
       hide_password: Hide password
       login_btn: Login
@@ -1291,7 +1291,7 @@ en:
       or: OR
       show_password: Show password
       sso_btn: Login with Single Sign-On
-      title: Welcome!
+      title: Welcome to Lighthouse!
     logout: Logout
     magic_link:
       description: Please enter your email address to receive a login link

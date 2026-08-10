@@ -24,7 +24,7 @@ const MagicLinkComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors, clearFlashMessage,
 }) => (
   <div className={styles.container}>
-    <Typography.Title level={3}>{I18n.t('auth.login.title')}</Typography.Title>
+    <Typography.Title level={2}>{I18n.t('auth.login.title')}</Typography.Title>
 
     {isShowOtherOptions(projectConfig) ? (
       <Typography.Paragraph className={styles.description}>

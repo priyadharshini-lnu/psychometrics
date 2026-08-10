@@ -55,7 +55,7 @@ const LoginComponent: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <Typography.Title level={1}>{I18n.t('auth.login.title')}</Typography.Title>
+      <Typography.Title level={2}>{I18n.t('auth.login.title')}</Typography.Title>
       <Typography.Paragraph className={styles.description}>
         {I18n.t('auth.login.description')}
       </Typography.Paragraph>
