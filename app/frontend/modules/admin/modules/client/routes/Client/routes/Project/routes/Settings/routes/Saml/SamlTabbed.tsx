@@ -45,7 +45,7 @@ export const SamlTabbed: React.FC = () => {
             onClick={handleMenuClick}
             style={{ marginBottom: 16, paddingLeft: '' }}
           />
-          <div style={{ padding: '0 20px' }}>
+          <div>
             <TabContent selectedKey={selectedKey} />
           </div>
         </div>
