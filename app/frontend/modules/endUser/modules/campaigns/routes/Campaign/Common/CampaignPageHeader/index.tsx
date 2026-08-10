@@ -1,6 +1,7 @@
 import React, {
   useEffect, FC, useState, useContext,
 } from 'react'
+import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@ant-design/pro-components'
@@ -94,11 +95,10 @@ export const CampaignPageHeaderComponent: FC<NewHeaderComponentProps> = ({
         theme: 'light',
       }}
       trigger={['click']}
-      className={styles.campaignDropdown}
       onOpenChange={setOpenMenu}
       placement={isMobile ? 'bottom' : 'bottomLeft'}
     >
-      <Button className="ps-0 pe-0" type="link" aria-expanded={openMenu}>
+      <Button className={cs(styles.campaignDropdown, 'ps-0 pe-0')} type="link" aria-expanded={openMenu}>
         <Row wrap={false}>
           <Col>{activeCampaign && activeCampaignName}</Col>
           <Col

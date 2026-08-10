@@ -127,20 +127,27 @@ class License < ApplicationRecord
 
   def validate_client_compatibility_with_report_family_owner?
     return false unless type_common?
-    return false if report_family.blank?
+    return false if report_family_for_compatibility.blank?
     return false if client.blank?
-    return false if report_family.tenant_id.blank?
+    return false if report_family_for_compatibility.tenant_id.blank?
 
     new_record? || will_save_change_to_client_id? || will_save_change_to_report_family_id?
   end
 
   def client_compatibility_with_report_family_owner
-    return if report_family.tenant_id == client_id
+    return if report_family_for_compatibility.blank?
+    return if report_family_for_compatibility.tenant_id == client_id
 
     add_owner_compatibility_error(
       :report_family,
       child_resource: :client,
       parent_resource: :report_bundle
     )
+  end
+
+  def report_family_for_compatibility
+    @report_family_for_compatibility ||= ActsAsTenant.without_tenant do
+      ReportFamily.find_by(id: report_family_id)
+    end
   end
 end

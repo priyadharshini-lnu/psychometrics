@@ -181,7 +181,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
   validates :dimension, presence: true, if: :common?
   validates :name, presence: true
   validate :owner_and_dimension_owner_compatibility, if: :validate_owner_and_dimension_owner_compatibility?
-  validate :owner_and_report_owner_compatibility, if: :validate_owner_and_report_owner_compatibility?
 
   serialize :external_settings, coder: PsyJsonbSerializer
 
@@ -560,25 +559,6 @@ class Assessment < ApplicationRecord # rubocop:disable Metrics/ClassLength
       :dimension,
       child_resource: :assessment,
       parent_resource: :dimension
-    )
-  end
-
-  def validate_owner_and_report_owner_compatibility?
-    return false if skip_owner_validation
-
-    persisted? && will_save_change_to_owner_id?
-  end
-
-  def owner_and_report_owner_compatibility
-    incompatible_reports = reports.reject do |report|
-      compatible_owner_ids?(report.owner_id, owner_id)
-    end.uniq(&:id)
-    return if incompatible_reports.blank?
-
-    add_owner_compatibility_error(
-      :owner,
-      child_resource: :assessment,
-      parent_resource: :report
     )
   end
 end

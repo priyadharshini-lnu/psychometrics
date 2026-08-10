@@ -6,7 +6,7 @@ module Api
 
     def copy
       audit! :copy, resource, payload: { source_id: resource.id }
-      copied_dimension = resource.clone_and_save(user_id: current_user.id)
+      copied_dimension = resource.clone_and_save(user_id: current_user.id, skip_owner_validation: true)
       jsonapi_render json: copied_dimension
     end
 

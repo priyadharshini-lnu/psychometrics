@@ -131,6 +131,7 @@ ja:
     application_settings_at_least_one_url_required: URLホワイトリストを有効にする前に、少なくとも1つのURLエントリを有効にしてください。
     application_settings_confirm_delete_ip: このIPアドレスを削除してもよろしいですか？
     application_settings_confirm_delete_url: このURLを削除してもよろしいですか？
+    application_settings_edit_ip_address: IPアドレス／CIDR範囲の編集
     application_settings_enable_ip_whitelisting: IPホワイトリストを有効にする
     application_settings_enable_url_whitelisting: URLホワイトリストを有効にする
     application_settings_invalid_ip_format: IPアドレスまたはCIDR形式が不正です
@@ -641,7 +642,7 @@ ja:
       thursday: 木曜日
       tuesday: 火曜日
       wednesday: 水曜日
-    dimension_errors_cannot_delete_with_assessments: このディメンションは評価に関連付けられているため、削除できません。まず、関連付けられている評価を削除または更新してください。
+    dimension_errors_cannot_delete_with_assessments: このディメンションは、まだ評価と関連付けられているため削除できません。まず、関連付けられている評価を削除または更新してください。
     dimension_translations_export_scheduled: ディメンション「%{name}」の翻訳をエクスポートするようスケジュールされました。
     dimensions: 寸法
     dimensions_destroy_successfully: ディメンション %{name} は正常に削除されました。

@@ -196,6 +196,7 @@ RSpec.describe Api::V2::Administration::ReportsController, type: :request do
       expect(job.data['report_id']).to eq(report.id)
       expect(job.data['owner_id']).to eq(client.id)
       expect(job.data['name']).to eq('Copy of First Report')
+      expect(job.data['skip_owner_validation']).to eq(true)
     end
   end
 

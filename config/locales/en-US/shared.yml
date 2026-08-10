@@ -90,6 +90,7 @@ en-US:
     failed: Failed
     'false': false
     file: File
+    file_upload_button: Select File
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate

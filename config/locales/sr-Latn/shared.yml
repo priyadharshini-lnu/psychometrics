@@ -89,6 +89,7 @@ sr-Latn:
     failed: Неуспело
     'false': false
     file: Датотека
+    file_upload_button: Изабери фајл
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Генериши

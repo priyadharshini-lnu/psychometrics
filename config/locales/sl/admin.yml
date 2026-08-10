@@ -131,6 +131,7 @@ sl:
     application_settings_at_least_one_url_required: Preden omogočite seznam dovoljenih URL-jev, omogočite vsaj en vnos URL-ja.
     application_settings_confirm_delete_ip: Ali ste prepričani, da želite izbrisati ta IP-naslov?
     application_settings_confirm_delete_url: Ali ste prepričani, da želite izbrisati ta URL?
+    application_settings_edit_ip_address: Uredi IP-naslov / CIDR-območje
     application_settings_enable_ip_whitelisting: Omogoči belo listo IP-naslovov
     application_settings_enable_url_whitelisting: Omogoči seznam dovoljenih URL-jev
     application_settings_invalid_ip_format: Neveljaven IP-naslov ali format CIDR
@@ -641,7 +642,7 @@ sl:
       thursday: četrtek
       tuesday: torek
       wednesday: sreda
-    dimension_errors_cannot_delete_with_assessments: Te dimenzije ni mogoče izbrisati, ker je še vedno povezana z ocenami. Najprej izbrišite ali posodobite povezane ocene.
+    dimension_errors_cannot_delete_with_assessments: Te dimenzije ni mogoče izbrisati, ker je še vedno povezana z ocenjevanji. Najprej izbrišite ali posodobite povezana ocenjevanja.
     dimension_translations_export_scheduled: Izvoz prevodov, načrtovan za dimenzijo »%{name}«.
     dimensions: Dimenzije
     dimensions_destroy_successfully: Dimenzija %{name} je bila uspešno izbrisana.

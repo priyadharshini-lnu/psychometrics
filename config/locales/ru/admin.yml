@@ -131,10 +131,11 @@ ru:
     application_settings_at_least_one_url_required: Перед включением белого списка URL-адресов, пожалуйста, активируйте хотя бы одну запись URL.
     application_settings_confirm_delete_ip: Вы уверены, что хотите удалить этот IP-адрес?
     application_settings_confirm_delete_url: Вы уверены, что хотите удалить этот URL?
+    application_settings_edit_ip_address: Изменить IP-адрес / диапазон CIDR
     application_settings_enable_ip_whitelisting: Включить белый список IP-адресов
     application_settings_enable_url_whitelisting: Включить белый список URL-адресов
     application_settings_invalid_ip_format: Недопустимый IP-адрес или формат CIDR
-    application_settings_invalid_url_format: Неверный формат URL-адреса
+    application_settings_invalid_url_format: Неверный формат URL
     application_settings_ip_address: IP-адрес / Диапазон CIDR
     application_settings_ip_addresses: IP-адреса / диапазоны CIDR
     application_settings_ip_deleted_successfully: IP-адрес удален успешно
@@ -228,7 +229,7 @@ ru:
     assessor_placeholder: Поиск оценщика...
     assessor_remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
     assessor_remove_has_evaluations: Этому оценщику назначено %{evaluation_count} форм оценки. Все заполненные им оценки будут утеряны.
-    assessor_remove_in_assessment_centers: Данный оценщик является сотрудником оценочного центра %{workshop_count}. Дальнейшие действия приведут к его исключению из всех оценочных центров.
+    assessor_remove_in_assessment_centers: Этот оценщик является сотрудником оценочного центра %{workshop_count}. Дальнейшие действия приведут к его исключению из всех оценочных центров.
     assessor_statuses_completed: Завершено
     assessor_statuses_not_completed: Не завершено
     assessor_subjects_statuses_completed: Завершено
@@ -641,7 +642,7 @@ ru:
       thursday: четверг
       tuesday: вторник
       wednesday: среда
-    dimension_errors_cannot_delete_with_assessments: Удалить это измерение невозможно, поскольку оно все еще связано с оценками. Пожалуйста, сначала удалите или обновите связанные с ним оценки.
+    dimension_errors_cannot_delete_with_assessments: Невозможно удалить этот показатель, так как он по-прежнему связан с оценками. Сначала удалите или обновите связанные с ним оценки.
     dimension_translations_export_scheduled: Запланирован экспорт переводов для измерения «%{name}».
     dimensions: Размеры
     dimensions_destroy_successfully: Размер «%{name}» удален успешно.
@@ -1370,7 +1371,7 @@ ru:
     model_params_thinking_effort_low: Низкий
     model_params_thinking_effort_medium: Середина
     model_params_thinking_effort_none: Никто
-    model_params_thinking_effort_tooltip: Регулирует, насколько тщательно модель обрабатывает информацию перед ответом. Чем больше усилий, тем более полные ответы, но тем дольше ответ. Используйте «None», чтобы полностью отключить обработку информации.
+    model_params_thinking_effort_tooltip: Регулирует, насколько тщательно модель обрабатывает информацию перед ответом. Чем больше усилий, тем более полные ответы, но тем дольше ответ. Используйте «Нет», чтобы полностью отключить обработку информации.
     model_params_title: Расширенная конфигурация модели
     must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя

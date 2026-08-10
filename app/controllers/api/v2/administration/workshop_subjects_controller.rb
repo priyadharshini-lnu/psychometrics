@@ -28,6 +28,10 @@ module Api
         subject.update!(scheduling_status: :late_cancelled)
       end
       subject.workshop.decrement!(:booked_seats)
+
+      # Update the workshop_invited_subject status to keep them in sync for end user visibility
+      subject.workshop_invited_subject&.update!(status: :cancelled)
+
       audit! :mark_cancelled, subject, payload: params, campaign: campaign
 
       jsonapi_render json: subject
@@ -39,6 +43,9 @@ module Api
       if subject&.cancelled? || subject&.late_cancelled?
         subject.update!(scheduling_status: :scheduled)
         subject.workshop.increment!(:booked_seats)
+
+        # Update the workshop_invited_subject status back to accepted to keep them in sync for end user visibility
+        subject.workshop_invited_subject&.update!(status: :accepted)
 
         audit! :re_enroll, subject, payload: params, campaign: campaign
         jsonapi_render json: subject

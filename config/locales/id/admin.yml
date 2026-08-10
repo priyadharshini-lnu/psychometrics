@@ -131,6 +131,7 @@ id:
     application_settings_at_least_one_url_required: Harap aktifkan setidaknya satu entri URL sebelum mengaktifkan daftar putih URL.
     application_settings_confirm_delete_ip: Apakah Anda yakin ingin menghapus alamat IP ini?
     application_settings_confirm_delete_url: Apakah Anda yakin ingin menghapus URL ini?
+    application_settings_edit_ip_address: Edit Alamat IP / Rentang CIDR
     application_settings_enable_ip_whitelisting: Aktifkan Daftar Putih IP
     application_settings_enable_url_whitelisting: Aktifkan Daftar Putih URL
     application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid
@@ -641,7 +642,7 @@ id:
       thursday: Kamis
       tuesday: Selasa
       wednesday: Rabu
-    dimension_errors_cannot_delete_with_assessments: Dimensi ini tidak dapat dihapus karena masih terkait dengan penilaian. Harap hapus atau perbarui penilaian terkait terlebih dahulu.
+    dimension_errors_cannot_delete_with_assessments: Dimensi ini tidak dapat dihapus karena masih terkait dengan penilaian. Silakan hapus atau perbarui penilaian yang terkait terlebih dahulu.
     dimension_translations_export_scheduled: Terjadwalkan untuk mengekspor terjemahan untuk dimensi "%{name}".
     dimensions: Dimensi
     dimensions_destroy_successfully: Dimensi %{name} berhasil dihapus.

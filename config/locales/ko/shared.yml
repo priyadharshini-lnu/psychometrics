@@ -89,6 +89,7 @@ ko:
     failed: 실패함
     'false': false
     file: 파일
+    file_upload_button: 파일 선택
     first_name: 이름
     formal_learning: 정식 학습
     generate: 생성

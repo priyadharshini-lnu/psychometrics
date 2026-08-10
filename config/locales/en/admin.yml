@@ -137,6 +137,7 @@ en:
     application_settings_at_least_one_url_required: Please enable at least one URL entry before enabling URL whitelisting
     application_settings_confirm_delete_ip: Are you sure you want to delete this IP address?
     application_settings_confirm_delete_url: Are you sure you want to delete this URL?
+    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
     application_settings_enable_ip_whitelisting: Enable IP Whitelisting
     application_settings_enable_url_whitelisting: Enable URL Whitelisting
     application_settings_invalid_ip_format: Invalid IP address or CIDR format
@@ -881,6 +882,7 @@ en:
     form_datasheet: Datasheet
     form_datasheet_columns: Datasheet Columns
     form_end_date: End Date
+    form_fields_to_display: Fields to display
     form_include_all_datasheet_columns: Include All Datasheet Columns
     form_name: Name
     form_no_assessment_selected: No assessments added yet. Click "Add" to get started.
@@ -2902,6 +2904,7 @@ en:
     sheets_tabs_settings: Settings
     show_all: Show All
     show_all_assessment_responses: Show All Assessment Responses
+    show_form_field_titles: Show form field titles
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu

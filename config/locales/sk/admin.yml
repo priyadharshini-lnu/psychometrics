@@ -131,6 +131,7 @@ sk:
     application_settings_at_least_one_url_required: Pred povolením bielej listiny adries URL povoľte aspoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Naozaj chcete túto IP adresu vymazať?
     application_settings_confirm_delete_url: Naozaj chcete odstrániť túto URL adresu?
+    application_settings_edit_ip_address: Upraviť IP adresu / rozsah CIDR
     application_settings_enable_ip_whitelisting: Aktivovať zoznam povolených IP adries
     application_settings_enable_url_whitelisting: Povoliť bielu listinu URL adries
     application_settings_invalid_ip_format: Neplatná IP adresa alebo formát CIDR
@@ -641,7 +642,7 @@ sk:
       thursday: štvrtok
       tuesday: utorok
       wednesday: streda
-    dimension_errors_cannot_delete_with_assessments: Túto dimenziu nie je možné odstrániť, pretože je stále spojená s hodnoteniami. Najprv odstráňte alebo aktualizujte súvisiace hodnotenia.
+    dimension_errors_cannot_delete_with_assessments: Túto dimenziu nie je možné odstrániť, pretože je stále prepojená s hodnoteniami. Najskôr odstráňte alebo aktualizujte príslušné hodnotenia.
     dimension_translations_export_scheduled: Export prekladov naplánovaný pre dimenziu „%{name}“.
     dimensions: Rozmery
     dimensions_destroy_successfully: Dimenzia %{name} bola úspešne odstránená.

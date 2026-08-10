@@ -193,6 +193,7 @@ headers: { 'Content-Type' => 'application/vnd.api+json' }
       expect(job.data['assessment_id']).to eq(assessment.id)
       expect(job.data['owner_id']).to eq(client.id)
       expect(job.data['name']).to eq('Copy of First Assessment')
+      expect(job.data['skip_owner_validation']).to eq(true)
     end
   end
 

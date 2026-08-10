@@ -167,6 +167,14 @@ RSpec.describe Api::V2::Administration::NormsController, type: :request do
         }
       }
 
+      expect(Norms::CopyNorm).to receive(:call!).with(
+        norm: norm,
+        user: superadmin,
+        owner_id: nil,
+        new_norm_name: 'Copied Norm Name',
+        skip_owner_validation: true
+      ).and_call_original
+
       post "/api/v2/administration/norms/#{norm.id}/copy",
            params: body.to_json,
            headers: { 'Content-Type' => 'application/vnd.api+json' }

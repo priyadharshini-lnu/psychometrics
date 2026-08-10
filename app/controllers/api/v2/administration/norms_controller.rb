@@ -39,7 +39,8 @@ module Api
         norm: @resource,
         user: current_user,
         owner_id: owner_id,
-        new_norm_name: new_name
+        new_norm_name: new_name,
+        skip_owner_validation: true
       )
 
       jsonapi_render json: result

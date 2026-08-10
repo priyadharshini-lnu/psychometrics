@@ -131,6 +131,7 @@ hu:
     application_settings_at_least_one_url_required: Kérjük, engedélyezzen legalább egy URL-bejegyzést az URL-engedélyezési listára való felkerülés előtt.
     application_settings_confirm_delete_ip: Biztosan törölni szeretné ezt az IP-címet?
     application_settings_confirm_delete_url: Biztosan törölni szeretné ezt az URL-t?
+    application_settings_edit_ip_address: IP-cím / CIDR-tartomány szerkesztése
     application_settings_enable_ip_whitelisting: IP-címek fehérlistájának engedélyezése
     application_settings_enable_url_whitelisting: URL-engedélyezés engedélyezése
     application_settings_invalid_ip_format: Érvénytelen IP-cím vagy CIDR-formátum
@@ -153,7 +154,7 @@ hu:
     application_settings_url_required: URL megadása kötelező
     application_settings_url_updated_successfully: URL sikeresen frissítve
     application_settings_url_whitelisting_disabled_success: Az URL-engedélyezési lista letiltása sikeresen megtörtént.
-    application_settings_url_whitelisting_enabled_success: Az URL-engedélyezési lista sikeresen engedélyezve
+    application_settings_url_whitelisting_enabled_success: URL-engedélyezés sikeresen engedélyezve
     application_settings_urls: URL-ek
     applications: Alkalmazások
     apply_to_existing_users: Alkalmazzuk ezt a változást a kampányban szereplő meglévő felhasználókra
@@ -641,7 +642,7 @@ hu:
       thursday: csütörtök
       tuesday: kedd
       wednesday: Szerda
-    dimension_errors_cannot_delete_with_assessments: Ez a dimenzió nem törölhető, mert még mindig értékelésekhez van társítva. Kérjük, először törölje vagy frissítse a kapcsolódó értékeléseket.
+    dimension_errors_cannot_delete_with_assessments: Ezt a dimenziót nem lehet törölni, mert még mindig értékelésekhez van társítva. Kérjük, először törölje vagy frissítse a hozzá tartozó értékeléseket.
     dimension_translations_export_scheduled: A „%{name}” dimenzióhoz ütemezett fordítások exportálása.
     dimensions: Dimenziók
     dimensions_destroy_successfully: A(z) %{name} dimenzió törlése sikeresen megtörtént.

@@ -131,6 +131,7 @@ cs:
     application_settings_at_least_one_url_required: Před povolením whitelistingu adres URL povolte alespoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Opravdu chcete tuto IP adresu smazat?
     application_settings_confirm_delete_url: Opravdu chcete smazat tuto URL adresu?
+    application_settings_edit_ip_address: Upravit IP adresu / rozsah CIDR
     application_settings_enable_ip_whitelisting: Povolit seznam povolených IP adres
     application_settings_enable_url_whitelisting: Povolit whitelisting URL
     application_settings_invalid_ip_format: Neplatná IP adresa nebo formát CIDR
@@ -641,7 +642,7 @@ cs:
       thursday: čtvrtek
       tuesday: úterý
       wednesday: středa
-    dimension_errors_cannot_delete_with_assessments: Tuto dimenzi nelze smazat, protože je stále přidružena k hodnocením. Nejprve prosím smažte nebo aktualizujte přidružená hodnocení.
+    dimension_errors_cannot_delete_with_assessments: Tuto dimenzi nelze odstranit, protože je stále přiřazena k hodnocení. Nejprve prosím odstraňte nebo aktualizujte přiřazená hodnocení.
     dimension_translations_export_scheduled: Export překladů naplánovaný pro dimenzi „%{name}“.
     dimensions: Rozměry
     dimensions_destroy_successfully: Dimenze „%{name}“ byla úspěšně odstraněna.

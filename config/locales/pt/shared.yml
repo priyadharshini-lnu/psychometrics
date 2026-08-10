@@ -89,6 +89,7 @@ pt:
     failed: Falhou
     'false': false
     file: Ficheiro
+    file_upload_button: Selecionar ficheiro
     first_name: Nome próprio
     formal_learning: Aprendizagem Formal
     generate: Gerar

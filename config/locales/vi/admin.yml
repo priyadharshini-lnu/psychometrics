@@ -128,9 +128,10 @@ vi:
     application_name_already_taken: Đã tồn tại cho khách hàng này
     application_name_format_hint: Chỉ được phép sử dụng chữ cái và số, với một khoảng trắng giữa các từ
     application_settings_at_least_one_ip_required: Vui lòng kích hoạt ít nhất một mục địa chỉ IP trước khi kích hoạt danh sách trắng IP
-    application_settings_at_least_one_url_required: Vui lòng cho phép ít nhất một mục URL trước khi cho phép danh sách URL được phép.
+    application_settings_at_least_one_url_required: Vui lòng bật ít nhất một mục URL trước khi bật tính năng cho phép URL vào danh sách trắng.
     application_settings_confirm_delete_ip: Bạn có chắc chắn muốn xóa địa chỉ IP này không?
     application_settings_confirm_delete_url: Bạn có chắc chắn muốn xóa URL này không?
+    application_settings_edit_ip_address: Chỉnh sửa địa chỉ IP / Phạm vi CIDR
     application_settings_enable_ip_whitelisting: Bật tính năng danh sách trắng IP
     application_settings_enable_url_whitelisting: Bật danh sách trắng URL
     application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ
@@ -641,7 +642,7 @@ vi:
       thursday: Thứ Năm
       tuesday: Thứ Ba
       wednesday: Thứ Tư
-    dimension_errors_cannot_delete_with_assessments: Không thể xóa chiều dữ liệu này vì nó vẫn còn liên kết với các bài đánh giá. Vui lòng xóa hoặc cập nhật các bài đánh giá liên kết trước.
+    dimension_errors_cannot_delete_with_assessments: Không thể xóa chiều này vì nó vẫn còn được liên kết với các bài đánh giá. Vui lòng xóa hoặc cập nhật các bài đánh giá liên quan trước.
     dimension_translations_export_scheduled: Đã lên lịch xuất bản các bản dịch cho chiều "%{name}".
     dimensions: Kích thước
     dimensions_destroy_successfully: Thứ nguyên %{name} đã bị xóa thành công.
@@ -1361,7 +1362,7 @@ vi:
     model_params_max_tokens: Số token tối đa
     model_params_max_tokens_tooltip: Giới hạn số lượng token tối đa mà mô hình có thể tạo ra cho mỗi phản hồi. Giá trị cao hơn cho phép đầu ra dài hơn nhưng làm tăng chi phí và độ trễ.
     model_params_temperature: Nhiệt độ
-    model_params_temperature_tooltip: Tham số này kiểm soát tính ngẫu nhiên trong kết quả đầu ra. 0 = kết quả có tính xác định và tập trung; 2 = kết quả rất sáng tạo và đa dạng. Sử dụng các giá trị thấp hơn để kết quả đầu ra bị giới hạn trong ngữ cảnh được cung cấp.
+    model_params_temperature_tooltip: Tham số này kiểm soát tính ngẫu nhiên trong kết quả đầu ra. 0 = kết quả có tính xác định và tập trung; 2 = kết quả rất sáng tạo và đa dạng. Sử dụng giá trị thấp hơn để kết quả đầu ra bị giới hạn trong ngữ cảnh được cung cấp.
     model_params_thinking_budget: Ngân sách tư duy (mã thông báo)
     model_params_thinking_budget_tooltip: Thiết lập giới hạn tối đa cho số token mà mô hình có thể sử dụng cho quá trình suy luận nội bộ. Giá trị cao hơn cho phép phân tích sâu hơn nhưng làm tăng mức sử dụng token và thời gian phản hồi.
     model_params_thinking_budget_unsupported: Mô hình này chỉ sử dụng cơ chế điều khiển suy luận dựa trên nỗ lực. Ngân sách suy nghĩ (giới hạn token) không được hỗ trợ.

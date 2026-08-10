@@ -89,6 +89,7 @@ sl:
     failed: Neuspelo
     'false': false
     file: Datoteka
+    file_upload_button: Izberi datoteko
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Ustvari

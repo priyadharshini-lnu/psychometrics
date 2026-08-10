@@ -131,6 +131,7 @@ ko:
     application_settings_at_least_one_url_required: URL 화이트리스트를 활성화하기 전에 최소 하나 이상의 URL 항목을 활성화하십시오.
     application_settings_confirm_delete_ip: 이 IP 주소를 정말 삭제하시겠습니까?
     application_settings_confirm_delete_url: 이 URL을 정말로 삭제하시겠습니까?
+    application_settings_edit_ip_address: IP 주소/CIDR 범위 편집
     application_settings_enable_ip_whitelisting: IP 허용 목록 활성화
     application_settings_enable_url_whitelisting: URL 화이트리스트 활성화
     application_settings_invalid_ip_format: IP 주소 또는 CIDR 형식이 올바르지 않습니다.
@@ -641,7 +642,7 @@ ko:
       thursday: 목요일
       tuesday: 화요일
       wednesday: 수요일
-    dimension_errors_cannot_delete_with_assessments: 이 차원은 평가와 연결되어 있으므로 삭제할 수 없습니다. 먼저 연결된 평가를 삭제하거나 업데이트하십시오.
+    dimension_errors_cannot_delete_with_assessments: 이 차원은 아직 평가와 연결되어 있으므로 삭제할 수 없습니다. 먼저 연결된 평가를 삭제하거나 업데이트해 주십시오.
     dimension_translations_export_scheduled: "%{name} 차원에 대해 예약된 번역 내보내기."
     dimensions: 치수
     dimensions_destroy_successfully: 차원 %{name}을(를) 성공적으로 삭제했습니다.
@@ -1362,7 +1363,7 @@ ko:
     model_params_max_tokens_tooltip: 모델이 응답당 생성할 수 있는 최대 토큰 수를 제한합니다. 값이 높을수록 출력 시간이 길어지지만 비용과 지연 시간이 증가합니다.
     model_params_temperature: 온도
     model_params_temperature_tooltip: 출력의 무작위성을 제어합니다. 0은 결정론적이고 집중적인 출력을 의미하며, 2는 매우 창의적이고 다양한 출력을 의미합니다. 출력이 제공된 맥락에 국한되도록 하려면 낮은 값을 사용하십시오.
-    model_params_thinking_budget: 사고력 예산(토큰)
+    model_params_thinking_budget: 사고력 예산 (토큰)
     model_params_thinking_budget_tooltip: 모델이 내부 추론에 사용할 수 있는 토큰에 대한 최대 한도를 설정합니다. 값이 높을수록 더 심층적인 분석이 가능하지만 토큰 사용량과 응답 시간이 증가합니다.
     model_params_thinking_budget_unsupported: 이 모델은 노력 기반 추론 제어 방식만 사용합니다. 사고 예산(토큰 한도)은 지원하지 않습니다.
     model_params_thinking_effort: 사고력

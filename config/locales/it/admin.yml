@@ -131,6 +131,7 @@ it:
     application_settings_at_least_one_url_required: Si prega di abilitare almeno una voce URL prima di abilitare la whitelist degli URL.
     application_settings_confirm_delete_ip: Sei sicuro di voler eliminare questo indirizzo IP?
     application_settings_confirm_delete_url: Sei sicuro di voler eliminare questo URL?
+    application_settings_edit_ip_address: Modifica indirizzo IP / intervallo CIDR
     application_settings_enable_ip_whitelisting: Abilita la lista bianca degli indirizzi IP
     application_settings_enable_url_whitelisting: Abilita la whitelist degli URL
     application_settings_invalid_ip_format: Indirizzo IP o formato CIDR non valido
@@ -641,7 +642,7 @@ it:
       thursday: giovedì
       tuesday: martedì
       wednesday: mercoledì
-    dimension_errors_cannot_delete_with_assessments: Impossibile eliminare questa dimensione perché è ancora associata alle valutazioni. Elimina o aggiorna prima le valutazioni associate.
+    dimension_errors_cannot_delete_with_assessments: Non è possibile eliminare questa dimensione perché è ancora associata ad alcune valutazioni. Si prega di eliminare o aggiornare prima le valutazioni associate.
     dimension_translations_export_scheduled: Esportazione delle traduzioni pianificate per la dimensione "%{name}".
     dimensions: Dimensioni
     dimensions_destroy_successfully: La dimensione %{name} è stata cancellata con successo.

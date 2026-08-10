@@ -89,6 +89,7 @@ ar:
     failed: فشل
     'false': false
     file: ملف
+    file_upload_button: اختر ملفًا
     first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     generate: توليد

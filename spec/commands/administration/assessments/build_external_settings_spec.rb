@@ -98,4 +98,54 @@ describe Administration::Assessments::BuildExternalSettings do
       expect(subject).to eql(assessment_id: 'mhs_assessment_id')
     end
   end
+
+  context 'when the assessment is microsite' do
+    let(:type) { Assessments::Microsite }
+    let(:catalog_questions) { { 'task-1.q1' => nil, 'task-1.q2' => nil, 'task-2.q1' => nil } }
+    let!(:microsite_assessment) do
+      create(:microsite_assessment, product_id: 'ms-product-id', metadata: { 'questions' => catalog_questions })
+    end
+
+    context 'when question_mappings are provided in the request' do
+      let(:provided_mappings) { { 'task-1.q1' => '10', 'task-1.q2' => '11', 'task-2.q1' => '12' } }
+      let(:external_settings) { { assessment_id: 'ms-product-id', question_mappings: provided_mappings.to_json } }
+
+      it 'uses the provided question_mappings' do
+        expect(subject).to eql(
+          assessment_id: 'ms-product-id',
+          question_mappings: provided_mappings
+        )
+      end
+    end
+
+    context 'when question_mappings are not provided and the assessment already has mappings' do
+      let(:existing_mappings) { { 'task-1.q1' => '10', 'task-1.q2' => '11', 'task-2.q1' => '12' } }
+      let(:assessment) do
+        create(:assessment, type: type,
+               external_settings: { 'assessment_id' => 'ms-product-id', 'question_mappings' => existing_mappings })
+      end
+      let(:external_settings) { { assessment_id: 'ms-product-id' } }
+
+      it 'preserves the existing question_mappings' do
+        expect(subject).to eql(
+          assessment_id: 'ms-product-id',
+          question_mappings: existing_mappings
+        )
+      end
+    end
+
+    context 'when question_mappings are not provided and no existing mappings exist' do
+      let(:assessment) do
+        create(:assessment, type: type, external_settings: { 'assessment_id' => 'ms-product-id' })
+      end
+      let(:external_settings) { { assessment_id: 'ms-product-id' } }
+
+      it 'falls back to default mappings from the catalog with nil values' do
+        expect(subject).to eql(
+          assessment_id: 'ms-product-id',
+          question_mappings: { 'task-1.q1' => nil, 'task-1.q2' => nil, 'task-2.q1' => nil }
+        )
+      end
+    end
+  end
 end

@@ -131,6 +131,7 @@ sr-Latn:
     application_settings_at_least_one_url_required: Омогућите барем један унос URL-а пре него што омогућите стављање URL-ова на белу листу
     application_settings_confirm_delete_ip: Да ли сте сигурни да желите да обришете ову ИП адресу?
     application_settings_confirm_delete_url: Да ли сте сигурни да желите да обришете ову URL адресу?
+    application_settings_edit_ip_address: Уређивање IP адресе / CIDR опсега
     application_settings_enable_ip_whitelisting: Омогућите белу листу ИП адреса
     application_settings_enable_url_whitelisting: Омогући стављање URL-ова на белу листу
     application_settings_invalid_ip_format: Неважећа ИП адреса или CIDR формат
@@ -641,7 +642,7 @@ sr-Latn:
       thursday: Четвртак
       tuesday: Уторак
       wednesday: Среда
-    dimension_errors_cannot_delete_with_assessments: Није могуће избрисати ову димензију јер је још увек повезана са проценама. Прво избришите или ажурирајте повезане процене.
+    dimension_errors_cannot_delete_with_assessments: Не може се обрисати ова димензија јер је и даље повезана са проценама. Молимо вас да прво обришете или ажурирате повезане процене.
     dimension_translations_export_scheduled: Извоз превода заказан за димензију %{name}.
     dimensions: Dimenzije
     dimensions_destroy_successfully: Dimenzija %{name} je uspešno obrisana.

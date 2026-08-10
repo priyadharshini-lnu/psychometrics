@@ -38,7 +38,8 @@ module Api
         {
           report_id: resource.id,
           owner_id: owner_id,
-          name: new_name
+          name: new_name,
+          skip_owner_validation: true
         },
         current_user
       )

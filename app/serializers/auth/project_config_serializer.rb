@@ -16,23 +16,24 @@ module Auth
       end
     end
 
-    delegate :background_color, :login_box_position, :background_size, :logo_alt_text, to: :design_setting
+    delegate :background_color, :login_box_position, :background_size, :logo_alt_text,
+             to: :design_setting, allow_nil: true
     delegate :magic_link_enabled, :disallow_password_login, :enable_recaptcha, to: :security_setting
 
     def client_logo
-      design_setting.logo&.url
+      design_setting&.logo&.url
     end
 
     def secondary_logo
-      design_setting.secondary_logo&.url
+      design_setting&.secondary_logo&.url
     end
 
     def background
-      design_setting.background&.url || fallback_background
+      design_setting&.background&.url || fallback_background
     end
 
     def background_overlay
-      design_setting.background_overlay&.url
+      design_setting&.background_overlay&.url
     end
 
     def saml_login_allowed
@@ -63,8 +64,9 @@ module Auth
       object.security_setting
     end
 
+    # Withholding the design setting falls every branding attribute back to platform defaults.
     def design_setting
-      object.design_setting
+      object.design_setting unless Settings.features.disable_project_branding
     end
 
     def fallback_background

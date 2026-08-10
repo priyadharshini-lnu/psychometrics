@@ -7,7 +7,8 @@ module AdminJobs
         record.data['report_id'],
         owner,
         record.data['owner_id'],
-        new_report_name: record.data['name']
+        new_report_name: record.data['name'],
+        skip_owner_validation: record.data.fetch('skip_owner_validation', false)
       )
 
       if result[:ok]

@@ -90,9 +90,13 @@ module Administration
           if raw_external_settings[:question_mappings]
             JSON.parse(raw_external_settings[:question_mappings])
           else
-            default_question_mappings(assessment_id)
+            existing_question_mappings || default_question_mappings(assessment_id)
           end
         { assessment_id: assessment_id, question_mappings: question_mappings }.compact
+      end
+
+      def existing_question_mappings
+        assessment.external_settings&.dig('question_mappings')
       end
 
       def default_question_mappings(product_id)

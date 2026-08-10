@@ -89,6 +89,7 @@ ro:
     failed: Eșuat
     'false': false
     file: Fișier
+    file_upload_button: Selectează fișierul
     first_name: Prenumele
     formal_learning: Învățământ formal
     generate: Generați

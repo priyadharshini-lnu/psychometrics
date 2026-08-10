@@ -12,7 +12,13 @@ module CampaignUsers
       @sort = sort
       @limit = (filter[:limit] || 25).to_i
       @offset = (filter[:offset] || 0).to_i
-      @campaign_users_active_in = filter[:campaign_users_active_in] || true
+      campaign_users_active_in = filter[:campaign_users_active_in]
+      @campaign_users_active_in =
+        if campaign_users_active_in.is_a?(Array)
+          campaign_users_active_in.join(',')
+        else
+          campaign_users_active_in || 'true'
+        end
     end
 
     def query

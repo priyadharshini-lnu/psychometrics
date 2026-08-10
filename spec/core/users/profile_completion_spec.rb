@@ -23,6 +23,18 @@ describe Users::ProfileCompletion do
     end
   end
 
+  describe 'when first_name/last_name are marked required (string keys, as stored in DB)' do
+    before do
+      project.profile_setting.required_default_fields = { 'first_name' => true, 'last_name' => true }
+    end
+
+    it 'reaches 100% once both names are present (no double-counting)' do
+      expect(user.first_name).to be_present
+      expect(user.last_name).to be_present
+      expect(described_class.call!(user)).to eq(100)
+    end
+  end
+
   describe 'with custom field' do
     let!(:question) do
       create(:question, validation: { 'type' => 'Range', 'args' => { 'minValue' => 2, 'maxValue' => 2 } })

@@ -131,6 +131,7 @@ ro:
     application_settings_at_least_one_url_required: Vă rugăm să activați cel puțin o intrare URL înainte de a activa includerea URL pe lista albă.
     application_settings_confirm_delete_ip: Ești sigur că vrei să ștergi această adresă IP?
     application_settings_confirm_delete_url: Sigur vrei să ștergi această adresă URL?
+    application_settings_edit_ip_address: Editare adresă IP / interval CIDR
     application_settings_enable_ip_whitelisting: Activare listă albă de adrese IP
     application_settings_enable_url_whitelisting: Activează includerea URL în lista albă
     application_settings_invalid_ip_format: Adresă IP sau format CIDR nevalid(ă)
@@ -641,7 +642,7 @@ ro:
       thursday: joi
       tuesday: marți
       wednesday: miercuri
-    dimension_errors_cannot_delete_with_assessments: Nu se poate șterge această dimensiune deoarece este încă asociată cu evaluări. Vă rugăm să ștergeți sau să actualizați mai întâi evaluările asociate.
+    dimension_errors_cannot_delete_with_assessments: Nu se poate șterge această dimensiune, deoarece este încă asociată cu evaluări. Vă rugăm să ștergeți sau să actualizați mai întâi evaluările asociate.
     dimension_translations_export_scheduled: Se va efectua exportul traducerilor programate pentru dimensiunea „%{name}”.
     dimensions: Dimensiuni
     dimensions_destroy_successfully: Parametrul %{name} a fost șters cu succes.

@@ -4,6 +4,7 @@ export const PAGE_SIZES = [
   { width: 1100, height: 850, label: 'Letter - Landscape (1100x850)' },
   { width: 827, height: 1169, label: 'A4 - Portrait (827x1169)' },
   { width: 1169, height: 827, label: 'A4 - Landscape (1169x827)' },
+  { width: 1355, height: 762, label: 'PowerPoint Presentation (1355x762)' },
 ]
 export const BASE_FONT_SIZE = 14
 

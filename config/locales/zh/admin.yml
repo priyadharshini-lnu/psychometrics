@@ -131,6 +131,7 @@ zh:
     application_settings_at_least_one_url_required: 请先启用至少一个URL条目，然后再启用URL白名单。
     application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
     application_settings_confirm_delete_url: 您确定要删除此网址吗？
+    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
     application_settings_enable_ip_whitelisting: 启用 IP 白名单
     application_settings_enable_url_whitelisting: 启用网址白名单
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
@@ -641,7 +642,7 @@ zh:
       thursday: 星期四
       tuesday: 星期二
       wednesday: 星期三
-    dimension_errors_cannot_delete_with_assessments: 由于此维度仍与评估相关联，因此无法删除。请先删除或更新关联的评估。
+    dimension_errors_cannot_delete_with_assessments: 无法删除此维度，因为它仍与评估相关联。请先删除或更新相关联的评估。
     dimension_translations_export_scheduled: 已为维度%{name}安排了翻译导出任务。
     dimensions: 尺寸
     dimensions_destroy_successfully: 尺寸 %{name} 已成功删除。
