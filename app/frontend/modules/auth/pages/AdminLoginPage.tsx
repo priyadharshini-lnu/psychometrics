@@ -50,7 +50,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
 
   const alerts: AuthAlertItem[] = [
     ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, message: value })),
+    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
   ]
 
   const { brand, feature, footer } = buildAuthChrome(projectConfig)

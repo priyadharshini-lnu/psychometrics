@@ -101,7 +101,7 @@ export const ChangePasswordPageComponent: FC<PropsFromRedux> = ({
                         </Form.Item>
                       ) : null}
 
-                      <Alert type="warning" message={I18n.t('enduser.change_password_warning')} />
+                      <Alert type="warning" title={I18n.t('enduser.change_password_warning')} />
 
                       <Flex justify="flex-end">
                         <Button

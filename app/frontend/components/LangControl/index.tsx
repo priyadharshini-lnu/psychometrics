@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 import { connect } from 'react-redux'
 import { LanguageSwitcher } from '@thetalententerprise/glint'
+import { getLocalizedLanguageName } from '~/utils/locales'
 import { changeLocale } from '~/core/currentUser'
 
 const { I18n } = window
@@ -20,7 +21,7 @@ const LangControlComponent: FC<Props> = ({ onChange }) => {
 
   const languages = locales.map(loc => ({
     key: loc,
-    label: <span lang={loc}>{I18n.t(`languages_localized.${loc}`)}</span>,
+    label: <span lang={loc}>{getLocalizedLanguageName(loc)}</span>,
   }))
 
   return (

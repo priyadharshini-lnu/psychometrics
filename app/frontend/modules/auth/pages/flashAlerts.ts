@@ -22,4 +22,4 @@ const mapType = (type: string): AuthAlertItem['type'] => {
 
 export const flashAlerts = (flash: FlashItem[] = []): AuthAlertItem[] => (flash || [])
   .filter(Boolean)
-  .map(f => ({ type: mapType(f.type), message: f.value }))
+  .map(f => ({ type: mapType(f.type), title: f.value }))

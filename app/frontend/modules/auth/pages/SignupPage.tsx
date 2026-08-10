@@ -47,7 +47,7 @@ const SignupPageComponent: React.FC<Props> = ({
 
   const alerts: AuthAlertItem[] = [
     ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, message: value })),
+    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
   ]
   const showRegistrationCode = !user.sms_invite_code
     && (!user.registration_code || (errors.registration_code || []).length > 0)
