@@ -5,9 +5,11 @@ require 'rails_helper'
 describe Auth::ProjectConfigSerializer do
   let(:project) { create(:project) }
   let(:fallback_background) { 'https://example.com/bg.jpg' }
+  let(:glint_background) { 'https://example.com/glint-bg.jpg' }
+  let(:context) { { background: fallback_background, glint_background: glint_background } }
 
   subject(:result) do
-    described_class.new(context: { background: fallback_background }).serialize(project.reload)
+    described_class.new(context: context).serialize(project.reload)
   end
 
   before do
@@ -102,6 +104,33 @@ describe Auth::ProjectConfigSerializer do
 
     it 'is false for an object that does not respond to project_feature_enabled?' do
       expect(glint_ui_for(Object.new)).to be(false)
+    end
+  end
+
+  describe 'background image fallback' do
+    before { project.design_setting.update!(background_color: nil) }
+
+    it 'uses the platform fallback when glint is off' do
+      expect(result['background']).to eq(fallback_background)
+    end
+
+    context 'when glint is on' do
+      before { project.project_feature.update!(glint_ui: true) }
+
+      it 'uses the glint (admin default) background' do
+        expect(result['background']).to eq(glint_background)
+      end
+    end
+
+    context 'when glint is on and a background color is set but no image is uploaded' do
+      before do
+        project.project_feature.update!(glint_ui: true)
+        project.design_setting.update!(background_color: '#000000')
+      end
+
+      it 'still uses the glint default image, since glint cannot render a solid color' do
+        expect(result['background']).to eq(glint_background)
+      end
     end
   end
 end

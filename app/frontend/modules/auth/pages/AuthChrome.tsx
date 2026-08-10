@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import { MouseEvent } from 'react'
 import { theme } from 'antd'
-import { Divider, Flex, Typography } from '@thetalententerprise/glint'
+import { Flex, Typography } from '@thetalententerprise/glint'
 import { useManageCookies } from '~/hooks/useManageCookies'
 import { LangControl } from '~/components/LangControl'
 import { RootState } from '../core/reducers'
@@ -44,18 +44,6 @@ const MarshLighthouseBrand = () => {
       style={{ color: token.colorTextHeading }}
     >
       <MarshLogo aria-hidden style={{ blockSize: 30, inlineSize: 'auto' }} />
-      <Divider orientation="vertical" style={{ blockSize: 24 }} aria-hidden />
-      <span
-        style={{
-          fontWeight: 200,
-          fontSize: 20,
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        Lighthouse
-      </span>
     </Flex>
   )
 }

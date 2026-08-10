@@ -29,7 +29,7 @@ module Auth
     end
 
     def background
-      design_setting&.background&.url || fallback_background
+      design_setting&.background&.url || glint_fallback_background || fallback_background
     end
 
     def background_overlay
@@ -71,6 +71,10 @@ module Auth
 
     def fallback_background
       context[:background] unless background_color
+    end
+
+    def glint_fallback_background
+      context[:glint_background] if glint_ui
     end
   end
 end

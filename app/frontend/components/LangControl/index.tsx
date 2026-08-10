@@ -29,6 +29,7 @@ const LangControlComponent: FC<Props> = ({ onChange }) => {
       languages={languages}
       value={currentLocale}
       disabled={loading}
+      variant="text"
       onChange={(loc) => {
         setLoading(true)
         onChange(loc).then(() => location.reload())
