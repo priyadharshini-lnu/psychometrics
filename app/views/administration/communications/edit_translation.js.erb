@@ -36,12 +36,13 @@ $modal.on('change', '#locale', function() {
       $referenceSubject.text(response.reference_subject || 'No reference subject available');
       $('[data-copy-text]').first().attr('data-copy-text', response.reference_subject);
       var $referenceBody = $('.form-control-static').last();
+      var referenceBody = $referenceBody[0]
       $referenceBody.empty();
       if (response.reference_body) {
         response.reference_body.split('\n').forEach(function(line, index, arr) {
-          $referenceBody.append(document.createTextNode(line));
+          referenceBody.appendChild(document.createTextNode(line));
           if (index < arr.length - 1) {
-            $referenceBody.append(document.createElement('br'));
+            referenceBody.appendChild(document.createElement('br'));
           }
         });
       } else {
