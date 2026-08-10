@@ -91,19 +91,19 @@ const IntegrationsComponent: React.FC<Props> = ({
 
   return (
     <>
-      <Row className="pl">
-        <Col>
-          <Button
-            type="primary"
-            icon={<PlusOutlined />}
-            className="mb-4"
-            style={{ marginRight: '10px' }}
-            onClick={() => openModal('IntegrationFormModal')}
-          >
-            {I18n.t('admin.integrations_actions_add')}
-          </Button>
+      <Row>
+        <Col span={24}>
+          <Row justify="end" className="pt-4 mb-4">
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => openModal('IntegrationFormModal')}
+            >
+              {I18n.t('admin.integrations_actions_add')}
+            </Button>
+          </Row>
 
-          <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }}>
+          <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }} style={{ width: '100%' }}>
             <Column
               title={I18n.t('common.column.status')}
               fixed={windowWidth > 800 ? 'left' : undefined}

@@ -1,15 +1,18 @@
-import { Settings } from './Settings'
-import { Initialize } from './Initialize'
-import { Accesssheet } from './Assesssheet'
-import { AccesssheetSettings } from './AccesssheetSettings'
-import { Preview } from './Preview'
+import { lazyPages } from '~/utils/lazyPages'
 
-const routes = [
-  { path: '/preview', component: <Preview /> },
-  { path: '/initialize', component: <Initialize /> },
-  { path: '/settings', component: <Settings /> },
-  { path: '/accesssheets', component: <Accesssheet /> },
-  { path: '/accesssheet_settings', component: <AccesssheetSettings /> },
+const page = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
+
+const Preview = page(m => m.Preview)
+const Initialize = page(m => m.Initialize)
+const DashboardSettings = page(m => m.DashboardSettings)
+const Accesssheet = page(m => m.Accesssheet)
+const AccesssheetSettings = page(m => m.AccesssheetSettings)
+
+// No index route: Dashboard itself sends the bare url to the first tab this admin can open.
+export const routes = [
+  { path: 'preview', element: <Preview /> },
+  { path: 'initialize', element: <Initialize /> },
+  { path: 'settings', element: <DashboardSettings /> },
+  { path: 'accesssheets', element: <Accesssheet /> },
+  { path: 'accesssheet_settings', element: <AccesssheetSettings /> },
 ]
-
-export default routes

@@ -71,7 +71,7 @@ const CreateBlockModal: React.FC<CreateBlockModalProps> = ({
       okText={I18n.t('shared.create') || 'Create'}
       cancelText={I18n.t('shared.close') || 'Close'}
       width={600}
-      destroyOnClose
+      destroyOnHidden
     >
       <Form
         form={form}

@@ -114,15 +114,14 @@ test('Should be able to navigate to and fro between months', async () => {
   const gotoNextMonthIcon = screen.getByLabelText('Go to next month')
   const gotoPrevMonthIcon= screen.getByLabelText('Go to previous month')
 
-  await act(async () => {
-    await user.click(gotoNextMonthIcon)
-    expect(month.innerHTML).toBe(clonedDefaultDate.month(currentMonthNumber + 1).format('MMM'))
-    expect(year.innerHTML).toBe(currentYear)
+  // Assertions stay outside act(): the header only re-renders once the click's update is committed.
+  await user.click(gotoNextMonthIcon)
+  expect(month.innerHTML).toBe(clonedDefaultDate.month(currentMonthNumber + 1).format('MMM'))
+  expect(year.innerHTML).toBe(currentYear)
 
-    await user.click(gotoPrevMonthIcon)
-    expect(month.innerHTML).toBe(clonedDefaultDate.month(currentMonthNumber).format('MMM'))
-    expect(year.innerHTML).toBe(currentYear)
-  })
+  await user.click(gotoPrevMonthIcon)
+  expect(month.innerHTML).toBe(clonedDefaultDate.month(currentMonthNumber).format('MMM'))
+  expect(year.innerHTML).toBe(currentYear)
 })
 
 test('Should clear currently selected date when navigated between months', async () => {

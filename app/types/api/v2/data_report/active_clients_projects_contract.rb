@@ -18,10 +18,7 @@ module Api
             next
           end
 
-          activity_period = config['activity_period']
-
-          if activity_period.blank? || !activity_period.is_a?(Array) || activity_period.size != 2 ||
-             activity_period[0].blank? || activity_period[1].blank?
+          if config['start_date'].blank? || config['end_date'].blank?
             key(:data).failure(I18n.t('admin.date_range_required'))
           end
         end

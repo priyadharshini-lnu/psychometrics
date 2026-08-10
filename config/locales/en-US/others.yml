@@ -2966,8 +2966,6 @@ en-US:
     zh-HK: Chinese (Hong Kong)
     zh-Hant: Chinese - Traditional
     zh-TW: Chinese (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Campaign name
     status_updated_at: Last status update

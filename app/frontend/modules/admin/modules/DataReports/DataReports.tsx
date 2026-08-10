@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Button, message, Space } from 'antd'
+import {
+  Button, message, Space,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import { PlusOutlined, EditOutlined, CaretRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import {
@@ -11,12 +13,15 @@ import { DataReportForm } from './DataReportForm'
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
+import RunReportModal from './components/RunReportModal'
 
 const { I18n } = window
 
 export const DataReports: React.FC<{}> = () => {
   const [showForm, setShowForm] = useState(false)
   const [editable, setEditable] = useState<DataReport | undefined>(undefined)
+  const [runTarget, setRunTarget] = useState<DataReport | undefined>(undefined)
+  const [runLoading, setRunLoading] = useState(false)
 
   const baseApiConfig = {
     include: ['last_updated_by', 'owner'],
@@ -49,14 +54,52 @@ export const DataReports: React.FC<{}> = () => {
       })
   }
 
-  const runReport = (resource: DataReport) => memberAction({
-    id: resource.id,
-    action: 'run',
-    method: 'post',
-    responseType: OkResponse,
-  }).then(() => {
-    message.info(I18n.t('admin.data_reports_messages_runed'))
-  })
+  const runReport = (resource: DataReport) => {
+    memberAction({
+      id: resource.id,
+      action: 'run',
+      method: 'post',
+      responseType: OkResponse,
+    }).then(() => {
+      message.info(I18n.t('admin.data_reports_messages_runed'))
+    })
+  }
+
+  const handleRunClick = (resource: DataReport) => {
+    if (!resource.runtimeParametersEnabled) {
+      runReport(resource)
+      return
+    }
+
+    setRunTarget(resource)
+  }
+
+  const handleRunSubmit = (runtimeConfiguration: Record<string, string>) => {
+    if (!runTarget) return
+
+    setRunLoading(true)
+
+    memberAction({
+      id: runTarget.id,
+      action: 'run',
+      method: 'post',
+      responseType: OkResponse,
+      body: {
+        data: {
+          attributes: {
+            runtime_configuration: runtimeConfiguration,
+          },
+        },
+      },
+    })
+      .then(() => {
+        message.info(I18n.t('admin.data_reports_messages_runed'))
+        setRunTarget(undefined)
+      })
+      .finally(() => {
+        setRunLoading(false)
+      })
+  }
 
   const closeForm = () => {
     setEditable(undefined)
@@ -147,7 +190,7 @@ export const DataReports: React.FC<{}> = () => {
               {(I18n.t('admin.report_review_edit'))}
             </Button>
             {resource.scope === 'global' && (
-              <Button icon={<CaretRightOutlined />} onClick={() => runReport(resource)}>
+              <Button icon={<CaretRightOutlined />} onClick={() => handleRunClick(resource)}>
                 {I18n.t('admin.run')}
               </Button>
             )}
@@ -169,6 +212,15 @@ export const DataReports: React.FC<{}> = () => {
         show={showForm}
         close={() => closeForm()}
       />
+      {runTarget && (
+        <RunReportModal
+          report={runTarget}
+          open
+          loading={runLoading}
+          onRun={handleRunSubmit}
+          onClose={() => setRunTarget(undefined)}
+        />
+      )}
     </Resource>
   )
 }

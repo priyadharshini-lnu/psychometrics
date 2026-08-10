@@ -15,11 +15,6 @@ en-US:
         simple_design:
           design: Design
           or: Or
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Login successful.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ en-US:
           modal_title: Scoring Approval Settings
           remove_modal_success: 'Approval setting for assessment id: %{assessmentId} was deleted successfully'
           remove_modal_text: 'Are you sure you want to delete this setting for assessment id: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: You was successfully login as %{name}
       validations:
         dates:
           end: must be after the start date

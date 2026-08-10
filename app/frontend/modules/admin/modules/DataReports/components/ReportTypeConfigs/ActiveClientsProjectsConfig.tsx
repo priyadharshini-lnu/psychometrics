@@ -1,11 +1,16 @@
 import React from 'react'
-import { DatePicker, Form } from 'antd'
-import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
+import {
+  DatePicker, Form, Row, Col,
+} from 'antd'
+import { Dayjs } from 'dayjs'
 import dayjs from '~/utils/dayjs'
+import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
 
 const { I18n } = window
 
 type ActiveClientsProjectsParsedConfiguration = {
+  start_date?: string | number | dayjs.Dayjs
+  end_date?: string | number | dayjs.Dayjs
   activity_period?: [string | number | dayjs.Dayjs, string | number | dayjs.Dayjs]
 }
 
@@ -16,66 +21,57 @@ type ActiveClientsProjectsConfigProps = Omit<
   parsedConfiguration: ActiveClientsProjectsParsedConfiguration | null
 }
 
+type ActiveClientsProjectsFormData = Record<string, unknown> & {
+  startDate?: Dayjs
+  endDate?: Dayjs
+}
+
+const normalizeConfiguration = (
+  parsedConfiguration: ActiveClientsProjectsParsedConfiguration | null,
+) => {
+  if (!parsedConfiguration) return null
+
+  if (parsedConfiguration.start_date || parsedConfiguration.end_date) {
+    return parsedConfiguration
+  }
+
+  if (!parsedConfiguration.activity_period) {
+    return parsedConfiguration
+  }
+
+  return {
+    ...parsedConfiguration,
+    start_date: parsedConfiguration.activity_period[0],
+    end_date: parsedConfiguration.activity_period[1],
+  }
+}
+
 const ActiveClientsProjectsConfig: React.FC<ActiveClientsProjectsConfigProps> = ({
   parsedConfiguration,
 }) => {
-  const today = dayjs()
-  const defaultRange: [dayjs.Dayjs, dayjs.Dayjs] = [
-    today.startOf('day'),
-    today.endOf('day'),
-  ]
-
-  const parsedRange = parsedConfiguration?.activity_period
-
-  const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = parsedRange && parsedRange.length === 2
-    ? [dayjs(parsedRange[0]), dayjs(parsedRange[1])]
-    : defaultRange
+  const configuration = normalizeConfiguration(parsedConfiguration)
 
   return (
-    <Form.Item
-      name="activityPeriod"
-      label={I18n.t('admin.activity_period')}
-      initialValue={initialRange}
-      rules={[{ required: true }]}
-    >
-      <DatePicker.RangePicker
-        allowClear={false}
-        ranges={{
-          [I18n.t('admin.date_presets_today')]: [
-            dayjs().startOf('day'),
-            dayjs().endOf('day'),
-          ],
-          [I18n.t('admin.date_presets_yesterday')]: [
-            dayjs().subtract(1, 'day').startOf('day'),
-            dayjs().subtract(1, 'day').endOf('day'),
-          ],
-          [I18n.t('admin.date_presets_last_week')]: [
-            dayjs().subtract(1, 'week').startOf('week'),
-            dayjs().subtract(1, 'week').endOf('week'),
-          ],
-          [I18n.t('admin.date_presets_last_month')]: [
-            dayjs().subtract(1, 'month').startOf('month'),
-            dayjs().subtract(1, 'month').endOf('month'),
-          ],
-          [I18n.t('admin.date_presets_last_7_days')]: [
-            dayjs().subtract(7, 'd'),
-            dayjs(),
-          ],
-          [I18n.t('admin.date_presets_last_30_days')]: [
-            dayjs().subtract(30, 'd'),
-            dayjs(),
-          ],
-          [I18n.t('admin.date_presets_last_6_months')]: [
-            dayjs().subtract(180, 'd'),
-            dayjs(),
-          ],
-          [I18n.t('admin.date_presets_last_year')]: [
-            dayjs().subtract(365, 'd'),
-            dayjs(),
-          ],
-        }}
-      />
-    </Form.Item>
+    <Row gutter={16}>
+      <Col xs={24} md={12}>
+        <Form.Item
+          name="startDate"
+          label={I18n.t('admin.form_start_date')}
+          initialValue={configuration?.start_date ? dayjs(configuration.start_date) : undefined}
+        >
+          <DatePicker className="w-100" />
+        </Form.Item>
+      </Col>
+      <Col xs={24} md={12}>
+        <Form.Item
+          name="endDate"
+          label={I18n.t('admin.form_end_date')}
+          initialValue={configuration?.end_date ? dayjs(configuration.end_date) : undefined}
+        >
+          <DatePicker className="w-100" />
+        </Form.Item>
+      </Col>
+    </Row>
   )
 }
 
@@ -87,18 +83,20 @@ export const activeClientsProjectsDefinition: ReportTypeDefinition = {
     scopeOptions: ['global'],
     hideOwnerWhenGlobal: true,
   },
-  processConfiguration: data => ({
-    ...data,
-    configuration: JSON.stringify({
-      activity_period: data.activityPeriod
-        ? [
-          dayjs(data.activityPeriod[0]).toISOString(),
-          dayjs(data.activityPeriod[1]).toISOString(),
-        ]
-        : null,
-    }),
-    activityPeriod: undefined,
-  }),
+
+  processConfiguration: (data) => {
+    const formData = data as ActiveClientsProjectsFormData
+
+    return {
+      ...data,
+      configuration: JSON.stringify({
+        start_date: formData.startDate?.toISOString() ?? null,
+        end_date: formData.endDate?.toISOString() ?? null,
+      }),
+      startDate: undefined,
+      endDate: undefined,
+    }
+  },
 }
 
 export default ActiveClientsProjectsConfig

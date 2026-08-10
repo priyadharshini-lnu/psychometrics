@@ -293,4 +293,20 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
       end
     end
   end
+
+  describe 'GET #index with the feature disabled' do
+    let(:user) { create(:client_admin, client: tenancy) }
+
+    before do
+      allow(AdminSubdomain).to receive(:client_admin_sso_enabled?).and_return(false)
+      sign_in user
+    end
+
+    it 'sends the shell a query param instead of a flash it cannot render' do
+      get :index
+
+      expect(response.location).to include(admin_path(notice: 'feature_unavailable'))
+      expect(flash[:alert]).to be_nil
+    end
+  end
 end

@@ -1,8 +1,10 @@
 import React from 'react'
-import { Card } from 'antd'
-import clientIconSrc from '~/components/ClientSwitcher/client-icon.svg'
-import styles from './styles.less'
+import {
+  Card, Flex, Tag, Typography, theme,
+} from 'antd'
+import { Icon } from '@thetalententerprise/glint/icons'
 
+const { Text } = Typography
 const { I18n } = window
 
 export interface ClientData {
@@ -19,24 +21,43 @@ interface Props {
   onSelect: (clientId: number) => void
 }
 
-export const ClientCard: React.FC<Props> = ({ client, onSelect }) => (
-  <Card
-    className={styles.clientCard}
-    onClick={() => onSelect(client.id)}
-  >
-    {client.sso_enforced && (
-      <span className={styles.ssoBadge}>{I18n.t('admin.sso_label')}</span>
-    )}
-    <div className={styles.cardContent}>
-      {client.logo_url
-        ? <img src={client.logo_url} alt={client.name} className={styles.clientLogo} />
-        : <img src={clientIconSrc} alt="" className={styles.clientLogo} />}
-      <p className={styles.clientName}>
-        {client.name}
-      </p>
-      <p className={styles.subdomain}>
-        {client.subdomain}
-      </p>
-    </div>
-  </Card>
-)
+export const ClientCard: React.FC<Props> = ({ client, onSelect }) => {
+  const { token } = theme.useToken()
+  const iconSize: React.CSSProperties = {
+    blockSize: token.controlHeightLG,
+    inlineSize: token.controlHeightLG,
+    objectFit: 'contain',
+  }
+
+  return (
+    <Card
+      hoverable
+      onClick={() => onSelect(client.id)}
+      // The default colorBorderSecondary is a divider weight; the brand backdrop needs a stated edge.
+      style={{ position: 'relative', blockSize: '100%', borderColor: token.colorBorder }}
+      styles={{ body: { paddingBlock: token.paddingXL } }}
+    >
+      {client.sso_enforced && (
+        <Tag
+          style={{
+            position: 'absolute',
+            insetBlockStart: token.marginXS,
+            insetInlineEnd: token.marginXS,
+            marginInlineEnd: 0,
+          }}
+        >
+          {I18n.t('admin.sso_label')}
+        </Tag>
+      )}
+      <Flex vertical gap={token.marginXS} style={{ textAlign: 'center' }}>
+        <Flex justify="center">
+          {client.logo_url
+            ? <img src={client.logo_url} alt={client.name} style={iconSize} />
+            : <Icon name="corporate_fare" size={token.controlHeightLG} />}
+        </Flex>
+        <Text strong ellipsis style={{ fontSize: token.fontSizeLG }}>{client.name}</Text>
+        <Text type="secondary" ellipsis>{client.subdomain}</Text>
+      </Flex>
+    </Card>
+  )
+}

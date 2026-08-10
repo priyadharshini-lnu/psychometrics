@@ -15,11 +15,6 @@ nl:
         simple_design:
           design: Ontwerp
           or: Of
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Inloggen gelukt.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ nl:
           modal_title: Instellingen voor goedkeuring van scores
           remove_modal_success: 'De goedkeuringsinstelling voor beoordelings-id: %{assessmentId} is succesvol verwijderd.'
           remove_modal_text: 'Weet u zeker dat u deze instelling voor beoordelings-id: %{assessmentId} wilt verwijderen?'
-      assessors:
-        spoof:
-          successfully: U bent succesvol ingelogd als %{name}
       validations:
         dates:
           end: moet na de startdatum zijn

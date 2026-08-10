@@ -18,6 +18,7 @@ import {
   App,
   Skeleton,
 } from 'antd'
+import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 
 import { MenuItem } from '~/interfaces/Antd'
@@ -122,7 +123,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         pagination={false}
         scroll={{ x: 'max-content' }}
         rowKey={row => row.id}
-        sticky={{ offsetHeader: 50 }}
+        sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
       >
         <Column
           title={I18n.t('common.column.id')}

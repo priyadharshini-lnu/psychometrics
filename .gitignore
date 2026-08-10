@@ -114,3 +114,5 @@ support/dev-ssl/ttedev.me.pem
 # Safe-Coder checkpoints (auto-generated)
 .lencode-shadow/
 .lenwork/
+.opencode/
+.claude/

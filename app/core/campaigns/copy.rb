@@ -58,12 +58,22 @@ module Campaigns
       campaign.campaign_assessment_groups.each do |cag|
         new_cag = cag.dup
         new_cag.save!
+        copy_group_translations(cag, new_cag)
         new_campaign.campaign_assessments.where(campaign_assessment_group_id: cag.id).
           update_all(campaign_assessment_group_id: new_cag.id)
         new_campaign.campaign_assessor_assessments.where(campaign_assessment_group_id: cag.id).
           update_all(campaign_assessment_group_id: new_cag.id)
         new_campaign.campaign_assessment_groups << new_cag
       end
+    end
+
+    def copy_group_translations(source_group, target_group)
+      source_group.translations.each do |translation|
+        Mobility.with_locale(translation.locale) do
+          target_group.name = translation.name
+        end
+      end
+      target_group.save!
     end
 
     def copy_datasheet_columns(new_campaign)

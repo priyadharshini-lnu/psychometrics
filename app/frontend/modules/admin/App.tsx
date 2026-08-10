@@ -20,12 +20,14 @@ const { locale } = document.body.dataset
 I18n.locale = locale || I18n.defaultLocale
 
 function App () {
+  // Ordering dependency: its useSetCssVars runs before GlintAdminTheme's bridge, which then wins on --ant-*.
   return (
     <DefaultAntThemeWrapper
       locale={antdLocale}
       direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
     >
-      <div style={{ background: 'white' }}>
+      {/* No background here — a literal white flashed before the themed shell painted. */}
+      <div>
         {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
         <Provider store={store as any}>
           <ApiProvider client={client}>

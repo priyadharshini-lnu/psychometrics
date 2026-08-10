@@ -11,6 +11,7 @@ en-US:
     ai_idp_retake_step_chat_hint_no_document: You can restart the chat to share more details, and I'll do my best to assist you.
     ai_idp_summary_hint_no_document: With your permission, if you say yes, I can create a development plan for you. If not, you can restart the chat to share more details.
     all_checks_must_pass: All checks must pass before you can proceed.
+    appearance: Appearance
     approve_idp_plan: Approve Plan
     assessment_misconfigured: Assessment misconfigured
     assessment_timing_duration_minutes: "%{duration} mins"
@@ -52,16 +53,49 @@ en-US:
     camera_test_step: Video and Audio Test Step
     campaign: Campaign
     campaign_check_status: 'Status: %{status}'
+    card_action_retry: Retry
+    card_action_review: Review
+    card_action_start: Start
+    change_password_warning: 'Important: Changing your password will sign you out.'
     chat_instructions: Chat Instructions
     check: Check
     check_video_recording: Please check your video recording by playing it back.
     checking_browser_compatibility: Checking browser compatibility...
     checking_latency: Checking latency...
+    collapse_navigation: Collapse navigation
     complete_prework_message: Complete all prework tasks to begin.
     could_not_reach_servers: Could not reach our servers to check network speed. Please check your internet connection and try again.
+    dashboard: Dashboard
+    dashboard_active_programs: Active programs
+    dashboard_begin_program: Start program
+    dashboard_continue_program: Continue program
+    dashboard_days_left: "%{count} days left"
+    dashboard_greeting_afternoon: Good afternoon, %{name}.
+    dashboard_greeting_evening: Good evening, %{name}.
+    dashboard_greeting_eyebrow: Welcome back
+    dashboard_greeting_morning: Good morning, %{name}.
+    dashboard_instructions: You may have been assigned multiple activities to complete. Make sure all assigned activities are completed across every program.
+    dashboard_reports_ready: Reports ready
+    dashboard_your_programs: Your programs
     day: day
     day_plural: days
     details: Details
+    details_back: Back
+    details_due: Due
+    details_group_locked_hint: Unlocks after '%{group}' is completed.
+    details_intro_tab: Introduction
+    details_no_reports: No reports yet
+    details_open_heading: Open exercises
+    details_open_hint: Complete in any order, at your own pace.
+    details_percent_done: "%{percent}% done"
+    details_progress: Progress
+    details_reports_ready: Your reports are ready
+    details_reports_tab: Reports
+    details_reserved: Reserved
+    details_sequential_heading: Sequential exercises
+    details_sequential_hint: Complete in order — each unlocks the next.
+    details_total: Total
+    details_view_details: View details
     development: Development
     direct_reportees: Direct Reportees
     download: Download
@@ -108,6 +142,10 @@ en-US:
     localstorage_fix_title: Local Storage is not enabled in your browser
     localstorage_not_enabled_detail: Local Storage is not enabled in your browser. Please ensure that you are not in private/incognito mode, as localStorage is often disabled in these modes.
     localstorage_support: LocalStorage Enabled
+    login_sign_in_btn: Sign in
+    login_sign_up_link: Sign up
+    login_welcome_description: Sign in to your leadership assessment account
+    login_welcome_title: Welcome back
     magic_link_interstitial_description: For your security, we require you to confirm this sign-in. Automated systems cannot complete this step.
     magic_link_interstitial_title: To complete your sign-in, please click the button below.
     max_word_limit: Must be at most %{max} words
@@ -124,6 +162,7 @@ en-US:
     minute: minute
     minute_plural: minutes
     my_plan: My Plan
+    my_profile: My profile
     network: Network
     network_check: Internet Speed Test
     network_check_description: Testing the quality of your internet connection between our servers and your device.
@@ -135,6 +174,7 @@ en-US:
     network_speed_meets_required_detail: Your Internet speed meets the minimum requirements for the campaign
     network_test_step: Network Test Step
     no_audio_detected: No audio detected. Please check if your microphone is connected and working properly.
+    open_navigation: Open navigation
     pass: Pass
     pause: Pause
     pearson_timing_duration_minutes: Timed - %{duration} minutes to complete
@@ -150,7 +190,13 @@ en-US:
     proctored: Proctored
     proctored_assessment_misconfigured_msg: This assessment is proctored but is missing the necessary time configuration, please contact your administrator.
     profile: Profile
+    profile_cancel: Cancel
     profile_details: Details
+    profile_edit: Edit
+    profile_other_information: Other information
+    profile_personal_information: Personal information
+    profile_save: Save
+    profile_time: Time
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: Reason for Rejection
     record: سجل
@@ -167,9 +213,12 @@ en-US:
     results: Result
     safari_proctoring_description: You are using the Safari browser, which may have certain limitations regarding the proctoring features enabled for this campaign. For the best experience, we recommend using Chrome, Edge or Firefox
     safari_proctoring_title: Safari Browser Detected
+    scheduling: Scheduling
     select_audio_device: Select Audio Device
     select_video_device: Select Video Device
     selected_count: Selected
+    sign_out: Sign out
+    signup_sign_in_link: Sign in
     skill_type: Skill Type
     speech_verification_error: An error occurred while verifying your speech. Please try again.
     speech_verification_failed: Your speech did not match the test phrase. Please try again and speak the phrase clearly.
@@ -177,6 +226,7 @@ en-US:
     start_campaign_message_timed: This is a timed campaign, please click '%{buttonText}' button to start the activities.
     start_readiness_check: Start Readiness Check
     start_system_check: Start System Check
+    status_locked: Locked
     stop: Stop
     subinstruction_audio: Working microphone
     subinstruction_eight: Set aside uninterrupted time for the full assessment
@@ -228,6 +278,21 @@ en-US:
     tasks: Tasks
     testing_download_speed: Testing download speed...
     testing_upload_speed: Testing upload speed...
+    theme_active: Active
+    theme_change: Change theme
+    theme_dark_theme: Dark theme
+    theme_ember: Ember
+    theme_light_theme: Light theme
+    theme_marsh: Marsh
+    theme_mode_dark: Dark
+    theme_mode_light: Light
+    theme_mode_system: System
+    theme_mode_title: Mode
+    theme_primer: Primer
+    theme_primer_colorblind: Primer Colorblind
+    theme_primer_contrast: Primer High Contrast
+    theme_primer_dimmed: Primer Dimmed
+    theme_title: Theme
     time_commitment: Time Commitment
     timed_activity_instruction: This is a timed activity, after you start the proctoring session, you will have <strong>%{time} minutes</strong> to complete.
     troubleshooting_guide: Troubleshooting Guide

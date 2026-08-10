@@ -1,14 +1,11 @@
 import { FC } from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
-import { MenuItem } from '~/interfaces/Antd'
-import RouteList from '~/components/RouteList'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 import routeUtils from '~/utils/route'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { isSuperAdmin } from '~/core/currentUser'
-import { routes } from './routes'
 
 const { I18n } = window
 
@@ -23,33 +20,14 @@ type Props = PropsFromRedux
 
 export const SettingsComponent: FC<Props> = ({ currentUser }) => {
   const navigate = useNavigate()
-  const { projectId } = useParams() as { projectId: string }
+  const { pathname } = useLocation()
   const prefix = `${settings.urlPrefix}/:projectId/settings`
   const { permissions } = currentUser
-  const modifiedRoutes = () => {
-    let firstRoute = ''
-    if (permissions.manageProjectGeneralSettings) {
-      firstRoute = '/general'
-    } else if (permissions.manageProjectSmtpSettings) {
-      firstRoute = '/smtp'
-    } else if (permissions.manageProjectSamlSetting) {
-      firstRoute = '/saml'
-    } else if (permissions.manageProjectIntegrations) {
-      firstRoute = '/integrations'
-    } else if (permissions.manageProjectSecuritySettings) {
-      firstRoute = '/security'
-    } else if (permissions.manageProjectWebhooks) {
-      firstRoute = '/webhooks'
-    } else if (permissions.manageProjectPrivacySetting) {
-      firstRoute = '/privacy'
-    }
-    return [{ redirect: true, from: '', to: `${settings.urlPrefix}/${projectId}/settings${firstRoute}` }, ...routes]
-  }
 
   const onSelect = ({ key }) => {
     routeUtils.moveTo(navigate, prefix, key)
   }
-  const menuItems:MenuItem[] = []
+  const menuItems: { key: string, label: string }[] = []
 
   permissions.manageProjectGeneralSettings && menuItems.push({
     key: '/general',
@@ -104,15 +82,17 @@ export const SettingsComponent: FC<Props> = ({ currentUser }) => {
     label: I18n.t('admin.settings_tabs_feature_flags'),
   })
 
+  const activeTab = menuItems.find(({ key }) => pathname.includes(key))
+
   return (
     <div>
       <Menu
         items={menuItems}
         onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        selectedKeys={activeTab ? [activeTab.key] : []}
         mode="horizontal"
       />
-      <RouteList routes={modifiedRoutes()} urlPrefix="" />
+      <Outlet />
     </div>
   )
 }

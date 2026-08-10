@@ -1,20 +1,17 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const Maintenance = lazy(() => import('./Maintenance'))
+const page = lazyPages('settings', () => import('./Maintenance'))
 
-
-const routes = [
-  { redirect: true, from: '', to: 'maintenance' },
-  { path: '/maintenance', component: <Maintenance /> },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const Maintenance = page(m => m.default)
 
 const SettingsRoutes = [
   {
-    path: 'settings/*',
-    element: <Layout />,
+    path: 'settings',
+    children: [
+      { index: true, element: <Navigate to="maintenance" replace /> },
+      { path: 'maintenance', element: <Maintenance /> },
+    ],
   },
 ]
 

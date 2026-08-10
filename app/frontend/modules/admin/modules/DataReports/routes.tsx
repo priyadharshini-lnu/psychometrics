@@ -1,8 +1,9 @@
-import { lazy } from 'react'
-import { DataReportJobs } from '~/modules/admin/modules/client/routes/Client/routes/DataReports/DataReportJobs'
+import { lazyPages } from '~/utils/lazyPages'
 
-const DataReports = lazy(() => import('./DataReports'))
+const page = lazyPages('dataReports', () => import('./pages'))
 
+const DataReports = page(m => m.DataReports)
+const DataReportJobs = page(m => m.DataReportJobs)
 
 export const DataReportsRoutes = [
   {

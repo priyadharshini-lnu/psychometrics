@@ -83,6 +83,18 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
     end
 
     describe 'Get current user details' do
+      it 'serializes the user preferences' do
+        create(:user_preference, user: superadmin, category: 'theme', config_key: 'appearance',
+                                 payload: { 'mode' => 'dark' })
+
+        get '/api/v2/administration/users/current_user_details'
+
+        preferences = JSON.parse(response.body)['data']['attributes']['preferences']
+        expect(preferences).to include(
+          'category' => 'theme', 'config_key' => 'appearance', 'payload' => { 'mode' => 'dark' }
+        )
+      end
+
       it 'check response' do
         allow(Settings.features).to receive(:[]).with(:ai_assistant_enabled).and_return(true)
         allow(Settings.features).to receive(:dimensions_react_ui).and_return(true)

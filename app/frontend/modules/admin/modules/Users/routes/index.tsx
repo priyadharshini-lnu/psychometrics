@@ -1,39 +1,25 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const UserList = lazy(() => import('./UserList'))
+const page = lazyPages('users', () => import('./UserList'))
 
-const RegularUserList = () => <UserList userTab="Users::Regular" />
-const AdminUserList = () => <UserList userTab="Users::Admin" />
-const SuperAdminUserList = () => <UserList userTab="Users::SuperAdmin" />
-const GlobalAssessorUserList = () => <UserList userTab="Users::GlobalAssessors" />
+const userList = (userTab: string) => page(({ default: UserList }) => () => <UserList userTab={userTab} />)
 
-export const routes = [
-  { redirect: true, from: '', to: 'users' },
-  {
-    path: '/users',
-    component: <RegularUserList />,
-  },
-  {
-    path: '/admins',
-    component: <AdminUserList />,
-  },
-  {
-    path: '/superadmins',
-    component: <SuperAdminUserList />,
-  },
-  {
-    path: '/global-assessors',
-    component: <GlobalAssessorUserList />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const RegularUsers = userList('Users::Regular')
+const AdminUsers = userList('Users::Admin')
+const SuperAdminUsers = userList('Users::SuperAdmin')
+const GlobalAssessors = userList('Users::GlobalAssessors')
 
 const UserRoutes = [
   {
-    path: 'users/*',
-    element: <Layout />,
+    path: 'users',
+    children: [
+      { index: true, element: <Navigate to="users" replace /> },
+      { path: 'users', element: <RegularUsers /> },
+      { path: 'admins', element: <AdminUsers /> },
+      { path: 'superadmins', element: <SuperAdminUsers /> },
+      { path: 'global-assessors', element: <GlobalAssessors /> },
+    ],
   },
 ]
 

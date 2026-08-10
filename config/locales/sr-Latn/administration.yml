@@ -15,11 +15,6 @@ sr-Latn:
         simple_design:
           design: Dizajn
           or: Ili
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prijava uspešna.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ sr-Latn:
           modal_title: Подешавања за одобравање бодовања
           remove_modal_success: 'Подешавање одобрења за ИД процене: %{assessmentId} је успешно избрисан'
           remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Uspešno ste se prijavili kao %{name}
       validations:
         dates:
           end: mora biti nakon datuma početka

@@ -6,6 +6,10 @@ class Api::V2::Administration::DimensionResource < Api::V2::Administration::Base
 
   has_one :owner
   ransack_filters %i[filterable_fields]
+  filter :owner_id, apply: lambda { |records, value, _options|
+    owner_id = value.is_a?(Array) ? value[0] : value
+    records.owned_by_client_or_tte(owner_id)
+  }
 
   def self.creatable_fields(context)
     fields = super

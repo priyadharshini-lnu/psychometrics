@@ -1,58 +1,47 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, Navigate, Outlet, RouterProvider,
+  createBrowserRouter, Outlet, RouterProvider, useMatches,
 } from 'react-router-dom'
-import { PortalMenu } from '~/components/MainMenu'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { AdminShell } from '~/components/AdminShell'
+import RouteErrorBoundary from '~/components/RouteErrorBoundary'
+import { PageFallback } from '~/components/PageFallback'
+import { usePageChunk } from '~/utils/usePageChunk'
 import settings from './settings'
-import Participants from './routes/Participants'
-import { Admins } from './routes/Admins'
-import Datasheet from './routes/Datasheet'
-import Reports from './routes/Reports'
-import Messages from './routes/Messages'
-import { AIArtifacts } from './routes/AIArtifacts'
+import routes from './routes'
 
+// No ownedPathPrefixes: this router owns only the campaign subtree, so every main-menu target needs a full load.
 const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <PortalMenu />
-    <Outlet />
-  </Suspense>
+  <AdminShell>
+    <Suspense fallback={<PageFallback />}>
+      <Outlet />
+    </Suspense>
+  </AdminShell>
 )
 
+// Reset (not remounted) on navigation: a key here would tear down the campaign page on every subnav click.
+const CampaignPage: React.FC = () => {
+  const matches = useMatches()
+  // Keyed by chunk: a page waiting on a download gets a fresh boundary, which React fills with the fallback.
+  const chunk = usePageChunk(router.routes)
+
+  return (
+    <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
+      <Suspense key={chunk} fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
+  )
+}
+
 export const router = createBrowserRouter([
-  { path: settings.urlPrefix, element: <Navigate to="participants" /> },
-  {
-    path: `${settings.urlPrefix}/participants/*`,
-    element: <Participants />,
-  },
-  {
-    path: `${settings.urlPrefix}/messages/*`,
-    element: <Messages />,
-  },
-  {
-    path: `${settings.urlPrefix}/admins/*`,
-    element: <Admins />,
-  },
-  {
-    path: `${settings.urlPrefix}/reports/*`,
-    element: <Reports />,
-  },
-  {
-    path: `${settings.urlPrefix}/datasheets/*`,
-    element: <Datasheet />,
-  },
-  {
-    path: `${settings.urlPrefix}/ai_artifacts/*`,
-    element: <AIArtifacts />,
-  },
+  { path: settings.urlPrefix, element: <CampaignPage />, children: routes },
   { path: '*', element: <Main /> },
 ])
 
 export function Layout () {
-  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+  return (
+    <Suspense fallback="loading...">
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

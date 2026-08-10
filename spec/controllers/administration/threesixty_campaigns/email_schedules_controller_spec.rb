@@ -11,8 +11,9 @@ RSpec.describe Administration::ThreesixtyCampaigns::EmailSchedulesController, ty
   after(:each) { sign_out(current_user) }
 
   it 'creates schedule with template content' do
+    # The route segment is a Campaign id despite its name; the controller finds by campaign_id.
     post :create, params: {
-      threesixty_campaign_id: template.threesixty_campaign_id,
+      threesixty_campaign_id: template.threesixty_campaign.campaign_id,
       id: template.id,
       name: template.name,
       consolidated: template.consolidated,

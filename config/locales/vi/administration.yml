@@ -15,11 +15,6 @@ vi:
         simple_design:
           design: Thiết kế
           or: Hoặc
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Đăng nhập thành công.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ vi:
           modal_title: Cài đặt phê duyệt điểm số
           remove_modal_success: 'Cài đặt phê duyệt cho ID đánh giá: %{assessmentId} đã được xóa thành công.'
           remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho ID đánh giá: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
       validations:
         dates:
           end: phải sau ngày bắt đầu

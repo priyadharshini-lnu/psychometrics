@@ -122,6 +122,12 @@ en-US:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    appearance: Appearance
+    appearance_dark: Dark
+    appearance_dark_theme: Dark theme
+    appearance_light: Light
+    appearance_light_theme: Light theme
+    appearance_system: System
     application: Application
     application_add: Add Application
     application_name: Application Name
@@ -830,6 +836,7 @@ en-US:
     feature_flags_ai_group: AI Features
     feature_flags_communication_group: Communication
     feature_flags_platform_group: Platform Features
+    feature_glint_ui_description: Render the participant experience with the Glint design system
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
@@ -890,8 +897,11 @@ en-US:
     generate_transcription: Generate Transcription
     generated_at_time: Generated at %{time}
     generated_value: Generated Value
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI is disabled by client
     global_skills: Global Skills
     global_skills_disabled_by_client: Global Skills is disabled by client
+    go_back: Back
     grant_type_label: Grant Type
     grant_type_name: oauth_grant_type
     graphic: Graphic
@@ -3098,6 +3108,9 @@ en-US:
     text_danger: Text(danger)
     text_success: Text (success)
     text_warning: Text(warning)
+    themes:
+      marsh-dark: Marsh Dark
+      marsh-light: Marsh Light
     this_field_is_required: This field is required
     threesixity_advance_settings_campaign_template: Campaign Template
     threesixity_advance_settings_factors: Factors

@@ -13,6 +13,16 @@ module AdminJobs
         'Count'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS

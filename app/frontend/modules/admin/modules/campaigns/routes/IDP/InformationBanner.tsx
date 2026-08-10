@@ -52,7 +52,7 @@ export const InformationBanner = () => {
         </Flex>
       </Flex>
 
-      <Divider type="vertical" style={{ height: '2.5rem', alignSelf: 'center' }} />
+      <Divider orientation="vertical" style={{ height: '2.5rem', alignSelf: 'center' }} />
     </Flex>
   )
 }

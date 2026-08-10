@@ -124,7 +124,6 @@ module Administration
                campaign: campaign
         siem_log_impersonation_event(target_user, 'Admin')
 
-        flash.now[:success] = t('.successfully', name: target_user.decorate.display_name)
         spoof_admin_routing(target_user, client: campaign.project.parent,
                             fallback_redirect_url: assessors_dashboard_path)
       end

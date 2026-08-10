@@ -141,11 +141,14 @@ test('user should be able to select color present in recently used color list', 
       trigger = getAllByTestId(`swatch-item-${currentColor}`)[0]
       trigger && fireEvent.click(trigger)
     }
-    const recentlyUsedColor = getByTestId(`swatch-item-${COLORS[1]}`)
-    recentlyUsedColor.style['pointer-events'] = 'auto'
-    await user.click(recentlyUsedColor)
-    await user.click(document.body)
   })
+
+  // Query outside act(): the recent-colours list only holds the loop's swatches once it has committed.
+  const recentlyUsedColor = getByTestId(`swatch-item-${COLORS[1]}`)
+  recentlyUsedColor.style['pointer-events'] = 'auto'
+  await user.click(recentlyUsedColor)
+  await user.click(document.body)
+
   expect(latestPickedColor).toBe(COLORS[1])
 })
 
@@ -168,8 +171,11 @@ test('user should be able to select color present in recommended color list', as
   const recommendedColor = getByTestId(`swatch-item-${COLORS[1]}`)
   recommendedColor.style['pointer-events'] = 'auto'
 
+  // Separate act()s: closing the popover reports the picked colour, so the pick must commit first.
   await act(async () => {
     await user.click(recommendedColor)
+  })
+  await act(async () => {
     await user.click(document.body)
   })
 })
@@ -198,19 +204,20 @@ test('user should not see duplicate colors in recently used color list when same
       trigger = getAllByTestId(`swatch-item-${currentColor}`)[0]
       trigger && fireEvent.click(trigger)
     }
-
-    const recentlyUsedColor = getByTestId(`swatch-item-${COLORS[0]}`)
-    recentlyUsedColor.style['pointer-events'] = 'auto'
-    await user.click(recentlyUsedColor)
-    await user.click(document.body)
-    trigger = getAllByTestId(`swatch-item-${COLORS[0]}`)[0]
-    trigger && fireEvent.click(trigger)
-
-    const EXPECTED_REORDERED_COLORS = [COLORS[0], COLORS[2], COLORS[1]]
-    const recentlyUsedColorElements = getByTestId('recentlyUsedColors').querySelectorAll('button')
-    recentlyUsedColorElements.forEach((recentlyUsedColorElement, index) => {
-      expect(recentlyUsedColorElement.id).toBe(EXPECTED_REORDERED_COLORS[index])
-    })
-    expect(localStorage.getItem('recentColors')).toBe(JSON.stringify(EXPECTED_REORDERED_COLORS))
   })
+
+  // Query outside act(): the recent-colours list only holds the loop's swatches once it has committed.
+  const recentlyUsedColor = getByTestId(`swatch-item-${COLORS[0]}`)
+  recentlyUsedColor.style['pointer-events'] = 'auto'
+  await user.click(recentlyUsedColor)
+  await user.click(document.body)
+  trigger = getAllByTestId(`swatch-item-${COLORS[0]}`)[0]
+  trigger && fireEvent.click(trigger)
+
+  const EXPECTED_REORDERED_COLORS = [COLORS[0], COLORS[2], COLORS[1]]
+  const recentlyUsedColorElements = getByTestId('recentlyUsedColors').querySelectorAll('button')
+  recentlyUsedColorElements.forEach((recentlyUsedColorElement, index) => {
+    expect(recentlyUsedColorElement.id).toBe(EXPECTED_REORDERED_COLORS[index])
+  })
+  expect(localStorage.getItem('recentColors')).toBe(JSON.stringify(EXPECTED_REORDERED_COLORS))
 })

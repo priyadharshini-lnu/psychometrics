@@ -6,7 +6,7 @@ module Auth
                :saml_enforced, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
                :hide_signup, :magic_link_enabled, :disallow_password_login, :logo_alt_text,
-               :enable_recaptcha
+               :enable_recaptcha, :glint_ui
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -46,6 +46,12 @@ module Auth
 
     def require_mobile_number
       object.registration_setting.require_mobile_number
+    end
+
+    # Safe for the `Client.new` fallback the layout passes on project-less routes —
+    # `project_feature_enabled?` only exists on projects, so those render legacy.
+    def glint_ui
+      object.respond_to?(:project_feature_enabled?) && object.project_feature_enabled?(:glint_ui)
     end
 
     def hide_signup

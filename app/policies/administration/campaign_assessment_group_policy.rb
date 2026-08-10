@@ -17,5 +17,9 @@ module Administration
     def update_positions?
       update?
     end
+
+    def fetch_name_translations?
+      update?
+    end
   end
 end

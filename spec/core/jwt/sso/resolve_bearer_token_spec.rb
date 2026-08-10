@@ -64,11 +64,12 @@ RSpec.describe Jwt::Sso::ResolveBearerToken do
 
     it 'returns replay with substituted return_url when a single use token is replayed' do
       payload_overrides['single_use'] = true
-      payload_overrides['ret_url'] = "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
+      payload_overrides['ret_url'] = 'https://example.com/done?status=ASSESSMENT_STATUS'
       allow(Jwt::SingleUse::SingleUseJtiGuard).to receive(:call).and_return({ replayed: { reason: :replayed } })
 
       expect(call_service[:token_reuse_detected]).to eq(
-        return_url: "https://#{project.subdomain}.#{Settings.domain}/done?status=campaign_pending"
+        return_url: 'https://example.com/done?status=campaign_pending',
+        application: application_user
       )
     end
   end

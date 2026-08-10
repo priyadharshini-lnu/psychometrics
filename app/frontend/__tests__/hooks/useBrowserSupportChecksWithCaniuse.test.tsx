@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks'
+import { renderHook } from '@testing-library/react'
 
 import { useBrowserSupportChecksWithCaniuse } from '~/hooks/useBrowserSupportChecksWithCaniuse'
 import { BROWSER_FEATURES, UA_BROWSERS } from '~/modules/survey/constants/browser'

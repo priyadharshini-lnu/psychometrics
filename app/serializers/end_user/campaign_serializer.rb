@@ -61,7 +61,7 @@ module EndUser
     end
 
     def groups
-      group_records = object.campaign_assessment_groups.order(:position).includes(:campaign_assessments)
+      group_records = object.campaign_assessment_groups.order(:position).includes(:campaign_assessments, :translations)
       Panko::ArraySerializer.new(group_records, each_serializer: ::EndUser::GroupSerializer).to_a
     end
 

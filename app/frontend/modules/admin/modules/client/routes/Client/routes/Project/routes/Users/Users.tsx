@@ -1,9 +1,9 @@
-import { useNavigate, useLocation, useParams } from 'react-router'
+import {
+  useNavigate, useLocation, useParams, Outlet,
+} from 'react-router'
 import { Menu } from 'antd'
 
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from '~/components/RouteList'
-import { routes } from './routes'
 
 const { I18n } = window
 
@@ -39,10 +39,7 @@ export const Users = () => {
         selectedKeys={handleSelectedKeys()}
         mode="horizontal"
       />
-      <RouteList
-        routes={routes}
-        urlPrefix={`${settings.urlPrefix}/:projectId/users`}
-      />
+      <Outlet />
     </div>
   )
 }

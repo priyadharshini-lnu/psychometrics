@@ -1,5 +1,6 @@
 import React from 'react'
 import { Radio, Typography } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import { DateTimeWithZone } from '~/glint'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/assessors/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -28,6 +29,7 @@ const DateFilters = () => {
 }
 
 export const CampaignsList: React.FC = () => {
+  const navigate = useNavigate()
   const config = {
     trackUrl: true,
     responseType: WorkshopTR,
@@ -50,11 +52,10 @@ export const CampaignsList: React.FC = () => {
         onRowChange={record => ({
           onClick: () => {
             const workshop = record as Workshop
-            const { projectId, id: campaignId } = workshop?.campaign
-            const workshopId = record.id
-            const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}`
-            const url = `${basePath}/scheduling/assessment_center/${workshopId}`
-            window.location.href = url
+            const campaign = workshop?.campaign
+            if (!campaign) return
+            const basePath = `/admin/projects/${campaign.projectId}/new_campaigns/${campaign.id}`
+            navigate(`${basePath}/scheduling/assessment_center/${record.id}`)
           },
           className: styles.clickableRow,
         })}

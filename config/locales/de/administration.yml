@@ -15,11 +15,6 @@ de:
         simple_design:
           design: Gestaltung
           or: Oder
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Anmeldung erfolgreich.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ de:
           modal_title: Einstellungen für die Genehmigung von Bewertungen
           remove_modal_success: 'Die Genehmigungseinstellung für die Bewertungs-ID: %{assessmentId} wurde erfolgreich gelöscht.'
           remove_modal_text: Sind Sie sicher, dass Sie diese Einstellung für die Bewertungs-ID „%{assessmentId}“ löschen möchten?
-      assessors:
-        spoof:
-          successfully: Sie wurden erfolgreich als %{name} angemeldet
       validations:
         dates:
           end: muss nach dem Startdatum liegen

@@ -6,9 +6,11 @@ import {
   Table, Row, Col, Button,
   Space,
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
-import { get as getUserAssessments } from '~/modules/admin/modules/AssessorApp/core/userAssessments'
+import {
+  get as getUserAssessments, isEvaluationCompleted,
+} from '~/modules/admin/modules/AssessorApp/core/userAssessments'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ReportList from './ReportList'
 import styles from './styles.less'
@@ -18,6 +20,7 @@ const connecter = connect(
   (state: RootState) => ({
     user: getCurrent(state),
     userAssessments: getUserAssessments(state),
+    evaluationCompleted: isEvaluationCompleted(state),
   }),
   {
   },
@@ -29,8 +32,9 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const Assessments: React.FC<Props> = ({ user, userAssessments }) => {
+const Assessments: React.FC<Props> = ({ user, userAssessments, evaluationCompleted }) => {
   const { campaignId } = useParams() as {campaignId: string}
+  const navigate = useNavigate()
 
   return (
     <>
@@ -41,10 +45,10 @@ const Assessments: React.FC<Props> = ({ user, userAssessments }) => {
             <Space>
               <Button
                 className={styles['assessment-buttons']}
-                href={`/assessors/campaigns/${campaignId}/evaluations/${user?.id}${status === 'completed' ? '?edit=true' : ''}`}
+                onClick={() => navigate(`/assessors/campaigns/${campaignId}/evaluations/${user?.id}${evaluationCompleted ? '?edit=true' : ''}`)}
                 type="primary"
               >
-                {status === 'completed'
+                {evaluationCompleted
                   ? I18n.t('assessments.actions.reevaluate')
                   : I18n.t('assessments.actions.evaluate') }
               </Button>
@@ -52,7 +56,7 @@ const Assessments: React.FC<Props> = ({ user, userAssessments }) => {
                 && (
                   <Button
                     className={styles['assessment-buttons']}
-                    href={`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`}
+                    onClick={() => navigate(`/assessors/campaigns/${campaignId}/moderate_scoring/${user.id}`)}
                     type="primary"
                   >
                     {I18n.t('assessments.actions.moderate')}

@@ -73,7 +73,6 @@ export const PermissionDenied = ({ handleNext, checkType }: {
         </div>
               )}
       showIcon={false}
-      classNames="mt-2"
     />
     <Flex justify="end" gap={4} className="mt-2">
       <ButtonWithArrow

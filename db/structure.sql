@@ -2529,6 +2529,40 @@ ALTER SEQUENCE public.campaign_ai_artifacts_id_seq OWNED BY public.campaign_ai_a
 
 
 --
+-- Name: campaign_assessment_group_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_assessment_group_translations (
+    id bigint NOT NULL,
+    name character varying,
+    locale character varying NOT NULL,
+    campaign_assessment_group_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_assessment_group_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_assessment_group_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_assessment_group_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_assessment_group_translations_id_seq OWNED BY public.campaign_assessment_group_translations.id;
+
+
+--
 -- Name: campaign_assessment_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3152,7 +3186,8 @@ CREATE TABLE public.client_features (
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    glint_ui boolean DEFAULT false NOT NULL
 );
 
 
@@ -6559,7 +6594,8 @@ CREATE TABLE public.project_features (
     enhance_with_ai boolean DEFAULT false NOT NULL,
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    glint_ui boolean DEFAULT false NOT NULL
 );
 
 
@@ -9265,6 +9301,45 @@ ALTER SEQUENCE public.user_idp_skills_id_seq OWNED BY public.user_idp_skills.id;
 
 
 --
+-- Name: user_preferences; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_preferences (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    category character varying NOT NULL,
+    config_key character varying NOT NULL,
+    name character varying,
+    description text,
+    payload jsonb DEFAULT '{}'::jsonb NOT NULL,
+    resource_type character varying,
+    resource_id bigint,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_preferences_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_preferences_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_preferences_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_preferences_id_seq OWNED BY public.user_preferences.id;
+
+
+--
 -- Name: user_profiles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -10476,6 +10551,13 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies ALTER COLUMN id SET DE
 --
 
 ALTER TABLE ONLY public.campaign_ai_artifacts ALTER COLUMN id SET DEFAULT nextval('public.campaign_ai_artifacts_id_seq'::regclass);
+
+
+--
+-- Name: campaign_assessment_group_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations ALTER COLUMN id SET DEFAULT nextval('public.campaign_assessment_group_translations_id_seq'::regclass);
 
 
 --
@@ -11767,6 +11849,13 @@ ALTER TABLE ONLY public.user_idp_skills ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: user_preferences id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_preferences ALTER COLUMN id SET DEFAULT nextval('public.user_preferences_id_seq'::regclass);
+
+
+--
 -- Name: user_profiles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12266,6 +12355,14 @@ ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
 
 ALTER TABLE ONLY public.campaign_ai_artifacts
     ADD CONSTRAINT campaign_ai_artifacts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_assessment_group_translations campaign_assessment_group_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations
+    ADD CONSTRAINT campaign_assessment_group_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -13765,6 +13862,14 @@ ALTER TABLE ONLY public.user_idp_skills
 
 
 --
+-- Name: user_preferences user_preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_preferences
+    ADD CONSTRAINT user_preferences_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_profiles user_profiles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -14222,6 +14327,20 @@ CREATE INDEX idx_sessions_user_tenant_impersonator ON public.sessions USING btre
 --
 
 CREATE INDEX idx_user_assessments_status_expiry_users_result_id ON public.user_assessments USING btree (status, expiry_date) INCLUDE (users_result_id);
+
+
+--
+-- Name: idx_user_prefs_unique_global; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_user_prefs_unique_global ON public.user_preferences USING btree (user_id, category, config_key) WHERE (resource_id IS NULL);
+
+
+--
+-- Name: idx_user_prefs_unique_scoped; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_user_prefs_unique_scoped ON public.user_preferences USING btree (user_id, category, config_key, resource_type, resource_id) WHERE (resource_id IS NOT NULL);
 
 
 --
@@ -15114,6 +15233,13 @@ CREATE INDEX index_bulk_reports_on_user_id ON public.bulk_reports USING btree (u
 
 
 --
+-- Name: index_cag_t18n_on_campaign_assessment_group_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_cag_t18n_on_campaign_assessment_group_id_and_locale ON public.campaign_assessment_group_translations USING btree (campaign_assessment_group_id, locale);
+
+
+--
 -- Name: index_campaign_ai_artifact_dependencies_on_dependency; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15153,6 +15279,20 @@ CREATE UNIQUE INDEX index_campaign_ai_artifacts_on_campaign_id_and_code ON publi
 --
 
 CREATE INDEX index_campaign_ai_artifacts_on_tenant_id ON public.campaign_ai_artifacts USING btree (tenant_id);
+
+
+--
+-- Name: index_campaign_assessment_group_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessment_group_translations_on_locale ON public.campaign_assessment_group_translations USING btree (locale);
+
+
+--
+-- Name: index_campaign_assessment_group_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_assessment_group_translations_on_tenant_id ON public.campaign_assessment_group_translations USING btree (tenant_id);
 
 
 --
@@ -19202,6 +19342,34 @@ CREATE INDEX index_user_idp_skills_on_user_idp_plan_id ON public.user_idp_skills
 
 
 --
+-- Name: index_user_preferences_on_category; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_preferences_on_category ON public.user_preferences USING btree (category);
+
+
+--
+-- Name: index_user_preferences_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_preferences_on_resource_type_and_resource_id ON public.user_preferences USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_user_preferences_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_preferences_on_tenant_id ON public.user_preferences USING btree (tenant_id);
+
+
+--
+-- Name: index_user_preferences_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_preferences_on_user_id ON public.user_preferences USING btree (user_id);
+
+
+--
 -- Name: index_user_profiles_on_tenant_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -21793,6 +21961,14 @@ ALTER TABLE ONLY public.factors_sub_factors
 
 
 --
+-- Name: user_preferences fk_rails_608075df96; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_preferences
+    ADD CONSTRAINT fk_rails_608075df96 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_assessments fk_rails_60c2fd6734; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23118,6 +23294,14 @@ ALTER TABLE ONLY public.campaign_assessor_assessments
 
 ALTER TABLE ONLY public.user_report_events
     ADD CONSTRAINT fk_rails_a5eeb9e965 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: user_preferences fk_rails_a69bfcfd81; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_preferences
+    ADD CONSTRAINT fk_rails_a69bfcfd81 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -24513,6 +24697,14 @@ ALTER TABLE ONLY public.audit_logs
 
 
 --
+-- Name: campaign_assessment_group_translations fk_rails_eec8708928; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_assessment_group_translations
+    ADD CONSTRAINT fk_rails_eec8708928 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id);
+
+
+--
 -- Name: skill_groups fk_rails_eee5517ca5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24904,6 +25096,10 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260806000001'),
+('20260731120500'),
+('20260731120000'),
+('20260803093002'),
+('20260803093001'),
 ('20260724095212'),
 ('20260724091252'),
 ('20260724075701'),
@@ -24995,6 +25191,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260204083410'),
 ('20260203070450'),
 ('20260203060658'),
+('20260125173235'),
 ('20260124061828'),
 ('20260123131309'),
 ('20260123090109'),

@@ -14,8 +14,26 @@ module PsyGlobalStateHelper
       features: Settings.features.to_h.transform_values { |v| v == true },
       clientContextData: client_context_data,
       switchableClients: switchable_clients_data,
-      recentClientIds: recent_client_ids_data
+      recentClientIds: recent_client_ids_data,
+      reactShell: react_shell?
     }.to_json
+  end
+
+  # True when the SPA owns the page's shell, so Rails renders no chrome around it.
+  # rubocop:disable Rails/HelperInstanceVariable -- controller state by design; layout and boot payload must agree
+  def react_shell?
+    @do_not_render_rails_menu.present? && @hide_navigation.blank?
+  end
+  # rubocop:enable Rails/HelperInstanceVariable
+
+  # Shell pages paint the brand backdrop (Marsh pattern on a scheme-picked surface) from the first byte.
+  def shell_html_style
+    style = 'color-scheme: light dark'
+    if react_shell?
+      pattern = image_url('marsh-pattern.png')
+      style += "; background: light-dark(#F7F4EF, #061047) url(#{pattern}) center / cover no-repeat"
+    end
+    style
   end
 
   private

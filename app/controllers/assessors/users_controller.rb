@@ -5,6 +5,8 @@ class Assessors::UsersController < Administration::BaseController
   skip_after_action :verify_policy_scoped, only: :index
   before_action :skip_authorization, only: %i[dashboard show]
   before_action :set_resource, only: [:show]
+  # No role gate: like /admin, the page loads for any admin-side user; links + API policies decide what they see.
+  render_entrypoint :dashboard, element: 'admin-app-container', entry: 'admin/admin'
 
   def index
     users = user_scope.ransack(params[:filters]).result
@@ -80,15 +82,7 @@ class Assessors::UsersController < Administration::BaseController
     @campaign ||= Campaign.find_by(id: params[:campaign_id])
   end
 
-  def dashboard
-    @do_not_render_rails_menu = true
-    @init_state ||= {}
-    @init_state[:config] = {
-      features: feature_flags,
-      project: project_flags
-    }
-    raise NotAuthorizedError unless current_user.is?(:assessor)
-  end
+  def dashboard; end
 
   private
 

@@ -1,41 +1,27 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyPages } from '~/utils/lazyPages'
 
-const ReportList = lazy(() => import('./ReportList/routes/ReportList'))
-const EditReport = lazy(() => import('./ReportList/routes/EditReport'))
-const ReportBundleList = lazy(() => import('./ReportBundleList'))
-const ReportBundleReportList = lazy(() => import('./ReportBundleReportList'))
+const page = lazyPages('reports', () => import('../pages'))
 
-const ActiveReportList = () => <ReportList reportTab="active" />
-const ArchivedReportList = () => <ReportList reportTab="archived" />
-const TrashReportList = () => <ReportList reportTab="deleted" />
+const reportList = (reportTab: string) => page(({ ReportList }) => () => <ReportList reportTab={reportTab} />)
 
-const routes = [
-  { redirect: true, from: '', to: 'active' },
-  {
-    path: '/active',
-    component: <ActiveReportList />,
-  },
-  {
-    path: '/archived',
-    component: <ArchivedReportList />,
-  },
-  {
-    path: '/trash',
-    component: <TrashReportList />,
-  },
-  {
-    path: '/:id/edit',
-    component: <EditReport />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const ActiveReports = reportList('active')
+const ArchivedReports = reportList('archived')
+const TrashedReports = reportList('deleted')
+const EditReport = page(m => m.EditReport)
+const ReportBundleReportList = page(m => m.ReportBundleReportList)
+const ReportBundleList = page(m => m.ReportBundleList)
 
 const ReportRoutes = [
   {
-    path: 'reports/*',
-    element: <Layout />,
+    path: 'reports',
+    children: [
+      { index: true, element: <Navigate to="active" replace /> },
+      { path: 'active', element: <ActiveReports /> },
+      { path: 'archived', element: <ArchivedReports /> },
+      { path: 'trash', element: <TrashedReports /> },
+      { path: ':id/edit', element: <EditReport /> },
+    ],
   },
   {
     path: 'report_families/:id/reports',

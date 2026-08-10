@@ -15,11 +15,6 @@ pt:
         simple_design:
           design: Conceção
           or: Ou
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Início de sessão bem sucedido.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ pt:
           modal_title: Configurações de aprovação de pontuação
           remove_modal_success: 'A configuração de aprovação para o ID de avaliação: %{assessmentId} foi excluída com sucesso.'
           remove_modal_text: 'Tem certeza de que deseja excluir esta configuração para o ID de avaliação: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: O seu login foi efectuado com sucesso como %{name}
       validations:
         dates:
           end: deve ser posterior à data de início

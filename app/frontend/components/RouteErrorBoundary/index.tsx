@@ -6,11 +6,14 @@ interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
+  /** Change this to clear a caught error without remounting the boundary's subtree. */
+  resetKey?: string | number;
 }
 
 interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
+  resetKey?: string | number;
 }
 
 const { I18n } = window
@@ -21,11 +24,21 @@ class RouteErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryStat
     this.state = {
       hasError: false,
       error: null,
+      resetKey: props.resetKey,
     }
   }
 
-  static getDerivedStateFromError (error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError (error: Error) {
     return { hasError: true, error }
+  }
+
+  // A new resetKey clears the caught error in place, so the subtree recovers without being remounted.
+  static getDerivedStateFromProps (props: ErrorBoundaryProps, state: ErrorBoundaryState) {
+    if (props.resetKey === state.resetKey) return null
+
+    return state.hasError
+      ? { hasError: false, error: null, resetKey: props.resetKey }
+      : { resetKey: props.resetKey }
   }
 
   componentDidCatch (error: Error, errorInfo: ErrorInfo) {

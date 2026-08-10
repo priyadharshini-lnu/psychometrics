@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import _ from 'lodash'
 import dayjs from '~/utils/dayjs'
 
 type TimezoneOption = {
@@ -7,23 +6,51 @@ type TimezoneOption = {
   label: string
 }
 
-export const useTimezones = (currentZone?: string): TimezoneOption[] => useMemo(() => {
-  const timeZones = Intl.supportedValuesOf('timeZone')
-    .map(normalizeTimeZone)
-    .sort((a, b) => dayjs().tz(a).utcOffset() - dayjs().tz(b).utcOffset())
-  const timezoneGuess = normalizeTimeZone(currentZone || dayjs.tz.guess())
+type ResolvedZone = TimezoneOption & { offset: number }
 
-  if (timezoneGuess) {
-    _.remove(timeZones, zone => zone === timezoneGuess)
-    timeZones.unshift(timezoneGuess)
+let cachedZones: ResolvedZone[] | null = null
+
+const resolveZone = (zone: string): ResolvedZone | null => {
+  try {
+    const zoned = dayjs().tz(zone)
+
+    return { value: zone, label: `(GMT${zoned.format('Z')}) ${zone}`, offset: zoned.utcOffset() }
+  } catch {
+    return null
+  }
+}
+
+// Resolving 418 zones costs one Intl.DateTimeFormat build each, so do it once per session.
+const getTimezoneZones = (): ResolvedZone[] => {
+  if (cachedZones) return cachedZones
+
+  const zones = Intl.supportedValuesOf('timeZone').reduce<ResolvedZone[]>((acc, rawZone) => {
+    const resolved = resolveZone(normalizeTimeZone(rawZone))
+
+    if (resolved) acc.push(resolved)
+
+    return acc
+  }, [])
+
+  cachedZones = zones.sort((a, b) => a.offset - b.offset)
+
+  return cachedZones
+}
+
+const toOption = ({ value, label }: ResolvedZone): TimezoneOption => ({ value, label })
+
+export const useTimezones = (currentZone?: string): TimezoneOption[] => useMemo(() => {
+  const zones = getTimezoneZones()
+  const preferredZone = normalizeTimeZone(currentZone || dayjs.tz.guess())
+  const index = zones.findIndex(zone => zone.value === preferredZone)
+
+  if (index >= 0) {
+    return [zones[index], ...zones.slice(0, index), ...zones.slice(index + 1)].map(toOption)
   }
 
-  const timezoneOptions: TimezoneOption[] = timeZones.map(zone => ({
-    value: zone,
-    label: `(GMT${dayjs().tz(zone).format('Z')}) ${zone}`,
-  }))
+  const preferred = resolveZone(preferredZone)
 
-  return timezoneOptions
+  return preferred ? [preferred, ...zones].map(toOption) : zones.map(toOption)
 }, [currentZone])
 
 export function normalizeTimeZone (zone: string): string {

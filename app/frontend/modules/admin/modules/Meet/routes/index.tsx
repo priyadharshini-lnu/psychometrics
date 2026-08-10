@@ -1,7 +1,9 @@
-import { lazy } from 'react'
+import { lazyPages } from '~/utils/lazyPages'
 
+const page = lazyPages('meet', () => import('./MeetingRoom'))
 
-const MeetingRoom = lazy(() => import('./MeetingRoom'))
+const MeetingRoom = page(m => m.default)
+
 const routes = [
   {
     path: 'meet/create',

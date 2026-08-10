@@ -58,6 +58,34 @@ RSpec.describe Users::SecuritySetting, type: :model do
     end
   end
 
+  describe 'password validations' do
+    it 'requires password when password is required' do
+      user = build(:user, project: project, password: nil, password_confirmation: nil)
+
+      user.valid?
+
+      expect(user.errors.details[:password]).to include(error: :blank)
+    end
+
+    it 'validates password confirmation mismatch' do
+      user = build(:user, project: project, password: 'Password@Strong@129', password_confirmation: 'Mismatch@123')
+
+      user.valid?
+
+      expect(user.errors.details[:password_confirmation]).to include(hash_including(error: :confirmation))
+    end
+
+    it 'validates repeated patterns when sequence restriction is enabled' do
+      project.security_setting.update!(restrict_sequences: true)
+      user = build(:user, project: project, password: 'aaaa1111!', password_confirmation: 'aaaa1111!')
+      repeat_error = I18n.t('activemodel.errors.models.profile.attributes.password.contains_repeats')
+
+      user.valid?
+
+      expect(user.errors[:password]).to include(repeat_error)
+    end
+  end
+
   describe '#log_user_provision_event' do
     let(:creator) { create(:user, email: 'creator@example.com') }
 

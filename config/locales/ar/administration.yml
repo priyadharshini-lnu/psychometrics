@@ -15,11 +15,6 @@ ar:
         simple_design:
           design: التصميم
           or: أو
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: تم تسجيل الدخول بنجاح.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ ar:
           modal_title: إعدادات الموافقة على التقييم
           remove_modal_success: 'تم حذف إعداد الموافقة لمعرف التقييم: %{assessmentId} بنجاح'
           remove_modal_text: 'هل أنت متأكد من أنك تريد حذف هذا الإعداد الخاص برقم التقييم: %{assessmentId}؟'
-      assessors:
-        spoof:
-          successfully: تم تسجيل الدخول بنجاح كمستخدم %{name}
       validations:
         dates:
           end: يجب أن يكون بعد تاريخ البدء

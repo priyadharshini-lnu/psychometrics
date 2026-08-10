@@ -31,7 +31,10 @@
         "app/frontend/modules/survey*",
         "app/frontend/modules/survey/*",
       ],
-      "~/*": ["app/frontend/*"]
+      "~/*": ["app/frontend/*"],
+      // moduleResolution:node predates package `exports` maps; point subpath imports at the dist
+      // types until moduleResolution moves to `bundler`.
+      "@thetalententerprise/glint/icons": ["node_modules/@thetalententerprise/glint/dist/icons/index.d.ts"]
     },
     "typeRoots": [
       "app/frontend/typings",
