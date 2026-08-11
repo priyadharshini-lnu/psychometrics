@@ -40,8 +40,13 @@ module Middlewares
         ::Clients::ResolveFromRequest.call!(request.path, request_params(request))
       end
       return unless client
+      return if superadmin_scoping_disabled_for?(client)
 
       ActsAsTenant.current_tenant = client unless bypass_tenant_scoping?(client)
+    end
+
+    def superadmin_scoping_disabled_for?(client)
+      ActsAsTenant.without_tenant { client.client_feature&.superadmin_tenant_scoping == false }
     end
 
     def request_params(request)

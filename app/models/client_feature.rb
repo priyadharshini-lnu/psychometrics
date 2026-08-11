@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class ClientFeature < ApplicationRecord
-  belongs_to :client
+  audited
+
   include ApplicationConfigurationLoggable
 
+  belongs_to :client
   include Tenantable
 
   validates :client, presence: true
