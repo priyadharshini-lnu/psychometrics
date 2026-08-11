@@ -138,6 +138,10 @@ module Administration
       has_permission?(:campaigns, :manage_options)
     end
 
+    def fetch_name_translations?
+      has_permission?(:campaigns, :manage)
+    end
+
     def update_campaign_options?
       has_permission?(:campaigns, :manage_options)
     end

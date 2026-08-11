@@ -7,6 +7,8 @@ export type LocaleSelectorsProps = {
   referenceLocale: string | undefined
   availableLocales: string[]
   availableNameLocales: string[]
+  className?: string
+  vertical?: boolean
   onEditingLocaleChange: (locale: string) => void
   onReferenceLocaleChange: (locale: string | undefined) => void
 }
@@ -16,21 +18,39 @@ export const LocaleSelectors = ({
   referenceLocale,
   availableLocales,
   availableNameLocales,
+  className,
+  vertical = false,
   onEditingLocaleChange,
   onReferenceLocaleChange,
 }: LocaleSelectorsProps) => (
-  <Flex justify="space-between">
-    <Select value={editingLocale} className="width150px" onChange={onEditingLocaleChange}>
+  <Flex
+    vertical={vertical}
+    justify="space-between"
+    align={vertical ? 'stretch' : 'center'}
+    gap={12}
+    className={className}
+  >
+    <Select
+      value={editingLocale}
+      style={vertical ? { width: '100%' } : { width: 150, minWidth: 150 }}
+      onChange={onEditingLocaleChange}
+    >
       {availableLocales.map(locale => (
         <Select.Option key={locale} value={locale}>
           {I18n.t(`languages.${locale}`)}
         </Select.Option>
       ))}
     </Select>
-    <div>
-      <span className="mr8">{I18n.t('common.text.reference_language')}</span>
+
+    <Flex
+      vertical={vertical}
+      align={vertical ? 'stretch' : 'center'}
+      gap={8}
+      style={vertical ? undefined : { whiteSpace: 'nowrap' }}
+    >
+      <span>{I18n.t('common.text.reference_language')}</span>
       <Select
-        className="width150px"
+        style={vertical ? { width: '100%' } : { width: 150, minWidth: 150 }}
         placeholder={I18n.t('select')}
         onChange={onReferenceLocaleChange}
         value={referenceLocale}
@@ -42,6 +62,6 @@ export const LocaleSelectors = ({
           </Select.Option>
         ))}
       </Select>
-    </div>
+    </Flex>
   </Flex>
 )

@@ -489,6 +489,7 @@ Rails.application.routes.draw do
               get :fetch_campaign_options
               get :fetch_campaign_instructions
               get :fetch_descriptions
+              get :fetch_name_translations
               put :update_campaign_options
               get :pdf_password
               get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }

@@ -362,6 +362,8 @@ en:
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
+    campaign_name_translations: Campaign Name Translations
+    campaign_name_translations_fetch_error: Error fetching campaign name translations
     campaign_report_generate_modal_subtitle: Select the required language for each report
     campaign_report_id: Campaign Report ID
     campaign_results_export_details: Campaign AI artifacts generated results

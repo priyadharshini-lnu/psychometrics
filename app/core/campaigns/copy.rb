@@ -34,10 +34,32 @@ module Campaigns
       campaign.dup.tap do |new_campaign|
         attrs = form.attributes.except(:copy_campaign_factors, :copy_campaign_ai_artifacts)
         new_campaign.update!(attrs)
+        copy_campaign_name_translations(campaign, new_campaign, attrs[:name])
         new_options = campaign.campaign_options.dup
         new_options.campaign = new_campaign
         new_options.save!
       end
+    end
+
+    def copy_campaign_name_translations(source_campaign, target_campaign, default_name)
+      default_locale = I18n.default_locale.to_s
+
+      source_campaign.translations.each do |translation|
+        next if translation.locale == default_locale && default_name.present?
+
+        Mobility.with_locale(translation.locale) do
+          target_campaign.name = translation.name
+        end
+      end
+
+      if default_name.present?
+        Mobility.with_locale(default_locale) do
+          target_campaign.name = default_name
+        end
+        target_campaign.update_column(:name, default_name)
+      end
+
+      target_campaign.save!
     end
 
     def copy_assessments_and_reports(new_campaign)

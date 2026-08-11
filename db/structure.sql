@@ -3022,6 +3022,40 @@ ALTER SEQUENCE public.campaign_templates_id_seq OWNED BY public.campaign_templat
 
 
 --
+-- Name: campaign_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.campaign_translations (
+    id bigint NOT NULL,
+    name character varying,
+    locale character varying NOT NULL,
+    campaign_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: campaign_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.campaign_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: campaign_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.campaign_translations_id_seq OWNED BY public.campaign_translations.id;
+
+
+--
 -- Name: campaign_users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10652,6 +10686,13 @@ ALTER TABLE ONLY public.campaign_templates ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: campaign_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_translations ALTER COLUMN id SET DEFAULT nextval('public.campaign_translations_id_seq'::regclass);
+
+
+--
 -- Name: campaign_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12467,6 +12508,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 ALTER TABLE ONLY public.campaign_templates
     ADD CONSTRAINT campaign_templates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: campaign_translations campaign_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_translations
+    ADD CONSTRAINT campaign_translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -15608,6 +15657,27 @@ CREATE INDEX index_campaign_templates_on_campaign_id ON public.campaign_template
 --
 
 CREATE INDEX index_campaign_templates_on_tenant_id ON public.campaign_templates USING btree (tenant_id);
+
+
+--
+-- Name: index_campaign_translations_on_campaign_id_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_campaign_translations_on_campaign_id_and_locale ON public.campaign_translations USING btree (campaign_id, locale);
+
+
+--
+-- Name: index_campaign_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_translations_on_locale ON public.campaign_translations USING btree (locale);
+
+
+--
+-- Name: index_campaign_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_campaign_translations_on_tenant_id ON public.campaign_translations USING btree (tenant_id);
 
 
 --
@@ -22001,6 +22071,14 @@ ALTER TABLE ONLY public.saville_user_assessments
 
 
 --
+-- Name: campaign_translations fk_rails_617261b567; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaign_translations
+    ADD CONSTRAINT fk_rails_617261b567 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
+
+
+--
 -- Name: threesixty_email_template_translations fk_rails_620a591be5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -25095,6 +25173,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260805102000'),
+('20260805101500'),
 ('20260806000001'),
 ('20260731120500'),
 ('20260731120000'),

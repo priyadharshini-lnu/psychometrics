@@ -12,8 +12,8 @@ import {
   CampaignAssessmentGroup,
   FetchNameTranslationsResponse,
 } from '~/modules/admin/modules/campaigns/core/assessmentGroups'
+import { LocaleSelectors } from '~/modules/admin/modules/campaigns/components/TranslationLocaleSelectors'
 import { useGroupNameTranslations } from './useGroupNameTranslations'
-import { LocaleSelectors } from './LocaleSelectors'
 import { GroupRow } from './GroupRow'
 import styles from './styles.less'
 
