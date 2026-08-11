@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Card, Flex, Tag, Typography, theme,
 } from 'antd'
-import { Icon } from '@thetalententerprise/glint/icons'
+import { CorporateFare } from '@thetalententerprise/glint/icons'
 
 const { Text } = Typography
 const { I18n } = window
@@ -53,7 +53,7 @@ export const ClientCard: React.FC<Props> = ({ client, onSelect }) => {
         <Flex justify="center">
           {client.logo_url
             ? <img src={client.logo_url} alt={client.name} style={iconSize} />
-            : <Icon name="corporate_fare" size={token.controlHeightLG} />}
+            : <CorporateFare size={token.controlHeightLG} />}
         </Flex>
         <Text strong ellipsis style={{ fontSize: token.fontSizeLG }}>{client.name}</Text>
         <Text type="secondary" ellipsis>{client.subdomain}</Text>

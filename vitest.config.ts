@@ -46,7 +46,7 @@ export default defineConfig({
     alias: {
       // The tsconfig .d.ts alias is types-only, but tsconfigPaths applies it at runtime; use the built module.
       '@thetalententerprise/glint/icons': new URL(
-        './node_modules/@thetalententerprise/glint/dist/icons.js', import.meta.url,
+        './node_modules/@thetalententerprise/glint/dist/icons/entry.js', import.meta.url,
       ).pathname,
       // scroll-js resolves to a CJS entry that requires an undeclared core-js; use its ESM build.
       'scroll-js': new URL('./node_modules/scroll-js/dist/scroll.js', import.meta.url).pathname,

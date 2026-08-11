@@ -3,7 +3,35 @@ import { Link, useLocation } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppShellNav } from '@thetalententerprise/glint'
-import { Icon } from '@thetalententerprise/glint/icons'
+import {
+  AccountTree,
+  Analytics,
+  ArrowBack,
+  ArrowForward,
+  Assignment,
+  AssignmentTurnedIn,
+  CalendarMonth,
+  Campaign,
+  CheckCircle,
+  Dashboard,
+  Event,
+  Explore,
+  FolderOpen,
+  Group,
+  Help,
+  History,
+  InsertChart,
+  Mail,
+  MenuBook,
+  PermMedia,
+  Public,
+  Rule,
+  Schema,
+  Settings,
+  SettingsApplications,
+  SmartToy,
+  SpaceDashboard,
+} from '@thetalententerprise/glint/icons'
 import { camelizeKeys } from '~/utils/object'
 import { getFeatures } from '~/core/config'
 import type { RootState } from '~/modules/admin/core/rootReducers'
@@ -140,66 +168,66 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
       hasSubmenu ? {
         key: 'showSubmenu',
         label: I18n.t('admin.show_submenu'),
-        icon: <Icon name="arrow_forward" />,
+        icon: <ArrowForward />,
         onClick: () => dispatch(openSubmenu()),
       } : null,
       entry({
-        key: 'dashboards', path: links.dashboards, label: I18n.t('admin.dashboard'), icon: <Icon name="dashboard" />,
+        key: 'dashboards', path: links.dashboards, label: I18n.t('admin.dashboard'), icon: <Dashboard />,
       }),
       entry({
         key: 'assessorDashboard',
         path: links.assessorDashboard,
         label: I18n.t('admin.assessor_dashboard'),
-        icon: <Icon name="space_dashboard" />,
+        icon: <SpaceDashboard />,
       }),
       entry({
         key: 'assessorWorkshops',
         path: links.assessorWorkshops,
         label: I18n.t('admin.assessor_workshops'),
-        icon: <Icon name="event" />,
+        icon: <Event />,
       }),
       entry({
-        key: 'clients', path: clientsPath, label: clientsLabel, icon: <Icon name="public" />,
+        key: 'clients', path: clientsPath, label: clientsLabel, icon: <Public />,
       }),
       entry({
-        key: 'users', path: links.users, label: I18n.t('admin.users'), icon: <Icon name="group" />,
+        key: 'users', path: links.users, label: I18n.t('admin.users'), icon: <Group />,
       }),
-      group('content', I18n.t('administration.navigation.content'), <Icon name="folder_open" />, [
+      group('content', I18n.t('administration.navigation.content'), <FolderOpen />, [
         entry({
           key: 'assessments',
           path: links.assessments,
           label: I18n.t('admin.assessments'),
-          icon: <Icon name="assignment" />,
+          icon: <Assignment />,
         }),
         entry({
-          key: 'norms', path: links.norms, label: I18n.t('admin.norms'), icon: <Icon name="explore" />,
+          key: 'norms', path: links.norms, label: I18n.t('admin.norms'), icon: <Explore />,
         }),
         entry({
           key: 'dimensions',
           path: links.dimensions,
           label: I18n.t('admin.dimensions'),
-          icon: <Icon name="account_tree" />,
+          icon: <AccountTree />,
         }),
         entry({
-          key: 'reports', path: links.reports, label: I18n.t('admin.reports'), icon: <Icon name="assessment" />,
+          key: 'reports', path: links.reports, label: I18n.t('admin.reports'), icon: <InsertChart />,
         }),
         entry({
           key: 'questionCenter',
           path: links.questionCenter,
           label: I18n.t('admin.question_center'),
-          icon: <Icon name="help" />,
+          icon: <Help />,
         }),
         entry({
-          key: 'libraries', path: links.libraries, label: I18n.t('admin.libraries'), icon: <Icon name="perm_media" />,
+          key: 'libraries', path: links.libraries, label: I18n.t('admin.libraries'), icon: <PermMedia />,
         }),
       ]),
-      group('configuration', I18n.t('administration.navigation.configuration'), <Icon name="settings_applications" />, [
+      group('configuration', I18n.t('administration.navigation.configuration'), <SettingsApplications />, [
         skillRaterEnabled
           ? entry({
             key: 'skillsTaxonomy',
             path: links.skillsTaxonomy,
             label: I18n.t('admin.skills_taxonomy'),
-            icon: <Icon name="schema" />,
+            icon: <Schema />,
           })
           : null,
         idpEnabled
@@ -207,59 +235,59 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
             key: 'developmentActions',
             path: links.developmentActions,
             label: I18n.t('admin.development_actions'),
-            icon: <Icon name="menu_book" />,
+            icon: <MenuBook />,
           })
           : null,
         entry({
           key: 'aiAssistants',
           path: links.aiAssistants,
           label: I18n.t('admin.ai_assistants'),
-          icon: <Icon name="smart_toy" />,
+          icon: <SmartToy />,
         }),
         entry({
           key: 'campaignTemplates',
           path: links.campaignTemplates,
           label: I18n.t('admin.campaign_templates'),
-          icon: <Icon name="campaign" />,
+          icon: <Campaign />,
         }),
       ]),
       entry({
         key: 'communicationCenter',
         path: links.communicationCenter,
         label: I18n.t('admin.communication_center'),
-        icon: <Icon name="mail" />,
+        icon: <Mail />,
       }),
-      group('approvals', I18n.t('administration.navigation.approvals'), <Icon name="check_circle" />, [
+      group('approvals', I18n.t('administration.navigation.approvals'), <CheckCircle />, [
         entry({
           key: 'reportApprovals',
           path: links.reportApprovals,
           label: I18n.t('admin.report_approvals'),
-          icon: <Icon name="assignment_turned_in" />,
+          icon: <AssignmentTurnedIn />,
         }),
         entry({
           key: 'aiScoringApprovals',
           path: links.aiScoringApprovals,
           label: I18n.t('admin.ai_scoring_approvals'),
-          icon: <Icon name="rule" />,
+          icon: <Rule />,
         }),
       ]),
       entry({
         key: 'userAvailability',
         path: links.userAvailability,
         label: I18n.t('admin.availability'),
-        icon: <Icon name="calendar_month" />,
+        icon: <CalendarMonth />,
       }),
       entry({
-        key: 'auditLogs', path: links.auditLogs, label: I18n.t('admin.audit_logs'), icon: <Icon name="history" />,
+        key: 'auditLogs', path: links.auditLogs, label: I18n.t('admin.audit_logs'), icon: <History />,
       }),
       entry({
         key: 'dataReports',
         path: links.dataReports,
         label: I18n.t('admin.data_reports'),
-        icon: <Icon name="analytics" />,
+        icon: <Analytics />,
       }),
       entry({
-        key: 'settings', path: links.settings, label: I18n.t('admin.settings'), icon: <Icon name="settings" />,
+        key: 'settings', path: links.settings, label: I18n.t('admin.settings'), icon: <Settings />,
       }),
     ].filter((item): item is NavItem => item != null)
 
@@ -271,7 +299,7 @@ export const useAdminNav = (ownedPathPrefixes?: string[], routes?: RouteObject[]
         items: [{
           key: 'back_to_main_menu',
           label: I18n.t('admin.back_to_main'),
-          icon: <Icon name="arrow_back" />,
+          icon: <ArrowBack />,
           onClick: () => dispatch(closeSubmenu()),
         }, ...(subnav.items ?? [])],
         selectedKeys: subnav.selectedKeys ?? [],
