@@ -115,7 +115,7 @@ module CampaignScoring
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
       }
       lua.helpers = {
-        'round' => proc { |value, precision = 0| value&.round(precision) },
+        'round' => proc { |value, precision = 0| round_value(value, precision) },
         'percentile' => proc { |value| Ztable.percentile(value) },
         'average' => proc { |values, precision = nil| calculate_average(values, precision) }
       }
@@ -127,6 +127,21 @@ module CampaignScoring
       value = LuaEvaluator.eval(lua_code, lua)
 
       value.is_a?(Lua::Table) ? value.to_hash.with_indifferent_access : value
+    end
+
+    def round_value(value, precision)
+      numeric_value = coerce_numeric_value(value)
+      return nil if numeric_value.nil?
+
+      numeric_value.round(precision)
+    end
+
+    def coerce_numeric_value(value)
+      return value if value.is_a?(Numeric)
+      return nil if value.nil?
+
+      raise CampaignScoring::Exceptions::IncorrectFunctionUsages,
+            'helpers.round: First parameter must be numeric.'
     end
 
     def calculate_average(values, precision)
