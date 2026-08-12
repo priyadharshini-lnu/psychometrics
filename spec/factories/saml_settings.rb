@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :saml_setting do
     enabled { false }
     enforced { false }
+    enforce_for { 'none' }
     association :project
     entity_id { Faker::Lorem.characters(number: 5) }
     sso_service_url { Faker::Internet.url }

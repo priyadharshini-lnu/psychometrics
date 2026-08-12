@@ -9,6 +9,8 @@ class Api::V2::ClientSsoSettings::Schema < Api::Base::Schema
     proc do
       attribute[:sso_enabled].filled(:bool)
       attribute[:sso_enforced].filled(:bool)
+      attribute[:enforce_for].filled(:string)
+      attribute[:enforced_domains].array(:string)
       attribute[:idp_entity_id].maybe(:string)
       attribute[:idp_sso_url].maybe(:string)
       attribute[:idp_slo_url].maybe(:string)

@@ -10,6 +10,13 @@ class ClientSsoSetting < ApplicationRecord
   validates :session_timeout, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
 
   before_validation :normalize_session_timeout
+  before_save :sync_enforced_boolean
+
+  enum :enforce_for, { none: 0, all: 1, specific_domains: 2 }, prefix: true
+
+  include DomainEnforcementValidatable
+
+  validates :enforced_domains, presence: true, if: :enforce_for_specific_domains?
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id tenant_id]
@@ -19,8 +26,6 @@ class ClientSsoSetting < ApplicationRecord
     validates :idp_entity_id, :idp_sso_url, :idp_cert, presence: true
     validate :certificate_validity
   end
-
-  validate :enforced_requires_enabled
 
   def saml_login_allowed?
     sso_enabled?
@@ -63,6 +68,10 @@ class ClientSsoSetting < ApplicationRecord
     self.session_timeout = nil if session_timeout.to_i.zero?
   end
 
+  def sync_enforced_boolean
+    self.sso_enforced = enforce_for_all?
+  end
+
   def certificate_validity
     return if idp_cert.blank?
 
@@ -71,6 +80,7 @@ class ClientSsoSetting < ApplicationRecord
     errors.add(:idp_cert, :invalid)
   end
 
+  # TODO: remove this method when cleaning up sso_enforced toggle.
   def enforced_requires_enabled
     return unless sso_enforced? && !sso_enabled?
 

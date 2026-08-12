@@ -920,6 +920,7 @@ as: :simulation_progress_notification
     post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
     get 'users/invitation/accept', to: 'users/invitations#edit', as: :accept_user_invitation
     patch 'users/invitation', to: 'users/invitations#update', as: :user_invitation
+    post 'users/check_sso', to: 'users/sso_enforcement#check_sso'
   end
 
   devise_for :users,

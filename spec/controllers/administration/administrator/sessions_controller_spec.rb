@@ -41,6 +41,7 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
           client.client_sso_setting.update!(
             sso_enabled: true,
             sso_enforced: true,
+            enforce_for: 'all',
             idp_entity_id: 'https://idp.example.com/test',
             idp_sso_url: 'https://idp.example.com/sso/saml',
             idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
@@ -75,6 +76,37 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
         it 'falls through to the password form' do
           expect(session[:user_email]).to eq(sso_user.email)
           expect(response).to redirect_to(new_administration_session_path)
+        end
+      end
+    end
+
+    context 'when user has multiple clients' do
+      let(:client1) { create(:tenancy) }
+      let(:client2) { create(:tenancy) }
+      let(:multi_client_user) do
+        user = create(:client_admin, client: client1)
+        create(:membership, role: 'client_admin', user: user, client: client2)
+        user
+      end
+
+      context 'and navigates directly to a client subdomain enforcing SSO' do
+        before do
+          client1.client_sso_setting.update!(
+            sso_enabled: true,
+            sso_enforced: true,
+            enforce_for: 'all',
+            idp_entity_id: 'https://idp.example.com/test',
+            idp_sso_url: 'https://idp.example.com/sso/saml',
+            idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
+          )
+          allow(Current).to receive(:client).and_return(client1)
+          post :authenticate_user, params: { user: { email: multi_client_user.email } }
+        end
+
+        it 'redirects to the client subdomain SAML login because Current.client is evaluated' do
+          expect(response).to have_http_status(:redirect)
+          expect(response.location).to include("#{client1.subdomain}-admin")
+          expect(response.location).to include('/users/saml/sign_in')
         end
       end
     end

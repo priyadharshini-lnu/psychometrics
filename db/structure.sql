@@ -3225,7 +3225,9 @@ CREATE TABLE public.client_sso_settings (
     session_timeout integer,
     allowed_domains jsonb DEFAULT '[]'::jsonb NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    enforce_for integer DEFAULT 0 NOT NULL,
+    enforced_domains text[] DEFAULT '{}'::text[]
 );
 
 
@@ -7316,7 +7318,9 @@ CREATE TABLE public.saml_settings (
     project_id bigint NOT NULL,
     name_identifier_format integer DEFAULT 0,
     email_pipetext character varying,
-    tenant_id bigint
+    tenant_id bigint,
+    enforce_for integer DEFAULT 0 NOT NULL,
+    enforced_domains text[] DEFAULT '{}'::text[]
 );
 
 
@@ -24904,6 +24908,11 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260804113153'),
+('20260727122651'),
+('20260727122640'),
+('20260805102000'),
+('20260805101500'),
 ('20260810120000'),
 ('20260806000001'),
 ('20260724095212'),
