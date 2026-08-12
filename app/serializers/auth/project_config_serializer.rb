@@ -3,7 +3,7 @@
 module Auth
   class ProjectConfigSerializer < Panko::Serializer
     attributes :id, :background_color, :login_box_position, :background, :background_overlay, :saml_login_allowed,
-               :saml_enforced, :client_logo, :secondary_logo, :primary_color,
+               :saml_enforced, :saml_domain_enforcement_enabled, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
                :hide_signup, :magic_link_enabled, :disallow_password_login, :logo_alt_text,
                :enable_recaptcha, :glint_ui
@@ -42,6 +42,10 @@ module Auth
 
     def saml_enforced
       object.saml_enforced?
+    end
+
+    def saml_domain_enforcement_enabled
+      object.saml_setting&.enforce_for_specific_domains? || false
     end
 
     def require_mobile_number

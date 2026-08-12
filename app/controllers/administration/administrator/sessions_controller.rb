@@ -40,7 +40,7 @@ module Administration
         if (user = user_from_params)
           if (saml = AdminAuth::SamlRedirectGuard.for_user(user: user, return_url: stored_location_for(:user))).required
             redirect_to new_saml_user_session_url(saml_email_token: saml.token)
-          elsif (sso = AdminAuth::ResolveSsoRedirect.for_client(user: user)).required
+          elsif (sso = AdminAuth::ResolveSsoRedirect.for_client(user: user, client: Current.client)).required
             Utility::Url.redirect_to_safe_internal_url(self, sso.url, allow_other_host: true)
           else
             session[:user_email] = user.email
@@ -156,13 +156,16 @@ module Administration
       # authenticate_user independently guards the email-first path (POST /authenticate_user).
       # Both must check SamlRedirectGuard because the two entry points are mutually exclusive.
       def ensure_redirect_to_saml
-        result = AdminAuth::SamlRedirectGuard.for_user(user: user_from_params, return_url: stored_location_for(:user))
-        return unless result.required
+        return unless (user = user_from_params)
 
-        if Current.client_admin_context?
-          Utility::Url.redirect_to_safe_internal_url(self, root_admin_saml_url(result.token), allow_other_host: true)
-        else
-          redirect_to new_saml_user_session_url(saml_email_token: result.token)
+        if (saml = AdminAuth::SamlRedirectGuard.for_user(user: user, return_url: stored_location_for(:user))).required
+          if Current.client_admin_context?
+            Utility::Url.redirect_to_safe_internal_url(self, root_admin_saml_url(saml.token), allow_other_host: true)
+          else
+            redirect_to new_saml_user_session_url(saml_email_token: saml.token)
+          end
+        elsif (sso = AdminAuth::ResolveSsoRedirect.for_client(user: user, client: Current.client)).required
+          Utility::Url.redirect_to_safe_internal_url(self, sso.url, allow_other_host: true)
         end
       end
 

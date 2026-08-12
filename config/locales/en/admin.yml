@@ -3029,7 +3029,14 @@ en:
     smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
     sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforce_for: Enforce SSO For
+    sso_enforce_for_all: All users
+    sso_enforce_for_none: None
+    sso_enforce_for_specific_domains: Specific domains
     sso_enforced: Enforce SSO
+    sso_enforced_domains: Enforced Domains
+    sso_enforced_domains_hint: e.g. se.com (exact match) or *.se.com (subdomains only)
+    sso_enforced_domains_placeholder: Enter domain(s) and press Enter
     sso_label: SSO
     sso_not_enabled: SSO is not enabled for this client
     sso_settings: SSO Settings

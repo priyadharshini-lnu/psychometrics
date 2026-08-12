@@ -23,12 +23,15 @@ const AdminLoginPageComponent: React.FC<Props> = ({
   const clientContext = window.PsyGlobalState?.clientContextData
   const ssoEnabled = Boolean(clientContext?.sso_enabled)
   const ssoEnforced = Boolean(clientContext?.sso_enforced)
-  const showPasswordForm = Boolean(clientContext) || disable_saml_for_admins
-  const passwordStep = showPasswordForm || Boolean(user.email)
+  const ssoDomainEnforced = Boolean(clientContext?.sso_domain_enforcement_enabled)
+  const isTwoStepFlow = ssoEnabled && ssoDomainEnforced
+  const isEmailStep = ((!clientContext && !disable_saml_for_admins) || isTwoStepFlow) && !user.email
+
+  const showPasswordForm = (!isTwoStepFlow && Boolean(clientContext)) || (!clientContext && disable_saml_for_admins)
 
   const formRef = useRef<HTMLFormElement | null>(null)
   const navigate = useNavigate()
-  const recaptchaEnabled = !disable_recaptcha && passwordStep
+  const recaptchaEnabled = !disable_recaptcha && !isEmailStep
 
   const { recaptchaToken, recaptchaReady, recaptchaWidgetId } = useRecaptcha({
     formRef,
@@ -67,13 +70,12 @@ const AdminLoginPageComponent: React.FC<Props> = ({
     </Button>
   ) : undefined
 
-  // Email-first flow: the email posts alone, and the server answers with it set for the password step.
-  const emailLocked = passwordStep && !showPasswordForm
+  const emailLocked = !isEmailStep && !showPasswordForm
 
   const formNode = ssoEnforced ? undefined : (
     <form
-      id={passwordStep ? 'form-login' : 'form-email'}
-      action={passwordStep ? '/administration' : '/administration/authenticate_user'}
+      id={!isEmailStep ? 'form-login' : 'form-email'}
+      action={!isEmailStep ? '/administration' : '/administration/authenticate_user'}
       method="post"
       onSubmit={handleSubmit}
       ref={formRef}
@@ -93,7 +95,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
           error={errors.email}
           disabled={emailLocked}
         />
-        {passwordStep ? (
+        {!isEmailStep ? (
           <AuthField
             id="password"
             name="user[password]"
@@ -104,7 +106,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
             secure
           />
         ) : null}
-        {passwordStep ? (
+        {!isEmailStep ? (
           <Flex justify="flex-end" style={{ marginBlockEnd: 12 }}>
             <Button
               scheme="primary"
@@ -120,7 +122,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
           </Flex>
         ) : null}
         <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
-          {passwordStep ? I18n.t('auth.login.login_btn') : I18n.t('auth.login.continue_btn')}
+          {!isEmailStep ? I18n.t('auth.login.login_btn') : I18n.t('auth.login.continue_btn')}
         </Button>
       </Form>
     </form>

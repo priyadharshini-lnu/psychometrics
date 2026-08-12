@@ -17,12 +17,22 @@ const { disable_recaptcha } = window.PsyGlobalState.features
 export type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux
 
+const getFormAction = (isMagicOnly: boolean, isEmailStep: boolean) => {
+  if (isMagicOnly) return '/users/magic_links/sign_in'
+  if (isEmailStep) return '/users/check_sso'
+  return '/users/sign_in'
+}
+
+const getSubmitBtnText = (isMagicOnly: boolean, isEmailStep: boolean) => {
+  if (isMagicOnly) return I18n.t('auth.login.magic_link_btn')
+  if (isEmailStep) return I18n.t('auth.login.continue_btn')
+  return I18n.t('enduser.login_sign_in_btn')
+}
+
 const showDivider = (projectConfig: RootState['projectConfig']) => {
   if (projectConfig.disallow_password_login) return false
-  return (
-    projectConfig.magic_link_enabled
-    || (projectConfig.saml_login_allowed && !projectConfig.saml_enforced)
-  )
+  const ssoButtonVisible = projectConfig.saml_login_allowed && !projectConfig.saml_enforced
+  return (projectConfig.magic_link_enabled || ssoButtonVisible)
 }
 
 const LoginPageComponent: React.FC<Props> = ({
@@ -31,6 +41,9 @@ const LoginPageComponent: React.FC<Props> = ({
   const recaptchaEnabled = !disable_recaptcha && projectConfig.enable_recaptcha
   const formRef = useRef<HTMLFormElement | null>(null)
   const navigate = useNavigate()
+
+  const isTwoStepFlow = projectConfig.saml_login_allowed && projectConfig.saml_domain_enforcement_enabled
+  const isEmailStep = isTwoStepFlow && !user.email
 
   const { recaptchaToken, recaptchaReady, recaptchaWidgetId } = useRecaptcha({
     formRef,
@@ -96,10 +109,13 @@ const LoginPageComponent: React.FC<Props> = ({
     </>
   ) : undefined
 
+  const formAction = getFormAction(isMagicOnly, isEmailStep)
+  const submitBtnText = getSubmitBtnText(isMagicOnly, isEmailStep)
+
   const formNode = (showPasswordForm || isMagicOnly) ? (
     <form
       id={showPasswordForm ? 'form-login' : 'form-magic'}
-      action={isMagicOnly ? '/users/magic_links/sign_in' : '/users/sign_in'}
+      action={formAction}
       method="post"
       onSubmit={handleSubmit}
       ref={formRef}
@@ -116,8 +132,12 @@ const LoginPageComponent: React.FC<Props> = ({
           defaultValue={user.email}
           autoComplete={isMagicOnly ? 'email' : 'tte-user-email'}
           error={errors.email}
+          disabled={isTwoStepFlow && !isEmailStep}
         />
-        {showPasswordForm ? (
+        {isTwoStepFlow && !isEmailStep && (
+          <input type="hidden" name="user[email]" value={user.email} />
+        )}
+        {showPasswordForm && !isEmailStep ? (
           <AuthField
             id="password"
             name="user[password]"
@@ -128,7 +148,7 @@ const LoginPageComponent: React.FC<Props> = ({
             secure
           />
         ) : null}
-        {showPasswordForm ? (
+        {showPasswordForm && !isEmailStep ? (
           <Flex justify="flex-end" style={{ marginBlockEnd: 12 }}>
             <Button scheme="primary" variant="link" {...spaLink('/users/password/new')}>
               {I18n.t('auth.login.forgot_password')}
@@ -136,7 +156,7 @@ const LoginPageComponent: React.FC<Props> = ({
           </Flex>
         ) : null}
         <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
-          {isMagicOnly ? I18n.t('auth.login.magic_link_btn') : I18n.t('enduser.login_sign_in_btn')}
+          {submitBtnText}
         </Button>
       </Form>
     </form>

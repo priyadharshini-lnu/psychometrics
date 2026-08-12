@@ -30,6 +30,7 @@ declare global {
         logo_url?: string | null
         sso_enabled?: boolean
         sso_enforced?: boolean
+        sso_domain_enforcement_enabled?: boolean
       } | null
       switchableClients?: {
         id: number

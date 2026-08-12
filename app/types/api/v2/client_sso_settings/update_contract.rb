@@ -22,6 +22,12 @@ module Api
         rule(data: { attributes: :sso_enforced }) do
           key.failure(:sso_enforced_requires_enabled) if value && !values.dig(:data, :attributes, :sso_enabled)
         end
+
+        rule(data: { attributes: :enforce_for }) do
+          if key? && ClientSsoSetting.enforce_fors.keys.exclude?(value)
+            key.failure("must be one of: #{ClientSsoSetting.enforce_fors.keys.join(', ')}")
+          end
+        end
       end
     end
   end
