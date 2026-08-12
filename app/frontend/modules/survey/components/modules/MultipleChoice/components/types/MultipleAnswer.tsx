@@ -33,7 +33,7 @@ const MultipleAnswer: FC<Props> = ({ model }) => {
 
   const forceUpdate = useForceUpdate()
 
-  const librarySocket = useRef(null)
+  const librarySocket = useRef<ReturnType<typeof Socket.library> | null>(null)
 
   useEffect(() => {
     LibraryTransport.init()

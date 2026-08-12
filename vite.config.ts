@@ -28,6 +28,10 @@ if (SSL) {
   }
 }
 
+// checker runs on the `typescript` package, which is aliased to the TS 6 API
+// (@typescript/typescript6) because vite-plugin-checker can't use TS 7's compiler API yet.
+// TODO: remove the @typescript/typescript6 alias once v7 tooling is available.
+// Tracking: https://github.com/typescript-eslint/typescript-eslint/issues/10940
 const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
@@ -77,9 +81,7 @@ export default defineConfig({
     RubyPlugin(),
     react(),
     // visualizer({open: true}),
-    svgr({
-      exportAsDefault: false,
-    }),
+    svgr(),
     ...devPlugins,
     loadCssModulePlugin({
       include: (id) => {
@@ -124,7 +126,7 @@ export default defineConfig({
       },
       plugins: [
         gzipPlugin({
-          customCompression: content => brotliPromise(Buffer.from(content)),
+          customCompression: content => brotliPromise(typeof content === 'string' ? content : Uint8Array.from(content)),
           fileName: '.br'
         })
       ],
