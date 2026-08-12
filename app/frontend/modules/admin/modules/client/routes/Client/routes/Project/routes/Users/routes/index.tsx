@@ -1,13 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('client', () => import('~/modules/admin/modules/client/pages'))
-
-const ProjectParticipants = page(m => m.ProjectParticipants)
-const ProjectAssessors = page(m => m.ProjectAssessors)
+const page = () => import('~/modules/admin/modules/client/pages')
 
 export const routes = [
   { index: true, element: <Navigate to="participants" replace /> },
-  { path: 'participants', element: <ProjectParticipants /> },
-  { path: 'assessors', element: <ProjectAssessors /> },
+  { path: 'participants', lazy: lazyRoute(page, m => m.ProjectParticipants) },
+  { path: 'assessors', lazy: lazyRoute(page, m => m.ProjectAssessors) },
 ]

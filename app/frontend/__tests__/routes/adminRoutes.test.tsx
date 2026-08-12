@@ -1,5 +1,7 @@
 import { Suspense } from 'react'
-import { act, render, screen } from '@testing-library/react'
+import {
+  act, render, screen, waitFor,
+} from '@testing-library/react'
 import {
   Outlet, RouterProvider, createMemoryRouter,
 } from 'react-router-dom'
@@ -19,18 +21,37 @@ vi.mock('~/modules/admin/modules/Profile/pages', () => ({
   ChangePassword: stub('change-password'),
 }))
 vi.mock('~/modules/admin/modules/Settings/routes/Maintenance', () => ({ default: stub('maintenance') }))
-vi.mock('~/modules/admin/modules/Users/routes/UserList', () => ({
-  default: ({ userTab }: { userTab: string }) => <div data-testid="users">{userTab}</div>,
+vi.mock('~/modules/admin/modules/Users/routes/UserList/UserList', () => ({
+  UsersLayout: chrome('users-chrome'),
+  RegularUsers: stub('users'),
+  AdminUsers: stub('admins'),
+  SuperAdminUsers: stub('superadmins'),
+  GlobalAssessorUsers: stub('global-assessors'),
+  default: stub('users'),
 }))
-vi.mock('~/modules/admin/modules/Reports/pages', () => ({
-  ReportList: ({ reportTab }: { reportTab: string }) => <div data-testid="reports">{reportTab}</div>,
-  EditReport: stub('edit-report'),
-  ReportBundleList: stub('report-bundles'),
-  ReportBundleReportList: stub('report-bundle-reports'),
+vi.mock('~/modules/admin/modules/Reports/routes/ReportList/routes/ReportList/ReportList', () => ({
+  ReportsLayout: chrome('reports-chrome'),
+  ActiveReports: stub('reports'),
+  ArchivedReports: stub('reports-archived'),
+  DeletedReports: stub('reports-trash'),
+  default: stub('reports'),
 }))
-vi.mock('~/modules/admin/modules/Assessments/pages', () => ({
-  AssessmentList: ({ assessmentTab }: { assessmentTab: string }) => <div data-testid="assessments">{assessmentTab}</div>,
-  EditAssessment: stub('edit-assessment'),
+vi.mock('~/modules/admin/modules/Reports/routes/ReportList/routes/EditReport', () => ({
+  default: stub('edit-report'),
+}))
+vi.mock('~/modules/admin/modules/Reports/routes/ReportBundleList', () => ({ default: stub('report-bundles') }))
+vi.mock('~/modules/admin/modules/Reports/routes/ReportBundleReportList', () => ({
+  default: stub('report-bundle-reports'),
+}))
+vi.mock('~/modules/admin/modules/Assessments/routes/AssessmentList/AssessmentList', () => ({
+  AssessmentsLayout: chrome('assessments-chrome'),
+  ActiveAssessments: stub('assessments'),
+  ArchivedAssessments: stub('assessments-archived'),
+  DeletedAssessments: stub('assessments-trash'),
+  AssessmentList: stub('assessments'),
+}))
+vi.mock('~/modules/admin/modules/Assessments/routes/EditAssessment', () => ({
+  default: stub('edit-assessment'),
 }))
 vi.mock('~/modules/admin/modules/ReportApprovals/pages', () => ({
   MyTasks: stub('report-approval-tasks'),
@@ -49,14 +70,18 @@ vi.mock('~/modules/admin/modules/SkillsTaxonomy/pages', () => ({
   Proficiency: stub('proficiency'),
   Settings: stub('taxonomy-tools'),
 }))
-vi.mock('~/modules/admin/modules/Dimensions/pages', () => ({
-  DimensionsList: stub('dimensions'),
-  Dimension: chrome('dimension-chrome'),
-  SubFactorsList: stub('sub-factors'),
-  OccupationConditionSetsList: stub('condition-sets'),
-  FactorsList: stub('factors'),
-  OccupationsList: stub('occupations'),
-  InnovationStylesList: stub('innovation-styles'),
+// Mocked leaf-by-leaf, not as `pages`: vitest hangs when a mocked module is imported twice concurrently, which is
+// exactly what a nested lazy route does — see the "Promise.all(import(), import())" note in vitest's own mocker.
+vi.mock('~/modules/admin/modules/Dimensions/routes/DimensionsList', () => ({ default: stub('dimensions') }))
+vi.mock('~/modules/admin/modules/Dimensions/routes/Dimension', () => ({ default: chrome('dimension-chrome') }))
+vi.mock('~/modules/admin/modules/Dimensions/routes/SubFactorsList', () => ({ default: stub('sub-factors') }))
+vi.mock('~/modules/admin/modules/Dimensions/routes/OccupationConditionSetsList', () => ({
+  default: stub('condition-sets'),
+}))
+vi.mock('~/modules/admin/modules/Dimensions/routes/Dimension/FactorsList', () => ({ default: stub('factors') }))
+vi.mock('~/modules/admin/modules/Dimensions/routes/Dimension/OccupationsList', () => ({ default: stub('occupations') }))
+vi.mock('~/modules/admin/modules/Dimensions/routes/Dimension/InnovationStylesList', () => ({
+  default: stub('innovation-styles'),
 }))
 vi.mock('~/modules/admin/modules/AssessorApp/pages', () => ({
   CampaignList: stub('assessor-campaigns'),
@@ -75,9 +100,8 @@ const renderAt = async (prefix: string, table: typeof routes, pathname: string) 
     { initialEntries: [pathname] },
   )
 
+  // Route chunks resolve over several turns, so callers wait for the settled state rather than a fixed flush count.
   await act(async () => { render(<RouterProvider router={router} />) })
-  // This RTL version renders in React's legacy mode, where a resolved route chunk only commits inside an act flush.
-  await act(async () => {})
 
   return router
 }
@@ -98,13 +122,14 @@ describe('admin index redirects', () => {
   ])('resolves %s to %s', async (pathname, resolved) => {
     const router = await renderAdmin(pathname)
 
-    expect(router.state.location.pathname).toEqual(resolved)
+    await waitFor(() => { expect(router.state.location.pathname).toEqual(resolved) })
   })
 
   it('resolves the assessor workshop root to its campaigns tab', async () => {
     const router = await renderAt('/assessors/*', assessorRoutes, '/assessors/assessment_centers')
+    const campaignsTab = '/assessors/assessment_centers/campaigns'
 
-    expect(router.state.location.pathname).toEqual('/assessors/assessment_centers/campaigns')
+    await waitFor(() => { expect(router.state.location.pathname).toEqual(campaignsTab) })
   })
 })
 

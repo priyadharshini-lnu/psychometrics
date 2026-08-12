@@ -1,13 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
-
-const Result = page(m => m.Result)
-const AIArtifactsSettings = page(m => m.AIArtifactsSettings)
+const page = () => import('./pages')
 
 export const routes = [
   { index: true, element: <Navigate to="results" replace /> },
-  { path: 'results', element: <Result /> },
-  { path: 'settings', element: <AIArtifactsSettings /> },
+  { path: 'results', lazy: lazyRoute(page, m => m.Result) },
+  { path: 'settings', lazy: lazyRoute(page, m => m.AIArtifactsSettings) },
 ]

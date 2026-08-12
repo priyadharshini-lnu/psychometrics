@@ -1,11 +1,9 @@
-import { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { act, render } from '@testing-library/react'
 import {
-  Navigate, Outlet, RouterProvider, createMemoryRouter, useMatches,
+  Navigate, Outlet, RouterProvider, createMemoryRouter, useMatches, useNavigation,
 } from 'react-router-dom'
 import RouteErrorBoundary from '~/components/RouteErrorBoundary'
-import { lazyPages } from '~/utils/lazyPages'
-import { usePageChunk } from '~/utils/usePageChunk'
 
 const { I18n } = window
 
@@ -68,47 +66,51 @@ const setup = () => {
   return { container, go, mounts: () => wrapperMounts }
 }
 
-// The 360-campaign layout's shape: the same boundary, wrapped around a chunk-keyed suspense boundary.
+// A project layout shared by two tabs whose pages are split into different chunks.
 const setupChunked = () => {
-  let pageMounts = 0
+  let layoutMounts = 0
 
-  const Participants = lazyPages('threeSixtyCampaign', () => Promise.resolve({
-    Participants: () => {
-      useEffect(() => { pageMounts += 1 }, [])
+  const clientPages = () => Promise.resolve({
+    Project: () => {
+      useEffect(() => { layoutMounts += 1 }, [])
 
       return <div><nav>subnav</nav><Outlet /></div>
     },
-  }))(m => m.Participants)
+    ProjectUsers: () => <div>project users</div>,
+  })
 
-  const CampaignPage = () => {
+  const campaignPages = () => Promise.resolve({ CampaignList: () => <div>campaign list</div> })
+
+  const ProjectPage = () => {
     const matches = useMatches()
 
     return (
       <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
-        <Suspense key={usePageChunk(router.routes)} fallback={<div>loading</div>}>
-          <Outlet />
-        </Suspense>
+        {useNavigation().state === 'idle' ? <Outlet /> : <div>loading</div>}
       </RouteErrorBoundary>
     )
   }
 
   const router = createMemoryRouter([{
-    path: '/campaign',
-    element: <CampaignPage />,
+    path: '/',
+    element: <ProjectPage />,
     children: [{
-      path: 'participants',
-      element: <Participants />,
+      path: 'projects/:projectId',
+      lazy: async () => ({ Component: (await clientPages()).Project }),
       children: [
-        { index: true, element: <div>subjects</div> },
-        { path: 'raters', element: <div>raters</div> },
+        { path: 'new_campaigns', lazy: async () => ({ Component: (await campaignPages()).CampaignList }) },
+        { path: 'users', lazy: async () => ({ Component: (await clientPages()).ProjectUsers }) },
       ],
     }],
-  }], { initialEntries: ['/campaign/participants'] })
+  }], { initialEntries: ['/projects/1/new_campaigns'] })
 
   const { container } = render(<RouterProvider router={router} />)
+  const settle = () => act(async () => { await new Promise((resume) => { setTimeout(resume, 0) }) })
   const go = async (to: string) => { await act(async () => { await router.navigate(to) }) }
 
-  return { container, go, mounts: () => pageMounts }
+  return {
+    container, go, settle, mounts: () => layoutMounts,
+  }
 }
 
 describe('navigating between campaign sub-routes', () => {
@@ -157,18 +159,23 @@ describe('navigating between campaign sub-routes', () => {
   })
 })
 
-describe('a layout whose boundary wraps a chunk-keyed suspense boundary', () => {
-  it('keeps the section page mounted across its sub-routes', async () => {
-    const { container, go, mounts } = setupChunked()
+describe('switching between sibling tabs whose pages come from different chunks', () => {
+  it('keeps the shared parent layout mounted', async () => {
+    const { container, go, mounts, settle } = setupChunked()
 
-    await go('/campaign/participants/raters')
+    await settle()
 
-    expect(container.textContent).toContain('raters')
+    expect(container.textContent).toContain('campaign list')
     expect(mounts()).toBe(1)
 
-    await go('/campaign/participants')
+    await go('/projects/1/users')
 
-    expect(container.textContent).toContain('subjects')
+    expect(container.textContent).toContain('project users')
+    expect(mounts()).toBe(1)
+
+    await go('/projects/1/new_campaigns')
+
+    expect(container.textContent).toContain('campaign list')
     expect(mounts()).toBe(1)
   })
 })

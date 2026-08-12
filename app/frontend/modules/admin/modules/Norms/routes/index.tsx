@@ -1,18 +1,15 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('norms', () => import('../pages'))
-
-const NormsList = page(m => m.NormsList)
-const NormsEditorList = page(m => m.NormsEditorList)
+const page = () => import('../pages')
 
 const routes = [
   {
     path: 'norms',
-    element: <NormsList />,
+    lazy: lazyRoute(page, m => m.NormsList),
   },
   {
     path: 'norms/:normId/editor',
-    element: <NormsEditorList />,
+    lazy: lazyRoute(page, m => m.NormsEditorList),
   },
 ]
 

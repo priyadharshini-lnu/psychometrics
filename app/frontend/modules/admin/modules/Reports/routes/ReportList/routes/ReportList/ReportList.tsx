@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Outlet, useSearchParams } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ReportTable } from './ReportTable'
@@ -33,33 +33,42 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   }
 
   return (
-    <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('reports.dashboard'),
-          },
-          {
-            label: () => I18n.t('reports.reports'),
-          },
-        ]}
-      />
-      <FirstLevelTabs />
-      <Tabs />
-      <Resource config={config} name="reports">
-        <ReportFilter openModal={() => closeModal(false)} />
-        <ReportTable openDrawer={setDrawerReport} />
-        {!!drawerReport && (
-          <DetailsDrawer
-            close={() => setDrawerReport(undefined)}
-            report={drawerReport}
-          />
-        )}
-        {!closed && (<ReportFormModal close={() => { closeModal(true) }} />)}
-      </Resource>
-    </>
+    <Resource config={config} name="reports">
+      <ReportFilter openModal={() => closeModal(false)} />
+      <ReportTable openDrawer={setDrawerReport} />
+      {!!drawerReport && (
+        <DetailsDrawer
+          close={() => setDrawerReport(undefined)}
+          report={drawerReport}
+        />
+      )}
+      {!closed && (<ReportFormModal close={() => { closeModal(true) }} />)}
+    </Resource>
   )
 }
+
+// The tab strips belong to the route above the tabs, so switching tabs swaps only the list below them.
+export const ReportsLayout: React.FC = () => (
+  <>
+    <Breadcrumb
+      crumbs={[
+        {
+          link: () => '/admin',
+          label: () => I18n.t('reports.dashboard'),
+        },
+        {
+          label: () => I18n.t('reports.reports'),
+        },
+      ]}
+    />
+    <FirstLevelTabs />
+    <Tabs />
+    <Outlet />
+  </>
+)
+
+export const ActiveReports = () => <ReportList reportTab="active" />
+export const ArchivedReports = () => <ReportList reportTab="archived" />
+export const DeletedReports = () => <ReportList reportTab="deleted" />
 
 export default ReportList

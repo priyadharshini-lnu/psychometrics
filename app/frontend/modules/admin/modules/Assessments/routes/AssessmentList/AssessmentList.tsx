@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { AssessmentTable } from './AssessmentTable'
@@ -25,35 +26,44 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
   }
 
   return (
-    <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('assessments.dashboard'),
-          },
-          {
-            label: () => I18n.t('assessments.assessments'),
-          },
-        ]}
-      />
-      <Tabs />
-      <Resource config={config} name="assessments">
-        <AssessmentFilter openModal={() => closeModal(false)} />
-        <AssessmentTable openDrawer={setDrawerAssessment} />
-        {!!drawerAssessment && (
-          <DetailsDrawer
-            close={() => setDrawerAssessment(undefined)}
-            assessment={drawerAssessment}
-          />
-        )}
-        {!closed && (
-          <AssessmentFormModal close={() => {
-            closeModal(true)
-          }}
-          />
-        )}
-      </Resource>
-    </>
+    <Resource config={config} name="assessments">
+      <AssessmentFilter openModal={() => closeModal(false)} />
+      <AssessmentTable openDrawer={setDrawerAssessment} />
+      {!!drawerAssessment && (
+        <DetailsDrawer
+          close={() => setDrawerAssessment(undefined)}
+          assessment={drawerAssessment}
+        />
+      )}
+      {!closed && (
+        <AssessmentFormModal close={() => {
+          closeModal(true)
+        }}
+        />
+      )}
+    </Resource>
   )
 }
+
+// The tab strip belongs to the route above the tabs, so switching tabs swaps only the list below it.
+export const AssessmentsLayout: React.FC = () => (
+  <>
+    <Breadcrumb
+      crumbs={[
+        {
+          link: () => '/admin',
+          label: () => I18n.t('assessments.dashboard'),
+        },
+        {
+          label: () => I18n.t('assessments.assessments'),
+        },
+      ]}
+    />
+    <Tabs />
+    <Outlet />
+  </>
+)
+
+export const ActiveAssessments = () => <AssessmentList assessmentTab="active" />
+export const ArchivedAssessments = () => <AssessmentList assessmentTab="archived" />
+export const DeletedAssessments = () => <AssessmentList assessmentTab="deleted" />

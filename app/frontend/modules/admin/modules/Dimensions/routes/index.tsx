@@ -1,34 +1,26 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('dimensions', () => import('../pages'))
-
-const DimensionsList = page(m => m.DimensionsList)
-const SubFactorsList = page(m => m.SubFactorsList)
-const OccupationConditionSetsList = page(m => m.OccupationConditionSetsList)
-const Dimension = page(m => m.Dimension)
-const FactorsList = page(m => m.FactorsList)
-const OccupationsList = page(m => m.OccupationsList)
-const InnovationStylesList = page(m => m.InnovationStylesList)
+const page = () => import('../pages')
 
 const DimensionsRoutes = [
   {
     path: 'dimensions',
     children: [
-      { index: true, element: <DimensionsList /> },
-      { path: ':dimensionId/:slug/:tagId/factors', element: <SubFactorsList /> },
+      { index: true, lazy: lazyRoute(page, m => m.DimensionsList) },
+      { path: ':dimensionId/:slug/:tagId/factors', lazy: lazyRoute(page, m => m.SubFactorsList) },
       {
         path: ':dimensionId/occupations/condition_sets',
-        element: <OccupationConditionSetsList />,
+        lazy: lazyRoute(page, m => m.OccupationConditionSetsList),
       },
       {
         path: ':dimensionId',
-        element: <Dimension />,
+        lazy: lazyRoute(page, m => m.Dimension),
         children: [
           { index: true, element: <Navigate to="factors" replace /> },
-          { path: 'factors', element: <FactorsList /> },
-          { path: 'occupations', element: <OccupationsList /> },
-          { path: 'innovation_styles', element: <InnovationStylesList /> },
+          { path: 'factors', lazy: lazyRoute(page, m => m.FactorsList) },
+          { path: 'occupations', lazy: lazyRoute(page, m => m.OccupationsList) },
+          { path: 'innovation_styles', lazy: lazyRoute(page, m => m.InnovationStylesList) },
         ],
       },
     ],

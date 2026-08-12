@@ -1,11 +1,10 @@
-import { Suspense } from 'react'
 import type { ComponentType } from 'react'
 import { createRoot } from 'react-dom/client'
 import { act } from 'react-dom/test-utils'
-import { Outlet, RouterProvider, createMemoryRouter } from 'react-router-dom'
+import {
+  Outlet, RouterProvider, createMemoryRouter, useNavigation,
+} from 'react-router-dom'
 import { FALLBACK_DELAY, PageFallback } from '~/components/PageFallback'
-import { lazyPages } from '~/utils/lazyPages'
-import { usePageChunk } from '~/utils/usePageChunk'
 
 type Pages = { Page: ComponentType }
 
@@ -36,37 +35,42 @@ const wait = (ms: number) => act(async () => { await new Promise((resume) => { s
 const setup = () => {
   const clients = deferred<Pages>()
   const users = deferred<Pages>()
-  const page = (name: string, load: () => Promise<Pages>) => lazyPages(name, load)(m => m.Page)
-  const ClientPage = page('client', () => clients.promise)
-  const UsersPage = page('users', () => users.promise)
 
-  const Shell = () => (
-    <div>
-      <nav>chrome</nav>
-      <Suspense key={usePageChunk(router.routes)} fallback={<PageFallback />}>
-        <Outlet />
-      </Suspense>
-    </div>
+  const Shell = () => <div><nav>chrome</nav><Outlet /></div>
+
+  const PageArea = () => (
+    useNavigation().state === 'idle' ? <Outlet /> : <PageFallback />
   )
 
   const router = createMemoryRouter([{
     path: '/',
     element: <Shell />,
-    children: [
-      { path: 'clients', element: <ClientPage /> },
-      { path: 'users', element: <UsersPage /> },
-    ],
+    children: [{
+      element: <PageArea />,
+      hydrateFallbackElement: <PageFallback />,
+      children: [
+        { path: 'clients', lazy: async () => ({ Component: (await clients.promise).Page }) },
+        { path: 'users', lazy: async () => ({ Component: (await users.promise).Page }) },
+      ],
+    }],
   }], { initialEntries: ['/clients'] })
 
-  const view = mountInto(<RouterProvider router={router} />)
+  const container = document.body.appendChild(document.createElement('div'))
+  const root = createRoot(container)
+  const skeleton = () => container.querySelector('[role="status"]')
 
   const mount = async () => {
-    await view.render()
-    await act(async () => { clients.resolve({ Page: () => <div>client page</div> }) })
+    act(() => { root.render(<RouterProvider router={router} />) })
+    await wait(0)
+    clients.resolve({ Page: () => <div>client page</div> })
+    await wait(0)
   }
 
+  const navigate = async (to: string) => { act(() => { void router.navigate(to) }); await wait(0) }
+  const unmount = () => { act(() => { root.unmount() }); container.remove() }
+
   return {
-    ...view, users, router, mount,
+    container, skeleton, users, mount, navigate, unmount,
   }
 }
 
@@ -91,15 +95,15 @@ describe('the routed page fallback', () => {
 
   it('never appears when the page is already downloaded', async () => {
     const {
-      skeleton, container, mount, router, users, unmount,
+      skeleton, container, mount, navigate, users, unmount,
     } = setup()
 
     await mount()
-    await act(async () => { await router.navigate('/users') })
+    await navigate('/users')
 
     expect(skeleton()).toBeNull()
 
-    await act(async () => { users.resolve({ Page: () => <div>users page</div> }) })
+    users.resolve({ Page: () => <div>users page</div> })
     await wait(PAST_THE_DELAY)
 
     expect(skeleton()).toBeNull()
@@ -110,11 +114,11 @@ describe('the routed page fallback', () => {
 
   it('appears once the download outlasts the delay', async () => {
     const {
-      skeleton, container, mount, router, unmount,
+      skeleton, container, mount, navigate, unmount,
     } = setup()
 
     await mount()
-    await act(async () => { await router.navigate('/users') })
+    await navigate('/users')
 
     expect(skeleton()).toBeNull()
 

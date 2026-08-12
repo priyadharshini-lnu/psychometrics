@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, Outlet, RouterProvider,
+  createBrowserRouter, Outlet, RouterProvider, useLocation,
 } from 'react-router-dom'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import RouteErrorBoundary from '~/components/RouteErrorBoundary'
@@ -9,19 +9,24 @@ import Dashboard from '~/modules/survey/layouts/Dashboard'
 import Scoring from '~/modules/survey/layouts/Scoring'
 import ResourceManager from '~/modules/survey/layouts/ResourceManager'
 
-const Main: React.FC = () => (
-  <RouteErrorBoundary>
-    <Suspense fallback={(
-      <DefaultAntThemeWrapper>
-        <PageLoadSpinner size="large" />
-      </DefaultAntThemeWrapper>
-      )}
-    >
-      <Outlet />
-      <IncorrectResponseErrorModal />
-    </Suspense>
-  </RouteErrorBoundary>
-)
+// Reset on navigation: without a resetKey the boundary keeps the error card forever once it catches.
+const Main: React.FC = () => {
+  const { pathname } = useLocation()
+
+  return (
+    <RouteErrorBoundary resetKey={pathname}>
+      <Suspense fallback={(
+        <DefaultAntThemeWrapper>
+          <PageLoadSpinner size="large" />
+        </DefaultAntThemeWrapper>
+        )}
+      >
+        <Outlet />
+        <IncorrectResponseErrorModal />
+      </Suspense>
+    </RouteErrorBoundary>
+  )
+}
 
 export const router = createBrowserRouter([
   {

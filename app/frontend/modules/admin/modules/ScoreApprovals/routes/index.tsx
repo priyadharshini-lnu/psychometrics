@@ -1,22 +1,17 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('scoreApprovals', () => import('../pages'))
-
-const MyTasks = page(m => m.MyTasks)
-const Approved = page(m => m.Approved)
-const All = page(m => m.All)
-const ScoreReview = page(m => m.ScoreReview)
+const page = () => import('../pages')
 
 const ScoreApprovalsRoutes = [
   {
     path: 'ai_scoring_approvals',
     children: [
       { index: true, element: <Navigate to="my_tasks" replace /> },
-      { path: 'my_tasks', element: <MyTasks /> },
-      { path: 'approved', element: <Approved /> },
-      { path: 'all', element: <All /> },
-      { path: ':id/review', element: <ScoreReview /> },
+      { path: 'my_tasks', lazy: lazyRoute(page, m => m.MyTasks) },
+      { path: 'approved', lazy: lazyRoute(page, m => m.Approved) },
+      { path: 'all', lazy: lazyRoute(page, m => m.All) },
+      { path: ':id/review', lazy: lazyRoute(page, m => m.ScoreReview) },
     ],
   },
 ]

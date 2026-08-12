@@ -1,27 +1,18 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('client', () => import('~/modules/admin/modules/client/pages'))
-const dataReportPage = lazyPages('dataReports', () => import('~/modules/admin/modules/DataReports/pages'))
-
-const ProjectList = page(m => m.ProjectList)
-const ClientAdmins = page(m => m.ClientAdmins)
-const ClientAssessors = page(m => m.ClientAssessors)
-const ClientSettings = page(m => m.ClientSettings)
-const ClientDataExports = page(m => m.ClientDataExports)
-const ClientLicenseList = page(m => m.ClientLicenseList)
-const ClientDataReports = page(m => m.ClientDataReports)
-const DataReportJobs = dataReportPage(m => m.DataReportJobs)
+const page = () => import('~/modules/admin/modules/client/pages')
+const dataReportPage = () => import('~/modules/admin/modules/DataReports/pages')
 
 export const routes = [
   { index: true, element: <Navigate to="projects" replace /> },
-  { path: 'projects', element: <ProjectList /> },
-  { path: 'admins', element: <ClientAdmins /> },
-  { path: 'assessors', element: <ClientAssessors /> },
+  { path: 'projects', lazy: lazyRoute(page, m => m.ProjectList) },
+  { path: 'admins', lazy: lazyRoute(page, m => m.ClientAdmins) },
+  { path: 'assessors', lazy: lazyRoute(page, m => m.ClientAssessors) },
   // Settings matches its own permission dependent tabs with useRoutes, so it keeps the splat.
-  { path: 'settings/*', element: <ClientSettings /> },
-  { path: 'audit_reports', element: <ClientDataExports /> },
-  { path: 'licenses', element: <ClientLicenseList /> },
-  { path: 'data_reports', element: <ClientDataReports /> },
-  { path: 'data_reports/:id', element: <DataReportJobs /> },
+  { path: 'settings/*', lazy: lazyRoute(page, m => m.ClientSettings) },
+  { path: 'audit_reports', lazy: lazyRoute(page, m => m.ClientDataExports) },
+  { path: 'licenses', lazy: lazyRoute(page, m => m.ClientLicenseList) },
+  { path: 'data_reports', lazy: lazyRoute(page, m => m.ClientDataReports) },
+  { path: 'data_reports/:id', lazy: lazyRoute(dataReportPage, m => m.DataReportJobs) },
 ]

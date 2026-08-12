@@ -1,32 +1,32 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, Outlet, RouterProvider, useMatches,
+  createBrowserRouter, Outlet, RouterProvider, useLocation,
 } from 'react-router-dom'
 import { AdminShell } from '~/components/AdminShell'
-import RouteErrorBoundary from '~/components/RouteErrorBoundary'
+import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
 import { PageFallback } from '~/components/PageFallback'
-import { usePageChunk } from '~/utils/usePageChunk'
 import settings from './settings'
 import routes from './routes'
 
 // No ownedPathPrefixes: this router owns only the campaign subtree, so every main-menu target needs a full load.
 const Main: React.FC = () => (
   <AdminShell>
-    <Suspense fallback={<PageFallback />}>
-      <Outlet />
-    </Suspense>
+    <RouteErrorBoundary>
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
   </AdminShell>
 )
 
 // Reset (not remounted) on navigation: a key here would tear down the campaign page on every subnav click.
 const CampaignPage: React.FC = () => {
-  const matches = useMatches()
-  // Keyed by chunk: a page waiting on a download gets a fresh boundary, which React fills with the fallback.
-  const chunk = usePageChunk(router.routes)
+  const { pathname } = useLocation()
 
   return (
-    <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
-      <Suspense key={chunk} fallback={<PageFallback />}>
+    <RouteErrorBoundary resetKey={pathname}>
+      {/* A page may still React.lazy inside itself; without this the nearest boundary would blank the whole shell. */}
+      <Suspense fallback={<PageFallback />}>
         <Outlet />
       </Suspense>
     </RouteErrorBoundary>
@@ -34,7 +34,13 @@ const CampaignPage: React.FC = () => {
 }
 
 export const router = createBrowserRouter([
-  { path: settings.urlPrefix, element: <CampaignPage />, children: routes },
+  {
+    path: settings.urlPrefix,
+    element: <CampaignPage />,
+    errorElement: <RouteErrorCard />,
+    hydrateFallbackElement: <PageFallback />,
+    children: routes,
+  },
   { path: '*', element: <Main /> },
 ])
 

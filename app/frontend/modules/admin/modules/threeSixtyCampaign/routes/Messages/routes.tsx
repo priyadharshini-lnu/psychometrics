@@ -4,14 +4,9 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getCurrentCampaign,
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('threeSixtyCampaign', () => import('~/modules/admin/modules/threeSixtyCampaign/pages'))
-
-const MessagesOptions = page(m => m.MessagesOptions)
-const EmailList = page(m => m.EmailList)
-const InstructionList = page(m => m.InstructionList)
-const MailHistories = page(m => m.MailHistories)
+const page = () => import('~/modules/admin/modules/threeSixtyCampaign/pages')
 
 type MessagesTab = {
   id: string,
@@ -40,10 +35,10 @@ const MessagesIndex = () => {
 
 export const routes = [
   { index: true, element: <MessagesIndex /> },
-  { path: 'options', element: <MessagesOptions /> },
-  { path: 'email', element: <EmailList /> },
-  { path: 'email/:id', element: <EmailList /> },
-  { path: 'instructions', element: <InstructionList /> },
-  { path: 'instructions/:id', element: <InstructionList /> },
-  { path: 'mail_histories', element: <MailHistories /> },
+  { path: 'options', lazy: lazyRoute(page, m => m.MessagesOptions) },
+  { path: 'email', lazy: lazyRoute(page, m => m.EmailList) },
+  { path: 'email/:id', lazy: lazyRoute(page, m => m.EmailList) },
+  { path: 'instructions', lazy: lazyRoute(page, m => m.InstructionList) },
+  { path: 'instructions/:id', lazy: lazyRoute(page, m => m.InstructionList) },
+  { path: 'mail_histories', lazy: lazyRoute(page, m => m.MailHistories) },
 ]

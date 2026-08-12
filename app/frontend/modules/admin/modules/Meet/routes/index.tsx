@@ -1,8 +1,6 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('meet', () => import('./MeetingRoom'))
-
-const MeetingRoom = page(m => m.default)
+const page = () => import('./MeetingRoom')
 
 const routes = [
   {
@@ -11,7 +9,7 @@ const routes = [
   },
   {
     path: 'meet/:roomId',
-    element: <MeetingRoom />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

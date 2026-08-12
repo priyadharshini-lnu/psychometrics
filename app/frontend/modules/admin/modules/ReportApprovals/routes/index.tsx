@@ -1,20 +1,16 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('reportApprovals', () => import('../pages'))
-
-const MyTasks = page(m => m.MyTasks)
-const Approved = page(m => m.Approved)
-const All = page(m => m.All)
+const page = () => import('../pages')
 
 const ReportApprovalsRoutes = [
   {
     path: 'report_approvals',
     children: [
       { index: true, element: <Navigate to="my_tasks" replace /> },
-      { path: 'my_tasks', element: <MyTasks /> },
-      { path: 'approved', element: <Approved /> },
-      { path: 'all', element: <All /> },
+      { path: 'my_tasks', lazy: lazyRoute(page, m => m.MyTasks) },
+      { path: 'approved', lazy: lazyRoute(page, m => m.Approved) },
+      { path: 'all', lazy: lazyRoute(page, m => m.All) },
     ],
   },
 ]

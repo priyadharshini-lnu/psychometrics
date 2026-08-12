@@ -1,26 +1,22 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('assessments', () => import('../pages'))
-
-const assessmentList = (assessmentTab: string) => (
-  page(({ AssessmentList }) => () => <AssessmentList assessmentTab={assessmentTab} />)
-)
-
-const ActiveAssessments = assessmentList('active')
-const ArchivedAssessments = assessmentList('archived')
-const TrashedAssessments = assessmentList('deleted')
-const EditAssessment = page(m => m.EditAssessment)
+const page = () => import('../pages')
 
 const AssessmentRoutes = [
   {
     path: 'assessments',
     children: [
       { index: true, element: <Navigate to="active" replace /> },
-      { path: 'active', element: <ActiveAssessments /> },
-      { path: 'archived', element: <ArchivedAssessments /> },
-      { path: 'trash', element: <TrashedAssessments /> },
-      { path: ':id/edit', element: <EditAssessment /> },
+      {
+        lazy: lazyRoute(page, m => m.AssessmentsLayout),
+        children: [
+          { path: 'active', lazy: lazyRoute(page, m => m.ActiveAssessments) },
+          { path: 'archived', lazy: lazyRoute(page, m => m.ArchivedAssessments) },
+          { path: 'trash', lazy: lazyRoute(page, m => m.DeletedAssessments) },
+        ],
+      },
+      { path: ':id/edit', lazy: lazyRoute(page, m => m.EditAssessment) },
     ],
   },
 ]

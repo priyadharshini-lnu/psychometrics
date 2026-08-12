@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { PageFallback } from '~/components/PageFallback'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '../../components/Breadcrumb'
@@ -52,7 +53,10 @@ const Campaign: React.FC<Props> = ({ campaignPermissions }) => {
       />
       <Navigation prefix={`${settings.urlPrefix}/${campaignId}`} permissions={campaignPermissions} />
       <section data-testid="admin_campaign_section">
-        <Outlet />
+        {/* Tabs claimed by both campaign types pick their page with React.lazy, so they suspend here. */}
+        <Suspense fallback={<PageFallback />}>
+          <Outlet />
+        </Suspense>
       </section>
     </div>
   )

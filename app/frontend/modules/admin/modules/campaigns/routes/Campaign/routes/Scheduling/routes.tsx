@@ -1,14 +1,11 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
-
-const WorkshopList = page(m => m.WorkshopList)
-const Invites = page(m => m.Invites)
+const page = () => import('./pages')
 
 export const routes = [
   { index: true, element: <Navigate to="assessment_center" replace /> },
-  { path: 'assessment_center', element: <WorkshopList /> },
+  { path: 'assessment_center', lazy: lazyRoute(page, m => m.WorkshopList) },
   // Invites reads the tab off the url, so requests and invites share one route.
-  { path: ':tab', element: <Invites /> },
+  { path: ':tab', lazy: lazyRoute(page, m => m.Invites) },
 ]

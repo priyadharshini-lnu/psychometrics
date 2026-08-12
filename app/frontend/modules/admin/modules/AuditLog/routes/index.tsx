@@ -1,23 +1,19 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('auditLog', () => import('../pages'))
-
-const AuditLogList = page(m => m.AuditLogList)
-const AuditLogInfo = page(m => m.AuditLogInfo)
-const RecordHistory = page(m => m.RecordHistory)
+const page = () => import('../pages')
 
 const routes = [
   {
     path: 'audit_logs',
-    element: <AuditLogList />,
+    lazy: lazyRoute(page, m => m.AuditLogList),
   },
   {
     path: 'audit_logs/record_trace',
-    element: <RecordHistory />,
+    lazy: lazyRoute(page, m => m.RecordHistory),
   },
   {
     path: 'audit_logs/:id',
-    element: <AuditLogInfo />,
+    lazy: lazyRoute(page, m => m.AuditLogInfo),
   },
 ]
 

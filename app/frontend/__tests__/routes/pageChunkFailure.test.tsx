@@ -1,16 +1,21 @@
-import { Suspense } from 'react'
-import type { ComponentType } from 'react'
+import { Suspense, type ComponentType } from 'react'
 import { createRoot } from 'react-dom/client'
 import { act } from 'react-dom/test-utils'
 import {
-  Outlet, RouterProvider, createMemoryRouter, useMatches,
+  Outlet, RouterProvider, createMemoryRouter, useMatches, useNavigation,
 } from 'react-router-dom'
-import RouteErrorBoundary from '~/components/RouteErrorBoundary'
+import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
 import { PageFallback } from '~/components/PageFallback'
-import { lazyPages } from '~/utils/lazyPages'
-import { usePageChunk } from '~/utils/usePageChunk'
+
+const captureException = vi.hoisted(() => vi.fn())
+
+vi.mock('@sentry/react', async importOriginal => ({
+  ...await importOriginal<typeof import('@sentry/react')>(),
+  captureException,
+}))
 
 const { I18n } = window
+const CHUNK_ERROR = 'Failed to fetch dynamically imported module'
 
 type Pages = { Page: ComponentType }
 
@@ -23,50 +28,52 @@ const deferred = <T, >() => {
   return { promise, reject }
 }
 
-// The admin shell's shape: the chunk-keyed suspense boundary outside, the route error boundary around the page.
+// The admin shell's shape: the page area is a pathless layout route, so a dead chunk leaves the chrome standing.
 const setup = () => {
   const users = deferred<Pages>()
-  const ClientPage = lazyPages('client', () => Promise.resolve<Pages>({
-    Page: () => <div>client page</div>,
-  }))(m => m.Page)
-  const UsersPage = lazyPages('users', () => users.promise)(m => m.Page)
+  const clientPage = () => Promise.resolve<Pages>({ Page: () => <div>client page</div> })
+  const usersComponent = async () => (await users.promise).Page
 
   const RoutedPage = () => {
     const matches = useMatches()
 
     return (
       <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
-        <Outlet />
+        <Suspense fallback={<PageFallback />}>
+          {useNavigation().state === 'idle' ? <Outlet /> : <PageFallback />}
+        </Suspense>
       </RouteErrorBoundary>
     )
   }
 
-  const Shell = () => (
-    <div>
-      <nav>chrome</nav>
-      <Suspense key={usePageChunk(router.routes)} fallback={<PageFallback />}>
-        <RoutedPage />
-      </Suspense>
-    </div>
-  )
+  const Shell = () => <div><nav>chrome</nav><Outlet /></div>
 
   const router = createMemoryRouter([{
     path: '/',
     element: <Shell />,
-    children: [
-      { path: 'clients', element: <ClientPage /> },
-      { path: 'users', element: <UsersPage /> },
-    ],
+    children: [{
+      element: <RoutedPage />,
+      errorElement: <RouteErrorCard />,
+      hydrateFallbackElement: <PageFallback />,
+      children: [
+        { path: 'clients', lazy: async () => ({ Component: (await clientPage()).Page }) },
+        { path: 'users', lazy: async () => ({ Component: await usersComponent() }) },
+      ],
+    }],
   }], { initialEntries: ['/clients'] })
 
   const container = document.body.appendChild(document.createElement('div'))
   const root = createRoot(container)
 
-  const mount = async () => { await act(async () => { root.render(<RouterProvider router={router} />) }) }
+  const flush = () => act(async () => { await new Promise((resume) => { setTimeout(resume, 0) }) })
+
+  const mount = async () => { act(() => { root.render(<RouterProvider router={router} />) }); await flush() }
+  const navigate = async (to: string) => { act(() => { void router.navigate(to) }); await flush() }
+  const fail = async () => { users.reject(new Error(CHUNK_ERROR)); await flush() }
   const unmount = () => { act(() => { root.unmount() }); container.remove() }
 
   return {
-    users, router, container, mount, unmount,
+    container, mount, navigate, fail, unmount,
   }
 }
 
@@ -76,6 +83,7 @@ const swallow = (event: ErrorEvent) => event.preventDefault()
 describe('a page chunk that cannot be downloaded', () => {
   beforeEach(() => {
     globalThis.IS_REACT_ACT_ENVIRONMENT = true
+    captureException.mockClear()
     window.addEventListener('error', swallow)
     vi.spyOn(console, 'error').mockImplementation(() => {})
   })
@@ -85,17 +93,17 @@ describe('a page chunk that cannot be downloaded', () => {
     vi.restoreAllMocks()
   })
 
-  it('shows the refreshable error card with the shell still rendered', async () => {
+  it('shows the reload card with the shell still rendered', async () => {
     const {
-      users, router, container, mount, unmount,
+      container, mount, navigate, fail, unmount,
     } = setup()
 
     await mount()
-    await act(async () => { await router.navigate('/users') })
-    await act(async () => { users.reject(new Error('Failed to fetch dynamically imported module')) })
+    await navigate('/users')
+    await fail()
 
     expect(container.textContent).toContain('chrome')
-    expect(container.textContent).toContain(I18n.t('errors.error_msg'))
+    expect(container.textContent).toContain(I18n.t('admin.page_load_failed'))
     expect(container.textContent).toContain(I18n.t('frontend.request_failed_message_box.refresh'))
     expect(container.textContent).not.toContain('Unexpected Application Error')
 
@@ -104,33 +112,47 @@ describe('a page chunk that cannot be downloaded', () => {
 
   it('leaves the rest of the app reachable', async () => {
     const {
-      users, router, container, mount, unmount,
+      container, mount, navigate, fail, unmount,
     } = setup()
 
     await mount()
-    await act(async () => { await router.navigate('/users') })
-    await act(async () => { users.reject(new Error('Failed to fetch dynamically imported module')) })
-    await act(async () => { await router.navigate('/clients') })
+    await navigate('/users')
+    await fail()
+    await navigate('/clients')
 
     expect(container.textContent).toContain('client page')
-    expect(container.textContent).not.toContain(I18n.t('errors.error_msg'))
+    expect(container.textContent).not.toContain(I18n.t('admin.page_load_failed'))
 
     unmount()
   })
 
-  // React.lazy keeps its rejection, so the refresh button is the only way back onto that page.
-  it('keeps failing on the same page until the tab reloads', async () => {
+  // The card is all the user gets, so it must explain the reload without leaking any of the rejection text.
+  it('explains the reload in plain words and never shows the raw error', async () => {
     const {
-      users, router, container, mount, unmount,
+      container, mount, navigate, fail, unmount,
     } = setup()
 
     await mount()
-    await act(async () => { await router.navigate('/users') })
-    await act(async () => { users.reject(new Error('Failed to fetch dynamically imported module')) })
-    await act(async () => { await router.navigate('/clients') })
-    await act(async () => { await router.navigate('/users') })
+    await navigate('/users')
+    await fail()
 
-    expect(container.textContent).toContain(I18n.t('errors.error_msg'))
+    expect(container.textContent).toContain(I18n.t('admin.page_load_failed_hint'))
+    expect(container.textContent).not.toContain(CHUNK_ERROR)
+
+    unmount()
+  })
+
+  // A reported failure is the only signal there is now that nothing recovers on its own.
+  it('reports the failure', async () => {
+    const {
+      mount, navigate, fail, unmount,
+    } = setup()
+
+    await mount()
+    await navigate('/users')
+    await fail()
+
+    expect(captureException).toHaveBeenCalled()
 
     unmount()
   })

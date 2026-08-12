@@ -1,13 +1,11 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('developmentActions', () => import('../components/DevelopmentActionList'))
-
-const DevelopmentActionList = page(m => m.default)
+const page = () => import('../components/DevelopmentActionList')
 
 const DevelopmentActionRoutes = [
   {
     path: 'development_actions/*',
-    element: <DevelopmentActionList />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

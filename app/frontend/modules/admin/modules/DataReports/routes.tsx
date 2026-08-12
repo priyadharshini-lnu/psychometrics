@@ -1,17 +1,14 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('dataReports', () => import('./pages'))
-
-const DataReports = page(m => m.DataReports)
-const DataReportJobs = page(m => m.DataReportJobs)
+const page = () => import('./pages')
 
 export const DataReportsRoutes = [
   {
     path: 'data_reports',
-    element: <DataReports />,
+    lazy: lazyRoute(page, m => m.DataReports),
   },
   {
     path: 'data_reports/:id',
-    element: <DataReportJobs />,
+    lazy: lazyRoute(page, m => m.DataReportJobs),
   },
 ]

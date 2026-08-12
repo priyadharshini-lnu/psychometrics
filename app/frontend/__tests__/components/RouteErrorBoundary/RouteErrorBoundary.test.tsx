@@ -37,11 +37,11 @@ describe('RouteErrorBoundary', () => {
     expect(container.textContent).toContain('child content')
   })
 
-  it('shows the error card once a child throws', () => {
+  it('shows the error card once a child throws, without the raw error text', () => {
     const { container } = renderBoundary('a', true)
 
     expect(container.textContent).toContain(I18n.t('errors.error_msg'))
-    expect(container.textContent).toContain('kaboom')
+    expect(container.textContent).not.toContain('kaboom')
   })
 
   it('clears the error and renders children again when resetKey changes', () => {

@@ -1,22 +1,17 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('skillsTaxonomy', () => import('../pages'))
-
-const SkillList = page(m => m.SkillList)
-const JobRoles = page(m => m.JobRoles)
-const Proficiency = page(m => m.Proficiency)
-const Settings = page(m => m.Settings)
+const page = () => import('../pages')
 
 const SkillsRoutes = [
   {
     path: 'skills_taxonomy',
     children: [
       { index: true, element: <Navigate to="skills" replace /> },
-      { path: 'skills', element: <SkillList /> },
-      { path: 'job_roles', element: <JobRoles /> },
-      { path: 'proficiency', element: <Proficiency /> },
-      { path: 'tools', element: <Settings /> },
+      { path: 'skills', lazy: lazyRoute(page, m => m.SkillList) },
+      { path: 'job_roles', lazy: lazyRoute(page, m => m.JobRoles) },
+      { path: 'proficiency', lazy: lazyRoute(page, m => m.Proficiency) },
+      { path: 'tools', lazy: lazyRoute(page, m => m.Settings) },
     ],
   },
 ]

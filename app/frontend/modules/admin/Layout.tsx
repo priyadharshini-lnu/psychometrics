@@ -1,15 +1,15 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, Navigate, Outlet, RouterProvider, useMatches,
+  createBrowserRouter, Navigate, Outlet, RouterProvider, useLocation,
 } from 'react-router-dom'
+import type { RouteObject } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ErrorModal from '~/components/ErrorModal'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { AdminShell } from '~/components/AdminShell'
-import RouteErrorBoundary from '~/components/RouteErrorBoundary'
+import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
 import { PageFallback } from '~/components/PageFallback'
-import { usePageChunk } from '~/utils/usePageChunk'
 import routes from './routes'
 import assessorRoutes from './modules/AssessorApp/routes'
 import assessorSettings from './modules/AssessorApp/settings'
@@ -39,49 +39,56 @@ const AssessorGate: React.FC = () => {
 }
 
 // Reset (not remounted) on navigation: a key here would tear down the whole routed subtree on every click.
+// The router holds the pending page until its chunk lands, so swapping the outlet for a skeleton would only
+// unmount the page that is still on screen; the cold-start skeleton is hydrateFallbackElement below.
 const RoutedPage: React.FC = () => {
-  const matches = useMatches()
+  const { pathname } = useLocation()
 
   return (
-    <RouteErrorBoundary resetKey={matches[matches.length - 1]?.id}>
-      <Outlet />
+    // Two urls can share one route id - `norms/1/editor` and `norms/2/editor` - so the url says the user moved on.
+    <RouteErrorBoundary resetKey={pathname}>
+      {/* A page may still React.lazy inside itself; without this the nearest boundary would blank the whole shell. */}
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
     </RouteErrorBoundary>
   )
 }
 
-const Main: React.FC = () => {
-  // Keyed by chunk: a page waiting on a download gets a fresh boundary, which React fills with the fallback.
-  const chunk = usePageChunk(router.routes)
+const Main: React.FC = () => (
+  <>
+    <title>{I18n.t('admin.meta_title')}</title>
+    <AdminShell ownedPathPrefixes={OWNED_PATH_PREFIXES}>
+      <Outlet />
+      {modals}
+    </AdminShell>
+  </>
+)
 
-  return (
-    <>
-      <title>{I18n.t('admin.meta_title')}</title>
-      <AdminShell ownedPathPrefixes={OWNED_PATH_PREFIXES} routes={router.routes}>
-        <Suspense key={chunk} fallback={<PageFallback />}>
-          <RoutedPage />
-        </Suspense>
-        {modals}
-      </AdminShell>
-    </>
-  )
-}
+// A pathless layout: the shell above it survives both a failed page chunk and the first-load wait below it.
+const pageArea = (children: RouteObject[]): RouteObject => ({
+  element: <RoutedPage />,
+  errorElement: <RouteErrorCard />,
+  hydrateFallbackElement: <PageFallback />,
+  children,
+})
 
 export const router = createBrowserRouter([
   {
     path: '/admin/*',
     element: <Main />,
-    children: [
+    children: [pageArea([
       {
         path: '',
         element: <Navigate to="clients" />,
       },
       ...routes,
-    ],
+    ])],
   },
   {
     path: `${assessorSettings.urlPrefix}/*`,
     element: <Main />,
-    children: [{ element: <AssessorGate />, children: assessorRoutes }],
+    children: [pageArea([{ element: <AssessorGate />, children: assessorRoutes }])],
   },
   { path: '*', element: <Main /> },
 ])

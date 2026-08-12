@@ -1,35 +1,31 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('reports', () => import('../pages'))
-
-const reportList = (reportTab: string) => page(({ ReportList }) => () => <ReportList reportTab={reportTab} />)
-
-const ActiveReports = reportList('active')
-const ArchivedReports = reportList('archived')
-const TrashedReports = reportList('deleted')
-const EditReport = page(m => m.EditReport)
-const ReportBundleReportList = page(m => m.ReportBundleReportList)
-const ReportBundleList = page(m => m.ReportBundleList)
+const page = () => import('../pages')
 
 const ReportRoutes = [
   {
     path: 'reports',
     children: [
       { index: true, element: <Navigate to="active" replace /> },
-      { path: 'active', element: <ActiveReports /> },
-      { path: 'archived', element: <ArchivedReports /> },
-      { path: 'trash', element: <TrashedReports /> },
-      { path: ':id/edit', element: <EditReport /> },
+      {
+        lazy: lazyRoute(page, m => m.ReportsLayout),
+        children: [
+          { path: 'active', lazy: lazyRoute(page, m => m.ActiveReports) },
+          { path: 'archived', lazy: lazyRoute(page, m => m.ArchivedReports) },
+          { path: 'trash', lazy: lazyRoute(page, m => m.DeletedReports) },
+        ],
+      },
+      { path: ':id/edit', lazy: lazyRoute(page, m => m.EditReport) },
     ],
   },
   {
     path: 'report_families/:id/reports',
-    element: <ReportBundleReportList />,
+    lazy: lazyRoute(page, m => m.ReportBundleReportList),
   },
   {
     path: 'report_families',
-    element: <ReportBundleList />,
+    lazy: lazyRoute(page, m => m.ReportBundleList),
   },
 ]
 

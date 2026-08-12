@@ -1,18 +1,15 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('dashboard', () => import('../pages'))
-
-const Dashboard = page(m => m.Dashboard)
-const DashboardList = page(m => m.DashboardList)
+const page = () => import('../pages')
 
 const DashboardRoutes = [
   {
     path: 'dashboards/:dashboardId',
-    element: <Dashboard />,
+    lazy: lazyRoute(page, m => m.Dashboard),
   },
   {
     path: 'dashboards/*',
-    element: <DashboardList />,
+    lazy: lazyRoute(page, m => m.DashboardList),
   },
 ]
 

@@ -12,9 +12,11 @@ import { DashboardReport } from './routes/DashboardReport'
 // No ownedPathPrefixes: this router owns only the dashboard route, so every main-menu target needs a full load.
 const Main: React.FC = () => (
   <AdminShell>
-    <Suspense fallback={<PageFallback />}>
-      <Outlet />
-    </Suspense>
+    <RouteErrorBoundary>
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
     <IncorrectResponseErrorModal />
   </AdminShell>
 )

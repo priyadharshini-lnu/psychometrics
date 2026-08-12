@@ -4,12 +4,10 @@ import { useSelector } from 'react-redux'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
-import { lazyPages } from '~/utils/lazyPages'
 
-const page = lazyPages('client', () => import('~/modules/admin/modules/client/pages'))
-const developmentActionsPage = lazyPages(
-  'developmentActions',
-  () => import('~/modules/admin/modules/DevelopmentActions/components/DevelopmentActionList'),
+const page = () => import('~/modules/admin/modules/client/pages')
+const developmentActionsPage = () => (
+  import('~/modules/admin/modules/DevelopmentActions/components/DevelopmentActionList')
 )
 
 type Pages = typeof import('~/modules/admin/modules/client/pages')
@@ -58,30 +56,28 @@ const Permitted = ({ permission, children }: { permission: IdpTab['permission'],
   return currentUser.permissions[permission] ? <>{children}</> : null
 }
 
-const permittedPage = (permission: IdpTab['permission'], pick: (module: Pages) => ComponentType) => (
-  page((module) => {
-    const Page = pick(module)
+const permittedPage = (permission: IdpTab['permission'], pick: (module: Pages) => ComponentType) => async () => {
+  const Page = pick(await page())
 
-    return () => <Permitted permission={permission}><Page /></Permitted>
-  })
-)
+  return { Component: () => <Permitted permission={permission}><Page /></Permitted> }
+}
 
-const IdpList = permittedPage('accessIdpTemplates', m => m.IdpList)
-const IdpDetails = permittedPage('accessIdpTemplates', m => m.IdpDetails)
-const IdpSettings = permittedPage('manageIdpProjectSettings', m => m.IdpSettings)
-const ReflectionQuestions = permittedPage('accessReflectionQuestions', m => m.ReflectionQuestions)
-const InterviewQuestions = permittedPage('accessInterviewQuestions', m => m.InterviewQuestions)
+const developmentActions = async () => {
+  const { default: DevelopmentActionList } = await developmentActionsPage()
 
-const DevelopmentActions = developmentActionsPage(({ default: DevelopmentActionList }) => () => (
-  <Permitted permission="accessProjectDevelopmentActions"><DevelopmentActionList /></Permitted>
-))
+  return {
+    Component: () => (
+      <Permitted permission="accessProjectDevelopmentActions"><DevelopmentActionList /></Permitted>
+    ),
+  }
+}
 
 export const routes = [
   { index: true, element: <IdpIndex /> },
-  { path: 'templates', element: <IdpList /> },
-  { path: 'templates/:id', element: <IdpDetails /> },
-  { path: 'settings', element: <IdpSettings /> },
-  { path: 'development_actions', element: <DevelopmentActions /> },
-  { path: 'reflection_questions', element: <ReflectionQuestions /> },
-  { path: 'interview_questions', element: <InterviewQuestions /> },
+  { path: 'templates', lazy: permittedPage('accessIdpTemplates', m => m.IdpList) },
+  { path: 'templates/:id', lazy: permittedPage('accessIdpTemplates', m => m.IdpDetails) },
+  { path: 'settings', lazy: permittedPage('manageIdpProjectSettings', m => m.IdpSettings) },
+  { path: 'development_actions', lazy: developmentActions },
+  { path: 'reflection_questions', lazy: permittedPage('accessReflectionQuestions', m => m.ReflectionQuestions) },
+  { path: 'interview_questions', lazy: permittedPage('accessInterviewQuestions', m => m.InterviewQuestions) },
 ]

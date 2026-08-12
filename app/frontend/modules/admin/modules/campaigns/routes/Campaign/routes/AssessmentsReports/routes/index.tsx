@@ -1,18 +1,13 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
-
-const Manage = page(m => m.Manage)
-const Sequencing = page(m => m.Sequencing)
-const ReportApprovalSetting = page(m => m.ReportApprovalSetting)
-const AIScoringApprovalSetting = page(m => m.AIScoringApprovalSetting)
+const page = () => import('../pages')
 
 export const routes = [
   { index: true, element: <Navigate to="manage" replace /> },
-  { path: 'manage', element: <Manage /> },
-  { path: 'manage/:tab', element: <Manage /> },
-  { path: 'sequencing', element: <Sequencing /> },
-  { path: 'report_approval', element: <ReportApprovalSetting /> },
-  { path: 'ai_scoring_approval', element: <AIScoringApprovalSetting /> },
+  { path: 'manage', lazy: lazyRoute(page, m => m.Manage) },
+  { path: 'manage/:tab', lazy: lazyRoute(page, m => m.Manage) },
+  { path: 'sequencing', lazy: lazyRoute(page, m => m.Sequencing) },
+  { path: 'report_approval', lazy: lazyRoute(page, m => m.ReportApprovalSetting) },
+  { path: 'ai_scoring_approval', lazy: lazyRoute(page, m => m.AIScoringApprovalSetting) },
 ]

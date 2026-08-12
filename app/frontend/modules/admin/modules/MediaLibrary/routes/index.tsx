@@ -1,13 +1,11 @@
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('mediaLibrary', () => import('../components/MediaLibraryList'))
-
-const MediaLibraryList = page(m => m.default)
+const page = () => import('../components/MediaLibraryList')
 
 const MediaLibraryRoutes = [
   {
     path: 'libraries/*',
-    element: <MediaLibraryList />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

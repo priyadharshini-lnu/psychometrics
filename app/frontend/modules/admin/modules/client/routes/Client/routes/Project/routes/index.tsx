@@ -1,32 +1,22 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 import { routes as idpRoutes } from './Idp/routes'
 import { routes as settingsRoutes } from './Settings/routes'
 import { routes as taxonomyRoutes } from './Taxonomy/routes'
 import { routes as userRoutes } from './Users/routes'
 
-const page = lazyPages('client', () => import('~/modules/admin/modules/client/pages'))
-const campaignPage = lazyPages('campaigns', () => import('~/modules/admin/modules/campaigns/pages'))
-
-const CampaignList = campaignPage(m => m.CampaignList)
-const ProjectAdmins = page(m => m.ProjectAdmins)
-const ProjectUsers = page(m => m.ProjectUsers)
-const ProjectDatasheet = page(m => m.ProjectDatasheet)
-const ProjectSettings = page(m => m.ProjectSettings)
-const ProjectDataExports = page(m => m.ProjectDataExports)
-const ProjectIdp = page(m => m.ProjectIdp)
-const ProjectTaxonomy = page(m => m.ProjectTaxonomy)
-const ProjectLicenseList = page(m => m.ProjectLicenseList)
+const page = () => import('~/modules/admin/modules/client/pages')
+const campaignPage = () => import('~/modules/admin/modules/campaigns/pages')
 
 export const routes = [
   { index: true, element: <Navigate to="new_campaigns" replace /> },
-  { path: 'new_campaigns', element: <CampaignList /> },
-  { path: 'admins', element: <ProjectAdmins /> },
-  { path: 'users', element: <ProjectUsers />, children: userRoutes },
-  { path: 'datasheet', element: <ProjectDatasheet /> },
-  { path: 'settings', element: <ProjectSettings />, children: settingsRoutes },
-  { path: 'audit_reports', element: <ProjectDataExports /> },
-  { path: 'idp', element: <ProjectIdp />, children: idpRoutes },
-  { path: 'taxonomy', element: <ProjectTaxonomy />, children: taxonomyRoutes },
-  { path: 'licenses', element: <ProjectLicenseList /> },
+  { path: 'new_campaigns', lazy: lazyRoute(campaignPage, m => m.CampaignList) },
+  { path: 'admins', lazy: lazyRoute(page, m => m.ProjectAdmins) },
+  { path: 'users', lazy: lazyRoute(page, m => m.ProjectUsers), children: userRoutes },
+  { path: 'datasheet', lazy: lazyRoute(page, m => m.ProjectDatasheet) },
+  { path: 'settings', lazy: lazyRoute(page, m => m.ProjectSettings), children: settingsRoutes },
+  { path: 'audit_reports', lazy: lazyRoute(page, m => m.ProjectDataExports) },
+  { path: 'idp', lazy: lazyRoute(page, m => m.ProjectIdp), children: idpRoutes },
+  { path: 'taxonomy', lazy: lazyRoute(page, m => m.ProjectTaxonomy), children: taxonomyRoutes },
+  { path: 'licenses', lazy: lazyRoute(page, m => m.ProjectLicenseList) },
 ]

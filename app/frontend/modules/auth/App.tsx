@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import '~/styles/utils.less'
 import '~/styles/common.less'
 
+import RouteErrorBoundary from '~/components/RouteErrorBoundary'
 import { isAdminGlintRoute } from './adminGlintRoutes'
 import { RootState } from './core/reducers'
 
@@ -38,10 +39,13 @@ export const App = () => {
   const glintUi = useSelector((state: RootState) => Boolean(state.projectConfig?.glint_ui))
   const onAdminRoute = isAdminGlintRoute(window.location.pathname)
 
+  // Above the router, so a dead auth chunk shows the error card instead of a silently blank login page.
   return (
-    <Suspense fallback={null}>
-      {glintUi || onAdminRoute ? <AuthApp /> : <LegacyAuthApp />}
-    </Suspense>
+    <RouteErrorBoundary>
+      <Suspense fallback={null}>
+        {glintUi || onAdminRoute ? <AuthApp /> : <LegacyAuthApp />}
+      </Suspense>
+    </RouteErrorBoundary>
   )
 }
 

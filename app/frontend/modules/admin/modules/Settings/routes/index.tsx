@@ -1,16 +1,14 @@
 import { Navigate } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('settings', () => import('./Maintenance'))
-
-const Maintenance = page(m => m.default)
+const page = () => import('./Maintenance')
 
 const SettingsRoutes = [
   {
     path: 'settings',
     children: [
       { index: true, element: <Navigate to="maintenance" replace /> },
-      { path: 'maintenance', element: <Maintenance /> },
+      { path: 'maintenance', lazy: lazyRoute(page, m => m.default) },
     ],
   },
 ]

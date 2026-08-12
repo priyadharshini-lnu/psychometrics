@@ -1,18 +1,16 @@
 import { RouteObject } from 'react-router-dom'
-import { lazyPages } from '~/utils/lazyPages'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const page = lazyPages('questionCenter', () => import('./routes/QuestionCenter'))
-
-const QuestionCenter = page(m => m.default)
+const page = () => import('./routes/QuestionCenter')
 
 const routes: RouteObject[] = [
   {
     path: 'templates/questions',
-    element: <QuestionCenter />,
+    lazy: lazyRoute(page, m => m.default),
   },
   {
     path: 'templates/blocks',
-    element: <QuestionCenter />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

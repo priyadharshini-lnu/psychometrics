@@ -1510,6 +1510,8 @@ en:
     owner_resource_norm: norm
     owner_resource_report: report
     owner_resource_report_bundle: report bundle
+    page_load_failed: This page could not be loaded.
+    page_load_failed_hint: The app may have been updated — reload to continue.
     parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
     parsed_dependencies_title: Parsed Dependencies
     parsed_dependencies_view: View Parsed Dependencies
