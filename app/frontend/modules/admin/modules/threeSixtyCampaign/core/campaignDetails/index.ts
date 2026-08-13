@@ -14,6 +14,7 @@ export const getCurrentDimensionId = (state: RootState) => get(state).dimensionI
 export const getCurrentCampaignName = (state: RootState) => get(state).name
 export const getCategory = (state: RootState) => get(state).category
 export const getCampaignId = (state: RootState) => get(state).campaignId
+export const getCampaignTenantId = (state: RootState) => get(state).tenantId
 export const getReportAvailableLanguages = (state: RootState) => get(state).reportAvailableLanguages
 export const getReportDefaultLanguage = (state: RootState) => get(state).reportDefaultLanguage
 export const getReportName = (state: RootState) => get(state).reportName
@@ -31,6 +32,7 @@ type CampaignAssessmentPermissions = {
 interface State {
   id?: number
   campaignId?: number
+  tenantId?: number
   reportId?: number
   reportName?: string
   reportIcon?: string
