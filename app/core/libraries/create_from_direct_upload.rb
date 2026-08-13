@@ -79,6 +79,10 @@ module Libraries
       resource.created_by = current_user
       resource.updated_by = current_user
       resource.owner_id = params[:owner_id].presence
+      if current_user.is?(:client_admin) && resource.owner_id.blank?
+        resource.owner_id = Current.client&.id
+      end
+      resource.tenant_id = resource.owner_id
       resource
     end
 
