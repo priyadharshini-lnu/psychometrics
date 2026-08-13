@@ -3221,7 +3221,7 @@ CREATE TABLE public.client_features (
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
     tenant_id bigint,
-    superadmin_tenant_scoping boolean DEFAULT true NOT NULL
+    superadmin_tenant_scoping boolean DEFAULT true NOT NULL,
     glint_ui boolean DEFAULT false NOT NULL
 );
 
@@ -26270,4 +26270,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-
