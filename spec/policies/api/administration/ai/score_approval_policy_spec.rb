@@ -260,4 +260,38 @@ RSpec.describe Api::Administration::AI::ScoreApprovalPolicy do
       it_behaves_like 'approval action', :discard_score?
     end
   end
+
+  describe '#reset_approval?' do
+    context 'when user is superadmin' do
+      let(:user) { superadmin }
+
+      it 'allows the action' do
+        expect(policy.reset_approval?).to be true
+      end
+    end
+
+    context 'when user is an approver' do
+      let(:user) { approver }
+
+      it 'denies the action' do
+        expect(policy.reset_approval?).to be false
+      end
+    end
+
+    context 'when user is an assessor' do
+      let(:user) { assessor }
+
+      it 'denies the action' do
+        expect(policy.reset_approval?).to be false
+      end
+    end
+
+    context 'when user is neither assessor nor approver' do
+      let(:user) { other_user }
+
+      it 'denies the action' do
+        expect(policy.reset_approval?).to be false
+      end
+    end
+  end
 end

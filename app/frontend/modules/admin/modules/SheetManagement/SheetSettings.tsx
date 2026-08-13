@@ -193,7 +193,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
               parentResourceId={parentResourceId}
               sheetType={sheetType}
             />
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
             {permissions.update && (
               <Button
                 type="primary"

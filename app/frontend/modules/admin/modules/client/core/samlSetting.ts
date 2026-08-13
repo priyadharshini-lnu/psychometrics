@@ -12,6 +12,8 @@ export interface State {
   id: number
   enabled: boolean
   enforced: boolean
+  enforceFor: 'none' | 'all' | 'specific_domains'
+  enforcedDomains: string[]
   entityId: string
   ssoServiceUrl: string
   cert: string

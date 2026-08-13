@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Input, Button, Switch, App,
-  Select, Space, Tooltip, Divider,
+  Select, Space, Tooltip, Divider, Radio,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -40,6 +40,8 @@ const SamlComponent: React.FC<Props> = ({
   const [certificateExpiry, setCertificateExpiry] = useState<string | null>(null)
 
   const nameIdentifierFormat = Form.useWatch('nameIdentifierFormat', form)
+  const isEnabled = Form.useWatch('enabled', form)
+  const enforceFor = Form.useWatch('enforceFor', form)
 
   const handleSuccessfullSave = () => {
     message.success(I18n.t('admin.saml_settings_successfully_saved_msg'), 6)
@@ -61,7 +63,7 @@ const SamlComponent: React.FC<Props> = ({
     .then((action: { response: Record<string, unknown> }) => action.response)
 
   return (
-    <Row justify="space-between">
+    <Row justify="space-between" style={{ padding: '0 20px' }}>
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
           resourceName="samlSetting"
@@ -77,7 +79,10 @@ const SamlComponent: React.FC<Props> = ({
               sm: 24, md: 10, lg: 8, xl: 8,
             },
             labelAlign: 'left',
-            initialValues: { emailPipetext: '{{identifier}}@example.com' },
+            initialValues: {
+              emailPipetext: '{{identifier}}@example.com',
+              enforceFor: 'none',
+            },
           }
         }
         >
@@ -91,13 +96,51 @@ const SamlComponent: React.FC<Props> = ({
                 <Switch />
               </Form.Item>
 
-              <Form.Item
-                name="enforced"
-                label={I18n.t('admin.sso_enforced')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
+              {isEnabled && (
+                <Form.Item
+                  name="enforceFor"
+                  label={I18n.t('admin.sso_enforce_for')}
+                >
+                  <Radio.Group>
+                    <Space direction="vertical">
+                      <Radio value="none">{I18n.t('admin.sso_enforce_for_none')}</Radio>
+                      <Radio value="all">{I18n.t('admin.sso_enforce_for_all')}</Radio>
+                      <Radio value="specific_domains">{I18n.t('admin.sso_enforce_for_specific_domains')}</Radio>
+                    </Space>
+                  </Radio.Group>
+                </Form.Item>
+              )}
+
+              {isEnabled && enforceFor === 'specific_domains' && (
+                <Form.Item
+                  name="enforcedDomains"
+                  label={I18n.t('admin.sso_enforced_domains')}
+                  extra={I18n.t('admin.sso_enforced_domains_hint')}
+                  rules={[
+                    { required: true, message: I18n.t('errors.messages.blank') },
+                    {
+                      validator: (_, value) => {
+                        if (!value || value.length === 0) return Promise.resolve()
+                        // eslint-disable-next-line max-len
+                        const domainPattern = /^(\*\.)?[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i
+                        const invalidDomains = value.filter(
+                          (domain: string) => !domainPattern.test(domain),
+                        )
+                        if (invalidDomains.length > 0) {
+                          return Promise.reject(new Error(I18n.t('errors.messages.invalid')))
+                        }
+                        return Promise.resolve()
+                      },
+                    },
+                  ]}
+                >
+                  <Select
+                    mode="tags"
+                    placeholder={I18n.t('admin.sso_enforced_domains_placeholder')}
+                    tokenSeparators={[',', ' ']}
+                  />
+                </Form.Item>
+              )}
 
               <MetadataUpload
                 onParsed={handleMetadataParsed}

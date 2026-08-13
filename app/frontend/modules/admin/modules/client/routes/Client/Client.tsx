@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import {
-  useParams, useNavigate, useLocation,
+  useParams, useNavigate, useLocation, Outlet,
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
@@ -15,8 +15,6 @@ import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from '~/modules/admin/modules/client/settings'
-import RouteList from '~/components/RouteList'
-import { routes } from './routes'
 import { ClientContext } from './ClientContext'
 
 const { I18n } = window
@@ -237,10 +235,7 @@ export const Client: FC<Props> = ({ currentUser }) => {
         mode="horizontal"
       />
       <ClientContext.Provider value={{ client }}>
-        <RouteList
-          routes={routes}
-          urlPrefix=""
-        />
+        <Outlet />
       </ClientContext.Provider>
     </div>
   )

@@ -15,11 +15,6 @@ it:
         simple_design:
           design: Design
           or: Oppure
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Accesso riuscito.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ it:
           modal_title: Impostazioni di approvazione del punteggio
           remove_modal_success: 'Impostazione di approvazione per ID valutazione: %{assessmentId} eliminata correttamente'
           remove_modal_text: 'Sei sicuro di voler eliminare questa impostazione per l''ID valutazione: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: L'accesso è stato effettuato con successo come %{name}
       validations:
         dates:
           end: deve essere successivo alla data di inizio

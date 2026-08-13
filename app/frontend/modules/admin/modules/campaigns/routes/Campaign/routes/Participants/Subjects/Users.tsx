@@ -6,6 +6,7 @@ import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { Link, useParams } from 'react-router-dom'
 import { FilterValue } from 'antd/es/table/interface'
+import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import {
   AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -192,7 +193,7 @@ const UserList: React.FC<Props> = ({
             loading={isLoadingUsers}
             pagination={false}
             scroll={{ x: 'max-content' }}
-            sticky={{ offsetHeader: 50 }}
+            sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
           >
             <Column
               title={I18n.t('shared.id')}

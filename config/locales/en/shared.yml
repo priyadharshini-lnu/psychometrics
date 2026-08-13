@@ -55,6 +55,7 @@ en:
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
+    copyright: "© %{year} Marsh. All rights reserved."
     create: Create
     created_at: Created At
     created_by: Created By
@@ -181,6 +182,21 @@ en:
     remove: Remove
     removed: Removed
     replace: Replace
+    reports:
+      ai_rationale_evidence:
+        all_factors: All Factors
+        factor_label: Factors
+        hide_evidence: Hide Evidence
+        hide_rationale: Hide Rationale
+        no_data: No AI rationale or evidence data available for the selected question.
+        no_question_selected: Please select a question to display AI rationale and evidence.
+        question_label: Question
+        select_question: Select a question
+      ai_transcript:
+        no_data: No transcript data available for the selected question.
+        no_question_selected: Please select a question to display the transcript.
+        question_label: Question
+        select_question: Select a question
     reports_show_values_inside_bar: Show values inside bar
     reports_value_label_position: Value label position
     reports_value_label_position_center: Center

@@ -2,12 +2,15 @@
 
 class CampaignAssessmentGroup < ApplicationRecord
   audited
+  extend Mobility
 
   has_many :campaign_assessments, dependent: :nullify
   has_many :communications, dependent: :destroy
   has_many :workshops
   belongs_to :campaign
   include Tenantable
+
+  translates :name
 
   before_create :set_position
 

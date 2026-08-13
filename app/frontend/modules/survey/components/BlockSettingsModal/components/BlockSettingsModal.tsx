@@ -55,7 +55,7 @@ interface State {
 export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
   const [state, setState] = useState<State>({ ...(model.props.background || defaultBackground) })
 
-  const librarySocket = useRef<null>()
+  const librarySocket = useRef<ReturnType<typeof Socket.library> | null>(null)
 
   useEffect(() => {
     LibraryTransport.init()

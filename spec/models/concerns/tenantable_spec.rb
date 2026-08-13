@@ -168,8 +168,8 @@ describe Tenantable do
       expect(campaign.tenant_id).to eq(tenant_a.id)
 
       ActsAsTenant.with_tenant(tenant_b) do
-        expect { campaign.update!(name: 'renamed') }.
-          not_to(change { campaign.reload.tenant_id })
+        campaign.update!(name: 'renamed')
+        expect(campaign.reload.tenant_id).to eq(tenant_a.id)
       end
     end
   end

@@ -19,7 +19,12 @@ module Users
     private
 
     def check_if_saml_is_enforced
-      redirect_to(new_user_session_path) if @current_project.saml_enforced?
+      user = User.find_by_invitation_token(params[:invitation_token], true)
+      email = user&.email
+      return unless @current_project.saml_setting&.sso_enforced_for_email?(email)
+
+      store_location_for(:user, request.fullpath)
+      redirect_to(new_saml_user_session_path(return_url: stored_location_for(:user)))
     end
 
     def verify_recaptcha_or_render

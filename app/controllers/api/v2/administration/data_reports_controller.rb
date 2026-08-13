@@ -18,7 +18,8 @@ module Api
       'client_assessment_counts' => Api::V2::DataReport::ClientAssessmentCountsContract,
       'active_clients_projects' => Api::V2::DataReport::ActiveClientsProjectsContract,
       'user_access_review' => Api::V2::DataReport::UserAccessReviewContract,
-      'campaign_factor_scores' => Api::V2::DataReport::CampaignFactorScoresContract
+      'campaign_factor_scores' => Api::V2::DataReport::CampaignFactorScoresContract,
+      'campaign_user_creation' => Api::V2::DataReport::CampaignUserCreationContract
     }.freeze
 
     def create_contract_based_on_report_type
@@ -34,7 +35,28 @@ module Api
     end
 
     def run
-      AdminJob.call(:data_report_export, { data_report_id: model.id, client_id: model.owner_id }, current_user)
+      runtime_configuration = parse_runtime_configuration
+      return if performed?
+
+      AdminJob.call(
+        :data_report_export,
+        {
+          data_report_id: model.id,
+          client_id: model.owner_id,
+          runtime_configuration: runtime_configuration
+        },
+        current_user
+      )
+
+      audit!(
+        'run',
+        model,
+        user: current_user,
+        payload: {
+          report_name: model.name,
+          report_type: model.report_type
+        }
+      )
 
       render json: :ok
     end
@@ -63,6 +85,47 @@ module Api
         policy_class: Api::Administration::DataReportPolicy,
         project_id: model&.owner_id || params.dig(:filter, :owner_id_eq)
       )
+    end
+
+    private
+
+    def parse_runtime_configuration
+      raw = params.to_unsafe_h.dig('data', 'attributes', 'runtime_configuration')
+      return {} if raw.blank?
+
+      return invalid_runtime_configuration! unless raw.is_a?(Hash)
+
+      unknown_keys = raw.keys - runtime_parameter_names
+      return unknown_runtime_parameter_error!(unknown_keys) if unknown_keys.any?
+
+      raw.slice(*runtime_parameter_names)
+    end
+
+    def runtime_parameter_names
+      @runtime_parameter_names ||= begin
+        handler_class = AdminJobs::DataReportExport::REPORT_TYPE_HANDLERS[model.report_type]
+        handler_class.runtime_parameters.pluck(:name)
+      end
+    end
+
+    def invalid_runtime_configuration!
+      render_runtime_configuration_errors!([{ detail: I18n.t('admin.runtime_configuration_invalid_json_object') }])
+    end
+
+    def unknown_runtime_parameter_error!(unknown_keys)
+      errors = unknown_keys.map do |key|
+        {
+          source: { pointer: key },
+          detail: I18n.t('admin.runtime_configuration_invalid_parameter')
+        }
+      end
+
+      render_runtime_configuration_errors!(errors)
+    end
+
+    def render_runtime_configuration_errors!(errors)
+      render json: { errors: errors }, status: :unprocessable_entity
+      nil
     end
   end
 end

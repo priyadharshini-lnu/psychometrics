@@ -13,6 +13,7 @@ import { Evaluation } from './Evaluation'
 import { Report } from './Report'
 import { Anonym } from './Anonym'
 import { Bookings } from './Bookings'
+import { routes as bookingsRoutes } from './Bookings/routes'
 import MeetingRoom from './MeetingRoom'
 import { MyPlan } from './idp/MyPlan'
 import { InitialSteps } from './idp/InitialSteps'
@@ -33,124 +34,126 @@ const CWizard = () => {
 
 const routes = [
   {
-    path: '/',
-    component: <CampaignList />,
+    index: true,
+    element: <CampaignList />,
   },
   {
-    path: '/dashboard',
-    component: <CampaignList />,
+    path: 'dashboard',
+    element: <CampaignList />,
   },
   {
-    path: '/campaigns/:campaignId',
-    component: <Campaign />,
+    path: 'campaigns/:campaignId',
+    element: <Campaign />,
   },
   {
-    path: '/campaign_system_check/:campaignId/welcome',
-    component: <CampaignLevelSystemChecksWelcome />,
+    path: 'campaign_system_check/:campaignId/welcome',
+    element: <CampaignLevelSystemChecksWelcome />,
   },
   {
-    path: '/campaign_system_check/:campaignId/:step',
-    component: <SystemChecksStepper />,
+    path: 'campaign_system_check/:campaignId/:step',
+    element: <SystemChecksStepper />,
   },
   {
-    path: '/threesixty_campaigns/:campaignId',
-    component: <Campaign />,
+    path: 'threesixty_campaigns/:campaignId',
+    element: <Campaign />,
   },
   {
-    path: '/invites/*',
-    component: <Bookings />,
+    path: 'invites',
+    element: <Bookings />,
+    children: bookingsRoutes,
   },
   {
-    path: '/profile_details',
-    component: <Profile />,
+    path: 'profile_details',
+    element: <Profile />,
   },
   {
-    path: '/change_password',
-    component: <ChangePassword />,
+    path: 'change_password',
+    element: <ChangePassword />,
   },
   {
-    path: '/campaigns/:campaignId/insights',
-    component: <Insights />,
+    path: 'campaigns/:campaignId/insights',
+    element: <Insights />,
   },
   {
-    path: '/user_assessments/:userAssessmentId',
-    component: <Assessment />,
+    path: 'user_assessments/:userAssessmentId',
+    element: <Assessment />,
   },
   {
-    path: '/user_assessments/:userAssessmentId/*',
-    component: <UserAssessment />,
+    // A leaf splat: the player owns every url below itself, it does not match them.
+    path: 'user_assessments/:userAssessmentId/*',
+    element: <UserAssessment />,
   },
   {
-    path: '/agile_user_assessments/:userAssessmentId',
-    component: <AgileUserAssessment />,
+    path: 'agile_user_assessments/:userAssessmentId',
+    element: <AgileUserAssessment />,
   },
   {
-    path: '/system_checks/:assessmentId/:id',
-    component: <CWizard />,
+    path: 'system_checks/:assessmentId/:id',
+    element: <CWizard />,
   },
   {
-    path: '/threesixty_campaigns/:campaignId/nominations/:id',
-    component: <Nomination />,
+    path: 'threesixty_campaigns/:campaignId/nominations/:id',
+    element: <Nomination />,
   },
   {
-    path: '/threesixty_campaigns/:campaignId/evaluations/:id',
-    component: <Evaluation />,
+    path: 'threesixty_campaigns/:campaignId/evaluations/:id',
+    element: <Evaluation />,
   },
   {
-    path: '/threesixty_campaigns/:campaignId/reports/:id',
-    component: <Report />,
+    path: 'threesixty_campaigns/:campaignId/reports/:id',
+    element: <Report />,
   },
   {
-    path: '/anonym/:assessmentKey',
-    component: <Anonym />,
+    path: 'anonym/:assessmentKey',
+    element: <Anonym />,
   },
   {
-    path: '/meet/:roomId',
-    component: <MeetingRoom />,
+    path: 'meet/:roomId',
+    element: <MeetingRoom />,
   },
   {
-    path: '/idp/ai_assistant/start',
-    component: <AIStartPage />,
+    path: 'idp/ai_assistant/start',
+    element: <AIStartPage />,
   },
   {
-    path: '/idp/ai_assistant/skill_gap_report',
-    component: <SkillGapReport />,
+    path: 'idp/ai_assistant/skill_gap_report',
+    element: <SkillGapReport />,
   },
   {
-    path: '/idp/ai_assistant/chat_instructions',
-    component: <ChatInstructions />,
+    path: 'idp/ai_assistant/chat_instructions',
+    element: <ChatInstructions />,
   },
   {
-    path: '/idp/ai_assistant/chat',
-    component: <AIChat />,
+    path: 'idp/ai_assistant/chat',
+    element: <AIChat />,
   },
   {
-    path: '/idp/steps/:step',
-    component: <InitialSteps />,
+    path: 'idp/steps/:step',
+    element: <InitialSteps />,
   },
   {
-    path: '/idp/my_plan',
-    component: <MyPlan />,
+    path: 'idp/my_plan',
+    element: <MyPlan />,
   },
   {
-    path: '/idp/reflective_questions',
-    component: <ReflectiveQuestions />,
+    path: 'idp/reflective_questions',
+    element: <ReflectiveQuestions />,
   },
   {
-    path: '/idp/my_plan/:tab',
-    component: <MyPlan />,
+    path: 'idp/my_plan/:tab',
+    element: <MyPlan />,
   },
   {
-    path: '/idp/direct_reportees',
-    component: <DirectReporteesList />,
+    path: 'idp/direct_reportees',
+    element: <DirectReporteesList />,
   },
   {
-    path: '/idp/direct_reportees/:userId',
-    component: <DirectReportDetails />,
+    path: 'idp/direct_reportees/:userId',
+    element: <DirectReportDetails />,
   },
   {
-    path: '/idp/direct_reportees/:userId/:tab',
-    component: <DirectReportDetails />,
+    path: 'idp/direct_reportees/:userId/:tab',
+    element: <DirectReportDetails />,
   },
 ]
 

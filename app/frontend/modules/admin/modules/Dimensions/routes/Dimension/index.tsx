@@ -1,15 +1,13 @@
 import React, { useEffect, useMemo } from 'react'
 import { Menu } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import RouteList from '~/components/RouteList'
+import {
+  Outlet, useNavigate, useParams, useLocation,
+} from 'react-router-dom'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { useResources } from '~/hooks/useResources'
 import { DimensionTR, Dimension } from '~/modules/admin/modules/client/core/dimensions'
-import FactorsList from './FactorsList'
-import OccupationsList from './OccupationsList'
-import InnovationStylesList from './InnovationStylesList'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
@@ -77,15 +75,7 @@ const DimensionComponent: React.FC = () => {
         selectedKeys={[activePath]}
         mode="horizontal"
       />
-      <RouteList
-        routes={[
-          { redirect: true, from: '', to: 'factors' },
-          { path: '/factors', component: <FactorsList /> },
-          { path: '/occupations', component: <OccupationsList /> },
-          { path: '/innovation_styles', component: <InnovationStylesList /> },
-        ]}
-        urlPrefix=""
-      />
+      <Outlet />
     </div>
   )
 }

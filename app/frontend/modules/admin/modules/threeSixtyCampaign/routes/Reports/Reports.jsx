@@ -1,21 +1,13 @@
 import { Menu } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
-import {
-  ReportApprovalSetting,
-} from './ReportApprovalSetting'
-import RouteList from '~/components/RouteList'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { PageHeader } from '../../PageHeader'
-import Options from './Options'
+import { TABS } from './routes'
 
-const routes = [
-  { redirect: true, from: '', to: 'options' },
-  { path: '/options', component: <Options /> },
-  { path: '/report_approval', component: <ReportApprovalSetting /> },
-]
 export default function Reports () {
   const navigate = useNavigate()
-  const params = useParams()
-  const selectedKey = params['*']
+  const { pathname } = useLocation()
+
+  const selectedKey = TABS.find(tab => pathname.endsWith(`/${tab}`))
 
   const goto = (key) => {
     navigate(
@@ -27,7 +19,7 @@ export default function Reports () {
       <PageHeader />
       <div>
         <Menu
-          selectedKeys={[selectedKey]}
+          selectedKeys={selectedKey ? [selectedKey] : []}
           onSelect={({ key }) => goto(key)}
           mode="horizontal"
           items={[
@@ -41,7 +33,7 @@ export default function Reports () {
             },
           ]}
         />
-        <RouteList routes={routes} urlPrefix="" />
+        <Outlet />
       </div>
     </>
   )

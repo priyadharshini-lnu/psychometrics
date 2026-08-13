@@ -13,6 +13,7 @@ export { CountdownTimer } from './components/CountdownTimer'
 export { ConfirmationModal } from './components/ConfirmationModal'
 export { CollapseItem } from './components/CollapseItem'
 export { PageLoadSpinner } from './components/PageLoadSpinner'
+export { PageSkeleton } from './components/PageSkeleton'
 export { JSONViewCopy } from './components/JSONViewCopy'
 export {
   DirectionAwareIcon,

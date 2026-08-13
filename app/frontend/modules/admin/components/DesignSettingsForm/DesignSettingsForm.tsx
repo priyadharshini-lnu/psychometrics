@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import {
-  Row, Col, Form, Radio, Button, Upload, ConfigProvider, App, Input,
+  Row, Col, Form, Radio, Button, Upload, App, Input,
 } from 'antd'
 import { generate } from '@ant-design/colors'
 import _ from 'lodash'
@@ -11,6 +11,7 @@ import {
   Files, DesignSettings as DesignSettingsType,
 } from '~/modules/admin/modules/client/core/designSettings'
 import { useResources } from '~/hooks/useResources/useResources'
+import { restoreStaticTheme } from '~/components/AdminShell/GlintAdminTheme'
 import { ColorPicker } from '~/glint'
 import { DesignPreview } from './DesignPreview'
 import { getContrastRatio } from '~/utils/contrastRatio'
@@ -79,9 +80,8 @@ export const DesignSettingsForm: React.FC<Props> = ({
           : { project_id_eq: entityId },
       },
     })
-    return () => ConfigProvider.config({
-      theme: {},
-    })
+    // The client colors only ever theme the scoped preview; leaving reaffirms the admin theme for antd's statics.
+    return () => restoreStaticTheme()
   }, [])
 
   const primaryColorHasEnoughContrast = useMemo(() => {

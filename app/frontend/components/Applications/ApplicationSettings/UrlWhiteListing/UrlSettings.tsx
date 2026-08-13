@@ -42,8 +42,8 @@ export const UrlSettings: React.FC<Props> = ({
 
   return (
     <Resource<ApplicationUrlWhitelistEntry, BaseMeta> config={config} name="application_url_whitelist_entries">
-      <div className="pl">
-        <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8">
+      <div>
+        <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8 pl">
           <Space>
             <Switch
               checked={isUrlWhitelistingEnabled}

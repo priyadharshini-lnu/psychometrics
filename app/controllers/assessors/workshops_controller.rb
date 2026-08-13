@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class Assessors::WorkshopsController < Assessors::BaseController
+# Administration base on purpose: Assessors::BaseController signs out non-assessors, but this only serves the SPA.
+class Assessors::WorkshopsController < Administration::BaseController
   skip_before_action :enforce_geo_restriction
-  render_entrypoint :index, element: 'assessor-app-container', entry: 'admin/assessor_app'
+  skip_after_action :verify_authorized, only: :index
+  render_entrypoint :index, element: 'admin-app-container', entry: 'admin/admin'
 end

@@ -214,6 +214,7 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
         second_tenancy.client_sso_setting.update!(
           sso_enabled: true,
           sso_enforced: true,
+          enforce_for: 'all',
           idp_entity_id: 'https://idp.example.com/test',
           idp_sso_url: 'https://idp.example.com/sso/saml',
           idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
@@ -277,6 +278,7 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
         tenancy.client_sso_setting.update!(
           sso_enabled: true,
           sso_enforced: true,
+          enforce_for: 'all',
           idp_entity_id: 'https://idp.example.com/test',
           idp_sso_url: 'https://idp.example.com/sso/saml',
           idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
@@ -291,6 +293,22 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
         expect(response.location).to include('handoff_token=')
         expect(response.location).not_to include('/users/saml/sign_in')
       end
+    end
+  end
+
+  describe 'GET #index with the feature disabled' do
+    let(:user) { create(:client_admin, client: tenancy) }
+
+    before do
+      allow(AdminSubdomain).to receive(:client_admin_sso_enabled?).and_return(false)
+      sign_in user
+    end
+
+    it 'sends the shell a query param instead of a flash it cannot render' do
+      get :index
+
+      expect(response.location).to include(admin_path(notice: 'feature_unavailable'))
+      expect(flash[:alert]).to be_nil
     end
   end
 end

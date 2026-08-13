@@ -15,11 +15,6 @@ ru:
         simple_design:
           design: Дизайн
           or: Или
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Вход успешен.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,6 @@ ru:
           modal_title: Настройки утверждения оценки
           remove_modal_success: 'Настройка утверждения для идентификатора оценки: %{assessmentId} была успешно удалена.'
           remove_modal_text: 'Вы уверены, что хотите удалить эту настройку для идентификатора оценки: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Вы успешно вошли в систему как %{name}
       validations:
         dates:
           end: должно быть после даты начала

@@ -14,6 +14,7 @@ interface State {
   login_box_position: LoginBoxPosition,
   saml_login_allowed: boolean
   saml_enforced: boolean
+  saml_domain_enforcement_enabled: boolean
   require_mobile_number: boolean
   hide_signup: boolean
   primary_color?: string
@@ -27,6 +28,7 @@ interface State {
   enable_recaptcha?: boolean,
   external_logout_redirect_enabled?: boolean,
   external_logout_url?: string
+  glint_ui?: boolean,
 }
 
 export const defaultState: State = {
@@ -40,11 +42,13 @@ export const defaultState: State = {
   require_mobile_number: false,
   hide_signup: false,
   saml_enforced: false,
+  saml_domain_enforcement_enabled: false,
   background_size: 'cover',
   magic_link_enabled: false,
   disallow_password_login: false,
   enable_recaptcha: false,
   external_logout_redirect_enabled: false,
+  glint_ui: false,
 }
 
 export default createReducer({}, defaultState)

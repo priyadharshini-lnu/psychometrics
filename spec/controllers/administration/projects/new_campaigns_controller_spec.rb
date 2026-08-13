@@ -49,6 +49,63 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
     end
   end
 
+  describe 'fetch_name_translations' do
+    it 'returns name translations for requested locales and available locales list' do
+      Mobility.with_locale('en') do
+        campaign.update!(name: 'Campaign EN')
+      end
+      Mobility.with_locale('ar') do
+        campaign.update!(name: 'Campaign AR')
+      end
+      Mobility.with_locale('fr') do
+        campaign.update!(name: 'Campaign FR')
+      end
+
+      get :fetch_name_translations,
+          params: { id: campaign.id, project_id: campaign.project_id, locales: %w[en ar] }
+
+      parsed_body = response.parsed_body
+
+      expect(parsed_body).to eq(
+        {
+          'list' => [
+            { 'name' => 'Campaign EN', 'locale' => 'en' },
+            { 'name' => 'Campaign AR', 'locale' => 'ar' }
+          ],
+          'available_locales' => %w[en ar fr]
+        }
+      )
+    end
+  end
+
+  describe 'PUT update' do
+    it 'updates campaign name translation for selected locale only' do
+      Mobility.with_locale('en') do
+        campaign.update!(name: 'Campaign EN')
+      end
+
+      put :update,
+          params: {
+            id: campaign.id,
+            project_id: campaign.project_id,
+            resource: {
+              name: 'Campaign AR Updated',
+              name_locale: 'ar',
+              status: 'active',
+              type: 'common'
+            }
+          }
+
+      expect(response).to have_http_status(:ok)
+
+      campaign.reload
+
+      Mobility.with_locale('ar') do
+        expect(campaign.name).to eq('Campaign AR Updated')
+      end
+    end
+  end
+
   describe 'update_campaign_options' do
     it 'updates system check options and returns serialized options' do
       campaign_option = campaign.campaign_options

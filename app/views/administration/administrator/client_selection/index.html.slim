@@ -1,4 +1,6 @@
+/ Same channel the SPA seeds its store from, so this page reads the user from the server too, not from a fetch.
 javascript [nonce=content_security_policy_nonce]:
+  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
   window.__CLIENT_SELECTION__ = #{@clients_data.to_json.html_safe}
   window.__SPOOF_USER_ID__ = #{@spoof_user_id.to_json}
 

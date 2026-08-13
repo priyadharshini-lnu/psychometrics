@@ -2982,8 +2982,6 @@ es-ES:
     zh-HK: Chino (Hong Kong)
     zh-Hant: Chino - Tradicional
     zh-TW: Chino (Taiwán)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nombre de la campaña
     status_updated_at: Última actualización de estado

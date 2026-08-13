@@ -11,6 +11,16 @@ module AdminJobs
         'Last Activity Date (MAX last_activity_at)'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
@@ -27,8 +37,8 @@ module AdminJobs
       private
 
       def fetch_data
-        start_date = Time.zone.parse(activity_period[0])
-        end_date = Time.zone.parse(activity_period[1])
+        start_date = Time.zone.parse(config['start_date'])
+        end_date = Time.zone.parse(config['end_date'])
 
         UserAssessment.
           from('user_assessments ua').

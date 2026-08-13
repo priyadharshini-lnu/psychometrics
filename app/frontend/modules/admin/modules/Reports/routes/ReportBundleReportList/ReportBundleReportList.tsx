@@ -21,7 +21,7 @@ const ReportBundleReportList: React.FC = () => {
 
   const { fetchSingle, getResource } = useResources<ReportBundle>('report_families', {
     apiConfig: {
-      fields: { report_families: ['name'] },
+      fields: { report_families: ['name', 'tenant_id'] },
     },
   })
 
@@ -61,7 +61,7 @@ const ReportBundleReportList: React.FC = () => {
         <ReportBundleReportFilter openModal={() => closeModal(false)} />
         <ReportBundleReportTable />
         {!closed && (
-          <ReportBundleReportFormModal close={() => { closeModal(true) }} />
+          <ReportBundleReportFormModal close={() => { closeModal(true) }} parent={reportBundle} />
         )}
       </Resource>
     </>

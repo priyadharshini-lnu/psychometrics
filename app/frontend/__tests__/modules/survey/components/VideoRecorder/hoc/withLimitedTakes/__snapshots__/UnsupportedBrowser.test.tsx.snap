@@ -3,13 +3,13 @@
 exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with given list of supported browsers and os 1`] = `
 <DocumentFragment>
   <div
-    class="ant-card ant-card-bordered css-dev-only-do-not-override-p45i5k css-var-root"
+    class="ant-card ant-card-bordered css-dev-only-do-not-override-ry7cab css-var-root"
   >
     <div
       class="ant-card-body"
     >
       <div
-        class="ant-result ant-result-warning css-dev-only-do-not-override-p45i5k css-var-root"
+        class="ant-result ant-result-warning css-dev-only-do-not-override-ry7cab css-var-root"
       >
         <div
           class="ant-result-icon"
@@ -35,9 +35,6 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
           </span>
         </div>
         <div
-          class="ant-result-title"
-        />
-        <div
           class="ant-result-subtitle"
         >
           This browser doesnt support Video Recording. Please use any of the following browsers,
@@ -46,7 +43,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
           class="ant-result-extra"
         >
           <div
-            class="ant-space css-dev-only-do-not-override-p45i5k ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center css-var-root"
+            class="ant-space css-dev-only-do-not-override-ry7cab ant-space-horizontal ant-space-align-center ant-space-gap-row-small ant-space-gap-col-small ta-c flex justify-center css-var-root"
             style="flex-wrap: wrap;"
           >
             <div
@@ -54,7 +51,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
             >
               <a
                 aria-disabled="false"
-                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.mozilla.org/en-US/firefox/mobile/"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -67,7 +64,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
                   >
                     Mozilla Firefox 29+
                   </span>
@@ -79,7 +76,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
             >
               <a
                 aria-disabled="false"
-                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.google.com/chrome/"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -92,7 +89,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
                   >
                     Google Chrome 49+
                   </span>
@@ -104,7 +101,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
             >
               <a
                 aria-disabled="false"
-                class="ant-btn css-dev-only-do-not-override-p45i5k css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
+                class="ant-btn css-dev-only-do-not-override-ry7cab css-var-root ant-btn-link ant-btn-color-link ant-btn-variant-link"
                 href="https://www.microsoft.com/en-us/edge"
                 rel="noopener noreferrer"
                 tabindex="0"
@@ -117,7 +114,7 @@ exports[`Survey - Components - UnsupportedBrowsers > Should match snapshot with 
                 />
                 <div>
                   <span
-                    class="ant-typography css-dev-only-do-not-override-p45i5k css-var-root"
+                    class="ant-typography css-dev-only-do-not-override-ry7cab css-var-root"
                   >
                     Microsoft Edge 79+
                   </span>

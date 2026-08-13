@@ -24,7 +24,7 @@ module Jwt
       private
 
       def valid_return_url?
-        Utility::Url.safe_internal_url?(return_url) || Utility::Url.valid?(return_url)
+        Utility::Url.valid?(return_url)
       end
 
       def placeholders_valid?

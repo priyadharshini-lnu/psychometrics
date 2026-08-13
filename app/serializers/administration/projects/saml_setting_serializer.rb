@@ -5,8 +5,9 @@ module Administration
     class SamlSettingSerializer < Panko::Serializer
       include Rails.application.routes.url_helpers
 
-      attributes :id, :enabled, :enforced, :entity_id, :sso_service_url, :cert, :after_signout_url,
-                 :assertion_consumer_service_url, :issuer, :name_identifier_format, :email_pipetext
+      attributes :id, :enabled, :enforced, :enforce_for, :enforced_domains, :entity_id,
+                 :sso_service_url, :cert, :after_signout_url, :assertion_consumer_service_url,
+                 :issuer, :name_identifier_format, :email_pipetext
 
       def assertion_consumer_service_url
         saml_user_session_url(url_options)

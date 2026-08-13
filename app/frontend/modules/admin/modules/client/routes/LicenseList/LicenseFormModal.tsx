@@ -3,6 +3,7 @@ import {
   Form, DatePicker, InputNumber, Select, Spin,
   Switch,
 } from 'antd'
+import { useParams } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import ResourceFormModal from '~/components/ResourceFormModal'
 import { useResourceContext } from '~/modules/admin/components/Resource'
@@ -24,6 +25,7 @@ interface LicenseFormValues extends Omit<License, 'startDate' | 'endDate'> {
 
 export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
   const { resource } = useResourceContext()
+  const { clientId } = useParams() as { clientId: string }
   const {
     data: reportFamilies, fetch: fetchReportFamilies, isLoading: isReportFamilyLoading,
   } = useResources<ReportFamily>(
@@ -97,7 +99,7 @@ export const LicenseFormModal: React.FC<Props> = ({ close, license }) => {
                     fetchReportFamilies({
                       apiConfig: {
                         fields: { report_families: ['id', 'name'] },
-                        filter: { name_cont: value },
+                        filter: { name_cont: value, owner_id: clientId },
                       },
                     })
                   },

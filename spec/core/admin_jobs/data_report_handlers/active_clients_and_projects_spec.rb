@@ -30,10 +30,8 @@ RSpec.describe AdminJobs::DataReportHandlers::ActiveClientsProjectsHandler do
       scope: 'global',
       report_type: :active_clients_projects,
       configuration: {
-        activity_period: [
-          1.day.ago.iso8601,
-          1.day.from_now.iso8601
-        ]
+        start_date: 1.day.ago.iso8601,
+        end_date: 1.day.from_now.iso8601
       }.to_json
     )
   end

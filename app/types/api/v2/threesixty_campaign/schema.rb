@@ -38,6 +38,7 @@ module Api
 
         def self.create_campaign
           json_api_attributes do
+            required(:name).filled(:string)
             required(:threesixty_type).filled(:string)
             optional(:threesixty_category).filled(:string)
             optional(:campaign_template_id).filled(:string)
@@ -49,6 +50,8 @@ module Api
             optional(:default_assessment_locale).filled(:string)
             optional(:default_report_language).filled(:string)
             optional(:tag_list).array(:string)
+            optional(:name_locale).filled(:string)
+            optional(:translated_name).filled(:string)
           end
         end
 

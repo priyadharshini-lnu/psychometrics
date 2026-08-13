@@ -56,6 +56,42 @@ RSpec.describe Administration::Campaigns::CampaignAssessmentGroupsController, ty
     expect(parsed_response['position']).to eq 4
   end
 
+  it 'update localized name for selected locale' do
+    put :update, params: {
+      id: campaign_assessment_group.id,
+      new_campaign_id: campaign.id,
+      locale: 'ar',
+      resource: { name: 'Arabic Group Name' }
+    }
+
+    expect(response).to have_http_status(:success)
+
+    Mobility.with_locale('ar') do
+      expect(campaign_assessment_group.reload.name).to eq('Arabic Group Name')
+    end
+  end
+
+  it 'fetch_name_translations for requested locales' do
+    Mobility.with_locale('en') { campaign_assessment_group.update!(name: 'Group EN') }
+    Mobility.with_locale('ar') { campaign_assessment_group.update!(name: 'Group AR') }
+
+    get :fetch_name_translations, params: {
+      id: campaign_assessment_group.id,
+      new_campaign_id: campaign.id,
+      locales: %w[en ar]
+    }
+
+    expect(response).to have_http_status(:success)
+    parsed_body = response.parsed_body
+    expect(parsed_body['list']).to eq(
+      [
+        { 'name' => 'Group EN', 'locale' => 'en' },
+        { 'name' => 'Group AR', 'locale' => 'ar' }
+      ]
+    )
+    expect(parsed_body['available_locales']).to match_array(%w[en ar])
+  end
+
   it 'update_positions' do
     group1 = create(:campaign_assessment_group, campaign: campaign, name: 'Group')
     group2 = create(:campaign_assessment_group, campaign: campaign, name: 'Group')

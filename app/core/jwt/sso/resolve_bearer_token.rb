@@ -44,7 +44,11 @@ module Jwt
         token_replayed = token_replayed?(claims)
         if token_replayed
           replay_url = build_replay_url(return_url, target[:replay_status])
-          return broadcast(:token_reuse_detected, return_url: replay_url)
+          return broadcast(
+            :token_reuse_detected,
+            return_url: replay_url,
+            application: application_and_key[:application]
+          )
         end
 
         broadcast(:ok, {

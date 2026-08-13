@@ -12,29 +12,32 @@
     "emitDecoratorMetadata":false,
     "experimentalDecorators":true,
     "module":"commonjs",
-    "moduleResolution":"node",
+    "moduleResolution":"bundler",
     "sourceMap":true,
     "jsx":"react-jsx",
     "allowJs": true,
     "resolveJsonModule":true,
     "allowSyntheticDefaultImports":true,
     "esModuleInterop": true ,
+    "strict": false,
     "noImplicitAny":false,
     "noImplicitThis":true,
     "noImplicitReturns":true,
     "strictNullChecks":true,
     "useUnknownInCatchVariables": false,
-    "baseUrl": ".",
     "paths": {
       "*": [
-        "app/frontend/*",
-        "app/frontend/modules/survey*",
-        "app/frontend/modules/survey/*",
+        "./app/frontend/*",
+        "./app/frontend/modules/survey*",
+        "./app/frontend/modules/survey/*",
       ],
-      "~/*": ["app/frontend/*"]
+      "~/*": ["./app/frontend/*"],
+      // moduleResolution:node predates package `exports` maps; point subpath imports at the dist
+      // types until moduleResolution moves to `bundler`.
+      "@thetalententerprise/glint/icons": ["./node_modules/@thetalententerprise/glint/dist/icons/entry.d.ts"]
     },
     "typeRoots": [
-      "app/frontend/typings",
+      "./app/frontend/typings",
       "./node_modules/@types"
     ]
   },

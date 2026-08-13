@@ -5,10 +5,11 @@ module AdminJobs
     class BaseHandler
       attr_reader :data_report, :data_report_job, :file_path
 
-      def initialize(data_report:, data_report_job:, file_path:)
+      def initialize(data_report:, data_report_job:, file_path:, runtime_configuration: nil)
         @data_report = data_report
         @data_report_job = data_report_job
         @file_path = file_path
+        @runtime_configuration = runtime_configuration
       end
 
       def generate_file
@@ -17,19 +18,43 @@ module AdminJobs
 
       delegate :file_extension, to: :class
 
-      def self.file_extension
-        raise NotImplementedError, "#{name} must implement .file_extension"
-      end
+      class << self
+        def parameters
+          @parameters ||= []
+        end
 
-      def self.file_name(report_name:, extension:)
-        timestamp = Time.current.strftime('%Y%m%d')
-        "#{timestamp}_#{report_name.parameterize(separator: '_')}.#{extension}"
+        def parameter(name, type:, runtime_updatable: false, required: false, description: nil)
+          parameters << {
+            name: name.to_s,
+            type: type.to_s,
+            runtime_updatable: runtime_updatable,
+            required: required,
+            description: description
+          }.freeze
+        end
+
+        def runtime_parameters
+          parameters.select { |parameter| parameter[:runtime_updatable] }
+        end
+
+        def file_extension
+          raise NotImplementedError, "#{name} must implement .file_extension"
+        end
+
+        def file_name(report_name:, extension:)
+          timestamp = Time.current.strftime('%Y%m%d')
+          "#{timestamp}_#{report_name.parameterize(separator: '_')}.#{extension}"
+        end
       end
 
       protected
 
       def config
-        @config ||= Oj.load(data_report.configuration)
+        @config ||= begin
+          saved = Oj.load(data_report.configuration)
+
+          @runtime_configuration.present? ? saved.merge(@runtime_configuration) : saved
+        end
       end
 
       def project_ids
@@ -42,10 +67,6 @@ module AdminJobs
 
       def report_ids
         config['report_ids']
-      end
-
-      def activity_period
-        config['activity_period']
       end
 
       def client_ids

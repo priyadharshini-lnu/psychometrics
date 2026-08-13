@@ -2953,8 +2953,6 @@ cs:
     zh-HK: Čínština (Hongkong)
     zh-Hant: Čínština - tradiční
     zh-TW: Čínština (Tchaj-wan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Název kampaně
     status_updated_at: Poslední aktualizace stavu

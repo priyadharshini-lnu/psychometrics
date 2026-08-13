@@ -41,6 +41,7 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
           client.client_sso_setting.update!(
             sso_enabled: true,
             sso_enforced: true,
+            enforce_for: 'all',
             idp_entity_id: 'https://idp.example.com/test',
             idp_sso_url: 'https://idp.example.com/sso/saml',
             idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
@@ -75,6 +76,37 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
         it 'falls through to the password form' do
           expect(session[:user_email]).to eq(sso_user.email)
           expect(response).to redirect_to(new_administration_session_path)
+        end
+      end
+    end
+
+    context 'when user has multiple clients' do
+      let(:client1) { create(:tenancy) }
+      let(:client2) { create(:tenancy) }
+      let(:multi_client_user) do
+        user = create(:client_admin, client: client1)
+        create(:membership, role: 'client_admin', user: user, client: client2)
+        user
+      end
+
+      context 'and navigates directly to a client subdomain enforcing SSO' do
+        before do
+          client1.client_sso_setting.update!(
+            sso_enabled: true,
+            sso_enforced: true,
+            enforce_for: 'all',
+            idp_entity_id: 'https://idp.example.com/test',
+            idp_sso_url: 'https://idp.example.com/sso/saml',
+            idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
+          )
+          allow(Current).to receive(:client).and_return(client1)
+          post :authenticate_user, params: { user: { email: multi_client_user.email } }
+        end
+
+        it 'redirects to the client subdomain SAML login because Current.client is evaluated' do
+          expect(response).to have_http_status(:redirect)
+          expect(response.location).to include("#{client1.subdomain}-admin")
+          expect(response.location).to include('/users/saml/sign_in')
         end
       end
     end
@@ -169,6 +201,8 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
     let(:assessor_user) { create(:user, :assessor, with_campaign: campaign) }
 
     it 'returns assessors dashboard path for pure assessor in client admin context' do
+      # Assigning an assessor always creates this membership, and it is what grants them client access.
+      create(:membership, user: assessor_user, client: client, role: Membership::CLIENT_ASSESSOR_ROLE)
       allow(controller).to receive(:stored_location_for).and_return(nil)
       allow(Current).to receive(:client_admin_context?).and_return(true)
       allow(Current).to receive(:client).and_return(client)
@@ -176,6 +210,42 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
       path = controller.send(:after_sign_in_path_for, assessor_user)
 
       expect(path).to eq(assessors_dashboard_path)
+    end
+
+    it 'keeps an unassigned global assessor on the root domain and lands them on their availabilities' do
+      global_assessor = create(:user, role: User::ADMIN_ROLE, global_assessor: true)
+      allow(controller).to receive(:stored_location_for).and_return(nil)
+      allow(Current).to receive(:client_admin_context?).and_return(false)
+      sign_in global_assessor
+
+      path = controller.send(:after_sign_in_path_for, global_assessor)
+
+      expect(path).to eq("#{admin_path}/user_availabilities")
+      expect(controller.current_user&.id).to eq(global_assessor.id)
+    end
+
+    it 'signs out an assessor whose membership was deleted instead of opening a root domain session' do
+      allow(controller).to receive(:stored_location_for).and_return(nil)
+      allow(Current).to receive(:client_admin_context?).and_return(false)
+      assessor_user.memberships.destroy_all
+      sign_in assessor_user
+
+      path = controller.send(:after_sign_in_path_for, assessor_user)
+
+      expect(path).to eq(new_administration_session_path)
+      expect(controller.current_user).to be_nil
+    end
+
+    it 'still signs out a client-less non-assessor' do
+      client_less_admin = create(:user, role: User::ADMIN_ROLE)
+      allow(controller).to receive(:stored_location_for).and_return(nil)
+      allow(Current).to receive(:client_admin_context?).and_return(false)
+      sign_in client_less_admin
+
+      path = controller.send(:after_sign_in_path_for, client_less_admin)
+
+      expect(path).to eq(new_administration_session_path)
+      expect(controller.current_user).to be_nil
     end
   end
 

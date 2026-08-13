@@ -1,16 +1,19 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const AuditLogList = lazy(() => import('./AuditLogList'))
-const AuditLogInfo = lazy(() => import('./AuditLogInfo'))
+const page = () => import('../pages')
 
 const routes = [
   {
     path: 'audit_logs',
-    element: <AuditLogList />,
+    lazy: lazyRoute(page, m => m.AuditLogList),
+  },
+  {
+    path: 'audit_logs/record_trace',
+    lazy: lazyRoute(page, m => m.RecordHistory),
   },
   {
     path: 'audit_logs/:id',
-    element: <AuditLogInfo />,
+    lazy: lazyRoute(page, m => m.AuditLogInfo),
   },
 ]
 

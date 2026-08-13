@@ -119,8 +119,12 @@ class Administration::UsersController < Administration::BaseController
     audit! :sign_in_as, resource, payload: { sign_in_as: resource.email }, project: resource.project
     siem_log_impersonation_event(resource, 'Admin')
 
-    fallback_redirect_url = resource.assessors.exists? ? assessors_dashboard_path : "#{admin_path}/user_availabilities"
-    flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
+    # Only an assessor with no client attachment at all skips the dashboard for a page with content.
+    fallback_redirect_url = if resource.is?(:client_assessor) || resource.assessors.exists?
+                              assessors_dashboard_path
+                            else
+                              "#{admin_path}/user_availabilities"
+                            end
 
     spoof_admin_routing(resource, fallback_redirect_url: fallback_redirect_url)
   end

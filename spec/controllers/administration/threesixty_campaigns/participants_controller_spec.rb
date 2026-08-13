@@ -6,7 +6,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::ParticipantsController, type
   let(:superadmin) { create(:superadmin) }
   let(:project) { create(:project) }
   let(:campaign) { create(:campaign, project: project) }
-  let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
+  let!(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
 
   before(:each) { login_user(superadmin) }
 
@@ -21,7 +21,8 @@ RSpec.describe Administration::ThreesixtyCampaigns::ParticipantsController, type
         end
 
         it 'falls back to root-domain impersonation and redirects to admin_path' do
-          get :spoof, params: { threesixty_campaign_id: threesixty_campaign.id, id: participant_user.id }
+          # The route segment is a Campaign id despite its name; the controller finds by campaign_id.
+          get :spoof, params: { threesixty_campaign_id: campaign.id, id: participant_user.id }
 
           expect(response).to have_http_status(:found)
           expect(response).to redirect_to(admin_path)
@@ -35,7 +36,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::ParticipantsController, type
       let!(:participant) { create(:threesixty_participant, campaign_id: campaign.id, subject_id: participant_user.id) }
 
       it 'impersonates as end user and redirects to participant portal' do
-        get :spoof, params: { threesixty_campaign_id: threesixty_campaign.id, id: participant_user.id }
+        get :spoof, params: { threesixty_campaign_id: campaign.id, id: participant_user.id }
 
         expect(response).to have_http_status(:found)
         # Should redirect to the root URL with a spoof token

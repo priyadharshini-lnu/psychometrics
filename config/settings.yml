@@ -13,6 +13,7 @@ asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
+support_admins: <%= ENV["SUPPORT_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
 sentry_url: <%= ENV.fetch('SENTRY_URL', '') %>
 sentry_debug: <%= ENV.fetch('SENTRY_DEBUG', 'false') %>
@@ -68,6 +69,7 @@ features:
   zip_s3_files_faas: <%= ENV.fetch('ZIP_S3_FILES_FAAS_ENABLED', 'false') == 'true' %>
   media_to_transcription_faas: <%= ENV.fetch('MEDIA_TO_TRANSCRIPTION_FAAS_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
+  theme_switcher: <%= ENV.fetch('THEME_SWITCHER_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
   idp_enabled: <%= ENV.fetch('IDP_ENABLED', 'false') == 'true' %>

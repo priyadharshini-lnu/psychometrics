@@ -47,6 +47,10 @@ module Api
           can_perform_approval_action?
         end
 
+        def reset_approval?
+          @user.is?(:superadmin)
+        end
+
         def bulk_approve?
           can_manage_score_approval?
         end

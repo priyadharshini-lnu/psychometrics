@@ -81,7 +81,7 @@ module SsoNavigation
   end
 
   def return_url(substitutions, default_url)
-    url = session[:sso]['return_url']
+    url = session[:sso]['return_url'].dup
     substitutions.each { |k, v| url.gsub! k, v }
     uri = URI.parse(url)
     uri.to_s

@@ -13,7 +13,8 @@ module AdminJobs
       'client_assessment_counts' => DataReportHandlers::ClientAssessmentsCountHandler,
       'active_clients_projects' => DataReportHandlers::ActiveClientsProjectsHandler,
       'user_access_review' => DataReportHandlers::UserAccessReviewHandler,
-      'campaign_factor_scores' => DataReportHandlers::CampaignFactorScoresHandler
+      'campaign_factor_scores' => DataReportHandlers::CampaignFactorScoresHandler,
+      'campaign_user_creation' => DataReportHandlers::CampaignUserCreationHandler
     }.freeze
 
     def initialize(record, _stage = nil)
@@ -55,7 +56,8 @@ module AdminJobs
       handler = handler_class.new(
         data_report: data_report,
         data_report_job: data_report_job,
-        file_path: file_path
+        file_path: file_path,
+        runtime_configuration: merged_configuration
       )
       handler.generate_file
     end
@@ -130,6 +132,19 @@ module AdminJobs
     end
 
     private
+
+    def merged_configuration
+      runtime_config = record.data['runtime_configuration'] || {}
+      return {} if runtime_config.blank?
+
+      saved_config = begin
+        Oj.load(data_report.configuration)
+      rescue StandardError
+        {}
+      end
+
+      saved_config.merge(runtime_config)
+    end
 
     def data_report_path
       return "/admin/data_reports/#{data_report.id}" if data_report.scope_global?

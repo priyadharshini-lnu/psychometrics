@@ -27,6 +27,7 @@ interface ClientFeatures {
   aiTranslation: boolean;
   aiContentAnalysis: boolean;
   superadminTenantScoping: boolean;
+  glintUi: boolean;
 }
 
 interface FeatureCardProps {
@@ -122,6 +123,7 @@ export const Features: React.FC = () => {
     aiTranslation: false,
     aiContentAnalysis: false,
     superadminTenantScoping: false,
+    glintUi: false,
   }
 
   const isFetchLoading = isLoading('fetch')
@@ -138,6 +140,7 @@ export const Features: React.FC = () => {
       globalSkills: values.globalSkills || false,
       idp: values.idp || false,
       superadminTenantScoping: values.superadminTenantScoping ?? false,
+      glintUi: values.glintUi || false,
     }
     return transformedValues
   }
@@ -238,6 +241,11 @@ export const Features: React.FC = () => {
                       name="globalSkills"
                       label={I18n.t('admin.global_skills')}
                       tooltip={I18n.t('admin.feature_global_skills_description')}
+                    />
+                    <FeatureToggle
+                      name="glintUi"
+                      label={I18n.t('admin.glint_ui')}
+                      tooltip={I18n.t('admin.feature_glint_ui_description')}
                       isLast
                     />
                   </FeatureCard>

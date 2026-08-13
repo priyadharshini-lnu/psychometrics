@@ -63,6 +63,8 @@ const BaseFormFieldsComp: React.FC<Props> = ({
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)
+  const ownerId = Form.useWatch('ownerId', form)
+  const selectedOwnerId = ownerId ?? assessment?.owner?.id
 
   const getDimensions = (): OptionsType[] => {
     if (!assessment || !assessment.dimension || dimensions.find(d => assessment?.dimension?.id === d.id)) {
@@ -220,7 +222,13 @@ const BaseFormFieldsComp: React.FC<Props> = ({
             filterOption: false,
             onSearch: (value) => {
               fetchDimensions({
-                apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
+                apiConfig: {
+                  filter: {
+                    filterable_fields: value,
+                    owner_id: selectedOwnerId,
+                  },
+                  fields: { dimensions: ['name'] },
+                },
               })
             },
           }}

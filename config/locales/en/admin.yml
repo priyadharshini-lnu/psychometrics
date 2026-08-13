@@ -122,6 +122,12 @@ en:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    appearance: Appearance
+    appearance_dark: Dark
+    appearance_dark_theme: Dark theme
+    appearance_light: Light
+    appearance_light_theme: Light theme
+    appearance_system: System
     application: Application
     application_add: Add Application
     application_name: Application Name
@@ -356,6 +362,8 @@ en:
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
+    campaign_name_translations: Campaign Name Translations
+    campaign_name_translations_fetch_error: Error fetching campaign name translations
     campaign_report_generate_modal_subtitle: Select the required language for each report
     campaign_report_id: Campaign Report ID
     campaign_results_export_details: Campaign AI artifacts generated results
@@ -427,6 +435,7 @@ en:
     category: Category
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     change_reason: Change reason
+    change_report_dates_message: Do you want to change the report date range?
     change_score: changed score
     change_score_log: Change Score Log
     characters: characters
@@ -840,6 +849,7 @@ en:
     feature_flags_communication_group: Communication
     feature_flags_platform_group: Platform Features
     feature_flags_superadmin_group: Tenant Scoping
+    feature_glint_ui_description: Render the participant experience with the Glint design system
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
@@ -901,8 +911,11 @@ en:
     generate_transcription: Generate Transcription
     generated_at_time: Generated at %{time}
     generated_value: Generated Value
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI is disabled by client
     global_skills: Global Skills
     global_skills_disabled_by_client: Global Skills is disabled by client
+    go_back: Back
     grant_type_label: Grant Type
     grant_type_name: oauth_grant_type
     graphic: Graphic
@@ -1499,6 +1512,8 @@ en:
     owner_resource_norm: norm
     owner_resource_report: report
     owner_resource_report_bundle: report bundle
+    page_load_failed: This page could not be loaded.
+    page_load_failed_hint: The app may have been updated — reload to continue.
     parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
     parsed_dependencies_title: Parsed Dependencies
     parsed_dependencies_view: View Parsed Dependencies
@@ -2190,6 +2205,38 @@ en:
     raw_score: Raw Score
     reason_for_changes: Reason for changes
     recents: Recents
+    record_history_changes: changes
+    record_history_changes_in_request: changes in this request
+    record_history_date_range_invalid: End date must be on or after the start date.
+    record_history_date_range_required: Please select a date range.
+    record_history_date_range_too_large: Date range cannot exceed %{days} days. Please narrow your search.
+    record_history_filter_actor: Filter by actor email
+    record_history_filter_field: Filter by changed field
+    record_history_filter_type: Filter by record type
+    record_history_id_required: Please enter a record ID
+    record_history_include_related: Include related records
+    record_history_last_30_days: Last 30 days
+    record_history_last_7_days: Last 7 days
+    record_history_no_results: No change history found for this record.
+    record_history_no_results_for: No changes found for
+    record_history_records_changed: records changed
+    record_history_related_tag: Related
+    record_history_request_banner: Showing all changes in request
+    record_history_request_label: 'Request:'
+    record_history_request_or_record_required: Enter a request UUID or choose a record type and ID.
+    record_history_request_uuid: Request UUID
+    record_history_request_uuid_placeholder: Enter request UUID
+    record_history_revision_failed: Failed to load the record state for this version.
+    record_history_search_hint: Enter a request UUID, or select a record type and record ID to trace change history.
+    record_history_select_type: Select record type
+    record_history_state_at_version: State at version
+    record_history_system: System
+    record_history_title: Record Change History
+    record_history_type_required: Please select a record type
+    record_history_version: Version
+    record_history_view_audit_log: View in Audit Logs
+    record_history_view_full: View full history
+    record_history_view_request: View request
     record_id: Record ID
     recordings: Recordings
     reflection_questions: Reflection Questions
@@ -2325,6 +2372,7 @@ en:
     report_types:
       active_clients_projects: Active Clients & Projects
       campaign_factor_scores: Campaign Factor Scores
+      campaign_user_creation: Campaign User Creation
       client_assessment_counts: Client Assessment Counts
       hogan_usage_report: Hogan Assessment Usage
       json_data_report: JSON Data Report
@@ -2388,6 +2436,17 @@ en:
     role_project_admin: Project Admin
     role_superadmin: Super Admin
     run: Run
+    runtime_configuration_invalid_json_object: runtime_configuration must be a valid JSON object
+    runtime_configuration_invalid_parameter: is not a runtime-updatable parameter
+    runtime_parameter_date_range_required: Please select both Start Date and End Date
+    runtime_parameter_editable_section_title: Date range
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Included filters
+    runtime_parameter_modal_subtitle: Review details and update the date range if needed.
+    runtime_parameter_modal_title: Run Report
+    runtime_parameter_not_set: Not provided
+    runtime_parameter_submit_button: Run Now
+    runtime_parameter_value_column: Value
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -2614,6 +2673,12 @@ en:
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_approval_not_allowed_to_discard: You are not allowed to discard this score.
+    score_approval_reset: Reset approval
+    score_approval_reset_description: This will move the approval back to pending. The scores will not change. This action cannot be undone.
+    score_approval_reset_not_allowed: This score approval cannot be reset in its current state.
+    score_approval_reset_recompute_description: This will reset the approval, remove AI scores from user's results, and delete any generated reports. This action cannot be undone.
+    score_approval_reset_success: Score approval has been reset.
+    score_approval_reset_title: Reset score approval?
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max
@@ -2968,7 +3033,14 @@ en:
     smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
     sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforce_for: Enforce SSO For
+    sso_enforce_for_all: All users
+    sso_enforce_for_none: None
+    sso_enforce_for_specific_domains: Specific domains
     sso_enforced: Enforce SSO
+    sso_enforced_domains: Enforced Domains
+    sso_enforced_domains_hint: e.g. se.com (exact match) or *.se.com (subdomains only)
+    sso_enforced_domains_placeholder: Enter domain(s) and press Enter
     sso_label: SSO
     sso_not_enabled: SSO is not enabled for this client
     sso_settings: SSO Settings
@@ -3110,6 +3182,9 @@ en:
     text_danger: Text(danger)
     text_success: Text (success)
     text_warning: Text(warning)
+    themes:
+      marsh-dark: Marsh Dark
+      marsh-light: Marsh Light
     this_field_is_required: This field is required
     threesixity_advance_settings_campaign_template: Campaign Template
     threesixity_advance_settings_factors: Factors

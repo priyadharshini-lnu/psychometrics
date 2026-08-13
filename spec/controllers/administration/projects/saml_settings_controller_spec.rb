@@ -72,7 +72,7 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       put :update, params: {
         project_id: project.id,
         id: saml_setting.id,
-        resource: { enabled: false, entity_id: '', sso_service_url: '' }
+        resource: { enabled: false, enforce_for: 'none', entity_id: '', sso_service_url: '' }
       }, format: :json
       saml_setting.reload
 
@@ -85,7 +85,7 @@ RSpec.describe Administration::Projects::SamlSettingsController, type: :controll
       put :update, params: {
         project_id: project.id,
         id: saml_setting.id,
-        resource: { enabled: false, entity_id: 'entity_id', sso_service_url: '' }
+        resource: { enabled: false, enforce_for: 'none', entity_id: 'entity_id', sso_service_url: '' }
       }, format: :json
       saml_setting.reload
 

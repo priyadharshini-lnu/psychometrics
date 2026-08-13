@@ -424,6 +424,9 @@ Rails.application.routes.draw do
           end
 
           resources :campaign_assessment_groups, only: %i[index create update destroy] do
+            member do
+              get :fetch_name_translations
+            end
             collection do
               post :update_positions
             end
@@ -486,6 +489,7 @@ Rails.application.routes.draw do
               get :fetch_campaign_options
               get :fetch_campaign_instructions
               get :fetch_descriptions
+              get :fetch_name_translations
               put :update_campaign_options
               get :pdf_password
               get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
@@ -920,6 +924,7 @@ as: :simulation_progress_notification
     post 'users/magic_links/sign_in', to: 'users/magic_links#send_magic_link'
     get 'users/invitation/accept', to: 'users/invitations#edit', as: :accept_user_invitation
     patch 'users/invitation', to: 'users/invitations#update', as: :user_invitation
+    post 'users/check_sso', to: 'users/sso_enforcement#check_sso'
   end
 
   devise_for :users,
@@ -1529,6 +1534,7 @@ as: :simulation_progress_notification
               get :datasheet_for_assessor
             end
           end
+          jsonapi_resources :user_preferences
           jsonapi_resources :design_settings, only: %i[index update] do
             scope module: :design_settings do
               resource :uploads, only: %i[update]
@@ -1792,6 +1798,7 @@ only: %i[index create update]
               post :discard_question
               post :discard_all_questions
               post :rescore
+              post :reset_approval
               get :subject_assessment
             end
           end
@@ -1813,6 +1820,7 @@ only: %i[index create update]
             end
             resources :data_report_jobs, only: %i[index] do
               get :get_password, on: :member
+              get :download, on: :member
             end
           end
           jsonapi_resources :user_idp_plans, only: %i[create show update] do
@@ -1911,6 +1919,15 @@ only: %i[index create update]
           jsonapi_resources :media_responses, only: %i[index] do
             member do
               post :generate_transcription
+            end
+          end
+
+          jsonapi_resources :record_change_histories, only: [] do
+            collection do
+              get :auditable_types
+              post :search
+              post :export
+              get :revision
             end
           end
 

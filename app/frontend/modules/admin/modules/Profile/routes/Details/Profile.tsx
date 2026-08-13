@@ -248,15 +248,10 @@ function Profile ({
                       <Select
                         size="large"
                         showSearch
+                        options={timezoneOptions}
                         filterOption={(search, option) => `${option?.value}`
                           .toLowerCase().includes(search.toLowerCase())}
-                      >
-                        {timezoneOptions.map((item, i) => (
-                          <Select.Option key={i} value={item.value}>
-                            {item.label}
-                          </Select.Option>
-                        ))}
-                      </Select>
+                      />
                     </Form.Item>
                     <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
                       <Button

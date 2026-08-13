@@ -958,6 +958,7 @@ en:
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin External Assessment Export
+        superadmin_record_change_history: Record Change History
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
@@ -2150,6 +2151,7 @@ en:
       max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    csrf_retry: Please try again
     equal_to_current_password: must be different than the current password.
     equal_to_email: must be different than the email.
     error: Error
@@ -2980,75 +2982,6 @@ en:
     zh-HK: Chinese (Hong Kong)
     zh-Hant: Chinese - Traditional
     zh-TW: Chinese (Taiwan)
-  languages_localized:
-    af: Afrikaans
-    ar: عربي
-    az: Azerbaijani
-    bg: български
-    bs: bosanski
-    by: Belarusian
-    ca: català
-    cn: 中国人
-    cs: čeština
-    cy: Cymraeg
-    da: dansk
-    de: Deutsch
-    el: Ελληνικά
-    en: English
-    en-GB: English (UK)
-    en-US: English (US)
-    eo: Esperanto
-    es: Español
-    es-ES: Español (españa)
-    et: Estonian
-    fa: Persian
-    fi: Finnish
-    fr: Français
-    gu: Gujarati
-    he: Hebrew
-    hi: हिन्दी
-    hr: Croatian
-    hu: Hungarian
-    id: Bahasa Indonesia
-    it: Italiano
-    ja: 日本語
-    km: Khmer
-    ko: Korean
-    lt: Lithuanian
-    lv: Latvian
-    mk: Macedonian
-    mn: Mongolian
-    ms: Bahasa Malaysia
-    my: Myanmar
-    nb: Norwegian Bokmål
-    nl: Dutch
-    'no': Norwegian
-    pl: Polski
-    pt: Português
-    pt-BR: Português (Brasil)
-    pt-PT: Português (Portugal)
-    pt_BR: Português (Brasil)
-    ro: Română
-    ru: Russian
-    sk: Slovak
-    sl: Slovenščina
-    sr-Cyrl: Serbian Cyrillic
-    sr-Latn: Serbian Latin
-    sv: Swedish
-    sw: Swahili
-    ta: Tamil
-    th: Thai
-    tl: Tagalog
-    tr: Turkish
-    ua: Ukrainian
-    uk: Ukrainian
-    ur: Urdu
-    vi: Vietnamese
-    zh: 简体中文
-    zh-CN: 简体中文
-    zh-HK: 繁體中文 (香港特別行政区)
-    zh-Hant: 繁體中文
-    zh-TW: 漢語
   license_usage:
     campaign_name: Campaign name
     status_updated_at: Last status update

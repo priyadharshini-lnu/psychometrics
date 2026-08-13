@@ -15,8 +15,10 @@ import {
   UserOutlined, BellOutlined, BellFilled, LogoutOutlined,
   DownOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import { useResources } from '~/hooks/useResources'
-import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
+import { AdminLanguageSwitcher } from '~/components/AdminShell/AdminLanguageSwitcher'
+import { currentUserFromInitialState } from '~/components/AdminShell/currentUserDetails'
+import { AppearanceMenuItem } from '~/modules/admin/components/AppearanceMenuItem'
+import { THEME_SWITCHER_ENABLED } from '~/components/AdminShell'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
 import AdminJob from './AdminJob'
@@ -26,15 +28,6 @@ const {
   I18n,
 } = window
 
-type UserDetails = {
-  id: string
-  firstName: string
-  LastName: string
-  name: string
-  email: string
-  roleTitle: string
-  photo?: string
-}
 
 const AdminJobList: React.FC<PropsFromRedux> = ({
   adminJobs,
@@ -48,12 +41,12 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
 }) => {
   const [active, setActive] = useState(false)
   const [visible, setVisible] = useState<boolean>(false) // State to control Popover visibility
-  const [user, setUser] = useState<UserDetails | null>(null)
+  // Server-seeded, so the menu renders complete on first paint instead of filling in after a round trip.
+  const user = useMemo(currentUserFromInitialState, [])
   const {
     features,
     adminLocales,
   } = window.PsyGlobalState
-  const { collectionAction } = useResources('users')
   const isMobile = useMedia({
     maxWidth: 600,
   })
@@ -68,13 +61,6 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
   }, [user?.email])
 
   useEffect(() => {
-    collectionAction({
-      action: 'current_user_details',
-      method: 'get',
-    })
-      .then((data: UserDetails) => {
-        setUser(data)
-      })
     fetch(adminJobs.length)
     if (consumer()) {
       consumer().subscriptions.create({ channel: 'AdminJobChannel' }, {
@@ -178,9 +164,11 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
             <Typography.Text>
               {user?.email}
             </Typography.Text>
-            <Typography.Text style={{ fontSize: 12 }}>
-              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
-            </Typography.Text>
+            {user?.roleTitle && (
+              <Typography.Text style={{ fontSize: 12 }}>
+                {`${I18n.t('admin.role')} - ${user.roleTitle}`}
+              </Typography.Text>
+            )}
           </Flex>
         </Flex>
       ),
@@ -208,6 +196,16 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
         window.location.href = '/admin/profile/change_password'
       },
     },
+    ...(THEME_SWITCHER_ENABLED ? [
+      { type: 'divider' as const },
+      {
+        key: 'appearance',
+        label: <AppearanceMenuItem />,
+        // Clicking inside the panel changes appearance and must not dismiss the menu.
+        onClick: (info: { domEvent: React.SyntheticEvent }) => info.domEvent.stopPropagation(),
+        style: { height: 'auto', cursor: 'default' },
+      },
+    ] : []),
     {
       type: 'divider',
     },
@@ -225,12 +223,8 @@ const AdminJobList: React.FC<PropsFromRedux> = ({
       justify="flex-end"
       align="center"
       gap={8}
-      style={{
-        height: 55,
-        borderBottom: '1px solid #ddd',
-      }}
     >
-      {features.enable_intl_for_admins ? <LangDropdownWithChangeLocale locales={adminLocales.split(',')} />
+      {features.enable_intl_for_admins ? <AdminLanguageSwitcher locales={adminLocales.split(',')} />
         : null}
       <Popover
         placement="bottomRight"

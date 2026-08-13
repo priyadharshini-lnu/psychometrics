@@ -112,7 +112,7 @@ export const BookingCard: FC<Props> = ({
           {invitationComponent}
         </div>
       </Col>
-      <Col><Divider className="h-100 pos-uns" type="vertical" /></Col>
+      <Col><Divider className="h-100 pos-uns" orientation="vertical" /></Col>
       <Col flex={selectedDate ? '' : calendarFlex}>
         <div className={styles.cardItem}>
           {calendarComponent}
@@ -120,7 +120,7 @@ export const BookingCard: FC<Props> = ({
       </Col>
       {selectedDate && (
         <>
-          <Col><Divider className="h-100 pos-uns" type="vertical" /></Col>
+          <Col><Divider className="h-100 pos-uns" orientation="vertical" /></Col>
           <Col flex="auto">
             <div className={cs(styles.cardItem, styles.timeContainer)}>
               {timeSlotSelectionComponent}

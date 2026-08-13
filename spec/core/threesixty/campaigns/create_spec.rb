@@ -17,6 +17,22 @@ describe Threesixty::Campaigns::Create do
       described_class.call!(project, form, user)
     end
 
+    it 'persists campaign name for selected locale on created campaign' do
+      threesixty_campaign = create(:threesixty_campaign)
+      expect(Threesixty::Campaigns::CreateEmptyCampaign).to receive(:call!).
+        and_return(threesixty_campaign)
+
+      form.name = 'Campaign AR'
+      form.name_locale = 'ar'
+
+      described_class.call!(project, form, user)
+
+      threesixty_campaign.campaign.reload
+      Mobility.with_locale('ar') do
+        expect(threesixty_campaign.campaign.name).to eq('Campaign AR')
+      end
+    end
+
     it 'calls CreateFromAssessmentAndReport when assessment_id is passed in a form' do
       threesixty_campaign = create(:threesixty_campaign)
       expect(Threesixty::Campaigns::CreateFromAssessmentAndReport).to receive(:call!).

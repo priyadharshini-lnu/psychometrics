@@ -1,49 +1,44 @@
-import CampaignList from './CampaignList'
-import UserList from './UserList'
-import UserDetails from './UserDetails'
-import Evaluation from './Evaluation'
-import ReportPreview from './ReportPreview'
-import { ExternalReportPreview } from './ExternalReportPreview'
-import { WorkshopList } from './AssessmentCenter'
-import { ModerateScoring } from './ModerateScoring/ModerateScoring'
+import { Navigate } from 'react-router-dom'
+import { lazyRoute } from '~/utils/lazyRoute'
+
+const page = () => import('../pages')
 
 const routes = [
   {
-    path: '/',
-    component: <CampaignList />,
+    path: '',
+    lazy: lazyRoute(page, m => m.CampaignList),
   },
   {
-    redirect: true,
-    from: '/assessors/assessment_centers',
-    to: 'campaigns',
+    path: 'assessment_centers',
+    element: <Navigate to="campaigns" replace />,
   },
   {
-    path: '/assessment_centers/:tab',
-    component: <WorkshopList />,
+    path: 'assessment_centers/:tab',
+    lazy: lazyRoute(page, m => m.WorkshopList),
   },
   {
-    path: '/campaigns/:campaignId/users/:userId',
-    component: <UserDetails />,
+    path: 'campaigns/:campaignId/users/:userId',
+    lazy: lazyRoute(page, m => m.UserDetails),
   },
   {
-    path: '/campaigns/:campaignId/users',
-    component: <UserList />,
+    path: 'campaigns/:campaignId/users',
+    lazy: lazyRoute(page, m => m.UserList),
   },
   {
-    path: '/campaigns/:campaignId/user_reports/:id',
-    component: <ReportPreview />,
+    path: 'campaigns/:campaignId/user_reports/:id',
+    lazy: lazyRoute(page, m => m.ReportPreview),
   },
   {
-    path: '/campaigns/:campaignId/external_user_report/:id',
-    component: <ExternalReportPreview />,
+    path: 'campaigns/:campaignId/external_user_report/:id',
+    lazy: lazyRoute(page, m => m.ExternalReportPreview),
   },
   {
-    path: '/campaigns/:campaignId/evaluations/:userId',
-    component: <Evaluation />,
+    path: 'campaigns/:campaignId/evaluations/:userId',
+    lazy: lazyRoute(page, m => m.Evaluation),
   },
   {
-    path: '/campaigns/:campaignId/moderate_scoring/:userId',
-    component: <ModerateScoring />,
+    path: 'campaigns/:campaignId/moderate_scoring/:userId',
+    lazy: lazyRoute(page, m => m.ModerateScoring),
   },
 ]
 

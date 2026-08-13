@@ -57,41 +57,35 @@ RSpec.describe JwtLoginController, type: :controller do
     end
 
     it 'redirects to return_url with pending status on single-use replay' do
-      ret_url = "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
       token = build_token(
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
         'single_use' => true,
-        'ret_url' => ret_url
+        'ret_url' => 'https://example.com?status=ASSESSMENT_STATUS'
       )
 
       post :login_jwt, params: { token: token }
       sign_out(participant)
       post :login_jwt, params: { token: token }
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=campaign_pending"
-      )
+      expect(response).to redirect_to('https://example.com?status=campaign_pending')
     end
 
     it 'redirects to return_url with assessment pending status on single-use replay for asmt target' do
       user_assessment = create(:user_assessment, campaign: campaign, evaluator: participant, subject: participant)
-      ret_url = "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
       token = build_token(
         'tg' => 'asmt',
         'tg_cmp_id' => campaign.id.to_s,
         'tg_asmt_id' => user_assessment.id.to_s,
         'single_use' => true,
-        'ret_url' => ret_url
+        'ret_url' => 'https://example.com?status=ASSESSMENT_STATUS'
       )
 
       post :login_jwt, params: { token: token }
       sign_out(participant)
       post :login_jwt, params: { token: token }
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_pending"
-      )
+      expect(response).to redirect_to('https://example.com?status=assessment_pending')
     end
 
     it 'returns unprocessable entity when replay happens without return_url' do
@@ -190,7 +184,7 @@ RSpec.describe JwtLoginController, type: :controller do
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
         'single_use' => true,
-        'ret_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'ret_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'exp' => 1.minute.ago.to_i
       )
 
@@ -211,7 +205,7 @@ RSpec.describe JwtLoginController, type: :controller do
         'kid' => key_id,
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
-        'ret_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
+        'ret_url' => 'https://example.com/done?status=ASSESSMENT_STATUS'
       }
       forged_token = JWT.encode(forged_payload, forged_private_key, 'RS256', { kid: key_id })
 

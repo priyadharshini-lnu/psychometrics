@@ -31,6 +31,7 @@ module EndUser
         required(:available_locales).maybe(:array?)
         required(:selected_locale).maybe(:str?)
         required(:assessment_icon_url).maybe(:str?)
+        required(:assessment_poster_url).maybe(:str?)
         required(:prework).maybe(:bool?)
         required(:schedule_time).maybe(:str?)
         required(:workshop_activity_duration).maybe(:int?)

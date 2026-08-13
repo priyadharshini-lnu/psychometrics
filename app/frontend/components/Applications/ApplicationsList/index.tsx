@@ -20,7 +20,7 @@ export const ApplicationsList: React.FC<Props> = ({ query }) => {
 
   return (
     <Resource<Application, BaseMeta> config={config} name="applications">
-      <div className="pl">
+      <div>
         <ApplicationsFilter openAddModal={() => setIsModalOpen(true)} />
         <ApplicationsTable />
         {isModalOpen && <ApplicationFormModal close={() => setIsModalOpen(false)} />}

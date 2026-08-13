@@ -1,7 +1,7 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
+const page = () => import('./MeetingRoom')
 
-const MeetingRoom = lazy(() => import('./MeetingRoom'))
 const routes = [
   {
     path: 'meet/create',
@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: 'meet/:roomId',
-    element: <MeetingRoom />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

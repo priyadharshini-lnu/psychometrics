@@ -2947,8 +2947,6 @@ ko:
     zh-HK: 중국어(홍콩)
     zh-Hant: 중국어 - 번체
     zh-TW: 중국어(대만)
-  languages_localized:
-    sl: 슬로벤슈치나
   license_usage:
     campaign_name: 캠페인 이름
     status_updated_at: 마지막 상태 업데이트

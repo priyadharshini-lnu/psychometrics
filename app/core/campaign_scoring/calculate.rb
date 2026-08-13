@@ -6,11 +6,12 @@ module CampaignScoring
     PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
 
     private_attr_reader :campaign, :user, :user_assessments, :campaign_user,
-                        :existing_campaign_factor_values
+                        :campaign_factor_values_to_reuse, :force_recalculate
 
-    def initialize(campaign, user)
+    def initialize(campaign, user, force_recalculate: false)
       @campaign = campaign
       @user = user
+      @force_recalculate = force_recalculate
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
         subject_id: user.id
@@ -47,7 +48,7 @@ module CampaignScoring
     private
 
     def calculate_campaign_factor_value(campaign_factor)
-      existing_campaign_factor_value = existing_campaign_factor_values[campaign_factor.id]&.value
+      existing_campaign_factor_value = campaign_factor_values_to_reuse[campaign_factor.id]&.value
       if existing_campaign_factor_value
         validate_campaign_factor_value!(campaign_factor, existing_campaign_factor_value)
         return @factor_values[campaign_factor] = CampaignScoring::FactorValue.new(existing_campaign_factor_value)
@@ -71,12 +72,14 @@ module CampaignScoring
     end
 
     def assessor_scoring(campaign_factor)
-      @factor_values[campaign_factor]&.value || existing_campaign_factor_values[campaign_factor.id]&.value
+      @factor_values[campaign_factor]&.value || campaign_factor_values_to_reuse[campaign_factor.id]&.value
     end
 
-    def existing_campaign_factor_values
-      @existing_campaign_factor_values ||=
-        campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
+    def campaign_factor_values_to_reuse
+      scope = campaign.campaign_factor_values.where(user_id: user.id)
+      scope = scope.where(calculation_type: :manual) if force_recalculate
+
+      @campaign_factor_values_to_reuse ||= scope.index_by(&:campaign_factor_id)
     end
 
     def compute_formula(campaign_factor) # rubocop:disable Metrics/AbcSize
@@ -112,7 +115,7 @@ module CampaignScoring
         'value' => proc { |column_name| campaign.datasheet_data(user.email)&.fetch(column_name, nil) }
       }
       lua.helpers = {
-        'round' => proc { |value, precision = 0| value&.round(precision) },
+        'round' => proc { |value, precision = 0| round_value(value, precision) },
         'percentile' => proc { |value| Ztable.percentile(value) },
         'average' => proc { |values, precision = nil| calculate_average(values, precision) }
       }
@@ -124,6 +127,21 @@ module CampaignScoring
       value = LuaEvaluator.eval(lua_code, lua)
 
       value.is_a?(Lua::Table) ? value.to_hash.with_indifferent_access : value
+    end
+
+    def round_value(value, precision)
+      numeric_value = coerce_numeric_value(value)
+      return nil if numeric_value.nil?
+
+      numeric_value.round(precision)
+    end
+
+    def coerce_numeric_value(value)
+      return value if value.is_a?(Numeric)
+      return nil if value.nil?
+
+      raise CampaignScoring::Exceptions::IncorrectFunctionUsages,
+            'helpers.round: First parameter must be numeric.'
     end
 
     def calculate_average(values, precision)

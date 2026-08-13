@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import styles from './styles.less'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
@@ -103,7 +104,7 @@ const ClientList: React.FC<Props> = ({
         scroll={{ x: 'max-content' }}
         loading={tableLoading}
         onChange={handleTableChange}
-        sticky={{ offsetHeader: 50 }}
+        sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
       >
         <Column
           title={I18n.t('shared.id')}

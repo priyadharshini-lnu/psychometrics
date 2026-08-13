@@ -15,9 +15,10 @@ RSpec.describe Administration::ThreesixtyCampaigns::InstructionTemplatesControll
       template.update(content: 'Ar')
     end
 
+    # The route segment is a Campaign id despite its name; the controller finds by campaign_id.
     get :show, params: {
       locales: %w[en ar],
-      threesixty_campaign_id: template.threesixty_campaign_id,
+      threesixty_campaign_id: template.threesixty_campaign.campaign_id,
       id: template.id
     }, as: :json
 

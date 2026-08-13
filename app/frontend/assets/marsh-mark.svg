@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Marsh M monogram, lifted verbatim from the wordmark (its first and
+     last subpaths) so the two never drift apart. currentColor, as the
+     wordmark is, so it follows whichever rail it sits on. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="23.87" height="25" version="1.1" viewBox="0 0 23.87 25">
+  <path id="Mark" fill="currentColor" d="M0,0v24.59h4.48v-11.08l7.08,3.39h.34L.44,0h-.44ZM23.43,0l-11.46,16.89h.34s7.08-3.39,7.08-3.39v11.08s4.48,0,4.48,0V0s-.44,0-.44,0Z"/>
+</svg>

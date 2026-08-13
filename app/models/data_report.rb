@@ -26,7 +26,8 @@ class DataReport < ApplicationRecord
     client_assessment_counts: 7,
     active_clients_projects: 8,
     user_access_review: 9,
-    campaign_factor_scores: 10
+    campaign_factor_scores: 10,
+    campaign_user_creation: 11
   }
 
   enum :scope, { client: 0, global: 1 }, prefix: :scope
@@ -51,6 +52,11 @@ class DataReport < ApplicationRecord
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name configuration created_at id_value updated_at last_updated_by_id owner_id report_type scope]
+  end
+
+  def runtime_parameters_enabled
+    handler_class = AdminJobs::DataReportExport::REPORT_TYPE_HANDLERS[report_type]
+    handler_class&.runtime_parameters&.any? || false
   end
 
   # Ransacker for scope enum - converts string values to integers for filtering

@@ -72,7 +72,8 @@ module Threesixty::InitialState
         },
         securitySettings: {
           enableRecaptcha: @current_project.security_setting.enable_recaptcha
-        }
+        },
+        glintUi: @current_project.project_feature_enabled?(:glint_ui)
       },
       currentUser: serialized_current_user,
       liveChat: {

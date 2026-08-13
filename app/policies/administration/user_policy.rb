@@ -81,7 +81,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def spoof?
-    @user.is?(:superadmin) && !@record.is?(:superadmin)
+    @user.is?(:superadmin) && !@record.is?(:superadmin) && !@record.root_domain_assessor?
   end
 
   def assign_multiple?

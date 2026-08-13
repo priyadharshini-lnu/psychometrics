@@ -15,8 +15,10 @@ RSpec.describe ClientSsoSetting, type: :model do
       expect(sso_setting).to be_persisted
       expect(sso_setting.sso_enabled).to be false
       expect(sso_setting.sso_enforced).to be false
+      expect(sso_setting.enforce_for).to eq('none')
       expect(sso_setting.session_timeout).to be_nil
       expect(sso_setting.allowed_domains).to eq([])
+      expect(sso_setting.enforced_domains).to eq([])
     end
   end
 
@@ -64,13 +66,6 @@ RSpec.describe ClientSsoSetting, type: :model do
   end
 
   describe 'sso_enforced validation' do
-    it 'cannot be enforced when SSO is disabled' do
-      sso_setting.assign_attributes(sso_enabled: false, sso_enforced: true)
-
-      expect(sso_setting).not_to be_valid
-      expect(sso_setting.errors[:sso_enforced]).to be_present
-    end
-
     it 'can be enforced when SSO is enabled' do
       valid_cert = Rails.root.join('spec/fixtures/files/cert.pem').read
       sso_setting.assign_attributes(
@@ -82,6 +77,24 @@ RSpec.describe ClientSsoSetting, type: :model do
       )
 
       expect(sso_setting).to be_valid
+    end
+  end
+
+  describe 'enforced_domains validation' do
+    it 'requires enforced_domains when enforce_for is specific_domains' do
+      sso_setting.enforce_for = 'specific_domains'
+      sso_setting.enforced_domains = []
+
+      expect(sso_setting).not_to be_valid
+      expect(sso_setting.errors[:enforced_domains]).to include("can't be blank")
+    end
+
+    it 'is valid when enforced_domains are provided for specific_domains' do
+      sso_setting.enforce_for = 'specific_domains'
+      sso_setting.enforced_domains = ['example.com']
+
+      sso_setting.valid?
+      expect(sso_setting.errors[:enforced_domains]).to be_empty
     end
   end
 
@@ -135,6 +148,41 @@ RSpec.describe ClientSsoSetting, type: :model do
     end
   end
 
+  describe 'sync_enforced_boolean callback' do
+    let(:sso_setting) { tenancy.client_sso_setting }
+
+    before do
+      valid_cert = Rails.root.join('spec/fixtures/files/cert.pem').read
+      sso_setting.assign_attributes(
+        sso_enabled: true,
+        idp_entity_id: 'https://idp.example.com',
+        idp_sso_url: 'https://idp.example.com/sso',
+        idp_cert: valid_cert
+      )
+    end
+
+    it 'sets sso_enforced to true when enforce_for is all' do
+      sso_setting.enforce_for = 'all'
+      sso_setting.save!
+      expect(sso_setting.reload.sso_enforced).to be true
+    end
+
+    it 'sets sso_enforced to false when enforce_for is specific_domains' do
+      sso_setting.sso_enforced = true
+      sso_setting.enforce_for = 'specific_domains'
+      sso_setting.enforced_domains = ['example.com']
+      sso_setting.save!
+      expect(sso_setting.reload.sso_enforced).to be false
+    end
+
+    it 'sets sso_enforced to false when enforce_for is none' do
+      sso_setting.sso_enforced = true
+      sso_setting.enforce_for = 'none'
+      sso_setting.save!
+      expect(sso_setting.reload.sso_enforced).to be false
+    end
+  end
+
   describe '#email_domain_allowed?' do
     it 'returns true when allowed_domains is empty' do
       expect(sso_setting.email_domain_allowed?('user@any.com')).to be true
@@ -153,6 +201,48 @@ RSpec.describe ClientSsoSetting, type: :model do
     it 'is case-insensitive' do
       sso_setting.allowed_domains = ['Acme.Com']
       expect(sso_setting.email_domain_allowed?('user@acme.com')).to be true
+    end
+  end
+
+  describe '#sso_enforced_for_email?' do
+    let(:sso_setting) { build(:client_sso_setting, :enabled) }
+
+    it 'returns false when SSO is not enabled' do
+      sso_setting.sso_enabled = false
+      expect(sso_setting.sso_enforced_for_email?('user@acme.com')).to be false
+    end
+
+    it 'returns true when enforce_for is all' do
+      sso_setting.enforce_for = 'all'
+      expect(sso_setting.sso_enforced_for_email?('user@acme.com')).to be true
+    end
+
+    it 'returns false when enforce_for is none' do
+      sso_setting.enforce_for = 'none'
+      expect(sso_setting.sso_enforced_for_email?('user@acme.com')).to be false
+    end
+
+    context 'when enforce_for is specific_domains' do
+      before do
+        sso_setting.enforce_for = 'specific_domains'
+        sso_setting.enforced_domains = ['acme.com', '*.corp.com']
+      end
+
+      it 'returns true for exact domain match' do
+        expect(sso_setting.sso_enforced_for_email?('user@acme.com')).to be true
+      end
+
+      it 'returns true for wildcard domain match' do
+        expect(sso_setting.sso_enforced_for_email?('user@sub.corp.com')).to be true
+      end
+
+      it 'returns false for non-matching domain' do
+        expect(sso_setting.sso_enforced_for_email?('user@other.com')).to be false
+      end
+
+      it 'is case-insensitive' do
+        expect(sso_setting.sso_enforced_for_email?('user@Acme.Com')).to be true
+      end
     end
   end
 

@@ -1,18 +1,12 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import { MenuItem } from '~/interfaces/Antd'
-import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
-
-import Subjects from './Subjects'
-import Assessors from './Assessors'
-import { SmsInvites } from './SmsInvites'
-import UserDetails from './Subjects/UserDetails'
 
 const { I18n } = window
 
@@ -50,16 +44,7 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
         selectedKeys={getActiveLocationPath()}
         mode="horizontal"
       />
-      <RouteList
-        routes={[
-          { redirect: true, from: '', to: 'subjects' },
-          { path: '/subjects', component: <Subjects /> },
-          { path: '/subjects/:id/:tab', component: <UserDetails /> },
-          { path: '/assessors', component: <Assessors /> },
-          { path: '/sms/:tab', component: <SmsInvites /> },
-        ]}
-        urlPrefix=""
-      />
+      <Outlet />
     </div>
   )
 }

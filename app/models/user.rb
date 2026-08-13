@@ -143,6 +143,7 @@ class User < ApplicationRecord
   has_many :campaign_factor_values, dependent: :destroy
   has_many :bulk_reports
   has_many :user_saved_filters
+  has_many :user_preferences, dependent: :destroy
   has_many :temporary_uploads, dependent: :destroy
 
   has_one :security_setting, through: :project
@@ -216,6 +217,13 @@ class User < ApplicationRecord
 
       Client.enabled.where(id: accessible_client_ids)
     end
+  end
+
+  # Only a global assessor with no campaign assignment and no client access belongs to the root domain.
+  def root_domain_assessor?
+    return false if is?(:superadmin) || !is?(:assessor)
+
+    ActsAsTenant.without_tenant { !assessors.exists? } && clients_with_admin_access.empty?
   end
 
   def sole_admin_client

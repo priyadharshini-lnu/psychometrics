@@ -107,6 +107,19 @@ module Api
       render json: :ok
     end
 
+    def reset_approval
+      ScoreApprovals::ResetApproval.call(score_approval, current_user) do
+        on(:ok) do
+          audit! :reset_approval, score_approval, campaign: score_approval.campaign
+          render json: ::Administration::AIScoreApprovalSerializer.new(context: { current_user: current_user }).
+            serialize(score_approval)
+        end
+        on(:error) do |error|
+          render json: { error: error }, status: :unprocessable_entity
+        end
+      end
+    end
+
     def bulk_approve
       approvals, meta = ScoreApprovals::BulkApprove.call!(params[:data][:attributes][:ids], current_user)
 

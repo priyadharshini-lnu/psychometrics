@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class CampaignAssessmentGroupsController < Administration::Campaigns::BaseController
-      before_action :set_resource, only: %i[update destroy]
+      before_action :set_resource, only: %i[update destroy fetch_name_translations]
       before_action :pundit_authorize
 
       def index
@@ -15,14 +15,28 @@ module Administration
       end
 
       def create
-        group = campaign.campaign_assessment_groups.create(resource_params)
+        group = with_requested_locale { campaign.campaign_assessment_groups.create(resource_params) }
         audit! :create, campaign, payload: resource_params, campaign: campaign
         render json: Administration::CampaignAssessmentGroups::GroupSerializer.new.serialize(group)
       end
 
+      def fetch_name_translations
+        locales = params[:locales] || []
+        list = locales.map do |locale|
+          Mobility.with_locale(locale) do
+            {
+              name: resource.name,
+              locale: locale
+            }
+          end
+        end
+
+        render json: { list: list, available_locales: resource.translations.pluck(:locale) }
+      end
+
       def update
         audit! :update, campaign, payload: resource_params, campaign: campaign
-        resource.update(resource_params)
+        with_requested_locale { resource.update(resource_params) }
         render json: Administration::CampaignAssessmentGroups::GroupSerializer.new.serialize(resource)
       end
 
@@ -79,6 +93,11 @@ module Administration
 
       def resource_class
         CampaignAssessmentGroup
+      end
+
+      def with_requested_locale(&)
+        locale = params[:locale].presence || I18n.default_locale
+        Mobility.with_locale(locale, &)
       end
     end
   end

@@ -11,8 +11,14 @@ import { updateCampaignDetails } from '~/modules/admin/modules/threeSixtyCampaig
 import { fetchRelationships } from '~/modules/admin/modules/threeSixtyCampaign/core/relationships'
 import { updateCampaignAssessmentDetails } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignAssessments'
 
-const CommonCampaign = lazy(() => import('~/modules/admin/modules/campaigns/routes/Campaign'))
-const ThreeSixtyCampaign = lazy(() => import('~/modules/admin/modules/threeSixtyCampaign'))
+// Which module renders depends on fetched data, so the split stays here rather than on the route.
+const CommonCampaign = lazy(
+  () => import('~/modules/admin/modules/campaigns/pages').then(({ Campaign }) => ({ default: Campaign })),
+)
+const ThreeSixtyCampaign = lazy(
+  () => import('~/modules/admin/modules/threeSixtyCampaign/pages')
+    .then(({ ThreeSixtyCampaign: component }) => ({ default: component })),
+)
 
 
 const CampaignPage: React.FC = () => {

@@ -6,6 +6,7 @@ module ApplicationHelper
   # Defining the constant here since this is not used anywhere else
   # instead of in an initializer.
   RANDOM_BACKGROUND_IMAGES_COUNT = 7
+  AUTH_BACKGROUND_IMAGES_COUNT = 7
 
   def license_page_url(client)
     "#{admin_url}/clients/#{client.id}/licenses"
@@ -38,6 +39,12 @@ module ApplicationHelper
 
   def randomized_background_image
     background_images[Time.zone.today.day % RANDOM_BACKGROUND_IMAGES_COUNT]
+  end
+
+  # Rotates by day of month; preview any at /assets/administration/backgrounds/lh-auth-background-<0-6>.jpg,
+  # e.g. https://ttedev.me:3030/assets/administration/backgrounds/lh-auth-background-3.jpg
+  def auth_background_image
+    "administration/backgrounds/lh-auth-background-#{Time.zone.today.day % AUTH_BACKGROUND_IMAGES_COUNT}.jpg"
   end
 
   def background_images

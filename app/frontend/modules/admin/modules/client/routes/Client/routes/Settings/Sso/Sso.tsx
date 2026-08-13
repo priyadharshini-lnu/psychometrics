@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Col, Form, Button, Switch, Input, Skeleton, Space, Tooltip, Divider,
+  Row, Col, Form, Button, Switch, Input, Skeleton, Space, Tooltip, Divider, Radio, Select,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import InputDuration from '~/components/InputDuration'
@@ -17,6 +17,9 @@ export const Sso: React.FC = () => {
   const { clientId } = useParams() as { clientId: string }
   const [form] = Form.useForm()
   const [certificateExpiry, setCertificateExpiry] = useState<string | null>(null)
+
+  const isEnabled = Form.useWatch('ssoEnabled', form)
+  const enforceFor = Form.useWatch('enforceFor', form)
 
   const {
     data, fetch, updateResource, isLoading, collectionAction,
@@ -68,6 +71,9 @@ export const Sso: React.FC = () => {
             },
             id: 'client-sso-settings-form',
             labelAlign: 'left',
+            initialValues: {
+              enforceFor: 'none',
+            },
           }}
           request={{ updateResource }}
         >
@@ -81,13 +87,51 @@ export const Sso: React.FC = () => {
                 <Switch />
               </Form.Item>
 
-              <Form.Item
-                name="ssoEnforced"
-                label={I18n.t('admin.sso_settings_enforced')}
-                valuePropName="checked"
-              >
-                <Switch />
-              </Form.Item>
+              {isEnabled && (
+                <Form.Item
+                  name="enforceFor"
+                  label={I18n.t('admin.sso_enforce_for')}
+                >
+                  <Radio.Group>
+                    <Space direction="vertical">
+                      <Radio value="none">{I18n.t('admin.sso_enforce_for_none')}</Radio>
+                      <Radio value="all">{I18n.t('admin.sso_enforce_for_all')}</Radio>
+                      <Radio value="specific_domains">{I18n.t('admin.sso_enforce_for_specific_domains')}</Radio>
+                    </Space>
+                  </Radio.Group>
+                </Form.Item>
+              )}
+
+              {isEnabled && enforceFor === 'specific_domains' && (
+                <Form.Item
+                  name="enforcedDomains"
+                  label={I18n.t('admin.sso_enforced_domains')}
+                  extra={I18n.t('admin.sso_enforced_domains_hint')}
+                  rules={[
+                    { required: true, message: I18n.t('errors.messages.blank') },
+                    {
+                      validator: (_, value) => {
+                        if (!value || value.length === 0) return Promise.resolve()
+                        // eslint-disable-next-line max-len
+                        const domainPattern = /^(\*\.)?[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$/i
+                        const invalidDomains = value.filter(
+                          (domain: string) => !domainPattern.test(domain),
+                        )
+                        if (invalidDomains.length > 0) {
+                          return Promise.reject(new Error(I18n.t('errors.messages.invalid')))
+                        }
+                        return Promise.resolve()
+                      },
+                    },
+                  ]}
+                >
+                  <Select
+                    mode="tags"
+                    placeholder={I18n.t('admin.sso_enforced_domains_placeholder')}
+                    tokenSeparators={[',', ' ']}
+                  />
+                </Form.Item>
+              )}
 
               <MetadataUpload
                 onParsed={handleMetadataParsed}

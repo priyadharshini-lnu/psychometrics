@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Space, Button, message, Card, Row, Col, Typography, Flex,
+  Space, Button, message, Card, Row, Col, Typography,
 } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
@@ -216,96 +216,102 @@ export const DataReportJobs: React.FC<{}> = () => {
           ]}
         />
       )}
-      <Row>
-        <Col flex={1} style={{ padding: 16 }}>
-          <Flex vertical gap={12}>
-            <Flex>
-              <Button
-                type="text"
-                style={{ padding: 0 }}
-                icon={<LeftOutlined />}
-                onClick={() => navigate(-1)}
-              >
-                {I18n.t('shared.back')}
-              </Button>
-            </Flex>
-            <Card
-              style={{ marginBottom: 24 }}
-              bodyStyle={{ padding: '24px 24px' }}
-            >
-              <Row gutter={[32, 24]} align="middle">
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('shared.name')}
+      <Space
+        direction="vertical"
+        size={12}
+        style={{ width: '100%' }}
+      >
+        <Space
+          direction="vertical"
+          size={12}
+          style={{ width: '100%', padding: 16 }}
+        >
+          <Button
+            type="text"
+            style={{ padding: 0, alignSelf: 'flex-start' }}
+            icon={<LeftOutlined />}
+            onClick={() => navigate(-1)}
+          >
+            {I18n.t('shared.back')}
+          </Button>
+          <Card
+            style={{ marginBottom: 24 }}
+            bodyStyle={{ padding: '24px 24px' }}
+          >
+            <Row gutter={[32, 24]} align="middle">
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('shared.name')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {report?.name || '-'}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {report?.name || '-'}
-                    </Typography.Text>
-                  </div>
-                </Col>
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('admin.report_type')}
+                </div>
+              </Col>
+
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('admin.report_type')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {report
+                      ? I18n.t(`admin.report_types.${report.reportType}`)
+                      : '-'}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {report
-                        ? I18n.t(`admin.report_types.${report.reportType}`)
-                        : '-'}
-                    </Typography.Text>
-                  </div>
-                </Col>
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('admin.scope')}
+                </div>
+              </Col>
+
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('admin.scope')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {scopeLabel}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {scopeLabel}
-                    </Typography.Text>
-                  </div>
-                </Col>
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('shared.owner')}
+                </div>
+              </Col>
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('shared.owner')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {report?.owner?.name || '-'}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {report?.owner?.name || '-'}
-                    </Typography.Text>
-                  </div>
-                </Col>
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('admin.data_reports_columns_last_updated_by')}
+                </div>
+              </Col>
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('admin.data_reports_columns_last_updated_by')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {report?.lastUpdatedBy?.email || '-'}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {report?.lastUpdatedBy?.email || '-'}
-                    </Typography.Text>
-                  </div>
-                </Col>
-                <Col xs={24} sm={12} lg={8}>
-                  <Typography.Text type="secondary">
-                    {I18n.t('admin.data_reports_columns_udpated_at')}
+                </div>
+              </Col>
+              <Col xs={24} sm={12} lg={8}>
+                <Typography.Text type="secondary">
+                  {I18n.t('admin.data_reports_columns_udpated_at')}
+                </Typography.Text>
+                <div>
+                  <Typography.Text strong>
+                    {report?.updatedAt
+                      ? formatedDate(report.updatedAt)
+                      : '-'}
                   </Typography.Text>
-                  <div>
-                    <Typography.Text strong>
-                      {report?.updatedAt
-                        ? formatedDate(report.updatedAt)
-                        : '-'}
-                    </Typography.Text>
-                  </div>
-                </Col>
-              </Row>
-            </Card>
-            <Resource config={config} name="data_report_jobs">
-              {Table}
-            </Resource>
-          </Flex>
-        </Col>
-      </Row>
+                </div>
+              </Col>
+            </Row>
+          </Card>
+        </Space>
+        <Resource config={config} name="data_report_jobs">
+          {Table}
+        </Resource>
+      </Space>
     </>
   )
 }

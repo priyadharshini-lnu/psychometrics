@@ -5,10 +5,10 @@ import {
   Dropdown, Input, Empty,
 } from 'antd'
 import DOMPurify from 'dompurify'
+import { CorporateFare } from '@thetalententerprise/glint/icons'
 import {
   SwapOutlined, SearchOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
-import clientIconSrc from './client-icon.svg'
 import styles from './ClientSwitcher.less'
 
 const { I18n } = window
@@ -81,7 +81,7 @@ export const ClientSwitcher: React.FC<Props> = ({
     const sanitizedUrl = safeUrl ? DOMPurify.sanitize(safeUrl) : undefined
     return sanitizedUrl
       ? <img src={sanitizedUrl} alt={client.name} className={styles.menuAvatarImg} />
-      : <img src={clientIconSrc} alt="" className={styles.menuAvatarImg} />
+      : <CorporateFare className={styles.menuAvatarImg} />
   }
 
   const renderClientItem = (client: SwitchableClient) => (
