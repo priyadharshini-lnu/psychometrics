@@ -16,7 +16,6 @@ class ReportFamily < ApplicationRecord
   has_many :clients, through: :licenses, source: :client
 
   validates :name, presence: true
-  validate :owner_compatibility_with_licenses, if: :validate_owner_compatibility_with_licenses?
 
   scope :owned_by_client_or_tte, lambda { |client_id|
     where('tenant_id IS NULL OR tenant_id = ?', client_id)
@@ -36,24 +35,5 @@ class ReportFamily < ApplicationRecord
 
   def should_resolve_tenant?
     false
-  end
-
-  def validate_owner_compatibility_with_licenses?
-    return false unless persisted?
-    return false unless will_save_change_to_tenant_id?
-    return false if tenant_id.nil?
-
-    licenses.exists?
-  end
-
-  def owner_compatibility_with_licenses
-    incompatible_licenses = licenses.reject { |license| license.client_id == tenant_id }
-    return if incompatible_licenses.blank?
-
-    add_owner_compatibility_error(
-      :tenant_id,
-      child_resource: :client,
-      parent_resource: :report_bundle
-    )
   end
 end
