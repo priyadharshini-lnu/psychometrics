@@ -3221,6 +3221,7 @@ CREATE TABLE public.client_features (
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
     tenant_id bigint,
+    superadmin_tenant_scoping boolean DEFAULT true NOT NULL,
     glint_ui boolean DEFAULT false NOT NULL
 );
 
@@ -25177,6 +25178,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260810120000'),
 ('20260804113153'),
 ('20260727122651'),
 ('20260727122640'),

@@ -848,11 +848,13 @@ en:
     feature_flags_ai_group: AI Features
     feature_flags_communication_group: Communication
     feature_flags_platform_group: Platform Features
+    feature_flags_superadmin_group: Tenant Scoping
     feature_glint_ui_description: Render the participant experience with the Glint design system
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
+    feature_superadmin_tenant_scoping_description: When disabled, superadmin queries will not be scoped to this client's data
     fields_level: Level
     fields_level_description: Level Description
     fields_level_name: Level Name
@@ -3153,6 +3155,7 @@ en:
     success_title: Assessment centers created
     success_update: Design Settings were saved successfully
     suitability_id: Suitability ID
+    superadmin_tenant_scoping: Superadmin
     superadmin_use_root_domain: Super administrators must sign in through the main domain
     switch_client: Switch Client
     system_prompt: System Prompt

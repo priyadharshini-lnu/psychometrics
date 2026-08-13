@@ -7,6 +7,7 @@ import {
   QuestionCircleOutlined,
   MessageOutlined,
   AppstoreOutlined,
+  LockOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { AIEditorIcon } from '~/glint/icons/AIEditorIcon'
 import { useResources } from '~/hooks/useResources'
@@ -25,6 +26,7 @@ interface ClientFeatures {
   id: string;
   aiTranslation: boolean;
   aiContentAnalysis: boolean;
+  superadminTenantScoping: boolean;
   glintUi: boolean;
 }
 
@@ -120,6 +122,7 @@ export const Features: React.FC = () => {
     idp: false,
     aiTranslation: false,
     aiContentAnalysis: false,
+    superadminTenantScoping: false,
     glintUi: false,
   }
 
@@ -136,6 +139,7 @@ export const Features: React.FC = () => {
       aiContentAnalysis: !values.aiAssistants ? false : values.aiContentAnalysis || false,
       globalSkills: values.globalSkills || false,
       idp: values.idp || false,
+      superadminTenantScoping: values.superadminTenantScoping ?? false,
       glintUi: values.glintUi || false,
     }
     return transformedValues
@@ -242,6 +246,18 @@ export const Features: React.FC = () => {
                       name="glintUi"
                       label={I18n.t('admin.glint_ui')}
                       tooltip={I18n.t('admin.feature_glint_ui_description')}
+                      isLast
+                    />
+                  </FeatureCard>
+
+                  <FeatureCard
+                    title={I18n.t('admin.feature_flags_superadmin_group')}
+                    icon={<LockOutlined />}
+                  >
+                    <FeatureToggle
+                      name="superadminTenantScoping"
+                      label={I18n.t('admin.superadmin_tenant_scoping')}
+                      tooltip={I18n.t('admin.feature_superadmin_tenant_scoping_description')}
                       isLast
                     />
                   </FeatureCard>

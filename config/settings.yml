@@ -1,7 +1,7 @@
 project_name: Psychometrics
 application_code: 'MTELGHTH'
 privacy_policy_version: 4
-all_locales: <%= ENV.fetch('ALL_LOCALES', 'ar,bg,cs,de,en,en-US,es-ES,fr,hi,hr,hu,id,it,ja,ko,nl,pl,pt,ro,ru,sk,sl,sr-Cyrl,sr-Latn,th,vi,zh,zh-Hant,zh-HK').split(',').map(&:strip) %>
+all_locales: <%= ENV.fetch('ALL_LOCALES', 'ar,bg,cs,de,en,en-US,es-ES,fr,hi,hr,hu,id,it,ja,ko,nl,pl,pt,ro,ru,sk,sl,sr-Cyrl,sr-Latn,th,vi,zh,zh-Hant,zh-TW,zh-HK').split(',').map(&:strip) %>
 enduser_locales: <%= ENV.fetch('ENDUSER_LOCALES', 'ar,cs,de,en,en-US,es-ES,fr,hi,it,ja,pl,pt,zh,zh-Hant,zh-HK,nl,ko,bg,hr,hu,id,ro,sk,sl,th,vi,sr-Cyrl,sr-Latn').split(',').map(&:strip) %>
 admin_user_locales:  <%= ENV["ADMIN_LOCALES"]%>
 timezone: Abu Dhabi

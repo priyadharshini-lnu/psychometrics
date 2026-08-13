@@ -14,6 +14,7 @@ import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalReportFields } from './ExternalReportFields'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { availableLocales as getAvailableLocales } from '~/core/config'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { TextArea } = Input
@@ -26,6 +27,7 @@ const MAX_TAG_BATCH_SIZE = 100
 
 const connecter = connect(
   (state: RootState) => ({
+    availableLocales: getAvailableLocales(state),
     currentUser: getCurrentUser(state),
   }),
 )
@@ -33,6 +35,7 @@ const connecter = connect(
 interface Props {
   report?: Report
   form: FormInstance
+  availableLocales: string[]
   currentUser
 }
 
@@ -41,8 +44,12 @@ type OptionsType = {
   name: string
 }
 
-const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
-  const { availableLocales } = I18n
+const BaseFormFieldsComp: React.FC<Props> = ({
+  report,
+  form,
+  availableLocales,
+  currentUser,
+}) => {
   const [defaultLangForm] = Form.useForm()
   const isEditForm = !!report
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false)
