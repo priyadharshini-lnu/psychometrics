@@ -8,6 +8,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -81,7 +82,7 @@ const Dropdown: React.FC<DropDownProps> = (
   const handleOnConfirm = () => resource.removeResource(reportBundle.id).then(() => {
     message.info(I18n.t('report_bundles.actions.remove.success_message', { name: reportBundle.name }))
   }).catch((err) => {
-    message.error(err.base[0].title)
+    message.error(baseErrorMessage(err))
   })
   return (
     <>

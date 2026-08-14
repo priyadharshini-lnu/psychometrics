@@ -12,6 +12,7 @@ import { UserIdpPlan, UserActiveIdpTemplateTR, UserActiveIdpTemplate } from
   '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { User } from '~/modules/admin/modules/campaigns/core/user'
 import { PropsFromRedux } from './connect'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -87,7 +88,7 @@ const Idp: React.FC<PropsFromRedux> = ({
         getActiveIdpTemplate()
       }).catch((error) => {
         if (error.base) {
-          message.error(error.base[0]?.title)
+          message.error(baseErrorMessage(error))
         }
         if (error.userId) {
           message.error(error.userId?.title)

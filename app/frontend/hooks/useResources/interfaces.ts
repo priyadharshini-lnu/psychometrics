@@ -13,10 +13,20 @@ export type RequestType = 'fetch' | 'add' | `update@${string}` | `delete@${strin
   | `${HttpAction}/${string}@${string}` | `${HttpAction}/${string}` | `removeRelationships@${string}` |
   `addRelationships@${string}` | `upload/${string}`
 
+export interface JsonApiErrorBody {
+  title?: string
+  detail?: string
+}
+
+export interface ResourceErrors {
+  base?: JsonApiErrorBody[]
+  [key: string]: JsonApiErrorBody | JsonApiErrorBody[] | undefined
+}
+
 export type Requests = {
   [key in RequestType]?: {
     status: RequestStatus,
-    errors?: { [key: string]: string }[] | null
+    errors?: ResourceErrors[] | null
   }
 }
 export interface ResourceState<D, M = BaseMeta> {

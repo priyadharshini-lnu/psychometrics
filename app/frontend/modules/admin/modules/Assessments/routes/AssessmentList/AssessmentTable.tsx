@@ -16,6 +16,7 @@ import CopyAssessmentFormModal from './CopyAssessmentFormModal'
 import settings from '../../settings'
 import styles from './AssessmentList.less'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -203,7 +204,7 @@ const Dropdown: React.FC<DropDownProps> = (
   const handleOnConfirm = () => resource.removeResource(assessment.id).then(() => {
     message.info(I18n.t('assessments.actions.remove.success_message', { name: assessment.name }))
   }).catch((errors: {base: JSONApiError[]}) => {
-    message.error(errors.base[0].title)
+    message.error(baseErrorMessage(errors))
   })
   return (
     <>

@@ -6,6 +6,7 @@ import {
   ApplicationUrlWhitelistSetting, ApplicationUrlWhitelistSettingTR,
 } from '~/modules/admin/modules/client/core/applicationUrlWhitelistEntries'
 import { UrlSettings } from './UrlSettings'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -59,7 +60,7 @@ export const UrlWhiteListing: React.FC<Props> = ({ applicationId }) => {
       )
     } catch (error) {
       if (error?.base) {
-        message.error(error.base[0]?.title)
+        message.error(baseErrorMessage(error))
       } else {
         message.error(I18n.t('common.errors.something_wrong'))
       }

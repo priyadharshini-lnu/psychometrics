@@ -6,6 +6,7 @@ import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/Accessible
 import { useResources } from '~/hooks/useResources/useResources'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import styles from './styles.less'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 type AdvancedPromptEditorProps = {
   value?: string
@@ -48,7 +49,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
       setRenderedOutput(response.attributes.renderedPrompt)
     } catch (error) {
       if (error.base) {
-        setRenderedOutput(error.base[0]?.detail)
+        setRenderedOutput(baseErrorMessage(error, 'detail'))
       }
       message.error(I18n.t('admin.template_render_failed'))
     } finally {

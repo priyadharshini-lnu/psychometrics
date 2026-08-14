@@ -16,6 +16,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ResourceAvatar, DatePickerWithRanges, DateTimeWithZone } from '~/glint'
 import { setData } from '~/modules/admin/core/ui/temp'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -142,7 +143,7 @@ const MenuComponent = ({ workshop, setData }) => {
       resource.fetch()
       message.success(I18n.t('admin.workshop_actions_remove_workshop'))
     }).catch((error) => {
-      message.error(error.base[0].title)
+      message.error(baseErrorMessage(error))
     })
   }
 

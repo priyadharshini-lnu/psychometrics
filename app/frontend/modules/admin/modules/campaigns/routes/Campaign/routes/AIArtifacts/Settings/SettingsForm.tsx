@@ -31,6 +31,7 @@ import {
   AssessmentsForm,
 } from './AssessmentsForm'
 import { ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 type Props = {
     aiArtifact?: AiArtifact
@@ -237,7 +238,7 @@ export const SettingsForm = forwardRef<SettingsFormRef, Props>(({ aiArtifact, on
       setResults(results)
       setTokens({ input: total_input_tokens, output: total_output_tokens })
     }).catch((e) => {
-      setError(e.base[0].detail)
+      setError(baseErrorMessage(e, 'detail'))
     }).finally(() => {
       setIsGenerating(false)
     })
