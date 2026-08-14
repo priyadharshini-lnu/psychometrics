@@ -116,6 +116,13 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
 
+  const tenantIdByAdminType = {
+    [AdminTypes.ClientAdmin]: clientId,
+    [AdminTypes.ProjectAdmin]: currentProjectTenantId,
+    [AdminTypes.CampaignAdmin]: currentCampaignTenantId,
+  }
+  const tenantId = tenantIdByAdminType[adminType]
+
 
   const showRequestSuccessMessage = (response) => {
     setSubmissionErrors([])
@@ -142,7 +149,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   const {
     data: adminRoles, fetch: fetchAdminRoles, isLoading: isAdminRolesLoading,
   } = useResources<Admin>(
-    `clients/${clientId || currentProjectTenantId || currentCampaignTenantId || projectId}/admin_roles`, {
+    `clients/${tenantId}/admin_roles`, {
       apiConfig: { fields: { admin_roles: ['id', 'name'] } },
     },
   )
