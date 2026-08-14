@@ -104,6 +104,12 @@ export default {
     source: null,
     type: null,
     zIndex: 3000,
+    barGradient: {
+      enabled: false,
+      startColor: 'var(--ant-primary-6)',
+      endColor: 'var(--ant-primary-1)',
+      direction: 'top_to_bottom',
+    },
     showValues: true,
     showValuesInsideBar: false,
     showOnAllPages: false,

@@ -4,6 +4,15 @@ export interface PreviewModel extends BasePreviewModel<Props, 'Graph'> {}
 
 export interface PropertiesModel extends BasePropertiesModel<Props, 'Graph'> {}
 
+type BarGradientDirection = 'top_to_bottom' | 'bottom_to_top' | 'left_to_right' | 'right_to_left'
+
+type BarGradient = {
+  enabled: boolean
+  startColor: string
+  endColor: string
+  direction: BarGradientDirection
+}
+
 interface Props extends TextCondition {
   dataFormat: string
   graphicalRepresentation: string
@@ -30,6 +39,7 @@ interface Props extends TextCondition {
   showLegend: boolean
   hideEmptyColumns: boolean
   hideZeroValueColumns: boolean
+  barGradient: BarGradient
   showValues: boolean
   showValuesInsideBar: boolean
   valueLabelPosition?: 'center' | 'left' | 'right'

@@ -1,5 +1,6 @@
 import { Options, AxisLabelsFormatterContextObject } from 'highcharts'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
+import { getBarPaletteColors } from './barGradient'
 
 type changeLabelFun = (labelObj: AxisLabelsFormatterContextObject) => void
 
@@ -10,7 +11,6 @@ export default function ChartOptions (
   changeLabel: changeLabelFun,
 ): Options {
   const { fontSize, fontColor: color, fontFamily } = model.props.style
-  const [...colorsObjectList] = model.props.colors
   const { type } = model.props.source
   const events = type === 'Question' ? {
     click () {
@@ -51,7 +51,7 @@ export default function ChartOptions (
     subtitle: {
       text: '',
     },
-    colors: colorsObjectList.map(colorObj => colorObj.color),
+    colors: getBarPaletteColors(model),
     credits: { enabled: false },
     xAxis: {
       ...xAxisOptions,
