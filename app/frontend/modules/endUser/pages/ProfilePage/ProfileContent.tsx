@@ -86,7 +86,7 @@ type SectionErrors = Record<string, string[] | string | undefined>
 const EditToggle: FC<{ onClick: () => void }> = ({ onClick }) => (
   <Button
     variant="outlined"
-    scheme="default"
+    color="default"
     icon={<EditOutlined />}
     aria-label={I18n.t('enduser.profile_edit')}
     onClick={onClick}
@@ -99,7 +99,7 @@ const EditActions: FC<{ onCancel: () => void }> = ({ onCancel }) => {
   return (
     <Flex justify="flex-end" gap="small">
       <Button onClick={onCancel}>{I18n.t('enduser.profile_cancel')}</Button>
-      <Button scheme="primary" variant="solid" htmlType="submit" icon={forwardIcon} iconPlacement="end">
+      <Button color="primary" variant="solid" htmlType="submit" icon={forwardIcon} iconPlacement="end">
         {I18n.t('enduser.profile_save')}
       </Button>
     </Flex>

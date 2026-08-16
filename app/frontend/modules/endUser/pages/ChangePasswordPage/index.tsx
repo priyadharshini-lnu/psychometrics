@@ -105,7 +105,7 @@ export const ChangePasswordPageComponent: FC<PropsFromRedux> = ({
 
                       <Flex justify="flex-end">
                         <Button
-                          scheme="primary"
+                          color="primary"
                           variant="solid"
                           size="large"
                           htmlType="submit"

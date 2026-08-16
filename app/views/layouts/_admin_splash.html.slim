@@ -1,5 +1,6 @@
 / Static Marsh spinner from the first byte; AdminTheme removes it once the themed shell has painted.
-#admin-splash role="status" aria-label="Loading" style="position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center"
+/ Paints the backdrop itself: sign-in layouts are not `react_shell?`, so their html carries none.
+#admin-splash role="status" aria-label="Loading" style="position: fixed; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center; #{brand_backdrop_style}"
   css:
     @keyframes admin-splash-spin { to { transform: rotate(360deg) } }
     @media (prefers-reduced-motion: reduce) { #admin-splash-ring { animation: none !important } }

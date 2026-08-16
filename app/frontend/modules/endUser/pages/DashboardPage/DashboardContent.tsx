@@ -122,7 +122,7 @@ export const DashboardContent: FC<DashboardContentProps> = ({
                       actions={(
                         <>
                           <Button
-                            scheme="primary"
+                            color="primary"
                             variant="solid"
                             disabled={disabled}
                             onClick={() => navigate(detailPath(campaign))}
@@ -131,7 +131,7 @@ export const DashboardContent: FC<DashboardContentProps> = ({
                           </Button>
                           {reportsAvailable ? (
                             <Button
-                              scheme="primary"
+                              color="primary"
                               variant="outlined"
                               onClick={() => navigate(insightsPath(campaign))}
                             >

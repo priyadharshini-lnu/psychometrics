@@ -73,7 +73,7 @@ export const ExerciseCardItem: FC<{ model: ExerciseCardModel }> = ({ model }) =>
     </Typography.Text>
   ) : (
     <Button
-      scheme="primary"
+      color="primary"
       variant={model.status === 'completed' ? 'outlined' : 'solid'}
       icon={model.status === 'completed' ? undefined : forwardIcon}
       iconPlacement="end"

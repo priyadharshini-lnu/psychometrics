@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import {
@@ -9,7 +9,7 @@ import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { RootState } from '../core/reducers'
 import { buildAuthChrome } from './AuthChrome'
 import { AuthField } from './AuthField'
-import { flashAlerts } from './flashAlerts'
+import { useFlashToasts } from './useFlashToasts'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -30,6 +30,7 @@ const SetPasswordPageComponent: React.FC<Props> = ({
   const invitation = variant === 'invitation'
 
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const recaptchaEnabled = !disable_recaptcha && !expired
 
   const { recaptchaToken, recaptchaReady, recaptchaWidgetId } = useRecaptcha({
@@ -38,10 +39,17 @@ const SetPasswordPageComponent: React.FC<Props> = ({
   })
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault()
+      return
+    }
     formRef.current = e.currentTarget
+    setSubmitting(true)
     if (!recaptchaEnabled) return
     if (!recaptchaReady || recaptchaWidgetId.current === null) {
+      // Nothing re-triggers this submit, so the post never happens and the button must stop.
       e.preventDefault()
+      setSubmitting(false)
       return
     }
     if (!recaptchaToken) {
@@ -53,12 +61,14 @@ const SetPasswordPageComponent: React.FC<Props> = ({
   const token = invitation ? user.invitation_token : user.reset_password_token
 
   // Devise renders the one-time token into the boot payload; with none there is nothing valid to post.
-  if (!expired && !token) return <Navigate to={ADMIN_SIGN_IN_PATH} replace />
+  const redirecting = !expired && !token
 
-  const alerts: AuthAlertItem[] = [
-    ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
-  ]
+  // Held back when redirecting so the flash survives in the store and toasts on the page the user lands on.
+  useFlashToasts(flash, !redirecting)
+
+  if (redirecting) return <Navigate to={ADMIN_SIGN_IN_PATH} replace />
+
+  const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
   const { brand, feature, footer } = buildAuthChrome(projectConfig)
 
@@ -123,12 +133,12 @@ const SetPasswordPageComponent: React.FC<Props> = ({
               error={errors.password_confirmation}
               secure
             />
-            <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
+            <Button color="primary" variant="solid" size="large" htmlType="submit" loading={submitting} block>
               {I18n.t(expired ? 'auth.expired_password.submit' : 'auth.set_password.submit')}
             </Button>
             {expired ? (
               <Flex justify="center" style={{ marginBlockStart: 16 }}>
-                <Button scheme="primary" variant="link" href="/administration/sign_out">
+                <Button color="primary" variant="link" href="/administration/sign_out">
                   {I18n.t('auth.logout')}
                 </Button>
               </Flex>

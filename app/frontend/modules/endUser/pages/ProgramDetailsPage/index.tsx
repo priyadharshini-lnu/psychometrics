@@ -66,7 +66,7 @@ export const ProgramDetailsPageComponent: FC<PropsFromRedux> = ({
     <Flex align="center" gap="middle">
       <Button
         variant="text"
-        scheme="default"
+        color="default"
         icon={backIcon}
         onClick={() => navigate('/dashboard')}
       >

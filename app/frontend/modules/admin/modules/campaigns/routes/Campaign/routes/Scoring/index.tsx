@@ -3,6 +3,7 @@ import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { usePageHeld } from '~/components/PageFallback'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
@@ -21,6 +22,7 @@ type Props = PropsFromRedux
 const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const held = usePageHeld()
   const prefix = `${settings.urlPrefix}/:campaignId/scoring`
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
   const menuItems = [
@@ -37,12 +39,14 @@ const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
 
   return (
     <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={activeTab ? [activeTab.key] : []}
-        mode="horizontal"
-      />
+      {!held && (
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={activeTab ? [activeTab.key] : []}
+          mode="horizontal"
+        />
+      )}
       <Outlet />
     </div>
   )

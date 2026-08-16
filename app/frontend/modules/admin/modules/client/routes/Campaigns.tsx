@@ -1,7 +1,8 @@
-import React, { lazy, useEffect } from 'react'
+import React, { lazy, Suspense, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useResources } from '~/hooks/useResources'
+import { PageHold } from '~/components/PageFallback'
 import { CampaignTR, Campaign as CampaignType } from '~/modules/admin/modules/client/core/campaigns'
 import { updatePermissions } from '~/modules/admin/modules/campaigns/core/current'
 import Campaign, {
@@ -99,11 +100,17 @@ const CampaignPage: React.FC = () => {
   }, [campaignId])
 
   if (isLoading) {
-    return null
+    return <PageHold />
   }
 
   const currentCampaign = getResource(campaignId)
-  return currentCampaign?.threesixtyCampaign?.id ? <ThreeSixtyCampaign /> : <CommonCampaign />
+
+  // The chunk only starts loading once the campaign says which one it is, so the hold carries on over it.
+  return (
+    <Suspense fallback={<PageHold />}>
+      {currentCampaign?.threesixtyCampaign?.id ? <ThreeSixtyCampaign /> : <CommonCampaign />}
+    </Suspense>
+  )
 }
 
 export default CampaignPage

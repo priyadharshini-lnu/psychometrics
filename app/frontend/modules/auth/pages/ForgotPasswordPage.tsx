@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router-dom'
 import {
@@ -9,7 +9,7 @@ import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { RootState } from '../core/reducers'
 import { buildAuthChrome } from './AuthChrome'
 import { AuthField } from './AuthField'
-import { flashAlerts } from './flashAlerts'
+import { useFlashToasts } from './useFlashToasts'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -21,6 +21,7 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
   projectConfig, csrfToken, user, errors, flash,
 }) => {
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
   const adminSide = projectConfig.id === undefined
   const signInPath = adminSide ? '/administration/sign_in' : '/users/sign_in'
@@ -32,10 +33,17 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
   })
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault()
+      return
+    }
     formRef.current = e.currentTarget
+    setSubmitting(true)
     if (!recaptchaEnabled) return
     if (!recaptchaReady || recaptchaWidgetId.current === null) {
+      // Nothing re-triggers this submit, so the post never happens and the button must stop.
       e.preventDefault()
+      setSubmitting(false)
       return
     }
     if (!recaptchaToken) {
@@ -45,12 +53,14 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
   }
 
   // A token in state means the set-password screen, which stays on the legacy tree; never show this form empty.
-  if (user.reset_password_token) return <Navigate to={signInPath} replace />
+  const redirecting = Boolean(user.reset_password_token)
 
-  const alerts: AuthAlertItem[] = [
-    ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
-  ]
+  // Held back when redirecting so the flash survives in the store and toasts on the page the user lands on.
+  useFlashToasts(flash, !redirecting)
+
+  if (redirecting) return <Navigate to={signInPath} replace />
+
+  const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
   const { brand, feature, footer } = buildAuthChrome(projectConfig)
 
@@ -84,12 +94,12 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
               autoComplete="email"
               error={errors.email}
             />
-            <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
+            <Button color="primary" variant="solid" size="large" htmlType="submit" loading={submitting} block>
               {I18n.t('auth.reset_password.submit')}
             </Button>
             <Flex justify="center" style={{ marginBlockStart: 16 }}>
               <Button
-                scheme="primary"
+                color="primary"
                 variant="link"
                 href={signInPath}
                 onClick={(e: React.MouseEvent) => {

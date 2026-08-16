@@ -137,7 +137,7 @@ export const ProgramDetailsContent: FC<ProgramDetailsContentProps> = ({ campaign
         meta={meta}
         tag={<Tag color={stateTag.color}>{stateTag.label()}</Tag>}
         actions={ac.state !== 'locked' ? (
-          <Button scheme="primary" variant="solid" onClick={toDetail}>
+          <Button color="primary" variant="solid" onClick={toDetail}>
             {ac.state === 'invite'
               ? I18n.t('frontend.bookings.reserve_spot')
               : I18n.t('enduser.details_view_details')}
@@ -157,7 +157,7 @@ export const ProgramDetailsContent: FC<ProgramDetailsContentProps> = ({ campaign
         <Typography.Title level={4} style={{ margin: 0 }}>
           {I18n.t('enduser.details_reports_ready')}
         </Typography.Title>
-        <Button scheme="primary" variant="solid" onClick={() => navigate(`/campaigns/${campaign.id}/insights`)}>
+        <Button color="primary" variant="solid" onClick={() => navigate(`/campaigns/${campaign.id}/insights`)}>
           {I18n.t('campaign.insights_reports')}
         </Button>
       </Flex>

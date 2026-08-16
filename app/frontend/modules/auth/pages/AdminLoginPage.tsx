@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -9,7 +9,7 @@ import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { RootState } from '../core/reducers'
 import { buildAuthChrome } from './AuthChrome'
 import { AuthField } from './AuthField'
-import { flashAlerts } from './flashAlerts'
+import { useFlashToasts } from './useFlashToasts'
 
 const { I18n } = window
 const { disable_recaptcha, disable_saml_for_admins } = window.PsyGlobalState.features
@@ -30,6 +30,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
   const showPasswordForm = (!isTwoStepFlow && Boolean(clientContext)) || (!clientContext && disable_saml_for_admins)
 
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
   const recaptchaEnabled = !disable_recaptcha && !isEmailStep
 
@@ -39,10 +40,17 @@ const AdminLoginPageComponent: React.FC<Props> = ({
   })
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault()
+      return
+    }
     formRef.current = e.currentTarget
+    setSubmitting(true)
     if (!recaptchaEnabled) return
     if (!recaptchaReady || recaptchaWidgetId.current === null) {
+      // Nothing re-triggers this submit, so the post never happens and the button must stop.
       e.preventDefault()
+      setSubmitting(false)
       return
     }
     if (!recaptchaToken) {
@@ -51,16 +59,15 @@ const AdminLoginPageComponent: React.FC<Props> = ({
     }
   }
 
-  const alerts: AuthAlertItem[] = [
-    ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
-  ]
+  useFlashToasts(flash)
+
+  const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
   const { brand, feature, footer } = buildAuthChrome(projectConfig)
 
   const secondaryActions = ssoEnabled ? (
     <Button
-      scheme="primary"
+      color="primary"
       variant={ssoEnforced ? 'solid' : 'outlined'}
       size="large"
       href="/users/saml/sign_in"
@@ -109,7 +116,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
         {!isEmailStep ? (
           <Flex justify="flex-end" style={{ marginBlockEnd: 12 }}>
             <Button
-              scheme="primary"
+              color="primary"
               variant="link"
               href="/administration/passwords/new"
               onClick={(e: React.MouseEvent) => {
@@ -121,7 +128,7 @@ const AdminLoginPageComponent: React.FC<Props> = ({
             </Button>
           </Flex>
         ) : null}
-        <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
+        <Button color="primary" variant="solid" size="large" htmlType="submit" loading={submitting} block>
           {!isEmailStep ? I18n.t('auth.login.login_btn') : I18n.t('auth.login.continue_btn')}
         </Button>
       </Form>

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import {
@@ -9,7 +9,7 @@ import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { RootState } from '../core/reducers'
 import { buildAuthChrome } from './AuthChrome'
 import { AuthField } from './AuthField'
-import { flashAlerts } from './flashAlerts'
+import { useFlashToasts } from './useFlashToasts'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -40,6 +40,7 @@ const LoginPageComponent: React.FC<Props> = ({
 }) => {
   const recaptchaEnabled = !disable_recaptcha && projectConfig.enable_recaptcha
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
 
   const isTwoStepFlow = projectConfig.saml_login_allowed && projectConfig.saml_domain_enforcement_enabled
@@ -50,11 +51,20 @@ const LoginPageComponent: React.FC<Props> = ({
     disable_recaptcha: !recaptchaEnabled,
   })
 
+  useFlashToasts(flash)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault()
+      return
+    }
     formRef.current = e.currentTarget
+    setSubmitting(true)
     if (!recaptchaEnabled) return
     if (!recaptchaReady || recaptchaWidgetId.current === null) {
+      // Nothing re-triggers this submit, so the post never happens and the button must stop.
       e.preventDefault()
+      setSubmitting(false)
       return
     }
     if (!recaptchaToken) {
@@ -65,10 +75,7 @@ const LoginPageComponent: React.FC<Props> = ({
 
   const showPasswordForm = !projectConfig.saml_enforced && !projectConfig.disallow_password_login
   const isMagicOnly = projectConfig.disallow_password_login
-  const alerts: AuthAlertItem[] = [
-    ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
-  ]
+  const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
   const { brand, feature, footer } = buildAuthChrome(projectConfig)
   const spaLink = (to: string) => ({
@@ -83,7 +90,7 @@ const LoginPageComponent: React.FC<Props> = ({
     <>
       {projectConfig.saml_login_allowed && (
         <Button
-          scheme="primary"
+          color="primary"
           variant={projectConfig.saml_enforced ? 'solid' : 'outlined'}
           size="large"
           href="/users/saml/sign_in"
@@ -94,7 +101,7 @@ const LoginPageComponent: React.FC<Props> = ({
       )}
       {projectConfig.magic_link_enabled && (
         <Link to="/users/magic_links/sign_in">
-          <Button scheme="primary" variant="outlined" size="large" block>{I18n.t('auth.login.magic_link_btn')}</Button>
+          <Button color="primary" variant="outlined" size="large" block>{I18n.t('auth.login.magic_link_btn')}</Button>
         </Link>
       )}
     </>
@@ -103,7 +110,7 @@ const LoginPageComponent: React.FC<Props> = ({
   const prompt = showPasswordForm && !projectConfig.hide_signup ? (
     <>
       {`${I18n.t('auth.login.not_member')} `}
-      <Button scheme="primary" variant="link" {...spaLink('/users/sign_up')}>
+      <Button color="primary" variant="link" {...spaLink('/users/sign_up')}>
         {I18n.t('enduser.login_sign_up_link')}
       </Button>
     </>
@@ -150,12 +157,12 @@ const LoginPageComponent: React.FC<Props> = ({
         ) : null}
         {showPasswordForm && !isEmailStep ? (
           <Flex justify="flex-end" style={{ marginBlockEnd: 12 }}>
-            <Button scheme="primary" variant="link" {...spaLink('/users/password/new')}>
+            <Button color="primary" variant="link" {...spaLink('/users/password/new')}>
               {I18n.t('auth.login.forgot_password')}
             </Button>
           </Flex>
         ) : null}
-        <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
+        <Button color="primary" variant="solid" size="large" htmlType="submit" loading={submitting} block>
           {submitBtnText}
         </Button>
       </Form>

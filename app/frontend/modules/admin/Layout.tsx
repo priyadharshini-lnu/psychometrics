@@ -9,7 +9,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { AdminShell } from '~/components/AdminShell'
 import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
-import { PageFallback } from '~/components/PageFallback'
+import { PageFallback, PageHoldArea } from '~/components/PageFallback'
 import routes from './routes'
 import assessorRoutes from './modules/AssessorApp/routes'
 import assessorSettings from './modules/AssessorApp/settings'
@@ -47,10 +47,13 @@ const RoutedPage: React.FC = () => {
   return (
     // Two urls can share one route id - `norms/1/editor` and `norms/2/editor` - so the url says the user moved on.
     <RouteErrorBoundary resetKey={pathname}>
-      {/* A page may still React.lazy inside itself; without this the nearest boundary would blank the whole shell. */}
-      <Suspense fallback={<PageFallback />}>
-        <Outlet />
-      </Suspense>
+      {/* Above every page's own chrome: a page waiting on data holds its tab strip back, not spins under it. */}
+      <PageHoldArea>
+        {/* A page may still React.lazy inside itself; the nearest boundary would blank the whole shell. */}
+        <Suspense fallback={<PageFallback />}>
+          <Outlet />
+        </Suspense>
+      </PageHoldArea>
     </RouteErrorBoundary>
   )
 }
@@ -69,7 +72,8 @@ const Main: React.FC = () => (
 const pageArea = (children: RouteObject[]): RouteObject => ({
   element: <RoutedPage />,
   errorElement: <RouteErrorCard />,
-  hydrateFallbackElement: <PageFallback />,
+  // No delay on a cold start: the splash has just been removed, so anything held back is a blank page.
+  hydrateFallbackElement: <PageFallback delay={0} />,
   children,
 })
 

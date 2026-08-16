@@ -2914,10 +2914,10 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
-"@thetalententerprise/glint@0.58.0":
-  version "0.58.0"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/glint/0.58.0/a9f0c01db179197e0dbd69c8119fac421384c566#a9f0c01db179197e0dbd69c8119fac421384c566"
-  integrity sha512-iPst8oFD2q2lMoOZUz3IvTmesjI7tZbWCChscZUP0joB0AFTk/mu3nLEAGb5bT01CwpmoiffaIA/BRRt4zMBrQ==
+"@thetalententerprise/glint@0.63.0":
+  version "0.63.0"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/glint/0.63.0/c2e59a19021af5bf9e7e2b52a7d1200c8de3cd5d#c2e59a19021af5bf9e7e2b52a7d1200c8de3cd5d"
+  integrity sha512-Cdnfy3Gi0A75DZXxQ/TF/HcqE/py20avfMfmi0VO2hGDezVca4h4xO3U8+bO8rnd8+dlOQXLfEBkopQdj3HeBQ==
   dependencies:
     "@ant-design/colors" "^8.0.1"
     "@ant-design/icons" "^6.3.2"
@@ -5209,13 +5209,6 @@ domhandler@^5.0, domhandler@^5.0.2, domhandler@^5.0.3:
   integrity sha512-cgwlv/1iFQiFnU96XXgROh8xTeetsnJiDsTc7TYCLFd9+/WNkIqPTxiM/8pSd8VIrhXGTf1Ny1q1hquVqDJB5w==
   dependencies:
     domelementtype "^2.3.0"
-
-dompurify@3.4.12:
-  version "3.4.12"
-  resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/dompurify/-/dompurify-3.4.12.tgz#6fa2265e9bbdce882c4ace4107626051b448ffa8"
-  integrity sha512-zQvGet8Z2sWbQhCmfFz/T5QWH2oBmjnqK3qvOjaqaNLrLEF912WamU+ohnTp0TCep/MFVHpdJuCZEdFOdTnEFg==
-  optionalDependencies:
-    "@types/trusted-types" "^2.0.7"
 
 dompurify@3.4.13:
   version "3.4.13"

@@ -20,7 +20,7 @@ const deferred = <T, >() => {
 const mountInto = (node: JSX.Element) => {
   const container = document.body.appendChild(document.createElement('div'))
   const root = createRoot(container)
-  const skeleton = () => container.querySelector('[role="status"]')
+  const skeleton = () => container.querySelector('output, [role="status"]')
 
   return {
     container,
@@ -57,7 +57,7 @@ const setup = () => {
 
   const container = document.body.appendChild(document.createElement('div'))
   const root = createRoot(container)
-  const skeleton = () => container.querySelector('[role="status"]')
+  const skeleton = () => container.querySelector('output, [role="status"]')
 
   const mount = async () => {
     act(() => { root.render(<RouterProvider router={router} />) })

@@ -26,13 +26,16 @@ module PsyGlobalStateHelper
   end
   # rubocop:enable Rails/HelperInstanceVariable
 
-  # Shell pages paint the brand backdrop (Marsh pattern on a scheme-picked surface) from the first byte.
+  # The brand backdrop: Marsh pattern over a scheme-picked surface. Shared with the splash partial,
+  # which paints it itself on layouts where `react_shell?` is false and the html carries no background.
+  def brand_backdrop_style
+    "background: light-dark(#F7F4EF, #061047) url(#{image_url('marsh-pattern.png')}) center / cover no-repeat"
+  end
+
+  # Shell pages paint the brand backdrop from the first byte.
   def shell_html_style
     style = 'color-scheme: light dark'
-    if react_shell?
-      pattern = image_url('marsh-pattern.png')
-      style += "; background: light-dark(#F7F4EF, #061047) url(#{pattern}) center / cover no-repeat"
-    end
+    style += "; #{brand_backdrop_style}" if react_shell?
     style
   end
 

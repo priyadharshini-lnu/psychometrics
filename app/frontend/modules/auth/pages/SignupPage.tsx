@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -10,7 +10,7 @@ import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { RootState } from '../core/reducers'
 import { buildAuthChrome } from './AuthChrome'
 import { AuthField } from './AuthField'
-import { flashAlerts } from './flashAlerts'
+import { useFlashToasts } from './useFlashToasts'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -22,6 +22,7 @@ const SignupPageComponent: React.FC<Props> = ({
   csrfToken, user, errors, flash, projectConfig,
 }) => {
   const formRef = useRef<HTMLFormElement | null>(null)
+  const [submitting, setSubmitting] = useState(false)
   const navigate = useNavigate()
 
   const { recaptchaToken, recaptchaReady, recaptchaWidgetId } = useRecaptcha({
@@ -29,8 +30,15 @@ const SignupPageComponent: React.FC<Props> = ({
     disable_recaptcha,
   })
 
+  useFlashToasts(flash)
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (submitting) {
+      e.preventDefault()
+      return
+    }
     formRef.current = e.currentTarget
+    setSubmitting(true)
     try {
       Object.keys(localStorage)
         .filter(key => key.startsWith('verificationToken_'))
@@ -42,13 +50,13 @@ const SignupPageComponent: React.FC<Props> = ({
           window.grecaptcha.execute(recaptchaWidgetId.current)
         }
       }
-    } catch (err) { /* empty */ }
+    } catch (err) {
+      // A throw after the preventDefault above leaves no post in flight, so the button must stop.
+      setSubmitting(false)
+    }
   }
 
-  const alerts: AuthAlertItem[] = [
-    ...flashAlerts(flash),
-    ...(errors.base || []).map(value => ({ type: 'error' as const, title: value })),
-  ]
+  const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
   const showRegistrationCode = !user.sms_invite_code
     && (!user.registration_code || (errors.registration_code || []).length > 0)
 
@@ -64,7 +72,7 @@ const SignupPageComponent: React.FC<Props> = ({
   const prompt = (
     <>
       {`${I18n.t('auth.registration.have_account')} `}
-      <Button scheme="primary" variant="link" {...spaLink('/users/sign_in')}>
+      <Button color="primary" variant="link" {...spaLink('/users/sign_in')}>
         {I18n.t('enduser.signup_sign_in_link')}
       </Button>
     </>
@@ -143,7 +151,7 @@ const SignupPageComponent: React.FC<Props> = ({
               />
             ) : null}
             <div style={{ marginBlockEnd: 16 }}>{terms}</div>
-            <Button scheme="primary" variant="solid" size="large" htmlType="submit" block>
+            <Button color="primary" variant="solid" size="large" htmlType="submit" loading={submitting} block>
               {I18n.t('auth.sign_up')}
             </Button>
           </Form>

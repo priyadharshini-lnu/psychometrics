@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Row, Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space, Drawer, Empty,
+  Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space, Drawer, Empty,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
 import { useParams, useNavigate } from 'react-router-dom'
@@ -249,172 +249,170 @@ export const UserDetails: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between">
-        <PageHeader
-          ghost={false}
-          title={user.fullName}
-          subTitle={user.email}
-          extra={user.permissions.remove && [
-            <Button key="3" onClick={() => handleDelete()}>
-              {I18n.t('shared.remove')}
-            </Button>,
-          ]}
-        >
-          <Descriptions size="small" column={3}>
-            <Descriptions.Item label={I18n.t('admin.campaigns_users_is_active')}>
-              <Switch
-                checked={user.active}
-                disabled={!user.permissions.toggleStatus}
-                onChange={
-                  () => {
-                    toggleActive(campaignId, parsedUserId, { updateInListing: false })
-                  }
+      <PageHeader
+        ghost={false}
+        title={user.fullName}
+        subTitle={user.email}
+        extra={user.permissions.remove && [
+          <Button key="3" onClick={() => handleDelete()}>
+            {I18n.t('shared.remove')}
+          </Button>,
+        ]}
+      >
+        <Descriptions size="small" column={3}>
+          <Descriptions.Item label={I18n.t('admin.campaigns_users_is_active')}>
+            <Switch
+              checked={user.active}
+              disabled={!user.permissions.toggleStatus}
+              onChange={
+                () => {
+                  toggleActive(campaignId, parsedUserId, { updateInListing: false })
                 }
-              />
+              }
+            />
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('admin.campaigns')}>
+            {userCampaigns()}
+          </Descriptions.Item>
+          {assessmentStatuses && (
+            <Descriptions.Item label={I18n.t('campaign_users.assessments.progress')}>
+              {_.map(assessmentStatuses, (value, status) => (
+                <Tag key={status} color={statusToColor[status]}>
+                  {`${value}
+                  ${I18n.t(`campaign_assessment.statuses.${status}`)}`}
+                </Tag>
+              ))}
             </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('admin.campaigns')}>
-              {userCampaigns()}
-            </Descriptions.Item>
-            {assessmentStatuses && (
-              <Descriptions.Item label={I18n.t('campaign_users.assessments.progress')}>
-                {_.map(assessmentStatuses, (value, status) => (
-                  <Tag key={status} color={statusToColor[status]}>
-                    {`${value}
-                    ${I18n.t(`campaign_assessment.statuses.${status}`)}`}
-                  </Tag>
-                ))}
-              </Descriptions.Item>
-            )}
-            <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
-              <Tag key={status} color={statusToColor[user.completionStatus]}>
-                {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
-              </Tag>
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('shared.status')}>
-              {user.additionalTime && user.status === 'interrupted'
-                && (
-                  <span className="prs">
-                    {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
-                  </span>
-                )}
-              <Tag key={status} color={statusToColor[user.status]}>
-                {I18n.t(`campaign_users.details.statuses.${user.status}`)}
-              </Tag>
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>
-              {user.lastSignInAt || I18n.t('campaign_users.details.not_logged_in_yet')}
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('shared.created_at')}>
-              {user.createdAt}
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
-              <Space align="center">
-                <span>
-                  {user.manager?.name && (
-                    <>
-                      {user.manager.name}
-                      {' '}
-                      (
-                      {user.manager.email}
-                      )
-                    </>
-                  )}
+          )}
+          <Descriptions.Item label={I18n.t('campaign_users.details.completion_status')}>
+            <Tag key={status} color={statusToColor[user.completionStatus]}>
+              {I18n.t(`frontend.campaign.users.completion_statuses.${user.completionStatus}`)}
+            </Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('shared.status')}>
+            {user.additionalTime && user.status === 'interrupted'
+              && (
+                <span className="prs">
+                  {`+ ${Math.round(user.additionalTime / 60)} ${I18n.t('common.text.minutes')}`}
                 </span>
-                <Button size="small">
-                  <EditOutlined
-                    onClick={() => openModal('AssignManagerFormModal', {
-                      projectId,
-                      campaignId: parsedCampaignId,
-                      userId,
-                      manager: user.manager,
-                    })
-                    }
-                  />
-                </Button>
-              </Space>
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('admin.level')}>
-              <Space align="center">
-                <span>{user.level && I18n.t(`admin.level_${user.level}`)}</span>
-                <Button size="small">
-                  <EditOutlined
-                    onClick={() => openModal('EditLevelFormModal', {
-                      campaignId: parsedCampaignId,
-                      userId: parsedUserId,
-                      level: user.level,
-                    })
-                    }
-                  />
-                </Button>
-              </Space>
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('admin.current_job_role')}>
-              <Space align="center">
-                <span>{user.currentJobRole?.name}</span>
-                <Button size="small">
-                  <EditOutlined onClick={handleEditJobRole} />
-                </Button>
-              </Space>
-            </Descriptions.Item>
-            <Descriptions.Item label={I18n.t('admin.target_job_role')}>
-              <Space align="center">
-                <span>{user.targetJobRole?.name}</span>
-                <Button size="small">
-                  <EditOutlined onClick={handleEditJobRole} />
-                </Button>
-              </Space>
-            </Descriptions.Item>
-            {canExtendTime && (
-              <>
-                <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
-                  <span className="prs">{user.additionalTime}</span>
-                  <Button
-                    danger
-                    size="small"
-                    onClick={() => openModal('UpdateCampaignTimeModal', {
-                      campaignId: parsedCampaignId,
-                      userId: parsedUserId,
-                      updateAdditionalTime: extendTime,
-                    })}
-                  >
-                    <PlusOutlined />
-                    <span>{I18n.t('campaign_users.actions.extend_time')}</span>
-                  </Button>
-                </Descriptions.Item>
-                <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
-                  {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
-                </Descriptions.Item>
-                <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
-                  {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
-                </Descriptions.Item>
-              </>
-            )}
-            {user.hoganId && (
-              <Descriptions.Item label={I18n.t('campaign_users.details.hogan_id')}>
-                <>
-                  {user.hoganId}
-                  {' '}
-                  (
-                  {user.hoganProvider}
-                  )
-                </>
-                <Button size="small">
-                  <PlusOutlined
-                    onClick={() => openModal('CreateHoganCredentialsModal', {
-                      email: user.email,
-                      campaignId,
-                      parsedUserId,
-                      handleCreateHoganCredentials,
-                      userAssessments: user.userAssessments,
-                      userReports: user.userReports,
-                    })}
-                  />
+              )}
+            <Tag key={status} color={statusToColor[user.status]}>
+              {I18n.t(`campaign_users.details.statuses.${user.status}`)}
+            </Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('campaign_users.details.last_login')}>
+            {user.lastSignInAt || I18n.t('campaign_users.details.not_logged_in_yet')}
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('shared.created_at')}>
+            {user.createdAt}
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('campaign_users.details.manager')}>
+            <Space align="center">
+              <span>
+                {user.manager?.name && (
+                  <>
+                    {user.manager.name}
+                    {' '}
+                    (
+                    {user.manager.email}
+                    )
+                  </>
+                )}
+              </span>
+              <Button size="small">
+                <EditOutlined
+                  onClick={() => openModal('AssignManagerFormModal', {
+                    projectId,
+                    campaignId: parsedCampaignId,
+                    userId,
+                    manager: user.manager,
+                  })
+                  }
+                />
+              </Button>
+            </Space>
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('admin.level')}>
+            <Space align="center">
+              <span>{user.level && I18n.t(`admin.level_${user.level}`)}</span>
+              <Button size="small">
+                <EditOutlined
+                  onClick={() => openModal('EditLevelFormModal', {
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    level: user.level,
+                  })
+                  }
+                />
+              </Button>
+            </Space>
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('admin.current_job_role')}>
+            <Space align="center">
+              <span>{user.currentJobRole?.name}</span>
+              <Button size="small">
+                <EditOutlined onClick={handleEditJobRole} />
+              </Button>
+            </Space>
+          </Descriptions.Item>
+          <Descriptions.Item label={I18n.t('admin.target_job_role')}>
+            <Space align="center">
+              <span>{user.targetJobRole?.name}</span>
+              <Button size="small">
+                <EditOutlined onClick={handleEditJobRole} />
+              </Button>
+            </Space>
+          </Descriptions.Item>
+          {canExtendTime && (
+            <>
+              <Descriptions.Item label={I18n.t('campaign_users.details.additional_time')}>
+                <span className="prs">{user.additionalTime}</span>
+                <Button
+                  danger
+                  size="small"
+                  onClick={() => openModal('UpdateCampaignTimeModal', {
+                    campaignId: parsedCampaignId,
+                    userId: parsedUserId,
+                    updateAdditionalTime: extendTime,
+                  })}
+                >
+                  <PlusOutlined />
+                  <span>{I18n.t('campaign_users.actions.extend_time')}</span>
                 </Button>
               </Descriptions.Item>
-            )}
-          </Descriptions>
-        </PageHeader>
-      </Row>
+              <Descriptions.Item label={I18n.t('campaign_users.details.started_at')}>
+                {user.startedAt || I18n.t('campaign_users.details.not_started_yet')}
+              </Descriptions.Item>
+              <Descriptions.Item label={I18n.t('campaign_users.details.completed_at')}>
+                {user.completedAt || I18n.t('campaign_users.details.not_completed_yet')}
+              </Descriptions.Item>
+            </>
+          )}
+          {user.hoganId && (
+            <Descriptions.Item label={I18n.t('campaign_users.details.hogan_id')}>
+              <>
+                {user.hoganId}
+                {' '}
+                (
+                {user.hoganProvider}
+                )
+              </>
+              <Button size="small">
+                <PlusOutlined
+                  onClick={() => openModal('CreateHoganCredentialsModal', {
+                    email: user.email,
+                    campaignId,
+                    parsedUserId,
+                    handleCreateHoganCredentials,
+                    userAssessments: user.userAssessments,
+                    userReports: user.userReports,
+                  })}
+                />
+              </Button>
+            </Descriptions.Item>
+          )}
+        </Descriptions>
+      </PageHeader>
       <Tabs
         activeKey={tab}
         onChange={changeTab}
