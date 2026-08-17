@@ -227,6 +227,13 @@ const renderRuntimeInput = (parameter: RuntimeParameter, form: FormInstance) => 
   }
 }
 
+const MetaItem: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+  <Flex gap={4} wrap={false}>
+    <Text type="secondary">{label}</Text>
+    <Text strong>{value}</Text>
+  </Flex>
+)
+
 const RunReportModal: React.FC<Props> = ({
   report,
   open,
@@ -300,17 +307,14 @@ const RunReportModal: React.FC<Props> = ({
 
           <Divider />
 
-          <Flex align="center" gap={12}>
-            <Text type="secondary">{I18n.t('admin.report_type')}</Text>
-            <Text strong>{formatReportType(report.reportType)}</Text>
+          <Flex align="center" gap={12} wrap="wrap">
+            <MetaItem label={I18n.t('admin.report_type')} value={formatReportType(report.reportType)} />
             <Divider type="vertical" />
-            <Text type="secondary">{I18n.t('admin.scope')}</Text>
-            <Text strong>{formatReportScope(report.scope)}</Text>
+            <MetaItem label={I18n.t('admin.scope')} value={formatReportScope(report.scope)} />
             {report.owner?.name && (
               <>
                 <Divider type="vertical" />
-                <Text type="secondary">{I18n.t('admin.owner_label')}</Text>
-                <Text strong>{report.owner.name}</Text>
+                <MetaItem label={I18n.t('admin.report_owner')} value={report.owner.name} />
               </>
             )}
           </Flex>

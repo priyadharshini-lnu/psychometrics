@@ -2354,6 +2354,7 @@ en:
     report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
     report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
     report_on_hold: Report for %{user} is currently on hold
+    report_owner: Owner
     report_pdf_status: Report PDF Status
     report_review_abort_qc: Abort QC
     report_review_approve: Approve
