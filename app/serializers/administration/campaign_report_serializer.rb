@@ -6,14 +6,14 @@ module Administration
                :effective_default_language, :user_dashboard, :main_report, :auto_assign, :available_languages,
                :report_locales, :internal, :custom_upload, :assessment_ids, :report_provider,
                :user_report_id,
-               :external_settings, :status
+               :owner,
+               :external_settings, :status, :tenant_id
 
-    delegate :name, to: :report
-    delegate :name, to: :report_family, prefix: true
-    delegate :provider, to: :report, prefix: true
-    delegate :external_settings, to: :report
-
-    delegate :assessment_ids, to: :report
+    delegate :name, to: :report, allow_nil: true
+    delegate :name, to: :report_family, prefix: true, allow_nil: true
+    delegate :provider, to: :report, prefix: true, allow_nil: true
+    delegate :external_settings, to: :report, allow_nil: true
+    delegate :tenant_id, to: :report, allow_nil: true
 
     def permissions
       GetPermissionsHash.call!(
@@ -31,8 +31,16 @@ module Administration
       )
     end
 
+    def available_languages
+      object.available_languages || []
+    end
+
+    def assessment_ids
+      report&.assessment_ids || []
+    end
+
     def custom_upload
-      report.provider_custom_upload?
+      report&.provider_custom_upload?
     end
 
     def user_report_id
@@ -43,6 +51,12 @@ module Administration
       user_report_for_status&.status
     end
 
+    def owner
+      return unless report&.owner
+
+      { id: report.owner.id, name: report.owner.name }
+    end
+
     private
 
     def current_user
@@ -50,23 +64,25 @@ module Administration
     end
 
     def report
-      object.report
+      object&.report
     end
 
     def internal
-      report.provider_internal?
+      report&.provider_internal?
     end
 
     def report_locales
+      return [] unless report
+
       [report.default_language] + report.other_languages
     end
 
     def report_family
-      object.report_family
+      object&.report_family
     end
 
     def user_report_for_status
-      object.user_reports.first
+      object&.user_reports&.first
     end
   end
 end

@@ -9,6 +9,7 @@ export const get = (state: RootState) => _.get(state, ['campaigns', 'campaignAss
 interface Assessment {
   id: number
   name: string
+  tenantId?: number | null
 }
 type State = Assessment[]
 

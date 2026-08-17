@@ -25,6 +25,7 @@ type ExternalSettings = {
 type UserReportWithExternalSettings = UserReport & {
   externalSettings?: ExternalSettings
   external_settings?: ExternalSettings
+  owner?: { id: string; name: string } | null
 }
 
 interface Props {
@@ -137,6 +138,12 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
             contentStyle={{ width: '60%' }}
           >
             {report.id}
+          </Descriptions.Item>
+          <Descriptions.Item
+            label={I18n.t('common.column.owner')}
+            className="va-t"
+          >
+            {reportWithExternalSettings.owner?.name || I18n.t('admin.tte')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('admin.assessment_ids')}

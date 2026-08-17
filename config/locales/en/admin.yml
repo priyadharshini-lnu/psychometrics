@@ -201,6 +201,8 @@ en:
     assessor_add_subject_modal_subject: Subject
     assessor_add_subject_modal_subject_placeholder: Search subject..
     assessor_add_subject_modal_title: Add subject
+    assessor_assessment_drawer_title: Assessment Details
+    assessor_assessment_id: Assessor Assessment ID
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Select an Assessment
     assessor_assessment_name: Assessor Assessment
     assessor_assessments: Assessor Assessments

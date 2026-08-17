@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { camelizeKeys } from '~/utils/object'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -58,6 +59,7 @@ const ReportList: React.FC<Props> = ({
           pagination={false}
           rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
           scroll={{ x: 'max-content' }}
+          onRow={getTenantRowAttributes}
         >
           <Column
             title={I18n.t('common.column.id')}

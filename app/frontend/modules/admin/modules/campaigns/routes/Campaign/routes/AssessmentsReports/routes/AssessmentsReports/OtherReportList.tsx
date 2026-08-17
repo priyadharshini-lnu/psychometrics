@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Table, MenuProps, Row, Col, App, Pagination,
 } from 'antd'
@@ -7,6 +7,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import {
   fetchOtherReports,
   getOther,
@@ -18,6 +19,7 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { DetailsDrawer, DrawerReport } from './ReportList/DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
@@ -52,6 +54,7 @@ const OtherReportListComponent: React.FC<Props> = ({
   exportData,
   onTableChange,
 }) => {
+  const [drawerReport, setDrawerReport] = useState<DrawerReport | undefined>()
   useEffect(() => {
     fetchOtherReports(campaignId, tableConfig)
   }, [tableConfig.page])
@@ -77,6 +80,7 @@ const OtherReportListComponent: React.FC<Props> = ({
             dataSource={list}
             pagination={false}
             onChange={onTableChange}
+            onRow={getTenantRowAttributes}
           >
             <Column
               title={I18n.t('common.column.id')}
@@ -87,6 +91,11 @@ const OtherReportListComponent: React.FC<Props> = ({
               title={I18n.t('campaign_report.column.report_name')}
               key="name"
               dataIndex="name"
+              render={(text, report) => (
+                <a onClick={() => setDrawerReport(report as DrawerReport)}>
+                  {text}
+                </a>
+              )}
             />
 
             <Column
@@ -124,6 +133,13 @@ const OtherReportListComponent: React.FC<Props> = ({
           />
         </Col>
       </Row>
+      {!!drawerReport && (
+        <DetailsDrawer
+          close={() => setDrawerReport(undefined)}
+          report={drawerReport}
+          isOtherReport
+        />
+      )}
     </>
   )
 }

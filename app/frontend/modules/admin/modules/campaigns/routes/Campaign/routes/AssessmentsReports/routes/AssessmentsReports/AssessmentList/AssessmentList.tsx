@@ -11,6 +11,7 @@ import { PropsFromRedux } from './connect'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import { DetailsDrawer } from './DetailsDrawer'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import BulkDownloadAssessmentsModal, { ExportType } from './BulkDownloadAssessmentsModal'
 
 const { Column } = Table
@@ -187,6 +188,7 @@ const AssessmentList: React.FC<Props> = ({
               disabled: !hasAnyExportPermission(record),
             }),
           }}
+          onRow={getTenantRowAttributes}
         >
           <Column
             title={I18n.t('common.column.id')}

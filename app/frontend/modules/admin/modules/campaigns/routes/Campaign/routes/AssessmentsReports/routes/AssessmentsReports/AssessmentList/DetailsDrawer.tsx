@@ -90,6 +90,13 @@ export const DetailsDrawer: FC<Props> = ({
             {assessment.name}
           </Descriptions.Item>
           <Descriptions.Item
+            label={I18n.t('common.column.owner')}
+            key="owner"
+            className="va-t"
+          >
+            {assessment.owner?.name || I18n.t('admin.tte')}
+          </Descriptions.Item>
+          <Descriptions.Item
             label={I18n.t('campaign_assessment.column.dimension_id')}
             key="dimension_id"
             className="va-t"

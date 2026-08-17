@@ -91,6 +91,12 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
       request={{
         createResource: values => addAssessorAssessment({
           ...values,
+        }, {
+          apiConfig: {
+            query: {
+              tenant_id: String(campaignTenantId),
+            },
+          },
         }),
       }}
     >
