@@ -163,6 +163,32 @@ describe Tenantable do
       end
     end
 
+    context 'when a tenant_source FK is assigned after creation' do
+      it 'resolves tenant_id when the source association FK changes' do
+        assistant = create(:assistant)
+        user = create(:user)
+        session = AI::AssistedUserSession.create!(user: create(:user), assistable: campaign_a, resource: nil)
+        expect(session.tenant_id).to eq(tenant_a.id)
+
+        chat = AI::AssistantChat.create!(ai_assistant: assistant, user: user)
+        expect(chat.tenant_id).to be_nil
+
+        chat.update!(ai_assisted_user_session: session)
+
+        expect(chat.reload.tenant_id).to eq(tenant_a.id)
+      end
+
+      it 'does not re-resolve when an unrelated column changes' do
+        assistant = create(:assistant)
+        user = create(:user, project: project_a)
+        chat = AI::AssistantChat.create!(ai_assistant: assistant, user: user)
+        expect(chat.tenant_id).to eq(tenant_a.id)
+
+        expect { chat.update!(model_id: 'gpt-4o') }.
+          not_to(change { chat.reload.tenant_id })
+      end
+    end
+
     it 'does not overwrite an already-set tenant_id' do
       campaign = create(:campaign, project: project_a)
       expect(campaign.tenant_id).to eq(tenant_a.id)

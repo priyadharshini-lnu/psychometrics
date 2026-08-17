@@ -20680,7 +20680,7 @@ ALTER TABLE ONLY public.campaign_assessment_groups
 --
 
 ALTER TABLE ONLY public.ai_assistant_chats
-    ADD CONSTRAINT fk_rails_15a36d90ff FOREIGN KEY (ai_assisted_user_session_id) REFERENCES public.ai_assisted_user_sessions(id);
+    ADD CONSTRAINT fk_rails_15a36d90ff FOREIGN KEY (ai_assisted_user_session_id) REFERENCES public.ai_assisted_user_sessions(id) ON DELETE CASCADE;
 
 
 --
@@ -25178,6 +25178,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260812000002'),
+('20260812000001'),
 ('20260810120000'),
 ('20260804113153'),
 ('20260727122651'),
