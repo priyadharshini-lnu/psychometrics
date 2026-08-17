@@ -24,6 +24,8 @@ export const COPY = 'resource/campaign/COPY'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
 export const PDF_PASSWORD = 'campaigns/FETCH_PDF_PASSWORD'
 export const FETCH_NAME_TRANSLATIONS = 'campaigns/FETCH_NAME_TRANSLATIONS'
+export const EXPORT_CAMPAIGN_TRANSLATIONS = 'campaigns/EXPORT_CAMPAIGN_TRANSLATIONS'
+export const IMPORT_CAMPAIGN_TRANSLATIONS = 'campaigns/IMPORT_CAMPAIGN_TRANSLATIONS'
 
 export const fetch = (projectId: number, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -70,6 +72,24 @@ export const fetchNameTranslations = (
       locales: locales.filter(Boolean),
     },
     typedResponse: FetchNameTranslationsResponseTR,
+  },
+})
+
+export const exportCampaignTranslations = (projectId: number) => ({
+  type: EXPORT_CAMPAIGN_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/new_campaigns/export_campaign_translations`,
+  },
+})
+
+export const importCampaignTranslations = (projectId: number, data: FormData) => ({
+  type: IMPORT_CAMPAIGN_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/new_campaigns/import_campaign_translations`,
+    body: data,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

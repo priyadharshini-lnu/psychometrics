@@ -94,6 +94,8 @@ class AdminJob < ApplicationJob
     import_proficiency_level_translations: AdminJobs::ImportProficiencyLevelTranslationsJob,
     import_job_roles_translations: AdminJobs::ImportJobRolesTranslations,
     export_job_roles_translations: AdminJobs::ExportJobRolesTranslations,
+    export_campaign_translations: AdminJobs::ExportCampaignTranslationsJob,
+    import_campaign_translations: AdminJobs::ImportCampaignTranslationsJob,
     export_reflection_questions: AdminJobs::ExportReflectionQuestionsJob,
     import_reflection_questions: AdminJobs::ImportReflectionQuestionsJob,
     export_dashboard_as_file: AdminJobs::ExportDashboardAsFile,

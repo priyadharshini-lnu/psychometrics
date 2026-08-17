@@ -46,6 +46,11 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
     children: exportMenuItems,
   })
 
+  permissions.canManageProject && menuItems.push({
+    key: 'bulkImportTranslations',
+    label: I18n.t('administration.campaigns.bulk_import_translations.menu_label'),
+  })
+
   const exportWorkshopStatus = (id, body): Promise<unknown> => memberAction({
     id,
     action: 'workshop_status_export',
@@ -87,6 +92,11 @@ const ToolsDropdown: FC<Props> = ({ permissions, openModal }) => {
         id: projectId,
         action: exportCompactCompletionStatus,
         onSuccess: () => message.success(I18n.t('admin.export_completion_statuses_scheduled')),
+      })
+    }
+    if (key === 'bulkImportTranslations') {
+      openModal('BulkImportCampaignTranslationsModal', {
+        projectId: Number(projectId),
       })
     }
   }

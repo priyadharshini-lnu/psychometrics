@@ -480,6 +480,8 @@ Rails.application.routes.draw do
             collection do
               get :templates_and_assessment
               post :search_users
+              post :export_campaign_translations
+              post :import_campaign_translations
             end
 
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'

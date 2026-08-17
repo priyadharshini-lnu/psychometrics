@@ -131,6 +131,30 @@ module Administration
         })
       end
 
+      def export_campaign_translations
+        audit! :export_campaign_translations, nil, user: current_user, project: project,
+          payload: { project_id: project.id }
+        AdminJob.call(:export_campaign_translations, { project_id: project.id }, current_user)
+
+        render json: :ok
+      end
+
+      def import_campaign_translations
+        form = ::Api::V2::Administration::CampaignTranslationImportForm.new(
+          file: params[:file],
+          project_id: project.id
+        )
+
+        if form.valid?
+          audit! :import_campaign_translations, nil, user: current_user, project: project,
+            payload: { project_id: project.id, row_count: form.row_count }
+          AdminJob.call(:import_campaign_translations, { project_id: project.id }, current_user, form.processed_file)
+          render json: :ok
+        else
+          render json: { errors: form.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       def fetch_campaign_options
         campaign_options = @campaign.campaign_options
 
