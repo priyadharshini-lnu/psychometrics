@@ -3176,6 +3176,29 @@ en:
     taxonomy_title: Skills Taxonomy
     template_and_campaign_required: Please provide both template and campaign ID
     template_render_failed: Failed to render template
+    tenant_repair_confirm_message: 'Set tenant_id to %{new_tenant} on %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Set tenant_id to null on %{model} #%{id}?'
+    tenant_repair_confirm_title: Confirm Tenant Update
+    tenant_repair_correct: Correct
+    tenant_repair_current_tenant: Current Tenant
+    tenant_repair_find_record: Find Record
+    tenant_repair_global_tenant: global
+    tenant_repair_invalid_model: Invalid or non-tenantable model type
+    tenant_repair_invalid_record_id: Enter a valid record ID
+    tenant_repair_invalid_tenant_id: Enter a valid positive tenant ID or leave blank to make it null
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Type to search...
+    tenant_repair_moved_from: 'tenant changed:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: New Tenant ID
+    tenant_repair_preview_title: Record Preview
+    tenant_repair_request_failed: Request failed
+    tenant_repair_resolved_tenant: Resolved Tenant
+    tenant_repair_success: Tenant updated successfully.
+    tenant_repair_title: Tenant Correction
+    tenant_repair_update: Update
+    tenant_repair_will_set_null: Will set tenant_id to null
+    tenant_repair_will_set_value: Will set tenant_id to %{value}
     test_generate: Test Generate
     test_render: Test Render
     test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.

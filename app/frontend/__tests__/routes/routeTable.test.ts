@@ -163,6 +163,7 @@ describe('admin route table', () => {
       '/admin/data_reports/:id',
       '/admin/audit_logs',
       '/admin/audit_logs/record_trace',
+      '/admin/audit_logs/tenant_repair',
       '/admin/audit_logs/:id',
       '/admin/assessments',
       '/admin/assessments/(index)',

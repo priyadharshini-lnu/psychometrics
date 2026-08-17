@@ -12,6 +12,10 @@ const routes = [
     lazy: lazyRoute(page, m => m.RecordHistory),
   },
   {
+    path: 'audit_logs/tenant_repair',
+    lazy: lazyRoute(page, m => m.TenantRepair),
+  },
+  {
     path: 'audit_logs/:id',
     lazy: lazyRoute(page, m => m.AuditLogInfo),
   },

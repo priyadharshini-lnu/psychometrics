@@ -86,6 +86,9 @@ const RecordHistoryResponseTR = t.type({
 })
 
 export const RECORD_HISTORY_SEARCH_URL = '/api/v2/administration/record_change_histories/search'
+export const TENANT_REPAIR_PREVIEW_URL = '/api/v2/administration/tenant_repairs/preview'
+export const TENANT_REPAIR_UPDATE_TENANT_URL = '/api/v2/administration/tenant_repairs/update_tenant'
+export const TENANT_REPAIR_SEARCH_MODELS_URL = '/api/v2/administration/tenant_repairs/search_models'
 
 export const RecordHistorySearchStatusTR = t.type({
   status: t.string,

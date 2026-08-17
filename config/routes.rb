@@ -1933,6 +1933,14 @@ only: %i[index create update]
             end
           end
 
+          jsonapi_resources :tenant_repairs, only: [] do
+            collection do
+              get :search_models
+              get :preview
+              post :update_tenant
+            end
+          end
+
           namespace :ai do
             jsonapi_resources :assistants do
               jsonapi_relationships

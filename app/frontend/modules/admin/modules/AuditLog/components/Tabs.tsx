@@ -13,23 +13,35 @@ const AuditLogTabs: React.FC = () => {
   const currentUser = useSelector((state: RootState) => getCurrentUser(state))
 
   const isHistory = pathname.includes('/record_trace')
+  const isTenantRepair = pathname.includes('/tenant_repair')
 
   const menuItems = [
     { key: 'logs', label: I18n.t('admin.audit_logs') },
     ...(isSupportAdmin(currentUser)
-      ? [{ key: 'record_trace', label: I18n.t('admin.record_history_title') }]
+      ? [
+        { key: 'record_trace', label: I18n.t('admin.record_history_title') },
+        { key: 'tenant_repair', label: I18n.t('admin.tenant_repair_title') },
+      ]
       : []),
   ]
 
   const onSelect = ({ key }) => {
-    navigate(key === 'record_trace' ? '/admin/audit_logs/record_trace' : '/admin/audit_logs')
+    if (key === 'record_trace') navigate('/admin/audit_logs/record_trace')
+    else if (key === 'tenant_repair') navigate('/admin/audit_logs/tenant_repair')
+    else navigate('/admin/audit_logs')
   }
+
+  const activeKey = (() => {
+    if (isTenantRepair) return 'tenant_repair'
+    if (isHistory) return 'record_trace'
+    return 'logs'
+  })()
 
   return (
     <Menu
       items={menuItems}
       onSelect={onSelect}
-      selectedKeys={[isHistory ? 'record_trace' : 'logs']}
+      selectedKeys={[activeKey]}
       mode="horizontal"
     />
   )

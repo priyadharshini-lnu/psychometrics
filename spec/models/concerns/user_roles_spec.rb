@@ -73,7 +73,7 @@ describe UserRoles do
   end
 
   context '#support_admin?' do
-    let(:user) { create(:user, email: 'Support.Admin@Example.com') }
+    let(:user) { create(:superadmin, email: 'Support.Admin@Example.com') }
 
     it 'is true when the email is in the allowlist (case-insensitive)' do
       allow(Settings).to receive(:support_admins).and_return('other@example.com, support.admin@example.com')

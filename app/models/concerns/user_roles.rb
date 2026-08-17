@@ -100,6 +100,7 @@ module UserRoles
   end
 
   def support_admin?
+    return false unless superadmin?
     return false if email.blank?
 
     self.class.support_admin_emails.include?(email.strip.downcase)
