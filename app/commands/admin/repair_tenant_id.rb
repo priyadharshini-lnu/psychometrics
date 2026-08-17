@@ -43,7 +43,7 @@ module Admin
     def resolve_new_tenant_id!
       return nil if @new_tenant_id.blank?
 
-      Client.find(@new_tenant_id.to_i).id
+      Client.tenancies.find(@new_tenant_id.to_i).id
     end
   end
 end
