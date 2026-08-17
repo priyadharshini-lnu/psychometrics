@@ -16,7 +16,7 @@ module Tenantable
     after_commit :cascade_tenant_id_to_dependents, if: :saved_change_to_tenant_id?, on: :update
   end
 
-  TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id].freeze
+  TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id threesixty_campaign_id].freeze
   DEPENDENT_REGISTRY = Hash.new { |h, k| h[k] = [] }
 
   class_methods do
