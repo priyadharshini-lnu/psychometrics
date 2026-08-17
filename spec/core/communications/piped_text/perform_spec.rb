@@ -82,4 +82,50 @@ describe Communications::PipedText::Perform do
       expect(result).to eq('Description: Arabic description.')
     end
   end
+
+  describe 'Campaign piped text' do
+    let!(:campaign) { create(:campaign, name: 'English Campaign Name') }
+
+    before do
+      Mobility.with_locale(:ar) do
+        campaign.update!(name: 'Arabic Campaign Name')
+      end
+    end
+
+    it 'replaces campaign name piped text with the name in the current locale' do
+      result = I18n.with_locale(:en) do
+        described_class.call!(
+          'Campaign: ${c://Campaign/Field}.',
+          campaign: campaign,
+          user: create(:user)
+        )
+      end
+      expect(result).to eq('Campaign: English Campaign Name.')
+
+      result = I18n.with_locale(:ar) do
+        described_class.call!(
+          'Campaign: ${c://Campaign/Field}.',
+          campaign: campaign,
+          user: create(:user)
+        )
+      end
+      expect(result).to eq('Campaign: Arabic Campaign Name.')
+    end
+
+    it 'replaces campaign name piped text with the name in the explicitly passed locale' do
+      result = described_class.call!(
+        'Campaign: ${c://Campaign/Field?locale=en}.',
+        campaign: campaign,
+        user: create(:user)
+      )
+      expect(result).to eq('Campaign: English Campaign Name.')
+
+      result = described_class.call!(
+        'Campaign: ${c://Campaign/Field?locale=ar}.',
+        campaign: campaign,
+        user: create(:user)
+      )
+      expect(result).to eq('Campaign: Arabic Campaign Name.')
+    end
+  end
 end
