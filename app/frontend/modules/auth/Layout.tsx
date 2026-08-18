@@ -2,7 +2,7 @@
 import { CSSProperties } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import {
-  Layout, Row, Col, Space, theme,
+  Layout, Row, Col, Space, theme, Flex,
 } from 'antd'
 import { connect } from 'react-redux'
 import cs from 'classnames'
@@ -21,6 +21,33 @@ import { ManageCookiesButton } from '~/components/ManageCookiesButton'
 const { I18n } = window
 const { useToken } = theme
 const { DEFAULT_PRIMARY_COLOR, GREY_BORDER } = constants
+
+const ClientPrivacyLink = ({ config }) => {
+  const projectPrivacyLinkText = config.privacy_link_text ?? ''
+  const projectPrivacyLinkUrl = config.privacy_link_url ?? ''
+
+  return (
+    <Flex
+      align="center"
+      gap={8}
+      style={{
+        textAlign: 'center',
+      }}
+    >
+      <a
+        style={{
+          color: 'var(--ant-primary-color)',
+          cursor: 'pointer',
+        }}
+        href={projectPrivacyLinkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {projectPrivacyLinkText}
+      </a>
+    </Flex>
+  )
+}
 
 export const LayoutComponent = ({ config }) => {
   const { token } = useToken()
@@ -88,15 +115,29 @@ export const LayoutComponent = ({ config }) => {
             <Layout.Footer className={styles.footer}>
               <Space>
                 <img src={footerLogo} className={styles.footerLogo} alt={I18n.t('auth.lighthouse_logo_alt_text')} />
-                <div dangerouslySetInnerHTML={{
-                  __html: I18n.t('auth.privacy_notice_link',
-                    { privacy_url: `/privacy-statement?lang=${I18n.currentLocale()}` }),
-                }}
+                <div
+                  style={{
+                    textAlign: 'center',
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t('auth.privacy_notice_link',
+                      { privacy_url: `/privacy-statement?lang=${I18n.currentLocale()}` }),
+                  }}
                 />
-                <div dangerouslySetInnerHTML={{
-                  __html: I18n.t('auth.cookie_notice_link',
-                    { cookies_url: `/cookies-statement?lang=${I18n.currentLocale()}` }),
-                }}
+                {config.enable_privacy_link && (
+                  <ClientPrivacyLink config={config} />
+                )}
+                <div
+                  style={{
+                    whiteSpace: 'break-spaces',
+                    lineHeight: '22px',
+                    verticalAlign: 'text-top',
+                    textAlign: 'center',
+                  }}
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t('auth.cookie_notice_link',
+                      { cookies_url: `/cookies-statement?lang=${I18n.currentLocale()}` }),
+                  }}
                 />
                 <ManageCookiesButton />
               </Space>

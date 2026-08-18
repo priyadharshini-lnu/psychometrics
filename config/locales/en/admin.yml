@@ -537,6 +537,7 @@ en:
     created_successfully: AI Assistant was created successfully.
     current: Current
     current_job_role: Current Job Role
+    current_locale: Current Locale
     custom_formula: Custom Formula
     custom_message_description: This message can be sent to anyone participating in the assessment
     custom_message_name: Custom Message

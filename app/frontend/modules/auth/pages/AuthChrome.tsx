@@ -48,6 +48,31 @@ const MarshLighthouseBrand = () => {
   )
 }
 
+type ProjectPrivacyLinkProps = {
+  config: Config
+}
+
+const ClientPrivacyLink = ({ config }: ProjectPrivacyLinkProps) => {
+  const projectPrivacyLinkText = config.privacy_link_text ?? ''
+  const projectPrivacyLinkUrl = config.privacy_link_url ?? ''
+
+  return (
+    <Flex align="center" gap="large">
+      <Typography.Text type="secondary" style={SMALL_PRINT}>
+        <span>
+          <a
+            href={projectPrivacyLinkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {projectPrivacyLinkText}
+          </a>
+        </span>
+      </Typography.Text>
+    </Flex>
+  )
+}
+
 export const buildAuthChrome = (config: Config) => {
   const brand = (
     <>
@@ -76,7 +101,7 @@ export const buildAuthChrome = (config: Config) => {
           <img height={32} src={config.secondary_logo} alt="" />
         ) : null}
       </Flex>
-      <Flex component="nav" wrap align="center" gap="large">
+      <Flex component="nav" wrap align="center" gap="medium">
         <Typography.Text type="secondary" style={SMALL_PRINT}>
           <span
             dangerouslySetInnerHTML={{
@@ -86,6 +111,9 @@ export const buildAuthChrome = (config: Config) => {
             }}
           />
         </Typography.Text>
+        {config.enable_privacy_link && (
+          <ClientPrivacyLink config={config} />
+        )}
         <Typography.Text type="secondary" style={SMALL_PRINT}>
           <span
             dangerouslySetInnerHTML={{

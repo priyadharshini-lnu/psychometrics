@@ -24,6 +24,10 @@ export const ProjectPrivacySettingsTR = t.type({
   privacyLinkText: t.union([t.string, t.null]),
   privacyLinkUrl: t.union([t.string, t.null]),
   enablePrivacyLink: t.boolean,
+  privacyLinkTexts: t.array(t.type({
+    locale: t.string,
+    text: t.union([t.string, t.null]),
+  })),
 })
 
 export type ProjectPrivacySettings = t.TypeOf<typeof ProjectPrivacySettingsTR>

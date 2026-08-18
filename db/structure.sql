@@ -6339,7 +6339,8 @@ CREATE TABLE public.privacy_setting_translations (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     custom_privacy_acknowledgment_text text,
-    tenant_id bigint
+    tenant_id bigint,
+    privacy_link_text character varying
 );
 
 
@@ -25180,6 +25181,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260807000002'),
+('20260807000001'),
 ('20260810125949'),
 ('20260812000002'),
 ('20260812000001'),

@@ -23,28 +23,39 @@ export const LocaleSelectors = ({
   onEditingLocaleChange,
   onReferenceLocaleChange,
 }: LocaleSelectorsProps) => (
-  <Flex
-    vertical={vertical}
-    justify="space-between"
-    align={vertical ? 'stretch' : 'center'}
-    gap={12}
+  <div
     className={className}
+    style={vertical ? {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 12,
+    } : {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+      columnGap: 12,
+      rowGap: 12,
+      alignItems: 'start',
+    }}
   >
-    <Select
-      value={editingLocale}
-      style={vertical ? { width: '100%' } : { width: 150, minWidth: 150 }}
-      onChange={onEditingLocaleChange}
-    >
-      {availableLocales.map(locale => (
-        <Select.Option key={locale} value={locale}>
-          {I18n.t(`languages.${locale}`)}
-        </Select.Option>
-      ))}
-    </Select>
+    <Flex vertical gap={8}>
+      <span>{I18n.t('admin.current_locale')}</span>
+      <Select
+        value={editingLocale}
+        style={vertical ? { width: '100%' } : { width: 150, minWidth: 150 }}
+        onChange={onEditingLocaleChange}
+      >
+        {availableLocales.map(locale => (
+          <Select.Option key={locale} value={locale}>
+            {I18n.t(`languages.${locale}`)}
+          </Select.Option>
+        ))}
+      </Select>
+    </Flex>
+
 
     <Flex
-      vertical={vertical}
-      align={vertical ? 'stretch' : 'center'}
+      vertical
+      align={vertical ? 'stretch' : 'flex-start'}
       gap={8}
       style={vertical ? undefined : { whiteSpace: 'nowrap' }}
     >
@@ -63,5 +74,5 @@ export const LocaleSelectors = ({
         ))}
       </Select>
     </Flex>
-  </Flex>
+  </div>
 )

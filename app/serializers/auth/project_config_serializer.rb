@@ -6,7 +6,7 @@ module Auth
                :saml_enforced, :saml_domain_enforcement_enabled, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
                :hide_signup, :magic_link_enabled, :disallow_password_login, :logo_alt_text,
-               :enable_recaptcha, :glint_ui
+               :enable_recaptcha, :glint_ui, :privacy_link_text, :privacy_link_url, :enable_privacy_link
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -62,10 +62,26 @@ module Auth
       object.registration_setting.hide_signup
     end
 
+    def privacy_link_text
+      privacy_setting&.privacy_link_text
+    end
+
+    def privacy_link_url
+      privacy_setting&.privacy_link_url
+    end
+
+    def enable_privacy_link
+      privacy_setting&.enable_privacy_link
+    end
+
     private
 
     def security_setting
       object.security_setting
+    end
+
+    def privacy_setting
+      object.privacy_setting
     end
 
     # Withholding the design setting falls every branding attribute back to platform defaults.

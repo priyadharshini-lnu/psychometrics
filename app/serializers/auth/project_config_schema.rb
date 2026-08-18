@@ -5,12 +5,12 @@ module Auth
     OPTIONAL_STRING_KEYS = %i[
       background_color login_box_position background background_overlay client_logo secondary_logo
       primary_color error_color warning_color success_color info_color background_size logo_alt_text
-      external_logout_url
+      external_logout_url privacy_link_text privacy_link_url
     ].freeze
 
     OPTIONAL_BOOLEAN_KEYS = %i[
       saml_login_allowed saml_enforced require_mobile_number disallow_password_login magic_link_enabled
-      enable_recaptcha external_logout_redirect_enabled glint_ui saml_domain_enforcement_enabled
+      enable_recaptcha external_logout_redirect_enabled glint_ui saml_domain_enforcement_enabled enable_privacy_link
     ].freeze
 
     def self.schema(_, _)

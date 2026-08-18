@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Row, Col, Form, Checkbox, Input, Select, Button, InputNumber,
-  Skeleton,
+  Skeleton, Alert,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
@@ -16,6 +16,8 @@ import {
   ProjectPrivacySettings as PrivacySettingsType, ProjectPrivacySettingsTR,
 } from '~/modules/admin/modules/client/projectPrivacySettings'
 import { durationValidator } from '~/components/DurationValidator'
+import { LocaleSelectors } from
+  '~/modules/admin/modules/campaigns/components/TranslationLocaleSelectors/LocaleSelectors'
 
 const { I18n } = window
 const { TextArea } = Input
@@ -37,7 +39,12 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const [customPrivacyAcknowledgmentTexts, setCustomPrivacyAcknowledgmentTexts] = useState<{
     locale: string, text: string | null
   }[]>([])
+  const [privacyLinkTexts, setPrivacyLinkTexts] = useState<{
+    locale: string, text: string | null
+  }[]>([])
   const [selectedLocale, setSelectedLocale] = useState('en')
+  const [selectedPrivacyLinkLocale, setSelectedPrivacyLinkLocale] = useState('en')
+  const [referencePrivacyLinkLocale, setReferencePrivacyLinkLocale] = useState<string | undefined>(undefined)
 
   const enablePrivacyLink = Form.useWatch('enablePrivacyLink', form)
   const enableCustomPolicy = Form.useWatch('customPrivacyConsent', form)
@@ -63,6 +70,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     ...values,
     customPrivacyConsentTexts,
     customPrivacyAcknowledgmentTexts,
+    privacyLinkTexts,
   })
 
   const privacySetting = data[0]
@@ -75,6 +83,7 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     form.setFieldsValue(privacySetting)
     setCustomPrivacyConsentTexts(privacySetting?.customPrivacyConsentTexts)
     setCustomPrivacyAcknowledgmentTexts(privacySetting?.customPrivacyAcknowledgmentTexts)
+    setPrivacyLinkTexts(privacySetting?.privacyLinkTexts ?? [])
   }, [privacySetting])
 
   useEffect(() => {
@@ -95,6 +104,17 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
       setCustomPrivacyAcknowledgmentTexts([...customPrivacyAcknowledgmentTexts, { locale, text: '' }])
     }
     setSelectedLocale(locale)
+  }
+
+  const englishPrivacyLinkText = _.find(privacyLinkTexts, { locale: 'en' })?.text ?? null
+
+  const updateSelectedPrivacyLinkLocale = (locale) => {
+    const existing = _.find(privacyLinkTexts, { locale })
+    if (!existing) {
+      // Seed the new locale entry with the English text as a starting fallback
+      setPrivacyLinkTexts([...privacyLinkTexts, { locale, text: englishPrivacyLinkText }])
+    }
+    setSelectedPrivacyLinkLocale(locale)
   }
 
   const updateCustomConsentText = (value, locale) => {
@@ -120,10 +140,31 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     setCustomPrivacyAcknowledgmentTexts(updatedTexts)
   }
 
+  const updatePrivacyLinkText = (value, locale) => {
+    const updated = privacyLinkTexts.map((entry) => {
+      if (entry.locale === locale) {
+        return { ...entry, text: value }
+      }
+      return entry
+    })
+    setPrivacyLinkTexts(updated)
+  }
+
   const selectedLocaleConsentText = _.find(customPrivacyConsentTexts, { locale: selectedLocale })
   const selectedLocaleAcknowledgmentText = _.find(customPrivacyAcknowledgmentTexts, { locale: selectedLocale })
+  // For display: fall back to English when the selected locale has no text
+  const selectedPrivacyLinkEntry = _.find(privacyLinkTexts, { locale: selectedPrivacyLinkLocale })
+  const selectedPrivacyLinkLocaleText = (selectedPrivacyLinkEntry?.text)
+    ? selectedPrivacyLinkEntry
+    : _.find(privacyLinkTexts, { locale: 'en' })
 
   const localesForConsent = customPrivacyConsentTexts?.length ? customPrivacyConsentTexts : [{ locale: 'en' }]
+  const localesForPrivacyLink = privacyLinkTexts?.length ? privacyLinkTexts : [{ locale: 'en' }]
+
+  // Only locales with a saved non-empty translation appear in the reference selector
+  const privacyLinkTranslatedLocales = privacyLinkTexts
+    .filter(entry => Boolean(entry.text))
+    .map(entry => entry.locale)
 
   if (!privacySetting) return <Skeleton active />
 
@@ -224,28 +265,56 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                   {I18n.t('admin.privacy_link')}
                 </Checkbox>
               </Form.Item>
-              <Form.Item
-                name="privacyLinkText"
-                label={I18n.t('admin.privacy_text')}
-                hidden={!enablePrivacyLink}
-              >
-                <Input
-                  placeholder={
-                    I18n.t('admin.privacy_text_placeholder')
-                  }
-                />
-              </Form.Item>
-              <Form.Item
-                name="privacyLinkUrl"
-                label={I18n.t('admin.privacy_link_label')}
-                hidden={!enablePrivacyLink}
-              >
-                <Input
-                  placeholder={
-                    I18n.t('admin.privacy_link_placeholder')
-                  }
-                />
-              </Form.Item>
+              {enablePrivacyLink && (
+                <Row>
+                  <Col span={24}>
+                    <Form.Item
+                      label={I18n.t('admin.privacy_text')}
+                      layout="vertical"
+                    >
+                      <LocaleSelectors
+                        editingLocale={selectedPrivacyLinkLocale}
+                        referenceLocale={referencePrivacyLinkLocale}
+                        availableLocales={localesForPrivacyLink.map(({ locale }) => locale)}
+                        availableNameLocales={privacyLinkTranslatedLocales}
+                        className="mb8"
+                        onEditingLocaleChange={updateSelectedPrivacyLinkLocale}
+                        onReferenceLocaleChange={setReferencePrivacyLinkLocale}
+                      />
+                      <Row gutter={12}>
+                        <Col span={12}>
+                          <Input
+                            key={`privacy-link-text-${selectedPrivacyLinkLocale}`}
+                            value={selectedPrivacyLinkLocaleText?.text || ''}
+                            placeholder={I18n.t('admin.privacy_text_placeholder')}
+                            onChange={e => updatePrivacyLinkText(e.target.value, selectedPrivacyLinkLocale)}
+                          />
+                        </Col>
+                        <Col span={12}>
+                          {referencePrivacyLinkLocale && (
+                            <Alert
+                              message={_.find(privacyLinkTexts, { locale: referencePrivacyLinkLocale })?.text}
+                              type="info"
+                            />
+                          )}
+                        </Col>
+                      </Row>
+                    </Form.Item>
+                  </Col>
+                  <Col span={24}>
+                    <Form.Item
+                      name="privacyLinkUrl"
+                      label={I18n.t('admin.privacy_link_label')}
+                    >
+                      <Input
+                        placeholder={
+                          I18n.t('admin.privacy_link_placeholder')
+                        }
+                      />
+                    </Form.Item>
+                  </Col>
+                </Row>
+              )}
               <Form.Item
                 valuePropName="checked"
                 name="maskIdentityForPearson"
