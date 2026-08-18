@@ -103,6 +103,10 @@ const OTHER_DATES_FORMATS = [
     prefix: '-1y',
   },
   {
+    name: 'Assessment Completed Date',
+    path: 'Report/AssessmentCompletedAt',
+  },
+  {
     name: 'Self Evaluation Date',
     path: 'Report/SelfEvaluation',
   },
