@@ -88,7 +88,6 @@ export const LayoutComponent = ({ config }) => {
           colorInfo: config.info_color || token.colorInfo,
           colorLink: primaryColor,
           colorBorder: GREY_BORDER,
-          borderRadius: 2,
         },
       }}
     >

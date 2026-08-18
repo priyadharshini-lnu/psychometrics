@@ -137,7 +137,6 @@ export const DetailsCard: FC<DetailsCardProps> = ({
             <Flex justify="end">
               <ScrollToViewOnFocusButton
                 type="primary"
-                size="small"
                 onClick={onReadinessCheckClick}
                 style={{
                   marginInlineEnd: '0.25rem',
@@ -183,7 +182,6 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                     <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                       <ScrollToViewOnFocusButton
                         id={secondaryBtnId}
-                        size="small"
                         type="primary"
                         disabled={actionDisabled}
                         ghost
@@ -202,7 +200,6 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                       loading={actionLoading}
                       type="primary"
                       disabled={actionDisabled}
-                      size="small"
                       onClick={handleClick}
                       className={styles.actionButton}
                       aria-labelledby={`${buttonId} ${titleId}`}

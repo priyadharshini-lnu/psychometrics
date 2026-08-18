@@ -13,13 +13,14 @@ import {
 import { useResources } from '~/hooks/useResources/useResources'
 import { restoreStaticTheme } from '~/components/AdminShell/GlintAdminTheme'
 import { ColorPicker } from '~/glint'
+import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
 import { DesignPreview } from './DesignPreview'
 import { getContrastRatio } from '~/utils/contrastRatio'
 
 import styles from './DesignSettingsForm.styles.less'
 
 const { I18n } = window
-const DEFAULT_PRIMARY_COLOR = '#04717B'
+const { DEFAULT_PRIMARY_COLOR } = constants
 const DEFAULT_ERROR_COLOR = '#ff4d4f'
 const MAX_ALT_TEXT_LENGTH = 100
 

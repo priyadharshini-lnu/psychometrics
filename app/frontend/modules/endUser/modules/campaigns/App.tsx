@@ -43,7 +43,7 @@ const PROGRAM_DETAILS_PATH = /^\/campaigns\/\d+$/
 
 const { antdLocale, I18n } = window
 const { useToken } = theme
-const { DEFAULT_PRIMARY_COLOR, DEFAULT_BORDER_RADIUS, GREY_BORDER } = constants
+const { DEFAULT_PRIMARY_COLOR, GREY_BORDER } = constants
 const px2rem = px2remTransformer({
   rootValue: 16,
 })
@@ -120,7 +120,6 @@ function App () {
             colorWarning: design.warning_color || token.colorWarning,
             colorSuccess: design.success_color || token.colorSuccess,
             colorInfo: design.info_color || token.colorInfo,
-            borderRadius: DEFAULT_BORDER_RADIUS,
             colorLink: primaryColor,
             colorBorder: GREY_BORDER,
           },

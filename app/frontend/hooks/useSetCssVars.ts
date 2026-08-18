@@ -30,14 +30,14 @@ export const useSetCssVars = (cssVars?: CssVar[]) => {
         colorErrorBg, colorErrorBgFilledHover, colorErrorBorder, controlTmpOutline,
       } = token
       const colorPalette = generate(colorPrimary)
-      const lightColorPalette = generate(colorPalette[0])
       const cssVarsFromToken = [
         { varName: '--ant-primary-color', value: colorPrimary },
-        { varName: '--ant-primary-1', value: colorPalette[0] },
+        // Both name the light brand surface; antd's generated shade grays out dark seeds like the Marsh navy.
+        { varName: '--ant-primary-1', value: colorPrimaryBg },
         { varName: '--ant-primary-3', value: colorPalette[2] },
         { varName: '--ant-primary-4', value: colorPalette[3] },
         { varName: '--ant-primary-7', value: colorPalette[6] },
-        { varName: '--ant-primary-light-bg', value: lightColorPalette[0] },
+        { varName: '--ant-primary-light-bg', value: colorPrimaryBg },
         { varName: '--ant-warning-color', value: colorWarning },
         { varName: '--ant-error-color', value: colorError },
         { varName: '--ant-primary-color-outline', value: colorPrimaryBg },

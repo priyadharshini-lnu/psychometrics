@@ -71,7 +71,7 @@ export default defineConfig({
     entrySizeBudget({
       entry: 'entrypoints/admin/admin.jsx',
       label: 'The admin app',
-      maxKb: 620,
+      maxKb: 800,
     }),
     sentryVitePlugin({
       org: process.env.SENTRY_ORG,

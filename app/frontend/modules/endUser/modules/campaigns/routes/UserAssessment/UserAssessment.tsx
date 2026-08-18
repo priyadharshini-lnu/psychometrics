@@ -253,7 +253,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
                   <Progress
-                    strokeColor="#fff"
+                    strokeColor="var(--white-bg)"
                     className={styles.progressStatus}
                     key="3"
                     percent={progress}

@@ -12,17 +12,17 @@
 
 .questionsBox {
   padding: 24px;
-  background-color: var(--ant-primary-1);
+  background-color: var(--ant-primary-light-bg);
   border: 1px solid var(--light-grey-border);
 }
 
 .minmaxInfo {
-  color: #A0A0A0;
+  color: var(--ant-text-color-secondary);
   font-size: @space-3;
 }
 
 .mandatory {
-  color: #FF0000;
+  color: var(--ant-error-color);
 }
 
 .questionInput {
@@ -30,7 +30,7 @@
 }
 
 .questionCounter {
-  border: 1px solid #595959;
+  border: 1px solid var(--grey-border);
   padding: 0.5rem 0.75rem;
   font-weight: 600;
   font-size: 0.9rem;
@@ -49,7 +49,7 @@
   .editor {
     :global {
       .fr-toolbar, .fr-wrapper, .fr-second-toolbar {
-        border-color: red;
+        border-color: var(--ant-error-color);
       }
     }
   }
