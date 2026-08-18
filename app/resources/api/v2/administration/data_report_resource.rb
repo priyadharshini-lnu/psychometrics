@@ -12,7 +12,7 @@ class Api::V2::Administration::DataReportResource < Api::V2::Administration::Bas
   has_one :owner, class_name: 'Client'
   has_one :last_updated_by, class_name: 'User'
 
-  ransack_filters %i[filterable_fields owner_id_eq scope_eq]
+  ransack_filters %i[filterable_fields owner_id_eq scope_eq report_type_in scope_in]
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'

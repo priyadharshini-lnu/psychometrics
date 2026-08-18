@@ -14,8 +14,12 @@ import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
 import RunReportModal from './components/RunReportModal'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { REPORT_TYPE_KEYS } from './components/ReportTypeConfigs'
 
 const { I18n } = window
+
+const SCOPE_OPTIONS = ['client', 'global']
 
 export const DataReports: React.FC<{}> = () => {
   const { message } = useApp()
@@ -33,7 +37,7 @@ export const DataReports: React.FC<{}> = () => {
     sort: '-id',
   }
 
-  const { memberAction, fetchSingle } = useResources<DataReport>(
+  const { memberAction, fetchSingle, getFilteredValue } = useResources<DataReport>(
     'data_reports',
     {
       trackUrl: true,
@@ -113,9 +117,8 @@ export const DataReports: React.FC<{}> = () => {
     apiConfig: baseApiConfig,
   }
 
-
   const Filter = (
-    <Resource.Filter hideSearch name="filterable_fields">
+    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
       <Button type="primary" onClick={() => setShowForm(true)}>
         <PlusOutlined />
         {I18n.t('assessments.create')}
@@ -150,12 +153,22 @@ export const DataReports: React.FC<{}> = () => {
         title={I18n.t('admin.report_type')}
         dataIndex="reportType"
         width={200}
+        filters={REPORT_TYPE_KEYS.map(value => ({
+          text: I18n.t(`admin.report_types.${value}`),
+          value,
+        }))}
+        filteredValue={getFilteredValue('report_type_in') as string[] | null}
         render={reportType => I18n.t(`admin.report_types.${reportType}`)}
       />
       <Resource.Column<DataReport>
         id="scope"
         title={I18n.t('admin.scope')}
         dataIndex="scope"
+        filters={SCOPE_OPTIONS.map(value => ({
+          text: value === 'global' ? I18n.t('admin.scope_global') : I18n.t('admin.scope_client'),
+          value,
+        }))}
+        filteredValue={getFilteredValue('scope_in') as string[] | null}
         render={scope => (scope === 'global' ? I18n.t('admin.scope_global') : I18n.t('admin.scope_client'))}
         width={100}
       />
@@ -200,12 +213,22 @@ export const DataReports: React.FC<{}> = () => {
         fixed="right"
         width={200}
       />
-
     </Resource.Table>
   )
 
   return (
     <Resource config={config} name="data_reports">
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin',
+            label: () => I18n.t('admin.dashboard'),
+          },
+          {
+            label: () => I18n.t('admin.data_reports'),
+          },
+        ]}
+      />
       {Filter}
       {Table}
       <DataReportForm

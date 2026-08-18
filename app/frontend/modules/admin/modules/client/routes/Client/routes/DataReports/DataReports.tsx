@@ -7,8 +7,10 @@ import { DataReport, DataReportTR, OkResponse } from '~/modules/admin/modules/Da
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
 import RunReportModal from '~/modules/admin/modules/DataReports/components/RunReportModal'
+import { REPORT_TYPE_KEYS } from '~/modules/admin/modules/DataReports/components/ReportTypeConfigs'
 
 const { I18n } = window
+
 
 export const DataReports: React.FC = () => {
   const { clientId } = useParams<{ clientId: string }>()
@@ -34,7 +36,7 @@ export const DataReports: React.FC = () => {
     apiConfig: baseApiConfig,
   }
 
-  const { memberAction } = useResources<DataReport>(
+  const { memberAction, getFilteredValue } = useResources<DataReport>(
     'data_reports',
     config,
   )
@@ -82,8 +84,16 @@ export const DataReports: React.FC = () => {
     runReport(runTarget, values)
   }
 
+  const Filter = (
+    <Resource.Filter
+      name="filterable_fields"
+      placeholder={I18n.t('shared.search')}
+    />
+  )
+
   return (
     <Resource config={config} name="data_reports">
+      {Filter}
       <Resource.Table pagination>
         <Resource.Column<DataReport>
           id="id"
@@ -102,8 +112,12 @@ export const DataReports: React.FC = () => {
           dataIndex="reportType"
           id="report_type"
           width={200}
-          render={reportType => I18n.t(`admin.report_types.${reportType}`)
-          }
+          filters={REPORT_TYPE_KEYS.map(value => ({
+            text: I18n.t(`admin.report_types.${value}`),
+            value,
+          }))}
+          filteredValue={getFilteredValue('report_type_in') as string[] | null}
+          render={reportType => I18n.t(`admin.report_types.${reportType}`)}
         />
         <Resource.Column<DataReport>
           title={I18n.t('admin.scope')}
@@ -132,7 +146,6 @@ export const DataReports: React.FC = () => {
           render={text => formatedDate(text)}
           id="lastUpdateBy"
         />
-
         <Resource.Column<DataReport>
           id="actions"
           title={I18n.t('shared.actions')}
