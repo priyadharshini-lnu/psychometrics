@@ -149,4 +149,118 @@ RSpec.describe Api::V2::Administration::ProjectsController, type: :request do
       expect(errors.any? { |e| e['title'] == 'User not found or not part of the same project' }).to be_truthy
     end
   end
+
+  describe 'POST /api/v2/administration/projects/:id/fetch_campaign_dashboard_instructions' do
+    let(:path) { "/api/v2/administration/projects/#{project.id}/fetch_campaign_dashboard_instructions" }
+
+    before do
+      sign_in(superadmin)
+      Mobility.with_locale('en') { project.update!(campaign_dashboard_instructions: 'English instructions') }
+      Mobility.with_locale('es-ES') { project.update!(campaign_dashboard_instructions: 'Spanish instructions') }
+    end
+
+    it 'returns instructions for requested locales' do
+      post path,
+           params: { data: { type: 'projects', attributes: { locales: %w[en es-ES] } } }.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      parsed = response.parsed_body
+
+      expect(parsed['list'].length).to eq(2)
+      expect(parsed['list']).to include(
+        { 'locale' => 'en', 'campaignDashboardInstructions' => 'English instructions' },
+        { 'locale' => 'es-ES', 'campaignDashboardInstructions' => 'Spanish instructions' }
+      )
+    end
+
+    it 'returns available_locales containing only locales with saved translations' do
+      post path,
+           params: { data: { type: 'projects', attributes: { locales: ['en'] } } }.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      parsed = response.parsed_body
+
+      expect(parsed['availableLocales']).to include('en', 'es-ES')
+    end
+
+    it 'defaults to default locale when no locales param given' do
+      post path,
+           params: { data: { type: 'projects', attributes: {} } }.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      parsed = response.parsed_body
+
+      expect(parsed['list'].length).to eq(1)
+      expect(parsed['list'].first['locale']).to eq(I18n.default_locale.to_s)
+    end
+  end
+
+  describe 'POST /api/v2/administration/projects/:id/update_campaign_dashboard_instructions' do
+    let(:path) { "/api/v2/administration/projects/#{project.id}/update_campaign_dashboard_instructions" }
+    let(:headers) { { 'Content-Type' => 'application/vnd.api+json' } }
+
+    it 'saves instructions for the given locale' do
+      sign_in(superadmin)
+      body = {
+        data: {
+          type: 'projects',
+          attributes: {
+            campaign_dashboard_instructions: 'Hello from English',
+            locale: 'en'
+          }
+        }
+      }
+
+      post path, params: body.to_json, headers: headers
+
+      expect(response).to have_http_status(:ok)
+      Mobility.with_locale('en') { expect(project.reload.campaign_dashboard_instructions).to eq('Hello from English') }
+    end
+
+    it 'saves instructions independently per locale' do
+      sign_in(superadmin)
+      body_en = {
+        data: { type: 'projects', attributes: { campaign_dashboard_instructions: 'English text', locale: 'en' } }
+      }
+      body_es = {
+        data: { type: 'projects', attributes: { campaign_dashboard_instructions: 'Texto en espanol', locale: 'es-ES' } }
+      }
+
+      post path, params: body_en.to_json, headers: headers
+      post path, params: body_es.to_json, headers: headers
+
+      Mobility.with_locale('en') { expect(project.reload.campaign_dashboard_instructions).to eq('English text') }
+      Mobility.with_locale('es-ES') { expect(project.reload.campaign_dashboard_instructions).to eq('Texto en espanol') }
+    end
+
+    it 'clears instructions when nil is sent' do
+      sign_in(superadmin)
+      Mobility.with_locale('en') { project.update!(campaign_dashboard_instructions: 'Existing text') }
+
+      body = {
+        data: { type: 'projects', attributes: { campaign_dashboard_instructions: nil, locale: 'en' } }
+      }
+
+      post path, params: body.to_json, headers: headers
+
+      expect(response).to have_http_status(:ok)
+      Mobility.with_locale('en') { expect(project.reload.campaign_dashboard_instructions).to be_nil }
+    end
+
+    it 'returns the saved instructions and locale in the response' do
+      sign_in(superadmin)
+      body = {
+        data: { type: 'projects', attributes: { campaign_dashboard_instructions: 'Response check', locale: 'en' } }
+      }
+
+      post path, params: body.to_json, headers: headers
+
+      parsed = response.parsed_body
+      expect(parsed['campaignDashboardInstructions']).to eq('Response check')
+      expect(parsed['locale']).to eq('en')
+    end
+  end
 end

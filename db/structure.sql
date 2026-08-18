@@ -390,7 +390,8 @@ CREATE TABLE public.clients (
     custom_privacy_consent_text text,
     custom_privacy_policy_version integer,
     restricted_to_countries text[] DEFAULT '{}'::text[],
-    tenant_id bigint
+    tenant_id bigint,
+    campaign_dashboard_instructions text
 );
 
 
@@ -3330,7 +3331,8 @@ CREATE TABLE public.client_translations (
     client_id bigint NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    campaign_dashboard_instructions text
 );
 
 
@@ -25178,6 +25180,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260810125949'),
 ('20260812000002'),
 ('20260812000001'),
 ('20260810120000'),

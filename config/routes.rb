@@ -1556,6 +1556,8 @@ as: :simulation_progress_notification
             post :toggle_status, on: :member
           end
           jsonapi_resources :projects do
+            post :fetch_campaign_dashboard_instructions, on: :member
+            post :update_campaign_dashboard_instructions, on: :member
             jsonapi_resources :webhooks do
               post :send_test
             end

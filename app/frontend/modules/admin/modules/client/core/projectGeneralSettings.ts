@@ -9,6 +9,7 @@ export const ProjectGeneralSettingsTR = t.type({
   enableLiveChat: t.boolean,
   locales: t.array(t.string),
   showBookings: t.boolean,
+  campaignDashboardInstructions: t.union([t.string, t.null]),
 })
 
 export type ProjectGeneralSettings = t.TypeOf<typeof ProjectGeneralSettingsTR>

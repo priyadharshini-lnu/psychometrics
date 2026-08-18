@@ -361,6 +361,10 @@ en:
     campaign_assessment_modals_update_occupation_condition_set_select: Select Occupation Condition Set
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Occupation Condition Set was updated successfully
     campaign_assessment_modals_update_occupation_condition_set_title: Update Occupation Condition Set
+    campaign_dashboard_instructions_label: Campaign Dashboard Instructions
+    campaign_dashboard_instructions_save: Save Instructions
+    campaign_dashboard_instructions_save_error: Failed to save campaign dashboard instructions
+    campaign_dashboard_instructions_save_success: Campaign dashboard instructions saved successfully
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name

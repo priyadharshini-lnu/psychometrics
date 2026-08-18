@@ -40,6 +40,7 @@ module Api
         form = Api::V1::Projects::UpdateForm.from_params(params).with_context(project: project)
         if form.valid?
           normalized_params = ::Projects::NormalizeApiRequest.call!(project_params)
+          Mobility.with_locale(params[:locale]) if params[:locale].present?
           project.update!(normalized_params.except(*DESIGN_ATTRIBUTES, *SECURITY_SETTINGS))
           project.design_setting.update!(normalized_params.slice(*DESIGN_ATTRIBUTES))
           project.security_setting.update!(normalized_params.slice(SECURITY_SETTINGS))
@@ -74,7 +75,7 @@ module Api
         params.permit(
           :name, :subdomain, :client_reference, :data_processing_consent, :enable_strong_password, :enable_2factor_auth,
           :project_logo, :partner_logo, :background_image, :background_color, :login_box_position, :logo_alt_text,
-          :secondary_logo_alt_text, :client_id, :webhook, locales: []
+          :secondary_logo_alt_text, :client_id, :webhook, :campaign_dashboard_instructions, :locale, locales: []
         )
       end
     end

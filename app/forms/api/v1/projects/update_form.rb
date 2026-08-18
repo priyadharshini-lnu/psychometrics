@@ -19,6 +19,8 @@ module Api
         attribute :webhook, String
         attribute :logo_alt_text, String
         attribute :secondary_logo_alt_text, String
+        attribute :campaign_dashboard_instructions, String
+        attribute :locale, String
 
         validates :login_box_position, inclusion: { in: %w[left right center auto] }, allow_nil: true
         validates :background_color, hex_color: true
@@ -34,6 +36,7 @@ module Api
                   length: { maximum: ::DesignSetting::MAX_ALT_TEXT_LENGTH },
                   format: { with: ::DesignSetting::ALLOWED_CHARACTERS_REGEX },
                   if: -> { secondary_logo_alt_text.present? }
+        validates :campaign_dashboard_instructions, length: { maximum: 500 }, allow_nil: true
 
         validate :validate_locales
         validate :validate_subdomain

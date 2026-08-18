@@ -7,6 +7,9 @@ export const getprivacyPolicyVersion = (state: RootState) => _.get(state, ['conf
 export const getCustomPrivacyConsentText = (state: RootState) => _.get(state, ['config', 'customPrivacyConsentText'])
 export const getCustomPrivacyAcknowledgmentText = (state: RootState) => _.get(state,
   ['config', 'customPrivacyAcknowledgmentText'])
+export const getCampaignDashboardInstructions = (state: RootState) => (
+  _.get(state, ['config', 'campaignDashboardInstructions'])
+)
 export const getShowBookings = (state: RootState) => _.get(state, ['config', 'showBookings'])
 export const getShowMaintenanceAlert = (state: RootState): boolean => (
   _.get(state, ['config', 'showMaintenanceAlert'], false)
