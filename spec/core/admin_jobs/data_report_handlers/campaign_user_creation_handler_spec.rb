@@ -53,6 +53,28 @@ RSpec.describe AdminJobs::DataReportHandlers::CampaignUserCreationHandler do
     FileUtils.rm_f(file_path)
   end
 
+  describe '.runtime_parameters' do
+    it 'exposes start_date as a runtime-updatable date parameter' do
+      param = described_class.runtime_parameters.find { |p| p[:name] == 'start_date' }
+
+      expect(param).to be_present
+      expect(param[:type]).to eq('date')
+      expect(param[:runtime_updatable]).to be(true)
+    end
+
+    it 'exposes end_date as a runtime-updatable date parameter' do
+      param = described_class.runtime_parameters.find { |p| p[:name] == 'end_date' }
+
+      expect(param).to be_present
+      expect(param[:type]).to eq('date')
+      expect(param[:runtime_updatable]).to be(true)
+    end
+
+    it 'has exactly two runtime parameters' do
+      expect(described_class.runtime_parameters.size).to eq(2)
+    end
+  end
+
   describe '.file_extension' do
     it 'returns csv' do
       expect(described_class.file_extension).to eq('csv')

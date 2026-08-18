@@ -3,6 +3,16 @@
 module AdminJobs
   module DataReportHandlers
     class CampaignUserCreationHandler < BaseHandler
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       HEADERS = [
         'Project Name',
         'Campaign Name',
