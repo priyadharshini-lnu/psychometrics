@@ -91,5 +91,30 @@ RSpec.describe Api::V2::Administration::CampaignFactorValuesController, type: :r
 
       expect(calculated_factor.numeric_value).to eq(6)
     end
+
+    it 'does not rescore when all assessor scoring factors are disallowed for lead assessor moderation' do
+      campaign_factor.update!(disallow_lead_assessor_moderation: true)
+      campaign_factor2.update!(disallow_lead_assessor_moderation: true)
+
+      allow(CampaignScoring::Rescore).to receive(:call!)
+
+      body = {
+        data: {
+          type: 'campaign_factor_values',
+          attributes: {
+            scores: [],
+            user_id: user.id
+          }
+        }
+      }
+
+      post "/api/v2/administration/campaigns/#{campaign_id}/campaign_factor_values/" \
+           "save_assessor_scoring_factor_value?filter[user_id_eq]=#{user.id}",
+           params: body.to_json,
+           headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(CampaignScoring::Rescore).not_to have_received(:call!)
+    end
   end
 end
