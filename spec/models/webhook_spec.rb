@@ -30,6 +30,7 @@ RSpec.describe Webhook, type: :model do
       it { is_expected.to validate_presence_of(:oauth_token_url) }
       it { is_expected.to validate_presence_of(:oauth_client_id) }
       it { is_expected.to validate_presence_of(:oauth_client_secret) }
+      it { is_expected.to allow_value(nil, '').for(:oauth_scope) }
     end
   end
 
