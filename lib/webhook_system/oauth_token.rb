@@ -43,10 +43,10 @@ module WebhookSystem
       )
 
       begin
-        access_token = client.get_token({
-          grant_type: subscription.oauth_grant_type,
-          scope: subscription.oauth_scope
-        })
+        token_params = { grant_type: subscription.oauth_grant_type }
+        token_params[:scope] = subscription.oauth_scope if subscription.oauth_scope.present?
+
+        access_token = client.get_token(token_params)
 
         expires_in = access_token.expires_in
         cache_expiry = expires_in.to_i - 60
