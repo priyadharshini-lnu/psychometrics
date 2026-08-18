@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Button, message, Space,
-} from 'antd'
+  Button, Space, useApp,
+} from '@thetalententerprise/glint'
 import { Link } from 'react-router-dom'
-import { PlusOutlined, EditOutlined, CaretRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { PlusOutlined, EditOutlined, CaretRightOutlined } from '@thetalententerprise/glint/icons'
 import {
   DataReport,
   DataReportTR,
@@ -18,6 +18,7 @@ import RunReportModal from './components/RunReportModal'
 const { I18n } = window
 
 export const DataReports: React.FC<{}> = () => {
+  const { message } = useApp()
   const [showForm, setShowForm] = useState(false)
   const [editable, setEditable] = useState<DataReport | undefined>(undefined)
   const [runTarget, setRunTarget] = useState<DataReport | undefined>(undefined)

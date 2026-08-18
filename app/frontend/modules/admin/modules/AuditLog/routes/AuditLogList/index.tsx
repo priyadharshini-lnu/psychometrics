@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin, App,
-} from 'antd'
+  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin,
+} from '@thetalententerprise/glint'
+import { App } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import qs from 'qs'
-import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '@thetalententerprise/glint/icons'
 import { RangeValueType } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import {
@@ -223,11 +224,8 @@ const AuditLogList: React.FC<Props> = (
                   placeholder={I18n.t('admin.audit_log_type')}
                   showSearch
                   allowClear
-                >
-                  {types.map(type => (
-                    <Select.Option key={type} value={type}>{type}</Select.Option>
-                  ))}
-                </Select>
+                  options={types.map(type => ({ label: type, value: type }))}
+                />
               </Form.Item>
             </Col>
 
@@ -241,32 +239,50 @@ const AuditLogList: React.FC<Props> = (
                   onCalendarChange={onCalendarChange}
                   disabledDate={disabledDate}
                   allowClear={false}
-                  ranges={{
-                    [I18n.t('admin.date_presets_today')]: [
-                      dayjs().startOf('day'),
-                      dayjs().endOf('day'),
-                    ],
-                    [I18n.t('admin.date_presets_yesterday')]: [
-                      dayjs().subtract(1, 'day').startOf('day'),
-                      dayjs().subtract(1, 'day').endOf('day'),
-                    ],
-                    [I18n.t('admin.date_presets_last_week')]: [
-                      dayjs().subtract(1, 'week').startOf('week'),
-                      dayjs().subtract(1, 'week').endOf('week'),
-                    ],
-                    [I18n.t('admin.date_presets_last_month')]: [
-                      dayjs().subtract(1, 'month').startOf('month'),
-                      dayjs().subtract(1, 'month').endOf('month'),
-                    ],
-                    [I18n.t('admin.date_presets_last_7_days')]: [
-                      dayjs().subtract(7, 'd'),
-                      dayjs(),
-                    ],
-                    [I18n.t('admin.date_presets_last_30_days')]: [
-                      dayjs().subtract(30, 'd'),
-                      dayjs(),
-                    ],
-                  }}
+                  presets={[
+                    {
+                      label: I18n.t('admin.date_presets_today'),
+                      value: [
+                        dayjs().startOf('day'),
+                        dayjs().endOf('day'),
+                      ],
+                    },
+                    {
+                      label: I18n.t('admin.date_presets_yesterday'),
+                      value: [
+                        dayjs().subtract(1, 'day').startOf('day'),
+                        dayjs().subtract(1, 'day').endOf('day'),
+                      ],
+                    },
+                    {
+                      label: I18n.t('admin.date_presets_last_week'),
+                      value: [
+                        dayjs().subtract(1, 'week').startOf('week'),
+                        dayjs().subtract(1, 'week').endOf('week'),
+                      ],
+                    },
+                    {
+                      label: I18n.t('admin.date_presets_last_month'),
+                      value: [
+                        dayjs().subtract(1, 'month').startOf('month'),
+                        dayjs().subtract(1, 'month').endOf('month'),
+                      ],
+                    },
+                    {
+                      label: I18n.t('admin.date_presets_last_7_days'),
+                      value: [
+                        dayjs().subtract(7, 'd'),
+                        dayjs(),
+                      ],
+                    },
+                    {
+                      label: I18n.t('admin.date_presets_last_30_days'),
+                      value: [
+                        dayjs().subtract(30, 'd'),
+                        dayjs(),
+                      ],
+                    },
+                  ]}
                 />
               </Form.Item>
             </Col>
@@ -278,11 +294,8 @@ const AuditLogList: React.FC<Props> = (
                       placeholder={I18n.t('shared.action')}
                       showSearch
                       allowClear
-                    >
-                      {(actions || []).map(action => (
-                        <Select.Option key={action} value={action}>{action}</Select.Option>
-                      ))}
-                    </Select>
+                      options={(actions || []).map(action => ({ label: action, value: action }))}
+                    />
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6}>

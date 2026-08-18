@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Space, Button, message, Card, Row, Col, Typography,
-} from 'antd'
+  Space, Button, Card, Row, Col, Typography, useApp,
+} from '@thetalententerprise/glint'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
   EyeOutlined, DownloadOutlined, CopyOutlined, LeftOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@thetalententerprise/glint/icons'
 import { useResources } from '~/hooks/useResources'
 import {
   DataReportJob, DataReportJobTR, Password, PasswordTR, DataReport, DataReportTR,
@@ -20,6 +20,7 @@ const { I18n } = window
 export const DataReportJobs: React.FC<{}> = () => {
   const { id, clientId } = useParams<{id: string, clientId?: string}>()
   const navigate = useNavigate()
+  const { message } = useApp()
 
   const [passwords, setPasswords] = useState<{ [key: string]: string | null }>({})
 
@@ -217,12 +218,12 @@ export const DataReportJobs: React.FC<{}> = () => {
         />
       )}
       <Space
-        direction="vertical"
+        orientation="vertical"
         size={12}
         style={{ width: '100%' }}
       >
         <Space
-          direction="vertical"
+          orientation="vertical"
           size={12}
           style={{ width: '100%', padding: 16 }}
         >
@@ -236,7 +237,7 @@ export const DataReportJobs: React.FC<{}> = () => {
           </Button>
           <Card
             style={{ marginBottom: 24 }}
-            bodyStyle={{ padding: '24px 24px' }}
+            styles={{ body: { padding: '24px 24px' } }}
           >
             <Row gutter={[32, 24]} align="middle">
               <Col xs={24} sm={12} lg={8}>

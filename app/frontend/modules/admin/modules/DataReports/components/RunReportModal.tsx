@@ -15,15 +15,15 @@ import {
   Table,
   Typography,
   Divider,
-} from 'antd'
-import type { FormInstance } from 'antd'
+} from '@thetalententerprise/glint'
+import type { FormInstance } from '@thetalententerprise/glint'
 import dayjs, { Dayjs } from 'dayjs'
 import {
   FileTextOutlined,
   CaretRightOutlined,
   CalendarOutlined,
   FilterOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@thetalententerprise/glint/icons'
 import { DataReport, RuntimeParameter } from '../core'
 
 const { I18n } = window
@@ -191,7 +191,7 @@ const renderRuntimeInput = (parameter: RuntimeParameter, form: FormInstance) => 
       return (
         <DatePicker
           style={{ width: '100%' }}
-          prefix={<CalendarOutlined />}
+          suffixIcon={<CalendarOutlined />}
           disabledDate={(current) => {
             if (!current) return false
 
@@ -294,7 +294,7 @@ const RunReportModal: React.FC<Props> = ({
         </Space>
       )}
       footer={null}
-      destroyOnClose
+      destroyOnHidden
       onCancel={onClose}
       width={620}
     >
@@ -309,11 +309,11 @@ const RunReportModal: React.FC<Props> = ({
 
           <Flex align="center" gap={12} wrap="wrap">
             <MetaItem label={I18n.t('admin.report_type')} value={formatReportType(report.reportType)} />
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
             <MetaItem label={I18n.t('admin.scope')} value={formatReportScope(report.scope)} />
             {report.owner?.name && (
               <>
-                <Divider type="vertical" />
+                <Divider orientation="vertical" />
                 <MetaItem label={I18n.t('admin.report_owner')} value={report.owner.name} />
               </>
             )}
