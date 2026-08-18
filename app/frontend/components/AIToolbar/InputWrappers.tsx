@@ -121,6 +121,7 @@ export const AIInput = React.forwardRef<InputRef, InputProps>(({ className = '',
                 icon={<AIEditorIcon style={{ fill: ICON_COLOR }} />}
               />
             )}
+            className="spellcheck-enabled"
           />
         </Flex>
       )}
