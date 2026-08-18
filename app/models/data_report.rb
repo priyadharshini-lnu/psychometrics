@@ -28,7 +28,8 @@ class DataReport < ApplicationRecord
     active_clients_projects: 8,
     user_access_review: 9,
     campaign_factor_scores: 10,
-    campaign_user_creation: 11
+    campaign_user_creation: 11,
+    proctoring_sessions: 12
   }
 
   enum :scope, { client: 0, global: 1 }, prefix: :scope

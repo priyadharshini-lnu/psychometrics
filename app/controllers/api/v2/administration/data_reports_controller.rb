@@ -19,7 +19,8 @@ module Api
       'active_clients_projects' => Api::V2::DataReport::ActiveClientsProjectsContract,
       'user_access_review' => Api::V2::DataReport::UserAccessReviewContract,
       'campaign_factor_scores' => Api::V2::DataReport::CampaignFactorScoresContract,
-      'campaign_user_creation' => Api::V2::DataReport::CampaignUserCreationContract
+      'campaign_user_creation' => Api::V2::DataReport::CampaignUserCreationContract,
+      'proctoring_sessions' => Api::V2::DataReport::ProctoringSessionsContract
     }.freeze
 
     def create_contract_based_on_report_type
