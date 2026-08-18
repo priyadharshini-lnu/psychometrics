@@ -103,6 +103,7 @@ en:
     ai_scoring_approval_stale_description: Configuration updates since the last run may have changed the score. Rescore to update it using the latest settings.
     ai_scoring_approval_stale_title: Score May Be Outdated
     ai_scoring_approvals: AI Scoring Approvals
+    ai_scoring_errors_label: AI Scoring Errors
     ai_scoring_refresh_score: Refresh Score
     ai_scoring_refresh_score_confirm_description: This will re-run AI scoring for this assessment using the latest configuration. Are you sure?
     ai_scoring_refresh_score_confirm_title: Refresh AI Scores?

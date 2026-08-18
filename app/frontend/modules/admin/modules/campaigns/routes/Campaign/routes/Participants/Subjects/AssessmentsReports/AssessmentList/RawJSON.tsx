@@ -18,11 +18,18 @@ interface Props {
     micrositeRawResponse?: Record<string, unknown> | null
 }
 
+interface AiScoringErrorGroup {
+  questions: number[]
+  message: string
+}
+
 interface Res {
   id: string
   answers?: unknown
   scoring?: unknown
   externalResults?: unknown
+  aiScoringErrors?: AiScoringErrorGroup[] | null
+  aiScoringStatus?: string | null
   meta?: {
     permissions: {
       show: boolean
@@ -43,7 +50,10 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId, micrositeRawResponse }) => {
     {
       trackUrl: true,
       apiConfig: {
-        fields: { users_results: ['id', 'answers', 'scoring', 'external_results'] },
+        fields: {
+          users_results: ['id', 'answers', 'scoring',
+            'external_results', 'ai_scoring_errors', 'ai_scoring_status'],
+        },
         include_resource_meta: ['permissions'],
         camelizeExcept: ['$.scoring.*', '$.answers.*', '$.external_results.*'],
       },
@@ -111,6 +121,24 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId, micrositeRawResponse }) => {
 
   const hasMicrositeRawResponse = micrositeRawResponse && !_.isEmpty(micrositeRawResponse)
 
+  const renderAiScoringErrors = () => {
+    const errors = usersResults.aiScoringErrors
+    if (!errors?.length) return null
+
+    const hasMultipleDistinctErrors = errors.length > 1
+
+    return (
+      <>
+        {errors.map(({ questions, message }) => (
+          <div key={message}>
+            {hasMultipleDistinctErrors && `question_${questions.join(', question_')}: `}
+            {message}
+          </div>
+        ))}
+      </>
+    )
+  }
+
   return (
     <>
       <Descriptions
@@ -146,6 +174,17 @@ const RawJSON: FC<Props> = ({ I18n, usersResultId, micrositeRawResponse }) => {
         >
           {renderViewCopyControls('externalResults', I18n.t('common.column.json.external_result'))}
         </Descriptions.Item>
+        {usersResults.aiScoringStatus === 'failed' && usersResults.aiScoringErrors && (
+          <Descriptions.Item
+            label={I18n.t('admin.ai_scoring_errors_label')}
+            key="aiScoringErrors"
+            className="va-t w-30"
+            labelStyle={{ width: '40%' }}
+            contentStyle={{ width: '60%' }}
+          >
+            {renderAiScoringErrors()}
+          </Descriptions.Item>
+        )}
         {hasMicrositeRawResponse && (
           <Descriptions.Item
             label={I18n.t('common.column.json.microsite_raw_response')}
