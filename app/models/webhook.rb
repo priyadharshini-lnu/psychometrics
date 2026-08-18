@@ -40,7 +40,7 @@ class Webhook < WebhookSystem::Subscription
   validates :url, http_url: { presence: true }
   validates :description, :auth_type, presence: true
   validates :api_key_header, format: { with: /\A[a-zA-Z0-9_-]+\z/ }, allow_blank: true
-  validates :oauth_grant_type, :oauth_token_url, :oauth_client_id, :oauth_client_secret, :oauth_scope,
+  validates :oauth_grant_type, :oauth_token_url, :oauth_client_id, :oauth_client_secret,
             presence: true, if: -> { auth_type == 'oauth' }
   validate :assessment_ids_must_be_of_valid_type
 
