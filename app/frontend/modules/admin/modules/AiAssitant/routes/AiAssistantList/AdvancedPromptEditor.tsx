@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import {
-  Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip, Space,
-} from 'antd'
-import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+  Button, Input, Card, Typography, Row, Col, Spin, Tooltip, Space, useApp,
+} from '@thetalententerprise/glint'
+import { PlayCircleOutlined, InfoCircleOutlined } from '@thetalententerprise/glint/icons'
 import { useResources } from '~/hooks/useResources/useResources'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import styles from './styles.less'
@@ -24,6 +24,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
   const [campaignId, setCampaignId] = useState<string>(campaignIdProp || '')
   const [renderedOutput, setRenderedOutput] = useState<string>('')
   const [isRendering, setIsRendering] = useState<boolean>(false)
+  const { message } = useApp()
 
   const { collectionAction } = useResources('assistants', {
     basePath: 'ai',

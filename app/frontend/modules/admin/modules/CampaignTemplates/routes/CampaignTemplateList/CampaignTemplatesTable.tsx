@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-  Button, MenuProps, Typography, App,
-} from 'antd'
+  Button, MenuProps, Typography, useApp,
+} from '@thetalententerprise/glint'
 import { MenuItem } from '~/interfaces/Antd'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { CampaignTemplate } from '~/modules/admin/core/types/campaignTemplates'
@@ -15,7 +15,7 @@ type Props = {
 }
 export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
   const { resource } = useResourceContext<CampaignTemplate, BaseMeta>()
-  const { modal, message } = App.useApp()
+  const { modal, message } = useApp()
 
   const handleRemoveCampaignTemplate = (campaignTemplate: CampaignTemplate) => {
     modal.confirm({

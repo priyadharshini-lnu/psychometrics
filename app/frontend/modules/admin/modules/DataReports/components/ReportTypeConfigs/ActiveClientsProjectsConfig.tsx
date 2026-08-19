@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   DatePicker, Form, Row, Col,
-} from 'antd'
+} from '@thetalententerprise/glint'
 import { Dayjs } from 'dayjs'
 import dayjs from '~/utils/dayjs'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'

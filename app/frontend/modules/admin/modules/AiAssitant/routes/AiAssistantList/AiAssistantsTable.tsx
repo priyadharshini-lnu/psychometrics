@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import {
-  Button, MenuProps, message, Typography, Drawer, Tooltip, Row, Col,
-} from 'antd'
+  Button, MenuProps, Typography, Drawer, Tooltip, Row, Col, useApp,
+} from '@thetalententerprise/glint'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import ReactMarkdown from 'react-markdown'
 import { AiAssistant } from 'modules/admin/modules/AiAssitant/core/aiAssistant'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { CopyOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CopyOutlined, CheckOutlined } from '@thetalententerprise/glint/icons'
 import { ASSISTANT_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
@@ -28,6 +28,7 @@ export const AiAssistantsTable = () => {
   const [drawerTitle, setDrawerTitle] = useState<string>('')
   const [copied, setCopied] = useState(false)
   const { resource } = useResourceContext<AiAssistant>()
+  const { message } = useApp()
 
   const handleShowPrompt = (prompt: string, title: string) => {
     setSelectedPrompt(prompt)
@@ -209,7 +210,7 @@ export const AiAssistantsTable = () => {
         closable
         onClose={handleCloseDrawer}
         open={drawerOpen}
-        width="50%"
+        size="50%"
       >
         <Row
           justify="space-between"
@@ -244,17 +245,21 @@ export const AiAssistantsTable = () => {
 type DropDownProps = {
   aiAssistant: AiAssistant,
 }
-const Dropdown: React.FC<DropDownProps> = ({ aiAssistant }) => (
-  <ConditionalDropdown
-    menu={getActionsMenuProps({ aiAssistant })}
-  />
-)
+const Dropdown: React.FC<DropDownProps> = ({ aiAssistant }) => {
+  const { message } = useApp()
+  return (
+    <ConditionalDropdown
+      menu={getActionsMenuProps({ aiAssistant, message })}
+    />
+  )
+}
 
 interface ActionMenuData {
   aiAssistant: AiAssistant,
+  message: { error: (content: string) => void }
 }
 
-const getActionsMenuProps = ({ aiAssistant }: ActionMenuData):MenuProps => {
+const getActionsMenuProps = ({ aiAssistant, message }: ActionMenuData):MenuProps => {
   const { resource } = useResourceContext<AiAssistant>()
   const navigate = useNavigate()
 

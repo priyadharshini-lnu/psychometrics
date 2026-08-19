@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Select, Spin } from 'antd'
+import { Form, Select, Spin } from '@thetalententerprise/glint'
 import { useResources } from '~/hooks/useResources'
 import { Project } from '~/modules/admin/modules/client/core/projects'
 import { ScopeType } from './types'
@@ -72,25 +72,22 @@ const ProjectSearchField: React.FC<Props> = ({
     >
       <Select
         mode="multiple"
-        showSearch
-        filterOption={false}
+        {...({
+          showSearch: true,
+          filterOption: false,
+          onSearch: setSearchValue,
+        } as unknown as Record<string, unknown>)}
         placeholder={I18n.t('admin.select_projects')}
-        onSearch={setSearchValue}
         notFoundContent={
           isSearchingProjects('get/search_project')
             ? <Spin size="small" />
             : I18n.t('shared.no_results_found')
         }
-      >
-        {projects.map(({ id, name }) => (
-          <Select.Option
-            key={id}
-            value={String(id)}
-          >
-            {name}
-          </Select.Option>
-        ))}
-      </Select>
+        options={projects.map(({ id, name }) => ({
+          value: String(id),
+          label: name,
+        }))}
+      />
     </Form.Item>
   )
 }
