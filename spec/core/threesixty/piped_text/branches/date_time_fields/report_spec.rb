@@ -55,5 +55,42 @@ describe Threesixty::PipedText::Branches::DateTimeFields::Report do
 
       expect(response).to eq(last_completed_at.strftime('%-d/%-m/%Y'))
     end
+
+    it 'returns nil when there are no report results' do
+      response = described_class.call!(
+        %w[Report AssessmentCompletedAt],
+        { 'f' => '%-d/%-m/%Y' },
+        subject: subject.user, report_results: []
+      )
+
+      expect(response).to be_nil
+    end
+
+    it 'returns a single formatted date when all report results completed on the same day' do
+      completed_at = Time.zone.now
+      report_results = [double('result', completed_at: completed_at), double('result', completed_at: completed_at)]
+
+      response = described_class.call!(
+        %w[Report AssessmentCompletedAt],
+        { 'f' => '%-d/%-m/%Y' },
+        subject: subject.user, report_results: report_results
+      )
+
+      expect(response).to eq(completed_at.strftime('%-d/%-m/%Y'))
+    end
+
+    it 'returns a formatted date range when report results completed on different days' do
+      earlier = 3.days.ago
+      later = Time.zone.now
+      report_results = [double('result', completed_at: earlier), double('result', completed_at: later)]
+
+      response = described_class.call!(
+        %w[Report AssessmentCompletedAt],
+        { 'f' => '%-d/%-m/%Y' },
+        subject: subject.user, report_results: report_results
+      )
+
+      expect(response).to eq("#{earlier.strftime('%-d/%-m/%Y')} - #{later.strftime('%-d/%-m/%Y')}")
+    end
   end
 end

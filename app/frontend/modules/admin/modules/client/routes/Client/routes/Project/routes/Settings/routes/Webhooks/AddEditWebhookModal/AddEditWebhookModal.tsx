@@ -411,10 +411,7 @@ export const AddEditWebhookModal: React.FC<Props> = ({
                   name={I18n.t('admin.oauth_scope_name')}
                   label={I18n.t('admin.oauth_scope_label')}
                   initialValue={webhook?.oauthScope}
-                  rules={[{
-                    required: true,
-                    message: I18n.t('admin.oauth_scope_required'),
-                  }]}
+                  normalize={value => value?.trim() || null}
                 >
                   <Input />
                 </Form.Item>

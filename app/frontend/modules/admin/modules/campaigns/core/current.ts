@@ -12,6 +12,7 @@ export const FETCH_ASSESSMENTS_AND_REPORTS = 'campaigns/FETCH_ASSESSMENTS_AND_RE
 export const UPDATE_CAMPAIGN = 'campaigns/current/UPDATE_CAMPAIGN'
 
 export const get = (state: RootState) => _.get(state, ['current'])
+export const getTenantId = (state: RootState) => get(state).tenantId
 
 const defaultState = {
   permissions: {},

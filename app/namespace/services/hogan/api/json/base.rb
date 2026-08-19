@@ -86,6 +86,16 @@ module Services
           def get(endpoint:, provider:, request: {})
             response = client_with_auth(provider).get(Addressable::URI.encode(endpoint), request)
             { body: ::JSON.parse(response.body), status: response.status }
+          rescue JSON::ParserError => e
+            Sentry.capture_exception(e, extra: {
+              hogan_endpoint: endpoint,
+              hogan_provider: provider,
+              hogan_request: request,
+              response_status: response&.status,
+              response_content_type: response&.headers&.[]('content-type'),
+              response_body: response&.body.to_s.first(2000)
+            })
+            raise
           end
 
           def post(endpoint:, provider:, request: {})

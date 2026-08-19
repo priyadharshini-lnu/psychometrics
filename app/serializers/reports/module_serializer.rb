@@ -14,9 +14,11 @@ module Reports
       return object.props if !context[:piped_text_context] || object.props['sourceType'] != 'Text'
 
       transformer = proc { |str| "<span style=\"direction: ltr; display: inline-block;\">#{str}</span>" }
-      text = Threesixty::PipedText::Perform.call!(
-        object.props['text'], context[:piped_text_context].merge(users_result: users_result), transformer
+      piped_text_context = context[:piped_text_context].merge(
+        users_result: users_result,
+        report_results: context[:user_results_hash]&.values
       )
+      text = Threesixty::PipedText::Perform.call!(object.props['text'], piped_text_context, transformer)
 
       object.props.merge(
         text: text

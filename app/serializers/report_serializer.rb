@@ -125,19 +125,11 @@ class ReportSerializer < Panko::Serializer
   def result_completed_at
     return if results.blank?
 
-    dates = results.filter_map do |result|
-      result&.completed_at&.to_date
-    end.sort
+    from, to = Reports::CompletedAtDates.call!(results)
+    return '' unless from
 
-    return '' if dates.empty?
-
-    if dates.first == dates.last
-      dates.first.strftime(I18n.t('time.formats.short_date'))
-    else
-      "#{dates.first.strftime(I18n.t('time.formats.short_date'))} - #{dates.last.strftime(I18n.t(
-                                                                                            'time.formats.short_date'
-                                                                                          ))}"
-    end
+    format = I18n.t('time.formats.short_date')
+    from == to ? from.strftime(format) : "#{from.strftime(format)} - #{to.strftime(format)}"
   end
 
   # Used for Piped Text

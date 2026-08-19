@@ -12,13 +12,12 @@ class Api::V2::Administration::AdminRoleResource < Api::V2::Administration::Base
   audit_log_for :destroy, payload: ->(_, record) { record.slice(:id, :name) }
 
   def self.records(opts = {})
-    # Ideally we should only pass client id and not project id.
-    # But in UI we don't know client_id in pages inside project. This is a temporary solution.
-    client = Client.find(opts[:context][:params]['client_id'])
-    client_id = client.project? ? client.tte_id : client.id
-    ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, AdminRole]).where(
-      client_id: client_id
-    )
+    client_id = opts[:context][:params]['client_id']
+
+    ::Pundit.policy_scope!(
+      opts[:context][:user],
+      [:api, :administration, AdminRole]
+    ).where(client_id: client_id)
   end
 
   private
