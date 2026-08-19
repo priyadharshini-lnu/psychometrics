@@ -705,6 +705,7 @@ en:
     disable_dp: Don't allow further data processing
     disable_proctoring: Disable Proctoring
     disable_report_download: Disable report download
+    disable_transcript_download: Disable Transcript Download
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
@@ -938,6 +939,7 @@ en:
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
     hide_middle_scores: Hide middle scores
+    hide_participant_video: Hide Participant Video
     high: High
     hogan: Hogan
     hogan_assessment: Hogan Assessment
@@ -2592,6 +2594,7 @@ en:
     scheduling_columns_start_time: Date & Time
     scheduling_columns_subject: Subject
     scheduling_columns_title: Title
+    scheduling_columns_video_hidden_for_privacy: The video is hidden for candidate's privacy.
     scheduling_columns_view_recording: View Recording
     scheduling_errors_assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
     scheduling_errors_date_required: Please select a date

@@ -352,6 +352,7 @@ module Administration
           :workshop_invite_requires_prework_completion, :enable_video_call_recording, :enable_mobile_proctoring,
           :system_check_enabled, :system_check_validity, :allow_continue_with_warning,
           :skip_assessment_level_checks, :selective_proctoring_enabled,
+          :hide_participant_video, :disable_transcript_download,
           :minimum_upload_speed, :minimum_download_speed,
           :face_detection_enabled, :minimum_face_detection_ratio, :phrase_verification_enabled,
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper

@@ -2922,7 +2922,9 @@ CREATE TABLE public.campaign_options (
     tenant_id bigint,
     face_detection_enabled boolean DEFAULT false NOT NULL,
     minimum_face_detection_ratio integer DEFAULT 85,
-    phrase_verification_enabled boolean DEFAULT false NOT NULL
+    phrase_verification_enabled boolean DEFAULT false NOT NULL,
+    hide_participant_video boolean DEFAULT false NOT NULL,
+    disable_transcript_download boolean DEFAULT false NOT NULL
 );
 
 
@@ -25181,6 +25183,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260818000001'),
 ('20260807000002'),
 ('20260807000001'),
 ('20260810125949'),
