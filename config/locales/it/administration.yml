@@ -1929,7 +1929,6 @@ it:
         export: Traduzioni per l'esportazione
         import: Importazione di traduzioni
         import_descr: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
-    tte: TTE
     update: Aggiorna
     users:
       create:

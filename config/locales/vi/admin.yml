@@ -663,7 +663,7 @@ vi:
     dimensions_import_modal_import_dimension: Kích thước nhập khẩu
     dimensions_import_modal_import_scheduled: Nhập theo lịch trình
     dimensions_import_modal_operation: Hoạt động
-    dimensions_import_modal_owner_global: TTE (Toàn cầu)
+    dimensions_import_modal_owner_global: Toàn cầu
     dimensions_import_modal_owner_input_validation: Vui lòng chọn chủ sở hữu.
     dimensions_import_modal_owner_select: Chọn chủ sở hữu
     dimensions_import_modal_select_json: Chọn tệp JSON
@@ -1949,6 +1949,7 @@ vi:
     piped_text_modal_title: Thêm văn bản đường ống
     piped_text_modal_user_reports: Báo cáo của người dùng
     piped_text_modal_users: Người dùng
+    platform_owner: Platform
     playground: Sân chơi
     playground_info: Kiểm tra cấu phần phần mềm của bạn với dữ liệu mẫu để xem trước kết quả được tạo.
     playground_placeholder: Nhập dữ liệu thử nghiệm
@@ -3177,7 +3178,6 @@ vi:
       title: Bản dịch
     translations_export_failure_msg: Lỗi khi xuất bản dịch
     translations_export_success_msg: Xuất các hành động phát triển đang được tiến hành.
-    tte: TTE
     type_by_skill: Theo kỹ năng
     type_by_skill_type: Theo loại kỹ năng
     type_default: Mặc định

@@ -663,7 +663,7 @@ sr-Latn:
     dimensions_import_modal_import_dimension: Uvezi dimenziju
     dimensions_import_modal_import_scheduled: Uvoz zakazan
     dimensions_import_modal_operation: Operacija
-    dimensions_import_modal_owner_global: ТТЕ (глобално)
+    dimensions_import_modal_owner_global: Globalno
     dimensions_import_modal_owner_input_validation: Molimo izaberite vlasnika
     dimensions_import_modal_owner_select: Izaberite vlasnika
     dimensions_import_modal_select_json: Izaberite JSON datoteku
@@ -1949,6 +1949,7 @@ sr-Latn:
     piped_text_modal_title: Dodaj piped tekst
     piped_text_modal_user_reports: Korisnički izveštaji
     piped_text_modal_users: Korisnici
+    platform_owner: Platform
     playground: Igraliљte
     playground_info: Testirajte svoj artefakt sa uzorkom podataka da biste pregledali generisane rezultate.
     playground_placeholder: Unesite podatke o testu
@@ -3177,7 +3178,6 @@ sr-Latn:
       title: Преводи
     translations_export_failure_msg: Greška prilikom izvoza prevoda
     translations_export_success_msg: Izvoz razvojnih akcija u toku.
-    tte: TTE
     type_by_skill: Po veštini
     type_by_skill_type: Po tipu veštine
     type_default: Ponuđeno

@@ -663,7 +663,7 @@ pt:
     dimensions_import_modal_import_dimension: Dimensão da importação
     dimensions_import_modal_import_scheduled: Importação programada
     dimensions_import_modal_operation: Funcionamento
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Selecionar um proprietário
     dimensions_import_modal_owner_select: Selecionar um proprietário
     dimensions_import_modal_select_json: Selecionar ficheiro JSON
@@ -1949,6 +1949,7 @@ pt:
     piped_text_modal_title: Adicionar texto com tubagem
     piped_text_modal_user_reports: Relatórios de utilizadores
     piped_text_modal_users: Utilizadores
+    platform_owner: Platform
     playground: Parque infantil
     playground_info: Teste seu artefato com dados de amostra para visualizar os resultados gerados.
     playground_placeholder: Insira os dados de teste
@@ -3185,7 +3186,6 @@ pt:
       title: Traduções
     translations_export_failure_msg: Erro ao exportar traduções
     translations_export_success_msg: Acções de desenvolvimento de exportação em curso.
-    tte: TTE
     type_by_skill: Por Habilidade
     type_by_skill_type: Por tipo de habilidade
     type_default: Padrão

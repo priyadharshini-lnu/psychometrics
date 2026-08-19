@@ -94,7 +94,7 @@ export const DetailsDrawer: FC<Props> = ({
             key="owner"
             className="va-t"
           >
-            {assessment.owner?.name || I18n.t('admin.tte')}
+            {assessment.owner?.name || I18n.t('admin.platform_owner')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('campaign_assessment.column.dimension_id')}

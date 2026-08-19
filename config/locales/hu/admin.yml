@@ -663,7 +663,7 @@ hu:
     dimensions_import_modal_import_dimension: Dimenzió importálása
     dimensions_import_modal_import_scheduled: Tervezett importálás
     dimensions_import_modal_operation: Művelet
-    dimensions_import_modal_owner_global: TTE (globális)
+    dimensions_import_modal_owner_global: Globális
     dimensions_import_modal_owner_input_validation: Kérjük, válasszon egy tulajdonost
     dimensions_import_modal_owner_select: Tulajdonos kiválasztása
     dimensions_import_modal_select_json: JSON fájl kiválasztása
@@ -1949,6 +1949,7 @@ hu:
     piped_text_modal_title: Továbbított szöveg hozzáadása
     piped_text_modal_user_reports: Felhasználói jelentések
     piped_text_modal_users: Felhasználók
+    platform_owner: Platform
     playground: Játszótér
     playground_info: Tesztelje az összetevőt mintaadatokkal a generált eredmények előnézetéhez.
     playground_placeholder: Tesztadatok megadása
@@ -3182,7 +3183,6 @@ hu:
       title: Fordítások
     translations_export_failure_msg: Hiba a fordítások exportálása során
     translations_export_success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
-    tte: TTE
     type_by_skill: Készség szerint
     type_by_skill_type: Képességtípusonként
     type_default: Alapértelmezett

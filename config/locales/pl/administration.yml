@@ -1929,7 +1929,6 @@ pl:
         export: Eksport tłumaczeń
         import: Importowanie tłumaczeń
         import_descr: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do importowania tutaj.
-    tte: Prąd elektryczny i prąd
     update: Aktualizacja
     users:
       create:

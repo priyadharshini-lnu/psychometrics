@@ -1929,7 +1929,6 @@ zh-HK:
         export: 导出翻译
         import: 导入翻译
         import_descr: 请参考导出功能，提取可用于在此处导入的模板。
-    tte: TTE
     update: 更新
     users:
       create:

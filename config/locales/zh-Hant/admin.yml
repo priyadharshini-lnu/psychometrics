@@ -663,7 +663,7 @@ zh-Hant:
     dimensions_import_modal_import_dimension: 進口尺寸
     dimensions_import_modal_import_scheduled: 輸入排程
     dimensions_import_modal_operation: 操作
-    dimensions_import_modal_owner_global: TTE（全球）
+    dimensions_import_modal_owner_global: 全球
     dimensions_import_modal_owner_input_validation: 請選擇物主
     dimensions_import_modal_owner_select: 選擇所有者
     dimensions_import_modal_select_json: 選擇 JSON 檔案
@@ -1949,6 +1949,7 @@ zh-Hant:
     piped_text_modal_title: 新增管道文字
     piped_text_modal_user_reports: 使用者報告
     piped_text_modal_users: 使用者
+    platform_owner: Platform
     playground: 操場
     playground_info: 使用範例資料測試您的構件，以預覽產生的結果。
     playground_placeholder: 輸入測試數據
@@ -3185,7 +3186,6 @@ zh-Hant:
       title: 翻译
     translations_export_failure_msg: 匯出翻譯時發生錯誤
     translations_export_success_msg: 出口開發行動正在進行中。
-    tte: TTE
     type_by_skill: 按技術
     type_by_skill_type: 依技能類型
     type_default: 預設

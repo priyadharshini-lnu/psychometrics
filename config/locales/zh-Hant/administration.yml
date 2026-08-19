@@ -1929,7 +1929,6 @@ zh-Hant:
         export: 出口翻譯
         import: 進口翻譯
         import_descr: 請參閱匯出功能，擷取可用於在此匯入的範本。
-    tte: TTE
     update: 更新
     users:
       create:

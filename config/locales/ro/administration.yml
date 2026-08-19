@@ -1929,7 +1929,6 @@ ro:
         export: Exportați traduceri
         import: Importați traduceri
         import_descr: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
-    tte: TTE
     update: Actualiza
     users:
       create:

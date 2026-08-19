@@ -663,7 +663,7 @@ pl:
     dimensions_import_modal_import_dimension: Importuj wymiar
     dimensions_import_modal_import_scheduled: Zaplanowany import
     dimensions_import_modal_operation: Operacja
-    dimensions_import_modal_owner_global: TTE (globalny)
+    dimensions_import_modal_owner_global: Globalny
     dimensions_import_modal_owner_input_validation: Wybierz właściciela
     dimensions_import_modal_owner_select: Wybór właściciela
     dimensions_import_modal_select_json: Wybierz plik JSON
@@ -1949,6 +1949,7 @@ pl:
     piped_text_modal_title: Dodawanie tekstu z potoku
     piped_text_modal_user_reports: Raporty użytkowników
     piped_text_modal_users: Użytkowników
+    platform_owner: Platform
     playground: Plac zabaw
     playground_info: Przetestuj artefakt z przykładowymi danymi, aby wyświetlić podgląd wygenerowanych wyników.
     playground_placeholder: Wprowadzanie danych testowych
@@ -3177,7 +3178,6 @@ pl:
       title: Tłumaczenia
     translations_export_failure_msg: Błąd podczas eksportowania tłumaczeń
     translations_export_success_msg: Eksport działań rozwojowych w toku.
-    tte: Prąd elektryczny i prąd
     type_by_skill: Według umiejętności
     type_by_skill_type: Według rodzaju umiejętności
     type_default: Domyślne

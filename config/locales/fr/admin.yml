@@ -663,7 +663,7 @@ fr:
     dimensions_import_modal_import_dimension: Dimension de l'importation
     dimensions_import_modal_import_scheduled: Importation programmée
     dimensions_import_modal_operation: Fonctionnement
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Veuillez sélectionner un propriétaire
     dimensions_import_modal_owner_select: Sélectionner un propriétaire
     dimensions_import_modal_select_json: Sélectionner le fichier JSON
@@ -1949,6 +1949,7 @@ fr:
     piped_text_modal_title: Ajout d'un texte en pointillé
     piped_text_modal_user_reports: Rapports des utilisateurs
     piped_text_modal_users: Utilisateurs
+    platform_owner: Platform
     playground: Terrain de jeu
     playground_info: Testez votre artefact à l’aide d’exemples de données pour prévisualiser les résultats générés.
     playground_placeholder: Entrez les données de test
@@ -3185,7 +3186,6 @@ fr:
       title: Traductions
     translations_export_failure_msg: Erreur lors de l'exportation des traductions
     translations_export_success_msg: Des actions de développement de l'exportation sont en cours.
-    tte: TTE
     type_by_skill: Par compétence
     type_by_skill_type: Par type de compétence
     type_default: Défaut

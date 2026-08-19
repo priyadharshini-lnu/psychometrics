@@ -663,7 +663,7 @@ ro:
     dimensions_import_modal_import_dimension: Dimensiune import
     dimensions_import_modal_import_scheduled: Import programat
     dimensions_import_modal_operation: Operație
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Vă rugăm să selectați un proprietar
     dimensions_import_modal_owner_select: Selectați un proprietar
     dimensions_import_modal_select_json: Selectați fișierul JSON
@@ -1949,6 +1949,7 @@ ro:
     piped_text_modal_title: Adăugați text canalizat
     piped_text_modal_user_reports: Rapoarte ale utilizatorilor
     piped_text_modal_users: Utilizatorii
+    platform_owner: Platform
     playground: Joacă
     playground_info: Testați artefactul cu date eșantion pentru a previzualiza rezultatele generate.
     playground_placeholder: Introduceți datele de testare
@@ -3177,7 +3178,6 @@ ro:
       title: Traduceri
     translations_export_failure_msg: Eroare la exportul traducerilor
     translations_export_success_msg: Exportul acțiunilor de dezvoltare în curs de desfășurare.
-    tte: TTE
     type_by_skill: După îndemânare
     type_by_skill_type: Pe tip de abilitate
     type_default: Implicit

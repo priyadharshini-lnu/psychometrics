@@ -108,7 +108,7 @@ const CopyBlockFormModal: React.FC<Props> = ({
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : null}
               filterOption={false}
             >
-              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
+              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}

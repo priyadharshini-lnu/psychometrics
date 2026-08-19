@@ -663,7 +663,7 @@ sl:
     dimensions_import_modal_import_dimension: Uvozna razsežnost
     dimensions_import_modal_import_scheduled: Načrtovani uvoz
     dimensions_import_modal_operation: Operacija
-    dimensions_import_modal_owner_global: TTE (globalno)
+    dimensions_import_modal_owner_global: Globalno
     dimensions_import_modal_owner_input_validation: Prosimo, izberite lastnika
     dimensions_import_modal_owner_select: Izberite lastnika
     dimensions_import_modal_select_json: Izberite datoteko JSON
@@ -1949,6 +1949,7 @@ sl:
     piped_text_modal_title: Dodajanje besedila v cevi
     piped_text_modal_user_reports: Poročila uporabnikov
     piped_text_modal_users: Uporabniki
+    platform_owner: Platform
     playground: Igrišče
     playground_info: Preskusite artefakt z vzorčnimi podatki za predogled ustvarjenih rezultatov.
     playground_placeholder: Vnos testnih podatkov
@@ -3177,7 +3178,6 @@ sl:
       title: Prevodi
     translations_export_failure_msg: Napaka pri izvažanju prevodov
     translations_export_success_msg: Izvoz razvojnih ukrepov v teku.
-    tte: TTE
     type_by_skill: S spretnostjo
     type_by_skill_type: Po vrsti spretnosti
     type_default: Privzeto

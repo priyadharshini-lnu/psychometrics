@@ -201,7 +201,7 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
               }
               notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
-              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
+              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
               {
                 ownerOpts.map(({
                   id,

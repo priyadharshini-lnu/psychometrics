@@ -688,7 +688,7 @@ en:
     dimensions_import_modal_import_dimension: Import Dimension
     dimensions_import_modal_import_scheduled: Import scheduled
     dimensions_import_modal_operation: Operation
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Please select an owner
     dimensions_import_modal_owner_select: Select an owner
     dimensions_import_modal_select_json: Select JSON file
@@ -1983,6 +1983,7 @@ en:
     piped_text_modal_title: Add Piped Text
     piped_text_modal_user_reports: User Reports
     piped_text_modal_users: Users
+    platform_owner: Platform
     playground: Playground
     playground_info: Test your artifact with sample data to preview generated results.
     playground_placeholder: Enter test data
@@ -3306,7 +3307,6 @@ en:
       title: Translations
     translations_export_failure_msg: Error while exporting translations
     translations_export_success_msg: Exporting development actions in progress.
-    tte: TTE
     type_by_skill: By Skill
     type_by_skill_type: By Skill Type
     type_default: Default

@@ -1929,7 +1929,6 @@ sl:
         export: Izvoz prevodov
         import: Uvoz prevodov
         import_descr: Oglejte si funkcijo izvoza, da izvlečete predlogo, ki jo lahko uporabite za uvoz tukaj.
-    tte: TTE
     update: Posodobitev
     users:
       create:

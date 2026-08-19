@@ -663,7 +663,7 @@ ja:
     dimensions_import_modal_import_dimension: 輸入寸法
     dimensions_import_modal_import_scheduled: インポート予定
     dimensions_import_modal_operation: オペレーション
-    dimensions_import_modal_owner_global: TTE（グローバル）
+    dimensions_import_modal_owner_global: グローバル
     dimensions_import_modal_owner_input_validation: オーナーを選択してください
     dimensions_import_modal_owner_select: オーナーの選択
     dimensions_import_modal_select_json: JSONファイルを選択
@@ -1949,6 +1949,7 @@ ja:
     piped_text_modal_title: パイピング・テキストを追加する
     piped_text_modal_user_reports: ユーザーレポート
     piped_text_modal_users: ユーザー
+    platform_owner: Platform
     playground: 遊び場
     playground_info: サンプルデータを使用して成果物をテストし、生成された結果をプレビューします。
     playground_placeholder: テストデータの入力
@@ -3185,7 +3186,6 @@ ja:
       title: 翻訳
     translations_export_failure_msg: 翻訳のエクスポート時のエラー
     translations_export_success_msg: 進行中の開発アクションをエクスポートする。
-    tte: TTE
     type_by_skill: スキル別
     type_by_skill_type: スキルタイプ別
     type_default: デフォルト

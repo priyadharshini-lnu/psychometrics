@@ -40,7 +40,7 @@ export const ReportBundleTable: React.FC<Props> = ({
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.owner')}
       id="tenant"
-      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.tte')}
+      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.platform_owner')}
       width={200}
     />
     <Resource.Column<ReportBundle>

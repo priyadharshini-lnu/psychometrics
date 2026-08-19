@@ -1929,7 +1929,6 @@ sk:
         export: Exportovať preklady
         import: Importovať preklady
         import_descr: Pozrite si funkciu Export a extrahujte šablónu, ktorú je možné použiť na import.
-    tte: TTE
     update: Aktualizovať
     users:
       create:

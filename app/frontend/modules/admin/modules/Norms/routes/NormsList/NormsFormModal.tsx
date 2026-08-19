@@ -117,7 +117,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
                 }
               >
                 {isSuperAdmin(currentUser) && (
-                  <Select.Option>{I18n.t('admin.tte')}</Select.Option>
+                  <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>
                 )}
                 {getClients().map(({ id, name }) => (
                   <Select.Option key={id} value={id}>

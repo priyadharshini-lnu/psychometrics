@@ -663,7 +663,7 @@ nl:
     dimensions_import_modal_import_dimension: Dimensie importeren
     dimensions_import_modal_import_scheduled: Geplande import
     dimensions_import_modal_operation: Operatie
-    dimensions_import_modal_owner_global: TTE (Wereldwijd)
+    dimensions_import_modal_owner_global: Wereldwijd
     dimensions_import_modal_owner_input_validation: Selecteer een eigenaar
     dimensions_import_modal_owner_select: Selecteer een eigenaar
     dimensions_import_modal_select_json: Selecteer JSON-bestand
@@ -1949,6 +1949,7 @@ nl:
     piped_text_modal_title: Tekst met passepoil toevoegen
     piped_text_modal_user_reports: Rapporten van gebruikers
     piped_text_modal_users: Gebruikers
+    platform_owner: Platform
     playground: Speelplaats
     playground_info: Test uw artefact met voorbeeldgegevens om een voorbeeld van de gegenereerde resultaten te bekijken.
     playground_placeholder: Testgegevens invoeren
@@ -3185,7 +3186,6 @@ nl:
       title: Vertalingen
     translations_export_failure_msg: Fout tijdens het exporteren van vertalingen
     translations_export_success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
-    tte: TTE
     type_by_skill: Door Behendigheid
     type_by_skill_type: Op vaardigheidstype
     type_default: Standaard

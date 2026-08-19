@@ -1929,7 +1929,6 @@ vi:
         export: Xuất bản dịch
         import: Nhập bản dịch
         import_descr: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
-    tte: TTE
     update: Cập nhật
     users:
       create:

@@ -663,7 +663,7 @@ id:
     dimensions_import_modal_import_dimension: Dimensi Impor
     dimensions_import_modal_import_scheduled: Impor terjadwal
     dimensions_import_modal_operation: Operasi
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Pilih pemilik
     dimensions_import_modal_owner_select: Pilih pemilik
     dimensions_import_modal_select_json: Pilih file JSON
@@ -1949,6 +1949,7 @@ id:
     piped_text_modal_title: Tambahkan Teks Piped
     piped_text_modal_user_reports: Laporan Pengguna
     piped_text_modal_users: Pengguna
+    platform_owner: Platform
     playground: Taman bermain anak
     playground_info: Uji artefak Anda dengan data sampel untuk melihat pratinjau hasil yang dihasilkan.
     playground_placeholder: Masukkan data pengujian
@@ -3177,7 +3178,6 @@ id:
       title: Terjemahan
     translations_export_failure_msg: Kesalahan saat mengekspor terjemahan
     translations_export_success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
-    tte: TTE
     type_by_skill: Berdasarkan Keterampilan
     type_by_skill_type: Berdasarkan Jenis Keterampilan
     type_default: Default

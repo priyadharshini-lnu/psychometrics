@@ -662,7 +662,7 @@ bg:
     dimensions_import_modal_import_dimension: Величина за импортиране
     dimensions_import_modal_import_scheduled: Планиран внос
     dimensions_import_modal_operation: Операция
-    dimensions_import_modal_owner_global: TTE (глобално)
+    dimensions_import_modal_owner_global: Глобално
     dimensions_import_modal_owner_input_validation: Моля, изберете собственик
     dimensions_import_modal_owner_select: Изберете собственик
     dimensions_import_modal_select_json: Изберете JSON файл
@@ -1948,6 +1948,7 @@ bg:
     piped_text_modal_title: Добавяне на тръбопроводен текст
     piped_text_modal_user_reports: Доклади на потребителите
     piped_text_modal_users: Потребители
+    platform_owner: Platform
     playground: Площадка
     playground_info: Тествайте артефакта си с примерни данни, за да прегледате генерираните резултати.
     playground_placeholder: Въведете тестови данни
@@ -3181,7 +3182,6 @@ bg:
       title: Преводи
     translations_export_failure_msg: Грешка при експортиране на преводи
     translations_export_success_msg: Текущи действия за развитие на износа.
-    tte: TTE
     type_by_skill: По умения
     type_by_skill_type: По тип умения
     type_default: По подразбиране

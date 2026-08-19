@@ -663,7 +663,7 @@ zh-HK:
     dimensions_import_modal_import_dimension: 导入维度
     dimensions_import_modal_import_scheduled: 导入计划
     dimensions_import_modal_operation: 手術
-    dimensions_import_modal_owner_global: TTE（全球）
+    dimensions_import_modal_owner_global: 全球
     dimensions_import_modal_owner_input_validation: 请选择所有者
     dimensions_import_modal_owner_select: 选择所有者
     dimensions_import_modal_select_json: 选择 JSON 文件
@@ -1949,6 +1949,7 @@ zh-HK:
     piped_text_modal_title: 添加管道文本
     piped_text_modal_user_reports: 用户报告
     piped_text_modal_users: 用户
+    platform_owner: Platform
     playground: 游乐场
     playground_info: 使用示例数据测试您的工件，以预览生成的结果。
     playground_placeholder: 输入测试数据
@@ -3185,7 +3186,6 @@ zh-HK:
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 正在导出进行中的开发操作。
-    tte: TTE
     type_by_skill: 按技能
     type_by_skill_type: 按技能类型
     type_default: 預設

@@ -1929,7 +1929,6 @@ id:
         export: Ekspor Terjemahan
         import: Impor Terjemahan
         import_descr: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
-    tte: TTE
     update: Pemutakhiran
     users:
       create:

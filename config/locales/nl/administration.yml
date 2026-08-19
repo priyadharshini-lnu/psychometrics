@@ -1929,7 +1929,6 @@ nl:
         export: Vertalingen exporteren
         import: Vertalingen importeren
         import_descr: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
-    tte: TTE
     update: Update
     users:
       create:

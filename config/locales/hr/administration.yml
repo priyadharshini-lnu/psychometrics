@@ -1929,7 +1929,6 @@ hr:
         export: Izvoz prijevoda
         import: Uvoz prijevoda
         import_descr: Pogledajte funkciju Izvoz da biste izdvojili predložak koji se ovdje može koristiti za uvoz.
-    tte: TTE
     update: Ažurirati
     users:
       create:

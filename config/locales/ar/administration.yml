@@ -1931,7 +1931,6 @@ ar:
         export: Export Translations
         import: Import Translations
         import_descr: Refer to the Export functionality to extract a template that can be used to Import here.
-    tte: TTE
     update: Update
     users:
       create:

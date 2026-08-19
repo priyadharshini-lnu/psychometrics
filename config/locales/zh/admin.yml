@@ -663,7 +663,7 @@ zh:
     dimensions_import_modal_import_dimension: 进口尺寸
     dimensions_import_modal_import_scheduled: 计划导入
     dimensions_import_modal_operation: 运行
-    dimensions_import_modal_owner_global: TTE（全球）
+    dimensions_import_modal_owner_global: 全球
     dimensions_import_modal_owner_input_validation: 请选择业主
     dimensions_import_modal_owner_select: 选择所有者
     dimensions_import_modal_select_json: 选择 JSON 文件
@@ -1949,6 +1949,7 @@ zh:
     piped_text_modal_title: 添加管道文字
     piped_text_modal_user_reports: 用户报告
     piped_text_modal_users: 用户
+    platform_owner: Platform
     playground: 操场
     playground_info: 使用示例数据测试您的项目，以预览生成的结果。
     playground_placeholder: 输入测试数据
@@ -3185,7 +3186,6 @@ zh:
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 导出开发行动正在进行中。
-    tte: TTE
     type_by_skill: 通过技能
     type_by_skill_type: 按技能类型
     type_default: 默认

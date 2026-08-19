@@ -109,7 +109,7 @@ export const DetailsDrawer: FC<Props> = ({ close, report, isOtherReport = false 
             label={I18n.t('common.column.owner')}
             className="va-t"
           >
-            {report.owner?.name || I18n.t('admin.tte')}
+            {report.owner?.name || I18n.t('admin.platform_owner')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('admin.assessment_ids')}

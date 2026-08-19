@@ -103,7 +103,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
           title={I18n.t('common.column.owner')}
           id="owner"
           width={300}
-          render={(_, { owner }) => owner?.name || I18n.t('admin.tte')}
+          render={(_, { owner }) => owner?.name || I18n.t('admin.platform_owner')}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.type')}

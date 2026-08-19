@@ -663,7 +663,7 @@ sr-Cyrl:
     dimensions_import_modal_import_dimension: Увоз димензије
     dimensions_import_modal_import_scheduled: Увоз заказан
     dimensions_import_modal_operation: Операција
-    dimensions_import_modal_owner_global: ТТЕ (глобално)
+    dimensions_import_modal_owner_global: Глобално
     dimensions_import_modal_owner_input_validation: Молимо изаберите власника
     dimensions_import_modal_owner_select: Изаберите власника
     dimensions_import_modal_select_json: Изаберите JSON фајл
@@ -1953,6 +1953,7 @@ sr-Cyrl:
     piped_text_modal_title: Додајте цевоводни текст
     piped_text_modal_user_reports: Извештаји корисника
     piped_text_modal_users: Корисници
+    platform_owner: Platform
     playground: Детско игралиште
     playground_info: Тестирајте свој артефакт са примерним подацима да бисте прегледали генерисане резултате.
     playground_placeholder: Унесите тест податке
@@ -3189,7 +3190,6 @@ sr-Cyrl:
       title: Преводи
     translations_export_failure_msg: Грешка приликом извоза превода
     translations_export_success_msg: Извоз развојних акција у току.
-    tte: ТТЕ
     type_by_skill: По вештини
     type_by_skill_type: По типу вештине
     type_default: Подразумевано

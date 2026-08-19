@@ -1929,7 +1929,6 @@ cs:
         export: Exportní překlady
         import: Importovat překlady
         import_descr: Viz funkce Export pro získání šablony, kterou lze použít k importu.
-    tte: TTE
     update: Aktualizace
     users:
       create:

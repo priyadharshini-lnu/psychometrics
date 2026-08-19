@@ -663,7 +663,7 @@ ru:
     dimensions_import_modal_import_dimension: Импорт измерения
     dimensions_import_modal_import_scheduled: Импорт запланирован
     dimensions_import_modal_operation: Операция
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Пожалуйста, выберите владельца
     dimensions_import_modal_owner_select: Выберите владельца
     dimensions_import_modal_select_json: Выберите файл JSON
@@ -1949,6 +1949,7 @@ ru:
     piped_text_modal_title: Добавить текст в трубе
     piped_text_modal_user_reports: Отчеты пользователей
     piped_text_modal_users: Пользователи
+    platform_owner: Platform
     playground: Игровая площадка
     playground_info: Протестируйте свой артефакт с помощью примеров данных, чтобы предварительно просмотреть сгенерированные результаты.
     playground_placeholder: Введите тестовые данные
@@ -3185,7 +3186,6 @@ ru:
       title: Переводы
     translations_export_failure_msg: Ошибка при экспорте переводов
     translations_export_success_msg: Экспорт текущих действий по развитию.
-    tte: TTE
     type_by_skill: По навыкам
     type_by_skill_type: По типу навыков
     type_default: По умолчанию

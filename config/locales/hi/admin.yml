@@ -662,7 +662,7 @@ hi:
     dimensions_import_modal_import_dimension: आयाम आयात करें
     dimensions_import_modal_import_scheduled: आयात निर्धारित
     dimensions_import_modal_operation: संचालन
-    dimensions_import_modal_owner_global: टीटीई (वैश्विक)
+    dimensions_import_modal_owner_global: वैश्विक
     dimensions_import_modal_owner_input_validation: कृपया एक मालिक चुनें
     dimensions_import_modal_owner_select: एक मालिक चुनें
     dimensions_import_modal_select_json: JSON फ़ाइल चुनें
@@ -1952,6 +1952,7 @@ hi:
     piped_text_modal_title: पाइप्ड टेक्स्ट जोड़ें
     piped_text_modal_user_reports: उपयोगकर्ता रिपोर्टें
     piped_text_modal_users: उपयोगकर्ता
+    platform_owner: Platform
     playground: खेल का मैदान
     playground_info: उत्पन्न परिणामों का पूर्वावलोकन करने के लिए अपने आर्टिफैक्ट को नमूना डेटा के साथ परीक्षण करें।
     playground_placeholder: परीक्षण डेटा दर्ज करें
@@ -3188,7 +3189,6 @@ hi:
       title: अनुवाद
     translations_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
     translations_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
-    tte: टीटीई
     type_by_skill: कौशल द्वारा
     type_by_skill_type: कौशल प्रकार के अनुसार
     type_default: डिफ़ॉल्ट

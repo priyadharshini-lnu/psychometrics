@@ -662,7 +662,7 @@ ar:
     dimensions_import_modal_import_dimension: بُعد الاستيراد
     dimensions_import_modal_import_scheduled: الاستيراد المجدول
     dimensions_import_modal_operation: عملية
-    dimensions_import_modal_owner_global: تي تي إي (عالمي)
+    dimensions_import_modal_owner_global: عالمي
     dimensions_import_modal_owner_input_validation: يرجى اختيار المالك
     dimensions_import_modal_owner_select: اختر مالكاً
     dimensions_import_modal_select_json: تحديد ملف JSON
@@ -1948,6 +1948,7 @@ ar:
     piped_text_modal_title: إضافة نص موصول
     piped_text_modal_user_reports: تقارير المستخدمين
     piped_text_modal_users: المستخدمون
+    platform_owner: Platform
     playground: ملعب
     playground_info: اختبر الأداة الخاصة بك باستخدام عينة البيانات لمعاينة النتائج التي تم إنشاؤها.
     playground_placeholder: إدخال بيانات الاختبار
@@ -3184,7 +3185,6 @@ ar:
       title: الترجمات
     translations_export_failure_msg: خطأ أثناء تصدير الترجمات
     translations_export_success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-    tte: TTE
     type_by_skill: حسب المهارة
     type_by_skill_type: حسب نوع المهارة
     type_default: الافتراضي

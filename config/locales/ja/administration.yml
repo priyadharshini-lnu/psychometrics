@@ -1929,7 +1929,6 @@ ja:
         export: 輸出翻訳
         import: 輸入翻訳
         import_descr: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
-    tte: TTE
     update: 更新
     users:
       create:

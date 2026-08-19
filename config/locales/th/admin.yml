@@ -663,7 +663,7 @@ th:
     dimensions_import_modal_import_dimension: นำเข้ามิติ
     dimensions_import_modal_import_scheduled: นำเข้าตามกำหนดการ
     dimensions_import_modal_operation: การผ่าตัด
-    dimensions_import_modal_owner_global: ทีทีเอ (ทั่วโลก)
+    dimensions_import_modal_owner_global: ทั่วโลก
     dimensions_import_modal_owner_input_validation: กรุณาเลือกเจ้าของ
     dimensions_import_modal_owner_select: เลือกเจ้าของ
     dimensions_import_modal_select_json: เลือกไฟล์ JSON
@@ -1949,6 +1949,7 @@ th:
     piped_text_modal_title: เพิ่มข้อความท่อ
     piped_text_modal_user_reports: รายงานของผู้ใช้
     piped_text_modal_users: ผู้เข้าร่วม
+    platform_owner: Platform
     playground: สนามเด็กเล่น
     playground_info: ทดสอบสิ่งประดิษฐ์ของคุณด้วยข้อมูลตัวอย่างเพื่อดูตัวอย่างผลลัพธ์ที่สร้างขึ้น
     playground_placeholder: ป้อนข้อมูลการทดสอบ
@@ -3177,7 +3178,6 @@ th:
       title: การแปล
     translations_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
     translations_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
-    tte: ทีทีอี
     type_by_skill: ตามทักษะ
     type_by_skill_type: ตามประเภททักษะ
     type_default: ค่าเริ่มต้น

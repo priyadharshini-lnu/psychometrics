@@ -185,7 +185,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               key="owner"
               className="va-t"
             >
-              {drawerAssessment.owner?.name || I18n.t('admin.tte')}
+              {drawerAssessment.owner?.name || I18n.t('admin.platform_owner')}
             </Descriptions.Item>
             <Descriptions.Item
               label={I18n.t('campaign_assessment.column.dimension_id')}

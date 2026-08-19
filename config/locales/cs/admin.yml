@@ -663,7 +663,7 @@ cs:
     dimensions_import_modal_import_dimension: Importovat dimenzi
     dimensions_import_modal_import_scheduled: Plánovaný import
     dimensions_import_modal_operation: Provoz
-    dimensions_import_modal_owner_global: TTE (globální)
+    dimensions_import_modal_owner_global: Globální
     dimensions_import_modal_owner_input_validation: Vyberte prosím majitele
     dimensions_import_modal_owner_select: Vyberte vlastníka
     dimensions_import_modal_select_json: Vyberte soubor JSON
@@ -1949,6 +1949,7 @@ cs:
     piped_text_modal_title: Přidání textu s potrubím
     piped_text_modal_user_reports: Uživatelské zprávy
     piped_text_modal_users: Uživatelé
+    platform_owner: Platform
     playground: Hřiště
     playground_info: Otestujte svůj artefakt na ukázkových datech a zobrazte náhled vygenerovaných výsledků.
     playground_placeholder: Zadání testovacích dat
@@ -3185,7 +3186,6 @@ cs:
       title: Překlady
     translations_export_failure_msg: Chyba při exportu překladů
     translations_export_success_msg: Exportování probíhajících vývojových akcí.
-    tte: TTE
     type_by_skill: Podle dovednosti
     type_by_skill_type: Podle typu dovednosti
     type_default: Výchozí

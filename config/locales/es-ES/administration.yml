@@ -1929,7 +1929,6 @@ es-ES:
         export: Exportar traducciones
         import: Importación de traducciones
         import_descr: Consulte la función Exportar para extraer una plantilla que pueda utilizarse para Importar aquí.
-    tte: TTE
     update: Actualización
     users:
       create:

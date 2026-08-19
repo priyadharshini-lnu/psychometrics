@@ -663,7 +663,7 @@ ko:
     dimensions_import_modal_import_dimension: 차원 가져오기
     dimensions_import_modal_import_scheduled: 예약 가져오기
     dimensions_import_modal_operation: 운영
-    dimensions_import_modal_owner_global: TTE(글로벌)
+    dimensions_import_modal_owner_global: 글로벌
     dimensions_import_modal_owner_input_validation: 소유자를 선택해 주세요.
     dimensions_import_modal_owner_select: 소유자 선택
     dimensions_import_modal_select_json: JSON 파일 선택
@@ -1949,6 +1949,7 @@ ko:
     piped_text_modal_title: 파이프 텍스트 추가
     piped_text_modal_user_reports: 사용자 보고서
     piped_text_modal_users: 사용자
+    platform_owner: Platform
     playground: 운동장
     playground_info: 샘플 데이터로 아티팩트를 테스트하여 생성된 결과를 미리 봅니다.
     playground_placeholder: 테스트 데이터 입력
@@ -3185,7 +3186,6 @@ ko:
       title: 번역
     translations_export_failure_msg: 번역 내보내기 중 오류 발생
     translations_export_success_msg: 진행 중인 개발 작업 내보내기.
-    tte: TTE
     type_by_skill: 기술별
     type_by_skill_type: 기술 유형별
     type_default: 기본값

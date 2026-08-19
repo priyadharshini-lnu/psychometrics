@@ -1929,7 +1929,6 @@ sr-Latn:
         export: Izvezi prevode
         import: Uvezi prevod
         import_descr: Pogledajte Izvoz funkcionalnost da izvučete šablon koji se može koristiti za uvoz ovde.
-    tte: TTE
     update: Ažuriranje
     users:
       create:

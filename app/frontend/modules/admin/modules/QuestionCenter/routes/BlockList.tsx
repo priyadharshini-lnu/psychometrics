@@ -222,7 +222,7 @@ const BlockList: React.FC = () => {
           <Link to={`/admin/clients/${record.owner.id}`}>
             {ownerName}
           </Link>
-        ) : I18n.t('admin.tte'))}
+        ) : I18n.t('admin.platform_owner'))}
       />
       <Resource.Column<Block>
         id="created_at"

@@ -30,7 +30,7 @@ export const ReportBundleReportTable: React.FC = () => (
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.owner')}
       id="ownerName"
-      render={reportBundleReport => reportBundleReport.ownerName || I18n.t('admin.tte')}
+      render={reportBundleReport => reportBundleReport.ownerName || I18n.t('admin.platform_owner')}
       width={240}
     />
     <Resource.Column<ReportBundleReport>

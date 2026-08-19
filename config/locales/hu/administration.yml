@@ -1929,7 +1929,6 @@ hu:
         export: Fordítások exportálása
         import: Fordítások importálása
         import_descr: Az Exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
-    tte: TTE
     update: Frissít
     users:
       create:

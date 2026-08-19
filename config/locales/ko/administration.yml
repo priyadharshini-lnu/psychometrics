@@ -1929,7 +1929,6 @@ ko:
         export: 번역 내보내기
         import: 번역 가져오기
         import_descr: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
-    tte: TTE
     update: 업데이트
     users:
       create:

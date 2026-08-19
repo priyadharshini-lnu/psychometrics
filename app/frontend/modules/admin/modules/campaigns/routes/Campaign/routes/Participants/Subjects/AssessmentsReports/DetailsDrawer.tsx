@@ -143,7 +143,7 @@ const DetailsDrawer: React.FC<Props> = ({ close, report }) => {
             label={I18n.t('common.column.owner')}
             className="va-t"
           >
-            {reportWithExternalSettings.owner?.name || I18n.t('admin.tte')}
+            {reportWithExternalSettings.owner?.name || I18n.t('admin.platform_owner')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('admin.assessment_ids')}
