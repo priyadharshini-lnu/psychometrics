@@ -10,8 +10,9 @@ import { LangDropdownWithChangeLocale } from '~/components/LangDropdown'
 import { isRtl } from '~/utils/locales'
 import routes from './routes'
 import styles from './styles.less'
-import logo from './media/TTE_Logo_Color_Light_Bg.png'
-import footerLogo from './media/TTE_Logo_Color_Monogram.png'
+import {
+  monogramHeightPx, monogramNavyUrl, wordmarkHeightPx, wordmarkNavyUrl,
+} from '~/utils/branding'
 import { RootState } from './core/reducers'
 import { DefaultAntThemeWrapper } from '~/glint'
 import { constants } from '~/glint/components/DefaultAntThemeWrapper/constants'
@@ -96,7 +97,20 @@ export const LayoutComponent = ({ config }) => {
           <Layout className={styles.main}>
             <Layout.Header className={styles.header}>
               <div className={styles.logoWrapper}>
-                <img alt={config.logo_alt_text} src={config.client_logo || logo} className={styles.logo} />
+                {config.client_logo ? (
+                  <img
+                    alt={config.logo_alt_text}
+                    src={config.client_logo}
+                    className={styles.logo}
+                  />
+                ) : (
+                  // No .logo class: its 100% sizing would override the height attribute.
+                  <img
+                    alt={config.logo_alt_text}
+                    src={wordmarkNavyUrl()}
+                    height={wordmarkHeightPx()}
+                  />
+                )}
               </div>
               {config.id && <LangDropdownWithChangeLocale />}
             </Layout.Header>
@@ -113,7 +127,12 @@ export const LayoutComponent = ({ config }) => {
             </Layout.Content>
             <Layout.Footer className={styles.footer}>
               <Space>
-                <img src={footerLogo} className={styles.footerLogo} alt={I18n.t('auth.lighthouse_logo_alt_text')} />
+                <img
+                  alt={I18n.t('auth.lighthouse_logo_alt_text')}
+                  src={monogramNavyUrl()}
+                  className={styles.footerLogo}
+                  height={monogramHeightPx()}
+                />
                 <div
                   style={{
                     textAlign: 'center',

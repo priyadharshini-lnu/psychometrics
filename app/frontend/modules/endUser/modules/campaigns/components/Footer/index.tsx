@@ -12,7 +12,7 @@ import {
   getName,
   getSecondaryLogoAltText,
 } from '~/modules/endUser/modules/campaigns/core/project'
-import lighthouseLogo from '~/assets/tte-logo-no-text-raster.png'
+import { monogramHeightPx, monogramNavyUrl } from '~/utils/branding'
 import { useIsProctored } from '~/hooks/useProctoringState'
 
 import { PageFooter } from '~/glint'
@@ -45,7 +45,7 @@ const FooterComponent: FC<PropsFromRedux> = ({
 
   return (
     <PageFooter
-      footerLeft={secondaryLogo && <TTELogo />}
+      footerLeft={secondaryLogo && <BrandMonogram />}
       footerMiddle={(
         <ProductUsageLinks
           privacyText={privacyText}
@@ -63,8 +63,13 @@ const FooterComponent: FC<PropsFromRedux> = ({
   )
 }
 
-const TTELogo: FC = () => (
-  <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
+const BrandMonogram: FC = () => (
+  <img
+    alt={I18n.t('shared.mte_logo_alt_text')}
+    src={monogramNavyUrl()}
+    className={styles.footerLighthouseLogo}
+    height={monogramHeightPx()}
+  />
 )
 
 type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
@@ -132,7 +137,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
+  return <BrandMonogram />
 }
 
 export const Footer = connector(FooterComponent)

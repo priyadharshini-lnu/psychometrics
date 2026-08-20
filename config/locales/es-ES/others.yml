@@ -1156,7 +1156,7 @@ es-ES:
       read_only: Está en modo «solo lectura», no puede cambiar ningún resultado.
       save: Salvar
       submissionFailedAlert:
-        description: No se ha podido conectar con el servidor. Actualice la página e inténtelo de nuevo. Si no funciona, póngase en contacto con el servicio de asistencia a través del chat en directo o de mte.surveys@mercer.com
+        description: No se ha podido conectar con el servidor. Actualice la página e inténtelo de nuevo. Si no funciona, póngase en contacto con el servicio de asistencia a través del chat en directo o de %{support_email}
         title: Última solicitud fallida
       submit: Enviar
       warning: ADVERTENCIA
@@ -2007,7 +2007,7 @@ es-ES:
 
           Tu contraseña ha sido cambiada.
 
-          Si no ha hecho esta solicitud, por favor contacte con el soporte inmediatamente en mte.support@mercer.com
+          Si no ha hecho esta solicitud, por favor contacte con el soporte inmediatamente en %{support_contact_email}
         regards: |
           Saludos
           Equipo del Faro
@@ -2362,7 +2362,6 @@ es-ES:
     error_warning: Oops, algo ha ido mal con su evaluación. Por favor, póngase en contacto con el soporte.
     hogan:
       cannot_start: No puede iniciar la evaluación de Hogan ahora mismo. Por favor, inténtelo pasados unos minutos.
-    lighthouse_app: Faro Mercer
     login: Iniciar sesión
     maintenance:
       notification: Lighthouse estará fuera de servicio por mantenimiento programado en 60 segundos
@@ -3042,12 +3041,11 @@ es-ES:
           invalid: El alcance debe ser 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Todos los derechos reservados
+      text: "© %{year} %{display_name}. Todos los derechos reservados"
     footer:
       regards: Saludos,
-      team_name: Equipo Lighthouse
+      team_name: Equipo %{display_name}
       technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
-    from: La empresa del talento
     idp:
       manager_unread_comments:
         body: |
@@ -3105,7 +3103,7 @@ es-ES:
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
     powered_by:
-      text: Desarrollado por Lighthouse.
+      text: Desarrollado por %{product_name}.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad

@@ -6,7 +6,7 @@ import {
 } from 'antd'
 import { GlintThemeContext, TopBar, useApp } from '@thetalententerprise/glint'
 import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import MarshLogo from '~/assets/marsh-logo.svg?react'
+import { wordmarkCurrentColor, wordmarkHeightPx } from '~/utils/branding'
 import { consumeBootNotice } from '~/components/AdminShell/bootNotices'
 import { UserProfileDropdown } from '~/components/UserProfileDropdown'
 import { ClientCard, ClientData } from './ClientCard'
@@ -27,15 +27,19 @@ const VEIL_OPACITY_LIGHT = 0.35
 
 // The mark is drawn in currentColor, so the link carries the same brand colour the shell picks.
 const Brand: React.FC = () => {
-  const { token } = theme.useToken()
   const { mode } = useContext(GlintThemeContext)
+  const Wordmark = wordmarkCurrentColor()
 
   return (
     <a href="/admin" style={{ display: 'flex', color: mode === 'dark' ? 'var(--white-bg)' : 'var(--brand-navy)' }}>
-      <MarshLogo
+      <Wordmark
         role="img"
         aria-label={I18n.t('admin.lighthouse_logo_alt_text')}
-        style={{ display: 'block', blockSize: token.controlHeight, inlineSize: 'auto' }}
+        style={{
+          display: 'block',
+          blockSize: `${wordmarkHeightPx()}px`,
+          inlineSize: 'auto',
+        }}
       />
     </a>
   )

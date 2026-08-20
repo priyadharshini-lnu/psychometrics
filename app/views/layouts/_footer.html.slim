@@ -4,7 +4,7 @@ footer.lighthouse_footer
     .footer-wrapper
       = image_tag('lighthouseLogoWide.png')
       .text-align-c
-        a href="https://thetalententerprise.com/privacy-statement/" rel="noopener noreferrer" target="_blank"
+        a href="#{Settings.privacy_url}" rel="noopener noreferrer" target="_blank"
           | #{I18n.t('shared.tte_terms_and_condition')}
         - if @current_project&.privacy_setting.enable_privacy_link
           br

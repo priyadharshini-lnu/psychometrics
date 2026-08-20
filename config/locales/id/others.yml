@@ -1154,7 +1154,7 @@ id:
       read_only: Ini adalah mode 'Read only', Anda tidak dapat mengubah hasil apa pun.
       save: Simpan
       submissionFailedAlert:
-        description: Tidak dapat terhubung ke server. Silakan segarkan halaman dan coba lagi. Jika itu tidak berhasil, silakan hubungi dukungan melalui obrolan langsung atau mte.surveys@mercer.com
+        description: Tidak dapat terhubung ke server. Silakan segarkan halaman dan coba lagi. Jika itu tidak berhasil, silakan hubungi dukungan melalui obrolan langsung atau %{support_email}
         title: Permintaan Terakhir Gagal
       submit: Kirim
       warning: PERINGATAN
@@ -1997,7 +1997,7 @@ id:
 
           Kata sandi Anda telah diubah.
 
-          Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di mte.support@mercer.com
+          Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di %{support_contact_email}
         regards: |-
           Salam
           Tim Lighthouse
@@ -2352,7 +2352,6 @@ id:
     error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
     hogan:
       cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
-    lighthouse_app: Mercer Lighthouse
     login: Masuk
     maintenance:
       notification: Lighthouse akan mati untuk pemeliharaan terjadwal dalam 60 detik
@@ -3032,12 +3031,11 @@ id:
           invalid: Cakupan harus 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Hak cipta dilindungi
+      text: "© %{year} %{display_name}. Hak cipta dilindungi"
     footer:
       regards: Salam,
-      team_name: Tim Lighthouse
+      team_name: Tim %{display_name}
       technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di %{email} dan kami akan merespons dalam waktu 24 jam.
-    from: Perusahaan Bakat
     idp:
       manager_unread_comments:
         body: |-
@@ -3095,7 +3093,7 @@ id:
         signin_link: Tautan Masuk
       subject: Tautan masuk untuk Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif

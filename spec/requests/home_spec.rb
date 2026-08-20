@@ -25,4 +25,18 @@ RSpec.describe 'HomeController', type: :request do
     expect(response.cookies['ident_session']).to eq('1')
     expect(response).to redirect_to(redirect_url)
   end
+
+  it 'renders the privacy notice version chosen in settings' do
+    get '/privacy-statement'
+
+    expect(response.body).to include('MERCER TALENT ENTERPRISE PRIVACY NOTICE')
+  end
+
+  it 'never serves a blank privacy page when the chosen version has no copy yet' do
+    allow(Settings.privacy_notice).to receive(:version).and_return('marsh')
+
+    get '/privacy-statement'
+
+    expect(response.body).to include('MERCER TALENT ENTERPRISE PRIVACY NOTICE')
+  end
 end

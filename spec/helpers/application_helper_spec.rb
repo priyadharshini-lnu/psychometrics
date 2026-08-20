@@ -5,28 +5,11 @@ require 'spec_helper'
 describe ApplicationHelper do
   include ActiveSupport::Testing::TimeHelpers
 
-  describe '#background_images' do
-    it 'returns an array of 7 image paths' do
-      images = helper.background_images
-
-      expect(images).to be_a(Array)
-      expect(images.size).to eq(7)
-    end
-
-    it 'returns images in sequence with path' do
-      image = helper.background_images.first
-
-      expect(image).to be_a(String)
-      expect(image).to match('administration/backgrounds/lh-background-0.png')
-    end
-  end
-
-  describe '#randomized_background_image' do
-    it 'returns expected image path' do
-      image = helper.randomized_background_image
-      expected_image_path = "administration/backgrounds/lh-background-#{Time.zone.today.day % 7}.png"
-
-      expect(image).to satisfy('is of expected format') { |p| expected_image_path.match?(p) }
+  describe '#random_background' do
+    it 'serves the auth background set' do
+      travel_to(Time.zone.local(2026, 7, 10)) do
+        expect(helper.random_background).to include('administration/backgrounds/lh-auth-background-3')
+      end
     end
   end
 

@@ -1151,7 +1151,7 @@ hr:
       read_only: Ovo je način rada "Samo za čitanje", ne možete mijenjati odgovore.
       save: Spremiti
       submissionFailedAlert:
-        description: Nije moguće povezati se s poslužiteljem. Osvježite stranicu i pokušajte ponovno. Ako to ne uspije, obratite se podršci putem live chata ili mte.surveys@mercer.com
+        description: Nije moguće povezati se s poslužiteljem. Osvježite stranicu i pokušajte ponovno. Ako to ne uspije, obratite se podršci putem live chata ili %{support_email}
         title: Posljednji zahtjev nije uspio
       submit: Poslati
       warning: UPOZORENJE
@@ -1993,7 +1993,7 @@ hr:
 
           Vaša lozinka je promijenjena.
 
-          Ako niste podnijeli ovaj zahtjev, odmah se obratite podršci na mte.support@mercer.com
+          Ako niste podnijeli ovaj zahtjev, odmah se obratite podršci na %{support_contact_email}
         regards: |-
           Pozdrav
           Lighthouse tim
@@ -2348,7 +2348,6 @@ hr:
     error_warning: Ups, nešto je pošlo po zlu s tvojom procjenom. Obratite se podršci.
     hogan:
       cannot_start: Ne možete odmah započeti procjenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Svjetionik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse će biti isključen zbog planiranog održavanja za 60 sekundi
@@ -3028,12 +3027,11 @@ hr:
           invalid: Opseg mora biti 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Sva prava pridržana
+      text: "© %{year} %{display_name}. Sva prava pridržana"
     footer:
       regards: Srdačan pozdrav,
-      team_name: Lighthouse tim
+      team_name: "%{display_name} tim"
       technical_support: Za tehničke poteškoće pišite nam na %{email} i odgovorit ćemo u roku od 24 sata.
-    from: Talent Enterprise
     idp:
       manager_unread_comments:
         body: |-
@@ -3091,7 +3089,7 @@ hr:
         signin_link: Povezanica za prijavu
       subject: Poveznica za prijavu na Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Vaš je račun onemogućen zbog neaktivnosti
       warning: Vaš će račun uskoro biti onemogućen zbog neaktivnosti

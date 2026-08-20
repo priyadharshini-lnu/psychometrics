@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { connect, ConnectedProps, useSelector } from 'react-redux'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import {
-  Avatar, Button, Flex, Typography, useSiderAppearance,
+  Avatar, Button, Flex, Typography,
 } from '@thetalententerprise/glint'
 import type { AppShellNav } from '@thetalententerprise/glint'
 import {
@@ -25,31 +25,31 @@ import { getShowBookings } from '~/modules/endUser/core/config'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { getFeatures } from '~/core/config'
 
-import lighthouseWhiteLogo from '~/assets/lh-horizontal-white.svg'
 import { fallbackAvatar } from './avatar'
+import {
+  displayName, monogramCurrentColor, monogramHeightPx, wordmarkCurrentColor, wordmarkHeightPx,
+} from '~/utils/branding'
 
 const { I18n } = window
 
-// Icon-only mark for the collapsed rail (the wordmark can't fit the narrow column);
-// a tenant brand mark wins when uploaded.
-const LighthouseMark: FC = () => (
-  <svg
-    width="26"
-    height="26"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.6"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d="M9 21h6M10 21l1-9M14 21l-1-9" />
-    <path d="M9.5 12h5l-.7-4.5h-3.6L9.5 12z" />
-    <circle cx="12" cy="4.5" r="1.6" />
-    <path d="M13.6 4.5l3 1M10.4 4.5l-3 1" />
-  </svg>
-)
+const BrandArtwork: FC<{ collapsed: boolean }> = ({ collapsed }) => {
+  const Artwork = collapsed ? monogramCurrentColor() : wordmarkCurrentColor()
+
+  return (
+    // Typography restores the rail's text colour: the global `a` rule would paint it the rail's own background.
+    <Typography.Text>
+      <Artwork
+        role="img"
+        aria-label={displayName()}
+        style={{
+          blockSize: `${collapsed ? monogramHeightPx() : wordmarkHeightPx()}px`,
+          inlineSize: 'auto',
+          maxInlineSize: '100%',
+        }}
+      />
+    </Typography.Text>
+  )
+}
 
 const brandConnector = connect((state: RootState) => ({
   logo: getProjectLogo(state),
@@ -62,13 +62,9 @@ type RailBrandProps = ConnectedProps<typeof brandConnector> & {
   updateProfileRequired: boolean
 }
 
-// The rail-top brand block: tenant logo (fallback: Lighthouse wordmark/mark) linking home.
-// The white wordmark asset is dark-rail-only; light rails fall back to the
-// currentColor mark, which inherits the rail's text color.
 const RailBrandComponent: FC<RailBrandProps> = ({
   logo, projectName, logoAltText, collapsed, updateProfileRequired,
 }) => {
-  const railAppearance = useSiderAppearance()
   const logoLinkUrl = updateProfileRequired ? '/profile_details' : '/'
   const alt = logoAltText || projectName
 
@@ -78,30 +74,17 @@ const RailBrandComponent: FC<RailBrandProps> = ({
         <Link to={logoLinkUrl} aria-label={alt}>
           {logo
             ? <img src={logo} alt={alt} style={{ inlineSize: '2.25rem', blockSize: '2.25rem', objectFit: 'contain' }} />
-            : <LighthouseMark />}
+            : <BrandArtwork collapsed />}
         </Link>
       </Flex>
     )
   }
 
-  if (!logo && railAppearance === 'light') {
-    return (
-      <Link to={logoLinkUrl} aria-label={alt}>
-        <Flex align="center" gap="small">
-          <LighthouseMark />
-          <Typography.Text strong>{I18n.t('frontend.lighthouse_app')}</Typography.Text>
-        </Flex>
-      </Link>
-    )
-  }
-
   return (
     <Link to={logoLinkUrl}>
-      <img
-        src={logo || lighthouseWhiteLogo}
-        alt={alt}
-        style={{ maxInlineSize: '100%', blockSize: 'auto' }}
-      />
+      {logo
+        ? <img src={logo} alt={alt} style={{ maxInlineSize: '100%', blockSize: 'auto' }} />
+        : <BrandArtwork collapsed={false} />}
     </Link>
   )
 }

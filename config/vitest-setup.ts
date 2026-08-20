@@ -18,6 +18,23 @@ Object.defineProperty(window, 'I18n', {
   value: I18n,
 })
 
+window.PsyGlobalState = {
+  realEnv: 'test',
+  brand: 'marsh',
+  supportEmail: 'mte.surveys@mercer.com',
+  adminLocales: '',
+  recaptchaSiteKey: '',
+  availableAiProviders: '',
+  sentryUrl: '',
+  sentryDebug: 'false',
+  currentUser: { id: '', email: '' },
+  features: {},
+  clientContextData: null,
+  switchableClients: [],
+  recentClientIds: [],
+  impersonationData: null,
+}
+
 Object.defineProperty(window, 'import', {
   value: {
     meta: {

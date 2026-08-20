@@ -7,7 +7,7 @@ class PlatformExceptionMonitorMailer < ApplicationMailer
     @exception_tracker = exception_tracker_record
     # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
     mail(
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
+      from: "#{Branding.display_name} <no-reply@#{Settings.domain}>",
       to: emails,
       subject: "[#{ENV.fetch('REAL_ENV', nil)}] Platform exception surfacing threshold exceeded",
       template_path: 'mailer/platform',

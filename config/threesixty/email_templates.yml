@@ -1,6 +1,6 @@
 - name: 'subject_invite'
   category: 'invitations'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Invitation to Participate'
   schedulable: true
@@ -8,7 +8,7 @@
 
 - name: 'evaluator_invite'
   category: 'invitations'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Invitation to Participate'
   schedulable: true
@@ -16,7 +16,7 @@
 
 - name: 'subject_reminder'
   category: 'reminders'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Invitation to Participate'
   schedulable: true
@@ -24,7 +24,7 @@
 
 - name: 'evaluator_reminder'
   category: 'reminders'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Reminder'
   schedulable: true
@@ -32,7 +32,7 @@
 
 - name: 'subject_report_ready'
   category: 'report_ready'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Your Report is Ready'
   schedulable: false
@@ -40,7 +40,7 @@
 
 - name: 'manager_report_ready'
   category: 'report_ready'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Report Ready for Your Direct Report'
   schedulable: false
@@ -48,7 +48,7 @@
 
 - name: 'approve_report'
   category: 'approvals'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
   schedulable: false
@@ -56,7 +56,7 @@
 
 - name: 'approve_nomination'
   category: 'approvals'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
   schedulable: false
@@ -64,7 +64,7 @@
 
 - name: 'nomination_denied'
   category: 'approvals'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
   schedulable: false
@@ -73,7 +73,7 @@
 
 - name: 'request_approval'
   category: 'approvals'
-  from: <%= I18n.t('mailer.from') %>
+  from: <%= Branding.display_name %>
   reply_to_email: <%= "no-reply@#{Settings.domain}" %>
   subject: 'Approval requested for nominations'
   schedulable: false

@@ -1,3 +1,3 @@
 row
   columns
-    = image_tag('mercer-logo-rgb-midnight.png', class: 'admin-email-logo float-left', width: 120, height: 34)
+    = image_tag(Branding.email_logo, class: 'admin-email-logo float-left', size: Branding.email_logo_size(34))

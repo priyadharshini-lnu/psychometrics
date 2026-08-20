@@ -36,6 +36,7 @@ import { fallbackAvatar } from '~/modules/endUser/pages/UserPage/avatar'
 import { CustomField } from '~/modules/endUser/modules/campaigns/routes/Profile/fields/CustomField'
 import { asString, asStringOrNumber } from '~/utils/narrow'
 import { toProfileUser } from './mapProfile'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -354,7 +355,7 @@ export const ProfileContentComponent: FC<PropsFromRedux> = ({
 
   return (
     <>
-      <title>{`${I18n.t('profile.title')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('profile.title')} />
       <PageContainer>
         <Flex vertical gap="large">
           <Typography.Title level={1} style={{ margin: 0 }}>

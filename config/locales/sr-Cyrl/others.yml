@@ -2342,7 +2342,6 @@ sr-Cyrl:
     error_warning: Упс , нешто није у реду са вашом проценом. Молимо Вас да контактирате подршку.
     hogan:
       cannot_start: Не можете одмах да започнете процену хогана. Покушајте након неколико минута.
-    lighthouse_app: Светионик Мерцер
     login: Пријава
     maintenance:
       notification: Светионик ће бити искључен због планираног одржавања у 60 секунди
@@ -3022,12 +3021,11 @@ sr-Cyrl:
           invalid: Обим мора бити 'опенид'
   mailer:
     copyright:
-      text: Lighthouse. Сва права задржана
+      text: "© %{year} %{display_name}. Сва права задржана"
     footer:
       regards: Срдачан поздрав,
-      team_name: Lighthouse тим
+      team_name: "%{display_name} тим"
       technical_support: За техничке потешкоће пишите нам на %{email} и одговорићемо у року од 24 сата.
-    from: Предузеће за таленте
     idp:
       manager_unread_comments:
         body: |
@@ -3085,7 +3083,7 @@ sr-Cyrl:
         signin_link: Линк за пријаву
       subject: Линк за пријаву на Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Ваш налог је онемогућен због неактивности
       warning: Ваш налог ће ускоро бити онемогућен због неактивности

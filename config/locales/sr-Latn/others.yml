@@ -1154,7 +1154,7 @@ sr-Latn:
       read_only: Ovo je režim samo za čitanje, ne možete da promenite nikakve rezultate.
       save: Sačuvaj
       submissionFailedAlert:
-        description: Nije moguće povezati sa serverom. Molimo Vas da osvežite stranicu i pokušajte ponovo. Ako to ne uspe, obratite se podršci putem live chat-a ili mte.surveys@mercer.com
+        description: Nije moguće povezati sa serverom. Molimo Vas da osvežite stranicu i pokušajte ponovo. Ako to ne uspe, obratite se podršci putem live chat-a ili %{support_email}
         title: Poslednji zahtev nije uspeo
       submit: Pošalji
       warning: UPOZORENJE
@@ -1996,7 +1996,7 @@ sr-Latn:
 
           Vaša lozinka je promenjena.
 
-          Ako niste podnijeli ovaj zahtev, molimo vas da odmah kontaktirate podršku na mte.support@mercer.com
+          Ako niste podnijeli ovaj zahtev, molimo vas da odmah kontaktirate podršku na %{support_contact_email}
         regards: |-
           Pozdrave
           Lighthouse tima
@@ -2351,7 +2351,6 @@ sr-Latn:
     error_warning: Ups, nešto nije u redu sa vašom procenom. Molimo Vas da kontaktirate podršku.
     hogan:
       cannot_start: Ne možete odmah započeti procenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Svetionik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse će biti dole za planirano održavanje za 60 sekundi
@@ -3031,12 +3030,11 @@ sr-Latn:
           invalid: Obim mora biti 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Sva prava zadržana
+      text: "© %{year} %{display_name}. Sva prava zadržana"
     footer:
       regards: Pozdrav,
-      team_name: Lighthouse tim
+      team_name: "%{display_name} tim"
       technical_support: Za bilo kakve tehničke probleme, pišite nam na %{email} i odgovoriće vam u roku od 24 sata.
-    from: Preduzeće za talente
     idp:
       manager_unread_comments:
         body: |-
@@ -3094,7 +3092,7 @@ sr-Latn:
         signin_link: Prijavite se putem linka
       subject: Link za prijavljivanje za Lighthouse
     powered_by:
-      text: Pokreće Lighthouse.
+      text: Pokreće %{product_name}.
     users:
       account_disable: Vaš nalog je onemogućen zbog neaktivnosti
       warning: Vaš nalog će uskoro biti onemogućen zbog neaktivnosti

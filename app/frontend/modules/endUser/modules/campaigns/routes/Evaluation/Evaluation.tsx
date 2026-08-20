@@ -39,6 +39,7 @@ import {
 import { secondsLeftFromNow } from '~/utils/time'
 import { ResourcesTabs } from '../../components/ResourcesTabs'
 import styles from './Evaluation.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
@@ -172,11 +173,7 @@ const EvaluationComponent = ({
   if (!loaded || error) { return null }
   return (
     <>
-      <title>
-        {
-          `${I18n.t('threesixty.evaluator')} ${I18n.t('threesixty.yourself')} - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle text={`${I18n.t('threesixty.evaluator')} ${I18n.t('threesixty.yourself')}`} />
       <GlintPageHeader>
         <Col flex="auto" className="ta-e">
           <Space>

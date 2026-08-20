@@ -1154,7 +1154,7 @@ cs:
       read_only: Režim pouze pro čtení, není možné změnit žádné výsledky.
       save: Uložit
       submissionFailedAlert:
-        description: Nepodařilo se připojit k serveru. Obnovte prosím stránku a zkuste to znovu. Pokud to nepomůže, kontaktujte prosím podporu prostřednictvím chatu nebo na adrese mte.surveys@mercer.com
+        description: Nepodařilo se připojit k serveru. Obnovte prosím stránku a zkuste to znovu. Pokud to nepomůže, kontaktujte prosím podporu prostřednictvím chatu nebo na adrese %{support_email}
         title: Poslední požadavek se nezdařil
       submit: Odeslat
       warning: VAROVÁNÍ
@@ -1992,7 +1992,7 @@ cs:
           project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese %{support_contact_email} '
         regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
       reset_password_instructions:
@@ -2333,7 +2333,6 @@ cs:
     error_warning: Ups, něco se při hodnocení pokazilo. Kontaktujte prosím podporu.
     hogan:
       cannot_start: Hodnocení hogana nyní nelze spustit. Zkuste to prosím po několika minutách.
-    lighthouse_app: Maják Mercer
     login: Přihlášení
     maintenance:
       notification: Lighthouse bude za 60 sekund odstaven z důvodu plánované údržby
@@ -3013,12 +3012,11 @@ cs:
           invalid: Rozsah musí být 'openid'
   mailer:
     copyright:
-      text: Maják. Všechna práva vyhrazena
+      text: "© %{year} %{display_name}. Všechna práva vyhrazena"
     footer:
       regards: S pozdravem,
-      team_name: Tým Lighthouse
+      team_name: Tým %{display_name}
       technical_support: V případě jakýchkoli technických problémů nám napište na adresu %{email} a my vám odpovíme do 24 hodin.
-    from: Talentovaný podnik
     idp:
       manager_unread_comments:
         body: |-
@@ -3076,7 +3074,7 @@ cs:
         signin_link: Přihlašovací odkaz
       subject: Přihlašovací odkaz pro Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti

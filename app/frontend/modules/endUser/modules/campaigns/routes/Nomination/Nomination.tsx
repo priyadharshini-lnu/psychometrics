@@ -32,6 +32,7 @@ import { NominationTable } from './NominationTable/NominationTable'
 import { NameModal } from './NominationForm/NameModal'
 
 import styles from './Nomination.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -105,11 +106,7 @@ const NominationComponent = (props) => {
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('threesixty.nomination')} - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle text={I18n.t('threesixty.nomination')} />
       <GlintHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>

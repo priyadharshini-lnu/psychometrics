@@ -9,6 +9,7 @@ import {
 import { ExclamationCircleFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { FixedWidthButton } from '~/glint'
 import { isRtl } from '~/utils/locales'
+import { supportEmail } from '~/utils/branding'
 import { getQuestion } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import styles from './styles.less'
 import { SafeHTML } from '~/components/SafeHTML'
@@ -117,7 +118,13 @@ class PageFooter extends Component {
           <div>
             <Alert
               message={I18n.t('assessments.page.submissionFailedAlert.title')}
-              description={<SafeHTML html={I18n.t('assessments.page.submissionFailedAlert.description')} />}
+              description={(
+                <SafeHTML
+                  html={I18n.t('assessments.page.submissionFailedAlert.description', {
+                    support_email: supportEmail(),
+                  })}
+                />
+              )}
               type="error"
               showIcon
             />

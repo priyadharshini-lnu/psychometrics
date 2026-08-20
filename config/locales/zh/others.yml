@@ -1154,7 +1154,7 @@ zh:
       read_only: 处于只读模式，你无法更改任何结果。
       save: 保存
       submissionFailedAlert:
-        description: 无法连接到服务器。 请刷新页面并重试。 如果还不行，请通过即时聊天或 mte.surveys@mercer.com 联系支持人员。
+        description: 无法连接到服务器。 请刷新页面并重试。 如果还不行，请通过即时聊天或 %{support_email} 联系支持人员。
         title: 上次请求失败
       submit: 提交
       warning: 警告
@@ -1990,7 +1990,7 @@ zh:
           project: 项目： %{section_name}
         subject: Lighthouse 邀请函
       password_change:
-        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 %{support_contact_email} 联系支持部门。 '
         regards: 'Lighthouse 团队 '
         subject: 您的Lighthouse 密码已更改
       reset_password_instructions:
@@ -2331,7 +2331,6 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
-    lighthouse_app: 默瑟灯塔
     login: 登录
     maintenance:
       notification: Lighthouse 将在 60 秒后进行定期维护
@@ -3011,12 +3010,11 @@ zh:
           invalid: 范围必须是“openid”
   mailer:
     copyright:
-      text: 莱皓思。保留所有权利
+      text: "© %{year} %{display_name}。保留所有权利"
     footer:
       regards: 谢谢、
-      team_name: Lighthouse 团队
+      team_name: "%{display_name} 团队"
       technical_support: 如有任何技术问题，请致信%{email} ，我们将在 24 小时内给予答复。
-    from: 人才企业
     idp:
       manager_unread_comments:
         body: |-
@@ -3074,7 +3072,7 @@ zh:
         signin_link: 登录链接
       subject: Lighthouse 登录链接
     powered_by:
-      text: 由 Lighthouse 提供技术支持。
+      text: 由 %{product_name} 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用

@@ -1151,7 +1151,7 @@ hu:
       read_only: Csak olvasási módban van, nem módosíthat semmilyen eredményt.
       save: Mentés
       submissionFailedAlert:
-        description: Nem sikerült csatlakozni a kiszolgálóhoz. Kérjük, frissítse az oldalt, és próbálja újra. Ha ez nem működik, kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal élő chaten vagy mte.surveys@mercer.com
+        description: Nem sikerült csatlakozni a kiszolgálóhoz. Kérjük, frissítse az oldalt, és próbálja újra. Ha ez nem működik, kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal élő chaten vagy %{support_email}
         title: Az utolsó kérés sikertelen
       submit: Küldje be a
       warning: FIGYELMEZTETÉS
@@ -1993,7 +1993,7 @@ hu:
 
           A jelszavad megváltozott.
 
-          Ha nem nyújtotta be ezt a kérést, kérjük, azonnal lépjen kapcsolatba az ügyfélszolgálattal a mte.support@mercer.com
+          Ha nem nyújtotta be ezt a kérést, kérjük, azonnal lépjen kapcsolatba az ügyfélszolgálattal a %{support_contact_email}
         regards: |-
           Üdvözlettel
           Lighthouse csapata
@@ -2348,7 +2348,6 @@ hu:
     error_warning: Hoppá, valami elromlott az értékeléseddel. Kérjük, vegye fel a kapcsolatot az ügyfélszolgálattal.
     hogan:
       cannot_start: Most nem kezdheti el a hogan értékelést. Kérjük, próbálja meg néhány perc múlva.
-    lighthouse_app: Mercer világítótorony
     login: Bejelentkezés
     maintenance:
       notification: Lighthouse 60 másodpercen belül leáll az ütemezett karbantartás miatt
@@ -3015,12 +3014,11 @@ hu:
           invalid: A hatótávnak 'nyíltnak' kell lennie
   mailer:
     copyright:
-      text: Lighthouse. Minden jog fenntartva
+      text: "© %{year} %{display_name}. Minden jog fenntartva"
     footer:
       regards: Üdvözlettel,
-      team_name: Lighthouse csapat
+      team_name: "%{display_name} csapat"
       technical_support: Bármilyen technikai probléma esetén kérjük, írjon nekünk a %{email} címre, és 24 órán belül válaszolunk.
-    from: A tehetség vállalkozás
     idp:
       manager_unread_comments:
         body: |-
@@ -3078,7 +3076,7 @@ hu:
         signin_link: Bejelentkezési link
       subject: Bejelentkezési link a Lighthouse-hoz
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Fiókját inaktivitás miatt letiltották
       warning: Fiókját hamarosan letiltjuk inaktivitás miatt

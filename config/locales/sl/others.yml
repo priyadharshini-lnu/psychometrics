@@ -1151,7 +1151,7 @@ sl:
       read_only: V tem načinu lahko rezultate le pregledujete, ne pa spreminjate.
       save: Shrani
       submissionFailedAlert:
-        description: Ni bilo mogoče vzpostaviti povezave s strežnikom. Prosimo, osvežite stran in poskusite znova. Če to ne deluje, se obrnite na podporo prek klepeta v živo ali mte.surveys@mercer.com
+        description: Ni bilo mogoče vzpostaviti povezave s strežnikom. Prosimo, osvežite stran in poskusite znova. Če to ne deluje, se obrnite na podporo prek klepeta v živo ali %{support_email}
         title: Zadnja zahteva ni uspela
       submit: Pošlji
       warning: OPOZORILO
@@ -2002,7 +2002,7 @@ sl:
 
           Vaše geslo je bilo spremenjeno.
 
-          Če niste poslali te zahteve, se takoj obrnite na podporo uporabnikom na mte.support@mercer.com
+          Če niste poslali te zahteve, se takoj obrnite na podporo uporabnikom na %{support_contact_email}
         regards: |-
           Pozdrav
           Ekipa Lighthouse
@@ -2357,7 +2357,6 @@ sl:
     error_warning: Ups, nekaj je šlo narobe z vašo oceno. Obrnite se na podporo.
     hogan:
       cannot_start: Hoganove ocene ne morete začeti zdaj. Prosimo, poskusite po nekaj minutah.
-    lighthouse_app: Svetilnik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse bo v 60 sekundah izklopljen za načrtovano vzdrževanje
@@ -3037,12 +3036,11 @@ sl:
           invalid: Obseg mora biti 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Vse pravice pridržane
+      text: "© %{year} %{display_name}. Vse pravice pridržane"
     footer:
       regards: Pozdravi,
-      team_name: Ekipa Lighthouse
+      team_name: Ekipa %{display_name}
       technical_support: Za kakršne koli tehnične težave nam pišite na %{email} in odgovorili vam bomo v 24 urah.
-    from: Podjetje za talente
     idp:
       manager_unread_comments:
         body: |-
@@ -3100,7 +3098,7 @@ sl:
         signin_link: Povezava za prijavo
       subject: Povezava za prijavo za Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti

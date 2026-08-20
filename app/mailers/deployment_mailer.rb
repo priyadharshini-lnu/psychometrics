@@ -8,7 +8,7 @@ class DeploymentMailer < ApplicationMailer
     @tasks = tasks
     # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
     mail(
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
+      from: "#{Branding.display_name} <no-reply@#{Settings.domain}>",
       to: emails,
       subject: 'Deployment tasks to complete',
       template_path: 'mailer/platform',

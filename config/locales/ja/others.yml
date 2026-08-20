@@ -1156,7 +1156,7 @@ ja:
       read_only: 読み取り専用モードです。結果を変更することはできません。
       save: 保存
       submissionFailedAlert:
-        description: サーバーに接続できませんでした。 ページを更新して、もう一度お試しください。 それでもうまくいかない場合は、ライブチャットまたは mte.surveys@mercer.com でサポートにお問い合わせください。
+        description: サーバーに接続できませんでした。 ページを更新して、もう一度お試しください。 それでもうまくいかない場合は、ライブチャットまたは %{support_email} でサポートにお問い合わせください。
         title: 前回のリクエスト失敗
       submit: 送信
       warning: 警告
@@ -1993,7 +1993,7 @@ ja:
           project: プロジェクト：%{section_name}。
         subject: ライトハウスへの招待
       password_change:
-        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに mte.support@mercer.com までご連絡ください。 '
+        body: 'こんにちは、%{name}さん！パスワードが変更されました。 このリクエストを行わなかった場合は、すぐに %{support_contact_email} までご連絡ください。 '
         regards: 'ライトハウス・チーム '
         subject: ライトハウスのパスワードが変更されました
       reset_password_instructions:
@@ -2334,7 +2334,6 @@ ja:
     error_warning: 査定に何か問題が発生しました。 サポートにご連絡ください。
     hogan:
       cannot_start: 現在、ホーガン査定を開始することはできません。 数分後にお試しください。
-    lighthouse_app: マーサー灯台
     login: ログイン
     maintenance:
       notification: ライトハウスは60秒後に定期メンテナンスのため停止します。
@@ -3014,12 +3013,11 @@ ja:
           invalid: 範囲は「openid」でなければなりません
   mailer:
     copyright:
-      text: ライトハウス無断複写・転載を禁じます。
+      text: "© %{year} %{display_name}無断複写・転載を禁じます。"
     footer:
       regards: ありがとう、
-      team_name: ライトハウス・チーム
+      team_name: "%{display_name}・チーム"
       technical_support: 技術的な問題については、%{email} 。
-    from: タレント・エンタープライズ
     idp:
       manager_unread_comments:
         body: |-
@@ -3077,7 +3075,7 @@ ja:
         signin_link: サインインリンク
       subject: Lighthouseへのサインインリンク
     powered_by:
-      text: パワード・バイ・ライトハウス
+      text: パワード・バイ・%{product_name}
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。

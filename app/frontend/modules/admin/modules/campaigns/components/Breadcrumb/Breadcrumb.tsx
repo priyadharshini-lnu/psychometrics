@@ -5,6 +5,7 @@ import { Request, State } from '~/modules/admin/core/ui/breadcrumbs'
 import useTitle from '~/hooks/useTitle'
 import { useIsOwnedPath } from '~/components/AdminShell/ownedPaths'
 import styles from './styles.less'
+import { displayName } from '~/utils/branding'
 
 interface Crumb {
   link?: (state: State) => string
@@ -18,8 +19,6 @@ interface Props {
   state: State
 }
 
-const { I18n } = window
-
 // FYI: if we have to add nested breadcrumbs later, we can extract `crumbs` into redux state
 // and provide two action creators: `pushCrumbs([...])`, `replaceCrumbs([...])`
 const Breadcrumb: React.FC<Props> = ({
@@ -32,7 +31,7 @@ const Breadcrumb: React.FC<Props> = ({
   }, [JSON.stringify(request)])
 
   const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
-  crumbsForTitle.push(`${I18n.t('frontend.lighthouse_app')}`)
+  crumbsForTitle.push(displayName())
   useTitle({ title: crumbsForTitle.join(' - ') })
 
   const breadcrumbItems = crumbs.map((crumb) => {

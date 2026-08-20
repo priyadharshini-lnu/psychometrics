@@ -1154,7 +1154,7 @@ pt:
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
       save: Salvar
       submissionFailedAlert:
-        description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de mte.surveys@mercer.com
+        description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de %{support_email}
         title: Último pedido falhou
       submit: Enviar
       warning: AVISO
@@ -1992,7 +1992,7 @@ pt:
           project: 'Projeto: %{section_name}'
         subject: Convite para o Lighthouse
       password_change:
-        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com '
+        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em %{support_contact_email} '
         regards: 'Cumprimentos, Equipa Lighthouse '
         subject: A sua palavra-passe do Lighthouse foi alterada
       reset_password_instructions:
@@ -2333,7 +2333,6 @@ pt:
     error_warning: Oops, algo correu mal com a sua avaliação. Contacte o apoio ao cliente.
     hogan:
       cannot_start: Não é possível iniciar a avaliação hogan neste momento. Tente após alguns minutos.
-    lighthouse_app: Farol Mercer
     login: Iniciar sessão
     maintenance:
       notification: O farol estará inativo para manutenção programada dentro de 60 segundos
@@ -3013,12 +3012,11 @@ pt:
           invalid: O escopo deve ser 'aberto'
   mailer:
     copyright:
-      text: Lighthouse. Todos os direitos reservados
+      text: "© %{year} %{display_name}. Todos os direitos reservados"
     footer:
       regards: Com os meus cumprimentos,
-      team_name: Equipa Lighthouse
+      team_name: Equipa %{display_name}
       technical_support: Para quaisquer problemas técnicos, escreva-nos para %{email} e responderemos no prazo de 24 horas.
-    from: A Empresa de Talentos
     idp:
       manager_unread_comments:
         body: |-
@@ -3076,7 +3074,7 @@ pt:
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
     powered_by:
-      text: Desenvolvido por Lighthouse.
+      text: Desenvolvido por %{product_name}.
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade

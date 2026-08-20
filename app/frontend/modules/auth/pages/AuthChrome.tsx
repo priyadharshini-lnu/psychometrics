@@ -5,7 +5,7 @@ import { Flex, Typography } from '@thetalententerprise/glint'
 import { useManageCookies } from '~/hooks/useManageCookies'
 import { LangControl } from '~/components/LangControl'
 import { RootState } from '../core/reducers'
-import MarshLogo from '~/assets/marsh-logo.svg?react'
+import { displayName, wordmarkCurrentColor, wordmarkHeightPx } from '~/utils/branding'
 
 const { I18n } = window
 
@@ -32,8 +32,9 @@ const ManageCookiesLink = () => {
   )
 }
 
-const MarshLighthouseBrand = () => {
+const LighthouseBrand = () => {
   const { token } = theme.useToken()
+  const Wordmark = wordmarkCurrentColor()
 
   return (
     <Flex
@@ -43,7 +44,7 @@ const MarshLighthouseBrand = () => {
       aria-label={I18n.t('auth.lighthouse_logo_alt_text')}
       style={{ color: token.colorTextHeading }}
     >
-      <MarshLogo aria-hidden style={{ blockSize: 30, inlineSize: 'auto' }} />
+      <Wordmark aria-hidden style={{ blockSize: `${wordmarkHeightPx()}px`, inlineSize: 'auto' }} />
     </Flex>
   )
 }
@@ -83,7 +84,7 @@ export const buildAuthChrome = (config: Config) => {
           alt={config.logo_alt_text || I18n.t('auth.lighthouse_logo_alt_text')}
         />
       ) : (
-        <MarshLighthouseBrand />
+        <LighthouseBrand />
       )}
       {config.id ? <LangControl /> : null}
     </>
@@ -95,7 +96,7 @@ export const buildAuthChrome = (config: Config) => {
     <Flex vertical gap="large">
       <Flex align="center" justify="space-between" gap="large">
         <Typography.Text type="secondary" style={SMALL_PRINT}>
-          {I18n.t('shared.copyright', { year: new Date().getFullYear() })}
+          {I18n.t('shared.copyright', { year: new Date().getFullYear(), display_name: displayName() })}
         </Typography.Text>
         {config.secondary_logo ? (
           <img height={32} src={config.secondary_logo} alt="" />

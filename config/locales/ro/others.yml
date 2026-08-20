@@ -1151,7 +1151,7 @@ ro:
       read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
       save: Salvați
       submissionFailedAlert:
-        description: Nu s-a putut conecta la server. Vă rugăm să reîmprospătați pagina și să încercați din nou. Dacă acest lucru nu funcționează, vă rugăm să contactați asistența prin chat live sau mte.surveys@mercer.com
+        description: Nu s-a putut conecta la server. Vă rugăm să reîmprospătați pagina și să încercați din nou. Dacă acest lucru nu funcționează, vă rugăm să contactați asistența prin chat live sau %{support_email}
         title: Ultima solicitare a eșuat
       submit: Trimite
       warning: AVERTISMENT
@@ -1993,7 +1993,7 @@ ro:
 
           Parola a fost schimbată.
 
-          Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la mte.support@mercer.com
+          Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la %{support_contact_email}
         regards: |-
           Cu stimă
           Echipa Lighthouse
@@ -2348,7 +2348,6 @@ ro:
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
-    lighthouse_app: Farul Mercer
     login: Autentificare
     maintenance:
       notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
@@ -3028,12 +3027,11 @@ ro:
           invalid: Scopul trebuie să fie "openid"
   mailer:
     copyright:
-      text: Lighthouse. Toate drepturile rezervate
+      text: "© %{year} %{display_name}. Toate drepturile rezervate"
     footer:
       regards: Regards,
-      team_name: Echipa Lighthouse
+      team_name: Echipa %{display_name}
       technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la %{email} și vă vom răspunde în termen de 24 de ore.
-    from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
         body: |-
@@ -3091,7 +3089,7 @@ ro:
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Contul a fost dezactivat din cauza inactivității
       warning: Contul tău va fi dezactivat în curând din cauza inactivității

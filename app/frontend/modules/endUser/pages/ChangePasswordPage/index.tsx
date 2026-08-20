@@ -19,6 +19,7 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import { changePassword } from '~/core/currentUser'
 import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { getSecuritySettings } from '~/modules/endUser/core/config'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -58,7 +59,7 @@ export const ChangePasswordPageComponent: FC<PropsFromRedux> = ({
 
   return (
     <>
-      <title>{`${I18n.t('change_password_page.title')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('change_password_page.title')} />
       <PageContainer>
         <Flex vertical gap="large">
           <Typography.Title level={1} style={{ margin: 0 }}>

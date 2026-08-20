@@ -1151,7 +1151,7 @@ nl:
       read_only: Is alleen-lezen modus, je kunt geen resultaten wijzigen.
       save: Sla
       submissionFailedAlert:
-        description: Kan geen verbinding maken met de server. Vernieuw de pagina en probeer het opnieuw. Als dat niet werkt, neem dan contact op met de ondersteuning via live chat of mte.surveys@mercer.com
+        description: Kan geen verbinding maken met de server. Vernieuw de pagina en probeer het opnieuw. Als dat niet werkt, neem dan contact op met de ondersteuning via live chat of %{support_email}
         title: Laatste verzoek mislukt
       submit: Stuur  in
       warning: WAARSCHUWING
@@ -1980,7 +1980,7 @@ nl:
           project: 'Project: %{section_name}'
         subject: Uitnodiging voor Lighthouse
       password_change:
-        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via mte.support@mercer.com '
+        body: 'Hallo %{name}! Je wachtwoord is gewijzigd. Als je dit verzoek niet hebt gedaan, neem dan onmiddellijk contact op met Support via %{support_contact_email} '
         regards: 'Groeten, Lighthouse Team '
         subject: Uw Lighthouse wachtwoord is gewijzigd
       reset_password_instructions:
@@ -2321,7 +2321,6 @@ nl:
     error_warning: Oeps, er is iets misgegaan met je beoordeling. Neem contact op met de ondersteuning.
     hogan:
       cannot_start: Je kunt de hogan beoordeling nu niet starten. Probeer het na een paar minuten.
-    lighthouse_app: Mercer Vuurtoren
     login: Inloggen
     maintenance:
       notification: Lighthouse wordt over 60 seconden uitgeschakeld voor gepland onderhoud
@@ -3001,12 +3000,11 @@ nl:
           invalid: De scope moet 'openid' zijn
   mailer:
     copyright:
-      text: Lighthouse. Alle rechten voorbehouden
+      text: "© %{year} %{display_name}. Alle rechten voorbehouden"
     footer:
       regards: Groeten,
-      team_name: Lighthouse Team
+      team_name: "%{display_name} Team"
       technical_support: Voor technische problemen kunt u ons schrijven op %{email} en we zullen binnen 24 uur reageren.
-    from: De talentenonderneming
     idp:
       manager_unread_comments:
         body: |-
@@ -3064,7 +3062,7 @@ nl:
         signin_link: Aanmelden Link
       subject: Aanmelden link voor Lighthouse
     powered_by:
-      text: Aangedreven door Lighthouse.
+      text: Aangedreven door %{product_name}.
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit

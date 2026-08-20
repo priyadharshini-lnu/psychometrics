@@ -4,6 +4,7 @@ import { Flex, Typography } from '@thetalententerprise/glint'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { getPrivacyText, privacyPageLink } from '~/modules/endUser/modules/campaigns/core/project'
 import { useManageCookies } from '~/hooks/useManageCookies'
+import { displayName } from '~/utils/branding'
 
 const { I18n } = window
 
@@ -47,10 +48,7 @@ const PageFooterComponent: FC<PropsFromRedux> = ({ privacyText, privacyPageLink 
       }}
     >
       <Typography.Text type="secondary" style={LINK_STYLE}>
-        {I18n.t('campaign.footer.copyright', {
-          year,
-          defaultValue: `© ${year} Mercer Lighthouse. All rights reserved.`,
-        })}
+        {I18n.t('shared.copyright', { year, display_name: displayName() })}
       </Typography.Text>
       <Flex align="center" wrap gap="large">
         <Typography.Link

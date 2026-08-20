@@ -1151,7 +1151,7 @@ fr:
       read_only: En mode lecture seule, vous ne pouvez pas modifier les résultats.
       save: Économiser
       submissionFailedAlert:
-        description: Impossible de se connecter au serveur. Veuillez rafraîchir la page et réessayer. Si cela ne fonctionne pas, veuillez contacter le support via le chat en direct ou mte.surveys@mercer.com
+        description: Impossible de se connecter au serveur. Veuillez rafraîchir la page et réessayer. Si cela ne fonctionne pas, veuillez contacter le support via le chat en direct ou %{support_email}
         title: Échec de la dernière demande
       submit: Soumettre
       warning: AVERTISSEMENT
@@ -1980,7 +1980,7 @@ fr:
           project: 'Projet : %{section_name}'
         subject: Invitation Lighthouse
       password_change:
-        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse %{support_contact_email} '
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Votre mot de passe Lighthouse a changé
       reset_password_instructions:
@@ -2321,7 +2321,6 @@ fr:
     error_warning: Oups, un problème s'est produit lors de votre évaluation. Veuillez contacter le service d'assistance.
     hogan:
       cannot_start: Vous ne pouvez pas démarrer l'évaluation hogan pour l'instant. Veuillez essayer dans quelques minutes.
-    lighthouse_app: Phare de Mercer
     login: Connexion
     maintenance:
       notification: Lighthouse sera mis hors service pour une maintenance programmée dans 60 secondes
@@ -3001,12 +3000,11 @@ fr:
           invalid: Le périmètre doit être « openid »
   mailer:
     copyright:
-      text: Phare. Tous droits réservés
+      text: "© %{year} %{display_name}. Tous droits réservés"
     footer:
       regards: Cordialement,
-      team_name: Équipe Lighthouse
+      team_name: Équipe %{display_name}
       technical_support: Pour tout problème technique, écrivez-nous à %{email} et nous répondrons dans les 24 heures.
-    from: L'entreprise des talents
     idp:
       manager_unread_comments:
         body: |-
@@ -3064,7 +3062,7 @@ fr:
         signin_link: Lien de connexion
       subject: Lien de connexion pour Lighthouse
     powered_by:
-      text: Propulsé par Lighthouse.
+      text: Propulsé par %{product_name}.
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité

@@ -25,6 +25,7 @@ import Campaigns from './Campaigns'
 
 import styles from './styles.less'
 import { hasErrorsToHandle } from '~/components/ErrorModal/ErrorModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Title, Text } = Typography
 const { I18n } = window
@@ -79,7 +80,7 @@ const CampaignListComponent: FC<PropsFromRedux> = ({
 
   return (
     <>
-      <title>{`${I18n.t('campaign.dashboard_menu.home')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('campaign.dashboard_menu.home')} />
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>

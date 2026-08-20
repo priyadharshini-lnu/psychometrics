@@ -4,6 +4,8 @@ module PsyGlobalStateHelper
   def psy_global_state_json
     {
       realEnv: Settings.real_env,
+      brand: Branding.brand,
+      supportEmail: Branding.support_email,
       adminLocales: Settings.admin_user_locales,
       recaptchaSiteKey: Recaptcha.configuration.site_key,
       sentryUrl: Settings.sentry_url.presence || '',

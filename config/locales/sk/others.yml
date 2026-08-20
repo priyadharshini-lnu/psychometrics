@@ -1151,7 +1151,7 @@ sk:
       read_only: Je v režime len na čítanie, nemôžete meniť žiadne výsledky.
       save: Uložiť
       submissionFailedAlert:
-        description: Nepodarilo sa pripojiť k serveru. Obnovte stránku a skúste to znova. Ak to nepomôže, kontaktujte podporu prostredníctvom živého chatu alebo mte.surveys@mercer.com
+        description: Nepodarilo sa pripojiť k serveru. Obnovte stránku a skúste to znova. Ak to nepomôže, kontaktujte podporu prostredníctvom živého chatu alebo %{support_email}
         title: Posledná požiadavka zlyhala
       submit: Odoslať
       warning: VAROVANIE
@@ -1993,7 +1993,7 @@ sk:
 
           Vaše heslo bolo zmenené.
 
-          Ak ste túto žiadosť nepodali, okamžite kontaktujte podporu na adrese mte.support@mercer.com
+          Ak ste túto žiadosť nepodali, okamžite kontaktujte podporu na adrese %{support_contact_email}
         regards: |-
           S pozdravom
           Tím Lighthouse
@@ -2348,7 +2348,6 @@ sk:
     error_warning: Ups, niečo sa pokazilo s tvojím hodnotením. Obráťte sa na podporu.
     hogan:
       cannot_start: Nemôžete začať s hodnotením hogana hneď teraz. Skúste to po niekoľkých minútach.
-    lighthouse_app: Maják Mercer
     login: Prihlásenie
     maintenance:
       notification: Lighthouse bude mimo prevádzky kvôli plánovanej údržbe o 60 sekúnd
@@ -3028,12 +3027,11 @@ sk:
           invalid: Rozsah musí byť "openid"
   mailer:
     copyright:
-      text: Lighthouse. Všetky práva vyhradené
+      text: "© %{year} %{display_name}. Všetky práva vyhradené"
     footer:
       regards: S pozdravom,
-      team_name: Tím Lighthouse
+      team_name: Tím %{display_name}
       technical_support: V prípade akýchkoľvek technických problémov nám napíšte na %{email} a my vám odpovieme do 24 hodín.
-    from: Talentový podnik
     idp:
       manager_unread_comments:
         body: |-
@@ -3091,7 +3089,7 @@ sk:
         signin_link: Prihlasovacie prepojenie
       subject: Prihlasovacie prepojenie pre Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti

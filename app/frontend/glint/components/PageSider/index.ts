@@ -1,1 +1,1 @@
-export { PageSider, type SiderMenuItem } from './PageSider'
+export { PageSider, type SiderMenuItem, type PageSiderLogoSize } from './PageSider'

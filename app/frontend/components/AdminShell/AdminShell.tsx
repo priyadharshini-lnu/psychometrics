@@ -12,8 +12,9 @@ import { SubnavProvider } from './SubnavContext'
 import { OwnedPathsProvider, useIsOwnedPath } from './ownedPaths'
 import { AdminTopBarStart, AdminTopBarEnd } from './AdminTopBar'
 import { SignInNotice } from './SignInNotice'
-import MarshLogo from '~/assets/marsh-logo.svg?react'
-import MarshMark from '~/assets/marsh-mark.svg?react'
+import {
+  displayName, monogramCurrentColor, monogramHeightPx, wordmarkCurrentColor, wordmarkHeightPx,
+} from '~/utils/branding'
 
 const { I18n } = window
 
@@ -47,21 +48,24 @@ const AdminBrand: FC<{ collapsed: boolean }> = ({ collapsed }) => {
     justifyContent: 'center',
     color: appearance === 'dark' ? 'var(--white-bg)' : 'var(--brand-navy)',
   }
-  const mark = collapsed ? (
-    <MarshMark role="img" aria-label="Marsh" style={{ blockSize: '1.875rem', inlineSize: 'auto' }} />
+  const Wordmark = wordmarkCurrentColor()
+  const Mark = monogramCurrentColor()
+  const brandName = displayName()
+  const artwork = collapsed ? (
+    <Mark role="img" aria-label={brandName} style={{ blockSize: `${monogramHeightPx()}px`, inlineSize: 'auto' }} />
   ) : (
-    <MarshLogo
+    <Wordmark
       role="img"
-      aria-label="Marsh"
-      style={{ blockSize: '1.875rem', inlineSize: 'auto', maxInlineSize: '100%' }}
+      aria-label={brandName}
+      style={{ blockSize: `${wordmarkHeightPx()}px`, inlineSize: 'auto', maxInlineSize: '100%' }}
     />
   )
 
   if (isOwned(home)) {
-    return <Link to={home} aria-label={label} style={style}>{mark}</Link>
+    return <Link to={home} aria-label={label} style={style}>{artwork}</Link>
   }
 
-  return <a href={home} aria-label={label} style={style}>{mark}</a>
+  return <a href={home} aria-label={label} style={style}>{artwork}</a>
 }
 
 // The product wordmark, pinned under the nav; the theme's sans at its thinnest.

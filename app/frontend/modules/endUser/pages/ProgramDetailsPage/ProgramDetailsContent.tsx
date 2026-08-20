@@ -29,6 +29,7 @@ import {
   type AssessmentCenterModel,
 } from './mapProgramDetails'
 import { ExerciseCardItem } from './ExerciseCardItem'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -186,7 +187,7 @@ export const ProgramDetailsContent: FC<ProgramDetailsContentProps> = ({ campaign
 
   return (
     <>
-      <title>{`${model.title} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={model.title} />
       <PageContainer>
         <Flex vertical gap="large">
           <PageHeader

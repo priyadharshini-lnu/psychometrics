@@ -55,7 +55,7 @@ en-US:
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
-    copyright: "© %{year} Marsh. All rights reserved."
+    copyright: "© %{year} %{display_name}. All rights reserved."
     create: Create
     created_at: Created At
     created_by: Created By

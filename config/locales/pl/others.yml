@@ -1151,7 +1151,7 @@ pl:
       read_only: Jest to tryb tylko do odczytu, nie można zmienić żadnych wyników.
       save: Zapisz
       submissionFailedAlert:
-        description: Nie można połączyć się z serwerem. Odśwież stronę i spróbuj ponownie. Jeśli to nie zadziała, skontaktuj się z pomocą techniczną za pośrednictwem czatu na żywo lub mte.surveys@mercer.com
+        description: Nie można połączyć się z serwerem. Odśwież stronę i spróbuj ponownie. Jeśli to nie zadziała, skontaktuj się z pomocą techniczną za pośrednictwem czatu na żywo lub %{support_email}
         title: Ostatnie żądanie nie powiodło się
       submit: Prześlij
       warning: OSTRZEŻENIE
@@ -1997,7 +1997,7 @@ pl:
 
           Twoje hasło zostało zmienione.
 
-          Jeśli to żądanie nie zostało wysłane, natychmiast skontaktuj się z pomocą techniczną pod numerem mte.support@mercer.com
+          Jeśli to żądanie nie zostało wysłane, natychmiast skontaktuj się z pomocą techniczną pod numerem %{support_contact_email}
         regards: |-
           Pozdrawiam
           Zespół Lighthouse
@@ -2352,7 +2352,6 @@ pl:
     error_warning: Ups, coś poszło nie tak z twoją oceną. Skontaktuj się z pomocą techniczną.
     hogan:
       cannot_start: Nie możesz teraz rozpocząć oceny hogana. Spróbuj po kilku minutach.
-    lighthouse_app: Latarnia morska Mercer
     login: Logowanie
     maintenance:
       notification: Lighthouse wyłączona z powodu zaplanowanej konserwacji za 60 sekund
@@ -3032,12 +3031,11 @@ pl:
           invalid: Zakres musi być "openid"
   mailer:
     copyright:
-      text: Lighthouse. Wszelkie prawa zastrzeżone
+      text: "© %{year} %{display_name}. Wszelkie prawa zastrzeżone"
     footer:
       regards: Pozdrawiam,
-      team_name: Zespół Lighthouse
+      team_name: Zespół %{display_name}
       technical_support: W przypadku jakichkolwiek problemów technicznych prosimy o kontakt pod adresem %{email}, a my odpowiemy w ciągu 24 godzin.
-    from: Przedsiębiorstwo Talentów
     idp:
       manager_unread_comments:
         body: |-
@@ -3095,7 +3093,7 @@ pl:
         signin_link: Link do logowania
       subject: Łącze logowania do Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności

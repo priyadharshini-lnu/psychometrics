@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
     @full_name = full_name
     # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
     mail(
-      from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
+      from: "#{Branding.display_name} <no-reply@#{Settings.domain}>",
       to: email,
       subject: I18n.t('mailer.users.account_disable'),
       template_path: 'mailer/user_management',

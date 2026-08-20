@@ -24,6 +24,7 @@ import {
   detailPath,
   insightsPath,
 } from './mapCampaign'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -57,7 +58,7 @@ export const DashboardContent: FC<DashboardContentProps> = ({
 
   return (
     <>
-      <title>{`${I18n.t('enduser.dashboard')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('enduser.dashboard')} />
 
       <PageContainer
         header={(

@@ -1151,7 +1151,7 @@ vi:
       read_only: Ở chế độ chỉ đọc, bạn không thể thay đổi bất kỳ kết quả nào.
       save: Cứu
       submissionFailedAlert:
-        description: Không thể kết nối với máy chủ. Vui lòng làm mới trang và thử lại. Nếu điều đó không hiệu quả, vui lòng liên hệ với bộ phận hỗ trợ qua trò chuyện trực tiếp hoặc mte.surveys@mercer.com
+        description: Không thể kết nối với máy chủ. Vui lòng làm mới trang và thử lại. Nếu điều đó không hiệu quả, vui lòng liên hệ với bộ phận hỗ trợ qua trò chuyện trực tiếp hoặc %{support_email}
         title: Yêu cầu cuối cùng không thành công
       submit: Nộp
       warning: CẢNH BÁO
@@ -1987,7 +1987,7 @@ vi:
 
           Mật khẩu của bạn đã được thay đổi.
 
-          Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại mte.support@mercer.com
+          Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại %{support_contact_email}
         regards: |-
           Thân
           Đội ngũ Lighthouse
@@ -2342,7 +2342,6 @@ vi:
     error_warning: Rất tiếc, có điều gì đó không ổn với đánh giá của bạn. Vui lòng liên hệ với bộ phận hỗ trợ.
     hogan:
       cannot_start: Bạn không thể bắt đầu đánh giá hogan ngay bây giờ. Vui lòng thử sau vài phút.
-    lighthouse_app: Ngọn hải đăng Mercer
     login: Đăng nhập
     maintenance:
       notification: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
@@ -3022,12 +3021,11 @@ vi:
           invalid: Phạm vi phải là 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Bảo lưu mọi quyền
+      text: "© %{year} %{display_name}. Bảo lưu mọi quyền"
     footer:
       regards: Trân trọng,
-      team_name: Đội Lighthouse
+      team_name: Đội %{display_name}
       technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email %{email} và chúng tôi sẽ phản hồi trong vòng 24 giờ.
-    from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:
         body: |-
@@ -3085,7 +3083,7 @@ vi:
         signin_link: Liên kết đăng nhập
       subject: Liên kết đăng nhập cho Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động

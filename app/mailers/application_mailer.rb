@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationMailer < ActionMailer::Base
-  default from: "#{I18n.t('mailer.from')} <no-reply@#{Settings.domain}>"
+  default from: "#{Branding.display_name} <no-reply@#{Settings.domain}>"
   layout 'mailer'
   helper :mailer
   self.delivery_job = ProjectMailDeliveryJob

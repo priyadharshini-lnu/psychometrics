@@ -1151,7 +1151,7 @@ it:
       read_only: È in modalità di sola lettura, non è possibile modificare alcun risultato.
       save: Salva
       submissionFailedAlert:
-        description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o mte.surveys@mercer.com
+        description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o %{support_email}
         title: Ultima richiesta fallita
       submit: Invia
       warning: ATTENZIONE
@@ -1980,7 +1980,7 @@ it:
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
       password_change:
-        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com '
+        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo %{support_contact_email} '
         regards: 'Saluti, team Lighthouse '
         subject: La password di Lighthouse è cambiata
       reset_password_instructions:
@@ -2321,7 +2321,6 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Faro di Mercer
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -3001,12 +3000,11 @@ it:
           invalid: L'ambito deve essere 'openid'
   mailer:
     copyright:
-      text: Faro. Tutti i diritti riservati
+      text: "© %{year} %{display_name}. Tutti i diritti riservati"
     footer:
       regards: Saluti,
-      team_name: Squadra Lighthouse
+      team_name: Squadra %{display_name}
       technical_support: Per qualsiasi problema tecnico, scriveteci a %{email} e vi risponderemo entro 24 ore.
-    from: L'impresa dei talenti
     idp:
       manager_unread_comments:
         body: |-
@@ -3064,7 +3062,7 @@ it:
         signin_link: Link di accesso
       subject: Link di accesso per Lighthouse
     powered_by:
-      text: Alimentato da Lighthouse.
+      text: Alimentato da %{product_name}.
     users:
       account_disable: L'account è stato disattivato per inattività
       warning: Il tuo account sarà presto disabilitato a causa dell'inattività

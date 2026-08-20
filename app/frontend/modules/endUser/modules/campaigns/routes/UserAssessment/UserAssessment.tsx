@@ -30,6 +30,7 @@ import {
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { protectPageInteractions } from '~/utils/contentProtection'
 import styles from './UserAssessment.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const connector = connect((state: RootState) => ({
   userAssessment: state.campaigns.userAssessment,
@@ -165,7 +166,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   return (
     <>
-      <title>{`${assessment.name || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={assessment.name} />
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">

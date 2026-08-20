@@ -1151,7 +1151,7 @@ th:
       read_only: โหมดอ่านเท่านั้น คุณไม่สามารถเปลี่ยนแปลงผลลัพธ์ได้
       save: บันทึก
       submissionFailedAlert:
-        description: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ โปรดรีเฟรชหน้าแล้วลองอีกครั้ง หากไม่ได้ผล โปรดติดต่อฝ่ายสนับสนุนผ่านแชทสดหรือ mte.surveys@mercer.com
+        description: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ โปรดรีเฟรชหน้าแล้วลองอีกครั้ง หากไม่ได้ผล โปรดติดต่อฝ่ายสนับสนุนผ่านแชทสดหรือ %{support_email}
         title: คําขอล่าสุดล้มเหลว
       submit: ส่ง
       warning: คำเตือน
@@ -1990,7 +1990,7 @@ th:
 
           รหัสผ่านของคุณถูกเปลี่ยนแล้ว
 
-          หากคุณไม่ได้ส่งคําขอนี้ โปรดติดต่อฝ่ายสนับสนุนทันทีที่ mte.support@mercer.com
+          หากคุณไม่ได้ส่งคําขอนี้ โปรดติดต่อฝ่ายสนับสนุนทันทีที่ %{support_contact_email}
         regards: |-
           ขอแสดงความนับถือ
           ทีมงานประภ Lighthouse
@@ -2345,7 +2345,6 @@ th:
     error_warning: อ๊ะ มีบางอย่างผิดพลาดกับการประเมินของคุณ โปรดติดต่อฝ่ายสนับสนุน
     hogan:
       cannot_start: คุณไม่สามารถเริ่มการประเมินโฮแกนได้ในตอนนี้ โปรดลองหลังจากผ่านไปสองสามนาที
-    lighthouse_app: ประภาคารเมอร์เซอร์
     login: เข้าสู่ระบบ
     maintenance:
       notification: ประภ Lighthouseจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาใน 60 วินาที
@@ -3025,12 +3024,11 @@ th:
           invalid: ขอบเขตต้องเป็น 'openid'
   mailer:
     copyright:
-      text: Lighthouse. สงวนลิขสิทธิ์
+      text: "© %{year} %{display_name}. สงวนลิขสิทธิ์"
     footer:
       regards: ขอแสดงความนับถือ
-      team_name: ทีมประภ Lighthouse
+      team_name: ทีมประภ %{display_name}
       technical_support: หากมีปัญหาทางเทคนิคใด ๆ กรุณาติดต่อเราที่%{email} และเราจะตอบกลับภายใน 24 ชั่วโมง
-    from: องค์กรผู้มีความสามารถ
     idp:
       manager_unread_comments:
         body: |-
@@ -3088,7 +3086,7 @@ th:
         signin_link: ลิงค์ลงชื่อเข้าใช้
       subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: บัญชีของคุณถูกปิดใช้งานเนื่องจากไม่มีการใช้งาน
       warning: บัญชีของคุณจะถูกปิดใช้งานในไม่ช้าเนื่องจากไม่มีการใช้งาน

@@ -1155,7 +1155,7 @@ ar:
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
       submissionFailedAlert:
-        description: تعذر الاتصال بالخادم. الرجاء <a href=""><strong>انقر هنا</strong></a> لتحديث الصفحة والمحاولة مرة أخرى. إذا لم يفلح ذلك ، فيرجى الاتصال بالدعم عبر الدردشة المباشرة أو mte.surveys@mercer.com
+        description: تعذر الاتصال بالخادم. الرجاء <a href=""><strong>انقر هنا</strong></a> لتحديث الصفحة والمحاولة مرة أخرى. إذا لم يفلح ذلك ، فيرجى الاتصال بالدعم عبر الدردشة المباشرة أو %{support_email}
         title: فشل الطلب الأخير
       submit: إرسال
       warning: تحذير
@@ -2006,7 +2006,7 @@ ar:
 
           تم تغيير كلمة المرور الخاصة بك.
 
-          إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على mte.support@mercer.com
+          إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على %{support_contact_email}
         regards: |-
           يتعلق
           فريق Lighthouseة
@@ -2361,7 +2361,6 @@ ar:
     error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
     hogan:
       cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
-    lighthouse_app: منارة ميرسر
     login: تسجيل الدخول
     maintenance:
       notification: سيتم تعطيل Lighthouseة للصيانة المجدولة في غضون 60 ثانية
@@ -3041,12 +3040,11 @@ ar:
           invalid: يجب أن يكون النطاق 'مفتوحا'
   mailer:
     copyright:
-      text: جميع الحقوق محفوظة Lighthouse
+      text: "© %{year} %{display_name}. جميع الحقوق محفوظة"
     footer:
       regards: مع أطيب التحيات،
-      team_name: فريق Lighthouse
+      team_name: فريق %{display_name}
       technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
-    from: مؤسسة المواهب
     idp:
       manager_unread_comments:
         body: |-
@@ -3104,7 +3102,7 @@ ar:
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
     powered_by:
-      text: مدعوم من Lighthouse
+      text: مدعوم من %{product_name}
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط

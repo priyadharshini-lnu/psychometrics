@@ -1156,7 +1156,7 @@ de:
       read_only: Ist nur im Lesemodus, Sie können keine Ergebnisse ändern.
       save: Speichern Sie
       submissionFailedAlert:
-        description: Die Verbindung zum Server konnte nicht hergestellt werden. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut. Wenn das nicht funktioniert, kontaktieren Sie bitte den Support über den Live-Chat oder mte.surveys@mercer.com
+        description: Die Verbindung zum Server konnte nicht hergestellt werden. Bitte aktualisieren Sie die Seite und versuchen Sie es erneut. Wenn das nicht funktioniert, kontaktieren Sie bitte den Support über den Live-Chat oder %{support_email}
         title: Letzte Anfrage fehlgeschlagen
       submit: einreichen
       warning: WARNUNG
@@ -1994,7 +1994,7 @@ de:
           project: 'Projekt: %{section_name}'
         subject: Einladung zum Lighthouse
       password_change:
-        body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter mte.support@mercer.com '
+        body: 'Hallo %{name}, Ihr Passwort wurde geändert. Wenn Sie dies nicht angefordert haben, wenden Sie sich bitte umgehend an den Support unter %{support_contact_email} '
         regards: 'Mit freundlichen Grüßen, Lighthouse Team '
         subject: Ihr Lighthouse-Passwort hat sich geändert
       reset_password_instructions:
@@ -2335,7 +2335,6 @@ de:
     error_warning: Ups, bei Ihrer Bewertung ist etwas schief gelaufen. Bitte wenden Sie sich an den Support.
     hogan:
       cannot_start: Sie können die Hogan-Bewertung im Moment nicht starten, bitte versuchen Sie es in ein paar Minuten.
-    lighthouse_app: Mercer-Leuchtturm
     login: Anmelden
     maintenance:
       notification: Lighthouse wird wegen geplanter Wartungsarbeiten in 60 Sekunden außer Betrieb sein
@@ -3015,12 +3014,11 @@ de:
           invalid: Der Umfang muss 'Openid' sein
   mailer:
     copyright:
-      text: Lighthouse. Alle Rechte vorbehalten
+      text: "© %{year} %{display_name}. Alle Rechte vorbehalten"
     footer:
       regards: Mit freundlichen Grüßen,
-      team_name: Lighthouse-Team
+      team_name: "%{display_name}-Team"
       technical_support: Bei technischen Problemen schreiben Sie uns bitte an %{email} und wir antworten innerhalb von 24 Stunden.
-    from: Das Unternehmen Talent
     idp:
       manager_unread_comments:
         body: |-
@@ -3078,7 +3076,7 @@ de:
         signin_link: Anmeldung Link
       subject: Anmeldelink für Lighthouse
     powered_by:
-      text: Angetrieben von Lighthouse.
+      text: Angetrieben von %{product_name}.
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden

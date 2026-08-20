@@ -1156,7 +1156,7 @@ zh-HK:
       read_only: 是唯讀模式，您無法更改任何結果。
       save: 儲存
       submissionFailedAlert:
-        description: 無法連上伺服器。請重新整理頁面並重新嘗試。如果還是不行，請透過線上聊天或 mte.surveys@mercer.com 聯絡客服
+        description: 無法連上伺服器。請重新整理頁面並重新嘗試。如果還是不行，請透過線上聊天或 %{support_email} 聯絡客服
         title: 最後請求失敗
       submit: 提交
       warning: 儆
@@ -2007,7 +2007,7 @@ zh-HK:
 
           你的密碼已被更改。
 
-          如果您沒有提出此請求，請立即聯絡客服 mte.support@mercer.com
+          如果您沒有提出此請求，請立即聯絡客服 %{support_contact_email}
         regards: |
           此致，
           燈塔團隊
@@ -2362,7 +2362,6 @@ zh-HK:
     error_warning: 哎呀，你的評估出了問題。請聯絡客服。
     hogan:
       cannot_start: 你現在不能開始霍根評估。請幾分鐘後再試。
-    lighthouse_app: 默瑟燈塔
     login: 登入
     maintenance:
       notification: 燈塔將於60秒後進行例行維護
@@ -3042,12 +3041,11 @@ zh-HK:
           invalid: 範圍必須是「開放型」的
   mailer:
     copyright:
-      text: Lighthouse. 版權所有
+      text: "© %{year} %{display_name}. 版權所有"
     footer:
       regards: 關於
-      team_name: 燈塔團隊
+      team_name: "%{display_name}團隊"
       technical_support: 如有任何技術問題，請寫信至%{email} ，我們會在 24 小時內回覆。
-    from: 人才企業
     idp:
       manager_unread_comments:
         body: |
@@ -3105,7 +3103,7 @@ zh-HK:
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
     powered_by:
-      text: Powered by Lighthouse.
+      text: Powered by %{product_name}.
     users:
       account_disable: 您的帳號因未啟用而被停用
       warning: 您的帳號將因未使用而被停用

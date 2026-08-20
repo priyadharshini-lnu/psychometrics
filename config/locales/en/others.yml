@@ -1157,7 +1157,7 @@ en:
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
-        description: Could not connect to the server. Please <a href=""><strong>click here</strong></a> to refresh page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
+        description: Could not connect to the server. Please <a href=""><strong>click here</strong></a> to refresh page and try again. If that doesn't work, please contact the support via live chat or %{support_email}
         title: Last Request Failed
       submit: Submit
       warning: WARNING
@@ -2008,7 +2008,7 @@ en:
 
           Your password has been changed.
 
-          If you did not make this request, please contact Support immediately at mte.support@mercer.com
+          If you did not make this request, please contact Support immediately at %{support_contact_email}
         regards: |
           Regards,
           Lighthouse Team
@@ -2364,7 +2364,6 @@ en:
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
     hogan:
       cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
-    lighthouse_app: Mercer Lighthouse
     login: Login
     maintenance:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
@@ -3044,12 +3043,11 @@ en:
           invalid: Scope must be 'openid'
   mailer:
     copyright:
-      text: Lighthouse. All rights reserved
+      text: "© %{year} %{display_name}. All rights reserved."
     footer:
       regards: Regards,
-      team_name: Lighthouse Team
+      team_name: "%{display_name} Team"
       technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
-    from: The Talent Enterprise
     idp:
       manager_unread_comments:
         body: |
@@ -3107,7 +3105,7 @@ en:
         signin_link: Signin Link
       subject: Signin link for Lighthouse
     powered_by:
-      text: Powered by Mercer.
+      text: Powered by %{product_name}.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity

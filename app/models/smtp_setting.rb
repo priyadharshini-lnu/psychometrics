@@ -19,14 +19,14 @@ class SmtpSetting < ApplicationRecord
 
   def from_name_and_email
     no_reply_email = "no-reply@#{Settings.domain}"
-    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
+    return "#{Branding.display_name} <#{no_reply_email}>" unless enabled?
 
     "#{from_name} <#{from_email.presence || no_reply_email}>"
   end
 
   def admin_sender_from
     no_reply_email = "no-reply@#{Settings.domain}"
-    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
+    return "#{Branding.display_name} <#{no_reply_email}>" unless enabled?
 
     "#{from_name} <#{from_email.presence || no_reply_email}>"
   end
