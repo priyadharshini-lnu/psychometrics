@@ -144,8 +144,8 @@ en:
     localstorage_support: LocalStorage Enabled
     login_sign_in_btn: Sign in
     login_sign_up_link: Sign up
-    login_welcome_description: Sign in to your leadership assessment account
-    login_welcome_title: Welcome back
+    login_welcome_description: Sign in with your Lighthouse account
+    login_welcome_title: Welcome to Lighthouse
     magic_link_interstitial_description: For your security, we require you to confirm this sign-in. Automated systems cannot complete this step.
     magic_link_interstitial_title: To complete your sign-in, please click the button below.
     max_word_limit: Must be at most %{max} words
