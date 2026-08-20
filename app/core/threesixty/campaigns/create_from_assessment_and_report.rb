@@ -46,7 +46,8 @@ module Threesixty
 
         update_factor_ids(result[:old_to_new_factor_mapping]) if result
 
-        @new_report = ::Reports::CopyReport.call!(source_report.id, user, client.id, new_report_name: resource_name)
+        @new_report = ::Reports::CopyReport.call!(source_report.id, user, client.id, new_report_name: resource_name,
+                                                   skip_owner_validation: true)
 
         new_assessment.update!(dimension_id: new_dimension.id)
         update_new_report(result[:old_to_new_factor_mapping]) if result
