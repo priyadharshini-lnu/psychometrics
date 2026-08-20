@@ -30,13 +30,14 @@ RSpec.describe Jwt::Sso::ResolveBearerToken do
       'aud' => token_audience,
       'exp' => 15.minutes.from_now.to_i,
       'sub' => participant.id.to_s,
-      'kid' => key_id,
       'tg' => 'cmp',
       'tg_cmp_id' => campaign.id.to_s
     }.merge(payload_overrides)
 
     JWT.encode(payload, rsa_private_key, 'RS256', { kid: key_id })
   end
+
+  before { Current.project = project }
 
   describe '.call' do
     it 'authenticates a valid token and returns target details' do
@@ -50,16 +51,33 @@ RSpec.describe Jwt::Sso::ResolveBearerToken do
       )
     end
 
-    it 'returns invalid_application_or_key when campaign project tenant differs from signing application tenant' do
+    it 'authenticates a valid token without target details for dashboard redirect' do
+      payload_overrides['tg'] = nil
+      payload_overrides['tg_cmp_id'] = nil
+
+      expect(call_service[:ok]).to include(
+        participant: participant,
+        target_type: nil,
+        campaign_id: nil,
+        user_assessment_id: nil
+      )
+    end
+
+    it 'returns invalid_claims when return_url is present without target' do
+      payload_overrides['tg'] = nil
+      payload_overrides['ret_url'] = 'https://example.com/done'
+
+      expect(call_service[:error]).to eq(:invalid_claims)
+    end
+
+    it 'returns invalid_claims when ret_url is present with a campaign from a different tenant' do
       other_project = create(:project)
       other_campaign = create(:campaign, project: other_project, status: :active)
-      other_participant = create(:user, project: other_project)
-      create(:campaign_user, campaign: other_campaign, user: other_participant, active: true)
 
-      payload_overrides['sub'] = other_participant.id.to_s
       payload_overrides['tg_cmp_id'] = other_campaign.id.to_s
+      payload_overrides['ret_url'] = 'https://example.com/done'
 
-      expect(call_service[:error]).to eq(:invalid_application_or_key)
+      expect(call_service[:error]).to eq(:invalid_claims)
     end
 
     it 'returns replay with substituted return_url when a single use token is replayed' do
