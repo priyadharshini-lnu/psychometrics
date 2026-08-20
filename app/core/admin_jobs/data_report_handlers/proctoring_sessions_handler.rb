@@ -45,6 +45,10 @@ module AdminJobs
 
         records = records.where(projects: { id: project_ids }) if project_ids.present?
 
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(clients: { id: geo_restricted_top_level_client_ids })
+        end
+
         if start_date.present?
           records = records.where(
             'proctoring_sessions.created_at >= ?',

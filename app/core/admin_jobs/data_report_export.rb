@@ -58,7 +58,8 @@ module AdminJobs
         data_report: data_report,
         data_report_job: data_report_job,
         file_path: file_path,
-        runtime_configuration: merged_configuration
+        runtime_configuration: merged_configuration,
+        user_country: user_country
       )
       handler.generate_file
     end
@@ -111,6 +112,10 @@ module AdminJobs
 
     def data_report_job
       @data_report_job ||= ::DataReportJob.find_by(id: record.data['data_report_job_id'])
+    end
+
+    def user_country
+      record.data['owner_country']
     end
 
     def client

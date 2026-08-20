@@ -5,11 +5,12 @@ module AdminJobs
     class BaseHandler
       attr_reader :data_report, :data_report_job, :file_path
 
-      def initialize(data_report:, data_report_job:, file_path:, runtime_configuration: nil)
+      def initialize(data_report:, data_report_job:, file_path:, runtime_configuration: nil, user_country: nil)
         @data_report = data_report
         @data_report_job = data_report_job
         @file_path = file_path
         @runtime_configuration = runtime_configuration
+        @user_country = user_country
       end
 
       def generate_file
@@ -82,6 +83,13 @@ module AdminJobs
         ids = Project.where(id: project_ids).flat_map(&:project_campaign_ids) if ids.blank?
 
         @campaigns ||= ::Campaign.where(id: ids)
+      end
+
+      def geo_restricted_top_level_client_ids
+        return [] if Settings.features.disable_geo_restriction
+        return [] if @user_country.blank?
+
+        @geo_restricted_top_level_client_ids ||= Client.restricted_clients(@user_country).ids
       end
 
       def format_datetime(value)

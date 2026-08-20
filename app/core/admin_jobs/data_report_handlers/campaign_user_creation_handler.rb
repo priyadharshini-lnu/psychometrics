@@ -3,16 +3,6 @@
 module AdminJobs
   module DataReportHandlers
     class CampaignUserCreationHandler < BaseHandler
-      parameter :start_date,
-                type: :date,
-                runtime_updatable: true,
-                description: 'Filter start date'
-
-      parameter :end_date,
-                type: :date,
-                runtime_updatable: true,
-                description: 'Filter end date'
-
       HEADERS = [
         'Project Name',
         'Campaign Name',
@@ -22,6 +12,18 @@ module AdminJobs
         'Created At',
         'Completion Status'
       ].freeze
+
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                required: false,
+                description: 'Start date for the report'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                required: false,
+                description: 'End date for the report'
 
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
@@ -53,8 +55,13 @@ module AdminJobs
                   ).
                   joins(:campaign).
                   joins('INNER JOIN clients ON clients.id = campaigns.project_id').
+                  joins('LEFT JOIN clients c ON c.id = clients.tte_id').
                   joins(:user).
                   where(campaigns: { project_id: project_ids })
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
 
         if start_date.present? && end_date.present?
           records = records.where(

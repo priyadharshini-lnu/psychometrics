@@ -48,6 +48,10 @@ module AdminJobs
                 where('c.ancestry_depth = 0').
                 where(status: [2, 3, 4, 5])
 
+        if geo_restricted_top_level_client_ids.any?
+          query = query.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
         query = query.where(c: { id: client_ids }) if client_ids.present?
         query = query.where(completed_at: completed_at_range) if completed_at_range
 

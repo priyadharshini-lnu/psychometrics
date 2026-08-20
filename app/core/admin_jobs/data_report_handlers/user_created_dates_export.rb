@@ -36,9 +36,18 @@ module AdminJobs
       def fetch_data
         return [] if project_ids.blank?
 
-        records = User.where(project_id: project_ids)
-        records = records.where(created_at: created_at_range) if created_at_range
-        records.order(:email).pluck(:email, :created_at)
+        records = User.
+                  joins('LEFT JOIN clients p ON p.id = users.project_id').
+                  joins('LEFT JOIN clients c ON c.id = p.tte_id').
+                  where(users: { project_id: project_ids })
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
+        records = records.where(users: { created_at: created_at_range }) if created_at_range
+
+        records.order('users.email').pluck('users.email', 'users.created_at')
       end
 
       def created_at_range
