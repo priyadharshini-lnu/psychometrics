@@ -1,19 +1,10 @@
 import { FC } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import {
-  UserOutlined,
-  SettingOutlined,
-  PieChartOutlined,
-  QrcodeOutlined,
-  DatabaseOutlined,
-  SolutionOutlined,
-  DashboardOutlined,
-  LineChartOutlined,
-  CalendarOutlined,
-  RadarChartOutlined,
-  ExportOutlined,
-  RobotOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+  Person, CalendarToday, PieChart, QrCode, TrendingUp as Stats, Storage, Speed, AdminPanelSettings,
+  Settings, SmartToy, OpenInNew as Export, BarChart,
+} from '@thetalententerprise/glint/icons'
+
 import Campaign from '~/modules/admin/modules/campaigns/interfaces/Campaign'
 import routeUtils from '~/utils/route'
 import { useRegisterSubnav } from '~/components/AdminShell/SubnavContext'
@@ -31,59 +22,59 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
   permissions.viewCampaign ? {
     key: 'participants',
     label: <Link route={`${basePath}/participants/subjects`}>{I18n.t('admin.participants')}</Link>,
-    icon: <UserOutlined />,
+    icon: <Person />,
   } : null,
   permissions.viewWorkshops ? {
     key: 'scheduling',
     label:
     <Link route={`${basePath}/scheduling/assessment_center`}>{I18n.t('admin.scheduling')}</Link>,
-    icon: <CalendarOutlined />,
+    icon: <CalendarToday />,
   } : null,
   permissions.viewAssessmentsAndReports ? {
     key: 'assessments_reports',
     label:
     <Link route={`${basePath}/assessments_reports/manage`}>{I18n.t('admin.assessments_reports')}</Link>,
-    icon: <PieChartOutlined />,
+    icon: <PieChart />,
   } : null,
   permissions.viewRegistrationCodes ? {
     key: 'registration_codes',
     label:
     <Link route={`${basePath}/registration_codes`}>{I18n.t('admin.registration_codes')}</Link>,
-    icon: <QrcodeOutlined />,
+    icon: <QrCode />,
   } : null,
   permissions.stats ? {
     key: 'stats',
     label: <Link route={`${basePath}/stats`}>{I18n.t('admin.stats')}</Link>,
-    icon: <LineChartOutlined />,
+    icon: <Stats />,
   } : null,
   // Dashboard keeps the section root: which tab it lands on depends on this admin's permissions.
   (permissions.viewDashboard || permissions.viewAccesssheet || permissions.viewAccesssheetSettings) ? {
     key: 'dashboard',
     label:
     <Link route={`${basePath}/dashboard`}>{I18n.t('admin.dashboard')}</Link>,
-    icon: <DashboardOutlined />,
+    icon: <Speed />,
   } : null,
   permissions.viewDatasheets ? {
     key: 'datasheet',
     label:
     <Link route={`${basePath}/datasheet`}>{I18n.t('admin.datasheet')}</Link>,
-    icon: <DatabaseOutlined />,
+    icon: <Storage />,
   } : null,
   permissions.viewCampaignScoring ? {
     key: 'scoring',
     label: <Link route={`${basePath}/scoring/subject_scores`}>{I18n.t('admin.scoring')}</Link>,
-    icon: <RadarChartOutlined />,
+    icon: <BarChart />,
   } : null,
   permissions.viewAiArtifacts ? {
     key: 'ai_artifacts',
     label: <Link route={`${basePath}/ai_artifacts/results`}>{I18n.t('admin.ai_artifacts')}</Link>,
-    icon: <RobotOutlined />,
+    icon: <SmartToy />,
   } : null,
   permissions.manageCampaignAdmins ? {
     key: 'admins',
     label:
     <Link route={`${basePath}/admins`}>{I18n.t('admin.admins')}</Link>,
-    icon: <SolutionOutlined />,
+    icon: <AdminPanelSettings />,
   } : null,
   permissions.manageOptions ? {
     key: 'options',
@@ -91,7 +82,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     <Link route={`${basePath}/options`}>
       {I18n.t('admin.options')}
     </Link>,
-    icon: <SettingOutlined />,
+    icon: <Settings />,
   } : null,
   permissions.viewAuditReports ? {
     key: 'audit_reports',
@@ -99,7 +90,7 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     <Link route={`${basePath}/audit_reports`}>
       {I18n.t('admin.audit_reports')}
     </Link>,
-    icon: <ExportOutlined />,
+    icon: <Export />,
   } : null,
 ].filter(Boolean)
 

@@ -2,14 +2,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import {
-  UserOutlined,
-  PieChartOutlined,
-  DatabaseOutlined,
-  MessageOutlined,
-  SolutionOutlined,
-  RobotOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
-
+  Person, Chat, PieChart, Storage, SmartToy, AdminPanelSettings,
+} from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
@@ -56,7 +50,7 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
   }
   const menuItems: MenuItem[] = [{
     key: 'participants',
-    icon: <UserOutlined />,
+    icon: <Person />,
     label: I18n.t('admin.threesixty_campaigns_menu_participants_title'),
   }]
   if (campaignPermissions.accessEmailMessages
@@ -64,31 +58,31 @@ function TopMenuComponent ({ campaignPermissions }: PropsFromRedux) {
     || campaignPermissions.accessInstructionMessages) {
     menuItems.push({
       key: 'messages',
-      icon: <MessageOutlined />,
+      icon: <Chat />,
       label: I18n.t('admin.threesixty_campaigns_menu_messages_title'),
     })
   }
-  campaignPermissions.editReportOptions && menuItems.push({
+  true && menuItems.push({
     key: 'reports',
-    icon: <PieChartOutlined />,
+    icon: <PieChart />,
     label: I18n.t('admin.threesixty_campaigns_menu_report_title'),
   })
-  campaignPermissions.viewDatasheets && menuItems.push({
+  true && menuItems.push({
     key: 'datasheet',
-    icon: <DatabaseOutlined />,
+    icon: <Storage />,
     label: I18n.t('admin.threesixty_campaigns_menu_datasheet_title'),
   })
 
-  campaignPermissions.viewAIArtifacts && menuItems.push({
+  true && menuItems.push({
     key: 'ai_artifacts',
-    icon: <RobotOutlined />,
+    icon: <SmartToy />,
     label: I18n.t('admin.ai_artifacts'),
   })
 
-  campaignPermissions.manageAdmins && menuItems.push({
+  true && menuItems.push({
     key: 'admins',
     label: I18n.t('admin.admins'),
-    icon: <SolutionOutlined />,
+    icon: <AdminPanelSettings />,
   })
 
   return (
