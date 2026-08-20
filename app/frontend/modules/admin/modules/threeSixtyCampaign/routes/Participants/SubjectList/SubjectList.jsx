@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col, App, Checkbox,
+  Table, Row, Col, App, Checkbox, Flex,
 } from 'antd'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -90,22 +90,22 @@ function SubjectList ({
 
   return (
     <>
-      <Row
+      <Flex
         justify="space-between"
         align="middle"
         className="pb-4 ps-3 pe-5"
       >
-        <Col>
-          <CountDisplay
-            selectedCount={selectedCount ?? 0}
-            totalCount={total}
-          />
-        </Col>
-        <Col span={20} className="text-align-r">
+        <CountDisplay
+          selectedCount={selectedCount ?? 0}
+          totalCount={total}
+        />
+
+        <Flex gap={8}>
           <SearchInput
             onChange={curriedFetchSubjects(campaignId)}
             path="/participants/subjects"
             searchTerm={searchTerm}
+            style={{ marginRight: 0 }}
           />
           <Manage />
           {!template
@@ -137,8 +137,9 @@ function SubjectList ({
           {permissions.addSubject && !template && (
             <CreateSubjectsDropdown />
           )}
-        </Col>
-      </Row>
+        </Flex>
+
+      </Flex>
       <div className="pb-4 ps-3 pe-5">
         <Row>
           <Col>

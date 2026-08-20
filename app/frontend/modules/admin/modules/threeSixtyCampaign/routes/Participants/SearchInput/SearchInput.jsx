@@ -10,7 +10,7 @@ import settings from '../../../settings'
 const { I18n } = window
 
 export default function Search ({
-  onChange: onChangeCallback, path, searchTerm,
+  onChange: onChangeCallback, path, searchTerm, style,
 }) {
   const navigate = useNavigate()
   const page = 1
@@ -31,6 +31,7 @@ export default function Search ({
       placeholder={I18n.t('common.actions.search')}
       suffix={<SearchOutlined />}
       className={styles.container}
+      style={{ ...style }}
     />
   )
 }
