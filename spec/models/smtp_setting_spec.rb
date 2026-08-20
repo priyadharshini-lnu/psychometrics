@@ -5,9 +5,10 @@ require 'rails_helper'
 describe SmtpSetting, type: :model do
   describe 'from_name_and_email' do
     it 'returns default from name and email if smtp_setting is disabled' do
+      allow(Branding).to receive(:display_name).and_return('Marsh')
       smtp_setting = build(:smtp_setting, enabled: false, from_name: 'James', from_email: 'james@cc.com')
 
-      expect(smtp_setting.from_name_and_email).to eq("#{Branding.display_name} <no-reply@localhost>")
+      expect(smtp_setting.from_name_and_email).to eq('Marsh <no-reply@localhost>')
     end
 
     it 'returns from_name from smtp_setting if enabled' do
@@ -25,15 +26,37 @@ describe SmtpSetting, type: :model do
 
   describe 'admin_sender_from' do
     it 'returns default from name and no-reply email if smtp_setting is disabled' do
+      allow(Branding).to receive(:display_name).and_return('Marsh')
       smtp_setting = build(:smtp_setting, enabled: false, from_name: 'James')
 
-      expect(smtp_setting.admin_sender_from).to eq("#{Branding.display_name} <no-reply@localhost>")
+      expect(smtp_setting.admin_sender_from).to eq('Marsh <no-reply@localhost>')
     end
 
     it 'returns from_name and from_email if enabled' do
       smtp_setting = build(:smtp_setting, enabled: true, from_name: 'Admin Custom', from_email: 'custom@cc.com')
 
       expect(smtp_setting.admin_sender_from).to eq('Admin Custom <custom@cc.com>')
+    end
+  end
+
+  describe 'a display name containing a comma' do
+    it 'keeps the branded sender one address whose envelope-from is the real mailbox' do
+      allow(Branding).to receive(:display_name).and_return('Mercer, a Marsh business')
+      smtp_setting = build(:smtp_setting, enabled: false)
+
+      message = Mail.new(from: smtp_setting.from_name_and_email, to: 'user@cc.com')
+
+      expect(message.from_addrs).to eq(['no-reply@localhost'])
+      expect(message.smtp_envelope_from).to eq('no-reply@localhost')
+    end
+
+    it 'keeps a client from_name one address whose envelope-from is the real mailbox' do
+      smtp_setting = build(:smtp_setting, enabled: true, from_name: 'Acme, Inc.', from_email: 'hello@acme.com')
+
+      message = Mail.new(from: smtp_setting.admin_sender_from, to: 'user@cc.com')
+
+      expect(message.from_addrs).to eq(['hello@acme.com'])
+      expect(message.smtp_envelope_from).to eq('hello@acme.com')
     end
   end
 

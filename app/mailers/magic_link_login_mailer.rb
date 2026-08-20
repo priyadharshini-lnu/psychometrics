@@ -3,7 +3,7 @@
 class MagicLinkLoginMailer < ApplicationMailer
   layout 'mailer/layouts/end_user_email'
 
-  default from: "#{Branding.display_name} <no-reply@#{Settings.domain}>"
+  default from: Branding.mail_from("no-reply@#{Settings.domain}")
 
   def magic_link_email(user)
     @user = user

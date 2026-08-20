@@ -3,7 +3,7 @@
 class TwoFactorMailer < ApplicationMailer
   layout 'mailer/layouts/end_user_email'
 
-  default from: "#{Branding.display_name} <no-reply@#{Settings.domain}>"
+  default from: Branding.mail_from("no-reply@#{Settings.domain}")
 
   def two_factor_code_email(user, code)
     @user = user

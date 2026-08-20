@@ -35,6 +35,10 @@ module Branding
       # I18n.t('product_name', locale: locale)
     end
 
+    def mail_from(email, name: display_name)
+      Mail::Address.new(email).tap { |address| address.display_name = name }.format
+    end
+
     def support_email
       Settings.branding.support_email
     end
