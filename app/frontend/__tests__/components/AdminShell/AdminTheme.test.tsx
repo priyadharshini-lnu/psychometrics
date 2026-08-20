@@ -4,7 +4,6 @@ import {
   afterEach, beforeEach, describe, expect, it, vi,
 } from 'vitest'
 import { AdminTheme } from '~/components/AdminShell/AdminTheme'
-import { DefaultAntThemeWrapper } from '~/glint'
 
 vi.mock('~/components/AdminShell/useThemePreference', () => ({
   THEME_CATEGORY: 'theme',
@@ -26,15 +25,13 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-describe('AdminTheme inside DefaultAntThemeWrapper', () => {
-  // Guards the effect ordering: the legacy wrapper writes --ant-* first, AdminTheme's bridge must overwrite it.
+describe('AdminTheme', () => {
+  // The only writer of --ant-* on admin now: nothing above it seeds them any more.
   it('leaves the marsh primary on the legacy --ant-* vars', async () => {
     render(
-      <DefaultAntThemeWrapper>
-        <AdminTheme>
-          <p>page content</p>
-        </AdminTheme>
-      </DefaultAntThemeWrapper>,
+      <AdminTheme>
+        <p>page content</p>
+      </AdminTheme>,
     )
 
     await screen.findByText('page content')
@@ -49,11 +46,9 @@ describe('AdminTheme inside DefaultAntThemeWrapper', () => {
     const config = vi.spyOn(ConfigProvider, 'config')
 
     render(
-      <DefaultAntThemeWrapper>
-        <AdminTheme>
-          <p>page content</p>
-        </AdminTheme>
-      </DefaultAntThemeWrapper>,
+      <AdminTheme>
+        <p>page content</p>
+      </AdminTheme>,
     )
 
     await screen.findByText('page content')

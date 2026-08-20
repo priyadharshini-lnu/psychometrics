@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Outlet, RouterProvider, useLocation,
 } from 'react-router-dom'
-import { AdminShell } from '~/components/AdminShell'
+import { AdminShell, AdminTheme } from '~/components/AdminShell'
 import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
 import { PageFallback } from '~/components/PageFallback'
 import settings from './settings'
@@ -33,15 +33,27 @@ const CampaignPage: React.FC = () => {
   )
 }
 
+// Inside the router because the theme reads the location, above every route so one provider covers them all.
+const ThemedRoot: React.FC = () => (
+  <AdminTheme>
+    <Outlet />
+  </AdminTheme>
+)
+
 export const router = createBrowserRouter([
   {
-    path: settings.urlPrefix,
-    element: <CampaignPage />,
-    errorElement: <RouteErrorCard />,
-    hydrateFallbackElement: <PageFallback />,
-    children: routes,
+    element: <ThemedRoot />,
+    children: [
+      {
+        path: settings.urlPrefix,
+        element: <CampaignPage />,
+        errorElement: <RouteErrorCard />,
+        hydrateFallbackElement: <PageFallback />,
+        children: routes,
+      },
+      { path: '*', element: <Main /> },
+    ],
   },
-  { path: '*', element: <Main /> },
 ])
 
 export function Layout () {

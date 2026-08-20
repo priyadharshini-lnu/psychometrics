@@ -1,4 +1,5 @@
 import adminRoutes from '~/modules/admin/routes'
+import fullScreenRoutes from '~/modules/admin/routes/fullScreen'
 import assessorRoutes from '~/modules/admin/modules/AssessorApp/routes'
 import threeSixtyRoutes from '~/modules/admin/modules/threeSixtyCampaign/routes'
 import { fullPaths } from './fullPaths'
@@ -10,8 +11,6 @@ describe('admin route table', () => {
       '/admin/profile/(index)',
       '/admin/profile/details',
       '/admin/profile/change_password',
-      '/admin/meet/create',
-      '/admin/meet/:roomId',
       '/admin/clients',
       '/admin/clients/:clientId',
       '/admin/clients/:clientId/(index)',
@@ -203,6 +202,15 @@ describe('admin route table', () => {
       '/admin/libraries/*',
       '/admin/templates/questions',
       '/admin/templates/blocks',
+    ])
+  })
+})
+
+describe('admin full-screen route table', () => {
+  it('serves its urls outside the shell', () => {
+    expect(fullPaths(fullScreenRoutes)).toEqual([
+      '/admin/meet/create',
+      '/admin/meet/:roomId',
     ])
   })
 })

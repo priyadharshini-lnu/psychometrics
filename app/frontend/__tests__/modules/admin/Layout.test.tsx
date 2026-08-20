@@ -13,6 +13,7 @@ const stub = (testId: string) => () => <div data-testid={testId} />
 let ownedPathPrefixes: string[] | undefined
 
 vi.mock('~/components/AdminShell', () => ({
+  AdminTheme: ({ children }: { children: ReactNode }) => <div data-testid="admin-theme">{children}</div>,
   AdminShell: ({ children, ownedPathPrefixes: prefixes }: { children: ReactNode, ownedPathPrefixes?: string[] }) => {
     ownedPathPrefixes = prefixes
 

@@ -7,10 +7,11 @@ import { useSelector } from 'react-redux'
 import ErrorModal from '~/components/ErrorModal'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
-import { AdminShell } from '~/components/AdminShell'
+import { AdminShell, AdminTheme } from '~/components/AdminShell'
 import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
 import { PageFallback, PageHoldArea } from '~/components/PageFallback'
 import routes from './routes'
+import fullScreenRoutes from './routes/fullScreen'
 import assessorRoutes from './modules/AssessorApp/routes'
 import assessorSettings from './modules/AssessorApp/settings'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
@@ -68,6 +69,15 @@ const Main: React.FC = () => (
   </>
 )
 
+// Main without the shell: a route mounted here fills the viewport instead of sitting inside the chrome.
+const FullScreen: React.FC = () => (
+  <>
+    <title>{I18n.t('admin.meta_title')}</title>
+    <Outlet />
+    {modals}
+  </>
+)
+
 // A pathless layout: the shell above it survives both a failed page chunk and the first-load wait below it.
 const pageArea = (children: RouteObject[]): RouteObject => ({
   element: <RoutedPage />,
@@ -77,24 +87,37 @@ const pageArea = (children: RouteObject[]): RouteObject => ({
   children,
 })
 
+// Inside the router because the theme reads the location, above every route so one provider covers them all.
+const ThemedRoot: React.FC = () => (
+  <AdminTheme>
+    <Outlet />
+  </AdminTheme>
+)
+
 export const router = createBrowserRouter([
   {
-    path: '/admin/*',
-    element: <Main />,
-    children: [pageArea([
+    element: <ThemedRoot />,
+    children: [
+      { element: <FullScreen />, children: [pageArea(fullScreenRoutes)] },
       {
-        path: '',
-        element: <Navigate to="clients" />,
+        path: '/admin/*',
+        element: <Main />,
+        children: [pageArea([
+          {
+            path: '',
+            element: <Navigate to="clients" />,
+          },
+          ...routes,
+        ])],
       },
-      ...routes,
-    ])],
+      {
+        path: `${assessorSettings.urlPrefix}/*`,
+        element: <Main />,
+        children: [pageArea([{ element: <AssessorGate />, children: assessorRoutes }])],
+      },
+      { path: '*', element: <Main /> },
+    ],
   },
-  {
-    path: `${assessorSettings.urlPrefix}/*`,
-    element: <Main />,
-    children: [pageArea([{ element: <AssessorGate />, children: assessorRoutes }])],
-  },
-  { path: '*', element: <Main /> },
 ])
 
 export function Layout () {

@@ -4,11 +4,11 @@ const page = () => import('./MeetingRoom')
 
 const routes = [
   {
-    path: 'meet/create',
+    path: '/admin/meet/create',
     element: <div>create</div>,
   },
   {
-    path: 'meet/:roomId',
+    path: '/admin/meet/:roomId',
     lazy: lazyRoute(page, m => m.default),
   },
 ]

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { AppShell, useSiderAppearance } from '@thetalententerprise/glint'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { triggerCollapse } from '~/modules/admin/core/ui/menu'
-import { AdminTheme } from './AdminTheme'
 import { useAdminNav } from './useAdminNav'
 import { useSiderWidth } from './useSiderWidth'
 import { useSiderCollapsed } from './useSiderCollapsed'
@@ -117,8 +116,8 @@ const AdminShellComponent: FC<Props> = ({
   topBarStart,
   ownedPathPrefixes,
 }) => (
-  // ShellBody sits inside AdminTheme so preference-reading hooks mount behind its gate.
-  <AdminTheme>
+  // AdminTheme is mounted by the router's root layout route, so routes outside this shell are themed too.
+  <>
     <SignInNotice />
     <ShellBody
       collapsed={collapsed}
@@ -129,7 +128,7 @@ const AdminShellComponent: FC<Props> = ({
     >
       {children}
     </ShellBody>
-  </AdminTheme>
+  </>
 )
 
 const ShellBody: FC<Props> = ({

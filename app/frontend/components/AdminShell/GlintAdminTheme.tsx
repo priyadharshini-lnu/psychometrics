@@ -98,7 +98,6 @@ export const GlintAdminTheme: FC<Props> = ({ choice = DEFAULT_THEME_CHOICE, chil
     direction={isRtl(I18n.currentLocale()) ? 'rtl' : 'ltr'}
     locale={antdLocale}
   >
-    {/* Ordering dependency: nested here so it writes --ant-* after DefaultAntThemeWrapper's useSetCssVars. */}
     <LegacyCssVarBridge />
     {children}
   </GlintThemeProvider>
