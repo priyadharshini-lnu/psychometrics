@@ -3104,8 +3104,6 @@ en:
         instructions: Click below link to signin to lighthouse.
         signin_link: Signin Link
       subject: Signin link for Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity

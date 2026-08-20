@@ -3102,8 +3102,6 @@ es-ES:
         instructions: Haga clic en el siguiente enlace para iniciar sesión en lighthouse.
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
-    powered_by:
-      text: Desarrollado por %{product_name}.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad

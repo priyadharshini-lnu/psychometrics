@@ -3088,8 +3088,6 @@ hr:
         instructions: Kliknite na donju poveznicu za prijavu na Lighthouse.
         signin_link: Povezanica za prijavu
       subject: Poveznica za prijavu na Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Vaš je račun onemogućen zbog neaktivnosti
       warning: Vaš će račun uskoro biti onemogućen zbog neaktivnosti

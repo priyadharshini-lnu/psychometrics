@@ -3082,8 +3082,6 @@ sr-Cyrl:
         instructions: Кликните на линк испод да бисте се пријавили на светионик.
         signin_link: Линк за пријаву
       subject: Линк за пријаву на Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Ваш налог је онемогућен због неактивности
       warning: Ваш налог ће ускоро бити онемогућен због неактивности

@@ -5,6 +5,3 @@ wrapper.secondary
       columns.small-12.powered-by-tte[valign="middle" dir=(@is_rtl ? 'rtl' : 'ltr')]
         center
           = image_tag(Branding.email_logo, size: Branding.email_logo_size(28))
-          spacer[size="16"]
-          p.text-center
-            = t('mailer.powered_by.text', product_name: Branding.product_name)

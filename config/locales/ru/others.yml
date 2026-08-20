@@ -3104,8 +3104,6 @@ ru:
         instructions: Нажмите на ссылку ниже, чтобы войти в Lighthouse.
         signin_link: Ссылка для входа
       subject: Ссылка для входа в Lighthouse
-    powered_by:
-      text: На базе %{product_name}.
     users:
       account_disable: Ваша учетная запись была заблокирована из-за бездействия
       warning: Ваша учетная запись будет вскоре заблокирована из-за бездействия.

@@ -3102,8 +3102,6 @@ zh-HK:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: 您的帳號因未啟用而被停用
       warning: 您的帳號將因未使用而被停用

@@ -3088,8 +3088,6 @@ ro:
         instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Contul a fost dezactivat din cauza inactivității
       warning: Contul tău va fi dezactivat în curând din cauza inactivității

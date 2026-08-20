@@ -3074,8 +3074,6 @@ ja:
         instructions: 以下のリンクをクリックして、Lighthouseにサインインしてください。
         signin_link: サインインリンク
       subject: Lighthouseへのサインインリンク
-    powered_by:
-      text: パワード・バイ・%{product_name}
     users:
       account_disable: アカウントが無効になっています
       warning: アカウントが無効のため、すぐに無効になります。

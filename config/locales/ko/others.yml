@@ -3067,8 +3067,6 @@ ko:
         instructions: 지침
         signin_link: 로그인 링크
       subject: 제목
-    powered_by:
-      text: "%{product_name}에서 제공합니다."
     users:
       account_disable: 활동이 없어 계정이 비활성화되었습니다
       warning: 활동이 없어 곧 계정이 비활성화됩니다

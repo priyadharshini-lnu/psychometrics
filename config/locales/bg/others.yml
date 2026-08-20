@@ -3088,8 +3088,6 @@ bg:
         instructions: Натиснете връзката по-долу, за да влезете в Lighthouse.
         signin_link: Връзка за влизане
       subject: Връзка за вход за Lighthouse
-    powered_by:
-      text: Захранван от %{product_name}.
     users:
       account_disable: Вашият акаунт е деактивиран поради неактивност
       warning: Акаунтът ви скоро ще бъде деактивиран поради неактивност

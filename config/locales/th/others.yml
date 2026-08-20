@@ -3085,8 +3085,6 @@ th:
         instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ประภ Lighthouse
         signin_link: ลิงค์ลงชื่อเข้าใช้
       subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: บัญชีของคุณถูกปิดใช้งานเนื่องจากไม่มีการใช้งาน
       warning: บัญชีของคุณจะถูกปิดใช้งานในไม่ช้าเนื่องจากไม่มีการใช้งาน

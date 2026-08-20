@@ -3088,8 +3088,6 @@ sk:
         instructions: Kliknutím na nižšie uvedené prepojenie sa prihlásite do Lighthouse.
         signin_link: Prihlasovacie prepojenie
       subject: Prihlasovacie prepojenie pre Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Váš účet bol deaktivovaný z dôvodu nečinnosti
       warning: Váš účet bude čoskoro deaktivovaný z dôvodu nečinnosti

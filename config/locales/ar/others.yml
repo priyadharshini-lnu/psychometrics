@@ -3101,8 +3101,6 @@ ar:
         instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
-    powered_by:
-      text: مدعوم من %{product_name}
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط

@@ -3061,8 +3061,6 @@ it:
         instructions: Fare clic sul link sottostante per accedere a lighthouse.
         signin_link: Link di accesso
       subject: Link di accesso per Lighthouse
-    powered_by:
-      text: Alimentato da %{product_name}.
     users:
       account_disable: L'account è stato disattivato per inattività
       warning: Il tuo account sarà presto disabilitato a causa dell'inattività

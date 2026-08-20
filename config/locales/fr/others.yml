@@ -3061,8 +3061,6 @@ fr:
         instructions: Cliquez sur le lien ci-dessous pour vous connecter à lighthouse.
         signin_link: Lien de connexion
       subject: Lien de connexion pour Lighthouse
-    powered_by:
-      text: Propulsé par %{product_name}.
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité

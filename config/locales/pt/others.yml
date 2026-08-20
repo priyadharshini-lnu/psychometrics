@@ -3073,8 +3073,6 @@ pt:
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
-    powered_by:
-      text: Desenvolvido por %{product_name}.
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade

@@ -3097,8 +3097,6 @@ sl:
         instructions: Kliknite spodnjo povezavo za prijavo v Lighthouse.
         signin_link: Povezava za prijavo
       subject: Povezava za prijavo za Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti

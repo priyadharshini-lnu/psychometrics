@@ -3075,8 +3075,6 @@ de:
         instructions: Klicken Sie auf den unten stehenden Link, um sich bei Lighthouse anzumelden.
         signin_link: Anmeldung Link
       subject: Anmeldelink für Lighthouse
-    powered_by:
-      text: Angetrieben von %{product_name}.
     users:
       account_disable: Ihr Konto wurde aufgrund von Inaktivität deaktiviert
       warning: Ihr Konto wird demnächst wegen Inaktivität deaktiviert werden

@@ -3092,8 +3092,6 @@ pl:
         instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
         signin_link: Link do logowania
       subject: Łącze logowania do Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności

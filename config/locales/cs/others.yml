@@ -3073,8 +3073,6 @@ cs:
         instructions: Kliknutím na níže uvedený odkaz se přihlásíte k Lighthouse.
         signin_link: Přihlašovací odkaz
       subject: Přihlašovací odkaz pro Lighthouse
-    powered_by:
-      text: Powered by %{product_name}.
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti

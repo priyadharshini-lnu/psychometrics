@@ -3091,8 +3091,6 @@ sr-Latn:
         instructions: Kliknite ispod link da biste se prijavili na Lighthouse.
         signin_link: Prijavite se putem linka
       subject: Link za prijavljivanje za Lighthouse
-    powered_by:
-      text: Pokreće %{product_name}.
     users:
       account_disable: Vaš nalog je onemogućen zbog neaktivnosti
       warning: Vaš nalog će uskoro biti onemogućen zbog neaktivnosti

@@ -3061,8 +3061,6 @@ nl:
         instructions: Klik op onderstaande link om je aan te melden bij lighthouse.
         signin_link: Aanmelden Link
       subject: Aanmelden link voor Lighthouse
-    powered_by:
-      text: Aangedreven door %{product_name}.
     users:
       account_disable: Je account is uitgeschakeld wegens inactiviteit
       warning: Je account wordt binnenkort uitgeschakeld wegens inactiviteit

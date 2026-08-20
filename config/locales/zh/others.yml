@@ -3071,8 +3071,6 @@ zh:
         instructions: 点击以下链接登录Lighthouse 测评。
         signin_link: 登录链接
       subject: Lighthouse 登录链接
-    powered_by:
-      text: 由 %{product_name} 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用
