@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Flex, Typography } from '@thetalententerprise/glint'
 import { RootState } from '~/modules/endUser/core/rootReducers'
-import { getPrivacyText, privacyPageLink } from '~/modules/endUser/modules/campaigns/core/project'
+import { getPrivacyText, privacyPageLink, enablePrivacyLink } from '~/modules/endUser/modules/campaigns/core/project'
 import { useManageCookies } from '~/hooks/useManageCookies'
 import { displayName } from '~/utils/branding'
 
@@ -14,17 +14,18 @@ const LINK_STYLE = { fontSize: 'var(--ant-font-size-sm)' as const }
 const connector = connect((state: RootState) => ({
   privacyText: getPrivacyText(state),
   privacyPageLink: privacyPageLink(state),
+  isPrivacyLinkEnabled: enablePrivacyLink(state),
 }))
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
 // The signed-in page footer: hairline divider, copyright start-aligned, legal
 // links end-aligned as quiet text links.
-const PageFooterComponent: FC<PropsFromRedux> = ({ privacyText, privacyPageLink }) => {
+const PageFooterComponent: FC<PropsFromRedux> = ({ privacyText, privacyPageLink, isPrivacyLinkEnabled }) => {
   const year = new Date().getFullYear()
   const manageCookies = useManageCookies()
 
-  const projectPrivacyLink = privacyText && privacyPageLink ? (
+  const projectPrivacyLink = isPrivacyLinkEnabled ? (
     <Typography.Link
       href={privacyPageLink}
       target="_blank"

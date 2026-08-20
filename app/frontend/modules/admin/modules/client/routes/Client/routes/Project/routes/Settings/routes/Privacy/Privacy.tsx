@@ -66,12 +66,17 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
     },
   )
 
-  const transformValues = values => ({
-    ...values,
-    customPrivacyConsentTexts,
-    customPrivacyAcknowledgmentTexts,
-    privacyLinkTexts,
-  })
+  const transformValues = (values) => {
+    const transformedValues = { ...values }
+    delete transformedValues.privacyLinkTextInput
+
+    return {
+      ...transformedValues,
+      customPrivacyConsentTexts,
+      customPrivacyAcknowledgmentTexts,
+      privacyLinkTexts,
+    }
+  }
 
   const privacySetting = data[0]
 
@@ -152,11 +157,8 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
 
   const selectedLocaleConsentText = _.find(customPrivacyConsentTexts, { locale: selectedLocale })
   const selectedLocaleAcknowledgmentText = _.find(customPrivacyAcknowledgmentTexts, { locale: selectedLocale })
-  // For display: fall back to English when the selected locale has no text
   const selectedPrivacyLinkEntry = _.find(privacyLinkTexts, { locale: selectedPrivacyLinkLocale })
-  const selectedPrivacyLinkLocaleText = (selectedPrivacyLinkEntry?.text)
-    ? selectedPrivacyLinkEntry
-    : _.find(privacyLinkTexts, { locale: 'en' })
+  const selectedPrivacyLinkRawText = selectedPrivacyLinkEntry?.text || ''
 
   const localesForConsent = customPrivacyConsentTexts?.length ? customPrivacyConsentTexts : [{ locale: 'en' }]
   const localesForPrivacyLink = privacyLinkTexts?.length ? privacyLinkTexts : [{ locale: 'en' }]
@@ -165,6 +167,10 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
   const privacyLinkTranslatedLocales = privacyLinkTexts
     .filter(entry => Boolean(entry.text))
     .map(entry => entry.locale)
+
+  useEffect(() => {
+    form.setFieldValue('privacyLinkTextInput', selectedPrivacyLinkRawText)
+  }, [form, selectedPrivacyLinkRawText, selectedPrivacyLinkLocale])
 
   if (!privacySetting) return <Skeleton active />
 
@@ -266,42 +272,63 @@ const PrivacyComponent: React.FC<PropsFromRedux> = ({ features }) => {
                 </Checkbox>
               </Form.Item>
               {enablePrivacyLink && (
-                <Row>
+                <Row gutter={[8, 8]}>
                   <Col span={24}>
                     <Form.Item
                       label={I18n.t('admin.privacy_text')}
                       layout="vertical"
+                      className="mb-4"
                     >
                       <LocaleSelectors
                         editingLocale={selectedPrivacyLinkLocale}
                         referenceLocale={referencePrivacyLinkLocale}
                         availableLocales={localesForPrivacyLink.map(({ locale }) => locale)}
                         availableNameLocales={privacyLinkTranslatedLocales}
-                        className="mb8"
                         onEditingLocaleChange={updateSelectedPrivacyLinkLocale}
                         onReferenceLocaleChange={setReferencePrivacyLinkLocale}
                       />
-                      <Row gutter={12}>
-                        <Col span={12}>
-                          <Input
-                            key={`privacy-link-text-${selectedPrivacyLinkLocale}`}
-                            value={selectedPrivacyLinkLocaleText?.text || ''}
-                            placeholder={I18n.t('admin.privacy_text_placeholder')}
-                            onChange={e => updatePrivacyLinkText(e.target.value, selectedPrivacyLinkLocale)}
-                          />
-                        </Col>
-                        <Col span={12}>
-                          {referencePrivacyLinkLocale && (
-                            <Alert
-                              message={_.find(privacyLinkTexts, { locale: referencePrivacyLinkLocale })?.text}
-                              type="info"
-                            />
-                          )}
-                        </Col>
-                      </Row>
+
                     </Form.Item>
                   </Col>
-                  <Col span={24}>
+                  <Col span={12}>
+                    <Form.Item
+                      name="privacyLinkTextInput"
+                      style={{ marginBottom: 0 }}
+                      rules={[
+                        {
+                          validator: (_, value) => {
+                            if (!enablePrivacyLink) return Promise.resolve()
+                            if (value == null || String(value).trim() === '') {
+                              return Promise.reject(new Error(I18n.t('validations.blank')))
+                            }
+
+                            return Promise.resolve()
+                          },
+                        },
+                      ]}
+                      validateTrigger={['onBlur', 'onChange']}
+                    >
+                      <Input
+                        key={`privacy-link-text-${selectedPrivacyLinkLocale}`}
+                        value={selectedPrivacyLinkRawText}
+                        placeholder={I18n.t('admin.privacy_text_placeholder')}
+                        onChange={(e) => {
+                          const nextValue = e.target.value
+                          updatePrivacyLinkText(nextValue, selectedPrivacyLinkLocale)
+                          form.setFieldValue('privacyLinkTextInput', nextValue)
+                        }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={12}>
+                    {referencePrivacyLinkLocale && (
+                      <Alert
+                        message={_.find(privacyLinkTexts, { locale: referencePrivacyLinkLocale })?.text}
+                        type="info"
+                      />
+                    )}
+                  </Col>
+                  <Col className="mt-2" span={24}>
                     <Form.Item
                       name="privacyLinkUrl"
                       label={I18n.t('admin.privacy_link_label')}
