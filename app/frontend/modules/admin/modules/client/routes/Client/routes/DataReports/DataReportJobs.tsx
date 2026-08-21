@@ -22,6 +22,14 @@ export const DataReportJobs: React.FC<{}> = () => {
   const navigate = useNavigate()
   const { message } = useApp()
 
+  const handleBack = () => {
+    if (window.history.length > 1) {
+      navigate(-1)
+    } else {
+      navigate(clientId ? `/admin/clients/${clientId}/data_reports` : '/admin/data_reports')
+    }
+  }
+
   const [passwords, setPasswords] = useState<{ [key: string]: string | null }>({})
 
   const baseApiConfig: Record<string, unknown> = {
@@ -231,7 +239,7 @@ export const DataReportJobs: React.FC<{}> = () => {
             type="text"
             style={{ padding: 0, alignSelf: 'flex-start' }}
             icon={<LeftOutlined />}
-            onClick={() => navigate(-1)}
+            onClick={handleBack}
           >
             {I18n.t('shared.back')}
           </Button>
