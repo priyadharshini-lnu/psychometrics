@@ -890,6 +890,7 @@ it:
         export_campaign_datasheet: Scheda tecnica della campagna di esportazione
         export_campaign_factors: Fattori della campagna di esportazione
         export_campaign_scorings: Esporta delle Campagne
+        export_campaign_translations: Traduzioni della campagna di esportazione
         export_dashboard_as_file: Esporta dashboard come file
         export_development_action_translations: Azioni di sviluppo delle esportazioni Traduzioni
         export_development_actions: Azioni di sviluppo delle esportazioni
@@ -917,6 +918,7 @@ it:
         import_assessors: Valutatori di importazione
         import_campaign_ai_artifacts: Importazione di artefatti di IA delle campagne
         import_campaign_factors: Fattori della campagna di importazione
+        import_campaign_translations: Traduzioni della campagna di importazione
         import_client_assessors: Importa i valutatori dei clienti
         import_datasheet: Scheda tecnica di importazione
         import_development_action_translations: Importazione Sviluppo Azioni Traduzioni
@@ -958,6 +960,7 @@ it:
         super_admin_assessment_raw_result_export: Esporta dei risultati grezzi di Super Admin
         super_admin_datasheet_export: Esporta del foglio dati di Super Admin
         super_admin_external_assessment_export: Super Admin Esporta della valutazione esterna
+        superadmin_record_change_history: Cronologia delle modifiche ai record
         threesixty_campaign_export_completion_status: Stato di completamento dell'esportazione della campagna Threesixty
         threesixty_campaign_export_scores: Esporta dei punteggi della campagna Threesixty
         workshop_status_export: Esporta dello stato dell'Assessment Center
@@ -1151,7 +1154,7 @@ it:
       read_only: È in modalità di sola lettura, non è possibile modificare alcun risultato.
       save: Salva
       submissionFailedAlert:
-        description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o mte.surveys@mercer.com
+        description: Impossibile connettersi al server. Si prega di aggiornare la pagina e riprovare. Se non funziona, si prega di contattare il supporto tramite live chat o %{support_email}
         title: Ultima richiesta fallita
       submit: Invia
       warning: ATTENZIONE
@@ -1980,7 +1983,7 @@ it:
           project: 'Progetto: %{section_name}'
         subject: Invito al Faro
       password_change:
-        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo mte.support@mercer.com '
+        body: 'Ciao %{name}! La tua password è stata cambiata. Se non hai fatto questa richiesta, contatta immediatamente l''assistenza all''indirizzo %{support_contact_email} '
         regards: 'Saluti, team Lighthouse '
         subject: La password di Lighthouse è cambiata
       reset_password_instructions:
@@ -2111,6 +2114,7 @@ it:
       max_generation_limit: Limite massimo di generazione superato, contattare l'amministrazione.
     assessments:
       timed_out: Non sarà possibile eseguire la valutazione %{assessment_name} perché il tempo è scaduto.
+    csrf_retry: Per favore riprova
     equal_to_current_password: deve essere diversa dalla password corrente.
     equal_to_email: deve essere diverso dall'e-mail.
     error: Errore
@@ -2321,7 +2325,6 @@ it:
     error_warning: Oops, qualcosa è andato storto con la valutazione. Si prega di contattare il supporto.
     hogan:
       cannot_start: Non è possibile avviare la valutazione delle hogan in questo momento. Provare dopo qualche minuto.
-    lighthouse_app: Faro di Mercer
     login: Accesso
     maintenance:
       notification: Il Lighthouse sarà disattivato per manutenzione programmata tra 60 secondi
@@ -2941,8 +2944,6 @@ it:
     zh-HK: Cinese (Hong Kong)
     zh-Hant: Cinese tradizionale
     zh-TW: Cinese (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nome della campagna
     status_updated_at: Ultimo aggiornamento di stato
@@ -3003,12 +3004,11 @@ it:
           invalid: L'ambito deve essere 'openid'
   mailer:
     copyright:
-      text: Faro. Tutti i diritti riservati
+      text: "© %{year} %{display_name}. Tutti i diritti riservati"
     footer:
       regards: Saluti,
-      team_name: Squadra Lighthouse
+      team_name: Squadra %{display_name}
       technical_support: Per qualsiasi problema tecnico, scriveteci a %{email} e vi risponderemo entro 24 ore.
-    from: L'impresa dei talenti
     idp:
       manager_unread_comments:
         body: |-
@@ -3065,8 +3065,6 @@ it:
         instructions: Fare clic sul link sottostante per accedere a lighthouse.
         signin_link: Link di accesso
       subject: Link di accesso per Lighthouse
-    powered_by:
-      text: Alimentato da Lighthouse.
     users:
       account_disable: L'account è stato disattivato per inattività
       warning: Il tuo account sarà presto disabilitato a causa dell'inattività

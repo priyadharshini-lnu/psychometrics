@@ -36,7 +36,8 @@ class InvitationMailer < ApplicationMailer
     @resource = User.find(user_id)
     if membership.campaign
       @section = 'campaign'
-      @section_name = membership.campaign.name
+      user_locale = @resource.locale || I18n.default_locale
+      @section_name = Mobility.with_locale(user_locale) { membership.campaign.name }
     elsif membership.client.project?
       @section = 'project'
       @section_name = membership.client.name

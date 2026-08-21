@@ -890,6 +890,7 @@ pl:
         export_campaign_datasheet: Arkusz danych kampanii eksportowej
         export_campaign_factors: Czynniki kampanii eksportowej
         export_campaign_scorings: Eksport kampanii Scorings
+        export_campaign_translations: Tłumaczenia kampanii eksportowych
         export_dashboard_as_file: Eksportuj pulpit nawigacyjny jako plik
         export_development_action_translations: Tłumaczenia działań na rzecz rozwoju eksportu
         export_development_actions: Działania na rzecz rozwoju eksportu
@@ -917,6 +918,7 @@ pl:
         import_assessors: Asesorzy importowi
         import_campaign_ai_artifacts: Artefakty AI w kampanii importowej
         import_campaign_factors: Importowanie czynników kampanii
+        import_campaign_translations: Importuj tłumaczenia kampanii
         import_client_assessors: Importowanie ekspertów ds. oceny klientów
         import_datasheet: Arkusz danych importu
         import_development_action_translations: Importowanie tłumaczeń działań rozwojowych
@@ -958,6 +960,7 @@ pl:
         super_admin_assessment_raw_result_export: Eksport surowych wyników Super Admin
         super_admin_datasheet_export: Eksport arkusza danych Super Admin
         super_admin_external_assessment_export: Eksport oceny zewnętrznej superadministratora
+        superadmin_record_change_history: Historia zmian rekordu
         threesixty_campaign_export_completion_status: Stan ukończenia eksportu kampanii Threesixty
         threesixty_campaign_export_scores: Eksport wyników kampanii Threesixty
         workshop_status_export: Eksport statusu centrum oceny
@@ -1151,7 +1154,7 @@ pl:
       read_only: Jest to tryb tylko do odczytu, nie można zmienić żadnych wyników.
       save: Zapisz
       submissionFailedAlert:
-        description: Nie można połączyć się z serwerem. Odśwież stronę i spróbuj ponownie. Jeśli to nie zadziała, skontaktuj się z pomocą techniczną za pośrednictwem czatu na żywo lub mte.surveys@mercer.com
+        description: Nie można połączyć się z serwerem. Odśwież stronę i spróbuj ponownie. Jeśli to nie zadziała, skontaktuj się z pomocą techniczną za pośrednictwem czatu na żywo lub %{support_email}
         title: Ostatnie żądanie nie powiodło się
       submit: Prześlij
       warning: OSTRZEŻENIE
@@ -1997,7 +2000,7 @@ pl:
 
           Twoje hasło zostało zmienione.
 
-          Jeśli to żądanie nie zostało wysłane, natychmiast skontaktuj się z pomocą techniczną pod numerem mte.support@mercer.com
+          Jeśli to żądanie nie zostało wysłane, natychmiast skontaktuj się z pomocą techniczną pod numerem %{support_contact_email}
         regards: |-
           Pozdrawiam
           Zespół Lighthouse
@@ -2142,6 +2145,7 @@ pl:
       max_generation_limit: Przekroczono maksymalny limit generacji, skontaktuj się z administracją.
     assessments:
       timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
+    csrf_retry: Proszę spróbować ponownie
     equal_to_current_password: musi być inne niż bieżące hasło.
     equal_to_email: musi być inny niż adres e-mail.
     error: Błąd
@@ -2352,7 +2356,6 @@ pl:
     error_warning: Ups, coś poszło nie tak z twoją oceną. Skontaktuj się z pomocą techniczną.
     hogan:
       cannot_start: Nie możesz teraz rozpocząć oceny hogana. Spróbuj po kilku minutach.
-    lighthouse_app: Latarnia morska Mercer
     login: Logowanie
     maintenance:
       notification: Lighthouse wyłączona z powodu zaplanowanej konserwacji za 60 sekund
@@ -2972,8 +2975,6 @@ pl:
     zh-HK: Chiński (Hongkong)
     zh-Hant: Chiński - Tradycyjny
     zh-TW: Chiński (Tajwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nazwa kampanii
     status_updated_at: Ostatnia aktualizacja statusu
@@ -3034,12 +3035,11 @@ pl:
           invalid: Zakres musi być "openid"
   mailer:
     copyright:
-      text: Lighthouse. Wszelkie prawa zastrzeżone
+      text: "© %{year} %{display_name}. Wszelkie prawa zastrzeżone"
     footer:
       regards: Pozdrawiam,
-      team_name: Zespół Lighthouse
+      team_name: Zespół %{display_name}
       technical_support: W przypadku jakichkolwiek problemów technicznych prosimy o kontakt pod adresem %{email}, a my odpowiemy w ciągu 24 godzin.
-    from: Przedsiębiorstwo Talentów
     idp:
       manager_unread_comments:
         body: |-
@@ -3096,8 +3096,6 @@ pl:
         instructions: Kliknij poniższy link, aby zalogować się do lighthouse.
         signin_link: Link do logowania
       subject: Łącze logowania do Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Twoje konto zostało wyłączone z powodu braku aktywności
       warning: Twoje konto zostanie wkrótce wyłączone z powodu braku aktywności

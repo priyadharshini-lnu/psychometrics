@@ -50,7 +50,7 @@ module Imports
         unless @dimension
           raise Errors::ImportError, I18n.t('administration.imports.errors.norm.dimension_not_found',
                                             dimension_name: dimension_name,
-                                            client_name: @owner&.name || 'TTE')
+                                            client_name: @owner&.name || I18n.t('admin.platform_owner'))
         end
 
         unless @norm

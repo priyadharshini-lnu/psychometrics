@@ -8,6 +8,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -39,7 +40,7 @@ export const ReportBundleTable: React.FC<Props> = ({
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.owner')}
       id="tenant"
-      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.tte')}
+      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.platform_owner')}
       width={200}
     />
     <Resource.Column<ReportBundle>
@@ -81,7 +82,7 @@ const Dropdown: React.FC<DropDownProps> = (
   const handleOnConfirm = () => resource.removeResource(reportBundle.id).then(() => {
     message.info(I18n.t('report_bundles.actions.remove.success_message', { name: reportBundle.name }))
   }).catch((err) => {
-    message.error(err.base[0].title)
+    message.error(baseErrorMessage(err))
   })
   return (
     <>

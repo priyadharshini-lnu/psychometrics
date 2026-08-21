@@ -890,6 +890,7 @@ ru:
         export_campaign_datasheet: Техническое описание экспортной кампании
         export_campaign_factors: Факторы экспортной кампании
         export_campaign_scorings: Оценки экспортных кампаний
+        export_campaign_translations: Экспорт переводов рекламных кампаний
         export_dashboard_as_file: Экспорт панели инструментов в файл
         export_development_action_translations: Экспорт Развитие Действия Переводы
         export_development_actions: Меры по развитию экспорта
@@ -917,6 +918,7 @@ ru:
         import_assessors: Эксперты по импорту
         import_campaign_ai_artifacts: Импорт артефактов искусственного интеллекта кампании
         import_campaign_factors: Импорт факторов кампании
+        import_campaign_translations: Импорт переводов кампаний
         import_client_assessors: Импорт оценщиков клиентов
         import_datasheet: Импорт технического паспорта
         import_development_action_translations: Импорт переводов действий по развитию
@@ -958,6 +960,7 @@ ru:
         super_admin_assessment_raw_result_export: Экспорт необработанных результатов супер-администратором
         super_admin_datasheet_export: Экспорт таблицы данных супер-администратора
         super_admin_external_assessment_export: Экспорт внешней оценки супер-администратора
+        superadmin_record_change_history: История изменений записей
         threesixty_campaign_export_completion_status: Статус завершения экспорта кампании Threesixty
         threesixty_campaign_export_scores: Результаты кампании Threesixty Экспорт
         workshop_status_export: Экспорт статуса центра оценки
@@ -1154,7 +1157,7 @@ ru:
       read_only: Это режим только для чтения, вы не можете изменять результаты.
       save: Сохранить
       submissionFailedAlert:
-        description: Не удалось подключиться к серверу. Обновите страницу и повторите попытку. Если это не помогло, обратитесь в службу поддержки через чат или по адресу mte.surveys@mercer.com.
+        description: Не удалось подключиться к серверу. Обновите страницу и повторите попытку. Если это не помогло, обратитесь в службу поддержки через чат или по адресу %{support_email}.
         title: Последний запрос не удался
       submit: Отправить
       warning: ПРЕДУПРЕЖДЕНИЕ
@@ -2005,7 +2008,7 @@ ru:
 
           Ваш пароль был изменен.
 
-          Если вы не делали такого запроса, пожалуйста, немедленно свяжитесь со службой поддержки по адресу mte.support@mercer.com.
+          Если вы не делали такого запроса, пожалуйста, немедленно свяжитесь со службой поддержки по адресу %{support_contact_email}.
         regards: |
           С уважением,
           Команда Lighthouse
@@ -2150,6 +2153,7 @@ ru:
       max_generation_limit: Превышен максимальный лимит генерации, обратитесь к администратору.
     assessments:
       timed_out: Вы не сможете пройти оценку «%{assessment_name}», так как истекло время ожидания.
+    csrf_retry: Пожалуйста, попробуйте еще раз.
     equal_to_current_password: должен отличаться от текущего пароля.
     equal_to_email: должен отличаться от адреса электронной почты.
     error: Ошибка
@@ -2360,7 +2364,6 @@ ru:
     error_warning: Ой, что-то пошло не так с вашей оценкой. Пожалуйста, обратитесь в службу поддержки.
     hogan:
       cannot_start: Вы не можете начать оценку Хогана прямо сейчас. Повторите попытку через несколько минут.
-    lighthouse_app: Маяк Мерсер
     login: Вход
     maintenance:
       notification: Маяк будет отключен для планового технического обслуживания через 60 секунд.
@@ -3040,12 +3043,11 @@ ru:
           invalid: Область действия должна быть «openid»
   mailer:
     copyright:
-      text: Маяк. Все права защищены.
+      text: "© %{year} %{display_name}. Все права защищены."
     footer:
       regards: С уважением,
-      team_name: Команда Lighthouse
+      team_name: Команда %{display_name}
       technical_support: По любым техническим вопросам, пожалуйста, пишите нам на %{email}, и мы ответим в течение 24 часов.
-    from: Предприятие талантов
     idp:
       manager_unread_comments:
         body: |
@@ -3106,8 +3108,6 @@ ru:
         instructions: Нажмите на ссылку ниже, чтобы войти в Lighthouse.
         signin_link: Ссылка для входа
       subject: Ссылка для входа в Lighthouse
-    powered_by:
-      text: На базе Lighthouse.
     users:
       account_disable: Ваша учетная запись была заблокирована из-за бездействия
       warning: Ваша учетная запись будет вскоре заблокирована из-за бездействия.

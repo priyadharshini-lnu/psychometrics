@@ -6,7 +6,9 @@ module Communications
       module CampaignFields
         class Field < ::PipedText::BaseField
           def call
-            broadcast :ok, campaign.name
+            Mobility.with_locale(params['locale'] || I18n.locale) do
+              broadcast :ok, campaign.name
+            end
           end
 
           private

@@ -6,6 +6,7 @@ import { Checkbox } from 'antd'
 import PropertyFilter from '~/modules/reports/components/PropertyFilter'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import AppStore from '~/modules/reports/store/AppStore'
+import I18nStore from '~/modules/reports/store/I18nStore'
 import { getValue } from '~/modules/reports/presenters/ReactSelectPresenter'
 import PaginationOptions from '~/modules/reports/components/PaginationOptions'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
@@ -56,6 +57,45 @@ function QuestionList ({ model, onChange, questions }) {
   )
 }
 
+function getSelectedFormQuestion ({ model, questions }) {
+  const question = _.find(questions, q => q.id === model.props.questionId)
+  const isTextEntryForm = question?.type === 'TextEntry' && question?.props?.type === 'Form'
+  return isTextEntryForm ? question : null
+}
+
+function FormFieldOptions ({ model, onChange, questions }) {
+  const question = getSelectedFormQuestion({ model, questions })
+  const fieldCount = question ? question.props.choices || 0 : 0
+  if (fieldCount === 0) return null
+
+  const options = Array.from({ length: fieldCount }, (_unused, index) => ({
+    value: index,
+    label: I18nStore.tQuestion(question, `choicesTexts${index + 1}`, { choice: index }),
+  }))
+
+  const allIndexes = options.map(option => option.value)
+  const selectedIndexes = model.props.formFieldIndexes ?? allIndexes
+  const selectedOptions = options.filter(option => selectedIndexes.includes(option.value))
+
+  const handleChange = (selected) => {
+    onChange('formFieldIndexes', (selected || []).map(option => option.value))
+  }
+
+  return (
+    <div className="mtm">
+      {I18n.t('admin.form_fields_to_display')}
+      <Select
+        isMulti
+        options={options}
+        value={selectedOptions}
+        getOptionValue={option => option.value}
+        onChange={handleChange}
+        placeholder="All fields"
+      />
+    </div>
+  )
+}
+
 const lists = {
   Factor: FactorList,
   Question: QuestionList,
@@ -75,6 +115,7 @@ class Properties extends Component {
     const { modules, questions } = this.props
     const model = modules[0]
     const List = lists[model.props.sourceType]
+    const isFormQuestion = !!getSelectedFormQuestion({ model, questions })
     return (
       <div>
         <div className={styles.title}>Default 360</div>
@@ -110,7 +151,16 @@ class Properties extends Component {
           >
             {I18n.t('administration.report_builder.property_panel.hide_responses_with_no_data')}
           </Checkbox>
+          {isFormQuestion && (
+            <Checkbox
+              onChange={e => this.onChange('showFormFieldTitles', e.target.checked)}
+              checked={model.props.showFormFieldTitles ?? false}
+            >
+              {I18n.t('admin.show_form_field_titles')}
+            </Checkbox>
+          )}
         </div>
+        <FormFieldOptions model={model} onChange={this.onChange} questions={questions} />
         <div className={styles.divider} />
         {modules.length > 1 ? null
           : (

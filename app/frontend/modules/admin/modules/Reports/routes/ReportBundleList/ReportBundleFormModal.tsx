@@ -102,7 +102,7 @@ export const ReportBundleFormModal: React.FC<Props> = ({ currentReportBundle, cl
               onSearch={searchAvailableOwners}
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
-              {isSuperAdmin(currentUser) && <Option value={null}>{I18n.t('admin.tte')}</Option>}
+              {isSuperAdmin(currentUser) && <Option value={null}>{I18n.t('admin.platform_owner')}</Option>}
               {getClients().map(({ id, name }) => (
                 <Option key={id} value={id}>{name}</Option>
               ))}

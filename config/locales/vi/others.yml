@@ -890,6 +890,7 @@ vi:
         export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
+        export_campaign_translations: Bản dịch chiến dịch xuất khẩu
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
         export_development_action_translations: Bản dịch hành động phát triển xuất khẩu
         export_development_actions: Hành động phát triển xuất khẩu
@@ -917,6 +918,7 @@ vi:
         import_assessors: Giám định viên nhập khẩu
         import_campaign_ai_artifacts: Nhập hiện vật AI của chiến dịch
         import_campaign_factors: Các yếu tố chiến dịch nhập khẩu
+        import_campaign_translations: Nhập bản dịch chiến dịch
         import_client_assessors: Nhập danh sách các chuyên gia đánh giá khách hàng
         import_datasheet: Bảng dữ liệu nhập
         import_development_action_translations: Bản dịch hành động phát triển nhập khẩu
@@ -958,6 +960,7 @@ vi:
         super_admin_assessment_raw_result_export: Xuất kết quả thô của Super Admin
         super_admin_datasheet_export: Xuất bảng dữ liệu siêu quản trị viên
         super_admin_external_assessment_export: Xuất đánh giá bên ngoài quản trị viên cấp cao
+        superadmin_record_change_history: Lịch sử thay đổi bản ghi
         threesixty_campaign_export_completion_status: Trạng thái hoàn thành xuất dịch vụ của Threesixty
         threesixty_campaign_export_scores: Xuất điểm chiến dịch Threesixty
         workshop_status_export: Xuất trạng thái trung tâm đánh giá
@@ -1151,7 +1154,7 @@ vi:
       read_only: Ở chế độ chỉ đọc, bạn không thể thay đổi bất kỳ kết quả nào.
       save: Cứu
       submissionFailedAlert:
-        description: Không thể kết nối với máy chủ. Vui lòng làm mới trang và thử lại. Nếu điều đó không hiệu quả, vui lòng liên hệ với bộ phận hỗ trợ qua trò chuyện trực tiếp hoặc mte.surveys@mercer.com
+        description: Không thể kết nối với máy chủ. Vui lòng làm mới trang và thử lại. Nếu điều đó không hiệu quả, vui lòng liên hệ với bộ phận hỗ trợ qua trò chuyện trực tiếp hoặc %{support_email}
         title: Yêu cầu cuối cùng không thành công
       submit: Nộp
       warning: CẢNH BÁO
@@ -1987,7 +1990,7 @@ vi:
 
           Mật khẩu của bạn đã được thay đổi.
 
-          Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại mte.support@mercer.com
+          Nếu bạn không thực hiện yêu cầu này, vui lòng liên hệ với bộ phận Hỗ trợ ngay lập tức tại %{support_contact_email}
         regards: |-
           Thân
           Đội ngũ Lighthouse
@@ -2132,6 +2135,7 @@ vi:
       max_generation_limit: Vượt quá giới hạn phát tối đa, hãy liên hệ với ban quản trị của bạn.
     assessments:
       timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
+    csrf_retry: Vui lòng thử lại.
     equal_to_current_password: Phải khác với mật khẩu hiện tại.
     equal_to_email: Phải khác với email.
     error: Lỗi
@@ -2342,7 +2346,6 @@ vi:
     error_warning: Rất tiếc, có điều gì đó không ổn với đánh giá của bạn. Vui lòng liên hệ với bộ phận hỗ trợ.
     hogan:
       cannot_start: Bạn không thể bắt đầu đánh giá hogan ngay bây giờ. Vui lòng thử sau vài phút.
-    lighthouse_app: Ngọn hải đăng Mercer
     login: Đăng nhập
     maintenance:
       notification: Lighthouse sẽ ngừng hoạt động để bảo trì theo lịch trình sau 60 giây
@@ -2962,8 +2965,6 @@ vi:
     zh-HK: Tiếng Trung (Hồng Kông)
     zh-Hant: Tiếng Trung - Phồn thể
     zh-TW: Tiếng Trung (Đài Loan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Tên chiến dịch
     status_updated_at: Cập nhật trạng thái cuối cùng
@@ -3024,12 +3025,11 @@ vi:
           invalid: Phạm vi phải là 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Bảo lưu mọi quyền
+      text: "© %{year} %{display_name}. Bảo lưu mọi quyền"
     footer:
       regards: Trân trọng,
-      team_name: Đội Lighthouse
+      team_name: Đội %{display_name}
       technical_support: Đối với bất kỳ vấn đề kỹ thuật nào, vui lòng liên hệ với chúng tôi qua email %{email} và chúng tôi sẽ phản hồi trong vòng 24 giờ.
-    from: Doanh nghiệp nhân tài
     idp:
       manager_unread_comments:
         body: |-
@@ -3086,8 +3086,6 @@ vi:
         instructions: Nhấp vào liên kết bên dưới để đăng nhập vào lighthouse.
         signin_link: Liên kết đăng nhập
       subject: Liên kết đăng nhập cho Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Tài khoản của bạn đã bị vô hiệu hóa do không hoạt động
       warning: Tài khoản của bạn sẽ sớm bị vô hiệu hóa do không hoạt động

@@ -54,6 +54,7 @@ import { UserFilterModal } from '../Campaign/routes/Participants/Subjects/UserFi
 import ConvertOrCopyAsTemplateModal from
   '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ConvertOrCopyAsTemplateModal'
 import { CampaignTagFilter } from './CampaignTagFilter'
+import BulkImportCampaignTranslationsModal from './BulkImportCampaignTranslationsModal'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -63,6 +64,7 @@ const MODALS = {
   CopyCampaignModal,
   UserFilterModal,
   ConvertOrCopyAsTemplateModal,
+  BulkImportCampaignTranslationsModal,
 }
 
 const { I18n } = window
@@ -163,7 +165,7 @@ const CampaignListComponent: React.FC<Props> = ({
             pagination={false}
             scroll={{ x: 'max-content' }}
             loading={isLoading}
-            sticky={{ offsetHeader: 50 }}
+            sticky
           >
             <Column
               title={I18n.t('shared.id')}

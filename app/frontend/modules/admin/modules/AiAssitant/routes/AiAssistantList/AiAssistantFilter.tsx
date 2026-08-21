@@ -1,7 +1,7 @@
 import React from 'react'
-import { Button } from 'antd'
+import { Button } from '@thetalententerprise/glint'
 import { useNavigate } from 'react-router-dom'
-import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { Add } from '@thetalententerprise/glint/icons'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 
@@ -25,8 +25,7 @@ export const AiAssistantsFilter: React.FC<Props> = () => {
     <Resource.Filter
       name="filterable_fields"
     >
-      <Button type="primary" disabled={tableLoading} onClick={handleCreateSkillModal}>
-        <PlusOutlined />
+      <Button type="primary" disabled={tableLoading} onClick={handleCreateSkillModal} icon={<Add />}>
         {I18n.t('common.actions.create')}
       </Button>
     </Resource.Filter>

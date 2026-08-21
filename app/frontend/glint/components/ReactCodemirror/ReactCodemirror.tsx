@@ -33,7 +33,6 @@ interface ReactCodemirrorProps {
   autocomplete?: boolean
   completionSources?: CompletionSource[]
   search?: boolean
-  enableWebSpellChecker?: boolean
 }
 
 const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
@@ -52,7 +51,6 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
   autocomplete = false,
   completionSources,
   search = false,
-  enableWebSpellChecker = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView | null>(null)
@@ -119,12 +117,6 @@ const ReactCodemirror: React.FC<ReactCodemirrorProps> = ({
         }
       }),
     )
-
-    if (!enableWebSpellChecker) {
-      extensions.push(EditorView.contentAttributes.of({
-        class: 'spellcheck-disabled',
-      }))
-    }
 
     return extensions
   }, [

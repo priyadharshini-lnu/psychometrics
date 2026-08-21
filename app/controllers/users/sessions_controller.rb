@@ -11,6 +11,7 @@ module Users
     before_action :perform_browser_check, only: [:new]
     skip_before_action :ensure_user_profile_completed, only: [:destroy]
     after_action :set_user_flash_message, only: [:create]
+    after_action :cleanup_user_email_session, only: [:create]
     after_action :set_return_url_for_redirect, only: [:new]
 
     def destroy
@@ -42,6 +43,10 @@ module Users
 
     def set_user_flash_message
       flash[:notice] = I18n.t('devise.sessions.signed_in')
+    end
+
+    def cleanup_user_email_session
+      session.delete(:user_email)
     end
 
     def after_sign_out_path_for(_)
@@ -77,7 +82,10 @@ module Users
     end
 
     def check_if_saml_is_enforced
-      redirect_to(new_saml_user_session_path(return_url: stored_location_for(:user))) if @current_project.saml_enforced?
+      email = params.dig(:user, :email)
+      return unless @current_project.saml_setting&.sso_enforced_for_email?(email)
+
+      redirect_to(new_saml_user_session_path(return_url: stored_location_for(:user)))
     end
 
     def after_sign_in_path_for(resource)

@@ -890,6 +890,7 @@ cs:
         export_campaign_datasheet: Technický list exportní kampaně
         export_campaign_factors: Faktory vývozní kampaně
         export_campaign_scorings: Výběry pro exportní kampaně
+        export_campaign_translations: Exportovat překlady kampaní
         export_dashboard_as_file: Exportovat řídicí panel jako soubor
         export_development_action_translations: Akce pro rozvoj exportu Překlady
         export_development_actions: Akce na rozvoj vývozu
@@ -917,6 +918,7 @@ cs:
         import_assessors: Posuzovatelé dovozu
         import_campaign_ai_artifacts: AI artefakty importních kampaní
         import_campaign_factors: Faktory importní kampaně
+        import_campaign_translations: Importovat překlady kampaní
         import_client_assessors: Importovat hodnotitele klientů
         import_datasheet: Import datového listu
         import_development_action_translations: Dovoz Vývoj Akce Překlady
@@ -958,6 +960,7 @@ cs:
         super_admin_assessment_raw_result_export: Super Admin Export nezpracovaných výsledků
         super_admin_datasheet_export: Export datového listu Super Admin
         super_admin_external_assessment_export: Export externího hodnocení Super Admin
+        superadmin_record_change_history: Historie změn záznamů
         threesixty_campaign_export_completion_status: Stav dokončení exportu kampaně Threesixty
         threesixty_campaign_export_scores: Třistašedesát skóre kampaně Export
         workshop_status_export: Export stavu hodnotícího centra
@@ -1154,7 +1157,7 @@ cs:
       read_only: Režim pouze pro čtení, není možné změnit žádné výsledky.
       save: Uložit
       submissionFailedAlert:
-        description: Nepodařilo se připojit k serveru. Obnovte prosím stránku a zkuste to znovu. Pokud to nepomůže, kontaktujte prosím podporu prostřednictvím chatu nebo na adrese mte.surveys@mercer.com
+        description: Nepodařilo se připojit k serveru. Obnovte prosím stránku a zkuste to znovu. Pokud to nepomůže, kontaktujte prosím podporu prostřednictvím chatu nebo na adrese %{support_email}
         title: Poslední požadavek se nezdařil
       submit: Odeslat
       warning: VAROVÁNÍ
@@ -1992,7 +1995,7 @@ cs:
           project: 'Projekt: %{section_name}'
         subject: Pozvánka do Lighthouse
       password_change:
-        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese mte.support@mercer.com '
+        body: 'Dobrý den, %{name}! Vaše heslo bylo změněno. Pokud jste o to nepožádali, kontaktujte prosím neprodleně podporu na adrese %{support_contact_email} '
         regards: 'S pozdravem, tým Lighthouse '
         subject: Vaše heslo k Majáku se změnilo
       reset_password_instructions:
@@ -2123,6 +2126,7 @@ cs:
       max_generation_limit: Překročen maximální limit výroby, obraťte se na svou správu.
     assessments:
       timed_out: Hodnocení uživatele %{assessment_name} nebude možné provést, protože vypršel časový limit.
+    csrf_retry: Zkuste to prosím znovu
     equal_to_current_password: musí být jiné než aktuální heslo.
     equal_to_email: se musí lišit od e-mailu.
     error: Chyba
@@ -2333,7 +2337,6 @@ cs:
     error_warning: Ups, něco se při hodnocení pokazilo. Kontaktujte prosím podporu.
     hogan:
       cannot_start: Hodnocení hogana nyní nelze spustit. Zkuste to prosím po několika minutách.
-    lighthouse_app: Maják Mercer
     login: Přihlášení
     maintenance:
       notification: Lighthouse bude za 60 sekund odstaven z důvodu plánované údržby
@@ -2953,8 +2956,6 @@ cs:
     zh-HK: Čínština (Hongkong)
     zh-Hant: Čínština - tradiční
     zh-TW: Čínština (Tchaj-wan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Název kampaně
     status_updated_at: Poslední aktualizace stavu
@@ -3015,12 +3016,11 @@ cs:
           invalid: Rozsah musí být 'openid'
   mailer:
     copyright:
-      text: Maják. Všechna práva vyhrazena
+      text: "© %{year} %{display_name}. Všechna práva vyhrazena"
     footer:
       regards: S pozdravem,
-      team_name: Tým Lighthouse
+      team_name: Tým %{display_name}
       technical_support: V případě jakýchkoli technických problémů nám napište na adresu %{email} a my vám odpovíme do 24 hodin.
-    from: Talentovaný podnik
     idp:
       manager_unread_comments:
         body: |-
@@ -3077,8 +3077,6 @@ cs:
         instructions: Kliknutím na níže uvedený odkaz se přihlásíte k Lighthouse.
         signin_link: Přihlašovací odkaz
       subject: Přihlašovací odkaz pro Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Váš účet byl zablokován z důvodu nečinnosti
       warning: Váš účet bude brzy deaktivován z důvodu nečinnosti

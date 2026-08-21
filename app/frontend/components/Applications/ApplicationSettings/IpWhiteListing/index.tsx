@@ -6,6 +6,7 @@ import {
   ApplicationIpWhitelistSetting, ApplicationIpWhitelistSettingTR,
 } from '~/modules/admin/modules/client/core/applicationIpWhitelistEntries'
 import { IpSettings } from './IpSettings'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -59,7 +60,7 @@ export const IpWhiteListing: React.FC<Props> = ({ applicationId }) => {
       )
     } catch (error) {
       if (error?.base) {
-        message.error(error.base[0]?.title)
+        message.error(baseErrorMessage(error))
       } else {
         message.error(I18n.t('common.errors.something_wrong'))
       }

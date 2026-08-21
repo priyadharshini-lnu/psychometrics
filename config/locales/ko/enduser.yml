@@ -11,6 +11,7 @@ ko:
     ai_idp_retake_step_chat_hint_no_document: 더 자세한 내용을 공유하려면 채팅을 다시 시작해 주시면 최선을 다해 도와드리겠습니다.
     ai_idp_summary_hint_no_document: 허락해 주신다면, 제가 개발 계획을 세울 수 있습니다. 만약 그렇지 않다면, 채팅을 다시 시작해서 더 자세한 내용을 공유할 수 있습니다.
     all_checks_must_pass: 모든 검사가 통과되어야 다음 단계로 진행할 수 있습니다.
+    appearance: 모습
     approve_idp_plan: 계획 승인
     assessment_misconfigured: 설정이 잘못되었습니다
     assessment_timing_duration_minutes: "%{duration}분"
@@ -52,16 +53,49 @@ ko:
     camera_test_step: 영상 및 오디오 테스트 단계
     campaign: 캠페인
     campaign_check_status: '상태: %{status}'
+    card_action_retry: 다시 해 보다
+    card_action_review: 검토
+    card_action_start: 시작
+    change_password_warning: '중요: 비밀번호를 변경하면 로그아웃됩니다.'
     chat_instructions: 채팅 안내
     check: 확인
     check_video_recording: 동영상을 재생해 영상과 음성을 확인해 주세요.
     checking_browser_compatibility: 브라우저 호환성 확인 중...
     checking_latency: 지연 시간 확인 중...
+    collapse_navigation: 탐색 메뉴 접기
     complete_prework_message: 시작하려면 모든 사전 과제를 완료하세요.
     could_not_reach_servers: 네트워크 속도를 확인하기 위해 서버에 연결할 수 없습니다. 인터넷 연결 상태를 확인한 후 다시 시도해 주세요.
+    dashboard: 계기반
+    dashboard_active_programs: 활성 프로그램
+    dashboard_begin_program: 프로그램 시작
+    dashboard_continue_program: 계속하기
+    dashboard_days_left: '남은 일수: %{count}일'
+    dashboard_greeting_afternoon: 안녕하세요, %{name}님.
+    dashboard_greeting_evening: 안녕하세요, %{name}님.
+    dashboard_greeting_eyebrow: 다시 오신 것을 환영합니다
+    dashboard_greeting_morning: 안녕하세요, %{name}님.
+    dashboard_instructions: 여러 가지 과제를 부여받았을 수 있습니다. 모든 프로그램에서 부여받은 모든 과제를 완료했는지 확인하십시오.
+    dashboard_reports_ready: 보고서 준비 완료
+    dashboard_your_programs: 귀하의 프로그램
     day: 날
     day_plural: 일
     details: 상세 정보
+    details_back: 뒤쪽에
+    details_due: 로 인한
+    details_group_locked_hint: "'%{group}' 완료 후 잠금 해제됩니다."
+    details_intro_tab: 소개
+    details_no_reports: 아직 보고된 내용이 없습니다.
+    details_open_heading: 공개 연습
+    details_open_hint: 순서에 상관없이, 원하는 속도로 완료하세요.
+    details_percent_done: "%{percent}% 완료"
+    details_progress: 진전
+    details_reports_ready: 보고서가 준비되었습니다.
+    details_reports_tab: 보고서
+    details_reserved: 예약된
+    details_sequential_heading: 순차적 연습
+    details_sequential_hint: 순서대로 완료하세요. 각 항목을 완료하면 다음 항목이 잠금 해제됩니다.
+    details_total: 총
+    details_view_details: 자세히 보기
     development: 개발
     direct_reportees: 직접 보고서
     download: 다운로드
@@ -108,6 +142,10 @@ ko:
     localstorage_fix_title: 사용 중인 브라우저에서 로컬 스토리지가 활성화되어 있지 않습니다
     localstorage_not_enabled_detail: 사용 중인 브라우저에서 로컬 스토리지가 활성화되어 있지 않습니다. 이러한 모드에서는 로컬 스토리지가 비활성화되는 경우가 많으므로, 현재 시크릿 모드나 인코그니토 모드가 아닌지 확인해 주십시오.
     localstorage_support: LocalStorage 활성화됨
+    login_sign_in_btn: 로그인
+    login_sign_up_link: 가입하기
+    login_welcome_description: Lighthouse 계정으로 로그인하세요
+    login_welcome_title: 등대에 오신 것을 환영합니다
     magic_link_interstitial_description: 보안을 위해 이 로그인을 확인해 주셔야 합니다. 자동화된 시스템으로는 이 단계를 완료할 수 없습니다.
     magic_link_interstitial_title: 로그인을 완료하려면 아래 버튼을 클릭해 주세요.
     max_word_limit: 최대 %{max}단어여야 합니다
@@ -124,6 +162,7 @@ ko:
     minute: 분
     minute_plural: 회의록
     my_plan: 내 계획
+    my_profile: 내 프로필
     network: 네트워크
     network_check: 인터넷 속도 측정
     network_check_description: 당사 서버와 귀하의 기기 간 인터넷 연결 상태를 확인하고 있습니다.
@@ -135,6 +174,7 @@ ko:
     network_speed_meets_required_detail: 귀하의 인터넷 속도는 본 캠페인의 최소 요구 사항을 충족합니다
     network_test_step: 네트워크 테스트 단계
     no_audio_detected: 소리가 감지되지 않습니다. 마이크가 연결되어 있고 정상적으로 작동하는지 확인해 주세요.
+    open_navigation: 내비게이션 열기
     pass: 건너뛰기
     pause: 일시 정지
     pearson_timing_duration_minutes: 시간 제한 - 완료까지 %{duration}분 소요
@@ -150,7 +190,13 @@ ko:
     proctored: 감독 하에
     proctored_assessment_misconfigured_msg: 이 평가 시험은 감독 하에 진행되지만, 필요한 시간 설정이 누락되어 있습니다. 관리자에게 문의해 주십시오.
     profile: 프로필
+    profile_cancel: 취소
     profile_details: 세부 정보
+    profile_edit: 편집하다
+    profile_other_information: 기타 정보
+    profile_personal_information: 개인 정보
+    profile_save: 구하다
+    profile_time: 시간
     question_counter: 질문 %{current} / %{total}
     reason_for_idp_plan_rejection: 거절 이유
     record: 기록
@@ -167,9 +213,12 @@ ko:
     results: 결과
     safari_proctoring_description: 현재 Safari 브라우저를 사용 중이시며, 이로 인해 본 캠페인에 적용된 감독 기능에 일부 제약이 발생할 수 있습니다. 최적의 이용 환경을 위해 Chrome, Edge 또는 Firefox 브라우저를 사용하실 것을 권장합니다.
     safari_proctoring_title: Safari 브라우저가 감지되었습니다
+    scheduling: 일정 관리
     select_audio_device: 오디오 장치 선택
     select_video_device: 비디오 장치 선택
     selected_count: 선택됨
+    sign_out: 로그아웃
+    signup_sign_in_link: 로그인
     skill_type: 스킬 유형
     speech_verification_error: 음성 확인 과정에서 오류가 발생했습니다. 다시 시도해 주세요.
     speech_verification_failed: 말하신 내용이 테스트 문구와 일치하지 않습니다. 다시 시도하시고 문구를 명확하게 말해 주세요.
@@ -177,6 +226,7 @@ ko:
     start_campaign_message_timed: 이 캠페인은 시간 제한이 있는 캠페인입니다. 활동을 시작하려면 '%{buttonText}' 버튼을 클릭해 주세요.
     start_readiness_check: 준비 상태 확인 시작
     start_system_check: 시스템 검사 시작
+    status_locked: 잠김
     stop: 중지
     subinstruction_audio: 작동하는 마이크
     subinstruction_eight: 전체 평가를 위해 방해받지 않는 시간을 따로 확보하세요
@@ -228,6 +278,21 @@ ko:
     tasks: 작업
     testing_download_speed: 다운로드 속도 측정 중...
     testing_upload_speed: 업로드 속도 측정 중...
+    theme_active: 활동적인
+    theme_change: 테마 변경
+    theme_dark_theme: 다크 테마
+    theme_ember: 타다 남은 것
+    theme_light_theme: 라이트 테마
+    theme_marsh: 습지
+    theme_mode_dark: 어두운
+    theme_mode_light: 빛
+    theme_mode_system: 체계
+    theme_mode_title: 방법
+    theme_primer: 뇌관
+    theme_primer_colorblind: 프라이머 색맹
+    theme_primer_contrast: 프라이머 고대비
+    theme_primer_dimmed: 프라이머가 어두워짐
+    theme_title: 주제
     time_commitment: 소요 시간
     timed_activity_instruction: 이 활동은 시간 제한이 있습니다. 감독 세션을 시작하면 <strong>%{time}분</strong> 이내에 완료해야 합니다.
     troubleshooting_guide: 문제 해결 가이드

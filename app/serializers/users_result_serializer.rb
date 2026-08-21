@@ -161,7 +161,8 @@ class UsersResultSerializer < Panko::Serializer
     end
     Panko::ArraySerializer.new(
       valid_media_responses,
-      each_serializer: MediaResponseSerializer
+      each_serializer: MediaResponseSerializer,
+      context: context
     ).to_a
   end
 

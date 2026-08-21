@@ -58,6 +58,9 @@ module Threesixty::InitialState
         customPrivacyAcknowledgmentText: custom_privacy_acknowledgment_text,
         showBookings: show_bookings?,
         showMaintenanceAlert: helpers.show_maintenance_alert?,
+        campaignDashboardInstructions: Mobility.with_locale(I18n.locale) do
+          @current_project.campaign_dashboard_instructions
+        end,
         idp: {
           managerApprovesIdp: @idp_setting&.manager_approves_idp || false,
           managerCanEditIdp: @idp_setting&.manager_can_edit_idp || false,
@@ -72,7 +75,8 @@ module Threesixty::InitialState
         },
         securitySettings: {
           enableRecaptcha: @current_project.security_setting.enable_recaptcha
-        }
+        },
+        glintUi: @current_project.project_feature_enabled?(:glint_ui)
       },
       currentUser: serialized_current_user,
       liveChat: {

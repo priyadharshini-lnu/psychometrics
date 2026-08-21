@@ -1,58 +1,65 @@
 import React, { Suspense } from 'react'
 import {
-  createBrowserRouter, Navigate, Outlet, RouterProvider,
+  createBrowserRouter, Outlet, RouterProvider, useLocation,
 } from 'react-router-dom'
-import { PortalMenu } from '~/components/MainMenu'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { AdminShell, AdminTheme } from '~/components/AdminShell'
+import RouteErrorBoundary, { RouteErrorCard } from '~/components/RouteErrorBoundary'
+import { PageFallback } from '~/components/PageFallback'
 import settings from './settings'
-import Participants from './routes/Participants'
-import { Admins } from './routes/Admins'
-import Datasheet from './routes/Datasheet'
-import Reports from './routes/Reports'
-import Messages from './routes/Messages'
-import { AIArtifacts } from './routes/AIArtifacts'
+import routes from './routes'
 
+// No ownedPathPrefixes: this router owns only the campaign subtree, so every main-menu target needs a full load.
 const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <PortalMenu />
+  <AdminShell>
+    <RouteErrorBoundary>
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
+  </AdminShell>
+)
+
+// Reset (not remounted) on navigation: a key here would tear down the campaign page on every subnav click.
+const CampaignPage: React.FC = () => {
+  const { pathname } = useLocation()
+
+  return (
+    <RouteErrorBoundary resetKey={pathname}>
+      {/* A page may still React.lazy inside itself; without this the nearest boundary would blank the whole shell. */}
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
+  )
+}
+
+// Inside the router because the theme reads the location, above every route so one provider covers them all.
+const ThemedRoot: React.FC = () => (
+  <AdminTheme>
     <Outlet />
-  </Suspense>
+  </AdminTheme>
 )
 
 export const router = createBrowserRouter([
-  { path: settings.urlPrefix, element: <Navigate to="participants" /> },
   {
-    path: `${settings.urlPrefix}/participants/*`,
-    element: <Participants />,
+    element: <ThemedRoot />,
+    children: [
+      {
+        path: settings.urlPrefix,
+        element: <CampaignPage />,
+        errorElement: <RouteErrorCard />,
+        hydrateFallbackElement: <PageFallback />,
+        children: routes,
+      },
+      { path: '*', element: <Main /> },
+    ],
   },
-  {
-    path: `${settings.urlPrefix}/messages/*`,
-    element: <Messages />,
-  },
-  {
-    path: `${settings.urlPrefix}/admins/*`,
-    element: <Admins />,
-  },
-  {
-    path: `${settings.urlPrefix}/reports/*`,
-    element: <Reports />,
-  },
-  {
-    path: `${settings.urlPrefix}/datasheets/*`,
-    element: <Datasheet />,
-  },
-  {
-    path: `${settings.urlPrefix}/ai_artifacts/*`,
-    element: <AIArtifacts />,
-  },
-  { path: '*', element: <Main /> },
 ])
 
 export function Layout () {
-  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+  return (
+    <Suspense fallback="loading...">
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

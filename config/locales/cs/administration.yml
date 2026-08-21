@@ -15,11 +15,6 @@ cs:
         simple_design:
           design: Design
           or: Nebo
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Přihlášení proběhlo úspěšně.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ cs:
           modal_title: Nastavení schvalování bodování
           remove_modal_success: 'Nastavení schválení pro identifikační číslo hodnocení: %{assessmentId} bylo úspěšně smazáno.'
           remove_modal_text: 'Opravdu chcete smazat toto nastavení pro identifikační číslo hodnocení: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Byl jste úspěšně přihlášen jako %{name}
+      bulk_import_translations:
+        details: Šablona překladu kampaně
+        download_template: Stáhnout šablonu
+        errors:
+          blank_campaign_id: 'Řádek %{row}: ID kampaně nemůže být prázdné'
+          campaign_not_found: 'Řádek %{row}: Kampaň %{id} nebyla v tomto projektu nalezena.'
+          generic: Něco se pokazilo. Zkuste to prosím znovu.
+          invalid_csv_format: 'Neplatný formát CSV: %{message}'
+          invalid_locales: 'Neplatné jazykové sloupce: %{locales}'
+          missing_required_columns: 'Chybí povinné sloupce: %{columns}'
+          must_be_csv: Soubor musí být ve formátu .csv.
+          save_failed: 'Překlad kampaně %{id} pro %{locale} se nepodařilo uložit: %{message}'
+        file_label: Překladový soubor
+        import_started: Probíhá import překladu. Sledujte prosím průběh v oznámeních.
+        instructions_intro: Stáhněte si šablonu CSV, aktualizujte názvy kampaní ve sloupcích s požadovanými jazyky a poté nahrajte hotový soubor.
+        instructions_title: Instrukce
+        menu_label: Importovat překlady
+        template_started: Probíhá export šablony. Sledujte prosím průběh v oznámeních.
+        title: Importovat překlady názvů kampaní
+        upload_file: Nahrát soubor
       validations:
         dates:
           end: musí být po datu zahájení
@@ -1937,7 +1949,6 @@ cs:
         export: Exportní překlady
         import: Importovat překlady
         import_descr: Viz funkce Export pro získání šablony, kterou lze použít k importu.
-    tte: TTE
     update: Aktualizace
     users:
       create:

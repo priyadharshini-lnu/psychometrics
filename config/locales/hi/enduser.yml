@@ -11,6 +11,7 @@ hi:
     ai_idp_retake_step_chat_hint_no_document: आप अधिक विवरण साझा करने के लिए चैट को फिर से शुरू कर सकते हैं, और मैं आपकी सहायता करने की पूरी कोशिश करूंगा।
     ai_idp_summary_hint_no_document: आपकी अनुमति से, यदि आप हाँ कहें तो मैं आपके लिए एक विकास योजना बना सकता हूँ। यदि नहीं, तो आप अधिक विवरण साझा करने के लिए चैट फिर से शुरू कर सकते हैं।
     all_checks_must_pass: आगे बढ़ने से पहले सभी जांचें पास होनी चाहिए।
+    appearance: उपस्थिति
     approve_idp_plan: योजना को अनुमोदित करें
     assessment_misconfigured: मूल्यांकन गलत कॉन्फ़िगर किया गया
     assessment_timing_duration_minutes: "%{duration} मिनट"
@@ -52,16 +53,49 @@ hi:
     camera_test_step: वीडियो और ऑडियो परीक्षण चरण
     campaign: अभियान
     campaign_check_status: 'स्थिति: %{status}'
+    card_action_retry: 'पुन: प्रयास करें'
+    card_action_review: समीक्षा
+    card_action_start: शुरू
+    change_password_warning: 'महत्वपूर्ण: पासवर्ड बदलने से आप लॉग आउट हो जाएंगे।'
     chat_instructions: चैट निर्देश
     check: जाँचें
     check_video_recording: कृपया रिकॉर्डिंग को चलाकर अपना वीडियो और ऑडियो जांचें।
     checking_browser_compatibility: ब्राउज़र संगतता की जाँच...
     checking_latency: विलंबता की जाँच...
+    collapse_navigation: नेविगेशन को संक्षिप्त करें
     complete_prework_message: शुरू करने के लिए सभी पूर्व-कार्य पूरे करें।
     could_not_reach_servers: नेटवर्क गति की जाँच करने के लिए हमारे सर्वर से जुड़ने में असमर्थ। कृपया अपना इंटरनेट कनेक्शन जाँचें और फिर से प्रयास करें।
+    dashboard: डैशबोर्ड
+    dashboard_active_programs: सक्रिय कार्यक्रम
+    dashboard_begin_program: कार्यक्रम प्रारंभ करें
+    dashboard_continue_program: कार्यक्रम जारी रखें
+    dashboard_days_left: "%{count} दिन शेष"
+    dashboard_greeting_afternoon: शुभ दोपहर, %{name}.
+    dashboard_greeting_evening: शुभ संध्या, %{name}.
+    dashboard_greeting_eyebrow: वापसी पर स्वागत है
+    dashboard_greeting_morning: सुप्रभात, %{name}.
+    dashboard_instructions: आपको कई गतिविधियाँ पूरी करने के लिए दी गई होंगी। सुनिश्चित करें कि सभी निर्धारित गतिविधियाँ प्रत्येक कार्यक्रम में पूरी हो गई हैं।
+    dashboard_reports_ready: रिपोर्ट तैयार हैं
+    dashboard_your_programs: आपके कार्यक्रम
     day: दिन
     day_plural: दिन
     details: विवरण
+    details_back: पीछे
+    details_due: देय
+    details_group_locked_hint: "'%{group}' पूरा होने के बाद अनलॉक हो जाएगा।"
+    details_intro_tab: परिचय
+    details_no_reports: अभी तक कोई रिपोर्ट नहीं मिली है
+    details_open_heading: खुले अभ्यास
+    details_open_hint: आप अपनी सुविधानुसार किसी भी क्रम में इसे पूरा कर सकते हैं।
+    details_percent_done: "%{percent}% पूर्ण"
+    details_progress: प्रगति
+    details_reports_ready: आपकी रिपोर्ट तैयार हैं
+    details_reports_tab: रिपोर्टों
+    details_reserved: सुरक्षित
+    details_sequential_heading: क्रमबद्ध अभ्यास
+    details_sequential_hint: क्रम से पूरा करें — प्रत्येक पूरा करने पर अगला अनलॉक हो जाएगा।
+    details_total: कुल
+    details_view_details: विवरण देखें
     development: विकास
     direct_reportees: प्रत्यक्ष अधीनस्थ
     download: डाउनलोड
@@ -108,6 +142,10 @@ hi:
     localstorage_fix_title: आपके ब्राउज़र में लोकल स्टोरेज सक्षम नहीं है।
     localstorage_not_enabled_detail: आपके ब्राउज़र में लोकल स्टोरेज सक्षम नहीं है। कृपया सुनिश्चित करें कि आप प्राइवेट/इंकोग्निटो मोड में नहीं हैं, क्योंकि इन मोड्स में अक्सर लोकल स्टोरेज अक्षम हो जाता है।
     localstorage_support: लोकलस्टोरेज सक्षम
+    login_sign_in_btn: दाखिल करना
+    login_sign_up_link: साइन अप करें
+    login_welcome_description: अपने लाइटहाउस खाते से लॉग इन करें
+    login_welcome_title: लाइटहाउस में आपका स्वागत है
     magic_link_interstitial_description: आपकी सुरक्षा के लिए, हमें इस साइन-इन की पुष्टि करने के लिए आपका अनुरोध करना आवश्यक है। स्वचालित प्रणालियाँ इस चरण को पूरा नहीं कर सकतीं।
     magic_link_interstitial_title: अपना साइन-इन पूरा करने के लिए, कृपया नीचे दिए गए बटन पर क्लिक करें।
     max_word_limit: अधिकतम %{max} शब्द होना चाहिए।
@@ -124,6 +162,7 @@ hi:
     minute: एक मिनट
     minute_plural: मिनट
     my_plan: मेरी योजना
+    my_profile: मेरी प्रोफाइल
     network: नेटवर्क
     network_check: इंटरनेट गति परीक्षण
     network_check_description: हमारे सर्वरों और आपके डिवाइस के बीच आपके इंटरनेट कनेक्शन की गुणवत्ता की जाँच की जा रही है।
@@ -135,6 +174,7 @@ hi:
     network_speed_meets_required_detail: आपकी इंटरनेट गति अभियान के लिए न्यूनतम आवश्यकताओं को पूरा करती है।
     network_test_step: नेटवर्क परीक्षण चरण
     no_audio_detected: ऑडियो का पता नहीं चल रहा है। कृपया जांचें कि आपका माइक्रोफ़ोन जुड़ा हुआ है और ठीक से काम कर रहा है।
+    open_navigation: नेविगेशन खोलें
     pass: पास
     pause: रुकें
     pearson_timing_duration_minutes: समयबद्ध - पूरा करने में %{duration} मिनट
@@ -150,7 +190,13 @@ hi:
     proctored: निगरानी में
     proctored_assessment_misconfigured_msg: यह मूल्यांकन निगरानी में है, लेकिन इसमें आवश्यक समय विन्यास नहीं है। कृपया अपने व्यवस्थापक से संपर्क करें।
     profile: प्रोफ़ाइल
+    profile_cancel: रद्द करना
     profile_details: विवरण
+    profile_edit: संपादन करना
+    profile_other_information: अन्य सूचना
+    profile_personal_information: व्यक्तिगत जानकारी
+    profile_save: बचाना
+    profile_time: समय
     question_counter: प्रश्न %{current} का %{total}
     reason_for_idp_plan_rejection: अस्वीकृति का कारण
     record: दर्ज करें
@@ -167,9 +213,12 @@ hi:
     results: परिणाम
     safari_proctoring_description: ऐसा लगता है कि आप Safari ब्राउज़र का उपयोग कर रहे हैं, जिसमें इस अभियान की सक्रिय निगरानी सुविधाओं के संबंध में कुछ प्रतिबंध हो सकते हैं। बेहतर अनुभव के लिए, हम Chrome,Edge या Firefox ब्राउज़र का उपयोग करने की सलाह देते हैं।
     safari_proctoring_title: सफारी ब्राउज़र का पता चला
+    scheduling: निर्धारण
     select_audio_device: ऑडियो डिवाइस चुनें
     select_video_device: वीडियो डिवाइस चुनें
     selected_count: "%{count} चयनित"
+    sign_out: साइन आउट
+    signup_sign_in_link: दाखिल करना
     skill_type: कौशल का प्रकार
     speech_verification_error: आपकी वाणी सत्यापित करते समय एक त्रुटि हुई। कृपया फिर से प्रयास करें।
     speech_verification_failed: आपकी बोली परीक्षण वाक्यांश से मेल नहीं खा रही है। कृपया फिर से प्रयास करें और वाक्यांश को स्पष्ट रूप से बोलें।
@@ -177,6 +226,7 @@ hi:
     start_campaign_message_timed: यह एक समयबद्ध अभियान है, कृपया गतिविधियाँ शुरू करने के लिए '%{buttonText}' बटन पर क्लिक करें।
     start_readiness_check: तैयारी जाँच शुरू करें
     start_system_check: सिस्टम जाँच शुरू करें
+    status_locked: बंद
     stop: रुकें
     subinstruction_audio: कार्यशील माइक्रोफ़ोन
     subinstruction_eight: पूर्ण मूल्यांकन के लिए बिना रुकावट का समय अलग रखें।
@@ -228,6 +278,21 @@ hi:
     tasks: कार्य
     testing_download_speed: डाउनलोड गति की जाँच...
     testing_upload_speed: अपलोड गति की जाँच...
+    theme_active: सक्रिय
+    theme_change: विषय को परिवर्तित करें
+    theme_dark_theme: डार्क थीम
+    theme_ember: अंगार
+    theme_light_theme: प्रकाश थीम
+    theme_marsh: दलदल
+    theme_mode_dark: अँधेरा
+    theme_mode_light: रोशनी
+    theme_mode_system: प्रणाली
+    theme_mode_title: तरीका
+    theme_primer: भजन की पुस्तक
+    theme_primer_colorblind: प्राइमर कलरब्लाइंड
+    theme_primer_contrast: प्राइमर हाई कॉन्ट्रास्ट
+    theme_primer_dimmed: प्राइमर मंद हो गया
+    theme_title: विषय
     time_commitment: समय की प्रतिबद्धता
     timed_activity_instruction: यह एक समयबद्ध गतिविधि है, प्रॉक्टरिंग सत्र शुरू करने के बाद, इसे पूरा करने के लिए आपके पास %{time} मिनट होंगे।
     troubleshooting_guide: समस्या निवारण मार्गदर्शिका

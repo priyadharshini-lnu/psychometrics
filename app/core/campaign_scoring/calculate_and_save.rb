@@ -2,11 +2,12 @@
 
 module CampaignScoring
   class CalculateAndSave < BaseCommand
-    private_attr_reader :campaign, :user, :campaign_user
+    private_attr_reader :campaign, :user, :campaign_user, :force_recalculate
 
-    def initialize(campaign, user)
+    def initialize(campaign, user, force_recalculate: false)
       @campaign = campaign
       @user = user
+      @force_recalculate = force_recalculate
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
     end
 
@@ -26,10 +27,10 @@ module CampaignScoring
       existing_campaign_factor_values =
         campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
 
-      indexed_factor_values = CampaignScoring::Calculate.call!(campaign, user)
+      indexed_factor_values = CampaignScoring::Calculate.call!(campaign, user, force_recalculate: force_recalculate)
       campaign_factor_values = indexed_factor_values.flat_map do |cf, factor_value|
         next if factor_value.error? || factor_value.value.nil?
-        next existing_campaign_factor_values[cf.id] if existing_campaign_factor_values[cf.id]&.value
+        next existing_campaign_factor_values[cf.id] if reuse_existing_value?(existing_campaign_factor_values[cf.id])
 
         campaign_factor_value = existing_campaign_factor_values[cf.id] ||
                                 cf.campaign_factor_values.new(user_id: user.id, campaign_id: campaign.id)
@@ -48,6 +49,10 @@ module CampaignScoring
       campaign_user.update!(campaign_user_attrs)
 
       broadcast :ok, campaign_factor_values, indexed_factor_values
+    end
+
+    def reuse_existing_value?(existing_campaign_factor_value)
+      !force_recalculate && existing_campaign_factor_value&.value
     end
 
     def lock_key

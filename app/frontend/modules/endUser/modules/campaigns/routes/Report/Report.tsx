@@ -17,6 +17,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/report'
 import { PageHeader as GlintPageHeader, DirectionalNavigateBackIcon } from '~/glint'
 import styles from './Report.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connector = connect((state: any) => ({
@@ -112,12 +113,7 @@ const ReportComponent = ({
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}
-          - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle text={`${I18n.t('threesixty.report_for')} ${userPresenter.getFullNameWithEmail(user)}`} />
       <GlintPageHeader />
       <Content className={styles.pageContent}>
         <PageHeader

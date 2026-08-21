@@ -3,6 +3,7 @@ import { Tabs } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CampaignsList } from './CampaignsList'
 import { ParticipantsList } from './ParticipantsList'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -31,9 +32,7 @@ export const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <title>
-        {`${I18n.t('assessments_reports.menu.assessment_center')} - ${I18n.t('frontend.lighthouse_app')}`}
-      </title>
+      <DocumentTitle text={I18n.t('assessments_reports.menu.assessment_center')} />
       <Tabs
         className="m-4"
         defaultActiveKey="campaigns"

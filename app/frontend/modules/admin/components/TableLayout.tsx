@@ -65,7 +65,7 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
         </Row>
       )}
       {selectionSetting?.selectionAllowed && (
-        <div className="pb-4 ps-5 pe-5">
+        <div className="pb-4">
           <Row>
             <Col>
               <Checkbox

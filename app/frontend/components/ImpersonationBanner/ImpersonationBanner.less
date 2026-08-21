@@ -1,5 +1,18 @@
 :global(body.is-impersonating) {
   padding-top: 40px;
+
+  :global(.ant-notification),
+  :global(.ant-message) {
+    z-index: 10000 !important;
+  }
+
+  :global(.ant-modal-wrap) {
+    padding-top: 40px;
+  }
+  :global(.ant-drawer-content-wrapper) {
+    top: 40px !important;
+    height: calc(100vh - 40px) !important;
+  }
 }
 
 .banner {

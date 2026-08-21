@@ -15,6 +15,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import styles from './styles.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -63,9 +64,7 @@ const CampaignList: React.FC<Props> = (
 
   return (
     <>
-      <title>
-        {`${I18n.t('campaign.campaigns')} - ${I18n.t('frontend.lighthouse_app')}`}
-      </title>
+      <DocumentTitle text={I18n.t('campaign.campaigns')} />
       <Row justify="space-between" className="pm">
         <Col span={4} className="pls">
           <AppstoreOutlined style={{ fontSize: '16px' }} />

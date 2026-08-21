@@ -1,10 +1,11 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const AvailabilityListing = lazy(() => import('~/modules/admin/modules/UserAvailability/routes/AvailabilityListing'))
+const page = () => import('./AvailabilityListing')
+
 const routes = [
   {
     path: 'user_availabilities',
-    element: <AvailabilityListing />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

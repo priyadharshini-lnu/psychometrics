@@ -6,7 +6,6 @@ import humps from 'humps'
 import { Layout as AdminLayout } from '~/modules/admin/Layout'
 import store from '~/modules/admin/store'
 import { Schema } from '~/libs/jsonApi/schema'
-import { DefaultAntThemeWrapper } from '~/glint'
 import '~/modules/admin/style.less'
 
 const client = new ApiClient({
@@ -14,28 +13,24 @@ const client = new ApiClient({
   schema: humps.decamelizeKeys(Schema),
 })
 
-const { antdLocale, I18n } = window
+const { I18n } = window
 
 const { locale } = document.body.dataset
 I18n.locale = locale || I18n.defaultLocale
 
 function App () {
   return (
-    <DefaultAntThemeWrapper
-      locale={antdLocale}
-      direction={I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'}
-    >
-      <div style={{ background: 'white' }}>
-        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-        <Provider store={store as any}>
-          <ApiProvider client={client}>
-            <DndProvider backend={HTML5Backend}>
-              <AdminLayout />
-            </DndProvider>
-          </ApiProvider>
-        </Provider>
-      </div>
-    </DefaultAntThemeWrapper>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <Provider store={store as any}>
+      <ApiProvider client={client}>
+        {/* No background here — a literal white flashed before the themed shell painted. */}
+        <div>
+          <DndProvider backend={HTML5Backend}>
+            <AdminLayout />
+          </DndProvider>
+        </div>
+      </ApiProvider>
+    </Provider>
   )
 }
 

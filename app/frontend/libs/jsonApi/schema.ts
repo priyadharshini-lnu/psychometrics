@@ -1,4 +1,5 @@
 import { Schema as userSavedFilterSchema } from '~/modules/admin/components/UserSavedFilters/core'
+import { Schema as userPreferenceSchema } from '~/components/AdminShell/core'
 import { Schema as activitiesSchema } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import { Schema as clientSchema } from '~/modules/admin/modules/client/core/clients'
 import { Schema as assessmentSchema } from '~/modules/admin/modules/client/core/assessments'
@@ -90,6 +91,7 @@ export const Schema = {
   campaign_idps: campaignIdpSchema,
   idp_templates: idpTemplateSchema,
   user_saved_filters: userSavedFilterSchema,
+  user_preferences: userPreferenceSchema,
   dimensions: dimensionSchema,
   proficiency_levels: proficiencyLevelSchema,
   reflection_questions: reflectionQuestionSchema,

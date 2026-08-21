@@ -11,6 +11,7 @@ de:
     ai_idp_retake_step_chat_hint_no_document: Du kannst den Chat neu starten, um mehr Details zu teilen, und ich werde mein Bestes tun, um dir zu helfen.
     ai_idp_summary_hint_no_document: Mit Ihrer Erlaubnis, wenn Sie ja sagen, kann ich einen Entwicklungsplan für Sie erstellen. Falls nicht, kannst du den Chat neu starten, um weitere Details zu teilen.
     all_checks_must_pass: Alle Prüfungen müssen erfolgreich abgeschlossen sein, bevor Sie fortfahren können.
+    appearance: Aussehen
     approve_idp_plan: Plan genehmigen
     assessment_misconfigured: Bewertung falsch konfiguriert
     assessment_timing_duration_minutes: "%{duration} Minuten"
@@ -52,16 +53,49 @@ de:
     camera_test_step: Schritt zur Überprüfung von Bild und Ton
     campaign: Kampagne
     campaign_check_status: 'Status: %{status}'
+    card_action_retry: Wiederholen
+    card_action_review: Rezension
+    card_action_start: Start
+    change_password_warning: 'Wichtig: Wenn Sie Ihr Passwort ändern, werden Sie automatisch abgemeldet.'
     chat_instructions: Anleitung für den Chat
     check: Überprüfen
     check_video_recording: Bitte überprüfen Sie Ihr Video und Audio, indem Sie die Aufnahme abspielen.
     checking_browser_compatibility: Browserkompatibilität wird überprüft...
     checking_latency: Latenz wird überprüft...
+    collapse_navigation: Navigation ausblenden
     complete_prework_message: Erledige zunächst alle Vorbereitungsaufgaben.
     could_not_reach_servers: Unsere Server konnten nicht erreicht werden, um die Netzwerkgeschwindigkeit zu überprüfen. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut.
+    dashboard: Armaturenbrett
+    dashboard_active_programs: Aktive Programme
+    dashboard_begin_program: Startprogramm
+    dashboard_continue_program: Programm fortsetzen
+    dashboard_days_left: "%{count} Tage verbleibend"
+    dashboard_greeting_afternoon: Guten Tag, %{name}.
+    dashboard_greeting_evening: Guten Abend, %{name}.
+    dashboard_greeting_eyebrow: Willkommen zurück
+    dashboard_greeting_morning: Guten Morgen, %{name}.
+    dashboard_instructions: Möglicherweise wurden Ihnen mehrere Aufgaben zur Bearbeitung zugewiesen. Stellen Sie sicher, dass alle Ihnen zugewiesenen Aufgaben in jedem Programm abgeschlossen werden.
+    dashboard_reports_ready: Berichte bereit
+    dashboard_your_programs: Ihre Programme
     day: Tag
     day_plural: Tage
     details: Details
+    details_back: Zurück
+    details_due: Fällig
+    details_group_locked_hint: Wird freigeschaltet, nachdem '%{group}' abgeschlossen ist.
+    details_intro_tab: Einführung
+    details_no_reports: Noch keine Berichte.
+    details_open_heading: Offene Übungen
+    details_open_hint: Die Bearbeitung kann in beliebiger Reihenfolge und in Ihrem eigenen Tempo erfolgen.
+    details_percent_done: "%{percent}% erledigt"
+    details_progress: Fortschritt
+    details_reports_ready: Ihre Berichte sind fertig.
+    details_reports_tab: Berichte
+    details_reserved: Reserviert
+    details_sequential_heading: Sequenzielle Übungen
+    details_sequential_hint: Die einzelnen Schritte sollten nacheinander abgeschlossen werden – jeder Schritt schaltet den nächsten frei.
+    details_total: Gesamt
+    details_view_details: Details anzeigen
     development: Entwicklung
     direct_reportees: Direkte Berichte
     download: Herunterladen
@@ -108,6 +142,10 @@ de:
     localstorage_fix_title: Der lokale Speicher ist in Ihrem Browser nicht aktiviert
     localstorage_not_enabled_detail: Lokaler Speicher ist in Ihrem Browser nicht aktiviert. Bitte stellen Sie sicher, dass Sie sich nicht im privaten/Inkognito-Modus befinden, da der lokale Speicher in diesen Modi häufig deaktiviert ist.
     localstorage_support: LocalStorage aktiviert
+    login_sign_in_btn: anmelden
+    login_sign_up_link: Melden Sie sich an
+    login_welcome_description: Melden Sie sich mit Ihrem Lighthouse-Konto an.
+    login_welcome_title: Willkommen im Leuchtturm
     magic_link_interstitial_description: Zu Ihrer Sicherheit bitten wir Sie, diese Anmeldung zu bestätigen. Automatisierte Systeme können diesen Schritt nicht ausführen.
     magic_link_interstitial_title: Um die Anmeldung abzuschließen, klicken Sie bitte auf die Schaltfläche unten.
     max_word_limit: Darf höchstens %{max} Wörter haben
@@ -124,6 +162,7 @@ de:
     minute: Minute
     minute_plural: Protokoll
     my_plan: Mein Plan
+    my_profile: Mein Profil
     network: Netzwerk
     network_check: Internet-Geschwindigkeitstest
     network_check_description: Wir prüfen die Qualität Ihrer Internetverbindung zwischen unseren Servern und Ihrem Gerät.
@@ -135,6 +174,7 @@ de:
     network_speed_meets_required_detail: Ihre Internetgeschwindigkeit erfüllt die Mindestanforderungen für die Aktion
     network_test_step: Netzwerktestschritt
     no_audio_detected: Es wird kein Ton erkannt. Bitte überprüfen Sie, ob Ihr Mikrofon angeschlossen ist und ordnungsgemäß funktioniert.
+    open_navigation: Navigation öffnen
     pass: Überspringen
     pause: Pause
     pearson_timing_duration_minutes: Zeitlich begrenzt – %{duration} Minuten bis zum Abschluss
@@ -150,7 +190,13 @@ de:
     proctored: Unter Aufsicht
     proctored_assessment_misconfigured_msg: Diese Prüfung wird beaufsichtigt, es fehlt jedoch die erforderliche Zeiteinstellung. Bitte wenden Sie sich an Ihren Administrator.
     profile: Profil
+    profile_cancel: Stornieren
     profile_details: Details
+    profile_edit: Bearbeiten
+    profile_other_information: Weitere Informationen
+    profile_personal_information: Persönliche Daten
+    profile_save: Speichern
+    profile_time: Zeit
     question_counter: Frage %{current} von %{total}
     reason_for_idp_plan_rejection: Grund für die Ablehnung des Plans
     record: Protokoll
@@ -167,9 +213,12 @@ de:
     results: Ergebnis
     safari_proctoring_description: Sie scheinen den Browser Safari zu verwenden, der hinsichtlich der für diese Kampagne aktivierten Tracking-Funktionen möglicherweise einige Einschränkungen aufweist. Für ein optimales Erlebnis empfehlen wir die Verwendung der Browser Chrome,Edge oder Firefox.
     safari_proctoring_title: Safari-Browser erkannt
+    scheduling: Terminplanung
     select_audio_device: Audiogerät auswählen
     select_video_device: Videogerät auswählen
     selected_count: Ausgewählte
+    sign_out: Abmelden
+    signup_sign_in_link: anmelden
     skill_type: Fertigkeitstyp
     speech_verification_error: Bei der Überprüfung Ihrer Sprache ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
     speech_verification_failed: Ihre Äußerung stimmte nicht mit der Testphrase überein. Bitte versuchen Sie es erneut und sprechen Sie die Phrase deutlich aus.
@@ -177,6 +226,7 @@ de:
     start_campaign_message_timed: Dies ist eine zeitlich begrenzte Kampagne, bitte klicken Sie auf die Schaltfläche '%{buttonText}', um die Aktivitäten zu starten.
     start_readiness_check: Startbereitschaftsprüfung starten
     start_system_check: Systemprüfung starten
+    status_locked: Gesperrt
     stop: Stopp
     subinstruction_audio: Funktionsfähiges Mikrofon
     subinstruction_eight: Nehmen Sie sich ausreichend Zeit für die vollständige Beurteilung
@@ -228,6 +278,21 @@ de:
     tasks: Aufgaben
     testing_download_speed: Download-Geschwindigkeit wird getestet...
     testing_upload_speed: Upload-Geschwindigkeit wird getestet...
+    theme_active: Aktiv
+    theme_change: Thema ändern
+    theme_dark_theme: Dunkles Thema
+    theme_ember: Glut
+    theme_light_theme: Helles Thema
+    theme_marsh: Sumpf
+    theme_mode_dark: Dunkel
+    theme_mode_light: Licht
+    theme_mode_system: System
+    theme_mode_title: Modus
+    theme_primer: Grundierung
+    theme_primer_colorblind: Grundierung für Farbenblinde
+    theme_primer_contrast: Primer mit hohem Kontrast
+    theme_primer_dimmed: Grundierung abgedunkelt
+    theme_title: Thema
     time_commitment: Zeitaufwand
     timed_activity_instruction: Dies ist eine zeitlich begrenzte Aufgabe. Sobald Sie die Überwachungssitzung gestartet haben, bleiben Ihnen <strong>%{time} Minuten</strong> Zeit, um sie abzuschließen.
     troubleshooting_guide: Leitfaden zur Fehlerbehebung

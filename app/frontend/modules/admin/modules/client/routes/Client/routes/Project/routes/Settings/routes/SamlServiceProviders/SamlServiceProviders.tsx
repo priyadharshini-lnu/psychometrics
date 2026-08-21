@@ -124,7 +124,6 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         dataSource={data}
         loading={tableLoading}
         onChange={handleTableChange}
-        pagination={false}
         scroll={{ x: 'max-content' }}
       >
         <Column
@@ -280,7 +279,6 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         pageSize={pageSize}
         total={meta.recordCount}
         onChange={changePage}
-        className="pl"
       />
     </>
   )

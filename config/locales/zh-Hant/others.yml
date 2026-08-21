@@ -890,6 +890,7 @@ zh-Hant:
         export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
+        export_campaign_translations: 出口行銷活動翻譯
         export_dashboard_as_file: 將 Dashboard 匯出為檔
         export_development_action_translations: 出口發展行動翻譯
         export_development_actions: 出口發展行動
@@ -917,6 +918,7 @@ zh-Hant:
         import_assessors: 進口評估員
         import_campaign_ai_artifacts: 匯入戰役 AI 工件
         import_campaign_factors: 匯入活動因素
+        import_campaign_translations: 導入活動翻譯
         import_client_assessors: 导入客户评估员
         import_datasheet: 匯入資料表
         import_development_action_translations: 進口開發 動作翻譯
@@ -958,6 +960,7 @@ zh-Hant:
         super_admin_assessment_raw_result_export: 超級管理員原始結果匯出
         super_admin_datasheet_export: 超級管理員資料表匯出
         super_admin_external_assessment_export: 超級管理員外部評估匯出
+        superadmin_record_change_history: 記錄變更歷史
         threesixty_campaign_export_completion_status: Threesixty 活動出口完成狀態
         threesixty_campaign_export_scores: Threesixty 運動得分輸出
         workshop_status_export: 評估中心狀態匯出
@@ -1151,7 +1154,7 @@ zh-Hant:
       read_only: 為唯讀模式，您無法變更任何結果。
       save: 節省
       submissionFailedAlert:
-        description: 無法連線至伺服器，請重新整理頁面再試。 如果還是不行，請透過即時聊天或 mte.surveys@mercer.com 聯絡支援人員。
+        description: 無法連線至伺服器，請重新整理頁面再試。 如果還是不行，請透過即時聊天或 %{support_email} 聯絡支援人員。
         title: 上次請求失敗
       submit: 提交
       warning: 警告
@@ -1980,7 +1983,7 @@ zh-Hant:
           project: 專案：%{section_name}
         subject: Lighthouse邀請函
       password_change:
-        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 mte.support@mercer.com '
+        body: '您好 %{name}！您的密碼已經更改。 如果您沒有提出此要求，請立即聯絡支援人員 %{support_contact_email} '
         regards: 'Lighthouse 團隊 '
         subject: 您的 Lighthouse 密碼已變更
       reset_password_instructions:
@@ -2111,6 +2114,7 @@ zh-Hant:
       max_generation_limit: 已超過產生上限，請聯絡您的管理部門。
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
+    csrf_retry: 請重試
     equal_to_current_password: 必須與目前的密碼不同。
     equal_to_email: 必須與電子郵件不同。
     error: 錯誤
@@ -2321,7 +2325,6 @@ zh-Hant:
     error_warning: 哎呀，您的評估出錯了，請聯絡支援人員。
     hogan:
       cannot_start: 您現在無法開始 Hogan 評估，請幾分鐘後再試。
-    lighthouse_app: 默瑟燈塔
     login: 登入
     maintenance:
       notification: Lighthouse將在 60 秒後進行定期維護
@@ -2941,8 +2944,6 @@ zh-Hant:
     zh-HK: 中文（香港）
     zh-Hant: 繁體中文
     zh-TW: 中文（台灣）
-  languages_localized:
-    sl: 斯洛文什奇納
   license_usage:
     campaign_name: 活動名稱
     status_updated_at: 最後狀態更新
@@ -3003,12 +3004,11 @@ zh-Hant:
           invalid: 範圍必須是「開放型」的
   mailer:
     copyright:
-      text: Lighthouse.保留所有權利
+      text: "© %{year} %{display_name}.保留所有權利"
     footer:
       regards: 關於
-      team_name: Lighthouse團隊
+      team_name: "%{display_name}團隊"
       technical_support: 如有任何技術問題，請寫信至%{email} ，我們會在 24 小時內回覆。
-    from: 人才企業
     idp:
       manager_unread_comments:
         body: |-
@@ -3065,8 +3065,6 @@ zh-Hant:
         instructions: 點選以下連結登入 lighthouse。
         signin_link: 登入連結
       subject: Lighthouse 的登入連結
-    powered_by:
-      text: 由 Lighthouse 提供。
     users:
       account_disable: 您的帳號因無活動性而被停用
       warning: 您的帳號很快就會因無活動性而停用

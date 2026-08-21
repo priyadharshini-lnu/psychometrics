@@ -7,7 +7,22 @@ module Api
         schema Api::V2::PrivacySettings::Schema.update_request
 
         rule(data: { attributes: :privacy_link_text }) do
-          key.failure(:filled?) if values.dig(:data, :attributes, :enable_privacy_link) && value.blank?
+          next unless values.dig(:data, :attributes, :enable_privacy_link)
+
+          privacy_link_texts = values.dig(:data, :attributes, :privacy_link_texts)
+          # If privacy_link_texts is being submitted, skip the plain text validation
+          # (the privacy_link_texts rule will handle it)
+          next if privacy_link_texts.present?
+
+          key.failure(:filled?) if value.blank?
+        end
+
+        rule(data: { attributes: :privacy_link_texts }) do
+          next unless values.dig(:data, :attributes, :enable_privacy_link)
+          next if value.blank? # Only validate if privacy_link_texts is being submitted
+
+          has_any_text = value.any? { |entry| entry[:text].present? }
+          key.failure(:filled?) unless has_any_text
         end
 
         rule(data: { attributes: :privacy_link_url }) do

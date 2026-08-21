@@ -103,6 +103,7 @@ zh-HK:
     ai_scoring_approval_stale_description: 自上次运行以来，配置更新可能已导致评分发生变化。请重新评分以使用最新设置更新评分。
     ai_scoring_approval_stale_title: 分数可能已过时
     ai_scoring_approvals: AI评分审批
+    ai_scoring_errors_label: AI評分錯誤
     ai_scoring_refresh_score: 刷新分数
     ai_scoring_refresh_score_confirm_description: 这将使用最新配置重新运行该评估的 AI 评分。您确定吗？
     ai_scoring_refresh_score_confirm_title: 刷新 AI 评分？
@@ -122,6 +123,12 @@ zh-HK:
     alt_text_long: 超过100个字符的最大限制。
     api_keys: API密钥
     api_keys_form_title: API密钥
+    appearance: 外貌
+    appearance_dark: 黑暗的
+    appearance_dark_theme: 深色主題
+    appearance_light: 光
+    appearance_light_theme: 淺色主題
+    appearance_system: 系統
     application: 应用
     application_add: 添加应用程序
     application_name: 应用程序名称
@@ -131,7 +138,6 @@ zh-HK:
     application_settings_at_least_one_url_required: 請先啟用至少一個URL條目，然後再啟用URL白名單。
     application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
     application_settings_confirm_delete_url: 您確定要刪除此網址嗎？
-    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
     application_settings_enable_ip_whitelisting: 启用 IP 白名单
     application_settings_enable_url_whitelisting: 啟用網址白名單
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
@@ -195,6 +201,8 @@ zh-HK:
     assessor_add_subject_modal_subject: 主題
     assessor_add_subject_modal_subject_placeholder: 搜索主题..
     assessor_add_subject_modal_title: 添加主题
+    assessor_assessment_drawer_title: 評估詳情
+    assessor_assessment_id: 評估員評估 ID
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: 选择一项评估
     assessor_assessment_name: 评估员评估
     assessor_assessments: 評估員評量
@@ -345,9 +353,15 @@ zh-HK:
     campaign_assessment_modals_update_occupation_condition_set_select: 选择职业状况集
     campaign_assessment_modals_update_occupation_condition_set_success_msg: "“占用状态集”已成功更新"
     campaign_assessment_modals_update_occupation_condition_set_title: 更新职业状态集
+    campaign_dashboard_instructions_label: 活動控制面板使用說明
+    campaign_dashboard_instructions_save: 保存說明
+    campaign_dashboard_instructions_save_error: 儲存活動控制面板說明失敗
+    campaign_dashboard_instructions_save_success: 活動控制面板說明已成功儲存
     campaign_factors: 竞选因素
     campaign_id_placeholder: 输入活动ID
     campaign_name: 活动名称
+    campaign_name_translations: 活動名稱翻譯
+    campaign_name_translations_fetch_error: 取得活動名稱翻譯時發生錯誤
     campaign_report_generate_modal_subtitle: 为每份报告选择所需的语言
     campaign_report_id: 活动报告编号
     campaign_results_export_details: 活动人工智能生成物产出结果
@@ -419,6 +433,7 @@ zh-HK:
     category: 類別
     cell_save_msg: 编辑完成后，只要离开单元格，有效的更改就会自动保存。
     change_reason: 变更原因
+    change_report_dates_message: 您要更改報告日期範圍嗎？
     change_score: 更改后的分数
     change_score_log: 变更评分记录
     characters: 字符
@@ -513,6 +528,7 @@ zh-HK:
     created_successfully: AI助手已成功创建。
     current: 当前
     current_job_role: 当前职位
+    current_locale: 目前區域設定
     custom_formula: 自定义配方
     custom_message_description: 此消息可发送给任何参与评估的人员
     custom_message_name: 自定义消息
@@ -663,7 +679,7 @@ zh-HK:
     dimensions_import_modal_import_dimension: 导入维度
     dimensions_import_modal_import_scheduled: 导入计划
     dimensions_import_modal_operation: 手術
-    dimensions_import_modal_owner_global: TTE（全球）
+    dimensions_import_modal_owner_global: 全球
     dimensions_import_modal_owner_input_validation: 请选择所有者
     dimensions_import_modal_owner_select: 选择所有者
     dimensions_import_modal_select_json: 选择 JSON 文件
@@ -680,6 +696,7 @@ zh-HK:
     disable_dp: 禁止进一步处理数据
     disable_proctoring: 禁用监考功能
     disable_report_download: 禁用报告下载
+    disable_transcript_download: 禁用文字稿下載
     disallow_lead_assessor_moderation: 禁止首席评估员进行审核
     disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
     discard_all_questions: 重置所有问题
@@ -831,10 +848,13 @@ zh-HK:
     feature_flags_ai_group: 人工智能功能
     feature_flags_communication_group: 沟通
     feature_flags_platform_group: 平台功能
+    feature_flags_superadmin_group: 租戶範圍界定
+    feature_glint_ui_description: 使用 Glint 設計系統呈現參與者體驗
     feature_global_skills_description: 访问全球技能库进行评估
     feature_idp_description: 为参与者启用个人发展规划
     feature_not_available: 此功能不可用
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
+    feature_superadmin_tenant_scoping_description: 停用後，超級管理員查詢將不再局限於此客戶端的資料。
     fields_level: 等级
     fields_level_description: 等级描述
     fields_level_name: 关卡名称
@@ -866,6 +886,7 @@ zh-HK:
     form_datasheet: 規格表
     form_datasheet_columns: 数据表列
     form_end_date: 結束日期
+    form_fields_to_display: 要顯示的字段
     form_include_all_datasheet_columns: 包含所有数据表列
     form_name: 名稱
     form_no_assessment_selected: 尚未添加任何评估。点击“添加”开始操作。
@@ -890,8 +911,11 @@ zh-HK:
     generate_transcription: 生成转录文本
     generated_at_time: 生成于 %{time}
     generated_value: 创造的价值
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI 已被客戶端禁用
     global_skills: 全球技能
     global_skills_disabled_by_client: "“Global Skills”已被客户端禁用"
+    go_back: 後退
     grant_type_label: 资助类型
     grant_type_name: oauth_grant_type
     graphic: 图形
@@ -906,6 +930,7 @@ zh-HK:
     header_logout_title: 您确定要注销吗？
     hide_all: 隐藏全部
     hide_middle_scores: 隐藏中间分数
+    hide_participant_video: 隱藏參與者視頻
     high: 高
     hogan: 霍根
     hogan_assessment: 霍根评估
@@ -1251,6 +1276,7 @@ zh-HK:
     key_id: 密钥 ID
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
+    language: 語言
     language_id: 语言代码
     last_name_required: 姓氏为必填项
     lead_assessment: 铅评估
@@ -1488,6 +1514,8 @@ zh-HK:
     owner_resource_norm: 規範
     owner_resource_report: 報告
     owner_resource_report_bundle: 報告包
+    page_load_failed: 此頁面無法載入。
+    page_load_failed_hint: 應用程式可能已更新—請重新加載以繼續。
     parsed_dependencies_help: AI 助手用于生成工件结果时所使用的用户的已解析依赖项
     parsed_dependencies_title: 解析的依赖项
     parsed_dependencies_view: 查看已解析的依赖项
@@ -1949,6 +1977,7 @@ zh-HK:
     piped_text_modal_title: 添加管道文本
     piped_text_modal_user_reports: 用户报告
     piped_text_modal_users: 用户
+    platform_owner: Platform
     playground: 游乐场
     playground_info: 使用示例数据测试您的工件，以预览生成的结果。
     playground_placeholder: 输入测试数据
@@ -2179,6 +2208,38 @@ zh-HK:
     raw_score: 原始分数
     reason_for_changes: 变更原因
     recents: 最近
+    record_history_changes: 變化
+    record_history_changes_in_request: 此請求的變更
+    record_history_date_range_invalid: 結束日期必須等於或晚於開始日期。
+    record_history_date_range_required: 請選擇日期範圍。
+    record_history_date_range_too_large: 日期範圍不能超過 %{days} 天。請縮小搜尋範圍。
+    record_history_filter_actor: 按演員信箱篩選
+    record_history_filter_field: 按已更改欄位篩選
+    record_history_filter_type: 按記錄類型篩選
+    record_history_id_required: 請輸入記錄 ID
+    record_history_include_related: 包括相關記錄
+    record_history_last_30_days: 過去30天
+    record_history_last_7_days: 過去7天
+    record_history_no_results: 未找到此記錄的變更歷史記錄。
+    record_history_no_results_for: 未發現任何更改
+    record_history_records_changed: 記錄已更改
+    record_history_related_tag: 有關的
+    record_history_request_banner: 顯示請求中的所有更改
+    record_history_request_label: 要求：
+    record_history_request_or_record_required: 輸入請求 UUID 或選擇記錄類型和 ID。
+    record_history_request_uuid: 請求 UUID
+    record_history_request_uuid_placeholder: 輸入請求 UUID
+    record_history_revision_failed: 無法載入此版本的記錄狀態。
+    record_history_search_hint: 輸入請求 UUID，或選擇記錄類型和記錄 ID 以追蹤變更歷史記錄。
+    record_history_select_type: 選擇記錄類型
+    record_history_state_at_version: 版本狀態
+    record_history_system: 系統
+    record_history_title: 記錄變更歷史
+    record_history_type_required: 請選擇記錄類型
+    record_history_version: 版本
+    record_history_view_audit_log: 查看審計日誌
+    record_history_view_full: 看完整歷史記錄
+    record_history_view_request: 查看請求
     record_id: 记录ID
     recordings: 錄音
     reflection_questions: 反思问题
@@ -2294,6 +2355,7 @@ zh-HK:
     report_no_evaluations: "%{user}的报告不可用——尚未收到任何评估。"
     report_not_generated: "%{user}的报告满足可用性条件，但尚未生成。请先生成该报告。"
     report_on_hold: "%{user}的报告目前处于暂停状态"
+    report_owner: 擁有者
     report_pdf_status: 报告 PDF 状态
     report_review_abort_qc: 中止质量控制
     report_review_approve: 㔧
@@ -2314,10 +2376,12 @@ zh-HK:
     report_types:
       active_clients_projects: 当前客户与项目
       campaign_factor_scores: 竞选因素得分
+      campaign_user_creation: 活動用戶創建
       client_assessment_counts: 客户评估很重要
       hogan_usage_report: 霍根评估的使用
       json_data_report: JSON 数据报告
       pearson_usage_report: 皮尔森测评的使用
+      proctoring_sessions: 監考會議
       report_usage_summary: 报告使用情况摘要
       saville_usage_report: 萨维尔评估的使用
       user_access_review: 用户访问审查
@@ -2377,6 +2441,17 @@ zh-HK:
     role_project_admin: 项目管理员
     role_superadmin: 超级管理员
     run: 运行
+    runtime_configuration_invalid_json_object: runtime_configuration 必須是有效的 JSON 對象
+    runtime_configuration_invalid_parameter: 不是一個運行時可更新的參數
+    runtime_parameter_date_range_required: 請同時選擇開始日期和結束日期
+    runtime_parameter_editable_section_title: 日期範圍
+    runtime_parameter_filter_column: 篩選
+    runtime_parameter_locked_section_title: 包含的過濾器
+    runtime_parameter_modal_subtitle: 請核對詳細信息，如有需要，請更新日期範圍。
+    runtime_parameter_modal_title: 運行報告
+    runtime_parameter_not_set: 未提供
+    runtime_parameter_submit_button: 立即運行
+    runtime_parameter_value_column: 價值
     saml_idp_certificate_available: 可用（点击复制）
     saml_idp_certificate_label: 证书
     saml_idp_entity_id_label: 实体标识符/签发者
@@ -2511,6 +2586,7 @@ zh-HK:
     scheduling_columns_start_time: 日期与时间
     scheduling_columns_subject: 主題
     scheduling_columns_title: 标题
+    scheduling_columns_video_hidden_for_privacy: 為保護候選人隱私，影片已隱藏。
     scheduling_columns_view_recording: 查看录播
     scheduling_errors_assessor_already_assigned: 该评估已分配评估员。请选择其他评估或评估员。
     scheduling_errors_date_required: 请选择日期
@@ -2603,6 +2679,12 @@ zh-HK:
     score: 得分
     score_approval_not_allowed_to_approve: 您无权批准此分数。
     score_approval_not_allowed_to_discard: 你不得丢弃这张记分卡。
+    score_approval_reset: 重置批准
+    score_approval_reset_description: 這將使審批狀態重新變為待處理。評分不會改變。此操作無法撤銷。
+    score_approval_reset_not_allowed: 此分數確認狀態目前無法重設。
+    score_approval_reset_recompute_description: 這將重置審批結果，從使用者結果中移除 AI 評分，並刪除所有產生的報告。此操作無法撤銷。
+    score_approval_reset_success: 評分審核已重置。
+    score_approval_reset_title: 重置分數批准？
     score_definition_placeholder: 输入此分数等级的定义
     score_definitions: 分数定义
     score_max: 得分上限
@@ -2834,6 +2916,7 @@ zh-HK:
     sheets_tabs_settings: 设置
     show_all: 显示全部
     show_all_assessment_responses: 显示所有评估回复
+    show_form_field_titles: 顯示表單欄位標題
     show_middle_scores: 显示更多%{count}的评分（可选）...
     show_original: 显示原文
     show_submenu: 显示子菜单
@@ -2956,7 +3039,14 @@ zh-HK:
     smtp_settings_user_name: 用户名
     specialty_questions: 专业问题
     sso_email_mismatch: 您在身份提供商上登录的是另一个账户。请先从身份提供商中退出，然后重试。
+    sso_enforce_for: 強制執行 SSO
+    sso_enforce_for_all: 所有用戶
+    sso_enforce_for_none: 沒有任何
+    sso_enforce_for_specific_domains: 特定領域
     sso_enforced: 强制实施单点登录
+    sso_enforced_domains: 強制執行的域名
+    sso_enforced_domains_hint: 例如：se.com（完全符合）或 *.se.com（僅限子網域）
+    sso_enforced_domains_placeholder: 輸入網域名稱並按回車鍵
     sso_label: SSO
     sso_not_enabled: 此客户端未启用单点登录
     sso_settings: 单点登录设置
@@ -3071,6 +3161,7 @@ zh-HK:
     success_title: 评估中心创建
     success_update: 设计设置已成功保存
     suitability_id: 适用性标识
+    superadmin_tenant_scoping: 超管理員
     superadmin_use_root_domain: 超级管理员必须通过主域登录
     switch_client: 切换客户端
     system_prompt: 系统提示
@@ -3091,12 +3182,38 @@ zh-HK:
     taxonomy_title: 技能分类法
     template_and_campaign_required: 请同时提供模板ID和活动ID
     template_render_failed: 模板渲染失败
+    tenant_repair_confirm_message: '在 %{model} #%{id} 上將 tenant_id 設定為 %{new_tenant}？'
+    tenant_repair_confirm_message_null: '將 %{model} #%{id} 上的 tenant_id 設定為 null？'
+    tenant_repair_confirm_title: 確認租戶更新
+    tenant_repair_correct: 正確的
+    tenant_repair_current_tenant: 現有租戶
+    tenant_repair_find_record: 尋找記錄
+    tenant_repair_global_tenant: 全球的
+    tenant_repair_invalid_model: 無效或不可出租的模型類型
+    tenant_repair_invalid_record_id: 請輸入有效的記錄 ID
+    tenant_repair_invalid_tenant_id: 請輸入有效的租用戶 ID，或留空表示無效。
+    tenant_repair_model_label: 模型
+    tenant_repair_model_placeholder: 輸入搜尋內容...
+    tenant_repair_moved_from: 租戶變更：
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: 新租戶 ID
+    tenant_repair_preview_title: 唱片預覽
+    tenant_repair_request_failed: 請求失敗
+    tenant_repair_resolved_tenant: 已解決的租戶
+    tenant_repair_success: 租戶資訊更新成功。
+    tenant_repair_title: 租戶糾正
+    tenant_repair_update: 更新
+    tenant_repair_will_set_null: 將 tenant_id 設為 null
+    tenant_repair_will_set_value: 將 tenant_id 設定為 %{value}
     test_generate: 测试生成
     test_render: 测试渲染
     test_render_tooltip: 使用活动数据测试您的提示模板，以确认将发送给AI助手的内容。
     text_danger: 文本(危险)
     text_success: 文本（成功）
     text_warning: 文本（警告）
+    themes:
+      marsh-dark: 沼澤暗色
+      marsh-light: 沼澤燈
     this_field_is_required: 此字段为必填项
     threesixity_advance_settings_campaign_template: 活动模板
     threesixity_advance_settings_factors: 因素
@@ -3185,7 +3302,6 @@ zh-HK:
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 正在导出进行中的开发操作。
-    tte: TTE
     type_by_skill: 按技能
     type_by_skill_type: 按技能类型
     type_default: 預設

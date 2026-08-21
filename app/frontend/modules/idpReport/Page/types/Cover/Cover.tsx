@@ -2,12 +2,12 @@ import React from 'react'
 import { Flex } from 'antd'
 import cs from 'classnames'
 import bg from '../../../assets/MainBackground.png'
-import mercer from '../../../assets/MercerLogo.svg'
 import Page from '../../Page'
 import styles from './Cover.less'
 import { useTemplate, useUserIdp } from '~/modules/idpReport/hooks/useIdpData'
 import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import { useI18n } from '~/modules/idpReport/I18nContext'
+import { wordmarkWhiteUrl } from '~/utils/branding'
 
 const FIELDS = [
   'name',
@@ -60,7 +60,7 @@ const Cover = ({ rtl }) => {
         />
         {(logo_type === 'both' || logo_type === 'mercer_only') && (
           <div className={styles.mercerLogo}>
-            <img src={mercer} />
+            <img src={wordmarkWhiteUrl()} />
           </div>
         )}
         {client_logo && (logo_type === 'both' || logo_type === 'client_only') && (

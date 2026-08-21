@@ -5,10 +5,12 @@ module AdminJobs
     class BaseHandler
       attr_reader :data_report, :data_report_job, :file_path
 
-      def initialize(data_report:, data_report_job:, file_path:)
+      def initialize(data_report:, data_report_job:, file_path:, runtime_configuration: nil, user_country: nil)
         @data_report = data_report
         @data_report_job = data_report_job
         @file_path = file_path
+        @runtime_configuration = runtime_configuration
+        @user_country = user_country
       end
 
       def generate_file
@@ -17,19 +19,43 @@ module AdminJobs
 
       delegate :file_extension, to: :class
 
-      def self.file_extension
-        raise NotImplementedError, "#{name} must implement .file_extension"
-      end
+      class << self
+        def parameters
+          @parameters ||= []
+        end
 
-      def self.file_name(report_name:, extension:)
-        timestamp = Time.current.strftime('%Y%m%d')
-        "#{timestamp}_#{report_name.parameterize(separator: '_')}.#{extension}"
+        def parameter(name, type:, runtime_updatable: false, required: false, description: nil)
+          parameters << {
+            name: name.to_s,
+            type: type.to_s,
+            runtime_updatable: runtime_updatable,
+            required: required,
+            description: description
+          }.freeze
+        end
+
+        def runtime_parameters
+          parameters.select { |parameter| parameter[:runtime_updatable] }
+        end
+
+        def file_extension
+          raise NotImplementedError, "#{name} must implement .file_extension"
+        end
+
+        def file_name(report_name:, extension:)
+          timestamp = Time.current.strftime('%Y%m%d')
+          "#{timestamp}_#{report_name.parameterize(separator: '_')}.#{extension}"
+        end
       end
 
       protected
 
       def config
-        @config ||= Oj.load(data_report.configuration)
+        @config ||= begin
+          saved = Oj.load(data_report.configuration)
+
+          @runtime_configuration.present? ? saved.merge(@runtime_configuration) : saved
+        end
       end
 
       def project_ids
@@ -42,10 +68,6 @@ module AdminJobs
 
       def report_ids
         config['report_ids']
-      end
-
-      def activity_period
-        config['activity_period']
       end
 
       def client_ids
@@ -61,6 +83,13 @@ module AdminJobs
         ids = Project.where(id: project_ids).flat_map(&:project_campaign_ids) if ids.blank?
 
         @campaigns ||= ::Campaign.where(id: ids)
+      end
+
+      def geo_restricted_top_level_client_ids
+        return [] if Settings.features.disable_geo_restriction
+        return [] if @user_country.blank?
+
+        @geo_restricted_top_level_client_ids ||= Client.restricted_clients(@user_country).ids
       end
 
       def format_datetime(value)

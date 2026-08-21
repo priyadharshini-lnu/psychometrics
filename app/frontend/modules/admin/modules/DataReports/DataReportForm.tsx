@@ -2,7 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react'
 import {
   Drawer, Button,
   Form, Input, Select, Spin,
-} from 'antd'
+} from '@thetalententerprise/glint'
 import ResourceForm from '~/components/ResourceForm'
 import { useResources } from '~/hooks/useResources'
 import { Client } from '~/modules/admin/modules/client/core/clients'
@@ -102,7 +102,7 @@ export const DataReportForm: React.FC<Props> = ({
   const shouldHideOwner = selectedScope === 'global'
 
   return (
-    <Drawer open={show} width="70%" onClose={close} destroyOnHidden maskClosable={false}>
+    <Drawer open={show} size="70%" onClose={close} destroyOnHidden>
       <ResourceForm
         resourceName="data_reports"
         readableResourceName={I18n.t('admin.data_reports_form_name')}
@@ -128,20 +128,16 @@ export const DataReportForm: React.FC<Props> = ({
               rules={[{ required: true }]}
             >
               <Select
-                showSearch
+                {...({
+                  showSearch: true,
+                  optionFilterProp: 'label',
+                } as unknown as Record<string, unknown>)}
                 placeholder={I18n.t('admin.select_report_type')}
-                optionFilterProp="children"
-                filterOption={(input, option) => String(option?.children)
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-                }
-              >
-                {REPORT_TYPE_KEYS.map(key => (
-                  <Select.Option key={key} value={key}>
-                    {I18n.t(`admin.report_types.${key}`)}
-                  </Select.Option>
-                ))}
-              </Select>
+                options={REPORT_TYPE_KEYS.map(key => ({
+                  value: key,
+                  label: I18n.t(`admin.report_types.${key}`),
+                }))}
+              />
             </Form.Item>
             <Form.Item
               name="scope"
@@ -149,18 +145,17 @@ export const DataReportForm: React.FC<Props> = ({
               initialValue={dataReport?.scope || 'client'}
               rules={[{ required: true }]}
             >
-              <Select disabled={Boolean(dataReport?.id) || scopeOptions.length === 1}>
-                {scopeOptions.includes('client') && (
-                  <Select.Option value="client">
-                    {I18n.t('admin.scope_client')}
-                  </Select.Option>
-                )}
-                {scopeOptions.includes('global') && (
-                  <Select.Option value="global">
-                    {I18n.t('admin.scope_global')}
-                  </Select.Option>
-                )}
-              </Select>
+              <Select
+                disabled={Boolean(dataReport?.id) || scopeOptions.length === 1}
+                options={[
+                  ...(scopeOptions.includes('client')
+                    ? [{ value: 'client', label: I18n.t('admin.scope_client') }]
+                    : []),
+                  ...(scopeOptions.includes('global')
+                    ? [{ value: 'global', label: I18n.t('admin.scope_global') }]
+                    : []),
+                ]}
+              />
             </Form.Item>
 
             {!shouldHideOwner && (
@@ -172,27 +167,29 @@ export const DataReportForm: React.FC<Props> = ({
               >
                 <Select
                   disabled={Boolean(dataReport?.id)}
-                  showSearch={{
-                    filterOption: false,
-                    onSearch: (value) => {
-                      fetchClients({
-                        apiConfig: {
-                          filter: { filterable_fields: value },
-                          fields: { clients: ['name'] },
-                        },
-                      })
+                  {...({
+                    showSearch: {
+                      filterOption: false,
+                      onSearch: (value: string) => {
+                        fetchClients({
+                          apiConfig: {
+                            filter: { filterable_fields: value },
+                            fields: { clients: ['name'] },
+                          },
+                        })
+                      },
                     },
-                  }}
+                  } as unknown as Record<string, unknown>)}
                   notFoundContent={
                     isClientsLoading('fetch')
                       ? <Spin size="small" />
                       : I18n.t('shared.no_results_found')
                   }
-                >
-                  {getClients().map(({ id, name }) => (
-                    <Select.Option key={id} value={id}>{name}</Select.Option>
-                  ))}
-                </Select>
+                  options={getClients().map(({ id, name }) => ({
+                    value: id,
+                    label: name,
+                  }))}
+                />
               </Form.Item>
             )}
             {ConfigComponent && (

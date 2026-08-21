@@ -124,6 +124,14 @@ class SupportedVideoRecorder extends Component {
     )
   }
 
+  handleCopyContentEvents = (e) => {
+    const { mediaResponses } = this.props
+    const mediaResponse = mediaResponses?.filter(({ userSelected }) => userSelected)[0]
+    if (mediaResponse?.disableTranscriptDownload) {
+      e.preventDefault()
+    }
+  }
+
   renderVideoRecorder () {
     const {
       model,
@@ -142,7 +150,15 @@ class SupportedVideoRecorder extends Component {
       const mediaResponse = mediaResponses.filter(({ userSelected }) => userSelected)[0]
       return (
         <>
-          <VideoPlayer mediaResponse={mediaResponse} mediaUrl={mediaUrl} />
+          {mediaResponse?.hideParticipantVideo
+            ? (
+              <Card>
+                <Typography.Text type="secondary">
+                  {I18n.t('admin.scheduling_columns_video_hidden_for_privacy')}
+                </Typography.Text>
+              </Card>
+            )
+            : mediaResponse?.url && <VideoPlayer mediaResponse={mediaResponse} mediaUrl={mediaUrl} />}
           {mediaResponse?.transcriptionText && (
             <Card>
               <div>
@@ -158,14 +174,16 @@ class SupportedVideoRecorder extends Component {
                 >
                   {I18n.t('shared.view')}
                 </Button>
-                <Button
-                  className="ms-2"
-                  type="text"
-                  icon={<DownloadOutlined />}
-                  onClick={() => this.handleDownloadTranscription(mediaResponse)}
-                >
-                  {I18n.t('shared.download')}
-                </Button>
+                {!mediaResponse?.disableTranscriptDownload && (
+                  <Button
+                    className="ms-2"
+                    type="text"
+                    icon={<DownloadOutlined />}
+                    onClick={() => this.handleDownloadTranscription(mediaResponse)}
+                  >
+                    {I18n.t('shared.download')}
+                  </Button>
+                )}
               </div>
               {showTranscription && (
                 <Input.TextArea
@@ -173,6 +191,10 @@ class SupportedVideoRecorder extends Component {
                   readOnly
                   autoSize={{ minRows: 2, maxRows: 6 }}
                   className="mt-4"
+                  onCopy={this.handleCopyContentEvents}
+                  onCut={this.handleCopyContentEvents}
+                  onContextMenu={this.handleCopyContentEvents}
+                  style={{ userSelect: mediaResponse?.disableTranscriptDownload ? 'none' : 'auto' }}
                 />
               )}
             </Card>

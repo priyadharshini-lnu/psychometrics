@@ -6,9 +6,15 @@ export const campaignAssessorAssessmentTR = t.type({
   assessmentId: t.number,
   campaignId: t.number,
   assessmentName: t.union([t.string, t.null]),
+  dimensionId: t.union([t.number, t.null]),
   allowMultipleResponses: t.boolean,
   campaignAssessmentGroupId: t.number,
-  tenant_id: t.number,
+  createdAt: t.union([t.string, t.null]),
+  owner: t.union([t.type({
+    id: t.union([t.string, t.number]),
+    name: t.union([t.string, t.null]),
+  }), t.null]),
+  tenantId: t.union([t.number, t.null]),
 })
 
 export type CampaignAssessorAssessments = t.TypeOf<typeof campaignAssessorAssessmentTR>

@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react'
-import { useParams, useNavigate, useLocation } from 'react-router-dom'
+import {
+  useParams, useNavigate, useLocation, Outlet,
+} from 'react-router-dom'
 import { Flex, Menu, Spin } from 'antd'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
@@ -21,9 +23,7 @@ import {
 } from '~/modules/admin/modules/client/core/projects'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { routes } from './routes'
 import { isSuperAdmin } from '~/core/currentUser'
 
 const { I18n } = window
@@ -290,12 +290,7 @@ const Project: FC<Props> = ({
         selectedKeys={getActiveMenuKey(pathname)}
         mode="horizontal"
       />
-      {isProjectLoaded ? (
-        <RouteList
-          routes={routes}
-          urlPrefix=""
-        />
-      ) : <Flex justify="center" align="middle"><Spin /></Flex>}
+      {isProjectLoaded ? <Outlet /> : <Flex justify="center" align="middle"><Spin /></Flex>}
     </div>
   )
 }

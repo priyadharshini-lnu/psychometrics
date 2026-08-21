@@ -55,6 +55,7 @@ hi:
     copied_successfully: सफलतापूर्वक कॉपी किया गया
     copied_to_clipboard: क्लिपबोर्ड पर कॉपी हो गया
     copy: प्रतिलिपि
+    copyright: "© %{year} %{display_name}. सर्वाधिकार सुरक्षित।"
     create: बनाएँ
     created_at: पर बनाया गया
     created_by: द्वारा निर्मित
@@ -181,6 +182,29 @@ hi:
     remove: हटाएँ
     removed: हटाया गया
     replace: बदलें
+    reports:
+      ai_rationale_evidence:
+        all_factors: सभी कारक
+        factor_label: कारकों
+        hide_evidence: सबूत छुपाएं
+        hide_rationale: तर्क छुपाएँ
+        no_data: चयनित प्रश्न के लिए कोई एआई तर्क या साक्ष्य डेटा उपलब्ध नहीं है।
+        no_question_selected: एआई के तर्क और प्रमाण प्रदर्शित करने के लिए कृपया एक प्रश्न चुनें।
+        question_label: सवाल
+        select_question: एक प्रश्न चुनें
+      ai_transcript:
+        no_data: चयनित प्रश्न के लिए कोई प्रतिलेख डेटा उपलब्ध नहीं है।
+        no_question_selected: कृपया प्रश्न का चयन करें ताकि उसका लिखित उत्तर देखा जा सके।
+        question_label: सवाल
+        select_question: एक प्रश्न चुनें
+    reports_bar_gradient_direction: ढलान दिशा
+    reports_bar_gradient_direction_bottom_to_top: नीचे से शीर्ष तक
+    reports_bar_gradient_direction_left_to_right: बाएं से दायां
+    reports_bar_gradient_direction_right_to_left: दाएँ से बाएँ
+    reports_bar_gradient_direction_top_to_bottom: नीचे से ऊपर
+    reports_bar_gradient_enabled: ग्रेडिएंट सक्षम करें
+    reports_bar_gradient_end_color: अंतिम रंग
+    reports_bar_gradient_start_color: रंग शुरू करें
     reports_show_values_inside_bar: बार के अंदर मान दिखाएँ
     reports_value_label_position: मूल्य लेबल स्थिति
     reports_value_label_position_center: केंद्र

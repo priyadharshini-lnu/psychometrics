@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -21,7 +21,18 @@ type Props = PropsFromRedux
 
 const isSowDivider = (projectConfig) => {
   if (projectConfig.disallow_password_login) { return false }
-  return (projectConfig.magic_link_enabled || (projectConfig.saml_login_allowed && !projectConfig.saml_enforced))
+  const ssoButtonVisible = projectConfig.saml_login_allowed && !projectConfig.saml_enforced
+  return (projectConfig.magic_link_enabled || ssoButtonVisible)
+}
+
+const getFormAction = (isEmailStep: boolean) => {
+  if (isEmailStep) return '/users/check_sso'
+  return '/users/sign_in'
+}
+
+const getSubmitBtnText = (isEmailStep: boolean) => {
+  if (isEmailStep) return I18n.t('auth.login.continue_btn')
+  return I18n.t('auth.login.login_btn')
 }
 
 const LoginComponent: React.FC<Props> = ({
@@ -33,6 +44,10 @@ const LoginComponent: React.FC<Props> = ({
 
   const recaptchaEnabled = !disable_recaptcha && projectConfig.enable_recaptcha
   const formRef = useRef<HTMLFormElement>(null)
+
+  const isTwoStepFlow = projectConfig.saml_login_allowed && projectConfig.saml_domain_enforcement_enabled
+  const isEmailStep = isTwoStepFlow && !user.email
+  const [emailValue, setEmailValue] = useState(user.email || '')
 
   const {
     recaptchaToken,
@@ -55,7 +70,7 @@ const LoginComponent: React.FC<Props> = ({
 
   return (
     <div className={styles.container}>
-      <Typography.Title level={1}>{I18n.t('auth.login.title')}</Typography.Title>
+      <Typography.Title level={2}>{I18n.t('auth.login.title')}</Typography.Title>
       <Typography.Paragraph className={styles.description}>
         {I18n.t('auth.login.description')}
       </Typography.Paragraph>
@@ -103,8 +118,7 @@ const LoginComponent: React.FC<Props> = ({
             id="form-login"
             ref={formRef}
             className={styles.form}
-            // layout="vertical"
-            action="/users/sign_in"
+            action={getFormAction(isEmailStep)}
             method="post"
             onSubmit={handleSubmit}
           >
@@ -116,33 +130,43 @@ const LoginComponent: React.FC<Props> = ({
               label={I18n.t('auth.email')}
               name="user[email]"
               placeholder={I18n.t('auth.email_placeholder')}
-              defaultValue={user.email}
+              value={emailValue}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)}
               autoComplete="tte-user-email"
               labelFor="email"
               id="email"
+              disabled={isTwoStepFlow && !isEmailStep}
             />
-            <InputField
-              label={I18n.t('auth.password')}
-              name="user[password]"
-              placeholder={I18n.t('auth.password_placeholder')}
-              password
-              labelFor="password"
-              id="password"
-              autoComplete="tte-user-password"
-            />
-            <Link to="/users/password/new">
-              {I18n.t('auth.login.forgot_password')}
-            </Link>
+            {isTwoStepFlow && !isEmailStep && (
+              <Input type="hidden" name="user[email]" value={emailValue} />
+            )}
+            {!isEmailStep && (
+              <>
+                <InputField
+                  label={I18n.t('auth.password')}
+                  name="user[password]"
+                  placeholder={I18n.t('auth.password_placeholder')}
+                  password
+                  labelFor="password"
+                  id="password"
+                  autoComplete="tte-user-password"
+                  autoFocus={isTwoStepFlow}
+                />
+                <Link to="/users/password/new" style={{ display: 'block', marginBottom: 16 }}>
+                  {I18n.t('auth.login.forgot_password')}
+                </Link>
+              </>
+            )}
             <ButtonWithArrow
-              label={I18n.t('auth.login.login_btn')}
+              label={getSubmitBtnText(isEmailStep)}
               type="primary"
               size="large"
               htmlType="submit"
               className={styles.submit}
               block
             />
-            {!projectConfig.hide_signup ? (
-              <div>
+            {(!isTwoStepFlow || isEmailStep) && !projectConfig.hide_signup ? (
+              <div style={{ marginTop: 16 }}>
                 {I18n.t('auth.login.not_member')}
                 {' '}
                 <Link to="/users/sign_up">

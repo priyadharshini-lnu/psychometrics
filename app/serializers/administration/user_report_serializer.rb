@@ -6,7 +6,8 @@ module Administration
                :report_family_name, :status, :internal,
                :report_provider, :custom_upload, :comments_count, :edits_count,
                :hogan_participant_id, :effective_default_language, :available_languages,
-               :report_download_urls, :campaign_id, :approval_status, :assessment_ids, :external_settings
+               :report_download_urls, :campaign_id, :approval_status, :assessment_ids, :external_settings,
+               :owner
 
     delegate :name, to: :report
     delegate :provider, to: :report, prefix: true
@@ -81,6 +82,12 @@ module Administration
 
     def edits_count
       object.text_module_overrides&.count
+    end
+
+    def owner
+      return unless report&.owner
+
+      { id: report.owner.id, name: report.owner.name }
     end
 
     private

@@ -93,7 +93,7 @@ module Workshops
     end
 
     def organizer_name
-      user.project&.smtp_setting&.from_name.presence || I18n.t('mailer.from')
+      user.project&.smtp_setting&.from_name.presence || Branding.display_name
     end
 
     def add_event_to_calendar(cal, start_time, end_time, tzid)

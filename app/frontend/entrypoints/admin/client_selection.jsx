@@ -1,9 +1,10 @@
 import { createRoot } from 'react-dom/client'
-import { DefaultAntThemeWrapper } from '~/glint'
+import { GlintAdminTheme, choiceFrom } from '~/components/AdminShell/GlintAdminTheme'
+import { THEME_CATEGORY, THEME_CONFIG_KEY } from '~/components/AdminShell/useThemePreference'
+import { currentUserFromInitialState, findPreference } from '~/components/AdminShell/currentUserDetails'
 import { ClientSelection } from '~/modules/admin/modules/ClientSelection/routes/ClientSelection'
-import { isRtl } from '~/utils/locales'
 
-const { antdLocale, I18n } = window
+const { I18n } = window
 const { locale } = document.body.dataset
 I18n.locale = locale || I18n.defaultLocale
 
@@ -15,11 +16,11 @@ const spoofUserId = window.__SPOOF_USER_ID__ || null
 const container = document.getElementById('client-selection-container')
 const root = createRoot(container)
 
+// No store here on purpose: this page mounts without the SPA's providers, so it reads the server payload directly.
+const preferences = currentUserFromInitialState()?.preferences ?? []
+
 root.render(
-  <DefaultAntThemeWrapper
-    locale={antdLocale}
-    direction={isRtl(I18n.currentLocale()) ? 'rtl' : 'ltr'}
-  >
+  <GlintAdminTheme choice={choiceFrom(findPreference(preferences, THEME_CATEGORY, THEME_CONFIG_KEY))}>
     <ClientSelection clients={clients} spoofUserId={spoofUserId} />
-  </DefaultAntThemeWrapper>,
+  </GlintAdminTheme>,
 )

@@ -13,6 +13,16 @@ module AdminJobs
         'Count'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
@@ -32,10 +42,16 @@ module AdminJobs
         records = UserReport.
                   joins('LEFT JOIN campaigns cmp ON cmp.id = user_reports.campaign_id').
                   joins('LEFT JOIN clients p ON p.id = cmp.project_id').
+                  joins('LEFT JOIN clients c ON c.id = p.tte_id').
                   joins('LEFT JOIN reports r ON r.id = user_reports.report_id').
                   where(r: { id: report_ids })
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
         records = records.where(created_at: created_at_range) if created_at_range
 
         records.

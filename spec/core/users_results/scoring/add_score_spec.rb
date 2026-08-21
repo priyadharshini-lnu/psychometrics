@@ -569,6 +569,21 @@ describe UsersResults::Scoring::AddScore do
 
         expect(result[factor2.id.to_s]['score']).to eq(2.27)
       end
+
+      it 'raises an error when round receives a string' do
+        answers = {}
+        answers['question_id'] = { 'dirty' => false,
+                                   'answers' => [{ 'index' => 0, 'value' => '2.267' }] }
+
+        factor2.update!(
+          custom_formula: 'return helpers.round(assessment.answer("$.question_id[\'answers\'][0].value"), 2)'
+        )
+
+        expect do
+          described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                  norm: five_scale_norm, answers: answers })
+        end.to raise_error(RuntimeError, 'helpers.round: First parameter must be numeric.')
+      end
     end
 
     describe 'lua helpers - average' do

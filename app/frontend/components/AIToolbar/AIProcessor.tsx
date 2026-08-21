@@ -8,6 +8,7 @@ import {
 import { useResources } from '~/hooks/useResources'
 import { FroalaTextSelection } from '~/hooks/useFroalaTextSelection'
 import Result from './Result'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -75,10 +76,8 @@ const AIProcessor: React.FC<AIProcessorProps> = ({
         assistantOutput: result,
         view: 'result',
       }))
-    } catch (error: unknown) {
-      const errorMessage = (error && typeof error === 'object' && 'base' in error)
-        ? (error as { base: { detail: string }[] }).base[0]?.detail || I18n.t('shared.something_wrong')
-        : I18n.t('shared.something_wrong')
+    } catch (error) {
+      const errorMessage = baseErrorMessage(error, 'detail') || I18n.t('shared.something_wrong')
       setState(prev => ({
         ...prev,
         error: errorMessage,

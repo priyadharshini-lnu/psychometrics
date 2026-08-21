@@ -4,11 +4,14 @@ import {
   Checkbox, InputNumber, Select, Space, Typography,
 } from 'antd'
 import { CheckboxChangeEvent } from 'antd/es/checkbox'
+import { RgbaColor } from 'react-colorful'
+import { ColorPicker } from '~/glint'
 import styles from '~/modules/reports/views/PropertyPanel/components/PropertyPanel.less'
 import { getQuestions } from '~/modules/reports/core/builder/selectors'
 import { PropertiesModel } from '~/modules/reports/interfaces/graphs/Bar'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import PropertyPixelOrPercent from '~/modules/reports/components/PropertyPixelOrPercent'
+import { isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 import Series from './Series'
 import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
 
@@ -56,6 +59,12 @@ const valueLabelPositionOptions = [
   { value: 'center', label: I18n.t('shared.reports_value_label_position_center') },
   { value: 'right', label: I18n.t('shared.reports_value_label_position_right') },
 ]
+const gradientDirectionOptions = [
+  { value: 'top_to_bottom', label: I18n.t('shared.reports_bar_gradient_direction_top_to_bottom') },
+  { value: 'bottom_to_top', label: I18n.t('shared.reports_bar_gradient_direction_bottom_to_top') },
+  { value: 'left_to_right', label: I18n.t('shared.reports_bar_gradient_direction_left_to_right') },
+  { value: 'right_to_left', label: I18n.t('shared.reports_bar_gradient_direction_right_to_left') },
+]
 const axisDisplayOptions: AxisDisplayOptions [] = [
   { label: I18n.t('reports.builder.graph.properties.hideXAxisLine'), propName: 'xAxisLinesHide' },
   { label: I18n.t('reports.builder.graph.properties.hideYAxisLine'), propName: 'yAxisLinesHide' },
@@ -67,6 +76,7 @@ const axisDisplayOptions: AxisDisplayOptions [] = [
 
 const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
   const model = modules[0]
+  const usesGraphValueConditions = isGraphValueCondition(model.props.textConditionType)
 
   const updateAll = (cb?) => {
     modules.forEach((module) => {
@@ -116,7 +126,25 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
     })
   }
 
-  const changeMaxValue = (value: string) => {
+  const changeGradientEnabled = (value: boolean) => {
+    updateAll((item) => {
+      item.props.barGradient.enabled = value
+    })
+  }
+
+  const changeGradientDirection = (value: NonNullable<PropertiesModel['props']['barGradient']>['direction']) => {
+    updateAll((item) => {
+      item.props.barGradient.direction = value
+    })
+  }
+
+  const changeGradientColor = (type: 'startColor' | 'endColor', color: RgbaColor | string) => {
+    updateAll((item) => {
+      item.props.barGradient[type] = typeof color === 'string' ? color : ''
+    })
+  }
+
+  const changeMaxValue = (value: string | null) => {
     updateAll((model) => {
       model.props.maxValue = value !== '' ? value : null
     })
@@ -211,6 +239,17 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
         </>
       )}
       <hr className={styles.divider} />
+      {!usesGraphValueConditions && (
+        <>
+          <BarGradientOptions
+            gradient={model.props.barGradient}
+            onEnabledChange={changeGradientEnabled}
+            onDirectionChange={changeGradientDirection}
+            onColorChange={changeGradientColor}
+          />
+          <hr className={styles.divider} />
+        </>
+      )}
       <GraphPropertyDropdown
         label={I18n.t('reports.builder.graph.properties.legendPosition')}
         options={positionOptions}
@@ -327,6 +366,60 @@ interface AxisOptionsProps {
   options: AxisDisplayOptions []
   changeHandler: (type: string, e: CheckboxChangeEvent) => void
 }
+
+interface BarGradientOptionsProps {
+  gradient: NonNullable<PropertiesModel['props']['barGradient']>
+  onEnabledChange: (value: boolean) => void
+  onDirectionChange: (value: NonNullable<PropertiesModel['props']['barGradient']>['direction']) => void
+  onColorChange: (type: 'startColor' | 'endColor', color: RgbaColor | string) => void
+}
+
+const BarGradientOptions: React.FC<BarGradientOptionsProps> = ({
+  gradient,
+  onEnabledChange,
+  onDirectionChange,
+  onColorChange,
+}) => (
+  <Space orientation="vertical" className="w-100">
+    <Checkbox
+      checked={gradient.enabled}
+      onChange={e => onEnabledChange(e.target.checked)}
+      className="font-normal"
+    >
+      {I18n.t('shared.reports_bar_gradient_enabled')}
+    </Checkbox>
+    {gradient.enabled && (
+      <>
+        <Typography.Text>{I18n.t('shared.reports_bar_gradient_start_color')}</Typography.Text>
+        <ColorPicker
+          getValueInHexFormat
+          value={gradient.startColor}
+          onChange={color => onColorChange('startColor', color)}
+        />
+        <Typography.Text>{I18n.t('shared.reports_bar_gradient_end_color')}</Typography.Text>
+        <ColorPicker
+          getValueInHexFormat
+          value={gradient.endColor}
+          onChange={color => onColorChange('endColor', color)}
+        />
+        <Typography.Text>{I18n.t('shared.reports_bar_gradient_direction')}</Typography.Text>
+        <Select
+          size="small"
+          value={gradient.direction}
+          onChange={onDirectionChange}
+          getPopupContainer={(triggerNode: HTMLElement) => triggerNode.parentNode as HTMLElement}
+          className="w-100"
+        >
+          {gradientDirectionOptions.map(option => (
+            <Select.Option key={option.value} value={option.value}>
+              {option.label}
+            </Select.Option>
+          ))}
+        </Select>
+      </>
+    )}
+  </Space>
+)
 
 const AxisOptions: React.FC<AxisOptionsProps> = ({ model, options, changeHandler }) => (
   <Space orientation="vertical">

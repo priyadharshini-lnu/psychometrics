@@ -19,6 +19,10 @@ interface ExternalConfig {
 export default interface Assessment {
   id: number
   name: string
+  owner?: {
+    id: number | string
+    name: string | null
+  } | null
   reportIds: number[]
   category: string
   assessmentId: number
@@ -81,4 +85,5 @@ export default interface Assessment {
   occupationConditionSetId: string | null
   occupationConditionSetName: string | null
   dimensionHasOccupations: boolean
+  tenantId?: number | null
 }

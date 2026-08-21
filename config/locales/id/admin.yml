@@ -103,6 +103,7 @@ id:
     ai_scoring_approval_stale_description: Pembaruan konfigurasi sejak eksekusi terakhir mungkin telah mengubah skor. Lakukan perhitungan ulang untuk memperbarui skor menggunakan pengaturan terbaru.
     ai_scoring_approval_stale_title: Skor Mungkin Sudah Tidak Aktual
     ai_scoring_approvals: Persetujuan Penilaian AI
+    ai_scoring_errors_label: Kesalahan Penilaian AI
     ai_scoring_refresh_score: Perbarui Skor
     ai_scoring_refresh_score_confirm_description: Ini akan menjalankan kembali penilaian AI untuk penilaian ini menggunakan konfigurasi terbaru. Apakah Anda yakin?
     ai_scoring_refresh_score_confirm_title: Memperbarui Skor AI?
@@ -122,6 +123,12 @@ id:
     alt_text_long: Melebihi batas maksimum 100 karakter.
     api_keys: Kunci API
     api_keys_form_title: Kunci API
+    appearance: Penampilan
+    appearance_dark: Gelap
+    appearance_dark_theme: Tema gelap
+    appearance_light: Lampu
+    appearance_light_theme: Tema terang
+    appearance_system: Sistem
     application: Aplikasi
     application_add: Tambahkan Aplikasi
     application_name: Nama Aplikasi
@@ -131,7 +138,6 @@ id:
     application_settings_at_least_one_url_required: Harap aktifkan setidaknya satu entri URL sebelum mengaktifkan daftar putih URL.
     application_settings_confirm_delete_ip: Apakah Anda yakin ingin menghapus alamat IP ini?
     application_settings_confirm_delete_url: Apakah Anda yakin ingin menghapus URL ini?
-    application_settings_edit_ip_address: Edit Alamat IP / Rentang CIDR
     application_settings_enable_ip_whitelisting: Aktifkan Daftar Putih IP
     application_settings_enable_url_whitelisting: Aktifkan Daftar Putih URL
     application_settings_invalid_ip_format: Alamat IP atau format CIDR tidak valid
@@ -195,6 +201,8 @@ id:
     assessor_add_subject_modal_subject: Subjek
     assessor_add_subject_modal_subject_placeholder: Mencari Subjek..
     assessor_add_subject_modal_title: Tambahkan subjek
+    assessor_assessment_drawer_title: Rincian Penilaian
+    assessor_assessment_id: ID Penilaian Asesor
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Pilih Penilaian
     assessor_assessment_name: Penilaian Penilai
     assessor_assessments: Penilaian Penilai
@@ -345,9 +353,15 @@ id:
     campaign_assessment_modals_update_occupation_condition_set_select: Pilih Kumpulan Kondisi Pekerjaan
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Kumpulan Kondisi Pekerjaan telah diperbarui dengan sukses
     campaign_assessment_modals_update_occupation_condition_set_title: Perbarui Kumpulan Kondisi Pekerjaan
+    campaign_dashboard_instructions_label: Petunjuk Dasbor Kampanye
+    campaign_dashboard_instructions_save: Petunjuk Penyimpanan
+    campaign_dashboard_instructions_save_error: Gagal menyimpan petunjuk dasbor kampanye.
+    campaign_dashboard_instructions_save_success: Petunjuk dasbor kampanye berhasil disimpan.
     campaign_factors: Faktor Kampanye
     campaign_id_placeholder: Masukkan ID kampanye
     campaign_name: Nama Kampanye
+    campaign_name_translations: Terjemahan Nama Kampanye
+    campaign_name_translations_fetch_error: Terjadi kesalahan saat mengambil terjemahan nama kampanye.
     campaign_report_generate_modal_subtitle: Pilih bahasa yang diperlukan untuk setiap laporan
     campaign_report_id: ID Laporan Kampanye
     campaign_results_export_details: Hasil yang dihasilkan oleh artefak AI dalam kampanye
@@ -419,6 +433,7 @@ id:
     category: Kategori
     cell_save_msg: Perubahan yang valid akan disimpan secara otomatis begitu Anda keluar dari sel setelah mengedit.
     change_reason: Alasan perubahan
+    change_report_dates_message: Apakah Anda ingin mengubah rentang tanggal laporan?
     change_score: skor yang diubah
     change_score_log: Catatan Perubahan Skor
     characters: karakter
@@ -513,6 +528,7 @@ id:
     created_successfully: Asisten AI berhasil dibuat.
     current: Arus
     current_job_role: Peran Pekerjaan Saat Ini
+    current_locale: Lokasi Saat Ini
     custom_formula: Rumus Kustom
     custom_message_description: Pesan ini dapat dikirim ke siapa saja yang berpartisipasi dalam penilaian
     custom_message_name: Pesan Kustom
@@ -663,7 +679,7 @@ id:
     dimensions_import_modal_import_dimension: Dimensi Impor
     dimensions_import_modal_import_scheduled: Impor terjadwal
     dimensions_import_modal_operation: Operasi
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Pilih pemilik
     dimensions_import_modal_owner_select: Pilih pemilik
     dimensions_import_modal_select_json: Pilih file JSON
@@ -680,6 +696,7 @@ id:
     disable_dp: Jangan izinkan pemrosesan data lebih lanjut
     disable_proctoring: Nonaktifkan Pengawasan
     disable_report_download: Menonaktifkan pengunduhan laporan
+    disable_transcript_download: Nonaktifkan Unduhan Transkrip
     disallow_lead_assessor_moderation: Larang Moderasi oleh Penilai Utama
     disallow_lead_assessor_moderation_info: Skor akan dihitung secara otomatis berdasarkan semua formulir yang dikirimkan oleh penilai, dan penilai utama tidak dapat mengubahnya dari layar moderasi
     discard_all_questions: Reset Semua Pertanyaan
@@ -831,10 +848,13 @@ id:
     feature_flags_ai_group: Fitur Kecerdasan Buatan
     feature_flags_communication_group: Komunikasi
     feature_flags_platform_group: Fitur Platform
+    feature_flags_superadmin_group: Penentuan Lokasi Penyewa
+    feature_glint_ui_description: Sajikan pengalaman peserta dengan sistem desain Glint.
     feature_global_skills_description: Akses perpustakaan keterampilan global untuk penilaian.
     feature_idp_description: Aktifkan Perencanaan Pengembangan Pribadi untuk peserta
     feature_not_available: Fitur ini tidak tersedia
     feature_sms_notification_description: Aktifkan pemberitahuan SMS untuk undangan kampanye dan pengingat.
+    feature_superadmin_tenant_scoping_description: Saat dinonaktifkan, kueri superadmin tidak akan dibatasi pada data klien ini.
     fields_level: Tingkat
     fields_level_description: Deskripsi Tingkat
     fields_level_name: Nama Tingkat
@@ -866,6 +886,7 @@ id:
     form_datasheet: Lembar data
     form_datasheet_columns: Kolom Lembar Data
     form_end_date: Tanggal akhir
+    form_fields_to_display: Kolom yang akan ditampilkan
     form_include_all_datasheet_columns: Sertakan Semua Kolom Datasheet
     form_name: Nama
     form_no_assessment_selected: Belum ada penilaian yang ditambahkan. Klik "Tambahkan" untuk memulai.
@@ -890,8 +911,11 @@ id:
     generate_transcription: Buat Transkrip
     generated_at_time: Dihasilkan pada %{time}
     generated_value: Nilai yang Dihasilkan
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI dinonaktifkan oleh klien.
     global_skills: Keterampilan Global
     global_skills_disabled_by_client: Keterampilan Global dinonaktifkan oleh klien
+    go_back: Kembali
     grant_type_label: Jenis Hibah
     grant_type_name: oauth_grant_type
     graphic: Grafik
@@ -906,6 +930,7 @@ id:
     header_logout_title: Apakah Anda yakin ingin logout.
     hide_all: Sembunyikan Semua
     hide_middle_scores: Sembunyikan skor tengah
+    hide_participant_video: Sembunyikan Video Peserta
     high: Tinggi
     hogan: Hogan
     hogan_assessment: Penilaian Hogan
@@ -1251,6 +1276,7 @@ id:
     key_id: ID Kunci
     keywords: Kata kunci
     keywords_placeholder: Masukkan kata kunci yang dipisahkan dengan koma.
+    language: Bahasa
     language_id: Kode Bahasa
     last_name_required: Nama belakang diperlukan
     lead_assessment: Penilaian Prospek
@@ -1488,6 +1514,8 @@ id:
     owner_resource_norm: norma
     owner_resource_report: laporan
     owner_resource_report_bundle: bundel laporan
+    page_load_failed: Halaman ini tidak dapat dimuat.
+    page_load_failed_hint: Aplikasi mungkin telah diperbarui — muat ulang untuk melanjutkan.
     parsed_dependencies_help: Dependensi yang diurai untuk pengguna yang digunakan oleh Asisten AI untuk pembuatan hasil artefak
     parsed_dependencies_title: Dependensi yang diurai
     parsed_dependencies_view: Lihat dependensi yang diurai
@@ -1949,6 +1977,7 @@ id:
     piped_text_modal_title: Tambahkan Teks Piped
     piped_text_modal_user_reports: Laporan Pengguna
     piped_text_modal_users: Pengguna
+    platform_owner: Platform
     playground: Taman bermain anak
     playground_info: Uji artefak Anda dengan data sampel untuk melihat pratinjau hasil yang dihasilkan.
     playground_placeholder: Masukkan data pengujian
@@ -2179,6 +2208,38 @@ id:
     raw_score: Nilai Mentah
     reason_for_changes: Alasan perubahan
     recents: Terbaru
+    record_history_changes: perubahan
+    record_history_changes_in_request: perubahan dalam permintaan ini
+    record_history_date_range_invalid: Tanggal akhir harus sama atau setelah tanggal mulai.
+    record_history_date_range_required: Silakan pilih rentang tanggal.
+    record_history_date_range_too_large: Rentang tanggal tidak boleh melebihi %{days} hari. Harap persempit pencarian Anda.
+    record_history_filter_actor: Saring berdasarkan email aktor
+    record_history_filter_field: Filter berdasarkan bidang yang diubah
+    record_history_filter_type: Saring berdasarkan jenis catatan
+    record_history_id_required: Silakan masukkan ID catatan
+    record_history_include_related: Sertakan catatan terkait.
+    record_history_last_30_days: 30 hari terakhir
+    record_history_last_7_days: 7 hari terakhir
+    record_history_no_results: Tidak ditemukan riwayat perubahan untuk catatan ini.
+    record_history_no_results_for: Tidak ditemukan perubahan untuk
+    record_history_records_changed: catatan berubah
+    record_history_related_tag: Terkait
+    record_history_request_banner: Menampilkan semua perubahan dalam permintaan
+    record_history_request_label: 'Meminta:'
+    record_history_request_or_record_required: Masukkan UUID permintaan atau pilih tipe dan ID catatan.
+    record_history_request_uuid: UUID Permintaan
+    record_history_request_uuid_placeholder: Masukkan UUID permintaan
+    record_history_revision_failed: Gagal memuat status rekaman untuk versi ini.
+    record_history_search_hint: Masukkan UUID permintaan, atau pilih tipe catatan dan ID catatan untuk melacak riwayat perubahan.
+    record_history_select_type: Pilih jenis rekaman
+    record_history_state_at_version: Status pada versi
+    record_history_system: Sistem
+    record_history_title: Riwayat Perubahan Rekaman
+    record_history_type_required: Silakan pilih jenis catatan.
+    record_history_version: Versi
+    record_history_view_audit_log: Lihat di Log Audit
+    record_history_view_full: Lihat riwayat lengkap
+    record_history_view_request: Lihat permintaan
     record_id: Rekor ID
     recordings: Rekaman
     reflection_questions: Pertanyaan Refleksi
@@ -2294,6 +2355,7 @@ id:
     report_no_evaluations: Laporan untuk %{user} tidak tersedia - tidak ada evaluasi yang diterima.
     report_not_generated: Laporan untuk %{user} memenuhi persyaratan ketersediaan tetapi belum dibuat. Silakan buat laporan terlebih dahulu.
     report_on_hold: Laporan untuk %{user} saat ini ditangguhkan
+    report_owner: Pemilik
     report_pdf_status: Laporan Status PDF
     report_review_abort_qc: Membatalkan QC
     report_review_approve: Setuju
@@ -2314,10 +2376,12 @@ id:
     report_types:
       active_clients_projects: Klien dan Proyek Aktif
       campaign_factor_scores: Skor Faktor Kampanye
+      campaign_user_creation: Pembuatan Pengguna Kampanye
       client_assessment_counts: Penilaian Klien Itu Penting
       hogan_usage_report: Penggunaan Penilaian Hogan
       json_data_report: Laporan Data JSON
       pearson_usage_report: Penggunaan Asesmen Pearson
+      proctoring_sessions: Sesi Pengawasan
       report_usage_summary: Ringkasan Penggunaan Laporan
       saville_usage_report: Penggunaan Saville Assessment
       user_access_review: Peninjauan Akses Pengguna
@@ -2377,6 +2441,17 @@ id:
     role_project_admin: Administrator Proyek
     role_superadmin: Super Admin
     run: Lari
+    runtime_configuration_invalid_json_object: runtime_configuration harus berupa objek JSON yang valid.
+    runtime_configuration_invalid_parameter: bukan parameter yang dapat diperbarui saat runtime
+    runtime_parameter_date_range_required: Silakan pilih Tanggal Mulai dan Tanggal Akhir.
+    runtime_parameter_editable_section_title: Rentang tanggal
+    runtime_parameter_filter_column: Menyaring
+    runtime_parameter_locked_section_title: Filter yang disertakan
+    runtime_parameter_modal_subtitle: Periksa detailnya dan perbarui rentang tanggal jika diperlukan.
+    runtime_parameter_modal_title: Laporan Hasil Pengoperasian
+    runtime_parameter_not_set: Tidak disediakan
+    runtime_parameter_submit_button: Jalankan Sekarang
+    runtime_parameter_value_column: Nilai
     saml_idp_certificate_available: Tersedia (klik untuk menyalin)
     saml_idp_certificate_label: Sertifikat
     saml_idp_entity_id_label: ID Entitas/Penerbit
@@ -2511,6 +2586,7 @@ id:
     scheduling_columns_start_time: Tanggal & Waktu
     scheduling_columns_subject: Subjek
     scheduling_columns_title: Titel
+    scheduling_columns_video_hidden_for_privacy: Video tersebut disembunyikan demi privasi kandidat.
     scheduling_columns_view_recording: Lihat Rekaman
     scheduling_errors_assessor_already_assigned: Penilai sudah ditugaskan untuk penilaian ini. Silakan pilih penilaian atau penilai lain.
     scheduling_errors_date_required: Silakan pilih tanggal
@@ -2600,6 +2676,12 @@ id:
     score: Skor
     score_approval_not_allowed_to_approve: Anda tidak diizinkan untuk menyetujui skor ini.
     score_approval_not_allowed_to_discard: Anda tidak diperbolehkan untuk membuang skor ini.
+    score_approval_reset: Atur ulang persetujuan
+    score_approval_reset_description: Ini akan mengembalikan status persetujuan menjadi tertunda. Skor tidak akan berubah. Tindakan ini tidak dapat dibatalkan.
+    score_approval_reset_not_allowed: Persetujuan skor ini tidak dapat direset dalam kondisi saat ini.
+    score_approval_reset_recompute_description: Tindakan ini akan mengatur ulang persetujuan, menghapus skor AI dari hasil pengguna, dan menghapus semua laporan yang telah dibuat. Tindakan ini tidak dapat dibatalkan.
+    score_approval_reset_success: Persetujuan skor telah direset.
+    score_approval_reset_title: Persetujuan pengaturan ulang skor?
     score_definition_placeholder: Masukkan definisi untuk tingkat skor ini.
     score_definitions: Definisi Skor
     score_max: Skor Maksimum
@@ -2831,6 +2913,7 @@ id:
     sheets_tabs_settings: Pengaturan
     show_all: Tampilkan Semua
     show_all_assessment_responses: Tampilkan Semua Tanggapan Penilaian
+    show_form_field_titles: Tampilkan judul kolom formulir
     show_middle_scores: Tampilkan lebih banyak skor untuk "%{count}" (opsional)...
     show_original: Tampilkan Asli
     show_submenu: Tampilkan Sub Menu
@@ -2948,7 +3031,14 @@ id:
     smtp_settings_user_name: Nama pengguna
     specialty_questions: Pertanyaan Khusus
     sso_email_mismatch: Anda saat ini masuk ke akun yang berbeda di penyedia identitas. Silakan keluar dari penyedia identitas Anda dan coba lagi.
+    sso_enforce_for: Terapkan SSO untuk
+    sso_enforce_for_all: Semua pengguna
+    sso_enforce_for_none: Tidak ada
+    sso_enforce_for_specific_domains: Domain spesifik
     sso_enforced: Menerapkan SSO
+    sso_enforced_domains: Domain yang Diberlakukan
+    sso_enforced_domains_hint: misalnya se.com (pencocokan persis) atau *.se.com (hanya subdomain)
+    sso_enforced_domains_placeholder: Masukkan domain dan tekan Enter.
     sso_label: SSO
     sso_not_enabled: SSO belum diaktifkan untuk klien ini
     sso_settings: Pengaturan SSO
@@ -3063,6 +3153,7 @@ id:
     success_title: Pusat penilaian dibuat
     success_update: Pengaturan Desain berhasil disimpan
     suitability_id: ID Kesesuaian
+    superadmin_tenant_scoping: Superadmin
     superadmin_use_root_domain: Super administrator harus masuk melalui domain utama
     switch_client: Klien Switch
     system_prompt: Prompt Sistem
@@ -3083,12 +3174,38 @@ id:
     taxonomy_title: Taksonomi Keterampilan
     template_and_campaign_required: Harap berikan template dan ID kampanye
     template_render_failed: Gagal merender templat
+    tenant_repair_confirm_message: 'Atur tenant_id ke %{new_tenant} pada %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Atur tenant_id menjadi null pada %{model} #%{id}?'
+    tenant_repair_confirm_title: Konfirmasi Pembaruan Penyewa
+    tenant_repair_correct: Benar
+    tenant_repair_current_tenant: Penyewa Saat Ini
+    tenant_repair_find_record: Temukan Rekaman
+    tenant_repair_global_tenant: global
+    tenant_repair_invalid_model: Tipe model tidak valid atau tidak dapat disewa.
+    tenant_repair_invalid_record_id: Masukkan ID catatan yang valid
+    tenant_repair_invalid_tenant_id: Masukkan ID penyewa positif yang valid atau biarkan kosong untuk menjadikannya null.
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Ketik untuk mencari...
+    tenant_repair_moved_from: 'Penyewa berubah:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ID Penyewa Baru
+    tenant_repair_preview_title: Pratinjau Rekaman
+    tenant_repair_request_failed: Permintaan gagal
+    tenant_repair_resolved_tenant: Masalah Penyewa Terselesaikan
+    tenant_repair_success: Data penyewa berhasil diperbarui.
+    tenant_repair_title: Koreksi Penyewa
+    tenant_repair_update: Memperbarui
+    tenant_repair_will_set_null: Akan mengatur tenant_id menjadi null
+    tenant_repair_will_set_value: Akan mengatur tenant_id menjadi %{value}
     test_generate: Uji Menghasilkan
     test_render: Uji Render
     test_render_tooltip: Uji templat prompt Anda dengan data kampanye untuk memeriksa apa yang akan dikirim ke asisten AI.
     text_danger: Teks (bahaya)
     text_success: Teks (sukses)
     text_warning: Teks (peringatan)
+    themes:
+      marsh-dark: Rawa Gelap
+      marsh-light: Cahaya Rawa
     this_field_is_required: Kolom ini wajib diisi.
     threesixity_advance_settings_campaign_template: Templat Kampanye
     threesixity_advance_settings_factors: Faktor
@@ -3177,7 +3294,6 @@ id:
       title: Terjemahan
     translations_export_failure_msg: Kesalahan saat mengekspor terjemahan
     translations_export_success_msg: Mengekspor tindakan pembangunan yang sedang berlangsung.
-    tte: TTE
     type_by_skill: Berdasarkan Keterampilan
     type_by_skill_type: Berdasarkan Jenis Keterampilan
     type_default: Default

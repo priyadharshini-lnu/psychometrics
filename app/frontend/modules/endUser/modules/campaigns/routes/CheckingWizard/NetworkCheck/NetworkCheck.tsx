@@ -8,6 +8,7 @@ import styles from './NetworkCheck.less'
 import { CheckList } from '../CheckList'
 import { CheckListStatus } from '../interfaces'
 import { Progress } from '../Progress'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 interface Props {
   nextStep: () => void
@@ -38,7 +39,7 @@ export const NetworkCheck: React.FC<Props> = ({ nextStep, config }) => {
 
   return (
     <>
-      <title>{`${I18n.t('checking_wizard.network_check.title')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('checking_wizard.network_check.title')} />
       <Col
         className={cardStyles.container}
         lg={{ span: 8, offset: 8 }}

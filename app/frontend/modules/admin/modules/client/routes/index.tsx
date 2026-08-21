@@ -1,54 +1,44 @@
-import { lazy } from 'react'
-import Campaign from './Campaigns'
+import { routes as campaignRoutes } from '~/modules/admin/modules/campaigns/routes/Campaign/routes'
+import { lazyRoute } from '~/utils/lazyRoute'
+import { routes as clientRoutes } from './Client/routes'
+import { routes as projectRoutes } from './Client/routes/Project/routes'
 
-const Project = lazy(() => import('~/modules/admin/modules/client/routes/Client/routes/Project'))
-
-const ReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ReportPreview'))
-const ExternalReportPreview = lazy(() => import('~/modules/admin/modules/campaigns/routes/ExternalReportPreview'))
-const Client = lazy(() => import('./Client'))
-const ClientList = lazy(() => import('./ClientList'))
-const LicenseUsageList = lazy(() => import('./LicenseList/LicenseUsage'))
+const page = () => import('../pages')
+// The report previews carry the reports engine, so they stay out of the campaign section's chunk.
+const reportPreviewPage = () => import('~/modules/admin/modules/campaigns/routes/ReportPreview/pages')
 
 const routes = [
   {
     path: 'clients',
-    element: <ClientList />,
+    lazy: lazyRoute(page, m => m.ClientList),
   },
   {
     path: 'clients/:clientId',
-    element: <Client />,
+    lazy: lazyRoute(page, m => m.Client),
+    children: clientRoutes,
   },
   {
     path: 'clients/:clientId/licenses/:licenseId/license_usages',
-    element: <LicenseUsageList />,
-  },
-  {
-    path: 'clients/:clientId/*',
-    element: <Client />,
+    lazy: lazyRoute(page, m => m.LicenseUsageList),
   },
   {
     path: 'projects/:projectId',
-    element: <Project />,
+    lazy: lazyRoute(page, m => m.Project),
+    children: projectRoutes,
   },
   {
     path: 'projects/:projectId/new_campaigns/:campaignId/user_reports/:id',
-    element: <ReportPreview />,
+    lazy: lazyRoute(reportPreviewPage, m => m.ReportPreview),
   },
   {
     path: 'projects/:projectId/new_campaigns/:campaignId/external_user_report/:id',
-    element: <ExternalReportPreview />,
+    lazy: lazyRoute(reportPreviewPage, m => m.ExternalReportPreview),
   },
   {
+    // The splat stays because a threesixty campaign renders its own descendant Routes under this url.
     path: 'projects/:projectId/new_campaigns/:campaignId/*',
-    element: <Campaign />,
-    // loader: async ({ request, params }) => fetch(
-    //   `/administration/projects/${params.projectId}/new_campaigns/${params.campaignId}.json`,
-    //   { signal: request.signal },
-    // ),
-  },
-  {
-    path: 'projects/:projectId/*',
-    element: <Project />,
+    lazy: lazyRoute(page, m => m.Campaign),
+    children: campaignRoutes,
   },
 ]
 

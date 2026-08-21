@@ -82,7 +82,7 @@ export function CropImageModal ({
       open={show}
       onOk={() => cropImage()}
       confirmLoading={loading}
-      maskClosable={!loading}
+      mask={{ closable: !loading }}
       cancelButtonProps={{ disabled: loading }}
       onCancel={() => {
         setScale(0.5)

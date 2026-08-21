@@ -126,7 +126,8 @@ export const SubFactorsForm: React.FC<Props> = ({
               }}
               placeholder={I18n.t('admin.factors_form_search_factors')}
               options={initialFactorOptionRef.current
-                ? initialFactorOptionRef.current : factors.map(({ id, name }) => ({ value: id, label: name }))}
+                ? (initialFactorOptionRef.current as { value: string; label: string | undefined }[])
+                : factors.map(({ id, name }) => ({ value: id, label: name }))}
               loading={isFactorsLoading('fetch')}
               notFoundContent={isFactorsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             />

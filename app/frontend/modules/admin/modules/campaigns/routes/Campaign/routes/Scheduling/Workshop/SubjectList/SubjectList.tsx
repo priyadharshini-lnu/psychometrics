@@ -23,6 +23,7 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { SafeHTML } from '~/components/SafeHTML'
 import { AddSubjectForm } from './AddSubjectForm'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 const { Text } = Typography
@@ -371,7 +372,7 @@ const getActionsMenuProps = ({
             I18n.t('admin.scheduling_subjects_re_enroll_success', { subject_email: subject?.user?.email }),
           )
         }).catch((errors) => {
-          message.error(errors?.base[0]?.title || I18n.t('common.errors.something_wrong'))
+          message.error(baseErrorMessage(errors) || I18n.t('common.errors.something_wrong'))
         })
       },
     })

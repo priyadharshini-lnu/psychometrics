@@ -4,6 +4,7 @@ import {
   Typography, message,
 } from 'antd'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { useNavigate } from 'react-router-dom'
 import { CopyOutlined, PlusOutlined, MinusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { DateTimeWithZone, ResourceAvatar } from '~/glint'
@@ -225,6 +226,7 @@ const DateFilters = () => {
 const ParticipantsTable: React.FC = () => {
   const { resource } = useResourceContext<ParticipantSubject>()
   const [filterOptions, setFilterOptions] = useState<FilterOptions>()
+  const navigate = useNavigate()
 
   const campaignFilter = resource.getFilteredValue('campaign_id_in')
   const workshopFilter = resource.getFilteredValue('workshop_id_in')
@@ -261,11 +263,10 @@ const ParticipantsTable: React.FC = () => {
       onRowChange={record => ({
         onClick: () => {
           const workshop = record as ParticipantSubject
-          const { projectId, id: campaignId } = workshop?.campaign
-          const { workshopId } = record
-          const basePath = `/admin/projects/${projectId}/new_campaigns/${campaignId}`
-          const url = `${basePath}/scheduling/assessment_center/${workshopId}`
-          window.location.href = url
+          const campaign = workshop?.campaign
+          if (!campaign) return
+          const basePath = `/admin/projects/${campaign.projectId}/new_campaigns/${campaign.id}`
+          navigate(`${basePath}/scheduling/assessment_center/${record.workshopId}`)
         },
         className: styles.clickableRow,
       })}

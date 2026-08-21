@@ -14,6 +14,7 @@ module Api
     include GeoRestriction
     include ::Administration::Impersonation
     include ::Administration::HandoffRedirect
+    include ::Administration::SessionEnforcement
 
     def siem_log_impersonation_event(target_user, role)
       super(target_user, current_user, role)
@@ -31,6 +32,7 @@ module Api
     prepend_before_action :validate_requests_schema
     prepend_before_action :set_request_related_current_attributes
     before_action :set_current_attributes
+    before_action :enforce_root_domain_api_isolation
     before_action :ensure_project
     before_action :ensure_campaign
     # Setting up additional fields for custom actions in json_api response

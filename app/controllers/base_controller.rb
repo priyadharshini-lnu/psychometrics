@@ -68,9 +68,7 @@ class BaseController < ActionController::Base
     return if @current_project.nil? && request.controller_class.to_s == 'Users::UnlocksController'
     return if @current_project.nil? && request.controller_class.to_s == 'Users::SamlSessionsController'
 
-    unless @current_project
-      return redirect_to root_url(subdomain: Settings.subdomain)
-    end
+    raise ActionController::RoutingError, 'Not Found' unless @current_project
 
     Current.project = @current_project
     @current_client = @current_project.client
@@ -217,7 +215,10 @@ class BaseController < ActionController::Base
     respond_to do |f|
       f.html do
         flash[:notice] = t('errors.try_again')
-        redirect_back(fallback_location: root_path)
+
+        referer = request.referer
+        redirect_url = Utility::Url.safe_internal_url?(referer) ? referer : root_path
+        redirect_to Utility::Url.with_query_params(redirect_url, notice: t('errors.csrf_retry'))
       end
       f.js { render(:error, locals: { message: t('errors.invalid_token') }) }
     end

@@ -18,6 +18,7 @@ module Api
             attribute[:ai_translation].maybe(:bool)
             attribute[:enhance_with_ai].maybe(:bool)
             attribute[:ai_content_analysis].maybe(:bool)
+            attribute[:superadmin_tenant_scoping].maybe(:bool)
           end
         end
       end

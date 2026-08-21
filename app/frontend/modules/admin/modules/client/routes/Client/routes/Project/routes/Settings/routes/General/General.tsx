@@ -8,6 +8,7 @@ import {
 } from '~/modules/admin/modules/client/core/projectGeneralSettings'
 import ResourceForm from '~/components/ResourceForm'
 import { useResources } from '~/hooks/useResources/useResources'
+import { CampaignDashboardInstructions } from './CampaignDashboardInstructions'
 
 const { I18n } = window
 const { availableLocales } = I18n
@@ -50,8 +51,8 @@ export const General: React.FC = () => {
   }, [project])
 
   return (
-    <Row justify="space-between" className="pl">
-      <Col sm={24} md={16} xl={12} xxl={10}>
+    <Row justify="space-between" className="pl" gutter={[24, 24]}>
+      <Col sm={24} md={12} xl={12} xxl={10}>
         <ResourceForm
           resourceName="projects"
           resource={project}
@@ -104,12 +105,16 @@ export const General: React.FC = () => {
               <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
                 <Input />
               </Form.Item>
+
               <Button type="primary" htmlType="submit" className="mb-16">
                 {I18n.t('admin.projects_general_settings_save_changes')}
               </Button>
             </>
           )}
         </ResourceForm>
+      </Col>
+      <Col sm={24} md={12} xl={12} xxl={12}>
+        <CampaignDashboardInstructions />
       </Col>
     </Row>
   )

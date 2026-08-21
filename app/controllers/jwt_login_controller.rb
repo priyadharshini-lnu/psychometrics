@@ -34,11 +34,10 @@ class JwtLoginController < ApplicationController
 
     if resolved_token[:token_reuse_detected]
       token_reuse_result = resolved_token[:token_reuse_detected]
-      if token_reuse_result[:return_url].blank?
-        return render(plain: I18n.t('shared.authentication_failed'), status: :unauthorized)
-      end
-
-      return redirect_to(token_reuse_result[:return_url], allow_other_host: true)
+      return redirect_to_token_reuse_return_url(
+        token_reuse_result[:return_url],
+        token_reuse_result[:application]
+      )
     end
 
     error_type = resolved_token[:error]
@@ -47,5 +46,16 @@ class JwtLoginController < ApplicationController
     end
 
     render plain: I18n.t('shared.authentication_failed'), status: :unauthorized
+  end
+
+  private
+
+  def redirect_to_token_reuse_return_url(return_url, application)
+    return render(plain: I18n.t('shared.authentication_failed'), status: :unauthorized) if return_url.blank?
+
+    result = Jwt::Sso::ValidateReturnUrl.call(return_url: return_url, application: application)
+    return render(plain: I18n.t('shared.return_url_not_whitelisted'), status: :bad_request) unless result[:ok]
+
+    redirect_to(result[:ok], allow_other_host: true)
   end
 end

@@ -82,7 +82,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
               )
             }
 
-            return I18n.t('admin.tte')
+            return I18n.t('admin.platform_owner')
           }}
           width={300}
         />

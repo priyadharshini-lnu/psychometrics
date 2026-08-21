@@ -31,7 +31,7 @@ const exitButtonStyle: React.CSSProperties = {
   display: 'flex',
   alignItems: 'center',
   position: 'absolute',
-  right: 0,
+  insetInlineEnd: 0,
   top: 0,
   bottom: 0,
   margin: 0,

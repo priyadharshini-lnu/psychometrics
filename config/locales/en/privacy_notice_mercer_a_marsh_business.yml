@@ -1,0 +1,10 @@
+---
+en:
+  privacy_notice:
+    mercer_a_marsh_business: |-
+      <!--
+        PLACEHOLDER - NOT LEGAL TEXT, DO NOT PUBLISH.
+        The Mercer, a Marsh business privacy notice has not been written yet. Legal replaces
+        this whole comment with the approved HTML; until then the site keeps rendering
+        privacy_notice.current, whatever Settings.privacy_notice.version is set to.
+      -->

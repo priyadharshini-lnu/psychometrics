@@ -81,7 +81,7 @@ const Flow = (props) => {
       okText="Save"
       onCancel={cancel}
       closable={false}
-      maskClosable={false}
+      mask={{ closable: false }}
       keyboard={false}
       focusable={{ trap: false }}
     >

@@ -206,6 +206,20 @@ export const ScoreReview = () => {
     })
   }
 
+  const handleResetApproval = () => {
+    memberAction({
+      id,
+      method: 'post',
+      action: 'reset_approval',
+      body: {},
+    }).then(() => {
+      message.success(I18n.t('admin.score_approval_reset_success'))
+      fetchSingle({ id })
+    }).catch((error) => {
+      message.error(error?.error || error?.base?.[0]?.title)
+    })
+  }
+
   const showStaleBanner = scoreApproval.resultStale
 
   const nextQuestion = (questionId) => {
@@ -301,24 +315,43 @@ export const ScoreReview = () => {
               <Button type="text" style={{ padding: 0 }} icon={<LeftOutlined />} onClick={() => navigate(-1)}>
                 {I18n.t('shared.back')}
               </Button>
-              {allowApprove && scoreApproval.allowBulkApproveScores && (
-                <Flex gap={8}>
+              <Flex gap={8}>
+                {scoreApproval.allowReset && (
                   <Popconfirm
-                    title={I18n.t('admin.discard_all_questions_title')}
-                    description={I18n.t('admin.discard_all_questions_description')}
-                    onConfirm={discardAll}
+                    title={I18n.t('admin.score_approval_reset_title')}
+                    description={
+                      ['approver_approved', 'auto_approved'].includes(scoreApproval.approvalStatus)
+                        ? I18n.t('admin.score_approval_reset_recompute_description')
+                        : I18n.t('admin.score_approval_reset_description')
+                    }
+                    onConfirm={handleResetApproval}
                     okText={I18n.t('shared.ok')}
                     cancelText={I18n.t('shared.cancel')}
                   >
-                    <Button icon={<ReloadOutlined />}>
-                      {I18n.t('admin.discard_all_questions')}
+                    <Button danger icon={<ReloadOutlined />}>
+                      {I18n.t('admin.score_approval_reset')}
                     </Button>
                   </Popconfirm>
-                  <Button type="primary" onClick={approveAll}>
-                    {I18n.t('admin.approve_all_questions')}
-                  </Button>
-                </Flex>
-              )}
+                )}
+                {allowApprove && scoreApproval.allowBulkApproveScores && (
+                  <>
+                    <Popconfirm
+                      title={I18n.t('admin.discard_all_questions_title')}
+                      description={I18n.t('admin.discard_all_questions_description')}
+                      onConfirm={discardAll}
+                      okText={I18n.t('shared.ok')}
+                      cancelText={I18n.t('shared.cancel')}
+                    >
+                      <Button icon={<ReloadOutlined />}>
+                        {I18n.t('admin.discard_all_questions')}
+                      </Button>
+                    </Popconfirm>
+                    <Button type="primary" onClick={approveAll}>
+                      {I18n.t('admin.approve_all_questions')}
+                    </Button>
+                  </>
+                )}
+              </Flex>
             </Flex>
             <Card
               classNames={{ body: styles.headerCard }}

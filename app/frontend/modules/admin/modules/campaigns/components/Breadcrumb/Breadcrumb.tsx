@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react'
 import { Breadcrumb as AntBreadcrumb, Tag } from 'antd'
+import { Link } from 'react-router-dom'
 import { Request, State } from '~/modules/admin/core/ui/breadcrumbs'
 import useTitle from '~/hooks/useTitle'
+import { useIsOwnedPath } from '~/components/AdminShell/ownedPaths'
 import styles from './styles.less'
+import { displayName } from '~/utils/branding'
 
 interface Crumb {
   link?: (state: State) => string
@@ -16,19 +19,19 @@ interface Props {
   state: State
 }
 
-const { I18n } = window
-
 // FYI: if we have to add nested breadcrumbs later, we can extract `crumbs` into redux state
 // and provide two action creators: `pushCrumbs([...])`, `replaceCrumbs([...])`
 const Breadcrumb: React.FC<Props> = ({
   request, crumbs, fetch, state,
 }) => {
+  const isOwned = useIsOwnedPath()
+
   useEffect(() => {
     if (request) fetch(request)
   }, [JSON.stringify(request)])
 
   const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
-  crumbsForTitle.push(`${I18n.t('frontend.lighthouse_app')}`)
+  crumbsForTitle.push(displayName())
   useTitle({ title: crumbsForTitle.join(' - ') })
 
   const breadcrumbItems = crumbs.map((crumb) => {
@@ -57,15 +60,21 @@ const Breadcrumb: React.FC<Props> = ({
       </span>
     ) : label
 
+    if (!crumb.link) return { title: titleContent }
+
+    // Several apps mount this breadcrumb, each with its own router — only a path that router owns can be pushed.
+    const href = crumb.link(state)
+
     return {
-      title: crumb.link ? (
-        <a
-          className={styles.breadcrumbLink}
-          href={crumb.link(state)}
-        >
+      title: isOwned(href) ? (
+        <Link className={styles.breadcrumbLink} to={href}>
+          {titleContent}
+        </Link>
+      ) : (
+        <a className={styles.breadcrumbLink} href={href}>
           {titleContent}
         </a>
-      ) : titleContent,
+      ),
     }
   })
 

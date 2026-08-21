@@ -20,6 +20,8 @@ module Jwt
       end
 
       def call
+        return broadcast(:ok, nil) if target_type.blank?
+
         campaign = Campaign.visible_to_end_user.find_by(id: campaign_id, project_id: participant.project_id)
         return broadcast(:error, :campaign_not_found) unless campaign
 

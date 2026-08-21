@@ -50,7 +50,7 @@ describe 'Users' do
         **ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token
       HEREDOC
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
@@ -102,7 +102,7 @@ describe 'Users' do
       description 'Creates a new user and adds to the campaigns specified along with \\
 the campaign\'s default assessments and reports.'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewUser' }, required: true
 
@@ -401,7 +401,7 @@ the campaign\'s default assessments and reports.'
       operationId 'UpdateUser'
       tags 'Users'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :'X-USER-ID-TYPE', in: :header, type: :string, required: false,
@@ -585,7 +585,7 @@ the campaign\'s default assessments and reports.'
       description 'Update user assessments and reports'
       tags 'Users'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
@@ -661,7 +661,7 @@ the campaign\'s default assessments and reports.'
       description 'Update user assessments and reports'
       tags 'Users'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string

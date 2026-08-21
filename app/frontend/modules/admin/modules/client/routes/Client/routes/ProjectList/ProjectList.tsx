@@ -122,7 +122,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
         pagination={false}
         scroll={{ x: 'max-content' }}
         rowKey={row => row.id}
-        sticky={{ offsetHeader: 50 }}
+        sticky
       >
         <Column
           title={I18n.t('common.column.id')}

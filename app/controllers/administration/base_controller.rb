@@ -24,8 +24,21 @@ module Administration
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     before_action :init_state
+    after_action :detect_unrendered_flash, if: -> { Rails.env.local? }
 
     private
+
+    # Shell pages render no flash, so anything written here vanishes; fail loudly instead of silently.
+    # view_context, not helpers: only the former carries the controller ivars react_shell? reads.
+    def detect_unrendered_flash
+      return if flash.empty?
+      return unless view_context.react_shell?
+
+      message = "Flash written on a React shell page and never rendered: #{flash.keys.join(', ')}"
+      raise message if Rails.env.test?
+
+      Rails.logger.warn(message)
+    end
 
     def user_not_authorized
       audit! :user_not_authorized, current_user, payload: params, outcome: :failed,

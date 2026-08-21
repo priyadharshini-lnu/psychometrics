@@ -15,6 +15,7 @@ import { Statuses, UserAssessment } from '~/modules/endUser/modules/campaigns/co
 import { DirectionalNavigateBackIcon, ViewsContainer, DirectionalArrowIcon } from '~/glint'
 import styles from './AssessmentsContainer.less'
 import { useIsProctored } from '~/hooks/useProctoringState'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Title } = Typography
 const { I18n } = window
@@ -92,12 +93,9 @@ export const AssessmentsContainer = ({
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('campaign.dashboard_menu.campaign')} ${I18n.t('campaign.dashboard_menu.tasks')}
-          - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle
+        text={`${I18n.t('campaign.dashboard_menu.campaign')} ${I18n.t('campaign.dashboard_menu.tasks')}`}
+      />
       {assessmentCenterIdFromUrl && (
         <AssessmentCardContainer className="pt-0 pb-0">
           <Button

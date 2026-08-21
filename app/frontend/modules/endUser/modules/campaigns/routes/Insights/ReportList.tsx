@@ -9,6 +9,7 @@ import {
 import _ from 'lodash'
 import cs from 'classnames'
 import { DownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { getLocalizedLanguageName } from '~/utils/locales'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import { MediaQueryContext } from '~/glint'
 import bg from './media/Background2.png'
@@ -182,7 +183,7 @@ const DownloadReportInMultipleLocales = ({ report, close }) => {
                   <img src={bg} alt={`Report for ${locale}`} width={100} height={100} />
                 )}
                 <Typography.Text style={{ marginTop: '8px' }}>
-                  {I18n.t(`languages_localized.${formattedLocale(locale)}`)}
+                  {getLocalizedLanguageName(formattedLocale(locale))}
                 </Typography.Text>
                 <a
                   href="#"

@@ -39,17 +39,19 @@ module Communications
       end
 
       def self.extract_names(communication, project_campaign)
-        [
-          communication.client&.name,
-          communication.project&.name,
-          project_campaign&.name
-        ]
+        Mobility.with_locale(I18n.locale) do
+          [
+            communication.client&.name,
+            communication.project&.name,
+            project_campaign&.name
+          ]
+        end
       end
 
       def self.add_workshop_rows(sheet:, workshops:, client_name:, project_name:, campaign_name:)
         workshops&.each do |workshop|
           slot_datetime = workshop.start_time.strftime('%Y-%m-%d %H:%M')
-          assessment_center_group_name = workshop.campaign_assessment_group&.name
+          assessment_center_group_name = Mobility.with_locale(I18n.locale) { workshop.campaign_assessment_group&.name }
           assessment_center_name = workshop.name
           workshop.workshop_subjects.includes(:user).find_each do |subject|
             campaign_user = CampaignUser.find_by(user_id: subject.user_id, campaign_id: workshop.campaign_id)

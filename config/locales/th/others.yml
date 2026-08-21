@@ -890,6 +890,7 @@ th:
         export_campaign_datasheet: แผ่นข้อมูลแคมเปญการส่งออก
         export_campaign_factors: ปัจจัยแคมเปญการส่งออก
         export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
+        export_campaign_translations: การแปลแคมเปญส่งออก
         export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
         export_development_action_translations: การแปลการดําเนินการพัฒนาการส่งออก
         export_development_actions: การดําเนินการพัฒนาการส่งออก
@@ -917,6 +918,7 @@ th:
         import_assessors: ผู้ประเมินนําเข้า
         import_campaign_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
         import_campaign_factors: นําเข้าปัจจัยแคมเปญ
+        import_campaign_translations: นำเข้าการแปลแคมเปญ
         import_client_assessors: นำเข้าผู้ประเมินลูกค้า
         import_datasheet: นําเข้าเอกสารข้อมูล
         import_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนานําเข้า
@@ -958,6 +960,7 @@ th:
         super_admin_assessment_raw_result_export: การส่งออกผลลัพธ์ดิบของผู้ดูแลระบบขั้นสูง
         super_admin_datasheet_export: การส่งออกเอกสารข้อมูลผู้ดูแลระบบขั้นสูง
         super_admin_external_assessment_export: การส่งออกการประเมินภายนอกของผู้ดูแลระบบขั้นสูง
+        superadmin_record_change_history: ประวัติการเปลี่ยนแปลงบันทึก
         threesixty_campaign_export_completion_status: สถานะการส่งออกแคมเปญที่เสร็จสมบูรณ์
         threesixty_campaign_export_scores: การส่งออกคะแนนแคมเปญ Threesixty
         workshop_status_export: การส่งออกสถานะศูนย์ประเมิน
@@ -1151,7 +1154,7 @@ th:
       read_only: โหมดอ่านเท่านั้น คุณไม่สามารถเปลี่ยนแปลงผลลัพธ์ได้
       save: บันทึก
       submissionFailedAlert:
-        description: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ โปรดรีเฟรชหน้าแล้วลองอีกครั้ง หากไม่ได้ผล โปรดติดต่อฝ่ายสนับสนุนผ่านแชทสดหรือ mte.surveys@mercer.com
+        description: ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ โปรดรีเฟรชหน้าแล้วลองอีกครั้ง หากไม่ได้ผล โปรดติดต่อฝ่ายสนับสนุนผ่านแชทสดหรือ %{support_email}
         title: คําขอล่าสุดล้มเหลว
       submit: ส่ง
       warning: คำเตือน
@@ -1990,7 +1993,7 @@ th:
 
           รหัสผ่านของคุณถูกเปลี่ยนแล้ว
 
-          หากคุณไม่ได้ส่งคําขอนี้ โปรดติดต่อฝ่ายสนับสนุนทันทีที่ mte.support@mercer.com
+          หากคุณไม่ได้ส่งคําขอนี้ โปรดติดต่อฝ่ายสนับสนุนทันทีที่ %{support_contact_email}
         regards: |-
           ขอแสดงความนับถือ
           ทีมงานประภ Lighthouse
@@ -2135,6 +2138,7 @@ th:
       max_generation_limit: เกินขีดจํากัดการสร้างสูงสุด โปรดติดต่อผู้ดูแลระบบของคุณ
     assessments:
       timed_out: คุณจะไม่สามารถทำการทดสอบ %{assessment_name} ได้ เนื่องจากเวลาของการทดสอบหมดลงแล้ว
+    csrf_retry: โปรดลองอีกครั้ง
     equal_to_current_password: ต้องแตกต่างจากรหัสผ่านปัจจุบัน
     equal_to_email: ต้องแตกต่างจากอีเมล
     error: ข้อผิดพลาด
@@ -2345,7 +2349,6 @@ th:
     error_warning: อ๊ะ มีบางอย่างผิดพลาดกับการประเมินของคุณ โปรดติดต่อฝ่ายสนับสนุน
     hogan:
       cannot_start: คุณไม่สามารถเริ่มการประเมินโฮแกนได้ในตอนนี้ โปรดลองหลังจากผ่านไปสองสามนาที
-    lighthouse_app: ประภาคารเมอร์เซอร์
     login: เข้าสู่ระบบ
     maintenance:
       notification: ประภ Lighthouseจะหยุดทํางานเพื่อบํารุงรักษาตามกําหนดเวลาใน 60 วินาที
@@ -2965,8 +2968,6 @@ th:
     zh-HK: จีน (ฮ่องกง)
     zh-Hant: จีน - ตัวเต็ม
     zh-TW: จีน (ไต้หวัน)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: ชื่อแคมเปญ
     status_updated_at: การอัปเดตสถานะล่าสุด
@@ -3027,12 +3028,11 @@ th:
           invalid: ขอบเขตต้องเป็น 'openid'
   mailer:
     copyright:
-      text: Lighthouse. สงวนลิขสิทธิ์
+      text: "© %{year} %{display_name}. สงวนลิขสิทธิ์"
     footer:
       regards: ขอแสดงความนับถือ
-      team_name: ทีมประภ Lighthouse
+      team_name: ทีมประภ %{display_name}
       technical_support: หากมีปัญหาทางเทคนิคใด ๆ กรุณาติดต่อเราที่%{email} และเราจะตอบกลับภายใน 24 ชั่วโมง
-    from: องค์กรผู้มีความสามารถ
     idp:
       manager_unread_comments:
         body: |-
@@ -3089,8 +3089,6 @@ th:
         instructions: คลิกลิงก์ด้านล่างเพื่อลงชื่อเข้าใช้ประภ Lighthouse
         signin_link: ลิงค์ลงชื่อเข้าใช้
       subject: ลิงค์ลงชื่อเข้าใช้สำหรับ Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: บัญชีของคุณถูกปิดใช้งานเนื่องจากไม่มีการใช้งาน
       warning: บัญชีของคุณจะถูกปิดใช้งานในไม่ช้าเนื่องจากไม่มีการใช้งาน

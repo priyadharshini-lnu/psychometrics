@@ -55,6 +55,7 @@ id:
     copied_successfully: Telah disalin dengan sukses
     copied_to_clipboard: Disalin ke clipboard
     copy: Salin
+    copyright: "© %{year} %{display_name}. Semua hak dilindungi undang-undang."
     create: Buat
     created_at: Dibuat di
     created_by: Dibuat oleh
@@ -181,6 +182,29 @@ id:
     remove: Menghapus
     removed: Dihapus
     replace: Ganti
+    reports:
+      ai_rationale_evidence:
+        all_factors: Semua Faktor
+        factor_label: Faktor-faktor
+        hide_evidence: Sembunyikan Bukti
+        hide_rationale: Sembunyikan Alasan
+        no_data: Tidak ada penjelasan atau data bukti terkait AI yang tersedia untuk pertanyaan yang dipilih.
+        no_question_selected: Silakan pilih pertanyaan untuk menampilkan penjelasan dan bukti dari AI.
+        question_label: Pertanyaan
+        select_question: Pilih pertanyaan
+      ai_transcript:
+        no_data: Tidak ada data transkrip yang tersedia untuk pertanyaan yang dipilih.
+        no_question_selected: Silakan pilih pertanyaan untuk menampilkan transkripnya.
+        question_label: Pertanyaan
+        select_question: Pilih pertanyaan
+    reports_bar_gradient_direction: Arah gradien
+    reports_bar_gradient_direction_bottom_to_top: Dari bawah ke atas
+    reports_bar_gradient_direction_left_to_right: Dari kiri ke kanan
+    reports_bar_gradient_direction_right_to_left: Dari kanan ke kiri
+    reports_bar_gradient_direction_top_to_bottom: Dari atas ke bawah
+    reports_bar_gradient_enabled: Aktifkan gradien
+    reports_bar_gradient_end_color: Warna akhir
+    reports_bar_gradient_start_color: Warna awal
     reports_show_values_inside_bar: Tampilkan nilai di dalam batang
     reports_value_label_position: Posisi label nilai
     reports_value_label_position_center: Tengah

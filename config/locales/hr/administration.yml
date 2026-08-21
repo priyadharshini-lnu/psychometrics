@@ -15,11 +15,6 @@ hr:
         simple_design:
           design: Dizajn
           or: Ili
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prijava uspješna.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ hr:
           modal_title: Postavke odobravanja bodovanja
           remove_modal_success: 'Postavka odobrenja za ID procjene: %{assessmentId} uspješno je izbrisana'
           remove_modal_text: 'Jeste li sigurni da želite izbrisati ovo podešavanje za ID procjene: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Uspješno ste prijavljeni kao %{name}
+      bulk_import_translations:
+        details: Predložak za prijevod kampanje
+        download_template: Preuzmi predložak
+        errors:
+          blank_campaign_id: 'Redak %{row}: ID kampanje ne može biti prazan'
+          campaign_not_found: 'Redak %{row}: Kampanja %{id} nije pronađena u ovom projektu'
+          generic: Nešto je pošlo po zlu. Pokušajte ponovno.
+          invalid_csv_format: 'Nevažeći CSV format: %{message}'
+          invalid_locales: 'Nevažeći jezični stupci: %{locales}'
+          missing_required_columns: 'Nedostaju obavezni stupci: %{columns}'
+          must_be_csv: Datoteka mora biti .csv datoteka
+          save_failed: 'Prijevod kampanje %{id} za %{locale} nije mogao biti spremljen: %{message}'
+        file_label: Datoteka za prijevod
+        import_started: Uvoz prijevoda u tijeku. Molimo provjerite napredak u obavijestima.
+        instructions_intro: Preuzmite CSV predložak, ažurirajte nazive kampanja u bilo kojim jezičnim stupcima koje želite, a zatim prenesite dovršenu datoteku.
+        instructions_title: Upute
+        menu_label: Uvoz prijevoda
+        template_started: Izvoz predloška u tijeku. Molimo provjerite napredak u obavijestima.
+        title: Uvoz prijevoda naziva kampanje
+        upload_file: Prenesi datoteku
       validations:
         dates:
           end: mora biti nakon datuma početka
@@ -1937,7 +1949,6 @@ hr:
         export: Izvoz prijevoda
         import: Uvoz prijevoda
         import_descr: Pogledajte funkciju Izvoz da biste izdvojili predložak koji se ovdje može koristiti za uvoz.
-    tte: TTE
     update: Ažurirati
     users:
       create:

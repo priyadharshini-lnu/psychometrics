@@ -1,82 +1,46 @@
-import { Smtp } from './Smtp'
-import { SamlTabbed } from './Saml'
-import { Integrations } from './Integrations'
-import { General } from './General'
-import { Webhooks } from './Webhooks'
-import { Design } from './Design'
-import { Profile } from './Profile'
-import { SecuritySettings } from './Security'
-import { Privacy } from './Privacy'
-import { Registration } from './Registration'
-import { Assessments } from './Assessments'
-import { MettlScheduleRecords } from './MettlScheduleRecords'
-import { Features } from './Features'
-import { Applications, ApplicationDetails } from './Applications'
+import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { RootState } from '~/modules/admin/core/rootReducers'
+import { lazyRoute } from '~/utils/lazyRoute'
+
+const page = () => import('~/modules/admin/modules/client/pages')
+
+const FIRST_TAB_BY_PERMISSION = [
+  { permission: 'manageProjectGeneralSettings', tab: 'general' },
+  { permission: 'manageProjectSmtpSettings', tab: 'smtp' },
+  { permission: 'manageProjectSamlSetting', tab: 'saml' },
+  { permission: 'manageProjectIntegrations', tab: 'integrations' },
+  { permission: 'manageProjectSecuritySettings', tab: 'security' },
+  { permission: 'manageProjectWebhooks', tab: 'webhooks' },
+  { permission: 'manageProjectPrivacySetting', tab: 'privacy' },
+]
+
+const SettingsIndex = () => {
+  const permissions = useSelector((state: RootState) => state.currentUser.permissions)
+  const firstTab = FIRST_TAB_BY_PERMISSION.find(({ permission }) => permissions[permission])
+
+  return firstTab ? <Navigate to={firstTab.tab} replace /> : null
+}
 
 export const routes = [
-  {
-    path: '/smtp',
-    component: <Smtp />,
-  },
-  {
-    path: '/saml',
-    component: <SamlTabbed />,
-  },
-  {
-    path: '/integrations',
-    component: <Integrations />,
-  },
+  { index: true, element: <SettingsIndex /> },
+  { path: 'smtp', lazy: lazyRoute(page, m => m.Smtp) },
+  { path: 'saml', lazy: lazyRoute(page, m => m.SamlTabbed) },
+  { path: 'integrations', lazy: lazyRoute(page, m => m.Integrations) },
   {
     path: 'integrations/mettl_schedule_records',
-    component: <MettlScheduleRecords />,
+    lazy: lazyRoute(page, m => m.MettlScheduleRecords),
   },
-  {
-    path: '/security',
-    component: <SecuritySettings />,
-  },
-  {
-    path: '/general',
-    component: <General />,
-  },
-  {
-    path: '/webhooks',
-    component: <Webhooks />,
-  },
-
-  {
-    path: '/design',
-    component: <Design />,
-  },
-  {
-    path: '/profile',
-    component: <Profile />,
-  },
-  {
-    path: '/registration',
-    component: <Registration />,
-  },
-  {
-    path: '/privacy',
-    component: <Privacy />,
-  },
-  {
-    path: '/assessments',
-    component: <Assessments />,
-  },
-  {
-    path: '/features',
-    component: <Features />,
-  },
-  {
-    path: '/applications',
-    component: <Applications />,
-  },
-  {
-    path: '/applications/:applicationId',
-    component: <ApplicationDetails />,
-  },
-  {
-    path: '/applications/:applicationId/*',
-    component: <ApplicationDetails />,
-  },
+  { path: 'security', lazy: lazyRoute(page, m => m.SecuritySettings) },
+  { path: 'general', lazy: lazyRoute(page, m => m.General) },
+  { path: 'webhooks', lazy: lazyRoute(page, m => m.Webhooks) },
+  { path: 'design', lazy: lazyRoute(page, m => m.Design) },
+  { path: 'profile', lazy: lazyRoute(page, m => m.Profile) },
+  { path: 'registration', lazy: lazyRoute(page, m => m.Registration) },
+  { path: 'privacy', lazy: lazyRoute(page, m => m.Privacy) },
+  { path: 'assessments', lazy: lazyRoute(page, m => m.Assessments) },
+  { path: 'features', lazy: lazyRoute(page, m => m.Features) },
+  { path: 'applications', lazy: lazyRoute(page, m => m.Applications) },
+  { path: 'applications/:applicationId', lazy: lazyRoute(page, m => m.ApplicationDetails) },
+  { path: 'applications/:applicationId/*', lazy: lazyRoute(page, m => m.ApplicationDetails) },
 ]

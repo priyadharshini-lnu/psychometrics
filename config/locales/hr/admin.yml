@@ -103,6 +103,7 @@ hr:
     ai_scoring_approval_stale_description: Ažuriranja konfiguracije od posljednjeg pokretanja mogla su promijeniti rezultat. Ponovno ocijenite kako biste ga ažurirali koristeći najnovija postavljanja.
     ai_scoring_approval_stale_title: Rezultat možda nije ažuran
     ai_scoring_approvals: AI ocjenjivanje odobrenja
+    ai_scoring_errors_label: Pogreške u bodovanju umjetne inteligencije
     ai_scoring_refresh_score: Osvježi ocjenu
     ai_scoring_refresh_score_confirm_description: Ovo će ponovno pokrenuti AI bodovanje za ovu procjenu koristeći najnoviju konfiguraciju. Jeste li sigurni?
     ai_scoring_refresh_score_confirm_title: Osvježi AI rezultate?
@@ -122,6 +123,12 @@ hr:
     alt_text_long: Premašuje maksimalno ograničenje od 100 znakova.
     api_keys: API ključevi
     api_keys_form_title: API ključ
+    appearance: Izgled
+    appearance_dark: Tamno
+    appearance_dark_theme: Tamna tema
+    appearance_light: Svjetlo
+    appearance_light_theme: Svijetla tema
+    appearance_system: Sustav
     application: Primjena
     application_add: Dodaj aplikaciju
     application_name: Naziv aplikacije
@@ -131,7 +138,6 @@ hr:
     application_settings_at_least_one_url_required: Omogućite barem jedan unos URL-a prije omogućavanja stavljanja URL-ova na bijelu listu
     application_settings_confirm_delete_ip: Jeste li sigurni da želite izbrisati ovu IP adresu?
     application_settings_confirm_delete_url: Jeste li sigurni da želite izbrisati ovaj URL?
-    application_settings_edit_ip_address: Uređivanje IP adrese / CIDR raspona
     application_settings_enable_ip_whitelisting: Omogući bijeli popis IP adresa
     application_settings_enable_url_whitelisting: Omogući stavljanje URL-ova na bijelu listu
     application_settings_invalid_ip_format: Neispravna IP adresa ili CIDR format
@@ -195,6 +201,8 @@ hr:
     assessor_add_subject_modal_subject: Naslov
     assessor_add_subject_modal_subject_placeholder: Pretraživanje ispitanika..
     assessor_add_subject_modal_title: Dodavanje ispitanika
+    assessor_assessment_drawer_title: Detalji procjene
+    assessor_assessment_id: ID procjene procjenitelja
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Odaberite procjenu
     assessor_assessment_name: Procjena procjenitelja
     assessor_assessments: Procjene procjenitelja
@@ -345,9 +353,15 @@ hr:
     campaign_assessment_modals_update_occupation_condition_set_select: Odaberite skup uvjeta za zanimanje
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Skup uvjeta za okupaciju je uspješno ažuriran.
     campaign_assessment_modals_update_occupation_condition_set_title: Ažuriraj skup stanja zanimanja
+    campaign_dashboard_instructions_label: Upute za nadzornu ploču kampanje
+    campaign_dashboard_instructions_save: Spremi upute
+    campaign_dashboard_instructions_save_error: Spremanje uputa za nadzornu ploču kampanje nije uspjelo
+    campaign_dashboard_instructions_save_success: Upute za nadzornu ploču kampanje uspješno su spremljene
     campaign_factors: Čimbenici kampanje
     campaign_id_placeholder: Unesite ID kampanje
     campaign_name: Naziv kampanje
+    campaign_name_translations: Prijevodi naziva kampanje
+    campaign_name_translations_fetch_error: Pogreška pri dohvaćanju prijevoda naziva kampanje
     campaign_report_generate_modal_subtitle: Odaberite potreban jezik za svako izvješće
     campaign_report_id: ID izvještaja kampanje
     campaign_results_export_details: Kampanja AI artefakti generirali rezultate
@@ -419,6 +433,7 @@ hr:
     category: Kategorija
     cell_save_msg: Valjane promjene automatski se spremaju čim napustite ćeliju nakon uređivanja.
     change_reason: Promijeni razlog
+    change_report_dates_message: Želite li promijeniti raspon datuma izvješća?
     change_score: promijenjen rezultat
     change_score_log: Prijavi promjenu ocjene
     characters: likovi
@@ -513,6 +528,7 @@ hr:
     created_successfully: AI asistent je uspješno stvoren.
     current: Trenutno
     current_job_role: Trenutna radna uloga
+    current_locale: Trenutna lokacija
     custom_formula: Prilagođena formula
     custom_message_description: Ova se poruka može poslati svima koji sudjeluju u procjeni
     custom_message_name: Prilagođena poruka
@@ -663,7 +679,7 @@ hr:
     dimensions_import_modal_import_dimension: Dimenzija uvoza
     dimensions_import_modal_import_scheduled: Uvoz zakazan
     dimensions_import_modal_operation: Aktivnost
-    dimensions_import_modal_owner_global: TTE (globalno)
+    dimensions_import_modal_owner_global: Globalno
     dimensions_import_modal_owner_input_validation: Molimo odaberite vlasnika
     dimensions_import_modal_owner_select: Odaberite vlasnika
     dimensions_import_modal_select_json: Odaberite JSON datoteku
@@ -680,6 +696,7 @@ hr:
     disable_dp: Ne dopustite daljnju obradu podataka
     disable_proctoring: Onemogući nadzor
     disable_report_download: Onemogući preuzimanje izvješća
+    disable_transcript_download: Onemogući preuzimanje transkripta
     disallow_lead_assessor_moderation: Onemogući moderaciju glavnog procjenitelja
     disallow_lead_assessor_moderation_info: Rezultat će se automatski izračunati na temelju svih predanih obrazaca ocjenjivača, a glavni ocjenjivač ga ne može promijeniti na zaslonu za moderaciju.
     discard_all_questions: Resetiraj sva pitanja
@@ -831,10 +848,13 @@ hr:
     feature_flags_ai_group: AI značajke
     feature_flags_communication_group: Komunikacija
     feature_flags_platform_group: Značajke platforme
+    feature_flags_superadmin_group: Određivanje opsega najmoprimca
+    feature_glint_ui_description: Renderirajte iskustvo sudionika pomoću Glint dizajnerskog sustava
     feature_global_skills_description: Pristupite globalnoj biblioteci vještina za procjene
     feature_idp_description: Omogućite planiranje individualnog razvoja za sudionike
     feature_not_available: Ova značajka nije dostupna
     feature_sms_notification_description: Omogućite SMS obavijesti za pozivnice i podsjetnike kampanje
+    feature_superadmin_tenant_scoping_description: Kada je onemogućeno, upiti superadministratora neće biti ograničeni na podatke ovog klijenta.
     fields_level: Razina
     fields_level_description: Opis razine
     fields_level_name: Naziv razine
@@ -866,6 +886,7 @@ hr:
     form_datasheet: Podatkovna tablica
     form_datasheet_columns: Stupci podatkovne tablice
     form_end_date: Datum završetka
+    form_fields_to_display: Polja za prikaz
     form_include_all_datasheet_columns: Uključi sve stupce podatkovne tablice
     form_name: Ime
     form_no_assessment_selected: Još nisu dodane procjene. Kliknite "Dodaj" za početak.
@@ -890,8 +911,11 @@ hr:
     generate_transcription: Generiraj transkripciju
     generated_at_time: Generirano u %{time}
     generated_value: Generirana vrijednost
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Klijent je onemogućio korisničko sučelje Glinta
     global_skills: Globalne vještine
     global_skills_disabled_by_client: Klijent onemogućuje globalne vještine
+    go_back: Nazad
     grant_type_label: Vrsta bespovratnih sredstava
     grant_type_name: oauth_grant_type
     graphic: Grafički
@@ -906,6 +930,7 @@ hr:
     header_logout_title: Jesi li siguran da želiš odjaviti se?
     hide_all: Sakrij sve
     hide_middle_scores: Sakrij srednje ocjene
+    hide_participant_video: Sakrij videozapis sudionika
     high: Visoko
     hogan: Hogan
     hogan_assessment: Hogan procjena
@@ -1251,6 +1276,7 @@ hr:
     key_id: Ključni ID
     keywords: Ključne riječi
     keywords_placeholder: Unesite ključne riječi odvojene zarezima.
+    language: Jezik
     language_id: ID jezika
     last_name_required: Prezime je obavezno
     lead_assessment: Procjena potencijalnih klijenata
@@ -1488,6 +1514,8 @@ hr:
     owner_resource_norm: norma
     owner_resource_report: izvješće
     owner_resource_report_bundle: paket izvješća
+    page_load_failed: Ovu stranicu nije bilo moguće učitati.
+    page_load_failed_hint: Aplikacija je možda ažurirana - ponovno učitajte za nastavak.
     parsed_dependencies_help: Raščlanjene ovisnosti za korisnika koje koristi AI Assistant za generiranje rezultata artefakata
     parsed_dependencies_title: Raščlanjene ovisnosti
     parsed_dependencies_view: Prikaz raščlanjenih ovisnosti
@@ -1949,6 +1977,7 @@ hr:
     piped_text_modal_title: Dodavanje teksta s cijevima
     piped_text_modal_user_reports: Korisnička izvješća
     piped_text_modal_users: Korisnici
+    platform_owner: Platform
     playground: Igralište
     playground_info: Testirajte artefakt s oglednim podacima da biste pregledali generirane rezultate.
     playground_placeholder: Unos testnih podataka
@@ -2179,6 +2208,38 @@ hr:
     raw_score: Sirovi rezultat
     reason_for_changes: Razlog promjena
     recents: Nedavni
+    record_history_changes: promjene
+    record_history_changes_in_request: promjene u ovom zahtjevu
+    record_history_date_range_invalid: Datum završetka mora biti na ili nakon datuma početka.
+    record_history_date_range_required: Molimo odaberite raspon datuma.
+    record_history_date_range_too_large: Raspon datuma ne može biti dulji od %{days} dana. Molimo suzite pretraživanje.
+    record_history_filter_actor: Filtriraj po e-mailu glumca
+    record_history_filter_field: Filtriraj po promijenjenom polju
+    record_history_filter_type: Filtriraj po vrsti zapisa
+    record_history_id_required: Molimo unesite ID zapisa
+    record_history_include_related: Uključi povezane zapise
+    record_history_last_30_days: Posljednjih 30 dana
+    record_history_last_7_days: Posljednjih 7 dana
+    record_history_no_results: Nije pronađena povijest promjena za ovaj zapis.
+    record_history_no_results_for: Nisu pronađene promjene za
+    record_history_records_changed: zapisi su promijenjeni
+    record_history_related_tag: Povezano
+    record_history_request_banner: Prikazuju se sve promjene u zahtjevu
+    record_history_request_label: 'Zahtjev:'
+    record_history_request_or_record_required: Unesite UUID zahtjeva ili odaberite vrstu zapisa i ID.
+    record_history_request_uuid: Zahtjev za UUID
+    record_history_request_uuid_placeholder: Unesite UUID zahtjeva
+    record_history_revision_failed: Nije uspjelo učitavanje stanja zapisa za ovu verziju.
+    record_history_search_hint: Unesite UUID zahtjeva ili odaberite vrstu zapisa i ID zapisa za praćenje povijesti promjena.
+    record_history_select_type: Odaberite vrstu zapisa
+    record_history_state_at_version: Stanje u verziji
+    record_history_system: Sustav
+    record_history_title: Povijest promjena zapisa
+    record_history_type_required: Molimo odaberite vrstu zapisa
+    record_history_version: Verzija
+    record_history_view_audit_log: Prikaži u zapisnicima revizije
+    record_history_view_full: Prikaži cijelu povijest
+    record_history_view_request: Prikaži zahtjev
     record_id: ID zapisa
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2294,6 +2355,7 @@ hr:
     report_no_evaluations: Izvještaj za %{user} nije dostupan – nisu primljene nikakve procjene.
     report_not_generated: Izvještaj za %{user} ispunjava uvjete dostupnosti, ali još nije generiran. Molimo vas da prvo generirate izvještaj.
     report_on_hold: Izvještaj za %{user} trenutno je na čekanju
+    report_owner: Vlasnik
     report_pdf_status: Prijavi PDF status
     report_review_abort_qc: Prekinite kontrolu kvalitete
     report_review_approve: Odobriti
@@ -2314,10 +2376,12 @@ hr:
     report_types:
       active_clients_projects: Aktivni klijenti i projekti
       campaign_factor_scores: Rezultati faktorske analize kampanje
+      campaign_user_creation: Izrada korisnika kampanje
       client_assessment_counts: Procjena klijenta je važna
       hogan_usage_report: Upotreba Hoganove procjene
       json_data_report: Izvješće o JSON podacima
       pearson_usage_report: Upotreba Pearsonovih testova
+      proctoring_sessions: Sesije nadzora
       report_usage_summary: Sažetak upotrebe izvještaja
       saville_usage_report: Upotreba Saville Assessmenta
       user_access_review: Pregled korisničkog pristupa
@@ -2377,6 +2441,17 @@ hr:
     role_project_admin: Administrator projekta
     role_superadmin: Super administrator
     run: Trči
+    runtime_configuration_invalid_json_object: runtime_configuration mora biti valjani JSON objekt
+    runtime_configuration_invalid_parameter: nije parametar koji se može ažurirati tijekom izvođenja
+    runtime_parameter_date_range_required: Molimo odaberite i datum početka i datum završetka
+    runtime_parameter_editable_section_title: Raspon datuma
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Uključeni filteri
+    runtime_parameter_modal_subtitle: Pregledajte detalje i po potrebi ažurirajte raspon datuma.
+    runtime_parameter_modal_title: Pokreni izvješće
+    runtime_parameter_not_set: Nije navedeno
+    runtime_parameter_submit_button: Pokreni sada
+    runtime_parameter_value_column: Vrijednost
     saml_idp_certificate_available: Dostupno (kliknite za kopiranje)
     saml_idp_certificate_label: Certifikat
     saml_idp_entity_id_label: ID subjekta/izdavatelj
@@ -2511,6 +2586,7 @@ hr:
     scheduling_columns_start_time: Datum i vrijeme
     scheduling_columns_subject: Naslov
     scheduling_columns_title: Naslov
+    scheduling_columns_video_hidden_for_privacy: Video je skriven radi privatnosti kandidata.
     scheduling_columns_view_recording: Pogledajte snimku
     scheduling_errors_assessor_already_assigned: Procjenitelj koji je već dodijeljen ovoj procjeni. Odaberite drugu procjenu ili procjenitelja.
     scheduling_errors_date_required: Molimo odaberite datum
@@ -2600,6 +2676,12 @@ hr:
     score: Rezultat
     score_approval_not_allowed_to_approve: Niste ovlašteni odobriti ovaj rezultat.
     score_approval_not_allowed_to_discard: Nije vam dopušteno odbaciti ovaj rezultat.
+    score_approval_reset: Poništi odobrenje
+    score_approval_reset_description: Ovim će se odobrenje vratiti na čekanje. Rezultati se neće promijeniti. Ova se radnja ne može poništiti.
+    score_approval_reset_not_allowed: Ovo odobrenje rezultata ne može se resetirati u trenutnom stanju.
+    score_approval_reset_recompute_description: Ovim će se resetirati odobrenje, ukloniti AI rezultate iz korisnikovih rezultata i izbrisati sva generirana izvješća. Ova se radnja ne može poništiti.
+    score_approval_reset_success: Odobrenje rezultata je resetirano.
+    score_approval_reset_title: Poništiti odobrenje rezultata?
     score_definition_placeholder: Unesite definiciju za ovu razinu bodovanja
     score_definitions: Definicije bodova
     score_max: Postigni maksimum
@@ -2831,6 +2913,7 @@ hr:
     sheets_tabs_settings: Postavke
     show_all: Prikaži sve
     show_all_assessment_responses: Prikaži sve odgovore na procjenu
+    show_form_field_titles: Prikaži naslove polja obrasca
     show_middle_scores: Prikaži %{count} više rezultata (po želji)...
     show_original: Prikaži izvorno
     show_submenu: Prikaži podizbornik
@@ -2948,7 +3031,14 @@ hr:
     smtp_settings_user_name: Korisničko ime
     specialty_questions: Posebna pitanja
     sso_email_mismatch: Prijavljeni ste na drugi račun kod pružatelja identiteta. Molimo odjavite se s pružatelja identiteta i pokušajte ponovno.
+    sso_enforce_for: Primijeni SSO za
+    sso_enforce_for_all: Svi korisnici
+    sso_enforce_for_none: Ništa
+    sso_enforce_for_specific_domains: Određene domene
     sso_enforced: Nametnite SSO
+    sso_enforced_domains: Provedene domene
+    sso_enforced_domains_hint: npr. se.com (točno podudaranje) ili *.se.com (samo poddomene)
+    sso_enforced_domains_placeholder: Unesite domenu(e) i pritisnite Enter
     sso_label: SSO
     sso_not_enabled: SSO nije omogućen za ovog klijenta
     sso_settings: Postavke SSO-a
@@ -3063,6 +3153,7 @@ hr:
     success_title: Stvoreni centri za procjenu
     success_update: Postavke dizajna uspješno su spremljene
     suitability_id: ID prikladnosti
+    superadmin_tenant_scoping: Superadministrator
     superadmin_use_root_domain: Superadministratori se moraju prijaviti putem glavne domene.
     switch_client: Prebaciti klijenta
     system_prompt: Upit sustava
@@ -3083,12 +3174,38 @@ hr:
     taxonomy_title: Taksonomija vještina
     template_and_campaign_required: Molimo vas da dostavite i predložak i ID kampanje
     template_render_failed: Nije uspio prikazati predložak
+    tenant_repair_confirm_message: 'Postaviti tenant_id na %{new_tenant} na %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Postaviti tenant_id na null na %{model} #%{id}?'
+    tenant_repair_confirm_title: Potvrdite ažuriranje najmoprimca
+    tenant_repair_correct: Ispravno
+    tenant_repair_current_tenant: Trenutni najmoprimac
+    tenant_repair_find_record: Pronađi zapis
+    tenant_repair_global_tenant: globalno
+    tenant_repair_invalid_model: Nevažeća ili nedostupna vrsta modela
+    tenant_repair_invalid_record_id: Unesite važeći ID zapisa
+    tenant_repair_invalid_tenant_id: Unesite važeći pozitivni ID najmoprimca ili ostavite prazno da biste ga postavili na null
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Upišite za pretraživanje...
+    tenant_repair_moved_from: 'promijenjen je najmoprimac:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ID novog najmoprimca
+    tenant_repair_preview_title: Pregled snimke
+    tenant_repair_request_failed: Zahtjev nije uspio
+    tenant_repair_resolved_tenant: Riješeni najmoprimac
+    tenant_repair_success: Najmoprimac je uspješno ažuriran.
+    tenant_repair_title: Ispravak za najmoprimce
+    tenant_repair_update: Ažurirati
+    tenant_repair_will_set_null: Postavit će se tenant_id na null
+    tenant_repair_will_set_value: Postavit će se tenant_id na %{value}
     test_generate: Testirajte generiranje
     test_render: Testni render
     test_render_tooltip: Testirajte svoj predložak prompta s podacima kampanje kako biste vidjeli što će biti poslano AI asistentu.
     text_danger: Tekst (opasnost)
     text_success: Tekst (uspjeh)
     text_warning: Tekst (upozorenje)
+    themes:
+      marsh-dark: Močvarna tama
+      marsh-light: Močvarno svjetlo
     this_field_is_required: Ovo polje je obavezno
     threesixity_advance_settings_campaign_template: Predložak kampanje
     threesixity_advance_settings_factors: Faktori
@@ -3177,7 +3294,6 @@ hr:
       title: Prijevodi
     translations_export_failure_msg: Pogreška prilikom izvoza prijevoda
     translations_export_success_msg: Izvoz razvojnih radnji u tijeku.
-    tte: TTE
     type_by_skill: Po vještini
     type_by_skill_type: Po vrsti vještine
     type_default: Zadano

@@ -55,6 +55,7 @@ zh-Hant:
     copied_successfully: 已成功复制
     copied_to_clipboard: 已复制到剪贴板
     copy: 复制
+    copyright: "© %{year} %{display_name}。版權所有。"
     create: 创建
     created_at: 建立於
     created_by: 建立者
@@ -181,6 +182,29 @@ zh-Hant:
     remove: 移除
     removed: 已移除
     replace: 替换
+    reports:
+      ai_rationale_evidence:
+        all_factors: 所有因素
+        factor_label: 因素
+        hide_evidence: 隱藏證據
+        hide_rationale: 隱藏理由
+        no_data: 針對所選問題，沒有可用的人工智慧原理或證據數據。
+        no_question_selected: 請選擇一個問題以顯示人工智慧的原理和證據。
+        question_label: 問題
+        select_question: 選擇一個問題
+      ai_transcript:
+        no_data: 所選問題沒有可用的記錄資料。
+        no_question_selected: 請選擇一個問題以顯示其文字稿。
+        question_label: 問題
+        select_question: 選擇一個問題
+    reports_bar_gradient_direction: 梯度方向
+    reports_bar_gradient_direction_bottom_to_top: 從下往上
+    reports_bar_gradient_direction_left_to_right: 從左到右
+    reports_bar_gradient_direction_right_to_left: 從右到左
+    reports_bar_gradient_direction_top_to_bottom: 從上到下
+    reports_bar_gradient_enabled: 啟用漸變
+    reports_bar_gradient_end_color: 最終顏色
+    reports_bar_gradient_start_color: 起始顏色
     reports_show_values_inside_bar: 在柱形图内显示数值
     reports_value_label_position: 值标签的位置
     reports_value_label_position_center: 中心

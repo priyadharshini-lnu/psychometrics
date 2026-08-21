@@ -1,0 +1,14 @@
+.panel {
+  inline-size: 420px;
+  max-block-size: calc(100vh - 160px);
+}
+
+.drawerPanel {
+  block-size: 100%;
+}
+
+// A flex child will not shrink below its content without this, so the list would push the panel instead of scrolling.
+.scroller {
+  min-block-size: 0;
+  overflow-y: auto;
+}

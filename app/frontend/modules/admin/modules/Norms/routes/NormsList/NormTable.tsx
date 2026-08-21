@@ -113,7 +113,7 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
                 {owner.name}
               </Link>
             ) : (
-              I18n.t('admin.tte')
+              I18n.t('admin.platform_owner')
             )
           )}
         />

@@ -1,3 +1,2 @@
-import ReportList from './ReportList'
-
-export default ReportList
+export * from './ReportList'
+export { default } from './ReportList'

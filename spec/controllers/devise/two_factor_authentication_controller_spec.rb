@@ -39,7 +39,9 @@ RSpec.describe Devise::TwoFactorAuthenticationController, type: :controller do
 
       it 'completes the two factor authentication' do
         put :update, params: { code: otp_code }
-        expect(flash[:notice]).to eq I18n.t('devise.two_factor_authentication.success')
+
+        expect(response).to redirect_to(:root)
+        expect(flash[:notice]).to be_nil
       end
     end
 

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
   Table, Input, Space, Pagination, Button, MenuProps, Typography, Image, Avatar, Skeleton, Row, Col,
-} from 'antd'
+} from '@thetalententerprise/glint'
+import { Add } from '@thetalententerprise/glint/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styles from './styles.less'
-import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { Client, ClientTR } from '~/modules/admin/modules/client/core/clients'
@@ -103,7 +103,7 @@ const ClientList: React.FC<Props> = ({
         scroll={{ x: 'max-content' }}
         loading={tableLoading}
         onChange={handleTableChange}
-        sticky={{ offsetHeader: 50 }}
+        sticky
       >
         <Column
           title={I18n.t('shared.id')}
@@ -255,7 +255,7 @@ const ClientList: React.FC<Props> = ({
                 openModal('ClientFormModal', { addClient: createResource, types, countries })
               }}
             >
-              <PlusOutlined />
+              <Add />
               {I18n.t('admin.create_client')}
             </Button>
           )}

@@ -124,6 +124,14 @@ module Administration
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :view, project_id: project_id)
     end
 
+    def export_campaign_translations?
+      manage_project?
+    end
+
+    def import_campaign_translations?
+      manage_project?
+    end
+
     def fetch_campaign_options?
       @user.is?(:superadmin) || @user.has_permission?(
         :campaigns, :view, project_id: project_id, campaign_id: campaign_id
@@ -136,6 +144,10 @@ module Administration
 
     def fetch_descriptions?
       has_permission?(:campaigns, :manage_options)
+    end
+
+    def fetch_name_translations?
+      has_permission?(:campaigns, :manage)
     end
 
     def update_campaign_options?

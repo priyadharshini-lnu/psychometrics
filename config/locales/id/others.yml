@@ -890,6 +890,7 @@ id:
         export_campaign_datasheet: Lembar Data Kampanye Ekspor
         export_campaign_factors: Faktor Kampanye Ekspor
         export_campaign_scorings: Ekspor Kampanye Scorings
+        export_campaign_translations: Terjemahan Kampanye Ekspor
         export_dashboard_as_file: Ekspor Dasbor sebagai file
         export_development_action_translations: Terjemahan Tindakan Pengembangan Ekspor
         export_development_actions: Aksi Pengembangan Ekspor
@@ -917,6 +918,7 @@ id:
         import_assessors: Penilai Impor
         import_campaign_ai_artifacts: Impor Artefak AI Kampanye
         import_campaign_factors: Impor Faktor Kampanye
+        import_campaign_translations: Impor Terjemahan Kampanye
         import_client_assessors: Impor Penilai Klien
         import_datasheet: Lembar Data Impor
         import_development_action_translations: Terjemahan Tindakan Pengembangan Impor
@@ -958,6 +960,7 @@ id:
         super_admin_assessment_raw_result_export: Ekspor Hasil Mentah Super Admin
         super_admin_datasheet_export: Ekspor Lembar Data Super Admin
         super_admin_external_assessment_export: Ekspor Penilaian Eksternal Super Admin
+        superadmin_record_change_history: Riwayat Perubahan Rekaman
         threesixty_campaign_export_completion_status: Status Penyelesaian Ekspor Kampanye Threesixty
         threesixty_campaign_export_scores: Ekspor Skor Kampanye Threesixty
         workshop_status_export: Ekspor Status Pusat Penilaian
@@ -1154,7 +1157,7 @@ id:
       read_only: Ini adalah mode 'Read only', Anda tidak dapat mengubah hasil apa pun.
       save: Simpan
       submissionFailedAlert:
-        description: Tidak dapat terhubung ke server. Silakan segarkan halaman dan coba lagi. Jika itu tidak berhasil, silakan hubungi dukungan melalui obrolan langsung atau mte.surveys@mercer.com
+        description: Tidak dapat terhubung ke server. Silakan segarkan halaman dan coba lagi. Jika itu tidak berhasil, silakan hubungi dukungan melalui obrolan langsung atau %{support_email}
         title: Permintaan Terakhir Gagal
       submit: Kirim
       warning: PERINGATAN
@@ -1997,7 +2000,7 @@ id:
 
           Kata sandi Anda telah diubah.
 
-          Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di mte.support@mercer.com
+          Jika Anda tidak mengajukan permintaan ini, segera hubungi Dukungan di %{support_contact_email}
         regards: |-
           Salam
           Tim Lighthouse
@@ -2142,6 +2145,7 @@ id:
       max_generation_limit: Batas pembuatan maksimum terlampaui, hubungi administrasi Anda.
     assessments:
       timed_out: Anda tidak akan dapat mengambil penilaian %{assessment_name} karena waktunya telah habis.
+    csrf_retry: Silakan coba lagi
     equal_to_current_password: Kata sandi baru harus berbeda dari kata sandi saat ini.
     equal_to_email: Kata sandi baru harus berbeda dari email.
     error: Kesalahan
@@ -2352,7 +2356,6 @@ id:
     error_warning: Ups, ada yang salah dengan penilaian Anda. Silakan hubungi dukungan.
     hogan:
       cannot_start: Anda tidak dapat memulai penilaian hogan sekarang. Silakan coba setelah beberapa menit.
-    lighthouse_app: Mercer Lighthouse
     login: Masuk
     maintenance:
       notification: Lighthouse akan mati untuk pemeliharaan terjadwal dalam 60 detik
@@ -2972,8 +2975,6 @@ id:
     zh-HK: Cina (Hong Kong)
     zh-Hant: Cina - Tradisional
     zh-TW: Cina (Taiwan)
-  languages_localized:
-    sl: Slovenia
   license_usage:
     campaign_name: Nama kampanye
     status_updated_at: Pembaruan status terakhir
@@ -3034,12 +3035,11 @@ id:
           invalid: Cakupan harus 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Hak cipta dilindungi
+      text: "© %{year} %{display_name}. Hak cipta dilindungi"
     footer:
       regards: Salam,
-      team_name: Tim Lighthouse
+      team_name: Tim %{display_name}
       technical_support: Untuk masalah teknis apa pun, silakan kirim email kepada kami di %{email} dan kami akan merespons dalam waktu 24 jam.
-    from: Perusahaan Bakat
     idp:
       manager_unread_comments:
         body: |-
@@ -3096,8 +3096,6 @@ id:
         instructions: Klik tautan di bawah ini untuk masuk ke lighthouse.
         signin_link: Tautan Masuk
       subject: Tautan masuk untuk Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Akun Anda telah dinonaktifkan karena tidak aktif
       warning: Akun Anda akan segera dinonaktifkan karena tidak aktif

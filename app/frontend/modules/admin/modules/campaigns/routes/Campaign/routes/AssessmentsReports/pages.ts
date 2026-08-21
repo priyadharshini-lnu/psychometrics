@@ -1,0 +1,5 @@
+export { default as AssessmentsReports } from '.'
+export { default as Manage } from './routes/Manage'
+export { Sequencing } from './routes/Sequencing'
+export { ReportApprovalSetting } from './routes/ReportApprovalSetting'
+export { AIScoringApprovalSetting } from './routes/AIScoringApprovalSetting'

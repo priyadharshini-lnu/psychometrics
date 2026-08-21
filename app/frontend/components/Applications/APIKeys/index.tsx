@@ -26,7 +26,7 @@ export const ApplicationAPIKeys: React.FC<Props> = ({ applicationId }) => {
 
   return (
     <Resource<APIKey, BaseMeta> config={config} name="api_keys">
-      <div className="pl">
+      <div>
         <APIKeysFilter openModal={() => openModal()} />
         <APIKeysTable openModal={openModal} />
         {isModalOpen && (

@@ -6,7 +6,7 @@ module Api
       attributes :id, :name, :subdomain, :client_reference, :locales, :enable_strong_password, :enable_2factor_auth,
                  :background_color, :login_box_position, :created_at, :updated_at, :project_logo_url, :partner_logo_url,
                  :background_image_url, :data_processing_consent, :client_id, :webhook, :logo_alt_text,
-                 :secondary_logo_alt_text
+                 :secondary_logo_alt_text, :campaign_dashboard_instructions
 
       delegate :background_color, :login_box_position, :logo_alt_text, :secondary_logo_alt_text, to: :design_setting
 

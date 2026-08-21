@@ -192,7 +192,7 @@ const UserList: React.FC<Props> = ({
             loading={isLoadingUsers}
             pagination={false}
             scroll={{ x: 'max-content' }}
-            sticky={{ offsetHeader: 50 }}
+            sticky
           >
             <Column
               title={I18n.t('shared.id')}

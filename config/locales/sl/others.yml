@@ -890,6 +890,7 @@ sl:
         export_campaign_datasheet: Tehnični list izvozne kampanje
         export_campaign_factors: Dejavniki izvozne oglaševalske akcije
         export_campaign_scorings: Izvozne kampanje
+        export_campaign_translations: Izvoz prevodov kampanj
         export_dashboard_as_file: Izvozi nadzorno ploščo kot datoteko
         export_development_action_translations: Izvoz prevodov razvojnih ukrepov
         export_development_actions: Izvozni razvojni ukrepi
@@ -917,6 +918,7 @@ sl:
         import_assessors: Ocenjevalci uvoza
         import_campaign_ai_artifacts: Artefakti umetne inteligence za uvozno kampanjo
         import_campaign_factors: Uvoz dejavnikov oglaševalske akcije
+        import_campaign_translations: Uvozi prevode kampanj
         import_client_assessors: Uvoz ocenjevalcev strank
         import_datasheet: Uvoz podatkovnega lista
         import_development_action_translations: Uvoz prevodov razvojnih dejanj
@@ -958,6 +960,7 @@ sl:
         super_admin_assessment_raw_result_export: Izvoz neobdelanih rezultatov Super Admin
         super_admin_datasheet_export: Izvoz podatkovnega lista Super Admin
         super_admin_external_assessment_export: Izvoz zunanjega ocenjevanja super skrbnika
+        superadmin_record_change_history: Zgodovina sprememb zapisa
         threesixty_campaign_export_completion_status: Status dokončanja izvoza kampanje Threesixty
         threesixty_campaign_export_scores: Izvoz rezultatov kampanje Threesixty
         workshop_status_export: Izvoz stanja ocenjevalnega središča
@@ -1151,7 +1154,7 @@ sl:
       read_only: V tem načinu lahko rezultate le pregledujete, ne pa spreminjate.
       save: Shrani
       submissionFailedAlert:
-        description: Ni bilo mogoče vzpostaviti povezave s strežnikom. Prosimo, osvežite stran in poskusite znova. Če to ne deluje, se obrnite na podporo prek klepeta v živo ali mte.surveys@mercer.com
+        description: Ni bilo mogoče vzpostaviti povezave s strežnikom. Prosimo, osvežite stran in poskusite znova. Če to ne deluje, se obrnite na podporo prek klepeta v živo ali %{support_email}
         title: Zadnja zahteva ni uspela
       submit: Pošlji
       warning: OPOZORILO
@@ -2002,7 +2005,7 @@ sl:
 
           Vaše geslo je bilo spremenjeno.
 
-          Če niste poslali te zahteve, se takoj obrnite na podporo uporabnikom na mte.support@mercer.com
+          Če niste poslali te zahteve, se takoj obrnite na podporo uporabnikom na %{support_contact_email}
         regards: |-
           Pozdrav
           Ekipa Lighthouse
@@ -2147,6 +2150,7 @@ sl:
       max_generation_limit: Presežena je največja omejitev generacije, se obrnite na svojo upravo.
     assessments:
       timed_out: Ocenjevanja %{assessment_name} ne boste mogli opraviti, ker je čas potekel.
+    csrf_retry: Poskusite znova
     equal_to_current_password: mora biti drugačno od trenutnega gesla.
     equal_to_email: mora biti drugačen od e-poštnega sporočila.
     error: Napaka
@@ -2357,7 +2361,6 @@ sl:
     error_warning: Ups, nekaj je šlo narobe z vašo oceno. Obrnite se na podporo.
     hogan:
       cannot_start: Hoganove ocene ne morete začeti zdaj. Prosimo, poskusite po nekaj minutah.
-    lighthouse_app: Svetilnik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse bo v 60 sekundah izklopljen za načrtovano vzdrževanje
@@ -2977,8 +2980,6 @@ sl:
     zh-HK: kitajščina (Hongkong)
     zh-Hant: kitajščina - tradicionalna
     zh-TW: kitajščina (Tajvan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Ime kampanje
     status_updated_at: Zadnja posodobitev stanja
@@ -3039,12 +3040,11 @@ sl:
           invalid: Obseg mora biti 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Vse pravice pridržane
+      text: "© %{year} %{display_name}. Vse pravice pridržane"
     footer:
       regards: Pozdravi,
-      team_name: Ekipa Lighthouse
+      team_name: Ekipa %{display_name}
       technical_support: Za kakršne koli tehnične težave nam pišite na %{email} in odgovorili vam bomo v 24 urah.
-    from: Podjetje za talente
     idp:
       manager_unread_comments:
         body: |-
@@ -3101,8 +3101,6 @@ sl:
         instructions: Kliknite spodnjo povezavo za prijavo v Lighthouse.
         signin_link: Povezava za prijavo
       subject: Povezava za prijavo za Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Vaš račun je onemogočen zaradi nedejavnosti
       warning: Vaš račun bo kmalu onemogočen zaradi nedejavnosti

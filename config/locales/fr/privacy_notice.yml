@@ -1,564 +1,565 @@
 ---
 fr:
-  privacy_notice: |-
-    <div>
-      <h1><strong>MERCER TALENT ENTERPRISE AVIS SUR LA PROTECTION DES RENSEIGNEMENTS PERSONNELS</strong></h1>
-      <p>Date d’entrée en vigueur: 15 septembre 2024</p>
-      <p>
-        Cet avis de confidentialité décrit la manière dont Mercer Talent Enterprise (« <strong>MTE</strong> ») recueille, utilise, partage, conserve, transfère et traite les informations relatives aux personnes identifiées ou identifiables (informations personnelles), ainsi que les droits que vous pouvez avoir concernant vos informations personnelles. Nous croyons qu’il est important que vous compreniez comment nous traitons les renseignements personnels et nous vous encourageons à prendre un moment pour vous familiariser avec nos pratiques en matière de protection des renseignements personnels décrites ci-dessous.
-      </p>
-      <p>
-        Veuillez noter que MTE est un fournisseur de solutions d’évaluation des sciences du comportement et que, dans certains cas, nous agissons au nom et selon les instructions de clients, d’institutions financières, de commerçants et d’autres partenaires qui agissent en tant que contrôleurs de données, y compris pour le traitement des transactions de paiement. Veuillez consulter les politiques de confidentialité de ces partenaires pour obtenir de plus amples renseignements sur le traitement de vos renseignements personnels dans ces contextes.
-      </p>
-      <h2>QUELLE EST NOTRE RELATION AVEC VOUS</h2>
-      <p>
-        Un tiers vous demande d’effectuer une évaluation sur la plateforme de MTE. Ce tiers est le client de MTE et peut être votre employeur, un employeur potentiel ou une autre partie liée. MTE recueille et traite vos informations personnelles pour le compte de ses clients. Nous suivons les instructions fournies par nos clients concernant les renseignements personnels à recueillir et la façon de les traiter. MTE agit donc en tant que sous-traitant pour nos clients qui déterminent le traitement de vos informations personnelles.
-      </p>
-      <p>
-        Si vous avez des questions sur le traitement de vos renseignements personnels, nous vous invitons à consulter l’avis de confidentialité de notre client.
-      </p>
-      <h2>QUELLES SONT LES INFORMATIONS PERSONNELLES QUE NOUS RECUEILLONS</h2>
-      <p>
-        Notre client nous demande de recueillir certains renseignements en son nom. À l’exception de votre nom et de votre adresse électronique, qui sont nécessaires pour créer un compte, MTE ne détermine pas de façon indépendante quels renseignements sont recueillis. En fonction des besoins et des directives de notre client, nous pouvons recueillir les catégories de renseignements personnels suivantes, le cas échéant, afin de réaliser nos objectifs d’affaires prévus:
-      </p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="146">
-              <p>
-                <strong>Catégorie</strong>
-              </p>
-            </td>
-            <td width="454">
-              <p>
-                <strong>Exemples</strong>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Identifiants biographiques</p></td>
-            <td width="454">
-              <p>Nom, date de naissance, âge, lieu de naissance, sexe.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Informations sur les contacts</p></td>
-            <td width="454">
-              <p>Adresse domiciliaire, numéro de téléphone, adresse électronique personnelle.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Informations d’identification</p></td>
-            <td width="454">
-              <p>
-                Numéro d’impôt, numéro de sécurité sociale ou autre numéro d’identification émis par le gouvernement, numéro de permis de conduire, renseignements sur le passeport, détails du compte bancaire, déclaration de revenus, numéro d’impôt sur le revenu.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146">
-              <p>Renseignements professionnels ou liés à l’emploi</p>
-            </td>
-            <td width="454">
-              <p>
-                Employeur ou groupe, lien avec notre société, titre du poste, coordonnées professionnelles, numéro d’employé, classe d’emploi, rendement de l’employé, salaire et ententes de rémunération et antécédents professionnels, et/ou lien avec le titulaire de police, l’assuré, le bénéficiaire ou le demandeur.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Caractéristiques démographiques sensibles</p></td>
-            <td width="454">
-              <p>
-                Race, citoyenneté, santé physique ou mentale ou handicap, sexe (y compris le sexe, l’identité sexuelle, la grossesse ou l’accouchement et les troubles médicaux connexes), orientation sexuelle, appartenance syndicale, ancien combattant ou statut militaire.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Données biométriques et physiques</p></td>
-            <td width="454">
-              <p>
-                Scanners faciaux et surveillance faciale dans le cadre des options de contrôle.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Données concernant votre environnement physique</p></td>
-            <td width="454">
-              <p>
-                Vidéo ou zone localisée spécifique prise par vidéo ou photo dans le cadre des options de surveillance. Les données précises recueillies concernant votre environnement physique varieront en fonction de ce qui est visible pour les caméras de surveillance.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Internet ou autre activité de réseau semblable </p></td>
-            <td width="454">
-              <p>
-                L’historique de navigation et de recherche, l’interaction avec un site Web, une application ou une publicité, les données provenant de témoins ou de balises Web, les justificatifs d’identité d’ouverture de session, les noms de domaine et les interactions avec nos courriels, y compris lorsque vous lisez des courriels et y répondez, le FSI (fournisseur de services Internet), les détails du navigateur, toute autre activité sur le site Web, les identificateurs en ligne (y compris l’adresse IP ou l’ID d’appareil).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Tout autre renseignement fourni volontairement </p></td>
-            <td width="454">
-              <p>
-                Renseignements sur les partenaires et les personnes à charge (y compris les personnes mineures à charge); coordonnées en cas d’urgence, déclarations, clauses restrictives, géolocalisation, préférences en matière de marketing et de communication, renseignements sur les activités commanditées par la société auxquelles vous avez participé, et commentaires ou réponses au sondage auxquels vous avez choisi de vous identifier.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Veuillez noter que ce sont des exemples. MTE s’efforce d’adhérer au concept de minimisation des données et cherche à ne collecter que les informations personnelles strictement nécessaires à la fourniture de services. Toutefois, nous ne sommes pas en mesure de contrôler les informations demandées par nos clients ou les informations que vous fournissez volontairement.
-      </p>
-      <h2>COMMENT NOUS COLLECTONS LES INFORMATIONS PERSONNELLES</h2>
-      <h3>
-        <strong
-          >Renseignements fournis par vous, vos représentants ou des tiers</strong
-        >
-      </h3>
-      <p>Nous pouvons recueillir des renseignements personnelspersonnelsauprèsdessourcessuivantes:</p>
-      <ul>
-        <li>
-          Directement à partir de vous, par exemple lorsque vous visitez un site Web, créez un compte, répondez à un sondage ou nous donnez d’autres renseignements.
-        </li>
-        <li>
-          Vos représentants, y compris votre employeur, votre association, votre groupe ou le promoteur de votre programme ou régime d’avantages sociaux.
-        </li>
-      </ul>
-      <p>
-        Au cours de l’évaluation, des informations personnelles peuvent être collectées via votre webcam, votre microphone ou d’autres éléments matériels de votre système. Votre système et le programme d’EMP vous demanderont votre consentement avant de recueillir des renseignements personnels à partir de votre matériel.
-      </p>
-      <p>
-        Si vous nous fournissez des renseignements personnels sur d’autres personnes (p. ex., membres de la famille, bénéficiaires ou personnes à charge), vous déclarez que vous avez le pouvoir de fournir ces renseignements et que vous avez communiqué le présent avis de confidentialitédeconfidentialitéaubesoin. Nous ne recueillons pas sciemment de renseignements personnels directement auprès de mineurs.
-      </p>
-      <h3><strong>Collecte automatisée</strong>&nbsp;</h3>
-      <p>
-       Nous utilisons des cookies et des technologies de suivi connexes (« cookies ») sur les sites web de notre société. S’ils sont disponibles dans votre territoire, les utilisateurs du site Web peuvent refuser notre utilisation de certains témoins en utilisant le lien Gérer les témoins au bas du site Web. Pour en savoir plus sur la manière dont nous utilisons les cookies, veuillez consulter notre
-        <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
-          >Cookie Notice</a
-        >.&nbsp;
-      </p>
-      <h3><strong>Collecte par des tiers </strong>&nbsp;</h3>
-      <p>
-        Si vous effectuez une opération par notre entremise, un tiers (p. ex., un fournisseur de services ou un assureur) peut recueillir et traiter des cartes de crédit ou d’autres renseignements personnels vous concernant, y compris par l’intermédiaire de témoins, relativement à une telle opération. Dans ces cas, et pour toute autre entente où nous recevons des renseignements de votre employeur, de votre association ou d’un autre tiers, nous vous encourageons à lire la politique de confidentialité du tiers pour en savoir plus sur la façon dont il utilisera et communiquera vos renseignements.
-      </p>
-      <h2>COMMENT NOUS UTILISONS LES INFORMATIONS PERSONNELLES QUE NOUS RECUEILLONS  </h2>
-      <p>Nous pouvons utiliser les renseignements personnels que nous recueillons :  </p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="107">
-              <p>
-                <strong
-                  >Catégorie</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p><strong>Utilisation</strong></p>
-            </td>
-            <td width="176">
-              <p><strong>Base juridique</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Pour mener à bien nos activités</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                Nous utilisons les informations personnelles nécessaires à la conduite de nos activités, notamment pour vérifier votre identité, répondre à vos demandes, communiquer avec vous, traiter les transactions, établir un compte en ligne ou remplir nos obligations contractuelles.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                L’exécution des contrats et, le cas échéant, les intérêts légitimes (pour nous permettre de remplir nos obligations et de fournir nos services.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Vous fournir du matériel de marketing lorsque les lois applicables le permettent</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Nous pouvons utiliser vos coordonnées pour vous envoyer de l’information sur les produits, les services et les renseignements qui, selon nous, pourraient vous intéresser. Ces communications peuvent être envoyées par courriel, par message texte, par la poste ou par téléphone, conformément à vos préférences en matière de marketing et aux lois mondiales applicables, y compris celles relatives à la protection des données et aux communications électroniques. Par conséquent, la façon dont nous communiquerons avec vous variera selon votre identité, notre relation avec vous et votre emplacement.
-              </p>
-              <p>
-                Quelle que soit la base sur laquelle nous partageons nos communications marketing avec vous, nous nous conformerons à la législation locale et vous donnerons la possibilité de vous désabonner à tout moment, auquel cas nous cesserons de vous envoyer nos communications marketing. Vous pouvez également modifier vos préférences en matière de marketing en communiquant avec nous au privacy@mmc.com.
-              </p>
-              <p>
-                Veuillez noter que même si vous refusez de recevoir des communications marketing, nous pouvons quand même vous envoyer des communications en lien avec les services que nous vous fournissons.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Obligation légale, consentement (que vous pouvez refuser ou retirer) et, le cas échéant, intérêt légitime (pour vous tenir au courant des nouveautés concernant nos produits et services).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Aux fins de recherche, d’analyse et de développement de données</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Nous pouvons analyser les informations personnelles avec des informations provenant d’autres clients pour créer des aperçus, des rapports et d’autres analyses afin de mieux comprendre et d’améliorer la qualité de notre offre, de commercialiser nos conseils, produits et services et d’évaluer l’efficacité de nos activités de marketing, de nos sites web et de nos services en général.
-              </p>
-              <p>
-                Veuillez noter que nous pouvons dépersonnaliser les renseignements personnels de sorte qu’ils ne soient pas associés à un client ou à une personne en particulier.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Le cas échéant, des intérêts légitimes (pour nous permettre d’améliorer nos services).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Surveiller certaines activités et maintenir la sécurité et le rendement du réseau, et se protéger contre les cyberattaques</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Nous surveillons les demandes de renseignements et les opérations pour assurer la qualité du service, le respect des procédures et la lutte contre la fraude. Nous utilisons également des renseignements personnels au besoin pour assurer la sécurité du réseau, surveiller le rendement du site Web et protéger nos systèmes contre les cyberattaques.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Obligation légale et, le cas échéant, intérêts légitimes (pour assurer la qualité et la légalité de nos services).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Tenir à jour nos sites Web et s’assurer que leur contenu est pertinent</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Nous utilisons les informations personnelles si nécessaire pour gérer nos sites web et veiller à ce que le contenu de nos sites web soit présenté de la manière la plus efficace pour vous et pour votre appareil.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                L’exécution des contrats et, le cas échéant, les intérêts légitimes (pour nous permettre de vous fournir du contenu et des services sur les sites Web).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Réorganiser ou modifier nos activités</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                Au besoin, si nous : (i) faisons l’objet de négociations en vue de la vente de notre entreprise ou d’une partie de celle-ci à un tiers; (ii) sommes vendus à un tiers; ou (iii) faisons l’objet d’une réorganisation.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Obligation légale ou intérêts légitimes (pour nous permettre de changer notre entreprise).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Relativement aux obligations légales ou réglementaires</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Nous utilisons les renseignements personnels pour nous conformer à nos obligations d’information réglementaires ou dans le cadre d’un dialogue avec nos organismes de réglementation, selon le cas.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Obligation légale et, le cas échéant, intérêts légitimes (pour coopérer avec les autorités chargées de l’application de la loi et les autorités réglementaires).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Vérifications relatives à la fraude, au blanchiment d’argent et aux sanctions</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Lorsque nous établissons ou entretenons des relations avec des clients pour la prestation de certains services, nous utilisons des renseignements personnels dans le but de mener des vérifications de fraude, de lutte contre le blanchiment d’argent ou de sanctions.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Obligations légales et, le cas échéant, intérêts légitimes (pour coopérer avec les autorités chargées de l’application de la loi et les autorités réglementaires).
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Nous pouvons également utiliser les renseignements personnels que nous recueillons et recevons comme il vous est autrement décrit au point de collecte.
-      </p>
-      <h3><strong>Liens externes</strong>&nbsp;</h3>
-      <p>
-        Nos sites Web peuvent contenir des liens vers des sites Web exploités par des organisations autres que MTE.  Si vous accédez au site Web d’une autre organisation au moyen d’un hyperlien sur notre site Web, l’autre organisation peut recueillir des renseignements auprès de vous.  MTE n’est pas responsable du contenu ou des pratiques de confidentialité des sites web liés ou de leur utilisation de vos informations personnelles.  Si vous quittez un site Web de MTE au moyen d’un tel lien (vous pouvez savoir où vous vous trouvez en vérifiant l’URL dans la barre d’emplacement de votre navigateur), vous devriez consulter les politiques de confidentialité, les conditions d’utilisation et les autres avis de ce site Web pour déterminer comment l’autre organisation traitera les renseignements personnels qu’elle recueillera auprès de vous.
-      </p>
-      <h2>À QUI NOUS DIVULGUONS DES INFORMATIONS PERSONNELLES</h2>
-      <p>
-        Nous pouvons divulguer des informations personnelles aux catégories de tiers suivantes :
-      </p>
-      <table width="601">
-        <tbody>
-          <tr>
-            <td width="301">
-              <p><strong>Catégories de tiers</strong></p>
-            </td>
-            <td width="301">
-              <p><strong>Objet de la divulgation</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Votre employeur, votre association, votre groupe ou votre promoteur de programme d’avantages sociaux, le cas échéant (c.-à-d. le client de MTE)
-              </p>
-            </td>
-            <td width="301"><p>Fournir des services à nos clients </p></td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Sociétés affiliées à MTE ou autres entités du groupe de sociétés Marsh McLennan (MMC)
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Leur permettre de vous fournir des services ou de communiquer avec vous au sujet d’autres produits et services.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>Agents ou tiers fournisseurs de services</p>
-            </td>
-            <td width="301">
-              <p>
-                Exécuter des fonctions ou fournir des services pour nous ou en notre nom. Ces tiers sont soumis à des restrictions contractuelles les empêchant d’utiliser les informations personnelles à des fins autres que la fourniture de services pour MTE ou en son nom.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Les partenaires de commercialisation, y compris les membres de notre groupe et les tiers dont nous ou nos clients avons retenu les services dans le cadre des services.
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Dans la mesure où la loi le permet, pour vous fournir des informations sur nos produits, nos services ou nos idées.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Associés potentiels ou entités remplaçantes</p></td>
-            <td width="301">
-              <p>
-                Dans le contexte de fusions, d’acquisitions, de faillites, de ventes d’actifs ou d’autres opérations où un tiers prend le contrôle de la totalité ou d’une partie de nos actifs.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Entreprises d’analyse de sites Web et de publicité</p></td>
-            <td width="301">
-              <p>
-                Aidez-nous à personnaliser les publicités et le contenu en fonction de vos intérêts, à mesurer le rendement de nos publicités et de notre contenu, et à obtenir des renseignements sur les auditoires qui voient nos publicités et notre contenu.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Bases de données antifraude, autorités de surveillance ou de réglementation, organismes d’application de la loi et autres tiers
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Si nécessaire pour prévenir la fraude, communiquer avec les autorités de surveillance ou de réglementation, protéger et défendre les droits légaux, la sécurité et la sûreté de MTE, de nos affiliés et partenaires commerciaux, et des utilisateurs de tout site web, appliquer les conditions d’utilisation d’un site web, répondre à des allégations d’activités illégales présumées ou réelles, répondre à un audit ou enquêter sur une plainte ou une menace pour la sécurité, ou se conformer à la loi, à la réglementation, à la procédure judiciaire ou à une demande gouvernementale applicable.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Nous pouvons également communiquer des renseignements dépersonnalisés qui ne sont pas raisonnablement susceptibles de vous identifier à des fins commerciales légitimes et licites.  Lorsque nous disposons de renseignements dépersonnalisés, nous les conserverons et les utiliserons sans tenter de réidentifier les données autrement que comme le permet la loi.
-      </p>
-      <h2>MESURES PRISES POUR PROTÉGER LES INFORMATIONS PERSONNELLES</h2>
-      <p>
-        Notre société s’efforce de respecter toutes les lois applicables en matière de cybersécurité et de protection des données. Dans cette optique, la MMC dispose d’un responsable de la sécurité des informations (CISO) et d’un responsable mondial de la protection de la vie privée (GCPO). Le RSSI est responsable de la gestion d’une équipe mondiale de sécurité de l’information et d’un programme complet de cybersécurité.  Dans le cadre de notre programme de cybersécurité, nous avons mis en place des mesures de sécurité physiques, administratives et techniques raisonnables sur le plan commercial pour protéger les renseignements personnels contre l’accès, l’utilisation, la modification et la suppression non autorisés.
-      </p>
-      <p>
-        Le GCPO dirige et supervise un centre d’excellence en matière de protection de la vie privée et un réseau de responsables de la protection des données chargés de mettre en œuvre notre programme global de protection de la vie privée. Le Réseau des délégués à la protection des données relie nos délégués à la protection des données partout dans le monde et cherche à mettre en œuvre notre programme de protection de la vie privée de façon uniforme et exhaustive partout où nous traitons des données. Vous pouvez obtenir le nom et les coordonnées du délégué à la protection des données de votre juridiction en nous contactant à l’adresse privacy@mmc.com.
-      </p>
-      <h2>VOS DROITS EN MATIÈRE DE PROTECTION DES DONNÉES  </h2>
-      <p>
-        Dans de nombreux cas, nous traitons des renseignements personnels pour fournir nos services à des entreprises clientes, et vous devriez communiquer avec elles pour exercer les droits que vous pourriez avoir en vertu des lois sur la protection des renseignements personnels applicables. Toutefois, lorsque nous agissons à titre de contrôleur ou d’entreprise qui est principalement responsable de décider de la façon dont vos renseignements sont traités, vous pouvez avoir certains ou la totalité des droits énumérés ci-dessous, selon le territoire et la raison pour laquelle nous traitons vos renseignements. Veuillez noter que nous pourrions devoir utiliser vos renseignements personnels pour vérifier votre identité avant de répondre à l’un des droits ci-dessous.
-      </p>
-      <ul>
-        <li>
-          <strong>Droit d’accès (droit de savoir)<br /></strong>
-          Vous pouvez nous demander de vous fournir de plus amples renseignements sur la façon dont nous utilisons vos renseignements personnels, les sources, les catégories ou les éléments précis de renseignements personnels que nous avons recueillis, les catégories de tiers à qui nous avons communiqué les renseignements et de demander une copie des renseignements personnels que nous détenons à votre sujet.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit de correction <br /></strong>
-          Vous pouvez nous demander de mettre à jour toute inexactitude dans les informations personnelles que nous détenons. Si nous communiquons vos renseignements personnels à d’autres personnes, nous les informerons de la correction dans la mesure du possible.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit de suppression <br /></strong>
-          Vous pouvez nous demander d’effacer vos renseignements personnels lorsque nous n’avons plus de motifs légitimes de les traiter.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit de s’opposer à la transformation ou de la restreindre <br /></strong>
-          Vous pouvez avoir le droit de restreindre le traitement de vos renseignements personnels dans certaines circonstances, par exemple lorsque vous contestez leur exactitude.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit à la portabilité des données<br /></strong>
-          Vous pourriez avoir le droit, lorsque c’est techniquement possible, de demander que nous transférions à un tiers de votre choix une copie des renseignements personnels que nous avons obtenus de vous, dans un format structuré, couramment utilisé et lisible par machine.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit de retirer son consentement <br /></strong>
-          Si nous nous fondons sur votre consentement pour traiter vos renseignements personnels, vous avez le droit de le retirer.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droit de porter plainte<br /></strong>
-          Vous pourriez avoir le droit de déposer une plainte auprès de l’autorité de surveillance ou de réglementation compétente de votre territoire si vous avez des préoccupations concernant un aspect de nos pratiques en matière de protection des renseignements personnels.
-        </li>
-      </ul>
-      <p>
-        Si vous souhaitez exercer l’un des droits susmentionnés ou demander la révision d’une décision ou d’un refus, veuillez communiquer avec nous en utilisant les coordonnées applicables :
-      </p>
-      <ul>
-        <li>
-          Si vous êtes au Royaume-Uni, en Suisse ou dans l’Espace économique européen,
-          <a
-            href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
-            >veuillez remplir ce formulaire</a
+  privacy_notice:
+    current: |-
+      <div>
+        <h1><strong>MERCER TALENT ENTERPRISE AVIS SUR LA PROTECTION DES RENSEIGNEMENTS PERSONNELS</strong></h1>
+        <p>Date d’entrée en vigueur: 15 septembre 2024</p>
+        <p>
+          Cet avis de confidentialité décrit la manière dont Mercer Talent Enterprise (« <strong>MTE</strong> ») recueille, utilise, partage, conserve, transfère et traite les informations relatives aux personnes identifiées ou identifiables (informations personnelles), ainsi que les droits que vous pouvez avoir concernant vos informations personnelles. Nous croyons qu’il est important que vous compreniez comment nous traitons les renseignements personnels et nous vous encourageons à prendre un moment pour vous familiariser avec nos pratiques en matière de protection des renseignements personnels décrites ci-dessous.
+        </p>
+        <p>
+          Veuillez noter que MTE est un fournisseur de solutions d’évaluation des sciences du comportement et que, dans certains cas, nous agissons au nom et selon les instructions de clients, d’institutions financières, de commerçants et d’autres partenaires qui agissent en tant que contrôleurs de données, y compris pour le traitement des transactions de paiement. Veuillez consulter les politiques de confidentialité de ces partenaires pour obtenir de plus amples renseignements sur le traitement de vos renseignements personnels dans ces contextes.
+        </p>
+        <h2>QUELLE EST NOTRE RELATION AVEC VOUS</h2>
+        <p>
+          Un tiers vous demande d’effectuer une évaluation sur la plateforme de MTE. Ce tiers est le client de MTE et peut être votre employeur, un employeur potentiel ou une autre partie liée. MTE recueille et traite vos informations personnelles pour le compte de ses clients. Nous suivons les instructions fournies par nos clients concernant les renseignements personnels à recueillir et la façon de les traiter. MTE agit donc en tant que sous-traitant pour nos clients qui déterminent le traitement de vos informations personnelles.
+        </p>
+        <p>
+          Si vous avez des questions sur le traitement de vos renseignements personnels, nous vous invitons à consulter l’avis de confidentialité de notre client.
+        </p>
+        <h2>QUELLES SONT LES INFORMATIONS PERSONNELLES QUE NOUS RECUEILLONS</h2>
+        <p>
+          Notre client nous demande de recueillir certains renseignements en son nom. À l’exception de votre nom et de votre adresse électronique, qui sont nécessaires pour créer un compte, MTE ne détermine pas de façon indépendante quels renseignements sont recueillis. En fonction des besoins et des directives de notre client, nous pouvons recueillir les catégories de renseignements personnels suivantes, le cas échéant, afin de réaliser nos objectifs d’affaires prévus:
+        </p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="146">
+                <p>
+                  <strong>Catégorie</strong>
+                </p>
+              </td>
+              <td width="454">
+                <p>
+                  <strong>Exemples</strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Identifiants biographiques</p></td>
+              <td width="454">
+                <p>Nom, date de naissance, âge, lieu de naissance, sexe.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Informations sur les contacts</p></td>
+              <td width="454">
+                <p>Adresse domiciliaire, numéro de téléphone, adresse électronique personnelle.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Informations d’identification</p></td>
+              <td width="454">
+                <p>
+                  Numéro d’impôt, numéro de sécurité sociale ou autre numéro d’identification émis par le gouvernement, numéro de permis de conduire, renseignements sur le passeport, détails du compte bancaire, déclaration de revenus, numéro d’impôt sur le revenu.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146">
+                <p>Renseignements professionnels ou liés à l’emploi</p>
+              </td>
+              <td width="454">
+                <p>
+                  Employeur ou groupe, lien avec notre société, titre du poste, coordonnées professionnelles, numéro d’employé, classe d’emploi, rendement de l’employé, salaire et ententes de rémunération et antécédents professionnels, et/ou lien avec le titulaire de police, l’assuré, le bénéficiaire ou le demandeur.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Caractéristiques démographiques sensibles</p></td>
+              <td width="454">
+                <p>
+                  Race, citoyenneté, santé physique ou mentale ou handicap, sexe (y compris le sexe, l’identité sexuelle, la grossesse ou l’accouchement et les troubles médicaux connexes), orientation sexuelle, appartenance syndicale, ancien combattant ou statut militaire.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Données biométriques et physiques</p></td>
+              <td width="454">
+                <p>
+                  Scanners faciaux et surveillance faciale dans le cadre des options de contrôle.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Données concernant votre environnement physique</p></td>
+              <td width="454">
+                <p>
+                  Vidéo ou zone localisée spécifique prise par vidéo ou photo dans le cadre des options de surveillance. Les données précises recueillies concernant votre environnement physique varieront en fonction de ce qui est visible pour les caméras de surveillance.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Internet ou autre activité de réseau semblable </p></td>
+              <td width="454">
+                <p>
+                  L’historique de navigation et de recherche, l’interaction avec un site Web, une application ou une publicité, les données provenant de témoins ou de balises Web, les justificatifs d’identité d’ouverture de session, les noms de domaine et les interactions avec nos courriels, y compris lorsque vous lisez des courriels et y répondez, le FSI (fournisseur de services Internet), les détails du navigateur, toute autre activité sur le site Web, les identificateurs en ligne (y compris l’adresse IP ou l’ID d’appareil).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Tout autre renseignement fourni volontairement </p></td>
+              <td width="454">
+                <p>
+                  Renseignements sur les partenaires et les personnes à charge (y compris les personnes mineures à charge); coordonnées en cas d’urgence, déclarations, clauses restrictives, géolocalisation, préférences en matière de marketing et de communication, renseignements sur les activités commanditées par la société auxquelles vous avez participé, et commentaires ou réponses au sondage auxquels vous avez choisi de vous identifier.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Veuillez noter que ce sont des exemples. MTE s’efforce d’adhérer au concept de minimisation des données et cherche à ne collecter que les informations personnelles strictement nécessaires à la fourniture de services. Toutefois, nous ne sommes pas en mesure de contrôler les informations demandées par nos clients ou les informations que vous fournissez volontairement.
+        </p>
+        <h2>COMMENT NOUS COLLECTONS LES INFORMATIONS PERSONNELLES</h2>
+        <h3>
+          <strong
+            >Renseignements fournis par vous, vos représentants ou des tiers</strong
           >
-        </li>
-        <li>
-          Pour les personnes résidant dans d’autres pays,
+        </h3>
+        <p>Nous pouvons recueillir des renseignements personnelspersonnelsauprèsdessourcessuivantes:</p>
+        <ul>
+          <li>
+            Directement à partir de vous, par exemple lorsque vous visitez un site Web, créez un compte, répondez à un sondage ou nous donnez d’autres renseignements.
+          </li>
+          <li>
+            Vos représentants, y compris votre employeur, votre association, votre groupe ou le promoteur de votre programme ou régime d’avantages sociaux.
+          </li>
+        </ul>
+        <p>
+          Au cours de l’évaluation, des informations personnelles peuvent être collectées via votre webcam, votre microphone ou d’autres éléments matériels de votre système. Votre système et le programme d’EMP vous demanderont votre consentement avant de recueillir des renseignements personnels à partir de votre matériel.
+        </p>
+        <p>
+          Si vous nous fournissez des renseignements personnels sur d’autres personnes (p. ex., membres de la famille, bénéficiaires ou personnes à charge), vous déclarez que vous avez le pouvoir de fournir ces renseignements et que vous avez communiqué le présent avis de confidentialitédeconfidentialitéaubesoin. Nous ne recueillons pas sciemment de renseignements personnels directement auprès de mineurs.
+        </p>
+        <h3><strong>Collecte automatisée</strong>&nbsp;</h3>
+        <p>
+         Nous utilisons des cookies et des technologies de suivi connexes (« cookies ») sur les sites web de notre société. S’ils sont disponibles dans votre territoire, les utilisateurs du site Web peuvent refuser notre utilisation de certains témoins en utilisant le lien Gérer les témoins au bas du site Web. Pour en savoir plus sur la manière dont nous utilisons les cookies, veuillez consulter notre
+          <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
+            >Cookie Notice</a
+          >.&nbsp;
+        </p>
+        <h3><strong>Collecte par des tiers </strong>&nbsp;</h3>
+        <p>
+          Si vous effectuez une opération par notre entremise, un tiers (p. ex., un fournisseur de services ou un assureur) peut recueillir et traiter des cartes de crédit ou d’autres renseignements personnels vous concernant, y compris par l’intermédiaire de témoins, relativement à une telle opération. Dans ces cas, et pour toute autre entente où nous recevons des renseignements de votre employeur, de votre association ou d’un autre tiers, nous vous encourageons à lire la politique de confidentialité du tiers pour en savoir plus sur la façon dont il utilisera et communiquera vos renseignements.
+        </p>
+        <h2>COMMENT NOUS UTILISONS LES INFORMATIONS PERSONNELLES QUE NOUS RECUEILLONS  </h2>
+        <p>Nous pouvons utiliser les renseignements personnels que nous recueillons :  </p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >Catégorie</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p><strong>Utilisation</strong></p>
+              </td>
+              <td width="176">
+                <p><strong>Base juridique</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Pour mener à bien nos activités</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous utilisons les informations personnelles nécessaires à la conduite de nos activités, notamment pour vérifier votre identité, répondre à vos demandes, communiquer avec vous, traiter les transactions, établir un compte en ligne ou remplir nos obligations contractuelles.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  L’exécution des contrats et, le cas échéant, les intérêts légitimes (pour nous permettre de remplir nos obligations et de fournir nos services.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Vous fournir du matériel de marketing lorsque les lois applicables le permettent</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous pouvons utiliser vos coordonnées pour vous envoyer de l’information sur les produits, les services et les renseignements qui, selon nous, pourraient vous intéresser. Ces communications peuvent être envoyées par courriel, par message texte, par la poste ou par téléphone, conformément à vos préférences en matière de marketing et aux lois mondiales applicables, y compris celles relatives à la protection des données et aux communications électroniques. Par conséquent, la façon dont nous communiquerons avec vous variera selon votre identité, notre relation avec vous et votre emplacement.
+                </p>
+                <p>
+                  Quelle que soit la base sur laquelle nous partageons nos communications marketing avec vous, nous nous conformerons à la législation locale et vous donnerons la possibilité de vous désabonner à tout moment, auquel cas nous cesserons de vous envoyer nos communications marketing. Vous pouvez également modifier vos préférences en matière de marketing en communiquant avec nous au privacy@mmc.com.
+                </p>
+                <p>
+                  Veuillez noter que même si vous refusez de recevoir des communications marketing, nous pouvons quand même vous envoyer des communications en lien avec les services que nous vous fournissons.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Obligation légale, consentement (que vous pouvez refuser ou retirer) et, le cas échéant, intérêt légitime (pour vous tenir au courant des nouveautés concernant nos produits et services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Aux fins de recherche, d’analyse et de développement de données</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous pouvons analyser les informations personnelles avec des informations provenant d’autres clients pour créer des aperçus, des rapports et d’autres analyses afin de mieux comprendre et d’améliorer la qualité de notre offre, de commercialiser nos conseils, produits et services et d’évaluer l’efficacité de nos activités de marketing, de nos sites web et de nos services en général.
+                </p>
+                <p>
+                  Veuillez noter que nous pouvons dépersonnaliser les renseignements personnels de sorte qu’ils ne soient pas associés à un client ou à une personne en particulier.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Le cas échéant, des intérêts légitimes (pour nous permettre d’améliorer nos services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Surveiller certaines activités et maintenir la sécurité et le rendement du réseau, et se protéger contre les cyberattaques</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous surveillons les demandes de renseignements et les opérations pour assurer la qualité du service, le respect des procédures et la lutte contre la fraude. Nous utilisons également des renseignements personnels au besoin pour assurer la sécurité du réseau, surveiller le rendement du site Web et protéger nos systèmes contre les cyberattaques.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Obligation légale et, le cas échéant, intérêts légitimes (pour assurer la qualité et la légalité de nos services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Tenir à jour nos sites Web et s’assurer que leur contenu est pertinent</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous utilisons les informations personnelles si nécessaire pour gérer nos sites web et veiller à ce que le contenu de nos sites web soit présenté de la manière la plus efficace pour vous et pour votre appareil.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  L’exécution des contrats et, le cas échéant, les intérêts légitimes (pour nous permettre de vous fournir du contenu et des services sur les sites Web).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Réorganiser ou modifier nos activités</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  Au besoin, si nous : (i) faisons l’objet de négociations en vue de la vente de notre entreprise ou d’une partie de celle-ci à un tiers; (ii) sommes vendus à un tiers; ou (iii) faisons l’objet d’une réorganisation.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Obligation légale ou intérêts légitimes (pour nous permettre de changer notre entreprise).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Relativement aux obligations légales ou réglementaires</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Nous utilisons les renseignements personnels pour nous conformer à nos obligations d’information réglementaires ou dans le cadre d’un dialogue avec nos organismes de réglementation, selon le cas.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Obligation légale et, le cas échéant, intérêts légitimes (pour coopérer avec les autorités chargées de l’application de la loi et les autorités réglementaires).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Vérifications relatives à la fraude, au blanchiment d’argent et aux sanctions</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Lorsque nous établissons ou entretenons des relations avec des clients pour la prestation de certains services, nous utilisons des renseignements personnels dans le but de mener des vérifications de fraude, de lutte contre le blanchiment d’argent ou de sanctions.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Obligations légales et, le cas échéant, intérêts légitimes (pour coopérer avec les autorités chargées de l’application de la loi et les autorités réglementaires).
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Nous pouvons également utiliser les renseignements personnels que nous recueillons et recevons comme il vous est autrement décrit au point de collecte.
+        </p>
+        <h3><strong>Liens externes</strong>&nbsp;</h3>
+        <p>
+          Nos sites Web peuvent contenir des liens vers des sites Web exploités par des organisations autres que MTE.  Si vous accédez au site Web d’une autre organisation au moyen d’un hyperlien sur notre site Web, l’autre organisation peut recueillir des renseignements auprès de vous.  MTE n’est pas responsable du contenu ou des pratiques de confidentialité des sites web liés ou de leur utilisation de vos informations personnelles.  Si vous quittez un site Web de MTE au moyen d’un tel lien (vous pouvez savoir où vous vous trouvez en vérifiant l’URL dans la barre d’emplacement de votre navigateur), vous devriez consulter les politiques de confidentialité, les conditions d’utilisation et les autres avis de ce site Web pour déterminer comment l’autre organisation traitera les renseignements personnels qu’elle recueillera auprès de vous.
+        </p>
+        <h2>À QUI NOUS DIVULGUONS DES INFORMATIONS PERSONNELLES</h2>
+        <p>
+          Nous pouvons divulguer des informations personnelles aux catégories de tiers suivantes :
+        </p>
+        <table width="601">
+          <tbody>
+            <tr>
+              <td width="301">
+                <p><strong>Catégories de tiers</strong></p>
+              </td>
+              <td width="301">
+                <p><strong>Objet de la divulgation</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Votre employeur, votre association, votre groupe ou votre promoteur de programme d’avantages sociaux, le cas échéant (c.-à-d. le client de MTE)
+                </p>
+              </td>
+              <td width="301"><p>Fournir des services à nos clients </p></td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Sociétés affiliées à MTE ou autres entités du groupe de sociétés Marsh McLennan (MMC)
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Leur permettre de vous fournir des services ou de communiquer avec vous au sujet d’autres produits et services.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>Agents ou tiers fournisseurs de services</p>
+              </td>
+              <td width="301">
+                <p>
+                  Exécuter des fonctions ou fournir des services pour nous ou en notre nom. Ces tiers sont soumis à des restrictions contractuelles les empêchant d’utiliser les informations personnelles à des fins autres que la fourniture de services pour MTE ou en son nom.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Les partenaires de commercialisation, y compris les membres de notre groupe et les tiers dont nous ou nos clients avons retenu les services dans le cadre des services.
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Dans la mesure où la loi le permet, pour vous fournir des informations sur nos produits, nos services ou nos idées.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Associés potentiels ou entités remplaçantes</p></td>
+              <td width="301">
+                <p>
+                  Dans le contexte de fusions, d’acquisitions, de faillites, de ventes d’actifs ou d’autres opérations où un tiers prend le contrôle de la totalité ou d’une partie de nos actifs.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Entreprises d’analyse de sites Web et de publicité</p></td>
+              <td width="301">
+                <p>
+                  Aidez-nous à personnaliser les publicités et le contenu en fonction de vos intérêts, à mesurer le rendement de nos publicités et de notre contenu, et à obtenir des renseignements sur les auditoires qui voient nos publicités et notre contenu.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Bases de données antifraude, autorités de surveillance ou de réglementation, organismes d’application de la loi et autres tiers
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Si nécessaire pour prévenir la fraude, communiquer avec les autorités de surveillance ou de réglementation, protéger et défendre les droits légaux, la sécurité et la sûreté de MTE, de nos affiliés et partenaires commerciaux, et des utilisateurs de tout site web, appliquer les conditions d’utilisation d’un site web, répondre à des allégations d’activités illégales présumées ou réelles, répondre à un audit ou enquêter sur une plainte ou une menace pour la sécurité, ou se conformer à la loi, à la réglementation, à la procédure judiciaire ou à une demande gouvernementale applicable.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Nous pouvons également communiquer des renseignements dépersonnalisés qui ne sont pas raisonnablement susceptibles de vous identifier à des fins commerciales légitimes et licites.  Lorsque nous disposons de renseignements dépersonnalisés, nous les conserverons et les utiliserons sans tenter de réidentifier les données autrement que comme le permet la loi.
+        </p>
+        <h2>MESURES PRISES POUR PROTÉGER LES INFORMATIONS PERSONNELLES</h2>
+        <p>
+          Notre société s’efforce de respecter toutes les lois applicables en matière de cybersécurité et de protection des données. Dans cette optique, la MMC dispose d’un responsable de la sécurité des informations (CISO) et d’un responsable mondial de la protection de la vie privée (GCPO). Le RSSI est responsable de la gestion d’une équipe mondiale de sécurité de l’information et d’un programme complet de cybersécurité.  Dans le cadre de notre programme de cybersécurité, nous avons mis en place des mesures de sécurité physiques, administratives et techniques raisonnables sur le plan commercial pour protéger les renseignements personnels contre l’accès, l’utilisation, la modification et la suppression non autorisés.
+        </p>
+        <p>
+          Le GCPO dirige et supervise un centre d’excellence en matière de protection de la vie privée et un réseau de responsables de la protection des données chargés de mettre en œuvre notre programme global de protection de la vie privée. Le Réseau des délégués à la protection des données relie nos délégués à la protection des données partout dans le monde et cherche à mettre en œuvre notre programme de protection de la vie privée de façon uniforme et exhaustive partout où nous traitons des données. Vous pouvez obtenir le nom et les coordonnées du délégué à la protection des données de votre juridiction en nous contactant à l’adresse privacy@mmc.com.
+        </p>
+        <h2>VOS DROITS EN MATIÈRE DE PROTECTION DES DONNÉES  </h2>
+        <p>
+          Dans de nombreux cas, nous traitons des renseignements personnels pour fournir nos services à des entreprises clientes, et vous devriez communiquer avec elles pour exercer les droits que vous pourriez avoir en vertu des lois sur la protection des renseignements personnels applicables. Toutefois, lorsque nous agissons à titre de contrôleur ou d’entreprise qui est principalement responsable de décider de la façon dont vos renseignements sont traités, vous pouvez avoir certains ou la totalité des droits énumérés ci-dessous, selon le territoire et la raison pour laquelle nous traitons vos renseignements. Veuillez noter que nous pourrions devoir utiliser vos renseignements personnels pour vérifier votre identité avant de répondre à l’un des droits ci-dessous.
+        </p>
+        <ul>
+          <li>
+            <strong>Droit d’accès (droit de savoir)<br /></strong>
+            Vous pouvez nous demander de vous fournir de plus amples renseignements sur la façon dont nous utilisons vos renseignements personnels, les sources, les catégories ou les éléments précis de renseignements personnels que nous avons recueillis, les catégories de tiers à qui nous avons communiqué les renseignements et de demander une copie des renseignements personnels que nous détenons à votre sujet.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit de correction <br /></strong>
+            Vous pouvez nous demander de mettre à jour toute inexactitude dans les informations personnelles que nous détenons. Si nous communiquons vos renseignements personnels à d’autres personnes, nous les informerons de la correction dans la mesure du possible.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit de suppression <br /></strong>
+            Vous pouvez nous demander d’effacer vos renseignements personnels lorsque nous n’avons plus de motifs légitimes de les traiter.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit de s’opposer à la transformation ou de la restreindre <br /></strong>
+            Vous pouvez avoir le droit de restreindre le traitement de vos renseignements personnels dans certaines circonstances, par exemple lorsque vous contestez leur exactitude.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit à la portabilité des données<br /></strong>
+            Vous pourriez avoir le droit, lorsque c’est techniquement possible, de demander que nous transférions à un tiers de votre choix une copie des renseignements personnels que nous avons obtenus de vous, dans un format structuré, couramment utilisé et lisible par machine.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit de retirer son consentement <br /></strong>
+            Si nous nous fondons sur votre consentement pour traiter vos renseignements personnels, vous avez le droit de le retirer.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droit de porter plainte<br /></strong>
+            Vous pourriez avoir le droit de déposer une plainte auprès de l’autorité de surveillance ou de réglementation compétente de votre territoire si vous avez des préoccupations concernant un aspect de nos pratiques en matière de protection des renseignements personnels.
+          </li>
+        </ul>
+        <p>
+          Si vous souhaitez exercer l’un des droits susmentionnés ou demander la révision d’une décision ou d’un refus, veuillez communiquer avec nous en utilisant les coordonnées applicables :
+        </p>
+        <ul>
+          <li>
+            Si vous êtes au Royaume-Uni, en Suisse ou dans l’Espace économique européen,
+            <a
+              href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
+              >veuillez remplir ce formulaire</a
+            >
+          </li>
+          <li>
+            Pour les personnes résidant dans d’autres pays,
+            <a
+              href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
+              >veuillez remplir ce formulaire </a
+            >
+          </li>
+          <li>
+            Vous pouvez également nous envoyer un courriel à
+            <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
+          </li>
+        </ul>
+        <p>
+          Selon votre pays, vous pouvez également avoir certains ou la totalité des droits suivants:
+        </p>
+        <ul>
+          <li>
+            <strong>Droit de participer ou non à la vente ou au partage pour la publicité transversale
+              <br /></strong>
+            Si vous visitez l’un de nos sites web, nous pouvons divulguer vos informations d’activité sur Internet ou d’autres réseaux électroniques, vos identifiants biographiques, vos données de géolocalisation et vos informations professionnelles (dans la mesure où elles peuvent être dérivées de votre activité sur notre site web) à des fournisseurs de services d’analyse de sites web et de publicité à des fins de publicité comportementale ou ciblée inter-contextuelle, en utilisant des cookies publicitaires.  En vertu de certaines lois, vous pourriez avoir le droit de participer ou non à ces types de divulgation.  Pour faire votre choix ou pour voir les noms de tiers particuliers avec lesquels nous avons vendu ou partagé vos renseignements, veuillez cliquer sur le lien « Manage Cookies » (Gérer les témoins) au bas de notre page Web. Si vous souhaitez refuser la vente ou le partage de vos renseignements personnels, assurez-vous que les boutons de suivi « Publicité » et « Analyses » sont réglés à « Non » ou, s’ils sont disponibles, activez le bouton Ne pas vendre ou partager mes renseignements personnels.
+            <p>
+              Vous pouvez également mettre en œuvre un paramètre ou une extension de navigateur pour communiquer automatiquement vos préférences de vente et de partage aux sites Web que vous visitez.  Nos sites Web traitent ces « signaux de refus de préférence » de manière harmonieuse en reconnaissant le contrôle mondial de la confidentialité (GPC). Si vous souhaitez utiliser GPC, vous pouvez le télécharger et l’activer via un navigateur participant ou une extension de navigateur. De plus amples informations sur le téléchargement de GPC sont disponiblesà l’adresse suivante: <a href="https://globalprivacycontrol.org/">ici</a>.&nbsp;
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Droits relatifs à la prise de décision automatisée et au profilage
+              <br /></strong
+            >Dans la mesure où nous procédons au traitement automatisé de vos renseignements personnels, nous vous fournirons à l’avance tous les avis, y compris ceux concernant vos droits, qui sont exigés par la loi.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Marketing direct et ne pas suivre les signaux<br /></strong>
+            Vous pourriez avoir le droit de demander et d’obtenir un avis une fois par année au sujet des renseignements personnels que nous avons communiqués à d’autres entreprises à des fins de marketing direct, lorsque la loi le permet.  S’il y a lieu, cet avis comprendra une liste des catégories de renseignements personnels qui ont été communiqués (le cas échéant) ainsi que les noms et adresses de tous les tiers à qui les renseignements personnels ont été communiqués (le cas échéant).  L’avis couvrira l’année civile précédente.  Vous pouvez communiquer avec nous de la façon indiquée ci-dessous si vous souhaitez savoir si ce droit s’applique à vous et, le cas échéant, l’exercer.
+          </li>
+        </ul>
+        <p>
+          Veuillez noter que certains de ces droits peuvent être limités lorsque nous avons un intérêt légitime prépondérant ou une obligation légale, réglementaire ou contractuelle de continuer à traiter les renseignements personnels, ou lorsque les renseignements personnels peuvent être exemptés de divulgation ou d’effacement en vertu des lois applicables.  Certains de ces droits ne peuvent être exercés que dans certaines circonstances ou peuvent par ailleurs être limités par la législation sur la protection des données de votre territoire.
+        </p>
+        <h2>TRANSFERTS TRANSFRONTALIERS</h2>
+        <p>
+          En tant qu’entreprise mondiale exerçant ses activités dans plus de 80 pays, nous devrons dans certaines circonstances transférer des renseignements personnels à l’extérieur du pays, de la province ou du territoire où ils ont été recueillis aux fins décrites dans le présent avis de confidentialité.Plus précisément, nous pouvons transférer des données pour offrir, administrer et gérer les Services qui vous sont fournis et pour améliorer l’efficacité de nos activités commerciales. Nous ferons tout en notre pouvoir pour veiller à ce que ces transferts respectent toutes les lois pertinentes en matière de protection des données et à ce que les droits et libertés des personnes en vertu de ces lois soient adéquatement protégés.
+        </p>
+        <p>
+          Si un tel transfert s’avère nécessaire, nous prendrons des mesures pour nous assurer que des mesures de protection appropriées sont en place pour protéger les renseignements personnels, comme une évaluation d’impact, une décision d’adéquation par l’autorité de supervision appropriée, l’utilisation de règles d’entreprise contraignantes approuvées ou de clauses contractuelles standard, ou votre consentement.
+        </p>
+        <p>
+          Pour plus d’informations sur le fonctionnement des règles d’entreprise contraignantes de l’UE (Union européenne) de la MMC, cliquez
           <a
-            href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
-            >veuillez remplir ce formulaire </a
-          >
-        </li>
-        <li>
-          Vous pouvez également nous envoyer un courriel à
-          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
-        </li>
-      </ul>
-      <p>
-        Selon votre pays, vous pouvez également avoir certains ou la totalité des droits suivants:
-      </p>
-      <ul>
-        <li>
-          <strong>Droit de participer ou non à la vente ou au partage pour la publicité transversale
-            <br /></strong>
-          Si vous visitez l’un de nos sites web, nous pouvons divulguer vos informations d’activité sur Internet ou d’autres réseaux électroniques, vos identifiants biographiques, vos données de géolocalisation et vos informations professionnelles (dans la mesure où elles peuvent être dérivées de votre activité sur notre site web) à des fournisseurs de services d’analyse de sites web et de publicité à des fins de publicité comportementale ou ciblée inter-contextuelle, en utilisant des cookies publicitaires.  En vertu de certaines lois, vous pourriez avoir le droit de participer ou non à ces types de divulgation.  Pour faire votre choix ou pour voir les noms de tiers particuliers avec lesquels nous avons vendu ou partagé vos renseignements, veuillez cliquer sur le lien « Manage Cookies » (Gérer les témoins) au bas de notre page Web. Si vous souhaitez refuser la vente ou le partage de vos renseignements personnels, assurez-vous que les boutons de suivi « Publicité » et « Analyses » sont réglés à « Non » ou, s’ils sont disponibles, activez le bouton Ne pas vendre ou partager mes renseignements personnels.
-          <p>
-            Vous pouvez également mettre en œuvre un paramètre ou une extension de navigateur pour communiquer automatiquement vos préférences de vente et de partage aux sites Web que vous visitez.  Nos sites Web traitent ces « signaux de refus de préférence » de manière harmonieuse en reconnaissant le contrôle mondial de la confidentialité (GPC). Si vous souhaitez utiliser GPC, vous pouvez le télécharger et l’activer via un navigateur participant ou une extension de navigateur. De plus amples informations sur le téléchargement de GPC sont disponiblesà l’adresse suivante: <a href="https://globalprivacycontrol.org/">ici</a>.&nbsp;
-          </p>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Droits relatifs à la prise de décision automatisée et au profilage
-            <br /></strong
-          >Dans la mesure où nous procédons au traitement automatisé de vos renseignements personnels, nous vous fournirons à l’avance tous les avis, y compris ceux concernant vos droits, qui sont exigés par la loi.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Marketing direct et ne pas suivre les signaux<br /></strong>
-          Vous pourriez avoir le droit de demander et d’obtenir un avis une fois par année au sujet des renseignements personnels que nous avons communiqués à d’autres entreprises à des fins de marketing direct, lorsque la loi le permet.  S’il y a lieu, cet avis comprendra une liste des catégories de renseignements personnels qui ont été communiqués (le cas échéant) ainsi que les noms et adresses de tous les tiers à qui les renseignements personnels ont été communiqués (le cas échéant).  L’avis couvrira l’année civile précédente.  Vous pouvez communiquer avec nous de la façon indiquée ci-dessous si vous souhaitez savoir si ce droit s’applique à vous et, le cas échéant, l’exercer.
-        </li>
-      </ul>
-      <p>
-        Veuillez noter que certains de ces droits peuvent être limités lorsque nous avons un intérêt légitime prépondérant ou une obligation légale, réglementaire ou contractuelle de continuer à traiter les renseignements personnels, ou lorsque les renseignements personnels peuvent être exemptés de divulgation ou d’effacement en vertu des lois applicables.  Certains de ces droits ne peuvent être exercés que dans certaines circonstances ou peuvent par ailleurs être limités par la législation sur la protection des données de votre territoire.
-      </p>
-      <h2>TRANSFERTS TRANSFRONTALIERS</h2>
-      <p>
-        En tant qu’entreprise mondiale exerçant ses activités dans plus de 80 pays, nous devrons dans certaines circonstances transférer des renseignements personnels à l’extérieur du pays, de la province ou du territoire où ils ont été recueillis aux fins décrites dans le présent avis de confidentialité.Plus précisément, nous pouvons transférer des données pour offrir, administrer et gérer les Services qui vous sont fournis et pour améliorer l’efficacité de nos activités commerciales. Nous ferons tout en notre pouvoir pour veiller à ce que ces transferts respectent toutes les lois pertinentes en matière de protection des données et à ce que les droits et libertés des personnes en vertu de ces lois soient adéquatement protégés.
-      </p>
-      <p>
-        Si un tel transfert s’avère nécessaire, nous prendrons des mesures pour nous assurer que des mesures de protection appropriées sont en place pour protéger les renseignements personnels, comme une évaluation d’impact, une décision d’adéquation par l’autorité de supervision appropriée, l’utilisation de règles d’entreprise contraignantes approuvées ou de clauses contractuelles standard, ou votre consentement.
-      </p>
-      <p>
-        Pour plus d’informations sur le fonctionnement des règles d’entreprise contraignantes de l’UE (Union européenne) de la MMC, cliquez
-        <a
-          href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
-          >ici</a
-        >. Pour obtenir la liste des entités qui ont accepté d’être liées par les BCR de l’UE, cliquez&nbsp;
-        <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
-          >ici</a
-        >.&nbsp;
-      </p>
-      <p>
-        Pour en savoir plus sur les règles d’entreprise contraignantes du Royaume-Uni (RCB) de MMC, cliquez
-        <a
-          href="https://www.marshmclennan.com/web-assets/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
-          >ici</a
-        >. Pour obtenir la liste des entités qui ont accepté d’être liées par les RCB du Royaume-Uni, cliquez&nbsp;
-        <a
-          href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
-          >ici</a
-        >.&nbsp;&nbsp;&nbsp;
-      </p>
-      <h2>CONSERVATION DE VOS INFORMATIONS  </h2>
-      <p>
-        Nos produits, nos services et nos obligations réglementaires sont complexes et, par conséquent, nos périodes de conservation des renseignements personnels varient.  Nous tenons compte des obligations suivantes lorsque nous établissons les périodes de conservation des renseignements personnels et des dossiers que nous tenons :
-      </p>
-      <ul>
-        <li>
-          la nécessité de conserver les informations pour atteindre les objectifs commerciaux ou remplir les obligations contractuelles pour lesquelles elles ont été collectées;
-        </li>
-        <li>
-          nos obligations d’exécuter les instructions de nos clients à l’égard des renseignements personnels que nous traitons en leur nom;
-        </li>
-        <li>
-          nos obligations de respecter les exigences légales et réglementaires obligatoires en matière de tenue de dossiers;
-        </li>
-        <li>
-          nos procédures de sauvegarde et de reprise après sinistre
-        </li>
-        <li>
-          d’autres incidences juridiques, comme les délais de prescription applicables.
-        </li>
-      </ul>
-      <p>
-        Selon les facteurs ci-dessus, nous pouvons conserver les renseignements personnels au-delà de la période pour laquelle nous vous fournissons des services. Lorsque nous n’avons plus besoin de conserver des renseignements personnels, nos politiques d’entreprise exigent que nous les dépersonnalisions ou les regroupions (auquel cas nous pouvons les conserver et les utiliser à des fins d’analyse) ou que nous les détruisions de façon sécuritaire.
-      </p>
-      <h2>QUESTIONS OU PRÉOCCUPATIONS</h2>
-      <p>
-        Pour soumettre des questions ou des demandes concernant le présent avis de confidentialité ou les pratiques de confidentialité de MTE, veuillez nous écrire à
-        <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.&nbsp; Si vous préférez communiquer avec nous par la poste ou par téléphone, veuillez communiquer avec votre délégué à la protection des données. Vous pouvez obtenir les coordonnées de votre délégué à la protection des données en communiquant avec nous au&nbsp;<a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-      </p>
-    </div>
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
+            >ici</a
+          >. Pour obtenir la liste des entités qui ont accepté d’être liées par les BCR de l’UE, cliquez&nbsp;
+          <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
+            >ici</a
+          >.&nbsp;
+        </p>
+        <p>
+          Pour en savoir plus sur les règles d’entreprise contraignantes du Royaume-Uni (RCB) de MMC, cliquez
+          <a
+            href="https://www.marshmclennan.com/web-assets/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
+            >ici</a
+          >. Pour obtenir la liste des entités qui ont accepté d’être liées par les RCB du Royaume-Uni, cliquez&nbsp;
+          <a
+            href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
+            >ici</a
+          >.&nbsp;&nbsp;&nbsp;
+        </p>
+        <h2>CONSERVATION DE VOS INFORMATIONS  </h2>
+        <p>
+          Nos produits, nos services et nos obligations réglementaires sont complexes et, par conséquent, nos périodes de conservation des renseignements personnels varient.  Nous tenons compte des obligations suivantes lorsque nous établissons les périodes de conservation des renseignements personnels et des dossiers que nous tenons :
+        </p>
+        <ul>
+          <li>
+            la nécessité de conserver les informations pour atteindre les objectifs commerciaux ou remplir les obligations contractuelles pour lesquelles elles ont été collectées;
+          </li>
+          <li>
+            nos obligations d’exécuter les instructions de nos clients à l’égard des renseignements personnels que nous traitons en leur nom;
+          </li>
+          <li>
+            nos obligations de respecter les exigences légales et réglementaires obligatoires en matière de tenue de dossiers;
+          </li>
+          <li>
+            nos procédures de sauvegarde et de reprise après sinistre
+          </li>
+          <li>
+            d’autres incidences juridiques, comme les délais de prescription applicables.
+          </li>
+        </ul>
+        <p>
+          Selon les facteurs ci-dessus, nous pouvons conserver les renseignements personnels au-delà de la période pour laquelle nous vous fournissons des services. Lorsque nous n’avons plus besoin de conserver des renseignements personnels, nos politiques d’entreprise exigent que nous les dépersonnalisions ou les regroupions (auquel cas nous pouvons les conserver et les utiliser à des fins d’analyse) ou que nous les détruisions de façon sécuritaire.
+        </p>
+        <h2>QUESTIONS OU PRÉOCCUPATIONS</h2>
+        <p>
+          Pour soumettre des questions ou des demandes concernant le présent avis de confidentialité ou les pratiques de confidentialité de MTE, veuillez nous écrire à
+          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.&nbsp; Si vous préférez communiquer avec nous par la poste ou par téléphone, veuillez communiquer avec votre délégué à la protection des données. Vous pouvez obtenir les coordonnées de votre délégué à la protection des données en communiquant avec nous au&nbsp;<a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+      </div>

@@ -163,13 +163,39 @@ describe Tenantable do
       end
     end
 
+    context 'when a tenant_source FK is assigned after creation' do
+      it 'resolves tenant_id when the source association FK changes' do
+        assistant = create(:assistant)
+        user = create(:user)
+        session = AI::AssistedUserSession.create!(user: create(:user), assistable: campaign_a, resource: nil)
+        expect(session.tenant_id).to eq(tenant_a.id)
+
+        chat = AI::AssistantChat.create!(ai_assistant: assistant, user: user)
+        expect(chat.tenant_id).to be_nil
+
+        chat.update!(ai_assisted_user_session: session)
+
+        expect(chat.reload.tenant_id).to eq(tenant_a.id)
+      end
+
+      it 'does not re-resolve when an unrelated column changes' do
+        assistant = create(:assistant)
+        user = create(:user, project: project_a)
+        chat = AI::AssistantChat.create!(ai_assistant: assistant, user: user)
+        expect(chat.tenant_id).to eq(tenant_a.id)
+
+        expect { chat.update!(model_id: 'gpt-4o') }.
+          not_to(change { chat.reload.tenant_id })
+      end
+    end
+
     it 'does not overwrite an already-set tenant_id' do
       campaign = create(:campaign, project: project_a)
       expect(campaign.tenant_id).to eq(tenant_a.id)
 
       ActsAsTenant.with_tenant(tenant_b) do
-        expect { campaign.update!(name: 'renamed') }.
-          not_to(change { campaign.reload.tenant_id })
+        campaign.update!(name: 'renamed')
+        expect(campaign.reload.tenant_id).to eq(tenant_a.id)
       end
     end
   end
@@ -311,6 +337,33 @@ describe Tenantable do
           expect(UserReport.all).to include(report_a)
           expect(UserReport.all).not_to include(report_b)
         end
+      end
+    end
+  end
+
+  describe 'should_force_tenant_resolution?' do
+    it 'returns true for Users::Admin' do
+      expect(Users::Admin.new.send(:should_force_tenant_resolution?)).to be(true)
+    end
+
+    it 'returns false for Users::Regular' do
+      expect(Users::Regular.new.send(:should_force_tenant_resolution?)).to be(false)
+    end
+
+    context 'when current_tenant is set during create' do
+      it 'keeps tenant_id nil for Users::Admin even though acts_as_tenant would set it' do
+        admin = nil
+        ActsAsTenant.with_tenant(tenant_a) do
+          admin = Users::Admin.new(
+            email: 'admin@example.com',
+            password: 'Password@Strong@129',
+            first_name: 'Test',
+            last_name: 'Admin'
+          )
+          admin.valid?
+        end
+
+        expect(admin.tenant_id).to be_nil
       end
     end
   end

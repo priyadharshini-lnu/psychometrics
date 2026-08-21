@@ -16,6 +16,8 @@ class Api::V2::Projects::Schema < Api::Base::Schema
       optional(:logo).maybe(:string)
       optional(:locales).array(:string)
       optional(:enable_live_chat).maybe(:bool)
+      optional(:campaign_dashboard_instructions).maybe(:string)
+      optional(:locale).maybe(:string)
     end
   end
 end

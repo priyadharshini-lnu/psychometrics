@@ -1,572 +1,573 @@
 ---
 sl:
-  privacy_notice: |-
-    <div>
-      <h1><strong>OBVESTILO O ZASEBNOSTI MERCER TALENT ENTERPRISE </strong>&nbsp;</h1>
-      <p>Datum veljavnosti: 15 September 2024</p>
-      <p>
-        To obvestilo o zasebnosti opisuje, kako podjetje Mercer Talent Enterprise (“
-        <strong>MTE</strong>
-        ”) zbira, uporablja, deli, hrani, prenaša in drugače obdeluje podatke v zvezi z identificiranimi ali določljivimi posamezniki (osebni podatki), in pravice, ki jih imate morda v zvezi z vašimi osebnimi podatki. Menimo, da je pomembno, da razumete, kako obdelujemo osebne podatke, in vas spodbujamo, da si vzamete trenutek in se seznanite z našimi spodaj opisanimi praksami glede zasebnosti.
-      </p>
-      <p>
-        Upoštevajte, da je MTE ponudnik rešitev za ocenjevanje vedenjskih znanosti in da v nekaterih primerih delujemo v imenu in po navodilih strank, finančnih institucij, trgovcev in drugih partnerjev, ki delujejo kot upravljavci podatkov, vključno z obdelavo plačilnih transakcij. Za več informacij o obdelavi vaših osebnih podatkov v teh kontekstih glejte pravilnike o zasebnosti teh partnerjev.
-      </p>
-      <h2>KAKŠEN JE NAŠ ODNOS DO VAŠIH</h2>
-      <p>
-        Tretja oseba vas prosi, da opravite oceno na platformi MTE. Ta tretja oseba je stranka MTE in je lahko vaš delodajalec, potencialni delodajalec ali druga povezana oseba. MTE zbira in obdeluje vaše osebne podatke v imenu naših strank. Sledimo navodilom naših strank glede tega, katere osebne podatke je treba zbirati in kako jih obdelovati. MTE zato deluje kot obdelovalec za naše stranke, ki določa obdelavo vaših osebnih podatkov.
-      </p>
-      <p>
-        Če imate vprašanja o obdelavi vaših osebnih podatkov, vas spodbujamo, da si ogledate obvestilo o zasebnosti naše stranke.
-      </p>
-      <h2>KATERE OSEBNE PODATKE ZBIRAM  </h2>
-      <p>
-        Naša stranka nam naroči, da v njenem imenu zberemo določene podatke. Razen vašega imena in e-poštnega naslova, ki sta potrebna za ustvarjanje računa, MTE neodvisno ne določa, kateri podatki se zbirajo. Na podlagi potreb in navodil naše stranke lahko po potrebi zbiramo naslednje kategorije osebnih podatkov za izpolnitev naših predvidenih poslovnih namenov:
-      </p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="146">
-              <p>
-                <strong
-                  >Kategorija
-                </strong>
-              </p>
-            </td>
-            <td width="454">
-              <p>
-                <strong
-                  >Primeri
-                </strong>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Biografski identifikatorji</p></td>
-            <td width="454">
-              <p>Ime, datum rojstva, starost, kraj rojstva, spol.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Kontaktni podatki</p></td>
-            <td width="454">
-              <p>Domači naslov, telefonska številka, osebni e-poštni naslov.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Identifikacijski podatki</p></td>
-            <td width="454">
-              <p>
-                Davčna številka, številka socialnega zavarovanja ali druga identifikacijska številka, ki jo je izdala vlada, številka vozniškega dovoljenja, podatki o potnem listu, podatki o bančnem računu, napoved dohodnine, številka dohodnine.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146">
-              <p>Poklicne ali zaposlitvene informacije</p>
-            </td>
-            <td width="454">
-              <p>
-                Delodajalec ali skupina, razmerje do našega podjetja, naziv delovnega mesta, kontaktni podatki podjetja, identifikacijska številka zaposlenega, delovni razred, uspešnost zaposlenega, dogovori o plači in nagrajevanju ter zgodovina zaposlitve in/ali vaše razmerje do imetnika police, zavarovanca, upravičenca ali vlagatelja zahtevka.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Občutljive demografske lastnosti</p></td>
-            <td width="454">
-              <p>
-                Rasa, državljanstvo, telesno ali duševno zdravje ali invalidnost, spol (vključno s spolom, spolno identiteto, nosečnostjo ali porodom in sorodnimi zdravstvenimi stanji), spolna usmerjenost, članstvo v sindikatu, veteranski ali vojaški status.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Biometrični in fizični podatki</p></td>
-            <td width="454">
-              <p>
-                Skeniranje obraza in spremljanje obraza kot del možnosti nadzora.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Podatki o vašem fizičnem okolju</p></td>
-            <td width="454">
-              <p>
-                Videoposnetek ali vaše specifično lokalizirano območje, posneto z videom ali fotografijo kot del možnosti nadzora. Specifični podatki, zbrani o vašem fizičnem okolju, se bodo razlikovali glede na to, kaj je vidno nadzornim kameram.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Internetna ali druga podobna omrežna dejavnost</p></td>
-            <td width="454">
-              <p>
-                Zgodovina brskanja in iskanja, interakcija s spletnim mestom, aplikacijo ali oglasom, podatki iz piškotkov ali spletnih svetilnikov, prijavne poverilnice, imena domen in interakcije z našimi e-poštnimi sporočili, vključno z branjem in odgovarjanjem na e-poštna sporočila, ponudnik internetnih storitev (ISP), podatki o brskalniku, druge dejavnosti na spletnem mestu, spletni identifikatorji (vključno z naslovom IP ali ID-jem naprave).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Vse druge prostovoljno posredovane informacije</p></td>
-            <td width="454">
-              <p>
-                Informacije o partnerjih in vzdrževanih osebah (vključno z mladoletnimi vzdrževanimi osebami); kontaktni podatki v sili, izjave o razkritju, omejevalne pogodbe, geolokacija, nastavitve trženja in komunikacije, informacije v zvezi z dogodki, ki jih sponzorira podjetje in ste se jih udeležili, ter vaše povratne informacije ali odgovori na ankete, kjer se odločite, da se identificirate.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Upoštevajte, da so to le primeri. MTE si prizadeva za upoštevanje koncepta minimizacije podatkov in zbira le osebne podatke, ki so nujno potrebni za zagotavljanje storitev. Vendar ne moremo nadzorovati informacij, ki jih zahtevajo naše stranke, ali informacij, ki jih prostovoljno posredujete.
-      </p>
-      <h2>KAKO ZBIRAM OSEBNE PODATKE</h2>
-      <h3>
-        <strong>
-          Informacije, ki jih posredujete vi, vaši predstavniki ali tretje osebe
-        </strong>
-      </h3>
-      <p>Osebne podatke lahko zbiramo iz naslednjih virov:</p>
-      <ul>
-        <li>
-          Neposredno od vas, na primer ko obiščete spletno mesto, ustvarite račun, izpolnite anketo ali nam kako drugače posredujete podatke.
-        </li>
-        <li>
-          Vaši predstavniki, vključno z vašim delodajalcem, združenjem ali sponzorjem skupine oziroma programa/načrta ugodnosti.
-        </li>
-      </ul>
-      <p>
-        Med ocenjevanjem se lahko osebni podatki zbirajo prek vaše spletne kamere, mikrofona ali drugih elementov strojne opreme iz vašega sistema. Vaš sistem in program MTE vas bosta pred zbiranjem osebnih podatkov iz vaše strojne opreme prosila za soglasje.
-      </p>
-      <p>
-        Če nam posredujete osebne podatke o drugih osebah (npr. družinskih članih, upravičencih ali vzdrževanih osebah), izjavljate, da ste pooblaščeni za posredovanje teh podatkov in da ste to Obvestilo o zasebnosti delili, kjer je to primerno. Osebnih podatkov zavestno ne zbiramo neposredno od mladoletnih oseb.
-      </p>
-      <h3><strong>Zbiranje z avtomatiziranimi sredstvi </strong>&nbsp;</h3>
-      <p>
-        , uporabljamo piškotke in sorodne tehnologije sledenja (»piškotki«) . Če je to na voljo glede na vašo jurisdikcijo, se lahko uporabniki spletnega mesta odjavijo od naše uporabe določenih piškotkov z uporabo povezave Upravljanje piškotkov na dnu spletnega mesta. Če želite izvedeti več o tem, kako uporabljamo piškotke, si oglejte našo
-        <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
-          >Obvestilo o piškotkih</a
-        >.&nbsp;
-      </p>
-      <h3><strong>Zbiranje s strani tretjih oseb </strong>&nbsp;</h3>
-      <p>
-        Če izvedete transakcijo prek nas, lahko tretja oseba (npr. ponudnik storitev ali zavarovalnica) v povezavi s takšno transakcijo zbira in obdeluje podatke o kreditnih karticah ali druge osebne podatke o vas, vključno s piškotki. V teh primerih in za vse druge dogovore, kjer prejmemo podatke od vašega delodajalca, združenja ali druge tretje osebe, vas spodbujamo, da preberete politiko zasebnosti tretje osebe, če želite izvedeti več o tem, kako bodo vaše podatke uporabljali in razkrivali.
-      </p>
-      <h2>KAKO UPORABLJAMO OSEBNE PODATKE, KI JIH ZBIRAM </h2>
-      <p>Osebne podatke, ki jih zberemo, lahko uporabimo:</p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Kategorija
-                </strong>
-              </p>
-            </td>
-            <td width="317">
-              <p><strong>Uporaba</strong></p>
-            </td>
-            <td width="176">
-              <p><strong>Pravna podlaga</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Za vodenje našega poslovanja</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                Osebne podatke uporabljamo, kadar je to potrebno za opravljanje našega poslovanja, vključno s preverjanjem vaše identitete, odgovarjanjem na vaša vprašanja, komunikacijo z vami, obdelavo transakcij, vzpostavitvijo spletnega računa ali izpolnjevanjem naših pogodbenih obveznosti.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Izpolnjevanje pogodbe in, kjer je to primerno, legitimni interesi (da nam omogočijo izpolnjevanje naših obveznosti in zagotavljanje naših storitev).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Da vam zagotovimo trženjsko gradivo, kjer to dovoljuje veljavna zakonodaja</strong
-                >
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Vaše kontaktne podatke lahko uporabimo za pošiljanje informacij o izdelkih, storitvah in vpogledih, za katere menimo, da bi vas lahko zanimali. Ta sporočila lahko pošljemo po e-pošti, SMS-u, pošti ali telefonu v skladu z vašimi trženjskimi preferencami in veljavnimi globalnimi zakoni, vključno s tistimi, ki se nanašajo na varstvo podatkov in elektronsko komunikacijo. Posledično se bo podlaga za stik z vami razlikovala glede na to, kdo ste, kakšen je naš odnos z vami in kje se nahajate.
-              </p>
-              <p>
-                Ne glede na to, na podlagi česa vam pošiljamo naša trženjska sporočila, bomo spoštovali lokalno zakonodajo in vam ponudili možnost, da se kadar koli odjavite, v tem primeru vam bomo prenehali pošiljati naša trženjska sporočila. Svoje trženjske nastavitve lahko spremenite tudi tako, da nas kontaktirate na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-              </p>
-              <p>
-                Upoštevajte, da vam lahko tudi v primeru, da se odjavite od prejemanja trženjskih sporočil, še vedno pošiljamo sporočila v zvezi s storitvami, ki vam jih nudimo.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Pravna obveznost, soglasje (ki ga lahko zavrnete ali prekličete) in, kjer je to primerno, legitimni interes (da vas obveščamo o novicah v zvezi z našimi izdelki in storitvami).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Za raziskovalne, podatkovne in razvojne namene</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                lahko analiziramo skupaj s podatki drugih strank, da ustvarimo vpoglede, poročila in druge analitike za boljše razumevanje in izboljšanje kakovosti naše ponudbe; trženje naših nasvetov, izdelkov in storitev; ter ocenjevanje učinkovitosti naših trženjskih dejavnosti, spletnih mest in celotne storitve.
-              </p>
-              <p>
-                Upoštevajte, da lahko osebne podatke anonimiziramo, tako da niso povezani z nobeno določeno stranko ali posameznikom.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Kjer je to primerno, legitimni interesi (da nam omogočijo izboljšanje naših storitev).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Za spremljanje določenih dejavnosti in vzdrževanje varnosti in delovanja omrežja ter zaščito pred kibernetskimi napadi</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Spremljamo poizvedbe in transakcije, da zagotovimo kakovost storitev, skladnost s postopki in boj proti goljufijam. Osebne podatke uporabljamo tudi po potrebi za vzdrževanje varnosti omrežja, spremljanje delovanja spletnega mesta in zaščito naših sistemov pred kibernetskimi napadi .
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Pravna obveznost in, kjer je to primerno, legitimni interesi (za zagotavljanje kakovosti in zakonitosti naših storitev).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Za vzdrževanje naših spletnih mest in zagotavljanje ustreznosti vsebine spletnih mest</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Osebne podatke uporabljamo po potrebi za vzdrževanje naših spletnih mest in zagotavljanje, da je vsebina z naših spletnih mest predstavljena na najučinkovitejši način za vas in vašo napravo.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Izvajanje pogodbe in, kjer je to primerno, legitimni interesi (da vam lahko zagotovimo vsebino in storitve na spletnih mestih).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Za reorganizacijo ali spremembe našega poslovanja</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                Po potrebi, če: (i) smo predmet pogajanj o prodaji našega podjetja ali dela le-tega tretji osebi; (ii) smo prodani tretji osebi; ali (iii) smo podvrženi reorganizaciji.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Pravna obveznost ali legitimni interesi (da nam omogočijo spremembo našega poslovanja).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>V povezavi z zakonskimi ali regulativnimi obveznostmi</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Osebne podatke uporabljamo za izpolnjevanje naših regulativnih zahtev glede razkritja ali kot del dialoga z našimi regulatorji, kot je ustrezno.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Pravna obveznost in, kjer je to primerno, legitimni interesi (sodelovanje z organi pregona in regulativnimi organi).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Za preglede goljufij, preprečevanja pranja denarja in sankcij</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Pri vzpostavljanju ali vzdrževanju odnosov s strankami za zagotavljanje določenih storitev uporabljamo osebne podatke za namene izvajanja pregledov goljufij, preprečevanja pranja denarja ali sankcij.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Pravne obveznosti in, kjer je to primerno, legitimni interesi (sodelovanje z organi pregona in regulativnimi organi).
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Osebne podatke, ki jih zberemo in prejmemo, lahko uporabimo tudi tako, kot vam je bilo drugače opisano ob zbiranju.
-      </p>
-      <h3><strong>Zunanje povezave </strong>&nbsp;</h3>
-      <p>
-        Naša spletna mesta lahko vsebujejo povezave do spletnih mest, ki jih upravljajo druge organizacije kot MTE. Če do spletnega mesta druge organizacije dostopate prek hiperpovezave na našem spletnem mestu, lahko druga organizacija zbira vaše podatke. MTE ni odgovorna za vsebino ali prakse zasebnosti povezanih spletnih mest ali za njihovo uporabo vaših osebnih podatkov. Če spletno mesto MTE zapustite prek takšne povezave (kje ste, lahko ugotovite tako, da preverite URL v vrstici z lokacijo v brskalniku), si oglejte pravilnike o zasebnosti, pogoje uporabe in druga obvestila tega spletnega mesta, da ugotovite, kako bo druga organizacija ravnala z vsemi osebnimi podatki, ki jih zbere od vas.
-      </p>
-      <h2>KOMU RAZKRIJEMO OSEBNE PODATKE</h2>
-      <p>
-        Osebne podatke lahko razkrijemo naslednjim kategorijam tretjih oseb:
-      </p>
-      <table width="601">
-        <tbody>
-          <tr>
-            <td width="301">
-              <p><strong>Kategorije tretjih oseb</strong></p>
-            </td>
-            <td width="301">
-              <p><strong>Namen razkritja</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Vaš delodajalec, združenje, skupina ali sponzor programa ugodnosti, kadar je to primerno (npr. stranka MTE)
-              </p>
-            </td>
-            <td width="301"><p>Za zagotavljanje storitev našim strankam</p></td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Podružnice MTE ali druge entitete znotraj skupine podjetij Marsh McLennan (MMC)
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Omogočite jim, da vam nudijo storitve ali vas kontaktirajo glede dodatnih izdelkov in storitev.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>Zastopniki ali ponudniki storitev tretjih oseb</p>
-            </td>
-            <td width="301">
-              <p>
-                Izvajanje funkcij ali storitev za nas ali v našem imenu. Takšne tretje osebe so pogodbeno omejene pri uporabi osebnih podatkov za druge namene kot za zagotavljanje storitev za ali v našem imenu MTE.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Trženjski partnerji, vključno z našimi povezanimi podjetji in tretjimi osebami, ki jih mi ali naše stranke najamemo v povezavi s storitvami.
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Kot to dovoljuje zakonodaja, da vam zagotovimo informacije o naših izdelkih, storitvah ali vpogledih.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Potencialni partnerji ali nasledniki</p></td>
-            <td width="301">
-              <p>
-                V okviru združitev, prevzemov, stečajev, prodaje sredstev ali drugih transakcij, pri katerih tretja oseba prevzame nadzor nad vsem ali delom naših sredstev.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Podjetja za spletno analitiko in oglaševanje</p></td>
-            <td width="301">
-              <p>
-                Pomagajte nam prilagoditi oglase in vsebino glede na vaše interese, izmeriti uspešnost naših oglasov in vsebine ter pridobiti vpogled v občinstvo, ki si ogleduje naše oglase in vsebino.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Podatkovne zbirke za boj proti goljufijam, nadzorni ali regulativni organi, organi pregona in druge tretje osebe
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Kot je potrebno za preprečevanje goljufij, komunikacijo z nadzornimi ali regulativnimi organi, zaščito in obrambo zakonskih pravic, varnosti in zaščite družbe MTE, naših povezanih družb in poslovnih partnerjev ter uporabnikov katerega koli spletnega mesta, uveljavljanje pogojev uporabe spletnega mesta; odzivanje na trditve o domnevnih ali dejanskih nezakonitih dejavnostih; odzivanje na revizijo ali preiskavo pritožbe ali varnostne grožnje; ali skladnost z veljavno zakonodajo, predpisi, pravnimi postopki ali vladnimi zahtevami.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Prav tako lahko razkrijemo anonimizirane podatke, za katere ni razumno verjetno, da bi vas identificirali, v komercialno legitimne in zakonite poslovne namene. Kjer imamo anonimizirane podatke, jih bomo hranili in uporabljali, ne da bi poskušali ponovno identificirati podatke, razen če to dovoljuje zakonodaja.
-      </p>
-      <h2>KORAKI, KI JIH SPREJEMAMO ZA VARSTVO OSEBNIH PODATKOV </h2>
-      <p>
-        Naše podjetje si prizadeva za skladnost z vsemi veljavnimi zakoni o kibernetski varnosti in varstvu podatkov. S temi cilji ima MMC namenskega direktorja za informacijsko varnost (CISO). in globalnega direktorja za varstvo podatkov (GCPO). Vodja CISO je odgovoren za vodenje ekipe za globalno informacijsko varnost in celovitega programa kibernetske varnosti. Kot del našega programa kibernetske varnosti smo uvedli komercialno razumne fizične, administrativne in tehnične zaščitne ukrepe za zaščito osebnih podatkov pred nepooblaščenim dostopom, uporabo, spremembo in izbrisom.
-      </p>
-      <p>
-        GCPO vodi in nadzira Center odličnosti za zasebnost in mrežo pooblaščencev za varstvo podatkov, ki sta odgovorna za izvajanje našega celovitega globalnega programa zasebnosti. Mreža pooblaščencev za varstvo podatkov povezuje naše pooblaščence za varstvo podatkov po vsem svetu in si prizadeva za dosledno in temeljito izvajanje našega programa zasebnosti povsod, kjer obdelujemo podatke. Ime in kontaktne podatke pooblaščenca za varstvo podatkov v vaši jurisdikciji lahko dobite tako, da nas kontaktirate na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-      </p>
-      <h2>VAŠE PRAVICE DO VARSTVA PODATKOV </h2>
-      <p>
-        V mnogih primerih obdelujemo osebne podatke za zagotavljanje storitev poslovnim strankam, zato se obrnite nanje, da uveljavite vse pravice, ki jih imate v skladu z veljavnimi zakoni o zasebnosti. Vendar pa imate lahko nekatere ali vse spodaj navedene pravice, odvisno od jurisdikcije in našega razloga za obdelavo vaših podatkov, kadar delujemo kot upravljavec ali podjetje, ki je primarno odgovorno za odločitev o tem, kako se vaši podatki obdelujejo. Upoštevajte, da bomo morda morali uporabiti vaše osebne podatke za preverjanje vaše identitete, preden uveljavimo katero koli od spodnjih pravic.
-      </p>
-      <ul>
-        <li>
-          <strong>Pravica dostopa (pravica do vedenja) <br /></strong>
-          Lahko nas prosite, da vam posredujemo dodatne podrobnosti o tem, kako uporabljamo vaše osebne podatke, vire, kategorije ali specifične dele osebnih podatkov, ki smo jih zbrali, kategorije tretjih oseb, ki smo jim razkrili podatke, in da zahtevate kopijo osebnih podatkov, ki jih hranimo o vas.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do popravka  <br /></strong>
-          Lahko nas prosite, da posodobimo morebitne netočnosti v osebnih podatkih, ki jih hranimo. Če vaše osebne podatke razkrijemo drugim, jih bomo o popravku obvestili, kjer je to mogoče.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do izbrisa  <br /></strong>
-          Zahtevate lahko izbris vaših osebnih podatkov, če nimamo več zakonite podlage za njihovo obdelavo.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do ugovora ali omejitve obdelave <br /></strong>
-          V določenih okoliščinah imate morda pravico omejiti obdelavo svojih osebnih podatkov, na primer če oporekate njihovi točnosti.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do prenosljivosti podatkov<br /></strong>
-          Imate pravico, da kadar je to tehnično izvedljivo, zahtevate, da kopijo osebnih podatkov, ki smo jih pridobili od vas, prenesemo tretji osebi po vaši izbiri v strukturirani, pogosto uporabljeni in strojno berljivi obliki.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do preklica soglasja <br /></strong>
-          Če se za obdelavo vaših osebnih podatkov zanašamo na vaše soglasje kot našo pravno podlago, imate pravico, da to soglasje prekličete.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Pravica do vložitve pritožbe<br /></strong>
-          Če imate pomisleke glede katerega koli vidika naših praks varstva zasebnosti, imate pravico vložiti pritožbo pri ustreznem nadzornem ali regulativnem organu v vaši jurisdikciji.
-        </li>
-      </ul>
-      <p>
-        Če želite uveljavljati katero koli od zgoraj navedenih pravic ali zahtevati pregled odločitve ali zavrnitve, se obrnite na nas z uporabo ustreznih kontaktnih podatkov:
-      </p>
-      <ul>
-        <li>
-          Če ste v Združenem kraljestvu, Švici ali Evropskem gospodarskem prostoru
-          <a
-            href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
-            >izpolnite ta obrazec.</a
-          >
-        </li>
-        <li>
-          Za posameznike iz drugih držav izpolnite ta obrazec
-          <a
-            href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
-            >izpolnite ta obrazec.</a
-          >
-        </li>
-        <li>
-          Lahko pa nam pišete tudi na elektronski naslov <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
-        </li>
-      </ul>
-      <p>
-        Glede na vašo državo imate morda tudi nekatere ali vse naslednje pravice:
-      </p>
-      <ul>
-        <li>
+  privacy_notice:
+    current: |-
+      <div>
+        <h1><strong>OBVESTILO O ZASEBNOSTI MERCER TALENT ENTERPRISE </strong>&nbsp;</h1>
+        <p>Datum veljavnosti: 15 September 2024</p>
+        <p>
+          To obvestilo o zasebnosti opisuje, kako podjetje Mercer Talent Enterprise (“
+          <strong>MTE</strong>
+          ”) zbira, uporablja, deli, hrani, prenaša in drugače obdeluje podatke v zvezi z identificiranimi ali določljivimi posamezniki (osebni podatki), in pravice, ki jih imate morda v zvezi z vašimi osebnimi podatki. Menimo, da je pomembno, da razumete, kako obdelujemo osebne podatke, in vas spodbujamo, da si vzamete trenutek in se seznanite z našimi spodaj opisanimi praksami glede zasebnosti.
+        </p>
+        <p>
+          Upoštevajte, da je MTE ponudnik rešitev za ocenjevanje vedenjskih znanosti in da v nekaterih primerih delujemo v imenu in po navodilih strank, finančnih institucij, trgovcev in drugih partnerjev, ki delujejo kot upravljavci podatkov, vključno z obdelavo plačilnih transakcij. Za več informacij o obdelavi vaših osebnih podatkov v teh kontekstih glejte pravilnike o zasebnosti teh partnerjev.
+        </p>
+        <h2>KAKŠEN JE NAŠ ODNOS DO VAŠIH</h2>
+        <p>
+          Tretja oseba vas prosi, da opravite oceno na platformi MTE. Ta tretja oseba je stranka MTE in je lahko vaš delodajalec, potencialni delodajalec ali druga povezana oseba. MTE zbira in obdeluje vaše osebne podatke v imenu naših strank. Sledimo navodilom naših strank glede tega, katere osebne podatke je treba zbirati in kako jih obdelovati. MTE zato deluje kot obdelovalec za naše stranke, ki določa obdelavo vaših osebnih podatkov.
+        </p>
+        <p>
+          Če imate vprašanja o obdelavi vaših osebnih podatkov, vas spodbujamo, da si ogledate obvestilo o zasebnosti naše stranke.
+        </p>
+        <h2>KATERE OSEBNE PODATKE ZBIRAM  </h2>
+        <p>
+          Naša stranka nam naroči, da v njenem imenu zberemo določene podatke. Razen vašega imena in e-poštnega naslova, ki sta potrebna za ustvarjanje računa, MTE neodvisno ne določa, kateri podatki se zbirajo. Na podlagi potreb in navodil naše stranke lahko po potrebi zbiramo naslednje kategorije osebnih podatkov za izpolnitev naših predvidenih poslovnih namenov:
+        </p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="146">
+                <p>
+                  <strong
+                    >Kategorija
+                  </strong>
+                </p>
+              </td>
+              <td width="454">
+                <p>
+                  <strong
+                    >Primeri
+                  </strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biografski identifikatorji</p></td>
+              <td width="454">
+                <p>Ime, datum rojstva, starost, kraj rojstva, spol.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Kontaktni podatki</p></td>
+              <td width="454">
+                <p>Domači naslov, telefonska številka, osebni e-poštni naslov.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Identifikacijski podatki</p></td>
+              <td width="454">
+                <p>
+                  Davčna številka, številka socialnega zavarovanja ali druga identifikacijska številka, ki jo je izdala vlada, številka vozniškega dovoljenja, podatki o potnem listu, podatki o bančnem računu, napoved dohodnine, številka dohodnine.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146">
+                <p>Poklicne ali zaposlitvene informacije</p>
+              </td>
+              <td width="454">
+                <p>
+                  Delodajalec ali skupina, razmerje do našega podjetja, naziv delovnega mesta, kontaktni podatki podjetja, identifikacijska številka zaposlenega, delovni razred, uspešnost zaposlenega, dogovori o plači in nagrajevanju ter zgodovina zaposlitve in/ali vaše razmerje do imetnika police, zavarovanca, upravičenca ali vlagatelja zahtevka.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Občutljive demografske lastnosti</p></td>
+              <td width="454">
+                <p>
+                  Rasa, državljanstvo, telesno ali duševno zdravje ali invalidnost, spol (vključno s spolom, spolno identiteto, nosečnostjo ali porodom in sorodnimi zdravstvenimi stanji), spolna usmerjenost, članstvo v sindikatu, veteranski ali vojaški status.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biometrični in fizični podatki</p></td>
+              <td width="454">
+                <p>
+                  Skeniranje obraza in spremljanje obraza kot del možnosti nadzora.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Podatki o vašem fizičnem okolju</p></td>
+              <td width="454">
+                <p>
+                  Videoposnetek ali vaše specifično lokalizirano območje, posneto z videom ali fotografijo kot del možnosti nadzora. Specifični podatki, zbrani o vašem fizičnem okolju, se bodo razlikovali glede na to, kaj je vidno nadzornim kameram.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Internetna ali druga podobna omrežna dejavnost</p></td>
+              <td width="454">
+                <p>
+                  Zgodovina brskanja in iskanja, interakcija s spletnim mestom, aplikacijo ali oglasom, podatki iz piškotkov ali spletnih svetilnikov, prijavne poverilnice, imena domen in interakcije z našimi e-poštnimi sporočili, vključno z branjem in odgovarjanjem na e-poštna sporočila, ponudnik internetnih storitev (ISP), podatki o brskalniku, druge dejavnosti na spletnem mestu, spletni identifikatorji (vključno z naslovom IP ali ID-jem naprave).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Vse druge prostovoljno posredovane informacije</p></td>
+              <td width="454">
+                <p>
+                  Informacije o partnerjih in vzdrževanih osebah (vključno z mladoletnimi vzdrževanimi osebami); kontaktni podatki v sili, izjave o razkritju, omejevalne pogodbe, geolokacija, nastavitve trženja in komunikacije, informacije v zvezi z dogodki, ki jih sponzorira podjetje in ste se jih udeležili, ter vaše povratne informacije ali odgovori na ankete, kjer se odločite, da se identificirate.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Upoštevajte, da so to le primeri. MTE si prizadeva za upoštevanje koncepta minimizacije podatkov in zbira le osebne podatke, ki so nujno potrebni za zagotavljanje storitev. Vendar ne moremo nadzorovati informacij, ki jih zahtevajo naše stranke, ali informacij, ki jih prostovoljno posredujete.
+        </p>
+        <h2>KAKO ZBIRAM OSEBNE PODATKE</h2>
+        <h3>
           <strong>
-            Pravica do privolitve ali odjave od prodaje ali deljenja za medkontekstno oglaševanje <br />
+            Informacije, ki jih posredujete vi, vaši predstavniki ali tretje osebe
           </strong>
-          Če obiščete eno od naših spletnih mest, lahko ponudnikom analitike in oglaševanja spletnih mest razkrijemo podatke o vaši internetni ali drugi elektronski omrežni dejavnosti, biografske identifikatorje, podatke o geolokaciji in poklicne podatke (v obsegu, v katerem jih je mogoče izpeljati iz vaše dejavnosti na našem spletnem mestu) za namene medkontekstnega vedenjskega ali ciljno usmerjenega oglaševanja z uporabo oglaševalskih piškotkov. V skladu z nekaterimi zakoni imate morda pravico, da se odločite za tovrstna razkritja ali jih zavrnete. Če želite izbrati ali si ogledati imena določenih tretjih oseb, s katerimi smo prodali ali delili vaše podatke, kliknite povezavo »Upravljanje piškotkov« na dnu naše spletne strani. Če želite onemogočiti prodajo ali deljenje svojih podatkov, se prepričajte, da sta stikali za sledilnika »Oglaševanje« in »Analitika« nastavljeni na »Ne« ali, kjer je na voljo, omogočite stikalo »Ne prodajaj ali deli mojih osebnih podatkov«.
-          <p>
-            Prav tako lahko namestite nastavitev ali razširitev brskalnika, da samodejno sporočite svoje nastavitve prodaje in deljenja spletnim mestom, ki jih obiščete. Naša spletna mesta takšne »signale preferenc za zavrnitev« obdelujejo brezhibno s prepoznavanjem Global Privacy Control (GPC). Če želite uporabljati GPC, ga lahko prenesete in omogočite prek sodelujočega brskalnika ali razširitve brskalnika. Več informacij o prenosu GPC je na voljo <a href="https://globalprivacycontrol.org/">tukaj</a>.&nbsp;
-          </p>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>
-            Pravice v zvezi z avtomatiziranim odločanjem in profiliranjem
-          <br /></strong>
-          V kolikor se ukvarjamo z avtomatizirano obdelavo vaših osebnih podatkov, vas bomo vnaprej obvestili o vseh zakonsko zahtevanih obvestilih, vključno z obvestili o vaših pravicah.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Neposredno trženje in signali »Ne sledi« <br /></strong>
-          Morda imate pravico, da enkrat letno zahtevate in prejmete obvestilo o osebnih podatkih, ki smo jih razkrili drugim podjetjem za njihove lastne namene neposrednega trženja, kjer to dovoljuje zakonodaja. Če je primerno, bo takšno obvestilo vsebovalo seznam kategorij osebnih podatkov, ki so bili razkriti (če obstajajo), ter imena in naslove vseh tretjih oseb, katerim so bili osebni podatki razkriti (če obstajajo). Obvestilo bo zajemalo preteklo koledarsko leto. Če želite izvedeti, ali ta pravica velja za vas, in jo v tem primeru uveljaviti, se lahko obrnete na nas na spodaj navedene načine.
-        </li>
-      </ul>
-      <p>
-        Upoštevajte, da so nekatere od teh pravic lahko omejene, kadar imamo prevladujoč legitimni interes ali zakonsko, regulativno ali pogodbeno obveznost za nadaljnjo obdelavo osebnih podatkov ali kadar so osebni podatki v skladu z veljavno zakonodajo izvzeti iz razkritja ali izbrisa. Nekatere od teh pravic je mogoče uveljavljati le v določenih okoliščinah ali pa so lahko drugače omejene z zakonodajo o varstvu podatkov v vaši jurisdikciji.
-      </p>
-      <h2>ČEZMEJNI PRENOSI </h2>
-      <p>
-        Kot globalno podjetje, ki deluje v več kot 80 državah, bomo morali v nekaterih okoliščinah prenesti osebne podatke iz države, province ali ozemlja, kjer so bili zbrani, za namene, opisane v tem obvestilu o zasebnosti. Podatke lahko prenesemo zlasti za ponujanje, upravljanje in upravljanje storitev, ki vam jih nudimo, ter za izboljšanje učinkovitosti našega poslovanja. Potrudili se bomo, da bodo ti prenosi skladni z vso ustrezno zakonodajo o varstvu podatkov in da bodo pravice in svoboščine posameznikov v skladu s to zakonodajo ustrezno zaščitene.
-      </p>
-      <p>
-        Kadar se pojavi potreba po takšnem prenosu, bomo sprejeli ukrepe za zagotovitev ustreznih zaščitnih ukrepov za zaščito osebnih podatkov, kot so ocena učinka, odločitev o ustreznosti s strani ustreznega nadzornega organa, uporaba odobrenih zavezujočih poslovnih pravil ali standardnih pogodbenih klavzul ali vaše soglasje.
-      </p>
-      <p>
-        Za informacije o delovanju zavezujočih poslovnih pravil EU (Evropske unije) družbe MMC kliknite
-        <a
-          href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-EUBCR-Controller-and-Processor-Principles.pdf"
-          >tukaj</a
-        >.&nbsp; Za seznam subjektov, ki so se strinjali, da jih bodo zavezovala zavezujoča poslovna pravila EU, kliknite
-        <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
-          >tukaj</a
-        >.&nbsp;
-      </p>
-      <p>
-        Za informacije o delovanju zavezujočih poslovnih pravil MMC za Združeno kraljestvo (UK BCRs) kliknite
-        <a
-          href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
-          >tukaj</a
-        >.&nbsp; Za seznam subjektov, ki so se strinjali, da jih bodo zavezovala britanska BCRs, kliknite
-        <a
-          href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
-          >tukaj</a
-        >.&nbsp;&nbsp;&nbsp;
-      </p>
-      <h2>HRANJENJE VAŠIH PODATKOV </h2>
-      <p>
-        Naši izdelki, storitve in regulativne obveznosti so kompleksni, zato se naša obdobja hrambe osebnih podatkov razlikujejo. Pri določanju obdobij hrambe osebnih podatkov in evidenc, ki jih hranimo, upoštevamo naslednje obveznosti:
-      </p>
-      <ul>
-        <li>
-          potreba po hrambi informacij za izpolnitev poslovnih namenov ali pogodbenih obveznosti, za katere so bile zbrane;
-        </li>
-        <li>
-          naše dolžnosti izvrševanja navodil naših strank v zvezi z osebnimi podatki, ki jih obdelujemo v njihovem imenu;
-        </li>
-        <li>
-          naše dolžnosti glede izpolnjevanja obveznih zakonskih in regulativnih zahtev glede vodenja evidenc;
-        </li>
-        <li>
-          naše postopke varnostnega kopiranja in obnovitve po nesreči; in
-        </li>
-        <li>
-          druge pravne posledice, kot so veljavni zastaralni roki.
-        </li>
-      </ul>
-      <p>
-        Na podlagi zgoraj navedenih dejavnikov lahko osebne podatke hranimo dlje kot v obdobju, v katerem vam zagotavljamo storitve. Ko osebnih podatkov ne potrebujemo več, politike našega podjetja zahtevajo, da podatke bodisi anonimiziramo bodisi združimo (v tem primeru lahko anonimizirane ali združene podatke še naprej hranimo in uporabljamo za analitične namene) bodisi jih varno uničimo.
-      </p>
-      <h2>VPRAŠANJA ALI POMISLI </h2>
-      <p>
-        želite poslati vprašanja ali zahteve v zvezi s tem obvestilom o zasebnosti ali praksami MTE glede zasebnosti, nam pišite na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>. Če nas želite kontaktirati po pošti ali telefonu, se obrnite na lokalnega pooblaščenca za varstvo podatkov. Kontaktne podatke lokalnega pooblaščenca za varstvo podatkov lahko dobite tako, da nas kontaktirate na
-        <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-      </p>
-    </div>
+        </h3>
+        <p>Osebne podatke lahko zbiramo iz naslednjih virov:</p>
+        <ul>
+          <li>
+            Neposredno od vas, na primer ko obiščete spletno mesto, ustvarite račun, izpolnite anketo ali nam kako drugače posredujete podatke.
+          </li>
+          <li>
+            Vaši predstavniki, vključno z vašim delodajalcem, združenjem ali sponzorjem skupine oziroma programa/načrta ugodnosti.
+          </li>
+        </ul>
+        <p>
+          Med ocenjevanjem se lahko osebni podatki zbirajo prek vaše spletne kamere, mikrofona ali drugih elementov strojne opreme iz vašega sistema. Vaš sistem in program MTE vas bosta pred zbiranjem osebnih podatkov iz vaše strojne opreme prosila za soglasje.
+        </p>
+        <p>
+          Če nam posredujete osebne podatke o drugih osebah (npr. družinskih članih, upravičencih ali vzdrževanih osebah), izjavljate, da ste pooblaščeni za posredovanje teh podatkov in da ste to Obvestilo o zasebnosti delili, kjer je to primerno. Osebnih podatkov zavestno ne zbiramo neposredno od mladoletnih oseb.
+        </p>
+        <h3><strong>Zbiranje z avtomatiziranimi sredstvi </strong>&nbsp;</h3>
+        <p>
+          , uporabljamo piškotke in sorodne tehnologije sledenja (»piškotki«) . Če je to na voljo glede na vašo jurisdikcijo, se lahko uporabniki spletnega mesta odjavijo od naše uporabe določenih piškotkov z uporabo povezave Upravljanje piškotkov na dnu spletnega mesta. Če želite izvedeti več o tem, kako uporabljamo piškotke, si oglejte našo
+          <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
+            >Obvestilo o piškotkih</a
+          >.&nbsp;
+        </p>
+        <h3><strong>Zbiranje s strani tretjih oseb </strong>&nbsp;</h3>
+        <p>
+          Če izvedete transakcijo prek nas, lahko tretja oseba (npr. ponudnik storitev ali zavarovalnica) v povezavi s takšno transakcijo zbira in obdeluje podatke o kreditnih karticah ali druge osebne podatke o vas, vključno s piškotki. V teh primerih in za vse druge dogovore, kjer prejmemo podatke od vašega delodajalca, združenja ali druge tretje osebe, vas spodbujamo, da preberete politiko zasebnosti tretje osebe, če želite izvedeti več o tem, kako bodo vaše podatke uporabljali in razkrivali.
+        </p>
+        <h2>KAKO UPORABLJAMO OSEBNE PODATKE, KI JIH ZBIRAM </h2>
+        <p>Osebne podatke, ki jih zberemo, lahko uporabimo:</p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Kategorija
+                  </strong>
+                </p>
+              </td>
+              <td width="317">
+                <p><strong>Uporaba</strong></p>
+              </td>
+              <td width="176">
+                <p><strong>Pravna podlaga</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Za vodenje našega poslovanja</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  Osebne podatke uporabljamo, kadar je to potrebno za opravljanje našega poslovanja, vključno s preverjanjem vaše identitete, odgovarjanjem na vaša vprašanja, komunikacijo z vami, obdelavo transakcij, vzpostavitvijo spletnega računa ali izpolnjevanjem naših pogodbenih obveznosti.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Izpolnjevanje pogodbe in, kjer je to primerno, legitimni interesi (da nam omogočijo izpolnjevanje naših obveznosti in zagotavljanje naših storitev).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Da vam zagotovimo trženjsko gradivo, kjer to dovoljuje veljavna zakonodaja</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Vaše kontaktne podatke lahko uporabimo za pošiljanje informacij o izdelkih, storitvah in vpogledih, za katere menimo, da bi vas lahko zanimali. Ta sporočila lahko pošljemo po e-pošti, SMS-u, pošti ali telefonu v skladu z vašimi trženjskimi preferencami in veljavnimi globalnimi zakoni, vključno s tistimi, ki se nanašajo na varstvo podatkov in elektronsko komunikacijo. Posledično se bo podlaga za stik z vami razlikovala glede na to, kdo ste, kakšen je naš odnos z vami in kje se nahajate.
+                </p>
+                <p>
+                  Ne glede na to, na podlagi česa vam pošiljamo naša trženjska sporočila, bomo spoštovali lokalno zakonodajo in vam ponudili možnost, da se kadar koli odjavite, v tem primeru vam bomo prenehali pošiljati naša trženjska sporočila. Svoje trženjske nastavitve lahko spremenite tudi tako, da nas kontaktirate na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+                </p>
+                <p>
+                  Upoštevajte, da vam lahko tudi v primeru, da se odjavite od prejemanja trženjskih sporočil, še vedno pošiljamo sporočila v zvezi s storitvami, ki vam jih nudimo.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Pravna obveznost, soglasje (ki ga lahko zavrnete ali prekličete) in, kjer je to primerno, legitimni interes (da vas obveščamo o novicah v zvezi z našimi izdelki in storitvami).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Za raziskovalne, podatkovne in razvojne namene</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  lahko analiziramo skupaj s podatki drugih strank, da ustvarimo vpoglede, poročila in druge analitike za boljše razumevanje in izboljšanje kakovosti naše ponudbe; trženje naših nasvetov, izdelkov in storitev; ter ocenjevanje učinkovitosti naših trženjskih dejavnosti, spletnih mest in celotne storitve.
+                </p>
+                <p>
+                  Upoštevajte, da lahko osebne podatke anonimiziramo, tako da niso povezani z nobeno določeno stranko ali posameznikom.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Kjer je to primerno, legitimni interesi (da nam omogočijo izboljšanje naših storitev).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Za spremljanje določenih dejavnosti in vzdrževanje varnosti in delovanja omrežja ter zaščito pred kibernetskimi napadi</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Spremljamo poizvedbe in transakcije, da zagotovimo kakovost storitev, skladnost s postopki in boj proti goljufijam. Osebne podatke uporabljamo tudi po potrebi za vzdrževanje varnosti omrežja, spremljanje delovanja spletnega mesta in zaščito naših sistemov pred kibernetskimi napadi .
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Pravna obveznost in, kjer je to primerno, legitimni interesi (za zagotavljanje kakovosti in zakonitosti naših storitev).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Za vzdrževanje naših spletnih mest in zagotavljanje ustreznosti vsebine spletnih mest</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Osebne podatke uporabljamo po potrebi za vzdrževanje naših spletnih mest in zagotavljanje, da je vsebina z naših spletnih mest predstavljena na najučinkovitejši način za vas in vašo napravo.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Izvajanje pogodbe in, kjer je to primerno, legitimni interesi (da vam lahko zagotovimo vsebino in storitve na spletnih mestih).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Za reorganizacijo ali spremembe našega poslovanja</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  Po potrebi, če: (i) smo predmet pogajanj o prodaji našega podjetja ali dela le-tega tretji osebi; (ii) smo prodani tretji osebi; ali (iii) smo podvrženi reorganizaciji.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Pravna obveznost ali legitimni interesi (da nam omogočijo spremembo našega poslovanja).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>V povezavi z zakonskimi ali regulativnimi obveznostmi</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Osebne podatke uporabljamo za izpolnjevanje naših regulativnih zahtev glede razkritja ali kot del dialoga z našimi regulatorji, kot je ustrezno.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Pravna obveznost in, kjer je to primerno, legitimni interesi (sodelovanje z organi pregona in regulativnimi organi).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Za preglede goljufij, preprečevanja pranja denarja in sankcij</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Pri vzpostavljanju ali vzdrževanju odnosov s strankami za zagotavljanje določenih storitev uporabljamo osebne podatke za namene izvajanja pregledov goljufij, preprečevanja pranja denarja ali sankcij.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Pravne obveznosti in, kjer je to primerno, legitimni interesi (sodelovanje z organi pregona in regulativnimi organi).
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Osebne podatke, ki jih zberemo in prejmemo, lahko uporabimo tudi tako, kot vam je bilo drugače opisano ob zbiranju.
+        </p>
+        <h3><strong>Zunanje povezave </strong>&nbsp;</h3>
+        <p>
+          Naša spletna mesta lahko vsebujejo povezave do spletnih mest, ki jih upravljajo druge organizacije kot MTE. Če do spletnega mesta druge organizacije dostopate prek hiperpovezave na našem spletnem mestu, lahko druga organizacija zbira vaše podatke. MTE ni odgovorna za vsebino ali prakse zasebnosti povezanih spletnih mest ali za njihovo uporabo vaših osebnih podatkov. Če spletno mesto MTE zapustite prek takšne povezave (kje ste, lahko ugotovite tako, da preverite URL v vrstici z lokacijo v brskalniku), si oglejte pravilnike o zasebnosti, pogoje uporabe in druga obvestila tega spletnega mesta, da ugotovite, kako bo druga organizacija ravnala z vsemi osebnimi podatki, ki jih zbere od vas.
+        </p>
+        <h2>KOMU RAZKRIJEMO OSEBNE PODATKE</h2>
+        <p>
+          Osebne podatke lahko razkrijemo naslednjim kategorijam tretjih oseb:
+        </p>
+        <table width="601">
+          <tbody>
+            <tr>
+              <td width="301">
+                <p><strong>Kategorije tretjih oseb</strong></p>
+              </td>
+              <td width="301">
+                <p><strong>Namen razkritja</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Vaš delodajalec, združenje, skupina ali sponzor programa ugodnosti, kadar je to primerno (npr. stranka MTE)
+                </p>
+              </td>
+              <td width="301"><p>Za zagotavljanje storitev našim strankam</p></td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Podružnice MTE ali druge entitete znotraj skupine podjetij Marsh McLennan (MMC)
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Omogočite jim, da vam nudijo storitve ali vas kontaktirajo glede dodatnih izdelkov in storitev.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>Zastopniki ali ponudniki storitev tretjih oseb</p>
+              </td>
+              <td width="301">
+                <p>
+                  Izvajanje funkcij ali storitev za nas ali v našem imenu. Takšne tretje osebe so pogodbeno omejene pri uporabi osebnih podatkov za druge namene kot za zagotavljanje storitev za ali v našem imenu MTE.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Trženjski partnerji, vključno z našimi povezanimi podjetji in tretjimi osebami, ki jih mi ali naše stranke najamemo v povezavi s storitvami.
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Kot to dovoljuje zakonodaja, da vam zagotovimo informacije o naših izdelkih, storitvah ali vpogledih.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Potencialni partnerji ali nasledniki</p></td>
+              <td width="301">
+                <p>
+                  V okviru združitev, prevzemov, stečajev, prodaje sredstev ali drugih transakcij, pri katerih tretja oseba prevzame nadzor nad vsem ali delom naših sredstev.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Podjetja za spletno analitiko in oglaševanje</p></td>
+              <td width="301">
+                <p>
+                  Pomagajte nam prilagoditi oglase in vsebino glede na vaše interese, izmeriti uspešnost naših oglasov in vsebine ter pridobiti vpogled v občinstvo, ki si ogleduje naše oglase in vsebino.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Podatkovne zbirke za boj proti goljufijam, nadzorni ali regulativni organi, organi pregona in druge tretje osebe
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Kot je potrebno za preprečevanje goljufij, komunikacijo z nadzornimi ali regulativnimi organi, zaščito in obrambo zakonskih pravic, varnosti in zaščite družbe MTE, naših povezanih družb in poslovnih partnerjev ter uporabnikov katerega koli spletnega mesta, uveljavljanje pogojev uporabe spletnega mesta; odzivanje na trditve o domnevnih ali dejanskih nezakonitih dejavnostih; odzivanje na revizijo ali preiskavo pritožbe ali varnostne grožnje; ali skladnost z veljavno zakonodajo, predpisi, pravnimi postopki ali vladnimi zahtevami.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Prav tako lahko razkrijemo anonimizirane podatke, za katere ni razumno verjetno, da bi vas identificirali, v komercialno legitimne in zakonite poslovne namene. Kjer imamo anonimizirane podatke, jih bomo hranili in uporabljali, ne da bi poskušali ponovno identificirati podatke, razen če to dovoljuje zakonodaja.
+        </p>
+        <h2>KORAKI, KI JIH SPREJEMAMO ZA VARSTVO OSEBNIH PODATKOV </h2>
+        <p>
+          Naše podjetje si prizadeva za skladnost z vsemi veljavnimi zakoni o kibernetski varnosti in varstvu podatkov. S temi cilji ima MMC namenskega direktorja za informacijsko varnost (CISO). in globalnega direktorja za varstvo podatkov (GCPO). Vodja CISO je odgovoren za vodenje ekipe za globalno informacijsko varnost in celovitega programa kibernetske varnosti. Kot del našega programa kibernetske varnosti smo uvedli komercialno razumne fizične, administrativne in tehnične zaščitne ukrepe za zaščito osebnih podatkov pred nepooblaščenim dostopom, uporabo, spremembo in izbrisom.
+        </p>
+        <p>
+          GCPO vodi in nadzira Center odličnosti za zasebnost in mrežo pooblaščencev za varstvo podatkov, ki sta odgovorna za izvajanje našega celovitega globalnega programa zasebnosti. Mreža pooblaščencev za varstvo podatkov povezuje naše pooblaščence za varstvo podatkov po vsem svetu in si prizadeva za dosledno in temeljito izvajanje našega programa zasebnosti povsod, kjer obdelujemo podatke. Ime in kontaktne podatke pooblaščenca za varstvo podatkov v vaši jurisdikciji lahko dobite tako, da nas kontaktirate na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+        <h2>VAŠE PRAVICE DO VARSTVA PODATKOV </h2>
+        <p>
+          V mnogih primerih obdelujemo osebne podatke za zagotavljanje storitev poslovnim strankam, zato se obrnite nanje, da uveljavite vse pravice, ki jih imate v skladu z veljavnimi zakoni o zasebnosti. Vendar pa imate lahko nekatere ali vse spodaj navedene pravice, odvisno od jurisdikcije in našega razloga za obdelavo vaših podatkov, kadar delujemo kot upravljavec ali podjetje, ki je primarno odgovorno za odločitev o tem, kako se vaši podatki obdelujejo. Upoštevajte, da bomo morda morali uporabiti vaše osebne podatke za preverjanje vaše identitete, preden uveljavimo katero koli od spodnjih pravic.
+        </p>
+        <ul>
+          <li>
+            <strong>Pravica dostopa (pravica do vedenja) <br /></strong>
+            Lahko nas prosite, da vam posredujemo dodatne podrobnosti o tem, kako uporabljamo vaše osebne podatke, vire, kategorije ali specifične dele osebnih podatkov, ki smo jih zbrali, kategorije tretjih oseb, ki smo jim razkrili podatke, in da zahtevate kopijo osebnih podatkov, ki jih hranimo o vas.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do popravka  <br /></strong>
+            Lahko nas prosite, da posodobimo morebitne netočnosti v osebnih podatkih, ki jih hranimo. Če vaše osebne podatke razkrijemo drugim, jih bomo o popravku obvestili, kjer je to mogoče.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do izbrisa  <br /></strong>
+            Zahtevate lahko izbris vaših osebnih podatkov, če nimamo več zakonite podlage za njihovo obdelavo.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do ugovora ali omejitve obdelave <br /></strong>
+            V določenih okoliščinah imate morda pravico omejiti obdelavo svojih osebnih podatkov, na primer če oporekate njihovi točnosti.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do prenosljivosti podatkov<br /></strong>
+            Imate pravico, da kadar je to tehnično izvedljivo, zahtevate, da kopijo osebnih podatkov, ki smo jih pridobili od vas, prenesemo tretji osebi po vaši izbiri v strukturirani, pogosto uporabljeni in strojno berljivi obliki.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do preklica soglasja <br /></strong>
+            Če se za obdelavo vaših osebnih podatkov zanašamo na vaše soglasje kot našo pravno podlago, imate pravico, da to soglasje prekličete.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Pravica do vložitve pritožbe<br /></strong>
+            Če imate pomisleke glede katerega koli vidika naših praks varstva zasebnosti, imate pravico vložiti pritožbo pri ustreznem nadzornem ali regulativnem organu v vaši jurisdikciji.
+          </li>
+        </ul>
+        <p>
+          Če želite uveljavljati katero koli od zgoraj navedenih pravic ali zahtevati pregled odločitve ali zavrnitve, se obrnite na nas z uporabo ustreznih kontaktnih podatkov:
+        </p>
+        <ul>
+          <li>
+            Če ste v Združenem kraljestvu, Švici ali Evropskem gospodarskem prostoru
+            <a
+              href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
+              >izpolnite ta obrazec.</a
+            >
+          </li>
+          <li>
+            Za posameznike iz drugih držav izpolnite ta obrazec
+            <a
+              href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
+              >izpolnite ta obrazec.</a
+            >
+          </li>
+          <li>
+            Lahko pa nam pišete tudi na elektronski naslov <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
+          </li>
+        </ul>
+        <p>
+          Glede na vašo državo imate morda tudi nekatere ali vse naslednje pravice:
+        </p>
+        <ul>
+          <li>
+            <strong>
+              Pravica do privolitve ali odjave od prodaje ali deljenja za medkontekstno oglaševanje <br />
+            </strong>
+            Če obiščete eno od naših spletnih mest, lahko ponudnikom analitike in oglaševanja spletnih mest razkrijemo podatke o vaši internetni ali drugi elektronski omrežni dejavnosti, biografske identifikatorje, podatke o geolokaciji in poklicne podatke (v obsegu, v katerem jih je mogoče izpeljati iz vaše dejavnosti na našem spletnem mestu) za namene medkontekstnega vedenjskega ali ciljno usmerjenega oglaševanja z uporabo oglaševalskih piškotkov. V skladu z nekaterimi zakoni imate morda pravico, da se odločite za tovrstna razkritja ali jih zavrnete. Če želite izbrati ali si ogledati imena določenih tretjih oseb, s katerimi smo prodali ali delili vaše podatke, kliknite povezavo »Upravljanje piškotkov« na dnu naše spletne strani. Če želite onemogočiti prodajo ali deljenje svojih podatkov, se prepričajte, da sta stikali za sledilnika »Oglaševanje« in »Analitika« nastavljeni na »Ne« ali, kjer je na voljo, omogočite stikalo »Ne prodajaj ali deli mojih osebnih podatkov«.
+            <p>
+              Prav tako lahko namestite nastavitev ali razširitev brskalnika, da samodejno sporočite svoje nastavitve prodaje in deljenja spletnim mestom, ki jih obiščete. Naša spletna mesta takšne »signale preferenc za zavrnitev« obdelujejo brezhibno s prepoznavanjem Global Privacy Control (GPC). Če želite uporabljati GPC, ga lahko prenesete in omogočite prek sodelujočega brskalnika ali razširitve brskalnika. Več informacij o prenosu GPC je na voljo <a href="https://globalprivacycontrol.org/">tukaj</a>.&nbsp;
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>
+              Pravice v zvezi z avtomatiziranim odločanjem in profiliranjem
+            <br /></strong>
+            V kolikor se ukvarjamo z avtomatizirano obdelavo vaših osebnih podatkov, vas bomo vnaprej obvestili o vseh zakonsko zahtevanih obvestilih, vključno z obvestili o vaših pravicah.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Neposredno trženje in signali »Ne sledi« <br /></strong>
+            Morda imate pravico, da enkrat letno zahtevate in prejmete obvestilo o osebnih podatkih, ki smo jih razkrili drugim podjetjem za njihove lastne namene neposrednega trženja, kjer to dovoljuje zakonodaja. Če je primerno, bo takšno obvestilo vsebovalo seznam kategorij osebnih podatkov, ki so bili razkriti (če obstajajo), ter imena in naslove vseh tretjih oseb, katerim so bili osebni podatki razkriti (če obstajajo). Obvestilo bo zajemalo preteklo koledarsko leto. Če želite izvedeti, ali ta pravica velja za vas, in jo v tem primeru uveljaviti, se lahko obrnete na nas na spodaj navedene načine.
+          </li>
+        </ul>
+        <p>
+          Upoštevajte, da so nekatere od teh pravic lahko omejene, kadar imamo prevladujoč legitimni interes ali zakonsko, regulativno ali pogodbeno obveznost za nadaljnjo obdelavo osebnih podatkov ali kadar so osebni podatki v skladu z veljavno zakonodajo izvzeti iz razkritja ali izbrisa. Nekatere od teh pravic je mogoče uveljavljati le v določenih okoliščinah ali pa so lahko drugače omejene z zakonodajo o varstvu podatkov v vaši jurisdikciji.
+        </p>
+        <h2>ČEZMEJNI PRENOSI </h2>
+        <p>
+          Kot globalno podjetje, ki deluje v več kot 80 državah, bomo morali v nekaterih okoliščinah prenesti osebne podatke iz države, province ali ozemlja, kjer so bili zbrani, za namene, opisane v tem obvestilu o zasebnosti. Podatke lahko prenesemo zlasti za ponujanje, upravljanje in upravljanje storitev, ki vam jih nudimo, ter za izboljšanje učinkovitosti našega poslovanja. Potrudili se bomo, da bodo ti prenosi skladni z vso ustrezno zakonodajo o varstvu podatkov in da bodo pravice in svoboščine posameznikov v skladu s to zakonodajo ustrezno zaščitene.
+        </p>
+        <p>
+          Kadar se pojavi potreba po takšnem prenosu, bomo sprejeli ukrepe za zagotovitev ustreznih zaščitnih ukrepov za zaščito osebnih podatkov, kot so ocena učinka, odločitev o ustreznosti s strani ustreznega nadzornega organa, uporaba odobrenih zavezujočih poslovnih pravil ali standardnih pogodbenih klavzul ali vaše soglasje.
+        </p>
+        <p>
+          Za informacije o delovanju zavezujočih poslovnih pravil EU (Evropske unije) družbe MMC kliknite
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-EUBCR-Controller-and-Processor-Principles.pdf"
+            >tukaj</a
+          >.&nbsp; Za seznam subjektov, ki so se strinjali, da jih bodo zavezovala zavezujoča poslovna pravila EU, kliknite
+          <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
+            >tukaj</a
+          >.&nbsp;
+        </p>
+        <p>
+          Za informacije o delovanju zavezujočih poslovnih pravil MMC za Združeno kraljestvo (UK BCRs) kliknite
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
+            >tukaj</a
+          >.&nbsp; Za seznam subjektov, ki so se strinjali, da jih bodo zavezovala britanska BCRs, kliknite
+          <a
+            href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
+            >tukaj</a
+          >.&nbsp;&nbsp;&nbsp;
+        </p>
+        <h2>HRANJENJE VAŠIH PODATKOV </h2>
+        <p>
+          Naši izdelki, storitve in regulativne obveznosti so kompleksni, zato se naša obdobja hrambe osebnih podatkov razlikujejo. Pri določanju obdobij hrambe osebnih podatkov in evidenc, ki jih hranimo, upoštevamo naslednje obveznosti:
+        </p>
+        <ul>
+          <li>
+            potreba po hrambi informacij za izpolnitev poslovnih namenov ali pogodbenih obveznosti, za katere so bile zbrane;
+          </li>
+          <li>
+            naše dolžnosti izvrševanja navodil naših strank v zvezi z osebnimi podatki, ki jih obdelujemo v njihovem imenu;
+          </li>
+          <li>
+            naše dolžnosti glede izpolnjevanja obveznih zakonskih in regulativnih zahtev glede vodenja evidenc;
+          </li>
+          <li>
+            naše postopke varnostnega kopiranja in obnovitve po nesreči; in
+          </li>
+          <li>
+            druge pravne posledice, kot so veljavni zastaralni roki.
+          </li>
+        </ul>
+        <p>
+          Na podlagi zgoraj navedenih dejavnikov lahko osebne podatke hranimo dlje kot v obdobju, v katerem vam zagotavljamo storitve. Ko osebnih podatkov ne potrebujemo več, politike našega podjetja zahtevajo, da podatke bodisi anonimiziramo bodisi združimo (v tem primeru lahko anonimizirane ali združene podatke še naprej hranimo in uporabljamo za analitične namene) bodisi jih varno uničimo.
+        </p>
+        <h2>VPRAŠANJA ALI POMISLI </h2>
+        <p>
+          želite poslati vprašanja ali zahteve v zvezi s tem obvestilom o zasebnosti ali praksami MTE glede zasebnosti, nam pišite na <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>. Če nas želite kontaktirati po pošti ali telefonu, se obrnite na lokalnega pooblaščenca za varstvo podatkov. Kontaktne podatke lokalnega pooblaščenca za varstvo podatkov lahko dobite tako, da nas kontaktirate na
+          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+      </div>

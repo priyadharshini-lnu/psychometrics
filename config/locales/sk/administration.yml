@@ -15,11 +15,6 @@ sk:
         simple_design:
           design: Dizajn
           or: Alebo
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prihlásenie bolo úspešné.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ sk:
           modal_title: Nastavenia schvaľovania bodovania
           remove_modal_success: 'Nastavenie schválenia pre identifikátor hodnotenia: %{assessmentId} bolo úspešne odstránené.'
           remove_modal_text: 'Naozaj chcete odstrániť toto nastavenie pre identifikačný kód hodnotenia: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Úspešne ste sa prihlásili ako %{name}
+      bulk_import_translations:
+        details: Šablóna prekladu kampane
+        download_template: Stiahnuť šablónu
+        errors:
+          blank_campaign_id: 'Riadok %{row}: ID kampane nemôže byť prázdne'
+          campaign_not_found: 'Riadok %{row}: Kampaň %{id} sa v tomto projekte nenašla'
+          generic: Niečo sa pokazilo. Skúste to znova.
+          invalid_csv_format: 'Neplatný formát CSV: %{message}'
+          invalid_locales: 'Neplatné jazykové stĺpce: %{locales}'
+          missing_required_columns: 'Chýbajúce požadované stĺpce: %{columns}'
+          must_be_csv: Súbor musí byť vo formáte .csv
+          save_failed: 'Preklad kampane %{id} pre %{locale} sa nepodarilo uložiť: %{message}'
+        file_label: Prekladový súbor
+        import_started: Prebieha import prekladu. Priebeh si prosím pozrite v upozorneniach.
+        instructions_intro: Stiahnite si šablónu CSV, aktualizujte názvy kampaní v ľubovoľných jazykových stĺpcoch a potom nahrajte hotový súbor.
+        instructions_title: Pokyny
+        menu_label: Importovať preklady
+        template_started: Prebieha export šablóny. Priebeh si prosím pozrite v upozorneniach.
+        title: Importovať preklady názvov kampaní
+        upload_file: Nahrať súbor
       validations:
         dates:
           end: musí byť po dátume začiatku
@@ -1937,7 +1949,6 @@ sk:
         export: Exportovať preklady
         import: Importovať preklady
         import_descr: Pozrite si funkciu Export a extrahujte šablónu, ktorú je možné použiť na import.
-    tte: TTE
     update: Aktualizovať
     users:
       create:

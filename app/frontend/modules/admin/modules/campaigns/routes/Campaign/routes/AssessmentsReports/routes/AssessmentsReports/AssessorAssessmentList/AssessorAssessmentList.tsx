@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Table, Row, Col, message, MenuProps, App,
   Switch,
@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import {
   CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
 } from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
@@ -14,6 +15,7 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { DetailsDrawer } from './DetailsDrawer'
 
 const connecter = connect(() => ({}),
   { openModal })
@@ -28,6 +30,9 @@ type Props = PropsFromRedux
 const AssessmentList: React.FC<Props> = ({ openModal }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const { modal } = App.useApp()
+  const [selectedAssessorAssessment, setSelectedAssessorAssessment] = useState<CampaignAssessorAssessments | undefined>(
+    undefined,
+  )
 
   const stateManager = useCampaignAssessorAssessmentsStore()
 
@@ -42,7 +47,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
   )
 
   useEffect(() => {
-    fetch({ apiConfig: { include_meta: ['permissions'] } })
+    fetch({ apiConfig: { include: ['tenant'], include_meta: ['permissions'] } })
   }, [])
 
   const chagneAllowMultipleResponses = (resource, value) => {
@@ -81,6 +86,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             loading={isAssessorAssessmentLoading('fetch')}
             dataSource={data}
             pagination={false}
+            onRow={getTenantRowAttributes}
           >
             <Column
               title={I18n.t('shared.id')}
@@ -90,7 +96,11 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             <Column
               title={I18n.t('shared.assessment_name')}
               key="name"
-              dataIndex="assessmentName"
+              render={resource => (
+                <a onClick={() => setSelectedAssessorAssessment(resource)}>
+                  {resource.assessmentName}
+                </a>
+              )}
             />
             <Column
               title={I18n.t('shared.linked_assessment')}
@@ -144,6 +154,12 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
           </Table>
         </Col>
       </Row>
+      {!!selectedAssessorAssessment && (
+        <DetailsDrawer
+          close={() => setSelectedAssessorAssessment(undefined)}
+          assessorAssessment={selectedAssessorAssessment}
+        />
+      )}
     </>
   )
 }

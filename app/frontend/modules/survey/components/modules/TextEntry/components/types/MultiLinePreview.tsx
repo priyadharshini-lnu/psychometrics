@@ -1,7 +1,8 @@
 import {
-  ChangeEvent, FC, useRef, useState,
+  ChangeEvent, FC, useEffect, useRef, useState,
 } from 'react'
 import { Row, Col } from 'antd'
+import type { TextAreaRef } from 'antd/es/input/TextArea'
 import { useSelector } from 'react-redux'
 import { AITextArea } from '~/components/AIToolbar'
 
@@ -154,12 +155,16 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
 }) => {
   const rows = type === 'MultiLine' ? 3 : 6
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const aiInputRef = useRef<TextAreaRef>(null)
   const isCopyContentEnabledOnAssessment = useSelector(
     ({ preview }: AppStore) => preview.extraOptions?.enable_copy_content,
   )
-  if (focus && inputRef.current) {
-    inputRef.current.focus()
-  }
+  useEffect(() => {
+    if (!focus) return
+    // only one of the two branches below is mounted at a time
+    inputRef.current?.focus()
+    aiInputRef.current?.focus()
+  }, [focus])
 
   const handleCopyContentEvents = (e) => {
     if (!isCopyContentEnabledOnAssessment && !allowContentCopyOnQuestion) {
@@ -185,7 +190,7 @@ const MultiLineTextArea: FC<MultiLineTextAreaProps> = ({
         onChange={handleOnChange}
         value={value}
         id={`question-${questionId}`}
-        ref={inputRef}
+        ref={aiInputRef}
         aria-labelledby={questionTextId}
         onContextMenu={handleConextMenu}
         onCopy={handleCopyContentEvents}

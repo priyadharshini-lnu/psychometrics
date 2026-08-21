@@ -93,6 +93,8 @@ export interface CampaignOptions {
   trial: boolean
   enableVideoCallRecording?: boolean;
   allowVideoCallRecording?: boolean;
+  hideParticipantVideo?: boolean;
+  disableTranscriptDownload?: boolean;
   minimumUploadSpeed?: number;
   minimumDownloadSpeed?: number;
   calculatedMinimumUploadSpeed: number;

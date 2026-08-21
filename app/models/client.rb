@@ -13,6 +13,8 @@ class Client < ApplicationRecord
   include GeoFilterable
   extend Mobility
 
+  translates :campaign_dashboard_instructions
+
   attr_writer :license_msg
 
   attribute :webhook, :string
@@ -149,6 +151,7 @@ class Client < ApplicationRecord
 
   with_options if: :project? do
     validates :webhook, http_url: { presence: false }
+    validates :campaign_dashboard_instructions, length: { maximum: 500 }, allow_nil: true
   end
 
   # disabled this validation as it was causing error while saving sub-campaign

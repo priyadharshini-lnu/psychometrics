@@ -1,11 +1,11 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const CampaignTemplateList = lazy(() => import('./CampaignTemplateList'))
+const page = () => import('./CampaignTemplateList')
 
 const CampaignTemplateRoutes = [
   {
     path: 'campaign_templates/*',
-    element: <CampaignTemplateList />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

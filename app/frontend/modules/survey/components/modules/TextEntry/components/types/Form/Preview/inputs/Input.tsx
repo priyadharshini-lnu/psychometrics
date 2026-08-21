@@ -20,6 +20,7 @@ const Input: React.FC<Props> = ({
     name={name}
     value={answers[index].value}
     onChange={({ target: { value } }): void => onChange(index, value)}
+    className="spellcheck-enabled"
   />
 )
 

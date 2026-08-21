@@ -80,6 +80,14 @@ const PreviewComponent: FC<Props> = ({
     )
   }
 
+  const handleCopyContentEvents = (
+    e: React.ClipboardEvent<HTMLTextAreaElement> | React.MouseEvent<HTMLTextAreaElement>,
+  ) => {
+    if (mediaResponse?.disableTranscriptDownload) {
+      e.preventDefault()
+    }
+  }
+
   const isPreview = type === 'preview_assessment'
 
   return (
@@ -115,14 +123,16 @@ const PreviewComponent: FC<Props> = ({
             >
               {I18n.t('shared.view')}
             </Button>
-            <Button
-              className="ms-2"
-              type="text"
-              icon={<DownloadOutlined />}
-              onClick={handleDownloadTranscription}
-            >
-              {I18n.t('shared.download')}
-            </Button>
+            {!mediaResponse?.disableTranscriptDownload && (
+              <Button
+                className="ms-2"
+                type="text"
+                icon={<DownloadOutlined />}
+                onClick={handleDownloadTranscription}
+              >
+                {I18n.t('shared.download')}
+              </Button>
+            )}
           </div>
           {showTranscription && (
             <Input.TextArea
@@ -130,6 +140,10 @@ const PreviewComponent: FC<Props> = ({
               readOnly
               autoSize={{ minRows: 2, maxRows: 6 }}
               className="mt-4"
+              onCopy={handleCopyContentEvents}
+              onCut={handleCopyContentEvents}
+              onContextMenu={handleCopyContentEvents}
+              style={{ userSelect: mediaResponse?.disableTranscriptDownload ? 'none' : 'auto' }}
             />
           )}
         </Card>

@@ -890,6 +890,7 @@ pt:
         export_campaign_datasheet: Ficha técnica da campanha de exportação
         export_campaign_factors: Factores da campanha de exportação
         export_campaign_scorings: Pontuações de campanhas de exportação
+        export_campaign_translations: Traduções de campanhas de exportação
         export_dashboard_as_file: Exportar painel como arquivo
         export_development_action_translations: Ação de desenvolvimento das exportações Traduções
         export_development_actions: Acções de desenvolvimento das exportações
@@ -917,6 +918,7 @@ pt:
         import_assessors: Avaliadores de importação
         import_campaign_ai_artifacts: Importação de artefatos de IA de campanhas
         import_campaign_factors: Factores da campanha de importação
+        import_campaign_translations: Traduções de campanhas de importação
         import_client_assessors: Importar avaliadores do cliente
         import_datasheet: Importar ficha de dados
         import_development_action_translations: Importação Desenvolvimento Ação Traduções
@@ -958,6 +960,7 @@ pt:
         super_admin_assessment_raw_result_export: Exportação de resultados brutos do Super Admin
         super_admin_datasheet_export: Exportação da folha de dados do Super Admin
         super_admin_external_assessment_export: Super Admin Exportação da avaliação externa
+        superadmin_record_change_history: Histórico de alterações de registro
         threesixty_campaign_export_completion_status: Estado de conclusão da exportação da campanha Threesixty
         threesixty_campaign_export_scores: A campanha Threesixty marca a exportação
         workshop_status_export: Exportação do estado do centro de avaliação
@@ -1154,7 +1157,7 @@ pt:
       read_only: O modo é apenas de leitura, não pode alterar nenhum resultado.
       save: Salvar
       submissionFailedAlert:
-        description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de mte.surveys@mercer.com
+        description: Não foi possível estabelecer ligação ao servidor. Actualize a página e tente novamente. Se não funcionar, contacte o serviço de apoio através do chat ao vivo ou de %{support_email}
         title: Último pedido falhou
       submit: Enviar
       warning: AVISO
@@ -1992,7 +1995,7 @@ pt:
           project: 'Projeto: %{section_name}'
         subject: Convite para o Lighthouse
       password_change:
-        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em mte.support@mercer.com '
+        body: 'Olá %{name}! A sua palavra-passe foi alterada. Se não fez este pedido, contacte imediatamente o Apoio ao Cliente em %{support_contact_email} '
         regards: 'Cumprimentos, Equipa Lighthouse '
         subject: A sua palavra-passe do Lighthouse foi alterada
       reset_password_instructions:
@@ -2123,6 +2126,7 @@ pt:
       max_generation_limit: Limite máximo de geração excedido, entre em contato com sua administração.
     assessments:
       timed_out: Não é possível efetuar a avaliação %{assessment_name} porque o tempo limite foi ultrapassado.
+    csrf_retry: Por favor, tente novamente.
     equal_to_current_password: deve ser diferente da palavra-passe atual.
     equal_to_email: deve ser diferente do correio eletrónico.
     error: Erro
@@ -2333,7 +2337,6 @@ pt:
     error_warning: Oops, algo correu mal com a sua avaliação. Contacte o apoio ao cliente.
     hogan:
       cannot_start: Não é possível iniciar a avaliação hogan neste momento. Tente após alguns minutos.
-    lighthouse_app: Farol Mercer
     login: Iniciar sessão
     maintenance:
       notification: O farol estará inativo para manutenção programada dentro de 60 segundos
@@ -2953,8 +2956,6 @@ pt:
     zh-HK: Chinês (Hong Kong)
     zh-Hant: Chinês - Tradicional
     zh-TW: Chinês (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nome da campanha
     status_updated_at: Última atualização do estado
@@ -3015,12 +3016,11 @@ pt:
           invalid: O escopo deve ser 'aberto'
   mailer:
     copyright:
-      text: Lighthouse. Todos os direitos reservados
+      text: "© %{year} %{display_name}. Todos os direitos reservados"
     footer:
       regards: Com os meus cumprimentos,
-      team_name: Equipa Lighthouse
+      team_name: Equipa %{display_name}
       technical_support: Para quaisquer problemas técnicos, escreva-nos para %{email} e responderemos no prazo de 24 horas.
-    from: A Empresa de Talentos
     idp:
       manager_unread_comments:
         body: |-
@@ -3077,8 +3077,6 @@ pt:
         instructions: Clique na ligação abaixo para iniciar sessão no lighthouse.
         signin_link: Ligação de registo
       subject: Ligação de início de sessão para o Lighthouse
-    powered_by:
-      text: Desenvolvido por Lighthouse.
     users:
       account_disable: A sua conta foi desactivada devido a inatividade
       warning: A sua conta será desactivada em breve devido a inatividade

@@ -9,7 +9,7 @@ module Administration
                :hogan_user_assessment_details, :saville_user_assessment_details,
                :simulation_user_assessment_details, :pearson_user_assessment_details,
                :skillvue_user_assessment_details, :yoodli_user_assessment_details, :mhs_user_assessment_details,
-               :microsite_user_assessment_details
+               :microsite_user_assessment_details, :owner
 
     delegate :name, :category, :dimension_id, to: :assessment
 
@@ -101,6 +101,12 @@ module Administration
       return nil unless object.microsite?
 
       Administration::MicrositeUserAssessmentSerializer.new.serialize(object.microsite_user_assessment)
+    end
+
+    def owner
+      return unless assessment&.owner
+
+      { id: assessment.owner.id, name: assessment.owner.name }
     end
 
     def permissions

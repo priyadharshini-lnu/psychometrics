@@ -46,7 +46,7 @@ describe Api::V1::ThreesixtyCampaigns::UsersController, swagger_doc: 'v1/swagger
       operationId 'getThreesixtyEvaluations'
       description 'Fetches 360 evaluations for an evaluator'
       tags 'Threesixty'
-      security [basic: []]
+      security [basic: [], bearer: []]
       consumes 'application/json'
 
       parameter name: :project_id, in: :path, type: :string, required: true, description: 'Project ID'
@@ -111,7 +111,7 @@ describe Api::V1::ThreesixtyCampaigns::UsersController, swagger_doc: 'v1/swagger
       operationId 'getThreesixtyScores'
       description 'Fetches 360 scores and gaps for a specific user in a campaign'
       tags 'Threesixty'
-      security [basic: []]
+      security [basic: [], bearer: []]
       consumes 'application/json'
 
       parameter name: :project_id, in: :path, type: :string, required: true, description: 'Project ID'

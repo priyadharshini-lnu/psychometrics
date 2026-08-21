@@ -18,6 +18,25 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
+const restrictedIcons = {
+  group: ['@ant-design/icons*'],
+  message: [
+    'Import of icons from @ant-design/icons is restricted.',
+    'Instead import from ~/glint/icons/AccessibleIconsAntDesign.',
+  ].join(' '),
+}
+
+const restrictedRoutePages = {
+  regex: '^(?:\\.\\.?/(?:.*/)?[A-Z][^/]*|(?:[^/]*/)*(?:pages|components)(?:/.*)?)$',
+  caseSensitive: true,
+  allowTypeImports: true,
+  message: [
+    'A static import here lands this page in the main bundle, so every user downloads it on first load',
+    'even if they never open this section.',
+    "Reach the page through this section's shared `page` loader instead: lazy: lazyRoute(page, m => m.YourPage).",
+  ].join(' '),
+}
+
 export default defineConfig([globalIgnores([
   'app/frontend/__tests__',
   'app/frontend/glint/**/__tests__',
@@ -164,13 +183,7 @@ export default defineConfig([globalIgnores([
     }],
 
     'no-restricted-imports': ['error', {
-      patterns: [
-        {
-          group: ['@ant-design/icons*'],
-          // eslint-disable-next-line max-len
-          message: 'Import of icons from @ant-design/icons is restricted. Instead import from ~/glint/icons/AccessibleIconsAntDesign.',
-        },
-      ],
+      patterns: [restrictedIcons],
     }],
   },
 }, {
@@ -191,5 +204,21 @@ export default defineConfig([globalIgnores([
 
   rules: {
     'no-restricted-imports': 0,
+  },
+}, {
+  // Keeps each menu section a single on-demand download: route files may only reach pages via the shared loader.
+  files: [
+    'app/frontend/modules/admin/**/routes/index.tsx',
+    'app/frontend/modules/admin/**/routes.tsx',
+    'app/frontend/modules/admin/modules/QuestionCenter/index.tsx',
+  ],
+
+  // Its route list feeds a standalone Rails entrypoint, not the admin SPA bundle.
+  ignores: ['app/frontend/modules/admin/modules/IndividualDashboard/**'],
+
+  rules: {
+    'no-restricted-imports': ['error', {
+      patterns: [restrictedIcons, restrictedRoutePages],
+    }],
   },
 }])

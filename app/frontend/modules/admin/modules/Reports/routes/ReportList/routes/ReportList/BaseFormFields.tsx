@@ -14,6 +14,7 @@ import { Client } from '~/modules/admin/modules/client/core/clients'
 import { ExternalReportFields } from './ExternalReportFields'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { availableLocales as getAvailableLocales } from '~/core/config'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 const { TextArea } = Input
@@ -26,6 +27,7 @@ const MAX_TAG_BATCH_SIZE = 100
 
 const connecter = connect(
   (state: RootState) => ({
+    availableLocales: getAvailableLocales(state),
     currentUser: getCurrentUser(state),
   }),
 )
@@ -33,6 +35,7 @@ const connecter = connect(
 interface Props {
   report?: Report
   form: FormInstance
+  availableLocales: string[]
   currentUser
 }
 
@@ -41,8 +44,12 @@ type OptionsType = {
   name: string
 }
 
-const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
-  const { availableLocales } = I18n
+const BaseFormFieldsComp: React.FC<Props> = ({
+  report,
+  form,
+  availableLocales,
+  currentUser,
+}) => {
   const [defaultLangForm] = Form.useForm()
   const isEditForm = !!report
   const [isLanguageModalVisible, setIsLanguageModalVisible] = useState(false)
@@ -69,6 +76,8 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
 
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
   const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
+  const ownerId = Form.useWatch('ownerId', form)
+  const selectedOwnerId = ownerId ?? report?.owner?.id
 
   useEffect(() => {
     setAssessmentCache([...assessmentCache, ...assessments.filter(a => assessmentIds.includes(a.id))])
@@ -205,7 +214,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
           }}
           notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
-          {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
+          {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
           {getClients().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
@@ -237,7 +246,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({ report, form, currentUser }) => {
                 filterOption: false,
                 onSearch: (value) => {
                   fetchAssessments({
-                    apiConfig: { filter: { filterable_fields: value }, fields: { assessments: ['name'] } },
+                    apiConfig: {
+                      filter: {
+                        filterable_fields: value,
+                        owner_id: selectedOwnerId,
+                      },
+                      fields: {
+                        assessments: ['name'],
+                      },
+                    },
                   })
                 },
               }}

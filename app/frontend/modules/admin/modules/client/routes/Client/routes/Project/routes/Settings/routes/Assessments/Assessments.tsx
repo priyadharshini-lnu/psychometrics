@@ -202,7 +202,7 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   )
 
   return (
-    <Row className="pl">
+    <Row>
       <Col span={24}>
         <TableLayout
           table={AssessmentsTable}

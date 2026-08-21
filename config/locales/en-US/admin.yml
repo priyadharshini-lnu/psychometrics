@@ -103,6 +103,7 @@ en-US:
     ai_scoring_approval_stale_description: Configuration updates since the last run may have changed the score. Rescore to update it using the latest settings.
     ai_scoring_approval_stale_title: Score May Be Outdated
     ai_scoring_approvals: AI Scoring Approvals
+    ai_scoring_errors_label: AI Scoring Errors
     ai_scoring_refresh_score: Refresh Score
     ai_scoring_refresh_score_confirm_description: This will re-run AI scoring for this assessment using the latest configuration. Are you sure?
     ai_scoring_refresh_score_confirm_title: Refresh AI Scores?
@@ -122,6 +123,12 @@ en-US:
     alt_text_long: Exceeds the maximum limit of 100 characters.
     api_keys: API keys
     api_keys_form_title: api key
+    appearance: Appearance
+    appearance_dark: Dark
+    appearance_dark_theme: Dark theme
+    appearance_light: Light
+    appearance_light_theme: Light theme
+    appearance_system: System
     application: Application
     application_add: Add Application
     application_name: Application Name
@@ -194,6 +201,8 @@ en-US:
     assessor_add_subject_modal_subject: Subject
     assessor_add_subject_modal_subject_placeholder: Search subject..
     assessor_add_subject_modal_title: Add subject
+    assessor_assessment_drawer_title: Assessment Details
+    assessor_assessment_id: Assessor Assessment ID
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Select an Assessment
     assessor_assessment_name: Assessor Assessment
     assessor_assessments: Assessor Assessments
@@ -344,9 +353,15 @@ en-US:
     campaign_assessment_modals_update_occupation_condition_set_select: Select Occupation Condition Set
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Occupation Condition Set was updated successfully
     campaign_assessment_modals_update_occupation_condition_set_title: Update Occupation Condition Set
+    campaign_dashboard_instructions_label: Campaign Dashboard Instructions
+    campaign_dashboard_instructions_save: Save Instructions
+    campaign_dashboard_instructions_save_error: Failed to save campaign dashboard instructions
+    campaign_dashboard_instructions_save_success: Campaign dashboard instructions saved successfully
     campaign_factors: Campaign Factors
     campaign_id_placeholder: Enter campaign ID
     campaign_name: Campaign Name
+    campaign_name_translations: Campaign Name Translations
+    campaign_name_translations_fetch_error: Error fetching campaign name translations
     campaign_report_generate_modal_subtitle: Select the required language for each report
     campaign_report_id: Campaign Report ID
     campaign_results_export_details: Campaign AI artifacts generated results
@@ -418,6 +433,7 @@ en-US:
     category: Category
     cell_save_msg: Valid changes are automatically saved once you leave the cell after editing.
     change_reason: Change reason
+    change_report_dates_message: Do you want to change the report date range?
     change_score: changed score
     change_score_log: Change Score Log
     characters: characters
@@ -512,6 +528,7 @@ en-US:
     created_successfully: AI Assistant was created successfully.
     current: Current
     current_job_role: Current Job Role
+    current_locale: Current Locale
     custom_formula: Custom Formula
     custom_message_description: This message can be sent to anyone participating in the assessment
     custom_message_name: Custom Message
@@ -662,7 +679,7 @@ en-US:
     dimensions_import_modal_import_dimension: Import Dimension
     dimensions_import_modal_import_scheduled: Import scheduled
     dimensions_import_modal_operation: Operation
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Please select an owner
     dimensions_import_modal_owner_select: Select an owner
     dimensions_import_modal_select_json: Select JSON file
@@ -679,6 +696,7 @@ en-US:
     disable_dp: Don't allow further data processing
     disable_proctoring: Disable Proctoring
     disable_report_download: Disable report download
+    disable_transcript_download: Disable Transcript Download
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
@@ -830,10 +848,13 @@ en-US:
     feature_flags_ai_group: AI Features
     feature_flags_communication_group: Communication
     feature_flags_platform_group: Platform Features
+    feature_flags_superadmin_group: Tenant Scoping
+    feature_glint_ui_description: Render the participant experience with the Glint design system
     feature_global_skills_description: Access the global skills library for assessments
     feature_idp_description: Enable Individual Development Planning for participants
     feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
+    feature_superadmin_tenant_scoping_description: When disabled, superadmin queries will not be scoped to this client's data
     fields_level: Level
     fields_level_description: Level Description
     fields_level_name: Level Name
@@ -865,6 +886,7 @@ en-US:
     form_datasheet: Datasheet
     form_datasheet_columns: Datasheet Columns
     form_end_date: End date
+    form_fields_to_display: Fields to display
     form_include_all_datasheet_columns: Include All Datasheet Columns
     form_name: Name
     form_no_assessment_selected: No assessments added yet. Click "Add" to get started.
@@ -889,8 +911,11 @@ en-US:
     generate_transcription: Generate Transcription
     generated_at_time: Generated at %{time}
     generated_value: Generated Value
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI is disabled by client
     global_skills: Global Skills
     global_skills_disabled_by_client: Global Skills is disabled by client
+    go_back: Back
     grant_type_label: Grant Type
     grant_type_name: oauth_grant_type
     graphic: Graphic
@@ -905,6 +930,7 @@ en-US:
     header_logout_title: Are you sure you want to logout.
     hide_all: Hide All
     hide_middle_scores: Hide middle scores
+    hide_participant_video: Hide Participant Video
     high: High
     hogan: Hogan
     hogan_assessment: Hogan Assessment
@@ -1250,6 +1276,7 @@ en-US:
     key_id: Key ID
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
+    language: Language
     language_id: Language ID
     last_name_required: Last name is required
     lead_assessment: Lead Assessment
@@ -1487,6 +1514,8 @@ en-US:
     owner_resource_norm: norm
     owner_resource_report: report
     owner_resource_report_bundle: report bundle
+    page_load_failed: This page could not be loaded.
+    page_load_failed_hint: The app may have been updated — reload to continue.
     parsed_dependencies_help: Parsed dependencies for the user used by the AI Assistant for artifact results generation
     parsed_dependencies_title: Parsed Dependencies
     parsed_dependencies_view: View Parsed Dependencies
@@ -1948,6 +1977,7 @@ en-US:
     piped_text_modal_title: Add Piped Text
     piped_text_modal_user_reports: User Reports
     piped_text_modal_users: Users
+    platform_owner: Platform
     playground: Playground
     playground_info: Test your artifact with sample data to preview generated results.
     playground_placeholder: Enter test data
@@ -2178,6 +2208,38 @@ en-US:
     raw_score: Raw Score
     reason_for_changes: Reason for changes
     recents: Recents
+    record_history_changes: changes
+    record_history_changes_in_request: changes in this request
+    record_history_date_range_invalid: End date must be on or after the start date.
+    record_history_date_range_required: Please select a date range.
+    record_history_date_range_too_large: Date range cannot exceed %{days} days. Please narrow your search.
+    record_history_filter_actor: Filter by actor email
+    record_history_filter_field: Filter by changed field
+    record_history_filter_type: Filter by record type
+    record_history_id_required: Please enter a record ID
+    record_history_include_related: Include related records
+    record_history_last_30_days: Last 30 days
+    record_history_last_7_days: Last 7 days
+    record_history_no_results: No change history found for this record.
+    record_history_no_results_for: No changes found for
+    record_history_records_changed: records changed
+    record_history_related_tag: Related
+    record_history_request_banner: Showing all changes in request
+    record_history_request_label: 'Request:'
+    record_history_request_or_record_required: Enter a request UUID or choose a record type and ID.
+    record_history_request_uuid: Request UUID
+    record_history_request_uuid_placeholder: Enter request UUID
+    record_history_revision_failed: Failed to load the record state for this version.
+    record_history_search_hint: Enter a request UUID, or select a record type and record ID to trace change history.
+    record_history_select_type: Select record type
+    record_history_state_at_version: State at version
+    record_history_system: System
+    record_history_title: Record Change History
+    record_history_type_required: Please select a record type
+    record_history_version: Version
+    record_history_view_audit_log: View in Audit Logs
+    record_history_view_full: View full history
+    record_history_view_request: View request
     record_id: Record ID
     recordings: Recordings
     reflection_questions: Reflection Questions
@@ -2293,6 +2355,7 @@ en-US:
     report_no_evaluations: Report for %{user} is not available - no evaluations have been received.
     report_not_generated: Report for %{user} meets availability conditions but has not been generated yet. Please generate the report first.
     report_on_hold: Report for %{user} is currently on hold
+    report_owner: Owner
     report_pdf_status: Report PDF Status
     report_review_abort_qc: Abort QC
     report_review_approve: Approve
@@ -2313,10 +2376,12 @@ en-US:
     report_types:
       active_clients_projects: Active Clients & Projects
       campaign_factor_scores: Campaign Factor Scores
+      campaign_user_creation: Campaign User Creation
       client_assessment_counts: Client Assessment Counts
       hogan_usage_report: Hogan Assessment Usage
       json_data_report: JSON Data Report
       pearson_usage_report: Pearson Assessment Usage
+      proctoring_sessions: Proctoring Sessions
       report_usage_summary: Report Usage Summary
       saville_usage_report: Saville Assessment Usage
       user_access_review: User Access Review
@@ -2376,6 +2441,17 @@ en-US:
     role_project_admin: Project Admin
     role_superadmin: Super Admin
     run: Run
+    runtime_configuration_invalid_json_object: runtime_configuration must be a valid JSON object
+    runtime_configuration_invalid_parameter: is not a runtime-updatable parameter
+    runtime_parameter_date_range_required: Please select both Start Date and End Date
+    runtime_parameter_editable_section_title: Date range
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Included filters
+    runtime_parameter_modal_subtitle: Review details and update the date range if needed.
+    runtime_parameter_modal_title: Run Report
+    runtime_parameter_not_set: Not provided
+    runtime_parameter_submit_button: Run Now
+    runtime_parameter_value_column: Value
     saml_idp_certificate_available: Available (click to copy)
     saml_idp_certificate_label: Certificate
     saml_idp_entity_id_label: Entity ID/Issuer
@@ -2510,6 +2586,7 @@ en-US:
     scheduling_columns_start_time: Date & Time
     scheduling_columns_subject: Subject
     scheduling_columns_title: Title
+    scheduling_columns_video_hidden_for_privacy: The video is hidden for candidate's privacy.
     scheduling_columns_view_recording: View Recording
     scheduling_errors_assessor_already_assigned: Assessor already assigned to this assessment. Please select another assessment or assessor.
     scheduling_errors_date_required: Please select a date
@@ -2602,6 +2679,12 @@ en-US:
     score: Score
     score_approval_not_allowed_to_approve: You are not allowed to approve this score.
     score_approval_not_allowed_to_discard: You are not allowed to discard this score.
+    score_approval_reset: Reset approval
+    score_approval_reset_description: This will move the approval back to pending. The scores will not change. This action cannot be undone.
+    score_approval_reset_not_allowed: This score approval cannot be reset in its current state.
+    score_approval_reset_recompute_description: This will reset the approval, remove AI scores from user's results, and delete any generated reports. This action cannot be undone.
+    score_approval_reset_success: Score approval has been reset.
+    score_approval_reset_title: Reset score approval?
     score_definition_placeholder: Enter the definition for this score level
     score_definitions: Score Definitions
     score_max: Score Max
@@ -2833,6 +2916,7 @@ en-US:
     sheets_tabs_settings: Settings
     show_all: Show All
     show_all_assessment_responses: Show All Assessment Responses
+    show_form_field_titles: Show form field titles
     show_middle_scores: Show %{count} more scores (optional)...
     show_original: Show Original
     show_submenu: Show Sub Menu
@@ -2955,7 +3039,14 @@ en-US:
     smtp_settings_user_name: User Name
     specialty_questions: Specialty Questions
     sso_email_mismatch: You are signed into a different account on the identity provider. Please sign out from your identity provider and try again.
+    sso_enforce_for: Enforce SSO For
+    sso_enforce_for_all: All users
+    sso_enforce_for_none: None
+    sso_enforce_for_specific_domains: Specific domains
     sso_enforced: Enforce SSO
+    sso_enforced_domains: Enforced Domains
+    sso_enforced_domains_hint: e.g. se.com (exact match) or *.se.com (subdomains only)
+    sso_enforced_domains_placeholder: Enter domain(s) and press Enter
     sso_label: SSO
     sso_not_enabled: SSO is not enabled for this client
     sso_settings: SSO Settings
@@ -3070,6 +3161,7 @@ en-US:
     success_title: Assessment centers created
     success_update: Design Settings were saved successfully
     suitability_id: Suitability ID
+    superadmin_tenant_scoping: Superadmin
     superadmin_use_root_domain: Super administrators must sign in through the main domain
     switch_client: Switch Client
     system_prompt: System Prompt
@@ -3090,12 +3182,38 @@ en-US:
     taxonomy_title: Skills Taxonomy
     template_and_campaign_required: Please provide both template and campaign ID
     template_render_failed: Failed to render template
+    tenant_repair_confirm_message: 'Set tenant_id to %{new_tenant} on %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Set tenant_id to null on %{model} #%{id}?'
+    tenant_repair_confirm_title: Confirm Tenant Update
+    tenant_repair_correct: Correct
+    tenant_repair_current_tenant: Current Tenant
+    tenant_repair_find_record: Find Record
+    tenant_repair_global_tenant: global
+    tenant_repair_invalid_model: Invalid or non-tenantable model type
+    tenant_repair_invalid_record_id: Enter a valid record ID
+    tenant_repair_invalid_tenant_id: Enter a valid positive tenant ID or leave blank to make it null
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Type to search...
+    tenant_repair_moved_from: 'tenant changed:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: New Tenant ID
+    tenant_repair_preview_title: Record Preview
+    tenant_repair_request_failed: Request failed
+    tenant_repair_resolved_tenant: Resolved Tenant
+    tenant_repair_success: Tenant updated successfully.
+    tenant_repair_title: Tenant Correction
+    tenant_repair_update: Update
+    tenant_repair_will_set_null: Will set tenant_id to null
+    tenant_repair_will_set_value: Will set tenant_id to %{value}
     test_generate: Test Generate
     test_render: Test Render
     test_render_tooltip: Test your prompt template with campaign data to check what will be sent to the AI assistant.
     text_danger: Text(danger)
     text_success: Text (success)
     text_warning: Text(warning)
+    themes:
+      marsh-dark: Marsh Dark
+      marsh-light: Marsh Light
     this_field_is_required: This field is required
     threesixity_advance_settings_campaign_template: Campaign Template
     threesixity_advance_settings_factors: Factors
@@ -3184,7 +3302,6 @@ en-US:
       title: Translations
     translations_export_failure_msg: Error while exporting translations
     translations_export_success_msg: Exporting development actions in progress.
-    tte: TTE
     type_by_skill: By Skill
     type_by_skill_type: By Skill Type
     type_default: Default

@@ -15,11 +15,6 @@ fr:
         simple_design:
           design: Conception
           or: Ou
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Connexion réussie.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ fr:
           modal_title: Paramètres d'approbation des notes
           remove_modal_success: 'Le paramètre d''approbation pour l''identifiant d''évaluation : %{assessmentId} a été supprimé avec succès.'
           remove_modal_text: 'Êtes-vous sûr de vouloir supprimer ce paramètre pour l''identifiant d''évaluation : %{assessmentId} ?'
-      assessors:
-        spoof:
-          successfully: Vous vous êtes connecté avec succès en tant que %{name}
+      bulk_import_translations:
+        details: Modèle de traduction de campagne
+        download_template: Télécharger le modèle
+        errors:
+          blank_campaign_id: 'Ligne %{row} : L’identifiant de campagne ne peut pas être vide.'
+          campaign_not_found: 'Ligne %{row} : La campagne %{id} est introuvable dans ce projet'
+          generic: Une erreur s'est produite. Veuillez réessayer.
+          invalid_csv_format: 'Format CSV invalide : %{message}'
+          invalid_locales: 'Colonnes de langue non valides : %{locales}'
+          missing_required_columns: 'Colonnes obligatoires manquantes : %{columns}'
+          must_be_csv: Le fichier doit être un fichier .csv
+          save_failed: 'La traduction de la campagne %{id} pour %{locale} n''a pas pu être enregistrée : %{message}'
+        file_label: fichier de traduction
+        import_started: Importation de la traduction en cours. Veuillez consulter les notifications pour suivre l'avancement.
+        instructions_intro: Téléchargez le modèle CSV, mettez à jour les noms des campagnes dans les colonnes linguistiques de votre choix, puis téléchargez le fichier complété.
+        instructions_title: Instructions
+        menu_label: Importer les traductions
+        template_started: Exportation du modèle en cours. Veuillez consulter les notifications pour suivre l'avancement.
+        title: Traductions des noms de campagne d'importation
+        upload_file: Téléverser un fichier
       validations:
         dates:
           end: doit être postérieure à la date de début
@@ -1937,7 +1949,6 @@ fr:
         export: Traductions pour l'exportation
         import: Traductions des importations
         import_descr: Reportez-vous à la fonctionnalité d'exportation pour extraire un modèle qui peut être utilisé pour importer ici.
-    tte: TTE
     update: Mettre à jour
     users:
       create:

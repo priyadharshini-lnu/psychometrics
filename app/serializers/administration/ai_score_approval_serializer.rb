@@ -5,7 +5,7 @@ module Administration
     attributes :id, :questions, :competencies, :indicators, :results, :media_responses, :highlight_anchors,
                :review_as, :approval_status, :allow_approve, :allow_bulk_approve_scores, :campaign_name,
                :subject_name, :project_name, :client_name, :subject_email,
-               :assessment_name, :assessed_by, :approved_by, :result_stale
+               :assessment_name, :assessed_by, :approved_by, :result_stale, :allow_reset
 
     def questions
       scorable_questions
@@ -62,6 +62,10 @@ module Administration
       return false if object.approver_approved?
 
       policy.approve_question?
+    end
+
+    def allow_reset
+      policy.reset_approval? && object.approval_status.in?(%w[assessor_approved approver_approved auto_approved])
     end
 
     def allow_bulk_approve_scores

@@ -1,16 +1,14 @@
-import { lazy } from 'react'
-import { DataReportJobs } from '~/modules/admin/modules/client/routes/Client/routes/DataReports/DataReportJobs'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const DataReports = lazy(() => import('./DataReports'))
-
+const page = () => import('./pages')
 
 export const DataReportsRoutes = [
   {
     path: 'data_reports',
-    element: <DataReports />,
+    lazy: lazyRoute(page, m => m.DataReports),
   },
   {
     path: 'data_reports/:id',
-    element: <DataReportJobs />,
+    lazy: lazyRoute(page, m => m.DataReportJobs),
   },
 ]

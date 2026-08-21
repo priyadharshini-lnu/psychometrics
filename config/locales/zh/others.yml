@@ -890,6 +890,7 @@ zh:
         export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
+        export_campaign_translations: 出口营销活动翻译
         export_dashboard_as_file: 将 Dashboard 导出为文件
         export_development_action_translations: 出口发展行动 翻译
         export_development_actions: 出口发展行动
@@ -917,6 +918,7 @@ zh:
         import_assessors: 进口评估员
         import_campaign_ai_artifacts: 导入战役AI工件
         import_campaign_factors: 导入活动因素
+        import_campaign_translations: 导入活动翻译
         import_client_assessors: 导入客户评估员
         import_datasheet: 导入数据表
         import_development_action_translations: 进口开发行动 翻译
@@ -958,6 +960,7 @@ zh:
         super_admin_assessment_raw_result_export: 超级管理员原始结果导出
         super_admin_datasheet_export: 超级管理员数据表导出
         super_admin_external_assessment_export: 超级管理员外部评估导出
+        superadmin_record_change_history: 记录变更历史
         threesixty_campaign_export_completion_status: Threesixty 活动出口完成情况
         threesixty_campaign_export_scores: Threesixty 运动得分出口
         workshop_status_export: 评估中心状态导出
@@ -1154,7 +1157,7 @@ zh:
       read_only: 处于只读模式，你无法更改任何结果。
       save: 保存
       submissionFailedAlert:
-        description: 无法连接到服务器。 请刷新页面并重试。 如果还不行，请通过即时聊天或 mte.surveys@mercer.com 联系支持人员。
+        description: 无法连接到服务器。 请刷新页面并重试。 如果还不行，请通过即时聊天或 %{support_email} 联系支持人员。
         title: 上次请求失败
       submit: 提交
       warning: 警告
@@ -1990,7 +1993,7 @@ zh:
           project: 项目： %{section_name}
         subject: Lighthouse 邀请函
       password_change:
-        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 mte.support@mercer.com 联系支持部门。 '
+        body: '您好 %{name}！您的密码已被更改。 如果您没有提出此请求，请立即通过 %{support_contact_email} 联系支持部门。 '
         regards: 'Lighthouse 团队 '
         subject: 您的Lighthouse 密码已更改
       reset_password_instructions:
@@ -2121,6 +2124,7 @@ zh:
       max_generation_limit: 超出最大生成限制，请联系您的管理部门。
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
+    csrf_retry: 请重试
     equal_to_current_password: 必须与当前密码不同。
     equal_to_email: 必须与电子邮件不同。
     error: 错误
@@ -2331,7 +2335,6 @@ zh:
     error_warning: 哎呀，您的评估出错了，请联系技术支持。
     hogan:
       cannot_start: 您现在无法启动霍根评估，请几分钟后再试。
-    lighthouse_app: 默瑟灯塔
     login: 登录
     maintenance:
       notification: Lighthouse 将在 60 秒后进行定期维护
@@ -2951,8 +2954,6 @@ zh:
     zh-HK: 中文（香港）
     zh-Hant: 繁体中文
     zh-TW: 中文（台湾）
-  languages_localized:
-    sl: 斯洛文什奇纳
   license_usage:
     campaign_name: 活动名称
     status_updated_at: 最新状态更新
@@ -3013,12 +3014,11 @@ zh:
           invalid: 范围必须是“openid”
   mailer:
     copyright:
-      text: 莱皓思。保留所有权利
+      text: "© %{year} %{display_name}。保留所有权利"
     footer:
       regards: 谢谢、
-      team_name: Lighthouse 团队
+      team_name: "%{display_name} 团队"
       technical_support: 如有任何技术问题，请致信%{email} ，我们将在 24 小时内给予答复。
-    from: 人才企业
     idp:
       manager_unread_comments:
         body: |-
@@ -3075,8 +3075,6 @@ zh:
         instructions: 点击以下链接登录Lighthouse 测评。
         signin_link: 登录链接
       subject: Lighthouse 登录链接
-    powered_by:
-      text: 由 Lighthouse 提供技术支持。
     users:
       account_disable: 您的帐户因未活动而被禁用
       warning: 您的帐户将很快因未活动而被禁用

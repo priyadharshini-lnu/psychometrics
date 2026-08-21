@@ -1,36 +1,16 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const AiAssistantList = lazy(() => import('./AiAssistantList'))
-const AiAssistantPlayground = lazy(() => import('./AiAssistantPlayground'))
-const CreateAiAssistant = lazy(() => import('./AiAssistantList/CreateAiAssistant'))
-const EditAiAssistant = lazy(() => import('./AiAssistantList/EditAiAssistant'))
-
-export const routes = [
-  {
-    path: '',
-    component: <AiAssistantList />,
-  },
-  {
-    path: '/:aiAssistantId/playground',
-    component: <AiAssistantPlayground />,
-  },
-  {
-    path: '/create',
-    component: <CreateAiAssistant />,
-  },
-  {
-    path: '/:aiAssistantId/edit',
-    component: <EditAiAssistant />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const page = () => import('../pages')
 
 const AiAssistantRoutes = [
   {
-    path: 'ai_assistants/*',
-    element: <Layout />,
+    path: 'ai_assistants',
+    children: [
+      { index: true, lazy: lazyRoute(page, m => m.AiAssistantList) },
+      { path: 'create', lazy: lazyRoute(page, m => m.CreateAiAssistant) },
+      { path: ':aiAssistantId/playground', lazy: lazyRoute(page, m => m.AiAssistantPlayground) },
+      { path: ':aiAssistantId/edit', lazy: lazyRoute(page, m => m.EditAiAssistant) },
+    ],
   },
 ]
 

@@ -11,6 +11,7 @@ zh-HK:
     ai_idp_retake_step_chat_hint_no_document: 您可以重新开始聊天以分享更多细节，我会尽力为您提供帮助。
     ai_idp_summary_hint_no_document: 若您同意，我便可为您制定发展计划。若不同意，您可重新开始对话以分享更多细节。
     all_checks_must_pass: 所有检查都必须通过后，您才能继续。
+    appearance: 外貌
     approve_idp_plan: 批准计划
     assessment_misconfigured: 评估配置错误
     assessment_timing_duration_minutes: "%{duration} 分鐘"
@@ -52,16 +53,49 @@ zh-HK:
     camera_test_step: 视频和音频测试步骤
     campaign: 活动
     campaign_check_status: 状态：%{status}
+    card_action_retry: 重試
+    card_action_review: 審查
+    card_action_start: 開始
+    change_password_warning: 重要提示：更改密碼將會使您登出登入。
     chat_instructions: 聊天指南
     check: 检查
     check_video_recording: 請回放錄製內容以檢查視訊與音訊。
     checking_browser_compatibility: 正在检查浏览器兼容性...
     checking_latency: 正在检测延迟...
+    collapse_navigation: 折疊導航
     complete_prework_message: 请先完成所有预习任务，然后开始。
     could_not_reach_servers: 无法连接到我们的服务器以检测网速。请检查您的网络连接，然后重试。
+    dashboard: 儀表板
+    dashboard_active_programs: 活躍專案
+    dashboard_begin_program: 啟動程式
+    dashboard_continue_program: 繼續程序
+    dashboard_days_left: 剩下 %{count} 天
+    dashboard_greeting_afternoon: 下午好，%{name}。
+    dashboard_greeting_evening: 晚上好，%{name}。
+    dashboard_greeting_eyebrow: 歡迎回來
+    dashboard_greeting_morning: 早安，%{name}。
+    dashboard_instructions: 您可能被指派了多項任務。請確保在每個項目中完成所有分配的任務。
+    dashboard_reports_ready: 報告已準備就緒
+    dashboard_your_programs: 您的程式
     day: 天
     day_plural: 天
     details: 详情
+    details_back: 後退
+    details_due: 到期的
+    details_group_locked_hint: 完成“%{group}”後解鎖。
+    details_intro_tab: 介紹
+    details_no_reports: 目前尚無報告
+    details_open_heading: 公開練習
+    details_open_hint: 您可以按照任意順序，以自己的步調完成。
+    details_percent_done: "%{percent}% 完成"
+    details_progress: 進步
+    details_reports_ready: 您的報告已準備就緒
+    details_reports_tab: 報告
+    details_reserved: 預訂的
+    details_sequential_heading: 循序漸進的練習
+    details_sequential_hint: 依序完成－每完成一項，就會解鎖下一項。
+    details_total: 全部的
+    details_view_details: 看詳情
     development: 发展
     direct_reportees: 直接下属
     download: 下载
@@ -108,6 +142,10 @@ zh-HK:
     localstorage_fix_title: 您的浏览器未启用本地存储
     localstorage_not_enabled_detail: 您的浏览器未启用本地存储。请确保您未处于隐私/无痕模式，因为这些模式下通常会禁用本地存储。
     localstorage_support: 已启用 LocalStorage
+    login_sign_in_btn: 登入
+    login_sign_up_link: 報名
+    login_welcome_description: 使用您的 Lighthouse 帳戶登入
+    login_welcome_title: 歡迎來到燈塔
     magic_link_interstitial_description: 为了保障您的安全，我们需要您确认此次登录。自动化系统无法完成此步骤。
     magic_link_interstitial_title: 请点击下方的按钮完成登录。
     max_word_limit: 最多%{max}个单词
@@ -124,6 +162,7 @@ zh-HK:
     minute: 分钟
     minute_plural: 会议纪要
     my_plan: 我的计划
+    my_profile: 我的個人資料
     network: 网络
     network_check: 网速测试
     network_check_description: 正在测试您设备与我们的服务器之间的网络连接质量。
@@ -135,6 +174,7 @@ zh-HK:
     network_speed_meets_required_detail: 您的网速符合本次活动的最低要求
     network_test_step: 网络测试步骤
     no_audio_detected: 未检测到声音。请检查麦克风是否已连接且工作正常。
+    open_navigation: 打開導航
     pass: 跳过
     pause: 暂停
     pearson_timing_duration_minutes: 限时 - %{duration} 分钟内完成
@@ -150,7 +190,13 @@ zh-HK:
     proctored: 监考
     proctored_assessment_misconfigured_msg: 本次评估为监考形式，但缺少必要的时间设置，请联系您的管理员。
     profile: 个人资料
+    profile_cancel: 取消
     profile_details: 详情
+    profile_edit: 編輯
+    profile_other_information: 其他資訊
+    profile_personal_information: 個人資訊
+    profile_save: 節省
+    profile_time: 時間
     question_counter: 问题 %{current} 来自 %{total}
     reason_for_idp_plan_rejection: 拒绝原因
     record: 记录
@@ -167,9 +213,12 @@ zh-HK:
     results: 结果
     safari_proctoring_description: 您似乎正在使用 Safari 浏览器，该浏览器在支持本次活动的跟踪功能方面可能存在一些限制。为了获得最佳体验，我们建议您使用 Chrome, Edge 或 Firefox 浏览器。
     safari_proctoring_title: 检测到 Safari 浏览器
+    scheduling: 日程安排
     select_audio_device: 选择音频设备
     select_video_device: 选择视频设备
     selected_count: "%{count} 选定"
+    sign_out: 登出
+    signup_sign_in_link: 登入
     skill_type: 技能类型
     speech_verification_error: 在验证您的语音时发生错误。请重试。
     speech_verification_failed: 您的语音与测试短语不符。请重试，并清晰地说出该短语。
@@ -177,6 +226,7 @@ zh-HK:
     start_campaign_message_timed: 这是一项限时活动，请点击“%{buttonText}”按钮开始参与。
     start_readiness_check: 开始就绪检查
     start_system_check: 开始系统检查
+    status_locked: 已鎖定
     stop: 停止
     subinstruction_audio: 麦克风正常工作
     subinstruction_eight: 请预留一段不受打扰的时间，以便进行全面评估
@@ -228,6 +278,21 @@ zh-HK:
     tasks: 任务
     testing_download_speed: 正在测试下载速度...
     testing_upload_speed: 正在测试上传速度...
+    theme_active: 積極的
+    theme_change: 更改主題
+    theme_dark_theme: 深色主題
+    theme_ember: 餘燼
+    theme_light_theme: 淺色主題
+    theme_marsh: 沼澤
+    theme_mode_dark: 黑暗的
+    theme_mode_light: 光
+    theme_mode_system: 系統
+    theme_mode_title: 模式
+    theme_primer: 底漆
+    theme_primer_colorblind: 色盲入門
+    theme_primer_contrast: 高對比底漆
+    theme_primer_dimmed: 底漆變暗
+    theme_title: 主題
     time_commitment: 时间投入
     timed_activity_instruction: 这是一项限时活动，在您开始监考会话后，您将有<strong>%{time}分钟</strong>的时间来完成。
     troubleshooting_guide: 故障排除指南

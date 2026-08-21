@@ -42,7 +42,7 @@ class CampaignReport < ApplicationRecord
   end
 
   def effective_default_language
-    default_language.presence || report.default_language
+    default_language.presence || report&.default_language
   end
 
   private

@@ -890,6 +890,7 @@ sr-Latn:
         export_campaign_datasheet: Радни лист кампање за извоз
         export_campaign_factors: Faktori izvozne kampanje
         export_campaign_scorings: Izvozna kampanja Scorings
+        export_campaign_translations: Извоз превода кампање
         export_dashboard_as_file: Izvozi kontrolnu tablu kao datoteku
         export_development_action_translations: Izvoz Razvoj Akcija Prevodi
         export_development_actions: Izvozne razvojne akcije
@@ -917,6 +918,7 @@ sr-Latn:
         import_assessors: Procenjivači uvoza
         import_campaign_ai_artifacts: Uvoz kampanje AI artefakata
         import_campaign_factors: Faktori uvozne kampanje
+        import_campaign_translations: Увези преводе кампање
         import_client_assessors: Увоз клијентских процењивача
         import_datasheet: Uvoz Datasheet
         import_development_action_translations: Uvoz Razvoj Akcija Prevodi
@@ -958,6 +960,7 @@ sr-Latn:
         super_admin_assessment_raw_result_export: Super Admin Rav Rezultati Izvoz
         super_admin_datasheet_export: Super Admin Datasheet Izvoz
         super_admin_external_assessment_export: Super Admin Eksterna procena Izvoz
+        superadmin_record_change_history: Историја промена записа
         threesixty_campaign_export_completion_status: Status završetka izvoza kampanje Threesixty
         threesixty_campaign_export_scores: Threesixty kampanja Rezultati izvoza
         workshop_status_export: Procena Centar Status Izvoz
@@ -1154,7 +1157,7 @@ sr-Latn:
       read_only: Ovo je režim samo za čitanje, ne možete da promenite nikakve rezultate.
       save: Sačuvaj
       submissionFailedAlert:
-        description: Nije moguće povezati sa serverom. Molimo Vas da osvežite stranicu i pokušajte ponovo. Ako to ne uspe, obratite se podršci putem live chat-a ili mte.surveys@mercer.com
+        description: Nije moguće povezati sa serverom. Molimo Vas da osvežite stranicu i pokušajte ponovo. Ako to ne uspe, obratite se podršci putem live chat-a ili %{support_email}
         title: Poslednji zahtev nije uspeo
       submit: Pošalji
       warning: UPOZORENJE
@@ -1996,7 +1999,7 @@ sr-Latn:
 
           Vaša lozinka je promenjena.
 
-          Ako niste podnijeli ovaj zahtev, molimo vas da odmah kontaktirate podršku na mte.support@mercer.com
+          Ako niste podnijeli ovaj zahtev, molimo vas da odmah kontaktirate podršku na %{support_contact_email}
         regards: |-
           Pozdrave
           Lighthouse tima
@@ -2141,6 +2144,7 @@ sr-Latn:
       max_generation_limit: Maksimalna granica generacije prekoračena, obratite se svojoj administraciji.
     assessments:
       timed_out: Nećete moći da preuzmete procenu %{assessment_name} jer je isteklo vreme.
+    csrf_retry: Молим вас покушајте поново
     equal_to_current_password: mora biti drugačija od trenutne lozinke.
     equal_to_email: mora biti drugačija od e-pošte.
     error: Greška
@@ -2351,7 +2355,6 @@ sr-Latn:
     error_warning: Ups, nešto nije u redu sa vašom procenom. Molimo Vas da kontaktirate podršku.
     hogan:
       cannot_start: Ne možete odmah započeti procenu Hogana. Pokušajte nakon nekoliko minuta.
-    lighthouse_app: Svetionik Mercer
     login: Prijava
     maintenance:
       notification: Lighthouse će biti dole za planirano održavanje za 60 sekundi
@@ -2971,8 +2974,6 @@ sr-Latn:
     zh-HK: Srpski (Srbija)
     zh-Hant: Kineski - Tradicionalni
     zh-TW: Kineski (Tajvan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Naziv kampanje
     status_updated_at: Poslednje ažuriranje statusa
@@ -3033,12 +3034,11 @@ sr-Latn:
           invalid: Obim mora biti 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Sva prava zadržana
+      text: "© %{year} %{display_name}. Sva prava zadržana"
     footer:
       regards: Pozdrav,
-      team_name: Lighthouse tim
+      team_name: "%{display_name} tim"
       technical_support: Za bilo kakve tehničke probleme, pišite nam na %{email} i odgovoriće vam u roku od 24 sata.
-    from: Preduzeće za talente
     idp:
       manager_unread_comments:
         body: |-
@@ -3095,8 +3095,6 @@ sr-Latn:
         instructions: Kliknite ispod link da biste se prijavili na Lighthouse.
         signin_link: Prijavite se putem linka
       subject: Link za prijavljivanje za Lighthouse
-    powered_by:
-      text: Pokreće Lighthouse.
     users:
       account_disable: Vaš nalog je onemogućen zbog neaktivnosti
       warning: Vaš nalog će uskoro biti onemogućen zbog neaktivnosti

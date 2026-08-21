@@ -10,10 +10,25 @@ module Administration
       return unless AdminSubdomain.client_admin_sso_enabled?
       return unless user_signed_in?
       return if Current.client_admin_context?
-      return if current_user.is?(:superadmin)
+      return if root_domain_user?
       return if controller_excluded_from_root_domain_isolation?
 
       redirect_to administration_client_selection_path
+    end
+
+    # The API cannot redirect to client selection, so it refuses the call the HTML shell would have funneled away.
+    def enforce_root_domain_api_isolation
+      return unless AdminSubdomain.client_admin_sso_enabled?
+      return unless user_signed_in?
+      return unless Current.super_admin_context?
+      return if root_domain_user?
+
+      render json: { errors: [{ title: I18n.t('errors.forbidden'), status: 403 }] }, status: :forbidden
+    end
+
+    # Only superadmins and assessors with no client footprint belong on the root domain.
+    def root_domain_user?
+      current_user.is?(:superadmin) || current_user.root_domain_assessor?
     end
 
     def enforce_admin_session_validity

@@ -96,7 +96,8 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
     user_recordings = ::MeetingRecordings::GetUserRecordings.call!(user, campaign.id, current_user)
     serialized_user_recordings = Panko::ArraySerializer.new(
       user_recordings,
-      each_serializer: Administration::MeetingRecordingSerializer
+      each_serializer: Administration::MeetingRecordingSerializer,
+      context: { campaign: campaign, assessor_view: true }
     ).to_a
 
     render json: { userRecordings: serialized_user_recordings }

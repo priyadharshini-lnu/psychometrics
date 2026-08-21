@@ -890,6 +890,7 @@ ro:
         export_campaign_datasheet: Fișă tehnică a campaniei de export
         export_campaign_factors: Factorii campaniei de export
         export_campaign_scorings: Exportați scorurile campaniei
+        export_campaign_translations: Exportați traducerile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
         export_development_action_translations: Traduceri pentru acțiuni de dezvoltare a exporturilor
         export_development_actions: Acțiune de dezvoltare a exporturilor
@@ -917,6 +918,7 @@ ro:
         import_assessors: Evaluatori de import
         import_campaign_ai_artifacts: Importul artefactelor AI din campanii
         import_campaign_factors: Importați factori de campanie
+        import_campaign_translations: Importați traducerile campaniei
         import_client_assessors: Importarea evaluatorilor clienților
         import_datasheet: Fișa tehnică de import
         import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
@@ -958,6 +960,7 @@ ro:
         super_admin_assessment_raw_result_export: Exportați rezultate brute Super Admin
         super_admin_datasheet_export: Exportați fișă tehnică Super Admin
         super_admin_external_assessment_export: Exportați de evaluare externă Super Admin
+        superadmin_record_change_history: Înregistrați istoricul modificărilor
         threesixty_campaign_export_completion_status: Starea de finalizare a exportului campaniei Threesixty
         threesixty_campaign_export_scores: Exportul scorurilor campaniei Threesixty
         workshop_status_export: Exportul stării centrului de evaluare
@@ -1151,7 +1154,7 @@ ro:
       read_only: Este modul numai citire, nu puteți modifica niciun rezultat.
       save: Salvați
       submissionFailedAlert:
-        description: Nu s-a putut conecta la server. Vă rugăm să reîmprospătați pagina și să încercați din nou. Dacă acest lucru nu funcționează, vă rugăm să contactați asistența prin chat live sau mte.surveys@mercer.com
+        description: Nu s-a putut conecta la server. Vă rugăm să reîmprospătați pagina și să încercați din nou. Dacă acest lucru nu funcționează, vă rugăm să contactați asistența prin chat live sau %{support_email}
         title: Ultima solicitare a eșuat
       submit: Trimite
       warning: AVERTISMENT
@@ -1993,7 +1996,7 @@ ro:
 
           Parola a fost schimbată.
 
-          Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la mte.support@mercer.com
+          Dacă nu ați făcut această solicitare, vă rugăm să contactați imediat Asistența la %{support_contact_email}
         regards: |-
           Cu stimă
           Echipa Lighthouse
@@ -2138,6 +2141,7 @@ ro:
       max_generation_limit: Limita maximă de generare depășită, contactați administrația.
     assessments:
       timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
+    csrf_retry: Vă rugăm să încercați din nou
     equal_to_current_password: trebuie să fie diferită de parola curentă.
     equal_to_email: trebuie să fie diferită de adresa de e-mail.
     error: Eroare
@@ -2348,7 +2352,6 @@ ro:
     error_warning: Ups, ceva nu a mers bine cu evaluarea ta. Vă rugăm să contactați asistența.
     hogan:
       cannot_start: Nu poți începe evaluarea hogan chiar acum. Vă rugăm să încercați după câteva minute.
-    lighthouse_app: Farul Mercer
     login: Autentificare
     maintenance:
       notification: Farul va fi oprit pentru întreținere programată în 60 de secunde
@@ -2968,8 +2971,6 @@ ro:
     zh-HK: Chineză (Hong Kong)
     zh-Hant: Chineză - Tradițională
     zh-TW: Chineză (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Numele campaniei
     status_updated_at: Ultima actualizare de stare
@@ -3030,12 +3031,11 @@ ro:
           invalid: Scopul trebuie să fie "openid"
   mailer:
     copyright:
-      text: Lighthouse. Toate drepturile rezervate
+      text: "© %{year} %{display_name}. Toate drepturile rezervate"
     footer:
       regards: Regards,
-      team_name: Echipa Lighthouse
+      team_name: Echipa %{display_name}
       technical_support: Pentru orice probleme tehnice, vă rugăm să ne scrieți la %{email} și vă vom răspunde în termen de 24 de ore.
-    from: Întreprinderea talentelor
     idp:
       manager_unread_comments:
         body: |-
@@ -3092,8 +3092,6 @@ ro:
         instructions: Faceți clic pe linkul de mai jos pentru a vă conecta la Lighthouse.
         signin_link: Link de conectare
       subject: Link de conectare pentru Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Contul a fost dezactivat din cauza inactivității
       warning: Contul tău va fi dezactivat în curând din cauza inactivității

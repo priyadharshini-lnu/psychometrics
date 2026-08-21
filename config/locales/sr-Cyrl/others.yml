@@ -890,6 +890,7 @@ sr-Cyrl:
         export_campaign_datasheet: Радни лист кампање за извоз
         export_campaign_factors: Фактори извозне кампање
         export_campaign_scorings: Резултати извозне кампање
+        export_campaign_translations: Извоз превода кампање
         export_dashboard_as_file: Извози контролну таблу као датотеку
         export_development_action_translations: Извоз Развој Акција Преводи
         export_development_actions: Акције за развој извоза
@@ -917,6 +918,7 @@ sr-Cyrl:
         import_assessors: Количина саветника
         import_campaign_ai_artifacts: Увоз кампање АИ артефаката
         import_campaign_factors: Фактори увозне кампање
+        import_campaign_translations: Увези преводе кампање
         import_client_assessors: Увоз клијентских процењивача
         import_datasheet: Увези податке о подацима
         import_development_action_translations: Увоз Развој Акције Преводи
@@ -958,6 +960,7 @@ sr-Cyrl:
         super_admin_assessment_raw_result_export: Супер Админ Рав Резултати Извоз
         super_admin_datasheet_export: Супер Админ Датасхеет Извоз
         super_admin_external_assessment_export: Супер Админ Екстерна процена Извоз
+        superadmin_record_change_history: Историја промена записа
         threesixty_campaign_export_completion_status: Трисиxтy Статус завршетка извоза кампање
         threesixty_campaign_export_scores: Тришести кампања Резултати извоза
         workshop_status_export: Извоз статуса центра за процену
@@ -2132,6 +2135,7 @@ sr-Cyrl:
       max_generation_limit: Максимална граница генерације прекорачена, обратите се својој администрацији.
     assessments:
       timed_out: Нећете моћи да полажете %{assessment_name} тест јер је истекао.
+    csrf_retry: Молим вас покушајте поново
     equal_to_current_password: мора бити различита од тренутне лозинке.
     equal_to_email: мора бити различита од имејла.
     error: Грешка
@@ -2342,7 +2346,6 @@ sr-Cyrl:
     error_warning: Упс , нешто није у реду са вашом проценом. Молимо Вас да контактирате подршку.
     hogan:
       cannot_start: Не можете одмах да започнете процену хогана. Покушајте након неколико минута.
-    lighthouse_app: Светионик Мерцер
     login: Пријава
     maintenance:
       notification: Светионик ће бити искључен због планираног одржавања у 60 секунди
@@ -2962,8 +2965,6 @@ sr-Cyrl:
     zh-HK: Кинески (Хонгконг)
     zh-Hant: Кинески - традиционални
     zh-TW: Кинески (Тајван)
-  languages_localized:
-    sl: Словеншчина
   license_usage:
     campaign_name: Име кампање
     status_updated_at: Последње ажурирање статуса
@@ -3024,12 +3025,11 @@ sr-Cyrl:
           invalid: Обим мора бити 'опенид'
   mailer:
     copyright:
-      text: Lighthouse. Сва права задржана
+      text: "© %{year} %{display_name}. Сва права задржана"
     footer:
       regards: Срдачан поздрав,
-      team_name: Lighthouse тим
+      team_name: "%{display_name} тим"
       technical_support: За техничке потешкоће пишите нам на %{email} и одговорићемо у року од 24 сата.
-    from: Предузеће за таленте
     idp:
       manager_unread_comments:
         body: |
@@ -3086,8 +3086,6 @@ sr-Cyrl:
         instructions: Кликните на линк испод да бисте се пријавили на светионик.
         signin_link: Линк за пријаву
       subject: Линк за пријаву на Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Ваш налог је онемогућен због неактивности
       warning: Ваш налог ће ускоро бити онемогућен због неактивности

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Button, message, Space } from 'antd'
+import {
+  Button, Space, useApp,
+} from '@thetalententerprise/glint'
 import { Link } from 'react-router-dom'
-import { PlusOutlined, EditOutlined, CaretRightOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { PlusOutlined, EditOutlined, CaretRightOutlined } from '@thetalententerprise/glint/icons'
 import {
   DataReport,
   DataReportTR,
@@ -11,12 +13,20 @@ import { DataReportForm } from './DataReportForm'
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
 import { useResources } from '~/hooks/useResources'
+import RunReportModal from './components/RunReportModal'
+import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { REPORT_TYPE_KEYS } from './components/ReportTypeConfigs'
 
 const { I18n } = window
 
+const SCOPE_OPTIONS = ['client', 'global']
+
 export const DataReports: React.FC<{}> = () => {
+  const { message } = useApp()
   const [showForm, setShowForm] = useState(false)
   const [editable, setEditable] = useState<DataReport | undefined>(undefined)
+  const [runTarget, setRunTarget] = useState<DataReport | undefined>(undefined)
+  const [runLoading, setRunLoading] = useState(false)
 
   const baseApiConfig = {
     include: ['last_updated_by', 'owner'],
@@ -27,7 +37,7 @@ export const DataReports: React.FC<{}> = () => {
     sort: '-id',
   }
 
-  const { memberAction, fetchSingle } = useResources<DataReport>(
+  const { memberAction, fetchSingle, getFilteredValue } = useResources<DataReport>(
     'data_reports',
     {
       trackUrl: true,
@@ -49,14 +59,52 @@ export const DataReports: React.FC<{}> = () => {
       })
   }
 
-  const runReport = (resource: DataReport) => memberAction({
-    id: resource.id,
-    action: 'run',
-    method: 'post',
-    responseType: OkResponse,
-  }).then(() => {
-    message.info(I18n.t('admin.data_reports_messages_runed'))
-  })
+  const runReport = (resource: DataReport) => {
+    memberAction({
+      id: resource.id,
+      action: 'run',
+      method: 'post',
+      responseType: OkResponse,
+    }).then(() => {
+      message.info(I18n.t('admin.data_reports_messages_runed'))
+    })
+  }
+
+  const handleRunClick = (resource: DataReport) => {
+    if (!resource.runtimeParametersEnabled) {
+      runReport(resource)
+      return
+    }
+
+    setRunTarget(resource)
+  }
+
+  const handleRunSubmit = (runtimeConfiguration: Record<string, string>) => {
+    if (!runTarget) return
+
+    setRunLoading(true)
+
+    memberAction({
+      id: runTarget.id,
+      action: 'run',
+      method: 'post',
+      responseType: OkResponse,
+      body: {
+        data: {
+          attributes: {
+            runtime_configuration: runtimeConfiguration,
+          },
+        },
+      },
+    })
+      .then(() => {
+        message.info(I18n.t('admin.data_reports_messages_runed'))
+        setRunTarget(undefined)
+      })
+      .finally(() => {
+        setRunLoading(false)
+      })
+  }
 
   const closeForm = () => {
     setEditable(undefined)
@@ -69,9 +117,8 @@ export const DataReports: React.FC<{}> = () => {
     apiConfig: baseApiConfig,
   }
 
-
   const Filter = (
-    <Resource.Filter hideSearch name="filterable_fields">
+    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
       <Button type="primary" onClick={() => setShowForm(true)}>
         <PlusOutlined />
         {I18n.t('assessments.create')}
@@ -106,12 +153,22 @@ export const DataReports: React.FC<{}> = () => {
         title={I18n.t('admin.report_type')}
         dataIndex="reportType"
         width={200}
+        filters={REPORT_TYPE_KEYS.map(value => ({
+          text: I18n.t(`admin.report_types.${value}`),
+          value,
+        }))}
+        filteredValue={getFilteredValue('report_type_in') as string[] | null}
         render={reportType => I18n.t(`admin.report_types.${reportType}`)}
       />
       <Resource.Column<DataReport>
         id="scope"
         title={I18n.t('admin.scope')}
         dataIndex="scope"
+        filters={SCOPE_OPTIONS.map(value => ({
+          text: value === 'global' ? I18n.t('admin.scope_global') : I18n.t('admin.scope_client'),
+          value,
+        }))}
+        filteredValue={getFilteredValue('scope_in') as string[] | null}
         render={scope => (scope === 'global' ? I18n.t('admin.scope_global') : I18n.t('admin.scope_client'))}
         width={100}
       />
@@ -147,7 +204,7 @@ export const DataReports: React.FC<{}> = () => {
               {(I18n.t('admin.report_review_edit'))}
             </Button>
             {resource.scope === 'global' && (
-              <Button icon={<CaretRightOutlined />} onClick={() => runReport(resource)}>
+              <Button icon={<CaretRightOutlined />} onClick={() => handleRunClick(resource)}>
                 {I18n.t('admin.run')}
               </Button>
             )}
@@ -156,12 +213,22 @@ export const DataReports: React.FC<{}> = () => {
         fixed="right"
         width={200}
       />
-
     </Resource.Table>
   )
 
   return (
     <Resource config={config} name="data_reports">
+      <Breadcrumb
+        crumbs={[
+          {
+            link: () => '/admin',
+            label: () => I18n.t('admin.dashboard'),
+          },
+          {
+            label: () => I18n.t('admin.data_reports'),
+          },
+        ]}
+      />
       {Filter}
       {Table}
       <DataReportForm
@@ -169,6 +236,15 @@ export const DataReports: React.FC<{}> = () => {
         show={showForm}
         close={() => closeForm()}
       />
+      {runTarget && (
+        <RunReportModal
+          report={runTarget}
+          open
+          loading={runLoading}
+          onRun={handleRunSubmit}
+          onClose={() => setRunTarget(undefined)}
+        />
+      )}
     </Resource>
   )
 }

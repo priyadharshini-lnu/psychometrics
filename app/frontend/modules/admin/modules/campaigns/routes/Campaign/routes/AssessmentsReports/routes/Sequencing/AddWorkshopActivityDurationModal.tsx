@@ -3,7 +3,7 @@ import { Form, Input, Modal } from 'antd'
 
 interface Props {
   close(): void
-  onAddScheduleTime: (duration: number) => Promise<void>
+  onAddScheduleTime?: (duration: number) => Promise<void>
   workshopActivityDuration?: number
 }
 
@@ -16,6 +16,11 @@ export const AddWorkshopActivityDurationModal: React.FC<Props> = ({
   const [durationFieldError, setDurationFieldError] = useState<string>('')
 
   const handleClose = () => {
+    if (!onAddScheduleTime) {
+      close()
+      return
+    }
+
     onAddScheduleTime(form.getFieldValue('workshopActivityDuration')).then(() => {
       setDurationFieldError('')
       close()

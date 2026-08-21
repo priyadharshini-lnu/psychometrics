@@ -3,7 +3,15 @@
 module Administration
   module Campaigns
     class OtherAssessmentSerializer < Panko::Serializer
-      attributes :id, :name, :category, :permissions
+      attributes :id, :name, :category, :permissions, :owner, :dimension_id, :tenant_id
+
+      delegate :dimension_id, to: :object
+
+      def owner
+        return unless object.owner
+
+        { id: object.owner.id, name: object.owner.name }
+      end
 
       def permissions
         GetPermissionsHash.call!(

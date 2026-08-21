@@ -55,6 +55,7 @@ ro:
     copied_successfully: Copierea s-a efectuat cu succes
     copied_to_clipboard: Copiată în clipboard
     copy: Copiere
+    copyright: "© %{year} %{display_name}. Toate drepturile rezervate."
     create: Creează
     created_at: Creat la
     created_by: Creat de
@@ -181,6 +182,29 @@ ro:
     remove: Eliminați
     removed: Scos
     replace: Înlocuiți
+    reports:
+      ai_rationale_evidence:
+        all_factors: Toți factorii
+        factor_label: Factori
+        hide_evidence: Ascundeți dovezile
+        hide_rationale: Ascundeți justificarea
+        no_data: Nu sunt disponibile date justificative sau dovezi bazate pe inteligență artificială pentru întrebarea selectată.
+        no_question_selected: Selectați o întrebare pentru a afișa raționamentul și dovezile IA.
+        question_label: Întrebare
+        select_question: Selectați o întrebare
+      ai_transcript:
+        no_data: Nu sunt disponibile date de transcriere pentru întrebarea selectată.
+        no_question_selected: Vă rugăm să selectați o întrebare pentru a afișa transcrierea.
+        question_label: Întrebare
+        select_question: Selectați o întrebare
+    reports_bar_gradient_direction: Direcția gradientului
+    reports_bar_gradient_direction_bottom_to_top: De jos în sus
+    reports_bar_gradient_direction_left_to_right: De la stânga la dreapta
+    reports_bar_gradient_direction_right_to_left: De la dreapta la stânga
+    reports_bar_gradient_direction_top_to_bottom: De sus în jos
+    reports_bar_gradient_enabled: Activează gradientul
+    reports_bar_gradient_end_color: Culoare finală
+    reports_bar_gradient_start_color: Culoare de început
     reports_show_values_inside_bar: Afișează valorile în interiorul barei
     reports_value_label_position: Poziția etichetei de valoare
     reports_value_label_position_center: Centru

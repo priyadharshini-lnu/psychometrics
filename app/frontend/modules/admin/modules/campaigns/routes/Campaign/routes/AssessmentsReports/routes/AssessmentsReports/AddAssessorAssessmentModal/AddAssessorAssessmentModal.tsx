@@ -42,7 +42,7 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
     apiConfig: {
       filter: {
         category_in: ['assessor_form', 'lead_assessor_form'],
-        tenant_id: String(campaignTenantId),
+        owner_id: String(campaignTenantId),
         filterable_fields: value,
       },
     },
@@ -91,7 +91,12 @@ const AddAssessorAssessmentModal: React.FC<Props> = ({
       request={{
         createResource: values => addAssessorAssessment({
           ...values,
-          tenant_id: campaignTenantId,
+        }, {
+          apiConfig: {
+            query: {
+              tenant_id: String(campaignTenantId),
+            },
+          },
         }),
       }}
     >

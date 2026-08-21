@@ -55,6 +55,7 @@ sl:
     copied_successfully: Kopiranje je uspelo
     copied_to_clipboard: Kopirano v odložišče
     copy: Kopiraj
+    copyright: "© %{year} %{display_name}. Vse pravice pridržane."
     create: Ustvari
     created_at: Ustvarjeno
     created_by: Ustvaril
@@ -181,6 +182,29 @@ sl:
     remove: Odstranite
     removed: Odstranjen
     replace: Zamenjaj
+    reports:
+      ai_rationale_evidence:
+        all_factors: Vsi dejavniki
+        factor_label: Dejavniki
+        hide_evidence: Skrij dokaze
+        hide_rationale: Skrij utemeljitev
+        no_data: Za izbrano vprašanje ni na voljo utemeljitve ali dokazov umetne inteligence.
+        no_question_selected: Izberite vprašanje za prikaz utemeljitve in dokazov umetne inteligence.
+        question_label: Vprašanje
+        select_question: Izberite vprašanje
+      ai_transcript:
+        no_data: Za izbrano vprašanje ni na voljo podatkov o prepisu.
+        no_question_selected: Izberite vprašanje za prikaz prepisa.
+        question_label: Vprašanje
+        select_question: Izberite vprašanje
+    reports_bar_gradient_direction: Smer gradienta
+    reports_bar_gradient_direction_bottom_to_top: Od spodaj navzgor
+    reports_bar_gradient_direction_left_to_right: Od leve proti desni
+    reports_bar_gradient_direction_right_to_left: Od desne proti levi
+    reports_bar_gradient_direction_top_to_bottom: Od zgoraj navzdol
+    reports_bar_gradient_enabled: Omogoči preliv
+    reports_bar_gradient_end_color: Končna barva
+    reports_bar_gradient_start_color: Začetna barva
     reports_show_values_inside_bar: Prikaži vrednosti znotraj stolpca
     reports_value_label_position: Položaj oznake vrednosti
     reports_value_label_position_center: Center

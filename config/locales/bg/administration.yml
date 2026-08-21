@@ -15,11 +15,6 @@ bg:
         simple_design:
           design: Проектирам
           or: Или
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Влизането е успешно.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ bg:
           modal_title: Настройки за одобрение на оценки
           remove_modal_success: 'Настройката за одобрение за идентификационен номер на оценката: %{assessmentId} беше успешно изтрита.'
           remove_modal_text: 'Сигурен ли сте, че искате да изтриете тази настройка за идентификационен номер на оценката: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Вие влязохте успешно като %{name}
+      bulk_import_translations:
+        details: Шаблон за превод на кампания
+        download_template: Изтегляне на шаблон
+        errors:
+          blank_campaign_id: 'Ред %{row}: Идентификационният номер на кампанията не може да бъде празен'
+          campaign_not_found: 'Ред %{row}: Кампания %{id} не е намерена в този проект'
+          generic: Нещо се обърка. Моля, опитайте отново.
+          invalid_csv_format: 'Невалиден CSV формат: %{message}'
+          invalid_locales: 'Невалидни езикови колони: %{locales}'
+          missing_required_columns: 'Липсват задължителни колони: %{columns}'
+          must_be_csv: Файлът трябва да е .csv файл
+          save_failed: 'Преводът на кампания %{id} за %{locale} не можа да бъде запазен: %{message}'
+        file_label: Файл за превод
+        import_started: Импортирането на превода е в ход. Моля, проверете напредъка в известията.
+        instructions_intro: Изтеглете CSV шаблона, актуализирайте имената на кампаниите в желаните от вас езикови колони и след това качете завършения файл.
+        instructions_title: Инструкции
+        menu_label: Импортиране на преводи
+        template_started: Експортирането на шаблона е в ход. Моля, проверете напредъка в известията.
+        title: Импортиране на преводи на имена на кампании
+        upload_file: Качване на файл
       validations:
         dates:
           end: трябва да е след началната дата
@@ -1937,7 +1949,6 @@ bg:
         export: Експортиране на преводи
         import: Импортиране на преводи
         import_descr: Вижте функционалността за експортиране, за да извлечете шаблон, който може да се използва за импортиране тук.
-    tte: TTE
     update: Актуализирам
     users:
       create:

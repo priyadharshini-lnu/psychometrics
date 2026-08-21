@@ -41,7 +41,9 @@ import {
   SetScoringByQuestion,
   SetUsersScoring,
   SetMediaResponses,
+  SetAIMetadataByQuestion,
 } from './Results'
+import { AIMetadataByQuestion } from './Results/SetAIMetadataByQuestion'
 
 // Attention!!!! it is hack. Used for individual response
 // Individual values stored in this.resultsByFilter['individual']
@@ -97,6 +99,8 @@ export default class Result<ExternalScoring = unknown> {
 
   innovationStyles: InnovationStyleResult[]
 
+  aiMetadataByQuestion: AIMetadataByQuestion
+
   groupedDataSheet: object[]
 
   constructor (assessmentId: number) {
@@ -141,6 +145,7 @@ export default class Result<ExternalScoring = unknown> {
     this.reportData = SetReportData.run(this.userReportData)
     this.groupedDataSheet = SetGroupedDataSheet.run(this.rawResults)
     this.mediaResponses = SetMediaResponses.run(this.rawResults)
+    this.aiMetadataByQuestion = SetAIMetadataByQuestion.run(this.rawResults, this.dimensionId)
 
     if (_.isEmpty(filters)) return this
 

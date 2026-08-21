@@ -139,7 +139,7 @@ export const NormImportModalComponent: React.FC<Props> = ({ close, currentUser }
             notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             placeholder="Select an Owner"
           >
-            {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.tte')}</Select.Option>}
+            {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
             {clients.map(({ id, name }) => (
               <Select.Option key={id} value={id}>{name}</Select.Option>
             ))}

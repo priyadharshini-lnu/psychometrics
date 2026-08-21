@@ -5,7 +5,7 @@ module ApplicationHelper
 
   # Defining the constant here since this is not used anywhere else
   # instead of in an initializer.
-  RANDOM_BACKGROUND_IMAGES_COUNT = 7
+  AUTH_BACKGROUND_IMAGES_COUNT = 7
 
   def license_page_url(client)
     "#{admin_url}/clients/#{client.id}/licenses"
@@ -33,15 +33,13 @@ module ApplicationHelper
   end
 
   def random_background
-    "background-image: url('#{image_path(randomized_background_image)}');"
+    "background-image: url('#{image_path(auth_background_image)}');"
   end
 
-  def randomized_background_image
-    background_images[Time.zone.today.day % RANDOM_BACKGROUND_IMAGES_COUNT]
-  end
-
-  def background_images
-    Array.new(RANDOM_BACKGROUND_IMAGES_COUNT) { |i| "administration/backgrounds/lh-background-#{i}.png" }
+  # Rotates by day of month; preview any at /assets/administration/backgrounds/lh-auth-background-<0-6>.jpg,
+  # e.g. https://ttedev.me:3030/assets/administration/backgrounds/lh-auth-background-3.jpg
+  def auth_background_image
+    "administration/backgrounds/lh-auth-background-#{Time.zone.today.day % AUTH_BACKGROUND_IMAGES_COUNT}.jpg"
   end
 
   def lang_param

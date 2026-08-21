@@ -11,6 +11,16 @@ module AdminJobs
         'Proctored Count (assessments with proctoring enabled)'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
@@ -37,6 +47,10 @@ module AdminJobs
                 where('p.ancestry_depth = 1').
                 where('c.ancestry_depth = 0').
                 where(status: [2, 3, 4, 5])
+
+        if geo_restricted_top_level_client_ids.any?
+          query = query.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
 
         query = query.where(c: { id: client_ids }) if client_ids.present?
         query = query.where(completed_at: completed_at_range) if completed_at_range

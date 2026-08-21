@@ -9,6 +9,8 @@ module Api
 
       ::CampaignFactors::SaveAssessorScoringFactorValue.call!(campaign, params[:data][:attributes], current_user) do
         on(:ok) do
+          next unless manually_moderated_assessor_scoring_factors_exist?
+
           user = User.find_by(id: params[:user_id])
 
           audit! :campaign_scoring_rescore, user, payload: {}, campaign: campaign
@@ -18,6 +20,12 @@ module Api
       end
 
       render json: :ok
+    end
+
+    private
+
+    def manually_moderated_assessor_scoring_factors_exist?
+      campaign.campaign_factors.where(factor_type: :assessor_scoring).manually_moderated.exists?
     end
   end
 end

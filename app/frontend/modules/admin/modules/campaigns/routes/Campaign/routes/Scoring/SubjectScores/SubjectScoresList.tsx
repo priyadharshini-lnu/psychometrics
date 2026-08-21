@@ -342,7 +342,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
                 pagination={false}
                 scroll={{ x: 'max-content' }}
                 loading={isLoading('fetch')}
-                sticky={{ offsetHeader: 50 }}
+                sticky
               />
               )}
             disableHeader

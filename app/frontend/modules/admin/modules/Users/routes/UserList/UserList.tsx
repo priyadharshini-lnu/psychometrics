@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { Resource } from '~/modules/admin/components/Resource'
 import { User, UserTR } from '~/modules/admin/modules/client/core/users'
@@ -54,28 +55,40 @@ const UserListComponent: React.FC<Props> = ({
   }
 
   return (
-    <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('users.dashboard'),
-          },
-          {
-            label: () => I18n.t('users.users'),
-          },
-        ]}
-      />
-      <Tabs />
-      <Resource config={config} name="users">
-        <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
-        <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
-        {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
-        {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
-        <Modals modals={MODALS} />
-      </Resource>
-    </>
+    <Resource config={config} name="users">
+      <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
+      <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
+      {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
+      {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
+      <Modals modals={MODALS} />
+    </Resource>
   )
 }
 
-export default connecter(UserListComponent)
+// The tab strip belongs to the route above the tabs, so switching tabs swaps only the list below it.
+export const UsersLayout: React.FC = () => (
+  <>
+    <Breadcrumb
+      crumbs={[
+        {
+          link: () => '/admin',
+          label: () => I18n.t('users.dashboard'),
+        },
+        {
+          label: () => I18n.t('users.users'),
+        },
+      ]}
+    />
+    <Tabs />
+    <Outlet />
+  </>
+)
+
+const UserList = connecter(UserListComponent)
+
+export const RegularUsers = () => <UserList userTab="Users::Regular" />
+export const AdminUsers = () => <UserList userTab="Users::Admin" />
+export const SuperAdminUsers = () => <UserList userTab="Users::SuperAdmin" />
+export const GlobalAssessorUsers = () => <UserList userTab="Users::GlobalAssessors" />
+
+export default UserList

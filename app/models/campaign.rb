@@ -3,6 +3,7 @@
 # rubocop:disable Metrics/ClassLength
 class Campaign < ApplicationRecord
   include GeoFilterable
+  extend Mobility
 
   audited except: %i[encrypted_pdf_password encrypted_pdf_password_iv]
 
@@ -20,6 +21,8 @@ class Campaign < ApplicationRecord
   belongs_to :project, class_name: 'Client'
   belongs_to :default_idp_template, class_name: 'IdpTemplate', optional: true
   include Tenantable
+
+  translates :name
 
   acts_as_taggable_on :tags
   acts_as_taggable_tenant :project_id

@@ -11,6 +11,7 @@ ja:
     ai_idp_retake_step_chat_hint_no_document: 詳細を共有するためにチャットを再開しても構いません。できる限りお手伝いします。
     ai_idp_summary_hint_no_document: もし許可があれば、開発計画を作成できます。もしそうでなければ、チャットを再開して詳細を共有してください。
     all_checks_must_pass: すべてのチェックに合格してからでないと、先に進むことはできません。
+    appearance: 外観
     approve_idp_plan: プランを承認
     assessment_misconfigured: 設定に誤りがあります
     assessment_timing_duration_minutes: "%{duration}分"
@@ -52,16 +53,49 @@ ja:
     camera_test_step: 映像・音声テスト手順
     campaign: キャンペーン
     campaign_check_status: ステータス：%{status}
+    card_action_retry: リトライ
+    card_action_review: レビュー
+    card_action_start: 始める
+    change_password_warning: 重要：パスワードを変更すると、ログアウトされます。
     chat_instructions: チャットの使い方
     check: 確認
     check_video_recording: 録画を再生して、映像と音声を確認してください。
     checking_browser_compatibility: ブラウザの互換性を確認中...
     checking_latency: 遅延を確認中...
+    collapse_navigation: ナビゲーションを折りたたむ
     complete_prework_message: 開始するには、すべての事前課題を完了してください。
     could_not_reach_servers: ネットワーク速度を確認するためにサーバーに接続できませんでした。インターネット接続を確認してから、もう一度お試しください。
+    dashboard: ダッシュボード
+    dashboard_active_programs: アクティブなプログラム
+    dashboard_begin_program: プログラムを開始する
+    dashboard_continue_program: プログラムを継続する
+    dashboard_days_left: 残り%{count}日
+    dashboard_greeting_afternoon: こんにちは、%{name}さん。
+    dashboard_greeting_evening: こんばんは、%{name}さん。
+    dashboard_greeting_eyebrow: おかえり
+    dashboard_greeting_morning: おはようございます、%{name}さん。
+    dashboard_instructions: 複数の課題が割り当てられている場合があります。すべてのプログラムにおいて、割り当てられた課題をすべて完了させてください。
+    dashboard_reports_ready: レポート準備完了
+    dashboard_your_programs: あなたのプログラム
     day: 日
     day_plural: 日
     details: 詳細
+    details_back: 戻る
+    details_due: 期限
+    details_group_locked_hint: "「%{group}」が完了するとロックが解除されます。"
+    details_intro_tab: 導入
+    details_no_reports: まだ報告はありません
+    details_open_heading: 自由演習
+    details_open_hint: 順番は自由、自分のペースで進めてください。
+    details_percent_done: "%{percent}%完了"
+    details_progress: 進捗
+    details_reports_ready: レポートの準備ができました。
+    details_reports_tab: 報告書
+    details_reserved: 予約済み
+    details_sequential_heading: 連続した演習
+    details_sequential_hint: 順番に完了してください。一つ完了すると次の項目がアンロックされます。
+    details_total: 合計
+    details_view_details: 詳細を見る
     development: 開発
     direct_reportees: 直下のレポート
     download: ダウンロード
@@ -108,6 +142,10 @@ ja:
     localstorage_fix_title: お使いのブラウザではローカルストレージが有効になっていません
     localstorage_not_enabled_detail: お使いのブラウザではローカルストレージが有効になっていません。プライベートモードやシークレットモードではローカルストレージが無効になっていることが多いため、これらのモードになっていないかご確認ください。
     localstorage_support: LocalStorage が有効になっています
+    login_sign_in_btn: サインイン
+    login_sign_up_link: サインアップ
+    login_welcome_description: Lighthouseアカウントでログインしてください
+    login_welcome_title: ライトハウスへようこそ
     magic_link_interstitial_description: セキュリティ上の理由から、このログインの確認をお願いいたします。自動システムではこの手順を完了できません。
     magic_link_interstitial_title: サインインを完了するには、下のボタンをクリックしてください。
     max_word_limit: 最大%{max}語以内にしてください
@@ -124,6 +162,7 @@ ja:
     minute: 分
     minute_plural: 議事録
     my_plan: 私の計画
+    my_profile: 私のプロフィール
     network: ネットワーク
     network_check: インターネット速度測定
     network_check_description: 当社のサーバーとお客様のデバイス間のインターネット接続品質を確認しています。
@@ -135,6 +174,7 @@ ja:
     network_speed_meets_required_detail: お客様のインターネット回線速度は、本キャンペーンの最低要件を満たしています
     network_test_step: ネットワークテスト手順
     no_audio_detected: 音声が検出されません。マイクが接続されており、正常に動作しているかご確認ください。
+    open_navigation: ナビゲーションを開く
     pass: スキップ
     pause: 一時停止
     pearson_timing_duration_minutes: 制限時間あり - %{duration} 分で完了
@@ -150,7 +190,13 @@ ja:
     proctored: 監督付き
     proctored_assessment_misconfigured_msg: この評価は監督下で行われますが、必要な時間設定がされていません。管理者にお問い合わせください。
     profile: プロフィール
+    profile_cancel: キャンセル
     profile_details: 詳細
+    profile_edit: 編集
+    profile_other_information: その他の情報
+    profile_personal_information: 個人情報
+    profile_save: 保存
+    profile_time: 時間
     question_counter: 質問 %{current} / %{total}
     reason_for_idp_plan_rejection: 拒否理由
     record: 記録
@@ -167,9 +213,12 @@ ja:
     results: 結果
     safari_proctoring_description: Safariをご利用のようですが、このキャンペーンで有効になっている追跡防止機能に関して、一部制限が生じる可能性があります。最適な環境でお楽しみいただくため、Chrome, EdgeまたはFirefoxのご利用をお勧めします。
     safari_proctoring_title: Safariブラウザが検出されました
+    scheduling: スケジュール
     select_audio_device: オーディオデバイスを選択
     select_video_device: ビデオデバイスを選択
     selected_count: 選択済み
+    sign_out: サインアウト
+    signup_sign_in_link: サインイン
     skill_type: スキルの種類
     speech_verification_error: 音声の検証中にエラーが発生しました。もう一度お試しください。
     speech_verification_failed: お話しいただいた内容は、テストフレーズと一致しませんでした。もう一度、フレーズをはっきりと発音して試してみてください。
@@ -177,6 +226,7 @@ ja:
     start_campaign_message_timed: これは時間制限のあるキャンペーンです。アクティビティを開始するには「%{buttonText}」ボタンをクリックしてください。
     start_readiness_check: 準備チェックを開始
     start_system_check: システムチェックを開始
+    status_locked: ロック済み
     stop: 停止
     subinstruction_audio: 正常に動作するマイク
     subinstruction_eight: 評価を最後まで行うために、中断されない時間を確保してください
@@ -228,6 +278,21 @@ ja:
     tasks: タスク
     testing_download_speed: ダウンロード速度を測定中...
     testing_upload_speed: アップロード速度を測定中...
+    theme_active: アクティブ
+    theme_change: テーマを変更する
+    theme_dark_theme: ダークテーマ
+    theme_ember: エンバー
+    theme_light_theme: ライトテーマ
+    theme_marsh: マーシュ
+    theme_mode_dark: 暗い
+    theme_mode_light: ライト
+    theme_mode_system: システム
+    theme_mode_title: モード
+    theme_primer: 入門書
+    theme_primer_colorblind: 色覚異常入門
+    theme_primer_contrast: プライマー ハイコントラスト
+    theme_primer_dimmed: プライマーが薄暗くなった
+    theme_title: テーマ
     time_commitment: 所要時間
     timed_activity_instruction: このアクティビティには制限時間が設けられています。監督セッションを開始した後、完了するまでに<strong>%{time}分</strong>の時間が与えられます。
     troubleshooting_guide: トラブルシューティングガイド

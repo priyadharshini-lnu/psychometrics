@@ -890,6 +890,7 @@ es-ES:
         export_campaign_datasheet: Ficha técnica de la campaña de exportación
         export_campaign_factors: Factores de la campaña de exportación
         export_campaign_scorings: Exportación de recortes de campaña
+        export_campaign_translations: Exportar traducciones de campañas
         export_dashboard_as_file: Exportar panel como archivo
         export_development_action_translations: Export Development Action Traducciones
         export_development_actions: Acciones de desarrollo de las exportaciones
@@ -917,6 +918,7 @@ es-ES:
         import_assessors: Evaluadores de importaciones
         import_campaign_ai_artifacts: Importar artefactos de IA de campañas
         import_campaign_factors: Factores de la campaña de importación
+        import_campaign_translations: Importar traducciones de campañas
         import_client_assessors: Importar evaluadores de clientes
         import_datasheet: Hoja de datos de importación
         import_development_action_translations: Importación Desarrollo Acción Traducciones
@@ -958,6 +960,7 @@ es-ES:
         super_admin_assessment_raw_result_export: Exportación de resultados brutos de Super Admin
         super_admin_datasheet_export: Exportación de hojas de datos de Super Admin
         super_admin_external_assessment_export: Super Admin Exportación de evaluaciones externas
+        superadmin_record_change_history: Historial de cambios del registro
         threesixty_campaign_export_completion_status: Estado de finalización de la exportación de la campaña Threesixty
         threesixty_campaign_export_scores: Exportación de resultados de la campaña Threesixty
         workshop_status_export: Exportación del estado del Assessment Center
@@ -1156,7 +1159,7 @@ es-ES:
       read_only: Está en modo «solo lectura», no puede cambiar ningún resultado.
       save: Salvar
       submissionFailedAlert:
-        description: No se ha podido conectar con el servidor. Actualice la página e inténtelo de nuevo. Si no funciona, póngase en contacto con el servicio de asistencia a través del chat en directo o de mte.surveys@mercer.com
+        description: No se ha podido conectar con el servidor. Actualice la página e inténtelo de nuevo. Si no funciona, póngase en contacto con el servicio de asistencia a través del chat en directo o de %{support_email}
         title: Última solicitud fallida
       submit: Enviar
       warning: ADVERTENCIA
@@ -2007,7 +2010,7 @@ es-ES:
 
           Tu contraseña ha sido cambiada.
 
-          Si no ha hecho esta solicitud, por favor contacte con el soporte inmediatamente en mte.support@mercer.com
+          Si no ha hecho esta solicitud, por favor contacte con el soporte inmediatamente en %{support_contact_email}
         regards: |
           Saludos
           Equipo del Faro
@@ -2152,6 +2155,7 @@ es-ES:
       max_generation_limit: Límite máximo de generación superado, comuníquese con su administración.
     assessments:
       timed_out: No podrás realizar la evaluación %{assessment_name} porque se ha agotado el tiempo de espera.
+    csrf_retry: Por favor, inténtelo de nuevo.
     equal_to_current_password: debe ser diferente de la contraseña actual.
     equal_to_email: debe ser diferente del correo electrónico.
     error: Error
@@ -2362,7 +2366,6 @@ es-ES:
     error_warning: Oops, algo ha ido mal con su evaluación. Por favor, póngase en contacto con el soporte.
     hogan:
       cannot_start: No puede iniciar la evaluación de Hogan ahora mismo. Por favor, inténtelo pasados unos minutos.
-    lighthouse_app: Faro Mercer
     login: Iniciar sesión
     maintenance:
       notification: Lighthouse estará fuera de servicio por mantenimiento programado en 60 segundos
@@ -2982,8 +2985,6 @@ es-ES:
     zh-HK: Chino (Hong Kong)
     zh-Hant: Chino - Tradicional
     zh-TW: Chino (Taiwán)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nombre de la campaña
     status_updated_at: Última actualización de estado
@@ -3044,12 +3045,11 @@ es-ES:
           invalid: El alcance debe ser 'openid'
   mailer:
     copyright:
-      text: Lighthouse. Todos los derechos reservados
+      text: "© %{year} %{display_name}. Todos los derechos reservados"
     footer:
       regards: Saludos,
-      team_name: Equipo Lighthouse
+      team_name: Equipo %{display_name}
       technical_support: Para cualquier problema técnico, escríbanos a %{email} y responderemos dentro de 24 horas.
-    from: La empresa del talento
     idp:
       manager_unread_comments:
         body: |
@@ -3106,8 +3106,6 @@ es-ES:
         instructions: Haga clic en el siguiente enlace para iniciar sesión en lighthouse.
         signin_link: Enlace de acceso
       subject: Enlace de acceso a Lighthouse
-    powered_by:
-      text: Desarrollado por Lighthouse.
     users:
       account_disable: Su cuenta ha sido desactivada por inactividad
       warning: Su cuenta será desactivada en breve debido a la inactividad

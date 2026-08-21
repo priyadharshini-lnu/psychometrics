@@ -112,7 +112,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={(_, { owner }) => (
             owner?.id ? (
               <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
-            ) : <span>{I18n.t('admin.tte')}</span>
+            ) : <span>{I18n.t('admin.platform_owner')}</span>
           )}
         />
         <Resource.Column

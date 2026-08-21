@@ -890,6 +890,7 @@ en-US:
         export_campaign_datasheet: Export Campaign Datasheet
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_campaign_translations: Export Campaign Translations
         export_dashboard_as_file: Export Dashboard as file
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
@@ -917,6 +918,7 @@ en-US:
         import_assessors: Import Assessors
         import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
+        import_campaign_translations: Import Campaign Translations
         import_client_assessors: Import Client Assessors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
@@ -958,6 +960,7 @@ en-US:
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin External Assessment Export
+        superadmin_record_change_history: Record Change History
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
@@ -1151,7 +1154,7 @@ en-US:
       read_only: Is read only mode, you can not change any results.
       save: Save
       submissionFailedAlert:
-        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or mte.surveys@mercer.com
+        description: Could not connect to the server. Please refresh the page and try again. If that doesn't work, please contact the support via live chat or %{support_email}
         title: Last Request Failed
       submit: Submit
       warning: WARNING
@@ -1991,7 +1994,7 @@ en-US:
 
           Your password has been changed.
 
-          If you did not make this request, please contact Support immediately at mte.support@mercer.com
+          If you did not make this request, please contact Support immediately at %{support_contact_email}
         regards: |-
           Regards,
           Lighthouse Team
@@ -2136,6 +2139,7 @@ en-US:
       max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    csrf_retry: Please try again
     equal_to_current_password: must be different than the current password.
     equal_to_email: must be different than the email.
     error: Error
@@ -2346,7 +2350,6 @@ en-US:
     error_warning: Oops, something went wrong with your assessment. Please contact the support.
     hogan:
       cannot_start: You can't start the hogan assessment right now. Please try after few minutes.
-    lighthouse_app: Mercer Lighthouse
     login: Login
     maintenance:
       notification: Lighthouse will be down for scheduled maintenance in 60 seconds
@@ -2966,8 +2969,6 @@ en-US:
     zh-HK: Chinese (Hong Kong)
     zh-Hant: Chinese - Traditional
     zh-TW: Chinese (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Campaign name
     status_updated_at: Last status update
@@ -3028,12 +3029,11 @@ en-US:
           invalid: Scope must be 'openid'
   mailer:
     copyright:
-      text: Lighthouse. All rights reserved
+      text: "© %{year} %{display_name}. All rights reserved."
     footer:
       regards: Regards,
-      team_name: Lighthouse Team
+      team_name: "%{display_name} Team"
       technical_support: For any technical issues, please write to us at %{email} and we will respond within 24 hours.
-    from: The Talent Enterprise
     idp:
       manager_unread_comments:
         body: |-
@@ -3090,8 +3090,6 @@ en-US:
         instructions: Click below link to signin to lighthouse.
         signin_link: Sign-in Link
       subject: Sign-in link for Lighthouse
-    powered_by:
-      text: Powered by Lighthouse.
     users:
       account_disable: Your account has been disabled due to inactivity
       warning: Your account will be disabled soon due to inactivity

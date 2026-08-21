@@ -45,6 +45,9 @@ class Dimension < ApplicationRecord
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
+  scope :owned_by_client_or_tte, lambda { |client_id|
+    where('owner_id IS NULL OR owner_id = ?', client_id)
+  }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name created_at updated_at]

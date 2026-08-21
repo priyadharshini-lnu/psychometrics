@@ -15,11 +15,7 @@ module CampaignScoring
         campaign_user.update!(campaign_scores_finalized: false, campaign_scores_finalized_date: nil)
 
         campaign_factor_values, = transaction do
-          ::CampaignFactorValue.joins(:campaign_factor).where(campaign: campaign, user: user).
-            where(calculation_type: :auto).destroy_all
-
-          score_values = ::CampaignScoring::CalculateAndSave.call!(campaign, user)
-          score_values
+          ::CampaignScoring::CalculateAndSave.call!(campaign, user, force_recalculate: true)
         end
 
         broadcast :ok, campaign_factor_values

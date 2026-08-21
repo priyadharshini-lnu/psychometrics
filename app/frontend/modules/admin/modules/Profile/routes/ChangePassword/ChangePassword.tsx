@@ -78,19 +78,19 @@ const ChangePassword: React.FC = () => {
                     name="currentPassword"
                     label={I18n.t('change_password_page.old_password')}
                   >
-                    <AccessiblePasswordInput />
+                    <AccessiblePasswordInput size="large" />
                   </Form.Item>
                   <Form.Item
                     name="password"
                     label={I18n.t('change_password_page.password')}
                   >
-                    <AccessiblePasswordInput />
+                    <AccessiblePasswordInput size="large" />
                   </Form.Item>
                   <Form.Item
                     name="passwordConfirmation"
                     label={I18n.t('change_password_page.password_confirmation')}
                   >
-                    <AccessiblePasswordInput />
+                    <AccessiblePasswordInput size="large" />
                   </Form.Item>
                   {!disable_recaptcha && (
                     <Form.Item
@@ -109,6 +109,7 @@ const ChangePassword: React.FC = () => {
 
                     <Button
                       type="primary"
+                      size="large"
                       htmlType="submit"
                       className={styles.actionButton}
                       onClick={(e) => {

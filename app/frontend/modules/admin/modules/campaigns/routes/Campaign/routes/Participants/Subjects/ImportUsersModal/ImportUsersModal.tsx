@@ -44,12 +44,6 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
       .catch(setErrors)
   }
 
-  const radioStyle = {
-    display: 'block',
-    height: '30px',
-    lineHeight: '30px',
-  }
-
   return (
     <Modal
       width={700}
@@ -103,9 +97,9 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
           />
         </Form.Item>
         <Form.Item name="operation">
-          <Radio.Group>
+          <Radio.Group vertical>
             {operationsOptions.map(option => (
-              <Radio style={radioStyle} value={option} key={option}>
+              <Radio value={option} key={option}>
                 {I18n.t(`user.form.operation_options.${option}`)}
               </Radio>
             ))}

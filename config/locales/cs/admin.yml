@@ -103,6 +103,7 @@ cs:
     ai_scoring_approval_stale_description: Skóre se mohlo změnit v důsledku aktualizací konfigurace od posledního spuštění. Proveďte nové vyhodnocení, aby se skóre aktualizovalo podle nejnovějších nastavení.
     ai_scoring_approval_stale_title: Výsledek může být zastaralý
     ai_scoring_approvals: Schvalování bodování AI
+    ai_scoring_errors_label: Chyby v bodování pomocí umělé inteligence
     ai_scoring_refresh_score: Aktualizovat skóre
     ai_scoring_refresh_score_confirm_description: Tím se u tohoto hodnocení znovu spustí vyhodnocení pomocí AI s využitím nejnovější konfigurace. Opravdu chcete pokračovat?
     ai_scoring_refresh_score_confirm_title: Obnovit skóre AI?
@@ -122,6 +123,12 @@ cs:
     alt_text_long: Překračuje maximální limit 100 znaků.
     api_keys: Klíče API
     api_keys_form_title: klíč api
+    appearance: Vzhled
+    appearance_dark: Tmavý
+    appearance_dark_theme: Tmavé téma
+    appearance_light: Světlo
+    appearance_light_theme: Světlé téma
+    appearance_system: Systém
     application: Žádost
     application_add: Přidat aplikaci
     application_name: Název aplikace
@@ -131,7 +138,6 @@ cs:
     application_settings_at_least_one_url_required: Před povolením whitelistingu adres URL povolte alespoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Opravdu chcete tuto IP adresu smazat?
     application_settings_confirm_delete_url: Opravdu chcete smazat tuto URL adresu?
-    application_settings_edit_ip_address: Upravit IP adresu / rozsah CIDR
     application_settings_enable_ip_whitelisting: Povolit seznam povolených IP adres
     application_settings_enable_url_whitelisting: Povolit whitelisting URL
     application_settings_invalid_ip_format: Neplatná IP adresa nebo formát CIDR
@@ -195,6 +201,8 @@ cs:
     assessor_add_subject_modal_subject: Předmět
     assessor_add_subject_modal_subject_placeholder: Hledaný předmět..
     assessor_add_subject_modal_title: Přidat předmět
+    assessor_assessment_drawer_title: Podrobnosti o hodnocení
+    assessor_assessment_id: ID hodnocení hodnotitele
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Výběr hodnocení
     assessor_assessment_name: Hodnocení hodnotitele
     assessor_assessments: Hodnocení hodnotitele
@@ -345,9 +353,15 @@ cs:
     campaign_assessment_modals_update_occupation_condition_set_select: Vyberte sadu stavů povolání
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Sada stavů povolání byla úspěšně aktualizována
     campaign_assessment_modals_update_occupation_condition_set_title: Aktualizace sady stavů obsazení
+    campaign_dashboard_instructions_label: Pokyny k panelu kampaně
+    campaign_dashboard_instructions_save: Uložit pokyny
+    campaign_dashboard_instructions_save_error: Uložení pokynů pro panel kampaně se nepodařilo
+    campaign_dashboard_instructions_save_success: Pokyny pro panel kampaně byly úspěšně uloženy
     campaign_factors: Faktory kampaně
     campaign_id_placeholder: Vstup do kampaně ID
     campaign_name: Název kampaně
+    campaign_name_translations: Překlady názvů kampaní
+    campaign_name_translations_fetch_error: Chyba při načítání překladů názvů kampaní
     campaign_report_generate_modal_subtitle: Vyberte požadovaný jazyk pro každou zprávu
     campaign_report_id: ID zprávy o kampani
     campaign_results_export_details: Výsledky generované artefakty AI kampaně
@@ -419,6 +433,7 @@ cs:
     category: Kategorie
     cell_save_msg: Platné změny se automaticky uloží, jakmile po úpravách opustíte buňku.
     change_reason: Důvod změny
+    change_report_dates_message: Chcete změnit rozsah dat přehledu?
     change_score: změněné skóre
     change_score_log: Změnit záznam skóre
     characters: postavy
@@ -513,6 +528,7 @@ cs:
     created_successfully: AI Assistant byl úspěšně vytvořen.
     current: Aktuální
     current_job_role: Aktuální pracovní role
+    current_locale: Aktuální lokalita
     custom_formula: Vlastní vzorec
     custom_message_description: Tato zpráva může být zaslána komukoli, kdo se účastní hodnocení
     custom_message_name: Vlastní zpráva
@@ -663,7 +679,7 @@ cs:
     dimensions_import_modal_import_dimension: Importovat dimenzi
     dimensions_import_modal_import_scheduled: Plánovaný import
     dimensions_import_modal_operation: Provoz
-    dimensions_import_modal_owner_global: TTE (globální)
+    dimensions_import_modal_owner_global: Globální
     dimensions_import_modal_owner_input_validation: Vyberte prosím majitele
     dimensions_import_modal_owner_select: Vyberte vlastníka
     dimensions_import_modal_select_json: Vyberte soubor JSON
@@ -680,6 +696,7 @@ cs:
     disable_dp: Nepovolujte další zpracování údajů
     disable_proctoring: Zrušit dohled
     disable_report_download: Zakázat stahování zpráv
+    disable_transcript_download: Zakázat stahování přepisů
     disallow_lead_assessor_moderation: Zakázat moderování vedoucím hodnotitelem
     disallow_lead_assessor_moderation_info: Skóre se vypočítá automaticky na základě všech odeslaných formulářů hodnotitelů a vedoucí hodnotitel jej nemůže na obrazovce pro kontrolu změnit
     discard_all_questions: Vynulovat všechny otázky
@@ -831,10 +848,13 @@ cs:
     feature_flags_ai_group: Funkce AI
     feature_flags_communication_group: Komunikace
     feature_flags_platform_group: Funkce platformy
+    feature_flags_superadmin_group: Stanovení rozsahu nájemce
+    feature_glint_ui_description: Vykreslete zážitek účastníka pomocí designového systému Glint
     feature_global_skills_description: Přístup k globální knihovně dovedností pro hodnocení
     feature_idp_description: Povolit individuální plánování rozvoje pro účastníky
     feature_not_available: Tato funkce není k dispozici
     feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
+    feature_superadmin_tenant_scoping_description: Pokud je tato možnost zakázána, dotazy superadministrátora nebudou omezeny na data tohoto klienta.
     fields_level: Úroveň
     fields_level_description: Popis úrovně
     fields_level_name: Název úrovně
@@ -866,6 +886,7 @@ cs:
     form_datasheet: Datový list
     form_datasheet_columns: Sloupce datového listu
     form_end_date: Datum ukončení
+    form_fields_to_display: Pole k zobrazení
     form_include_all_datasheet_columns: Zahrnout všechny sloupce datového listu
     form_name: Název
     form_no_assessment_selected: Zatím nejsou přidána žádná hodnocení. Klikněte na "Přidat" a začněte.
@@ -890,8 +911,11 @@ cs:
     generate_transcription: Vytvořit přepis
     generated_at_time: Vytvořeno na adrese %{time}
     generated_value: Vytvořená hodnota
+    glint_ui: Uživatelské rozhraní Glint
+    glint_ui_disabled_by_client: Uživatelské rozhraní Glint je klientem zakázáno
     global_skills: Globální dovednosti
     global_skills_disabled_by_client: Funkce Global Skills je na straně klienta deaktivována
+    go_back: Zadní
     grant_type_label: Typ grantu
     grant_type_name: oauth_grant_type
     graphic: Grafika
@@ -906,6 +930,7 @@ cs:
     header_logout_title: Opravdu se chcete odhlásit?
     hide_all: Skrýt vše
     hide_middle_scores: Skrýt střední skóre
+    hide_participant_video: Skrýt video účastníka
     high: Vysoká
     hogan: Hogan
     hogan_assessment: Hoganovo hodnocení
@@ -1251,6 +1276,7 @@ cs:
     key_id: ID klíče
     keywords: Klíčová slova
     keywords_placeholder: Zadejte klíčová slova oddělená čárkami.
+    language: Jazyk
     language_id: ID jazyka
     last_name_required: Příjmení je povinné
     lead_assessment: Hodnocení olova
@@ -1488,6 +1514,8 @@ cs:
     owner_resource_norm: norma
     owner_resource_report: zpráva
     owner_resource_report_bundle: balíček zpráv
+    page_load_failed: Tuto stránku se nepodařilo načíst.
+    page_load_failed_hint: Aplikace mohla být aktualizována – pro pokračování ji znovu načtěte.
     parsed_dependencies_help: Analyzované závislosti pro uživatele používané asistentem AI pro generování výsledků artefaktů
     parsed_dependencies_title: Analyzované závislosti
     parsed_dependencies_view: Zobrazení analyzovaných závislostí
@@ -1949,6 +1977,7 @@ cs:
     piped_text_modal_title: Přidání textu s potrubím
     piped_text_modal_user_reports: Uživatelské zprávy
     piped_text_modal_users: Uživatelé
+    platform_owner: Platform
     playground: Hřiště
     playground_info: Otestujte svůj artefakt na ukázkových datech a zobrazte náhled vygenerovaných výsledků.
     playground_placeholder: Zadání testovacích dat
@@ -2179,6 +2208,38 @@ cs:
     raw_score: Hrubý výsledek
     reason_for_changes: Důvod změn
     recents: Poslední příspěvky
+    record_history_changes: změny
+    record_history_changes_in_request: změny v této žádosti
+    record_history_date_range_invalid: Datum ukončení musí být stejné nebo po datu zahájení.
+    record_history_date_range_required: Vyberte prosím rozsah dat.
+    record_history_date_range_too_large: Rozsah dat nesmí překročit %{days} dní. Prosím, zúžte vyhledávání.
+    record_history_filter_actor: Filtrovat podle e-mailu herce
+    record_history_filter_field: Filtrovat podle změněného pole
+    record_history_filter_type: Filtrovat podle typu záznamu
+    record_history_id_required: Zadejte prosím ID záznamu
+    record_history_include_related: Zahrnout související záznamy
+    record_history_last_30_days: Posledních 30 dní
+    record_history_last_7_days: Posledních 7 dní
+    record_history_no_results: Pro tento záznam nebyla nalezena žádná historie změn.
+    record_history_no_results_for: Nebyly nalezeny žádné změny pro
+    record_history_records_changed: záznamy změněny
+    record_history_related_tag: Související
+    record_history_request_banner: Zobrazují se všechny změny v požadavku
+    record_history_request_label: 'Žádost:'
+    record_history_request_or_record_required: Zadejte UUID požadavku nebo vyberte typ záznamu a ID.
+    record_history_request_uuid: Žádost o UUID
+    record_history_request_uuid_placeholder: Zadejte UUID požadavku
+    record_history_revision_failed: Nepodařilo se načíst stav záznamu pro tuto verzi.
+    record_history_search_hint: Zadejte UUID požadavku nebo vyberte typ záznamu a ID záznamu pro sledování historie změn.
+    record_history_select_type: Vyberte typ záznamu
+    record_history_state_at_version: Stav ve verzi
+    record_history_system: Systém
+    record_history_title: Historie změn záznamů
+    record_history_type_required: Vyberte typ záznamu
+    record_history_version: Verze
+    record_history_view_audit_log: Zobrazit v protokolech auditu
+    record_history_view_full: Zobrazit celou historii
+    record_history_view_request: Zobrazit požadavek
     record_id: ID záznamu
     recordings: Nahrávky
     reflection_questions: Otázky k zamyšlení
@@ -2294,6 +2355,7 @@ cs:
     report_no_evaluations: Zpráva o %{user} není k dispozici – nebyla přijata žádná hodnocení.
     report_not_generated: Report pro %{user} splňuje podmínky dostupnosti, ale ještě nebyl vytvořen. Prosím, nejprve vygenerujte zprávu.
     report_on_hold: Zpráva pro %{user} je momentálně pozastavena
+    report_owner: Majitel
     report_pdf_status: Zpráva o stavu (PDF)
     report_review_abort_qc: Přerušení kontroly kvality
     report_review_approve: Schválit
@@ -2314,10 +2376,12 @@ cs:
     report_types:
       active_clients_projects: Aktivní klienti a projekty
       campaign_factor_scores: Skóre faktorů kampaně
+      campaign_user_creation: Vytvoření uživatele kampaně
       client_assessment_counts: Hodnocení klientů je důležité
       hogan_usage_report: Využití hodnocení Hogan
       json_data_report: Zpráva o datech ve formátu JSON
       pearson_usage_report: Využití testů společnosti Pearson
+      proctoring_sessions: Dozorčí sezení
       report_usage_summary: Souhrn využití zprávy
       saville_usage_report: Využití hodnocení Saville
       user_access_review: Kontrola přístupových práv uživatelů
@@ -2377,6 +2441,17 @@ cs:
     role_project_admin: Správce projektu
     role_superadmin: Superadministrátor
     run: Spustit
+    runtime_configuration_invalid_json_object: runtime_configuration musí být platný objekt JSON.
+    runtime_configuration_invalid_parameter: není parametr aktualizovatelný za běhu
+    runtime_parameter_date_range_required: Vyberte prosím datum zahájení i datum ukončení.
+    runtime_parameter_editable_section_title: Rozsah dat
+    runtime_parameter_filter_column: Filtr
+    runtime_parameter_locked_section_title: Zahrnuté filtry
+    runtime_parameter_modal_subtitle: Zkontrolujte podrobnosti a v případě potřeby aktualizujte rozsah dat.
+    runtime_parameter_modal_title: Spustit zprávu
+    runtime_parameter_not_set: Není uvedeno
+    runtime_parameter_submit_button: Spustit nyní
+    runtime_parameter_value_column: Hodnota
     saml_idp_certificate_available: Dostupné (klikněte pro kopírování)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikace subjektu/vydavatele
@@ -2511,6 +2586,7 @@ cs:
     scheduling_columns_start_time: Datum a čas
     scheduling_columns_subject: Předmět
     scheduling_columns_title: Název
+    scheduling_columns_video_hidden_for_privacy: Video je skryté z důvodu ochrany soukromí kandidáta.
     scheduling_columns_view_recording: Zobrazit záznam
     scheduling_errors_assessor_already_assigned: Posuzovatel je již přiřazen k tomuto posouzení. Vyberte prosím jiné posouzení nebo posuzovatele.
     scheduling_errors_date_required: Vyberte prosím datum
@@ -2603,6 +2679,12 @@ cs:
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nesmíte schválit.
     score_approval_not_allowed_to_discard: Tento výsledek nesmíte zahodit.
+    score_approval_reset: Obnovit schválení
+    score_approval_reset_description: Tím se schválení přesune zpět do stavu čekající na schválení. Skóre se nezmění. Tuto akci nelze vrátit zpět.
+    score_approval_reset_not_allowed: Toto schválení skóre nelze v aktuálním stavu resetovat.
+    score_approval_reset_recompute_description: Tímto se resetuje schválení, z výsledků uživatele se odstraní skóre AI a smažou se všechny vygenerované zprávy. Tuto akci nelze vrátit zpět.
+    score_approval_reset_success: Schválení skóre bylo resetováno.
+    score_approval_reset_title: Resetovat schválení skóre?
     score_definition_placeholder: Zadejte definici pro tuto úroveň skóre.
     score_definitions: Definice skóre
     score_max: Skóre Max
@@ -2834,6 +2916,7 @@ cs:
     sheets_tabs_settings: Nastavení
     show_all: Zobrazit vše
     show_all_assessment_responses: Zobrazit všechny odpovědi na hodnocení
+    show_form_field_titles: Zobrazit názvy polí formuláře
     show_middle_scores: Zobrazit další skóre %{count} (volitelné)...
     show_original: Zobrazit originál
     show_submenu: Zobrazit dílčí nabídku
@@ -2956,7 +3039,14 @@ cs:
     smtp_settings_user_name: Uživatelské jméno
     specialty_questions: Specifické dotazy
     sso_email_mismatch: Jste přihlášeni k jinému účtu u poskytovatele identit. Odhlaste se prosím u svého poskytovatele identit a zkuste to znovu.
+    sso_enforce_for: Vynutit jednotné přihlašování pro
+    sso_enforce_for_all: Všichni uživatelé
+    sso_enforce_for_none: Žádný
+    sso_enforce_for_specific_domains: Konkrétní domény
     sso_enforced: Vynutit SSO
+    sso_enforced_domains: Vynucené domény
+    sso_enforced_domains_hint: např. se.com (přesná shoda) nebo *.se.com (pouze subdomény)
+    sso_enforced_domains_placeholder: Zadejte doménu(y) a stiskněte Enter
     sso_label: SSO
     sso_not_enabled: Pro tohoto klienta není povoleno SSO
     sso_settings: Nastavení SSO
@@ -3071,6 +3161,7 @@ cs:
     success_title: Založení hodnotících center
     success_update: Nastavení vzhledu bylo úspěšně uloženo
     suitability_id: Identifikátor vhodnosti
+    superadmin_tenant_scoping: Superadministrátor
     superadmin_use_root_domain: Superadministrátoři se musí přihlásit prostřednictvím hlavní domény
     switch_client: Změnit klienta
     system_prompt: Systémová výzva
@@ -3091,12 +3182,38 @@ cs:
     taxonomy_title: Taxonomie dovedností
     template_and_campaign_required: Prosím, uveďte jak šablonu, tak ID kampaně
     template_render_failed: Nepodařilo se vykreslit šablonu
+    tenant_repair_confirm_message: 'Nastavit tenant_id na %{new_tenant} na %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Nastavit tenant_id na null pro %{model} #%{id}?'
+    tenant_repair_confirm_title: Potvrdit aktualizaci nájemce
+    tenant_repair_correct: Opravit
+    tenant_repair_current_tenant: Současný nájemník
+    tenant_repair_find_record: Najít záznam
+    tenant_repair_global_tenant: globální
+    tenant_repair_invalid_model: Neplatný nebo nenajímatelný typ modelu
+    tenant_repair_invalid_record_id: Zadejte platné ID záznamu
+    tenant_repair_invalid_tenant_id: Zadejte platné kladné ID tenanta nebo ponechte pole prázdné, aby bylo null.
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Zadejte text pro vyhledávání...
+    tenant_repair_moved_from: 'změna nájemníka:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ID nového nájemníka
+    tenant_repair_preview_title: Náhled záznamu
+    tenant_repair_request_failed: Žádost se nezdařila
+    tenant_repair_resolved_tenant: Vyřešený nájemník
+    tenant_repair_success: Nájemce byl úspěšně aktualizován.
+    tenant_repair_title: Oprava nájemce
+    tenant_repair_update: Aktualizovat
+    tenant_repair_will_set_null: Nastaví tenant_id na null
+    tenant_repair_will_set_value: Nastaví tenant_id na %{value}
     test_generate: Testovací generování
     test_render: Testovací vykreslování
     test_render_tooltip: Vyzkoušejte šablonu promptu s daty kampaně, abyste zjistili, co bude AI asistentovi odesláno.
     text_danger: Text(nebezpečí)
     text_success: Text (úspěch)
     text_warning: Text(varování)
+    themes:
+      marsh-dark: Bažinatá tma
+      marsh-light: Bahenní světlo
     this_field_is_required: Toto pole je povinné
     threesixity_advance_settings_campaign_template: Šablona kampaně
     threesixity_advance_settings_factors: Faktory
@@ -3185,7 +3302,6 @@ cs:
       title: Překlady
     translations_export_failure_msg: Chyba při exportu překladů
     translations_export_success_msg: Exportování probíhajících vývojových akcí.
-    tte: TTE
     type_by_skill: Podle dovednosti
     type_by_skill_type: Podle typu dovednosti
     type_default: Výchozí

@@ -17,6 +17,24 @@ RSpec.describe Assessors::UsersController, type: :controller do
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
+  describe 'dashboard' do
+    it 'renders the shared admin entrypoint' do
+      get :dashboard
+
+      expect(response).to render_template('shared/frontend_entry')
+      expect(assigns(:init_state)[:config]).to include(:availableLocales, :availableAiProviders, :features, :project)
+    end
+
+    it 'renders the entrypoint for a non-assessor too — the SPA gates on menu permissions' do
+      sign_out(current_user)
+      login_user(create(:superadmin))
+
+      get :dashboard
+
+      expect(response).to render_template('shared/frontend_entry')
+    end
+  end
+
   describe 'index' do
     it 'returns users which assessor have access to' do
       get :index, params: { campaign_id: assessors_campaign.id }

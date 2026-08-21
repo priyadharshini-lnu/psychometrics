@@ -47,16 +47,20 @@ class UsersResult < ApplicationRecord
   }
 
   def ai_scoring_errors
-    AI::QuestionScoringSession.
-      where(resource: user_assessment, status: :failed).
-      pluck(:assistable_id, :error).
-      filter_map do |question_id, message|
-        next if message.blank?
+    entries = AI::QuestionScoringSession.
+              where(resource: user_assessment, status: :failed).
+              pluck(:assistable_id, :error).
+              filter_map do |question_id, message|
+      next if message.blank?
 
-        "question_#{question_id}: #{message}"
-      end.
-      join('; ').
-      presence
+      { question_id: question_id, message: message }
+    end
+
+    return nil if entries.empty?
+
+    entries.group_by { |e| e[:message] }.map do |message, group|
+      { questions: group.map { |e| e[:question_id] }, message: message }
+    end
   end
 
   scope :agile, -> { joins(:assessment).where(assessments: { type: Assessment::TYPES[:agile] }) }

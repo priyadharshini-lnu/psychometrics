@@ -18,6 +18,7 @@ import { secondsLeftFromNow } from '~/utils/time'
 import { Notification } from '~/glint/components/CountdownTimer'
 
 import styles from './styles.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const TYPES = {
   common: Common,
@@ -174,7 +175,7 @@ const CampaignComponent: FC<CampaignComponentProps> = ({
   const Campaign = TYPES[campaign.type]
   return (
     <>
-      <title>{`${I18n.t('user_assessments.timer_title.campaign')} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={I18n.t('user_assessments.timer_title.campaign')} />
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         { loaded ? <Campaign />

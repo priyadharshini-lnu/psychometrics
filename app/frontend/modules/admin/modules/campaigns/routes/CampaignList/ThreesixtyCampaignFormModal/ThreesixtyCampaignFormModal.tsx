@@ -174,6 +174,7 @@ const ThreesixtyCampaignFormModal: React.FC<Props> = ({
           />
         ) : (
           <BaseSettingsForm
+            projectId={projectId}
             initialSettings={baseSettings}
             assessments={assessments}
             features={features}

@@ -3,6 +3,8 @@
 module Api
   class V2::Administration::UsersController < Api::V2::Administration::BaseController
     skip_before_action :enforce_geo_restriction
+    # The root domain client selection page renders the profile dropdown for users it is funneling to a client.
+    skip_before_action :enforce_root_domain_api_isolation, only: :current_user_details
     validates_request_schema :create_superadmin, -> { Api::V2::User::CreateSuperadminContract.new }
     validates_request_schema :create_global_assessor, -> { Api::V2::User::CreateGlobalAssessorContract.new }
     validates_request_schema :reset_password, -> { Api::V2::User::ResetPasswordContract.new }
@@ -77,6 +79,7 @@ module Api
     end
 
     def current_user_details
+      @sign_in_notice = ::Users::SignInNotice.consume(session)
       jsonapi_render json: current_user, options: { resource: Api::V2::Administration::CurrentUserResource }
     end
 
@@ -91,6 +94,10 @@ module Api
     end
 
     private
+
+    def context
+      super.merge(sign_in_notice: @sign_in_notice)
+    end
 
     def campaign_id
       params[:campaign_id] || params.dig(:data, :attributes, :campaign_id)

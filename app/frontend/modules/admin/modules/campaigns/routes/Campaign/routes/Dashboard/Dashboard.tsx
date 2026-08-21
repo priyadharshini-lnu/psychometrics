@@ -1,19 +1,19 @@
 import { Skeleton } from 'antd'
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import {
+  Outlet, useLocation, useNavigate, useParams,
+} from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { useResources } from '~/hooks/useResources'
 import {
   Dashboard as DashboardType, DashboardTR, useDashboardStore,
 } from '~/modules/admin/modules/campaigns/core/dashboard'
-import RouteList from '~/components/RouteList'
 import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { isRequestInProgress } from '~/core/request'
 import { Menu } from './Menu'
-import routes from './routes'
 import { ToolsMenu } from './ToolsMenu'
 
 const connecter = connect(
@@ -99,7 +99,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
           />
         )}
       </div>
-      <RouteList routes={routes} urlPrefix="" />
+      <Outlet />
     </>
   )
 }

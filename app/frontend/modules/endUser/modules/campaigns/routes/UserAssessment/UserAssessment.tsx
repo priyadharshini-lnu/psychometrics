@@ -30,6 +30,7 @@ import {
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { protectPageInteractions } from '~/utils/contentProtection'
 import styles from './UserAssessment.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const connector = connect((state: RootState) => ({
   userAssessment: state.campaigns.userAssessment,
@@ -165,7 +166,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
 
   return (
     <>
-      <title>{`${assessment.name || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={assessment.name} />
       <GlintPageHeader>
         <Col offset={4} span={16} className="ta-c">
           <Space align="center" size="large">
@@ -253,7 +254,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
               )}
                 extra={type !== 'preview_block' && enableProgress && started && (
                   <Progress
-                    strokeColor="#fff"
+                    strokeColor="var(--white-bg)"
                     className={styles.progressStatus}
                     key="3"
                     percent={progress}
@@ -270,7 +271,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
                     cancelText={I18n.t('common.actions.close')}
                     okText={I18n.t('common.actions.back_to_dashboard')}
                     closable={false}
-                    maskClosable={false}
+                    mask={{ closable: false }}
                     onCancel={() => {
                       setShowInvalidSession(false)
                     }}

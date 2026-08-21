@@ -18,12 +18,14 @@ import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { CreateResource, ResourceErrors, UpdateResource } from '~/hooks/useResources/interfaces'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
 import { Admin, AdminPermissions, CurrentUserPermissions } from '~/modules/admin/modules/client/core/admin'
 import { getCampaignId } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
+import { getTenantId as getCurrentCampaignTenantId } from '~/modules/admin/modules/campaigns/core/current'
+import { getClientId as getCurrentProjectTenantId } from '~/modules/admin/modules/client/core/projects'
 import styles from './styles.less'
 import {
   AdminTypes,
@@ -40,6 +42,8 @@ const { Option } = Select
 const connecter = connect(
   (state: RootState) => ({
     currentCampaignId: getCampaignId(state),
+    currentCampaignTenantId: getCurrentCampaignTenantId(state),
+    currentProjectTenantId: getCurrentProjectTenantId(state),
   }),
   {},
 )
@@ -49,7 +53,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 interface OwnProps {
   updateAdmin?: UpdateResource<Admin>
   createAdmin: CreateResource<Admin>
-  requestErrors?: { [key: string]: string; }[] | null | undefined
+  requestErrors?: ResourceErrors[] | null
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean
@@ -82,6 +86,8 @@ const AddEditDrawerComponent: FC<Props> = ({
   adminType,
   campaignType,
   currentCampaignId,
+  currentCampaignTenantId,
+  currentProjectTenantId,
   addOrUpdateInProgress,
   requestErrors,
 }) => {
@@ -110,6 +116,13 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const campaignId = campaignType === CampaignTypes.common ? campaignIdParams : currentCampaignId
 
+  const tenantIdByAdminType = {
+    [AdminTypes.ClientAdmin]: clientId,
+    [AdminTypes.ProjectAdmin]: currentProjectTenantId,
+    [AdminTypes.CampaignAdmin]: currentCampaignTenantId,
+  }
+  const tenantId = tenantIdByAdminType[adminType]
+
 
   const showRequestSuccessMessage = (response) => {
     setSubmissionErrors([])
@@ -136,7 +149,7 @@ const AddEditDrawerComponent: FC<Props> = ({
   const {
     data: adminRoles, fetch: fetchAdminRoles, isLoading: isAdminRolesLoading,
   } = useResources<Admin>(
-    `clients/${clientId || projectId}/admin_roles`, {
+    `clients/${tenantId}/admin_roles`, {
       apiConfig: { fields: { admin_roles: ['id', 'name'] } },
     },
   )

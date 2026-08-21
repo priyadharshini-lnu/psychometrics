@@ -89,7 +89,23 @@ function FilterTable ({
 
     if (!answers) return null
 
-    results = _.compact(answers).flatMap(answer => answer.map(item => item.value))
+    const isTextEntryForm = question.type === 'TextEntry' && question.props.type === 'Form'
+    if (isTextEntryForm) {
+      const selectedFieldIndexes = model.props.formFieldIndexes
+      const isFieldSelected = item => !selectedFieldIndexes || selectedFieldIndexes.includes(item.index)
+      const hasValue = item => !_.isEmpty(_.trim(item.value))
+
+      const fieldItems = _.compact(answers)
+        .flatMap(answer => answer.filter(item => hasValue(item) && isFieldSelected(item)))
+
+      results = _.sortBy(fieldItems, item => item.index).map(item => ({
+        index: item.index,
+        title: I18nStore.tQuestion(question, `choicesTexts${item.index + 1}`, { choice: item.index }),
+        value: item.value,
+      }))
+    } else {
+      results = _.compact(answers).flatMap(answer => answer.map(item => item.value))
+    }
 
     if (model.props.randomizeAnswers) {
       results = array.shuffle(results, seedrandom(ResultStore.user.id.toString() + model.id))
@@ -116,14 +132,23 @@ function FilterTable ({
         results={results}
         paginationContext={paginationContext}
         aiTranslation={aiTranslation}
+        showFormFieldTitles={model.props.showFormFieldTitles}
       />
     </tbody>
   )
 }
 
 const Results = ({
-  results, filterId, paginationContext, aiTranslation,
+  results, filterId, paginationContext, aiTranslation, showFormFieldTitles,
 }) => {
+  const getValue = item => (_.isObject(item) ? item.value : item)
+  const getTitle = item => (showFormFieldTitles && _.isObject(item) ? item.title : null)
+  const getFieldIndex = item => (_.isObject(item) ? item.index : null)
+
+  const isFirstInFieldGroup = (item, previousItem) => (
+    !previousItem || getFieldIndex(item) !== getFieldIndex(previousItem)
+  )
+
   if (!results || results.length === 0) {
     return (
       <tr data-paginatable={2}>
@@ -136,26 +161,36 @@ const Results = ({
 
   if (paginationContext) {
     return (
-      paginationContext.resultIndexes[filterId].map(i => (
-        <tr>
-          <td key={i} className={styles.answer}>
-            <SafeHTML
-              html={aiTranslation?.[`${filterId}-${i}`] || results[i]}
-              data-ai-translation={`${filterId}-${i}`}
-            />
-          </td>
-        </tr>
-      ))
+      paginationContext.resultIndexes[filterId].map((i) => {
+        const title = getTitle(results[i])
+        const showTitle = title && isFirstInFieldGroup(results[i], results[i - 1])
+        return (
+          <tr key={i}>
+            <td className={styles.answer}>
+              {showTitle && <div className={styles.formFieldTitle}><SafeHTML html={title} /></div>}
+              <SafeHTML
+                html={aiTranslation?.[`${filterId}-${i}`] || getValue(results[i])}
+                data-ai-translation={`${filterId}-${i}`}
+              />
+            </td>
+          </tr>
+        )
+      })
     )
   }
 
-  return results.map((r, i) => (
-    <tr key={i} data-index={i} data-paginatable={2}>
-      <td className={styles.answer}>
-        <SafeHTML html={aiTranslation?.[i] || r} data-ai-translation={i} />
-      </td>
-    </tr>
-  ))
+  return results.map((r, i) => {
+    const title = getTitle(r)
+    const showTitle = title && isFirstInFieldGroup(r, results[i - 1])
+    return (
+      <tr key={i} data-index={i} data-paginatable={2}>
+        <td className={styles.answer}>
+          {showTitle && <div className={styles.formFieldTitle}><SafeHTML html={title} /></div>}
+          <SafeHTML html={aiTranslation?.[i] || getValue(r)} data-ai-translation={i} />
+        </td>
+      </tr>
+    )
+  })
 }
 
 export default connect((state, { model }) => ({

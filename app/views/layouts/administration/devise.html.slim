@@ -1,5 +1,5 @@
 doctype html
-html.body-full-height lang="#{I18n.locale}"
+html.body-full-height lang="#{I18n.locale}" style=shell_html_style
   head
     = render 'layouts/osano_script'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
@@ -35,6 +35,9 @@ html.body-full-height lang="#{I18n.locale}"
     - if resource && resource.errors.present?
         javascript [nonce=content_security_policy_nonce]:
           #{("__INITIAL_STATE__['errors'] = " + resource.errors.messages.to_json).html_safe}
+    / Nothing paints until React mounts, so the page is the browser's white canvas without this.
+    = render 'layouts/admin_splash'
+
     .main#devise
     = vite_javascript_tag 'entrypoints/user/login.jsx'
     = render partial: 'layouts/consent_banner' unless Settings.osano_enabled

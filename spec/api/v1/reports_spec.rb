@@ -36,7 +36,7 @@ describe 'Reports' do
  assessments and the user\'s completion status.'
       tags 'Reports'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :campaign_id, in: :query, type: :string, required: false,
@@ -128,7 +128,7 @@ describe 'Reports' do
       description 'Assessment results for the user\'s report. '
       tags 'Reports'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
@@ -236,7 +236,7 @@ describe 'Reports' do
  check the expires_at attribute in the response.'
       tags 'Reports'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
@@ -277,7 +277,7 @@ describe 'Reports' do
       Use `include_occupations` to include Occupations'
       tags 'Dimensions'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :report_id, in: :path, type: :integer
       parameter name: :since, in: :query, type: :string, required: false,
                 description: 'Returns results that have been updated after since.'
@@ -554,7 +554,7 @@ describe 'Reports' do
       description 'Update user report'
       tags 'Report'
       consumes 'application/json'
-      security [basic: []]
+      security [basic: [], bearer: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string, required: false

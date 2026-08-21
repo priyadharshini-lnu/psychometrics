@@ -10,6 +10,13 @@ class SamlSetting < ApplicationRecord
   include Tenantable
 
   enum :name_identifier_format, { email: 0, persistent: 1 }, suffix: :name_identifier
+  enum :enforce_for, { none: 0, all: 1, specific_domains: 2 }, prefix: true
+
+  include DomainEnforcementValidatable
+
+  validates :enforced_domains, presence: true, if: :enforce_for_specific_domains?
+
+  before_save :sync_enforced_boolean
 
   def details
     url_options = {
@@ -45,5 +52,11 @@ class SamlSetting < ApplicationRecord
 
   def saml_enforced?
     saml_login_allowed? && enforced?
+  end
+
+  private
+
+  def sync_enforced_boolean
+    self.enforced = enforce_for_all?
   end
 end
