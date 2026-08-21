@@ -38,7 +38,7 @@ const AgileSettingsModal = ({ close }) => {
       open
       width="40%"
       title={I18n.t('administration.assessments.settings.title')}
-      maskClosable
+      mask={{ closable: true }}
       onCancel={close}
       footer={[
         <Button key="close" onClick={close}>

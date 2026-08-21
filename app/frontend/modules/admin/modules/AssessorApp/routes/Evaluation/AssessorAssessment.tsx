@@ -153,7 +153,7 @@ const AssessorAssessment: React.FC<Props> = ({
             cancelText={I18n.t('common.actions.close')}
             okText={I18n.t('common.actions.back_to_dashboard')}
             closable={false}
-            maskClosable={false}
+            mask={{ closable: false }}
             onCancel={() => {
               setShowInvalidSession(false)
             }}

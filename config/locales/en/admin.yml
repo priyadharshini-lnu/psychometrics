@@ -1285,6 +1285,7 @@ en:
     key_id: Key ID
     keywords: Keywords
     keywords_placeholder: Enter keywords separated by commas.
+    language: Language
     language_id: Language ID
     last_name_required: Last name is required
     lead_assessment: Lead Assessment

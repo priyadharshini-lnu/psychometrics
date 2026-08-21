@@ -9,7 +9,6 @@ import _ from 'lodash'
 import * as t from 'io-ts'
 import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
-import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import { CheckOutlined, AppstoreOutlined, WarningFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
@@ -343,7 +342,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
                 pagination={false}
                 scroll={{ x: 'max-content' }}
                 loading={isLoading('fetch')}
-                sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
+                sticky
               />
               )}
             disableHeader

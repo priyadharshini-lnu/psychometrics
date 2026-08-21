@@ -145,7 +145,7 @@ export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
       width="70%"
       title={I18n.t('administration.block_settings.modal.title')}
       open
-      maskClosable={false}
+      mask={{ closable: false }}
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>

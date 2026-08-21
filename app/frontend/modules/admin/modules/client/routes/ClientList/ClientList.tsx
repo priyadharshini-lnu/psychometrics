@@ -6,7 +6,6 @@ import {
 import { Add } from '@thetalententerprise/glint/icons'
 import { connect, ConnectedProps } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import styles from './styles.less'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
@@ -104,7 +103,7 @@ const ClientList: React.FC<Props> = ({
         scroll={{ x: 'max-content' }}
         loading={tableLoading}
         onChange={handleTableChange}
-        sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
+        sticky
       >
         <Column
           title={I18n.t('shared.id')}

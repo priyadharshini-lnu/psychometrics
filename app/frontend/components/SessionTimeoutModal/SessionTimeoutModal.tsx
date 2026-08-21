@@ -236,7 +236,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
   return (
     <div>
       <Modal
-        maskClosable={false}
+        mask={{ closable: false }}
         closable={false}
         centered
         width={500}

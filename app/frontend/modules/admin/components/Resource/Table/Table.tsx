@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { FC, Children, ReactElement } from 'react'
 import { Table as AntTable, Pagination } from 'antd'
 import { ExpandableConfig } from 'antd/es/table/interface'
-import { TOP_BAR_STICKY_OFFSET } from '~/components/AdminShell'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useResourceContext } from '../ResourceContext'
 import { Column } from '../Column'
@@ -62,7 +61,7 @@ export const Table: FC<Props> = ({
       expandable={expandable}
       onChange={resource.handleTableChange}
       columns={columns}
-      sticky={{ offsetHeader: TOP_BAR_STICKY_OFFSET }}
+      sticky
     />
   )
 

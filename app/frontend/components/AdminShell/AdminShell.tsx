@@ -20,9 +20,6 @@ const { I18n } = window
 // 280px, not rem: the legacy stylesheet sets root font-size to 12px, so glint's rems render at 75%.
 const SIDER_WIDTH = '280px'
 
-// The shell top bar's rendered height (paddingSM x2 + controlHeightLG + border) — sticky table headers offset by this.
-export const TOP_BAR_STICKY_OFFSET = 65
-
 const ADMIN_HOME = '/admin'
 
 // Every user gets the profile links, so only a permission-gated entry says this shell belongs to an admin.
@@ -152,6 +149,7 @@ const ShellBody: FC<Props> = ({
       onSiderWidthChange={save}
       nav={nav}
       navKey={showSubmenu ? 'subnav' : 'main'}
+      topBarSize="small"
       topBarStart={topBarStart ?? <AdminTopBarStart />}
       topBarEnd={topBarEnd ?? <AdminTopBarEnd />}
       defaultCollapsed={initialCollapsed}
