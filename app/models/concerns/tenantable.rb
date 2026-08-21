@@ -53,9 +53,14 @@ module Tenantable
 
   def should_resolve_tenant?
     return false unless has_attribute?(:tenant_id)
+    return true if should_force_tenant_resolution? && ActsAsTenant.current_tenant
     return false if ActsAsTenant.current_tenant
 
     new_record? || parent_association_changed? || tenant_source_fk_changed?
+  end
+
+  def should_force_tenant_resolution?
+    false
   end
 
   def cascade_tenant_id_to_dependents

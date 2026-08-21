@@ -341,6 +341,33 @@ describe Tenantable do
     end
   end
 
+  describe 'should_force_tenant_resolution?' do
+    it 'returns true for Users::Admin' do
+      expect(Users::Admin.new.send(:should_force_tenant_resolution?)).to be(true)
+    end
+
+    it 'returns false for Users::Regular' do
+      expect(Users::Regular.new.send(:should_force_tenant_resolution?)).to be(false)
+    end
+
+    context 'when current_tenant is set during create' do
+      it 'keeps tenant_id nil for Users::Admin even though acts_as_tenant would set it' do
+        admin = nil
+        ActsAsTenant.with_tenant(tenant_a) do
+          admin = Users::Admin.new(
+            email: 'admin@example.com',
+            password: 'Password@Strong@129',
+            first_name: 'Test',
+            last_name: 'Admin'
+          )
+          admin.valid?
+        end
+
+        expect(admin.tenant_id).to be_nil
+      end
+    end
+  end
+
   describe '#write_tenant_id_audit' do
     context 'for a model with audited declared' do
       it 'creates an ActiveRecordAudit record' do

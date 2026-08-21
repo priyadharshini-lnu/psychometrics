@@ -36,7 +36,7 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   end
 
   def user
-    @model.user || @model.build_user
+    @model.user || @model.build_user(role: UserRoles::ADMIN_ROLE)
   end
 
   def user_id
