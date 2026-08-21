@@ -11,6 +11,7 @@ ru:
     ai_idp_retake_step_chat_hint_no_document: Вы можете возобновить чат, чтобы поделиться более подробной информацией, и я сделаю все возможное, чтобы вам помочь.
     ai_idp_summary_hint_no_document: С вашего разрешения, если вы согласитесь, я могу составить для вас план развития. Если нет, вы можете перезапустить чат, чтобы поделиться более подробной информацией.
     all_checks_must_pass: Прежде чем продолжить, необходимо пройти все проверки.
+    appearance: Появление
     approve_idp_plan: Утвердить план
     assessment_misconfigured: Неправильная настройка оценки
     assessment_timing_duration_minutes: "%{duration} мин"
@@ -52,16 +53,49 @@ ru:
     camera_test_step: Этап проверки видео и аудио
     campaign: Кампания
     campaign_check_status: 'Статус: %{status}'
+    card_action_retry: Повторить попытку
+    card_action_review: Обзор
+    card_action_start: Начинать
+    change_password_warning: 'Важно: Смена пароля приведет к выходу из системы.'
     chat_instructions: Инструкции по использованию чата
     check: Проверить
     check_video_recording: Пожалуйста, проверьте видео и аудио, воспроизведя запись.
     checking_browser_compatibility: Проверка совместимости браузеров...
     checking_latency: Проверка задержки...
+    collapse_navigation: Свернуть навигацию
     complete_prework_message: Для начала выполните все подготовительные задания.
     could_not_reach_servers: Не удалось подключиться к нашим серверам для проверки скорости сети. Проверьте подключение к Интернету и повторите попытку.
+    dashboard: Панель управления
+    dashboard_active_programs: Активные программы
+    dashboard_begin_program: Запустить программу
+    dashboard_continue_program: Продолжить программу
+    dashboard_days_left: Осталось %{count} дней
+    dashboard_greeting_afternoon: Добрый день, %{name}.
+    dashboard_greeting_evening: Добрый вечер, %{name}.
+    dashboard_greeting_eyebrow: Добро пожаловать
+    dashboard_greeting_morning: Доброе утро, %{name}.
+    dashboard_instructions: Вам могли быть назначены несколько заданий для выполнения. Убедитесь, что все назначенные задания выполнены в рамках каждой программы.
+    dashboard_reports_ready: Отчеты готовы
+    dashboard_your_programs: Ваши программы
     day: день
     day_plural: дней
     details: Подробности
+    details_back: Назад
+    details_due: Должный
+    details_group_locked_hint: Разблокируется после завершения '%{group}'.
+    details_intro_tab: Введение
+    details_no_reports: Пока нет сообщений.
+    details_open_heading: Открытые упражнения
+    details_open_hint: Выполняйте задания в любом порядке и в удобном для вас темпе.
+    details_percent_done: "%{percent}% выполнено"
+    details_progress: Прогресс
+    details_reports_ready: Ваши отчеты готовы.
+    details_reports_tab: Отчеты
+    details_reserved: Сдержанный
+    details_sequential_heading: Последовательные упражнения
+    details_sequential_hint: Выполняйте задания по порядку — каждое открывает следующее.
+    details_total: Общий
+    details_view_details: Просмотреть подробности
     development: Разработка
     direct_reportees: Непосредственные подчиненные
     download: Скачать
@@ -108,6 +142,10 @@ ru:
     localstorage_fix_title: В вашем браузере не включено локальное хранилище
     localstorage_not_enabled_detail: В вашем браузере отключена функция локального хранилища. Убедитесь, что вы не находитесь в режиме приватного просмотра или инкогнито, так как в этих режимах локальное хранилище часто отключено.
     localstorage_support: LocalStorage включено
+    login_sign_in_btn: Войти
+    login_sign_up_link: Зарегистрироваться
+    login_welcome_description: Войдите в систему, используя свою учетную запись Lighthouse.
+    login_welcome_title: Добро пожаловать в Маяк!
     magic_link_interstitial_description: В целях безопасности мы просим вас подтвердить этот вход в систему. Автоматические системы не могут выполнить этот шаг.
     magic_link_interstitial_title: Чтобы завершить вход в систему, нажмите кнопку ниже.
     max_word_limit: Должно быть не более %{max} слов
@@ -124,6 +162,7 @@ ru:
     minute: минута
     minute_plural: протокол
     my_plan: Мой план
+    my_profile: Мой профиль
     network: Сеть
     network_check: Тест скорости интернета
     network_check_description: Проверка качества вашего интернет-соединения между нашими серверами и вашим устройством.
@@ -135,6 +174,7 @@ ru:
     network_speed_meets_required_detail: Скорость вашего интернет-соединения соответствует минимальным требованиям акции
     network_test_step: Этап тестирования сети
     no_audio_detected: Звук не обнаружен. Проверьте, подключен ли микрофон и работает ли он исправно.
+    open_navigation: Открыть навигацию
     pass: Пропустить
     pause: Пауза
     pearson_timing_duration_minutes: С ограничением по времени — %{duration} минут на выполнение
@@ -150,7 +190,13 @@ ru:
     proctored: Под наблюдением
     proctored_assessment_misconfigured_msg: Данная оценка проводится под наблюдением, однако в ней отсутствуют необходимые настройки по времени. Пожалуйста, обратитесь к администратору.
     profile: Профиль
+    profile_cancel: Отмена
     profile_details: Подробности
+    profile_edit: Редактировать
+    profile_other_information: Прочая информация
+    profile_personal_information: Персональная информация
+    profile_save: Сохранять
+    profile_time: Время
     question_counter: Вопрос %{current} из %{total}
     reason_for_idp_plan_rejection: Причина отказа
     record: Журнал
@@ -167,9 +213,12 @@ ru:
     results: Результат
     safari_proctoring_description: Похоже, вы используете браузер Safari, который может иметь некоторые ограничения в отношении функций отслеживания, активированных в рамках этой кампании. Для оптимальной работы мы рекомендуем использовать браузеры Chrome, Edge или Firefox.
     safari_proctoring_title: Обнаружен браузер Safari
+    scheduling: Планирование
     select_audio_device: Выбрать аудиоустройство
     select_video_device: Выбрать видеоустройство
     selected_count: "%{count} выбранный"
+    sign_out: выход
+    signup_sign_in_link: Войти
     skill_type: Тип навыка
     speech_verification_error: При проверке вашей речи произошла ошибка. Пожалуйста, попробуйте ещё раз.
     speech_verification_failed: Ваша речь не совпала с тестовой фразой. Пожалуйста, попробуйте ещё раз и произносите фразу чётко.
@@ -177,6 +226,7 @@ ru:
     start_campaign_message_timed: Это ограниченная по времени кампания, пожалуйста, нажмите кнопку «%{buttonText}», чтобы начать участие в мероприятиях.
     start_readiness_check: Начать проверку готовности
     start_system_check: Запустить проверку системы
+    status_locked: Заблокировано
     stop: Стоп
     subinstruction_audio: Рабочий микрофон
     subinstruction_eight: Выделите достаточно времени для проведения полной оценки
@@ -228,6 +278,21 @@ ru:
     tasks: Задачи
     testing_download_speed: Проверка скорости загрузки...
     testing_upload_speed: Проверка скорости загрузки...
+    theme_active: Активный
+    theme_change: Изменить тему
+    theme_dark_theme: Темная тема
+    theme_ember: Эмбер
+    theme_light_theme: Светлая тема
+    theme_marsh: Болото
+    theme_mode_dark: Темный
+    theme_mode_light: Свет
+    theme_mode_system: Система
+    theme_mode_title: Режим
+    theme_primer: Грунтовка
+    theme_primer_colorblind: Праймер для людей с дальтонизмом
+    theme_primer_contrast: Грунтовка с высоким контрастом
+    theme_primer_dimmed: Грунтовка приглушена
+    theme_title: Тема
     time_commitment: Время, которое необходимо уделить
     timed_activity_instruction: Это задание с ограничением по времени. После начала сеанса наблюдения у вас будет <strong>%{time} минут</strong> на его выполнение.
     troubleshooting_guide: Руководство по устранению неисправностей

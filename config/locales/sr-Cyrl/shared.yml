@@ -55,6 +55,7 @@ sr-Cyrl:
     copied_successfully: Успешно копирано
     copied_to_clipboard: Копирано у међуспречник
     copy: Копирај
+    copyright: "© %{year} %{display_name}. Сва права задржана."
     create: Креирај
     created_at: Креирано у
     created_by: Аутор
@@ -181,6 +182,29 @@ sr-Cyrl:
     remove: Уклони
     removed: Уклоњена
     replace: Заменити
+    reports:
+      ai_rationale_evidence:
+        all_factors: Сви фактори
+        factor_label: Фактори
+        hide_evidence: Сакриј доказе
+        hide_rationale: Сакриј образложење
+        no_data: Нема доступних образложења или доказа вештачке интелигенције за изабрано питање.
+        no_question_selected: Изаберите питање да бисте приказали образложење и доказе вештачке интелигенције.
+        question_label: Питање
+        select_question: Изаберите питање
+      ai_transcript:
+        no_data: Нема доступних података из транскрипта за изабрано питање.
+        no_question_selected: Молимо вас да изаберете питање да бисте приказали транскрипт.
+        question_label: Питање
+        select_question: Изаберите питање
+    reports_bar_gradient_direction: Смер градијента
+    reports_bar_gradient_direction_bottom_to_top: Одоздо нагоре
+    reports_bar_gradient_direction_left_to_right: С лева на десно
+    reports_bar_gradient_direction_right_to_left: Здесна налево
+    reports_bar_gradient_direction_top_to_bottom: Од врха до дна
+    reports_bar_gradient_enabled: Омогући градијент
+    reports_bar_gradient_end_color: Завршна боја
+    reports_bar_gradient_start_color: Почетна боја
     reports_show_values_inside_bar: Прикажи вредности унутар траке
     reports_value_label_position: Позиција етикете вредности
     reports_value_label_position_center: Центар

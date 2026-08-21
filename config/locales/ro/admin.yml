@@ -103,6 +103,7 @@ ro:
     ai_scoring_approval_stale_description: Este posibil ca actualizările de configurare efectuate de la ultima rulare să fi modificat scorul. Efectuați o nouă evaluare pentru a-l actualiza folosind cele mai recente setări.
     ai_scoring_approval_stale_title: Scorul ar putea fi depășit
     ai_scoring_approvals: Aprobări de scoruri AI
+    ai_scoring_errors_label: Erori de scorare AI
     ai_scoring_refresh_score: Actualizează scorul
     ai_scoring_refresh_score_confirm_description: Aceasta va rula din nou evaluarea AI pentru această probă, utilizând cea mai recentă configurație. Ești sigur?
     ai_scoring_refresh_score_confirm_title: Să reîmprospătez scorurile AI?
@@ -122,6 +123,12 @@ ro:
     alt_text_long: Depășește limita maximă de 100 de caractere.
     api_keys: Chei API
     api_keys_form_title: Cheie API
+    appearance: Aspect
+    appearance_dark: Întuneric
+    appearance_dark_theme: Temă întunecată
+    appearance_light: Aprinde
+    appearance_light_theme: Temă luminoasă
+    appearance_system: Sistem
     application: Cerere
     application_add: Adăugare cerere
     application_name: Numele aplicației
@@ -131,7 +138,6 @@ ro:
     application_settings_at_least_one_url_required: Vă rugăm să activați cel puțin o intrare URL înainte de a activa includerea URL pe lista albă.
     application_settings_confirm_delete_ip: Ești sigur că vrei să ștergi această adresă IP?
     application_settings_confirm_delete_url: Sigur vrei să ștergi această adresă URL?
-    application_settings_edit_ip_address: Editare adresă IP / interval CIDR
     application_settings_enable_ip_whitelisting: Activare listă albă de adrese IP
     application_settings_enable_url_whitelisting: Activează includerea URL în lista albă
     application_settings_invalid_ip_format: Adresă IP sau format CIDR nevalid(ă)
@@ -195,6 +201,8 @@ ro:
     assessor_add_subject_modal_subject: Subiect
     assessor_add_subject_modal_subject_placeholder: Subiectul căutării..
     assessor_add_subject_modal_title: Adaugă subiect
+    assessor_assessment_drawer_title: Detalii evaluare
+    assessor_assessment_id: ID-ul evaluării evaluatorului
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Selectați o evaluare
     assessor_assessment_name: Evaluarea evaluatorului
     assessor_assessments: Evaluările evaluatorului
@@ -345,9 +353,15 @@ ro:
     campaign_assessment_modals_update_occupation_condition_set_select: Selectați setul de condiții privind ocupația
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Setul de condiții privind ocupația a fost actualizat cu succes
     campaign_assessment_modals_update_occupation_condition_set_title: Actualizarea setului de condiții de ocupație
+    campaign_dashboard_instructions_label: Instrucțiuni pentru tabloul de bord al campaniei
+    campaign_dashboard_instructions_save: Salvați instrucțiunile
+    campaign_dashboard_instructions_save_error: Nu s-au putut salva instrucțiunile tabloului de bord al campaniei
+    campaign_dashboard_instructions_save_success: Instrucțiunile tabloului de bord al campaniei au fost salvate cu succes
     campaign_factors: Factorii campaniei
     campaign_id_placeholder: Introduceți ID-ul campaniei
     campaign_name: Numele campaniei
+    campaign_name_translations: Traduceri de nume de campanie
+    campaign_name_translations_fetch_error: Eroare la preluarea traducerilor numelui campaniei
     campaign_report_generate_modal_subtitle: Selectați limba necesară pentru fiecare raport
     campaign_report_id: ID raport de campanie
     campaign_results_export_details: Rezultate generate de artefactele AI ale campaniei
@@ -419,6 +433,7 @@ ro:
     category: Categorie
     cell_save_msg: Modificările valide sunt salvate automat imediat ce ieșiți din celulă după editare.
     change_reason: Motivul modificării
+    change_report_dates_message: Doriți să modificați intervalul de date al raportului?
     change_score: scor modificat
     change_score_log: Jurnalul modificărilor scorului
     characters: caractere
@@ -513,6 +528,7 @@ ro:
     created_successfully: AI Assistant a fost creat cu succes.
     current: Curent
     current_job_role: Rolul actual al postului
+    current_locale: Localizare curentă
     custom_formula: Formulă personalizată
     custom_message_description: Acest mesaj poate fi trimis oricărei persoane care participă la evaluare
     custom_message_name: Mesaj personalizat
@@ -680,6 +696,7 @@ ro:
     disable_dp: Nu permiteți prelucrarea ulterioară a datelor
     disable_proctoring: Dezactivează supravegherea
     disable_report_download: Dezactivați descărcarea raportului
+    disable_transcript_download: Dezactivați descărcarea transcrierii
     disallow_lead_assessor_moderation: Dezactivează moderarea evaluatorului principal
     disallow_lead_assessor_moderation_info: Scorul va fi calculat automat pe baza tuturor formularelor trimise de evaluatori, iar evaluatorul principal nu îl poate modifica din ecranul de moderare
     discard_all_questions: Resetează toate întrebările
@@ -831,10 +848,13 @@ ro:
     feature_flags_ai_group: Caracteristici AI
     feature_flags_communication_group: Comunicare
     feature_flags_platform_group: Caracteristici ale platformei
+    feature_flags_superadmin_group: Definirea domeniului de aplicare al chiriașului
+    feature_glint_ui_description: Redați experiența participantului cu sistemul de design Glint
     feature_global_skills_description: Accesați biblioteca globală de competențe pentru evaluări
     feature_idp_description: Activați planificarea dezvoltării individuale pentru participanți
     feature_not_available: Această funcție nu este disponibilă
     feature_sms_notification_description: Activați notificările SMS pentru invitații și mementouri legate de campanii
+    feature_superadmin_tenant_scoping_description: Când sunt dezactivate, interogările superadmin nu vor fi limitate la datele acestui client.
     fields_level: Nivel
     fields_level_description: Descrierea nivelului
     fields_level_name: Nume nivel
@@ -866,6 +886,7 @@ ro:
     form_datasheet: Fișă tehnică
     form_datasheet_columns: Coloane pentru fișa tehnică
     form_end_date: Data de încheiere
+    form_fields_to_display: Câmpuri de afișat
     form_include_all_datasheet_columns: Includeți toate coloanele din fișa de date
     form_name: Nume
     form_no_assessment_selected: Nu s-au adăugat încă evaluări. Faceți clic pe "Adăugați" pentru a începe.
@@ -890,8 +911,11 @@ ro:
     generate_transcription: Generați transcrierea
     generated_at_time: Generat la %{time}
     generated_value: Valoare generată
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Interfața Glint este dezactivată de client
     global_skills: Competențe globale
     global_skills_disabled_by_client: Global Skills este dezactivat de client
+    go_back: Spate
     grant_type_label: Tip de grant
     grant_type_name: oauth_grant_type
     graphic: Grafic
@@ -906,6 +930,7 @@ ro:
     header_logout_title: Ești sigur că vrei să te deloghezi?
     hide_all: Ascundeți tot
     hide_middle_scores: Ascunde scorurile medii
+    hide_participant_video: Ascunde videoclipul participantului
     high: Ridicat
     hogan: Hogan
     hogan_assessment: Evaluarea Hogan
@@ -1251,6 +1276,7 @@ ro:
     key_id: ID-ul cheii
     keywords: Cuvinte cheie
     keywords_placeholder: Introduceți cuvintele cheie separate prin virgule.
+    language: Limbă
     language_id: Codul limbii
     last_name_required: Numele de familie este obligatoriu
     lead_assessment: Evaluarea clienților potențiali
@@ -1488,6 +1514,8 @@ ro:
     owner_resource_norm: normă
     owner_resource_report: raport
     owner_resource_report_bundle: pachet de rapoarte
+    page_load_failed: Această pagină nu a putut fi încărcată.
+    page_load_failed_hint: Aplicația poate fi actualizată — reîncărcați pentru a continua.
     parsed_dependencies_help: Dependențe analizate pentru utilizator utilizate de AI Assistant pentru generarea rezultatelor artefactelor
     parsed_dependencies_title: Dependențe analizate
     parsed_dependencies_view: Vizualizarea dependențelor analizate
@@ -2180,6 +2208,38 @@ ro:
     raw_score: Punctaj brut
     reason_for_changes: Motivul modificărilor
     recents: Cele mai recente
+    record_history_changes: schimbări
+    record_history_changes_in_request: modificări ale acestei cereri
+    record_history_date_range_invalid: Data de încheiere trebuie să fie aceeași cu data de început sau ulterioară.
+    record_history_date_range_required: Vă rugăm să selectați un interval de date.
+    record_history_date_range_too_large: Intervalul de date nu poate depăși %{days} zile. Vă rugăm să restrângeți căutarea.
+    record_history_filter_actor: Filtrare după adresa de e-mail a actorului
+    record_history_filter_field: Filtrare după câmpul modificat
+    record_history_filter_type: Filtrare după tipul de înregistrare
+    record_history_id_required: Vă rugăm să introduceți un ID de înregistrare
+    record_history_include_related: Includeți înregistrări conexe
+    record_history_last_30_days: Ultimele 30 de zile
+    record_history_last_7_days: Ultimele 7 zile
+    record_history_no_results: Nu s-a găsit niciun istoric al modificărilor pentru această înregistrare.
+    record_history_no_results_for: Nu s-au găsit modificări pentru
+    record_history_records_changed: înregistrările au fost modificate
+    record_history_related_tag: Înrudite
+    record_history_request_banner: Se afișează toate modificările din solicitare
+    record_history_request_label: 'Cerere:'
+    record_history_request_or_record_required: Introduceți un UUID de solicitare sau alegeți un tip de înregistrare și un ID.
+    record_history_request_uuid: Solicitați UUID
+    record_history_request_uuid_placeholder: Introduceți UUID-ul solicitării
+    record_history_revision_failed: Nu s-a putut încărca starea înregistrării pentru această versiune.
+    record_history_search_hint: Introduceți un UUID de solicitare sau selectați un tip de înregistrare și un ID de înregistrare pentru a urmări istoricul modificărilor.
+    record_history_select_type: Selectați tipul de înregistrare
+    record_history_state_at_version: Stare la versiune
+    record_history_system: Sistem
+    record_history_title: Înregistrați istoricul modificărilor
+    record_history_type_required: Vă rugăm să selectați un tip de înregistrare
+    record_history_version: Versiune
+    record_history_view_audit_log: Vizualizare în jurnalele de audit
+    record_history_view_full: Vedeți istoricul complet
+    record_history_view_request: Vizualizați cererea
     record_id: ID înregistrare
     recordings: Înregistrări
     reflection_questions: Întrebări de reflecție
@@ -2295,6 +2355,7 @@ ro:
     report_no_evaluations: Raportul pentru %{user} nu este disponibil – nu au fost primite evaluări.
     report_not_generated: Raportul pentru %{user} îndeplinește condițiile de disponibilitate, dar nu a fost încă generat. Vă rugăm să generați raportul mai întâi.
     report_on_hold: Raportul pentru %{user} este în prezent în așteptare
+    report_owner: Proprietar
     report_pdf_status: Raport privind starea fișierului PDF
     report_review_abort_qc: Anulați QC
     report_review_approve: Aproba
@@ -2315,10 +2376,12 @@ ro:
     report_types:
       active_clients_projects: Clienți activi și proiecte
       campaign_factor_scores: Scorurile factorilor de campanie
+      campaign_user_creation: Crearea utilizatorilor în campanie
       client_assessment_counts: Evaluarea clienților contează
       hogan_usage_report: Utilizarea evaluării Hogan
       json_data_report: Raport privind datele JSON
       pearson_usage_report: Utilizarea instrumentelor de evaluare Pearson
+      proctoring_sessions: Sesiuni de supraveghere
       report_usage_summary: Rezumatul utilizării raportului
       saville_usage_report: Utilizarea evaluării Saville
       user_access_review: Analiza accesului utilizatorilor
@@ -2378,6 +2441,17 @@ ro:
     role_project_admin: Administrator de proiect
     role_superadmin: Superadministrator
     run: Alergă
+    runtime_configuration_invalid_json_object: runtime_configuration trebuie să fie un obiect JSON valid
+    runtime_configuration_invalid_parameter: nu este un parametru actualizabil în timpul rulării
+    runtime_parameter_date_range_required: Vă rugăm să selectați atât Data de început, cât și Data de sfârșit
+    runtime_parameter_editable_section_title: Interval de date
+    runtime_parameter_filter_column: Filtra
+    runtime_parameter_locked_section_title: Filtre incluse
+    runtime_parameter_modal_subtitle: Verificați detaliile și actualizați intervalul de date, dacă este necesar.
+    runtime_parameter_modal_title: Executare raport
+    runtime_parameter_not_set: Nefurnizat
+    runtime_parameter_submit_button: Rulați acum
+    runtime_parameter_value_column: Valoare
     saml_idp_certificate_available: Disponibil (click pentru copiere)
     saml_idp_certificate_label: Certificat
     saml_idp_entity_id_label: ID entități/Emitent
@@ -2512,6 +2586,7 @@ ro:
     scheduling_columns_start_time: Data și ora
     scheduling_columns_subject: Subiect
     scheduling_columns_title: Titlu
+    scheduling_columns_video_hidden_for_privacy: Videoclipul este ascuns pentru a proteja intimitatea candidatului.
     scheduling_columns_view_recording: Vizualizați înregistrarea
     scheduling_errors_assessor_already_assigned: Evaluator deja desemnat pentru această evaluare. Vă rugăm să selectați o altă evaluare sau evaluator.
     scheduling_errors_date_required: Vă rugăm să selectați o dată
@@ -2601,6 +2676,12 @@ ro:
     score: Scor
     score_approval_not_allowed_to_approve: Nu aveți voie să aprobați acest scor.
     score_approval_not_allowed_to_discard: Nu aveți voie să renunțați la acest scor.
+    score_approval_reset: Resetează aprobarea
+    score_approval_reset_description: Această acțiune va muta aprobarea înapoi în așteptare. Scorurile nu se vor modifica. Această acțiune nu poate fi anulată.
+    score_approval_reset_not_allowed: Această aprobare a scorului nu poate fi resetată în starea sa actuală.
+    score_approval_reset_recompute_description: Aceasta acțiune va reseta aprobarea, va elimina scorurile AI din rezultatele utilizatorului și va șterge toate rapoartele generate. Această acțiune nu poate fi anulată.
+    score_approval_reset_success: Aprobarea scorului a fost resetată.
+    score_approval_reset_title: Aprobare resetare scor?
     score_definition_placeholder: Introduceți definiția pentru acest nivel de scor
     score_definitions: Definiții ale scorurilor
     score_max: Scor maxim
@@ -2832,6 +2913,7 @@ ro:
     sheets_tabs_settings: Setări
     show_all: Afișează tot
     show_all_assessment_responses: Afișează toate răspunsurile la evaluare
+    show_form_field_titles: Afișați titlurile câmpurilor formularului
     show_middle_scores: Afișați mai multe scoruri pentru „%{count}” (opțional)...
     show_original: Afișează originalul
     show_submenu: Afișează submeniu
@@ -2949,7 +3031,14 @@ ro:
     smtp_settings_user_name: Nume de utilizator
     specialty_questions: Întrebări specifice
     sso_email_mismatch: Sunteți conectat la un alt cont pe platforma de autentificare. Vă rugăm să vă deconectați de pe platforma de autentificare și să încercați din nou.
+    sso_enforce_for: Impuneți SSO pentru
+    sso_enforce_for_all: Toți utilizatorii
+    sso_enforce_for_none: Nici unul
+    sso_enforce_for_specific_domains: Domenii specifice
     sso_enforced: Aplică SSO
+    sso_enforced_domains: Domenii impuse
+    sso_enforced_domains_hint: de exemplu, se.com (potrivire exactă) sau *.se.com (doar subdomenii)
+    sso_enforced_domains_placeholder: Introduceți domeniul(domeniile) și apăsați Enter
     sso_label: SSO
     sso_not_enabled: SSO nu este activat pentru acest client
     sso_settings: Setări SSO
@@ -3064,6 +3153,7 @@ ro:
     success_title: Centre de evaluare create
     success_update: Setările de proiectare au fost salvate cu succes
     suitability_id: Cod de compatibilitate
+    superadmin_tenant_scoping: Superadministrator
     superadmin_use_root_domain: Superadministratorii trebuie să se autentifice prin intermediul domeniului principal
     switch_client: Schimbă clientul
     system_prompt: Solicitare de sistem
@@ -3084,12 +3174,38 @@ ro:
     taxonomy_title: Taxonomia abilităților
     template_and_campaign_required: Vă rugăm să furnizați atât șablonul, cât și ID-ul campaniei
     template_render_failed: Nu s-a redat șablonul
+    tenant_repair_confirm_message: 'Setați tenant_id la %{new_tenant} pe %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Setează tenant_id la null pe %{model} #%{id}?'
+    tenant_repair_confirm_title: Confirmați actualizarea chiriașului
+    tenant_repair_correct: Corecta
+    tenant_repair_current_tenant: Chiriaș actual
+    tenant_repair_find_record: Găsește înregistrarea
+    tenant_repair_global_tenant: global
+    tenant_repair_invalid_model: Tip de model nevalid sau neacceptabil
+    tenant_repair_invalid_record_id: Introduceți un ID de înregistrare valid
+    tenant_repair_invalid_tenant_id: Introduceți un ID de chiriaș pozitiv valid sau lăsați necompletat pentru a-l deveni nul.
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Tastați pentru a căuta...
+    tenant_repair_moved_from: 'chiriaș schimbat:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ID nou chiriaș
+    tenant_repair_preview_title: Previzualizare înregistrare
+    tenant_repair_request_failed: Solicitarea a eșuat
+    tenant_repair_resolved_tenant: Chiriaș rezolvat
+    tenant_repair_success: Chiriaș actualizat cu succes.
+    tenant_repair_title: Corecția chiriașului
+    tenant_repair_update: Actualizare
+    tenant_repair_will_set_null: Va seta tenant_id la nul
+    tenant_repair_will_set_value: Va seta tenant_id la %{value}
     test_generate: Testați generați
     test_render: Randare de testare
     test_render_tooltip: Testează-ți șablonul de prompt cu date de campanie pentru a vedea ce va fi trimis asistentului AI.
     text_danger: Text(pericol)
     text_success: Text (succes)
     text_warning: Text(avertizare)
+    themes:
+      marsh-dark: Mlaștină Întunecată
+      marsh-light: Lumina Mlaștinii
     this_field_is_required: Acest câmp este obligatoriu
     threesixity_advance_settings_campaign_template: Șablon de campanie
     threesixity_advance_settings_factors: Factori

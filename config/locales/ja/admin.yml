@@ -103,6 +103,7 @@ ja:
     ai_scoring_approval_stale_description: 前回の実行以降の設定変更により、スコアが変動している可能性があります。最新の設定で再計算して、スコアを更新してください。
     ai_scoring_approval_stale_title: スコアは古い可能性があります
     ai_scoring_approvals: AIスコアリング承認
+    ai_scoring_errors_label: AIの採点エラー
     ai_scoring_refresh_score: スコアを更新
     ai_scoring_refresh_score_confirm_description: これにより、最新の設定を使用してこの評価のAI採点が再実行されます。本当に実行しますか？
     ai_scoring_refresh_score_confirm_title: AIスコアを更新しますか？
@@ -122,6 +123,12 @@ ja:
     alt_text_long: 最大文字数の100文字を超える。
     api_keys: APIキー
     api_keys_form_title: APIキー
+    appearance: 外観
+    appearance_dark: 暗い
+    appearance_dark_theme: ダークテーマ
+    appearance_light: ライト
+    appearance_light_theme: ライトテーマ
+    appearance_system: システム
     application: 用途
     application_add: アプリケーションを追加
     application_name: アプリケーション名
@@ -131,7 +138,6 @@ ja:
     application_settings_at_least_one_url_required: URLホワイトリストを有効にする前に、少なくとも1つのURLエントリを有効にしてください。
     application_settings_confirm_delete_ip: このIPアドレスを削除してもよろしいですか？
     application_settings_confirm_delete_url: このURLを削除してもよろしいですか？
-    application_settings_edit_ip_address: IPアドレス／CIDR範囲の編集
     application_settings_enable_ip_whitelisting: IPホワイトリストを有効にする
     application_settings_enable_url_whitelisting: URLホワイトリストを有効にする
     application_settings_invalid_ip_format: IPアドレスまたはCIDR形式が不正です
@@ -195,6 +201,8 @@ ja:
     assessor_add_subject_modal_subject: 課題
     assessor_add_subject_modal_subject_placeholder: 検索対象...
     assessor_add_subject_modal_title: 件名の追加
+    assessor_assessment_drawer_title: 評価の詳細
+    assessor_assessment_id: 評価者評価ID
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: 評価を選択する
     assessor_assessment_name: アセッサーの評価
     assessor_assessments: アセッサーの評価
@@ -345,9 +353,15 @@ ja:
     campaign_assessment_modals_update_occupation_condition_set_select: 職業・健康状態セットを選択
     campaign_assessment_modals_update_occupation_condition_set_success_msg: "「職業条件セット」の更新に成功しました"
     campaign_assessment_modals_update_occupation_condition_set_title: "「職業条件セット」を更新する"
+    campaign_dashboard_instructions_label: キャンペーンダッシュボードの操作手順
+    campaign_dashboard_instructions_save: 保存手順
+    campaign_dashboard_instructions_save_error: キャンペーンダッシュボードの手順を保存できませんでした
+    campaign_dashboard_instructions_save_success: キャンペーンダッシュボードの手順が正常に保存されました
     campaign_factors: キャンペーン要因
     campaign_id_placeholder: キャンペーンIDの登場です
     campaign_name: キャンペーン名
+    campaign_name_translations: キャンペーン名の翻訳
+    campaign_name_translations_fetch_error: キャンペーン名の翻訳を取得中にエラーが発生しました
     campaign_report_generate_modal_subtitle: 各レポートに必要な言語を選択
     campaign_report_id: キャンペーンレポートID
     campaign_results_export_details: キャンペーンAIアーティファクトが生成した結果
@@ -419,6 +433,7 @@ ja:
     category: カテゴリー
     cell_save_msg: 編集後にセルからカーソルを移動させると、有効な変更は自動的に保存されます。
     change_reason: 変更理由
+    change_report_dates_message: レポートの日付範囲を変更しますか？
     change_score: 変更されたスコア
     change_score_log: 変更スコアログ
     characters: 文字
@@ -513,6 +528,7 @@ ja:
     created_successfully: AIアシスタントが正常に作成されました。
     current: 現在
     current_job_role: 現在の職務
+    current_locale: 現在の地域
     custom_formula: カスタム・フォーミュラ
     custom_message_description: このメッセージは、アセスメントに参加するすべての人に送ることができます。
     custom_message_name: カスタムメッセージ
@@ -680,6 +696,7 @@ ja:
     disable_dp: さらなるデータ処理を許可しない
     disable_proctoring: 監督機能を無効にする
     disable_report_download: レポートのダウンロードを無効にする
+    disable_transcript_download: トランスクリプトのダウンロードを無効にする
     disallow_lead_assessor_moderation: 主任審査員の審査を無効にする
     disallow_lead_assessor_moderation_info: スコアは、すべての評価者フォームの提出内容に基づいて自動的に算出され、主任評価者はモデレーション画面からこれを変更することはできません。
     discard_all_questions: すべての質問をリセット
@@ -831,10 +848,13 @@ ja:
     feature_flags_ai_group: AI機能
     feature_flags_communication_group: コミュニケーション
     feature_flags_platform_group: プラットフォーム機能
+    feature_flags_superadmin_group: テナント範囲設定
+    feature_glint_ui_description: Glintデザインシステムを使用して参加者の体験をレンダリングします。
     feature_global_skills_description: グローバルスキルライブラリにアクセスして評価を実施する
     feature_idp_description: 参加者のための個人開発計画を有効にする
     feature_not_available: この機能はご利用いただけません
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
+    feature_superadmin_tenant_scoping_description: 無効にすると、スーパー管理者クエリはこのクライアントのデータには適用されません。
     fields_level: レベル
     fields_level_description: レベル説明
     fields_level_name: レベル名
@@ -866,6 +886,7 @@ ja:
     form_datasheet: データシート
     form_datasheet_columns: データシートの列
     form_end_date: 終了日
+    form_fields_to_display: 表示するフィールド
     form_include_all_datasheet_columns: すべてのデータシート列を含める
     form_name: 名称
     form_no_assessment_selected: 評価はまだ追加されていません。「追加」をクリックして開始します。
@@ -890,8 +911,11 @@ ja:
     generate_transcription: 文字起こしを生成する
     generated_at_time: "%{time}で生成"
     generated_value: 生成された価値
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI はクライアントによって無効化されています
     global_skills: グローバル・スキル
     global_skills_disabled_by_client: グローバルスキルがクライアントによって無効になっている
+    go_back: 戻る
     grant_type_label: 助成金の種類
     grant_type_name: oauth_grant_type
     graphic: グラフィック
@@ -906,6 +930,7 @@ ja:
     header_logout_title: 本当にログアウトしたいですか?
     hide_all: すべて隠す
     hide_middle_scores: 中間スコアを非表示にする
+    hide_participant_video: 参加者の動画を非表示にする
     high: 高い
     hogan: ホーガン
     hogan_assessment: ホーガン・アセスメント
@@ -1251,6 +1276,7 @@ ja:
     key_id: キーID
     keywords: キーワード
     keywords_placeholder: キーワードをコンマで区切って入力してください。
+    language: 言語
     language_id: 言語ID
     last_name_required: 姓は必須
     lead_assessment: 鉛アセスメント
@@ -1488,6 +1514,8 @@ ja:
     owner_resource_norm: 規範
     owner_resource_report: 報告
     owner_resource_report_bundle: レポートバンドル
+    page_load_failed: このページは読み込めませんでした。
+    page_load_failed_hint: アプリがアップデートされた可能性があります。ページを再読み込みして続行してください。
     parsed_dependencies_help: 成果物結果の生成に AI アシスタントによって使用されるユーザーの解析された依存関係
     parsed_dependencies_title: 解析された依存関係
     parsed_dependencies_view: 解析された依存関係の表示
@@ -2180,6 +2208,38 @@ ja:
     raw_score: 素点
     reason_for_changes: 変更の理由
     recents: 最近の投稿
+    record_history_changes: 変更
+    record_history_changes_in_request: このリクエストの変更点
+    record_history_date_range_invalid: 終了日は開始日以降でなければなりません。
+    record_history_date_range_required: 日付範囲を選択してください。
+    record_history_date_range_too_large: 日付範囲は%{days}日を超えることはできません。検索条件を絞り込んでください。
+    record_history_filter_actor: 俳優のメールアドレスで絞り込む
+    record_history_filter_field: 変更されたフィールドでフィルタリング
+    record_history_filter_type: レコードタイプでフィルタリング
+    record_history_id_required: レコードIDを入力してください
+    record_history_include_related: 関連レコードを含める
+    record_history_last_30_days: 過去30日間
+    record_history_last_7_days: 過去7日間
+    record_history_no_results: このレコードの変更履歴は見つかりませんでした。
+    record_history_no_results_for: 変更は見つかりませんでした
+    record_history_records_changed: 記録が変更されました
+    record_history_related_tag: 関連している
+    record_history_request_banner: リクエストのすべての変更を表示
+    record_history_request_label: リクエスト：
+    record_history_request_or_record_required: リクエストのUUIDを入力するか、レコードの種類とIDを選択してください。
+    record_history_request_uuid: リクエストUUID
+    record_history_request_uuid_placeholder: リクエストUUIDを入力してください
+    record_history_revision_failed: このバージョンのレコード状態の読み込みに失敗しました。
+    record_history_search_hint: 変更履歴を追跡するには、リクエストのUUIDを入力するか、レコードの種類とレコードIDを選択してください。
+    record_history_select_type: レコードの種類を選択してください
+    record_history_state_at_version: バージョンでの状態
+    record_history_system: システム
+    record_history_title: レコードの変更履歴
+    record_history_type_required: レコードの種類を選択してください
+    record_history_version: バージョン
+    record_history_view_audit_log: 監査ログで表示
+    record_history_view_full: 全履歴を表示
+    record_history_view_request: リクエストを表示
     record_id: レコードID
     recordings: 録音
     reflection_questions: 振り返りの質問
@@ -2295,6 +2355,7 @@ ja:
     report_no_evaluations: "%{user}の報告書は入手できず、評価は受け取っていません。"
     report_not_generated: "%{user}のレポートは可用性条件を満たしていますが、まだ生成されていません。まずレポートを作成してください。"
     report_on_hold: "%{user}のレポートは現在保留中です"
+    report_owner: 所有者
     report_pdf_status: レポートのPDFステータス
     report_review_abort_qc: QCを中止する
     report_review_approve: 承認
@@ -2315,10 +2376,12 @@ ja:
     report_types:
       active_clients_projects: 現在進行中のクライアントおよびプロジェクト
       campaign_factor_scores: キャンペーン要因スコア
+      campaign_user_creation: キャンペーンユーザー作成
       client_assessment_counts: クライアント評価の重要性
       hogan_usage_report: Hoganアセスメントの利用状況
       json_data_report: JSONデータレポート
       pearson_usage_report: ピアソン・アセスメントの利用状況
+      proctoring_sessions: 試験監督セッション
       report_usage_summary: レポートの利用状況の概要
       saville_usage_report: サヴィル・アセスメントの利用方法
       user_access_review: ユーザーアクセス審査
@@ -2378,6 +2441,17 @@ ja:
     role_project_admin: プロジェクト管理者
     role_superadmin: スーパー管理者
     run: 実行
+    runtime_configuration_invalid_json_object: runtime_configurationは有効なJSONオブジェクトである必要があります。
+    runtime_configuration_invalid_parameter: 実行時に更新可能なパラメータではありません
+    runtime_parameter_date_range_required: 開始日と終了日の両方を選択してください
+    runtime_parameter_editable_section_title: 日付範囲
+    runtime_parameter_filter_column: フィルター
+    runtime_parameter_locked_section_title: 含まれるフィルター
+    runtime_parameter_modal_subtitle: 詳細を確認し、必要に応じて日付範囲を更新してください。
+    runtime_parameter_modal_title: 実行レポート
+    runtime_parameter_not_set: 提供されていません
+    runtime_parameter_submit_button: 今すぐ実行
+    runtime_parameter_value_column: 価値
     saml_idp_certificate_available: 利用可能(クリックしてコピー)
     saml_idp_certificate_label: 証書
     saml_idp_entity_id_label: 事業体ID/発行者
@@ -2512,6 +2586,7 @@ ja:
     scheduling_columns_start_time: 日時
     scheduling_columns_subject: 課題
     scheduling_columns_title: タイトル
+    scheduling_columns_video_hidden_for_privacy: 候補者のプライバシー保護のため、動画は非公開となっています。
     scheduling_columns_view_recording: 録画の表示
     scheduling_errors_assessor_already_assigned: 別の評価または評価者を選択してください。
     scheduling_errors_date_required: 日付を選択してください
@@ -2604,6 +2679,12 @@ ja:
     score: スコア
     score_approval_not_allowed_to_approve: このスコアを承認することはできません。
     score_approval_not_allowed_to_discard: このスコアを破棄することはできません。
+    score_approval_reset: 承認をリセット
+    score_approval_reset_description: これにより、承認状況は保留状態に戻ります。スコアは変更されません。この操作は元に戻すことはできません。
+    score_approval_reset_not_allowed: このスコア承認は、現状ではリセットできません。
+    score_approval_reset_recompute_description: これにより承認がリセットされ、ユーザーの結果からAIスコアが削除され、生成されたレポートがすべて削除されます。この操作は元に戻せません。
+    score_approval_reset_success: スコア承認がリセットされました。
+    score_approval_reset_title: スコア承認をリセットしますか？
     score_definition_placeholder: このスコアレベルの定義を入力してください
     score_definitions: スコアの定義
     score_max: スコア・マックス
@@ -2835,6 +2916,7 @@ ja:
     sheets_tabs_settings: 設定
     show_all: すべて表示
     show_all_assessment_responses: すべての評価回答を表示
+    show_form_field_titles: フォームフィールドのタイトルを表示する
     show_middle_scores: "%{count}のスコアをさらに表示（任意）..."
     show_original: 原文を表示
     show_submenu: サブメニューを表示する
@@ -2957,7 +3039,14 @@ ja:
     smtp_settings_user_name: ユーザー名
     specialty_questions: 専門的な質問
     sso_email_mismatch: IDプロバイダーでは別のアカウントでログインしています。IDプロバイダーからログアウトしてから、もう一度お試しください。
+    sso_enforce_for: SSOを強制する
+    sso_enforce_for_all: すべてのユーザー
+    sso_enforce_for_none: なし
+    sso_enforce_for_specific_domains: 特定の領域
     sso_enforced: SSOを適用する
+    sso_enforced_domains: 強制ドメイン
+    sso_enforced_domains_hint: 例：se.com（完全一致）または*.se.com（サブドメインのみ）
+    sso_enforced_domains_placeholder: ドメインを入力してEnterキーを押してください。
     sso_label: SSO
     sso_not_enabled: このクライアントではSSOが有効になっていません
     sso_settings: SSO設定
@@ -3072,6 +3161,7 @@ ja:
     success_title: アセスメントセンター設置
     success_update: デザイン設定が正常に保存されました
     suitability_id: 適合性ID
+    superadmin_tenant_scoping: スーパー管理者
     superadmin_use_root_domain: スーパー管理者はメインドメイン経由でサインインする必要があります
     switch_client: Switchクライアント
     system_prompt: システムプロンプト
@@ -3092,12 +3182,38 @@ ja:
     taxonomy_title: スキル分類法
     template_and_campaign_required: テンプレートとキャンペーンIDの両方をご提供ください
     template_render_failed: テンプレートのレンダリングに失敗しました
+    tenant_repair_confirm_message: "%{model} の tenant_id を %{new_tenant} に設定しますか？ #%{id}?"
+    tenant_repair_confirm_message_null: "%{model} の tenant_id を null に設定しますか？ #%{id}?"
+    tenant_repair_confirm_title: テナント情報の更新を確認する
+    tenant_repair_correct: 正しい
+    tenant_repair_current_tenant: 現在のテナント
+    tenant_repair_find_record: レコードを検索
+    tenant_repair_global_tenant: グローバル
+    tenant_repair_invalid_model: 無効またはテナントに利用できないモデルタイプ
+    tenant_repair_invalid_record_id: 有効なレコードIDを入力してください
+    tenant_repair_invalid_tenant_id: 有効なテナントIDを入力してください。空欄のままにするとnullになります。
+    tenant_repair_model_label: モデル
+    tenant_repair_model_placeholder: 検索するには入力してください...
+    tenant_repair_moved_from: 'テナントが変更されました:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: 新しいテナントID
+    tenant_repair_preview_title: レコードプレビュー
+    tenant_repair_request_failed: リクエストが失敗しました
+    tenant_repair_resolved_tenant: 解決済みテナント
+    tenant_repair_success: テナントの更新が正常に完了しました。
+    tenant_repair_title: テナント矯正
+    tenant_repair_update: アップデート
+    tenant_repair_will_set_null: tenant_idをnullに設定します
+    tenant_repair_will_set_value: tenant_idを%{value}に設定します
     test_generate: テスト生成
     test_render: テストレンダリング
     test_render_tooltip: プロンプトテンプレートをキャンペーンデータでテストし、AIアシスタントに送られる内容を確認しましょう。
     text_danger: テキスト（危険）
     text_success: テキスト（成功）
     text_warning: テキスト(警告)
+    themes:
+      marsh-dark: マーシュダーク
+      marsh-light: マーシュライト
     this_field_is_required: この項目は必須です
     threesixity_advance_settings_campaign_template: キャンペーンテンプレート
     threesixity_advance_settings_factors: 要因

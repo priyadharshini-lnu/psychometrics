@@ -890,6 +890,7 @@ bg:
         export_campaign_datasheet: Технически спецификации на кампанията за износ
         export_campaign_factors: Фактори на експортната кампания
         export_campaign_scorings: Експортиране на оценки на кампании
+        export_campaign_translations: Експортиране на преводи на кампании
         export_dashboard_as_file: Експортиране на табло като файл
         export_development_action_translations: Преводи за развитие на износа
         export_development_actions: Действия за развитие на износа
@@ -917,6 +918,7 @@ bg:
         import_assessors: Оценители на вноса
         import_campaign_ai_artifacts: Артефакти от AI за Import Campaign
         import_campaign_factors: Импортиране на фактори на кампанията
+        import_campaign_translations: Импортиране на преводи на кампании
         import_client_assessors: Импортиране на оценители на клиенти
         import_datasheet: Лист с данни за импортиране
         import_development_action_translations: Импортиране на преводи за действие за разработка
@@ -958,6 +960,7 @@ bg:
         super_admin_assessment_raw_result_export: Експортиране на необработени резултати от Super Admin
         super_admin_datasheet_export: Експортиране на лист с данни на Super Admin
         super_admin_external_assessment_export: Експортиране на външно оценяване на супер администратор
+        superadmin_record_change_history: История на промените в записа
         threesixty_campaign_export_completion_status: Състояние на завършване на експорта на Threesixty
         threesixty_campaign_export_scores: Експортиране на резултати от кампании Threesixty
         workshop_status_export: Експортиране на състоянието на центъра за оценяване
@@ -2138,6 +2141,7 @@ bg:
       max_generation_limit: Максималният лимит за генериране е надвишен, свържете се с вашата администрация.
     assessments:
       timed_out: Няма да можете да се явите на теста %{assessment_name}, тъй като е изтекъл.
+    csrf_retry: Моля, опитайте отново
     equal_to_current_password: трябва да е различна от текущата парола.
     equal_to_email: трябва да е различен от имейла.
     error: Грешка

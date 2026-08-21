@@ -484,6 +484,26 @@ th:
           modal_title: การตั้งค่าการให้คะแนนการอนุมัติ
           remove_modal_success: 'การตั้งค่าการอนุมัติสำหรับรหัสการประเมินผล: %{assessmentId} ถูก삭제สำเร็จ'
           remove_modal_text: 'คุณแน่ใจหรือไม่ว่าต้องการลบการตั้งค่านี้สำหรับรหัสการประเมิน: %{assessmentId}?'
+      bulk_import_translations:
+        details: แม่แบบการแปลแคมเปญ
+        download_template: ดาวน์โหลดเทมเพลต
+        errors:
+          blank_campaign_id: 'แถว %{row}: รหัสแคมเปญต้องไม่ว่างเปล่า'
+          campaign_not_found: 'แถว %{row}: ไม่พบแคมเปญ %{id} ในโครงการนี้'
+          generic: เกิดข้อผิดพลาดบางอย่าง โปรดลองใหม่อีกครั้ง
+          invalid_csv_format: 'รูปแบบไฟล์ CSV ไม่ถูกต้อง: %{message}'
+          invalid_locales: 'คอลัมน์ภาษาไม่ถูกต้อง: %{locales}'
+          missing_required_columns: 'คอลัมน์ที่จำเป็นหายไป: %{columns}'
+          must_be_csv: ไฟล์ต้องเป็นไฟล์ .csv
+          save_failed: 'ไม่สามารถบันทึกการแปลแคมเปญ %{id} สำหรับ %{locale} ได้: %{message}'
+        file_label: ไฟล์การแปล
+        import_started: กำลังนำเข้าคำแปล โปรดตรวจสอบความคืบหน้าในส่วนการแจ้งเตือน
+        instructions_intro: ดาวน์โหลดเทมเพลต CSV อัปเดตชื่อแคมเปญในคอลัมน์ภาษาใดก็ได้ที่คุณต้องการ จากนั้นอัปโหลดไฟล์ที่แก้ไขเสร็จแล้ว
+        instructions_title: คำแนะนำ
+        menu_label: นำเข้าคำแปล
+        template_started: กำลังส่งออกเทมเพลต โปรดตรวจสอบความคืบหน้าในการแจ้งเตือน
+        title: นำเข้าคำแปลชื่อแคมเปญ
+        upload_file: อัปโหลดไฟล์
       validations:
         dates:
           end: ต้องอยู่หลังวันที่เริ่มต้น

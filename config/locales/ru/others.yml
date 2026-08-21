@@ -890,6 +890,7 @@ ru:
         export_campaign_datasheet: Техническое описание экспортной кампании
         export_campaign_factors: Факторы экспортной кампании
         export_campaign_scorings: Оценки экспортных кампаний
+        export_campaign_translations: Экспорт переводов рекламных кампаний
         export_dashboard_as_file: Экспорт панели инструментов в файл
         export_development_action_translations: Экспорт Развитие Действия Переводы
         export_development_actions: Меры по развитию экспорта
@@ -917,6 +918,7 @@ ru:
         import_assessors: Эксперты по импорту
         import_campaign_ai_artifacts: Импорт артефактов искусственного интеллекта кампании
         import_campaign_factors: Импорт факторов кампании
+        import_campaign_translations: Импорт переводов кампаний
         import_client_assessors: Импорт оценщиков клиентов
         import_datasheet: Импорт технического паспорта
         import_development_action_translations: Импорт переводов действий по развитию
@@ -958,6 +960,7 @@ ru:
         super_admin_assessment_raw_result_export: Экспорт необработанных результатов супер-администратором
         super_admin_datasheet_export: Экспорт таблицы данных супер-администратора
         super_admin_external_assessment_export: Экспорт внешней оценки супер-администратора
+        superadmin_record_change_history: История изменений записей
         threesixty_campaign_export_completion_status: Статус завершения экспорта кампании Threesixty
         threesixty_campaign_export_scores: Результаты кампании Threesixty Экспорт
         workshop_status_export: Экспорт статуса центра оценки
@@ -2150,6 +2153,7 @@ ru:
       max_generation_limit: Превышен максимальный лимит генерации, обратитесь к администратору.
     assessments:
       timed_out: Вы не сможете пройти оценку «%{assessment_name}», так как истекло время ожидания.
+    csrf_retry: Пожалуйста, попробуйте еще раз.
     equal_to_current_password: должен отличаться от текущего пароля.
     equal_to_email: должен отличаться от адреса электронной почты.
     error: Ошибка

@@ -484,6 +484,26 @@ ko:
           modal_title: 점수 승인 설정
           remove_modal_success: '평가 ID: %{assessmentId}에 대한 승인 설정이 성공적으로 삭제되었습니다.'
           remove_modal_text: '평가 ID: %{assessmentId}에 대한 이 설정을 삭제하시겠습니까?'
+      bulk_import_translations:
+        details: 캠페인 번역 템플릿
+        download_template: 템플릿 다운로드
+        errors:
+          blank_campaign_id: '행 %{row}: 캠페인 ID는 비워둘 수 없습니다.'
+          campaign_not_found: '행 %{row}: 이 프로젝트에서 캠페인 %{id}을 찾을 수 없습니다.'
+          generic: 오류가 발생했습니다. 다시 시도해 주세요.
+          invalid_csv_format: '잘못된 CSV 형식: %{message}'
+          invalid_locales: '잘못된 언어 열: %{locales}'
+          missing_required_columns: '필수 열이 누락되었습니다: %{columns}'
+          must_be_csv: 파일은 .csv 파일이어야 합니다.
+          save_failed: '캠페인 %{id}의 %{locale}에 대한 번역을 저장할 수 없습니다: %{message}'
+        file_label: 번역 파일
+        import_started: 번역 가져오기가 진행 중입니다. 알림에서 진행 상황을 확인하세요.
+        instructions_intro: CSV 템플릿을 다운로드하고 원하는 언어 열의 캠페인 이름을 업데이트한 다음 완성된 파일을 업로드하세요.
+        instructions_title: 지침
+        menu_label: 번역 가져오기
+        template_started: 템플릿 내보내기가 진행 중입니다. 알림에서 진행 상황을 확인하세요.
+        title: 캠페인 이름 번역 가져오기
+        upload_file: 파일 업로드
       validations:
         dates:
           end: 시작일 이후여야 합니다

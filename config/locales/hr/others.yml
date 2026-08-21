@@ -890,6 +890,7 @@ hr:
         export_campaign_datasheet: Izvezi podatkovni list kampanje
         export_campaign_factors: Čimbenici izvozne kampanje
         export_campaign_scorings: Izvozne kampanje
+        export_campaign_translations: Izvoz prijevoda kampanje
         export_dashboard_as_file: Izvezi nadzornu ploču kao datoteku
         export_development_action_translations: Izvoz Razvojne akcije Prijevodi
         export_development_actions: Izvozne razvojne akcije
@@ -917,6 +918,7 @@ hr:
         import_assessors: Procjenitelji uvoza
         import_campaign_ai_artifacts: AI artefakti kampanje uvoza
         import_campaign_factors: Faktori uvozne kampanje
+        import_campaign_translations: Uvoz prijevoda kampanje
         import_client_assessors: Uvezi procjenitelje klijenata
         import_datasheet: Uvoz podatkovne tablice
         import_development_action_translations: Uvoz Prijevodi razvojnih radnji
@@ -958,6 +960,7 @@ hr:
         super_admin_assessment_raw_result_export: Izvoz neobrađenih rezultata Super Admin
         super_admin_datasheet_export: Izvoz podatkovne tablice Super Admin
         super_admin_external_assessment_export: Izvoz vanjske procjene superadministratora
+        superadmin_record_change_history: Povijest promjena zapisa
         threesixty_campaign_export_completion_status: Status dovršetka izvoza kampanje Threesixty
         threesixty_campaign_export_scores: Izvoz rezultata kampanje Threesixty
         workshop_status_export: Izvoz statusa centra za procjenu
@@ -2138,6 +2141,7 @@ hr:
       max_generation_limit: Prekoračeno je maksimalno ograničenje generacije, obratite se svojoj administraciji.
     assessments:
       timed_out: Nećete moći pristupiti procjeni %{assessment_name} jer Vam je isteklo vrijeme.
+    csrf_retry: Pokušajte ponovno
     equal_to_current_password: mora biti drugačija od trenutne lozinke.
     equal_to_email: mora biti drugačija od e-pošte.
     error: Pogreška

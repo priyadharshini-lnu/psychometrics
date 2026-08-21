@@ -496,6 +496,26 @@ hi:
           modal_title: स्कोरिंग अनुमोदन सेटिंग्स
           remove_modal_success: 'मूल्यांकन आईडी के लिए अनुमोदन सेटिंग: %{assessmentId} सफलतापूर्वक हटा दी गई'
           remove_modal_text: 'क्या आप सुनिश्चित हैं कि आप मूल्यांकन आईडी: %{assessmentId} के लिए इस सेटिंग को हटाना चाहते हैं?'
+      bulk_import_translations:
+        details: अभियान अनुवाद टेम्पलेट
+        download_template: टेम्पलेट डाउनलोड करें
+        errors:
+          blank_campaign_id: 'पंक्ति %{row}: अभियान आईडी खाली नहीं हो सकती'
+          campaign_not_found: 'पंक्ति %{row}: इस परियोजना में अभियान %{id} नहीं मिला'
+          generic: कुछ गड़बड़ हुई है। कृपया दोबारा प्रयास करें।
+          invalid_csv_format: 'अमान्य CSV प्रारूप: %{message}'
+          invalid_locales: 'अमान्य भाषा स्तंभ: %{locales}'
+          missing_required_columns: 'आवश्यक कॉलम गायब हैं: %{columns}'
+          must_be_csv: फ़ाइल .csv फ़ाइल होनी चाहिए
+          save_failed: "%{locale} के लिए अभियान %{id} का अनुवाद सहेजा नहीं जा सका: %{message}"
+        file_label: अनुवाद फ़ाइल
+        import_started: अनुवाद आयात प्रक्रिया जारी है। कृपया सूचनाओं में प्रगति की जाँच करें।
+        instructions_intro: सीएसवी टेम्पलेट डाउनलोड करें, अपनी इच्छानुसार किसी भी भाषा के कॉलम में अभियान के नाम अपडेट करें, फिर पूरी की गई फ़ाइल अपलोड करें।
+        instructions_title: निर्देश
+        menu_label: अनुवाद आयात करें
+        template_started: टेम्प्लेट का निर्यात जारी है। कृपया सूचनाओं में प्रगति की जाँच करें।
+        title: आयात अभियान नाम अनुवाद
+        upload_file: फ़ाइल अपलोड करें
       validations:
         dates:
           end: शुरुआत की तारीख के बाद होना चाहिए

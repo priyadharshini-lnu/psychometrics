@@ -55,6 +55,7 @@ pt:
     copied_successfully: Copiado com sucesso
     copied_to_clipboard: Copiado para a área de transferência
     copy: Copiar
+    copyright: "© %{year} %{display_name}. Todos os direitos reservados."
     create: Criar
     created_at: Criado em
     created_by: Criado por
@@ -181,6 +182,29 @@ pt:
     remove: Remover
     removed: Removido
     replace: Substituir
+    reports:
+      ai_rationale_evidence:
+        all_factors: Todos os fatores
+        factor_label: Fatores
+        hide_evidence: Ocultar provas
+        hide_rationale: Ocultar justificativa
+        no_data: Não há justificativa de IA nem dados que a comprovem para a questão selecionada.
+        no_question_selected: Selecione uma pergunta para exibir a justificativa e as evidências da IA.
+        question_label: Pergunta
+        select_question: Selecione uma pergunta
+      ai_transcript:
+        no_data: Não há dados de transcrição disponíveis para a pergunta selecionada.
+        no_question_selected: Selecione uma pergunta para exibir a transcrição.
+        question_label: Pergunta
+        select_question: Selecione uma pergunta
+    reports_bar_gradient_direction: Direção do gradiente
+    reports_bar_gradient_direction_bottom_to_top: De baixo para cima
+    reports_bar_gradient_direction_left_to_right: Da esquerda para a direita
+    reports_bar_gradient_direction_right_to_left: Da direita para a esquerda
+    reports_bar_gradient_direction_top_to_bottom: De cima para baixo
+    reports_bar_gradient_enabled: Ativar gradiente
+    reports_bar_gradient_end_color: Cor final
+    reports_bar_gradient_start_color: Cor inicial
     reports_show_values_inside_bar: Mostrar valores dentro da barra
     reports_value_label_position: Posição da etiqueta de valor
     reports_value_label_position_center: Centro

@@ -484,6 +484,26 @@ ja:
           modal_title: スコア承認設定
           remove_modal_success: '評価ID: %{assessmentId} の承認設定が正常に削除されました'
           remove_modal_text: '評価ID: %{assessmentId} の設定を削除してもよろしいですか？'
+      bulk_import_translations:
+        details: キャンペーン翻訳テンプレート
+        download_template: テンプレートをダウンロード
+        errors:
+          blank_campaign_id: '行 %{row}: キャンペーンIDは空白にできません'
+          campaign_not_found: '行 %{row}: キャンペーン %{id} はこのプロジェクトで見つかりませんでした'
+          generic: エラーが発生しました。もう一度お試しください。
+          invalid_csv_format: '無効なCSV形式: %{message}'
+          invalid_locales: '無効な言語列: %{locales}'
+          missing_required_columns: '必須列が欠落しています: %{columns}'
+          must_be_csv: ファイルは.csvファイルである必要があります
+          save_failed: 'キャンペーン %{id} の %{locale} の翻訳を保存できませんでした: %{message}'
+        file_label: 翻訳ファイル
+        import_started: 翻訳インポート処理中です。進捗状況は通知でご確認ください。
+        instructions_intro: CSVテンプレートをダウンロードし、必要な言語の列でキャンペーン名を更新してから、完成したファイルをアップロードしてください。
+        instructions_title: 説明書
+        menu_label: 翻訳のインポート
+        template_started: テンプレートのエクスポート処理中です。進捗状況は通知でご確認ください。
+        title: キャンペーン名の翻訳をインポート
+        upload_file: ファイルをアップロード
       validations:
         dates:
           end: 開始日以降であること

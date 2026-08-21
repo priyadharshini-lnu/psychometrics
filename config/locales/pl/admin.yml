@@ -103,6 +103,7 @@ pl:
     ai_scoring_approval_stale_description: Zmiany w konfiguracji wprowadzone od ostatniego uruchomienia mogły wpłynąć na wynik. Przelicz wynik, aby zaktualizować go zgodnie z najnowszymi ustawieniami.
     ai_scoring_approval_stale_title: Wynik może być nieaktualny
     ai_scoring_approvals: Zatwierdzanie wyników AI
+    ai_scoring_errors_label: Błędy w punktacji AI
     ai_scoring_refresh_score: Odśwież wynik
     ai_scoring_refresh_score_confirm_description: Spowoduje to ponowne przeprowadzenie oceny AI dla tego testu przy użyciu najnowszej konfiguracji. Czy na pewno chcesz to zrobić?
     ai_scoring_refresh_score_confirm_title: Odświeżyć wyniki AI?
@@ -122,6 +123,12 @@ pl:
     alt_text_long: Przekracza maksymalny limit 100 znaków.
     api_keys: Klucze API
     api_keys_form_title: Klucz API
+    appearance: Wygląd
+    appearance_dark: Ciemny
+    appearance_dark_theme: Ciemny motyw
+    appearance_light: Światło
+    appearance_light_theme: Jasny motyw
+    appearance_system: System
     application: Zastosowanie
     application_add: Dodaj aplikację
     application_name: Nazwa aplikacji
@@ -131,7 +138,6 @@ pl:
     application_settings_at_least_one_url_required: Przed włączeniem białej listy adresów URL należy włączyć co najmniej jeden wpis adresu URL
     application_settings_confirm_delete_ip: Czy na pewno chcesz usunąć ten adres IP?
     application_settings_confirm_delete_url: Czy na pewno chcesz usunąć ten adres URL?
-    application_settings_edit_ip_address: Edytuj adres IP / zakres CIDR
     application_settings_enable_ip_whitelisting: Włącz białą listę adresów IP
     application_settings_enable_url_whitelisting: Włącz białą listę adresów URL
     application_settings_invalid_ip_format: Nieprawidłowy adres IP lub format CIDR
@@ -195,6 +201,8 @@ pl:
     assessor_add_subject_modal_subject: Przedmiot
     assessor_add_subject_modal_subject_placeholder: Szukaj tematu..
     assessor_add_subject_modal_title: Dodaj temat
+    assessor_assessment_drawer_title: Szczegóły oceny
+    assessor_assessment_id: Identyfikator oceny oceniającego
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Wybierz ocenę
     assessor_assessment_name: Ocena asesora
     assessor_assessments: Oceny asesora
@@ -345,9 +353,15 @@ pl:
     campaign_assessment_modals_update_occupation_condition_set_select: Wybierz zestaw warunków dotyczących zawodu
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Zestaw warunków dotyczących zawodu został pomyślnie zaktualizowany
     campaign_assessment_modals_update_occupation_condition_set_title: Zaktualizuj zestaw warunków dotyczących zawodu
+    campaign_dashboard_instructions_label: Instrukcje dotyczące pulpitu kampanii
+    campaign_dashboard_instructions_save: Zapisz instrukcje
+    campaign_dashboard_instructions_save_error: Nie udało się zapisać instrukcji dotyczących pulpitu kampanii
+    campaign_dashboard_instructions_save_success: Instrukcje dotyczące pulpitu kampanii zostały pomyślnie zapisane
     campaign_factors: Czynniki kampanii
     campaign_id_placeholder: Na scenę wchodzi identyfikacja kampanii
     campaign_name: Nazwa kampanii
+    campaign_name_translations: Tłumaczenia nazw kampanii
+    campaign_name_translations_fetch_error: Błąd podczas pobierania tłumaczeń nazw kampanii
     campaign_report_generate_modal_subtitle: Wybierz wymagany język dla każdego raportu
     campaign_report_id: Numer raportu z kampanii
     campaign_results_export_details: Wyniki generowane przez artefakty sztucznej inteligencji kampanii
@@ -419,6 +433,7 @@ pl:
     category: Kategoria
     cell_save_msg: Prawidłowe zmiany są automatycznie zapisywane po opuszczeniu komórki po edycji.
     change_reason: Powód zmiany
+    change_report_dates_message: Czy chcesz zmienić zakres dat raportu?
     change_score: zmieniony wynik
     change_score_log: Dziennik zmian wyników
     characters: postacie
@@ -513,6 +528,7 @@ pl:
     created_successfully: Asystent AI został pomyślnie utworzony.
     current: Aktualny
     current_job_role: Aktualne stanowisko
+    current_locale: Aktualna lokalizacja
     custom_formula: Formuła niestandardowa
     custom_message_description: Ta wiadomość może zostać wysłana do każdej osoby biorącej udział w ocenie
     custom_message_name: Wiadomość niestandardowa
@@ -680,6 +696,7 @@ pl:
     disable_dp: Nie zezwalaj na dalsze przetwarzanie danych
     disable_proctoring: Wyłącz nadzór
     disable_report_download: Wyłącz pobieranie raportów
+    disable_transcript_download: Wyłącz pobieranie transkryptu
     disallow_lead_assessor_moderation: Zablokuj moderację głównego rzeczoznawcy
     disallow_lead_assessor_moderation_info: Wynik zostanie obliczony automatycznie na podstawie wszystkich przesłanych formularzy rzeczoznawców, a główny rzeczoznawca nie może go zmienić na ekranie moderacji
     discard_all_questions: Resetuj wszystkie pytania
@@ -831,10 +848,13 @@ pl:
     feature_flags_ai_group: Funkcje AI
     feature_flags_communication_group: Komunikacja
     feature_flags_platform_group: Funkcje platformy
+    feature_flags_superadmin_group: Zakres najemcy
+    feature_glint_ui_description: Zapewnij uczestnikom doświadczenie dzięki systemowi projektowania Glint
     feature_global_skills_description: Uzyskaj dostęp do globalnej biblioteki umiejętności do celów oceny
     feature_idp_description: Włącz indywidualne planowanie rozwoju dla uczestników
     feature_not_available: Ta funkcja jest niedostępna
     feature_sms_notification_description: Włącz powiadomienia SMS dotyczące zaproszeń i przypomnień dotyczących kampanii
+    feature_superadmin_tenant_scoping_description: Po wyłączeniu zapytania superadministratora nie będą obejmować danych tego klienta
     fields_level: Poziom
     fields_level_description: Opis poziomu
     fields_level_name: Nazwa poziomu
@@ -866,6 +886,7 @@ pl:
     form_datasheet: Arkusz danych
     form_datasheet_columns: Kolumny arkusza danych
     form_end_date: Data zakończenia
+    form_fields_to_display: Pola do wyświetlenia
     form_include_all_datasheet_columns: Uwzględnij wszystkie kolumny arkusza danych
     form_name: Nazwa
     form_no_assessment_selected: Nie dodano jeszcze żadnych ocen. Kliknij "Dodaj", aby rozpocząć.
@@ -890,8 +911,11 @@ pl:
     generate_transcription: Wygeneruj transkrypcję
     generated_at_time: Wygenerowane w %{time}
     generated_value: Wygenerowana wartość
+    glint_ui: Interfejs użytkownika Glint
+    glint_ui_disabled_by_client: Interfejs użytkownika Glint jest wyłączony przez klienta
     global_skills: Umiejętności globalne
     global_skills_disabled_by_client: Umiejętności globalne są wyłączone przez klienta
+    go_back: Z powrotem
     grant_type_label: Rodzaj dotacji
     grant_type_name: oauth_grant_type
     graphic: Grafika
@@ -906,6 +930,7 @@ pl:
     header_logout_title: Jesteś pewien, że chcesz się wylogować?
     hide_all: Ukryj wszystko
     hide_middle_scores: Ukryj wyniki średnie
+    hide_participant_video: Ukryj wideo uczestnika
     high: Wysoki
     hogan: Hogan
     hogan_assessment: Ocena Hogana
@@ -1251,6 +1276,7 @@ pl:
     key_id: Identyfikator klucza
     keywords: Słowa kluczowe
     keywords_placeholder: Wpisz słowa kluczowe oddzielone przecinkami.
+    language: Język
     language_id: Identyfikator języka
     last_name_required: Nazwisko jest wymagane
     lead_assessment: Ocena potencjalnego klienta
@@ -1488,6 +1514,8 @@ pl:
     owner_resource_norm: norma
     owner_resource_report: raport
     owner_resource_report_bundle: pakiet raportów
+    page_load_failed: Nie udało się załadować tej strony.
+    page_load_failed_hint: Aplikacja mogła zostać zaktualizowana — odśwież aplikację, aby kontynuować.
     parsed_dependencies_help: Przeanalizowane zależności dla użytkownika używanego przez Asystenta AI do generowania wyników artefaktów
     parsed_dependencies_title: Przeanalizowane zależności
     parsed_dependencies_view: Wyświetlanie przeanalizowanych zależności
@@ -2180,6 +2208,38 @@ pl:
     raw_score: Wynik surowy
     reason_for_changes: Powód zmian
     recents: Ostatnio dodane
+    record_history_changes: zmiany
+    record_history_changes_in_request: zmiany w tym żądaniu
+    record_history_date_range_invalid: Data zakończenia musi przypadać na datę rozpoczęcia lub późniejszą.
+    record_history_date_range_required: Proszę wybrać zakres dat.
+    record_history_date_range_too_large: Zakres dat nie może przekraczać %{days} dni. Proszę zawęzić wyszukiwanie.
+    record_history_filter_actor: Filtruj według adresu e-mail aktora
+    record_history_filter_field: Filtruj według zmienionego pola
+    record_history_filter_type: Filtruj według typu rekordu
+    record_history_id_required: Proszę podać identyfikator rekordu
+    record_history_include_related: Uwzględnij powiązane rekordy
+    record_history_last_30_days: Ostatnie 30 dni
+    record_history_last_7_days: Ostatnie 7 dni
+    record_history_no_results: Nie znaleziono historii zmian dla tego rekordu.
+    record_history_no_results_for: Nie znaleziono zmian dla
+    record_history_records_changed: zmieniono rekordy
+    record_history_related_tag: Powiązany
+    record_history_request_banner: Wyświetlanie wszystkich zmian w żądaniu
+    record_history_request_label: 'Wniosek:'
+    record_history_request_or_record_required: Wprowadź identyfikator UUID żądania lub wybierz typ rekordu i identyfikator.
+    record_history_request_uuid: Żądanie UUID
+    record_history_request_uuid_placeholder: Wprowadź identyfikator UUID żądania
+    record_history_revision_failed: Nie udało się załadować stanu rekordu dla tej wersji.
+    record_history_search_hint: Wprowadź identyfikator UUID żądania lub wybierz typ rekordu i identyfikator rekordu, aby prześledzić historię zmian.
+    record_history_select_type: Wybierz typ rekordu
+    record_history_state_at_version: Stan w wersji
+    record_history_system: System
+    record_history_title: Historia zmian rekordu
+    record_history_type_required: Proszę wybrać typ rekordu
+    record_history_version: Wersja
+    record_history_view_audit_log: Wyświetl w dziennikach audytu
+    record_history_view_full: Zobacz pełną historię
+    record_history_view_request: Wyświetl prośbę
     record_id: Identyfikator rekordu
     recordings: Nagrania
     reflection_questions: Pytania do refleksji
@@ -2295,6 +2355,7 @@ pl:
     report_no_evaluations: Raport %{user} nie jest dostępny – nie otrzymano żadnych ocen.
     report_not_generated: Raport za %{user} spełnia warunki dostępności, ale nie został jeszcze wygenerowany. Proszę najpierw wygenerować raport.
     report_on_hold: Raport %{user} jest obecnie wstrzymany
+    report_owner: Właściciel
     report_pdf_status: Raport o stanie pliku PDF
     report_review_abort_qc: Przerwij kontrolę jakości
     report_review_approve: Zatwierdzić
@@ -2315,10 +2376,12 @@ pl:
     report_types:
       active_clients_projects: Aktywni klienci i projekty
       campaign_factor_scores: Wyniki czynników kampanii
+      campaign_user_creation: Tworzenie użytkownika kampanii
       client_assessment_counts: Ważna jest ocena klienta
       hogan_usage_report: Wykorzystanie narzędzia Hogan Assessment
       json_data_report: Raport danych JSON
       pearson_usage_report: Wykorzystanie narzędzi diagnostycznych firmy Pearson
+      proctoring_sessions: Sesje nadzorowane
       report_usage_summary: Podsumowanie wykorzystania raportu
       saville_usage_report: Wykorzystanie narzędzia Saville Assessment
       user_access_review: Przegląd uprawnień użytkowników
@@ -2378,6 +2441,17 @@ pl:
     role_project_admin: Administrator projektu
     role_superadmin: Superadministrator
     run: Uruchom
+    runtime_configuration_invalid_json_object: runtime_configuration musi być prawidłowym obiektem JSON
+    runtime_configuration_invalid_parameter: nie jest parametrem, który można aktualizować w czasie wykonywania
+    runtime_parameter_date_range_required: Proszę wybrać datę rozpoczęcia i datę zakończenia
+    runtime_parameter_editable_section_title: Zakres dat
+    runtime_parameter_filter_column: Filtr
+    runtime_parameter_locked_section_title: Dołączone filtry
+    runtime_parameter_modal_subtitle: Przejrzyj szczegóły i w razie potrzeby zaktualizuj zakres dat.
+    runtime_parameter_modal_title: Uruchom raport
+    runtime_parameter_not_set: Nie podano
+    runtime_parameter_submit_button: Biegnij teraz
+    runtime_parameter_value_column: Wartość
     saml_idp_certificate_available: Dostępne (kliknij, aby skopiować)
     saml_idp_certificate_label: Certyfikat
     saml_idp_entity_id_label: Identyfikator podmiotu/Emitenta
@@ -2512,6 +2586,7 @@ pl:
     scheduling_columns_start_time: Data i godzina
     scheduling_columns_subject: Przedmiot
     scheduling_columns_title: Tytuł
+    scheduling_columns_video_hidden_for_privacy: Film jest ukryty ze względu na prywatność kandydata.
     scheduling_columns_view_recording: Wyświetl nagranie
     scheduling_errors_assessor_already_assigned: Asesor już przypisany do tej oceny. Proszę wybrać inną ocenę lub asesora.
     scheduling_errors_date_required: Proszę wybrać datę
@@ -2601,6 +2676,12 @@ pl:
     score: Wynik
     score_approval_not_allowed_to_approve: Nie wolno zatwierdzać tego wyniku.
     score_approval_not_allowed_to_discard: Nie wolno odrzucać tego wyniku.
+    score_approval_reset: Zresetuj zatwierdzenie
+    score_approval_reset_description: Spowoduje to, że zatwierdzenie zostanie przeniesione z powrotem do statusu „oczekujące”. Punktacja nie ulegnie zmianie. Tej czynności nie można cofnąć.
+    score_approval_reset_not_allowed: Tego zatwierdzenia wyniku nie można zresetować w jego obecnym stanie.
+    score_approval_reset_recompute_description: Spowoduje to zresetowanie zatwierdzenia, usunięcie wyników AI z wyników użytkownika i usunięcie wszystkich wygenerowanych raportów. Tej czynności nie można cofnąć.
+    score_approval_reset_success: Zatwierdzenie wyniku zostało zresetowane.
+    score_approval_reset_title: Zresetować zatwierdzenie wyniku?
     score_definition_placeholder: Wprowadź definicję dla tego poziomu punktacji.
     score_definitions: Definicje wyników
     score_max: Maksymalna liczba punktów
@@ -2832,6 +2913,7 @@ pl:
     sheets_tabs_settings: Ustawienia
     show_all: Pokaż wszystkie
     show_all_assessment_responses: Pokaż wszystkie odpowiedzi z oceny
+    show_form_field_titles: Pokaż tytuły pól formularza
     show_middle_scores: Pokaż więcej wyników dla „%{count}” (opcjonalnie)...
     show_original: Pokaż oryginał
     show_submenu: Pokaż podmenu
@@ -2949,7 +3031,14 @@ pl:
     smtp_settings_user_name: Nazwa użytkownika
     specialty_questions: Pytania specjalistyczne
     sso_email_mismatch: Jesteś zalogowany na innym koncie u dostawcy usług uwierzytelniających. Wyloguj się z serwisu dostawcy usług uwierzytelniających i spróbuj ponownie.
+    sso_enforce_for: Wymuś logowanie jednokrotne dla
+    sso_enforce_for_all: Wszyscy użytkownicy
+    sso_enforce_for_none: Nic
+    sso_enforce_for_specific_domains: Konkretne domeny
     sso_enforced: Wymuś logowanie jednokrotne (SSO)
+    sso_enforced_domains: Wymuszone domeny
+    sso_enforced_domains_hint: np. se.com (dokładne dopasowanie) lub *.se.com (tylko subdomeny)
+    sso_enforced_domains_placeholder: Wprowadź domenę(y) i naciśnij Enter
     sso_label: SSO
     sso_not_enabled: Dla tego klienta nie włączono funkcji SSO
     sso_settings: Ustawienia SSO
@@ -3064,6 +3153,7 @@ pl:
     success_title: Utworzone centra oceny
     success_update: Ustawienia projektu zostały pomyślnie zapisane
     suitability_id: Identyfikator zgodności
+    superadmin_tenant_scoping: Superadministrator
     superadmin_use_root_domain: Superadministratorzy muszą logować się za pośrednictwem domeny głównej
     switch_client: Klient Switch
     system_prompt: Monit systemowy
@@ -3084,12 +3174,38 @@ pl:
     taxonomy_title: Taksonomia umiejętności
     template_and_campaign_required: Prosimy o podanie zarówno szablonu, jak i identyfikatora kampanii
     template_render_failed: Nie udało się wyrenderować szablonu
+    tenant_repair_confirm_message: 'Ustawić tenant_id na %{new_tenant} na %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Ustawić tenant_id na null w %{model} #%{id}?'
+    tenant_repair_confirm_title: Potwierdź aktualizację najemcy
+    tenant_repair_correct: Prawidłowy
+    tenant_repair_current_tenant: Obecny najemca
+    tenant_repair_find_record: Znajdź rekord
+    tenant_repair_global_tenant: światowy
+    tenant_repair_invalid_model: Nieprawidłowy lub niemożliwy do wynajęcia typ modelu
+    tenant_repair_invalid_record_id: Wprowadź prawidłowy identyfikator rekordu
+    tenant_repair_invalid_tenant_id: Wprowadź prawidłowy, pozytywny identyfikator dzierżawcy lub pozostaw puste pole, aby zmienić je na null
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Wpisz, aby wyszukać...
+    tenant_repair_moved_from: 'zmiana najemcy:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Nowy identyfikator najemcy
+    tenant_repair_preview_title: Podgląd rekordu
+    tenant_repair_request_failed: Żądanie nie powiodło się
+    tenant_repair_resolved_tenant: Rozwiązany najemca
+    tenant_repair_success: Aktualizacja najemcy przebiegła pomyślnie.
+    tenant_repair_title: Korekta najemcy
+    tenant_repair_update: Aktualizacja
+    tenant_repair_will_set_null: Ustawi tenant_id na null
+    tenant_repair_will_set_value: Ustawi tenant_id na %{value}
     test_generate: Generowanie testowe
     test_render: Renderowanie testowe
     test_render_tooltip: Przetestuj szablon promptu z danymi kampanii, aby sprawdzić, co zostanie wysłane do asystenta AI.
     text_danger: Text(danger)
     text_success: Tekst (sukces)
     text_warning: Text(warning)
+    themes:
+      marsh-dark: Bagno Ciemności
+      marsh-light: Marsh Light
     this_field_is_required: To pole jest wymagane.
     threesixity_advance_settings_campaign_template: Szablon kampanii
     threesixity_advance_settings_factors: Czynników

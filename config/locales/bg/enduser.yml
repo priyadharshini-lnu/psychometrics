@@ -11,6 +11,7 @@ bg:
     ai_idp_retake_step_chat_hint_no_document: Можете да рестартирате чата, за да споделите повече подробности, а аз ще направя всичко възможно да ви помогна.
     ai_idp_summary_hint_no_document: С твоето позволение, ако кажеш да, мога да създам план за развитие за теб. Ако не, можете да рестартирате чата, за да споделите повече подробности.
     all_checks_must_pass: Всички проверки трябва да бъдат успешни, преди да продължите.
+    appearance: Външен вид
     approve_idp_plan: Одобри план
     assessment_misconfigured: Неправилна конфигурация на оценката
     assessment_timing_duration_minutes: "%{duration} мин."
@@ -52,16 +53,49 @@ bg:
     camera_test_step: Стъпка за тестване на видео и аудио
     campaign: Кампания
     campaign_check_status: 'Статус: %{status}'
+    card_action_retry: Опитай отново
+    card_action_review: Преглед
+    card_action_start: Старт
+    change_password_warning: 'Важно: Промяната на паролата ви ще ви откаже от профила.'
     chat_instructions: Инструкции за чата
     check: Провери
     check_video_recording: Моля, проверете видеото и аудиото, като възпроизведете записа.
     checking_browser_compatibility: Проверява се съвместимостта с браузъра...
     checking_latency: Проверява се латентността...
+    collapse_navigation: Свиване на навигацията
     complete_prework_message: Изпълнете всички предварителни задачи, за да започнете.
     could_not_reach_servers: Не успяхме да се свържем със сървърите ни, за да проверим скоростта на мрежата. Моля, проверете интернет връзката си и опитайте отново.
+    dashboard: Табло за управление
+    dashboard_active_programs: Активни програми
+    dashboard_begin_program: Стартиране на програмата
+    dashboard_continue_program: Продължи програмата
+    dashboard_days_left: Остават %{count} дни
+    dashboard_greeting_afternoon: Добър ден, %{name}.
+    dashboard_greeting_evening: Добър вечер, %{name}.
+    dashboard_greeting_eyebrow: Добре дошъл отново
+    dashboard_greeting_morning: Добро утро, %{name}.
+    dashboard_instructions: Може да са ви били възложени няколко задачи за изпълнение. Уверете се, че всички възложени задачи са изпълнени във всяка програма.
+    dashboard_reports_ready: Докладите са готови
+    dashboard_your_programs: Вашите програми
     day: ден
     day_plural: дни
     details: Подробности
+    details_back: Обратно
+    details_due: Дължим
+    details_group_locked_hint: Отключва се след завършване на '%{group}'.
+    details_intro_tab: Въведение
+    details_no_reports: Все още няма отчети
+    details_open_heading: Отворени упражнения
+    details_open_hint: Попълнете в произволен ред, със собствено темпо.
+    details_percent_done: "%{percent}% готово"
+    details_progress: Напредък
+    details_reports_ready: Вашите отчети са готови
+    details_reports_tab: Доклади
+    details_reserved: Резервирано
+    details_sequential_heading: Последователни упражнения
+    details_sequential_hint: Завършете по ред — всяко отключва следващото.
+    details_total: Общо
+    details_view_details: Вижте подробности
     development: Развитие
     direct_reportees: Преки докладвани
     download: Изтегли
@@ -108,6 +142,10 @@ bg:
     localstorage_fix_title: Локалното съхранение не е активирано във вашия браузър
     localstorage_not_enabled_detail: Локалното съхранение не е активирано във Вашия браузър. Моля, уверете се, че не сте в режим на частно сърфиране/инкогнито, тъй като localStorage често е деактивирано в тези режими.
     localstorage_support: LocalStorage е активиран
+    login_sign_in_btn: Вход
+    login_sign_up_link: Регистрация
+    login_welcome_description: Влезте с вашия Lighthouse акаунт
+    login_welcome_title: Добре дошли в Лайтхаус
     magic_link_interstitial_description: За вашата сигурност ви молим да потвърдите това влизане. Автоматизираните системи не могат да изпълнят тази стъпка.
     magic_link_interstitial_title: За да завършите влизането си, моля, натиснете бутона по-долу.
     max_word_limit: Трябва да бъде най-много %{max} думи
@@ -124,6 +162,7 @@ bg:
     minute: минута
     minute_plural: протоколи
     my_plan: Моят план
+    my_profile: Моят профил
     network: Мрежа
     network_check: Тест за скорост на интернет
     network_check_description: Проверяваме качеството на интернет връзката между нашите сървъри и вашето устройство.
@@ -135,6 +174,7 @@ bg:
     network_speed_meets_required_detail: Скоростта на вашия интернет отговаря на минималните изисквания за кампанията
     network_test_step: Етап на тестване на мрежата
     no_audio_detected: Не се открива звук. Моля, проверете дали микрофонът ви е свързан и работи правилно.
+    open_navigation: Отваряне на навигацията
     pass: Пропусни
     pause: Пауза
     pearson_timing_duration_minutes: С ограничено време – %{duration} минути за завършване
@@ -150,7 +190,13 @@ bg:
     proctored: Под наблюдение
     proctored_assessment_misconfigured_msg: Този тест се провежда под наблюдение, но липсва необходимата настройка за времето; моля, свържете се с вашия администратор.
     profile: Профил
+    profile_cancel: Отказ
     profile_details: Подробности
+    profile_edit: Редактиране
+    profile_other_information: Друга информация
+    profile_personal_information: Лична информация
+    profile_save: Запазване
+    profile_time: Време
     question_counter: Въпрос %{current} от %{total}
     reason_for_idp_plan_rejection: Причина за отказ на плана
     record: Регистър
@@ -167,9 +213,12 @@ bg:
     results: Резултат
     safari_proctoring_description: Изглежда, че използвате браузъра Safari, който може да има някои ограничения по отношение на активираните функции за проследяване в тази кампания. За да се възползвате от най-доброто преживяване, препоръчваме да използвате браузърите Chrome,Edge или Firefox.
     safari_proctoring_title: Засечен браузър Safari
+    scheduling: Планиране
     select_audio_device: Избор на аудиоустройство
     select_video_device: Изберете видеоустройство
     selected_count: Избран
+    sign_out: Изход
+    signup_sign_in_link: Вход
     skill_type: Тип умение
     speech_verification_error: Възникна грешка при проверката на речта ви. Моля, опитайте отново.
     speech_verification_failed: Това, което казахте, не съвпада с тестовата фраза. Моля, опитайте отново и произнесете фразата ясно.
@@ -177,6 +226,7 @@ bg:
     start_campaign_message_timed: Това е кампания с ограничено време, моля, натиснете бутона '%{buttonText}', за да започнете дейностите.
     start_readiness_check: Започнете проверка на готовността
     start_system_check: Започни проверка на системата
+    status_locked: Заключено
     stop: Спри
     subinstruction_audio: Работещ микрофон
     subinstruction_eight: Отделете достатъчно време, без да ви прекъсват, за да се извърши пълната оценка
@@ -228,6 +278,21 @@ bg:
     tasks: Задачи
     testing_download_speed: Проверява се скоростта на изтегляне...
     testing_upload_speed: Проверявам скоростта на качване...
+    theme_active: Активен
+    theme_change: Промяна на темата
+    theme_dark_theme: Тъмна тема
+    theme_ember: Ембър
+    theme_light_theme: Светла тема
+    theme_marsh: Блато
+    theme_mode_dark: Тъмно
+    theme_mode_light: Светлина
+    theme_mode_system: Система
+    theme_mode_title: Режим
+    theme_primer: Грунд
+    theme_primer_colorblind: Грунд за далтонисти
+    theme_primer_contrast: Грунд с висок контраст
+    theme_primer_dimmed: Грунд затъмнен
+    theme_title: Тема
     time_commitment: Време, което трябва да отделите
     timed_activity_instruction: Това е задача с ограничено време; след като стартирате сесията за наблюдение, ще имате <strong>%{time} минути</strong> да я завършите.
     troubleshooting_guide: Ръководство за отстраняване на неизправности

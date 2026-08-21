@@ -890,6 +890,7 @@ de:
         export_campaign_datasheet: Datenblatt zur Exportkampagne
         export_campaign_factors: Faktoren der Exportkampagne
         export_campaign_scorings: Kampagnenscorings exportieren
+        export_campaign_translations: Exportkampagnenübersetzungen
         export_dashboard_as_file: Dashboard als Datei exportieren
         export_development_action_translations: Exportentwicklung Aktion Übersetzungen
         export_development_actions: Maßnahmen zur Exportentwicklung
@@ -917,6 +918,7 @@ de:
         import_assessors: Prüfer importieren
         import_campaign_ai_artifacts: Import-Kampagnen-KI-Artefakte
         import_campaign_factors: Faktoren der Kampagne importieren
+        import_campaign_translations: Importkampagnenübersetzungen
         import_client_assessors: Importieren von Kundenprüfern
         import_datasheet: Datenblatt importieren
         import_development_action_translations: Entwicklung importieren Aktion Übersetzungen
@@ -958,6 +960,7 @@ de:
         super_admin_assessment_raw_result_export: Super Admin Rohergebnis-Export
         super_admin_datasheet_export: Super-Admin-Datenblatt-Export
         super_admin_external_assessment_export: Super Admin Externe Bewertung Export
+        superadmin_record_change_history: Änderungshistorie des Datensatzes
         threesixty_campaign_export_completion_status: Abschlussstatus der Threesixty-Kampagne Export
         threesixty_campaign_export_scores: Threesixty-Kampagne punktet beim Export
         workshop_status_export: Assessment Center Status Export
@@ -2125,6 +2128,7 @@ de:
       max_generation_limit: Maximales Erzeugungslimit überschritten, wenden Sie sich an Ihre Verwaltung.
     assessments:
       timed_out: Sie können an der Bewertung %{assessment_name} nicht mehr teilnehmen, da die Zeit abgelaufen ist.
+    csrf_retry: Bitte versuchen Sie es erneut.
     equal_to_current_password: muss sich vom aktuellen Passwort unterscheiden.
     equal_to_email: muss anders lauten als die E-Mail.
     error: Fehler

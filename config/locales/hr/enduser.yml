@@ -11,6 +11,7 @@ hr:
     ai_idp_retake_step_chat_hint_no_document: Možete ponovno pokrenuti chat da podijelite više detalja, a ja ću dati sve od sebe da vam pomognem.
     ai_idp_summary_hint_no_document: Uz vaše dopuštenje, ako kažete da, mogu vam napraviti plan razvoja. Ako ne, možete ponovno pokrenuti chat kako biste podijelili više detalja.
     all_checks_must_pass: Svi testovi moraju biti uspješni prije nego što možete nastaviti.
+    appearance: Izgled
     approve_idp_plan: Odobri plan
     assessment_misconfigured: Procjena je nepravilno konfigurirana
     assessment_timing_duration_minutes: "%{duration} min"
@@ -52,16 +53,49 @@ hr:
     camera_test_step: Korak za test videozapisa i zvuka
     campaign: Kampanja
     campaign_check_status: 'Status: %{status}'
+    card_action_retry: Pokušaj ponovno
+    card_action_review: Pregled
+    card_action_start: Start
+    change_password_warning: 'Važno: Promjenom lozinke odjavit ćete se.'
     chat_instructions: Upute za chat
     check: Provjeri
     check_video_recording: Molimo provjerite svoj video i audio reprodukcijom snimke.
     checking_browser_compatibility: Provjera kompatibilnosti preglednika...
     checking_latency: Provjerava latenciju...
+    collapse_navigation: Sažmi navigaciju
     complete_prework_message: Završite sve pripremne zadatke da biste započeli.
     could_not_reach_servers: Nismo uspjeli doći do naših poslužitelja kako bismo provjerili brzinu mreže. Molimo provjerite svoju internetsku vezu i pokušajte ponovno.
+    dashboard: Nadzorna ploča
+    dashboard_active_programs: Aktivni programi
+    dashboard_begin_program: Pokreni program
+    dashboard_continue_program: Nastavi program
+    dashboard_days_left: Preostalo je %{count} dana
+    dashboard_greeting_afternoon: Dobar dan, %{name}.
+    dashboard_greeting_evening: Dobra večer, %{name}.
+    dashboard_greeting_eyebrow: Dobrodošao natrag
+    dashboard_greeting_morning: Dobro jutro, %{name}.
+    dashboard_instructions: Možda vam je dodijeljeno više aktivnosti koje trebate dovršiti. Provjerite jesu li sve dodijeljene aktivnosti dovršene u svakom programu.
+    dashboard_reports_ready: Izvješća spremna
+    dashboard_your_programs: Vaši programi
     day: dan
     day_plural: dani
     details: Detalji
+    details_back: Nazad
+    details_due: Dospjelo
+    details_group_locked_hint: Otključava se nakon što je '%{group}' završeno.
+    details_intro_tab: Uvod
+    details_no_reports: Još nema izvješća
+    details_open_heading: Otvorene vježbe
+    details_open_hint: Ispunite bilo kojim redoslijedom, vlastitim tempom.
+    details_percent_done: "%{percent}% gotovo"
+    details_progress: Napredak
+    details_reports_ready: Vaša izvješća su spremna
+    details_reports_tab: Izvješća
+    details_reserved: Rezervirano
+    details_sequential_heading: Sekvencijske vježbe
+    details_sequential_hint: Dovršite redom — svaki otključava sljedeći.
+    details_total: Ukupno
+    details_view_details: Prikaži detalje
     development: Razvoj
     direct_reportees: Izravni podređeni
     download: Preuzmi
@@ -108,6 +142,10 @@ hr:
     localstorage_fix_title: Lokalno pohranjivanje nije omogućeno u vašem pregledniku.
     localstorage_not_enabled_detail: Lokalno pohranjivanje nije omogućeno u vašem pregledniku. Molimo provjerite niste li u privatnom/inkognito načinu rada, jer je lokalno pohranjivanje često onemogućeno u tim načinima.
     localstorage_support: LocalStorage omogućen
+    login_sign_in_btn: Prijava
+    login_sign_up_link: Prijavi se
+    login_welcome_description: Prijavite se sa svojim Lighthouse računom
+    login_welcome_title: Dobrodošli u Svjetionik
     magic_link_interstitial_description: Radi vaše sigurnosti tražimo da potvrdite ovu prijavu. Automatski sustavi ne mogu dovršiti ovaj korak.
     magic_link_interstitial_title: Da biste dovršili prijavu, kliknite gumb ispod.
     max_word_limit: Mora imati najviše %{max} riječi
@@ -124,6 +162,7 @@ hr:
     minute: minuta
     minute_plural: minute
     my_plan: Moj plan
+    my_profile: Moj profil
     network: Mreža
     network_check: Test brzine interneta
     network_check_description: Testiranje kvalitete vaše internetske veze između naših poslužitelja i vašeg uređaja.
@@ -135,6 +174,7 @@ hr:
     network_speed_meets_required_detail: Vaša internetska brzina zadovoljava minimalne zahtjeve za kampanju.
     network_test_step: Korak testiranja mreže
     no_audio_detected: Nije detektiran zvuk. Molimo provjerite je li vaš mikrofon priključen i ispravno radi.
+    open_navigation: Otvori navigaciju
     pass: Prođi
     pause: Pauza
     pearson_timing_duration_minutes: Vremenski ograničeno - %{duration} minuta za dovršetak
@@ -150,7 +190,13 @@ hr:
     proctored: Pod nadzorom
     proctored_assessment_misconfigured_msg: Ova procjena je nadzirana, ali nedostaje potrebna konfiguracija vremena. Molimo kontaktirajte svog administratora.
     profile: Profil
+    profile_cancel: Otkazati
     profile_details: Detalji
+    profile_edit: Uredi
+    profile_other_information: Ostale informacije
+    profile_personal_information: Osobni podaci
+    profile_save: Uštedjeti
+    profile_time: Vrijeme
     question_counter: Pitanje %{current} od %{total}
     reason_for_idp_plan_rejection: Razlog odbijanja
     record: Zabilježite
@@ -167,9 +213,12 @@ hr:
     results: Rezultat
     safari_proctoring_description: Čini se da koristite preglednik Safari, koji može imati određena ograničenja u pogledu aktiviranih nadzornih značajki ove kampanje. Za najbolje iskustvo preporučujemo korištenje preglednika Chrome,Edge ili Firefox.
     safari_proctoring_title: Detektiran je Safari preglednik
+    scheduling: Zakazivanje
     select_audio_device: Odaberite zvučni uređaj
     select_video_device: Odaberite video uređaj
     selected_count: Odabrano
+    sign_out: Odjava
+    signup_sign_in_link: Prijava
     skill_type: Vrsta vještine
     speech_verification_error: Došlo je do pogreške tijekom provjere vašeg govora. Molimo pokušajte ponovno.
     speech_verification_failed: Vaš govor nije odgovarao testnoj frazi. Molimo pokušajte ponovno i izgovorite frazu jasno.
@@ -177,6 +226,7 @@ hr:
     start_campaign_message_timed: Ovo je vremenski ograničena kampanja, molimo kliknite gumb '%{buttonText}' za pokretanje aktivnosti.
     start_readiness_check: Pokreni provjeru spremnosti
     start_system_check: Pokreni provjeru sustava
+    status_locked: Zaključan
     stop: Stani
     subinstruction_audio: Radeći mikrofon
     subinstruction_eight: Ostavite neprekinuto vrijeme za cjelovitu procjenu.
@@ -228,6 +278,21 @@ hr:
     tasks: Zadaci
     testing_download_speed: Testiranje brzine preuzimanja...
     testing_upload_speed: Testiranje brzine prijenosa...
+    theme_active: Aktivan
+    theme_change: Promijeni temu
+    theme_dark_theme: Tamna tema
+    theme_ember: Žeravica
+    theme_light_theme: Svijetla tema
+    theme_marsh: Močvara
+    theme_mode_dark: Tamno
+    theme_mode_light: Svjetlo
+    theme_mode_system: Sustav
+    theme_mode_title: Način rada
+    theme_primer: Temeljni premaz
+    theme_primer_colorblind: Primer za daltoniste
+    theme_primer_contrast: Primer visokog kontrasta
+    theme_primer_dimmed: Primer zatamnjen
+    theme_title: Tema
     time_commitment: Vremenska posvećenost
     timed_activity_instruction: Ovo je vremenski ograničena aktivnost; nakon što započnete nadzor, imat ćete %{time} minuta za dovršetak.
     troubleshooting_guide: Vodič za rješavanje problema

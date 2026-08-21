@@ -484,6 +484,26 @@ sl:
           modal_title: Nastavitve odobritve točkovanja
           remove_modal_success: 'Nastavitev odobritve za identifikacijsko številko ocene: %{assessmentId} je bila uspešno izbrisana.'
           remove_modal_text: 'Ali ste prepričani, da želite izbrisati to nastavitev za identifikacijsko številko ocene: %{assessmentId}?'
+      bulk_import_translations:
+        details: Predloga za prevajanje kampanje
+        download_template: Prenesi predlogo
+        errors:
+          blank_campaign_id: 'Vrstica %{row}: ID kampanje ne sme biti prazen'
+          campaign_not_found: 'Vrstica %{row}: Kampanja %{id} v tem projektu ni bila najdena'
+          generic: Nekaj je šlo narobe. Poskusite znova.
+          invalid_csv_format: 'Neveljavna oblika CSV: %{message}'
+          invalid_locales: 'Neveljavni jezikovni stolpci: %{locales}'
+          missing_required_columns: 'Manjkajoči obvezni stolpci: %{columns}'
+          must_be_csv: Datoteka mora biti datoteka .csv
+          save_failed: 'Prevoda kampanje %{id} za %{locale} ni bilo mogoče shraniti: %{message}'
+        file_label: Datoteka za prevod
+        import_started: Uvoz prevoda je v teku. Napredek preverite v obvestilih.
+        instructions_intro: Prenesite predlogo CSV, posodobite imena oglaševalskih akcij v poljubnih jezikovnih stolpcih in nato naložite dokončano datoteko.
+        instructions_title: Navodila
+        menu_label: Uvozi prevode
+        template_started: Izvoz predloge je v teku. Napredek preverite v obvestilih.
+        title: Uvozi prevode imen oglaševalskih akcij
+        upload_file: Naloži datoteko
       validations:
         dates:
           end: mora biti po datumu začetka

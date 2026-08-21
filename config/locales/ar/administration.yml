@@ -484,6 +484,26 @@ ar:
           modal_title: إعدادات الموافقة على التقييم
           remove_modal_success: 'تم حذف إعداد الموافقة لمعرف التقييم: %{assessmentId} بنجاح'
           remove_modal_text: 'هل أنت متأكد من أنك تريد حذف هذا الإعداد الخاص برقم التقييم: %{assessmentId}؟'
+      bulk_import_translations:
+        details: نموذج ترجمة الحملة
+        download_template: قم بتنزيل القالب
+        errors:
+          blank_campaign_id: 'الصف %{row}: لا يمكن أن يكون معرّف الحملة فارغًا'
+          campaign_not_found: 'الصف %{row}: لم يتم العثور على الحملة %{id} في هذا المشروع'
+          generic: حدث خطأ ما. يرجى المحاولة مرة أخرى.
+          invalid_csv_format: 'تنسيق CSV غير صالح: %{message}'
+          invalid_locales: 'أعمدة لغة غير صالحة: %{locales}'
+          missing_required_columns: 'الأعمدة المطلوبة مفقودة: %{columns}'
+          must_be_csv: يجب أن يكون الملف بصيغة .csv
+          save_failed: 'تعذر حفظ ترجمة الحملة %{id} للحملة %{locale}: %{message}'
+        file_label: ملف الترجمة
+        import_started: جارٍ استيراد الترجمة. يرجى التحقق من التقدم في الإشعارات.
+        instructions_intro: قم بتنزيل قالب CSV، وقم بتحديث أسماء الحملات في أي أعمدة لغة تريدها، ثم قم بتحميل الملف المكتمل.
+        instructions_title: تعليمات
+        menu_label: استيراد الترجمات
+        template_started: جارٍ تصدير القالب. يرجى مراجعة حالة الطلب في الإشعارات.
+        title: استيراد ترجمات أسماء الحملات
+        upload_file: تحميل الملف
       validations:
         dates:
           end: يجب أن يكون بعد تاريخ البدء

@@ -890,6 +890,7 @@ id:
         export_campaign_datasheet: Lembar Data Kampanye Ekspor
         export_campaign_factors: Faktor Kampanye Ekspor
         export_campaign_scorings: Ekspor Kampanye Scorings
+        export_campaign_translations: Terjemahan Kampanye Ekspor
         export_dashboard_as_file: Ekspor Dasbor sebagai file
         export_development_action_translations: Terjemahan Tindakan Pengembangan Ekspor
         export_development_actions: Aksi Pengembangan Ekspor
@@ -917,6 +918,7 @@ id:
         import_assessors: Penilai Impor
         import_campaign_ai_artifacts: Impor Artefak AI Kampanye
         import_campaign_factors: Impor Faktor Kampanye
+        import_campaign_translations: Impor Terjemahan Kampanye
         import_client_assessors: Impor Penilai Klien
         import_datasheet: Lembar Data Impor
         import_development_action_translations: Terjemahan Tindakan Pengembangan Impor
@@ -958,6 +960,7 @@ id:
         super_admin_assessment_raw_result_export: Ekspor Hasil Mentah Super Admin
         super_admin_datasheet_export: Ekspor Lembar Data Super Admin
         super_admin_external_assessment_export: Ekspor Penilaian Eksternal Super Admin
+        superadmin_record_change_history: Riwayat Perubahan Rekaman
         threesixty_campaign_export_completion_status: Status Penyelesaian Ekspor Kampanye Threesixty
         threesixty_campaign_export_scores: Ekspor Skor Kampanye Threesixty
         workshop_status_export: Ekspor Status Pusat Penilaian
@@ -2142,6 +2145,7 @@ id:
       max_generation_limit: Batas pembuatan maksimum terlampaui, hubungi administrasi Anda.
     assessments:
       timed_out: Anda tidak akan dapat mengambil penilaian %{assessment_name} karena waktunya telah habis.
+    csrf_retry: Silakan coba lagi
     equal_to_current_password: Kata sandi baru harus berbeda dari kata sandi saat ini.
     equal_to_email: Kata sandi baru harus berbeda dari email.
     error: Kesalahan

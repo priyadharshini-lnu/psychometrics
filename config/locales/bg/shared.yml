@@ -55,6 +55,7 @@ bg:
     copied_successfully: Копирането приключи успешно
     copied_to_clipboard: Копирано в клипборда
     copy: Копиране
+    copyright: "© %{year} %{display_name}. Всички права запазени."
     create: Създай
     created_at: Създаден в
     created_by: Създаден от
@@ -181,6 +182,29 @@ bg:
     remove: Премахнете
     removed: Отстранени
     replace: Замени
+    reports:
+      ai_rationale_evidence:
+        all_factors: Всички фактори
+        factor_label: Фактори
+        hide_evidence: Скриване на доказателства
+        hide_rationale: Скриване на обосновката
+        no_data: Няма налични обосновки или доказателства за избрания въпрос, свързани с изкуствен интелект.
+        no_question_selected: Моля, изберете въпрос, за да покажете обосновката и доказателствата за изкуствения интелект.
+        question_label: Въпрос
+        select_question: Изберете въпрос
+      ai_transcript:
+        no_data: Няма налични данни за препис за избрания въпрос.
+        no_question_selected: Моля, изберете въпрос, за да се покаже преписът.
+        question_label: Въпрос
+        select_question: Изберете въпрос
+    reports_bar_gradient_direction: Посока на градиента
+    reports_bar_gradient_direction_bottom_to_top: Отдолу нагоре
+    reports_bar_gradient_direction_left_to_right: Отляво надясно
+    reports_bar_gradient_direction_right_to_left: Отдясно наляво
+    reports_bar_gradient_direction_top_to_bottom: Отгоре надолу
+    reports_bar_gradient_enabled: Активиране на градиента
+    reports_bar_gradient_end_color: Краен цвят
+    reports_bar_gradient_start_color: Стартов цвят
     reports_show_values_inside_bar: Показване на стойностите вътре в лентата
     reports_value_label_position: Позиция на етикета със стойността
     reports_value_label_position_center: Център

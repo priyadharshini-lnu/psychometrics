@@ -890,6 +890,7 @@ zh-Hant:
         export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出口活動因素
         export_campaign_scorings: 導出活動縮圖
+        export_campaign_translations: 出口行銷活動翻譯
         export_dashboard_as_file: 將 Dashboard 匯出為檔
         export_development_action_translations: 出口發展行動翻譯
         export_development_actions: 出口發展行動
@@ -917,6 +918,7 @@ zh-Hant:
         import_assessors: 進口評估員
         import_campaign_ai_artifacts: 匯入戰役 AI 工件
         import_campaign_factors: 匯入活動因素
+        import_campaign_translations: 導入活動翻譯
         import_client_assessors: 导入客户评估员
         import_datasheet: 匯入資料表
         import_development_action_translations: 進口開發 動作翻譯
@@ -958,6 +960,7 @@ zh-Hant:
         super_admin_assessment_raw_result_export: 超級管理員原始結果匯出
         super_admin_datasheet_export: 超級管理員資料表匯出
         super_admin_external_assessment_export: 超級管理員外部評估匯出
+        superadmin_record_change_history: 記錄變更歷史
         threesixty_campaign_export_completion_status: Threesixty 活動出口完成狀態
         threesixty_campaign_export_scores: Threesixty 運動得分輸出
         workshop_status_export: 評估中心狀態匯出
@@ -2111,6 +2114,7 @@ zh-Hant:
       max_generation_limit: 已超過產生上限，請聯絡您的管理部門。
     assessments:
       timed_out: 您將無法參加 %{assessment_name} 評估，因為它已超時。
+    csrf_retry: 請重試
     equal_to_current_password: 必須與目前的密碼不同。
     equal_to_email: 必須與電子郵件不同。
     error: 錯誤

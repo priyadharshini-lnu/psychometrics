@@ -484,6 +484,26 @@ nl:
           modal_title: Instellingen voor goedkeuring van scores
           remove_modal_success: 'De goedkeuringsinstelling voor beoordelings-id: %{assessmentId} is succesvol verwijderd.'
           remove_modal_text: 'Weet u zeker dat u deze instelling voor beoordelings-id: %{assessmentId} wilt verwijderen?'
+      bulk_import_translations:
+        details: Campagne-vertalingssjabloon
+        download_template: Sjabloon downloaden
+        errors:
+          blank_campaign_id: 'Rij %{row}: Campagne-ID mag niet leeg zijn'
+          campaign_not_found: 'Rij %{row}: Campagne %{id} is niet gevonden in dit project.'
+          generic: Er is iets misgegaan. Probeer het opnieuw.
+          invalid_csv_format: 'Ongeldig CSV-formaat: %{message}'
+          invalid_locales: 'Ongeldige taalkolommen: %{locales}'
+          missing_required_columns: 'Ontbrekende verplichte kolommen: %{columns}'
+          must_be_csv: Het bestand moet een .csv-bestand zijn.
+          save_failed: 'De vertaling van campagne %{id} voor %{locale} kon niet worden opgeslagen: %{message}'
+        file_label: Vertaalbestand
+        import_started: De vertaling wordt geïmporteerd. Volg de voortgang in de meldingen.
+        instructions_intro: Download de CSV-sjabloon, pas de campagnenamen aan in de gewenste taalkolommen en upload vervolgens het voltooide bestand.
+        instructions_title: Instructies
+        menu_label: Vertalingen importeren
+        template_started: Het exporteren van de sjabloon is bezig. Volg de voortgang in de meldingen.
+        title: Campagnenaamvertalingen importeren
+        upload_file: Bestand uploaden
       validations:
         dates:
           end: moet na de startdatum zijn

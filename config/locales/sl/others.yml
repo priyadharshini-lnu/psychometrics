@@ -890,6 +890,7 @@ sl:
         export_campaign_datasheet: Tehnični list izvozne kampanje
         export_campaign_factors: Dejavniki izvozne oglaševalske akcije
         export_campaign_scorings: Izvozne kampanje
+        export_campaign_translations: Izvoz prevodov kampanj
         export_dashboard_as_file: Izvozi nadzorno ploščo kot datoteko
         export_development_action_translations: Izvoz prevodov razvojnih ukrepov
         export_development_actions: Izvozni razvojni ukrepi
@@ -917,6 +918,7 @@ sl:
         import_assessors: Ocenjevalci uvoza
         import_campaign_ai_artifacts: Artefakti umetne inteligence za uvozno kampanjo
         import_campaign_factors: Uvoz dejavnikov oglaševalske akcije
+        import_campaign_translations: Uvozi prevode kampanj
         import_client_assessors: Uvoz ocenjevalcev strank
         import_datasheet: Uvoz podatkovnega lista
         import_development_action_translations: Uvoz prevodov razvojnih dejanj
@@ -958,6 +960,7 @@ sl:
         super_admin_assessment_raw_result_export: Izvoz neobdelanih rezultatov Super Admin
         super_admin_datasheet_export: Izvoz podatkovnega lista Super Admin
         super_admin_external_assessment_export: Izvoz zunanjega ocenjevanja super skrbnika
+        superadmin_record_change_history: Zgodovina sprememb zapisa
         threesixty_campaign_export_completion_status: Status dokončanja izvoza kampanje Threesixty
         threesixty_campaign_export_scores: Izvoz rezultatov kampanje Threesixty
         workshop_status_export: Izvoz stanja ocenjevalnega središča
@@ -2147,6 +2150,7 @@ sl:
       max_generation_limit: Presežena je največja omejitev generacije, se obrnite na svojo upravo.
     assessments:
       timed_out: Ocenjevanja %{assessment_name} ne boste mogli opraviti, ker je čas potekel.
+    csrf_retry: Poskusite znova
     equal_to_current_password: mora biti drugačno od trenutnega gesla.
     equal_to_email: mora biti drugačen od e-poštnega sporočila.
     error: Napaka

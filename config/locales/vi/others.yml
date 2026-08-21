@@ -890,6 +890,7 @@ vi:
         export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
         export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
         export_campaign_scorings: Xuất chấm điểm chiến dịch
+        export_campaign_translations: Bản dịch chiến dịch xuất khẩu
         export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
         export_development_action_translations: Bản dịch hành động phát triển xuất khẩu
         export_development_actions: Hành động phát triển xuất khẩu
@@ -917,6 +918,7 @@ vi:
         import_assessors: Giám định viên nhập khẩu
         import_campaign_ai_artifacts: Nhập hiện vật AI của chiến dịch
         import_campaign_factors: Các yếu tố chiến dịch nhập khẩu
+        import_campaign_translations: Nhập bản dịch chiến dịch
         import_client_assessors: Nhập danh sách các chuyên gia đánh giá khách hàng
         import_datasheet: Bảng dữ liệu nhập
         import_development_action_translations: Bản dịch hành động phát triển nhập khẩu
@@ -958,6 +960,7 @@ vi:
         super_admin_assessment_raw_result_export: Xuất kết quả thô của Super Admin
         super_admin_datasheet_export: Xuất bảng dữ liệu siêu quản trị viên
         super_admin_external_assessment_export: Xuất đánh giá bên ngoài quản trị viên cấp cao
+        superadmin_record_change_history: Lịch sử thay đổi bản ghi
         threesixty_campaign_export_completion_status: Trạng thái hoàn thành xuất dịch vụ của Threesixty
         threesixty_campaign_export_scores: Xuất điểm chiến dịch Threesixty
         workshop_status_export: Xuất trạng thái trung tâm đánh giá
@@ -2132,6 +2135,7 @@ vi:
       max_generation_limit: Vượt quá giới hạn phát tối đa, hãy liên hệ với ban quản trị của bạn.
     assessments:
       timed_out: Bạn sẽ không thể làm bài đánh giá %{assessment_name} vì thời gian làm bài đã hết.
+    csrf_retry: Vui lòng thử lại.
     equal_to_current_password: Phải khác với mật khẩu hiện tại.
     equal_to_email: Phải khác với email.
     error: Lỗi

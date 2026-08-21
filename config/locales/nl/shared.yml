@@ -55,6 +55,7 @@ nl:
     copied_successfully: Geslaagd gekopieerd
     copied_to_clipboard: Gekopieerd naar klembord
     copy: Kopieer
+    copyright: "© %{year} %{display_name}. Alle rechten voorbehouden."
     create: Maken
     created_at: Gemaakt op
     created_by: Gemaakt door
@@ -181,6 +182,29 @@ nl:
     remove: Verwijder
     removed: Verwijderd
     replace: Vervangen
+    reports:
+      ai_rationale_evidence:
+        all_factors: Alle factoren
+        factor_label: Factoren
+        hide_evidence: Bewijsmateriaal verbergen
+        hide_rationale: Verberg de toelichting
+        no_data: Er zijn geen onderbouwingen of bewijsgegevens beschikbaar voor de geselecteerde vraag met betrekking tot AI.
+        no_question_selected: Selecteer een vraag om de AI-redenering en het bewijsmateriaal te bekijken.
+        question_label: Vraag
+        select_question: Selecteer een vraag
+      ai_transcript:
+        no_data: Er zijn geen transcriptgegevens beschikbaar voor de geselecteerde vraag.
+        no_question_selected: Selecteer een vraag om het transcript te bekijken.
+        question_label: Vraag
+        select_question: Selecteer een vraag
+    reports_bar_gradient_direction: Gradiëntrichting
+    reports_bar_gradient_direction_bottom_to_top: Van onder naar boven
+    reports_bar_gradient_direction_left_to_right: Van links naar rechts
+    reports_bar_gradient_direction_right_to_left: van rechts naar links
+    reports_bar_gradient_direction_top_to_bottom: Van boven naar beneden
+    reports_bar_gradient_enabled: Schakel verloop in
+    reports_bar_gradient_end_color: Eindkleur
+    reports_bar_gradient_start_color: Startkleur
     reports_show_values_inside_bar: Waarden in de balk weergeven
     reports_value_label_position: Positie van het waarde-etiket
     reports_value_label_position_center: Midden
