@@ -3,8 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  ShopOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+  Group as Users,
+  AdminPanelSettings as Admin,
+  SupervisorAccount as SuperAdmin,
+  Gavel as GlobalAssessors,
+} from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
@@ -27,14 +30,14 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'users', icon: <ShopOutlined />, label: I18n.t('users.users') },
+    { key: 'users', icon: <Users />, label: I18n.t('users.users') },
   ]
 
   isSuperAdmin(currentUser) && (
     menuItems.push(
-      { key: 'admins', icon: <ShopOutlined />, label: I18n.t('users.admins') },
-      { key: 'superadmins', icon: <ShopOutlined />, label: I18n.t('users.superadmins') },
-      { key: 'global-assessors', icon: <ShopOutlined />, label: I18n.t('users.global_assessors') },
+      { key: 'admins', icon: <Admin />, label: I18n.t('users.admins') },
+      { key: 'superadmins', icon: <SuperAdmin />, label: I18n.t('users.superadmins') },
+      { key: 'global-assessors', icon: <GlobalAssessors />, label: I18n.t('users.global_assessors') },
     )
   )
 
