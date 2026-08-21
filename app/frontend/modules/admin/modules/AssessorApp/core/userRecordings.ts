@@ -9,7 +9,7 @@ export const UserRecordingTR = t.type({
   id: t.number,
   externalId: t.string,
   recordingDate: t.string,
-  recordingUrl: t.string,
+  recordingUrl: t.union([t.string, t.null]),
   assessmentCenterDateAndTime: t.union([t.string, t.null]),
   assessors: t.array(
     t.type({
@@ -25,6 +25,7 @@ export const UserRecordingTR = t.type({
   ),
   transcriptionUrl: t.union([t.string, t.null]),
   transcriptionText: t.union([t.string, t.null]),
+  disableTranscriptDownload: t.boolean,
 })
 
 export type UserRecording = t.TypeOf<typeof UserRecordingTR>
