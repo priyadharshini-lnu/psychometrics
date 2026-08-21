@@ -54,7 +54,8 @@ class Assessors::UsersController < Administration::BaseController
     ).to_a
     serialized_user_recordings = Panko::ArraySerializer.new(
       recordings,
-      each_serializer: Administration::MeetingRecordingSerializer
+      each_serializer: Administration::MeetingRecordingSerializer,
+      context: { campaign: campaign, assessor_view: true }
     ).to_a
     render json: {
       user: Administration::Assessors::UserSerializer.new(
