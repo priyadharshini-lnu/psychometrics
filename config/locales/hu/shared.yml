@@ -55,6 +55,7 @@ hu:
     copied_successfully: A másolás sikeresen megtörtént
     copied_to_clipboard: Másolva a vágólapra
     copy: Másolás
+    copyright: "© %{year} %{display_name}. Minden jog fenntartva."
     create: Létrehozás
     created_at: Létrehozva
     created_by: 'Készítette:'
@@ -181,6 +182,29 @@ hu:
     remove: Távolítsa el a
     removed: Eltávolított
     replace: Cserélje ki
+    reports:
+      ai_rationale_evidence:
+        all_factors: Minden tényező
+        factor_label: Tényezők
+        hide_evidence: Bizonyíték elrejtése
+        hide_rationale: Indoklás elrejtése
+        no_data: Nincs elérhető mesterséges intelligencia által szolgáltatott indoklás vagy bizonyíték a kiválasztott kérdéshez.
+        no_question_selected: Kérjük, válasszon ki egy kérdést a mesterséges intelligencia indoklásának és bizonyítékainak megjelenítéséhez.
+        question_label: Kérdés
+        select_question: Válasszon egy kérdést
+      ai_transcript:
+        no_data: Nincsenek elérhető átiratadatok a kiválasztott kérdéshez.
+        no_question_selected: Kérjük, válasszon ki egy kérdést a szöveg átiratának megjelenítéséhez.
+        question_label: Kérdés
+        select_question: Válasszon egy kérdést
+    reports_bar_gradient_direction: Színátmenet iránya
+    reports_bar_gradient_direction_bottom_to_top: Alulról felfelé
+    reports_bar_gradient_direction_left_to_right: Balról jobbra
+    reports_bar_gradient_direction_right_to_left: Jobbról balra
+    reports_bar_gradient_direction_top_to_bottom: Felülről lefelé
+    reports_bar_gradient_enabled: Színátmenet engedélyezése
+    reports_bar_gradient_end_color: Végszín
+    reports_bar_gradient_start_color: Kezdő szín
     reports_show_values_inside_bar: Értékek megjelenítése az oszlopon belül
     reports_value_label_position: Az értékcímke helyzete
     reports_value_label_position_center: Központ

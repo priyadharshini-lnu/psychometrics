@@ -890,6 +890,7 @@ fr:
         export_campaign_datasheet: Fiche technique de la campagne d'exportation
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
+        export_campaign_translations: Traductions de campagnes d'exportation
         export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
         export_development_action_translations: Action pour le développement des exportations Traductions
         export_development_actions: Actions de développement des exportations
@@ -917,6 +918,7 @@ fr:
         import_assessors: Évaluateurs des importations
         import_campaign_ai_artifacts: Importer les artefacts de l’IA de campagne
         import_campaign_factors: Facteurs de la campagne d'importation
+        import_campaign_translations: Importer les traductions de la campagne
         import_client_assessors: Importer les évaluateurs clients
         import_datasheet: Fiche technique d'importation
         import_development_action_translations: Importation Développement Action Traductions
@@ -958,6 +960,7 @@ fr:
         super_admin_assessment_raw_result_export: Super Admin Exportation des résultats bruts
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin Évaluation externe Exportation
+        superadmin_record_change_history: Historique des modifications d'enregistrement
         threesixty_campaign_export_completion_status: Statut d'achèvement de l'exportation de la campagne Threesixty
         threesixty_campaign_export_scores: La campagne Threesixty marque des points à l'exportation
         workshop_status_export: Exportation du statut du centre d'évaluation
@@ -2111,6 +2114,7 @@ fr:
       max_generation_limit: Limite maximale de production dépassée, contactez votre administration.
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
+    csrf_retry: Veuillez réessayer.
     equal_to_current_password: doit être différent du mot de passe actuel.
     equal_to_email: doit être différent de l'email.
     error: Erreur

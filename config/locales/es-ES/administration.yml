@@ -484,6 +484,26 @@ es-ES:
           modal_title: Configuración de aprobación de puntuación
           remove_modal_success: 'La configuración de aprobación para el ID de evaluación: %{assessmentId} se ha eliminado correctamente.'
           remove_modal_text: "¿Está seguro de que desea eliminar esta configuración para el ID de evaluación: %{assessmentId}?"
+      bulk_import_translations:
+        details: Plantilla de traducción de campaña
+        download_template: Descargar plantilla
+        errors:
+          blank_campaign_id: 'Fila %{row}: El ID de campaña no puede estar en blanco.'
+          campaign_not_found: 'Fila %{row}: La campaña %{id} no se encontró en este proyecto.'
+          generic: Algo salió mal. Por favor, inténtalo de nuevo.
+          invalid_csv_format: 'Formato CSV no válido: %{message}'
+          invalid_locales: 'Columnas de idioma no válidas: %{locales}'
+          missing_required_columns: 'Faltan columnas obligatorias: %{columns}'
+          must_be_csv: El archivo debe ser un archivo .csv.
+          save_failed: 'No se pudo guardar la traducción de la campaña %{id} para %{locale}: %{message}'
+        file_label: Archivo de traducción
+        import_started: Importación de la traducción en curso. Por favor, consulte el progreso en las notificaciones.
+        instructions_intro: Descarga la plantilla CSV, actualiza los nombres de las campañas en las columnas de idioma que desees y, a continuación, sube el archivo completado.
+        instructions_title: Instrucciones
+        menu_label: Importar traducciones
+        template_started: Exportación de plantilla en curso. Por favor, revise el progreso en las notificaciones.
+        title: Importar traducciones de nombres de campañas
+        upload_file: Subir archivo
       validations:
         dates:
           end: debe ser posterior a la fecha de inicio

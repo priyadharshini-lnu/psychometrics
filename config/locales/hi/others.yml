@@ -890,6 +890,7 @@ hi:
         export_campaign_datasheet: निर्यात अभियान डेटाशीट
         export_campaign_factors: निर्यात अभियान कारक
         export_campaign_scorings: अभियान स्कोरिंग्स का निर्यात करें
+        export_campaign_translations: निर्यात अभियान अनुवाद
         export_dashboard_as_file: डैशबोर्ड को फ़ाइल के रूप में निर्यात करें
         export_development_action_translations: निर्यात विकास कार्रवाई अनुवाद
         export_development_actions: निर्यात विकास कार्यवाही
@@ -917,6 +918,7 @@ hi:
         import_assessors: आयात मूल्यांकनकर्ता
         import_campaign_ai_artifacts: अभियान अभियान एआई कलाकृतियाँ आयात करें
         import_campaign_factors: अभियान कारक आयात करें
+        import_campaign_translations: आयात अभियान अनुवाद
         import_client_assessors: क्लाइंट आकलनकर्ताओं को आयात करें
         import_datasheet: डेटाशीट आयात करें
         import_development_action_translations: विकास कार्रवाई अनुवादों का आयात करें
@@ -958,6 +960,7 @@ hi:
         super_admin_assessment_raw_result_export: सुपर एडमिन कच्चे परिणाम निर्यात
         super_admin_datasheet_export: सुपर एडमिन डेटाशीट निर्यात
         super_admin_external_assessment_export: सुपर एडमिन बाह्य मूल्यांकन निर्यात
+        superadmin_record_change_history: रिकॉर्ड परिवर्तन इतिहास
         threesixty_campaign_export_completion_status: थ्रीसिक्स्टी अभियान निर्यात पूर्णता स्थिति
         threesixty_campaign_export_scores: थ्रीसिक्स्टी अभियान ने एक्सपोर्ट हासिल किया
         workshop_status_export: मूल्यांकन केंद्र स्थिति निर्यात
@@ -2143,6 +2146,7 @@ hi:
       max_generation_limit: अधिकतम पीढ़ी सीमा पार हो गई है, अपने प्रशासन से संपर्क करें।
     assessments:
       timed_out: आप %{assessment_name} मूल्यांकन नहीं कर पाएंगे क्योंकि इसका समय समाप्त हो गया है।
+    csrf_retry: 'कृपया पुन: प्रयास करें'
     equal_to_current_password: वर्तमान पासवर्ड से अलग होना चाहिए।
     equal_to_email: ईमेल से अलग होना चाहिए।
     error: त्रुटि

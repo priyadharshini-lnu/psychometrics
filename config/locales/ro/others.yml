@@ -890,6 +890,7 @@ ro:
         export_campaign_datasheet: Fișă tehnică a campaniei de export
         export_campaign_factors: Factorii campaniei de export
         export_campaign_scorings: Exportați scorurile campaniei
+        export_campaign_translations: Exportați traducerile campaniei
         export_dashboard_as_file: Exportați tabloul de bord ca fișier
         export_development_action_translations: Traduceri pentru acțiuni de dezvoltare a exporturilor
         export_development_actions: Acțiune de dezvoltare a exporturilor
@@ -917,6 +918,7 @@ ro:
         import_assessors: Evaluatori de import
         import_campaign_ai_artifacts: Importul artefactelor AI din campanii
         import_campaign_factors: Importați factori de campanie
+        import_campaign_translations: Importați traducerile campaniei
         import_client_assessors: Importarea evaluatorilor clienților
         import_datasheet: Fișa tehnică de import
         import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
@@ -958,6 +960,7 @@ ro:
         super_admin_assessment_raw_result_export: Exportați rezultate brute Super Admin
         super_admin_datasheet_export: Exportați fișă tehnică Super Admin
         super_admin_external_assessment_export: Exportați de evaluare externă Super Admin
+        superadmin_record_change_history: Înregistrați istoricul modificărilor
         threesixty_campaign_export_completion_status: Starea de finalizare a exportului campaniei Threesixty
         threesixty_campaign_export_scores: Exportul scorurilor campaniei Threesixty
         workshop_status_export: Exportul stării centrului de evaluare
@@ -2138,6 +2141,7 @@ ro:
       max_generation_limit: Limita maximă de generare depășită, contactați administrația.
     assessments:
       timed_out: Nu veți putea efectua evaluarea %{assessment_name}, deoarece timpul a expirat.
+    csrf_retry: Vă rugăm să încercați din nou
     equal_to_current_password: trebuie să fie diferită de parola curentă.
     equal_to_email: trebuie să fie diferită de adresa de e-mail.
     error: Eroare

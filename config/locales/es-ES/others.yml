@@ -890,6 +890,7 @@ es-ES:
         export_campaign_datasheet: Ficha técnica de la campaña de exportación
         export_campaign_factors: Factores de la campaña de exportación
         export_campaign_scorings: Exportación de recortes de campaña
+        export_campaign_translations: Exportar traducciones de campañas
         export_dashboard_as_file: Exportar panel como archivo
         export_development_action_translations: Export Development Action Traducciones
         export_development_actions: Acciones de desarrollo de las exportaciones
@@ -917,6 +918,7 @@ es-ES:
         import_assessors: Evaluadores de importaciones
         import_campaign_ai_artifacts: Importar artefactos de IA de campañas
         import_campaign_factors: Factores de la campaña de importación
+        import_campaign_translations: Importar traducciones de campañas
         import_client_assessors: Importar evaluadores de clientes
         import_datasheet: Hoja de datos de importación
         import_development_action_translations: Importación Desarrollo Acción Traducciones
@@ -958,6 +960,7 @@ es-ES:
         super_admin_assessment_raw_result_export: Exportación de resultados brutos de Super Admin
         super_admin_datasheet_export: Exportación de hojas de datos de Super Admin
         super_admin_external_assessment_export: Super Admin Exportación de evaluaciones externas
+        superadmin_record_change_history: Historial de cambios del registro
         threesixty_campaign_export_completion_status: Estado de finalización de la exportación de la campaña Threesixty
         threesixty_campaign_export_scores: Exportación de resultados de la campaña Threesixty
         workshop_status_export: Exportación del estado del Assessment Center
@@ -2152,6 +2155,7 @@ es-ES:
       max_generation_limit: Límite máximo de generación superado, comuníquese con su administración.
     assessments:
       timed_out: No podrás realizar la evaluación %{assessment_name} porque se ha agotado el tiempo de espera.
+    csrf_retry: Por favor, inténtelo de nuevo.
     equal_to_current_password: debe ser diferente de la contraseña actual.
     equal_to_email: debe ser diferente del correo electrónico.
     error: Error

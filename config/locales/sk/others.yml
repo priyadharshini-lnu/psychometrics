@@ -890,6 +890,7 @@ sk:
         export_campaign_datasheet: Technický list exportnej kampane
         export_campaign_factors: Export faktorov kampane
         export_campaign_scorings: Prieskumy exportných kampaní
+        export_campaign_translations: Exportovať preklady kampaní
         export_dashboard_as_file: Exportovať tabuľu ako súbor
         export_development_action_translations: Exportovať preklady vývojových akcií
         export_development_actions: Exportné rozvojové akcie
@@ -917,6 +918,7 @@ sk:
         import_assessors: Hodnotitelia dovozu
         import_campaign_ai_artifacts: AI artefakty importnej kampane
         import_campaign_factors: Importovať faktory kampane
+        import_campaign_translations: Importovať preklady kampaní
         import_client_assessors: Importovať hodnotiteľov klientov
         import_datasheet: Importovať údajový hárok
         import_development_action_translations: Importovať preklady vývojových akcií
@@ -958,6 +960,7 @@ sk:
         super_admin_assessment_raw_result_export: Export nespracovaných výsledkov Super Admin
         super_admin_datasheet_export: Export údajového hárka supersprávcu
         super_admin_external_assessment_export: Export externého hodnotenia supersprávcu
+        superadmin_record_change_history: História zmien záznamov
         threesixty_campaign_export_completion_status: Stav dokončenia exportu kampane Threesixty
         threesixty_campaign_export_scores: Export skóre kampane Threesixty
         workshop_status_export: Export stavu hodnotiaceho centra
@@ -2138,6 +2141,7 @@ sk:
       max_generation_limit: Po prekročení maximálneho limitu generácie kontaktujte svoju administratívu.
     assessments:
       timed_out: Hodnotenie %{assessment_name} nemôžete vykonať, pretože jeho čas vypršal.
+    csrf_retry: Skúste to znova
     equal_to_current_password: sa musí líšiť od aktuálneho hesla.
     equal_to_email: sa musí líšiť od e-mailu.
     error: Chyba

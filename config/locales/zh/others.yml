@@ -890,6 +890,7 @@ zh:
         export_campaign_datasheet: 导出活动数据表
         export_campaign_factors: 出口活动因素
         export_campaign_scorings: 出口活动扫描
+        export_campaign_translations: 出口营销活动翻译
         export_dashboard_as_file: 将 Dashboard 导出为文件
         export_development_action_translations: 出口发展行动 翻译
         export_development_actions: 出口发展行动
@@ -917,6 +918,7 @@ zh:
         import_assessors: 进口评估员
         import_campaign_ai_artifacts: 导入战役AI工件
         import_campaign_factors: 导入活动因素
+        import_campaign_translations: 导入活动翻译
         import_client_assessors: 导入客户评估员
         import_datasheet: 导入数据表
         import_development_action_translations: 进口开发行动 翻译
@@ -958,6 +960,7 @@ zh:
         super_admin_assessment_raw_result_export: 超级管理员原始结果导出
         super_admin_datasheet_export: 超级管理员数据表导出
         super_admin_external_assessment_export: 超级管理员外部评估导出
+        superadmin_record_change_history: 记录变更历史
         threesixty_campaign_export_completion_status: Threesixty 活动出口完成情况
         threesixty_campaign_export_scores: Threesixty 运动得分出口
         workshop_status_export: 评估中心状态导出
@@ -2121,6 +2124,7 @@ zh:
       max_generation_limit: 超出最大生成限制，请联系您的管理部门。
     assessments:
       timed_out: 由于 %{assessment_name} 测评超时，您将无法参加该评估。
+    csrf_retry: 请重试
     equal_to_current_password: 必须与当前密码不同。
     equal_to_email: 必须与电子邮件不同。
     error: 错误

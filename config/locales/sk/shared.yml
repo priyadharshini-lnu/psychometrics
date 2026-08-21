@@ -55,6 +55,7 @@ sk:
     copied_successfully: Kopírovanie prebehlo úspešne
     copied_to_clipboard: Kopírované do schránky
     copy: Kopírovať
+    copyright: "© %{year} %{display_name}. Všetky práva vyhradené."
     create: Vytvoriť
     created_at: Vytvorené v
     created_by: Vytvoril
@@ -181,6 +182,29 @@ sk:
     remove: Odstránenie stránky
     removed: Odstránený
     replace: Nahradiť
+    reports:
+      ai_rationale_evidence:
+        all_factors: Všetky faktory
+        factor_label: Faktory
+        hide_evidence: Skryť dôkazy
+        hide_rationale: Skryť odôvodnenie
+        no_data: Pre vybranú otázku nie sú k dispozícii žiadne odôvodnenia ani dôkazy o umelej inteligencii.
+        no_question_selected: Vyberte otázku, aby ste zobrazili odôvodnenie a dôkazy týkajúce sa umelej inteligencie.
+        question_label: Otázka
+        select_question: Vyberte otázku
+      ai_transcript:
+        no_data: Pre vybranú otázku nie sú k dispozícii žiadne údaje prepisu.
+        no_question_selected: Pre zobrazenie prepisu vyberte otázku.
+        question_label: Otázka
+        select_question: Vyberte otázku
+    reports_bar_gradient_direction: Smer gradientu
+    reports_bar_gradient_direction_bottom_to_top: Zdola nahor
+    reports_bar_gradient_direction_left_to_right: Zľava doprava
+    reports_bar_gradient_direction_right_to_left: Sprava doľava
+    reports_bar_gradient_direction_top_to_bottom: Zhora nadol
+    reports_bar_gradient_enabled: Povoliť prechod
+    reports_bar_gradient_end_color: Koncová farba
+    reports_bar_gradient_start_color: Štartovacia farba
     reports_show_values_inside_bar: Zobraziť hodnoty vnútri stĺpca
     reports_value_label_position: Poloha štítku s hodnotou
     reports_value_label_position_center: Stred

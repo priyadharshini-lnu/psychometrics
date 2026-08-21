@@ -890,6 +890,7 @@ ja:
         export_campaign_datasheet: キャンペーンデータシートのエクスポート
         export_campaign_factors: 輸出キャンペーンの要因
         export_campaign_scorings: エクスポート・キャンペーン・スコアリング
+        export_campaign_translations: 輸出キャンペーンの翻訳
         export_dashboard_as_file: ダッシュボードをファイルとしてエクスポート
         export_development_action_translations: 輸出開発アクション 翻訳
         export_development_actions: 輸出開発アクション
@@ -917,6 +918,7 @@ ja:
         import_assessors: インポートアセッサー
         import_campaign_ai_artifacts: キャンペーンAIアーティファクトのインポート
         import_campaign_factors: インポート・キャンペーン要因
+        import_campaign_translations: インポートキャンペーンの翻訳
         import_client_assessors: クライアント評価担当者のインポート
         import_datasheet: データシートのインポート
         import_development_action_translations: 輸入開発アクション翻訳
@@ -958,6 +960,7 @@ ja:
         super_admin_assessment_raw_result_export: スーパー・アドミン 生結果エクスポート
         super_admin_datasheet_export: スーパー管理者データシートのエクスポート
         super_admin_external_assessment_export: スーパー管理者 外部評価エクスポート
+        superadmin_record_change_history: レコードの変更履歴
         threesixty_campaign_export_completion_status: Threesixtyキャンペーン輸出完了状況
         threesixty_campaign_export_scores: Threesixtyキャンペーン・スコア輸出
         workshop_status_export: アセスメント・センター・ステータス・エクスポート
@@ -2124,6 +2127,7 @@ ja:
       max_generation_limit: 最大生成制限を超えました。管理者にお問い合わせください。
     assessments:
       timed_out: "%{assessment_name}評価はタイムアウトしたため、受けることはできません。"
+    csrf_retry: もう一度お試しください
     equal_to_current_password: は現在のパスワードとは異なるものでなければならない。
     equal_to_email: は電子メールとは異なるものでなければならない。
     error: エラー

@@ -890,6 +890,7 @@ th:
         export_campaign_datasheet: แผ่นข้อมูลแคมเปญการส่งออก
         export_campaign_factors: ปัจจัยแคมเปญการส่งออก
         export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
+        export_campaign_translations: การแปลแคมเปญส่งออก
         export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
         export_development_action_translations: การแปลการดําเนินการพัฒนาการส่งออก
         export_development_actions: การดําเนินการพัฒนาการส่งออก
@@ -917,6 +918,7 @@ th:
         import_assessors: ผู้ประเมินนําเข้า
         import_campaign_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
         import_campaign_factors: นําเข้าปัจจัยแคมเปญ
+        import_campaign_translations: นำเข้าการแปลแคมเปญ
         import_client_assessors: นำเข้าผู้ประเมินลูกค้า
         import_datasheet: นําเข้าเอกสารข้อมูล
         import_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนานําเข้า
@@ -958,6 +960,7 @@ th:
         super_admin_assessment_raw_result_export: การส่งออกผลลัพธ์ดิบของผู้ดูแลระบบขั้นสูง
         super_admin_datasheet_export: การส่งออกเอกสารข้อมูลผู้ดูแลระบบขั้นสูง
         super_admin_external_assessment_export: การส่งออกการประเมินภายนอกของผู้ดูแลระบบขั้นสูง
+        superadmin_record_change_history: ประวัติการเปลี่ยนแปลงบันทึก
         threesixty_campaign_export_completion_status: สถานะการส่งออกแคมเปญที่เสร็จสมบูรณ์
         threesixty_campaign_export_scores: การส่งออกคะแนนแคมเปญ Threesixty
         workshop_status_export: การส่งออกสถานะศูนย์ประเมิน
@@ -2135,6 +2138,7 @@ th:
       max_generation_limit: เกินขีดจํากัดการสร้างสูงสุด โปรดติดต่อผู้ดูแลระบบของคุณ
     assessments:
       timed_out: คุณจะไม่สามารถทำการทดสอบ %{assessment_name} ได้ เนื่องจากเวลาของการทดสอบหมดลงแล้ว
+    csrf_retry: โปรดลองอีกครั้ง
     equal_to_current_password: ต้องแตกต่างจากรหัสผ่านปัจจุบัน
     equal_to_email: ต้องแตกต่างจากอีเมล
     error: ข้อผิดพลาด

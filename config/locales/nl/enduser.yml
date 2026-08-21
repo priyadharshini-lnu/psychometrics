@@ -11,6 +11,7 @@ nl:
     ai_idp_retake_step_chat_hint_no_document: Je kunt de chat opnieuw starten om meer details te delen, en ik zal mijn best doen om je te helpen.
     ai_idp_summary_hint_no_document: Met uw toestemming, als u ja zegt, kan ik een ontwikkelingsplan voor u opstellen. Zo niet, dan kun je de chat opnieuw starten om meer details te delen.
     all_checks_must_pass: Alle controles moeten zijn doorlopen voordat u verder kunt gaan.
+    appearance: Verschijning
     approve_idp_plan: Plan goedkeuren
     assessment_misconfigured: De configuratie is onjuist
     assessment_timing_duration_minutes: "%{duration} minuten"
@@ -52,16 +53,49 @@ nl:
     camera_test_step: Stap voor het testen van video en audio
     campaign: Campagne
     campaign_check_status: 'Status: %{status}'
+    card_action_retry: Opnieuw proberen
+    card_action_review: Beoordeling
+    card_action_start: Begin
+    change_password_warning: 'Belangrijk: Als u uw wachtwoord wijzigt, wordt u automatisch uitgelogd.'
     chat_instructions: Instructies voor de chat
     check: Controleer
     check_video_recording: Controleer uw video en audio door de opname af te spelen.
     checking_browser_compatibility: Browsercompatibiliteit wordt gecontroleerd...
     checking_latency: Latentie wordt gecontroleerd...
+    collapse_navigation: Inklapbare navigatie
     complete_prework_message: Voer eerst alle voorbereidende opdrachten uit om te kunnen beginnen.
     could_not_reach_servers: Onze servers konden niet worden bereikt om de netwerksnelheid te controleren. Controleer je internetverbinding en probeer het opnieuw.
+    dashboard: Dashboard
+    dashboard_active_programs: Actieve programma's
+    dashboard_begin_program: Startprogramma
+    dashboard_continue_program: Vervolgprogramma
+    dashboard_days_left: Nog %{count} dagen
+    dashboard_greeting_afternoon: Goedemiddag, %{name}.
+    dashboard_greeting_evening: Goこんばんは, %{name}.
+    dashboard_greeting_eyebrow: Welkom terug
+    dashboard_greeting_morning: Goedemorgen, %{name}.
+    dashboard_instructions: Mogelijk zijn er meerdere taken aan je toegewezen. Zorg ervoor dat je alle toegewezen taken binnen elk programma voltooit.
+    dashboard_reports_ready: Rapporten gereed
+    dashboard_your_programs: Uw programma's
     day: dag
     day_plural: dagen
     details: Details
+    details_back: Rug
+    details_due: Vanwege
+    details_group_locked_hint: Wordt ontgrendeld nadat '%{group}' is voltooid.
+    details_intro_tab: Invoering
+    details_no_reports: Nog geen meldingen
+    details_open_heading: Open oefeningen
+    details_open_hint: Voltooi de opdrachten in willekeurige volgorde en in je eigen tempo.
+    details_percent_done: "%{percent}% voltooid"
+    details_progress: Voortgang
+    details_reports_ready: Uw rapporten zijn klaar.
+    details_reports_tab: Rapporten
+    details_reserved: Gereserveerd
+    details_sequential_heading: Sequentiële oefeningen
+    details_sequential_hint: Voltooi ze in de juiste volgorde — elke volgende stap ontgrendelt de volgende.
+    details_total: Totaal
+    details_view_details: Bekijk details
     development: Ontwikkeling
     direct_reportees: Directe rapporten
     download: Downloaden
@@ -108,6 +142,10 @@ nl:
     localstorage_fix_title: Lokale opslag is niet ingeschakeld in uw browser
     localstorage_not_enabled_detail: Lokale opslag is niet ingeschakeld in uw browser. Controleer of u zich niet in de privémodus of incognitomodus bevindt, aangezien lokale opslag in deze modi vaak is uitgeschakeld.
     localstorage_support: LocalStorage ingeschakeld
+    login_sign_in_btn: Inloggen
+    login_sign_up_link: Aanmelden
+    login_welcome_description: Meld u aan met uw Lighthouse-account.
+    login_welcome_title: Welkom bij Lighthouse
     magic_link_interstitial_description: Om veiligheidsredenen vragen wij u deze aanmelding te bevestigen. Geautomatiseerde systemen kunnen deze stap niet uitvoeren.
     magic_link_interstitial_title: Klik op de onderstaande knop om het inloggen te voltooien.
     max_word_limit: Mag maximaal %{max} woorden bevatten
@@ -124,6 +162,7 @@ nl:
     minute: minuut
     minute_plural: notulen
     my_plan: Mijn plan
+    my_profile: Mijn profiel
     network: Netwerk
     network_check: Internetsnelheidstest
     network_check_description: De kwaliteit van uw internetverbinding tussen onze servers en uw apparaat wordt getest.
@@ -135,6 +174,7 @@ nl:
     network_speed_meets_required_detail: Je internetsnelheid voldoet aan de minimumvereisten voor de campagne
     network_test_step: Stap voor het testen van het netwerk
     no_audio_detected: Er wordt geen geluid gedetecteerd. Controleer of je microfoon is aangesloten en goed werkt.
+    open_navigation: Open navigatie
     pass: Sla over
     pause: Pauze
     pearson_timing_duration_minutes: Tijdsduur - %{duration} minuten om te voltooien
@@ -150,7 +190,13 @@ nl:
     proctored: Onder toezicht
     proctored_assessment_misconfigured_msg: Deze toets wordt onder toezicht afgenomen, maar de vereiste tijdsinstelling ontbreekt. Neem contact op met uw beheerder.
     profile: Profiel
+    profile_cancel: Annuleren
     profile_details: Details
+    profile_edit: Bewerking
+    profile_other_information: Overige informatie
+    profile_personal_information: Persoonlijke gegevens
+    profile_save: Redden
+    profile_time: Tijd
     question_counter: Vraag %{current} van %{total}
     reason_for_idp_plan_rejection: Reden voor afwijzing
     record: Registreer
@@ -167,9 +213,12 @@ nl:
     results: Resultaat
     safari_proctoring_description: Het lijkt erop dat u de Safari-browser gebruikt, die mogelijk enkele beperkingen kent wat betreft de geactiveerde trackingfuncties voor deze campagne. Voor de beste ervaring raden wij u aan om Chrome, Edge of Firefox te gebruiken.
     safari_proctoring_title: Safari-browser gedetecteerd
+    scheduling: Planning
     select_audio_device: Selecteer audioapparaat
     select_video_device: Selecteer videoapparaat
     selected_count: Geselecteerd
+    sign_out: Uitloggen
+    signup_sign_in_link: Inloggen
     skill_type: Type vaardigheid
     speech_verification_error: Er is een fout opgetreden bij het verifiëren van uw spraak. Probeer het nog eens.
     speech_verification_failed: Uw uitspraak kwam niet overeen met de testzin. Probeer het nog eens en spreek de zin duidelijk uit.
@@ -177,6 +226,7 @@ nl:
     start_campaign_message_timed: Dit is een getimede campagne, klik op de knop '%{buttonText}' om de activiteiten te starten.
     start_readiness_check: Start de gereedheidscontrole
     start_system_check: Systeemcontrole starten
+    status_locked: Vergrendeld
     stop: Stop
     subinstruction_audio: Werkende microfoon
     subinstruction_eight: Reserveer voldoende aaneengesloten tijd voor de volledige beoordeling
@@ -228,6 +278,21 @@ nl:
     tasks: Taken
     testing_download_speed: De downloadsnelheid wordt getest...
     testing_upload_speed: De uploadsnelheid wordt getest...
+    theme_active: Actief
+    theme_change: Thema wijzigen
+    theme_dark_theme: Donker thema
+    theme_ember: Gloeiende gloed
+    theme_light_theme: Licht thema
+    theme_marsh: Moeras
+    theme_mode_dark: Donker
+    theme_mode_light: Licht
+    theme_mode_system: Systeem
+    theme_mode_title: Modus
+    theme_primer: Grondlaag
+    theme_primer_colorblind: Basiscursus kleurenblindheid
+    theme_primer_contrast: Primer met hoog contrast
+    theme_primer_dimmed: Grondverf vervaagd
+    theme_title: Thema
     time_commitment: Tijdsbesteding
     timed_activity_instruction: Dit is een tijdgebonden opdracht. Nadat je de toezichtsessie hebt gestart, heb je <strong>%{time} minuten</strong> de tijd om deze af te ronden.
     troubleshooting_guide: Handleiding voor het oplossen van problemen

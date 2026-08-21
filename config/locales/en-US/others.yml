@@ -890,6 +890,7 @@ en-US:
         export_campaign_datasheet: Export Campaign Datasheet
         export_campaign_factors: Export Campaign Factors
         export_campaign_scorings: Export Campaign Scorings
+        export_campaign_translations: Export Campaign Translations
         export_dashboard_as_file: Export Dashboard as file
         export_development_action_translations: Export Development Action Translations
         export_development_actions: Export Development Actions
@@ -917,6 +918,7 @@ en-US:
         import_assessors: Import Assessors
         import_campaign_ai_artifacts: Import Campaign AI Artifacts
         import_campaign_factors: Import Campaign Factors
+        import_campaign_translations: Import Campaign Translations
         import_client_assessors: Import Client Assessors
         import_datasheet: Import Datasheet
         import_development_action_translations: Import Development Action Translations
@@ -958,6 +960,7 @@ en-US:
         super_admin_assessment_raw_result_export: Super Admin Raw Results Export
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin External Assessment Export
+        superadmin_record_change_history: Record Change History
         threesixty_campaign_export_completion_status: Threesixty Campaign Export Completion Status
         threesixty_campaign_export_scores: Threesixty Campaign Scores Export
         workshop_status_export: Assessment Center Status Export
@@ -2136,6 +2139,7 @@ en-US:
       max_generation_limit: Maximum generation limit exceeded, contact your administration.
     assessments:
       timed_out: You won't be able to take the %{assessment_name} assessment as it has timed out.
+    csrf_retry: Please try again
     equal_to_current_password: must be different than the current password.
     equal_to_email: must be different than the email.
     error: Error

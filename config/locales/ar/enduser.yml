@@ -11,6 +11,7 @@ ar:
     ai_idp_retake_step_chat_hint_no_document: يمكنك إعادة تشغيل الدردشة لمشاركة المزيد من التفاصيل، وسأبذل قصارى جهدي لمساعدتك.
     ai_idp_summary_hint_no_document: يمكنني الآن إعداد خطة تطويرية مخصّصة تتضمن خطوات عمليّة لدعم نمو مسيرتك المهنية. كما يمكنك إعادة بدء المحادثة لتعديل مدخلاتك عند الحاجة.
     all_checks_must_pass: يجب اجتياز جميع عمليات الفحص قبل أن تتمكن من المتابعة
+    appearance: مظهر
     approve_idp_plan: الموافقة على الخطة
     assessment_misconfigured: خطأ في تكوين التقييم
     assessment_timing_duration_minutes: "%{duration} دقيقة"
@@ -52,16 +53,49 @@ ar:
     camera_test_step: خطوة اختبار الفيديو والصوت
     campaign: الحملة
     campaign_check_status: 'حالة: %{status}'
+    card_action_retry: إعادة المحاولة
+    card_action_review: مراجعة
+    card_action_start: يبدأ
+    change_password_warning: 'هام: سيؤدي تغيير كلمة المرور إلى تسجيل خروجك.'
     chat_instructions: تعليمات الدردشة
     check: التحقق
     check_video_recording: يرجى التأكد من جودة الصوت والصورة من خلال تشغيل المقطع المسجل
     checking_browser_compatibility: جاري التحقق من توافق المتصفح...
     checking_latency: التحقق من زمن الاستجابة...
+    collapse_navigation: طي التنقل
     complete_prework_message: أكمل جميع المهام التمهيدية للبدء.
     could_not_reach_servers: لم نتمكن من الوصول إلى خوادمنا للتحقق من سرعة الشبكة. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.
+    dashboard: لوحة التحكم
+    dashboard_active_programs: البرامج النشطة
+    dashboard_begin_program: بدء البرنامج
+    dashboard_continue_program: مواصلة البرنامج
+    dashboard_days_left: "%{count} أيام متبقية"
+    dashboard_greeting_afternoon: مساء الخير، %{name}.
+    dashboard_greeting_evening: مساء الخير، %{name}.
+    dashboard_greeting_eyebrow: مرحبًا بعودتك
+    dashboard_greeting_morning: صباح الخير، %{name}.
+    dashboard_instructions: قد تكون قد كُلفت بإنجاز عدة مهام. تأكد من إكمال جميع المهام الموكلة إليك في جميع البرامج.
+    dashboard_reports_ready: التقارير جاهزة
+    dashboard_your_programs: برامجك
     day: يوم
     day_plural: أيام
     details: التفاصيل
+    details_back: خلف
+    details_due: حق
+    details_group_locked_hint: يتم فتحها بعد إكمال '%{group}'.
+    details_intro_tab: مقدمة
+    details_no_reports: لم ترد أي تقارير حتى الآن
+    details_open_heading: تمارين مفتوحة
+    details_open_hint: أكمل العمل بأي ترتيب، وبالسرعة التي تناسبك.
+    details_percent_done: تم إنجاز %{percent}%
+    details_progress: تقدم
+    details_reports_ready: تقاريرك جاهزة
+    details_reports_tab: التقارير
+    details_reserved: محجوز
+    details_sequential_heading: تمارين متسلسلة
+    details_sequential_hint: أكمل بالترتيب - كل خطوة تفتح الخطوة التالية.
+    details_total: المجموع
+    details_view_details: عرض التفاصيل
     development: تطوير
     direct_reportees: الموظفين المباشرين
     download: تنزيل
@@ -108,6 +142,10 @@ ar:
     localstorage_fix_title: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك
     localstorage_not_enabled_detail: خاصية التخزين المحلي (Local Storage) غير مفعّلة في متصفحك. يرجى التأكد من أنك لا تستخدم وضع التصفح الخاص/الخفي، لأن التخزين المحلي غالباً ما يكون معطلاً في هذه الأوضاع.
     localstorage_support: خاصية التخزين المحلي (Local Storage) مفعّلة
+    login_sign_in_btn: تسجيل الدخول
+    login_sign_up_link: اشتراك
+    login_welcome_description: قم بتسجيل الدخول باستخدام حسابك في لايتهاوس
+    login_welcome_title: أهلا بكم في المنارة
     magic_link_interstitial_description: من أجل سلامتك، نطلب منك تأكيد عملية تسجيل الدخول هذه. لا يمكن للأنظمة الآلية إتمام هذه الخطوة.
     magic_link_interstitial_title: لإتمام عملية تسجيل الدخول، يرجى النقر على الزر أدناه.
     max_word_limit: يجب أن تكون على الأكثر %{max} كلمة
@@ -124,6 +162,7 @@ ar:
     minute: دقيقة
     minute_plural: دقائق
     my_plan: خطتي
+    my_profile: ملفي الشخصي
     network: الشبكة
     network_check: اختبار سرعة الإنترنت
     network_check_description: جاري اختبار جودة اتصال الإنترنت بين خوادمنا وجهازك
@@ -135,6 +174,7 @@ ar:
     network_speed_meets_required_detail: سرعة الإنترنت لديك تلبي الحد الأدنى من المتطلبات للحملة
     network_test_step: خطوة اختبار الشبكة
     no_audio_detected: لم يتم الكشف عن أي صوت. يرجى التحقق من توصيل الميكروفون ومن أنه يعمل بشكل صحيح.
+    open_navigation: تصفح مفتوح
     pass: يمر
     pause: توقف مؤقت
     pearson_timing_duration_minutes: محدد بوقت - لديك %{duration} دقيقة
@@ -150,7 +190,13 @@ ar:
     proctored: تحت إشراف
     proctored_assessment_misconfigured_msg: هذا الاختبار يخضع للإشراف، لكنه يفتقر إلى الإعدادات الزمنية اللازمة؛ يرجى الاتصال بالمسؤول.
     profile: تفاصيلي
+    profile_cancel: يلغي
     profile_details: تفاصيل
+    profile_edit: يحرر
+    profile_other_information: معلومات أخرى
+    profile_personal_information: معلومات شخصية
+    profile_save: يحفظ
+    profile_time: وقت
     question_counter: السؤال %{current} من %{total}
     reason_for_idp_plan_rejection: سبب الرفض
     record: سجل
@@ -167,9 +213,12 @@ ar:
     results: النتيجة
     safari_proctoring_description: يبدو أنك تستخدم متصفح Safari، الذي قد ينطوي على بعض القيود فيما يتعلق بميزات المراقبة المُفعّلة لهذه الحملة. للحصول على أفضل تجربة، نوصي باستخدام متصفحي Chrome,Edge أو Firefox.
     safari_proctoring_title: تم اكتشاف متصفح Safari
+    scheduling: الجدولة
     select_audio_device: اختر جهاز الصوت
     select_video_device: اختر جهاز الفيديو
     selected_count: مختارة %{count}
+    sign_out: تسجيل الخروج
+    signup_sign_in_link: تسجيل الدخول
     skill_type: نوع المهارة
     speech_verification_error: حدث خطأ أثناء التحقق من كلامك. يرجى المحاولة مرة أخرى.
     speech_verification_failed: لم يتطابق كلامك مع العبارة المختبرة. يرجى المحاولة مرة أخرى ونطق العبارة بوضوح.
@@ -177,6 +226,7 @@ ar:
     start_campaign_message_timed: هذه حملة محددة بالوقت، يرجى الضغط على زر '%{buttonText}' لبدء الأنشطة.
     start_readiness_check: بدء التحقق من الجاهزية
     start_system_check: بدء فحص النظام
+    status_locked: مغلق
     stop: توقف
     subinstruction_audio: ميكروفون يعمل
     subinstruction_eight: خصّص وقت كافي لإجراء التقييم بالكامل دون انقطاع
@@ -228,6 +278,21 @@ ar:
     tasks: مهامي
     testing_download_speed: اختبار سرعة التنزيل...
     testing_upload_speed: اختبار سرعة التحميل...
+    theme_active: نشيط
+    theme_change: تغيير المظهر
+    theme_dark_theme: الوضع الداكن
+    theme_ember: إمبر
+    theme_light_theme: الوضع الفاتح
+    theme_marsh: مارش
+    theme_mode_dark: مظلم
+    theme_mode_light: ضوء
+    theme_mode_system: نظام
+    theme_mode_title: وضع
+    theme_primer: برايمر
+    theme_primer_colorblind: برايمر لعمى الألوان
+    theme_primer_contrast: برايمر عالي التباين
+    theme_primer_dimmed: برايمر باهت
+    theme_title: سمة
     time_commitment: الوقت المطلوب لإكمال المهمة
     timed_activity_instruction: هذه مهمة محددة بوقت، وبعد بدء جلسة المراقبة، سيكون أمامك <strong>%{time} دقيقة</strong> لإكمالها.
     troubleshooting_guide: دليل استكشاف الأخطاء وإصلاحها

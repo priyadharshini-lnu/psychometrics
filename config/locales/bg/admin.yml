@@ -103,6 +103,7 @@ bg:
     ai_scoring_approval_stale_description: Възможно е резултатът да се е променил вследствие на актуализации в конфигурацията, извършени след последното изпълнение. Извършете преизчисление, за да го актуализирате, като използвате най-новите настройки.
     ai_scoring_approval_stale_title: Резултатът може да е остарял
     ai_scoring_approvals: Одобрения на AI оценки
+    ai_scoring_errors_label: Грешки при оценяване с изкуствен интелект
     ai_scoring_refresh_score: Актуализиране на резултата
     ai_scoring_refresh_score_confirm_description: Това ще доведе до повторно изчисляване на оценката чрез изкуствен интелект за тази оценка, като се използва най-новата конфигурация. Сигурен ли сте?
     ai_scoring_refresh_score_confirm_title: Да се обновят оценките на AI?
@@ -122,6 +123,12 @@ bg:
     alt_text_long: Надвишава максималното ограничение от 100 знака.
     api_keys: API ключове
     api_keys_form_title: Ключ за приложно-програмен интерфейс
+    appearance: Външен вид
+    appearance_dark: Тъмно
+    appearance_dark_theme: Тъмна тема
+    appearance_light: Светлина
+    appearance_light_theme: Светла тема
+    appearance_system: Система
     application: Приложение
     application_add: Добави заявка
     application_name: Име на приложението
@@ -194,6 +201,8 @@ bg:
     assessor_add_subject_modal_subject: Тема
     assessor_add_subject_modal_subject_placeholder: Тема на търсене.
     assessor_add_subject_modal_title: Добавяне на тема
+    assessor_assessment_drawer_title: Подробности за оценката
+    assessor_assessment_id: Идентификационен номер на оценката на оценителя
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Изберете оценяване
     assessor_assessment_name: Оценяване на оценителя
     assessor_assessments: Оценки на оценителя
@@ -344,9 +353,15 @@ bg:
     campaign_assessment_modals_update_occupation_condition_set_select: Изберете набор от условия за професия
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Наборът от условия за професия беше актуализиран успешно
     campaign_assessment_modals_update_occupation_condition_set_title: Актуализиране на набора от състояния на заетостта
+    campaign_dashboard_instructions_label: Инструкции за таблото за управление на кампанията
+    campaign_dashboard_instructions_save: Запазване на инструкциите
+    campaign_dashboard_instructions_save_error: Запазването на инструкциите за таблото за управление на кампанията не бе успешно
+    campaign_dashboard_instructions_save_success: Инструкциите за таблото за управление на кампанията са запазени успешно
     campaign_factors: Фактори на кампанията
     campaign_id_placeholder: Въведете ID на кампанията
     campaign_name: Име на кампанията
+    campaign_name_translations: Преводи на имена на кампании
+    campaign_name_translations_fetch_error: Грешка при извличане на преводите на имената на кампаниите
     campaign_report_generate_modal_subtitle: Изберете необходимия език за всеки отчет
     campaign_report_id: Идентификационен номер на доклада за кампанията
     campaign_results_export_details: Резултати, генерирани от артефакти на кампанията AI
@@ -418,6 +433,7 @@ bg:
     category: Категория
     cell_save_msg: Валидните промени се запазват автоматично, веднага щом излезете от клетката след редактиране.
     change_reason: Причина за промяната
+    change_report_dates_message: Искате ли да промените периода от отчета?
     change_score: променен резултат
     change_score_log: Регистър на промените в резултатите
     characters: герои
@@ -512,6 +528,7 @@ bg:
     created_successfully: AI Assistant е създаден успешно.
     current: Текущ
     current_job_role: Текуща длъжност
+    current_locale: Текущ език
     custom_formula: Персонализирана формула
     custom_message_description: Това съобщение може да бъде изпратено на всеки, който участва в оценяването
     custom_message_name: Персонализирано съобщение
@@ -679,6 +696,7 @@ bg:
     disable_dp: Не позволявайте по-нататъшно обработване на данни
     disable_proctoring: Деактивиране на наблюдението
     disable_report_download: Деактивиране на изтеглянето на доклади
+    disable_transcript_download: Деактивиране на изтеглянето на препис
     disallow_lead_assessor_moderation: Да не се разрешава модерация от страна на главния оценител
     disallow_lead_assessor_moderation_info: Оценката ще се изчислява автоматично въз основа на подадените формуляри от оценителите, а главният оценител няма да може да я променя от екрана за модерация
     discard_all_questions: Изчисти всички въпроси
@@ -830,10 +848,13 @@ bg:
     feature_flags_ai_group: Функции на изкуствения интелект
     feature_flags_communication_group: Комуникация
     feature_flags_platform_group: Характеристики на платформата
+    feature_flags_superadmin_group: Определяне на обхвата на наемателя
+    feature_glint_ui_description: Рендирайте преживяването на участниците със системата за дизайн Glint
     feature_global_skills_description: Достъп до глобалната библиотека с умения за оценки
     feature_idp_description: Активиране на индивидуално планиране на развитието за участниците
     feature_not_available: Тази функция не е налична
     feature_sms_notification_description: Активиране на SMS известия за покани и напомняния за кампании
+    feature_superadmin_tenant_scoping_description: Когато е деактивирано, заявките на суперадминистратора няма да бъдат обхванати от данните на този клиент.
     fields_level: Ниво
     fields_level_description: Описание на нивото
     fields_level_name: Име на ниво
@@ -865,6 +886,7 @@ bg:
     form_datasheet: Лист с данни
     form_datasheet_columns: Колони на листа с данни
     form_end_date: Крайна дата
+    form_fields_to_display: Полета за показване
     form_include_all_datasheet_columns: Включване на всички колони на листа с данни
     form_name: Име
     form_no_assessment_selected: Все още не са добавени оценки. Щракнете върху "Добавяне", за да започнете.
@@ -889,8 +911,11 @@ bg:
     generate_transcription: Генериране на транскрипция
     generated_at_time: Генерирано в %{time}
     generated_value: Генерирана стойност
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Потребителският интерфейс на Glint е деактивиран от клиента
     global_skills: Глобални умения
     global_skills_disabled_by_client: Global Skills е деактивиран от клиента
+    go_back: Обратно
     grant_type_label: Вид на безвъзмездна помощ
     grant_type_name: oauth_grant_type
     graphic: Графика
@@ -905,6 +930,7 @@ bg:
     header_logout_title: Сигурен ли си, че искаш да излезеш?
     hide_all: Скрий всичко
     hide_middle_scores: Скриване на средните резултати
+    hide_participant_video: Скриване на видеото на участника
     high: Висока
     hogan: Хоган
     hogan_assessment: Оценка на Хоган
@@ -1250,6 +1276,7 @@ bg:
     key_id: Идентификационен номер на ключа
     keywords: Ключови думи
     keywords_placeholder: Въведете ключови думи, разделени със запетаи.
+    language: Език
     language_id: Идентификатор на езика
     last_name_required: Фамилията е задължителнa
     lead_assessment: Водещо оценяване
@@ -1487,6 +1514,8 @@ bg:
     owner_resource_norm: норма
     owner_resource_report: доклад
     owner_resource_report_bundle: пакет от отчети
+    page_load_failed: Тази страница не можа да бъде заредена.
+    page_load_failed_hint: Приложението може да е актуализирано — презаредете, за да продължите.
     parsed_dependencies_help: Анализирани зависимости за потребителя, използвани от AI Assistant за генериране на резултати от артефакти
     parsed_dependencies_title: Анализирани зависимости
     parsed_dependencies_view: Преглед на анализирани зависимости
@@ -2179,6 +2208,38 @@ bg:
     raw_score: Суров резултат
     reason_for_changes: Причина за промените
     recents: Последни
+    record_history_changes: промени
+    record_history_changes_in_request: промени в това искане
+    record_history_date_range_invalid: Крайната дата трябва да е същата или по-късна от началната дата.
+    record_history_date_range_required: Моля, изберете период от дати.
+    record_history_date_range_too_large: Диапазонът от дати не може да надвишава %{days} дни. Моля, стеснете търсенето си.
+    record_history_filter_actor: Филтриране по имейл на актьор
+    record_history_filter_field: Филтриране по променено поле
+    record_history_filter_type: Филтриране по тип запис
+    record_history_id_required: Моля, въведете идентификатор на запис
+    record_history_include_related: Включване на свързани записи
+    record_history_last_30_days: Последните 30 дни
+    record_history_last_7_days: Последните 7 дни
+    record_history_no_results: Не е намерена история на промените за този запис.
+    record_history_no_results_for: Не са открити промени за
+    record_history_records_changed: записите са променени
+    record_history_related_tag: Свързани
+    record_history_request_banner: Показване на всички промени в заявката
+    record_history_request_label: 'Заявка:'
+    record_history_request_or_record_required: Въведете UUID на заявката или изберете тип и ID на записа.
+    record_history_request_uuid: Заявка за UUID
+    record_history_request_uuid_placeholder: Въведете UUID на заявката
+    record_history_revision_failed: Зареждането на състоянието на записа за тази версия не бе успешно.
+    record_history_search_hint: Въведете UUID на заявката или изберете тип запис и идентификатор на запис, за да проследите историята на промените.
+    record_history_select_type: Изберете тип запис
+    record_history_state_at_version: Състояние при версията
+    record_history_system: Система
+    record_history_title: История на промените в записа
+    record_history_type_required: Моля, изберете тип запис
+    record_history_version: Версия
+    record_history_view_audit_log: Преглед в регистрационните файлове за одит
+    record_history_view_full: Вижте пълната история
+    record_history_view_request: Преглед на заявката
     record_id: Идентификатор на записа
     recordings: Записи
     reflection_questions: Въпроси за размисъл
@@ -2294,6 +2355,7 @@ bg:
     report_no_evaluations: Докладът за %{user} не е наличен – не са получени оценки.
     report_not_generated: Докладът за %{user} отговаря на условията за наличност, но все още не е генериран. Моля, генерирайте доклада първо.
     report_on_hold: Докладът за %{user} в момента е на пауза
+    report_owner: Собственик
     report_pdf_status: Отчет за състоянието на PDF файла
     report_review_abort_qc: Прекъсване на QC
     report_review_approve: Одобрявам
@@ -2314,10 +2376,12 @@ bg:
     report_types:
       active_clients_projects: Активни клиенти и проекти
       campaign_factor_scores: Резултати по факторите на кампанията
+      campaign_user_creation: Създаване на потребител на кампанията
       client_assessment_counts: Оценката на клиента е от значение
       hogan_usage_report: Използване на оценката на Хоган
       json_data_report: Отчет за данни в JSON формат
       pearson_usage_report: Използване на оценките на „Пиърсън“
+      proctoring_sessions: Сесии за наблюдение
       report_usage_summary: Обобщение на използването на отчета
       saville_usage_report: Използване на оценката на Saville
       user_access_review: Преглед на достъпа на потребителите
@@ -2377,6 +2441,17 @@ bg:
     role_project_admin: Администратор на проекта
     role_superadmin: Супер администратор
     run: Стартирай
+    runtime_configuration_invalid_json_object: runtime_configuration трябва да е валиден JSON обект
+    runtime_configuration_invalid_parameter: не е параметър, който може да се актуализира по време на изпълнение
+    runtime_parameter_date_range_required: Моля, изберете както начална, така и крайна дата
+    runtime_parameter_editable_section_title: Период от време
+    runtime_parameter_filter_column: Филтър
+    runtime_parameter_locked_section_title: Включени филтри
+    runtime_parameter_modal_subtitle: Прегледайте подробностите и актуализирайте диапазона от дати, ако е необходимо.
+    runtime_parameter_modal_title: Изпълнете отчета
+    runtime_parameter_not_set: Не е предоставено
+    runtime_parameter_submit_button: Бягай сега
+    runtime_parameter_value_column: Стойност
     saml_idp_certificate_available: Наличен (кликнете за копиране)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор на дружеството/Емитент
@@ -2511,6 +2586,7 @@ bg:
     scheduling_columns_start_time: Дата и час
     scheduling_columns_subject: Тема
     scheduling_columns_title: Заглавие
+    scheduling_columns_video_hidden_for_privacy: Видеото е скрито от съображения за поверителност на кандидата.
     scheduling_columns_view_recording: Преглед на записа
     scheduling_errors_assessor_already_assigned: Оценител, който вече е назначен за тази оценка. Моля, изберете друг оценител или оценител.
     scheduling_errors_date_required: Моля, изберете дата
@@ -2600,6 +2676,12 @@ bg:
     score: Резултат
     score_approval_not_allowed_to_approve: Не е позволено да одобрявате този резултат.
     score_approval_not_allowed_to_discard: Не е позволено да изхвърляте този резултат.
+    score_approval_reset: Нулиране на одобрението
+    score_approval_reset_description: Това ще върне одобрението в режим „Изчакване“. Оценките няма да се променят. Това действие не може да бъде отменено.
+    score_approval_reset_not_allowed: Това одобрение на резултата не може да бъде нулирано в текущото му състояние.
+    score_approval_reset_recompute_description: Това ще нулира одобрението, ще премахне оценките на ИИ от резултатите на потребителя и ще изтрие всички генерирани отчети. Това действие не може да бъде отменено.
+    score_approval_reset_success: Одобрението на резултата е нулирано.
+    score_approval_reset_title: Нулиране на одобрението на резултата?
     score_definition_placeholder: Въведете определението за това ниво на оценка
     score_definitions: Определения на резултатите
     score_max: Максимален резултат
@@ -2831,6 +2913,7 @@ bg:
     sheets_tabs_settings: Настройки
     show_all: Покажи всички
     show_all_assessment_responses: Покажи всички отговори на оценката
+    show_form_field_titles: Показване на заглавията на полетата на формуляра
     show_middle_scores: Покажи още резултати за „%{count}“ (по избор)...
     show_original: Покажи оригинал
     show_submenu: Покажи подменюто
@@ -2953,7 +3036,14 @@ bg:
     smtp_settings_user_name: Потребителско име
     specialty_questions: Специфични въпроси
     sso_email_mismatch: Влизали сте с друг акаунт в доставчика на идентификация. Моля, излезте от акаунта си при доставчика на идентификация и опитайте отново.
+    sso_enforce_for: Прилагане на SSO за
+    sso_enforce_for_all: Всички потребители
+    sso_enforce_for_none: Няма
+    sso_enforce_for_specific_domains: Специфични домейни
     sso_enforced: Прилагане на SSO
+    sso_enforced_domains: Принудителни домейни
+    sso_enforced_domains_hint: напр. se.com (точно съвпадение) или *.se.com (само поддомейни)
+    sso_enforced_domains_placeholder: Въведете домейн(и) и натиснете Enter
     sso_label: SSO
     sso_not_enabled: SSO не е активирано за този клиент
     sso_settings: Настройки за SSO
@@ -3068,6 +3158,7 @@ bg:
     success_title: Центрове за оценяване са създадени
     success_update: Настройките за дизайн са запазени успешно
     suitability_id: Идентификационен номер за пригодност
+    superadmin_tenant_scoping: Суперадминистратор
     superadmin_use_root_domain: Суперадминистраторите трябва да влязат в системата чрез основния домейн
     switch_client: Превключване на клиент
     system_prompt: Системна подкана
@@ -3088,12 +3179,38 @@ bg:
     taxonomy_title: Таксономия на уменията
     template_and_campaign_required: Моля, предоставите както шаблон, така и идентификационен номер на кампанията
     template_render_failed: Не успях да рендерирам шаблона
+    tenant_repair_confirm_message: 'Задаване на tenant_id на %{new_tenant} на %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Задаване на tenant_id на null на %{model} #%{id}?'
+    tenant_repair_confirm_title: Потвърждаване на актуализацията на наемателя
+    tenant_repair_correct: Правилно
+    tenant_repair_current_tenant: Настоящ наемател
+    tenant_repair_find_record: Намери запис
+    tenant_repair_global_tenant: глобален
+    tenant_repair_invalid_model: Невалиден или ненаемаем тип модел
+    tenant_repair_invalid_record_id: Въведете валиден идентификатор на запис
+    tenant_repair_invalid_tenant_id: Въведете валиден положителен идентификатор на наемател или оставете празно, за да го направите null
+    tenant_repair_model_label: Модел
+    tenant_repair_model_placeholder: Въведете текст, за да търсите...
+    tenant_repair_moved_from: 'наемателят се промени:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Идентификационен номер на нов наемател
+    tenant_repair_preview_title: Преглед на записа
+    tenant_repair_request_failed: Заявката е неуспешна
+    tenant_repair_resolved_tenant: Решен наемател
+    tenant_repair_success: Наемателят е актуализиран успешно.
+    tenant_repair_title: Корекция на наемателя
+    tenant_repair_update: Актуализация
+    tenant_repair_will_set_null: Ще зададе tenant_id на null
+    tenant_repair_will_set_value: Ще зададе tenant_id на %{value}
     test_generate: Генериране на тест
     test_render: Тестов рендер
     test_render_tooltip: Тествайте шаблона за подсказки с данни от кампанията, за да проверите какво ще бъде изпратено на AI асистента.
     text_danger: Текст(опасност)
     text_success: Текст (успех)
     text_warning: Текст(предупреждение)
+    themes:
+      marsh-dark: Блато Тъмно
+      marsh-light: Блато Светлина
     this_field_is_required: Това поле е задължително
     threesixity_advance_settings_campaign_template: Шаблон за кампания
     threesixity_advance_settings_factors: Фактори

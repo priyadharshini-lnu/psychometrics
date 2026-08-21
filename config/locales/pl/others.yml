@@ -890,6 +890,7 @@ pl:
         export_campaign_datasheet: Arkusz danych kampanii eksportowej
         export_campaign_factors: Czynniki kampanii eksportowej
         export_campaign_scorings: Eksport kampanii Scorings
+        export_campaign_translations: Tłumaczenia kampanii eksportowych
         export_dashboard_as_file: Eksportuj pulpit nawigacyjny jako plik
         export_development_action_translations: Tłumaczenia działań na rzecz rozwoju eksportu
         export_development_actions: Działania na rzecz rozwoju eksportu
@@ -917,6 +918,7 @@ pl:
         import_assessors: Asesorzy importowi
         import_campaign_ai_artifacts: Artefakty AI w kampanii importowej
         import_campaign_factors: Importowanie czynników kampanii
+        import_campaign_translations: Importuj tłumaczenia kampanii
         import_client_assessors: Importowanie ekspertów ds. oceny klientów
         import_datasheet: Arkusz danych importu
         import_development_action_translations: Importowanie tłumaczeń działań rozwojowych
@@ -958,6 +960,7 @@ pl:
         super_admin_assessment_raw_result_export: Eksport surowych wyników Super Admin
         super_admin_datasheet_export: Eksport arkusza danych Super Admin
         super_admin_external_assessment_export: Eksport oceny zewnętrznej superadministratora
+        superadmin_record_change_history: Historia zmian rekordu
         threesixty_campaign_export_completion_status: Stan ukończenia eksportu kampanii Threesixty
         threesixty_campaign_export_scores: Eksport wyników kampanii Threesixty
         workshop_status_export: Eksport statusu centrum oceny
@@ -2142,6 +2145,7 @@ pl:
       max_generation_limit: Przekroczono maksymalny limit generacji, skontaktuj się z administracją.
     assessments:
       timed_out: Nie będziesz mógł wziąć udziału w ocenie %{assessment_name}, ponieważ upłynął limit czasu.
+    csrf_retry: Proszę spróbować ponownie
     equal_to_current_password: musi być inne niż bieżące hasło.
     equal_to_email: musi być inny niż adres e-mail.
     error: Błąd

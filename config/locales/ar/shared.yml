@@ -55,6 +55,7 @@ ar:
     copied_successfully: تم النسخ بنجاح
     copied_to_clipboard: نسخ إلى الحافظة
     copy: نسخ
+    copyright: "© %{year} %{display_name}. جميع الحقوق محفوظة."
     create: إنشاء
     created_at: تم إنشاؤها في
     created_by: تم إنشاؤه بواسطة
@@ -181,6 +182,29 @@ ar:
     remove: إزالة
     removed: تمت الإزالة
     replace: استبدال
+    reports:
+      ai_rationale_evidence:
+        all_factors: جميع العوامل
+        factor_label: عوامل
+        hide_evidence: إخفاء الأدلة
+        hide_rationale: إخفاء الأساس المنطقي
+        no_data: لا توجد بيانات أو أدلة منطقية متعلقة بالذكاء الاصطناعي متاحة للسؤال المحدد.
+        no_question_selected: يرجى اختيار سؤال لعرض الأساس المنطقي والأدلة المتعلقة بالذكاء الاصطناعي.
+        question_label: سؤال
+        select_question: اختر سؤالاً
+      ai_transcript:
+        no_data: لا تتوفر بيانات نصية للسؤال المحدد.
+        no_question_selected: يرجى اختيار سؤال لعرض نص الإجابة.
+        question_label: سؤال
+        select_question: اختر سؤالاً
+    reports_bar_gradient_direction: اتجاه التدرج
+    reports_bar_gradient_direction_bottom_to_top: من الأسفل إلى الأعلى
+    reports_bar_gradient_direction_left_to_right: من اليسار إلى اليمين
+    reports_bar_gradient_direction_right_to_left: من اليمين إلى اليسار
+    reports_bar_gradient_direction_top_to_bottom: من الأعلى إلى الأسفل
+    reports_bar_gradient_enabled: تفعيل التدرج اللوني
+    reports_bar_gradient_end_color: اللون النهائي
+    reports_bar_gradient_start_color: لون البداية
     reports_show_values_inside_bar: إظهار القيم داخل الشريط
     reports_value_label_position: موضع علامة القيمة
     reports_value_label_position_center: الوسط

@@ -484,6 +484,26 @@ it:
           modal_title: Impostazioni di approvazione del punteggio
           remove_modal_success: 'Impostazione di approvazione per ID valutazione: %{assessmentId} eliminata correttamente'
           remove_modal_text: 'Sei sicuro di voler eliminare questa impostazione per l''ID valutazione: %{assessmentId}?'
+      bulk_import_translations:
+        details: Modello di traduzione della campagna
+        download_template: Scarica il modello
+        errors:
+          blank_campaign_id: 'Riga %{row}: L''ID della campagna non può essere vuoto'
+          campaign_not_found: 'Riga %{row}: La campagna %{id} non è stata trovata in questo progetto'
+          generic: Si è verificato un errore. Riprova.
+          invalid_csv_format: 'Formato CSV non valido: %{message}'
+          invalid_locales: 'Colonne lingua non valide: %{locales}'
+          missing_required_columns: 'Colonne obbligatorie mancanti: %{columns}'
+          must_be_csv: Il file deve essere in formato .csv
+          save_failed: 'Impossibile salvare la traduzione della campagna %{id} per %{locale}: %{message}'
+        file_label: File di traduzione
+        import_started: Importazione della traduzione in corso. Si prega di controllare lo stato di avanzamento nelle notifiche.
+        instructions_intro: Scarica il modello CSV, aggiorna i nomi delle campagne nelle colonne relative alle lingue che desideri, quindi carica il file completato.
+        instructions_title: Istruzioni
+        menu_label: Traduzioni di importazione
+        template_started: Esportazione del modello in corso. Si prega di controllare lo stato di avanzamento nelle notifiche.
+        title: Traduzioni del nome della campagna di importazione
+        upload_file: Carica il file
       validations:
         dates:
           end: deve essere successivo alla data di inizio

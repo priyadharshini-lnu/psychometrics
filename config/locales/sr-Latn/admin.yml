@@ -103,6 +103,7 @@ sr-Latn:
     ai_scoring_approval_stale_description: Ажурирања конфигурације од последњег покретања могла су променити резултат. Поново оцените да бисте га ажурирали користећи најновија подешавања.
     ai_scoring_approval_stale_title: Резултат може бити застарео
     ai_scoring_approvals: АИ оцењивање одобрења
+    ai_scoring_errors_label: Грешке у бодовању вештачке интелигенције
     ai_scoring_refresh_score: Освежи резултат
     ai_scoring_refresh_score_confirm_description: Ово ће поново извршити AI бодовање за ову процену користећи најновију конфигурацију. Јесте ли сигурни?
     ai_scoring_refresh_score_confirm_title: Освежи АИ резултате?
@@ -122,6 +123,12 @@ sr-Latn:
     alt_text_long: Premašuje maksimalnu granicu od 100 znakova.
     api_keys: API ključevi
     api_keys_form_title: API ključ
+    appearance: Изглед
+    appearance_dark: Тамно
+    appearance_dark_theme: Тамна тема
+    appearance_light: Светло
+    appearance_light_theme: Светла тема
+    appearance_system: Систем
     application: Примена
     application_add: Додај апликацију
     application_name: Назив апликације
@@ -131,7 +138,6 @@ sr-Latn:
     application_settings_at_least_one_url_required: Омогућите барем један унос URL-а пре него што омогућите стављање URL-ова на белу листу
     application_settings_confirm_delete_ip: Да ли сте сигурни да желите да обришете ову ИП адресу?
     application_settings_confirm_delete_url: Да ли сте сигурни да желите да обришете ову URL адресу?
-    application_settings_edit_ip_address: Уређивање IP адресе / CIDR опсега
     application_settings_enable_ip_whitelisting: Омогућите белу листу ИП адреса
     application_settings_enable_url_whitelisting: Омогући стављање URL-ова на белу листу
     application_settings_invalid_ip_format: Неважећа ИП адреса или CIDR формат
@@ -195,6 +201,8 @@ sr-Latn:
     assessor_add_subject_modal_subject: Tema
     assessor_add_subject_modal_subject_placeholder: Pretraži subjekta..
     assessor_add_subject_modal_title: Dodaj subjekta
+    assessor_assessment_drawer_title: Детаљи процене
+    assessor_assessment_id: ИД процене проценитеља
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Izaberite procenu
     assessor_assessment_name: Procena procenjivača
     assessor_assessments: Procene procenjivača
@@ -345,9 +353,15 @@ sr-Latn:
     campaign_assessment_modals_update_occupation_condition_set_select: Изаберите скуп услова занимања
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Скуп услова за занимање је успешно ажуриран.
     campaign_assessment_modals_update_occupation_condition_set_title: Ажурирај скуп стања занимања
+    campaign_dashboard_instructions_label: Упутства за контролну таблу кампање
+    campaign_dashboard_instructions_save: Сачувај упутства
+    campaign_dashboard_instructions_save_error: Чување упутстава за контролну таблу кампање није успело
+    campaign_dashboard_instructions_save_success: Упутства за контролну таблу кампање су успешно сачувана
     campaign_factors: Faktori kampanje
     campaign_id_placeholder: Unesite ID kampanje
     campaign_name: Назив кампање
+    campaign_name_translations: Преводи назива кампање
+    campaign_name_translations_fetch_error: Грешка при преузимању превода назива кампање
     campaign_report_generate_modal_subtitle: Izaberite potreban jezik za svaki izveštaj
     campaign_report_id: ИД извештаја о кампањи
     campaign_results_export_details: 'Кампања: АИ артефакти генерисали резултате'
@@ -419,6 +433,7 @@ sr-Latn:
     category: Kategorija
     cell_save_msg: Важеће измене се аутоматски сачувају чим напустите ћелију након уређивања.
     change_reason: Промени разлог
+    change_report_dates_message: Да ли желите да промените период извештаја?
     change_score: измењена оцена
     change_score_log: Промени евиденцију о променама
     characters: ликови
@@ -513,6 +528,7 @@ sr-Latn:
     created_successfully: AI asistent je uspešno kreiran.
     current: Trenutno
     current_job_role: Trenutna radna uloga
+    current_locale: Тренутна локација
     custom_formula: Prilagođena formula
     custom_message_description: Ova poruka se može poslati svima koji učestvuju u proceni
     custom_message_name: Prilagođena poruka
@@ -680,6 +696,7 @@ sr-Latn:
     disable_dp: Ne dozvoli dalju obradu podataka
     disable_proctoring: Онемогућите надзор
     disable_report_download: Onemogući preuzimanje izveštaja
+    disable_transcript_download: Онемогући преузимање транскрипта
     disallow_lead_assessor_moderation: Забрани посредовање водећег процењивача
     disallow_lead_assessor_moderation_info: Резултат ће бити аутоматски израчунат на основу свих поднетих формулара процењивача, а водећи процењивач га не може променити са екрана за модерацију.
     discard_all_questions: Ресетовати сва питања
@@ -831,10 +848,13 @@ sr-Latn:
     feature_flags_ai_group: АИ функције
     feature_flags_communication_group: Комуникација
     feature_flags_platform_group: Карактеристике платформе
+    feature_flags_superadmin_group: Утврђивање обима закупца
+    feature_glint_ui_description: Прикажите искуство учесника помоћу Glint дизајн система
     feature_global_skills_description: Приступите глобалној библиотеци вештина за процене
     feature_idp_description: Омогућите појединачно планирање развоја за учеснике
     feature_not_available: Ова функција није доступна
     feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
+    feature_superadmin_tenant_scoping_description: Када је онемогућено, упити суперадминистратора неће бити ограничени на податке овог клијента
     fields_level: Nivo
     fields_level_description: Opis nivoa
     fields_level_name: Ime nivoa
@@ -866,6 +886,7 @@ sr-Latn:
     form_datasheet: Lista podataka
     form_datasheet_columns: Kolumne sa tablama
     form_end_date: Datum završetka
+    form_fields_to_display: Поља за приказ
     form_include_all_datasheet_columns: Uključite sve kolone Datasheet-a
     form_name: Ime
     form_no_assessment_selected: Još uvek nema procena. Kliknite na "Dodaj" da biste započeli.
@@ -890,8 +911,11 @@ sr-Latn:
     generate_transcription: Генеришите транскрипцију
     generated_at_time: Generisano u %{time}
     generated_value: Generisana vrednost
+    glint_ui: Глинт кориснички интерфејс
+    glint_ui_disabled_by_client: Клијент је онемогућио Glint UI
     global_skills: Globalne veštine
     global_skills_disabled_by_client: Global Skills je onemogućen od strane klijenta
+    go_back: Назад
     grant_type_label: Tip granta
     grant_type_name: oauth_grant_type
     graphic: Графички
@@ -906,6 +930,7 @@ sr-Latn:
     header_logout_title: Da li ste sigurni da želite da se odjavite.
     hide_all: Sakrij sve
     hide_middle_scores: Сакриј средње резултате
+    hide_participant_video: Сакриј видео учесника
     high: Високо
     hogan: Хоган
     hogan_assessment: Хоган процена
@@ -1251,6 +1276,7 @@ sr-Latn:
     key_id: Кључни ИД
     keywords: Кључне речи
     keywords_placeholder: Унесите кључне речи раздвојене зарезима.
+    language: Језик
     language_id: Идентификатор језика
     last_name_required: Prezime je obavezno
     lead_assessment: Glavni procenjivač
@@ -1488,6 +1514,8 @@ sr-Latn:
     owner_resource_norm: норма
     owner_resource_report: извештај
     owner_resource_report_bundle: пакет извештаја
+    page_load_failed: Ова страница није могла бити учитана.
+    page_load_failed_hint: Апликација је можда ажурирана — поново је учитајте да бисте наставили.
     parsed_dependencies_help: Obrađene zavisnosti za korisnika koje koristi AI Assistant za generisanje rezultata artefakata
     parsed_dependencies_title: Obrađene zavisnosti
     parsed_dependencies_view: Pogledaj obrađene zavisnosti
@@ -2180,6 +2208,38 @@ sr-Latn:
     raw_score: Сирови резултат
     reason_for_changes: Разлог за промене
     recents: Недавни
+    record_history_changes: промене
+    record_history_changes_in_request: измене у овом захтеву
+    record_history_date_range_invalid: Крајњи датум мора бити исти као и почетни датум или касније.
+    record_history_date_range_required: Изаберите период.
+    record_history_date_range_too_large: Период не може бити дужи од %{days} дана. Молимо вас да сузите претрагу.
+    record_history_filter_actor: Филтрирај по имејл адреси глумца
+    record_history_filter_field: Филтрирај по промењеном пољу
+    record_history_filter_type: Филтрирај по типу записа
+    record_history_id_required: Молимо вас да унесете ИД записа
+    record_history_include_related: Укључи повезане записе
+    record_history_last_30_days: Последњих 30 дана
+    record_history_last_7_days: Последњих 7 дана
+    record_history_no_results: Није пронађена историја промена за овај запис.
+    record_history_no_results_for: Нису пронађене промене за
+    record_history_records_changed: записи су промењени
+    record_history_related_tag: Повезано
+    record_history_request_banner: Приказују се све измене у захтеву
+    record_history_request_label: 'Захтев:'
+    record_history_request_or_record_required: Унесите UUID захтева или изаберите тип записа и ID.
+    record_history_request_uuid: Захтев за јединствени јединствени идентификатор (UUID)
+    record_history_request_uuid_placeholder: Унесите UUID захтева
+    record_history_revision_failed: Није успело учитавање стања записа за ову верзију.
+    record_history_search_hint: Унесите UUID захтева или изаберите тип записа и ID записа да бисте пратили историју промена.
+    record_history_select_type: Изаберите тип записа
+    record_history_state_at_version: Стање у верзији
+    record_history_system: Систем
+    record_history_title: Историја промена записа
+    record_history_type_required: Изаберите тип записа
+    record_history_version: Верзија
+    record_history_view_audit_log: Прикажи у евиденцијама ревизије
+    record_history_view_full: Погледајте целу историју
+    record_history_view_request: Погледајте захтев
     record_id: Zapis ID
     recordings: Snimke
     reflection_questions: Pitanja za razmišljanje
@@ -2295,6 +2355,7 @@ sr-Latn:
     report_no_evaluations: Izveštaj za %{user} nije dostupan - nisu primljene nikakve ocene.
     report_not_generated: Izveštaj za %{user} ispunjava uslove dostupnosti, ali još nije generisan. Molimo vas da prvo generišete izveštaj.
     report_on_hold: Izveštaj za %{user} je trenutno na čekanju
+    report_owner: Власник
     report_pdf_status: Пријави статус PDF-а
     report_review_abort_qc: Prekini QC
     report_review_approve: Odobri
@@ -2315,10 +2376,12 @@ sr-Latn:
     report_types:
       active_clients_projects: Активни клијенти и пројекти
       campaign_factor_scores: Резултати кампање
+      campaign_user_creation: Креирање корисника кампање
       client_assessment_counts: Процена клијента је важна
       hogan_usage_report: Употреба Hogan асесмента
       json_data_report: Извештај о JSON подацима
       pearson_usage_report: Коришћење Пирсон тестова
+      proctoring_sessions: Сесије надзора
       report_usage_summary: Извештај о резимеу коришћења
       saville_usage_report: Употреба Савилл процене
       user_access_review: Преглед приступа корисника
@@ -2378,6 +2441,17 @@ sr-Latn:
     role_project_admin: Администратор пројекта
     role_superadmin: Супер администратор
     run: Покрени
+    runtime_configuration_invalid_json_object: runtime_configuration мора бити важећи JSON објекат
+    runtime_configuration_invalid_parameter: није параметар који се може ажурирати током извршавања
+    runtime_parameter_date_range_required: Молимо вас да изаберете и датум почетка и датум завршетка
+    runtime_parameter_editable_section_title: Период
+    runtime_parameter_filter_column: Филтер
+    runtime_parameter_locked_section_title: Укључени филтери
+    runtime_parameter_modal_subtitle: Прегледајте детаље и ажурирајте распон датума ако је потребно.
+    runtime_parameter_modal_title: Покрени извештај
+    runtime_parameter_not_set: Није наведено
+    runtime_parameter_submit_button: Покрени сада
+    runtime_parameter_value_column: Вредност
     saml_idp_certificate_available: Dostupno (kliknite da biste kopirali)
     saml_idp_certificate_label: Certifikat
     saml_idp_entity_id_label: ID entiteta / izdavač
@@ -2512,6 +2586,7 @@ sr-Latn:
     scheduling_columns_start_time: Datum i vreme
     scheduling_columns_subject: Tema
     scheduling_columns_title: Naslov
+    scheduling_columns_video_hidden_for_privacy: Видео је скривен ради заштите приватности кандидата.
     scheduling_columns_view_recording: Pogledaj snimak
     scheduling_errors_assessor_already_assigned: Procenjivač je već dodeljen ovoj proceni. Molimo Vas da izaberete drugu procenu ili procenitelja.
     scheduling_errors_date_required: Molimo Vas da izaberete datum
@@ -2601,6 +2676,12 @@ sr-Latn:
     score: Резултат
     score_approval_not_allowed_to_approve: Немате дозволу да одобрите овај резултат.
     score_approval_not_allowed_to_discard: Није вам дозвољено да одбаците овај резултат.
+    score_approval_reset: Ресетуј одобрење
+    score_approval_reset_description: Овим ће се одобрење вратити на чекање. Оцене се неће променити. Ова радња се не може поништити.
+    score_approval_reset_not_allowed: Ово одобрење резултата не може се ресетовати у тренутном стању.
+    score_approval_reset_recompute_description: Овим ће се ресетовати одобрење, уклонити вештачки интелигентни резултати из корисникових резултата и избрисати сви генерисани извештаји. Ова радња се не може поништити.
+    score_approval_reset_success: Одобрење резултата је ресетовано.
+    score_approval_reset_title: Ресетовати одобрење резултата?
     score_definition_placeholder: Унесите дефиницију за овај ниво бодовања
     score_definitions: Дефиниције бодова
     score_max: Постигни максимум
@@ -2832,6 +2913,7 @@ sr-Latn:
     sheets_tabs_settings: Podešavanja
     show_all: Pokaži sve
     show_all_assessment_responses: Прикажи све одговоре на процену
+    show_form_field_titles: Прикажи наслове поља обрасца
     show_middle_scores: Прикажи још резултата за %{count} (опционално)...
     show_original: Прикажи оригинал
     show_submenu: Prikaži pod-meni
@@ -2949,7 +3031,14 @@ sr-Latn:
     smtp_settings_user_name: Korisničko ime
     specialty_questions: Специјална питања
     sso_email_mismatch: Пријављени сте на други налог на провајдеру идентитета. Молимо вас да се одјавите са провајдера идентитета и покушате поново.
+    sso_enforce_for: Примени једнократно пријављивање за
+    sso_enforce_for_all: Сви корисници
+    sso_enforce_for_none: Ниједан
+    sso_enforce_for_specific_domains: Одређени домени
     sso_enforced: Применити SSO
+    sso_enforced_domains: Примењени домени
+    sso_enforced_domains_hint: нпр. se.com (тачно подударање) или *.se.com (само поддомени)
+    sso_enforced_domains_placeholder: Унесите домен(е) и притисните Ентер
     sso_label: ССО
     sso_not_enabled: SSO није омогућен за овог клијента
     sso_settings: Подешавања SSO
@@ -3064,6 +3153,7 @@ sr-Latn:
     success_title: Stvoreni centri za procenu
     success_update: Podešavanja dizajna su uspešno sačuvana
     suitability_id: Идентификатор подобности
+    superadmin_tenant_scoping: Суперадминистратор
     superadmin_use_root_domain: Суперадминистратори морају да се пријаве преко главног домена.
     switch_client: Пребаци клијент
     system_prompt: Sistem prompt
@@ -3084,12 +3174,38 @@ sr-Latn:
     taxonomy_title: Taksonomija veština
     template_and_campaign_required: Molimo Vas da navedete i šablon i ID kampanje
     template_render_failed: Неуспело приказивање шаблона
+    tenant_repair_confirm_message: 'Поставити tenant_id на %{new_tenant} на %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Поставити tenant_id на null на %{model} #%{id}?'
+    tenant_repair_confirm_title: Потврдите ажурирање закупца
+    tenant_repair_correct: Тачно
+    tenant_repair_current_tenant: Тренутни закупац
+    tenant_repair_find_record: Пронађи запис
+    tenant_repair_global_tenant: глобално
+    tenant_repair_invalid_model: Неважећи или ненаменски тип модела
+    tenant_repair_invalid_record_id: Унесите важећи ИД записа
+    tenant_repair_invalid_tenant_id: Унесите важећи позитивни ИД закупца или оставите празно да бисте га поставили у вредност null
+    tenant_repair_model_label: Модел
+    tenant_repair_model_placeholder: Куцајте да бисте претражили...
+    tenant_repair_moved_from: 'закупац је промењен:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ИД новог закупца
+    tenant_repair_preview_title: Преглед снимка
+    tenant_repair_request_failed: Захтев није успео
+    tenant_repair_resolved_tenant: Решени закупац
+    tenant_repair_success: Закупац је успешно ажуриран.
+    tenant_repair_title: Исправка закупца
+    tenant_repair_update: Ажурирање
+    tenant_repair_will_set_null: Поставиће tenant_id на null
+    tenant_repair_will_set_value: Поставиће се tenant_id на %{value}
     test_generate: Test Generisanje
     test_render: Тест рендеровања
     test_render_tooltip: Testirajte svoj brzi predložak sa podacima o kampanji da biste proverili šta će biti poslato AI asistentu.
     text_danger: Tekst (opasnost)
     text_success: Tekst (uspeh)
     text_warning: Tekst (upozorenje)
+    themes:
+      marsh-dark: Мочварна тама
+      marsh-light: Мочварно светло
     this_field_is_required: Ово поље је обавезно
     threesixity_advance_settings_campaign_template: Šablon kampanje
     threesixity_advance_settings_factors: Faktori
