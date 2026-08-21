@@ -4,6 +4,8 @@ export const ClientSsoSettingsTR = t.type({
   id: t.string,
   ssoEnabled: t.boolean,
   ssoEnforced: t.boolean,
+  enforceFor: t.union([t.literal('none'), t.literal('all'), t.literal('specific_domains')]),
+  enforcedDomains: t.array(t.string),
   idpEntityId: t.union([t.string, t.null]),
   idpSsoUrl: t.union([t.string, t.null]),
   idpSloUrl: t.union([t.string, t.null]),

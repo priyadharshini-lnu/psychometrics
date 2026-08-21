@@ -10,6 +10,8 @@ module Administration
           required(:id).maybe(:int?)
           required(:enabled).maybe(:bool?)
           required(:enforced).maybe(:bool?)
+          required(:enforce_for).maybe(:str?)
+          optional(:enforced_domains).maybe(:array?)
           required(:entity_id).maybe(:str?)
           required(:sso_service_url).maybe(:str?)
           required(:cert).maybe(:str?)

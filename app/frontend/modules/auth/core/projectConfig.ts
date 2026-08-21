@@ -14,6 +14,7 @@ interface State {
   login_box_position: LoginBoxPosition,
   saml_login_allowed: boolean
   saml_enforced: boolean
+  saml_domain_enforcement_enabled: boolean
   require_mobile_number: boolean
   hide_signup: boolean
   primary_color?: string
@@ -40,6 +41,7 @@ export const defaultState: State = {
   require_mobile_number: false,
   hide_signup: false,
   saml_enforced: false,
+  saml_domain_enforcement_enabled: false,
   background_size: 'cover',
   magic_link_enabled: false,
   disallow_password_login: false,

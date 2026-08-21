@@ -3,8 +3,9 @@
 class Api::V2::Administration::ClientSsoSettingResource < Api::V2::Administration::BaseResource
   include Rails.application.routes.url_helpers
 
-  attributes :sso_enabled, :sso_enforced, :idp_entity_id, :idp_sso_url, :idp_slo_url,
-             :idp_cert, :session_timeout, :allowed_domains, :assertion_consumer_service_url, :issuer
+  attributes :sso_enabled, :sso_enforced, :enforce_for, :enforced_domains,
+             :idp_entity_id, :idp_sso_url, :idp_slo_url, :idp_cert, :session_timeout,
+             :allowed_domains, :assertion_consumer_service_url, :issuer
 
   ransack_filters %i[tenant_id_eq]
 

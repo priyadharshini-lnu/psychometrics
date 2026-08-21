@@ -214,6 +214,7 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
         second_tenancy.client_sso_setting.update!(
           sso_enabled: true,
           sso_enforced: true,
+          enforce_for: 'all',
           idp_entity_id: 'https://idp.example.com/test',
           idp_sso_url: 'https://idp.example.com/sso/saml',
           idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read
@@ -277,6 +278,7 @@ RSpec.describe Administration::Administrator::ClientSelectionController, type: :
         tenancy.client_sso_setting.update!(
           sso_enabled: true,
           sso_enforced: true,
+          enforce_for: 'all',
           idp_entity_id: 'https://idp.example.com/test',
           idp_sso_url: 'https://idp.example.com/sso/saml',
           idp_cert: Rails.root.join('spec/fixtures/files/cert.pem').read

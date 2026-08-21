@@ -9,7 +9,7 @@ module AdminAuth
       return Result.new(required: false) if impersonator.present?
 
       resolved_client = client || resolve_sole_client(user)
-      return Result.new(required: false) unless resolved_client&.client_sso_setting&.saml_enforced?
+      return Result.new(required: false) unless resolved_client&.client_sso_setting&.sso_enforced_for_email?(user.email)
 
       token = SamlIntentToken.encode(email: user.email)
       url   = AdminSubdomain.admin_url_for(resolved_client, path: '/users/saml/sign_in',

@@ -20,7 +20,10 @@ const LoginComponent: React.FC<Props> = ({
   const clientContext = window.PsyGlobalState?.clientContextData
   const ssoEnabled = clientContext?.sso_enabled
   const ssoEnforced = clientContext?.sso_enforced
-  const showPasswordForm = clientContext || disable_saml_for_admins
+  const ssoDomainEnforced = Boolean(clientContext?.sso_domain_enforcement_enabled)
+  const isTwoStepFlow = ssoEnabled && ssoDomainEnforced
+  const isEmailStep = ((!clientContext && !disable_saml_for_admins) || isTwoStepFlow) && !user.email
+
 
   return (
     <div className={styles.container}>
@@ -55,8 +58,8 @@ const LoginComponent: React.FC<Props> = ({
       )}
 
       {!ssoEnforced && (
-        showPasswordForm
-          ? <LoginForm csrfToken={csrfToken} user={user} />
+        (!isEmailStep)
+          ? <LoginForm csrfToken={csrfToken} user={user} isTwoStepFlow={isTwoStepFlow} />
           : <EmailForm csrfToken={csrfToken} user={user} />
       )}
     </div>

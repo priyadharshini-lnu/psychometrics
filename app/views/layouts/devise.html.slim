@@ -21,6 +21,8 @@ html.body-full-height lang="#{I18n.locale}"
     = render 'shared/maintenance_alert_banner'
     = render 'devise/shared/locales'
 
+    - resource.email = session.delete(:user_email) if session[:user_email].present?
+
     javascript [nonce=content_security_policy_nonce]:
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
