@@ -4148,7 +4148,6 @@ vi:
     admins: Quản trị viên
     create_global_assessor: Tạo đánh giá viên toàn cầu
     create_superadmin: Tạo quản trị viên cấp cao
-    dashboard: Bảng điều khiển
     drawer:
       link: Liên kết
       role: Vai trò

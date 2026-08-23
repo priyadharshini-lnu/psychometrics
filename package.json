@@ -62,7 +62,7 @@
     "@rails/activestorage": "^7.1.2",
     "@reduxjs/toolkit": "^2.2.6",
     "@sentry/react": "^8.47.0",
-    "@thetalententerprise/glint": "0.68.0",
+    "@thetalententerprise/glint": "0.76.0",
     "@thetalententerprise/green-audio-player": "2.0.0",
     "@thetalententerprise/interactive-assessments": "1.11.1",
     "@thetalententerprise/jsonapi-react": "0.0.31",

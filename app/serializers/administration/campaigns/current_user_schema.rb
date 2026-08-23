@@ -81,6 +81,8 @@ module Administration
             required(:category).filled(:str?)
             required(:config_key).filled(:str?)
             required(:payload).maybe(:hash)
+            required(:resource_type).maybe(:str?)
+            required(:resource_id).maybe(:int?)
           end
         end
       end

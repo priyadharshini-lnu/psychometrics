@@ -24,14 +24,17 @@ export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
         <Resource.Column<AiArtifact>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           width={100}
+          fixed="left"
         />
         <Resource.Column<AiArtifact>
           title={I18n.t('shared.name')}
           id="name"
           sorter
           width={200}
+          fixed="left"
         />
         <Resource.Column<AiArtifact>
           title={I18n.t('shared.code')}
@@ -50,6 +53,7 @@ export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
         <Resource.Column<AiArtifact>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, aiArtifact) => (
             <Dropdown
               aiArtifact={aiArtifact}
@@ -58,6 +62,7 @@ export const SettingsTable: React.FC<Props> = ({ onEditAIArtifact }:Props) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
     </>

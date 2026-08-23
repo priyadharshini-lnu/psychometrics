@@ -3,12 +3,12 @@ import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col,
   Table,
   message,
 } from 'antd'
 import * as t from 'io-ts'
 import { DateRangeSelectorModal } from '~/modules/admin/components/DateRangeSelectorModal'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import dayjs from '~/utils/dayjs'
 import { useResources } from '~/hooks/useResources'
 import {
@@ -195,29 +195,34 @@ const DataExportsComponent:FC<Props> = ({
     },
   ]
 
+  const DataExportsTable = (
+    <Table
+      pagination={false}
+      scroll={{ x: 'max-content' }}
+      dataSource={dataSource}
+      columns={columns}
+      loading={(isUserReportEventsLoading('fetch') || isAdminPermissionsLoading('fetch'))}
+    />
+  )
+
   return (
     <>
-      <Row>
-        <Col span={24}>
-          <Table
-            pagination={false}
-            scroll={{ x: 'max-content' }}
-            dataSource={dataSource}
-            columns={columns}
-            loading={(isUserReportEventsLoading('fetch') || isAdminPermissionsLoading('fetch'))}
-          />
-          <DateRangeSelectorModal
-            onDownload={handleUserReportEventDownload}
-            onCancel={() => setShowDateModal(false)}
-            open={showDateModal}
-            disabledDate={disabledDate}
-            showTime={false}
-            dateFormat={DATE_FORMAT}
-            initialRange={initialRange}
-            modalTitle={I18n.t('admin.data_exports_modal_title')}
-          />
-        </Col>
-      </Row>
+      <TableLayout
+        embedded
+        table={DataExportsTable}
+        title={I18n.t('admin.audit_reports')}
+        recordCount={dataSource.length}
+      />
+      <DateRangeSelectorModal
+        onDownload={handleUserReportEventDownload}
+        onCancel={() => setShowDateModal(false)}
+        open={showDateModal}
+        disabledDate={disabledDate}
+        showTime={false}
+        dateFormat={DATE_FORMAT}
+        initialRange={initialRange}
+        modalTitle={I18n.t('admin.data_exports_modal_title')}
+      />
     </>
   )
 }

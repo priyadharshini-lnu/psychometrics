@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { APIKey, APIKeyTR } from '~/modules/admin/modules/client/core/apiKeys'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { APIKeysFilter } from './APIKeysFilter'
 import { APIKeysTable } from './APIKeysTable'
 import { APIKeysFormModal } from './APIKeysFormModal'
+
+const { I18n } = window
 
 type Props = {
   applicationId: string
@@ -25,7 +28,12 @@ export const ApplicationAPIKeys: React.FC<Props> = ({ applicationId }) => {
   }
 
   return (
-    <Resource<APIKey, BaseMeta> config={config} name="api_keys">
+    <Resource<APIKey, BaseMeta>
+      title={I18n.t('admin.api_keys')}
+      config={config}
+      name="api_keys"
+      settingsKey={TABLE_SETTINGS_KEYS.settingsApplicationsApiKeys}
+    >
       <div>
         <APIKeysFilter openModal={() => openModal()} />
         <APIKeysTable openModal={openModal} />

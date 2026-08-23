@@ -19,18 +19,21 @@ export const UrlWhiteListTable: React.FC<Props> = ({
   onUrlWhitelistingEnabledChange,
   onRefreshApplicationSettings,
 }) => (
-  <Resource.Table pagination>
+  <Resource.Table embedded pagination>
     <Resource.Column<ApplicationUrlWhitelistEntry>
       title={I18n.t('shared.id')}
       id="id"
+      hideable={false}
       dataIndex="id"
       sorter
+      fixed="left"
     />
     <Resource.Column<ApplicationUrlWhitelistEntry>
       title={I18n.t('admin.application_settings_url')}
       id="url"
       dataIndex="url"
       render={(_, entry) => entry.url}
+      fixed="left"
     />
     <Resource.Column<ApplicationUrlWhitelistEntry>
       title={I18n.t('shared.status')}
@@ -52,12 +55,14 @@ export const UrlWhiteListTable: React.FC<Props> = ({
     <Resource.Column<ApplicationUrlWhitelistEntry>
       title={I18n.t('shared.actions')}
       id="actions"
+      hideable={false}
       render={(_, entry) => (
         <UrlEntryActionsDropdown
           entry={entry}
           onRefreshApplicationSettings={onRefreshApplicationSettings}
         />
       )}
+      fixed="right"
     />
   </Resource.Table>
 )

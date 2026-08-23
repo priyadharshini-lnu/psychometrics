@@ -16,10 +16,6 @@ const chrome = (testId: string) => () => (
   </div>
 )
 
-vi.mock('~/modules/admin/modules/Profile/pages', () => ({
-  Details: stub('details'),
-  ChangePassword: stub('change-password'),
-}))
 vi.mock('~/modules/admin/modules/Settings/routes/Maintenance', () => ({ default: stub('maintenance') }))
 vi.mock('~/modules/admin/modules/Users/routes/UserList/UserList', () => ({
   UsersLayout: chrome('users-chrome'),
@@ -72,6 +68,9 @@ vi.mock('~/modules/admin/modules/SkillsTaxonomy/pages', () => ({
 }))
 // Mocked leaf-by-leaf, not as `pages`: vitest hangs when a mocked module is imported twice concurrently, which is
 // exactly what a nested lazy route does — see the "Promise.all(import(), import())" note in vitest's own mocker.
+vi.mock('~/modules/admin/modules/Profile/routes/Layout', () => ({ default: chrome('profile-chrome') }))
+vi.mock('~/modules/admin/modules/Profile/routes/Details', () => ({ default: stub('details') }))
+vi.mock('~/modules/admin/modules/Profile/routes/ChangePassword', () => ({ default: stub('change-password') }))
 vi.mock('~/modules/admin/modules/Dimensions/routes/DimensionsList', () => ({ default: stub('dimensions') }))
 vi.mock('~/modules/admin/modules/Dimensions/routes/Dimension', () => ({ default: chrome('dimension-chrome') }))
 vi.mock('~/modules/admin/modules/Dimensions/routes/SubFactorsList', () => ({ default: stub('sub-factors') }))

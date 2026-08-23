@@ -16,7 +16,9 @@ export const UserFilter: React.FC<{ userTab: string, currentUser: User, openModa
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter name="filterable_fields">
+    <Resource.Filter
+      name="filterable_fields"
+    >
       {isSuperAdmin(currentUser) && userTab === 'Users::SuperAdmin'
         && (
           <Button type="primary" disabled={tableLoading} onClick={openModal}>

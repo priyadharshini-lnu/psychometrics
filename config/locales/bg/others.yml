@@ -4154,7 +4154,6 @@ bg:
     admins: Администратори
     create_global_assessor: Създайте глобален оценител
     create_superadmin: Създайте супер администратор
-    dashboard: Таблото
     drawer:
       link: Връзка
       role: Роля

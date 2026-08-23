@@ -107,7 +107,6 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
           </Typography.Link>
           <Typography.Text copyable>{I18n.t('admin.copy_text')}</Typography.Text>
 
-          {/* Dropdown */}
           <Dropdown
             menu={{
               items: [
@@ -124,15 +123,11 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
             }
             }
           >
-            <a onClick={e => e.preventDefault()}>
-              <Space>
-                {I18n.t('admin.hover_text')}
-                <DownOutlined />
-              </Space>
-            </a>
+            <Button type="link" icon={<DownOutlined />} iconPosition="end">
+              {I18n.t('admin.hover_text')}
+            </Button>
           </Dropdown>
 
-          {/* Spin */}
           <Spin />
         </SplitSpace>
 
@@ -142,14 +137,12 @@ export const DesignPreview: React.FC<Props> = ({ config }) => {
           </Col>
         </Row>
 
-        {/* Menu - vertical */}
         <Row gutter={16}>
           <Col span={12}>
             <Menu mode="inline" defaultSelectedKeys={['mail']} items={menuItems} />
           </Col>
         </Row>
 
-        {/* Pagination */}
         <Pagination showQuickJumper defaultCurrent={2} total={30} />
       </Space>
     </ConfigProvider>

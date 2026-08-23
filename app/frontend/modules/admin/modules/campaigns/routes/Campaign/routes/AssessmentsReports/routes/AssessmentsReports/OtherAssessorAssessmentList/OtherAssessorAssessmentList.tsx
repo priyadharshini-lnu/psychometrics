@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import {
-  Table, MenuProps, Row, Col, App,
+  Button, Table, MenuProps, Row, Col, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MessageInstance } from 'antd/es/message/interface'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
@@ -75,9 +74,9 @@ const AssessmentList: React.FC<Props> = ({
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
               render={assessment => (
-                <a onClick={() => setSelectedAssessment(assessment)}>
+                <Button type="link" size="small" className="p-0" onClick={() => setSelectedAssessment(assessment)}>
                   {assessment.name}
-                </a>
+                </Button>
               )}
             />
             <Column
@@ -104,11 +103,6 @@ const AssessmentList: React.FC<Props> = ({
                     message,
                   })
                 }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                )}
                 />
               )}
             />

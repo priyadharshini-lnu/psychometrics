@@ -1,32 +1,51 @@
-import React, { useState, useEffect } from 'react'
+import React, {
+  useEffect, useLayoutEffect, useRef, useState,
+} from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Pagination, Input, Space, Button, DatePicker, Form, Select, Spin,
+  Table, Button, Flex, Input,
+  DataTableDisplayDrawer, DataTableDisplaySider, DataTableDisplaySiderButton,
+  DATA_TABLE_DISPLAY_TABS, useBreakpoint, useGlintToken, visibleColumns,
+} from '@thetalententerprise/glint'
+import type {
+  ColumnsType, DataTableColumnNode, DataTableFilter, DataTableFilterOption, InputRef, RangePickerProps,
 } from '@thetalententerprise/glint'
 import { App } from 'antd'
+import type { FilterDropdownProps } from 'antd/es/table/interface'
 import { Link, useNavigate } from 'react-router-dom'
 import qs from 'qs'
-import { AppstoreOutlined, SearchOutlined, DownloadOutlined } from '@thetalententerprise/glint/icons'
-import { RangeValueType } from '~/interfaces/Antd'
+import { DownloadOutlined, FilterAlt, Search } from '@thetalententerprise/glint/icons'
 import dayjs from '~/utils/dayjs'
 import {
-  get as getLogs, fetch, fetchActions, scheduleExport, FETCH,
+  get as getLogs, fetch, fetchActions, scheduleExport, FETCH, Log,
 } from '~/modules/admin/modules/AuditLog/core'
 import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
+import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import { isRequestInProgress } from '~/core/request'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { useTableSettings } from '~/components/AdminShell/useTableSettings'
 import settings from '../../settings'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import AuditLogTabs from '../../components/Tabs'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
   action: 'In',
 }
+
+const AUDIT_LOG_CONFIG_KEY = 'audit_log_list'
+
+// One panel control over two ransack keys; the pair is the stored shape, the single key is only the control's name.
+const DATE_FILTER = 'created_at'
+const DATE_FROM = 'created_at_gteq'
+const DATE_TO = 'created_at_lteq'
+const DATE_FORMAT = 'YYYY-MM-DD'
+const MAX_SPAN_DAYS = 30
+
+const PINNED_COLUMN = 'action'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -44,8 +63,123 @@ const connecter = connect(
 export type PropsFromRedux = ConnectedProps<typeof connecter>;
 type Props = TableProps & PropsFromRedux;
 
-const { Column } = Table
 const { I18n } = window
+
+const heldValues = (value: string | string[] | undefined): string[] => {
+  if (value == null) return []
+
+  return Array.isArray(value) ? value : [value]
+}
+
+const asOptions = (values: (string | null)[] | undefined): DataTableFilterOption[] => (
+  (values ?? []).flatMap(value => (value == null ? [] : [{ value, label: value }]))
+)
+
+const heldSpan = (filters: TableConfig['filters']): string[] => {
+  const from = filters[DATE_FROM]
+  const to = filters[DATE_TO]
+  if (typeof from !== 'string' || typeof to !== 'string') return []
+
+  return [dayjs(from).format(DATE_FORMAT), dayjs(to).format(DATE_FORMAT)]
+}
+
+const spanIsDefault = (filters: TableConfig['filters']): boolean => {
+  const today = dayjs().format(DATE_FORMAT)
+
+  return heldSpan(filters).every(value => value === today)
+}
+
+const spanFilters = (values: string[]): Record<string, string | undefined> => {
+  const [from, to] = values
+  if (from == null || to == null) return { [DATE_FROM]: undefined, [DATE_TO]: undefined }
+
+  return {
+    [DATE_FROM]: dayjs(from, DATE_FORMAT).startOf('day').toString(),
+    [DATE_TO]: dayjs(to, DATE_FORMAT).endOf('day').toString(),
+  }
+}
+
+const spanPresets = (): RangePickerProps['presets'] => [
+  {
+    label: I18n.t('admin.date_presets_today'),
+    value: [dayjs().startOf('day'), dayjs().endOf('day')],
+  },
+  {
+    label: I18n.t('admin.date_presets_yesterday'),
+    value: [dayjs().subtract(1, 'day').startOf('day'), dayjs().subtract(1, 'day').endOf('day')],
+  },
+  {
+    label: I18n.t('admin.date_presets_last_week'),
+    value: [dayjs().subtract(1, 'week').startOf('week'), dayjs().subtract(1, 'week').endOf('week')],
+  },
+  {
+    label: I18n.t('admin.date_presets_last_month'),
+    value: [dayjs().subtract(1, 'month').startOf('month'), dayjs().subtract(1, 'month').endOf('month')],
+  },
+  {
+    label: I18n.t('admin.date_presets_last_7_days'),
+    value: [dayjs().subtract(7, 'day').startOf('day'), dayjs().endOf('day')],
+  },
+  {
+    label: I18n.t('admin.date_presets_last_30_days'),
+    value: [dayjs().subtract(MAX_SPAN_DAYS, 'day').startOf('day'), dayjs().endOf('day')],
+  },
+]
+
+const disabledDate: RangePickerProps['disabledDate'] = (current, { from }) => {
+  if (current.isAfter(dayjs().endOf('day'))) return true
+
+  return from != null && Math.abs(current.diff(from, 'days')) > MAX_SPAN_DAYS
+}
+
+type ColumnSearchProps = {
+  applied: string
+  placeholder: string
+  visible: boolean
+  onApply: (value: string) => void
+}
+
+// antd only remembers a selection its own confirm() committed, so the box reads the applied filter back on each open.
+const ColumnSearch: React.FC<ColumnSearchProps> = ({
+  applied, placeholder, visible, onApply,
+}) => {
+  const token = useGlintToken()
+  const box = useRef<InputRef>(null)
+  const [typed, setTyped] = useState(applied)
+
+  useEffect(() => {
+    if (!visible) return
+
+    setTyped(applied)
+    box.current?.focus()
+  }, [visible, applied])
+
+  return (
+    <Flex vertical gap="small" style={{ padding: token.paddingXS }}>
+      <Input
+        ref={box}
+        value={typed}
+        placeholder={placeholder}
+        prefix={<Search />}
+        onChange={event => setTyped(event.target.value)}
+        onPressEnter={() => onApply(typed.trim())}
+      />
+      <Flex justify="space-between" gap="small">
+        <Button
+          type="link"
+          size="small"
+          disabled={typed === '' && applied === ''}
+          onClick={() => onApply('')}
+        >
+          {I18n.t('common.actions.reset')}
+        </Button>
+        <Button type="primary" size="small" onClick={() => onApply(typed.trim())}>
+          {I18n.t('common.actions.search')}
+        </Button>
+      </Flex>
+    </Flex>
+  )
+}
 
 const AuditLogList: React.FC<Props> = (
   {
@@ -59,400 +193,326 @@ const AuditLogList: React.FC<Props> = (
     isLoading,
     tableConfig,
     onTableChange,
-    changeFilter,
-    removeFilter,
-    removeAllFilters,
+    changeFilters,
     changePage,
     currentUser,
     scheduleExport,
   },
 ) => {
-  useEffect(() => {
-    const today = dayjs()
-    const filtersForCurrentDayPresent = tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq
-
-    if (!filtersForCurrentDayPresent || tableConfig.initialized === false) {
-      const updatedFilters = {
-        ...tableConfig.filters,
-        created_at_gteq: today.startOf('day').toString(),
-        created_at_lteq: today.endOf('day').toString(),
-      }
-
-      fetch({
-        ...tableConfig,
-        filters: updatedFilters,
-      })
-    } else {
-      fetch(tableConfig)
-    }
-  }, [tableConfig])
-
   const navigate = useNavigate()
   const auditLogPath = settings.urlPrefix.startsWith('/')
     ? settings.urlPrefix
     : `/${settings.urlPrefix}`
 
-  const today = dayjs()
-  const initialRange: [dayjs.Dayjs, dayjs.Dayjs] = [today.startOf('day'), today.endOf('day')]
+  const { filters } = tableConfig
+  const spanHeld = filters[DATE_FROM] != null && filters[DATE_TO] != null
 
-  const [range, setRange] = useState<RangeValueType | null>(initialRange)
-
-  const [form] = Form.useForm()
-  const [isExpanded, setIsExpanded] = useState(false)
   const [isExportLoading, setIsExportLoading] = useState(false)
   const { message: messageApi } = App.useApp()
+  const screens = useBreakpoint()
+  const narrow = screens.lg === false
+  const { settings: tableSettings, save: saveSettings } = useTableSettings(AUDIT_LOG_CONFIG_KEY)
+  const { hiddenColumns, panelOpen } = tableSettings
+
+  const [openTab, setOpenTab] = useState<string | null>(
+    (panelOpen ?? true) ? DATA_TABLE_DISPLAY_TABS.filters : null,
+  )
 
   useEffect(() => {
-    const { filters } = tableConfig
-    const hasExpandedFilters = filters.user_search || filters.client_search
-      || filters.project_search || filters.campaign_search || filters.action_in
+    if (spanHeld) return
 
-    if (hasExpandedFilters) setIsExpanded(true)
-
-    const dateRange = filters.created_at_gteq && filters.created_at_lteq
-      ? [dayjs(filters.created_at_gteq), dayjs(filters.created_at_lteq)]
-      : initialRange
-
-    form.setFieldsValue({
-      recordId: filters.record_id_eq || undefined,
-      recordType: filters.record_type_in || undefined,
-      action: filters.action_in || undefined,
-      dateRange,
-      user: filters.user_search || undefined,
-      client: filters.client_search || undefined,
-      project: filters.project_search || undefined,
-      campaign: filters.campaign_search || undefined,
+    const today = dayjs()
+    changeFilters({
+      ...filters,
+      [DATE_FROM]: today.startOf('day').toString(),
+      [DATE_TO]: today.endOf('day').toString(),
     })
-  }, [])
+  }, [tableConfig])
 
-  const handleSearch = (values) => {
-    const {
-      recordId, recordType, action, dateRange, user, client, project, campaign,
-    } = values
+  useEffect(() => {
+    if (!spanHeld) return
 
-    const filters: Record<string, string | undefined> = {
-      record_id_eq: recordId,
-      record_type_in: recordType,
-      action_in: action,
-      created_at_gteq: dateRange?.[0].startOf('day').toString(),
-      created_at_lteq: dateRange?.[1].endOf('day').toString(),
-      user_search: user,
-      client_search: client,
-      project_search: project,
-      campaign_search: campaign,
-    }
-
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) changeFilter(key, value)
-      else removeFilter(key)
-    })
-
-    const activeFilters = Object.fromEntries(Object.entries(filters).filter(([, v]) => v))
-    const queryString = qs.stringify({ filters: activeFilters })
-    navigate({
-      pathname: auditLogPath,
-      search: queryString ? `?${queryString}` : '',
-    }, { replace: true })
-  }
-
-  const handleReset = () => {
-    form.resetFields()
-    removeAllFilters('auditLogList')
-    setRange(initialRange)
-    navigate(auditLogPath, { replace: true })
-  }
+    fetch(tableConfig)
+    const search = qs.stringify({ filters })
+    navigate({ pathname: auditLogPath, search: search ? `?${search}` : '' }, { replace: true })
+  }, [tableConfig])
 
   const handleExportCsv = () => {
     setIsExportLoading(true)
 
-    const filtersForCurrentDayPresent = tableConfig.filters.created_at_gteq && tableConfig.filters.created_at_lteq
-    const exportFilters = filtersForCurrentDayPresent
-      ? tableConfig.filters
-      : {
-        ...tableConfig.filters,
-        created_at_gteq: dayjs().startOf('day').toString(),
-        created_at_lteq: dayjs().endOf('day').toString(),
-      }
-
-    scheduleExport(exportFilters)
+    scheduleExport(filters)
       .then(() => messageApi.success(I18n.t('admin.audit_logs_export_queued')))
       .catch(() => messageApi.error(I18n.t('admin.audit_logs_export_failed')))
       .finally(() => setIsExportLoading(false))
   }
 
-  const disabledDate = (current) => {
-    if (!range || !range[0]) {
-      return current && current > dayjs().endOf('day')
+  const handleFilterChange = (key: string, values: string[]) => {
+    const next = key === DATE_FILTER
+      ? { ...filters, ...spanFilters(values) }
+      : { ...filters, [key]: values.length === 1 ? values[0] : values }
+
+    changeFilters(next)
+  }
+
+  // `changeFilters` sets rather than merges, so naming only the default span is what drops the other seven.
+  const handleReset = () => {
+    const today = dayjs()
+
+    changeFilters({ [DATE_FROM]: today.startOf('day').toString(), [DATE_TO]: today.endOf('day').toString() })
+  }
+
+  const searchColumn = (key: string, placeholder: string) => {
+    const applied = heldValues(filters[key]).join('')
+
+    return {
+      filtered: applied !== '',
+      filterDropdown: ({ close, visible }: FilterDropdownProps) => (
+        <ColumnSearch
+          applied={applied}
+          placeholder={placeholder}
+          visible={visible}
+          onApply={(value) => {
+            handleFilterChange(key, value === '' ? [] : [value])
+            close()
+          }}
+        />
+      ),
     }
-    const tooLate = range[0] && current.diff(range[0], 'days') > 30
-
-    return tooLate || current > dayjs().endOf('day')
   }
 
-  const onCalendarChange = (dates) => {
-    setRange(dates)
+  const columns: ColumnsType<Log> = [
+    {
+      title: I18n.t('admin.record_id'),
+      key: 'recordId',
+      dataIndex: 'recordId',
+      ...searchColumn('record_id_eq', I18n.t('admin.search_record')),
+    },
+    {
+      title: I18n.t('admin.audit_log_type'),
+      key: 'recordType',
+      dataIndex: 'recordType',
+    },
+    {
+      title: I18n.t('shared.action'),
+      key: PINNED_COLUMN,
+      dataIndex: 'action',
+      render: (action, { id }) => <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>,
+    },
+    {
+      title: I18n.t('admin.log_date'),
+      key: 'createdAt',
+      dataIndex: 'createdAt',
+      render: createdAt => dayjs(createdAt).format('lll'),
+    },
+    {
+      title: I18n.t('admin.user'),
+      key: 'user',
+      dataIndex: 'user',
+      ...searchColumn('user_search', I18n.t('admin.search_user')),
+      render: (user, { userId }) => {
+        if (!userId) return null
+
+        return user ? user.email : `${userId} - deleted`
+      },
+    },
+    {
+      title: I18n.t('admin.client'),
+      key: 'client',
+      dataIndex: 'client',
+      ...searchColumn('client_search', I18n.t('admin.search_client')),
+      render: client => (
+        client && <Link to={`/admin/clients/${client.id}/projects`}>{client.name}</Link>
+      ),
+    },
+    {
+      title: I18n.t('admin.project'),
+      key: 'project',
+      dataIndex: 'project',
+      ...searchColumn('project_search', I18n.t('admin.search_project')),
+      render: project => (
+        project && <Link to={`/admin/projects/${project.id}/new_campaigns`}>{project.name}</Link>
+      ),
+    },
+    {
+      title: I18n.t('admin.campaign'),
+      key: 'campaign',
+      dataIndex: 'campaign',
+      ...searchColumn('campaign_search', I18n.t('admin.search_campaign')),
+      render: (campaign, { project }) => (
+        campaign && (
+          <Link to={`/admin/projects/${project.id}/new_campaigns/${campaign.id}`}>
+            {campaign.name}
+          </Link>
+        )
+      ),
+    },
+  ]
+
+  const columnNodes: DataTableColumnNode[] = columns.flatMap((column) => {
+    const key = column.key == null ? null : String(column.key)
+    if (key == null || key === PINNED_COLUMN || typeof column.title !== 'string') return []
+
+    return [{ key, label: column.title }]
+  })
+
+  const panelFilters: DataTableFilter[] = [
+    {
+      key: 'record_id_eq',
+      kind: 'text',
+      label: I18n.t('admin.record_id'),
+      placeholder: I18n.t('admin.search_record'),
+      values: heldValues(filters.record_id_eq),
+    },
+    {
+      key: 'record_type_in',
+      label: I18n.t('admin.audit_log_type'),
+      values: heldValues(filters.record_type_in),
+      options: asOptions(types),
+    },
+    {
+      key: DATE_FILTER,
+      kind: 'dateRange',
+      label: I18n.t('admin.date_range'),
+      format: DATE_FORMAT,
+      disabledDate,
+      presets: spanPresets(),
+      values: heldSpan(filters),
+    },
+    {
+      key: 'action_in',
+      label: I18n.t('shared.action'),
+      values: heldValues(filters.action_in),
+      options: asOptions(actions),
+    },
+    {
+      key: 'user_search',
+      kind: 'text',
+      label: I18n.t('admin.search_user'),
+      placeholder: I18n.t('admin.search_user'),
+      values: heldValues(filters.user_search),
+    },
+    {
+      key: 'client_search',
+      kind: 'text',
+      label: I18n.t('admin.search_client'),
+      placeholder: I18n.t('admin.search_client'),
+      values: heldValues(filters.client_search),
+    },
+    {
+      key: 'project_search',
+      kind: 'text',
+      label: I18n.t('admin.search_project'),
+      placeholder: I18n.t('admin.search_project'),
+      values: heldValues(filters.project_search),
+    },
+    {
+      key: 'campaign_search',
+      kind: 'text',
+      label: I18n.t('admin.search_campaign'),
+      placeholder: I18n.t('admin.search_campaign'),
+      values: heldValues(filters.campaign_search),
+    },
+  ]
+
+  const setPanel = (tab: string | null) => {
+    setOpenTab(tab)
+    if (!narrow) saveSettings({ panelOpen: tab !== null })
   }
 
-  return isLoading ? <PageContentSkeleton /> : (
-    <div style={{ marginTop: '10px' }}>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.dashboard'),
-          },
-          {
-            link: () => '/admin/audit_logs',
-            label: () => I18n.t('admin.audit_logs'),
-          },
-        ]}
-      />
+  const togglePanel = (tab: string) => setPanel(openTab === tab ? null : tab)
 
+  // The panel changes form across the breakpoint, and a drawer inheriting an open sider would cover the table.
+  useLayoutEffect(() => { if (narrow) setOpenTab(null) }, [narrow])
+
+  const panel = {
+    label: I18n.t('admin.table_display_title'),
+    closeLabel: I18n.t('shared.close'),
+    columnsLabel: I18n.t('admin.table_display_columns'),
+    activeTab: openTab ?? DATA_TABLE_DISPLAY_TABS.columns,
+    onTabChange: setOpenTab,
+    nodes: columnNodes,
+    checkedKeys: columnNodes.map(({ key }) => key).filter(key => !hiddenColumns.includes(key)),
+    onCheck: (checked: string[]) => saveSettings({
+      hiddenColumns: columnNodes.map(({ key }) => key).filter(key => !checked.includes(key)),
+      filters: tableSettings.filters,
+    }),
+    onClose: () => setPanel(null),
+    filters: {
+      label: I18n.t('admin.table_display_filters'),
+      clearLabel: I18n.t('shared.clear_filters'),
+      items: panelFilters,
+      onChange: handleFilterChange,
+    },
+  }
+
+  const chosen = panelFilters.some(({ key, values }) => (
+    key === DATE_FILTER ? !spanIsDefault(filters) : values.length > 0
+  ))
+
+  const toolbar = (
+    <Flex align="center" gap="small">
+      <Button
+        icon={<FilterAlt fill={chosen} />}
+        aria-expanded={openTab === DATA_TABLE_DISPLAY_TABS.filters}
+        onClick={() => togglePanel(DATA_TABLE_DISPLAY_TABS.filters)}
+      >
+        {I18n.t('admin.table_display_filters')}
+      </Button>
+      <Button disabled={!chosen} onClick={handleReset}>
+        {I18n.t('common.actions.reset')}
+      </Button>
+      {isSuperAdmin(currentUser) && (
+        <Button
+          loading={isExportLoading}
+          onClick={handleExportCsv}
+          disabled={total === 0}
+          icon={<DownloadOutlined />}
+        >
+          {I18n.t('admin.export_to_csv')}
+        </Button>
+      )}
+    </Flex>
+  )
+
+  return (
+    <>
       <AuditLogTabs />
 
-      <div style={{ marginTop: '30px' }}>
-        <Form form={form} layout="vertical" onFinish={handleSearch} className="ms-5 me-5">
-          <Row gutter={[16, 16]} justify="start">
-            <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item name="recordId" label={I18n.t('admin.record_id')}>
-                <Input placeholder={I18n.t('admin.search_record')} />
-              </Form.Item>
-            </Col>
-            <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item name="recordType" label={I18n.t('admin.audit_log_type')}>
-                <Select
-                  placeholder={I18n.t('admin.audit_log_type')}
-                  showSearch
-                  allowClear
-                  options={types.map(type => ({ label: type, value: type }))}
-                />
-              </Form.Item>
-            </Col>
-
-            <Col xs={24} sm={12} md={8} lg={6}>
-              <Form.Item
-                name="dateRange"
-                label={I18n.t('admin.date_range')}
-                initialValue={initialRange}
-              >
-                <DatePicker.RangePicker
-                  onCalendarChange={onCalendarChange}
-                  disabledDate={disabledDate}
-                  allowClear={false}
-                  presets={[
-                    {
-                      label: I18n.t('admin.date_presets_today'),
-                      value: [
-                        dayjs().startOf('day'),
-                        dayjs().endOf('day'),
-                      ],
-                    },
-                    {
-                      label: I18n.t('admin.date_presets_yesterday'),
-                      value: [
-                        dayjs().subtract(1, 'day').startOf('day'),
-                        dayjs().subtract(1, 'day').endOf('day'),
-                      ],
-                    },
-                    {
-                      label: I18n.t('admin.date_presets_last_week'),
-                      value: [
-                        dayjs().subtract(1, 'week').startOf('week'),
-                        dayjs().subtract(1, 'week').endOf('week'),
-                      ],
-                    },
-                    {
-                      label: I18n.t('admin.date_presets_last_month'),
-                      value: [
-                        dayjs().subtract(1, 'month').startOf('month'),
-                        dayjs().subtract(1, 'month').endOf('month'),
-                      ],
-                    },
-                    {
-                      label: I18n.t('admin.date_presets_last_7_days'),
-                      value: [
-                        dayjs().subtract(7, 'd'),
-                        dayjs(),
-                      ],
-                    },
-                    {
-                      label: I18n.t('admin.date_presets_last_30_days'),
-                      value: [
-                        dayjs().subtract(30, 'd'),
-                        dayjs(),
-                      ],
-                    },
-                  ]}
-                />
-              </Form.Item>
-            </Col>
-            {isExpanded && (
-              <>
-                <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="action" label={I18n.t('shared.action')}>
-                    <Select
-                      placeholder={I18n.t('shared.action')}
-                      showSearch
-                      allowClear
-                      options={(actions || []).map(action => ({ label: action, value: action }))}
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="user" label={I18n.t('admin.search_user')}>
-                    <Input placeholder={I18n.t('admin.search_user')} />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="client" label={I18n.t('admin.search_client')}>
-                    <Input placeholder={I18n.t('admin.search_client')} />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="project" label={I18n.t('admin.search_project')}>
-                    <Input placeholder={I18n.t('admin.search_project')} />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={12} md={8} lg={6}>
-                  <Form.Item name="campaign" label={I18n.t('admin.search_campaign')}>
-                    <Input placeholder={I18n.t('admin.search_campaign')} />
-                  </Form.Item>
-                </Col>
-              </>
-            )}
-            <Col span={24} style={{ textAlign: 'right' }}>
-              <Form.Item>
-                <Space>
-                  <Button onClick={() => setIsExpanded(!isExpanded)}>
-                    {isExpanded
-                      ? I18n.t('admin.collapse_filters')
-                      : I18n.t('admin.expand_filters')
-                    }
-                  </Button>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    icon={<SearchOutlined />}
-                  >
-                    {I18n.t('shared.search')}
-                  </Button>
-                  <Button onClick={handleReset}>{I18n.t('shared.reset')}</Button>
-                  {isSuperAdmin(currentUser) && (
-                    <Button
-                      loading={isExportLoading}
-                      onClick={handleExportCsv}
-                      disabled={total === 0}
-                      icon={<DownloadOutlined />}
-                    >
-                      {I18n.t('admin.export_to_csv')}
-                    </Button>
-                  )}
-                </Space>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </div>
-
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.audit_logs')}`}</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        loading={isLoading}
+        title={I18n.t('admin.audit_logs')}
+        filters={toolbar}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             dataSource={list}
+            columns={visibleColumns(columns, hiddenColumns)}
             onChange={onTableChange}
             pagination={false}
-            loading={{
-              spinning: isLoading,
-              indicator: <Spin size="large" />,
-            }}
             scroll={{ x: 'auto' }}
-          >
-            <Column
-              title={I18n.t('admin.record_id')}
-              key="recordId"
-              dataIndex="recordId"
-            />
-            <Column
-              title={I18n.t('admin.audit_log_type')}
-              key="recordType"
-              dataIndex="recordType"
-            />
-            <Column
-              title={I18n.t('shared.action')}
-              key="action"
-              render={({ id, action }) => (
-                <Link to={`${settings.urlPrefix}/${id}`}>{action}</Link>
-              )}
-            />
-            <Column
-              title={I18n.t('admin.log_date')}
-              dataIndex="createdAt"
-              key="createdAt"
-              render={createdAt => (
-                dayjs(createdAt).format('lll')
-              )}
-            />
-            <Column
-              title={I18n.t('admin.user')}
-              key="user"
-              render={({ user, userId }) => {
-                if (!userId) return null
-
-                return user ? user.email : `${userId} - deleted`
-              }}
-            />
-            <Column
-              title={I18n.t('admin.client')}
-              key="client"
-              render={({ client, clientId }) => (
-                client
-                  ? <a href={`/admin/clients/${client.id}/projects`}>{client.name}</a>
-                  : clientId && `${clientId} - deleted`
-              )}
-            />
-            <Column
-              title={I18n.t('admin.project')}
-              key="project"
-              render={({ project, projectId }) => (
-                project
-                  ? <a href={`/admin/projects/${project.id}/new_campaigns`}>{project.name}</a>
-                  : projectId && `${projectId} - deleted`
-              )}
-            />
-            <Column
-              title={I18n.t('admin.campaign')}
-              key="campaign"
-              render={({
-                project, campaignId, campaign,
-              }) => (
-
-                campaign ? (
-                  <a href={`/admin/projects/${project.id}/new_campaigns/${campaign.id}`}>
-                    {campaign.name}
-                  </a>
-                ) : campaignId && `${campaignId} - deleted`
-              )}
-            />
-          </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={pageSize || DEFAULT_PAGE_SIZE}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
-    </div>
+            sticky
+          />
+        )}
+        pagination={{
+          page,
+          pageSize: pageSize || DEFAULT_PAGE_SIZE,
+          total,
+          onChange: changePage,
+        }}
+        recordCount={total}
+        controls={(
+          <DataTableDisplaySiderButton
+            open={openTab === DATA_TABLE_DISPLAY_TABS.columns}
+            filtered={columnNodes.some(({ key }) => hiddenColumns.includes(key))}
+            onToggle={() => togglePanel(DATA_TABLE_DISPLAY_TABS.columns)}
+            label={I18n.t('admin.table_display_columns')}
+          />
+        )}
+        sider={narrow ? undefined : <DataTableDisplaySider {...panel} />}
+        siderOpen={openTab !== null}
+      />
+      {narrow && <DataTableDisplayDrawer {...panel} open={openTab !== null} />}
+    </>
   )
 }
 

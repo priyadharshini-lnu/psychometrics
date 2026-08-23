@@ -57,10 +57,12 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
             jobRole.id
           )}
           width={200}
+          fixed="left"
         />
         <Resource.Column<JobRole>
           title={I18n.t('shared.name')}
           id="name"
+          hideable={false}
           render={(_, jobRole) => (
             <Typography.Link onClick={() => setJobRoleDetails(jobRole)}>
               {jobRole.name}
@@ -68,6 +70,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
           )}
           minWidth={200}
           sorter
+          fixed="left"
         />
 
         <Resource.Column<JobRole>
@@ -100,6 +103,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<JobRole>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, jobRole) => (
             <Dropdown
               jobRole={jobRole}
@@ -108,6 +112,7 @@ export const JobRolesTable: React.FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <DetailsDrawer

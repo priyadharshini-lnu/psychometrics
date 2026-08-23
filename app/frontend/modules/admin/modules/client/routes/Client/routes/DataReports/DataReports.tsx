@@ -6,6 +6,7 @@ import { useResources } from '~/hooks/useResources'
 import { DataReport, DataReportTR, OkResponse } from '~/modules/admin/modules/DataReports/core'
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import RunReportModal from '~/modules/admin/modules/DataReports/components/RunReportModal'
 import { REPORT_TYPE_KEYS } from '~/modules/admin/modules/DataReports/components/ReportTypeConfigs'
 
@@ -92,20 +93,28 @@ export const DataReports: React.FC = () => {
   )
 
   return (
-    <Resource config={config} name="data_reports">
+    <Resource
+      title={I18n.t('admin.data_reports')}
+      config={config}
+      name="data_reports"
+      settingsKey={TABLE_SETTINGS_KEYS.clientDataReports}
+    >
       {Filter}
       <Resource.Table pagination>
         <Resource.Column<DataReport>
           id="id"
+          hideable={false}
           title={I18n.t('shared.id')}
           sorter
           render={({ id }) => <Link to={`/admin/clients/${clientId}/data_reports/${id}`}>{id}</Link>}
+          fixed="left"
         />
         <Resource.Column<DataReport>
           title={I18n.t('shared.name')}
           dataIndex="name"
           id="name"
           width={300}
+          fixed="left"
         />
         <Resource.Column<DataReport>
           title={I18n.t('admin.report_type')}
@@ -148,6 +157,7 @@ export const DataReports: React.FC = () => {
         />
         <Resource.Column<DataReport>
           id="actions"
+          hideable={false}
           title={I18n.t('shared.actions')}
           render={(_, resource) => (
             <Button
@@ -158,6 +168,7 @@ export const DataReports: React.FC = () => {
               {I18n.t('shared.run')}
             </Button>
           )}
+          fixed="right"
         />
       </Resource.Table>
       {runTarget && (

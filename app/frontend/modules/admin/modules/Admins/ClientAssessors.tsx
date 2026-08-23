@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Table, Space, Input, message, Pagination, App, Typography,
+  Table, Space, Input, message, App, Typography,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { get as getCurrentUser } from '~/core/currentUser'
@@ -9,7 +9,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { useResources } from '~/hooks/useResources'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
-import { CountDisplay } from '~/components/CountDisplay'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { extractErrorTitle } from '~/utils/requestErrors'
 import { downloadTextFile } from '~/utils/downloadTextFile'
 import {
@@ -17,7 +17,6 @@ import {
 } from '~/modules/admin/modules/client/core/admin'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import Modals from '~/modules/admin/components/Modals/'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { ActionsMenu } from './ActionsMenu'
 import { ClientAssessorModal } from './ClientAssessorModal'
 import { ClientAssessorImportModal } from './ClientAssessorImportModal'
@@ -53,7 +52,6 @@ const ClientAssessorsComponent: React.FC<Props> = ({ currentUser, openModal }) =
     projectId: string
   }
   const { modal } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [isImportModalOpen, setIsImportModalOpen] = useState(false)
   const [isImporting, setIsImporting] = useState(false)
@@ -133,109 +131,109 @@ const ClientAssessorsComponent: React.FC<Props> = ({ currentUser, openModal }) =
     }
   }
 
+  const AssessorsTable = (
+    <Table
+      pagination={false}
+      scroll={{ x: 'max-content' }}
+      rowKey="id"
+      dataSource={data}
+      onChange={handleTableChange}
+    >
+      <Table.Column
+        dataIndex="userId"
+        key="userId"
+        fixed="left"
+        title={I18n.t('shared.id')}
+        sorter
+        sortOrder={getSortOrder('userId')}
+      />
+      <Table.Column
+        dataIndex="name"
+        title={I18n.t('shared.name')}
+        render={(_, { firstName, lastName }) => (
+          <Typography.Text>
+            {`${firstName} ${lastName}`}
+          </Typography.Text>
+        )}
+      />
+      <Table.Column
+        dataIndex="email"
+        key="user.email"
+        title={I18n.t('shared.email')}
+        sorter
+        sortOrder={getSortOrder('user.email')}
+        render={(_, { email }) => (
+          <Typography.Paragraph copyable>
+            {email}
+          </Typography.Paragraph>
+        )}
+      />
+      <Table.Column
+        dataIndex="createdAt"
+        key="createdAt"
+        title={I18n.t('shared.created_at')}
+        sorter
+        sortOrder={getSortOrder('createdAt')}
+      />
+      <Table.Column
+        dataIndex="actions"
+        fixed="right"
+        title={I18n.t('shared.actions')}
+        render={(_, user: Admin) => {
+          const {
+            id, userId, email, firstName, lastName,
+          } = user
+
+          return (
+            <ActionsMenu
+              id={id}
+              userId={userId}
+              currentUser={currentUser}
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+              permissions={permissions}
+              handleEdit={() => undefined}
+              handleDelete={handleDelete}
+              handleResetPassword={() => openModal('ResetPasswordModal', { user: { ...user, id: user.userId } })}
+              showEditAction={false}
+              showSendEmailAction={false}
+            />
+          )
+        }}
+      />
+    </Table>
+  )
+
+  const Filter = (
+    <Space>
+      <Input.Search
+        placeholder={I18n.t('admin.search_client_assessors')}
+        value={getFilteredValue('filterable_fields')}
+        onChange={e => changeFilter('filterable_fields', e.target.value)}
+      />
+      <ClientAssessorActionsDropdown
+        onAdd={() => setIsAddModalOpen(true)}
+        onImport={() => setIsImportModalOpen(true)}
+      />
+    </Space>
+  )
+
   return (
     <>
-      <Row justify="space-between" align="middle" className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <CountDisplay selectedCount={0} totalCount={recordCount} isLoading={tableLoading} />
-        </Col>
-        <Col>
-          <Space>
-            <Input.Search
-              placeholder={I18n.t('admin.search_client_assessors')}
-              value={getFilteredValue('filterable_fields')}
-              onChange={e => changeFilter('filterable_fields', e.target.value)}
-            />
-            <ClientAssessorActionsDropdown
-              onAdd={() => setIsAddModalOpen(true)}
-              onImport={() => setIsImportModalOpen(true)}
-            />
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            pagination={false}
-            loading={tableLoading}
-            scroll={{ x: 'max-content' }}
-            rowKey="id"
-            dataSource={data}
-            onChange={handleTableChange}
-          >
-            <Table.Column
-              dataIndex="userId"
-              key="userId"
-              fixed={windowWidth > 800 ? 'left' : undefined}
-              title={I18n.t('shared.id')}
-              sorter
-              sortOrder={getSortOrder('userId')}
-            />
-            <Table.Column
-              dataIndex="name"
-              title={I18n.t('shared.name')}
-              render={(_, { firstName, lastName }) => (
-                <Typography.Text>
-                  {`${firstName} ${lastName}`}
-                </Typography.Text>
-              )}
-            />
-            <Table.Column
-              dataIndex="email"
-              key="user.email"
-              title={I18n.t('shared.email')}
-              sorter
-              sortOrder={getSortOrder('user.email')}
-              render={(_, { email }) => (
-                <Typography.Paragraph copyable>
-                  {email}
-                </Typography.Paragraph>
-              )}
-            />
-            <Table.Column
-              dataIndex="createdAt"
-              key="createdAt"
-              title={I18n.t('shared.created_at')}
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-            />
-            <Table.Column
-              dataIndex="actions"
-              fixed={windowWidth > 800 ? 'right' : undefined}
-              title={I18n.t('shared.actions')}
-              render={(_, user: Admin) => {
-                const {
-                  id, userId, email, firstName, lastName,
-                } = user
-
-                return (
-                  <ActionsMenu
-                    id={id}
-                    userId={userId}
-                    currentUser={currentUser}
-                    email={email}
-                    firstName={firstName}
-                    lastName={lastName}
-                    permissions={permissions}
-                    handleEdit={() => undefined}
-                    handleDelete={handleDelete}
-                    handleResetPassword={() => openModal('ResetPasswordModal', { user: { ...user, id: user.userId } })}
-                    showEditAction={false}
-                    showSendEmailAction={false}
-                  />
-                )
-              }}
-            />
-          </Table>
-          <Pagination
-            current={currentPage}
-            pageSize={pageSize}
-            total={recordCount}
-            onChange={changePage}
-            className="pl"
-          />
-        </Col>
-      </Row>
+      <TableLayout
+        loading={tableLoading}
+        table={AssessorsTable}
+        filters={Filter}
+        title={I18n.t('admin.assessors')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: recordCount,
+          onChange: changePage,
+        }}
+        recordCount={recordCount}
+      />
       <ClientAssessorModal
         open={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}

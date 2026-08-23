@@ -10,9 +10,11 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RemoveResource, UpdateResource, MemberAction } from '~/hooks/useResources/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'
+import { useIsOwnedPath } from '~/components/AdminShell/ownedPaths'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { RemoveNormModal } from './RemoveNormModal'
 import { NormsFormModal } from './NormsFormModal'
@@ -54,6 +56,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
 const NormTable: React.FC<Props> = ({ openModal, features }) => {
+  const isOwned = useIsOwnedPath()
   const { resource } = useResourceContext<Norm>()
   const {
     getSortOrder, updateResource, removeResource, memberAction,
@@ -68,16 +71,23 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
         <Resource.Column<Norm>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           sortOrder={getSortOrder('id')}
-          render={norm => <a href={getNormEditorUrl(norm.id, features)}>{norm.id}</a>}
+          render={(norm) => {
+            const url = getNormEditorUrl(norm.id, features)
+
+            return isOwned(url) ? <Link to={url}>{norm.id}</Link> : <a href={url}>{norm.id}</a>
+          }}
           width={150}
+          fixed="left"
         />
         <Resource.Column<Norm>
           id="disabled"
           title={I18n.t('shared.active')}
           render={norm => <ActiveSwitch norm={norm} updateResource={updateResource} />}
           width={100}
+          fixed="left"
         />
         <Resource.Column<Norm>
           title={`${I18n.t('shared.name')}`}
@@ -90,9 +100,13 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
           title={I18n.t('shared.dimension')}
           width={300}
           id="dimension.name"
-          render={(_, { dimension }) => dimension?.id && (
-            <a href={getDimensionFactorsUrl(dimension.id, features)}>{dimension.name}</a>
-          )}
+          render={(_, { dimension }) => {
+            if (!dimension?.id) return null
+
+            const url = getDimensionFactorsUrl(dimension.id, features)
+
+            return isOwned(url) ? <Link to={url}>{dimension.name}</Link> : <a href={url}>{dimension.name}</a>
+          }}
           sorter
         />
         <Resource.Column<Norm>
@@ -113,7 +127,7 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
                 {owner.name}
               </Link>
             ) : (
-              I18n.t('admin.platform_owner')
+              <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
             )
           )}
         />
@@ -134,6 +148,7 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
         <Resource.Column<Norm>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={norm => (
             <ConditionalDropdown
               menu={
@@ -143,11 +158,13 @@ const NormTable: React.FC<Props> = ({ openModal, features }) => {
                       openModal,
                       memberAction,
                       features,
+                      isOwned,
                     })
                 }
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={MODALS} />
@@ -167,14 +184,16 @@ interface ActionMenuData {
     openModal: (modalName: string, modalProps: unknown) => void
     memberAction: MemberAction
     features: Record<string, boolean>
+    isOwned: (path?: string) => boolean
 }
 
 const getActionMenuProps = ({
-  norm, removeResource, openModal, memberAction, features,
+  norm, removeResource, openModal, memberAction, features, isOwned,
 }: ActionMenuData): MenuProps => {
   const {
     id, name, meta: { permissions }, normType,
   } = norm
+  const normEditorUrl = getNormEditorUrl(norm.id, features)
 
   const exportNorm = (normId: string) => memberAction({
     id: normId,
@@ -194,10 +213,10 @@ const getActionMenuProps = ({
     },
     permissions.editor && {
       key: 'norm_editor',
-      label: (
-        <a href={getNormEditorUrl(norm.id, features)}>
-          {I18n.t('admin.norms_sidebar_editor')}
-        </a>
+      label: isOwned(normEditorUrl) ? (
+        <Link to={normEditorUrl}>{I18n.t('admin.norms_sidebar_editor')}</Link>
+      ) : (
+        <a href={normEditorUrl}>{I18n.t('admin.norms_sidebar_editor')}</a>
       ),
     },
   ]

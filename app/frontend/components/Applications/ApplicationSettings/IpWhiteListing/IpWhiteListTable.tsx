@@ -16,18 +16,21 @@ type Props = {
 }
 
 export const IpWhiteListTable: React.FC<Props> = ({ onIpWhitelistingEnabledChange, onRefreshApplicationSettings }) => (
-  <Resource.Table pagination>
+  <Resource.Table embedded pagination>
     <Resource.Column<ApplicationIpWhitelistEntry>
       title={I18n.t('shared.id')}
       id="id"
+      hideable={false}
       dataIndex="id"
       sorter
+      fixed="left"
     />
     <Resource.Column<ApplicationIpWhitelistEntry>
       title={I18n.t('admin.application_settings_ip_or_cidr')}
       id="ipOrCidr"
       dataIndex="ipOrCidr"
       render={(_, entry) => entry.ipOrCidr}
+      fixed="left"
     />
     <Resource.Column<ApplicationIpWhitelistEntry>
       title={I18n.t('shared.status')}
@@ -49,12 +52,14 @@ export const IpWhiteListTable: React.FC<Props> = ({ onIpWhitelistingEnabledChang
     <Resource.Column<ApplicationIpWhitelistEntry>
       title={I18n.t('shared.actions')}
       id="actions"
+      hideable={false}
       render={(_, entry) => (
         <IpEntryActionsDropdown
           entry={entry}
           onRefreshApplicationSettings={onRefreshApplicationSettings}
         />
       )}
+      fixed="right"
     />
   </Resource.Table>
 )

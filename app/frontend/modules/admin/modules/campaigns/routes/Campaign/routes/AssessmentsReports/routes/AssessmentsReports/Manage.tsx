@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Button, Space, App,
+  Row, Col, Button, Space, App, theme, Flex,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import _ from 'lodash'
@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import UpdateReportLanguagesModal from './UpdateReportLanguagesModal'
 import Modals from '~/modules/admin/components/Modals'
+import { SectionTitle } from '~/modules/admin/components/TableTitle'
 import ReportList from './ReportList'
 import { OtherReportList } from './OtherReportList'
 import AssessmentList from './AssessmentList'
@@ -77,8 +78,6 @@ type Props = PropsFromRedux
 
 const Manage: React.FC<Props> = ({
   fetchAssessmentAndReports,
-  fetchOtherReports,
-  fetchOtherAssessments,
   reports: {
     list,
     reportPermissions,
@@ -92,12 +91,8 @@ const Manage: React.FC<Props> = ({
   campaignPermissions,
   campaignTenantId,
   otherAsessorAssessments,
-  otherReports,
-  otherAssessments,
 }) => {
   useEffect(() => {
-    fetchOtherReports(campaignId)
-    fetchOtherAssessments(campaignId)
     fetchAssessmentAndReports(campaignId)
   }, [])
 
@@ -107,6 +102,7 @@ const Manage: React.FC<Props> = ({
   const stateManager = useCampaignAssessorAssessmentsStore()
 
   const { message } = App.useApp()
+  const { token } = theme.useToken()
 
   const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
     regenerateReports(parsedCampaignId, { selectedReports, ids: selectedIds }).then(() => {
@@ -138,9 +134,9 @@ const Manage: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between">
-        <Col span={4} className="pls">
-          <h3>{I18n.t('admin.reports')}</h3>
+      <Row justify="space-between" style={{ marginTop: token.margin }}>
+        <Col span={4}>
+          <SectionTitle>{I18n.t('admin.reports')}</SectionTitle>
         </Col>
         <div>
           <div className={styles.newReportButton}>
@@ -194,18 +190,18 @@ const Manage: React.FC<Props> = ({
           </div>
         </div>
       </Row>
-      <div>
+      <Flex vertical>
         <ReportList />
         <div className={styles.tableDivider} />
         <AssessmentList />
 
         <div className={styles.tableDivider} />
 
-        <Row justify="space-between" className="pm">
-          <Col span={8} className="pls">
-            <h3>
+        <Row justify="space-between" style={{ marginTop: token.margin }}>
+          <Col span={8}>
+            <SectionTitle>
               {I18n.t('admin.assessor_assessments')}
-            </h3>
+            </SectionTitle>
           </Col>
 
           {campaignAssessorAssessmentsMeta?.permissions?.create
@@ -233,27 +229,17 @@ const Manage: React.FC<Props> = ({
         {campaignPermissions.viewAssessors && otherAsessorAssessments.length > 0 && (
           <>
             <div className={styles.tableDivider} />
-            <h3>{I18n.t('admin.other_assessor_assessments')}</h3>
+            <SectionTitle>{I18n.t('admin.other_assessor_assessments')}</SectionTitle>
             <OtherAssessorAssessmentList />
           </>
         )}
 
         <div className={styles.tableDivider} />
-        {otherReports.total > 0 && (
-          <>
-            <h3>{I18n.t('admin.other_reports')}</h3>
-            <OtherReportList />
-          </>
-        )}
+        <OtherReportList />
 
         <div className={styles.tableDivider} />
-        {otherAssessments.total > 0 && (
-          <>
-            <h3>{I18n.t('admin.other_assessments')}</h3>
-            <OtherAssessmentList />
-          </>
-        )}
-      </div>
+        <OtherAssessmentList />
+      </Flex>
       <Modals modals={MODALS} />
     </div>
   )

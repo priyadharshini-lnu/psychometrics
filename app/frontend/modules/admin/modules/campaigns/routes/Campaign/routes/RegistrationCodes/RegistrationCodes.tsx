@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Dropdown, Table, Button, Row, Col, Pagination, App, MenuProps,
+  Dropdown, Table, Button, App, MenuProps,
 } from 'antd'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import type { MessageInstance } from 'antd/es/message/interface'
@@ -8,7 +8,7 @@ import type { MessageInstance } from 'antd/es/message/interface'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useParams } from 'react-router-dom'
 import {
-  CheckOutlined, CloseOutlined, PlusOutlined, AppstoreOutlined, MoreOutlined,
+  CheckOutlined, CloseOutlined, PlusOutlined, MoreOutlined,
   QrcodeOutlined, DownloadOutlined, CopyOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
@@ -19,6 +19,7 @@ import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces
 import { RegistrationCode } from '~/modules/admin/modules/campaigns/core/registrationCodes'
 import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import Modals from '~/modules/admin/components/Modals'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { SafeHTML } from '~/components/SafeHTML'
 import { formatedDate } from '~/utils/time'
 import CodeModal from './CodeModal'
@@ -69,31 +70,29 @@ const RegistrationCodes: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.navigation_registration_codes')} `}</span>
-        </Col>
-        {permissions.create && (
-          <div className="float-r">
-            <div>
-              <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
-                <PlusOutlined />
-                <span>{I18n.t('admin.actions_add_code')}</span>
-              </Button>
-            </div>
-          </div>
-        )}
-      </Row>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        loading={isLoadingCodes}
+        title={I18n.t('admin.navigation_registration_codes')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: DEFAULT_PAGE_SIZE,
+          total,
+          onChange: changePage,
+        }}
+        filters={permissions.create ? (
+          <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>
+            <PlusOutlined />
+            <span>{I18n.t('admin.actions_add_code')}</span>
+          </Button>
+        ) : undefined}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
-            loading={isLoadingCodes}
             dataSource={list}
             onChange={onTableChange}
             pagination={false}
+            scroll={{ x: 'max-content' }}
           >
             <Column
               title={I18n.t('shared.active')}
@@ -104,6 +103,7 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title={I18n.t('shared.name')}
               key="name"
+              minWidth={200}
               sorter
               sortOrder={getSortOrder('name')}
               dataIndex="name"
@@ -111,26 +111,31 @@ const RegistrationCodes: React.FC<Props> = ({
             <Column
               title={I18n.t('admin.column_code')}
               key="code"
+              minWidth={150}
               dataIndex="code"
             />
             <Column
               title={I18n.t('admin.dates_start')}
               key="startDate"
+              minWidth={150}
               render={({ startDate }) => formatedDate(startDate)}
             />
             <Column
               title={I18n.t('admin.dates_end')}
               key="endDate"
+              minWidth={150}
               render={({ endDate }) => formatedDate(endDate)}
             />
             <Column
               title={I18n.t('registration_code.restricted_domains')}
               key="restrictedDomains"
+              minWidth={150}
               render={({ restrictedDomains }) => (restrictedDomains ? restrictedDomains.split('\n').length : 0)}
             />
             <Column
               title={I18n.t('admin.column_usage_stats')}
               key="usage"
+              minWidth={100}
               render={({ useCount, totalCount }) => `${useCount} of ${totalCount}`}
             />
             <Column
@@ -181,17 +186,8 @@ const RegistrationCodes: React.FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={DEFAULT_PAGE_SIZE}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
       <Modals modals={MODALS} />
     </div>
   )

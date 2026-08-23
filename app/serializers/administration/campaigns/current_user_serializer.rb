@@ -14,7 +14,9 @@ module Administration
       end
 
       def preferences
-        object.user_preferences.map { |preference| preference.slice(:category, :config_key, :payload) }
+        object.user_preferences.map do |preference|
+          preference.slice(:category, :config_key, :payload, :resource_type, :resource_id)
+        end
       end
 
       def support_admin

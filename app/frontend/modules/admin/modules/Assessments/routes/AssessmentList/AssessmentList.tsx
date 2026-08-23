@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { AssessmentTable } from './AssessmentTable'
 import { AssessmentFilter } from './AssessmentFilter'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -26,8 +26,13 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
   }
 
   return (
-    <Resource config={config} name="assessments">
-      <AssessmentFilter openModal={() => closeModal(false)} />
+    <Resource
+      title={I18n.t('assessments.assessments')}
+      config={config}
+      name="assessments"
+      settingsKey={TABLE_SETTINGS_KEYS.adminAssessments}
+      header={<AssessmentFilter openModal={() => closeModal(false)} />}
+    >
       <AssessmentTable openDrawer={setDrawerAssessment} />
       {!!drawerAssessment && (
         <DetailsDrawer
@@ -45,25 +50,12 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
   )
 }
 
-// The tab strip belongs to the route above the tabs, so switching tabs swaps only the list below it.
 export const AssessmentsLayout: React.FC = () => (
   <>
-    <Breadcrumb
-      crumbs={[
-        {
-          link: () => '/admin',
-          label: () => I18n.t('assessments.dashboard'),
-        },
-        {
-          label: () => I18n.t('assessments.assessments'),
-        },
-      ]}
-    />
     <Tabs />
     <Outlet />
   </>
 )
-
 export const ActiveAssessments = () => <AssessmentList assessmentTab="active" />
 export const ArchivedAssessments = () => <AssessmentList assessmentTab="archived" />
 export const DeletedAssessments = () => <AssessmentList assessmentTab="deleted" />

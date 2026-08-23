@@ -4139,7 +4139,6 @@ pt:
     admins: Administradores
     create_global_assessor: Criar avaliador global
     create_superadmin: Criar Super Admin
-    dashboard: Painel de controlo
     drawer:
       link: Ligação
       role: Papel

@@ -1,7 +1,8 @@
 import React from 'react'
 import {
-  Row, Col, Space, Select, Card, Tag, Collapse, Empty, Pagination, Alert, Typography, Button,
+  Row, Col, Space, Select, Card, Tag, Collapse, Empty, Alert, Typography, Button,
 } from 'antd'
+import { DataTablePagination } from '@thetalententerprise/glint'
 import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint/components/ResourceAvatar'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
@@ -270,15 +271,13 @@ const RecordHistoryResults: React.FC<Props> = ({
               </div>
             ))}
           </div>
-          <div className="pl">
-            <Pagination
-              current={page}
-              pageSize={DEFAULT_PAGE_SIZE}
-              total={total}
-              onChange={setPage}
-              hideOnSinglePage
-            />
-          </div>
+          <DataTablePagination
+            page={page}
+            pageSize={DEFAULT_PAGE_SIZE}
+            total={total}
+            onChange={setPage}
+            hideOnSinglePage
+          />
         </>
       )}
     </>

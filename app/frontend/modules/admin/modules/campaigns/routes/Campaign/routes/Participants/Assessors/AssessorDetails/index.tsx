@@ -1,12 +1,11 @@
 import { connect, ConnectedProps } from 'react-redux'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { Divider } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
 import { getCurrent, fetchSingle } from '~/modules/admin/modules/campaigns/core/assessors'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import AssessmentList from './AssessmentList'
-
-const { I18n } = window
 
 const connecter = connect(
   (state: RootState) => ({
@@ -38,10 +37,8 @@ const AssessorDetails: React.FC<Props> = ({ assessor, fetchSingle }) => {
         title={assessor.fullName}
         subTitle={assessor.email}
       />
-      <div className="pl">
-        <h3>{I18n.t('common.model.assessments')}</h3>
-        <AssessmentList />
-      </div>
+      <Divider style={{ margin: 0 }} />
+      <AssessmentList />
     </>
   )
 }

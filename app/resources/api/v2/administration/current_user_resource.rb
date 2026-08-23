@@ -46,7 +46,7 @@ class Api::V2::Administration::CurrentUserResource < Api::V2::Administration::Ba
 
   def preferences
     @model.user_preferences.map do |preference|
-      preference.slice(:category, :config_key, :payload)
+      preference.slice(:category, :config_key, :payload, :resource_type, :resource_id)
     end
   end
 end

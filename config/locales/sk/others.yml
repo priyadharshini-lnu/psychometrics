@@ -4154,7 +4154,6 @@ sk:
     admins: Správcovia
     create_global_assessor: Vytvorte globálneho hodnotiteľa
     create_superadmin: Vytvorenie supersprávcu
-    dashboard: Tabuľu
     drawer:
       link: Väzba
       role: Rola

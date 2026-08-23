@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Input, Space, Pagination, Button, MenuProps, Typography, Image, Avatar, Skeleton, Row, Col,
+  Table, Input, Space, Button, MenuProps, Typography, Image, Avatar, Skeleton, Row, Col,
 } from '@thetalententerprise/glint'
 import { Add } from '@thetalententerprise/glint/icons'
 import { connect, ConnectedProps } from 'react-redux'
@@ -17,10 +17,8 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 const { Search } = Input
@@ -53,7 +51,6 @@ const ClientList: React.FC<Props> = ({
 }) => {
   const [countries, setCoutries] = useState<Meta['countries']>([])
   const [types, setTypes] = useState<Meta['types']>([])
-  const { width: windowWidth } = useWindowSize()
   const baseApiConfig = {
     include: ['project_manager'],
     fields: { users: ['name', 'email'] },
@@ -101,7 +98,6 @@ const ClientList: React.FC<Props> = ({
         dataSource={data}
         pagination={false}
         scroll={{ x: 'max-content' }}
-        loading={tableLoading}
         onChange={handleTableChange}
         sticky
       >
@@ -109,7 +105,7 @@ const ClientList: React.FC<Props> = ({
           title={I18n.t('shared.id')}
           dataIndex="id"
           key="id"
-          fixed={windowWidth > 800 ? 'left' : undefined}
+          fixed="left"
           sorter
           sortOrder={getSortOrder('id')}
           width={100}
@@ -208,7 +204,7 @@ const ClientList: React.FC<Props> = ({
         <Column
           title={I18n.t('shared.action')}
           key="action"
-          fixed={windowWidth > 800 ? 'right' : undefined}
+          fixed="right"
           render={client => (
             <ConditionalDropdown
               menu={
@@ -227,13 +223,6 @@ const ClientList: React.FC<Props> = ({
           width={100}
         />
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
@@ -264,19 +253,18 @@ const ClientList: React.FC<Props> = ({
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.clients'),
-          },
-        ]}
-      />
       <TableLayout
+        loading={tableLoading}
         table={ClientTable}
         filters={Filter}
+        title={I18n.t('admin.clients')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: meta.recordCount ?? 0,
+          onChange: changePage,
+        }}
         recordCount={meta.recordCount}
-        loading={tableLoading}
         requestStatus={requests.fetch?.status}
         failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />

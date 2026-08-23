@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Input, Pagination, Button, message,
+  Table, Input, Button, Space, message,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
-import {
-  AppstoreOutlined, PlusOutlined, MoreOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { isRequestInProgress } from '~/core/request'
 import {
   fetch,
@@ -17,6 +15,7 @@ import {
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import AnswerableConfirmationModal from '~/components/AnswerableConfirmationModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
@@ -122,35 +121,37 @@ const AssessorList: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{I18n.t('admin.assessor_count', { count: total })}</span>
-        </Col>
-        <div>
-          <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
-          <Search
-            placeholder={I18n.t('common.actions.search')}
-            className={styles.searchInput}
-            value={filters.filterableFields}
-            onChange={e => changeFilter('filterableFields', e.target.value)}
-          />
-          {permissions.add && (
-            <div className={styles.newUserButton}>
+      <TableLayout
+        loading={isLoadingAssessors}
+        title={I18n.t('admin.participants_tabs_assessors')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total,
+          onChange: changePage,
+        }}
+        filters={(
+          <Space>
+            <ToolsDropdown campaignId={parseInt(campaignId, 10)} openModal={openModal} permissions={permissions} />
+            <Search
+              placeholder={I18n.t('common.actions.search')}
+              className={styles.searchInput}
+              value={filters.filterableFields}
+              onChange={e => changeFilter('filterableFields', e.target.value)}
+            />
+            {permissions.add && (
               <Button type="primary" onClick={() => openModal('AssessorFormModal', { campaignId, projectId })}>
                 <PlusOutlined />
                 <span>{I18n.t('admin.assessor_create_assessor')}</span>
               </Button>
-            </div>
-          )}
-        </div>
-      </Row>
-      <Row>
-        <Col span={24}>
+            )}
+          </Space>
+        )}
+        table={(
           <Table
             className="mtm"
             rowKey="id"
-            loading={isLoadingAssessors}
             dataSource={list}
             onChange={onTableChange}
             pagination={false}
@@ -206,26 +207,12 @@ const AssessorList: React.FC<Props> = ({
                       }),
                     })
                   }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  )}
                 />
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={settings.pagination.defaultPageSize}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
       <Modals modals={MODALS} />
       {assessorToDelete && (
         <AnswerableConfirmationModal

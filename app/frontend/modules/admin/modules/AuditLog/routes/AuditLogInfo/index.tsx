@@ -101,12 +101,12 @@ const AuditLogList: React.FC<Props> = ({
           )}
           {record.client && (
             <Descriptions.Item label="Client">
-              <a href={`/admin/clients/${record.client.id}/projects`}>
+              <Link to={`/admin/clients/${record.client.id}/projects`}>
                 {record.client.id}
                 ,
                 {' '}
                 {record.client.name}
-              </a>
+              </Link>
             </Descriptions.Item>
           )}
           <Descriptions.Item label={I18n.t('admin.interface')}>
@@ -120,22 +120,20 @@ const AuditLogList: React.FC<Props> = ({
           </Descriptions.Item>
           {record.project && (
             <Descriptions.Item label={I18n.t('admin.project')}>
-              <a href={`/admin/projects/${record.project.id}/new_campaigns`}>
+              <Link to={`/admin/projects/${record.project.id}/new_campaigns`}>
                 {record.project.id}
                 ,
                 {' '}
                 {record.project.name}
 
-              </a>
+              </Link>
             </Descriptions.Item>
           )}
           {record.campaign && (
             <Descriptions.Item label={I18n.t('admin.campaign')}>
-              <a
-                href={`/admin/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}
-              >
+              <Link to={`/admin/projects/${record.campaign.projectId}/new_campaigns/${record.campaign.id}`}>
                 {record.campaign.name}
-              </a>
+              </Link>
             </Descriptions.Item>
           )}
           <Descriptions.Item label={I18n.t('admin.payload')}>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col, Button, Table, Badge, Space, Tooltip, message, Typography,
+  Button, Table, Badge, Space, Tooltip, message, Typography,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
@@ -13,11 +13,11 @@ import {
 } from '~/modules/admin/modules/client/core/integrations'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { isRequestInProgress } from '~/core/request'
 import { IntegrationFormModal } from './IntegrationFormModal'
 import routeUtils from '~/utils/route'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 const { Column } = Table
 
@@ -56,7 +56,6 @@ const IntegrationsComponent: React.FC<Props> = ({
   isDeleteRequestInProgress,
 }) => {
   const { projectId } = useParams() as { projectId: string }
-  const { width: windowWidth } = useWindowSize()
   const navigate = useNavigate()
   const prefix = `${settings.urlPrefix}/:projectId/settings`
 
@@ -91,32 +90,36 @@ const IntegrationsComponent: React.FC<Props> = ({
 
   return (
     <>
-      <Row>
-        <Col span={24}>
-          <Row justify="end" className="pt-4 mb-4">
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={() => openModal('IntegrationFormModal')}
-            >
-              {I18n.t('admin.integrations_actions_add')}
-            </Button>
-          </Row>
-
-          <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }} style={{ width: '100%' }}>
+      <TableLayout
+        title={I18n.t('admin.integrations_integrations')}
+        recordCount={integrations.length}
+        filters={(
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => openModal('IntegrationFormModal')}
+          >
+            {I18n.t('admin.integrations_actions_add')}
+          </Button>
+        )}
+        table={(
+          <Table dataSource={integrations} pagination={false} scroll={{ x: 'max-content' }}>
             <Column
               title={I18n.t('common.column.status')}
-              fixed={windowWidth > 800 ? 'left' : undefined}
+              minWidth={150}
+              fixed="left"
               render={({ active }) => (
                 <Badge status={active ? 'success' : 'default'} text={active ? 'Active' : 'Inactive'} />
               )}
             />
             <Column
               title={I18n.t('admin.integrations_columns_name')}
+              minWidth={200}
               render={({ name }) => I18n.t(`admin.integrations_names_${name}`)}
             />
             <Column
               title={I18n.t('admin.integrations_columns_details')}
+              minWidth={200}
               render={({
                 name,
                 mettlIntegrationDetails,
@@ -343,7 +346,7 @@ const IntegrationsComponent: React.FC<Props> = ({
             />
             <Column
               title={I18n.t('shared.action')}
-              fixed={windowWidth > 800 ? 'right' : undefined}
+              fixed="right"
               render={integration => (
                 <Space size="middle">
                   {integration.name === 'mettl' && (
@@ -387,9 +390,9 @@ const IntegrationsComponent: React.FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-        <Modals modals={MODALS} />
-      </Row>
+        )}
+      />
+      <Modals modals={MODALS} />
     </>
   )
 }

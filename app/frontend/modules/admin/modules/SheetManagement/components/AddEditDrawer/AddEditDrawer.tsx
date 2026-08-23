@@ -40,9 +40,21 @@ import { InputField, EmailField } from './FormFields'
 
 const { I18n } = window
 
+interface OwnProps {
+  isOpen: boolean
+  toggleDrawer: ToggleDrawer
+  mode: DrawerModes
+  currentSheetRowId: string
+  parentResourceType: ParentResourceType
+  parentResourceId: number
+  sheetType: SheetType
+}
+
 const connector = connect(
-  (state: RootState) => ({
-    columnDefinitions: getColumns(state),
+  (state: RootState, { parentResourceType, parentResourceId, sheetType }: OwnProps) => ({
+    columnDefinitions: getColumns(state, {
+      parentType: parentResourceType, parentId: parentResourceId, sheetType,
+    }),
     sheetDetails: getCurrent(state),
     isFetching: isRequestInProgress(state, FETCH_SINGLE),
     isAdding: isRequestInProgress(state, ADD),
@@ -54,16 +66,6 @@ const connector = connect(
     update,
   },
 )
-
-interface OwnProps {
-  isOpen: boolean
-  toggleDrawer: ToggleDrawer
-  mode: DrawerModes
-  currentSheetRowId: string
-  parentResourceType: ParentResourceType
-  parentResourceId: number
-  sheetType: SheetType
-}
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
@@ -98,7 +100,6 @@ const AddEditDrawerComponent: FC<Props> = ({
 
   const [form] = Form.useForm()
 
-  // Effect running only if we dont have record data before hand
   useEffect(() => {
     if (isInEditMode) {
       fetchSingle(parentResourceType, parentResourceId, sheetType, currentSheetRowId)
@@ -106,7 +107,6 @@ const AddEditDrawerComponent: FC<Props> = ({
   }, [currentSheetRowId])
 
   useEffect(() => {
-    // Clear out any form values in between drawer write modes
     if (isInEditMode || isInAddMode) {
       form.resetFields()
     }

@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { Breadcrumb as AntBreadcrumb, Tag } from 'antd'
 import { Link } from 'react-router-dom'
 import { Request, State } from '~/modules/admin/core/ui/breadcrumbs'
-import useTitle from '~/hooks/useTitle'
 import { useIsOwnedPath } from '~/components/AdminShell/ownedPaths'
 import styles from './styles.less'
-import { displayName } from '~/utils/branding'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 interface Crumb {
   link?: (state: State) => string
@@ -19,8 +18,6 @@ interface Props {
   state: State
 }
 
-// FYI: if we have to add nested breadcrumbs later, we can extract `crumbs` into redux state
-// and provide two action creators: `pushCrumbs([...])`, `replaceCrumbs([...])`
 const Breadcrumb: React.FC<Props> = ({
   request, crumbs, fetch, state,
 }) => {
@@ -30,9 +27,9 @@ const Breadcrumb: React.FC<Props> = ({
     if (request) fetch(request)
   }, [JSON.stringify(request)])
 
+  // Labels resolve from fetched state, so an unresolved crumb is dropped rather than titled "undefined".
   const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
-  crumbsForTitle.push(displayName())
-  useTitle({ title: crumbsForTitle.join(' - ') })
+    .filter((label): label is string => Boolean(label))
 
   const breadcrumbItems = crumbs.map((crumb) => {
     const label = crumb.label(state)
@@ -62,7 +59,6 @@ const Breadcrumb: React.FC<Props> = ({
 
     if (!crumb.link) return { title: titleContent }
 
-    // Several apps mount this breadcrumb, each with its own router — only a path that router owns can be pushed.
     const href = crumb.link(state)
 
     return {
@@ -80,6 +76,7 @@ const Breadcrumb: React.FC<Props> = ({
 
   return (
     <div className={styles.container} data-testid="breadcrumbs">
+      <DocumentTitle text={crumbsForTitle.join(' - ')} />
       <AntBreadcrumb items={breadcrumbItems} />
     </div>
   )

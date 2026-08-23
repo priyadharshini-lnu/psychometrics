@@ -26,10 +26,12 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
           sorter
           render={innovation => innovation.id}
           width={100}
+          fixed="left"
         />
         <Resource.Column<InnovationStyles>
           title={I18n.t('shared.name')}
           id="name"
+          hideable={false}
           sorter
           render={innovation => (
             <Link to={`/admin/dimensions/${dimensionId}/innovation_styles/${innovation.id}/factors`}>
@@ -37,6 +39,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
             </Link>
           )}
           width={200}
+          fixed="left"
         />
         <Resource.Column<InnovationStyles>
           title={I18n.t('admin.innovation_styles_list_position')}
@@ -70,6 +73,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<InnovationStyles>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, innovation) => (
             <Dropdown
               innovation={innovation}
@@ -77,6 +81,7 @@ export const InnovationStylesTable: FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
     </>

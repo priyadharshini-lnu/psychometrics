@@ -4,6 +4,9 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 
 import { useEffect } from 'react'
+import {
+  Groups, Person, Settings, SupervisorAccount,
+} from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
 import {
@@ -20,7 +23,6 @@ import ParticipantModal from './ParticipantModal'
 import Modals from '~/modules/admin/components/Modals'
 import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaign/components/FactorBenchmarkScoreModal'
 
-import styles from './styles.less'
 import ImportRawModal from './ImportRawModal'
 import BulkDownloadModal from '../../components/BulkDownloadModal'
 import RegenerateReportModal from '../../components/RegenerateReportModal'
@@ -60,19 +62,23 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const menuItems = [
     {
       key: '/participants/subjects',
+      icon: <Person />,
       label: I18n.t('admin.subjects_title'),
     },
     {
       key: '/participants/evaluators',
+      icon: <Groups />,
       label: I18n.t('admin.evaluators_title'),
     },
     {
       key: '/participants/managers',
+      icon: <SupervisorAccount />,
       label: I18n.t('admin.managers_title'),
     },
   ]
   campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
+    icon: <Settings />,
     label: I18n.t('admin.options_title'),
   })
   return (
@@ -85,9 +91,7 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
           selectedKeys={[selectedTab]}
           mode="horizontal"
         />
-        <div className={styles.container}>
-          <Outlet />
-        </div>
+        <Outlet />
         <ManageRelationshipsModal />
         <ResetCampaignModal />
         <CampaignNameConfirmationModal />

@@ -7,6 +7,7 @@ import {
 } from '~/modules/admin/modules/client/core/applicationUrlWhitelistEntries'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { UrlWhiteListFilter } from './UrlWhiteListFilter'
 import { UrlWhiteListFormModal } from './UrlWhiteListFormModal'
 import { UrlWhiteListTable } from './UrlWhiteListTable'
@@ -41,7 +42,12 @@ export const UrlSettings: React.FC<Props> = ({
   }
 
   return (
-    <Resource<ApplicationUrlWhitelistEntry, BaseMeta> config={config} name="application_url_whitelist_entries">
+    <Resource<ApplicationUrlWhitelistEntry, BaseMeta>
+      title={I18n.t('admin.url_whitelisting')}
+      config={config}
+      name="application_url_whitelist_entries"
+      settingsKey={TABLE_SETTINGS_KEYS.settingsApplicationsUrlWhitelist}
+    >
       <div>
         <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8 pl">
           <Space>

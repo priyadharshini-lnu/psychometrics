@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Button, MenuProps } from 'antd'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import {
   SmsHistoryTR, SmsHistory,
 } from '~/modules/admin/modules/campaigns/core/smsHistories'
@@ -11,7 +12,7 @@ import { DetailsDrawer } from './DetailsDrawer'
 
 const { I18n } = window
 
-export const SmsHistoriesList = () => {
+export const SmsHistoriesList: React.FC<{ toggle?: ReactNode }> = ({ toggle }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const [smsDetails, setSmsDetails] = useState<SmsHistory | undefined>()
 
@@ -30,22 +31,34 @@ export const SmsHistoriesList = () => {
 
   return (
     <>
-      <Resource config={config} name="sms_histories">
-        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields" />
+      <Resource
+        title={I18n.t('admin.participants_tabs_sms_contacts')}
+        config={config}
+        name="sms_histories"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignParticipantsSmsContacts}
+      >
+        <Resource.Filter
+          placeholder={I18n.t('common.actions.search')}
+          name="filterable_fields"
+          controls={toggle}
+        />
 
         <Resource.Table pagination>
           <Resource.Column<SmsHistory>
             title={I18n.t('common.column.id')}
             id="id"
+            hideable={false}
             sorter
             dataIndex="id"
             width={100}
+            fixed="left"
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('admin.sms_histories_columns_mobile_no')}
             id="mobileNo"
             dataIndex="mobileNo"
             minWidth={100}
+            fixed="left"
           />
           <Resource.Column<SmsHistory>
             title={I18n.t('shared.first_name')}
@@ -90,6 +103,7 @@ export const SmsHistoriesList = () => {
           <Resource.Column<SmsHistory>
             title={I18n.t('shared.action')}
             id="action"
+            hideable={false}
             render={(_, smsHistory: SmsHistory) => (
               <Dropdown
                 smsHistory={smsHistory}

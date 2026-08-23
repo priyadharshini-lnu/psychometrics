@@ -2,7 +2,7 @@ import { ChangeEvent, FC, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useNavigate, useLocation, useParams } from 'react-router'
 import {
-  Col, Input, Pagination, Row, Table, App, Modal,
+  Input, Table, App, Modal,
 } from 'antd'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -20,10 +20,10 @@ import {
 } from '~/modules/admin/modules/client/core/assessors'
 import { isRequestInProgress } from '~/core/request'
 
-import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import settings from '~/modules/admin/settings'
-import { CountDisplay } from '~/components/CountDisplay'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { TagListDisplay } from '~/components/TagListDisplay'
 import { ActionsMenu } from './ActionsMenu'
 import { EditDrawer } from './EditDrawer'
@@ -82,12 +82,6 @@ const AssessorsComponent: FC<Props> = ({
   const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
   const { modal, message } = App.useApp()
-
-  useDocumentTitle(
-    I18n.t('admin.document_titles_project_assessors', {
-      project: projectName || projectId,
-    }),
-  )
 
   useEffect(() => {
     fetchAssessors(projectId, tableConfig)
@@ -194,115 +188,107 @@ const AssessorsComponent: FC<Props> = ({
     clearCurrentAssessor()
   }
 
+  const AssessorsTable = (
+    <Table
+      pagination={false}
+      rowKey={row => row.id}
+      dataSource={assessorsList}
+      onChange={onTableChange}
+    >
+      <Table.Column
+        key="userId"
+        dataIndex="userId"
+        title={I18n.t('shared.id')}
+        sorter
+        sortOrder={getSortOrder('userId')}
+      />
+      <Table.Column
+        key="name"
+        dataIndex="name"
+        title={I18n.t('shared.name')}
+        render={(_: string, { firstName, lastName }: Assessor) => (
+          <>{`${firstName} ${lastName}`}</>
+        )}
+        sorter
+        sortOrder={getSortOrder('name')}
+      />
+      <Table.Column
+        key="email"
+        dataIndex="email"
+        title={I18n.t('shared.email')}
+        sorter
+        sortOrder={getSortOrder('email')}
+      />
+      <Table.Column
+        key="campaigns"
+        title={I18n.t('admin.project_users_column_campaigns')}
+        render={(_: string, { campaigns }: Assessor) => {
+          const campaignTags = campaigns.map(campaign => ({
+            title: campaign.name,
+            url: constructCampaignUrl(projectId, campaign.id),
+          }))
+
+          return <TagListDisplay tags={campaignTags} />
+        }}
+        filters={[
+          {
+            text: I18n.t('admin.project_users_filter_campaigns'),
+            value: 'no_campaigns',
+          },
+        ]}
+        filterMultiple={false}
+      />
+      <Table.Column
+        key="createdAt"
+        dataIndex="createdAt"
+        title={I18n.t('admin.project_users_column_created_at')}
+        sorter
+        sortOrder={getSortOrder('createdAt')}
+      />
+      <Table.Column
+        key="actions"
+        dataIndex="actions"
+        title={I18n.t('shared.actions')}
+        render={(_: string, { id, email, permissions }: Assessor) => (
+          <ActionsMenu
+            id={id}
+            email={email}
+            permissions={permissions}
+            handleEdit={handleEditAdminClick}
+            handleResetPassword={handlePasswordResetClick}
+            handleDelete={handleDeleteAdminClick}
+          />
+        )}
+      />
+    </Table>
+  )
+
+  const Filter = (
+    <Input.Search
+      placeholder={I18n.t('admin.project_users_search_accessor')}
+      value={filters.filterableFields}
+      onChange={handleSearchInput}
+    />
+  )
+
   return (
     <>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            totalCount={totalAssessors}
-            isLoading={isAssessorsListLoading}
-          />
-        </Col>
-        <Col>
-          <Input.Search
-            placeholder={I18n.t('admin.project_users_search_accessor')}
-            value={filters.filterableFields}
-            onChange={handleSearchInput}
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            loading={isAssessorsListLoading}
-            pagination={false}
-            rowKey={row => row.id}
-            dataSource={assessorsList}
-            onChange={onTableChange}
-          >
-            <Table.Column
-              key="userId"
-              dataIndex="userId"
-              title={I18n.t('shared.id')}
-              sorter
-              sortOrder={getSortOrder('userId')}
-            />
-            <Table.Column
-              key="name"
-              dataIndex="name"
-              title={I18n.t('shared.name')}
-              render={(_: string, { firstName, lastName }: Assessor) => (
-                <>{`${firstName} ${lastName}`}</>
-              )}
-              sorter
-              sortOrder={getSortOrder('name')}
-            />
-            <Table.Column
-              key="email"
-              dataIndex="email"
-              title={I18n.t('shared.email')}
-              sorter
-              sortOrder={getSortOrder('email')}
-            />
-            <Table.Column
-              key="campaigns"
-              title={I18n.t('admin.project_users_column_campaigns')}
-              render={(_: string, { campaigns }: Assessor) => {
-                const campaignTags = campaigns.map(campaign => ({
-                  title: campaign.name,
-                  url: constructCampaignUrl(projectId, campaign.id),
-                }))
-
-                return <TagListDisplay tags={campaignTags} />
-              }}
-              filters={[
-                {
-                  text: I18n.t('admin.project_users_filter_campaigns'),
-                  value: 'no_campaigns',
-                },
-              ]}
-              filterMultiple={false}
-            />
-            <Table.Column
-              key="createdAt"
-              dataIndex="createdAt"
-              title={I18n.t('admin.project_users_column_created_at')}
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-            />
-            <Table.Column
-              key="actions"
-              dataIndex="actions"
-              title={I18n.t('shared.actions')}
-              render={(_: string, { id, email, permissions }: Assessor) => (
-                <ActionsMenu
-                  id={id}
-                  email={email}
-                  permissions={permissions}
-                  handleEdit={handleEditAdminClick}
-                  handleResetPassword={handlePasswordResetClick}
-                  handleDelete={handleDeleteAdminClick}
-                />
-              )}
-            />
-          </Table>
-        </Col>
-      </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Pagination
-            hideOnSinglePage
-            current={page}
-            pageSize={settings.pagination.defaultPageSize}
-            total={totalAssessors}
-            onChange={changePage}
-          />
-        </Col>
-      </Row>
+      <DocumentTitle
+        text={I18n.t('admin.document_titles_project_assessors', { project: projectName || projectId })}
+      />
+      <TableLayout
+        loading={isAssessorsListLoading}
+        table={AssessorsTable}
+        filters={Filter}
+        title={I18n.t('admin.assessors')}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total: totalAssessors,
+          onChange: changePage,
+        }}
+        recordCount={totalAssessors}
+      />
       <EditDrawer
         isOpen={drawerMode === DrawerMode.Edit}
         projectId={projectId}

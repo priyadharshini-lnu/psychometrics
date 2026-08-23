@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import {
-  Tabs,
-} from 'antd'
+import { Menu } from 'antd'
 import { useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { Assignment, Explore } from '@thetalententerprise/glint/icons'
 import { camelizeKeys } from '~/utils/object'
 import AssessmentsReports from './AssessmentsReports'
 import { Idp } from './Idp'
-import styles from './Manage.less'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/modules/admin/core/rootReducers'
 
@@ -36,31 +34,35 @@ const Manage: React.FC<PropsFromRedux> = ({ features, projectIdpEnabled }) => {
     setTab(tab)
   }
 
-  const tabs = [
+  const menuItems = [
     {
       key: 'assessments',
+      icon: <Assignment />,
       label: I18n.t('assessments_reports.menu.assessments_and_reports'),
-      children: <AssessmentsReports />,
     },
   ]
 
   if (idpEnabled && projectIdpEnabled) {
-    tabs.push({
+    menuItems.push({
       key: 'idp',
+      icon: <Explore />,
       label: I18n.t('assessments_reports.menu.idp'),
-      children: <Idp />,
     })
   }
 
+  const activeKey = menuItems.some(({ key }) => key === tab) ? tab : 'assessments'
+
   return (
     <div>
-      <Tabs
-        activeKey={tab}
-        onChange={changeTab}
-        defaultActiveKey="assessments"
-        className={styles.tabs}
-        items={tabs}
-      />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={({ key }) => changeTab(key)}
+          selectedKeys={[activeKey]}
+          mode="horizontal"
+        />
+      )}
+      {activeKey === 'idp' ? <Idp /> : <AssessmentsReports />}
     </div>
   )
 }

@@ -5,20 +5,23 @@ import {
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
+  datasheetIdentity,
   fetchDatasheetColumns,
   get as getColumns,
 } from '~/modules/admin/modules/SheetManagement/core/columnDefinitions'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const { I18n } = window
 
 export const DatasheetForm: React.FC = () => {
   const { campaignId } = useParams() as { campaignId: string }
   const dispatch = useDispatch()
-  const columns = useSelector(getColumns)
+  const parsedCampaignId = parseInt(campaignId, 10)
+  const columns = useSelector((state: RootState) => getColumns(state, datasheetIdentity(parsedCampaignId)))
   const includeAllColumns = Form.useWatch('includeAllDatasheetColumns')
 
   useEffect(() => {
-    dispatch(fetchDatasheetColumns(parseInt(campaignId, 10)))
+    dispatch(fetchDatasheetColumns(parsedCampaignId))
   }, [campaignId])
 
   return (

@@ -138,7 +138,9 @@ export const DevelopmentActionsFilter: React.FC<Props> = ({
   }
 
   return (
-    <Resource.Filter name="filterable_fields">
+    <Resource.Filter
+      name="filterable_fields"
+    >
       <ToolsDropdown
         onClick={handleToolAction}
         permissions={resource.meta.permissions}

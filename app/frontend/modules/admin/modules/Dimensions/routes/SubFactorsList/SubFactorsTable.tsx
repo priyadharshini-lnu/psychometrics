@@ -30,9 +30,11 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
       <Resource.Column<SubFactors>
         title={I18n.t('shared.id')}
         id="id"
+        hideable={false}
         sorter
         render={subFact => subFact?.id}
         width={100}
+        fixed="left"
       />
       <Resource.Column<SubFactors>
         title={I18n.t('shared.name')}
@@ -40,6 +42,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
         sorter
         render={subFact => subFact.factorName}
         width={200}
+        fixed="left"
       />
       <Resource.Column<SubFactors>
         title={I18n.t('admin.occupations_factors_list_condition')}
@@ -92,6 +95,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
       <Resource.Column<SubFactors>
         title={I18n.t('shared.action')}
         id="action"
+        hideable={false}
         render={(_, subFact) => (
           <Dropdown
             subFact={subFact}
@@ -100,6 +104,7 @@ export const SubFactorsTable: FC<Props> = ({ openModal, slug }) => (
           />
         )}
         width={100}
+        fixed="right"
       />
     </Resource.Table>
   </>

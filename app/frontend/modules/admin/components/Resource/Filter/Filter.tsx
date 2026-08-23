@@ -1,8 +1,9 @@
 import { FC, ReactNode } from 'react'
 import {
-  Input, Space, Row, Col,
+  Input, Space, Flex, theme,
 } from 'antd'
-import { CountDisplay } from '~/components/CountDisplay'
+import { SHOW_TITLES } from '~/modules/admin/components/TableLayout'
+import { TableTitle } from '~/modules/admin/components/TableTitle'
 import { useResourceContext } from '../ResourceContext'
 import { TagFilter } from '~/modules/admin/components/Resource/TagFilter'
 import { TagFilterConfig } from '~/modules/admin/components/Resource/TagFilter/TagFilter'
@@ -19,6 +20,7 @@ type Props = {
   hideSearch?: boolean
   showTagFilter?: boolean
   tagFilterConfig?: TagFilterConfig
+  controls?: ReactNode
 }
 
 export const Filter: FC<Props> = ({
@@ -28,41 +30,37 @@ export const Filter: FC<Props> = ({
   hideSearch,
   showTagFilter,
   tagFilterConfig,
+  controls,
 }) => {
-  const { resource } = useResourceContext()
-  const loading = resource.isLoading('fetch')
-
-  const requestFailed = resource.requests.fetch?.status === 'failed'
+  const { resource, title } = useResourceContext()
+  const { token } = theme.useToken()
 
   const defaultPlaceholder = I18n.t('common.actions.search')
 
   return (
-    <Row
-      justify="space-between"
-      align="middle"
-      className="pt-4 pb-4 ps-4 pe-4"
+    <Flex
+      wrap
+      align="center"
+      justify="end"
+      gap="middle"
+      style={{ paddingInline: token.padding, paddingBlock: token.paddingSM }}
     >
-      <Col>
-        <CountDisplay
-          selectedCount={0}
-          totalCount={requestFailed ? 0 : resource.meta.recordCount || 0}
-          isLoading={loading}
-        />
-      </Col>
+      <Flex flex="auto" align="center">
+        {SHOW_TITLES && <TableTitle>{title}</TableTitle>}
+      </Flex>
 
-      <Col>
-        <Space>
-          {showTagFilter && <TagFilter name="tagged_with" config={tagFilterConfig} />}
-          {!hideSearch && (
-            <Search
-              placeholder={placeholder || defaultPlaceholder}
-              value={resource.getFilteredValue(name)}
-              onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
-            />
-          )}
-          {children}
-        </Space>
-      </Col>
-    </Row>
+      <Space wrap align="center">
+        {controls}
+        {showTagFilter && <TagFilter name="tagged_with" config={tagFilterConfig} />}
+        {!hideSearch && (
+          <Search
+            placeholder={placeholder || defaultPlaceholder}
+            value={resource.getFilteredValue(name)}
+            onChange={({ target: { value } }) => { resource.changeFilter(name, value) }}
+          />
+        )}
+        {children}
+      </Space>
+    </Flex>
   )
 }

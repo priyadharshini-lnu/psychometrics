@@ -18,11 +18,13 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.id')}
       id="id"
+      hideable={false}
       sorter
       render={skill => (
         skill.id
       )}
       width={150}
+      fixed="left"
     />
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.name')}
@@ -40,6 +42,7 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
       )}
       sorter
       minWidth={200}
+      fixed="left"
     />
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.description')}
@@ -71,6 +74,7 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
     <Resource.Column<DevelopmentAction>
       title={I18n.t('common.column.action')}
       id="action"
+      hideable={false}
       render={(_, developmentAction) => (
         <Dropdown
           developmentAction={developmentAction}
@@ -78,6 +82,7 @@ export const DevelopmentActionsTable: React.FC<Props> = ({ openModal }) => (
         />
       )}
       width={100}
+      fixed="right"
     />
   </Resource.Table>
 )

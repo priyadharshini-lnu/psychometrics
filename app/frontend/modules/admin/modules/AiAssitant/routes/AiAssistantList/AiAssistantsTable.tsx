@@ -67,11 +67,13 @@ export const AiAssistantsTable = () => {
         <Resource.Column<AiAssistant>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={aiAssistant => (
             aiAssistant.id
           )}
           width={100}
+          fixed="left"
         />
         <Resource.Column<AiAssistant>
           title={I18n.t('shared.name')}
@@ -79,6 +81,7 @@ export const AiAssistantsTable = () => {
           render={aiAssistant => <Typography.Text>{aiAssistant.name}</Typography.Text>}
           sorter
           width={200}
+          fixed="left"
         />
         <Resource.Column<AiAssistant>
           title={I18n.t('shared.description')}
@@ -182,12 +185,14 @@ export const AiAssistantsTable = () => {
         <Resource.Column<AiAssistant>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, aiAssistant) => (
             <Dropdown
               aiAssistant={aiAssistant}
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Drawer

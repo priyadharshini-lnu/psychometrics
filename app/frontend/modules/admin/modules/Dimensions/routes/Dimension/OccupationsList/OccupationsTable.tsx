@@ -36,10 +36,12 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
           sorter
           render={occupation => occupation.id}
           width={100}
+          fixed="left"
         />
         <Resource.Column<Occupation>
           title={I18n.t('common.column.name')}
           id="name"
+          hideable={false}
           sorter
           render={occupation => (
             <Typography.Link onClick={() => handleOccupationFactorsDrawer({
@@ -51,6 +53,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
             </Typography.Link>
           )}
           width={200}
+          fixed="left"
         />
         <Resource.Column<Occupation>
           title={I18n.t('common.column.created_at')}
@@ -75,6 +78,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Occupation>
           title={I18n.t('common.column.action')}
           id="action"
+          hideable={false}
           render={(_, occupation) => (
             <Dropdown
               occupation={occupation}
@@ -82,6 +86,7 @@ export const OccupationsTable: FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <OccupationFactorsDrawer

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Table, Row, Col, message, MenuProps, App,
+  Button, Table, Row, Col, message, MenuProps, App,
   Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
@@ -97,9 +97,14 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
               title={I18n.t('shared.assessment_name')}
               key="name"
               render={resource => (
-                <a onClick={() => setSelectedAssessorAssessment(resource)}>
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
+                  onClick={() => setSelectedAssessorAssessment(resource)}
+                >
                   {resource.assessmentName}
-                </a>
+                </Button>
               )}
             />
             <Column
@@ -124,7 +129,10 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
               title={I18n.t('admin.assessment_center_group')}
               key="assessmentCenterGroups"
               render={resource => (
-                <a
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
                   onClick={() => openModal('AssessorCampaignAssessmentGroupModal', {
                     campaignId: resource.campaignId,
                     campaignAssessorAssessmentId: resource.id,
@@ -133,7 +141,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
                   }
                 >
                   {resource.campaignAssessmentGroupName || I18n.t('frontend.manage')}
-                </a>
+                </Button>
               )}
             />
             <Column

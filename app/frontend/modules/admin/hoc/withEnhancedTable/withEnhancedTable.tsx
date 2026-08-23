@@ -9,6 +9,7 @@ import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import { State as TableConfigs } from '~/modules/admin/core/filterAndPagination/interfaces'
 import {
   changeFilterType,
+  setFiltersType,
   removeFilterType,
   changePageType,
   changeSortType,
@@ -25,6 +26,7 @@ interface Props {
   sort: SortProps
   tables: TableConfigs
   changeFilter: changeFilterType
+  changeFilters: setFiltersType
   removeFilter: removeFilterType,
   changePage: changePageType
   changeSort: changeSortType
@@ -113,7 +115,7 @@ const withEnhancedTable = (WrappedComponent, tableName: string, options: Options
       return null
     }
 
-    let tableFunctions = pick(props, ['changeFilter', 'changePage', 'removeFilter', 'changeSort'])
+    let tableFunctions = pick(props, ['changeFilter', 'changeFilters', 'changePage', 'removeFilter', 'changeSort'])
     tableFunctions = reduce(tableFunctions, (result, func, key) => {
       result[key] = curry(func)(tableName)
       return result

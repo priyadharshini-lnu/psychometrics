@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import { Tabs } from 'antd'
+import { ConfigProvider, Tabs, theme } from 'antd'
 import { useParams } from 'react-router-dom'
+import { Settings, TableRows } from '@thetalententerprise/glint/icons'
 import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/interfaces'
 import { Sheet } from './Sheet'
 import { SheetSettings } from './SheetSettings'
 import { SheetType } from './core/list'
 
-const { TabPane } = Tabs
 const { I18n } = window
 
 interface Props {
@@ -19,6 +19,17 @@ const SheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId })
     projectId?: string
     campaignId?: string
   }>()
+  const { token } = theme.useToken()
+
+  const tabStripTheme = {
+    components: {
+      Tabs: {
+        horizontalMargin: '0',
+        horizontalItemPadding: `${token.paddingSM}px ${token.padding}px`,
+        horizontalItemGutter: 0,
+      },
+    },
+  }
 
   let resourceId = parentResourceId
   if (parentResourceType === ParentResourceType.Project && projectId) {
@@ -29,36 +40,31 @@ const SheetTabsComponent: FC<Props> = ({ parentResourceType, parentResourceId })
 
   if (!resourceId) { return null }
 
-  return (
-    <Tabs defaultActiveKey="rows" tabBarStyle={{ padding: '0 20px' }} destroyOnHidden>
-      <TabPane
-        tab={(
-          <span>
-            {I18n.t('admin.sheets_tabs_rows')}
-          </span>
-        )}
-        key="rows"
-      >
-        <Sheet
-          parentResourceType={parentResourceType}
-          parentResourceId={resourceId}
-        />
-      </TabPane>
-      <TabPane
-        tab={(
-          <span>
-            {I18n.t('admin.sheets_tabs_settings')}
-          </span>
-          )}
-        key="settings"
-      >
+  const items = [
+    {
+      key: 'rows',
+      icon: <TableRows />,
+      label: I18n.t('admin.sheets_tabs_rows'),
+      children: <Sheet parentResourceType={parentResourceType} parentResourceId={resourceId} />,
+    },
+    {
+      key: 'settings',
+      icon: <Settings />,
+      label: I18n.t('admin.sheets_tabs_settings'),
+      children: (
         <SheetSettings
           parentResourceType={parentResourceType}
           parentResourceId={resourceId}
           sheetType={SheetType.Datasheet}
         />
-      </TabPane>
-    </Tabs>
+      ),
+    },
+  ]
+
+  return (
+    <ConfigProvider theme={tabStripTheme}>
+      <Tabs defaultActiveKey="rows" destroyOnHidden items={items} />
+    </ConfigProvider>
   )
 }
 

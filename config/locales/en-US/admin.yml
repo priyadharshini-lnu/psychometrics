@@ -2131,6 +2131,7 @@ en-US:
     projects_mettl_schedule_records_secure_browser_enabled: Enable Secure Browser
     projects_mettl_schedule_records_settings: Settings
     projects_mettl_schedule_records_show_remaining_counts: Enable Showing Remaining Count
+    projects_mettl_schedule_records_title: Mettl Schedules
     projects_mettl_schedule_records_visual_proctoring_enabled: Enable Visual Proctoring
     projects_mettl_schedule_records_web_proctoring_enabled: Enable Web Proctoring
     projects_profile_settings_form_fields_enabled: Enabled
@@ -2526,11 +2527,16 @@ en-US:
       approval_status_in: Approval Status
       approver_user_id_in: Approver
       assessment_id_in: Assessment
+      assessment_name_cont: Assessment
       campaign_id_in: Campaign
+      campaign_name_cont: Campaign
       client_id_in: Client
+      client_name_cont: Client
       project_id_in: Project
+      project_name_cont: Project
       qc_user_id_in: QC User
       report_id_in: Report
+      report_name_cont: Report
       subject_email_cont: Subject Email
       subject_full_name_cont: Subject Name
       user_email_cont: User Email
@@ -3167,6 +3173,9 @@ en-US:
     system_prompt: System Prompt
     tab_text_one: Menu
     tab_text_two: Submenu
+    table_display_columns: Columns
+    table_display_filters: Filters
+    table_display_title: Display
     table_more_actions: More actions
     tabs_results: Results
     tabs_settings: Settings
@@ -3235,6 +3244,7 @@ en-US:
     threesixity_success: Multi Rater Campaign was successfully created.
     threesixity_success_job: Multi Rater Campaign creation job was successfully scheduled.
     threesixty: 360 Campaign
+    threesixty_campaigns_instruction_visible_to_participants: Show this instruction to participants
     threesixty_campaigns_mail_history_date: Date
     threesixty_campaigns_mail_history_download_details: Download Details
     threesixty_campaigns_mail_history_emails_sent: Emails Sent
@@ -3250,6 +3260,8 @@ en-US:
     threesixty_campaigns_menu_report_menu_report_approval_title: Report Approval Settings
     threesixty_campaigns_menu_report_menu_report_options_title: Report Options
     threesixty_campaigns_menu_report_title: Report
+    threesixty_campaigns_schedule_date_presets: Preset schedule dates
+    threesixty_campaigns_send_reminders_automatically: Send reminders automatically
     time_label: Time
     time_zone: Time Zone
     timed_label: 'Timed: %{time_text}'

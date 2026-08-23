@@ -14,7 +14,8 @@ class UserPreference < ApplicationRecord
     workspace: 'workspace',
     theme: 'theme',
     favorite: 'favorite',
-    tour: 'tour'
+    tour: 'tour',
+    table_settings: 'table_settings'
   }.freeze
 
   validates :config_key, presence: true

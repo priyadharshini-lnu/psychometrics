@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import type { ColumnsType } from 'antd/es/table'
 import {
-  Table, Pagination, Flex, Input, Skeleton, Popover, message, Typography,
+  Table, Button, Flex, Input, Skeleton, Popover, message, Typography,
   Tooltip, App,
 } from 'antd'
 import * as t from 'io-ts'
@@ -235,12 +235,12 @@ export const Result = () => {
         width: 200,
         fixed: 'left',
         render: (_, record) => (
-          <a onClick={() => setSelectedAIArtifact(record)}>
-            <Flex vertical>
-              <Typography.Link>{record.name}</Typography.Link>
-              <Typography.Text style={{ fontSize: 12 }}>{record.email}</Typography.Text>
-            </Flex>
-          </a>
+          <Flex vertical align="flex-start">
+            <Button type="link" size="small" className="p-0" onClick={() => setSelectedAIArtifact(record)}>
+              {record.name}
+            </Button>
+            <Typography.Text style={{ fontSize: 12 }}>{record.email}</Typography.Text>
+          </Flex>
         ),
       },
       ...artifactColumns,
@@ -346,8 +346,8 @@ export const Result = () => {
 
   return (
     <div>
-      <Flex justify="space-between" className="pm">
-        <Flex className="pls" justify="center" align="center">
+      <Flex justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
+        <Flex justify="center" align="center">
           <AppstoreOutlined style={{ fontSize: '16px' }} />
           <span className="mlm">
             {I18n.t('common.text.total')}
@@ -380,6 +380,8 @@ export const Result = () => {
       ) : (
         <>
           <TableLayout
+            embedded
+            title={I18n.t('admin.tabs_results')}
             table={(
               <Table
                 bordered
@@ -393,7 +395,6 @@ export const Result = () => {
             )}
             disableHeader
             recordCount={meta.recordCount}
-            loading={false}
             requestStatus={requests.fetch?.status}
             selectionSetting={{
               selectionAllowed: aiArtifact.length !== meta.recordCount,
@@ -405,13 +406,9 @@ export const Result = () => {
             selectedCount={
               (isAllSelected && meta.recordCount) ? (meta.recordCount - excludedKeys.length) : selectedKeys.length
             }
-          />
-          <Pagination
-            current={currentPage}
-            pageSize={pageSize}
-            total={meta.recordCount}
-            onChange={changePage}
-            className="pl"
+            pagination={{
+              page: currentPage, pageSize, total: meta.recordCount ?? 0, onChange: changePage,
+            }}
           />
         </>
       )}

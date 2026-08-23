@@ -4140,7 +4140,6 @@ ja:
     admins: 管理者
     create_global_assessor: グローバルアセッサー作成
     create_superadmin: スーパー管理者の作成
-    dashboard: ダッシュボード
     drawer:
       link: リンク
       role: 役割

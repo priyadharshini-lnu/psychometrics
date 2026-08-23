@@ -9,6 +9,7 @@ import { CopyOutlined, PlusOutlined, MinusOutlined } from '~/glint/icons/Accessi
 import dayjs from '~/utils/dayjs'
 import { DateTimeWithZone, ResourceAvatar } from '~/glint'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import styles from './styles.less'
 import {
   ParticipantSubjectTR,
@@ -204,22 +205,14 @@ const DateFilters = () => {
   const filter = resource.getFilteredValue('date_filter') || 'current'
 
   return (
-    <div className="mb-4">
-      <Radio.Group
-        onChange={e => resource.changeFilter('date_filter', e.target.value)}
-        value={filter}
-      >
-        <Radio.Button value="current">
-          {I18n.t('admin.current')}
-        </Radio.Button>
-        <Radio.Button value="upcoming">
-          {I18n.t('admin.upcoming')}
-        </Radio.Button>
-        <Radio.Button value="past">
-          {I18n.t('admin.past')}
-        </Radio.Button>
-      </Radio.Group>
-    </div>
+    <Radio.Group
+      onChange={e => resource.changeFilter('date_filter', e.target.value)}
+      value={filter}
+    >
+      <Radio.Button value="current">{I18n.t('admin.current')}</Radio.Button>
+      <Radio.Button value="upcoming">{I18n.t('admin.upcoming')}</Radio.Button>
+      <Radio.Button value="past">{I18n.t('admin.past')}</Radio.Button>
+    </Radio.Group>
   )
 }
 
@@ -289,6 +282,7 @@ const ParticipantsTable: React.FC = () => {
       <Resource.Column<ParticipantSubject>
         title={I18n.t('admin.participants')}
         id="participants"
+        hideable={false}
         width={200}
         render={(_, subject) => (
           <Row gutter={[10, 0]}>
@@ -305,6 +299,7 @@ const ParticipantsTable: React.FC = () => {
             </Col>
           </Row>
         )}
+        fixed="left"
       />
       <Resource.Column<ParticipantSubject>
         title={I18n.t('admin.scheduling_columns_campaign_name')}
@@ -314,6 +309,7 @@ const ParticipantsTable: React.FC = () => {
         filteredValue={getFilteredValue('campaign_id_in')}
         filterSearch
         render={(_, { campaign }) => campaign.name}
+        fixed="left"
       />
       <Resource.Column<ParticipantSubject>
         title={I18n.t('admin.slot_name')}
@@ -359,6 +355,7 @@ const ParticipantsTable: React.FC = () => {
         id="duration"
         width={100}
         render={(_, { duration }) => secondsToDayHoursAndMinutes(duration)}
+        fixed="right"
       />
     </Resource.Table>
   )
@@ -384,13 +381,18 @@ export const ParticipantsList: React.FC = () => {
   }
 
   return (
-    <Resource config={config} name="workshop_subjects">
+    <Resource
+      title={I18n.t('admin.participants_tab')}
+      config={config}
+      name="workshop_subjects"
+      settingsKey={TABLE_SETTINGS_KEYS.assessorParticipants}
+    >
       <Resource.Filter
         hideSearch={false}
         placeholder={I18n.t('admin.search_participants')}
         name="user_full_name_or_user_email_cont"
+        controls={<DateFilters />}
       />
-      <DateFilters />
       <ParticipantsTable />
     </Resource>
   )

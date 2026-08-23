@@ -11,6 +11,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import settings from '../../../../settings'
 import styles from './ReportTable.less'
 import { AssessmentsFilterDropdown } from './AssessmentsFilterDropdown'
@@ -54,6 +55,7 @@ const ReportTableCompnent: React.FC<Props> = ({
         <Resource.Column<Report>
           title={I18n.t('common.column.id')}
           id="id"
+          hideable={false}
           sorter
           render={report => (
             report.provider === 'internal' ? (
@@ -64,12 +66,14 @@ const ReportTableCompnent: React.FC<Props> = ({
               : <span className={styles.id}>{report.id}</span>
           )}
           minWidth={100}
+          fixed="left"
         />
         <Resource.Column<Report>
           id="disabled"
           title={I18n.t('common.column.active')}
           render={report => <ActiveSwitch report={report} />}
           minWidth={100}
+          fixed="left"
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.icon')}
@@ -138,7 +142,9 @@ const ReportTableCompnent: React.FC<Props> = ({
           title={I18n.t('common.column.owner')}
           id="owner"
           width={300}
-          render={(_, { owner }) => owner?.name || I18n.t('admin.platform_owner')}
+          render={(_, { owner }) => owner?.name || (
+            <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
+          )}
         />
         <Resource.Column<Report>
           title={I18n.t('common.column.updated_at')}
@@ -149,6 +155,7 @@ const ReportTableCompnent: React.FC<Props> = ({
         <Resource.Column<Report>
           title={I18n.t('common.column.action')}
           id="action"
+          hideable={false}
           render={(_, report) => (
             <Dropdown
               report={report}
@@ -159,6 +166,7 @@ const ReportTableCompnent: React.FC<Props> = ({
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={MODALS} />

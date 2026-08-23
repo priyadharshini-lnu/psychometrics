@@ -6,15 +6,15 @@ import { Flex, Menu, Spin } from 'antd'
 import some from 'lodash/some'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  SettingOutlined,
-  ShopOutlined,
-  DatabaseOutlined,
-  SolutionOutlined,
-  ExportOutlined,
-  CrownOutlined,
-  ApartmentOutlined,
-  UserOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+  AccountTree,
+  AdminPanelSettings,
+  Campaign,
+  Explore,
+  Key,
+  ReceiptLong,
+  Settings,
+  Storage,
+} from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { getFeatures } from '~/core/config'
 import { camelizeKeys } from '~/utils/object'
@@ -173,34 +173,34 @@ const Project: FC<Props> = ({
   const menuItems: MenuItem[] = [
     {
       key: 'new_campaigns',
-      icon: <ShopOutlined />,
+      icon: <Campaign />,
       label: I18n.t('admin.campaigns'),
     },
   ]
   currentUser.permissions.viewDatasheets && menuItems.push({
     key: 'datasheet',
-    icon: <DatabaseOutlined />,
+    icon: <Storage />,
     label: I18n.t('shared.datasheet'),
   })
   currentUser.permissions.manageProjectAdmins && menuItems.push({
     key: 'admins',
-    icon: <UserOutlined />,
+    icon: <AdminPanelSettings />,
     label: I18n.t('admin.project_admins'),
   })
   canShowSettingsTab() && menuItems.push({
     key: 'settings',
-    icon: <SettingOutlined />,
+    icon: <Settings />,
     label: I18n.t('admin.settings'),
   })
   currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
-    icon: <ExportOutlined />,
+    icon: <ReceiptLong />,
     label: I18n.t('admin.audit_reports'),
   })
 
   idpEnabled && canShowIdpTab() && menuItems.push({
     key: 'idp',
-    icon: <CrownOutlined />,
+    icon: <Explore />,
     label: I18n.t('admin.idp_idp'),
   })
 
@@ -208,7 +208,7 @@ const Project: FC<Props> = ({
     menuItems.push(
       {
         key: 'taxonomy',
-        icon: <ApartmentOutlined />,
+        icon: <AccountTree />,
         label: I18n.t('admin.taxonomy_title'),
       },
     )
@@ -217,7 +217,7 @@ const Project: FC<Props> = ({
   if (currentUser.permissions.viewProjectLicenses) {
     menuItems.push({
       key: 'licenses',
-      icon: <SolutionOutlined />,
+      icon: <Key />,
       label: I18n.t('admin.licenses'),
     })
   }
@@ -284,12 +284,14 @@ const Project: FC<Props> = ({
         request={getBreadcrumbRequest()}
         crumbs={getProjectBreadcrumbCrumbs()}
       />
-      <Menu
-        items={menuItems}
-        onSelect={handleOnSelect}
-        selectedKeys={getActiveMenuKey(pathname)}
-        mode="horizontal"
-      />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={handleOnSelect}
+          selectedKeys={getActiveMenuKey(pathname)}
+          mode="horizontal"
+        />
+      )}
       {isProjectLoaded ? <Outlet /> : <Flex justify="center" align="middle"><Spin /></Flex>}
     </div>
   )

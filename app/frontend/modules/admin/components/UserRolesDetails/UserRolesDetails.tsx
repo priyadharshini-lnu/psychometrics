@@ -2,7 +2,9 @@ import { User } from 'modules/admin/modules/client/core/users'
 import { useEffect, useState, FC } from 'react'
 import * as t from 'io-ts'
 import { Descriptions, Skeleton } from 'antd'
+import { Link } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
+import { useIsOwnedPath } from '~/components/AdminShell/ownedPaths'
 
 interface Props {
   userId: string
@@ -29,6 +31,7 @@ interface RolesResponse {
 const { I18n } = window
 
 export const UserRolesDetails: FC<Props> = ({ userId }) => {
+  const isOwned = useIsOwnedPath()
   const {
     memberAction,
   } = useResources<User>('users')
@@ -85,7 +88,9 @@ export const UserRolesDetails: FC<Props> = ({ userId }) => {
             {role.paths.map((path, i) => (
               <>
                 {i > 0 && <span> &gt; </span>}
-                <a href={path.value}>{path.name}</a>
+                {isOwned(path.value)
+                  ? <Link to={path.value}>{path.name}</Link>
+                  : <a href={path.value}>{path.name}</a>}
               </>
             ))}
           </Descriptions.Item>

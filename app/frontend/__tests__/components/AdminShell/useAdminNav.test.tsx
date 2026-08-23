@@ -156,11 +156,16 @@ describe('useAdminNav', () => {
     ['/admin/users/global-assessors', 'users'],
     ['/admin/audit_logs', 'auditLogs'],
     ['/administration/assessments', 'assessments'],
-    ['/assessors/assessment_centers', 'assessorWorkshops'],
   ])('marks %s as selecting %s', (pathname, expected) => {
     const { result } = renderNav(ALL_LINKS, pathname)
 
     expect(result.current.selectedKeys).toEqual([expected])
+  })
+
+  it('marks /assessors/assessment_centers as selecting assessorWorkshops', () => {
+    const { result } = renderNav(ASSESSOR_LINKS, '/assessors/assessment_centers')
+
+    expect(result.current.selectedKeys).toEqual(['assessorWorkshops'])
   })
 
   it('selects nothing on a route the table does not cover', () => {

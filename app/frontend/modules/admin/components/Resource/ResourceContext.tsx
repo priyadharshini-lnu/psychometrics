@@ -2,8 +2,19 @@ import React from 'react'
 import { UseResourceReturnType } from '~/hooks/useResources'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 
+export interface ResourceColumnShape {
+  key: string
+  label: React.ReactNode
+  hideable: boolean
+}
+
 interface ResourceContextType<R extends { id: string} = {id: string }, M extends BaseMeta = BaseMeta> {
   resource: UseResourceReturnType<R, M>
+  title: string
+  columns: ResourceColumnShape[]
+  publishColumns: (columns: ResourceColumnShape[]) => void
+  hiddenColumns: string[]
+  hideColumns: (keys: string[]) => void
 }
 
 export function resourceContext<R extends { id: string}, M extends BaseMeta> () {

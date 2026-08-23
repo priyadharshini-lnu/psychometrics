@@ -14,19 +14,22 @@ type Props = {
   openModal: (apiKey?: APIKey) => void
 }
 export const APIKeysTable: React.FC<Props> = ({ openModal }) => (
-  <Resource.Table pagination>
+  <Resource.Table embedded pagination>
     <Resource.Column<APIKey>
       title={I18n.t('common.column.id')}
       id="id"
+      hideable={false}
       sorter
       render={apiKey => (
         apiKey.id
       )}
+      fixed="left"
     />
     <Resource.Column<APIKey>
       id="disabled"
       title={I18n.t('common.column.active')}
       render={apiKey => <ActiveSwitch apiKey={apiKey} />}
+      fixed="left"
     />
     <Resource.Column<APIKey>
       title={I18n.t('common.column.key')}
@@ -59,6 +62,7 @@ export const APIKeysTable: React.FC<Props> = ({ openModal }) => (
     <Resource.Column<APIKey>
       title={I18n.t('common.column.action')}
       id="action"
+      hideable={false}
       render={(_, apiKey) => (
         <Dropdown
           apiKey={apiKey}
@@ -66,6 +70,7 @@ export const APIKeysTable: React.FC<Props> = ({ openModal }) => (
         />
       )}
       width={100}
+      fixed="right"
     />
   </Resource.Table>
 )

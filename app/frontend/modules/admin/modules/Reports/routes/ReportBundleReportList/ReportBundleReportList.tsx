@@ -6,6 +6,7 @@ import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
 import { ReportBundleReportTR } from '~/modules/admin/modules/client/core/reportBundleReports'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ReportBundleReportFilter } from './ReportBundleReportFilter'
 import { ReportBundleReportTable } from './ReportBundleReportTable'
 import { ReportBundleReportFormModal } from './ReportBundleReportFormModal'
@@ -57,7 +58,12 @@ const ReportBundleReportList: React.FC = () => {
         ]}
       />
       <FirstLevelTabs />
-      <Resource config={config} name="report_families_reports">
+      <Resource
+        title={I18n.t('reports.reports')}
+        config={config}
+        name="report_families_reports"
+        settingsKey={TABLE_SETTINGS_KEYS.adminReportBundlesBundleReports}
+      >
         <ReportBundleReportFilter openModal={() => closeModal(false)} />
         <ReportBundleReportTable />
         {!closed && (

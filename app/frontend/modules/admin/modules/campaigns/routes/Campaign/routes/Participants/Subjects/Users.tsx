@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import {
-  Table, MenuProps, Row, Col, Input, Select, Pagination, Button, Switch, Tag, App, Tooltip, Flex,
+  Table, MenuProps, Input, Select, Button, Switch, Tag, App, Tooltip, Flex,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { Link, useParams } from 'react-router-dom'
 import { FilterValue } from 'antd/es/table/interface'
 import {
-  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
+  PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserList/ResetPasswordModal'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { State as UserState, DEFAULT_PAGE_SIZE } from '~/modules/admin/modules/campaigns/core/users'
 import Modals from '~/modules/admin/components/Modals/'
 import User from '~/modules/admin/modules/campaigns/interfaces/User'
@@ -23,7 +24,6 @@ import ImportUsersModal from './ImportUsersModal'
 import ImportReportsAndAssessmentsModal from './ImportReportsAndAssessmentsModal'
 import { ExportUsersModal } from './ExportUsersModal'
 import ToolsDropdown from './ToolsDropdown'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/constants'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { UserFilterModal } from './UserFilterModal'
@@ -121,7 +121,6 @@ const UserList: React.FC<Props> = ({
 }) => {
   const { campaignId, projectId } = useParams() as { campaignId: string, projectId: string }
   const { modal, message } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
 
   useEffect(() => {
     fetch(campaignId, {
@@ -141,55 +140,59 @@ const UserList: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.campaigns_users_title')}`}</span>
-        </Col>
-        <Flex gap={8}>
-          <ToolsDropdown
-            campaignId={parseInt(campaignId, 10)}
-            exportCompletionStatuses={exportCompletionStatuses}
-            exportCompactCompletionStatuses={exportCompactCompletionStatuses}
-            exportReportsAndAssessments={exportReportsAndAssessments}
-            exportUsers={exportUsers}
-            openModal={openModal}
-            permissions={permissions}
-          />
-          <Select
-            defaultValue="All"
-            value={filters.isAnonymEq || 'All'}
-            className={styles.userTypeFilter}
-            onChange={handleUserTypeFilterChange}
-          >
-            <Option value="All" key="All">{I18n.t('admin.campaigns_users_filters_all')}</Option>
-            <Option value="true" key="true">{I18n.t('admin.campaigns_users_filters_anonymous')}</Option>
-            <Option value="false" key="false">{I18n.t('admin.campaigns_users_filters_identified')}</Option>
-          </Select>
-          <Search
-            placeholder={I18n.t('shared.search')}
-            className={styles.searchInput}
-            value={filters.filterableFields}
-            onChange={e => changeFilter('filterableFields', e.target.value)}
-          />
-          {permissions.create && (
-            <div className={styles.newUserButton}>
-              <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
-                <PlusOutlined />
-                <span>{I18n.t('admin.campaigns_users_add_user')}</span>
-              </Button>
-            </div>
-          )}
-        </Flex>
-      </Row>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        loading={isLoadingUsers}
+        title={I18n.t('admin.participants_tabs_subjects')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: pageSize || DEFAULT_PAGE_SIZE,
+          total,
+          onChange: changePage,
+        }}
+        filters={(
+          <Flex gap={8}>
+            <ToolsDropdown
+              campaignId={parseInt(campaignId, 10)}
+              exportCompletionStatuses={exportCompletionStatuses}
+              exportCompactCompletionStatuses={exportCompactCompletionStatuses}
+              exportReportsAndAssessments={exportReportsAndAssessments}
+              exportUsers={exportUsers}
+              openModal={openModal}
+              permissions={permissions}
+            />
+            <Select
+              defaultValue="All"
+              value={filters.isAnonymEq || 'All'}
+              className={styles.userTypeFilter}
+              onChange={handleUserTypeFilterChange}
+            >
+              <Option value="All" key="All">{I18n.t('admin.campaigns_users_filters_all')}</Option>
+              <Option value="true" key="true">{I18n.t('admin.campaigns_users_filters_anonymous')}</Option>
+              <Option value="false" key="false">{I18n.t('admin.campaigns_users_filters_identified')}</Option>
+            </Select>
+            <Search
+              placeholder={I18n.t('shared.search')}
+              className={styles.searchInput}
+              value={filters.filterableFields}
+              onChange={e => changeFilter('filterableFields', e.target.value)}
+            />
+            {permissions.create && (
+              <div className={styles.newUserButton}>
+                <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
+                  <PlusOutlined />
+                  <span>{I18n.t('admin.campaigns_users_add_user')}</span>
+                </Button>
+              </div>
+            )}
+          </Flex>
+        )}
+        table={(
           <Table
             className="mtm"
             rowKey="id"
             dataSource={list}
             onChange={onTableChange}
-            loading={isLoadingUsers}
             pagination={false}
             scroll={{ x: 'max-content' }}
             sticky
@@ -198,7 +201,7 @@ const UserList: React.FC<Props> = ({
               title={I18n.t('shared.id')}
               key="id"
               sorter
-              fixed={windowWidth > 800 ? 'left' : undefined}
+              fixed="left"
               sortOrder={getSortOrder('id')}
               render={({ id }) => (
                 <Link to={`${id}`}>
@@ -315,7 +318,7 @@ const UserList: React.FC<Props> = ({
             <Column
               title={I18n.t('shared.action')}
               key="action"
-              fixed={windowWidth > 800 ? 'right' : undefined}
+              fixed="right"
               render={(user: User) => (
                 <ConditionalDropdown
                   menu={
@@ -349,17 +352,8 @@ const UserList: React.FC<Props> = ({
               width={100}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={pageSize || DEFAULT_PAGE_SIZE}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
       <Modals modals={MODALS} />
     </div>
   )

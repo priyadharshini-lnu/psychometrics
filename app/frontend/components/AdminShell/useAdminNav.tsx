@@ -31,6 +31,9 @@ import {
   SmartToy,
   SpaceDashboard,
 } from '@thetalententerprise/glint/icons'
+import compact from 'lodash/compact'
+import maxBy from 'lodash/maxBy'
+import takeWhile from 'lodash/takeWhile'
 import { camelizeKeys } from '~/utils/object'
 import { getFeatures } from '~/core/config'
 import type { RootState } from '~/modules/admin/core/rootReducers'
@@ -40,8 +43,7 @@ import { isOwnedPath } from './ownedPaths'
 
 const { I18n } = window
 
-// No onClick: antd stretches the label anchor over the whole row (.ant-menu-item a::before), collapsed rail
-// included — verified on antd 6.5.1 + glint 0.46.1. Selection derives from the route.
+// No onClick: antd stretches the label anchor over the whole row, collapsed rail included.
 
 type Permissions = Record<string, string | undefined>
 
@@ -54,7 +56,6 @@ type Entry = {
   icon: JSX.Element
 }
 
-/** Which submenu, if any, owns a given key — drives `openKeys`. */
 const PARENT_OF: Record<string, string> = {
   assessments: 'content',
   norms: 'content',
@@ -70,52 +71,51 @@ const PARENT_OF: Record<string, string> = {
   aiScoringApprovals: 'approvals',
 }
 
-// Longest match first so a nested path is not captured by a shorter sibling.
-const ROUTE_KEYS: [RegExp, string][] = [
-  // The assessor app mounts this same shell under its own /assessors prefix.
-  [/\/assessors\/assessment_centers/, 'assessorWorkshops'],
-  [/\/assessors\/availabilit/, 'userAvailability'],
-  [/\/assessors(\/|$)/, 'assessorDashboard'],
-  [/\/administration\/templates\/(questions|blocks)/, 'questionCenter'],
-  [/\/administration\/communications/, 'communicationCenter'],
-  [/\/administration\/dimensions/, 'dimensions'],
-  [/\/administration\/libraries/, 'libraries'],
-  [/\/administration\/norms/, 'norms'],
-  [/\/administration\/assessments/, 'assessments'],
-  [/\/admin\/user_availabilities/, 'userAvailability'],
-  [/\/admin\/audit_logs/, 'auditLogs'],
-  [/\/admin\/data_reports/, 'dataReports'],
-  [/\/admin\/report_approvals/, 'reportApprovals'],
-  [/\/admin\/ai_scoring_approvals/, 'aiScoringApprovals'],
-  [/\/admin\/skills_taxonomy/, 'skillsTaxonomy'],
-  [/\/admin\/development_actions/, 'developmentActions'],
-  [/\/admin\/ai_assistants/, 'aiAssistants'],
-  [/\/admin\/campaign_templates/, 'campaignTemplates'],
-  [/\/admin\/assessments/, 'assessments'],
-  [/\/admin\/dimensions/, 'dimensions'],
-  [/\/admin\/norms/, 'norms'],
-  [/\/admin\/reports/, 'reports'],
-  [/\/admin\/settings/, 'settings'],
-  [/\/admin\/users/, 'users'],
-  [/\/admin\/(clients|projects)/, 'clients'],
+const ROUTE_ALIASES: [RegExp, string][] = [
+  [/^\/admin\/(clients|projects)(\/|$)/, 'clients'],
+  [/^\/admin\/report_families(\/|$)/, 'reports'],
 ]
 
-const activeKeyFor = (pathname: string): string | undefined => (
-  ROUTE_KEYS.find(([pattern]) => pattern.test(pathname))?.[1]
+// The legacy Rails admin and the SPA are one app behind two mounts, so a page under either answers to one link.
+const segmentsOf = (path: string): string[] => (
+  path.replace(/[?#].*$/, '').replace(/^\/administration(?=\/|$)/, '/admin').split('/').filter(Boolean)
 )
+
+const sharedDepth = (link: string[], route: string[]): number => (
+  takeWhile(link, (segment, index) => segment === route[index]).length
+)
+
+// A link claims every url below it; one that points at a tab (report_approvals/my_tasks) claims that tab's peers too.
+const matchDepth = (link: string[], route: string[]): number => {
+  const depth = sharedDepth(link, route)
+
+  if (depth === link.length) return depth
+
+  return depth === link.length - 1 && depth > 1 ? depth : 0
+}
+
+const activeKeyFor = (pathname: string, links: Permissions): string | undefined => {
+  const route = segmentsOf(pathname)
+
+  const scored = Object.entries(links).map(([key, path]) => ({
+    key,
+    depth: path ? matchDepth(segmentsOf(path), route) : 0,
+  }))
+  const best = maxBy(scored, 'depth')
+
+  return (best?.depth ? best.key : undefined) ?? ROUTE_ALIASES.find(([pattern]) => pattern.test(pathname))?.[1]
+}
 
 export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
   const { pathname } = useLocation()
   const links: Permissions = useSelector((state: RootState) => state.ui.menu.links)
   const features = useSelector(getFeatures)
   const showSubmenu = useSelector((state: RootState) => state.ui.menu.showSubmenu)
-  // A section having published a nav IS the condition — no redux flag to keep in sync.
   const subnav = useSubnav()
   const hasSubmenu = subnav != null
   const dispatch = useDispatch()
 
-  // openKeys is controlled and user-driven; the route only seeds and augments it.
-  const routeParent = PARENT_OF[activeKeyFor(pathname) ?? ''] ?? undefined
+  const routeParent = PARENT_OF[activeKeyFor(pathname, links) ?? ''] ?? undefined
   const [openKeys, setOpenKeys] = useState<string[]>(routeParent ? [routeParent] : [])
 
   useEffect(() => {
@@ -126,13 +126,11 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
     const { idpEnabled, skillRaterEnabled } = camelizeKeys(features ?? {})
     const clientContext = window.PsyGlobalState?.clientContextData
 
-    // Inside a client context the clients entry becomes that client's projects.
     const clientsPath = clientContext && links.clients
       ? `${links.clients}/${clientContext.id}/projects`
       : links.clients
     const clientsLabel = clientContext ? I18n.t('admin.projects') : I18n.t('admin.clients')
 
-    // Several apps mount this shell, each with its own router — only a path that router owns can be a SPA link.
     const link = (path: string, label: string): JSX.Element => (
       isOwnedPath(path, ownedPathPrefixes) ? <Link to={path}>{label}</Link> : <a href={path}>{label}</a>
     )
@@ -146,13 +144,13 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
     } : null)
 
     const group = (key: string, label: string, icon: JSX.Element, children: (NavItem | null)[]): NavItem | null => {
-      const visible = children.filter((child): child is NavItem => child != null)
+      const visible = compact(children)
       return visible.length ? {
         key, label, icon, children: visible,
       } : null
     }
 
-    const items = [
+    const items = compact([
       hasSubmenu ? {
         key: 'showSubmenu',
         label: I18n.t('admin.show_submenu'),
@@ -277,11 +275,10 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       entry({
         key: 'settings', path: links.settings, label: I18n.t('admin.settings'), icon: <Settings />,
       }),
-    ].filter((item): item is NavItem => item != null)
+    ])
 
-    const active = activeKeyFor(pathname)
+    const active = activeKeyFor(pathname, links)
 
-    // A section's nav replaces the main menu; AppShell animates the swap off navKey.
     if (showSubmenu && subnav) {
       return {
         items: [{

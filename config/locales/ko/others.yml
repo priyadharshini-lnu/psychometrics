@@ -4133,7 +4133,6 @@ ko:
     admins: 관리자
     create_global_assessor: 글로벌 평가자 만들기
     create_superadmin: 슈퍼 관리자 만들기
-    dashboard: 대시보드
     drawer:
       link: 링크
       role: 역할

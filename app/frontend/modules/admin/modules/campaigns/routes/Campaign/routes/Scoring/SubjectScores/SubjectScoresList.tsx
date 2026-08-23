@@ -1,25 +1,26 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Input, Skeleton, App, Popover, Pagination,
-  Flex,
+  Table, Input, Skeleton, App, Flex, theme,
 } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
-import _ from 'lodash'
+import {
+  DataTableDisplayDrawer, DataTableDisplaySider, DataTableDisplaySiderButton,
+  DATA_TABLE_DISPLAY_TABS, useBreakpoint, visibleColumns,
+} from '@thetalententerprise/glint'
 import * as t from 'io-ts'
-import cs from 'classnames'
 import { connect, ConnectedProps } from 'react-redux'
-import { CheckOutlined, AppstoreOutlined, WarningFilled } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
 import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
-import { CampaignFactorGroup } from '../ScoringGroups/GroupCard'
-import { CampaignFactor } from '../ScoringGroups/Factor'
 import { ToolsDropdown } from './ToolsDropdown'
 import { Tools } from './Tools'
-import styles from './styles.less'
-import { CampaignScores, CampaignScoresTR, type Error } from '~/modules/admin/modules/campaigns/core/combinedScoring'
-import { formatedDate } from '~/utils/time'
+import {
+  createSortedTableColumns, leafKeysOf, toColumnNodes, type CampaignFactorGroupType,
+} from './subjectScoresColumns'
+import { processData, type DataType } from './subjectScoresRows'
+import { actionDetails, bulkActionDetails } from './actionConfirmations'
+import { CampaignScores, CampaignScoresTR } from '~/modules/admin/modules/campaigns/core/combinedScoring'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { get as getCurrentCampaign, fetch } from '~/modules/admin/modules/campaigns/core/current'
 import { ImportExternalScoringModal } from './ImportExternalScoringModal'
@@ -29,6 +30,8 @@ import { ParentResourceType } from '~/modules/admin/components/PushWebhookModal/
 import Modals from '~/modules/admin/components/Modals/'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { useSelectAll } from '~/hooks/useSelectAll'
+import { useDeepCompareEffect } from '~/hooks/useDeepCompareEffect'
+import { useTableSettings } from '~/components/AdminShell/useTableSettings'
 
 const MODALS = {
   PushWebhookModal,
@@ -36,24 +39,9 @@ const MODALS = {
 const { I18n } = window
 const { Search } = Input
 
-type CampaignFactorGroupType = CampaignFactorGroup & {campaignFactors: CampaignFactor[]}
+const SCORING_CONFIG_KEY = 'campaign_subject_scores'
 
-enum StackRank {
-  UNRANKED = '-',
-}
-
-
-type DataType = {
-  id: string;
-  email: string;
-  active: string;
-  campaignScoresFinalized: boolean | null;
-  campaignScoresFinalizedDate: string | null;
-  campaignScoresCalculatedDate: string | null;
-  errors: Error[] | null;
-  stackRank: number | StackRank ;
-  [key: string]: string | number | boolean | null | Error[] | {[key: string]: boolean};
-}
+const SCORING_RESOURCE_TYPE = 'Campaign'
 
 interface OwnProps {
   openModal(name: string, data?: object): void
@@ -78,6 +66,15 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
   const [isCampaignFactorValuesLoading, setIsCampaignFactorValuesLoading] = useState(true)
   const [openImportExternalScoringModal, setopenImportExternalScoringModal] = useState(false)
   const [openExportScoringsModal, setopenExportScoringsModal] = useState(false)
+  const [openTab, setOpenTab] = useState<string | null>(null)
+  const screens = useBreakpoint()
+  const { token } = theme.useToken()
+  const narrow = screens.lg === false
+  const scope = useMemo(
+    () => ({ resourceType: SCORING_RESOURCE_TYPE, resourceId: campaignId }), [campaignId],
+  )
+  const { initial: storedSettings, settings, save: saveSettings } = useTableSettings(SCORING_CONFIG_KEY, scope)
+  const { hiddenColumns } = settings
 
   const {
     data: campaignFactorData,
@@ -105,6 +102,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     handleTableChange,
     changeFilter,
     getFilteredValue,
+    getAppliedFiltersFromURL,
     isLoading,
   } = useResources<CampaignScores>(
     'campaign_user_scorings',
@@ -128,6 +126,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           campaign_users_active_in: 'true',
         },
       },
+      initialFilter: storedSettings.filters,
     },
   )
 
@@ -137,9 +136,10 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
   } = useSelectAll(false, dataSource)
 
+  // A rejected initial fetch must still clear the flag, or the skeleton below hides the error the table renders.
   useEffect(() => {
-    fetchCampaignFactors().then(() => setIsCampaignFactorsLoading(false))
-    fetchFinalScores().then(() => setIsCampaignFactorValuesLoading(false))
+    fetchCampaignFactors().finally(() => setIsCampaignFactorsLoading(false)).catch(() => null)
+    fetchFinalScores().finally(() => setIsCampaignFactorValuesLoading(false)).catch(() => null)
   }, [])
 
   const rowSelection = {
@@ -268,86 +268,99 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
     handleConfirmAction,
     getSortOrder, meta,
     getFilteredValue,
-  ), [campaignFactorData, getSortOrder, getFilteredValue])
+    token,
+  ), [campaignFactorData, getSortOrder, getFilteredValue, token])
 
   const handleChange = (pagination, filters, sorter) => {
     handleTableChange(pagination, filters, sorter)
   }
 
+  const columnNodes = useMemo(() => toColumnNodes(tableColumns), [tableColumns])
+  const leafKeys = useMemo(() => leafKeysOf(columnNodes), [columnNodes])
+  const shownColumns = useMemo(() => visibleColumns(tableColumns, hiddenColumns), [tableColumns, hiddenColumns])
+
+  const appliedFilters = getAppliedFiltersFromURL() ?? {}
+  // The factor columns arrive with their own fetch, so until it lands the set is incomplete and must not prune.
+  const columnsPublished = !isCampaignFactorsLoading && leafKeys.length > 0
+
+  const handleCheck = (checked: string[]) => {
+    if (!columnsPublished) return
+    saveSettings({ hiddenColumns: leafKeys.filter(key => !checked.includes(key)), filters: appliedFilters })
+  }
+
+  useDeepCompareEffect(() => {
+    const hidden = columnsPublished ? hiddenColumns.filter(key => leafKeys.includes(key)) : hiddenColumns
+    saveSettings({ hiddenColumns: hidden, filters: appliedFilters })
+  }, [appliedFilters, leafKeys, hiddenColumns, columnsPublished])
+
+  const togglePanel = (tab: string) => setOpenTab(current => (current === tab ? null : tab))
+
+  useEffect(() => { setOpenTab(null) }, [narrow])
+
+  const panel = {
+    label: I18n.t('admin.table_display_title'),
+    closeLabel: I18n.t('shared.close'),
+    columnsLabel: I18n.t('admin.table_display_columns'),
+    nodes: columnNodes,
+    checkedKeys: leafKeys.filter(key => !hiddenColumns.includes(key)),
+    onCheck: handleCheck,
+    onClose: () => setOpenTab(null),
+  }
+
+  const toolbar = (
+    <Flex align="center" gap="small">
+      <Search
+        placeholder={I18n.t('common.actions.search')}
+        value={getFilteredValue('search_query')}
+        onChange={({ target: { value } }) => { changeFilter('search_query', value) }}
+      />
+      <Flex align="center" gap="small" flex="none">
+        <Tools
+          permissions={{
+            export: campaignPermissions.viewCampaignScoring,
+            import: campaignPermissions.manageCampaignScoring,
+          }}
+          onClick={action => handleToolAction(action)}
+        />
+        <ToolsDropdown
+          isBulk
+          onClick={action => handleBulkConfirmAction(action)}
+          isDisabled={selectedKeys.length === 0}
+          persmission={
+            {
+              changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScoreBulk,
+              rescore: meta.permissions?.rescoreBulk,
+            }
+          }
+        />
+      </Flex>
+    </Flex>
+  )
+
   return (
     <div>
-      <Flex justify="space-between" className="pm">
-        <Flex className="pls" justify="center" align="center">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">
-            {`${I18n.t('common.text.total')}: ${meta.recordCount}`}
-          </span>
-        </Flex>
-        <Flex gap={8}>
-          <Search
-            placeholder={I18n.t('common.actions.search')}
-            value={getFilteredValue('search_query')}
-            onChange={({ target: { value } }) => { changeFilter('search_query', value) }}
-          />
-          <Tools
-            permissions={{
-              export: campaignPermissions.viewCampaignScoring,
-              import: campaignPermissions.manageCampaignScoring,
-            }}
-            onClick={action => handleToolAction(action)}
-          />
-          <ExportScoringsModal
-            exportScorings={params => collectionAction({
-              action: 'export_scorings',
-              method: 'post',
-              body: {
-                filters: params.filters,
-              },
-              responseType: t.literal('ok'),
-            }).then(() => { message.success(I18n.t('admin.scoring_subject_list_export_success')) })}
-            open={openExportScoringsModal}
-            close={() => setopenExportScoringsModal(false)}
-          />
-
-          <ImportExternalScoringModal
-            open={openImportExternalScoringModal}
-            close={() => setopenImportExternalScoringModal(false)}
-          />
-          <ToolsDropdown
-            isBulk
-            onClick={action => handleBulkConfirmAction(action)}
-            isDisabled={selectedKeys.length === 0}
-            persmission={
-              {
-                changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScoreBulk,
-                rescore: meta.permissions?.rescoreBulk,
-              }
-            }
-          />
-        </Flex>
-      </Flex>
       {(isCampaignFactorsLoading || isCampaignFactorValuesLoading) ? (
         <Skeleton active />
       ) : (
         <>
           <TableLayout
+            title={I18n.t('admin.scoring_tabs_subject_scores')}
+            filters={toolbar}
+            loading={isLoading('fetch')}
             table={(
               <Table
                 rowSelection={rowSelection}
                 size="small"
                 dataSource={dataSource}
-                columns={tableColumns}
+                columns={shownColumns}
                 onChange={handleChange}
                 bordered
                 pagination={false}
                 scroll={{ x: 'max-content' }}
-                loading={isLoading('fetch')}
                 sticky
               />
               )}
-            disableHeader
             recordCount={meta.recordCount}
-            loading={false}
             requestStatus={requests.fetch?.status}
             failureMsg={getErrorMsgFromJsonApiRequests(requests)}
             selectionSetting={{
@@ -359,255 +372,42 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
             selectedCount={
               (isAllSelected && meta.recordCount) ? (meta.recordCount - excludedKeys.length) : selectedKeys.length
             }
+            pagination={{
+              page: currentPage, pageSize, total: meta.recordCount ?? 0, onChange: changePage,
+            }}
+            controls={(
+              <DataTableDisplaySiderButton
+                open={openTab === DATA_TABLE_DISPLAY_TABS.columns}
+                filtered={leafKeys.some(key => hiddenColumns.includes(key))}
+                onToggle={() => togglePanel(DATA_TABLE_DISPLAY_TABS.columns)}
+                label={I18n.t('admin.table_display_columns')}
+              />
+            )}
+            sider={narrow ? undefined : <DataTableDisplaySider {...panel} />}
+            siderOpen={openTab !== null}
           />
-          <Pagination
-            current={currentPage}
-            pageSize={pageSize}
-            total={meta.recordCount}
-            onChange={changePage}
-            className="pl"
-          />
+          {narrow && <DataTableDisplayDrawer {...panel} open={openTab !== null} />}
         </>
       )}
+      <ExportScoringsModal
+        exportScorings={params => collectionAction({
+          action: 'export_scorings',
+          method: 'post',
+          body: {
+            filters: params.filters,
+          },
+          responseType: t.literal('ok'),
+        }).then(() => { message.success(I18n.t('admin.scoring_subject_list_export_success')) })}
+        open={openExportScoringsModal}
+        close={() => setopenExportScoringsModal(false)}
+      />
+      <ImportExternalScoringModal
+        open={openImportExternalScoringModal}
+        close={() => setopenImportExternalScoringModal(false)}
+      />
       <Modals modals={MODALS} />
     </div>
   )
 }
 
 export const SubjectScoresList = connector(SubjectScoresListComponent)
-
-function createSortedTableColumns (
-  campaignFactorData: CampaignFactorGroupType[],
-  handleAction: (actions: string, subject)=> void,
-  getSortOrder, meta,
-  getFilteredValue,
-): ColumnsType<DataType> {
-  let stackRankColumn: string | null = null
-  const sortedGroupColumns: ColumnsType<DataType> = campaignFactorData?.map(group => ({
-    ...group,
-    campaignFactors: group.campaignFactors.sort((a, b) => a.position - b.position),
-  })).sort((a, b) => a.position - b.position).map((group, index) => {
-    const even = index % 2 === 0
-    return ({
-      title: group.name,
-      children: group.campaignFactors.sort((a, b) => a.position - b.position).map((factor, factorIndex) => {
-        stackRankColumn = factor.ranked ? `${factor.name}` : stackRankColumn
-        return ({
-          title: factor.name,
-          dataIndex: `${factor.id}`,
-          key: `${factor.id}`,
-          width: getTextWidth(factor.name),
-          sorter: true,
-          sortOrder: getSortOrder(`${factor.id}`),
-          className: cs(factorIndex === 0 ? styles.columnBorderStart : null,
-            factorIndex === group.campaignFactors.length - 1 ? styles.columnBorderEnd : null,
-            even ? styles.evenGroup : styles.oddGroup),
-        })
-      }),
-      className: cs(styles.columnBorderEnd, styles.columnBorderStart, even ? styles.evenGroup : styles.oddGroup),
-    })
-  }) || []
-
-  const staticBeforeColumns: ColumnsType<DataType> = [
-    {
-      title: I18n.t('shared.id'),
-      dataIndex: 'id',
-      key: 'id',
-      width: 80,
-      fixed: 'left',
-      sorter: true,
-      sortOrder: getSortOrder('id'),
-    },
-    {
-      title: I18n.t('admin.scoring_active'),
-      dataIndex: 'active',
-      key: 'campaign_users_active',
-      width: 80,
-      fixed: 'left',
-      filters: [
-        { text: 'Active', value: true },
-        { text: 'Inactive', value: false },
-      ],
-      filteredValue: (getFilteredValue('campaign_users_active_in') || [true]),
-    },
-    {
-      title: I18n.t('admin.scoring_subject'),
-      dataIndex: 'email',
-      key: 'email',
-      className: styles.columnBorderEnd,
-      width: 200,
-      fixed: 'left',
-      sorter: true,
-      sortOrder: getSortOrder('email'),
-    },
-  ]
-
-  const staticAfterColumns: ColumnsType<DataType> = [
-    {
-      title: I18n.t('admin.scoring_subject_list_calculated_date'),
-      dataIndex: 'campaignScoresCalculatedDate',
-      key: 'campaignScoresCalculatedDate',
-      className: styles.columnBorderStart,
-      sorter: true,
-      sortOrder: getSortOrder('campaignScoresCalculatedDate'),
-      render: (calculatedDate) => {
-        if (calculatedDate) {
-          return formatedDate(calculatedDate)
-        }
-        return null
-      },
-      width: 200,
-    },
-    {
-      title: I18n.t('admin.scoring_subject_list_finalized_date'),
-      dataIndex: 'campaignScoresFinalizedDate',
-      key: 'campaignScoresFinalizedDate',
-      sorter: true,
-      sortOrder: getSortOrder('campaignScoresFinalizedDate'),
-      render: (finalizedDate) => {
-        if (finalizedDate) {
-          return formatedDate(finalizedDate)
-        }
-        return null
-      },
-      width: 200,
-    },
-    {
-      title: I18n.t('admin.scoring_subject_list_finalized'),
-      dataIndex: 'campaignScoresFinalized',
-      key: 'campaignScoresFinalized',
-      sorter: true,
-      sortOrder: getSortOrder('campaignScoresFinalized'),
-      render: (campaignScoresFinalized: boolean, subject) => {
-        if (subject.errors) {
-          const factors = _.chain(campaignFactorData).map('campaignFactors').flatten().value()
-          const content = subject.errors.map((error) => {
-            const factor = factors.find(factor => factor.id === error.factorId)
-            return (
-              <div style={{ maxWidth: 500 }}>
-                <strong>
-                  {factor?.name}
-                  {': '}
-                </strong>
-                {error.message}
-              </div>
-            )
-          })
-          return (
-            <Popover content={content} title={I18n.t('admin.scoring_subject_list_calculation_errors')}>
-              <span><WarningFilled className={styles.warning} /></span>
-            </Popover>
-          )
-        }
-        return (campaignScoresFinalized ? <CheckOutlined className={styles.icon} /> : null)
-      },
-      width: 200,
-    },
-    {
-      title: I18n.t('shared.actions'),
-      key: 'actions',
-      fixed: 'right',
-      width: 100,
-      render: subject => (
-        <div>
-          <ToolsDropdown
-            onClick={action => handleAction(action, subject)}
-            persmission={
-                {
-                  changeFinalizedCampaignScore: meta.permissions?.changeFinalizedCampaignScore,
-                  rescore: meta.permissions?.rescore,
-                  pushWebhook: meta.permissions?.pushWebhook,
-                }
-              }
-          />
-        </div>
-      ),
-    },
-  ]
-
-  if (stackRankColumn !== null) {
-    sortedGroupColumns.push({
-      title: I18n.t('admin.scoring_subject_list_rank'),
-      dataIndex: 'stackRank',
-      key: 'stackRank',
-      sorter: true,
-      sortOrder: getSortOrder('stackRank'),
-    })
-  }
-
-  return [...staticBeforeColumns, ...sortedGroupColumns, ...staticAfterColumns]
-}
-
-
-const processData = (
-  CampaignFactorValuesData: CampaignScores[],
-): DataType[] => _.map(CampaignFactorValuesData, (valueData) => {
-  const userId = valueData?.user.id
-  const userData = {
-    key: userId,
-    id: userId,
-    active: valueData?.active ? 'Yes' : 'No',
-    email: valueData?.user.email,
-    campaignScoresFinalizedDate: valueData?.campaignScoresFinalizedDate,
-    campaignScoresCalculatedDate: valueData?.campaignScoresCalculatedDate,
-    campaignScoresFinalized: valueData?.campaignScoresFinalized,
-    stackRank: valueData?.stackRank || StackRank.UNRANKED,
-    errors: valueData?.campaignScoresErrors,
-  }
-
-  _.forEach(valueData.campaignFactorValues, (score) => {
-    const factorKey = `${score.campaignFactorId}`
-    const factorValue = score.value ?? '-'
-    const factorLabel = score.label ? ` (${score.label})` : ''
-    userData[factorKey] = `${factorValue}${factorLabel}`
-  })
-
-  return userData
-})
-
-const actionDetails = (action: string, subject: DataType) => {
-  if (action === 'mark_finalized') {
-    return {
-      title: I18n.t('admin.scoring_subject_list_mark_finalized'),
-      content: I18n.t('admin.scoring_subject_list_mark_finalized_confirm', { email: subject.email }),
-    }
-  } if (action === 'mark_not_finalized') {
-    return {
-      title: I18n.t('admin.scoring_subject_list_mark_not_finalized'),
-      content: I18n.t('admin.scoring_subject_list_mark_not_finalized_confirm', { email: subject.email }),
-    }
-  }
-  return {
-    title: I18n.t('admin.scoring_subject_list_rescore'),
-    content: I18n.t('admin.scoring_subject_list_rescore_confirm', { email: subject.email }),
-  }
-}
-
-const bulkActionDetails = (action: string) => {
-  if (action === 'mark_finalized') {
-    return {
-      title: I18n.t('admin.scoring_subject_list_bulk_mark_finalized'),
-      content: I18n.t('admin.scoring_subject_list_bulk_mark_finalized_confirm'),
-    }
-  } if (action === 'mark_not_finalized') {
-    return {
-      title: I18n.t('admin.scoring_subject_list_bulk_mark_not_finalized'),
-      content: I18n.t('admin.scoring_subject_list_bulk_mark_not_finalized_confirm'),
-    }
-  }
-  return {
-    title: I18n.t('admin.scoring_subject_list_bulk_rescore'),
-    content: I18n.t('admin.scoring_subject_list_bulk_rescore_confirm'),
-  }
-}
-
-const getTextWidth = (text: string): number => {
-  const canvas = document.createElement('canvas')
-  const context = canvas.getContext('2d')
-  if (!context) return 100
-
-  const width = context.measureText(text).width + 96 // add padding
-  canvas.remove() // Clean up the canvas element
-
-  return width
-}

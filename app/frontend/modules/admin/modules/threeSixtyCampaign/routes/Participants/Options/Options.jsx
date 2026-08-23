@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { theme } from 'antd'
 import { useParams } from 'react-router-dom'
 import styles from './Options.less'
 import SubjectSection from './SubjectSection'
@@ -10,12 +11,14 @@ function Options ({
   fetchParticipantOptions,
 }) {
   const { campaignId } = useParams()
+  const { token } = theme.useToken()
   useEffect(() => {
     fetchParticipantOptions(campaignId)
   }, [])
 
+  // The table tabs get their top spacing from TableLayout's header row; this form tab has none of its own.
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ paddingBlockStart: token.padding }}>
       <GlobalSection />
 
       <EvaluatorSection />

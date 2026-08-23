@@ -4127,7 +4127,6 @@ it:
     admins: Amministratori
     create_global_assessor: Creare un valutatore globale
     create_superadmin: Creare un super amministratore
-    dashboard: Dashboard
     drawer:
       link: Collegamento
       role: Ruolo

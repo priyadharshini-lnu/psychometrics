@@ -4154,7 +4154,6 @@ hr:
     admins: Administratori
     create_global_assessor: Stvorite globalnog procjenitelja
     create_superadmin: Stvorite super administratora
-    dashboard: Nadzorna ploča
     drawer:
       link: Povezati
       role: Uloga

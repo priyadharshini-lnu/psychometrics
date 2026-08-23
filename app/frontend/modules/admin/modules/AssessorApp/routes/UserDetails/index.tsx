@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { PageHeader } from '@ant-design/pro-components'
-import { Tabs } from 'antd'
+import { Divider, Menu, theme } from 'antd'
 import { useParams } from 'react-router-dom'
+import { Assignment, Videocam } from '@thetalententerprise/glint/icons'
 import { getCurrent, fetchSingle } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserAssessments } from '~/modules/admin/modules/AssessorApp/core/userAssessments'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
-import styles from './styles.less'
 import Assessments from './Assessments'
 import Recordings from './Recordings'
 
@@ -42,6 +42,7 @@ const UserDetails: React.FC<Props> = (
   if (userId) { parsedUserId = parseInt(userId, 10) }
 
   const [tab, setTab] = useState('assessments')
+  const { token } = theme.useToken()
 
   const changeTab = (tab) => {
     setTab(tab)
@@ -56,10 +57,12 @@ const UserDetails: React.FC<Props> = (
   const tabs = [
     {
       key: 'assessments',
+      icon: <Assignment />,
       label: I18n.t('assessments_reports.menu.assessments_and_reports'),
     },
     {
       key: 'recordings',
+      icon: <Videocam />,
       label: I18n.t('assessments_reports.menu.recordings'),
     },
   ]
@@ -88,17 +91,16 @@ const UserDetails: React.FC<Props> = (
         title={<h1 className="fs-32 mt-0 mb-0">{user.fullName}</h1>}
         subTitle={user.email}
       />
-      <div className="pl">
-        <Tabs
-          activeKey={tab}
-          onChange={changeTab}
-          defaultActiveKey="assessments"
-          className={styles.tabs}
-          items={tabs}
-        />
+      <Divider style={{ margin: 0 }} />
+      <Menu
+        items={tabs}
+        onSelect={({ key }) => changeTab(key)}
+        selectedKeys={[tab]}
+        mode="horizontal"
+      />
+      <div style={{ marginTop: token.margin }}>
         {tab === 'assessments' && <Assessments />}
         {tab === 'recordings' && <Recordings />}
-
       </div>
     </>
   )

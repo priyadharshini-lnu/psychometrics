@@ -10,6 +10,7 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
 import { ConfirmationModal, ResourceAvatar } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import { TagList } from '~/modules/admin/components/Resource/TagList'
 import Modals from '~/modules/admin/components/Modals/'
 import CopyAssessmentFormModal from './CopyAssessmentFormModal'
@@ -54,15 +55,18 @@ const AssessmentTableComponent: React.FC<Props> = ({
         <Resource.Column<Assessment>
           title={I18n.t('common.column.id')}
           id="id"
+          hideable={false}
           sorter
           render={assessment => (
             <AssessmentId assessment={assessment} />
           )}
+          fixed="left"
         />
         <Resource.Column<Assessment>
           id="disabled"
           title={I18n.t('common.column.active')}
           render={assessment => <ActiveSwitch assessment={assessment} />}
+          fixed="left"
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.icon')}
@@ -103,7 +107,9 @@ const AssessmentTableComponent: React.FC<Props> = ({
           title={I18n.t('common.column.owner')}
           id="owner"
           width={300}
-          render={(_, { owner }) => owner?.name || I18n.t('admin.platform_owner')}
+          render={(_, { owner }) => owner?.name || (
+            <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
+          )}
         />
         <Resource.Column<Assessment>
           title={I18n.t('common.column.type')}
@@ -135,6 +141,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
         <Resource.Column<Assessment>
           title={I18n.t('common.column.action')}
           id="action"
+          hideable={false}
           render={(_, assessment) => (
             <Dropdown
               assessment={assessment}
@@ -145,6 +152,7 @@ const AssessmentTableComponent: React.FC<Props> = ({
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={MODALS} />

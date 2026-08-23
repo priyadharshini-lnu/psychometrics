@@ -4158,7 +4158,6 @@ id:
     admins: Admin
     create_global_assessor: Buat Penilai Global
     create_superadmin: Buat Admin Super
-    dashboard: Dashboard
     drawer:
       link: Tautan
       role: Peranan

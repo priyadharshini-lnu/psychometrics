@@ -4,11 +4,14 @@ import { useParams } from 'react-router-dom'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { InnovationStylesFormModal } from './InnovationStylesFormModal'
 import { InnovationStylesTable } from './InnovationStylesTable'
 import { InnovationStylesFilter } from './InnovationStylesFilter'
 import { RemoveInnovationStylesModal } from './RemoveInnovationStylesModal'
 import { InnovationStylesTR } from '~/modules/admin/modules/campaigns/core/innovationStyles'
+
+const { I18n } = window
 
 const MODALS = {
   InnovationStylesFormModal,
@@ -36,7 +39,12 @@ const InnovationStylesList: React.FC<PropsFromRedux> = ({ openModal }) => {
 
   return (
     <>
-      <Resource config={config} name="innovation_styles">
+      <Resource
+        title={I18n.t('admin.navigation_innovation_styles')}
+        config={config}
+        name="innovation_styles"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDimensionsDimensionInnovationStyles}
+      >
         <InnovationStylesFilter openModal={openModal} />
         <InnovationStylesTable openModal={openModal} />
         <Modals modals={MODALS} />
