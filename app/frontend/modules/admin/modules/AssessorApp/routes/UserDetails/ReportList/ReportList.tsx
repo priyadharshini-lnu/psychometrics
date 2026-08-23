@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Dropdown, MenuProps, Tooltip,
+  Table, Row, Col, Button, Dropdown, MenuProps, Tooltip,
 } from 'antd'
 import { Link, useParams } from 'react-router-dom'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -70,9 +70,7 @@ const UserReports: React.FC<Props> = ({ userReports }) => {
                   })}
                 trigger={['click']}
               >
-                <a>
-                  <MoreOutlined />
-                </a>
+                <Button type="link" icon={<MoreOutlined />} />
               </Dropdown>
             )}
           />

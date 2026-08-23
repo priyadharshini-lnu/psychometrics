@@ -1,11 +1,7 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
-import {
-  HourglassTop,
-  Archive,
-  Delete,
-} from '@thetalententerprise/glint/icons'
+import { Archive, CheckCircle, Delete } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import settings from '../../settings'
 
@@ -19,7 +15,7 @@ export const Tabs: React.FC = () => {
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'active', icon: <HourglassTop />, label: I18n.t('assessments.active') },
+    { key: 'active', icon: <CheckCircle />, label: I18n.t('assessments.active') },
     { key: 'archived', icon: <Archive />, label: I18n.t('assessments.archived') },
     { key: 'trash', icon: <Delete />, label: I18n.t('assessments.trash') },
   ]

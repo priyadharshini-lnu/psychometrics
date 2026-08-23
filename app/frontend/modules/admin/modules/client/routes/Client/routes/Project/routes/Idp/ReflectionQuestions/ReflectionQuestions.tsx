@@ -4,10 +4,13 @@ import { ReflectionQuestionTR } from '~/modules/admin/modules/client/core/reflec
 
 import Modals from '~/modules/admin/components/Modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ReflectionQuestionTable } from './Table'
 import { FormModal } from './FormModal'
 import { ImportModal } from './ImportModal'
 import { ReflectionQuestionsFilter } from './Filter'
+
+const { I18n } = window
 
 const MODALS = {
   FormModal,
@@ -37,7 +40,12 @@ export const ReflectionQuestions: React.FC = () => {
 
 
   return (
-    <Resource config={config} name="reflection_questions">
+    <Resource
+      title={I18n.t('admin.idp_tab_reflection_questions')}
+      config={config}
+      name="reflection_questions"
+      settingsKey={TABLE_SETTINGS_KEYS.projectIdpReflectionQuestions}
+    >
       <ReflectionQuestionsFilter />
       <ReflectionQuestionTable />
       <Modals modals={MODALS} />

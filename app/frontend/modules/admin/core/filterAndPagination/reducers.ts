@@ -9,12 +9,14 @@ import {
   RemoveAllFiltersReturnType,
   ChangePageReturnType,
   ChangeFilterReturnType,
+  SetFiltersReturnType,
   SetTableConfigFromUrlType,
   INIT_TABLE,
   CHANGE_FILTER,
   CHANGE_PAGE,
   REMOVE_FILTER,
   REMOVE_ALL_FILTERS,
+  SET_FILTERS,
   CHANGE_SORT,
   SET_TABLE_CONFIG,
   REMOVE_SORT,
@@ -56,6 +58,13 @@ const HANDLERS = {
         filters: ({ ...config.filters, [filterName]: filterValue }),
         page: 1,
       },
+    }
+  },
+  [SET_FILTERS]: (state: State, { payload: { tableName, filters } }: SetFiltersReturnType) => {
+    const config = state[tableName]
+    return {
+      ...state,
+      [tableName]: { ...config, filters, page: 1 },
     }
   },
   [CHANGE_PAGE]: (state: State, { payload: { tableName, pageNumber, pageSize } }: ChangePageReturnType) => (

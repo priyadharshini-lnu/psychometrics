@@ -11,6 +11,7 @@ import { Dimension, DimensionTR } from '~/modules/admin/modules/client/core/dime
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 
 type Props = {
   openModal: (modalName: string, modalProps?: unknown) => void
@@ -47,11 +48,13 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={dimension => dimension?.id && (
-            <a href={`/admin/dimensions/${dimension.id}/factors`}>{dimension.id}</a>
+            <Link to={`/admin/dimensions/${dimension.id}/factors`}>{dimension.id}</Link>
           )}
           width={100}
+          fixed="left"
         />
         <Resource.Column<Dimension>
           title={I18n.t('shared.active')}
@@ -59,6 +62,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
           sorter
           render={dimension => <ActiveSwitch dimension={dimension} />}
           width={100}
+          fixed="left"
         />
         <Resource.Column<Dimension>
           title={I18n.t('shared.name')}
@@ -82,7 +86,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
               )
             }
 
-            return I18n.t('admin.platform_owner')
+            return <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
           }}
           width={300}
         />
@@ -109,6 +113,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Dimension>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, dimension) => (
             <Dropdown
               dimension={dimension}
@@ -116,6 +121,7 @@ export const DimensionsTable: FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
     </>

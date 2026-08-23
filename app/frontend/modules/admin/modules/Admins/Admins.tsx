@@ -3,13 +3,11 @@ import _ from 'lodash'
 import * as t from 'io-ts'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Row, Col,
   Table,
   Space,
   Button,
   Input,
   message,
-  Pagination,
   App,
   Typography,
 } from 'antd'
@@ -22,7 +20,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { useResources } from '~/hooks/useResources'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { CountDisplay } from '~/components/CountDisplay'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import {
   ProjectAdmin, Admin, AdminPermissions, CurrentUserPermissions, AdminListingTR,
 } from '~/modules/admin/modules/client/core/admin'
@@ -30,7 +28,6 @@ import { ResetPasswordModal } from '~/modules/admin/modules/Users/routes/UserLis
 import Modals from '~/modules/admin/components/Modals/'
 import { DetailsDrawer } from './DetailsDrawer'
 import { AddEditDrawer } from './AddEditDrawer'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { ActionsMenu } from './ActionsMenu'
 import {
   DrawerMode, DRAWER_SEARCH_PARAMS, AdminTypes,
@@ -75,7 +72,6 @@ const AdminsComponent: React.FC<Props> = ({
     campaignId,
   } = useParams() as { campaignId: string; projectId: string; clientId: string }
   const { modal } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
   const filterHash = {
     with_role: adminType,
     project_id_eq: projectId,
@@ -193,128 +189,120 @@ const AdminsComponent: React.FC<Props> = ({
     })
   }
 
+  const AdminsTable = (
+    <Table
+      pagination={false}
+      scroll={{ x: 'max-content' }}
+      rowKey="id"
+      dataSource={data}
+      onChange={handleTableChange}
+    >
+      <Table.Column
+        dataIndex="userId"
+        key="userId"
+        fixed="left"
+        title={I18n.t('shared.id')}
+        sorter
+        sortOrder={getSortOrder('userId')}
+      />
+      <Table.Column
+        dataIndex="name"
+        title={I18n.t('shared.name')}
+        render={(_, { id, firstName, lastName }) => (
+          <Link to={getIndividualAdminUrl(DrawerMode.View, id)}>
+            <Button type="link" className="ps-0">
+              {`${firstName} ${lastName}`}
+            </Button>
+          </Link>
+        )}
+      />
+      <Table.Column
+        dataIndex="email"
+        key="user.email"
+        title={I18n.t('shared.email')}
+        sorter
+        sortOrder={getSortOrder('user.email')}
+        render={(_, { email }) => (
+          <Typography.Paragraph copyable>
+            {email}
+          </Typography.Paragraph>
+        )}
+      />
+      <Table.Column
+        dataIndex="createdAt"
+        key="createdAt"
+        title={I18n.t('shared.created_at')}
+        sorter
+        sortOrder={getSortOrder('createdAt')}
+      />
+      <Table.Column
+        dataIndex="actions"
+        fixed="right"
+        title={I18n.t('shared.actions')}
+        render={(
+          _,
+          user: Admin,
+        ) => {
+          const {
+            id, userId, email, firstName, lastName,
+          } = user
+
+          return (
+            <ActionsMenu
+              id={id}
+              userId={userId}
+              currentUser={currentUser}
+              email={email}
+              firstName={firstName}
+              lastName={lastName}
+              permissions={meta.permissions}
+              handleEdit={handleEditAdminClick}
+              handleDelete={handleDeleteAdminClick}
+              handleResetPassword={() => openModal('ResetPasswordModal', { user: { ...user, id: user.userId } })}
+            />
+          )
+        }}
+      />
+    </Table>
+  )
+
+  const Filter = (
+    <Space>
+      <Input.Search
+        placeholder={I18n.t('admin.search_admins')}
+        value={getFilteredValue('filterable_fields')}
+        onChange={e => changeFilter('filterable_fields', e.target.value)}
+      />
+      <ToolsDropdown
+        permissions={meta.permissions}
+        onExportAdminsWithPermissions={handleExportAdminsClick}
+      />
+      <Button
+        type="primary"
+        disabled={tableLoading}
+        onClick={handleAddAdminClick}
+      >
+        <PlusOutlined />
+        {I18n.t('admin.add_admin')}
+      </Button>
+    </Space>
+  )
+
   return (
     <>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            selectedCount={0}
-            totalCount={meta.recordCount}
-            isLoading={tableLoading}
-          />
-        </Col>
-        <Col>
-          <Space>
-            <Input.Search
-              placeholder={I18n.t('admin.search_admins')}
-              value={getFilteredValue('filterable_fields')}
-              onChange={e => changeFilter('filterable_fields', e.target.value)}
-            />
-            <ToolsDropdown
-              permissions={meta.permissions}
-              onExportAdminsWithPermissions={handleExportAdminsClick}
-            />
-            <Button
-              type="primary"
-              disabled={tableLoading}
-              onClick={handleAddAdminClick}
-            >
-              <PlusOutlined />
-              {I18n.t('admin.add_admin')}
-            </Button>
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            pagination={false}
-            loading={tableLoading}
-            scroll={{ x: 'max-content' }}
-            rowKey="id"
-            dataSource={data}
-            onChange={handleTableChange}
-          >
-            <Table.Column
-              dataIndex="userId"
-              key="userId"
-              fixed={windowWidth > 800 ? 'left' : undefined}
-              title={I18n.t('shared.id')}
-              sorter
-              sortOrder={getSortOrder('userId')}
-            />
-            <Table.Column
-              dataIndex="name"
-              title={I18n.t('shared.name')}
-              render={(_, { id, firstName, lastName }) => (
-                <Link to={getIndividualAdminUrl(DrawerMode.View, id)}>
-                  <Button type="link" className="ps-0">
-                    {`${firstName} ${lastName}`}
-                  </Button>
-                </Link>
-              )}
-            />
-            <Table.Column
-              dataIndex="email"
-              key="user.email"
-              title={I18n.t('shared.email')}
-              sorter
-              sortOrder={getSortOrder('user.email')}
-              render={(_, { email }) => (
-                <Typography.Paragraph copyable>
-                  {email}
-                </Typography.Paragraph>
-              )}
-            />
-            <Table.Column
-              dataIndex="createdAt"
-              key="createdAt"
-              title={I18n.t('shared.created_at')}
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-            />
-            <Table.Column
-              dataIndex="actions"
-              fixed={windowWidth > 800 ? 'right' : undefined}
-              title={I18n.t('shared.actions')}
-              render={(
-                _,
-                user: Admin,
-              ) => {
-                const {
-                  id, userId, email, firstName, lastName,
-                } = user
-
-                return (
-                  <ActionsMenu
-                    id={id}
-                    userId={userId}
-                    currentUser={currentUser}
-                    email={email}
-                    firstName={firstName}
-                    lastName={lastName}
-                    permissions={meta.permissions}
-                    handleEdit={handleEditAdminClick}
-                    handleDelete={handleDeleteAdminClick}
-                    handleResetPassword={() => openModal('ResetPasswordModal', { user: { ...user, id: user.userId } })}
-                  />
-                )
-              }}
-            />
-          </Table>
-          <Pagination
-            current={currentPage}
-            pageSize={pageSize}
-            total={meta.recordCount}
-            onChange={changePage}
-            className="pl"
-          />
-        </Col>
-      </Row>
+      <TableLayout
+        loading={tableLoading}
+        table={AdminsTable}
+        filters={Filter}
+        title={I18n.t('admin.admins')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: meta.recordCount ?? 0,
+          onChange: changePage,
+        }}
+        recordCount={meta.recordCount}
+      />
       <DetailsDrawer
         isOpen={drawerMode === DrawerMode.View}
         adminId={drawerAdminId}

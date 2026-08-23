@@ -2,6 +2,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Modals from '~/modules/admin/components/Modals'
 import { ProficiencyModal } from './ProficiencyModal'
 import { ProficiencyFilters } from './ProficiencyFilters'
@@ -9,9 +10,10 @@ import { ProficiencyTable } from './ProficiencyTable'
 import { ProficiencyImportModal } from './ProficiencyImportModal'
 import { ProficiencyLevelTR } from '../../../client/core/proficiencyLevels'
 import { Tabs } from '../Tabs'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
+
+const { I18n } = window
 
 const MODALS = {
   ProficiencyModal,
@@ -28,8 +30,6 @@ const connecter = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
-
-const { I18n } = window
 
 const Proficiency: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const { projectId } = useParams()
@@ -51,21 +51,13 @@ const Proficiency: React.FC<PropsFromRedux> = ({ features, openModal }) => {
 
   return (
     <>
-      {!projectId && (
-        <Breadcrumb
-          crumbs={[
-            {
-              link: () => '/admin',
-              label: () => I18n.t('admin.dashboard'),
-            },
-            {
-              label: () => I18n.t('admin.navigation_skills_taxonomy'),
-            },
-          ]}
-        />
-      )}
       { !projectId && <Tabs featureFlags={features} />}
-      <Resource config={config} name="proficiency_levels">
+      <Resource
+        title={I18n.t('admin.proficiency_levels')}
+        config={config}
+        name="proficiency_levels"
+        settingsKey={TABLE_SETTINGS_KEYS.adminSkillsProficiencyLevels}
+      >
         <ProficiencyFilters openModal={openModal} />
         <ProficiencyTable openModal={handleOpenModal} />
         <Modals modals={MODALS} />

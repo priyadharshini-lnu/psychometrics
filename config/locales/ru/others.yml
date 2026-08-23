@@ -4167,7 +4167,6 @@ ru:
     admins: Администраторы
     create_global_assessor: Создать глобального оценщика
     create_superadmin: Создать супер-администратора
-    dashboard: Панель управления
     drawer:
       link: Ссылка
       role: Роль

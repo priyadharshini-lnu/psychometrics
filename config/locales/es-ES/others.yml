@@ -4165,7 +4165,6 @@ es-ES:
     admins: Admins
     create_global_assessor: Crear evaluador global
     create_superadmin: Crear Super Admin
-    dashboard: Cuadro de mandos
     drawer:
       link: Enlace
       role: Papel

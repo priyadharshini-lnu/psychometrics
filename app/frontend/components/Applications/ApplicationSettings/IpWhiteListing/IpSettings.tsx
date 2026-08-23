@@ -7,6 +7,7 @@ import {
 } from '~/modules/admin/modules/client/core/applicationIpWhitelistEntries'
 import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { IpWhiteListFilter } from './IpWhiteListFilter'
 import { IpWhiteListFormModal } from './IpWhiteListFormModal'
 import { IpWhiteListTable } from './IpWhiteListTable'
@@ -41,7 +42,12 @@ export const IpSettings: React.FC<Props> = ({
   }
 
   return (
-    <Resource<ApplicationIpWhitelistEntry, BaseMeta> config={config} name="application_ip_whitelist_entries">
+    <Resource<ApplicationIpWhitelistEntry, BaseMeta>
+      title={I18n.t('admin.ip_whitelisting')}
+      config={config}
+      name="application_ip_whitelist_entries"
+      settingsKey={TABLE_SETTINGS_KEYS.settingsApplicationsIpWhitelist}
+    >
       <div>
         <Space orientation="vertical" size={12} style={{ width: '100%' }} className="mb8 pl">
           <div>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Button, Space, Dropdown, DatePicker,
 } from 'antd'
@@ -6,6 +7,8 @@ import dayjs from '~/utils/dayjs'
 import styles from './styles.less'
 
 export default function ScheduledDateField ({ scheduledDate, updateScheduleDate }) {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   const handleScheduleDateChange = ({ key }) => {
     updateScheduleDate(dayjs().add(...key.split(',')).format())
   }
@@ -35,8 +38,15 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
         menu={{ items: menuItems, onClick: handleScheduleDateChange }}
         placement="bottomLeft"
         trigger={['click']}
+        open={menuOpen}
+        onOpenChange={setMenuOpen}
       >
-        <Button className={styles.scheduleDateDropdownButton}>
+        <Button
+          className={styles.scheduleDateDropdownButton}
+          aria-label={I18n.t('admin.threesixty_campaigns_schedule_date_presets')}
+          aria-haspopup="menu"
+          aria-expanded={menuOpen}
+        >
           <CaretDownOutlined />
         </Button>
       </Dropdown>

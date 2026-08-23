@@ -4141,7 +4141,6 @@ de:
     admins: Admins
     create_global_assessor: Global Assessor erstellen
     create_superadmin: Super Admin erstellen
-    dashboard: Dashboard
     drawer:
       link: Link
       role: Rolle

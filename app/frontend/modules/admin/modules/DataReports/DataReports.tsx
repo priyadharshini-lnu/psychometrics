@@ -12,9 +12,9 @@ import {
 import { DataReportForm } from './DataReportForm'
 import { formatedDate } from '~/utils/time'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { useResources } from '~/hooks/useResources'
 import RunReportModal from './components/RunReportModal'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { REPORT_TYPE_KEYS } from './components/ReportTypeConfigs'
 
 const { I18n } = window
@@ -118,7 +118,10 @@ export const DataReports: React.FC<{}> = () => {
   }
 
   const Filter = (
-    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
+    <Resource.Filter
+      name="filterable_fields"
+      placeholder={I18n.t('shared.search')}
+    >
       <Button type="primary" onClick={() => setShowForm(true)}>
         <PlusOutlined />
         {I18n.t('assessments.create')}
@@ -132,6 +135,7 @@ export const DataReports: React.FC<{}> = () => {
         id="id"
         title={I18n.t('shared.id')}
         sorter
+        hideable={false}
         width={150}
         render={({ id, scope }) => (
           scope === 'global' ? (
@@ -140,6 +144,7 @@ export const DataReports: React.FC<{}> = () => {
             id
           )
         )}
+        fixed="left"
       />
       <Resource.Column<DataReport>
         id="name"
@@ -147,6 +152,7 @@ export const DataReports: React.FC<{}> = () => {
         dataIndex="name"
         key="campaign_name"
         width={300}
+        fixed="left"
       />
       <Resource.Column<DataReport>
         id="report_type"
@@ -197,6 +203,7 @@ export const DataReports: React.FC<{}> = () => {
       <Resource.Column<DataReport>
         id="actions"
         title={I18n.t('shared.actions')}
+        hideable={false}
         key="link"
         render={(_, resource) => (
           <Space>
@@ -217,18 +224,12 @@ export const DataReports: React.FC<{}> = () => {
   )
 
   return (
-    <Resource config={config} name="data_reports">
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.dashboard'),
-          },
-          {
-            label: () => I18n.t('admin.data_reports'),
-          },
-        ]}
-      />
+    <Resource
+      title={I18n.t('admin.data_reports')}
+      config={config}
+      name="data_reports"
+      settingsKey={TABLE_SETTINGS_KEYS.adminDataReports}
+    >
       {Filter}
       {Table}
       <DataReportForm

@@ -3,10 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Group as Users,
-  AdminPanelSettings as Admin,
-  SupervisorAccount as SuperAdmin,
-  Gavel as GlobalAssessors,
+  AdminPanelSettings, AssignmentInd, Person, VerifiedUser,
 } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -30,14 +27,14 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'users', icon: <Users />, label: I18n.t('users.users') },
+    { key: 'users', icon: <Person />, label: I18n.t('users.users') },
   ]
 
   isSuperAdmin(currentUser) && (
     menuItems.push(
-      { key: 'admins', icon: <Admin />, label: I18n.t('users.admins') },
-      { key: 'superadmins', icon: <SuperAdmin />, label: I18n.t('users.superadmins') },
-      { key: 'global-assessors', icon: <GlobalAssessors />, label: I18n.t('users.global_assessors') },
+      { key: 'admins', icon: <AdminPanelSettings />, label: I18n.t('users.admins') },
+      { key: 'superadmins', icon: <VerifiedUser />, label: I18n.t('users.superadmins') },
+      { key: 'global-assessors', icon: <AssignmentInd />, label: I18n.t('users.global_assessors') },
     )
   )
 
@@ -56,6 +53,8 @@ const TabsComponent: React.FC<Props> = ({ currentUser }) => {
     }
     return undefined
   }
+
+  if (menuItems.length < 2) return null
 
   return (
     <Menu

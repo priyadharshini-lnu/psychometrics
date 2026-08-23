@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Col, Row, Menu } from 'antd'
+import { Lan, Login } from '@thetalententerprise/glint/icons'
 import { Saml } from './Saml'
 import { SamlServiceProviders } from '../SamlServiceProviders/SamlServiceProviders'
 
@@ -22,10 +23,12 @@ export const SamlTabbed: React.FC = () => {
   const menuItems = [
     {
       key: 'settings',
+      icon: <Login />,
       label: I18n.t('admin.sso_settings'),
     },
     {
       key: 'service-providers',
+      icon: <Lan />,
       label: I18n.t('admin.saml_service_providers'),
     },
   ]

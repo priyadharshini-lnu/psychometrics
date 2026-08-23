@@ -9,6 +9,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { MediaLibraryFilter } from './MediaLibraryFilter'
@@ -82,10 +83,12 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={item => getIconByType(item)}
           width={80}
           align="center"
+          fixed="left"
         />
         <Resource.Column
           title={`${I18n.t('shared.name')}`}
           id="name"
+          hideable={false}
           sorter
           width={300}
           render={item => (
@@ -98,6 +101,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
               </a>
             ) : item?.name
           )}
+          fixed="left"
         />
         <Resource.Column
           title="Description"
@@ -112,7 +116,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
           render={(_, { owner }) => (
             owner?.id ? (
               <Link to={`/admin/clients/${owner.id}/projects`}>{owner.name}</Link>
-            ) : <span>{I18n.t('admin.platform_owner')}</span>
+            ) : <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
           )}
         />
         <Resource.Column
@@ -126,6 +130,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column
           title={I18n.t('common.column.action')}
           id="action"
+          hideable={false}
           render={item => (
             <ConditionalDropdown
               menu={
@@ -139,6 +144,7 @@ const MediaLibraryTable: React.FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={MODALS} />

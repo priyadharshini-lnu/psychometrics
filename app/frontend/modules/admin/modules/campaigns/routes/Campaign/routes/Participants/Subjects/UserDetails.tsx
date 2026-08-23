@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button, Descriptions, Switch, Tag, App, Tabs, Skeleton, Space, Drawer, Empty,
+  Button, Descriptions, Divider, Switch, Tag, App, Menu, Skeleton, Space, Drawer, Empty,
 } from 'antd'
 import { PageHeader } from '@ant-design/pro-components'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
+import {
+  Assignment, Event, Explore, Mail, Videocam,
+} from '@thetalententerprise/glint/icons'
 import {
   ArrowRightOutlined, PlusOutlined, ExclamationCircleOutlined, EditOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -25,7 +28,6 @@ import {
   toggleActive,
   extendTime,
 } from '~/modules/admin/modules/campaigns/core/users'
-import styles from './UserDetails.less'
 import UpdateTimeModal from './UpdateTimeModal'
 import AddReportModal from '../../AssessmentsReports/routes/AssessmentsReports/AddReportModal'
 import UpdateNormModal from './AssessmentsReports/UpdateNormModal'
@@ -147,10 +149,10 @@ export const UserDetails: React.FC<Props> = ({
       const isLastCampaign = index === visibleCampaigns.length - 1
 
       return (
-        <a key={campaign.id} href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}>
+        <Link key={campaign.id} to={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}>
           {campaign.name}
           {!isLastCampaign && ', '}
-        </a>
+        </Link>
       )
     })
 
@@ -214,38 +216,45 @@ export const UserDetails: React.FC<Props> = ({
   const tabs = [
     {
       key: 'assessments',
+      icon: <Assignment />,
       label: I18n.t('assessments_reports.menu.assessments_and_reports'),
-      children: <AssessmentsReports />,
+      panel: <AssessmentsReports />,
     },
   ]
   if (user.permissions.viewWorkshopDetails) {
     tabs.push({
       key: 'assessment_center',
+      icon: <Event />,
       label: I18n.t('assessments_reports.menu.assessment_center'),
-      children: <AssessmentCenter />,
+      panel: <AssessmentCenter />,
     })
   }
   if (user.permissions.viewWorkshopDetails) {
     tabs.push({
       key: 'assessment_center_invites',
+      icon: <Mail />,
       label: I18n.t('assessments_reports.menu.assessment_center_invites'),
-      children: <AssessmentCenterInvites />,
+      panel: <AssessmentCenterInvites />,
     })
   }
   if (user.permissions.viewIdpPlan && idpEnabled && projectIdpEnabled) {
     tabs.push({
       key: 'idp',
+      icon: <Explore />,
       label: I18n.t('assessments_reports.menu.idp'),
-      children: <Idp />,
+      panel: <Idp />,
     })
   }
   if (user.permissions.viewRecordings) {
     tabs.push({
       key: 'recordings',
+      icon: <Videocam />,
       label: I18n.t('assessments_reports.menu.recordings'),
-      children: <Recordings />,
+      panel: <Recordings />,
     })
   }
+
+  const activeTab = tabs.find(({ key }) => key === tab) ?? tabs[0]
 
   return (
     <div>
@@ -413,13 +422,16 @@ export const UserDetails: React.FC<Props> = ({
           )}
         </Descriptions>
       </PageHeader>
-      <Tabs
-        activeKey={tab}
-        onChange={changeTab}
-        defaultActiveKey="assessments"
-        className={styles.tabs}
-        items={tabs}
-      />
+      <Divider style={{ margin: 0 }} />
+      {tabs.length > 1 && (
+        <Menu
+          items={tabs.map(({ key, icon, label }) => ({ key, icon, label }))}
+          onSelect={({ key }) => changeTab(key)}
+          selectedKeys={[activeTab.key]}
+          mode="horizontal"
+        />
+      )}
+      {activeTab.panel}
       <Modals modals={MODALS} />
       <Drawer
         title={I18n.t('common.model.campaigns')}
@@ -439,9 +451,9 @@ export const UserDetails: React.FC<Props> = ({
         {drawerCampaigns && drawerCampaigns.length > 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             {drawerCampaigns.map(campaign => (
-              <a
+              <Link
                 key={campaign.id}
-                href={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}
+                to={`/admin/projects/${projectId}/new_campaigns/${campaign.id}`}
                 style={{
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -462,7 +474,7 @@ export const UserDetails: React.FC<Props> = ({
               >
                 <span>{campaign.name}</span>
                 <ArrowRightOutlined style={{ marginLeft: '16px', flexShrink: 0, color: '#999' }} />
-              </a>
+              </Link>
             ))}
           </div>
         ) : (

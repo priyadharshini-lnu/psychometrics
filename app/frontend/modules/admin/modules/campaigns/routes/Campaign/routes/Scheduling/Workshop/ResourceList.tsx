@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
   Button,
   MenuProps,
@@ -17,6 +17,7 @@ import {
   WorkshopResource, WorkshopResourceTR,
 } from '~/modules/admin/modules/campaigns/core/workshopResource'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { WorkshopResourceForm } from './WorkshopResources/WorkshopResourceForm'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -34,9 +35,9 @@ const connector = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connector>
-type Props = PropsFromRedux
+type Props = PropsFromRedux & { toggle?: ReactNode }
 
-export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
+export const ResourceListComponent: React.FC<Props> = ({ openModal, toggle }) => {
   const { id, campaignId } = useParams() as { id: string, campaignId: string }
 
   const config = {
@@ -46,12 +47,18 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
   }
   return (
     <>
-      <Resource config={config} name="workshop_resources">
-        <ResourceFilter openModal={openModal} workshopId={id} />
+      <Resource
+        title={I18n.t('admin.scheduling_tabs_assessment_center')}
+        config={config}
+        name="workshop_resources"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenterResources}
+      >
+        <ResourceFilter openModal={openModal} workshopId={id} toggle={toggle} />
         <Resource.Table pagination>
           <Resource.Column<WorkshopResource>
             title={I18n.t('shared.name')}
             id="name"
+            hideable={false}
             width="40%"
           />
           <Resource.Column<WorkshopResource>
@@ -73,6 +80,7 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
           <Resource.Column<WorkshopResource>
             title={I18n.t('shared.action')}
             id="actions"
+            hideable={false}
             key="actions"
             width={100}
             fixed="right"
@@ -95,13 +103,18 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal }) => {
 }
 
 const ResourceFilter = ({
+  toggle,
   openModal, workshopId,
 }) => {
   const { resource } = useResourceContext<WorkshopResource>()
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter hideSearch name="user_full_name_or_user_email_cont">
+    <Resource.Filter
+      hideSearch
+      name="user_full_name_or_user_email_cont"
+      controls={toggle}
+    >
       {resource.meta.permissions?.create && (
         <Button
           type="primary"

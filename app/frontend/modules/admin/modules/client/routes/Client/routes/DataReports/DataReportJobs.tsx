@@ -13,6 +13,7 @@ import {
 import { formatedDate } from '~/utils/time'
 import { SelfDestroyText } from '~/glint'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
@@ -122,14 +123,17 @@ export const DataReportJobs: React.FC<{}> = () => {
         title={I18n.t('common.column.id')}
         dataIndex="id"
         id="id"
+        hideable={false}
         sorter
         sortOrder={getSortOrder('id')}
+        fixed="left"
       />
       <Resource.Column<DataReportJob>
         title={I18n.t('admin.data_reports_columns_created_at')}
         dataIndex="createdAt"
         render={text => formatedDate(text)}
         id="created_at"
+        fixed="left"
       />
       <Resource.Column<DataReportJob>
         title={I18n.t('admin.data_reports_columns_created_by')}
@@ -182,6 +186,7 @@ export const DataReportJobs: React.FC<{}> = () => {
       <Resource.Column<DataReportJob>
         title={I18n.t('shared.actions')}
         id="link"
+        hideable={false}
         width={200}
         render={(_, { status, file }) => (
           <Button
@@ -194,6 +199,7 @@ export const DataReportJobs: React.FC<{}> = () => {
             {(I18n.t('shared.download'))}
           </Button>
         )}
+        fixed="right"
       />
     </Resource.Table>
   )
@@ -309,7 +315,13 @@ export const DataReportJobs: React.FC<{}> = () => {
             </Row>
           </Card>
         </Space>
-        <Resource config={config} name="data_report_jobs">
+        <Resource
+          title={I18n.t('admin.data_reports')}
+          config={config}
+          name="data_report_jobs"
+          settingsKey={TABLE_SETTINGS_KEYS.dataReportsJobs}
+        >
+          <Resource.Filter hideSearch name="" />
           {Table}
         </Resource>
       </Space>

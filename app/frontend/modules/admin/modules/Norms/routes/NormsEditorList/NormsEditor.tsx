@@ -3,9 +3,9 @@ import {
   useEffect, useState,
 } from 'react'
 import {
-  Table,
   Form, InputNumber, message, Alert,
 } from 'antd'
+import { DataTableFrame, DataTableGrid } from '@thetalententerprise/glint'
 import cs from 'classnames'
 import styles from './NormsEditor.less'
 import { useNormsTableConfig } from './useNormsTableConfig'
@@ -326,21 +326,24 @@ const NormsEditorComponent = ({ saveNorm }: PropsFromRedux) => {
     <>
       <Alert title={I18n.t('admin.cell_save_msg')} type="info" showIcon />
       <Form form={form} component={false}>
-        <Table
-          components={{
-            body: {
-              cell: EditableCell,
-            },
-          }}
-          rowClassName={() => styles.editableRow}
-          bordered
-          dataSource={data}
-          columns={columns}
-          pagination={false}
-          loading={isLoading}
-          virtual
-          scroll={{ x: 500, y: 2000 }}
-        />
+        {/* Rows arrive after the first measure, so the key re-runs it once they are in the region. */}
+        <DataTableFrame
+          scrollRegionLabel={I18n.t('admin.breadcrumbs_norms_editor')}
+          contentKey={`${currentNorm?.normType ?? ''}:${data.length}`}
+        >
+          <DataTableGrid
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            rowClassName={() => styles.editableRow}
+            bordered
+            dataSource={data}
+            columns={columns}
+            loading={isLoading}
+          />
+        </DataTableFrame>
       </Form>
     </>
 

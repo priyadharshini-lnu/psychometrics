@@ -4165,7 +4165,6 @@ zh-HK:
     admins: 管理員
     create_global_assessor: 建立全球評估器
     create_superadmin: 建立超級管理員
-    dashboard: 儀表板
     drawer:
       link: 連接
       role: 角色

@@ -1,10 +1,11 @@
 import * as t from 'io-ts'
 import React from 'react'
 import {
-  useParams,
+  Link, useParams,
 } from 'react-router-dom'
 import { Tag, Typography } from 'antd'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopSubjectTR } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { formatWorkshopDate } from '~/utils/workshop'
@@ -64,26 +65,37 @@ const WorkshopList: React.FC = () => {
   }
   return (
     <>
-      <h3>{I18n.t('campaign_users.details.assessment_center')}</h3>
-      <Resource config={config} name="workshop_subjects">
+      <Resource
+        title={I18n.t('campaign_users.details.assessment_center')}
+        config={config}
+        name="workshop_subjects"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignParticipantsSubjectAssessmentCenters}
+      >
+        <Resource.Filter
+          hideSearch
+          name=""
+        />
         <Resource.Table pagination>
           <Resource.Column<Response>
             title={I18n.t('shared.id')}
             id="id"
             width="3%"
+            fixed="left"
           />
           <Resource.Column<Response>
             title={I18n.t('shared.name')}
             id="name"
+            hideable={false}
             width="20%"
             render={(_, { workshop }) => (
-              <a
+              <Link
               // eslint-disable-next-line max-len
-                href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${workshop.id}`}
+                to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/assessment_center/${workshop.id}`}
               >
                 {workshop.name}
-              </a>
+              </Link>
             )}
+            fixed="left"
           />
           <Resource.Column<Response>
             title={I18n.t('admin.scheduling_columns_start_time')}
@@ -137,6 +149,7 @@ const WorkshopList: React.FC = () => {
                 {I18n.t(`admin.scheduling_scheduling_statuses_${schedulingStatus}`)}
               </Tag>
             )}
+            fixed="right"
           />
         </Resource.Table>
       </Resource>

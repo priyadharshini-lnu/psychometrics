@@ -4151,7 +4151,6 @@ th:
     admins: ผู้ดูแลระบบ
     create_global_assessor: สร้างผู้ประเมินทั่วโลก
     create_superadmin: สร้างผู้ดูแลระบบขั้นสูง
-    dashboard: แดชบอร์ด
     drawer:
       link: ลิงก์
       role: บทบาท

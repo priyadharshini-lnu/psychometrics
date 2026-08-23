@@ -13,18 +13,21 @@ export const ApplicationsTable: React.FC = () => {
   const { resource } = useResourceContext<Application>()
 
   return (
-    <Resource.Table pagination>
+    <Resource.Table embedded pagination>
       <Resource.Column<Application>
         title={I18n.t('shared.id')}
         id="id"
+        hideable={false}
         dataIndex="id"
         sorter
         render={(id: string) => <Link to={id}>{id}</Link>}
+        fixed="left"
       />
       <Resource.Column<Application>
         title={I18n.t('shared.name')}
         id="name"
         sorter
+        fixed="left"
       />
       <Resource.Column<Application>
         title={I18n.t('shared.status')}
@@ -70,6 +73,7 @@ export const ApplicationsTable: React.FC = () => {
         title={I18n.t('shared.created_by')}
         id="created_by"
         dataIndex="createdBy"
+        fixed="right"
       />
     </Resource.Table>
   )

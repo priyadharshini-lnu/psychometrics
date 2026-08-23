@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS, type TableSettingsKey } from '~/modules/admin/components/Resource/settingsKeys'
 import { User, UserTR } from '~/modules/admin/modules/client/core/users'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -12,9 +13,22 @@ import { UserFormModal } from './UserFormModal'
 import { UserTable } from './UserTable'
 import { UserFilter } from './UserFilter'
 import { Tabs } from './Tabs'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
+
+const TITLE_KEY: Record<string, string> = {
+  'Users::Regular': 'users.users',
+  'Users::Admin': 'users.admins',
+  'Users::SuperAdmin': 'users.superadmins',
+  'Users::GlobalAssessors': 'users.global_assessors',
+}
+
+const SETTINGS_KEY: Record<string, TableSettingsKey> = {
+  'Users::Regular': TABLE_SETTINGS_KEYS.adminUsers,
+  'Users::Admin': TABLE_SETTINGS_KEYS.adminUsersAdmins,
+  'Users::SuperAdmin': TABLE_SETTINGS_KEYS.adminUsersSuperadmins,
+  'Users::GlobalAssessors': TABLE_SETTINGS_KEYS.adminUsersGlobalAssessors,
+}
 
 const MODALS = {
   ResetPasswordModal,
@@ -55,7 +69,12 @@ const UserListComponent: React.FC<Props> = ({
   }
 
   return (
-    <Resource config={config} name="users">
+    <Resource
+      title={I18n.t(TITLE_KEY[userTab] ?? 'admin.users')}
+      config={config}
+      name="users"
+      settingsKey={SETTINGS_KEY[userTab] ?? TABLE_SETTINGS_KEYS.adminUsers}
+    >
       <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
       <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
       {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
@@ -65,20 +84,8 @@ const UserListComponent: React.FC<Props> = ({
   )
 }
 
-// The tab strip belongs to the route above the tabs, so switching tabs swaps only the list below it.
 export const UsersLayout: React.FC = () => (
   <>
-    <Breadcrumb
-      crumbs={[
-        {
-          link: () => '/admin',
-          label: () => I18n.t('users.dashboard'),
-        },
-        {
-          label: () => I18n.t('users.users'),
-        },
-      ]}
-    />
     <Tabs />
     <Outlet />
   </>

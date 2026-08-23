@@ -8,8 +8,13 @@ const ProfileRoutes = [
     path: 'profile',
     children: [
       { index: true, element: <Navigate to="details" replace /> },
-      { path: 'details', lazy: lazyRoute(page, m => m.Details) },
-      { path: 'change_password', lazy: lazyRoute(page, m => m.ChangePassword) },
+      {
+        lazy: lazyRoute(page, m => m.Layout),
+        children: [
+          { path: 'details', lazy: lazyRoute(page, m => m.Details) },
+          { path: 'change_password', lazy: lazyRoute(page, m => m.ChangePassword) },
+        ],
+      },
     ],
   },
 ]

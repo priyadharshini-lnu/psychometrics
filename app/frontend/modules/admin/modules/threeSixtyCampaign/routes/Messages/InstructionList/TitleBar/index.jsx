@@ -16,7 +16,12 @@ export default function TitleBar ({ instructionTemplate, toggleEnabled }) {
           </div>
         </Col>
         <Col md={10} lg={8} xl={6}>
-          <Switch className={styles.switch} checked={instructionTemplate.enabled} onChange={toggleEnabled} />
+          <Switch
+            className={styles.switch}
+            checked={instructionTemplate.enabled}
+            onChange={toggleEnabled}
+            aria-label={I18n.t('admin.threesixty_campaigns_instruction_visible_to_participants')}
+          />
         </Col>
       </Row>
     </div>

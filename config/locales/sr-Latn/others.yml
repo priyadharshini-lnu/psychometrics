@@ -4157,7 +4157,6 @@ sr-Latn:
     admins: Članovi
     create_global_assessor: Kreirajte globalnog procenjivača
     create_superadmin: Kreiraj Super Admin
-    dashboard: Kontrolnu tablu
     drawer:
       link: Vezu
       role: Ulogu

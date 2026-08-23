@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { BarChart, Settings } from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { usePageHeld } from '~/components/PageFallback'
 import routeUtils from '~/utils/route'
@@ -28,10 +29,12 @@ const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const menuItems = [
     ...(campaignPermissions.viewCampaignScoring ? [{
       key: '/subject_scores',
+      icon: <BarChart />,
       label: I18n.t('admin.scoring_tabs_subject_scores'),
     }] : []),
     ...(campaignPermissions.viewCampaignScoringSetting ? [{
       key: '/settings',
+      icon: <Settings />,
       label: I18n.t('admin.scoring_tabs_settings'),
     }] : [])]
 
@@ -39,7 +42,7 @@ const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
 
   return (
     <div>
-      {!held && (
+      {!held && menuItems.length > 1 && (
         <Menu
           items={menuItems}
           onSelect={onSelect}

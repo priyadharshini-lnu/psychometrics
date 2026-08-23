@@ -16,6 +16,20 @@ export enum SheetType {
 
 export const EMAIL = 'Email'
 
+export interface SheetIdentity {
+  parentType: ParentResourceType
+  parentId: number
+  sheetType: SheetType
+}
+
+export const sheetKey = ({ parentType, parentId, sheetType }: SheetIdentity): string => (
+  `${parentType}:${parentId}:${sheetType}`
+)
+
+export interface SheetKeyed {
+  requestAction: { sheetKey: string }
+}
+
 export const SheetTR = t.intersection([
   t.record(t.string, t.union([t.string, t.number, t.null])),
   t.type({
@@ -79,6 +93,7 @@ export const fetch = (
   tableConfig: TableConfig,
 ): ApiAction<FetchResponse> => ({
   type: FETCH,
+  sheetKey: sheetKey({ parentType, parentId, sheetType: type }),
   request: {
     method: 'get',
     loader: true,
@@ -103,7 +118,7 @@ export type FetchAction = ApiActionResponse<{
     view: boolean
     edit: boolean
   }
-}>
+}> & SheetKeyed
 
 export type AddResponse = t.TypeOf<typeof SheetTR>
 
@@ -186,21 +201,33 @@ export const importSheet = (parentType: ParentResourceType, parentId: number, ty
 })
 
 
-export type State = Sheet[]
+export interface State {
+  key: string
+  rows: Sheet[]
+}
 
 const HANDLERS = {
-  [FETCH]: (_: State, { response }: FetchAction) => response.list,
-  [ADD]: (state: State, { response }: AddAction) => [response, ...state],
-  [UPDATE]: (state: State, { response }: UpdateAction) => state.map((record) => {
-    if (record.id === response.id) {
-      return response
-    }
-    return record
+  [FETCH]: (_: State, { response, requestAction }: FetchAction): State => (
+    { key: requestAction.sheetKey, rows: response.list }
+  ),
+  [ADD]: (state: State, { response }: AddAction): State => ({ ...state, rows: [response, ...state.rows] }),
+  [UPDATE]: (state: State, { response }: UpdateAction): State => ({
+    ...state,
+    rows: state.rows.map((record) => {
+      if (record.id === response.id) {
+        return response
+      }
+      return record
+    }),
   }),
 }
 
-const defaultState: State = []
+const defaultState: State = { key: '', rows: [] }
 
 export default createReducer(HANDLERS, defaultState)
 
-export const get = (state: RootState): State => lodashGet(state, ['sheet', 'list'])
+export const get = (state: RootState, sheet: SheetIdentity): Sheet[] => {
+  const { key, rows }: State = lodashGet(state, ['sheet', 'list'])
+
+  return key === sheetKey(sheet) ? rows : defaultState.rows
+}

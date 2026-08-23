@@ -4154,7 +4154,6 @@ ro:
     admins: Administratori
     create_global_assessor: Creați evaluator global
     create_superadmin: Creați un super administrator
-    dashboard: Tablou
     drawer:
       link: Legătură
       role: Rol

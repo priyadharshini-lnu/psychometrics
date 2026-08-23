@@ -32,10 +32,12 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
             skill.id
           )}
           width={150}
+          fixed="left"
         />
         <Resource.Column<Skill>
           title={I18n.t('shared.name')}
           id="name"
+          hideable={false}
           render={(_, skill) => (
             <>
               <Typography.Link onClick={() => setSkillDetails(skill)} style={{ marginRight: 12 }}>
@@ -50,6 +52,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
             </>
           )}
           sorter
+          fixed="left"
         />
         <Resource.Column<Skill>
           title={I18n.t('admin.skills_columns_skill_type')}
@@ -79,6 +82,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<Skill>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, skill) => (
             <Dropdown
               skill={skill}
@@ -86,6 +90,7 @@ export const SkillsTable: React.FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <DetailsDrawer onClose={() => setSkillDetails(undefined)} skill={skillDetails} />

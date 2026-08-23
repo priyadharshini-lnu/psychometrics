@@ -3,17 +3,15 @@ import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import {
   Table,
-  Row,
-  Col,
   Space,
   Button,
   Input,
-  Pagination,
   Divider,
   Empty,
   GetProp,
   TableProps as AntTableProps,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import {
@@ -40,6 +38,7 @@ import { COLUMN_ID_EMAIL } from '~/modules/admin/modules/SheetManagement/constan
 import settings from '~/modules/admin/settings'
 
 import Modals from '~/modules/admin/components/Modals/'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 
 import { SelectionActions } from '~/modules/admin/modules/SheetManagement/components/SelectionActions'
 import ToolsDropdown from '~/modules/admin/modules/SheetManagement/components/ToolsDropdown'
@@ -47,36 +46,38 @@ import { DetailsDrawer } from '~/modules/admin/modules/SheetManagement/component
 import { AddEditDrawer } from '~/modules/admin/modules/SheetManagement/components/AddEditDrawer'
 import { ImportSheetModal } from '~/modules/admin/modules/SheetManagement/components/ImportSheetModal'
 import { useDeepCompareEffect } from '~/hooks/useDeepCompareEffect'
-import { CountDisplay } from '~/components/CountDisplay'
 import { isRequestInProgress } from '~/core/request'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 type FixedType = GetProp<GetProp<AntTableProps, 'columns'>[number], 'fixed'>
 
 const { I18n } = window
-
-const connector = connect(
-  (state: RootState) => ({
-    state,
-    list: get(state),
-    isListLoading: isRequestInProgress(state, FETCH_SHEET),
-    total: getTotal(state),
-    permissions: getPermissions(state),
-    columnDefinitions: getColumns(state),
-    visibleColumns: getVisibleColumnNames(state),
-  }),
-  {
-    fetch,
-  },
-)
-
-type PropsFromRedux = ConnectedProps<typeof connector>
 
 interface OwnProps {
   parentResourceType: ParentResourceType
   parentResourceId: number
   sheetType?: SheetType
 }
+
+const connector = connect(
+  (state: RootState, { parentResourceType, parentResourceId, sheetType = SheetType.Datasheet }: OwnProps) => {
+    const sheet = { parentType: parentResourceType, parentId: parentResourceId, sheetType }
+
+    return {
+      state,
+      list: get(state, sheet),
+      isListLoading: isRequestInProgress(state, FETCH_SHEET),
+      total: getTotal(state, sheet),
+      permissions: getPermissions(state, sheet),
+      columnDefinitions: getColumns(state, sheet),
+      visibleColumns: getVisibleColumnNames(state, sheet),
+    }
+  },
+  {
+    fetch,
+  },
+)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = OwnProps & PropsFromRedux & TableProps
 
@@ -103,7 +104,7 @@ const SheetComponent: FC<Props> = ({
   const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([])
   const [activeDrawerIs, setDrawerTo] = useState<DrawerModes>(DrawerModes.None)
   const [currentSheetRowId, setCurrentSheetId] = useState('')
-  const { width: windowWidth } = useWindowSize()
+  const screens = useBreakpoint()
   const allColumns = useMemo(
     () => columnDefinitions
       .map((filteredColumn) => {
@@ -131,10 +132,10 @@ const SheetComponent: FC<Props> = ({
   )
 
   const getColBehaviour = (index: number, length: number): FixedType| undefined => {
-    if (windowWidth > 800 && (index === 0 || index === 1)) {
+    if (screens.md && (index === 0 || index === 1)) {
       return 'left'
     }
-    if (index === length - 1 && windowWidth > 800) {
+    if (index === length - 1 && screens.md) {
       return 'right'
     }
     return undefined
@@ -166,17 +167,18 @@ const SheetComponent: FC<Props> = ({
 
   return (
     <>
-      <Row justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          {isSheetUploaded && (
-            <CountDisplay
-              selectedCount={selectedRowKeys.length}
-              totalCount={total}
-              isLoading={isListLoading}
-            />
-          )}
-        </Col>
-        <Col>
+      <TableLayout
+        loading={isListLoading}
+        title={I18n.t('admin.sheets_tabs_rows')}
+        recordCount={total}
+        selectedCount={selectedRowKeys.length}
+        pagination={{
+          page,
+          pageSize: pageSize ?? settings.pagination.defaultPageSize,
+          total,
+          onChange: changePage,
+        }}
+        filters={(
           <Space>
             <SelectionActions
               selectedRowKeys={selectedRowKeys}
@@ -213,37 +215,21 @@ const SheetComponent: FC<Props> = ({
               </Button>
             )}
           </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          {isSheetUploaded ? (
-            <Table
-              loading={isListLoading}
-              columns={visibleColumnsDefinition}
-              dataSource={list}
-              rowKey={row => row.id}
-              scroll={{ x: 'max-content' }}
-              pagination={false}
-              rowSelection={{
-                selectedRowKeys,
-                onChange: (rowKey: string[]) => setSelectedRowKeys(rowKey),
-              }}
-            />
-          ) : <Empty description={I18n.t('shared.no_data_found')} />}
-        </Col>
-      </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Pagination
-            current={page}
-            pageSize={pageSize}
-            total={total}
-            onChange={changePage}
-            hideOnSinglePage
+        )}
+        table={isSheetUploaded ? (
+          <Table
+            columns={visibleColumnsDefinition}
+            dataSource={list}
+            rowKey={row => row.id}
+            scroll={{ x: 'max-content' }}
+            pagination={false}
+            rowSelection={{
+              selectedRowKeys,
+              onChange: (rowKey: string[]) => setSelectedRowKeys(rowKey),
+            }}
           />
-        </Col>
-      </Row>
+        ) : <Empty description={I18n.t('shared.no_data_found')} />}
+      />
       {permissions.view && (
         <DetailsDrawer
           isOpen={activeDrawerIs === DrawerModes.Details}

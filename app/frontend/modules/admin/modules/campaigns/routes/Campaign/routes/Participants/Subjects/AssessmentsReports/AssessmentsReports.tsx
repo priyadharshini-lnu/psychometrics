@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 import {
-  Row, Col, Button, App, Space,
+  Row, Col, Button, App, Space, theme, Flex,
 } from 'antd'
 import _ from 'lodash'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -10,6 +10,7 @@ import { Strategies } from '../../../AssessmentsReports/routes/AssessmentsReport
 import { ProctoringSessionList } from './ProctoringSessionList'
 import styles from './styles.less'
 import { PropsFromRedux } from './connect'
+import { SectionTitle } from '~/modules/admin/components/TableTitle'
 
 const { I18n } = window
 
@@ -34,6 +35,7 @@ const AssessmentsReports: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedUserId = parseInt(id, 10)
   const { message } = App.useApp()
+  const { token } = theme.useToken()
 
   const handleRegenerateReports = (selectedReports: { [key: string]: string[] }) => {
     regenerateReports(parsedCampaignId, selectedReports, id, selectedIds).then(() => {
@@ -53,9 +55,9 @@ const AssessmentsReports: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between">
-        <Col span={4} className="pls">
-          <h3>{I18n.t('admin.reports')}</h3>
+      <Row justify="space-between" style={{ marginTop: token.margin }}>
+        <Col span={4}>
+          <SectionTitle>{I18n.t('admin.reports')}</SectionTitle>
         </Col>
         <div>
           <div className={styles.newReportButton}>
@@ -110,20 +112,20 @@ const AssessmentsReports: React.FC<Props> = ({
           </div>
         </div>
       </Row>
-      <div>
+      <Flex vertical>
         <ReportList />
         <div className={styles.tableDivider} />
-        <h3>{I18n.t('admin.assessments')}</h3>
+        <SectionTitle>{I18n.t('admin.assessments')}</SectionTitle>
         <AssessmentList />
         <div className={styles.tableDivider} />
         {proctoringSessions.length !== 0 && (
           <>
             <div className={styles.tableDivider} />
-            <h3>{I18n.t('admin.proctoring_sessions_resource_name')}</h3>
+            <SectionTitle>{I18n.t('admin.proctoring_sessions_resource_name')}</SectionTitle>
             <ProctoringSessionList proctoringSessions={proctoringSessions} />
           </>
         )}
-      </div>
+      </Flex>
     </div>
   )
 }

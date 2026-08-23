@@ -1,7 +1,10 @@
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import {
+  History, Mail, MenuBook, Settings,
+} from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   get as getCurrentCampaign,
@@ -14,6 +17,13 @@ import { permittedMessagesTabs } from './routes'
 
 const { I18n } = window
 
+const TAB_ICONS: Record<string, ReactNode> = {
+  email: <Mail />,
+  instructions: <MenuBook />,
+  mail_histories: <History />,
+  options: <Settings />,
+}
+
 function Messages ({ campaignPermissions }) {
   const navigate = useNavigate()
   const { pathname } = useLocation()
@@ -21,6 +31,7 @@ function Messages ({ campaignPermissions }) {
   const menuItems = useMemo(() => permittedMessagesTabs(campaignPermissions).map(({ id, labelKey }) => ({
     id,
     key: `/messages/${id}`,
+    icon: TAB_ICONS[id],
     label: I18n.t(labelKey),
   })), [campaignPermissions])
 
@@ -34,12 +45,14 @@ function Messages ({ campaignPermissions }) {
     <>
       <PageHeader />
       <div>
-        <Menu
-          items={menuItems}
-          onSelect={onSelect}
-          selectedKeys={activeTab ? [activeTab.key] : []}
-          mode="horizontal"
-        />
+        {menuItems.length > 1 && (
+          <Menu
+            items={menuItems}
+            onSelect={onSelect}
+            selectedKeys={activeTab ? [activeTab.key] : []}
+            mode="horizontal"
+          />
+        )}
         <Outlet />
         <PipedTextModal />
       </div>

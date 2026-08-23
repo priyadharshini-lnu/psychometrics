@@ -6,10 +6,13 @@ import { ParentResourceType } from '~/modules/admin/modules/SheetManagement/core
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { createReducer } from '~/utils/redux'
 import {
-  FETCH, FetchAction, Column, ColumnTypeTR, SheetType,
+  FETCH, FetchAction, Column, ColumnTypeTR, SheetType, SheetIdentity, SheetKeyed, sheetKey,
 } from './list'
 
-export type State = Column[]
+export interface State {
+  key: string
+  columns: Column[]
+}
 
 export const ColumnTR = t.type({
   id: t.number,
@@ -20,12 +23,6 @@ export const ColumnTR = t.type({
   accessorAccess: t.union([t.boolean, t.undefined]),
   visibleInList: t.boolean,
 })
-
-export const get = (state: RootState): State => lodashGet(state, ['sheet', 'columnDefinitions'])
-export const getVisibleColumnNames = (state: RootState) => (
-  get(state).filter(column => column.visibleInList).map(c => c.name)
-)
-export const getColumns = (state: RootState) => get(state)
 
 export const MAX_LENGTH_FOR_DASHBOARD_USE = 64
 
@@ -38,11 +35,17 @@ export const UPDATE_SORTING = 'sheetManagement/UPDATE_SORTING'
 
 const ColumnsResponseTR = t.array(ColumnTR)
 export type ColumnsResponse = t.TypeOf<typeof ColumnsResponseTR>
-export type FetchColumnAction = ApiActionResponse<ColumnsResponse>
+export type FetchColumnAction = ApiActionResponse<ColumnsResponse> & SheetKeyed
 export type AddColumnAction = ApiActionResponse<ColumnsResponse>
 export type UpdateColumnAction = ApiActionResponse<ColumnsResponse>
 export type DeleteColumnAction = ApiActionResponse<ColumnsResponse>
 export type AddColumnErrorAction = ApiActionResponse<string[]>
+
+export const datasheetIdentity = (campaignId: number): SheetIdentity => ({
+  parentType: 'new_campaign',
+  parentId: campaignId,
+  sheetType: SheetType.Datasheet,
+})
 
 export const fetch = (
   parentType: ParentResourceType,
@@ -50,6 +53,7 @@ export const fetch = (
   type: SheetType,
 ) => ({
   type: FETCH_COLUMNS,
+  sheetKey: sheetKey({ parentType, parentId, sheetType: type }),
   request: {
     typedResponse: ColumnsResponseTR,
     method: 'get',
@@ -60,6 +64,7 @@ export const fetch = (
 
 export const fetchDatasheetColumns = (campaignId: number) => ({
   type: FETCH_COLUMNS,
+  sheetKey: sheetKey(datasheetIdentity(campaignId)),
   request: {
     typedResponse: ColumnsResponseTR,
     method: 'get',
@@ -133,14 +138,28 @@ export const removeColumns = (
 })
 
 const HANDLERS = {
-  [FETCH]: (state: State, { response }: FetchAction) => humps.camelizeKeys(response.columns),
-  [SAVE_COLUMN]: (state: State, { response }: AddColumnAction) => response,
-  [UPDATE_COLUMN]: (state: State, { response }: UpdateColumnAction) => response,
-  [UPDATE_SORTING]: (state: State, { response }: UpdateColumnAction) => response,
-  [REMOVE_COLUMNS]: (state: State, { response }: DeleteColumnAction) => response,
-  [FETCH_COLUMNS]: (state: State, { response }: FetchColumnAction) => response,
+  [FETCH]: (state: State, { response, requestAction }: FetchAction): State => (
+    { key: requestAction.sheetKey, columns: humps.camelizeKeys(response.columns) }
+  ),
+  [FETCH_COLUMNS]: (state: State, { response, requestAction }: FetchColumnAction): State => (
+    { key: requestAction.sheetKey, columns: response }
+  ),
+  [SAVE_COLUMN]: (state: State, { response }: AddColumnAction): State => ({ ...state, columns: response }),
+  [UPDATE_COLUMN]: (state: State, { response }: UpdateColumnAction): State => ({ ...state, columns: response }),
+  [UPDATE_SORTING]: (state: State, { response }: UpdateColumnAction): State => ({ ...state, columns: response }),
+  [REMOVE_COLUMNS]: (state: State, { response }: DeleteColumnAction): State => ({ ...state, columns: response }),
 }
 
-const defaultState: State = []
+const defaultState: State = { key: '', columns: [] }
 
 export default createReducer(HANDLERS, defaultState)
+
+export const get = (state: RootState, sheet: SheetIdentity): Column[] => {
+  const { key, columns }: State = lodashGet(state, ['sheet', 'columnDefinitions'])
+
+  return key === sheetKey(sheet) ? columns : defaultState.columns
+}
+export const getVisibleColumnNames = (state: RootState, sheet: SheetIdentity) => (
+  get(state, sheet).filter(column => column.visibleInList).map(c => c.name)
+)
+export const getColumns = (state: RootState, sheet: SheetIdentity) => get(state, sheet)

@@ -26,7 +26,6 @@ import { ResourceList } from './ResourceList'
 import { ChangeStatusModal } from './ChangeStatusModal'
 import { Recordings } from './Recordings'
 
-import styles from './styles.less'
 
 const { I18n } = window
 const STATUS_TAG_COLOR = {
@@ -235,6 +234,17 @@ export const WorkshopPage: FC = () => {
     },
   ]
 
+  const toggle = (
+    <Radio.Group onChange={e => handleTabChange(e.target.value)} value={currentTab}>
+      <Radio.Button value="subjects">{I18n.t('admin.scheduling_tabs_subjects')}</Radio.Button>
+      <Radio.Button value="resources">{I18n.t('admin.scheduling_tabs_resources')}</Radio.Button>
+      <Radio.Button value="activities">{I18n.t('admin.scheduling_tabs_activities')}</Radio.Button>
+      {workshop.meta?.permissions?.viewRecordings && (
+        <Radio.Button value="recordings">{I18n.t('admin.scheduling_tabs_recordings')}</Radio.Button>
+      )}
+    </Radio.Group>
+  )
+
   return (
     <>
       <div className="pt-6 ps-6 pe-6">
@@ -276,20 +286,10 @@ export const WorkshopPage: FC = () => {
         />
         <Divider />
         <div>
-          <div className={styles.controls}>
-            <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
-              <Radio.Button value="subjects">{I18n.t('admin.scheduling_tabs_subjects')}</Radio.Button>
-              <Radio.Button value="resources">{I18n.t('admin.scheduling_tabs_resources')}</Radio.Button>
-              <Radio.Button value="activities">{I18n.t('admin.scheduling_tabs_activities')}</Radio.Button>
-              {workshop.meta?.permissions?.viewRecordings && (
-                <Radio.Button value="recordings">{I18n.t('admin.scheduling_tabs_recordings')}</Radio.Button>
-              )}
-            </Radio.Group>
-          </div>
-          {currentTab === 'subjects' && <SubjectList workshop={workshop} />}
-          {currentTab === 'resources' && <ResourceList />}
-          {currentTab === 'activities' && <Activities />}
-          {currentTab === 'recordings' && <Recordings />}
+          {currentTab === 'subjects' && <SubjectList workshop={workshop} toggle={toggle} />}
+          {currentTab === 'resources' && <ResourceList toggle={toggle} />}
+          {currentTab === 'activities' && <Activities toggle={toggle} />}
+          {currentTab === 'recordings' && <Recordings toggle={toggle} />}
         </div>
       </div>
       {showForm && (

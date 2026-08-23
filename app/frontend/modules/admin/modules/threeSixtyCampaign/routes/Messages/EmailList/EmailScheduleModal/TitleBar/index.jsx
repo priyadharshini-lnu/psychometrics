@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import {
   Select,
 } from 'antd'
@@ -19,11 +20,13 @@ export default function TitleBar ({ emailSchedules: { list, selectedId }, change
 
 
 const Message = ({ emailSchedules, changeSelected, selectedId }) => {
+  const messageSelectId = useId()
+
   if (emailSchedules.length > 1) {
     return (
       <div>
-        Messages:
-        <Select className="mls" value={selectedId} onChange={changeSelected}>
+        <label htmlFor={messageSelectId}>{`${I18n.t('admin.messages')}:`}</label>
+        <Select id={messageSelectId} className="mls" value={selectedId} onChange={changeSelected}>
           {emailSchedules.map(emailSchedule => (
             <Select.Option value={emailSchedule.id} key={emailSchedule.id}>
               {I18n.t(`admin.${emailSchedule.name}_name`)}

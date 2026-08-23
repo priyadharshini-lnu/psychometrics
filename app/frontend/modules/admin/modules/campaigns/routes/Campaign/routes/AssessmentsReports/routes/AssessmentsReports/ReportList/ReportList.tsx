@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import {
-  Table, MenuProps, Row, Col, Switch, App,
+  Button, Table, MenuProps, Row, Col, Switch, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { camelizeKeys } from '~/utils/object'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
@@ -73,9 +72,9 @@ const ReportList: React.FC<Props> = ({
             key="name"
             dataIndex="name"
             render={(text, record) => (
-              <a onClick={() => setDrawerReport(record as DrawerReport)}>
+              <Button type="link" size="small" className="p-0" onClick={() => setDrawerReport(record as DrawerReport)}>
                 {text}
-              </a>
+              </Button>
             )}
             fixed="left"
           />
@@ -177,11 +176,6 @@ const ReportList: React.FC<Props> = ({
                     uploadBulkAssetsEnabled,
                   })
                 }
-                innerElement={(
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                )}
               />
             )}
             width={50}

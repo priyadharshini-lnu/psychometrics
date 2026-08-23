@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Outlet, useSearchParams } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ReportTable } from './ReportTable'
 import { ReportFilter } from './ReportFilter'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -33,7 +33,12 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   }
 
   return (
-    <Resource config={config} name="reports">
+    <Resource
+      title={I18n.t('admin.reports')}
+      config={config}
+      name="reports"
+      settingsKey={TABLE_SETTINGS_KEYS.adminReports}
+    >
       <ReportFilter openModal={() => closeModal(false)} />
       <ReportTable openDrawer={setDrawerReport} />
       {!!drawerReport && (
@@ -47,20 +52,8 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   )
 }
 
-// The tab strips belong to the route above the tabs, so switching tabs swaps only the list below them.
 export const ReportsLayout: React.FC = () => (
   <>
-    <Breadcrumb
-      crumbs={[
-        {
-          link: () => '/admin',
-          label: () => I18n.t('reports.dashboard'),
-        },
-        {
-          label: () => I18n.t('reports.reports'),
-        },
-      ]}
-    />
     <FirstLevelTabs />
     <Tabs />
     <Outlet />

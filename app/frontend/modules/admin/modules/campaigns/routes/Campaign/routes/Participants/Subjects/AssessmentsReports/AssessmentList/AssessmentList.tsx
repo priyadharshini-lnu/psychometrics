@@ -6,7 +6,7 @@ import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
-import { MoreOutlined, ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { isSuperAdmin } from '~/core/currentUser'
 import { State as UserAssessmentState } from '~/modules/admin/modules/campaigns/core/userAssessments'
@@ -83,9 +83,9 @@ const AssessmentList: React.FC<Props> = ({
             dataIndex="name"
             render={(text, record: UserAssessment) => (
               <>
-                <a onClick={() => setDrawerAssessment(record)}>
+                <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(record)}>
                   {text}
-                </a>
+                </Button>
                 {record.hoganParticipantId && (
                   <Typography.Text style={{ display: 'block', fontSize: '0.8em' }}>
                     (
@@ -162,7 +162,10 @@ const AssessmentList: React.FC<Props> = ({
               }
               return (
                 permissions.updateNorm ? (
-                  <a
+                  <Button
+                    type="link"
+                    size="small"
+                    className="p-0"
                     onClick={
                       () => openModal('UpdateNormModal',
                         {
@@ -174,7 +177,7 @@ const AssessmentList: React.FC<Props> = ({
                     }
                   >
                     {normName || I18n.t('common.text.default')}
-                  </a>
+                  </Button>
                 ) : normName || I18n.t('common.text.default')
               )
             }}
@@ -207,11 +210,6 @@ const AssessmentList: React.FC<Props> = ({
                     message,
                   })
                 }
-                innerElement={(
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                )}
               />
             )}
           />

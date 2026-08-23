@@ -242,6 +242,7 @@ en-US:
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     system_check_uploading: Uploading
     table:
+      collapse: Collapse
       entries:
         selected:
           one: 1 row selected
@@ -250,6 +251,7 @@ en-US:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Expand
     tags: Tags
     terms_conditions_privacy: Privacy Statement
     tools: Tools

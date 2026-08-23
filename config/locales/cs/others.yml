@@ -4139,7 +4139,6 @@ cs:
     admins: Administrátoři
     create_global_assessor: Vytvořit globálního hodnotitele
     create_superadmin: Vytvořit superadministrátora
-    dashboard: Přístrojová deska
     drawer:
       link: Odkaz
       role: Role

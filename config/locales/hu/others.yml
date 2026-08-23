@@ -4141,7 +4141,6 @@ hu:
     admins: Adminisztrátorok
     create_global_assessor: Globális értékelő létrehozása
     create_superadmin: Szuperadminisztrátor létrehozása
-    dashboard: Műszerfal
     drawer:
       link: Láncszem
       role: Szerep

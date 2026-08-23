@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Table, MenuProps, Row, Col, App, Pagination,
+  Button, Table, MenuProps, Row, Col, App,
 } from 'antd'
+import { DataTablePagination } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
@@ -19,10 +19,13 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { SectionTitle } from '~/modules/admin/components/TableTitle'
 import { DetailsDrawer, DrawerReport } from './ReportList/DetailsDrawer'
 
 const { Column } = Table
 const { I18n } = window
+
+const PAGE_SIZE = 5
 
 interface OwnProps {}
 
@@ -70,8 +73,11 @@ const OtherReportListComponent: React.FC<Props> = ({
     })
   }
 
+  if (total === 0) { return null }
+
   return (
     <>
+      <SectionTitle>{I18n.t('admin.other_reports')}</SectionTitle>
       <Row>
         <Col span={24}>
           <Table
@@ -92,9 +98,14 @@ const OtherReportListComponent: React.FC<Props> = ({
               key="name"
               dataIndex="name"
               render={(text, report) => (
-                <a onClick={() => setDrawerReport(report as DrawerReport)}>
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
+                  onClick={() => setDrawerReport(report as DrawerReport)}
+                >
                   {text}
-                </a>
+                </Button>
               )}
             />
 
@@ -111,28 +122,19 @@ const OtherReportListComponent: React.FC<Props> = ({
                       exportData: handleExportData,
                     })
                 }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                )}
                 />
               )}
             />
           </Table>
         </Col>
       </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Pagination
-            hideOnSinglePage
-            current={parsedPage}
-            pageSize={tableConfig.pageSize}
-            total={total}
-            onChange={changePage}
-          />
-        </Col>
-      </Row>
+      <DataTablePagination
+        page={parsedPage}
+        pageSize={tableConfig.pageSize ?? PAGE_SIZE}
+        total={total}
+        onChange={changePage}
+        hideOnSinglePage
+      />
       {!!drawerReport && (
         <DetailsDrawer
           close={() => setDrawerReport(undefined)}
@@ -178,6 +180,6 @@ export const OtherReportList = withEnhancedTable<OwnProps>(
   'otherReports',
   {
     maintainHistory: false,
-    pageSize: 5,
+    pageSize: PAGE_SIZE,
   },
 )

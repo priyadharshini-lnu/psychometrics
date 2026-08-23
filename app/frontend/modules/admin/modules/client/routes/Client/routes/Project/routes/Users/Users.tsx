@@ -3,6 +3,7 @@ import {
 } from 'react-router'
 import { Menu } from 'antd'
 
+import { AssignmentInd, Person } from '@thetalententerprise/glint/icons'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
 
 const { I18n } = window
@@ -27,8 +28,8 @@ export const Users = () => {
   }
 
   const menuItems = [
-    { key: 'participants', label: I18n.t('admin.participants') },
-    { key: 'assessors', label: I18n.t('admin.assessors') },
+    { key: 'participants', icon: <Person />, label: I18n.t('admin.participants') },
+    { key: 'assessors', icon: <AssignmentInd />, label: I18n.t('admin.assessors') },
   ]
 
   return (

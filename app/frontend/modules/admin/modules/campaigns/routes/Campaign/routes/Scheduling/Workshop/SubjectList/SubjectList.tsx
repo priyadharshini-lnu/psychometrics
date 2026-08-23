@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Button, MenuProps, Space, Switch, Tag, Typography, Checkbox, App,
 } from 'antd'
@@ -15,6 +15,7 @@ import {
   WorkshopSubject, WorkshopSubjectTR,
 } from '~/modules/admin/modules/campaigns/core/workshopSubject'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ResourceAvatar } from '~/glint'
 import { BulkSchedule } from '../BulkSchedule/BulkSchedule'
 import { Workshop } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -62,9 +63,9 @@ const connecter = connect(
   {},
 )
 type PropsFromRedux = ConnectedProps<typeof connecter>
-type Props = PropsFromRedux & OwnProps
+type Props = PropsFromRedux & OwnProps & { toggle?: ReactNode }
 
-export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser }) => {
+export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser, toggle }) => {
   const { id, campaignId } = useParams() as { id: string, campaignId: string }
   const [openEditDrawer, setOpenEditDrawer] = useState(false)
   const [currentSubjectId, setCurrentSubjectId] = useState('')
@@ -93,8 +94,18 @@ export const SubjectListComponent: React.FC<Props> = ({ workshop, currentUser })
 
   return (
     <>
-      <Resource config={config} name="workshop_subjects">
-        <SubjectsTable workshop={workshop} handleEditSubject={handleEditSubject} currentUser={currentUser} />
+      <Resource
+        title={I18n.t('admin.scheduling_tabs_assessment_center')}
+        config={config}
+        name="workshop_subjects"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenterParticipants}
+      >
+        <SubjectsTable
+          workshop={workshop}
+          handleEditSubject={handleEditSubject}
+          currentUser={currentUser}
+          toggle={toggle}
+        />
       </Resource>
       <EditSubjectDrawer
         workshopStartTime={workshop.startTime}
@@ -122,7 +133,9 @@ const ActiveSwitch: React.FC<{ subject: WorkshopSubject }> = ({ subject }) => {
   )
 }
 
-const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubject, currentUser }) => {
+const SubjectsTable: React.FC<SubjectTableProps & { toggle?: ReactNode }> = ({
+  workshop, handleEditSubject, currentUser, toggle,
+}) => {
   const { resource } = useResourceContext<WorkshopSubject>()
   const { campaignId } = useParams() as { campaignId: string }
   const [openForm, setOpenForm] = useState(false)
@@ -152,7 +165,10 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
 
   return (
     <>
-      <Resource.Filter name="user_full_name_or_user_email_cont">
+      <Resource.Filter
+        name="user_full_name_or_user_email_cont"
+        controls={toggle}
+      >
         {resource.meta.permissions?.manage && (
           <Button
             disabled={!selectedSubjects.length}
@@ -172,7 +188,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
         </Button>
 
       </Resource.Filter>
-      <Resource.Table pagination>
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={() => (
             <Space>
@@ -204,10 +220,12 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               {subject.id}
             </Space>
           )}
+          fixed="left"
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('admin.scheduling_columns_participants')}
           id="full_name"
+          hideable={false}
           width="40%"
           render={({ user, id, campaignAssessmentGroupId }, record) => {
             const { fullName, photoUrl } = user || {}
@@ -232,6 +250,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
               </div>
             )
           }}
+          fixed="left"
         />
         <Resource.Column<WorkshopSubject>
           title={I18n.t('admin.scheduling_columns_prework')}
@@ -272,6 +291,7 @@ const SubjectsTable: React.FC<SubjectTableProps> = ({ workshop, handleEditSubjec
         <Resource.Column<WorkshopSubject>
           title={I18n.t('shared.action')}
           id="actions"
+          hideable={false}
           key="actions"
           render={subject => (
             <ConditionalDropdown

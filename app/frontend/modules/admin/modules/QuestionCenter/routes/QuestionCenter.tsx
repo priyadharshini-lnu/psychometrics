@@ -1,11 +1,7 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
-import {
-  QuestionCircleOutlined,
-  BlockOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { Quiz, Widgets } from '@thetalententerprise/glint/icons'
 import QuestionList from './QuestionList'
 import BlockList from './BlockList'
 
@@ -27,37 +23,23 @@ const QuestionCenter: React.FC = () => {
   const items = [
     {
       key: 'questions',
-      icon: <QuestionCircleOutlined />,
+      icon: <Quiz />,
       label: I18n.t('admin.questions_title') || 'Questions',
     },
     {
       key: 'blocks',
-      icon: <BlockOutlined />,
+      icon: <Widgets />,
       label: I18n.t('admin.blocks_title') || 'Blocks',
     },
   ]
 
   return (
     <div>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('assessments.dashboard'),
-          },
-          {
-            label: () => (activeKey === 'questions' ? (I18n.t('admin.questions_title'))
-              : (I18n.t('admin.blocks_title'))
-            ),
-          },
-        ]}
-      />
       <Menu
         mode="horizontal"
         selectedKeys={[activeKey]}
         onSelect={handleSelect}
         items={items}
-        style={{ marginBottom: 20 }}
       />
       {activeKey === 'questions' && <QuestionList />}
       {activeKey === 'blocks' && <BlockList />}

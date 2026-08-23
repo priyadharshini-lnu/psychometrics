@@ -4127,7 +4127,6 @@ nl:
     admins: Admins
     create_global_assessor: Globale beoordelaar maken
     create_superadmin: Superbeheerder maken
-    dashboard: Dashboard
     drawer:
       link: Link
       role: Rol

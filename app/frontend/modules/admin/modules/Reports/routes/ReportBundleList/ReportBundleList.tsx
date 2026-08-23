@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react'
 import { FirstLevelTabs } from '../components/FirstLevelTabs'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ReportBundleFilter } from './ReportBundleFilter'
 import { ReportBundleTable } from './ReportBundleTable'
 import { ReportBundleFormModal } from './ReportBundleFormModal'
@@ -24,19 +24,13 @@ const ReportBundleList: React.FC = () => {
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('reports.dashboard'),
-          },
-          {
-            label: () => I18n.t('report_bundles.report_bundles'),
-          },
-        ]}
-      />
       <FirstLevelTabs />
-      <Resource config={config} name="report_families">
+      <Resource
+        title={I18n.t('report_bundles.report_bundles')}
+        config={config}
+        name="report_families"
+        settingsKey={TABLE_SETTINGS_KEYS.adminReportBundles}
+      >
         <ReportBundleFilter openModal={() => closeModal(false)} />
         <ReportBundleTable toggleModal={(reportBundle) => {
           setCurrentReportBundle(reportBundle)

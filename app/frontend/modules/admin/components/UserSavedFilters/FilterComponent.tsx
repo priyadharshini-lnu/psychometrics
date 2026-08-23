@@ -1,4 +1,4 @@
-import { Flex } from 'antd'
+import { Col, Flex, Row } from 'antd'
 import { EditFilterName } from './EditFilterName'
 
 export const FilterComponent = ({
@@ -49,15 +49,21 @@ export const FilterComponent = ({
           )
       }
     </Flex>
-    <Flex gap={4} align="baseline" wrap="wrap" className="m-4">
-      <RenderTags />
-      {
-        Object.keys(selectedFilters).length !== 0
-        && (
-          <Actions />
-        )
-      }
-      <SavedFiltersDropdown />
-    </Flex>
+    <Row justify="space-between" align="middle" className="m-4">
+      <Col>
+        <Flex gap={4} align="baseline" wrap="wrap">
+          <RenderTags />
+          {
+            Object.keys(selectedFilters).length !== 0
+            && (
+              <Actions />
+            )
+          }
+        </Flex>
+      </Col>
+      <Col>
+        <SavedFiltersDropdown />
+      </Col>
+    </Row>
   </>
 )

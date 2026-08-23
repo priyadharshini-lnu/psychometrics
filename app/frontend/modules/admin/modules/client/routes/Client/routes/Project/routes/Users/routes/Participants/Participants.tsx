@@ -2,7 +2,7 @@ import { FC, ChangeEvent, useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams, useNavigate, useLocation } from 'react-router'
 import {
-  Col, Input, Row, Space, Table, App, Modal, Pagination,
+  Input, Space, Table, App, Modal,
 } from 'antd'
 
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -21,9 +21,9 @@ import { isRequestInProgress } from '~/core/request'
 
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import settings from '~/modules/admin/settings'
-import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import { getProject as getCurrentProject } from '~/modules/admin/core/ui/breadcrumbs'
-import { CountDisplay } from '~/components/CountDisplay'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { TagListDisplay } from '~/components/TagListDisplay'
 import { ActionsMenu } from './ActionMenu'
 import { EditDrawer } from './EditDrawer'
@@ -83,12 +83,6 @@ const ParticipantsComponent: FC<Props> = ({
   const drawerParticipantId = searchParams.get(
     DRAWER_SEARCH_PARAMS.PARTICIPANT_ID,
   ) as string
-
-  useDocumentTitle(
-    I18n.t('admin.document_titles_project_participants', {
-      project: projectName || projectId,
-    }),
-  )
 
   useEffect(() => {
     fetchParticipants(projectId, tableConfig)
@@ -209,120 +203,112 @@ const ParticipantsComponent: FC<Props> = ({
     return <TagListDisplay tags={campaignTags} />
   }
 
+  const ParticipantsTable = (
+    <Table
+      pagination={false}
+      dataSource={participantsList}
+      rowKey={row => row.id}
+      onChange={onTableChange}
+    >
+      <Table.Column
+        key="userId"
+        dataIndex="userId"
+        title={I18n.t('shared.id')}
+        sorter
+        sortOrder={getSortOrder('userId')}
+      />
+      <Table.Column
+        key="name"
+        dataIndex="name"
+        title={I18n.t('shared.name')}
+        render={(_: string, { firstName, lastName }: Participant) => (
+          <>{`${firstName} ${lastName}`}</>
+        )}
+        sorter
+        sortOrder={getSortOrder('name')}
+      />
+      <Table.Column
+        key="email"
+        dataIndex="email"
+        title={I18n.t('shared.email')}
+        sorter
+        sortOrder={getSortOrder('email')}
+      />
+      <Table.Column
+        key="campaigns"
+        title={I18n.t(
+          'admin.project_participants_column_campaigns',
+        )}
+        render={renderCampaigns}
+        filters={[
+          {
+            text: I18n.t(
+              'admin.project_participants_filter_campaigns',
+            ),
+            value: 'no_campaigns',
+          },
+        ]}
+        filterMultiple={false}
+      />
+      <Table.Column
+        key="createdAt"
+        dataIndex="createdAt"
+        title={I18n.t(
+          'admin.project_participants_column_createdAt',
+        )}
+        sorter
+        sortOrder={getSortOrder('createdAt')}
+      />
+      <Table.Column
+        key="actions"
+        dataIndex="actions"
+        title={I18n.t(
+          'shared.actions',
+        )}
+        render={(_: string, { id, email, permissions }: Participant) => (
+          <ActionsMenu
+            id={id}
+            email={email}
+            permissions={permissions}
+            handleEdit={handleEditAdminClick}
+            handleResetPassword={handlePasswordResetClick}
+            handleDelete={handleDeleteAdminClick}
+          />
+        )}
+      />
+    </Table>
+  )
+
+  const Filter = (
+    <Space>
+      <Input.Search
+        placeholder={I18n.t(
+          'admin.project_participants_search_user',
+        )}
+        value={filters.filterableFields}
+        onChange={handleSearchInput}
+      />
+    </Space>
+  )
+
   return (
     <>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            totalCount={totalParticipants}
-            isLoading={isParticipantsListLoading}
-          />
-        </Col>
-        <Col>
-          <Space>
-            <Input.Search
-              placeholder={I18n.t(
-                'admin.project_participants_search_user',
-              )}
-              value={filters.filterableFields}
-              onChange={handleSearchInput}
-            />
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            pagination={false}
-            dataSource={participantsList}
-            rowKey={row => row.id}
-            loading={isParticipantsListLoading}
-            onChange={onTableChange}
-          >
-            <Table.Column
-              key="userId"
-              dataIndex="userId"
-              title={I18n.t('shared.id')}
-              sorter
-              sortOrder={getSortOrder('userId')}
-            />
-            <Table.Column
-              key="name"
-              dataIndex="name"
-              title={I18n.t('shared.name')}
-              render={(_: string, { firstName, lastName }: Participant) => (
-                <>{`${firstName} ${lastName}`}</>
-              )}
-              sorter
-              sortOrder={getSortOrder('name')}
-            />
-            <Table.Column
-              key="email"
-              dataIndex="email"
-              title={I18n.t('shared.email')}
-              sorter
-              sortOrder={getSortOrder('email')}
-            />
-            <Table.Column
-              key="campaigns"
-              title={I18n.t(
-                'admin.project_participants_column_campaigns',
-              )}
-              render={renderCampaigns}
-              filters={[
-                {
-                  text: I18n.t(
-                    'admin.project_participants_filter_campaigns',
-                  ),
-                  value: 'no_campaigns',
-                },
-              ]}
-              filterMultiple={false}
-            />
-            <Table.Column
-              key="createdAt"
-              dataIndex="createdAt"
-              title={I18n.t(
-                'admin.project_participants_column_createdAt',
-              )}
-              sorter
-              sortOrder={getSortOrder('createdAt')}
-            />
-            <Table.Column
-              key="actions"
-              dataIndex="actions"
-              title={I18n.t(
-                'shared.actions',
-              )}
-              render={(_: string, { id, email, permissions }: Participant) => (
-                <ActionsMenu
-                  id={id}
-                  email={email}
-                  permissions={permissions}
-                  handleEdit={handleEditAdminClick}
-                  handleResetPassword={handlePasswordResetClick}
-                  handleDelete={handleDeleteAdminClick}
-                />
-              )}
-            />
-          </Table>
-        </Col>
-      </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Pagination
-            hideOnSinglePage
-            current={page}
-            pageSize={settings.pagination.defaultPageSize}
-            total={totalParticipants}
-            onChange={changePage}
-          />
-        </Col>
-      </Row>
+      <DocumentTitle
+        text={I18n.t('admin.document_titles_project_participants', { project: projectName || projectId })}
+      />
+      <TableLayout
+        loading={isParticipantsListLoading}
+        table={ParticipantsTable}
+        filters={Filter}
+        title={I18n.t('admin.participants')}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total: totalParticipants,
+          onChange: changePage,
+        }}
+        recordCount={totalParticipants}
+      />
       <EditDrawer
         isOpen={drawerMode === DrawerMode.Edit}
         projectId={projectId}

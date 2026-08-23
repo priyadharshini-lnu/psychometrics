@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { Build, History, ReceiptLong } from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSupportAdmin } from '~/core/currentUser'
 
@@ -16,11 +17,11 @@ const AuditLogTabs: React.FC = () => {
   const isTenantRepair = pathname.includes('/tenant_repair')
 
   const menuItems = [
-    { key: 'logs', label: I18n.t('admin.audit_logs') },
+    { key: 'logs', icon: <ReceiptLong />, label: I18n.t('admin.audit_logs') },
     ...(isSupportAdmin(currentUser)
       ? [
-        { key: 'record_trace', label: I18n.t('admin.record_history_title') },
-        { key: 'tenant_repair', label: I18n.t('admin.tenant_repair_title') },
+        { key: 'record_trace', icon: <History />, label: I18n.t('admin.record_history_title') },
+        { key: 'tenant_repair', icon: <Build />, label: I18n.t('admin.tenant_repair_title') },
       ]
       : []),
   ]
@@ -36,6 +37,8 @@ const AuditLogTabs: React.FC = () => {
     if (isHistory) return 'record_trace'
     return 'logs'
   })()
+
+  if (menuItems.length < 2) return null
 
   return (
     <Menu

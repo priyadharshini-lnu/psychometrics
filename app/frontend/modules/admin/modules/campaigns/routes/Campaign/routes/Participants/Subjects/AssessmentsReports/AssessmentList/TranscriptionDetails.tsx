@@ -4,7 +4,7 @@ import {
   message, Tooltip,
 } from 'antd'
 import {
-  MoreOutlined, InfoCircleOutlined,
+  InfoCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { TableSkeleton } from '~/glint'
 import { downloadTextFile } from '~/utils/downloadTextFile'
@@ -167,9 +167,9 @@ const TranscriptionDetails: FC<Props> = ({
       width: 90,
       render: (mediaId: number, record: MediaResponse) => (
         record.assetUrl ? (
-          <a onClick={() => openMediaPreview(record)}>
+          <Button type="link" size="small" className="p-0" onClick={() => openMediaPreview(record)}>
             {mediaId}
-          </a>
+          </Button>
         ) : mediaId
       ),
     },
@@ -254,11 +254,6 @@ const TranscriptionDetails: FC<Props> = ({
         return (
           <ConditionalDropdown
             menu={menu}
-            innerElement={(
-              <a>
-                <MoreOutlined />
-              </a>
-            )}
           />
         )
       },

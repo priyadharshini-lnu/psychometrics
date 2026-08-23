@@ -15,6 +15,7 @@ import {
   WorkshopInvitedSubjectTR, WorkshopInvitedSubject,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ResourceAvatar } from '~/glint'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
@@ -79,7 +80,12 @@ export const SubjectListComponent:React.FC<Props> = ({ openModal, importCSV, imp
 
   return (
     <>
-      <Resource config={config} name="workshop_invited_subjects">
+      <Resource
+        title={I18n.t('admin.individual_invite_tabs_invitation_status')}
+        config={config}
+        name="workshop_invited_subjects"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingInvitesInviteParticipants}
+      >
         <SubjectsTable
           openModal={openModal}
           assessmentCenterPath={assessmentCenterPath}
@@ -180,7 +186,7 @@ const SubjectsTable = ({
         selectedWorkshopInvitedSubjects={selectedWorkshopInvitedSubjects}
         showBulkImportModal={showBulkImportModal}
       />
-      <Resource.Table pagination>
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={() => (
             <Space>
@@ -205,12 +211,15 @@ const SubjectsTable = ({
               />
             </Space>
           )}
+          fixed="left"
         />
         <Resource.Column
           title={I18n.t('common.column.id')}
           id="id"
+          hideable={false}
           width="10%"
           sorter
+          fixed="left"
         />
         <Resource.Column<WorkshopInvitedSubject>
           title={I18n.t('admin.column_participant')}
@@ -296,8 +305,10 @@ const SubjectsTable = ({
         />
         <Resource.Column<WorkshopInvitedSubject>
           id="remove"
+          hideable={false}
           title={I18n.t('shared.remove')}
           render={(_, workshopInvitedSubject) => <RemoveSubject workshopInvitedSubject={workshopInvitedSubject} />}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={{ SubjectAddFormModal }} />

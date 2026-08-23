@@ -32,6 +32,7 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={skill => (
             skill.id
@@ -68,6 +69,7 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
         <Resource.Column<ReflectionQuestion>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, reflectionQuestion) => (
             <Dropdown
               reflectionQuestion={reflectionQuestion}
@@ -76,6 +78,7 @@ export const ReflectionQuestionTable: React.FC<Props> = () => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <ConfirmationModal

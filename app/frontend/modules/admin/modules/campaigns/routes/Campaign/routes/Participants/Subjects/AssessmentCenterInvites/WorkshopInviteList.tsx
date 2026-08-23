@@ -1,9 +1,10 @@
 import * as t from 'io-ts'
 import {
-  useParams,
+  Link, useParams,
 } from 'react-router-dom'
 import { Tag } from 'antd'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 
 const { I18n } = window
 
@@ -49,8 +50,16 @@ const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <h3>{I18n.t('admin.assessment_center_invites')}</h3>
-      <Resource config={config} name="workshop_invited_subjects">
+      <Resource
+        title={I18n.t('admin.assessment_center_invites')}
+        config={config}
+        name="workshop_invited_subjects"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignParticipantsSubjectAssessmentCenterInvites}
+      >
+        <Resource.Filter
+          hideSearch
+          name=""
+        />
         <Resource.Table pagination>
           <Resource.Column<Response>
             title={I18n.t('shared.id')}
@@ -60,14 +69,15 @@ const WorkshopList: React.FC = () => {
           <Resource.Column<Response>
             title={I18n.t('admin.scheduling_columns_title')}
             id="name"
+            hideable={false}
             width="20%"
             render={(_, { workshopInvite }) => (
-              <a
+              <Link
               // eslint-disable-next-line max-len
-                href={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites/${workshopInvite.id}/subjects`}
+                to={`/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling/invites/${workshopInvite.id}/subjects`}
               >
                 {workshopInvite?.title}
-              </a>
+              </Link>
             )}
           />
           <Resource.Column<Response>

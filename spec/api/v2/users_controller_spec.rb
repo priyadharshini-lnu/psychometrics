@@ -91,7 +91,8 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
         preferences = JSON.parse(response.body)['data']['attributes']['preferences']
         expect(preferences).to include(
-          'category' => 'theme', 'config_key' => 'appearance', 'payload' => { 'mode' => 'dark' }
+          'category' => 'theme', 'config_key' => 'appearance', 'payload' => { 'mode' => 'dark' },
+          'resource_type' => nil, 'resource_id' => nil
         )
       end
 

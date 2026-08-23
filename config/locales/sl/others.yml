@@ -4163,7 +4163,6 @@ sl:
     admins: Skrbniki
     create_global_assessor: Ustvarite globalnega ocenjevalca
     create_superadmin: Ustvarjanje super skrbnika
-    dashboard: Nadzorna plošča
     drawer:
       link: Povezava
       role: Vloga

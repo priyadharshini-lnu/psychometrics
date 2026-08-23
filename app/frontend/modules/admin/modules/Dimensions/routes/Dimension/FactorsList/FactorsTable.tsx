@@ -42,15 +42,18 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Factor>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={factor => factor.id}
           width={100}
+          fixed="left"
         />
         <Resource.Column<Factor>
           title={I18n.t('shared.active')}
           id="active"
           render={factor => <ActiveSwitch factor={factor} />}
           width={10}
+          fixed="left"
         />
         <Resource.Column<Factor>
           title={I18n.t('shared.icon')}
@@ -151,6 +154,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
         <Resource.Column<Factor>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, factor) => (
             <Dropdown
               factor={factor}
@@ -158,6 +162,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <Drawer

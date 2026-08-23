@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Table, Row, Col, Switch, App, Tag, Button, Space,
+  Table, Row, Col, Switch, App, Tag, Button, Space, theme,
 } from 'antd'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { SectionTitle } from '~/modules/admin/components/TableTitle'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
@@ -66,6 +66,7 @@ const AssessmentList: React.FC<Props> = ({
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message, modal } = App.useApp()
+  const { token } = theme.useToken()
   const bulkLoading = bulkExportRawFactorScoresLoading || bulkExportNormFactorScoresLoading
 
   const hasAnyExportPermission = (assessment: Assessment) => (
@@ -139,8 +140,6 @@ const AssessmentList: React.FC<Props> = ({
   }
 
   useEffect(() => {
-    // This effect is used to trigger a re-render of the drawer,so that updating the assessment through the drawer shows
-    // the updated values without needing to close and open it again to reflect the change.
     if (!drawerAssessment?.id) return
     const foundAssessment = list.find(({ id }) => id === drawerAssessment.id)
     if (foundAssessment) {
@@ -159,9 +158,9 @@ const AssessmentList: React.FC<Props> = ({
   return (
     <Row>
       <Col span={24}>
-        <Row justify="space-between" className="pm">
-          <Col span={8} className="pls">
-            <h3>{I18n.t('admin.assessments_label')}</h3>
+        <Row justify="space-between" style={{ marginTop: token.margin }}>
+          <Col span={8}>
+            <SectionTitle>{I18n.t('admin.assessments_label')}</SectionTitle>
           </Col>
           <Space>
             <Button
@@ -203,7 +202,9 @@ const AssessmentList: React.FC<Props> = ({
             render={(text, record: Assessment) => (
               <>
                 <div>
-                  <a onClick={() => setDrawerAssessment(record)}>{text}</a>
+                  <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(record)}>
+                    {text}
+                  </Button>
                 </div>
                 {record.isTimed && record.fixedTimeDuration && (
                   <Tag color="blue">
@@ -263,14 +264,17 @@ const AssessmentList: React.FC<Props> = ({
               }
               return (
                 permissions.updateNorm ? (
-                  <a
+                  <Button
+                    type="link"
+                    size="small"
+                    className="p-0"
                     onClick={
                       () => openModal('UpdateNormModal',
                         { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
                     }
                   >
                     {normName || I18n.t('common.text.default')}
-                  </a>
+                  </Button>
                 ) : normName || I18n.t('common.text.default')
               )
             }}
@@ -294,7 +298,10 @@ const AssessmentList: React.FC<Props> = ({
                 return _.join(availableLocales, '')
               }
               return (
-                <a
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
                   onClick={
                     () => openModal('UpdateLocalesModal',
                       {
@@ -307,7 +314,7 @@ const AssessmentList: React.FC<Props> = ({
                   }
                 >
                   {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
-                </a>
+                </Button>
               )
             }}
           />
@@ -338,12 +345,19 @@ const AssessmentList: React.FC<Props> = ({
               }
               return (!universalLink
                 ? (
-                  <a onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}>
+                  <Button
+                    type="link"
+                    size="small"
+                    className="p-0"
+                    onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}
+                  >
                     {I18n.t('frontend.activate')}
-                  </a>
+                  </Button>
                 )
                 : (
-                  <a onClick={() => open()}>{I18n.t('frontend.manage')}</a>
+                  <Button type="link" size="small" className="p-0" onClick={() => open()}>
+                    {I18n.t('frontend.manage')}
+                  </Button>
                 )
               )
             }}
@@ -393,11 +407,6 @@ const AssessmentList: React.FC<Props> = ({
                     modal,
                   })
                 }
-                innerElement={(
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                )}
               />
             )}
           />

@@ -2,16 +2,16 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Table, Row, Col, Input, Pagination, Typography,
+  Table, Input, Typography,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
-import { AppstoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import settings from '~/modules/admin/settings'
 import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import styles from './styles.less'
 
 const connecter = connect(
@@ -71,27 +71,29 @@ const UserList: React.FC<Props> = (
         },
         ]}
       />
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.navigation_users')}`}</span>
-        </Col>
-        <div className="float-r">
+      <TableLayout
+        title={I18n.t('admin.navigation_users')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total,
+          onChange: changePage,
+        }}
+        filters={(
           <Search
             placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
             value={filters.filterableFields}
             onChange={e => changeFilter('filterableFields', e.target.value)}
           />
-        </div>
-      </Row>
-      <Row>
-        <Col span={24}>
+        )}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             dataSource={list}
             onChange={onTableChange}
+            scroll={{ x: 'max-content' }}
             onRow={record => ({
               onClick: () => {
                 navigate(`/assessors/campaigns/${campaignId}/users/${record.id}`)
@@ -115,6 +117,7 @@ const UserList: React.FC<Props> = (
               title={I18n.t('shared.name')}
               key="fullName"
               dataIndex="fullName"
+              minWidth={200}
               sorter
               sortOrder={getSortOrder('fullName')}
             />
@@ -122,12 +125,14 @@ const UserList: React.FC<Props> = (
               title={I18n.t('shared.email')}
               key="email"
               sorter
+              minWidth={200}
               sortOrder={getSortOrder('email')}
               dataIndex="email"
             />
             <Column
               title={I18n.t('assessors.campaigns_list.column.evaluation_status')}
               key="status"
+              minWidth={150}
               render={({ evaluationCompletionStatus }) => (
                 I18n.t(`admin.assessor_subjects_statuses_${evaluationCompletionStatus}`)
               )}
@@ -135,32 +140,26 @@ const UserList: React.FC<Props> = (
             <Column
               title={I18n.t('assessors.campaigns_list.column.evaluation_count')}
               key="evaluationsCompleted"
+              minWidth={100}
               render={({ totalEvaluations, completedEvaluations }) => `${completedEvaluations} / ${totalEvaluations}`}
             />
             <Column
               title={I18n.t('assessors.campaigns_list.column.moderation_status')}
-              key="status"
+              key="moderationStatus"
+              minWidth={150}
               render={({ moderationCompletionStatus }) => (
                 I18n.t(`admin.assessor_subjects_statuses_${moderationCompletionStatus}`)
               )}
             />
             <Column
               title={I18n.t('assessors.campaigns_list.column.moderation_count')}
-              key="evaluationsCompleted"
+              key="moderationCompleted"
+              minWidth={100}
               render={({ totalModeration, completedModeration }) => `${completedModeration} / ${totalModeration}`}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={settings.pagination.defaultPageSize}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
     </>
   )
 }

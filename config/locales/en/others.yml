@@ -4166,7 +4166,6 @@ en:
     admins: Admins
     create_global_assessor: Create Global Assessor
     create_superadmin: Create Super Admin
-    dashboard: Dashboard
     drawer:
       link: Link
       role: Role

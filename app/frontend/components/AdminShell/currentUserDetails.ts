@@ -2,11 +2,17 @@ export type PreferenceRow = {
   category: string
   config_key: string
   payload: Record<string, unknown>
+  resource_type?: string | null
+  resource_id?: number | string | null
+}
+
+export type PreferenceScope = {
+  resourceType: string
+  resourceId: string
 }
 
 export type SignInNoticeKind = 'last_sign_in' | 'last_unsuccessful'
 
-/** Set only on the first details fetch after a sign-in; the server clears it on read. */
 export type SignInNotice = {
   kind: SignInNoticeKind
   at: string
@@ -64,7 +70,6 @@ type InitialStateUser = {
   preferences?: PreferenceRow[]
 }
 
-/** The server-seeded user, already in the page — the same payload the SPA store preloads from. */
 export const currentUserFromInitialState = (): CurrentUserDetails | null => {
   // eslint-disable-next-line no-underscore-dangle
   const raw: InitialStateUser | null | undefined = window.__INITIAL_STATE__?.currentUser
@@ -114,8 +119,19 @@ export const fetchCurrentUserDetails = (): Promise<CurrentUserDetails | null> =>
   return inflight
 }
 
+const scopeOf = (row: PreferenceRow) => (
+  row.resource_type == null || row.resource_id == null
+    ? null
+    : { resourceType: row.resource_type, resourceId: String(row.resource_id) }
+)
+
 export const findPreference = (
-  rows: PreferenceRow[], category: string, configKey: string,
+  rows: PreferenceRow[], category: string, configKey: string, scope?: PreferenceScope,
 ): Record<string, unknown> | null => (
-  rows.find(row => row.category === category && row.config_key === configKey)?.payload ?? null
+  rows.find((row) => {
+    if (row.category !== category || row.config_key !== configKey) return false
+    const rowScope = scopeOf(row)
+    if (scope == null || rowScope == null) return scope == null && rowScope == null
+    return rowScope.resourceType === scope.resourceType && rowScope.resourceId === scope.resourceId
+  })?.payload ?? null
 )

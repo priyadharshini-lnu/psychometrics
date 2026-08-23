@@ -30,17 +30,6 @@ import {
 
 const { I18n } = window
 
-const connector = connect(
-  (state: RootState) => ({
-    columnDefinitions: getColumns(state),
-    sheetDetails: getCurrent(state),
-  }),
-  {
-    fetchSingle,
-    add: saveColumn,
-  },
-)
-
 interface OwnProps {
   isOpen: boolean
   toggleDrawer: () => void
@@ -48,6 +37,19 @@ interface OwnProps {
   parentResourceId: number
   sheetType: SheetType
 }
+
+const connector = connect(
+  (state: RootState, { parentResourceType, parentResourceId, sheetType }: OwnProps) => ({
+    columnDefinitions: getColumns(state, {
+      parentType: parentResourceType, parentId: parentResourceId, sheetType,
+    }),
+    sheetDetails: getCurrent(state),
+  }),
+  {
+    fetchSingle,
+    add: saveColumn,
+  },
+)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 

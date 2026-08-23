@@ -14,7 +14,9 @@ export const CampaignTemplatesFilter: React.FC<{ openModal: () => void }> = ({
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter name="filterable_fields">
+    <Resource.Filter
+      name="filterable_fields"
+    >
       <Button type="primary" disabled={tableLoading} onClick={openModal} icon={<Add />}>
         {I18n.t('common.actions.create')}
       </Button>

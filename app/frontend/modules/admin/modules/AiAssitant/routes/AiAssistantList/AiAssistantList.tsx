@@ -3,9 +3,11 @@ import { connect, ConnectedProps } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { AiAssistantTR } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { Resource } from '~/modules/admin/components/Resource'
-import { AiAssistantsBreadcrumb } from './AiAssistantsBreadcrumb'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { AiAssistantsTable } from './AiAssistantsTable'
 import { AiAssistantsFilter } from './AiAssistantFilter'
+
+const { I18n } = window
 
 const connector = connect(
   () => ({
@@ -27,13 +29,15 @@ const AiAssistantList: React.FC<PropsFromRedux> = ({ openModal }) => {
   }
 
   return (
-    <>
-      <Resource config={config} name="assistants">
-        <AiAssistantsBreadcrumb />
-        <AiAssistantsFilter openModal={openModal} />
-        <AiAssistantsTable />
-      </Resource>
-    </>
+    <Resource
+      title={I18n.t('admin.ai_assistants')}
+      config={config}
+      name="assistants"
+      settingsKey={TABLE_SETTINGS_KEYS.adminAiAssistants}
+    >
+      <AiAssistantsFilter openModal={openModal} />
+      <AiAssistantsTable />
+    </Resource>
   )
 }
 

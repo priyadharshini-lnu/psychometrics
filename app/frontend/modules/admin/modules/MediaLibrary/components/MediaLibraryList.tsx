@@ -1,12 +1,12 @@
 import React from 'react'
 import { Resource } from '~/modules/admin/components/Resource'
-import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import MediaLibraryTable from './MediaLibraryTable'
 
 const { I18n } = window
 
 const MediaLibraryList: React.FC = () => {
-  useDocumentTitle(I18n.t('admin.media_library_page_title'))
   const baseApiConfig = {
     trackUrl: true,
     apiConfig: {
@@ -17,9 +17,17 @@ const MediaLibraryList: React.FC = () => {
   }
 
   return (
-    <Resource config={baseApiConfig} name="libraries">
-      <MediaLibraryTable />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.media_library')} />
+      <Resource
+        title={I18n.t('admin.media_library')}
+        config={baseApiConfig}
+        name="libraries"
+        settingsKey={TABLE_SETTINGS_KEYS.adminMediaLibrary}
+      >
+        <MediaLibraryTable />
+      </Resource>
+    </>
   )
 }
 

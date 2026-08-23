@@ -4,6 +4,7 @@ import { ItemType } from 'antd/es/menu/interface'
 import {
   Outlet, useNavigate, useParams, useLocation,
 } from 'react-router-dom'
+import { Apartment, Hub, Psychology } from '@thetalententerprise/glint/icons'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { useResources } from '~/hooks/useResources'
@@ -31,13 +32,17 @@ const DimensionComponent: React.FC = () => {
 
   const menuItems: ItemType[] = useMemo(() => {
     const items: ItemType[] = [
-      { key: '/factors', label: I18n.t('admin.navigation_factors') },
+      { key: '/factors', icon: <Hub />, label: I18n.t('admin.navigation_factors') },
     ]
     if (dimensions?.occupationsEnabled) {
-      items.push({ key: '/occupations', label: I18n.t('admin.navigation_occupations') })
+      items.push({ key: '/occupations', icon: <Apartment />, label: I18n.t('admin.navigation_occupations') })
     }
     if (dimensions?.innovationStylesEnabled) {
-      items.push({ key: '/innovation_styles', label: I18n.t('admin.navigation_innovation_styles') })
+      items.push({
+        key: '/innovation_styles',
+        icon: <Psychology />,
+        label: I18n.t('admin.navigation_innovation_styles'),
+      })
     }
     return items
   }, [dimensionId, dimensions])
@@ -69,12 +74,14 @@ const DimensionComponent: React.FC = () => {
           { label: () => breadcrumbTitle },
         ]}
       />
-      <Menu
-        items={menuItems}
-        onSelect={({ key }) => routeUtils.moveTo(navigate, prefix, key)}
-        selectedKeys={[activePath]}
-        mode="horizontal"
-      />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={({ key }) => routeUtils.moveTo(navigate, prefix, key)}
+          selectedKeys={[activePath]}
+          mode="horizontal"
+        />
+      )}
       <Outlet />
     </div>
   )

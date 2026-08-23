@@ -70,7 +70,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }, [queryFromUrl])
 
   useDeepCompareEffect(() => {
-    if (isMounted) fetch()
+    // Nothing awaits this refetch; the failure is already on requests.fetch, so catching only silences the rejection.
+    if (isMounted) fetch().catch(() => null)
   }, [debounceQueryState])
 
   const { data, requests, meta } = state
@@ -630,5 +631,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     addRelationships,
     uploadFileAction,
     getAppliedFiltersFromURL,
+    appliedQuery: queryFromUrl,
   }
 }

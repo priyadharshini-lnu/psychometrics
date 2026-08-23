@@ -7,6 +7,7 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { CampaignTemplate } from '~/modules/admin/core/types/campaignTemplates'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
 
 const { I18n } = window
 
@@ -37,8 +38,10 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<CampaignTemplate>
         title={I18n.t('shared.id')}
         id="id"
+        hideable={false}
         sorter
         width={100}
+        fixed="left"
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('shared.name')}
@@ -46,6 +49,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         render={campaignTemplate => <Typography.Text copyable>{campaignTemplate.name}</Typography.Text>}
         width={400}
         sorter
+        fixed="left"
       />
       <Resource.Column<CampaignTemplate>
         title={I18n.t('admin.campaign_templates_column_assessment')}
@@ -105,7 +109,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
             {campaignTemplate.owner?.name}
           </Typography.Link>
         ) : (
-          <Typography.Text>{I18n.t('admin.platform_owner')}</Typography.Text>
+          <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
         ))}
         width={400}
         sorter
@@ -125,6 +129,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<CampaignTemplate>
         title={I18n.t('shared.action')}
         id="action"
+        hideable={false}
         render={(_, campaignTemplate) => (
           <Dropdown
             campaignTemplate={campaignTemplate}
@@ -133,6 +138,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
           />
         )}
         width={100}
+        fixed="right"
       />
     </Resource.Table>
   )

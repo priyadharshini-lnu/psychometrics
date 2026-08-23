@@ -4158,7 +4158,6 @@ pl:
     admins: Administratorzy
     create_global_assessor: Utwórz globalnego asesora
     create_superadmin: Utwórz superadministratora
-    dashboard: Deska rozdzielcza
     drawer:
       link: Łącze
       role: Rola

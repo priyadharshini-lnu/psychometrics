@@ -4145,7 +4145,6 @@ sr-Cyrl:
     admins: Администратори
     create_global_assessor: Креирајте глобалног процењивача
     create_superadmin: Креирајте Супер Админ
-    dashboard: Контролну таблу
     drawer:
       link: Везу
       role: Улогу
