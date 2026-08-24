@@ -81,7 +81,7 @@ export const ToolsMenu: React.FC<ToolsMenuProps> = ({
 
   return (
     <>
-      <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight" className="me-4">
+      <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight">
         <Button
           type="default"
           icon={isExporting ? <LoadingOutlined /> : <ToolOutlined />}
