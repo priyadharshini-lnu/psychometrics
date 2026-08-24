@@ -2131,6 +2131,7 @@ nl:
     projects_mettl_schedule_records_secure_browser_enabled: Veilige browser inschakelen
     projects_mettl_schedule_records_settings: Instellingen
     projects_mettl_schedule_records_show_remaining_counts: Weergave van resterende telling inschakelen
+    projects_mettl_schedule_records_title: Mettl-schema's
     projects_mettl_schedule_records_visual_proctoring_enabled: Visuele tests inschakelen
     projects_mettl_schedule_records_web_proctoring_enabled: Webtests inschakelen
     projects_profile_settings_form_fields_enabled: Ingeschakeld
@@ -2526,11 +2527,16 @@ nl:
       approval_status_in: Goedkeuringsstatus
       approver_user_id_in: Goedkeurder
       assessment_id_in: Beoordeling
+      assessment_name_cont: Onderzoek
       campaign_id_in: Campagne
+      campaign_name_cont: Campagne
       client_id_in: Klant
+      client_name_cont: Cliënt
       project_id_in: Project
+      project_name_cont: Project
       qc_user_id_in: QC-gebruiker
       report_id_in: Verslag
+      report_name_cont: Rapport
       subject_email_cont: Onderwerp E-mail
       subject_full_name_cont: Onderwerpnaam
       user_email_cont: E-mailadres van de gebruiker
@@ -3167,6 +3173,9 @@ nl:
     system_prompt: Systeem prompt
     tab_text_one: Menu
     tab_text_two: Submenu
+    table_display_columns: Kolommen
+    table_display_filters: Filters
+    table_display_title: Weergave
     table_more_actions: Meer acties
     tabs_results: Resultaten
     tabs_settings: Instellingen
@@ -3235,6 +3244,7 @@ nl:
     threesixity_success: Campagne met meerdere beoordelaars is succesvol aangemaakt.
     threesixity_success_job: De taak voor het maken van een campagne met meerdere beoordelaars is met succes gepland.
     threesixty: 360°-campagne
+    threesixty_campaigns_instruction_visible_to_participants: Laat deze instructie aan de deelnemers zien.
     threesixty_campaigns_mail_history_date: Datum
     threesixty_campaigns_mail_history_download_details: Details downloaden
     threesixty_campaigns_mail_history_emails_sent: Verzonden e-mails
@@ -3250,6 +3260,8 @@ nl:
     threesixty_campaigns_menu_report_menu_report_approval_title: Instellingen voor goedkeuring van rapporten
     threesixty_campaigns_menu_report_menu_report_options_title: Rapportopties
     threesixty_campaigns_menu_report_title: Rapporteer
+    threesixty_campaigns_schedule_date_presets: Vooraf ingestelde planningsdata
+    threesixty_campaigns_send_reminders_automatically: Automatisch herinneringen verzenden
     time_label: Tijd
     time_zone: Tijdzone
     timed_label: 'Tijdcode: %{time_text}'

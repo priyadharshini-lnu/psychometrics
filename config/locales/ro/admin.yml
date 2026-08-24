@@ -2131,6 +2131,7 @@ ro:
     projects_mettl_schedule_records_secure_browser_enabled: Activați browserul securizat
     projects_mettl_schedule_records_settings: Setări
     projects_mettl_schedule_records_show_remaining_counts: Activați afișarea numărului rămas
+    projects_mettl_schedule_records_title: Programul Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Activați supravegherea vizuală
     projects_mettl_schedule_records_web_proctoring_enabled: Activarea supravegherii web
     projects_profile_settings_form_fields_enabled: Activat
@@ -2526,11 +2527,16 @@ ro:
       approval_status_in: Starea aprobării
       approver_user_id_in: Persoană cu drept de aprobare
       assessment_id_in: Evaluare
+      assessment_name_cont: Evaluare
       campaign_id_in: Campanie
+      campaign_name_cont: Campanie
       client_id_in: Client
+      client_name_cont: Client
       project_id_in: Proiect
+      project_name_cont: Proiect
       qc_user_id_in: Utilizator QC
       report_id_in: Raport
+      report_name_cont: Raport
       subject_email_cont: Subiectul e-mailului
       subject_full_name_cont: Numele subiectului
       user_email_cont: Adresa de e-mail a utilizatorului
@@ -3159,6 +3165,9 @@ ro:
     system_prompt: Solicitare de sistem
     tab_text_one: Meniu
     tab_text_two: Submeniu
+    table_display_columns: Coloane
+    table_display_filters: Filtre
+    table_display_title: Afişa
     table_more_actions: Mai multe acțiuni
     tabs_results: Rezultatele
     tabs_settings: Setări
@@ -3227,6 +3236,7 @@ ro:
     threesixity_success: Campania Multi Rater a fost creată cu succes.
     threesixity_success_job: Jobul de creare a campaniei Multi Rater a fost programat cu succes.
     threesixty: Campania 360
+    threesixty_campaigns_instruction_visible_to_participants: Arătați aceste instrucțiuni participanților
     threesixty_campaigns_mail_history_date: Data
     threesixty_campaigns_mail_history_download_details: Descărcați detalii
     threesixty_campaigns_mail_history_emails_sent: Email-uri trimise
@@ -3242,6 +3252,8 @@ ro:
     threesixty_campaigns_menu_report_menu_report_approval_title: Setări de aprobare a rapoartelor
     threesixty_campaigns_menu_report_menu_report_options_title: Opțiuni de raportare
     threesixty_campaigns_menu_report_title: Raport
+    threesixty_campaigns_schedule_date_presets: Datele programării prestabilite
+    threesixty_campaigns_send_reminders_automatically: Trimiteți mementouri automat
     time_label: Oră
     time_zone: Fus orar
     timed_label: 'Link: %{time_text}'

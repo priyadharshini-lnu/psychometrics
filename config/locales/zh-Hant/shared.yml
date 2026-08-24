@@ -242,6 +242,7 @@ zh-Hant:
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     system_check_uploading: 正在上传
     table:
+      collapse: 坍塌
       entries:
         selected:
           one: 選取 1 行
@@ -250,6 +251,7 @@ zh-Hant:
           one: '總數 : 1'
           other: '總數 : {{count}}'
           zero: '總數 : 0'
+      expand: 擴張
     tags: 標籤
     terms_conditions_privacy: 隱私權聲明
     tools: 工具

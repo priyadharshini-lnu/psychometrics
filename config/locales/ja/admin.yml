@@ -2131,6 +2131,7 @@ ja:
     projects_mettl_schedule_records_secure_browser_enabled: セキュアブラウザを有効にする
     projects_mettl_schedule_records_settings: 設定
     projects_mettl_schedule_records_show_remaining_counts: 残り回数の表示を有効にする
+    projects_mettl_schedule_records_title: メットル社のスケジュール
     projects_mettl_schedule_records_visual_proctoring_enabled: ビジュアル・プロクターを有効にする
     projects_mettl_schedule_records_web_proctoring_enabled: ウェブ・プロテクターを有効にする
     projects_profile_settings_form_fields_enabled: 有効
@@ -2526,11 +2527,16 @@ ja:
       approval_status_in: 承認状況
       approver_user_id_in: 承認者
       assessment_id_in: 評価
+      assessment_name_cont: 評価
       campaign_id_in: キャンペーン
+      campaign_name_cont: キャンペーン
       client_id_in: クライアント
+      client_name_cont: クライアント
       project_id_in: プロジェクト
+      project_name_cont: プロジェクト
       qc_user_id_in: QCユーザー
       report_id_in: レポート
+      report_name_cont: 報告
       subject_email_cont: 件名メール
       subject_full_name_cont: 科目名
       user_email_cont: ユーザーのメールアドレス
@@ -3167,6 +3173,9 @@ ja:
     system_prompt: システムプロンプト
     tab_text_one: メニュー
     tab_text_two: サブメニュー
+    table_display_columns: コラム
+    table_display_filters: フィルター
+    table_display_title: 画面
     table_more_actions: より多くの行動
     tabs_results: 結果
     tabs_settings: 設定
@@ -3235,6 +3244,7 @@ ja:
     threesixity_success: マルチ評価者キャンペーンが正常に作成されました。
     threesixity_success_job: マルチレイターキャンペーン作成ジョブが正常にスケジュールされました。
     threesixty: 360キャンペーン
+    threesixty_campaigns_instruction_visible_to_participants: 参加者にこの指示を見せてください
     threesixty_campaigns_mail_history_date: 日付
     threesixty_campaigns_mail_history_download_details: ダウンロード詳細
     threesixty_campaigns_mail_history_emails_sent: 送信メール
@@ -3250,6 +3260,8 @@ ja:
     threesixty_campaigns_menu_report_menu_report_approval_title: レポート承認設定
     threesixty_campaigns_menu_report_menu_report_options_title: レポートオプション
     threesixty_campaigns_menu_report_title: レポート
+    threesixty_campaigns_schedule_date_presets: 事前に設定されたスケジュール日
+    threesixty_campaigns_send_reminders_automatically: リマインダーを自動的に送信する
     time_label: 時間
     time_zone: タイムゾーン
     timed_label: 公開日時：%{time_text}

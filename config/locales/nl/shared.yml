@@ -242,6 +242,7 @@ nl:
     switch_to_laptop_or_desktop: Overschakelen naar laptop of desktop
     system_check_uploading: Uploaden
     table:
+      collapse: Instorten
       entries:
         selected:
           one: 1 rij geselecteerd
@@ -250,6 +251,7 @@ nl:
           one: 'Totaal : 1'
           other: 'Totaal : {{count}}'
           zero: 'Totaal : 0'
+      expand: Uitbreiden
     tags: Tags
     terms_conditions_privacy: Privacyverklaring
     tools: Gereedschap

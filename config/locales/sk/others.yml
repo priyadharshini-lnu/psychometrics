@@ -1889,7 +1889,6 @@ sk:
       select: Vybrať
       selected: Vybraný
       subject: Predmet
-      total: Totálny
       view_as: Zobraziť ako
     tooltips:
       hide: Skryť

@@ -1893,7 +1893,6 @@ pl:
       select: Wybrać
       selected: Wybrany
       subject: Temat
-      total: Łączny
       view_as: Wyświetl jako
     tooltips:
       hide: Ukrywać

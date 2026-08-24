@@ -2135,6 +2135,7 @@ hi:
     projects_mettl_schedule_records_secure_browser_enabled: सुरक्षित ब्राउज़र सक्षम करें
     projects_mettl_schedule_records_settings: सेटिंग्स
     projects_mettl_schedule_records_show_remaining_counts: शेष संख्या दिखाने की सुविधा सक्षम करें
+    projects_mettl_schedule_records_title: धातु अनुसूचियाँ
     projects_mettl_schedule_records_visual_proctoring_enabled: दृश्य निगरानी सक्षम करें
     projects_mettl_schedule_records_web_proctoring_enabled: वेब प्रॉक्टरिंग सक्षम करें
     projects_profile_settings_form_fields_enabled: सक्षम
@@ -2530,11 +2531,16 @@ hi:
       approval_status_in: अनुमोदन की स्थिति
       approver_user_id_in: अनुमोदक
       assessment_id_in: मूल्यांकन
+      assessment_name_cont: आकलन
       campaign_id_in: अभियान
+      campaign_name_cont: अभियान
       client_id_in: ग्राहक
+      client_name_cont: ग्राहक
       project_id_in: परियोजना
+      project_name_cont: परियोजना
       qc_user_id_in: क्यूसी यूज़र
       report_id_in: रिपोर्ट
+      report_name_cont: प्रतिवेदन
       subject_email_cont: विषय ईमेल
       subject_full_name_cont: विषय नाम
       user_email_cont: उपयोगकर्ता ईमेल
@@ -3171,6 +3177,9 @@ hi:
     system_prompt: प्रणाली संकेत
     tab_text_one: मेनू
     tab_text_two: उपमेनू
+    table_display_columns: कॉलम
+    table_display_filters: फिल्टर
+    table_display_title: प्रदर्शन
     table_more_actions: अधिक क्रियाएँ
     tabs_results: परिणाम
     tabs_settings: सेटिंग्स
@@ -3239,6 +3248,7 @@ hi:
     threesixity_success: मल्टी रेटर अभियान सफलतापूर्वक बनाया गया।
     threesixity_success_job: मल्टी रेटर अभियान निर्माण का कार्य सफलतापूर्वक अनुसूचित किया गया।
     threesixty: 360 अभियान
+    threesixty_campaigns_instruction_visible_to_participants: प्रतिभागियों को यह निर्देश दिखाएं
     threesixty_campaigns_mail_history_date: दिनांक
     threesixty_campaigns_mail_history_download_details: डाउनलोड विवरण
     threesixty_campaigns_mail_history_emails_sent: भेजे गए ईमेल
@@ -3254,6 +3264,8 @@ hi:
     threesixty_campaigns_menu_report_menu_report_approval_title: रिपोर्ट अनुमोदन सेटिंग्स
     threesixty_campaigns_menu_report_menu_report_options_title: रिपोर्ट विकल्प
     threesixty_campaigns_menu_report_title: रिपोर्ट
+    threesixty_campaigns_schedule_date_presets: पूर्व निर्धारित कार्यक्रम तिथियां
+    threesixty_campaigns_send_reminders_automatically: स्वचालित रूप से रिमाइंडर भेजें
     time_label: समय
     time_zone: समय क्षेत्र
     timed_label: 'समयबद्ध: %{time_text}'

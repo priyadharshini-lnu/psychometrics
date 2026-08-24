@@ -1901,7 +1901,6 @@ cs:
       select: Vybrat
       selected: Vybrané stránky
       subject: Předmět
-      total: Celkem
       view_as: Zobrazit jako
     tooltips:
       hide: Skrýt

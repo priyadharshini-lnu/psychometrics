@@ -1889,7 +1889,6 @@ ro:
       select: Alege
       selected: Selectat
       subject: Subiect
-      total: Total
       view_as: Vizualizare ca
     tooltips:
       hide: Ascunde

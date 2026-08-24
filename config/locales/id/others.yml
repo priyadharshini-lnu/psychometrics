@@ -1893,7 +1893,6 @@ id:
       select: Pilih
       selected: Dipilih
       subject: Subyek
-      total: Seluruh
       view_as: Lihat sebagai
     tooltips:
       hide: Menyembunyikan

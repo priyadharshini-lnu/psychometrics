@@ -242,6 +242,7 @@ es-ES:
     switch_to_laptop_or_desktop: Cambiar a ordenador portátil o de sobremesa
     system_check_uploading: Cargando
     table:
+      collapse: Colapsar
       entries:
         selected:
           one: 1 fila seleccionada
@@ -250,6 +251,7 @@ es-ES:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Expandir
     tags: Etiquetas
     terms_conditions_privacy: Declaración de privacidad
     tools: Herramientas

@@ -242,6 +242,7 @@ ru:
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
     system_check_uploading: Загрузка
     table:
+      collapse: Крах
       entries:
         selected:
           one: Выбран 1 ряд
@@ -250,6 +251,7 @@ ru:
           one: 'Всего: 1'
           other: 'Всего: {{count}}'
           zero: 'Всего: 0'
+      expand: Расширять
     tags: Теги
     terms_conditions_privacy: Заявление о конфиденциальности
     tools: Инструменты

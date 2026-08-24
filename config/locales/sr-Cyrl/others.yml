@@ -1883,7 +1883,6 @@ sr-Cyrl:
       select: Изаберите
       selected: Изабрали
       subject: Тема
-      total: Укупно
       view_as: Погледај као
     tooltips:
       hide: Сакрити

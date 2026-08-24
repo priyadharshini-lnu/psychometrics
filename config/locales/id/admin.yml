@@ -2131,6 +2131,7 @@ id:
     projects_mettl_schedule_records_secure_browser_enabled: Aktifkan Browser Aman
     projects_mettl_schedule_records_settings: Pengaturan
     projects_mettl_schedule_records_show_remaining_counts: Aktifkan Menampilkan Jumlah Tersisa
+    projects_mettl_schedule_records_title: Jadwal Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Aktifkan Pengawasan Visual
     projects_mettl_schedule_records_web_proctoring_enabled: Aktifkan Web Proctoring
     projects_profile_settings_form_fields_enabled: Diaktifkan
@@ -2526,11 +2527,16 @@ id:
       approval_status_in: Status Persetujuan
       approver_user_id_in: Pemberi Persetujuan
       assessment_id_in: Penilaian
+      assessment_name_cont: Penilaian
       campaign_id_in: Kampanye
+      campaign_name_cont: Kampanye
       client_id_in: Klien
+      client_name_cont: Klien
       project_id_in: Proyek
+      project_name_cont: Proyek
       qc_user_id_in: Pengguna QC
       report_id_in: Laporan
+      report_name_cont: Laporan
       subject_email_cont: Subjek Email
       subject_full_name_cont: Nama Mata Kuliah
       user_email_cont: Alamat Email Pengguna
@@ -3159,6 +3165,9 @@ id:
     system_prompt: Prompt Sistem
     tab_text_one: Menu
     tab_text_two: Submenu
+    table_display_columns: Kolom
+    table_display_filters: Filter
+    table_display_title: Menampilkan
     table_more_actions: Tindakan lainnya
     tabs_results: Hasil
     tabs_settings: Pengaturan
@@ -3227,6 +3236,7 @@ id:
     threesixity_success: Kampanye Multi Rater berhasil dibuat.
     threesixity_success_job: Pekerjaan pembuatan Kampanye Multi Rater berhasil dijadwalkan.
     threesixty: Kampanye 360
+    threesixty_campaigns_instruction_visible_to_participants: Tunjukkan instruksi ini kepada peserta.
     threesixty_campaigns_mail_history_date: Tanggal
     threesixty_campaigns_mail_history_download_details: Unduh Detail
     threesixty_campaigns_mail_history_emails_sent: Email Terkirim
@@ -3242,6 +3252,8 @@ id:
     threesixty_campaigns_menu_report_menu_report_approval_title: Pengaturan Persetujuan Laporan
     threesixty_campaigns_menu_report_menu_report_options_title: Opsi Laporan
     threesixty_campaigns_menu_report_title: Lapor
+    threesixty_campaigns_schedule_date_presets: Tanggal jadwal yang telah ditentukan
+    threesixty_campaigns_send_reminders_automatically: Kirim pengingat secara otomatis
     time_label: Waktu
     time_zone: Zona Waktu
     timed_label: 'Tautan: %{time_text}'

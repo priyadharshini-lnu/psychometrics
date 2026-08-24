@@ -2131,6 +2131,7 @@ hu:
     projects_mettl_schedule_records_secure_browser_enabled: Biztonságos böngésző engedélyezése
     projects_mettl_schedule_records_settings: Beállítások
     projects_mettl_schedule_records_show_remaining_counts: Hátralévő szám megjelenítésének engedélyezése
+    projects_mettl_schedule_records_title: Mettl ütemtervek
     projects_mettl_schedule_records_visual_proctoring_enabled: Vizuális felügyelet engedélyezése
     projects_mettl_schedule_records_web_proctoring_enabled: Webes felügyelet engedélyezése
     projects_profile_settings_form_fields_enabled: Engedélyezve
@@ -2526,11 +2527,16 @@ hu:
       approval_status_in: Jóváhagyási állapot
       approver_user_id_in: Jóváhagyó
       assessment_id_in: Értékelés
+      assessment_name_cont: Értékelés
       campaign_id_in: Kampány
+      campaign_name_cont: Kampány
       client_id_in: Ügyfél
+      client_name_cont: Ügyfél
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: QC-felhasználó
       report_id_in: Jelentés
+      report_name_cont: Jelentés
       subject_email_cont: Tárgy E-mail
       subject_full_name_cont: Tárgy neve
       user_email_cont: Felhasználói e-mail-cím
@@ -3164,6 +3170,9 @@ hu:
     system_prompt: Rendszerkérés
     tab_text_one: Menü
     tab_text_two: Almenü
+    table_display_columns: Oszlopok
+    table_display_filters: Szűrők
+    table_display_title: Kijelző
     table_more_actions: További műveletek
     tabs_results: Eredmények
     tabs_settings: Beállítások
@@ -3232,6 +3241,7 @@ hu:
     threesixity_success: Sikeresen létrehozták a Multi Rater kampányt.
     threesixity_success_job: A Multi Rater kampány létrehozási feladata sikeresen ütemezve volt.
     threesixty: 360°-os kampány
+    threesixty_campaigns_instruction_visible_to_participants: Mutasd meg ezt az utasítást a résztvevőknek
     threesixty_campaigns_mail_history_date: Dátum
     threesixty_campaigns_mail_history_download_details: Részletek letöltése
     threesixty_campaigns_mail_history_emails_sent: Elküldött e-mailek
@@ -3247,6 +3257,8 @@ hu:
     threesixty_campaigns_menu_report_menu_report_approval_title: Jelentés jóváhagyási beállításai
     threesixty_campaigns_menu_report_menu_report_options_title: Jelentés beállításai
     threesixty_campaigns_menu_report_title: Jelentés
+    threesixty_campaigns_schedule_date_presets: Előre beállított ütemezési dátumok
+    threesixty_campaigns_send_reminders_automatically: Emlékeztetők automatikus küldése
     time_label: Idő
     time_zone: Időzóna
     timed_label: 'Időzített: %{time_text}'

@@ -2131,6 +2131,7 @@ th:
     projects_mettl_schedule_records_secure_browser_enabled: เปิดใช้งานเบราว์เซอร์ที่ปลอดภัย
     projects_mettl_schedule_records_settings: การตั้งค่า
     projects_mettl_schedule_records_show_remaining_counts: เปิดใช้งานการแสดงจํานวนที่เหลือ
+    projects_mettl_schedule_records_title: ตารางเมตต์ล
     projects_mettl_schedule_records_visual_proctoring_enabled: เปิดใช้งานการคุมสอบด้วยภาพ
     projects_mettl_schedule_records_web_proctoring_enabled: เปิดใช้งาน Web Proctoring
     projects_profile_settings_form_fields_enabled: เปิด
@@ -2526,11 +2527,16 @@ th:
       approval_status_in: สถานะการอนุมัติ
       approver_user_id_in: ผู้อนุมัติ
       assessment_id_in: การประเมิน
+      assessment_name_cont: การประเมิน
       campaign_id_in: แคมเปญ
+      campaign_name_cont: แคมเปญ
       client_id_in: ลูกค้า
+      client_name_cont: ลูกค้า
       project_id_in: โครงการ
+      project_name_cont: โครงการ
       qc_user_id_in: ผู้ใช้ QC
       report_id_in: รายงาน
+      report_name_cont: รายงาน
       subject_email_cont: หัวข้ออีเมล
       subject_full_name_cont: ชื่อเรื่อง
       user_email_cont: อีเมลผู้ใช้
@@ -3159,6 +3165,9 @@ th:
     system_prompt: คำสั่งของระบบ
     tab_text_one: เมนู
     tab_text_two: เมนูย่อย
+    table_display_columns: คอลัมน์
+    table_display_filters: ตัวกรอง
+    table_display_title: แสดง
     table_more_actions: การดําเนินการเพิ่มเติม
     tabs_results: ผลลัพธ์
     tabs_settings: การตั้งค่า
@@ -3227,6 +3236,7 @@ th:
     threesixity_success: สร้างแคมเปญ Multi Rater เรียบร้อยแล้ว
     threesixity_success_job: งานการสร้างแคมเปญ Multi Rater ถูกตั้งเวลาเรียบร้อยแล้ว
     threesixty: แคมเปญ 360
+    threesixty_campaigns_instruction_visible_to_participants: แสดงคำแนะนำนี้ให้ผู้เข้าร่วมชม
     threesixty_campaigns_mail_history_date: วันที่
     threesixty_campaigns_mail_history_download_details: รายละเอียดการดาวน์โหลด
     threesixty_campaigns_mail_history_emails_sent: อีเมลที่ส่งแล้ว
@@ -3242,6 +3252,8 @@ th:
     threesixty_campaigns_menu_report_menu_report_approval_title: การตั้งค่าการอนุมัติรายงาน
     threesixty_campaigns_menu_report_menu_report_options_title: ตัวเลือกรายงาน
     threesixty_campaigns_menu_report_title: รายงาน
+    threesixty_campaigns_schedule_date_presets: กำหนดวันที่ล่วงหน้า
+    threesixty_campaigns_send_reminders_automatically: ส่งการแจ้งเตือนโดยอัตโนมัติ
     time_label: เวลา
     time_zone: โซนเวลา
     timed_label: 'จับเวลา: %{time_text}'

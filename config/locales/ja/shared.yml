@@ -242,6 +242,7 @@ ja:
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える
     system_check_uploading: アップロード中
     table:
+      collapse: 崩壊
       entries:
         selected:
           one: 1行選択
@@ -250,6 +251,7 @@ ja:
           one: 合計：1
           other: 合計：1
           zero: 合計：0
+      expand: 拡大する
     tags: タグ
     terms_conditions_privacy: プライバシーに関する声明
     tools: ツール

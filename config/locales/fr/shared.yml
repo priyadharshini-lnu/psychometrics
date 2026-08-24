@@ -242,6 +242,7 @@ fr:
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
     system_check_uploading: Téléchargement
     table:
+      collapse: Effondrement
       entries:
         selected:
           one: 1 ligne sélectionnée
@@ -250,6 +251,7 @@ fr:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Développer
     tags: Tags
     terms_conditions_privacy: Déclaration de confidentialité
     tools: Outils

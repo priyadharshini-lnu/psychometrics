@@ -1889,7 +1889,6 @@ hu:
       select: Kiválaszt
       selected: Kiválasztott
       subject: Tárgy
-      total: Teljes
       view_as: Megtekintés
     tooltips:
       hide: Elrejt

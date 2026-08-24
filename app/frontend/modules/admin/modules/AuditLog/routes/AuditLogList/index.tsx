@@ -368,6 +368,8 @@ const AuditLogList: React.FC<Props> = (
       label: I18n.t('admin.audit_log_type'),
       values: heldValues(filters.record_type_in),
       options: asOptions(types),
+      control: 'select',
+      placeholder: I18n.t('admin.audit_log_type'),
     },
     {
       key: DATE_FILTER,
@@ -383,6 +385,8 @@ const AuditLogList: React.FC<Props> = (
       label: I18n.t('shared.action'),
       values: heldValues(filters.action_in),
       options: asOptions(actions),
+      control: 'select',
+      placeholder: I18n.t('shared.action'),
     },
     {
       key: 'user_search',

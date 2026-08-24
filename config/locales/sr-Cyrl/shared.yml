@@ -242,6 +242,7 @@ sr-Cyrl:
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
     system_check_uploading: Постављање
     table:
+      collapse: Склопи
       entries:
         selected:
           one: 1 ред изабран
@@ -250,6 +251,7 @@ sr-Cyrl:
           one: 'Укупан : 1'
           other: 'Укупно : {{цоунт}}'
           zero: 'Укупан : 0'
+      expand: Прошири
     tags: Ознаке
     terms_conditions_privacy: Изјава о приватности
     tools: Алатке

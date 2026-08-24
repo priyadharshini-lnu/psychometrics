@@ -1903,7 +1903,6 @@ es-ES:
       select: Escoger
       selected: Selección
       subject: Asunto
-      total: Total
       view_as: Ver como
     tooltips:
       hide: Ocultar

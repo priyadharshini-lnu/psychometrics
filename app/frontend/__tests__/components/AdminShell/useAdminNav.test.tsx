@@ -155,7 +155,6 @@ describe('useAdminNav', () => {
     ['/admin/projects/12', 'clients'],
     ['/admin/users/global-assessors', 'users'],
     ['/admin/audit_logs', 'auditLogs'],
-    ['/administration/assessments', 'assessments'],
   ])('marks %s as selecting %s', (pathname, expected) => {
     const { result } = renderNav(ALL_LINKS, pathname)
 

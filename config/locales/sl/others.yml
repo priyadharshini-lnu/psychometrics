@@ -1898,7 +1898,6 @@ sl:
       select: Izbrati
       selected: Izbrane
       subject: Predmet
-      total: Skupno
       view_as: Ogled kot
     tooltips:
       hide: Skriti

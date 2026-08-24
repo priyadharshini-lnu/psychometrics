@@ -242,6 +242,7 @@ id:
     switch_to_laptop_or_desktop: Beralih ke Laptop atau Desktop
     system_check_uploading: Mengunggah
     table:
+      collapse: Runtuh
       entries:
         selected:
           one: 1 baris dipilih
@@ -250,6 +251,7 @@ id:
           one: 'Jumlah : 1'
           other: 'Jumlah : {{count}}'
           zero: 'Total : 0'
+      expand: Memperluas
     tags: Tags
     terms_conditions_privacy: Pernyataan Privasi
     tools: Perkakas

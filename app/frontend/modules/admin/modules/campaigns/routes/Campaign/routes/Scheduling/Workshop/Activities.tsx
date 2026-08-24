@@ -90,7 +90,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux & { toggle?: ReactNode
         >
           <Controls setShowForm={setShowForm} />
         </Resource.Filter>
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column
             id="id"
             hideable={false}

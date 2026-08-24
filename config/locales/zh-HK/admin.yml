@@ -2131,6 +2131,7 @@ zh-HK:
     projects_mettl_schedule_records_secure_browser_enabled: 启用安全浏览器
     projects_mettl_schedule_records_settings: 设置
     projects_mettl_schedule_records_show_remaining_counts: 启用显示剩余次数
+    projects_mettl_schedule_records_title: 梅特爾時間表
     projects_mettl_schedule_records_visual_proctoring_enabled: 启用可视监考
     projects_mettl_schedule_records_web_proctoring_enabled: 启用网络监考
     projects_profile_settings_form_fields_enabled: 已啟用
@@ -2526,11 +2527,16 @@ zh-HK:
       approval_status_in: 审批状态
       approver_user_id_in: 审批人
       assessment_id_in: 评估
+      assessment_name_cont: 評估
       campaign_id_in: 活动
+      campaign_name_cont: 活動
       client_id_in: 客户
+      client_name_cont: 客戶
       project_id_in: 项目
+      project_name_cont: 專案
       qc_user_id_in: QC 用户
       report_id_in: 报告
+      report_name_cont: 報告
       subject_email_cont: 邮件主题
       subject_full_name_cont: 科目名称
       user_email_cont: 用户邮箱
@@ -3167,6 +3173,9 @@ zh-HK:
     system_prompt: 系统提示
     tab_text_one: 菜单
     tab_text_two: 子菜单
+    table_display_columns: 列
+    table_display_filters: 過濾器
+    table_display_title: 展示
     table_more_actions: 更多操作
     tabs_results: 選舉結果
     tabs_settings: 设置
@@ -3235,6 +3244,7 @@ zh-HK:
     threesixity_success: "“多评估者活动”已成功创建。"
     threesixity_success_job: "“多评估员活动”创建任务已成功安排。"
     threesixty: 360营销活动
+    threesixty_campaigns_instruction_visible_to_participants: 向參與者展示此說明
     threesixty_campaigns_mail_history_date: 日期
     threesixty_campaigns_mail_history_download_details: 下载详情
     threesixty_campaigns_mail_history_emails_sent: 已发送的电子邮件
@@ -3250,6 +3260,8 @@ zh-HK:
     threesixty_campaigns_menu_report_menu_report_approval_title: 報表核准設定
     threesixty_campaigns_menu_report_menu_report_options_title: 报告选项
     threesixty_campaigns_menu_report_title: 報
+    threesixty_campaigns_schedule_date_presets: 預設日程日期
+    threesixty_campaigns_send_reminders_automatically: 自動發送提醒
     time_label: 时间
     time_zone: 时区
     timed_label: 时间戳：%{time_text}

@@ -242,6 +242,7 @@ bg:
     switch_to_laptop_or_desktop: Преминаване към лаптоп или настолен компютър
     system_check_uploading: Качване
     table:
+      collapse: Свиване
       entries:
         selected:
           one: Избран е 1 ред
@@ -250,6 +251,7 @@ bg:
           one: 'Общо: 1'
           other: 'Общо: {{count}}'
           zero: 'Общо: 0'
+      expand: Разгъване
     tags: Етикети
     terms_conditions_privacy: Декларация за поверителност
     tools: Инструменти

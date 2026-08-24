@@ -76,9 +76,8 @@ const ROUTE_ALIASES: [RegExp, string][] = [
   [/^\/admin\/report_families(\/|$)/, 'reports'],
 ]
 
-// The legacy Rails admin and the SPA are one app behind two mounts, so a page under either answers to one link.
 const segmentsOf = (path: string): string[] => (
-  path.replace(/[?#].*$/, '').replace(/^\/administration(?=\/|$)/, '/admin').split('/').filter(Boolean)
+  path.replace(/[?#].*$/, '').split('/').filter(Boolean)
 )
 
 const sharedDepth = (link: string[], route: string[]): number => (

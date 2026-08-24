@@ -2131,6 +2131,7 @@ vi:
     projects_mettl_schedule_records_secure_browser_enabled: Bật trình duyệt bảo mật
     projects_mettl_schedule_records_settings: Cài đặt
     projects_mettl_schedule_records_show_remaining_counts: Bật hiển thị số lượng còn lại
+    projects_mettl_schedule_records_title: Lịch trình Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Bật giám sát trực quan
     projects_mettl_schedule_records_web_proctoring_enabled: Bật giám sát web
     projects_profile_settings_form_fields_enabled: Kích hoạt
@@ -2526,11 +2527,16 @@ vi:
       approval_status_in: Tình trạng phê duyệt
       approver_user_id_in: Người phê duyệt
       assessment_id_in: Đánh giá
+      assessment_name_cont: Đánh giá
       campaign_id_in: Chiến dịch
+      campaign_name_cont: Chiến dịch
       client_id_in: Khách hàng
+      client_name_cont: Khách hàng
       project_id_in: Dự án
+      project_name_cont: Dự án
       qc_user_id_in: Người dùng QC
       report_id_in: Báo cáo
+      report_name_cont: Báo cáo
       subject_email_cont: Tiêu đề email
       subject_full_name_cont: Tên môn học
       user_email_cont: Email người dùng
@@ -3159,6 +3165,9 @@ vi:
     system_prompt: Nhắc nhở hệ thống
     tab_text_one: Thực đơn
     tab_text_two: Thực đơn con
+    table_display_columns: Cột
+    table_display_filters: Bộ lọc
+    table_display_title: Trưng bày
     table_more_actions: Hành động khác
     tabs_results: Kết quả
     tabs_settings: Cài đặt
@@ -3227,6 +3236,7 @@ vi:
     threesixity_success: Chiến dịch Multi Rater đã được tạo thành công.
     threesixity_success_job: Công việc tạo Chiến dịch Multi Rater đã được lên lịch thành công.
     threesixty: Chiến dịch 360
+    threesixty_campaigns_instruction_visible_to_participants: Hãy cho người tham gia xem hướng dẫn này.
     threesixty_campaigns_mail_history_date: Ngày
     threesixty_campaigns_mail_history_download_details: Chi tiết tải xuống
     threesixty_campaigns_mail_history_emails_sent: Email đã gửi
@@ -3242,6 +3252,8 @@ vi:
     threesixty_campaigns_menu_report_menu_report_approval_title: Cài đặt phê duyệt báo cáo
     threesixty_campaigns_menu_report_menu_report_options_title: Tùy chọn báo cáo
     threesixty_campaigns_menu_report_title: Báo cáo
+    threesixty_campaigns_schedule_date_presets: Ngày theo lịch trình đã được thiết lập sẵn
+    threesixty_campaigns_send_reminders_automatically: Tự động gửi lời nhắc
     time_label: Thời gian
     time_zone: Múi giờ
     timed_label: 'Đã lên lịch: %{time_text}'

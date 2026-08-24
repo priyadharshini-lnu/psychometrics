@@ -242,6 +242,7 @@ it:
     switch_to_laptop_or_desktop: Passa al laptop o al desktop
     system_check_uploading: Caricamento
     table:
+      collapse: Crollo
       entries:
         selected:
           one: 1 riga selezionata
@@ -250,6 +251,7 @@ it:
           one: 'Totale : 1'
           other: 'Totale :  {{count}}'
           zero: 'Totale : 0'
+      expand: Espandere
     tags: Tag
     terms_conditions_privacy: Dichiarazione sulla privacy
     tools: Utensileria

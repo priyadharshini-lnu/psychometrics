@@ -242,6 +242,7 @@ pt:
     switch_to_laptop_or_desktop: Mudar para laptop ou desktop
     system_check_uploading: A carregar
     table:
+      collapse: Colapso
       entries:
         selected:
           one: 1 linha selecionada
@@ -250,6 +251,7 @@ pt:
           one: 'Total: 1'
           other: 'Total: {{count}}'
           zero: 'Total : 0'
+      expand: Expandir
     tags: Etiquetas
     terms_conditions_privacy: Declaração de privacidade
     tools: Ferramentas

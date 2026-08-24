@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import type { ColumnsType } from 'antd/es/table'
 import {
-  Table, Button, Flex, Input, Skeleton, Popover, message, Typography,
+  Table, Button, Flex, Input, Skeleton, Popover, message, Typography, Space,
   Tooltip, App,
 } from 'antd'
 import * as t from 'io-ts'
 import {
-  AppstoreOutlined, CheckOutlined, WarningFilled, InfoCircleFilled,
+  CheckOutlined, WarningFilled, InfoCircleFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { formatedDate } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
@@ -344,44 +344,36 @@ export const Result = () => {
     }
   }
 
+  const filters = (
+    <Space wrap align="center">
+      <Search
+        placeholder={I18n.t('shared.search')}
+        value={getFilteredValue('filterable_fields')}
+        onChange={({ target: { value } }) => {
+          changeFilter('filterable_fields', value)
+        }}
+      />
+      <ToolsDropdown
+        isBulk
+        onClick={action => handleToolConfirmAction(action)}
+      />
+      <ActionsDropdown
+        isBulk
+        onClick={action => handleBulkConfirmAction(action)}
+        isDisabled={selectedKeys.length === 0}
+      />
+    </Space>
+  )
+
   return (
     <div>
-      <Flex justify="space-between" className="pt-4 pb-4 ps-4 pe-4">
-        <Flex justify="center" align="center">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">
-            {I18n.t('common.text.total')}
-            :
-            {' '}
-            {meta.recordCount}
-          </span>
-        </Flex>
-        <Flex gap={8}>
-          <Search
-            placeholder={I18n.t('shared.search')}
-            value={getFilteredValue('filterable_fields')}
-            onChange={({ target: { value } }) => {
-              changeFilter('filterable_fields', value)
-            }}
-          />
-          <ToolsDropdown
-            isBulk
-            onClick={action => handleToolConfirmAction(action)}
-          />
-          <ActionsDropdown
-            isBulk
-            onClick={action => handleBulkConfirmAction(action)}
-            isDisabled={selectedKeys.length === 0}
-          />
-        </Flex>
-      </Flex>
       {isCampaignFactorsLoading ? (
         <Skeleton active />
       ) : (
         <>
           <TableLayout
-            embedded
             title={I18n.t('admin.tabs_results')}
+            filters={filters}
             table={(
               <Table
                 bordered
@@ -393,7 +385,6 @@ export const Result = () => {
                 loading={isLoading('fetch')}
               />
             )}
-            disableHeader
             recordCount={meta.recordCount}
             requestStatus={requests.fetch?.status}
             selectionSetting={{

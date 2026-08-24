@@ -242,6 +242,7 @@ zh:
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     system_check_uploading: 正在上传
     table:
+      collapse: 坍塌
       entries:
         selected:
           one: 选中 1 行
@@ -250,6 +251,7 @@ zh:
           one: '共计 : 1'
           other: '共计 : {{count}}'
           zero: '总计 : 0'
+      expand: 扩张
     tags: 标签
     terms_conditions_privacy: 隐私声明
     tools: 工具

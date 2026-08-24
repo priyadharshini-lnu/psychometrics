@@ -242,6 +242,7 @@ ro:
     switch_to_laptop_or_desktop: Comutați la laptop sau desktop
     system_check_uploading: Încărcare
     table:
+      collapse: Colaps
       entries:
         selected:
           one: 1 rând selectat
@@ -250,6 +251,7 @@ ro:
           one: 'Total: 1'
           other: 'Total: {{count}}'
           zero: 'Total: 0'
+      expand: Extinde
     tags: Tags
     terms_conditions_privacy: Declarație de confidențialitate
     tools: Instrumente

@@ -2135,6 +2135,7 @@ sr-Cyrl:
     projects_mettl_schedule_records_secure_browser_enabled: Омогућите сигуран прегледач
     projects_mettl_schedule_records_settings: Подешавања
     projects_mettl_schedule_records_show_remaining_counts: Омогући приказивање преосталог броја
+    projects_mettl_schedule_records_title: Метл распореди
     projects_mettl_schedule_records_visual_proctoring_enabled: Омогућите визуелни надзор
     projects_mettl_schedule_records_web_proctoring_enabled: Омогућите веб надзор
     projects_profile_settings_form_fields_enabled: Омогућен
@@ -2530,11 +2531,16 @@ sr-Cyrl:
       approval_status_in: Статус одобрења
       approver_user_id_in: Одобривач
       assessment_id_in: Оцењивање
+      assessment_name_cont: Процена
       campaign_id_in: Кампања
+      campaign_name_cont: Кампања
       client_id_in: Клијент
+      client_name_cont: Клијент
       project_id_in: Пројекат
+      project_name_cont: Пројекат
       qc_user_id_in: QC корисник
       report_id_in: Извештај
+      report_name_cont: Пријави
       subject_email_cont: Предмет е-поште
       subject_full_name_cont: Име адресата
       user_email_cont: Имејл корисника
@@ -3171,6 +3177,9 @@ sr-Cyrl:
     system_prompt: Системски упит
     tab_text_one: Мени
     tab_text_two: Подмени
+    table_display_columns: Колоне
+    table_display_filters: Филтери
+    table_display_title: Приказ
     table_more_actions: Више акција
     tabs_results: Резултате
     tabs_settings: Подешавања
@@ -3239,6 +3248,7 @@ sr-Cyrl:
     threesixity_success: Кампања Multi Rater је успешно креирана.
     threesixity_success_job: Задатак креирања кампање Multi Rater успешно је заказан.
     threesixty: 360 кампања
+    threesixty_campaigns_instruction_visible_to_participants: Покажите ово упутство учесницима
     threesixty_campaigns_mail_history_date: Датум
     threesixty_campaigns_mail_history_download_details: Детаљи преузимања
     threesixty_campaigns_mail_history_emails_sent: Послате е-поруке
@@ -3254,6 +3264,8 @@ sr-Cyrl:
     threesixty_campaigns_menu_report_menu_report_approval_title: Подешавања одобрења извештаја
     threesixty_campaigns_menu_report_menu_report_options_title: Опције извештаја
     threesixty_campaigns_menu_report_title: Извештај
+    threesixty_campaigns_schedule_date_presets: Унапред подешени датуми распореда
+    threesixty_campaigns_send_reminders_automatically: Аутоматски шаљи подсетнике
     time_label: Време
     time_zone: Временска зона
     timed_label: 'Временом: %{time_text}'

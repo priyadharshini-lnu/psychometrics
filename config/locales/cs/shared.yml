@@ -242,6 +242,7 @@ cs:
     switch_to_laptop_or_desktop: Přepnout na notebook nebo stolní počítač
     system_check_uploading: Nahrávání
     table:
+      collapse: Kolaps
       entries:
         selected:
           one: vybrán 1 řádek
@@ -250,6 +251,7 @@ cs:
           one: 'Celkem : 1'
           other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
+      expand: Rozšířit
     tags: Štítky
     terms_conditions_privacy: Prohlášení o ochraně soukromí
     tools: Nářadí

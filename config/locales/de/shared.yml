@@ -242,6 +242,7 @@ de:
     switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop
     system_check_uploading: Hochladen
     table:
+      collapse: Zusammenbruch
       entries:
         selected:
           one: 1 Zeile ausgewählt
@@ -250,6 +251,7 @@ de:
           one: 'Gesamt : 1'
           other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
+      expand: Expandieren
     tags: Tags
     terms_conditions_privacy: Datenschutzerklärung
     tools: Werkzeuge

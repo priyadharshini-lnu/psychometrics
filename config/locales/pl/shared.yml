@@ -242,6 +242,7 @@ pl:
     switch_to_laptop_or_desktop: Przejdź do laptopa lub komputera stacjonarnego
     system_check_uploading: Przesyłanie
     table:
+      collapse: Zawalić się
       entries:
         selected:
           one: Wybrano 1 wiersz
@@ -250,6 +251,7 @@ pl:
           one: 'Razem: 1'
           other: 'Razem: {{count}}'
           zero: 'Razem: 0'
+      expand: Zwiększać
     tags: Tagi
     terms_conditions_privacy: Oświadczenie o ochronie prywatności
     tools: Narzędzia
