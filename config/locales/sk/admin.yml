@@ -2131,6 +2131,7 @@ sk:
     projects_mettl_schedule_records_secure_browser_enabled: Povoliť zabezpečený prehliadač
     projects_mettl_schedule_records_settings: Nastavenia
     projects_mettl_schedule_records_show_remaining_counts: Povoliť zobrazenie zostávajúceho počtu
+    projects_mettl_schedule_records_title: Mettl Harmonogramy
     projects_mettl_schedule_records_visual_proctoring_enabled: Povolenie vizuálneho proctoringu
     projects_mettl_schedule_records_web_proctoring_enabled: Povoliť webový proctoring
     projects_profile_settings_form_fields_enabled: Povolené
@@ -2526,11 +2527,16 @@ sk:
       approval_status_in: Stav schválenia
       approver_user_id_in: Schvaľovateľ
       assessment_id_in: Hodnotenie
+      assessment_name_cont: Hodnotenie
       campaign_id_in: Kampaň
+      campaign_name_cont: Kampaň
       client_id_in: Klient
+      client_name_cont: Klient
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: Používateľ QC
       report_id_in: Správa
+      report_name_cont: Správa
       subject_email_cont: Predmet e-mailu
       subject_full_name_cont: Názov predmetu
       user_email_cont: E-mail používateľa
@@ -3159,6 +3165,9 @@ sk:
     system_prompt: Systémová výzva
     tab_text_one: Ponuka
     tab_text_two: Podmenu
+    table_display_columns: Stĺpce
+    table_display_filters: Filtre
+    table_display_title: Displej
     table_more_actions: Ďalšie akcie
     tabs_results: Výsledky
     tabs_settings: Nastavenia
@@ -3227,6 +3236,7 @@ sk:
     threesixity_success: Kampaň Multi Rater bola úspešne vytvorená.
     threesixity_success_job: Úloha na vytvorenie kampane Multi Rater bola úspešne naplánovaná.
     threesixty: Kampaň 360
+    threesixty_campaigns_instruction_visible_to_participants: Ukážte tento pokyn účastníkom
     threesixty_campaigns_mail_history_date: Dátum
     threesixty_campaigns_mail_history_download_details: Stiahnite si podrobnosti
     threesixty_campaigns_mail_history_emails_sent: Odoslané e-maily
@@ -3242,6 +3252,8 @@ sk:
     threesixty_campaigns_menu_report_menu_report_approval_title: Nastavenia schválenia zostavy
     threesixty_campaigns_menu_report_menu_report_options_title: Možnosti zostavy
     threesixty_campaigns_menu_report_title: Správa
+    threesixty_campaigns_schedule_date_presets: Prednastavené dátumy plánu
+    threesixty_campaigns_send_reminders_automatically: Automaticky posielať pripomienky
     time_label: Čas
     time_zone: Časové pásmo
     timed_label: 'Časový limit: %{time_text}'

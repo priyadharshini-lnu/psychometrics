@@ -1894,7 +1894,6 @@ hi:
       select: चुनें
       selected: चयनित
       subject: विषय
-      total: कुल
       view_as: के रूप में देखें
     tooltips:
       hide: छिपाएँ

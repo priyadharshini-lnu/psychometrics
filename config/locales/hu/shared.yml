@@ -242,6 +242,7 @@ hu:
     switch_to_laptop_or_desktop: Váltás laptopra vagy asztali számítógépre
     system_check_uploading: Feltöltés
     table:
+      collapse: Összeomlás
       entries:
         selected:
           one: 1 sor van kijelölve
@@ -250,6 +251,7 @@ hu:
           one: 'Összesen: 1'
           other: 'Összesen: {{count}}'
           zero: 'Összesen: 0'
+      expand: Kibontás
     tags: Címkék
     terms_conditions_privacy: Adatvédelmi nyilatkozat
     tools: Eszközök

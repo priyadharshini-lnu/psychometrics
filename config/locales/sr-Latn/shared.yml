@@ -242,6 +242,7 @@ sr-Latn:
     switch_to_laptop_or_desktop: Пређите на лаптоп или десктоп
     system_check_uploading: Постављање
     table:
+      collapse: Склопи
       entries:
         selected:
           one: Изабран је 1 ред
@@ -250,6 +251,7 @@ sr-Latn:
           one: 'Укупно: 1'
           other: 'Укупно : {{count}}'
           zero: 'Укупно : 0'
+      expand: Прошири
     tags: Oznake
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alatke

@@ -242,6 +242,7 @@ th:
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
     system_check_uploading: กำลังอัปโหลด
     table:
+      collapse: ทรุด
       entries:
         selected:
           one: เลือก 1 แถว
@@ -250,6 +251,7 @@ th:
           one: 'ทั้งหมด : 1'
           other: 'ทั้งหมด: {{count}}'
           zero: 'รวม: 0'
+      expand: ขยาย
     tags: แท็ก
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ

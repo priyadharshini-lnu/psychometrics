@@ -2131,6 +2131,7 @@ ko:
     projects_mettl_schedule_records_secure_browser_enabled: 보안 브라우저 사용
     projects_mettl_schedule_records_settings: 설정
     projects_mettl_schedule_records_show_remaining_counts: 남은 횟수 표시 활성화
+    projects_mettl_schedule_records_title: 메틀 스케줄
     projects_mettl_schedule_records_visual_proctoring_enabled: 시각적 감독 활성화
     projects_mettl_schedule_records_web_proctoring_enabled: 웹 감독 활성화
     projects_profile_settings_form_fields_enabled: 활성화됨
@@ -2526,11 +2527,16 @@ ko:
       approval_status_in: 승인 상태
       approver_user_id_in: 승인자
       assessment_id_in: 평가
+      assessment_name_cont: 평가
       campaign_id_in: 캠페인
+      campaign_name_cont: 운동
       client_id_in: 고객
+      client_name_cont: 고객
       project_id_in: 프로젝트
+      project_name_cont: 프로젝트
       qc_user_id_in: QC 사용자
       report_id_in: 보고서
+      report_name_cont: 보고서
       subject_email_cont: 제목 이메일
       subject_full_name_cont: 과목명
       user_email_cont: 사용자 이메일
@@ -3167,6 +3173,9 @@ ko:
     system_prompt: 시스템 프롬프트
     tab_text_one: 메뉴
     tab_text_two: 하위 메뉴
+    table_display_columns: 컬럼
+    table_display_filters: 필터
+    table_display_title: 표시하다
     table_more_actions: 더 많은 작업
     tabs_results: 결과
     tabs_settings: 설정
@@ -3235,6 +3244,7 @@ ko:
     threesixity_success: 멀티 레이터 캠페인이 성공적으로 생성되었습니다.
     threesixity_success_job: 멀티 레이터 캠페인 생성 작업이 성공적으로 예약되었습니다.
     threesixty: 360 캠페인
+    threesixty_campaigns_instruction_visible_to_participants: 참가자들에게 이 안내문을 보여주세요.
     threesixty_campaigns_mail_history_date: 날짜
     threesixty_campaigns_mail_history_download_details: 세부 정보 다운로드
     threesixty_campaigns_mail_history_emails_sent: 이메일 전송
@@ -3250,6 +3260,8 @@ ko:
     threesixty_campaigns_menu_report_menu_report_approval_title: 보고서 승인 설정
     threesixty_campaigns_menu_report_menu_report_options_title: 보고서 옵션
     threesixty_campaigns_menu_report_title: 신고
+    threesixty_campaigns_schedule_date_presets: 미리 설정된 일정 날짜
+    threesixty_campaigns_send_reminders_automatically: 알림을 자동으로 보내세요
     time_label: 시간
     time_zone: 시간대
     timed_label: '동영상: %{time_text}'

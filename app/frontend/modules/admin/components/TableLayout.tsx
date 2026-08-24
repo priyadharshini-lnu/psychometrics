@@ -70,16 +70,14 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
     <DataTablePagination
       {...paging}
       renderTotal={renderTotal}
-      controls={(controls != null || !embedded) && (
+      controls={(
         <Flex align="center" gap="small">
-          {!embedded && (
-            <DataTableExpandButton
-              expanded={expanded}
-              onToggle={() => setExpanded(current => !current)}
-              expandLabel={I18n.t('shared.table.expand')}
-              collapseLabel={I18n.t('shared.table.collapse')}
-            />
-          )}
+          <DataTableExpandButton
+            expanded={expanded}
+            onToggle={() => setExpanded(current => !current)}
+            expandLabel={I18n.t('shared.table.expand')}
+            collapseLabel={I18n.t('shared.table.collapse')}
+          />
           {controls}
         </Flex>
       )}
@@ -140,7 +138,8 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
     </>
   )
 
-  if (embedded) {
+  // Frameless while collapsed: the frame bounds its own scroll region, and an embedded table scrolls with the page.
+  if (embedded && !expanded) {
     return (
       <>
         {header}

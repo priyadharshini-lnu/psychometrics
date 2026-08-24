@@ -1889,7 +1889,6 @@ ko:
       select: 고르다
       selected: 선택됨
       subject: 제목
-      total: 합계
       view_as: 다른 이름으로 보기
     tooltips:
       hide: 숨기기

@@ -242,6 +242,7 @@ vi:
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
     system_check_uploading: Đang tải lên
     table:
+      collapse: Sụp đổ
       entries:
         selected:
           one: Đã chọn 1 hàng
@@ -250,6 +251,7 @@ vi:
           one: 'Tổng cộng: 1'
           other: 'Tổng cộng: {{count}}'
           zero: 'Tổng cộng: 0'
+      expand: Mở rộng
     tags: Tags
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
     tools: Công cụ

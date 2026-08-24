@@ -58,7 +58,7 @@ const RecordingsTable: React.FC<{ toggle?: ReactNode }> = ({ toggle }) => {
   return (
     <>
       <Resource.Filter hideSearch name="" controls={toggle} />
-      <Resource.Table pagination>
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_serial_no')}
           id="id"

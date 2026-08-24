@@ -1902,7 +1902,6 @@ ar:
       select: اختار
       selected: المحدد
       subject: موضوع
-      total: مجموع
       view_as: عرض ك
     tooltips:
       hide: أخفى

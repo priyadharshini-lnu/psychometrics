@@ -2131,6 +2131,7 @@ es-ES:
     projects_mettl_schedule_records_secure_browser_enabled: Activar navegador seguro
     projects_mettl_schedule_records_settings: Ajustes
     projects_mettl_schedule_records_show_remaining_counts: Activar la visualización del recuento restante
+    projects_mettl_schedule_records_title: Horarios de Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Activar el control visual
     projects_mettl_schedule_records_web_proctoring_enabled: Activar Web Proctoring
     projects_profile_settings_form_fields_enabled: Activado
@@ -2526,11 +2527,16 @@ es-ES:
       approval_status_in: Estado de la aprobación
       approver_user_id_in: Responsable de la aprobación
       assessment_id_in: Evaluación
+      assessment_name_cont: Evaluación
       campaign_id_in: Campaña
+      campaign_name_cont: Campaña
       client_id_in: Cliente
+      client_name_cont: Cliente
       project_id_in: Proyecto
+      project_name_cont: Proyecto
       qc_user_id_in: Usuario de QC
       report_id_in: Informe
+      report_name_cont: Informe
       subject_email_cont: Asunto del correo electrónico
       subject_full_name_cont: Nombre de la asignatura
       user_email_cont: Correo electrónico del usuario
@@ -3167,6 +3173,9 @@ es-ES:
     system_prompt: Indicación del sistema
     tab_text_one: Menú
     tab_text_two: Submenú
+    table_display_columns: Columnas
+    table_display_filters: Filtros
+    table_display_title: Mostrar
     table_more_actions: Más acciones
     tabs_results: Resultados
     tabs_settings: Ajustes
@@ -3235,6 +3244,7 @@ es-ES:
     threesixity_success: Se ha creado correctamente la Campaña de Evaluadores Múltiples.
     threesixity_success_job: Se ha programado con éxito la creación de una campaña de calificación múltiple.
     threesixty: Campaña 360
+    threesixty_campaigns_instruction_visible_to_participants: Muestre esta instrucción a los participantes.
     threesixty_campaigns_mail_history_date: Fecha
     threesixty_campaigns_mail_history_download_details: Descargar detalles
     threesixty_campaigns_mail_history_emails_sent: Correos electrónicos enviados
@@ -3250,6 +3260,8 @@ es-ES:
     threesixty_campaigns_menu_report_menu_report_approval_title: Configuración de la aprobación de informes
     threesixty_campaigns_menu_report_menu_report_options_title: Opciones de informe
     threesixty_campaigns_menu_report_title: Informe
+    threesixty_campaigns_schedule_date_presets: Fechas de programación preestablecidas
+    threesixty_campaigns_send_reminders_automatically: Enviar recordatorios automáticamente
     time_label: Tiempo
     time_zone: Huso horario
     timed_label: 'Fecha y hora: %{time_text}'

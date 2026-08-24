@@ -166,7 +166,6 @@ const AIScoringApprovalSettingComponent: React.FC<Props> = ({
   return (
     <>
       <TableLayout
-        embedded
         table={ApprovalSettingsTable}
         filters={filter}
         title={I18n.t('admin.ai_scoring_approval_settings')}

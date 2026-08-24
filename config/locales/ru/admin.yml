@@ -2131,6 +2131,7 @@ ru:
     projects_mettl_schedule_records_secure_browser_enabled: Включить безопасный браузер
     projects_mettl_schedule_records_settings: Настройки
     projects_mettl_schedule_records_show_remaining_counts: Включить отображение оставшегося количества
+    projects_mettl_schedule_records_title: Расписание Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Включить визуальный контроль
     projects_mettl_schedule_records_web_proctoring_enabled: Включить веб-контроль
     projects_profile_settings_form_fields_enabled: Включено
@@ -2526,11 +2527,16 @@ ru:
       approval_status_in: Статус утверждения
       approver_user_id_in: Утверждающий
       assessment_id_in: Оценка
+      assessment_name_cont: Оценка
       campaign_id_in: Кампания
+      campaign_name_cont: Кампания
       client_id_in: Клиент
+      client_name_cont: Клиент
       project_id_in: Проект
+      project_name_cont: Проект
       qc_user_id_in: Пользователь QC
       report_id_in: Отчет
+      report_name_cont: Отчет
       subject_email_cont: Тема письма
       subject_full_name_cont: Название предмета
       user_email_cont: Электронная почта пользователя
@@ -3167,6 +3173,9 @@ ru:
     system_prompt: Системный запрос
     tab_text_one: Меню
     tab_text_two: подменю
+    table_display_columns: Колонки
+    table_display_filters: Фильтры
+    table_display_title: Отображать
     table_more_actions: Дополнительные действия
     tabs_results: Результаты
     tabs_settings: Настройки
@@ -3235,6 +3244,7 @@ ru:
     threesixity_success: Кампания Multi Rater была успешно создана.
     threesixity_success_job: Задание по созданию кампании Multi Rater было успешно запланировано.
     threesixty: Кампания «360»
+    threesixty_campaigns_instruction_visible_to_participants: Покажите эту инструкцию участникам.
     threesixty_campaigns_mail_history_date: Дата
     threesixty_campaigns_mail_history_download_details: Скачать подробную информацию
     threesixty_campaigns_mail_history_emails_sent: Отправленные электронные письма
@@ -3250,6 +3260,8 @@ ru:
     threesixty_campaigns_menu_report_menu_report_approval_title: Настройки утверждения отчетов
     threesixty_campaigns_menu_report_menu_report_options_title: Параметры отчета
     threesixty_campaigns_menu_report_title: Отчет
+    threesixty_campaigns_schedule_date_presets: Предварительно установленные даты расписания
+    threesixty_campaigns_send_reminders_automatically: Автоматическая отправка напоминаний
     time_label: Время
     time_zone: Часовой пояс
     timed_label: 'Ссылка: %{time_text}'

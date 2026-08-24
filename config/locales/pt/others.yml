@@ -1901,7 +1901,6 @@ pt:
       select: Selecione
       selected: Selecionado
       subject: Assunto
-      total: Total
       view_as: Ver como
     tooltips:
       hide: Esconder

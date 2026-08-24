@@ -2131,6 +2131,7 @@ de:
     projects_mettl_schedule_records_secure_browser_enabled: Sicheren Browser einschalten
     projects_mettl_schedule_records_settings: Einstellungen
     projects_mettl_schedule_records_show_remaining_counts: Anzeige der verbleibenden Anzahl aktivieren
+    projects_mettl_schedule_records_title: Mettl-Zeitpläne
     projects_mettl_schedule_records_visual_proctoring_enabled: Visuelles Proctoring aktivieren
     projects_mettl_schedule_records_web_proctoring_enabled: Web Proctoring aktivieren
     projects_profile_settings_form_fields_enabled: Aktiviert
@@ -2526,11 +2527,16 @@ de:
       approval_status_in: Genehmigungsstatus
       approver_user_id_in: Genehmiger
       assessment_id_in: Bewertung
+      assessment_name_cont: Bewertung
       campaign_id_in: Kampagne
+      campaign_name_cont: Kampagne
       client_id_in: Kunde
+      client_name_cont: Kunde
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: QC-Benutzer
       report_id_in: Bericht
+      report_name_cont: Bericht
       subject_email_cont: Betreff E-Mail
       subject_full_name_cont: Name des Fachs
       user_email_cont: E-Mail-Adresse des Benutzers
@@ -3167,6 +3173,9 @@ de:
     system_prompt: System-Eingabeaufforderung
     tab_text_one: Menü
     tab_text_two: Untermenü
+    table_display_columns: Spalten
+    table_display_filters: Filter
+    table_display_title: Anzeige
     table_more_actions: Weitere Aktionen
     tabs_results: Ergebnisse
     tabs_settings: Einstellungen
@@ -3235,6 +3244,7 @@ de:
     threesixity_success: Die Multi-Rater-Kampagne wurde erfolgreich erstellt.
     threesixity_success_job: Der Auftrag zur Erstellung einer Multi-Rater-Kampagne wurde erfolgreich geplant.
     threesixty: 360°-Kampagne
+    threesixty_campaigns_instruction_visible_to_participants: Zeigen Sie diese Anweisung den Teilnehmern.
     threesixty_campaigns_mail_history_date: Datum
     threesixty_campaigns_mail_history_download_details: Details herunterladen
     threesixty_campaigns_mail_history_emails_sent: Gesendete E-Mails
@@ -3250,6 +3260,8 @@ de:
     threesixty_campaigns_menu_report_menu_report_approval_title: Einstellungen für die Berichtsgenehmigung
     threesixty_campaigns_menu_report_menu_report_options_title: Berichtsoptionen
     threesixty_campaigns_menu_report_title: Bericht
+    threesixty_campaigns_schedule_date_presets: Voreingestellte Termine
+    threesixty_campaigns_send_reminders_automatically: Erinnerungen automatisch senden
     time_label: Zeit
     time_zone: Zeitzone
     timed_label: 'Zeitgesteuert: %{time_text}'

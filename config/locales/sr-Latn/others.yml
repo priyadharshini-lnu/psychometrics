@@ -1892,7 +1892,6 @@ sr-Latn:
       select: Izaberite
       selected: Izabrali
       subject: Tema
-      total: Ukupno
       view_as: Pogledaj kao
     tooltips:
       hide: Sakriti

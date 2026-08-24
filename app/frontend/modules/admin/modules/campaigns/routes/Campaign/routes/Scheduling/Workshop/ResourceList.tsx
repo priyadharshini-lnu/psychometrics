@@ -54,7 +54,7 @@ export const ResourceListComponent: React.FC<Props> = ({ openModal, toggle }) =>
         settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenterResources}
       >
         <ResourceFilter openModal={openModal} workshopId={id} toggle={toggle} />
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column<WorkshopResource>
             title={I18n.t('shared.name')}
             id="name"

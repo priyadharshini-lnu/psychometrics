@@ -51,7 +51,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
             {I18n.t('shared.add')}
           </Button>
         </Resource.Filter>
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column<WorkshopShort>
             title={I18n.t('shared.name')}
             id="name"

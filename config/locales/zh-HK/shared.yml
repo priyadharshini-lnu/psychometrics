@@ -242,6 +242,7 @@ zh-HK:
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     system_check_uploading: 正在上传
     table:
+      collapse: 坍塌
       entries:
         selected:
           one: 選出1排
@@ -250,6 +251,7 @@ zh-HK:
           one: 總計：1
           other: 總計：{{count}}
           zero: 總計：0
+      expand: 擴張
     tags: 標籤
     terms_conditions_privacy: 私隱聲明
     tools: 工具

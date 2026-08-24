@@ -2131,6 +2131,7 @@ it:
     projects_mettl_schedule_records_secure_browser_enabled: Abilitare il browser sicuro
     projects_mettl_schedule_records_settings: Impostazioni
     projects_mettl_schedule_records_show_remaining_counts: Abilita la visualizzazione del conteggio residuo
+    projects_mettl_schedule_records_title: Programmi Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Abilitare il Visual Proctoring
     projects_mettl_schedule_records_web_proctoring_enabled: Abilitare il Web Proctoring
     projects_profile_settings_form_fields_enabled: Abilitato
@@ -2526,11 +2527,16 @@ it:
       approval_status_in: Stato dell'approvazione
       approver_user_id_in: Responsabile dell'approvazione
       assessment_id_in: Valutazione
+      assessment_name_cont: Valutazione
       campaign_id_in: Campagna
+      campaign_name_cont: Campagna
       client_id_in: Cliente
+      client_name_cont: Cliente
       project_id_in: Progetto
+      project_name_cont: Progetto
       qc_user_id_in: Utente QC
       report_id_in: Rapporto
+      report_name_cont: Rapporto
       subject_email_cont: Oggetto dell'e-mail
       subject_full_name_cont: Nome del corso
       user_email_cont: Indirizzo e-mail dell'utente
@@ -3167,6 +3173,9 @@ it:
     system_prompt: Prompt del sistema
     tab_text_one: Menu
     tab_text_two: Sottomenu
+    table_display_columns: Colonne
+    table_display_filters: Filtri
+    table_display_title: Display
     table_more_actions: Altre azioni
     tabs_results: Risultati
     tabs_settings: Impostazioni
@@ -3235,6 +3244,7 @@ it:
     threesixity_success: La campagna Multi Rater è stata creata con successo.
     threesixity_success_job: Il lavoro di creazione della campagna Multi Rater è stato pianificato con successo.
     threesixty: Campagna a 360 gradi
+    threesixty_campaigns_instruction_visible_to_participants: Mostra questa istruzione ai partecipanti
     threesixty_campaigns_mail_history_date: Data
     threesixty_campaigns_mail_history_download_details: Scarica i dettagli
     threesixty_campaigns_mail_history_emails_sent: Email inviate
@@ -3250,6 +3260,8 @@ it:
     threesixty_campaigns_menu_report_menu_report_approval_title: Impostazioni di approvazione dei rapporti
     threesixty_campaigns_menu_report_menu_report_options_title: Opzioni del rapporto
     threesixty_campaigns_menu_report_title: Rapporto
+    threesixty_campaigns_schedule_date_presets: Date di programmazione predefinite
+    threesixty_campaigns_send_reminders_automatically: Invio automatico dei promemoria
     time_label: Tempo
     time_zone: Fuso orario
     timed_label: 'Link: %{time_text}'

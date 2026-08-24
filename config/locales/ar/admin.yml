@@ -2131,6 +2131,7 @@ ar:
     projects_mettl_schedule_records_secure_browser_enabled: تمكين المتصفح الآمن
     projects_mettl_schedule_records_settings: الإعدادات
     projects_mettl_schedule_records_show_remaining_counts: تمكين عرض عدد العناصر المتبقية
+    projects_mettl_schedule_records_title: جداول ميتل
     projects_mettl_schedule_records_visual_proctoring_enabled: تمكين المراقبة البصرية
     projects_mettl_schedule_records_web_proctoring_enabled: تمكين مراقبة الويب
     projects_profile_settings_form_fields_enabled: تمكين
@@ -2526,11 +2527,16 @@ ar:
       approval_status_in: حالة الموافقة
       approver_user_id_in: الموافق
       assessment_id_in: التقييم
+      assessment_name_cont: تقدير
       campaign_id_in: حملة
+      campaign_name_cont: حملة
       client_id_in: العميل
+      client_name_cont: عميل
       project_id_in: المشروع
+      project_name_cont: مشروع
       qc_user_id_in: مستخدم QC
       report_id_in: تقرير
+      report_name_cont: تقرير
       subject_email_cont: موضوع البريد الإلكتروني
       subject_full_name_cont: اسم المادة
       user_email_cont: البريد الإلكتروني للمستخدم
@@ -3167,6 +3173,9 @@ ar:
     system_prompt: موجه النظام
     tab_text_one: قائمة الطعام
     tab_text_two: القائمة الفرعية
+    table_display_columns: الأعمدة
+    table_display_filters: الفلاتر
+    table_display_title: عرض
     table_more_actions: المزيد من الإجراءات
     tabs_results: النتائج
     tabs_settings: الإعدادات
@@ -3235,6 +3244,7 @@ ar:
     threesixity_success: تم إنشاء الحملة متعددة التقييمات بنجاح.
     threesixity_success_job: تم جدولة مهمة إنشاء الحملة متعددة التقييمات بنجاح.
     threesixty: حملة 360
+    threesixty_campaigns_instruction_visible_to_participants: اعرض هذه التعليمات على المشاركين
     threesixty_campaigns_mail_history_date: التاريخ
     threesixty_campaigns_mail_history_download_details: تفاصيل التنزيل
     threesixty_campaigns_mail_history_emails_sent: رسائل البريد الإلكتروني المرسلة
@@ -3250,6 +3260,8 @@ ar:
     threesixty_campaigns_menu_report_menu_report_approval_title: إعدادات الموافقة على التقارير
     threesixty_campaigns_menu_report_menu_report_options_title: خيارات التقرير
     threesixty_campaigns_menu_report_title: تقرير
+    threesixty_campaigns_schedule_date_presets: تواريخ الجدول الزمني المحددة مسبقًا
+    threesixty_campaigns_send_reminders_automatically: إرسال التذكيرات تلقائياً
     time_label: الوقت
     time_zone: المنطقة الزمنية
     timed_label: 'الرابط: %{time_text}'

@@ -177,7 +177,6 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
   return (
     <>
       <TableLayout
-        embedded
         table={ApprovalSettingsTable}
         filters={filter}
         title={I18n.t('assessments_reports.menu.report_approval')}

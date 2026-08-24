@@ -1886,7 +1886,6 @@ th:
       select: เลือก
       selected: เลือก
       subject: ชื่อเรื่อง
-      total: ทั้งหมด
       view_as: ดูเป็น
     tooltips:
       hide: ซ่อน

@@ -242,6 +242,7 @@ sl:
     switch_to_laptop_or_desktop: Preklopite na prenosni ali namizni računalnik
     system_check_uploading: Nalaganje
     table:
+      collapse: Strnitev
       entries:
         selected:
           one: Izbran je 1 vrstica
@@ -250,6 +251,7 @@ sl:
           one: 'Skupaj: 1'
           other: 'Skupaj: {{count}}'
           zero: 'Skupaj: 0'
+      expand: Razširi
     tags: Tags
     terms_conditions_privacy: Izjava o zasebnosti
     tools: Orodja

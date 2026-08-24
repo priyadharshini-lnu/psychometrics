@@ -242,6 +242,7 @@ sk:
     switch_to_laptop_or_desktop: Prejsť na notebook alebo stolný počítač
     system_check_uploading: Nahrávanie
     table:
+      collapse: Zbaliť
       entries:
         selected:
           one: Je vybraný 1 riadok
@@ -250,6 +251,7 @@ sk:
           one: 'Spolu: 1'
           other: 'Spolu: {{count}}'
           zero: 'Spolu: 0'
+      expand: Rozbaliť
     tags: Tagy
     terms_conditions_privacy: Vyhlásenie o ochrane osobných údajov
     tools: Náradie

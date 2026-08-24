@@ -242,6 +242,7 @@ ar:
     switch_to_laptop_or_desktop: التبديل إلى الكمبيوتر المحمول أو المكتبي
     system_check_uploading: التحميل
     table:
+      collapse: ينهار
       entries:
         selected:
           one: تم تحديد صف واحد
@@ -252,6 +253,7 @@ ar:
           other: 'المجموع : {{count}}'
           two: 'المجموع : 2'
           zero: 'المجموع : 0'
+      expand: يوسع
     tags: العلامات
     terms_conditions_privacy: بيان الخصوصية
     tools: ادوات

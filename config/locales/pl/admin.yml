@@ -2131,6 +2131,7 @@ pl:
     projects_mettl_schedule_records_secure_browser_enabled: Włącz bezpieczną przeglądarkę
     projects_mettl_schedule_records_settings: Ustawienia
     projects_mettl_schedule_records_show_remaining_counts: Włącz wyświetlanie pozostałej liczby
+    projects_mettl_schedule_records_title: Harmonogramy Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Włącz nadzór wizualny
     projects_mettl_schedule_records_web_proctoring_enabled: Włącz nadzorowanie sieci Web
     projects_profile_settings_form_fields_enabled: Włączone
@@ -2526,11 +2527,16 @@ pl:
       approval_status_in: Status zatwierdzenia
       approver_user_id_in: Osoba zatwierdzająca
       assessment_id_in: Ocena
+      assessment_name_cont: Ocena
       campaign_id_in: Kampania
+      campaign_name_cont: Kampania
       client_id_in: Klient
+      client_name_cont: Klient
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: Użytkownik QC
       report_id_in: Raport
+      report_name_cont: Raport
       subject_email_cont: Temat wiadomości e-mail
       subject_full_name_cont: Nazwa przedmiotu
       user_email_cont: Adres e-mail użytkownika
@@ -3159,6 +3165,9 @@ pl:
     system_prompt: Monit systemowy
     tab_text_one: Menu
     tab_text_two: Podmenu
+    table_display_columns: Kolumny
+    table_display_filters: Filtry
+    table_display_title: Wyświetlacz
     table_more_actions: Więcej akcji
     tabs_results: Wyniki
     tabs_settings: Ustawienia
@@ -3227,6 +3236,7 @@ pl:
     threesixity_success: Kampania Multi Rater została pomyślnie stworzona.
     threesixity_success_job: Zadanie tworzenia kampanii z wieloma oceniającymi zostało pomyślnie zaplanowane.
     threesixty: Kampania 360
+    threesixty_campaigns_instruction_visible_to_participants: Pokaż tę instrukcję uczestnikom
     threesixty_campaigns_mail_history_date: Data
     threesixty_campaigns_mail_history_download_details: Pobierz szczegóły
     threesixty_campaigns_mail_history_emails_sent: Wysłane wiadomości e-mail
@@ -3242,6 +3252,8 @@ pl:
     threesixty_campaigns_menu_report_menu_report_approval_title: Ustawienia zatwierdzania raportów
     threesixty_campaigns_menu_report_menu_report_options_title: Opcje raportu
     threesixty_campaigns_menu_report_title: Sprawozdanie
+    threesixty_campaigns_schedule_date_presets: Zaprogramowane daty
+    threesixty_campaigns_send_reminders_automatically: Wysyłaj przypomnienia automatycznie
     time_label: Godzina
     time_zone: Strefa czasowa
     timed_label: 'Link: %{time_text}'

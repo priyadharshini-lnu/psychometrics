@@ -242,6 +242,7 @@ ko:
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
     system_check_uploading: 업로드 중
     table:
+      collapse: 무너지다
       entries:
         selected:
           one: 1행 선택됨
@@ -250,6 +251,7 @@ ko:
           one: '합계 : 1'
           other: '합계 : {{count}}'
           zero: '합계 : 0'
+      expand: 확장하다
     tags: 태그
     terms_conditions_privacy: 개인정보 처리방침
     tools: 도구

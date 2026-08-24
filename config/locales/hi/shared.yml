@@ -242,6 +242,7 @@ hi:
     switch_to_laptop_or_desktop: लैपटॉप या डेस्कटॉप पर स्विच करें
     system_check_uploading: अपलोडिंग
     table:
+      collapse: गिर जाना
       entries:
         selected:
           one: 1 पंक्ति चयनित
@@ -250,6 +251,7 @@ hi:
           one: 'कुल : 1'
           other: 'कुल : {{count}}'
           zero: 'कुल : 0'
+      expand: बढ़ाना
     tags: टैग
     terms_conditions_privacy: गोपनीयता कथन
     tools: उपकरण

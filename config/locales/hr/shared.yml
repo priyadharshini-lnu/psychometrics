@@ -242,6 +242,7 @@ hr:
     switch_to_laptop_or_desktop: Prebacite na prijenosno ili stolno računalo
     system_check_uploading: Učitavanje
     table:
+      collapse: Kolaps
       entries:
         selected:
           one: Odabran je 1 redak
@@ -250,6 +251,7 @@ hr:
           one: 'Ukupno : 1'
           other: 'Ukupno : {{count}}'
           zero: 'Ukupno : 0'
+      expand: Proširiti
     tags: Tags
     terms_conditions_privacy: Izjava o privatnosti
     tools: Alati
