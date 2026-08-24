@@ -64,7 +64,7 @@ module Administration
             project_id: project.id,
             campaign_id: object.id
           }
-        ).merge(v2_360_permissions)
+        ).merge(v2_360_permissions).merge(communication_center_permissions)
       end
 
       def v2_360_permissions
@@ -75,6 +75,22 @@ module Administration
           %w[
             convert_to_template
           ],
+          {
+            project_id: project.id,
+            campaign_id: object.id
+          }
+        )
+      end
+
+      # Reuses Administration::ProjectPolicy#view_communication_center? (the same permission Client/Project
+      # nav already consume) rather than defining a duplicate check on Administration::CampaignPolicy --
+      # record is nil since that policy resolves entirely from project_id/campaign_id context, never record.
+      def communication_center_permissions
+        GetPermissionsHash.call!(
+          Administration::ProjectPolicy,
+          current_user,
+          nil,
+          ['view_communication_center'],
           {
             project_id: project.id,
             campaign_id: object.id

@@ -77,6 +77,26 @@ module UserScopes
     scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
     scope :campaign_admins, -> { joins(:memberships).where(memberships: { role: Membership::CAMPAIGN_ADMIN_ROLE }) }
 
+    # Client/project/campaign admins for a campaign's hierarchy -- CC-recipient candidate list, mirrors
+    # Facades::Administration::Communication#fetch_admin_users (legacy).
+    scope :admins_for_campaign, lambda { |campaign_id|
+      campaign = Campaign.find(campaign_id)
+      client_id = campaign.project&.parent_id
+      project_id = campaign.project_id
+
+      joins(:memberships).
+        where(disabled: false, memberships: { disabled: false }).
+        where(
+          '(memberships.client_id = :client_id AND memberships.role = :client_admin_role) OR
+           (memberships.client_id = :project_id AND memberships.role = :project_admin_role) OR
+           (memberships.campaign_id = :campaign_id AND memberships.role = :campaign_admin_role)',
+          client_id: client_id, project_id: project_id, campaign_id: campaign.id,
+          client_admin_role: Membership.roles[Membership::CLIENT_ADMIN_ROLE],
+          project_admin_role: Membership.roles[Membership::PROJECT_ADMIN_ROLE],
+          campaign_admin_role: Membership.roles[Membership::CAMPAIGN_ADMIN_ROLE]
+        ).distinct
+    }
+
     scope :eq_id, ->(id) { where(id: id) }
     scope :filterable_fields, lambda { |search_term|
       if (search_term !~ /\D/) && search_term.present?

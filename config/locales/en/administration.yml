@@ -575,6 +575,10 @@ en:
       enabled: Enabled
       loading: Loading...
       save: Save
+    communication_center:
+      errors:
+        terminal_state: Delivery is already in a terminal state.
+        update_translation: Unable to update the translation for this locale.
     communication_settings: Settings
     communications:
       create:

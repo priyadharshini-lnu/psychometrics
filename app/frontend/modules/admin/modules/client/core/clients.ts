@@ -23,6 +23,7 @@ export const ClientTR = t.intersection([
         viewLicenses: t.boolean,
         viewDataReports: t.boolean,
         viewAuditReports: t.boolean,
+        viewCommunicationCenter: t.boolean,
         canManageProject: t.boolean,
         manageProjectAdmins: t.boolean,
         manageProjectAssessments: t.boolean,

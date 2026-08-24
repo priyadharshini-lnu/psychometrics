@@ -15,6 +15,8 @@ export const routes = [
   { path: 'users', lazy: lazyRoute(page, m => m.ProjectUsers), children: userRoutes },
   { path: 'datasheet', lazy: lazyRoute(page, m => m.ProjectDatasheet) },
   { path: 'settings', lazy: lazyRoute(page, m => m.ProjectSettings), children: settingsRoutes },
+  // CommunicationCenter mounts its own nested router via RouteList, so it keeps the splat.
+  { path: 'communication_center/*', lazy: lazyRoute(page, m => m.ProjectCommunicationCenter) },
   { path: 'audit_reports', lazy: lazyRoute(page, m => m.ProjectDataExports) },
   { path: 'idp', lazy: lazyRoute(page, m => m.ProjectIdp), children: idpRoutes },
   { path: 'taxonomy', lazy: lazyRoute(page, m => m.ProjectTaxonomy), children: taxonomyRoutes },

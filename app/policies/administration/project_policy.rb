@@ -47,6 +47,12 @@ module Administration
         has_permission?(:audit_reports, :admin_permissions, project_id: project_id)
     end
 
+    def view_communication_center?
+      Settings.features.communication_center_enabled &&
+        Client.communication_center_active?(project_id: project_id, campaign_id: campaign_id) &&
+        (@user.is?(:superadmin) || has_permission?(:communications, :view, project_id: project_id))
+    end
+
     def access_project_taxonomy?
       has_permission?(:skills, :view, project_id: project_id)
     end

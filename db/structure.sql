@@ -391,6 +391,7 @@ CREATE TABLE public.clients (
     custom_privacy_policy_version integer,
     restricted_to_countries text[] DEFAULT '{}'::text[],
     tenant_id bigint,
+    theme_settings jsonb DEFAULT '{}'::jsonb NOT NULL,
     campaign_dashboard_instructions text
 );
 
@@ -3224,8 +3225,9 @@ CREATE TABLE public.client_features (
     ai_translation boolean DEFAULT false NOT NULL,
     ai_content_analysis boolean DEFAULT false NOT NULL,
     tenant_id bigint,
+    glint_ui boolean DEFAULT false NOT NULL,
     superadmin_tenant_scoping boolean DEFAULT true NOT NULL,
-    glint_ui boolean DEFAULT false NOT NULL
+    use_new_communication_center boolean DEFAULT false NOT NULL
 );
 
 
@@ -3454,6 +3456,200 @@ ALTER SEQUENCE public.communication_cc_users_id_seq OWNED BY public.communicatio
 
 
 --
+-- Name: communication_deliveries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_deliveries (
+    id bigint NOT NULL,
+    communication_template_id bigint NOT NULL,
+    trigger_type integer NOT NULL,
+    status integer DEFAULT 0 NOT NULL,
+    delivery_rule integer,
+    delivery_at timestamp(6) without time zone,
+    delivery_interval_number integer,
+    delivery_interval_period character varying,
+    delivery_start_date date,
+    delivery_end_date date,
+    delivery_time_of_day time without time zone,
+    delivery_timezone character varying,
+    delivery_frequency character varying,
+    delivery_weekdays character varying[] DEFAULT '{}'::character varying[],
+    delivery_delay_hours integer,
+    assessment_completion_status_code character varying,
+    completed_at timestamp(6) without time zone,
+    cancelled_at timestamp(6) without time zone,
+    created_by_id bigint NOT NULL,
+    updated_by_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    subject character varying,
+    body text,
+    recipients integer,
+    campaign_id bigint,
+    stop_reminder_datetime timestamp(6) without time zone,
+    last_ran_at timestamp(6) without time zone,
+    next_run_at timestamp(6) without time zone,
+    campaign_assessment_group_id bigint,
+    paused_at timestamp(6) without time zone,
+    project_id bigint
+);
+
+
+--
+-- Name: communication_deliveries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_deliveries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_deliveries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_deliveries_id_seq OWNED BY public.communication_deliveries.id;
+
+
+--
+-- Name: communication_delivery_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_delivery_assessments (
+    id bigint NOT NULL,
+    communication_delivery_id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_delivery_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_delivery_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_delivery_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_delivery_assessments_id_seq OWNED BY public.communication_delivery_assessments.id;
+
+
+--
+-- Name: communication_delivery_cc_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_delivery_cc_users (
+    id bigint NOT NULL,
+    communication_delivery_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_delivery_cc_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_delivery_cc_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_delivery_cc_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_delivery_cc_users_id_seq OWNED BY public.communication_delivery_cc_users.id;
+
+
+--
+-- Name: communication_delivery_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_delivery_translations (
+    id bigint NOT NULL,
+    subject character varying,
+    body text,
+    locale character varying NOT NULL,
+    communication_delivery_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_delivery_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_delivery_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_delivery_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_delivery_translations_id_seq OWNED BY public.communication_delivery_translations.id;
+
+
+--
+-- Name: communication_delivery_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_delivery_users (
+    id bigint NOT NULL,
+    communication_delivery_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: communication_delivery_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_delivery_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_delivery_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_delivery_users_id_seq OWNED BY public.communication_delivery_users.id;
+
+
+--
 -- Name: communication_email_resources; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3502,7 +3698,13 @@ CREATE TABLE public.communication_emails (
     workshop_id bigint,
     workshop_invite_id bigint,
     user_id bigint,
-    tenant_id bigint
+    tenant_id bigint,
+    communication_delivery_id bigint,
+    status integer DEFAULT 0 NOT NULL,
+    error_code character varying,
+    error_message text,
+    attempts integer DEFAULT 0 NOT NULL,
+    occurrence_key character varying
 );
 
 
@@ -3523,6 +3725,86 @@ CREATE SEQUENCE public.communication_emails_id_seq
 --
 
 ALTER SEQUENCE public.communication_emails_id_seq OWNED BY public.communication_emails.id;
+
+
+--
+-- Name: communication_template_translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_template_translations (
+    id bigint NOT NULL,
+    subject character varying,
+    body text,
+    locale character varying NOT NULL,
+    communication_template_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    tenant_id bigint
+);
+
+
+--
+-- Name: communication_template_translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_template_translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_template_translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_template_translations_id_seq OWNED BY public.communication_template_translations.id;
+
+
+--
+-- Name: communication_templates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.communication_templates (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    kind integer NOT NULL,
+    level integer NOT NULL,
+    status integer DEFAULT 0 NOT NULL,
+    recipients_default integer,
+    delivery_defaults jsonb,
+    client_id bigint,
+    project_id bigint,
+    campaign_id bigint,
+    inherits_from_template_id bigint,
+    created_by_id bigint NOT NULL,
+    updated_by_id bigint NOT NULL,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    subject character varying,
+    body text
+);
+
+
+--
+-- Name: communication_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.communication_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communication_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.communication_templates_id_seq OWNED BY public.communication_templates.id;
 
 
 --
@@ -6697,6 +6979,49 @@ ALTER SEQUENCE public.project_licenses_id_seq OWNED BY public.project_licenses.i
 
 
 --
+-- Name: project_themes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_themes (
+    id bigint NOT NULL,
+    project_id bigint NOT NULL,
+    tenant_id bigint,
+    key character varying NOT NULL,
+    name character varying NOT NULL,
+    tokens jsonb DEFAULT '{}'::jsonb NOT NULL,
+    dark_tokens jsonb,
+    default_direction character varying DEFAULT 'ltr'::character varying NOT NULL,
+    is_default boolean DEFAULT false NOT NULL,
+    "position" integer DEFAULT 0 NOT NULL,
+    allow_mode_switch boolean DEFAULT true NOT NULL,
+    default_mode character varying DEFAULT 'light'::character varying NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    custom_tokens jsonb DEFAULT '{}'::jsonb NOT NULL,
+    skins jsonb DEFAULT '[]'::jsonb NOT NULL
+);
+
+
+--
+-- Name: project_themes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_themes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_themes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_themes_id_seq OWNED BY public.project_themes.id;
+
+
+--
 -- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -7559,9 +7884,7 @@ CREATE TABLE public.security_settings (
     enable_recaptcha boolean DEFAULT false,
     external_logout_redirect_enabled boolean DEFAULT false,
     external_logout_url character varying,
-    tenant_id bigint,
-    enforce_return_url_whitelist boolean DEFAULT false NOT NULL,
-    return_url_whitelist text DEFAULT ''::text NOT NULL
+    tenant_id bigint
 );
 
 
@@ -10780,6 +11103,41 @@ ALTER TABLE ONLY public.communication_cc_users ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: communication_deliveries id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries ALTER COLUMN id SET DEFAULT nextval('public.communication_deliveries_id_seq'::regclass);
+
+
+--
+-- Name: communication_delivery_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_assessments ALTER COLUMN id SET DEFAULT nextval('public.communication_delivery_assessments_id_seq'::regclass);
+
+
+--
+-- Name: communication_delivery_cc_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_cc_users ALTER COLUMN id SET DEFAULT nextval('public.communication_delivery_cc_users_id_seq'::regclass);
+
+
+--
+-- Name: communication_delivery_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_translations ALTER COLUMN id SET DEFAULT nextval('public.communication_delivery_translations_id_seq'::regclass);
+
+
+--
+-- Name: communication_delivery_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_users ALTER COLUMN id SET DEFAULT nextval('public.communication_delivery_users_id_seq'::regclass);
+
+
+--
 -- Name: communication_email_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -10791,6 +11149,20 @@ ALTER TABLE ONLY public.communication_email_resources ALTER COLUMN id SET DEFAUL
 --
 
 ALTER TABLE ONLY public.communication_emails ALTER COLUMN id SET DEFAULT nextval('public.communication_emails_id_seq'::regclass);
+
+
+--
+-- Name: communication_template_translations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_template_translations ALTER COLUMN id SET DEFAULT nextval('public.communication_template_translations_id_seq'::regclass);
+
+
+--
+-- Name: communication_templates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates ALTER COLUMN id SET DEFAULT nextval('public.communication_templates_id_seq'::regclass);
 
 
 --
@@ -11372,6 +11744,13 @@ ALTER TABLE ONLY public.project_features ALTER COLUMN id SET DEFAULT nextval('pu
 --
 
 ALTER TABLE ONLY public.project_licenses ALTER COLUMN id SET DEFAULT nextval('public.project_licenses_id_seq'::regclass);
+
+
+--
+-- Name: project_themes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_themes ALTER COLUMN id SET DEFAULT nextval('public.project_themes_id_seq'::regclass);
 
 
 --
@@ -12617,6 +12996,46 @@ ALTER TABLE ONLY public.communication_cc_users
 
 
 --
+-- Name: communication_deliveries communication_deliveries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT communication_deliveries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_delivery_assessments communication_delivery_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_assessments
+    ADD CONSTRAINT communication_delivery_assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_delivery_cc_users communication_delivery_cc_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_cc_users
+    ADD CONSTRAINT communication_delivery_cc_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_delivery_translations communication_delivery_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_translations
+    ADD CONSTRAINT communication_delivery_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_delivery_users communication_delivery_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_users
+    ADD CONSTRAINT communication_delivery_users_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: communication_email_resources communication_email_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -12630,6 +13049,22 @@ ALTER TABLE ONLY public.communication_email_resources
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT communication_emails_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_template_translations communication_template_translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_template_translations
+    ADD CONSTRAINT communication_template_translations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communication_templates communication_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT communication_templates_pkey PRIMARY KEY (id);
 
 
 --
@@ -13310,6 +13745,14 @@ ALTER TABLE ONLY public.project_features
 
 ALTER TABLE ONLY public.project_licenses
     ADD CONSTRAINT project_licenses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_themes project_themes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_themes
+    ADD CONSTRAINT project_themes_pkey PRIMARY KEY (id);
 
 
 --
@@ -14186,6 +14629,13 @@ CREATE UNIQUE INDEX idx_ai_factor_scores_unique_with_question ON public.ai_facto
 
 
 --
+-- Name: idx_comm_emails_delivery_user_occurrence_uniq; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_comm_emails_delivery_user_occurrence_uniq ON public.communication_emails USING btree (communication_delivery_id, user_id, occurrence_key) WHERE (communication_delivery_id IS NOT NULL);
+
+
+--
 -- Name: idx_on_ai_assistant_id_key_1d1a169fc1; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -14260,6 +14710,55 @@ CREATE INDEX idx_on_campaign_id_bbe9cda192 ON public.campaign_assessor_assessmen
 --
 
 CREATE UNIQUE INDEX idx_on_campaign_id_user_id_campaign_factor_id_5dd941be00 ON public.campaign_factor_values USING btree (campaign_id, user_id, campaign_factor_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_1e36999f66; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_communication_delivery_id_1e36999f66 ON public.communication_delivery_users USING btree (communication_delivery_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_29925a5636; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_communication_delivery_id_29925a5636 ON public.communication_delivery_cc_users USING btree (communication_delivery_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_6ccd6111f3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_on_communication_delivery_id_6ccd6111f3 ON public.communication_delivery_assessments USING btree (communication_delivery_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_assessment_id_e5f8b2b50c; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_communication_delivery_id_assessment_id_e5f8b2b50c ON public.communication_delivery_assessments USING btree (communication_delivery_id, assessment_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_locale_f156ed5dfc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_communication_delivery_id_locale_f156ed5dfc ON public.communication_delivery_translations USING btree (communication_delivery_id, locale);
+
+
+--
+-- Name: idx_on_communication_delivery_id_user_id_4d228c9025; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_communication_delivery_id_user_id_4d228c9025 ON public.communication_delivery_cc_users USING btree (communication_delivery_id, user_id);
+
+
+--
+-- Name: idx_on_communication_delivery_id_user_id_f0a0f36bf3; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX idx_on_communication_delivery_id_user_id_f0a0f36bf3 ON public.communication_delivery_users USING btree (communication_delivery_id, user_id);
 
 
 --
@@ -15950,6 +16449,13 @@ CREATE INDEX index_clients_reports_on_report_id ON public.clients_reports USING 
 
 
 --
+-- Name: index_comm_template_translations_on_template_and_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_comm_template_translations_on_template_and_locale ON public.communication_template_translations USING btree (communication_template_id, locale);
+
+
+--
 -- Name: index_communication_cc_users_on_communication_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -15975,6 +16481,132 @@ CREATE INDEX index_communication_cc_users_on_tenant_id ON public.communication_c
 --
 
 CREATE INDEX index_communication_cc_users_on_user_id ON public.communication_cc_users USING btree (user_id);
+
+
+--
+-- Name: index_communication_deliveries_on_campaign_assessment_group_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_campaign_assessment_group_id ON public.communication_deliveries USING btree (campaign_assessment_group_id);
+
+
+--
+-- Name: index_communication_deliveries_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_campaign_id ON public.communication_deliveries USING btree (campaign_id);
+
+
+--
+-- Name: index_communication_deliveries_on_communication_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_communication_template_id ON public.communication_deliveries USING btree (communication_template_id);
+
+
+--
+-- Name: index_communication_deliveries_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_created_by_id ON public.communication_deliveries USING btree (created_by_id);
+
+
+--
+-- Name: index_communication_deliveries_on_next_run_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_next_run_at ON public.communication_deliveries USING btree (next_run_at);
+
+
+--
+-- Name: index_communication_deliveries_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_project_id ON public.communication_deliveries USING btree (project_id);
+
+
+--
+-- Name: index_communication_deliveries_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_status ON public.communication_deliveries USING btree (status);
+
+
+--
+-- Name: index_communication_deliveries_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_tenant_id ON public.communication_deliveries USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_deliveries_on_trigger_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_trigger_type ON public.communication_deliveries USING btree (trigger_type);
+
+
+--
+-- Name: index_communication_deliveries_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_deliveries_on_updated_by_id ON public.communication_deliveries USING btree (updated_by_id);
+
+
+--
+-- Name: index_communication_delivery_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_assessments_on_assessment_id ON public.communication_delivery_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_communication_delivery_assessments_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_assessments_on_tenant_id ON public.communication_delivery_assessments USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_delivery_cc_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_cc_users_on_tenant_id ON public.communication_delivery_cc_users USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_delivery_cc_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_cc_users_on_user_id ON public.communication_delivery_cc_users USING btree (user_id);
+
+
+--
+-- Name: index_communication_delivery_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_translations_on_locale ON public.communication_delivery_translations USING btree (locale);
+
+
+--
+-- Name: index_communication_delivery_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_translations_on_tenant_id ON public.communication_delivery_translations USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_delivery_users_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_users_on_tenant_id ON public.communication_delivery_users USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_delivery_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_delivery_users_on_user_id ON public.communication_delivery_users USING btree (user_id);
 
 
 --
@@ -16006,6 +16638,13 @@ CREATE INDEX index_communication_emails_on_campaign_user_id ON public.communicat
 
 
 --
+-- Name: index_communication_emails_on_communication_delivery_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_communication_delivery_id ON public.communication_emails USING btree (communication_delivery_id);
+
+
+--
 -- Name: index_communication_emails_on_communication_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -16017,6 +16656,13 @@ CREATE INDEX index_communication_emails_on_communication_id ON public.communicat
 --
 
 CREATE INDEX index_communication_emails_on_membership_id ON public.communication_emails USING btree (membership_id);
+
+
+--
+-- Name: index_communication_emails_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_emails_on_status ON public.communication_emails USING btree (status);
 
 
 --
@@ -16038,6 +16684,76 @@ CREATE INDEX index_communication_emails_on_workshop_id ON public.communication_e
 --
 
 CREATE INDEX index_communication_emails_on_workshop_invite_id ON public.communication_emails USING btree (workshop_invite_id);
+
+
+--
+-- Name: index_communication_template_translations_on_locale; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_template_translations_on_locale ON public.communication_template_translations USING btree (locale);
+
+
+--
+-- Name: index_communication_template_translations_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_template_translations_on_tenant_id ON public.communication_template_translations USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_templates_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_campaign_id ON public.communication_templates USING btree (campaign_id);
+
+
+--
+-- Name: index_communication_templates_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_client_id ON public.communication_templates USING btree (client_id);
+
+
+--
+-- Name: index_communication_templates_on_created_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_created_by_id ON public.communication_templates USING btree (created_by_id);
+
+
+--
+-- Name: index_communication_templates_on_inherits_from_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_inherits_from_template_id ON public.communication_templates USING btree (inherits_from_template_id);
+
+
+--
+-- Name: index_communication_templates_on_level_and_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_level_and_status ON public.communication_templates USING btree (level, status);
+
+
+--
+-- Name: index_communication_templates_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_project_id ON public.communication_templates USING btree (project_id);
+
+
+--
+-- Name: index_communication_templates_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_tenant_id ON public.communication_templates USING btree (tenant_id);
+
+
+--
+-- Name: index_communication_templates_on_updated_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communication_templates_on_updated_by_id ON public.communication_templates USING btree (updated_by_id);
 
 
 --
@@ -17788,6 +18504,27 @@ CREATE INDEX index_project_licenses_on_project_id ON public.project_licenses USI
 --
 
 CREATE INDEX index_project_licenses_on_tenant_id ON public.project_licenses USING btree (tenant_id);
+
+
+--
+-- Name: index_project_themes_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_themes_on_project_id ON public.project_themes USING btree (project_id);
+
+
+--
+-- Name: index_project_themes_on_project_id_and_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_project_themes_on_project_id_and_key ON public.project_themes USING btree (project_id, key);
+
+
+--
+-- Name: index_project_themes_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_themes_on_tenant_id ON public.project_themes USING btree (tenant_id);
 
 
 --
@@ -20449,6 +21186,14 @@ ALTER TABLE ONLY public.campaign_assessor_assessment_factor_weights
 
 
 --
+-- Name: communication_delivery_users fk_rails_092436184a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_users
+    ADD CONSTRAINT fk_rails_092436184a FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: skills_development_actions fk_rails_09ac776adc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20478,6 +21223,14 @@ ALTER TABLE ONLY public.idp_templates
 
 ALTER TABLE ONLY public.skillvue_assessments
     ADD CONSTRAINT fk_rails_0b2142735a FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_templates fk_rails_0b4b98b403; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_0b4b98b403 FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -20689,6 +21442,14 @@ ALTER TABLE ONLY public.ai_assistant_chats
 
 
 --
+-- Name: communication_delivery_users fk_rails_15f5014c0f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_users
+    ADD CONSTRAINT fk_rails_15f5014c0f FOREIGN KEY (communication_delivery_id) REFERENCES public.communication_deliveries(id);
+
+
+--
 -- Name: user_report_pdfs fk_rails_16b14d3148; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -20897,6 +21658,14 @@ ALTER TABLE ONLY public.campaign_reports
 
 
 --
+-- Name: communication_emails fk_rails_1fa622b132; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_emails
+    ADD CONSTRAINT fk_rails_1fa622b132 FOREIGN KEY (communication_delivery_id) REFERENCES public.communication_deliveries(id);
+
+
+--
 -- Name: ai_factor_scores fk_rails_204568e44d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -21057,6 +21826,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: communication_delivery_cc_users fk_rails_273dda2249; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_cc_users
+    ADD CONSTRAINT fk_rails_273dda2249 FOREIGN KEY (communication_delivery_id) REFERENCES public.communication_deliveries(id);
+
+
+--
 -- Name: user_reports fk_rails_28ab0c4f85; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -21166,6 +21943,14 @@ ALTER TABLE ONLY public.idp_template_reflection_questions
 
 ALTER TABLE ONLY public.innovation_styles_factors
     ADD CONSTRAINT fk_rails_2d436cbfdb FOREIGN KEY (innovation_style_id) REFERENCES public.innovation_styles(id);
+
+
+--
+-- Name: communication_templates fk_rails_2e4aadb57b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_2e4aadb57b FOREIGN KEY (created_by_id) REFERENCES public.users(id);
 
 
 --
@@ -21617,6 +22402,14 @@ ALTER TABLE ONLY public.profile_fields
 
 
 --
+-- Name: communication_delivery_cc_users fk_rails_44cf2d23eb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_cc_users
+    ADD CONSTRAINT fk_rails_44cf2d23eb FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: skills_job_roles fk_rails_44d3a0575b; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -21881,11 +22674,27 @@ ALTER TABLE ONLY public.interview_questions
 
 
 --
+-- Name: communication_templates fk_rails_547a59a225; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_547a59a225 FOREIGN KEY (updated_by_id) REFERENCES public.users(id);
+
+
+--
 -- Name: user_report_comments fk_rails_54fe2d8f31; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.user_report_comments
     ADD CONSTRAINT fk_rails_54fe2d8f31 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: project_themes fk_rails_5723b771ca; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_themes
+    ADD CONSTRAINT fk_rails_5723b771ca FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -22030,6 +22839,14 @@ ALTER TABLE ONLY public.campaign_factors
 
 ALTER TABLE ONLY public.workshop_invite_logs
     ADD CONSTRAINT fk_rails_5f05631202 FOREIGN KEY (workshop_invite_id) REFERENCES public.workshop_invites(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communication_templates fk_rails_5f117f9847; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_5f117f9847 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -22414,6 +23231,14 @@ ALTER TABLE ONLY public.workshop_invites
 
 ALTER TABLE ONLY public.user_idp_comments
     ADD CONSTRAINT fk_rails_6fb8f1ccac FOREIGN KEY (user_idp_plan_id) REFERENCES public.user_idp_plans(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communication_delivery_translations fk_rails_7070640391; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_translations
+    ADD CONSTRAINT fk_rails_7070640391 FOREIGN KEY (communication_delivery_id) REFERENCES public.communication_deliveries(id);
 
 
 --
@@ -22921,6 +23746,14 @@ ALTER TABLE ONLY public.occupations_factors
 
 
 --
+-- Name: communication_deliveries fk_rails_8db9cec2fe; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_8db9cec2fe FOREIGN KEY (created_by_id) REFERENCES public.users(id);
+
+
+--
 -- Name: campaigns fk_rails_8de91ec8d1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23169,6 +24002,14 @@ ALTER TABLE ONLY public.campaign_assessments
 
 
 --
+-- Name: communication_deliveries fk_rails_99d9d0d64d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_99d9d0d64d FOREIGN KEY (communication_template_id) REFERENCES public.communication_templates(id);
+
+
+--
 -- Name: user_report_comments fk_rails_9a8fd863c2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23289,6 +24130,14 @@ ALTER TABLE ONLY public.user_report_comments
 
 
 --
+-- Name: communication_delivery_translations fk_rails_a110955d68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_translations
+    ADD CONSTRAINT fk_rails_a110955d68 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: api_keys fk_rails_a12322a5ba; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -23390,6 +24239,14 @@ ALTER TABLE ONLY public.user_report_events
 
 ALTER TABLE ONLY public.user_preferences
     ADD CONSTRAINT fk_rails_a69bfcfd81 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: communication_deliveries fk_rails_a7ac468ab6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_a7ac468ab6 FOREIGN KEY (updated_by_id) REFERENCES public.users(id);
 
 
 --
@@ -23686,6 +24543,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.dimensions
     ADD CONSTRAINT fk_rails_b8c3fe7ea4 FOREIGN KEY (default_occupation_condition_set_id) REFERENCES public.occupation_condition_sets(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_templates fk_rails_b94a7c107a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_b94a7c107a FOREIGN KEY (inherits_from_template_id) REFERENCES public.communication_templates(id);
 
 
 --
@@ -24009,6 +24874,22 @@ ALTER TABLE ONLY public.privacy_settings
 
 
 --
+-- Name: communication_delivery_assessments fk_rails_cd3c10b270; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_assessments
+    ADD CONSTRAINT fk_rails_cd3c10b270 FOREIGN KEY (communication_delivery_id) REFERENCES public.communication_deliveries(id);
+
+
+--
+-- Name: communication_delivery_assessments fk_rails_ce4182a53e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_delivery_assessments
+    ADD CONSTRAINT fk_rails_ce4182a53e FOREIGN KEY (assessment_id) REFERENCES public.assessments(id);
+
+
+--
 -- Name: campaign_assessor_assessment_factor_weights fk_rails_ce86ab4ccb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24046,14 +24927,6 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.campaign_factors
     ADD CONSTRAINT fk_rails_cff428b57f FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
-
-
---
--- Name: design_settings fk_rails_client_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.design_settings
-    ADD CONSTRAINT fk_rails_client_id FOREIGN KEY (client_id) REFERENCES public.clients(id);
 
 
 --
@@ -24353,6 +25226,14 @@ ALTER TABLE ONLY public.factors_aliases
 
 
 --
+-- Name: communication_template_translations fk_rails_dad452ae83; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_template_translations
+    ADD CONSTRAINT fk_rails_dad452ae83 FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: skill_aliases fk_rails_dae6991e57; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24417,6 +25298,14 @@ ALTER TABLE ONLY public.skill_groups
 
 
 --
+-- Name: communication_template_translations fk_rails_dc6e508cb1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_template_translations
+    ADD CONSTRAINT fk_rails_dc6e508cb1 FOREIGN KEY (communication_template_id) REFERENCES public.communication_templates(id);
+
+
+--
 -- Name: campaign_users fk_rails_dd0d199f89; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24438,6 +25327,14 @@ ALTER TABLE ONLY public.webhook_subscription_topics
 
 ALTER TABLE ONLY public.idp_templates
     ADD CONSTRAINT fk_rails_dd38452656 FOREIGN KEY (one_click_ai_assistant_id) REFERENCES public.ai_assistants(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_deliveries fk_rails_dd83c7d766; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_dd83c7d766 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id);
 
 
 --
@@ -24502,6 +25399,14 @@ ALTER TABLE ONLY public.assessments_reports
 
 ALTER TABLE ONLY public.threesixty_reminder_histories
     ADD CONSTRAINT fk_rails_e12dc4543e FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communication_deliveries fk_rails_e2031b21c1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_e2031b21c1 FOREIGN KEY (campaign_assessment_group_id) REFERENCES public.campaign_assessment_groups(id);
 
 
 --
@@ -24817,6 +25722,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: communication_deliveries fk_rails_ef5078915d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_deliveries
+    ADD CONSTRAINT fk_rails_ef5078915d FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: reports_campaign_ai_artifacts fk_rails_ef96ec6fef; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -25129,6 +26042,14 @@ ALTER TABLE ONLY public.client_privacy_settings
 
 
 --
+-- Name: communication_templates fk_rails_fc4f073386; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.communication_templates
+    ADD CONSTRAINT fk_rails_fc4f073386 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: user_idp_development_actions fk_rails_fca1cf9d59; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -25185,31 +26106,55 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260819000001'),
 ('20260818000001'),
-('20260807000002'),
-('20260807000001'),
-('20260810125949'),
+('20260813162222'),
 ('20260812000002'),
 ('20260812000001'),
+('20260810125949'),
 ('20260810120000'),
-('20260804113153'),
-('20260727122651'),
-('20260727122640'),
+('20260807120000'),
+('20260807000002'),
+('20260807000001'),
+('20260806000001'),
 ('20260805102000'),
 ('20260805101500'),
-('20260806000001'),
-('20260731120500'),
-('20260731120000'),
+('20260804113153'),
+('20260804070001'),
 ('20260803093002'),
 ('20260803093001'),
-('20260724095212'),
+('20260731120500'),
+('20260731120000'),
+('20260730130002'),
+('20260730130001'),
+('20260729130004'),
+('20260729130003'),
+('20260729130002'),
+('20260729130001'),
+('20260729120002'),
+('20260729120001'),
+('20260728000001'),
+('20260727122651'),
+('20260727122640'),
+('20260727120002'),
+('20260727120001'),
 ('20260724091252'),
 ('20260724075701'),
+('20260719000001'),
+('20260719000000'),
 ('20260717000000'),
+('20260715000002'),
+('20260715000001'),
+('20260714000001'),
+('20260714000000'),
 ('20260713060835'),
 ('20260713060508'),
 ('20260709000000'),
-('20260702091252'),
-('20260702075701'),
+('20260707000007'),
+('20260707000006'),
+('20260707000005'),
+('20260707000004'),
+('20260707000003'),
+('20260707000002'),
+('20260707000001'),
 ('20260630180650'),
 ('20260630180649'),
 ('20260630180648'),
@@ -25235,7 +26180,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260513115038'),
 ('20260513115037'),
 ('20260512165457'),
-('20260511093000'),
 ('20260511092923'),
 ('20260507171240'),
 ('20260507171239'),
@@ -26282,3 +27226,4 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
+

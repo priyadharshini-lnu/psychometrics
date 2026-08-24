@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import {
-  Person, CalendarToday, PieChart, QrCode, TrendingUp as Stats, Storage, Speed, AdminPanelSettings,
+  Person, CalendarToday, Mail, PieChart, QrCode, TrendingUp as Stats, Storage, Speed, AdminPanelSettings,
   Settings, SmartToy, OpenInNew as Export, BarChart,
 } from '@thetalententerprise/glint/icons'
 
@@ -29,6 +29,12 @@ const menuItems = (permissions: Campaign['permissions'], basePath: string): Menu
     label:
     <Link route={`${basePath}/scheduling/assessment_center`}>{I18n.t('admin.scheduling')}</Link>,
     icon: <CalendarToday />,
+  } : null,
+  permissions.viewCommunicationCenter ? {
+    key: 'communication_center',
+    label:
+    <Link route={`${basePath}/communication_center`}>{I18n.t('admin.communication_center')}</Link>,
+    icon: <Mail />,
   } : null,
   permissions.viewAssessmentsAndReports ? {
     key: 'assessments_reports',
@@ -100,6 +106,9 @@ const getSelected = (pathname): string => {
   }
   if (pathname.includes('/scheduling')) {
     return 'scheduling'
+  }
+  if (pathname.includes('/communication_center')) {
+    return 'communication_center'
   }
   if (pathname.includes('/assessments_reports')) {
     return 'assessments_reports'

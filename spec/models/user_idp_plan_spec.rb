@@ -102,6 +102,66 @@ RSpec.describe UserIdpPlan, type: :model do
         end.not_to change(CommunicationEmail, :count)
       end
     end
+
+    context 'when an active campaign-scoped CommunicationDelivery exists' do
+      let(:project) { campaign.project }
+      let(:client) { project.client }
+      let!(:delivery) do
+        create(:communication_delivery, :idp_template_assigned, client: client, project: project, campaign: campaign)
+      end
+
+      before { client.client_feature.update!(use_new_communication_center: true) }
+
+      it 'creates a communication email sourced from the delivery' do
+        expect do
+          user_idp_plan.save!
+        end.to change(CommunicationEmail, :count).by(1)
+
+        communication_email = CommunicationEmail.last
+        expect(communication_email.communication_delivery).to eq(delivery)
+        expect(communication_email.user).to eq(user)
+        expect(communication_email.campaign_user).to eq(campaign_user)
+        expect(communication_email.communication_email_resources.first.resource).to eq(user_idp_plan)
+      end
+
+      it 'does not create a duplicate delivery-sourced email on repeat scheduling' do
+        user_idp_plan.save!
+
+        expect do
+          user_idp_plan.send(:schedule_idp_notification, 'idp_template_assigned')
+        end.not_to change(CommunicationEmail, :count)
+      end
+
+      context 'and a project-scoped delivery for the same kind also exists' do
+        let!(:project_delivery) do
+          create(:communication_delivery, :idp_template_assigned, :project_scoped, client: client, project: project)
+        end
+
+        it 'prefers the campaign-scoped delivery' do
+          user_idp_plan.save!
+
+          expect(CommunicationEmail.last.communication_delivery).to eq(delivery)
+        end
+      end
+    end
+
+    context 'when only a project-scoped CommunicationDelivery exists' do
+      let(:project) { campaign.project }
+      let(:client) { project.client }
+      let!(:delivery) do
+        create(:communication_delivery, :idp_template_assigned, :project_scoped, client: client, project: project)
+      end
+
+      before { client.client_feature.update!(use_new_communication_center: true) }
+
+      it 'creates a communication email sourced from the project delivery' do
+        expect do
+          user_idp_plan.save!
+        end.to change(CommunicationEmail, :count).by(1)
+
+        expect(CommunicationEmail.last.communication_delivery).to eq(delivery)
+      end
+    end
   end
 
   describe '#schedule_idp_status_notification' do
@@ -164,6 +224,27 @@ RSpec.describe UserIdpPlan, type: :model do
           end.not_to change(CommunicationEmail, :count)
         end
       end
+
+      context 'when an active CommunicationDelivery exists' do
+        let(:project) { user_idp_plan.campaign.project }
+        let(:client) { project.client }
+        let!(:delivery) do
+          create(:communication_delivery, :idp_template_approved,
+                 client: client, project: project, campaign: user_idp_plan.campaign)
+        end
+
+        before { client.client_feature.update!(use_new_communication_center: true) }
+
+        it 'creates a communication email sourced from the delivery' do
+          user_idp_plan.start_review!
+
+          expect do
+            user_idp_plan.approve!
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.last.communication_delivery).to eq(delivery)
+        end
+      end
     end
 
     context 'when plan is rejected' do
@@ -186,6 +267,27 @@ RSpec.describe UserIdpPlan, type: :model do
           expect(communication_email.user).to eq(user)
           expect(communication_email.campaign_user).to eq(campaign_user)
           expect(communication_email.communication_email_resources.first.resource).to eq(user_idp_plan)
+        end
+      end
+
+      context 'when an active CommunicationDelivery exists' do
+        let(:project) { user_idp_plan.campaign.project }
+        let(:client) { project.client }
+        let!(:delivery) do
+          create(:communication_delivery, :idp_template_rejected,
+                 client: client, project: project, campaign: user_idp_plan.campaign)
+        end
+
+        before { client.client_feature.update!(use_new_communication_center: true) }
+
+        it 'creates a communication email sourced from the delivery' do
+          user_idp_plan.start_review!
+
+          expect do
+            user_idp_plan.reject!
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.last.communication_delivery).to eq(delivery)
         end
       end
     end

@@ -18,6 +18,7 @@ describe('admin route table', () => {
       '/admin/clients/:clientId/admins',
       '/admin/clients/:clientId/assessors',
       '/admin/clients/:clientId/settings/*',
+      '/admin/clients/:clientId/communication_center',
       '/admin/clients/:clientId/audit_reports',
       '/admin/clients/:clientId/licenses',
       '/admin/clients/:clientId/data_reports',
@@ -50,6 +51,7 @@ describe('admin route table', () => {
       '/admin/projects/:projectId/settings/applications',
       '/admin/projects/:projectId/settings/applications/:applicationId',
       '/admin/projects/:projectId/settings/applications/:applicationId/*',
+      '/admin/projects/:projectId/communication_center/*',
       '/admin/projects/:projectId/audit_reports',
       '/admin/projects/:projectId/idp',
       '/admin/projects/:projectId/idp/(index)',
@@ -120,6 +122,7 @@ describe('admin route table', () => {
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/options',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/audit_reports',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/user_idp_reports/:id/*',
+      '/admin/projects/:projectId/new_campaigns/:campaignId/*/communication_center/*',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages/(index)',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages/options',
@@ -202,6 +205,7 @@ describe('admin route table', () => {
       '/admin/libraries/*',
       '/admin/templates/questions',
       '/admin/templates/blocks',
+      '/admin/communication_center',
     ])
   })
 })

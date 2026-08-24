@@ -53,6 +53,27 @@ RSpec.describe Communication, type: :model do
     end
   end
 
+  context '#create_communication_email_with_resources' do
+    let(:client) { create(:tenancy) }
+    let(:communication) { create(:communication, client: client) }
+    let(:membership) { create(:membership) }
+    let(:idp_plan) { create(:user_idp_plan) }
+
+    it 'creates the email with its resources when use_new_communication_center is disabled' do
+      expect do
+        communication.create_communication_email_with_resources({ membership_id: membership.id }, [idp_plan])
+      end.to change(CommunicationEmail, :count).by(1).and change(CommunicationEmailResource, :count).by(1)
+    end
+
+    it 'does not create the email when use_new_communication_center is enabled' do
+      client.client_feature.update!(use_new_communication_center: true)
+
+      expect do
+        communication.create_communication_email_with_resources({ membership_id: membership.id }, [idp_plan])
+      end.not_to change(CommunicationEmail, :count)
+    end
+  end
+
   context '#not_invited_to_project_current_memberships' do
     let(:campaign) { create(:campaign) }
     let(:project) { campaign.project }

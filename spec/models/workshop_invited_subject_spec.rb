@@ -163,6 +163,74 @@ RSpec.describe WorkshopInvitedSubject, type: :model do
         expect(last_email.user).to eq(subject)
         expect(last_email.communication).to eq(communication)
       end
+
+      context 'when an active CommunicationDelivery exists for the matching assessment group' do
+        let!(:delivery) do
+          create(:communication_delivery, :workshop_invite, client: campaign.project.parent,
+                                                                project: campaign.project, campaign: campaign,
+                                                                campaign_assessment_group:
+                                                                  workshop_invite.campaign_assessment_group)
+        end
+
+        context 'and use_new_communication_center is disabled for the client (default)' do
+          it 'sends the legacy email only -- the delivery is not usable without the flag' do
+            expect do
+              create(:workshop_invited_subject, status: 'pending', user: subject, workshop_invite: workshop_invite)
+            end.to change(CommunicationEmail, :count).by(1)
+
+            expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+          end
+        end
+
+        context 'and use_new_communication_center is enabled for the client' do
+          before { campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+          it 'sends the delivery-sourced email only -- the flag suppresses the legacy send' do
+            expect do
+              create(:workshop_invited_subject, status: 'pending', user: subject, workshop_invite: workshop_invite)
+            end.to change(CommunicationEmail, :count).by(1)
+
+            delivery_email = CommunicationEmail.find_by(communication_delivery: delivery)
+            expect(delivery_email.workshop_invite).to eq(workshop_invite)
+            expect(communication.reload.emails).to be_empty
+          end
+
+          it 'does not double-send on a second non-resent call, since the guard covers both sources together' do
+            workshop_invited_subject = create(:workshop_invited_subject, status: 'pending', user: subject,
+                                                                            workshop_invite: workshop_invite)
+
+            expect do
+              WorkshopInvites::SendEmail.call!(workshop_invited_subject)
+            end.not_to change(CommunicationEmail, :count)
+          end
+
+          it 'sends again on an explicit resend (resend bypasses the guard by design)' do
+            workshop_invited_subject = create(:workshop_invited_subject, status: 'pending', user: subject,
+                                                                            workshop_invite: workshop_invite)
+
+            expect do
+              Workshops::InviteRequest::ResendRequest.call!([workshop_invited_subject.id])
+            end.to change(CommunicationEmail, :count).by(1)
+          end
+        end
+      end
+
+      context 'when the active CommunicationDelivery is for a different assessment group' do
+        before { campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+        let!(:delivery) do
+          other_group = create(:campaign_assessment_group, campaign: campaign)
+          create(:communication_delivery, :workshop_invite, client: campaign.project.parent,
+                                                                project: campaign.project, campaign: campaign,
+                                                                campaign_assessment_group: other_group)
+        end
+
+        it 'does not create a delivery-sourced email even with the flag enabled' do
+          create(:workshop_invited_subject, status: 'pending', user: subject, workshop_invite: workshop_invite)
+
+          expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+        end
+      end
     end
   end
 end

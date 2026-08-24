@@ -202,5 +202,31 @@ describe Campaigns::Users::Create do
         described_class.call!(form, campaign, current_user, user: user1)
       end.to change { CommunicationEmail.count }.by(1)
     end
+
+    it 'creates an email via an active new_users CommunicationDelivery when there is no legacy Communication ' \
+       'and use_new_communication_center is enabled' do
+      campaign.client.client_feature.update!(use_new_communication_center: true)
+      create(:communication_delivery, campaign: campaign, recipients: :new_users,
+                                       communication_template: create(:communication_template, kind: :invitation,
+                                                                                                 campaign: campaign))
+
+      expect do
+        described_class.call!(form, campaign, current_user, user: user1)
+      end.to change { CommunicationEmail.count }.by(1)
+
+      email = CommunicationEmail.last
+      expect(email.user).to eq(user1)
+      expect(email.communication_delivery.recipients).to eq('new_users')
+    end
+
+    it 'does not use the new_users CommunicationDelivery when use_new_communication_center is disabled (default)' do
+      create(:communication_delivery, campaign: campaign, recipients: :new_users,
+                                       communication_template: create(:communication_template, kind: :invitation,
+                                                                                                 campaign: campaign))
+
+      expect do
+        described_class.call!(form, campaign, current_user, user: user1)
+      end.not_to(change { CommunicationEmail.count })
+    end
   end
 end

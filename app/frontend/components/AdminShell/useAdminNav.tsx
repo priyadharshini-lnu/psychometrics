@@ -239,6 +239,12 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       entry({
         key: 'communicationCenter',
         path: links.communicationCenter,
+        label: I18n.t('admin.communications'),
+        icon: <Mail />,
+      }),
+      entry({
+        key: 'newCommunicationCenter',
+        path: links.newCommunicationCenter,
         label: I18n.t('admin.communication_center'),
         icon: <Mail />,
       }),

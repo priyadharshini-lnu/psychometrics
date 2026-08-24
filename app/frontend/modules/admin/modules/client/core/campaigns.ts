@@ -28,6 +28,7 @@ const CommonPermissionsTR = t.type({
   viewAssessmentsAndReports: t.union([t.boolean, t.undefined]),
   manageReportApprovalSettings: t.union([t.boolean, t.undefined]),
   exportDashboardToFile: t.union([t.boolean, t.undefined]),
+  viewCommunicationCenter: t.union([t.boolean, t.undefined]),
 })
 
 const ThreesixtyCampaignPermissionsTR = t.type({

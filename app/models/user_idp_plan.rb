@@ -237,37 +237,47 @@ class UserIdpPlan < ApplicationRecord
   end
 
   def schedule_idp_assigned_notification
-    return if communication_emails.joins(:communication).
-              exists?(communications: { kind: :idp_template_assigned })
-
-    communication = Communication.order(:created_at).where(kind: :idp_template_assigned, campaign_id: campaign_id).last
-    return unless communication
-
-    communication.create_communication_email_with_resources(
-      { user: user, campaign_user: campaign_user },
-      self
-    )
+    schedule_idp_notification('idp_template_assigned')
   end
 
   def schedule_idp_status_notification(status)
     notification_kind = if status == :approved
-                          :idp_template_approved
+                          'idp_template_approved'
                         elsif status == :rejected
-                          :idp_template_rejected
+                          'idp_template_rejected'
                         end
+    return unless notification_kind
 
-    return if communication_emails.joins(:communication).
-              exists?(communications: { kind: notification_kind })
+    schedule_idp_notification(notification_kind)
+  end
 
-    communication = Communication.order(:created_at).
-                    where(kind: notification_kind, campaign_id: campaign_id).
-                    last
+  def schedule_idp_notification(kind)
+    schedule_legacy_idp_notification(kind) unless legacy_idp_notification_sent?(kind)
+    schedule_delivery_idp_notification(kind) unless delivery_idp_notification_sent?(kind)
+  end
 
+  def legacy_idp_notification_sent?(kind)
+    communication_emails.joins(:communication).exists?(communications: { kind: kind })
+  end
+
+  def delivery_idp_notification_sent?(kind)
+    communication_emails.joins(communication_delivery: :communication_template).
+      exists?(communication_templates: { kind: kind })
+  end
+
+  def schedule_legacy_idp_notification(kind)
+    communication = Communication.order(:created_at).where(kind: kind, campaign_id: campaign_id).last
     return unless communication
 
-    communication.create_communication_email_with_resources(
-      { user: user, campaign_user: campaign_user },
-      self
+    communication.create_communication_email_with_resources({ user: user, campaign_user: campaign_user }, self)
+  end
+
+  def schedule_delivery_idp_notification(kind)
+    delivery = CommunicationDelivery.active_for_kind(kind, campaign_id: campaign_id, project_id: campaign.project_id)
+    return unless delivery
+
+    CommunicationEmail.create_with_resources(
+      { communication_delivery_id: delivery.id, user: user, campaign_user: campaign_user }, self
     )
   end
 end

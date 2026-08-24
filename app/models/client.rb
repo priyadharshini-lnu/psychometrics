@@ -234,6 +234,19 @@ class Client < ApplicationRecord
     where.not(id: restricted_client_subquery)
   end
 
+  # The client-level "use_new_communication_center" flag is the single source of truth for whether the
+  # new Communication Center is enabled (visibility + API access) for a given project/campaign scope --
+  # also the flag that suppresses legacy Communication sends, so the two systems stay mutually exclusive
+  # per client. `project_id:` follows the codebase-wide idiom of "any clients.id, plain client row or
+  # project-depth row" (see User#has_permission?). Both blank means there's no owning client to gate
+  # against (e.g. a platform-level CommunicationTemplate) -- treated as not-gated, not as disabled.
+  def self.communication_center_active?(project_id: nil, campaign_id: nil)
+    return true if project_id.blank? && campaign_id.blank?
+
+    root = campaign_id ? Campaign.find_by(id: campaign_id)&.client : Client.find_by(id: project_id)&.client
+    root&.feature_enabled?(:use_new_communication_center) || false
+  end
+
   def self.ransackable_attributes(_auth_object = nil)
     %w[id name applicable_level disabled tte_id]
   end
