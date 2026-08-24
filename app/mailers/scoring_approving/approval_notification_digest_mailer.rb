@@ -13,8 +13,8 @@ module ScoringApproving
       @campaign = @score_approvals.first.campaign
       @assessment = @score_approvals.first.assessment
       @project = @campaign.project
-      @url = administration_ai_scoring_approvals_all_url(
-        'approved',
+      @url = admin_all_url(
+        'ai_scoring_approvals/approved',
         q: {
           filter: {
             assessment_id_in: [@assessment.id],

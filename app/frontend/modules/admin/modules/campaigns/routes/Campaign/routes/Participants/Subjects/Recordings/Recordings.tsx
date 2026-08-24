@@ -49,7 +49,7 @@ const RecordingsTable = () => {
   return (
     <>
       <Resource.Filter hideSearch name="" />
-      <Resource.Table pagination>
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_serial_no')}
           id="id"

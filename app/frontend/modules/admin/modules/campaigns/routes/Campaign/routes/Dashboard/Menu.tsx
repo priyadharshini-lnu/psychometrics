@@ -59,13 +59,11 @@ export const Menu: React.FC<Props> = ({
   if (menuItems.length < 2) return null
 
   return (
-    // As a flex child the strip's width would come from the items rc-overflow chose to show, and collapse to none.
     <AntMenu
       items={menuItems}
       onSelect={onSelect}
       selectedKeys={activeTab ? [activeTab.key] : []}
       mode="horizontal"
-      className="w-100"
     />
   )
 }

@@ -60,7 +60,7 @@ const WorkshopList: React.FC = () => {
           hideSearch
           name=""
         />
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column<Response>
             title={I18n.t('shared.id')}
             id="id"

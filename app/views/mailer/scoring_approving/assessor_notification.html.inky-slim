@@ -10,4 +10,4 @@ p You are receiving this email because you have been added as the #{@review_role
 
 p You can access the scoring approval via the following link:
 
-= link_to 'Scoring Approval', administration_to_admin_url(@url)
+= link_to 'Scoring Approval', @url
