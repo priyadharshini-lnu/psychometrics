@@ -1,4 +1,6 @@
-import { Col, Layout } from 'antd'
+import {
+  Col, Space, Layout,
+} from 'antd'
 import { Outlet } from 'react-router-dom'
 
 import { PageHeader as GlintPageHeader, FontsizeModifier } from '~/glint'
@@ -10,8 +12,10 @@ export const Bookings = () => (
   <>
     <GlintPageHeader>
       <Col flex="auto" span={24} className="ta-e">
-        <FontsizeModifier />
-        <LangDropdownWithChangeLocale />
+        <Space>
+          <FontsizeModifier />
+          <LangDropdownWithChangeLocale />
+        </Space>
       </Col>
     </GlintPageHeader>
     <Layout.Content className={styles.pageContent}>
