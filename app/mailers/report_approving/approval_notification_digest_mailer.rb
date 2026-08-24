@@ -13,8 +13,8 @@ module ReportApproving
       @campaign = @reports.first.campaign
       @report = @reports.first.report
       @project = @campaign.project
-      @url = administration_report_approvals_all_url(
-        'approved',
+      @url = admin_all_url(
+        'report_approvals/approved',
         q: {
           filter: {
             report_id_in: [@report.id],
