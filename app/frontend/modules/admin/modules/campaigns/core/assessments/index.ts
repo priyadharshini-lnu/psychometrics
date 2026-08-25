@@ -100,7 +100,7 @@ const updateAssessment = (state: State, { response }: ActivateUniversalLinkType)
 )
 
 const FetchOtherAssessmentsResponseTR = t.type({
-  total: t.number,
+  total: t.union([t.number, t.null, t.undefined]),
   list: t.array(OtherAssessmentTR),
 })
 

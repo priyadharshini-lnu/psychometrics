@@ -163,7 +163,7 @@ module Administration
         ).to_a
 
         assessments = Panko::ArraySerializer.new(
-          campaign.campaign_assessments.includes(
+          campaign.campaign_assessments.joins(:assessment).includes(
             :norm, :mettl_schedule_record,
             assessment: [:owner, :norms, :linked_assessment, :linked_assessor_form, :translations,
                          { dimension: :occupation_condition_sets }]
