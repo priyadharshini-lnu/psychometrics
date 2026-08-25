@@ -43,6 +43,7 @@ const ThreesixtyCampaignPermissionsTR = t.type({
   viewDatasheets: t.union([t.boolean, t.undefined]),
   viewAiArtifacts: t.union([t.boolean, t.undefined]),
 })
+
 export const CampaignTR = t.intersection([
   ResourceIdentifierTR,
   t.type({
@@ -61,15 +62,26 @@ export const CampaignTR = t.intersection([
       id: t.string,
       defaultLanguage: t.union([t.string, t.null, t.undefined]),
       availableLanguages: t.array(t.string),
-      report: t.union([t.type({ id: t.string, name: t.string }), t.undefined]),
+      report: t.union([
+        t.intersection([t.type({ id: t.string }), t.partial({ name: t.string })]),
+        t.undefined,
+      ]),
     })),
     campaignAssessments: t.array(t.type({
       id: t.string,
-      assessment: t.union([t.type({
-        id: t.string,
-        name: t.string,
-        dimension: t.union([t.type({ id: t.string, name: t.string }), t.undefined]),
-      }), t.undefined]),
+      assessment: t.union([
+        t.intersection([
+          t.type({ id: t.string }),
+          t.partial({
+            name: t.string,
+            dimension: t.union([
+              t.intersection([t.type({ id: t.string }), t.partial({ name: t.string })]),
+              t.undefined,
+            ]),
+          }),
+        ]),
+        t.undefined,
+      ]),
     })),
     threesixtyCampaign: t.union([
       t.type({
