@@ -77,5 +77,15 @@ describe WebhookSubscriptions::Publish do
         described_class.call(project, :assessment_started, data, record: user_assessment)
       end.to broadcast(:ok)
     end
+
+    it 'does not enqueue webhook for UAT users' do
+      uat_subject = create(:user, first_name: 'Uat', last_name: 'Subject', is_uat: true)
+      data = { campaign: campaign, assessment: assessment, evaluator: evaluator, subject: uat_subject }
+
+      expect(WebhookSystemJob).not_to receive(:perform_later)
+      expect do
+        described_class.call(project, :assessment_started, data)
+      end.to broadcast(:ok)
+    end
   end
 end

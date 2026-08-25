@@ -16,12 +16,13 @@ describe Campaigns::Users::ParseImportData do
     data = described_class.call!(file, campaign)
 
     expect(data).to eq([
-      ['Active', 'First Name', 'Last Name', 'Email Address', 'Mobile number', 'Password',
+      ['Active', 'UAT', 'First Name', 'Last Name', 'Email Address', 'Mobile number', 'Password',
        'Overwrite password', 'Schedule start date', 'Schedule end date', 'Created Date', 'Manager email',
        'Current job role', 'Target job role', 'Level', 'Age', 'Gender', 'ProfileLocale',
        'Custom Field1', 'Custom Field2'],
       {
         active: true,
+        is_uat: 'No',
         first_name: 'Fedor',
         last_name: 'Tar',
         email: 'fedor@gmail.com',
@@ -42,6 +43,7 @@ describe Campaigns::Users::ParseImportData do
       },
       {
         active: true,
+        is_uat: 'No',
         first_name: 'Vlad',
         last_name: 'Ata',
         email: 'vlad@gmail.com',
@@ -62,6 +64,7 @@ describe Campaigns::Users::ParseImportData do
       },
       {
         active: true,
+        is_uat: 'No',
         first_name: 'Rohan',
         last_name: 'R',
         email: 'rohan@gmail.com',
@@ -82,6 +85,7 @@ describe Campaigns::Users::ParseImportData do
       },
       {
         active: true,
+        is_uat: 'No',
         first_name: 'Shuja',
         last_name: 'S',
         email: 'shuja@gmail.com',
@@ -101,5 +105,20 @@ describe Campaigns::Users::ParseImportData do
         custom_field: 'c1'
       }
     ])
+  end
+
+  it 'leaves the raw UAT value untouched so validation can inspect it' do
+    data = described_class.call!([
+      ['Active', 'UAT', 'First Name', 'Last Name', 'Email Address'],
+      ['Yes', 'Yes', 'Uat', 'User', 'uat@example.com'],
+      ['Yes', 'No', 'Normal', 'User', 'normal@example.com'],
+      ['Yes', nil, 'Blank', 'User', 'blank@example.com'],
+      ['Yes', 'Maybe', 'Invalid', 'User', 'invalid@example.com']
+    ], campaign)
+
+    expect(data[1][:is_uat]).to eq('Yes')
+    expect(data[2][:is_uat]).to eq('No')
+    expect(data[3][:is_uat]).to be_nil
+    expect(data[4][:is_uat]).to eq('Maybe')
   end
 end

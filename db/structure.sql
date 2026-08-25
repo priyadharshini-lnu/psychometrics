@@ -875,7 +875,8 @@ CREATE TABLE public.users (
     external_id character varying,
     disabled_at timestamp(6) without time zone,
     tenant_id bigint,
-    spoofed_by_id bigint
+    spoofed_by_id bigint,
+    is_uat boolean DEFAULT false NOT NULL
 );
 
 
@@ -26104,6 +26105,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260819072637'),
 ('20260819000001'),
 ('20260818000001'),
 ('20260813162222'),

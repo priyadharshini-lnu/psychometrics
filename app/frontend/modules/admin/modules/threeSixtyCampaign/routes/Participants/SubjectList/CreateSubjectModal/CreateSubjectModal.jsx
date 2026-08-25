@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
-  Modal, Button, Form, Input, Select, Alert,
+  Modal, Button, Form, Input, Select, Alert, Checkbox,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -212,6 +212,16 @@ function CreateSubjectModal ({
           label={I18n.t('admin.locale')}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="isUat"
+          valuePropName="checked"
+          label={I18n.t('admin.campaign_users_uat_label')}
+        >
+          <Checkbox>
+            {I18n.t('admin.campaign_users_uat_description')}
+          </Checkbox>
         </Form.Item>
 
         {skillRaterEnabled && isSkillRater && (

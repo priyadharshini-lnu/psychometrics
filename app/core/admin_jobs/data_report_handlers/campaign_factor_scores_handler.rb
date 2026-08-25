@@ -46,6 +46,7 @@ module AdminJobs
                   joins('LEFT JOIN users u ON u.id = cfv.user_id').
                   from('campaign_factor_values cfv').
                   where('p.ancestry_depth = ? AND cl.ancestry_depth = ?', 1, 0).
+                  where('u.is_uat = false').
                   where(cu: { campaign_scores_finalized: true })
 
         if geo_restricted_top_level_client_ids.any?

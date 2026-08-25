@@ -14,7 +14,8 @@ module Administration
     end
 
     def full_name
-      object.decorate.full_name
+      base_name = object.decorate.full_name
+      object.is_uat? ? "UAT - #{base_name}" : base_name
     end
 
     def created_at

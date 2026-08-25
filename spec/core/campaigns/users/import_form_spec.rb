@@ -69,6 +69,15 @@ describe Campaigns::Users::ImportForm do
     expect(form.valid?).to eq(true)
   end
 
+  it 'validates UAT column values' do
+    form = described_class.new(
+      options.merge(import_data: [UserDecorator.export_headers, valid_attrs.merge(is_uat: 'Maybe')])
+    ).with_context(campaign: campaign, current_user: user)
+
+    expect(form.valid?).to eq(false)
+    expect(form.errors.full_messages).to include('Import data Row 1: UAT must be Yes, No, or blank')
+  end
+
   describe 'validate_manager_emails' do
     let(:existing_email) { 'james@cc.com' }
     let(:non_existing_email) { 'non_existing@cc.com' }
@@ -141,6 +150,17 @@ describe Campaigns::Users::ImportForm do
       expect(form.errors.details[:import_data]).to include(
         hash_including(error: :not_enough_licenses, required_count: 1, available_count: 0)
       )
+    end
+
+    it 'skips license consumption requirement for UAT users' do
+      License.where(client_id: campaign.client_id).update_all('used_number = number + overuse_number')
+      uat_options = {
+        import_data: [UserDecorator.export_headers, valid_attrs.merge(is_uat: 'Yes')],
+        operation: 'add_and_allow_new_response'
+      }
+      uat_form = described_class.new(uat_options).with_context(campaign: campaign, current_user: user)
+
+      expect(uat_form.valid?).to eq(true)
     end
 
     it 'passes when enough licenses are available' do

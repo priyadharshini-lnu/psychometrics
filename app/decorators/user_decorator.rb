@@ -163,6 +163,7 @@ class UserDecorator < BaseDecorator
     I18n.with_locale(I18n.default_locale) do
       [
         User.human_attribute_name('active'),
+        'UAT',
         User.human_attribute_name('first_name'),
         User.human_attribute_name('last_name'),
         User.human_attribute_name('email'),

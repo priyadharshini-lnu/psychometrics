@@ -44,6 +44,8 @@ module AdminJobs
                   joins('LEFT JOIN clients p ON p.id = cmp.project_id').
                   joins('LEFT JOIN clients c ON c.id = p.tte_id').
                   joins('LEFT JOIN reports r ON r.id = user_reports.report_id').
+                  joins('LEFT JOIN users u ON u.id = user_reports.user_id').
+                  where('u.is_uat = false').
                   where(r: { id: report_ids })
 
         records = records.where(p: { id: project_ids }) if project_ids.present?

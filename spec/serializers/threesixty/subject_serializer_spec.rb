@@ -145,4 +145,44 @@ describe Threesixty::SubjectSerializer do
       end
     end
   end
+
+  describe 'is_uat' do
+    let(:project) { create(:project) }
+    let(:campaign) { create(:campaign, project: project) }
+    let(:option) { create(:threesixty_option) }
+    let(:counters) do
+      {
+        subject.user_id => { total_evaluators: 1, total_evaluations: 1,
+                             completed_evaluations: 1, completed_evaluators: 1 }
+      }
+    end
+
+    def serialized_user
+      described_class.new(context: {
+        option: option,
+        counters: counters,
+        current_user: current_user,
+        campaign_id: campaign.id,
+        project_id: project.id
+      }).serialize(subject).deep_symbolize_keys[:user]
+    end
+
+    context 'when the subject user is a UAT user' do
+      let(:user) { create(:user, is_uat: true) }
+      let(:subject) { create(:threesixty_subject, user: user, campaign: campaign) }
+
+      it 'serializes is_uat as true' do
+        expect(serialized_user[:is_uat]).to eq(true)
+      end
+    end
+
+    context 'when the subject user is not a UAT user' do
+      let(:user) { create(:user, is_uat: false) }
+      let(:subject) { create(:threesixty_subject, user: user, campaign: campaign) }
+
+      it 'serializes is_uat as false' do
+        expect(serialized_user[:is_uat]).to eq(false)
+      end
+    end
+  end
 end

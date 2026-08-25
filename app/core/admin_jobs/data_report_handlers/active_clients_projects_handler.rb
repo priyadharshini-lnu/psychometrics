@@ -46,7 +46,9 @@ module AdminJobs
                   joins('LEFT JOIN assessments a ON a.id = ua.assessment_id').
                   joins('LEFT JOIN clients p ON cmp.project_id = p.id').
                   joins('LEFT JOIN clients c ON c.id = p.tte_id').
-                  where('p.ancestry_depth = ? AND c.ancestry_depth = ?', 1, 0)
+                  joins('LEFT JOIN users u ON u.id = ua.subject_id').
+                  where('p.ancestry_depth = ? AND c.ancestry_depth = ?', 1, 0).
+                  where('u.is_uat = false')
 
         if geo_restricted_top_level_client_ids.any?
           records = records.where.not(c: { id: geo_restricted_top_level_client_ids })

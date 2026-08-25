@@ -25,6 +25,14 @@ describe Campaigns::Users::Create do
     expect(User.last.locale).to eq('en')
   end
 
+  it 'stores UAT flag for newly created users' do
+    form.is_uat = true
+
+    described_class.call!(form, campaign, current_user)
+
+    expect(User.last.is_uat).to eq(true)
+  end
+
   it 'stores user profile gender for new user' do
     form.gender = 'male'
     described_class.call!(form, campaign, current_user)

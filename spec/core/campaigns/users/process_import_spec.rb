@@ -219,6 +219,21 @@ describe Campaigns::Users::ProcessImport do
   end
 
   describe 'with existing user' do
+    it 'does not update is_uat for existing users' do
+      existing_user = campaign.users.create!(
+        email: 'fedor@gmail.com',
+        password: 'A!sdasd129431',
+        is_uat: false
+      )
+      data_with_uat = [import_data.first.merge(is_uat: true)]
+
+      described_class.call!(
+        campaign, current_user, data_with_uat, 'add_with_existing_response', admin_job_record
+      )
+
+      expect(existing_user.reload.is_uat).to eq(false)
+    end
+
     it 'sets mobile verified false if mobile number is changed' do
       campaign.users.create!(email: 'fedor@gmail.com', password: 'A!sdasd129431', mobile_number: '+971111111110',
                              mobile_verified: true)

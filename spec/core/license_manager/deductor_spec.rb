@@ -190,6 +190,24 @@ describe LicenseManager::Deductor do
         end.not_to change(LicenseUsage, :count)
       end
     end
+
+    context 'when user is marked as UAT' do
+      let(:user) { create(:user, is_uat: true) }
+
+      it 'does not create billable usage or increment used counts' do
+        project_license = create(:project_license, license: license, project: project, enabled: true, used_number: 0)
+        deductor = described_class.new(
+          campaign: campaign,
+          user: user,
+          license_type: 'common',
+          context: { report_family_id: report_family.id }
+        )
+
+        expect { deductor.call }.not_to change(LicenseUsage, :count)
+        expect(license.reload.used_number).to eq(0)
+        expect(project_license.reload.used_number).to eq(0)
+      end
+    end
   end
 
   describe '#already_used?' do

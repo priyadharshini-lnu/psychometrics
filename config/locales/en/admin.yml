@@ -391,6 +391,12 @@ en:
     campaign_templates_remove_confirm_success: Campaing template '%{name}'' was successfully removed.
     campaign_templates_remove_confirm_title: Remove Campaign Template
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
+    campaign_users_import_uat_hint: Set the UAT column to Yes for test users that should be excluded from licensing, analytics, and webhooks.
+    campaign_users_uat_description: Mark this participant as a UAT test user.
+    campaign_users_uat_label: UAT Participant
+    campaign_users_uat_license_count: "%{count} users"
+    campaign_users_uat_license_label: UAT users
+    campaign_users_uat_license_non_billable: Non-billable
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template
     campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes

@@ -170,7 +170,9 @@ function SubjectList ({
                   className="p-0"
                   onClick={() => openParticipantModal(user, permissions)}
                 >
-                  {userPresenter.getFullName(user)}
+                  {user.isUat
+                    ? `UAT - ${userPresenter.getFullName(user)}`
+                    : userPresenter.getFullName(user)}
                 </Button>
               )}
             />

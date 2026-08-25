@@ -7,6 +7,7 @@ module Campaigns
 
       HEADER_IMPORT_KEYS = %i[
         active
+        is_uat
         first_name
         last_name
         email

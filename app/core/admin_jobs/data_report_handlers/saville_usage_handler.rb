@@ -72,7 +72,8 @@ module AdminJobs
                     r: {
                       provider: Report.providers[:saville]
                     }
-                  )
+                  ).
+                  where('u.is_uat = false')
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
 

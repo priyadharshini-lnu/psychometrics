@@ -11,6 +11,7 @@ module Campaigns
       validates :operation, inclusion: { in: %w[skip_existing add_with_existing_response add_and_allow_new_response] }
 
       validate :validate_header
+      validate :validate_uat_values
       validate :validate_body
       validate :validate_duplicated_emails
       validate :validate_manager_emails
@@ -29,6 +30,14 @@ module Campaigns
 
       def validate_header
         errors.add(:import_data, :invalid_header) if (UserDecorator.export_headers - import_data.first).any?
+      end
+
+      def validate_uat_values
+        import_data[1..].each.with_index do |attrs, index|
+          next if ::Threesixty::Subjects::ParseUatValue.valid?(attrs[:is_uat])
+
+          errors.add(:import_data, "Row #{index + 1}: UAT must be Yes, No, or blank")
+        end
       end
 
       def validate_body
@@ -68,13 +77,13 @@ module Campaigns
       def validate_available_licenses
         return if errors.any?
         return unless licenses_required?
-        return if new_user_emails.empty?
-        return if available_license_count >= new_user_emails.size
+        return if new_non_uat_user_emails.empty?
+        return if available_license_count >= new_non_uat_user_emails.size
 
         errors.add(
           :import_data,
           :not_enough_licenses,
-          required_count: new_user_emails.size,
+          required_count: new_non_uat_user_emails.size,
           available_count: available_license_count
         )
       end
@@ -87,6 +96,16 @@ module Campaigns
         @new_user_emails ||= import_data[1..].pluck(:email).
                              compact.uniq - campaign.users.where(email: import_data[1..].
                               pluck(:email)).pluck(:email)
+      end
+
+      def uat_new_user_emails
+        @uat_new_user_emails ||= import_data[1..].select do |row|
+          ::Threesixty::Subjects::ParseUatValue.call(row[:is_uat])
+        end.pluck(:email).compact.uniq
+      end
+
+      def new_non_uat_user_emails
+        @new_non_uat_user_emails ||= new_user_emails - uat_new_user_emails
       end
 
       def available_license_count

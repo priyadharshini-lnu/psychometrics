@@ -18,6 +18,7 @@ module LicenseManager
     end
 
     def call
+      return broadcast :ok if uat_user?
       return broadcast :ok if report_family.present? && already_used?
 
       license_usage_details = get_license_usage_details
@@ -32,6 +33,11 @@ module LicenseManager
       end
 
       broadcast :ok, license_usage_details[:license_usage]
+    end
+
+    def uat_user?
+      subject = user.is_a?(CampaignUser) ? user.user : user
+      subject.respond_to?(:is_uat) && subject.is_uat
     end
 
     def already_used?

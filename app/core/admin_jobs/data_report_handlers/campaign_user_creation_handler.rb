@@ -57,7 +57,7 @@ module AdminJobs
                   joins('INNER JOIN clients ON clients.id = campaigns.project_id').
                   joins('LEFT JOIN clients c ON c.id = clients.tte_id').
                   joins(:user).
-                  where(campaigns: { project_id: project_ids })
+                  where(campaigns: { project_id: project_ids }, users: { is_uat: false })
 
         if geo_restricted_top_level_client_ids.any?
           records = records.where.not(c: { id: geo_restricted_top_level_client_ids })

@@ -162,6 +162,7 @@ class User < ApplicationRecord
   validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email? }
   validates :email, presence: true
   validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
+  validate :ensure_is_uat_immutable, on: :update
 
   before_save :ensure_authentication_token
   before_save do
@@ -313,6 +314,12 @@ class User < ApplicationRecord
 
   def ensure_authentication_token
     self.authentication_token = generate_authentication_token if authentication_token.blank?
+  end
+
+  def ensure_is_uat_immutable
+    return unless will_save_change_to_is_uat?
+
+    errors.add(:is_uat, :immutable)
   end
 
   # If user was already created and was invited by mail (with link to set password)
