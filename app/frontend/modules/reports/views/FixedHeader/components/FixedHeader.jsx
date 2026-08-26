@@ -328,8 +328,11 @@ export class FixedHeader extends Component {
                       },
                       {
                         key: 'preview',
-                        label: 'Preview',
-                        href: `/administration/reports/${_.result(AppStore.report, 'id')}/preview`,
+                        label: (
+                          <a href={`/administration/reports/${_.result(AppStore.report, 'id')}/preview`}>
+                            Preview
+                          </a>
+                        ),
                       },
                       {
                         key: 'aliases',

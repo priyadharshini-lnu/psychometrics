@@ -14,8 +14,6 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { WorkshopEditFormModal } from './WorkshopEditFormModal'
-import settings from '~/modules/admin/modules/campaigns/settings'
-import routeUtils from '~/utils/route'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import { useResources } from '~/hooks/useResources'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
@@ -37,18 +35,17 @@ export const WorkshopPage: FC = () => {
   const {
     id,
     campaignId,
+    projectId,
     tab,
-  } = useParams() as { id: string, campaignId: string, tab?: string }
+  } = useParams() as { id: string, campaignId: string, projectId: string, tab: string }
   const location = useLocation()
-  const [currentTab, setCurrentTab] = useState(tab || 'subjects')
   const [showForm, setShowForm] = useState(false)
   const [openChangeStatusModal, setOpenChangeStatusModal] = useState(false)
   const navigate = useNavigate()
-  const prefixPath = `${settings.urlPrefix}/${campaignId}/scheduling`
+  const schedulingPath = `/admin/projects/${projectId}/new_campaigns/${campaignId}/scheduling`
 
-  const handleTabChange = (currentTab) => {
-    routeUtils.moveTo(navigate, prefixPath, `/assessment_center/${id}/${currentTab}`, false, location.state)
-    setCurrentTab(currentTab)
+  const handleTabChange = (nextTab: string) => {
+    navigate(`${schedulingPath}/assessment_center/${id}/${nextTab}`, { state: location.state })
   }
 
   const {
@@ -235,7 +232,7 @@ export const WorkshopPage: FC = () => {
   ]
 
   const toggle = (
-    <Radio.Group onChange={e => handleTabChange(e.target.value)} value={currentTab}>
+    <Radio.Group onChange={e => handleTabChange(e.target.value)} value={tab}>
       <Radio.Button value="subjects">{I18n.t('admin.scheduling_tabs_subjects')}</Radio.Button>
       <Radio.Button value="resources">{I18n.t('admin.scheduling_tabs_resources')}</Radio.Button>
       <Radio.Button value="activities">{I18n.t('admin.scheduling_tabs_activities')}</Radio.Button>
@@ -251,7 +248,7 @@ export const WorkshopPage: FC = () => {
         <Descriptions
           title={(
             <Flex gap={8}>
-              <ArrowLeftOutlined onClick={() => routeUtils.moveTo(navigate, prefixPath, backUrl)} />
+              <ArrowLeftOutlined onClick={() => navigate(`${schedulingPath}${backUrl}`)} />
               {workshop.name}
               {workshop.videoRecordingEnabled
                 && (
@@ -286,10 +283,10 @@ export const WorkshopPage: FC = () => {
         />
         <Divider />
         <div>
-          {currentTab === 'subjects' && <SubjectList workshop={workshop} toggle={toggle} />}
-          {currentTab === 'resources' && <ResourceList toggle={toggle} />}
-          {currentTab === 'activities' && <Activities toggle={toggle} />}
-          {currentTab === 'recordings' && <Recordings toggle={toggle} />}
+          {tab === 'subjects' && <SubjectList workshop={workshop} toggle={toggle} />}
+          {tab === 'resources' && <ResourceList toggle={toggle} />}
+          {tab === 'activities' && <Activities toggle={toggle} />}
+          {tab === 'recordings' && <Recordings toggle={toggle} />}
         </div>
       </div>
       {showForm && (

@@ -16,6 +16,7 @@ import assessorRoutes from './modules/AssessorApp/routes'
 import assessorSettings from './modules/AssessorApp/settings'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const OWNED_PATH_PREFIXES = ['/admin', assessorSettings.urlPrefix]
 
@@ -109,6 +110,7 @@ export const router = createBrowserRouter([
 export function Layout () {
   return (
     <Suspense fallback="loading...">
+      <DocumentTitle />
       <RouterProvider router={router} />
     </Suspense>
   )
