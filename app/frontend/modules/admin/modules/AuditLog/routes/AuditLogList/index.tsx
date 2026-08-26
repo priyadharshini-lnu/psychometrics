@@ -30,6 +30,7 @@ import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { useTableSettings } from '~/components/AdminShell/useTableSettings'
 import settings from '../../settings'
 import AuditLogTabs from '../../components/Tabs'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 export const FILTER_PREDICATES = {
   recordType: 'In',
@@ -285,6 +286,7 @@ const AuditLogList: React.FC<Props> = (
       title: I18n.t('admin.record_id'),
       key: 'recordId',
       dataIndex: 'recordId',
+      fixed: 'left',
       ...searchColumn('record_id_eq', I18n.t('admin.search_record')),
     },
     {
@@ -480,6 +482,7 @@ const AuditLogList: React.FC<Props> = (
 
   return (
     <>
+      <DocumentTitle text={I18n.t('admin.audit_logs')} />
       <AuditLogTabs />
 
       <TableLayout
@@ -493,7 +496,7 @@ const AuditLogList: React.FC<Props> = (
             columns={visibleColumns(columns, hiddenColumns)}
             onChange={onTableChange}
             pagination={false}
-            scroll={{ x: 'auto' }}
+            scroll={{ x: 'max-content' }}
             sticky
           />
         )}

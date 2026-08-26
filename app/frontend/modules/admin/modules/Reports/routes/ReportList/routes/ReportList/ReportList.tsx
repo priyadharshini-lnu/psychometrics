@@ -9,6 +9,7 @@ import { Tabs } from './Tabs'
 import { FirstLevelTabs } from '../../../components/FirstLevelTabs'
 import { ReportFormModal } from './ReportFormModal'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -33,22 +34,25 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
   }
 
   return (
-    <Resource
-      title={I18n.t('admin.reports')}
-      config={config}
-      name="reports"
-      settingsKey={TABLE_SETTINGS_KEYS.adminReports}
-    >
-      <ReportFilter openModal={() => closeModal(false)} />
-      <ReportTable openDrawer={setDrawerReport} />
-      {!!drawerReport && (
-        <DetailsDrawer
-          close={() => setDrawerReport(undefined)}
-          report={drawerReport}
-        />
-      )}
-      {!closed && (<ReportFormModal close={() => { closeModal(true) }} />)}
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.reports')} />
+      <Resource
+        title={I18n.t('admin.reports')}
+        config={config}
+        name="reports"
+        settingsKey={TABLE_SETTINGS_KEYS.adminReports}
+      >
+        <ReportFilter openModal={() => closeModal(false)} />
+        <ReportTable openDrawer={setDrawerReport} />
+        {!!drawerReport && (
+          <DetailsDrawer
+            close={() => setDrawerReport(undefined)}
+            report={drawerReport}
+          />
+        )}
+        {!closed && (<ReportFormModal close={() => { closeModal(true) }} />)}
+      </Resource>
+    </>
   )
 }
 

@@ -13,6 +13,7 @@ import { SkillsImportModal } from './SkillsImportModal'
 import { Tabs } from '../Tabs'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -62,6 +63,7 @@ const SkillList: React.FC<PropsFromRedux> = ({ features, openModal }) => {
 
   return (
     <>
+      {!projectIdParam && <DocumentTitle text={I18n.t('admin.skills_title')} />}
       { !projectIdParam && <Tabs featureFlags={features} />}
       <Resource
         title={I18n.t('admin.skills_title')}

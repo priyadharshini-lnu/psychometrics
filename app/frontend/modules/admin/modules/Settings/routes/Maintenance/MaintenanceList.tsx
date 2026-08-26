@@ -5,6 +5,7 @@ import {
 import { useResources } from '~/hooks/useResources'
 import MaintenanceCard from './MaintenanceCard'
 import { MAINTENANCE_SUBSYSTEMS } from '../../core/constants'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -35,6 +36,7 @@ const MaintenanceList: React.FC = () => {
 
   return (
     <>
+      <DocumentTitle text={I18n.t('admin.maintenance')} />
       <div className="p-4">
         <Typography.Title level={4}>{I18n.t('admin.maintenance')}</Typography.Title>
         <Typography.Paragraph type="secondary" className="mb-8">

@@ -10,6 +10,7 @@ import { DimensionsFormModal } from './DimensionsFormModal'
 import { DimensionsTable } from './DimensionsTable'
 import { DimensionsFilter } from './DimensionsFilter'
 import { RemoveDimensionModal } from './RemoveDimensionModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -40,16 +41,19 @@ const DimensionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   }
 
   return (
-    <Resource
-      title={I18n.t('admin.dimensions')}
-      config={config}
-      name="dimensions"
-      settingsKey={TABLE_SETTINGS_KEYS.adminDimensions}
-    >
-      <DimensionsFilter openModal={openModal} />
-      <DimensionsTable openModal={openModal} />
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.dimensions')} />
+      <Resource
+        title={I18n.t('admin.dimensions')}
+        config={config}
+        name="dimensions"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDimensions}
+      >
+        <DimensionsFilter openModal={openModal} />
+        <DimensionsTable openModal={openModal} />
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 

@@ -8,6 +8,7 @@ import { useResources } from '~/hooks/useResources'
 import styles from './Dashboard.less'
 import { DashboardTR, Dashboard as DashboardType } from '../../campaigns/core/dashboard'
 import { settings } from '../settings'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Meta } = Card
 const { I18n } = window
@@ -32,6 +33,7 @@ export const DashboardList = () => {
 
   return (
     <div className="p-6">
+      <DocumentTitle text={I18n.t('admin.dashboards')} />
       <h3>{I18n.t('admin.dashboards')}</h3>
       <Row>
         {data.map(dashboard => (

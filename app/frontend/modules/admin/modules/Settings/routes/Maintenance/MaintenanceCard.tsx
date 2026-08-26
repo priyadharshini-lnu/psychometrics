@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import {
-  Card, Typography, Button, Switch,
+  Card, Typography, Button, Switch, Flex,
 } from 'antd'
 import dayjs from '~/utils/dayjs'
 import MaintenanceForm from './MaintenanceForm'
-import styles from './styles.less'
 
 const { I18n } = window
 
@@ -54,14 +53,7 @@ export const MaintenanceCard: React.FC<MaintenanceCardProps> = ({
   }
 
   return (
-    <Card
-      title={label}
-      styles={{
-        body: {
-          overflow: 'hidden',
-        },
-      }}
-    >
+    <Card title={label}>
       {isEditing ? (
         <MaintenanceForm
           subsystemKey={subsystemKey}
@@ -70,63 +62,55 @@ export const MaintenanceCard: React.FC<MaintenanceCardProps> = ({
           onCancel={handleCancel}
         />
       ) : (
-        <div className="pb-8">
-          <div className={styles.scrollableContent}>
-            <div className="mb-6 flex items-center">
-              <Switch
-                checked={maintenanceSetting?.maintenanceWindowEnabled}
-                disabled
-              />
-              <Typography.Text strong className="ms-4">
-                {I18n.t('admin.enable_maintenance')}
-              </Typography.Text>
-            </div>
-            <div className="mb-6">
-              <div className="flex items-center">
-                <Typography.Text type="secondary" className="fs-18 me-2">
-                  {I18n.t('admin.timezone')}
-                  :
-                </Typography.Text>
-                <Typography.Text strong className="fs-16">
-                  {maintenanceSetting?.timeZone || '-'}
-                </Typography.Text>
-              </div>
-            </div>
-            <div className="mb-6">
-              <div className="flex items-center">
-                <Typography.Text type="secondary" className="fs-18 me-2">
-                  {I18n.t('admin.start_time')}
-                  :
-                </Typography.Text>
-                <Typography.Text strong className="fs-16">
-                  {formatTimeForDisplay(
-                    maintenanceSetting?.startTime,
-                    maintenanceSetting?.timeZone,
-                  )}
-                </Typography.Text>
-              </div>
-            </div>
-            <div className="mb-6">
-              <div className="flex items-center">
-                <Typography.Text type="secondary" className="fs-18 me-2">
-                  {I18n.t('admin.end_time')}
-                  :
-                </Typography.Text>
-                <Typography.Text strong className="fs-16">
-                  {formatTimeForDisplay(
-                    maintenanceSetting?.endTime,
-                    maintenanceSetting?.timeZone,
-                  )}
-                </Typography.Text>
-              </div>
-            </div>
-          </div>
-          <div className={styles.footer}>
-            <Button type="default" onClick={handleEdit} key="edit">
+        <Flex vertical gap="middle">
+          <Flex align="center" gap="middle">
+            <Switch
+              checked={maintenanceSetting?.maintenanceWindowEnabled}
+              disabled
+            />
+            <Typography.Text strong>
+              {I18n.t('admin.enable_maintenance')}
+            </Typography.Text>
+          </Flex>
+          <Flex align="center" gap="small">
+            <Typography.Text type="secondary" className="fs-18">
+              {I18n.t('admin.timezone')}
+              :
+            </Typography.Text>
+            <Typography.Text strong className="fs-16">
+              {maintenanceSetting?.timeZone || '-'}
+            </Typography.Text>
+          </Flex>
+          <Flex align="center" gap="small">
+            <Typography.Text type="secondary" className="fs-18">
+              {I18n.t('admin.start_time')}
+              :
+            </Typography.Text>
+            <Typography.Text strong className="fs-16">
+              {formatTimeForDisplay(
+                maintenanceSetting?.startTime,
+                maintenanceSetting?.timeZone,
+              )}
+            </Typography.Text>
+          </Flex>
+          <Flex align="center" gap="small">
+            <Typography.Text type="secondary" className="fs-18">
+              {I18n.t('admin.end_time')}
+              :
+            </Typography.Text>
+            <Typography.Text strong className="fs-16">
+              {formatTimeForDisplay(
+                maintenanceSetting?.endTime,
+                maintenanceSetting?.timeZone,
+              )}
+            </Typography.Text>
+          </Flex>
+          <Flex justify="end">
+            <Button type="default" onClick={handleEdit}>
               {I18n.t('common.actions.edit')}
             </Button>
-          </div>
-        </div>
+          </Flex>
+        </Flex>
       )}
     </Card>
   )

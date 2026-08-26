@@ -16,6 +16,7 @@ import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/setting
 import { useResources } from '~/hooks/useResources'
 import RunReportModal from './components/RunReportModal'
 import { REPORT_TYPE_KEYS } from './components/ReportTypeConfigs'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -224,29 +225,32 @@ export const DataReports: React.FC<{}> = () => {
   )
 
   return (
-    <Resource
-      title={I18n.t('admin.data_reports')}
-      config={config}
-      name="data_reports"
-      settingsKey={TABLE_SETTINGS_KEYS.adminDataReports}
-    >
-      {Filter}
-      {Table}
-      <DataReportForm
-        dataReport={editable}
-        show={showForm}
-        close={() => closeForm()}
-      />
-      {runTarget && (
-        <RunReportModal
-          report={runTarget}
-          open
-          loading={runLoading}
-          onRun={handleRunSubmit}
-          onClose={() => setRunTarget(undefined)}
+    <>
+      <DocumentTitle text={I18n.t('admin.data_reports')} />
+      <Resource
+        title={I18n.t('admin.data_reports')}
+        config={config}
+        name="data_reports"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDataReports}
+      >
+        {Filter}
+        {Table}
+        <DataReportForm
+          dataReport={editable}
+          show={showForm}
+          close={() => closeForm()}
         />
-      )}
-    </Resource>
+        {runTarget && (
+          <RunReportModal
+            report={runTarget}
+            open
+            loading={runLoading}
+            onRun={handleRunSubmit}
+            onClose={() => setRunTarget(undefined)}
+          />
+        )}
+      </Resource>
+    </>
   )
 }
 

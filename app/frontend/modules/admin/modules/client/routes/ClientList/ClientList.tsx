@@ -19,6 +19,7 @@ import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { RemoveClientModal } from './RemoveClientModal'
 import { ClientFormModal } from './ClientFormModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Column } = Table
 const { Search } = Input
@@ -253,6 +254,7 @@ const ClientList: React.FC<Props> = ({
 
   return (
     <>
+      <DocumentTitle text={I18n.t('admin.clients')} />
       <TableLayout
         loading={tableLoading}
         table={ClientTable}

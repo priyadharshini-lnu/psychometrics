@@ -17,6 +17,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals/'
 import CopyBlockFormModal from './CopyBlockFormModal'
 import CreateBlockModal from './CreateBlockModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -252,16 +253,19 @@ const BlockList: React.FC = () => {
   )
 
   return (
-    <Resource
-      title={I18n.t('admin.blocks_title')}
-      config={config}
-      name="blocks"
-      settingsKey={TABLE_SETTINGS_KEYS.adminQuestionCenterBlocks}
-    >
-      {Filter}
-      {Table}
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.blocks_title')} />
+      <Resource
+        title={I18n.t('admin.blocks_title')}
+        config={config}
+        name="blocks"
+        settingsKey={TABLE_SETTINGS_KEYS.adminQuestionCenterBlocks}
+      >
+        {Filter}
+        {Table}
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 
