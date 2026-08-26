@@ -355,4 +355,66 @@ RSpec.describe UserReport, type: :model do
       end
     end
   end
+
+  describe '#start_approval!' do
+    let(:campaign) { create(:campaign) }
+    let(:report) { create(:report) }
+    let(:user) { create(:user) }
+    let!(:user_report) do
+      create(:user_report, campaign: campaign, report: report, user: user, approval_status: :not_ready)
+    end
+    let!(:report_approval_setting) { create(:report_approval_setting, campaign: campaign, report: report) }
+
+    before do
+      allow_any_instance_of(UserReport).to receive(:common_report_ready_for_approval?).and_return(true)
+      allow(UserReports::NotifyQc).to receive(:call!)
+    end
+
+    context 'when called concurrently by multiple workers' do
+      it 'transitions to pending_qc exactly once and sends the notification exactly once' do
+        # thread-safe counter to verify NotifyQc is not called more than once across workers
+        notify_call_count = Concurrent::AtomicFixnum.new(0)
+        allow(UserReports::NotifyQc).to receive(:call!) { notify_call_count.increment }
+
+        ur_id = user_report.id
+        worker_count = 5
+        barrier = Concurrent::CyclicBarrier.new(worker_count)
+
+        threads = Array.new(worker_count) do
+          Thread.new do
+            ActiveRecord::Base.connection_pool.with_connection do
+              barrier.wait # force all workers to start simultaneously
+              UserReport.find(ur_id).start_approval!
+            end
+          end
+        end
+
+        threads.each(&:join)
+
+        expect(UserReport.find(ur_id).approval_status).to eq('pending_qc')
+        expect(notify_call_count.value).to eq(1)
+      end
+    end
+
+    context 'when already in pending_qc state' do
+      before { user_report.update!(approval_status: :pending_qc) }
+
+      it 'does not transition or send a notification' do
+        user_report.start_approval!
+
+        expect(user_report.reload.approval_status).to eq('pending_qc')
+        expect(UserReports::NotifyQc).not_to have_received(:call!)
+      end
+    end
+
+    context 'when no approval workflow exists' do
+      before { report_approval_setting.destroy }
+
+      it 'does not transition' do
+        user_report.start_approval!
+
+        expect(user_report.reload.approval_status).to eq('not_ready')
+      end
+    end
+  end
 end
