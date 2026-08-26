@@ -6,6 +6,7 @@ import { Resource } from '~/modules/admin/components/Resource'
 import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { AiAssistantsTable } from './AiAssistantsTable'
 import { AiAssistantsFilter } from './AiAssistantFilter'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -29,15 +30,18 @@ const AiAssistantList: React.FC<PropsFromRedux> = ({ openModal }) => {
   }
 
   return (
-    <Resource
-      title={I18n.t('admin.ai_assistants')}
-      config={config}
-      name="assistants"
-      settingsKey={TABLE_SETTINGS_KEYS.adminAiAssistants}
-    >
-      <AiAssistantsFilter openModal={openModal} />
-      <AiAssistantsTable />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.ai_assistants')} />
+      <Resource
+        title={I18n.t('admin.ai_assistants')}
+        config={config}
+        name="assistants"
+        settingsKey={TABLE_SETTINGS_KEYS.adminAiAssistants}
+      >
+        <AiAssistantsFilter openModal={openModal} />
+        <AiAssistantsTable />
+      </Resource>
+    </>
   )
 }
 

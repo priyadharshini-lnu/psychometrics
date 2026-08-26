@@ -5,6 +5,7 @@ import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/setting
 import { CampaignTemplatesFormModal } from './CampaignTemplatesFormModal'
 import { CampaignTemplatesTable } from './CampaignTemplatesTable'
 import { CampaignTemplatesFilter } from './CampaignTemplatesFilter'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -23,24 +24,27 @@ const CampaignTemplatesList: React.FC = () => {
     setIsModalOpen(true)
   }
   return (
-    <Resource
-      title={I18n.t('admin.campaign_templates')}
-      config={config}
-      name="campaign_templates"
-      settingsKey={TABLE_SETTINGS_KEYS.adminCampaignTemplates}
-    >
-      <CampaignTemplatesFilter openModal={() => setIsModalOpen(true)} />
-      <CampaignTemplatesTable openModal={openModal} />
-      {isModalOpen && (
-        <CampaignTemplatesFormModal
-          campaignTemplate={selectedCampaignTemplate}
-          close={() => {
-            setSelectedCampaignTemplate(undefined)
-            setIsModalOpen(false)
-          }}
-        />
-      )}
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.campaign_templates')} />
+      <Resource
+        title={I18n.t('admin.campaign_templates')}
+        config={config}
+        name="campaign_templates"
+        settingsKey={TABLE_SETTINGS_KEYS.adminCampaignTemplates}
+      >
+        <CampaignTemplatesFilter openModal={() => setIsModalOpen(true)} />
+        <CampaignTemplatesTable openModal={openModal} />
+        {isModalOpen && (
+          <CampaignTemplatesFormModal
+            campaignTemplate={selectedCampaignTemplate}
+            close={() => {
+              setSelectedCampaignTemplate(undefined)
+              setIsModalOpen(false)
+            }}
+          />
+        )}
+      </Resource>
+    </>
   )
 }
 

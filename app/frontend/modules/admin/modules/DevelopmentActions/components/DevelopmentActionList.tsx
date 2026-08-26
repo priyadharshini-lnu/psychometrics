@@ -10,6 +10,7 @@ import { DevelopmentActionsFormModal } from './DevelopmentActionsFormModal'
 import { DevelopmentActionsTable } from './DevelopmentActionsTable'
 import { DevelopmentActionsFilter } from './DevelopmentActionsFilter'
 import { DevelopmentActionsImportModal } from './DevelopmentActionsImportModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -59,16 +60,19 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   }
 
   return (
-    <Resource
-      title={I18n.t('admin.development_actions')}
-      config={config}
-      name="development_actions"
-      settingsKey={TABLE_SETTINGS_KEYS.adminDevelopmentActions}
-    >
-      <DevelopmentActionsFilter openModal={openModal} />
-      <DevelopmentActionsTable openModal={handleOpenModal} />
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.development_actions')} />
+      <Resource
+        title={I18n.t('admin.development_actions')}
+        config={config}
+        name="development_actions"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDevelopmentActions}
+      >
+        <DevelopmentActionsFilter openModal={openModal} />
+        <DevelopmentActionsTable openModal={handleOpenModal} />
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 

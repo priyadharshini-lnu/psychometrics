@@ -13,6 +13,7 @@ import { UserFormModal } from './UserFormModal'
 import { UserTable } from './UserTable'
 import { UserFilter } from './UserFilter'
 import { Tabs } from './Tabs'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -69,18 +70,21 @@ const UserListComponent: React.FC<Props> = ({
   }
 
   return (
-    <Resource
-      title={I18n.t(TITLE_KEY[userTab] ?? 'admin.users')}
-      config={config}
-      name="users"
-      settingsKey={SETTINGS_KEY[userTab] ?? TABLE_SETTINGS_KEYS.adminUsers}
-    >
-      <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
-      <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
-      {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
-      {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t(TITLE_KEY[userTab] ?? 'admin.users')} />
+      <Resource
+        title={I18n.t(TITLE_KEY[userTab] ?? 'admin.users')}
+        config={config}
+        name="users"
+        settingsKey={SETTINGS_KEY[userTab] ?? TABLE_SETTINGS_KEYS.adminUsers}
+      >
+        <UserFilter currentUser={currentUser} userTab={userTab} openModal={() => closeModal(false)} />
+        <UserTable currentUser={currentUser} userTab={userTab} openDrawer={setDrawerUser} />
+        {!!drawerUser && <DetailsDrawer close={() => setDrawerUser(undefined)} user={drawerUser} />}
+        {!closed && <UserFormModal close={() => closeModal(true)} userTab={userTab} />}
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 

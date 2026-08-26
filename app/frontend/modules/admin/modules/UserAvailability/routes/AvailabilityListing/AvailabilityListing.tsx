@@ -12,6 +12,7 @@ import {
 import { ScheduleAvailability } from '~/glint'
 import { ErrorMessage } from '~/glint/components/ScheduleAvailability/interfaces'
 import { CountDisplay } from '~/components/CountDisplay'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -88,6 +89,7 @@ const AvailabilityListing = () => {
 
   return (
     <Layout.Content>
+      <DocumentTitle text={I18n.t('admin.availability')} />
       <Row
         justify="space-between"
         align="middle"

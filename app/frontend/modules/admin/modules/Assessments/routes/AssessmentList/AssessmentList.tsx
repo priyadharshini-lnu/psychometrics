@@ -8,6 +8,7 @@ import { DetailsDrawer } from './DetailsDrawer'
 import { Tabs } from './Tabs'
 import { AssessmentFormModal } from './AssessmentFormModal'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -26,27 +27,30 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
   }
 
   return (
-    <Resource
-      title={I18n.t('assessments.assessments')}
-      config={config}
-      name="assessments"
-      settingsKey={TABLE_SETTINGS_KEYS.adminAssessments}
-      header={<AssessmentFilter openModal={() => closeModal(false)} />}
-    >
-      <AssessmentTable openDrawer={setDrawerAssessment} />
-      {!!drawerAssessment && (
-        <DetailsDrawer
-          close={() => setDrawerAssessment(undefined)}
-          assessment={drawerAssessment}
-        />
-      )}
-      {!closed && (
-        <AssessmentFormModal close={() => {
-          closeModal(true)
-        }}
-        />
-      )}
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('assessments.assessments')} />
+      <Resource
+        title={I18n.t('assessments.assessments')}
+        config={config}
+        name="assessments"
+        settingsKey={TABLE_SETTINGS_KEYS.adminAssessments}
+        header={<AssessmentFilter openModal={() => closeModal(false)} />}
+      >
+        <AssessmentTable openDrawer={setDrawerAssessment} />
+        {!!drawerAssessment && (
+          <DetailsDrawer
+            close={() => setDrawerAssessment(undefined)}
+            assessment={drawerAssessment}
+          />
+        )}
+        {!closed && (
+          <AssessmentFormModal close={() => {
+            closeModal(true)
+          }}
+          />
+        )}
+      </Resource>
+    </>
   )
 }
 

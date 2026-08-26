@@ -56,12 +56,19 @@ const ConditionalDropdown: React.FC<Props> = ({
 
   const filteredMenuItems = removeInvalidElements(menu)
   const hasChildrens = (filteredMenuItems?.length > 0)
+  const dropdownMenu = {
+    ...menu,
+    items: filteredMenuItems,
+    style: {
+      ...(menu?.style || {}),
+    },
+  }
 
   if (!hasChildrens && hideForEmptyMenu) { return null }
 
   return (
     <Dropdown
-      menu={{ ...menu, items: filteredMenuItems }}
+      menu={dropdownMenu}
       trigger={['click']}
       disabled={!hasChildrens}
       className={className || ''}

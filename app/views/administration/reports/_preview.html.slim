@@ -1,3 +1,5 @@
-#report_preview[class="#{params[:export] ? '' : 'html_preview'}" data-data="#{ReportSerializer.new(context: { piped_text_context: {}, include: '**' }).serialize(resource)}" data-user-report-data='{}']
+#report_preview[class="#{params[:export] ? '' : 'html_preview'}"
+  data-data="#{ReportSerializer.new(context: { piped_text_context: {}, include: '**' }).serialize(resource).to_json}"
+  data-user-report-data='{}']
 
 = vite_javascript_tag 'entrypoints/report/preview.jsx'

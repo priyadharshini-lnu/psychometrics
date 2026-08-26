@@ -5,6 +5,9 @@ import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
 import { Tabs } from '../Tabs'
 import { TaxonomyImport } from './TaxonomyImport'
+import { DocumentTitle } from '~/components/DocumentTitle'
+
+const { I18n } = window
 
 const connecter = connect(
   (state: RootState) => ({
@@ -19,6 +22,7 @@ const Settings: React.FC<PropsFromRedux> = ({ features }) => {
 
   return (
     <>
+      {!projectId && <DocumentTitle text={I18n.t('admin.tools')} />}
       { !projectId && <Tabs featureFlags={features} />}
       <TaxonomyImport />
     </>

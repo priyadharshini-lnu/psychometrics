@@ -16,6 +16,7 @@ import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign, Task, TasksTR } from '../core'
 import { Tabs } from './Tabs'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import styles from './TasksList.less'
 
 
@@ -466,6 +467,7 @@ const TasksListComponent: React.FC<Props> = ({
 
   return (
     <>
+      <DocumentTitle text={I18n.t('admin.ai_scoring_approvals')} />
       <Tabs />
       <div>
         <TableLayout

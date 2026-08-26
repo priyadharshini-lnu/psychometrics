@@ -12,6 +12,7 @@ import { ProficiencyLevelTR } from '../../../client/core/proficiencyLevels'
 import { Tabs } from '../Tabs'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -51,6 +52,7 @@ const Proficiency: React.FC<PropsFromRedux> = ({ features, openModal }) => {
 
   return (
     <>
+      {!projectId && <DocumentTitle text={I18n.t('admin.proficiency_levels')} />}
       { !projectId && <Tabs featureFlags={features} />}
       <Resource
         title={I18n.t('admin.proficiency_levels')}

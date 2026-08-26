@@ -71,7 +71,7 @@ export const WorkshopList: React.FC = () => {
             hideable={false}
             minWidth={150}
             render={(_, { id, name }) => (
-              <Link to={`${id}`} state={{ search: location.search }}>
+              <Link to={`${id}/subjects`} state={{ search: location.search }}>
                 {name}
               </Link>
             )}

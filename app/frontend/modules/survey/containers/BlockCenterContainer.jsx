@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import '~/modules/survey/styles/globals.less'
 import { Provider } from 'react-redux'
+import { BrowserRouter as Router } from 'react-router-dom'
 import BlockCenter from '~/modules/survey/layouts/BlockCenter'
 import UndoRedoDispatcher from '~/modules/survey/dispatchers/UndoRedoDispatcher'
+import DnDProvider from '~/components/DnD/DnDProvider'
 import { DefaultAntThemeWrapper } from '~/glint'
 
 import { setStore } from '~/modules/survey/store/StoreWatchman'
@@ -30,11 +32,15 @@ class BlockCenterContainer extends Component {
 
   render () {
     return (
-      <DefaultAntThemeWrapper>
-        <Provider store={store}>
-          <BlockCenter />
-        </Provider>
-      </DefaultAntThemeWrapper>
+      <Router>
+        <DefaultAntThemeWrapper>
+          <Provider store={store}>
+            <DnDProvider>
+              <BlockCenter />
+            </DnDProvider>
+          </Provider>
+        </DefaultAntThemeWrapper>
+      </Router>
     )
   }
 }

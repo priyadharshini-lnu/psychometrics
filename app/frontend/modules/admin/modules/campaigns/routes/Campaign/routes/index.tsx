@@ -81,8 +81,8 @@ export const routes = [
   { path: 'participants/subjects/:userId/idp/:idpPlanId/plan', lazy: lazyRoute(idp, m => m.Plan) },
   { path: 'scheduling', lazy: lazyRoute(scheduling, m => m.Scheduling), children: schedulingRoutes },
   { path: 'scheduling/assessment_center/new', lazy: lazyRoute(scheduling, m => m.AssessmentCenterForm) },
-  // WorkshopPage swaps its own tabs under this url, so it keeps the splat.
-  { path: 'scheduling/assessment_center/:id/*', lazy: lazyRoute(scheduling, m => m.WorkshopPage) },
+  { path: 'scheduling/assessment_center/:id', element: <Navigate to="subjects" replace /> },
+  { path: 'scheduling/assessment_center/:id/:tab', lazy: lazyRoute(scheduling, m => m.WorkshopPage) },
   { path: 'scheduling/invites/add_invite', lazy: lazyRoute(scheduling, m => m.InvitesForm) },
   { path: 'scheduling/invites/:inviteId/:tabName', lazy: lazyRoute(scheduling, m => m.IndividualInvite) },
   { path: 'scoring', lazy: lazyRoute(scoring, m => m.Scoring), children: scoringRoutes },

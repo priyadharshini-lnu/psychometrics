@@ -143,6 +143,10 @@ function SubjectList ({
                 normalizedSubjectsData={normalizedSubjectsData}
                 cachingEnabled={cachingEnabled}
                 allowCaching={allowCaching}
+                placement="bottomRight"
+                menuStyle={{
+                  maxHeight: '270px',
+                }}
               />
             )}
             {permissions.addSubject && !template && (

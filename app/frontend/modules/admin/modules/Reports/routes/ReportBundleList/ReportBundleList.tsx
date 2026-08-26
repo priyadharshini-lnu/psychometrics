@@ -7,6 +7,7 @@ import { ReportBundleFilter } from './ReportBundleFilter'
 import { ReportBundleTable } from './ReportBundleTable'
 import { ReportBundleFormModal } from './ReportBundleFormModal'
 import { ReportBundle, ReportBundleTR } from '~/modules/admin/modules/client/core/reports'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -24,6 +25,7 @@ const ReportBundleList: React.FC = () => {
 
   return (
     <>
+      <DocumentTitle text={I18n.t('report_bundles.report_bundles')} />
       <FirstLevelTabs />
       <Resource
         title={I18n.t('report_bundles.report_bundles')}

@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, useEffect } from 'react'
 import { message } from 'antd'
 import * as t from 'io-ts'
 import { useParams } from 'react-router-dom'
@@ -13,7 +13,7 @@ type Props = {
 const { I18n } = window
 const ExportTranslationsResponseTR = t.type({ status: t.string })
 
-export const FactorTranslationsModal: React.FC<Props> = ({ close }) => {
+export const FactorTranslationsModal: FC<Props> = ({ close }) => {
   const { dimensionId } = useParams() as { dimensionId: string }
   const {
     fetchSingle,
@@ -26,11 +26,11 @@ export const FactorTranslationsModal: React.FC<Props> = ({ close }) => {
   })
   const dimension = getResource(dimensionId)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!dimensionId || dimension) return
 
-    fetchSingle({ id: dimensionId })
-  }, [dimensionId, dimension, fetchSingle])
+    fetchSingle({ id: dimensionId }).catch(() => null)
+  }, [dimensionId, dimension])
 
   const submitFileImport = async (file: File) => {
     const formData = new FormData()
