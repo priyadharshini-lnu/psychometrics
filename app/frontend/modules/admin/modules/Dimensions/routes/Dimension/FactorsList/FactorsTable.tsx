@@ -171,7 +171,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
         closable
         onClose={() => setQuestionsDrawerOpen(false)}
         open={questionsDrawerOpen}
-        width="50%"
+        size="50%"
         footer={(
           <Space style={{ float: 'right' }}>
             <Button onClick={() => setQuestionsDrawerOpen(false)}>

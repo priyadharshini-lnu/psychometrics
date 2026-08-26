@@ -1,6 +1,6 @@
 import ImportModal from '../PortableDataImport/ImportModal'
 
-const DimensionImportModal = (props) => {
+const DimensionImportModal = ({ open = true, close, ...props }) => {
   const translations = {
     cancel: I18n.t('shared.cancel'),
     continue: I18n.t('shared.continue'),
@@ -14,6 +14,8 @@ const DimensionImportModal = (props) => {
       importEndpoint="/administration/dimensions/import"
       translations={translations}
       showFileErrorAlert={false}
+      open={open}
+      onClose={close}
       {...props}
     />
   )

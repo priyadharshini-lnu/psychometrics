@@ -10,6 +10,8 @@ html lang="en" style=shell_html_style
       = preload_link_tag image_url('marsh-pattern.png'), as: :image
     = vite_javascript_tag "entrypoints/locales/#{I18n.locale || 'en'}.ts"
     = render 'layouts/pys_global_state'
+    javascript [nonce=content_security_policy_nonce]:
+      window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
     = stylesheet_link_tag 'administration', media: 'all'
     - if Rails.env.test?
       = stylesheet_link_tag 'test'

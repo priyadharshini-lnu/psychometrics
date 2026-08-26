@@ -36,7 +36,7 @@ module PsyGlobalStateHelper
 
   # Shell pages paint the brand backdrop from the first byte.
   def shell_html_style
-    style = 'color-scheme: light dark'
+    style = "color-scheme: #{Settings.features.theme_switcher ? 'light dark' : 'light'}"
     style += "; #{brand_backdrop_style}" if react_shell?
     style
   end

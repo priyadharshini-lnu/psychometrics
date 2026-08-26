@@ -17,7 +17,6 @@ import {
 
 const { I18n } = window
 
-// 280px, not rem: the legacy stylesheet sets root font-size to 12px, so glint's rems render at 75%.
 const SIDER_WIDTH = '280px'
 
 const ADMIN_HOME = '/admin'
@@ -68,21 +67,22 @@ const AdminBrand: FC<{ collapsed: boolean }> = ({ collapsed }) => {
 const AdminSiderFooter: FC<{ collapsed: boolean }> = ({ collapsed }) => {
   const appearance = useSiderAppearance()
 
+  if (collapsed) return null
+
   return (
-    // A container query so the wordmark shrinks with a dragged-narrow rail instead of clipping.
     <div style={{ containerType: 'inline-size' }}>
       <div
         style={{
           fontWeight: 200,
-          fontSize: collapsed ? '1rem' : 'clamp(0.5rem, 11cqi, 1.375rem)',
-          letterSpacing: collapsed ? 0 : '0.18em',
+          fontSize: 'clamp(0.5rem, 11cqi, 1.375rem)',
+          letterSpacing: '0.18em',
           textTransform: 'uppercase',
           textAlign: 'center',
           color: appearance === 'dark' ? 'var(--white-bg)' : 'var(--brand-navy)',
           whiteSpace: 'nowrap',
         }}
       >
-        {collapsed ? 'L' : 'Lighthouse'}
+        Lighthouse
       </div>
     </div>
   )
@@ -146,6 +146,7 @@ const ShellBody: FC<Props> = ({
       brand={isCollapsed => <AdminBrand collapsed={isCollapsed} />}
       siderFooter={isCollapsed => <AdminSiderFooter collapsed={isCollapsed} />}
       resizableSider
+      maxSiderWidth={SIDER_WIDTH}
       onSiderWidthChange={save}
       nav={nav}
       navKey={showSubmenu ? 'subnav' : 'main'}
