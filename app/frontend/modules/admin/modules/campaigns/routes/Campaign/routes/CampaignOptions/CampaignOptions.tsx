@@ -718,6 +718,20 @@ const CampaignOptions: React.FC<Props> = ({
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
 
+        {options.manageWebhookSettings && (
+          <div className="mbl">
+            <Option
+              label={I18n.t('admin.disable_webhooks')}
+              {...parametersForField('disableWebhooks')}
+            />
+            <Row>
+              <Col span={22} offset={2}>
+                <span className="text-muted">{I18n.t('admin.disable_webhooks_hint')}</span>
+              </Col>
+            </Row>
+          </div>
+        )}
+
         <div className="mb-8 mt-8">
           <h4>{I18n.t('shared.description')}</h4>
           <Description projectId={parsedProjectId} campaignId={parsedCampaignId} />

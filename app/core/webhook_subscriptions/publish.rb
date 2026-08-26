@@ -27,6 +27,7 @@ module WebhookSubscriptions
     end
 
     def call
+      return broadcast(:ok) if campaign_webhooks_disabled?
       return broadcast(:ok) if uat_event?
       return broadcast(:ok) unless project.webhooks.active.not_deleted.exists? || webhook
 
@@ -79,6 +80,14 @@ module WebhookSubscriptions
       return true unless assessment
 
       webhook.assessment_ids.exclude?(assessment.id.to_s)
+    end
+
+    # Fast path: skip enqueuing entirely when the campaign already has webhooks disabled.
+    # Delivery-time re-checks (WebhookSubscriptions::DeliverySuppressed) remain authoritative
+    # for events queued before the flag was toggled on.
+    def campaign_webhooks_disabled?
+      campaign = data[:campaign] || data['campaign']
+      campaign.respond_to?(:disable_webhooks?) && campaign.disable_webhooks?
     end
 
     def uat_event?

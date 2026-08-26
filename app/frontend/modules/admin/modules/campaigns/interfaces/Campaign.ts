@@ -104,4 +104,6 @@ export interface CampaignOptions {
   faceDetectionEnabled: boolean
   minimumFaceDetectionRatio: number
   phraseVerificationEnabled: boolean
+  disableWebhooks?: boolean
+  manageWebhookSettings?: boolean
 }

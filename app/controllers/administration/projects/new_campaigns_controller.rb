@@ -158,7 +158,8 @@ module Administration
       def fetch_campaign_options
         campaign_options = @campaign.campaign_options
 
-        render json: Administration::Campaigns::CampaignOptionsSerializer.new.serialize(campaign_options)
+        serialized = Administration::Campaigns::CampaignOptionsSerializer.new.serialize(campaign_options)
+        render json: serialized.merge('manage_webhook_settings' => manage_webhook_settings?)
       end
 
       def fetch_campaign_instructions
@@ -225,6 +226,16 @@ module Administration
       end
 
       private
+
+      def manage_webhook_settings?
+        GetPermissionsHash.call!(
+          Administration::CampaignPolicy,
+          current_user,
+          @campaign,
+          %w[manage_webhook_settings],
+          { project_id: params[:project_id], campaign_id: @campaign&.id }
+        )['manage_webhook_settings']
+      end
 
       def pundit_authorize
         authorize(
@@ -355,6 +366,7 @@ module Administration
           :hide_participant_video, :disable_transcript_download,
           :minimum_upload_speed, :minimum_download_speed,
           :face_detection_enabled, :minimum_face_detection_ratio, :phrase_verification_enabled,
+          *(manage_webhook_settings? ? %i[disable_webhooks] : []),
           rules: %i[ allow_voices allow_to_use_books allow_to_use_excel allow_to_use_paper
                      allow_to_use_websites allow_absence_in_frame allow_to_use_calculator
                      allow_to_use_messengers allow_wrong_gaze_direction

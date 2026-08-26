@@ -2926,7 +2926,8 @@ CREATE TABLE public.campaign_options (
     minimum_face_detection_ratio integer DEFAULT 85,
     phrase_verification_enabled boolean DEFAULT false NOT NULL,
     hide_participant_video boolean DEFAULT false NOT NULL,
-    disable_transcript_download boolean DEFAULT false NOT NULL
+    disable_transcript_download boolean DEFAULT false NOT NULL,
+    disable_webhooks boolean DEFAULT false NOT NULL
 );
 
 
@@ -26105,6 +26106,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260821000001'),
 ('20260819072637'),
 ('20260819000001'),
 ('20260818000001'),

@@ -138,6 +138,18 @@ describe Campaign, type: :model do
     end
   end
 
+  describe '#disable_webhooks?' do
+    it 'returns false by default' do
+      expect(campaign.disable_webhooks?).to be false
+    end
+
+    it 'delegates to campaign_options' do
+      campaign.campaign_options.update!(disable_webhooks: true)
+
+      expect(campaign.disable_webhooks?).to be true
+    end
+  end
+
   describe 'system check option helpers' do
     context 'for common campaigns' do
       describe '#system_check_enabled?' do

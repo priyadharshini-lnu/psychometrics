@@ -11,6 +11,8 @@ module Administration
       end
 
       def call
+        return broadcast(:ok) if WebhookSubscriptions::DeliverySuppressed.suppressed?(event)
+
         ::WebhookSystem::Job.perform_now(subscription, event)
       rescue ::WebhookSystem::Job::RequestFailed => e
         broadcast(:error, I18n.t('administration.webhook.request_failure', http_status_code: e.code))

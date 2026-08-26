@@ -812,6 +812,8 @@ en:
     disable_proctoring: Disable Proctoring
     disable_report_download: Disable report download
     disable_transcript_download: Disable Transcript Download
+    disable_webhooks: Disable Webhooks
+    disable_webhooks_hint: When enabled, no webhook or downstream integration events are sent to the client for this campaign, regardless of participant type. Only Super Admins can change this.
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
