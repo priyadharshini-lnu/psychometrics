@@ -283,7 +283,7 @@ const AssessorsComponent: FC<Props> = ({
         title={I18n.t('admin.assessors')}
         pagination={{
           page,
-          pageSize: settings.pagination.defaultPageSize,
+          pageSize: tableConfig.pageSize ?? settings.pagination.defaultPageSize,
           total: totalAssessors,
           onChange: changePage,
         }}

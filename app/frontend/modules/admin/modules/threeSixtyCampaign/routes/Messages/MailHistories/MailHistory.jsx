@@ -102,6 +102,7 @@ export default function MailHistory ({
           pageSize: settings.pageLimit,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         table={(
           <Table

@@ -102,6 +102,7 @@ function SubjectList ({
           pageSize: settings.pageLimit,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         selectionSetting={{
           selectionAllowed: true,

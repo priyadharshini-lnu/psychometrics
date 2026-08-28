@@ -37,7 +37,10 @@ type Props = {
   controls?: React.ReactNode
   sider?: ReactNode
   siderOpen?: boolean
-  pagination?: Pick<Extract<DataTablePaginationProps, { page: number }>, 'page' | 'pageSize' | 'total' | 'onChange'>
+  pagination?: Pick<
+    Extract<DataTablePaginationProps, { page: number }>,
+    'page' | 'pageSize' | 'total' | 'onChange' | 'showSizeChanger'
+  >
 }
 
 const { I18n } = window
@@ -63,7 +66,7 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
 
   const total = pagination?.total ?? recordCount ?? 0
   const paging: DataTablePaginationProps = pagination
-    ? { ...pagination, total }
+    ? { ...pagination, total, showSizeChanger: pagination.showSizeChanger ?? true }
     : { paged: false, total }
 
   const footer = (

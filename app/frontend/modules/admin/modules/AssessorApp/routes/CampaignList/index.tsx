@@ -78,6 +78,7 @@ const CampaignList: React.FC<Props> = (
           pageSize: DEFAULT_PAGE_SIZE,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         filters={(
           <Space>
