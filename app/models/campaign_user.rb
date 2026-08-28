@@ -91,7 +91,7 @@ class CampaignUser < ApplicationRecord
 
   def campaign_factor_dependent_user_reports
     UserReport.joins(:report).merge(Report.campaign_factor_dependable).
-      where(campaign_id: campaign_id, user_id: user_id)
+      where(campaign_id: campaign_id, user_id: user_id).distinct
   end
 
   def generate_or_remove_report_on_artifact_results_finalized
