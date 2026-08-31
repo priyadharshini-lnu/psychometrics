@@ -1,571 +1,572 @@
 ---
 sk:
-  privacy_notice: |-
-    <div>
-      <h1><strong>OZNÁMENIE O OCHRANE OSOBNÝCH ÚDAJOV SPOLOČNOSTI MERCER TALENT ENTERPRISE </strong>&nbsp;</h1>
-      <p>Dátum účinnosti: 15 September 2024</p>
-      <p>
-        Toto oznámenie o ochrane osobných údajov popisuje, ako spoločnosť Mercer Talent Enterprise (“
-        <strong>MTE</strong>
-        ”) zhromažďuje, používa, zdieľa, uchováva, prenáša a inak spracováva informácie týkajúce sa identifikovaných alebo identifikovateľných osôb (ďalej len „osobné údaje“) a aké práva môžete mať v súvislosti s vašimi osobnými údajmi . Veríme, že je dôležité, aby ste pochopili, ako spracovávame osobné údaje, a preto vás povzbudzujeme, aby ste si našli chvíľku a oboznámili sa s našimi postupmi ochrany osobných údajov uvedenými nižšie.
-      </p>
-      <p>
-        Upozorňujeme, že spoločnosť MTE je poskytovateľom riešení v oblasti behaviorálnej vedy a v niektorých prípadoch konáme v mene a na základe pokynov klientov, finančných inštitúcií, obchodníkov a iných partnerov, ktorí konajú ako prevádzkovatelia údajov, a to aj pri spracovaní platobných transakcií. Ďalšie informácie týkajúce sa spracovania vašich osobných údajov v týchto kontextoch nájdete v zásadách ochrany osobných údajov týchto partnerov.
-      </p>
-      <h2>AKÝ JE NÁŠ VZŤAH K VÁM</h2>
-      <p>
-        Tretia strana vás žiada o vyplnenie posúdenia na platforme spoločnosti MTE. Táto tretia strana je klientom spoločnosti MTE a môže byť vaším zamestnávateľom, potenciálnym zamestnávateľom alebo inou spriaznenou stranou. Spoločnosť MTE zhromažďuje a spracováva vaše osobné údaje v mene našich klientov. Riadime sa pokynmi našich klientov týkajúcimi sa toho, aké osobné údaje máme zhromažďovať a ako ich spracovávať. Spoločnosť MTE preto koná ako spracovateľ pre našich klientov, ktorý určuje spracovanie vašich osobných údajov.
-      </p>
-      <p>
-        V prípade otázok týkajúcich sa spracovania vašich osobných údajov vám odporúčame prečítať si oznámenie o ochrane osobných údajov nášho klienta.
-      </p>
-      <h2>AKÉ OSOBNÉ ÚDAJE ZHROMAŽĎUJEME </h2>
-      <p>
-        Náš klient nám nariaďuje zhromažďovať určité informácie v jeho mene. Okrem vášho mena a e-mailovej adresy, ktoré sú potrebné na vytvorenie účtu, spoločnosť MTE nezávisle neurčuje, aké informácie sa zhromažďujú. Na základe potrieb a pokynov nášho klienta môžeme v prípade potreby zhromažďovať nasledujúce kategórie osobných údajov na splnenie našich zamýšľaných obchodných účelov:
-      </p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="146">
-              <p>
-                <strong
-                  >Kategória
-                </strong>
-              </p>
-            </td>
-            <td width="454">
-              <p>
-                <strong
-                  >Príklady
-                </strong>
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Biografické identifikátory</p></td>
-            <td width="454">
-              <p>Meno, dátum narodenia, vek, miesto narodenia, pohlavie.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Kontaktné informácie</p></td>
-            <td width="454">
-              <p>Domáca adresa, telefónne číslo, osobná e-mailová adresa.</p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Identifikačné informácie</p></td>
-            <td width="454">
-              <p>
-                Daňové číslo, číslo sociálneho zabezpečenia alebo iné identifikačné číslo vydané vládou, číslo vodičského preukazu, informácie z pasu, údaje o bankovom účte, daňové priznanie k dani z príjmu, daňové identifikačné číslo.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146">
-              <p>Profesionálne alebo zamestnanecké informácie</p>
-            </td>
-            <td width="454">
-              <p>
-                Zamestnávateľ alebo skupina, vzťah k našej spoločnosti, pracovná pozícia, kontaktné údaje spoločnosti, identifikačné číslo zamestnanca, pracovný stupeň, výkon zamestnanca, platové a odmeňovacie podmienky a pracovná história a/alebo váš vzťah k poistníkovi, poistenému, oprávnenej osobe alebo žiadateľovi o poistné plnenie.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Citlivé demografické atribúty</p></td>
-            <td width="454">
-              <p>
-                Rasa, občianstvo, fyzické alebo duševné zdravie alebo postihnutie, pohlavie (vrátane rodu, rodovej identity, tehotenstva alebo pôrodu a súvisiacich zdravotných stavov), sexuálna orientácia, členstvo v odboroch, status veterána alebo vojaka.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Biometrické a fyzické údaje</p></td>
-            <td width="454">
-              <p>
-                Skenovanie tváre a monitorovanie tváre ako súčasť možností dozoru.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Údaje týkajúce sa vášho fyzického prostredia</p></td>
-            <td width="454">
-              <p>
-                Video alebo vaša konkrétna lokalizovaná oblasť nasnímaná prostredníctvom videa alebo fotografie ako súčasť možností monitorovania. Konkrétne údaje zhromaždené týkajúce sa vášho fyzického prostredia sa budú líšiť v závislosti od toho, čo je viditeľné monitorovacími kamerami.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Internetová alebo iná podobná sieťová aktivita</p></td>
-            <td width="454">
-              <p>
-                História prehliadania a vyhľadávania, interakcia s webovou stránkou, aplikáciou alebo reklamou, údaje zo súborov cookie alebo webových majákov, prihlasovacie údaje, názvy domén a interakcie s našimi e-mailami vrátane čítania a odpovedania na e-maily, poskytovateľ internetových služieb (ISP), podrobnosti o prehliadači, iná aktivita na webovej stránke, online identifikátory (vrátane IP adresy alebo ID zariadenia).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="146"><p>Akékoľvek iné dobrovoľne poskytnuté informácie</p></td>
-            <td width="454">
-              <p>
-                Informácie týkajúce sa partnerov a závislých osôb (vrátane maloletých závislých osôb); kontaktné údaje v prípade núdze, vyhlásenia o zverejnení informácií, obmedzujúce zmluvy, geolokácia, marketingové a komunikačné preferencie, informácie týkajúce sa podujatí sponzorovaných spoločnosťou, ktorých ste sa zúčastnili, a vaša spätná väzba alebo odpovede na prieskumy, v ktorých sa rozhodnete identifikovať.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Upozorňujeme, že toto sú len príklady. Spoločnosť MTE sa snaží dodržiavať koncept minimalizácie údajov a zhromažďovať iba tie osobné údaje, ktoré sú nevyhnutne potrebné na poskytovanie služieb vám. Nemôžeme však kontrolovať informácie, ktoré si naši klienti vyžiadajú, ani informácie, ktoré nám dobrovoľne poskytnete.
-      </p>
-      <h2>AKO ZHROMAŽĎUJEME OSOBNÉ ÚDAJE</h2>
-      <h3>
-        <strong>
-          Informácie poskytnuté vami, vašimi zástupcami alebo tretími stranami
-        </strong>
-      </h3>
-      <p>Osobné údaje môžeme zhromažďovať z nasledujúcich zdrojov:</p>
-      <ul>
-        <li>
-          Priamo od vás, napríklad keď navštívite webovú stránku, vytvoríte si účet, vyplníte prieskum alebo nám inak poskytnete informácie.
-        </li>
-        <li>
-          Vaši zástupcovia vrátane vášho zamestnávateľa, združenia alebo sponzora skupiny či benefitného programu/plánu.
-        </li>
-      </ul>
-      <p>
-        Počas hodnotenia môžu byť osobné údaje zhromažďované prostredníctvom vašej webovej kamery, mikrofónu alebo iných hardvérových prvkov z vášho systému. Váš systém a program MTE si pred zhromažďovaním osobných údajov z vášho hardvéru vyžiadajú váš súhlas.
-      </p>
-      <p>
-        Ak nám poskytnete osobné údaje o iných osobách (napr. rodinných príslušníkoch, oprávnených osobách alebo osobách na nich závislých), vyhlasujete, že máte oprávnenie tieto informácie poskytnúť a že ste toto oznámenie o ochrane osobných údajov zdieľali v prípade potreby. Vedome nezhromažďujeme osobné údaje priamo od maloletých.
-      </p>
-      <h3><strong>Zber automatizovanými prostriedkami </strong>&nbsp;</h3>
-      <p>
-        Na webových stránkach našej spoločnosti používame súbory cookie a súvisiace technológie sledovania („súbory cookie“) . Ak je to vo vašej jurisdikcii k dispozícii, používatelia webových stránok sa môžu odhlásiť z používania určitých súborov cookie pomocou odkazu Spravovať súbory cookie v dolnej časti webovej stránky. Viac informácií o tom, ako používame súbory cookie, nájdete v našich
-        <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
-          >Oznámenie o súboroch cookie</a
-        >.&nbsp;
-      </p>
-      <h3><strong>Zber tretími stranami </strong>&nbsp;</h3>
-      <p>
-        Ak prostredníctvom nás uskutočníte transakciu, tretia strana (napr. poskytovateľ služieb alebo poisťovňa) môže v súvislosti s takouto transakciou zhromažďovať a spracovávať údaje o kreditnej karte alebo iné osobné údaje o vás, a to aj prostredníctvom súborov cookie. V týchto prípadoch a v prípade akejkoľvek inej dohody, v ktorej získame informácie od vášho zamestnávateľa, združenia alebo inej tretej strany, vám odporúčame prečítať si zásady ochrany osobných údajov tretej strany, kde sa dozviete viac o tom, ako budú vaše informácie použité a zverejnené.
-      </p>
-      <h2>AKO POUŽÍVAME OSOBNÉ ÚDAJE, KTORÉ ZHROMAŽĎUJEME </h2>
-      <p>Osobné údaje, ktoré zhromažďujeme, môžeme použiť:</p>
-      <table width="600">
-        <tbody>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Kategória
-                </strong>
-              </p>
-            </td>
-            <td width="317">
-              <p><strong>Použitie</strong></p>
-            </td>
-            <td width="176">
-              <p><strong>Právny základ</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Na vykonávanie našej obchodnej činnosti</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                Osobné údaje používame v rozsahu nevyhnutnom na vykonávanie našej obchodnej činnosti vrátane overenia vašej totožnosti, odpovedania na vaše otázky, komunikácie s vami, spracovania transakcií, zriadenia online účtu alebo plnenia našich zmluvných záväzkov.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Plnenie zmluvy a prípadne oprávnené záujmy (aby sme mohli plniť naše povinnosti a poskytovať naše služby).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Poskytnúť vám marketingové materiály, ak to povoľujú platné právne predpisy</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Vaše kontaktné údaje môžeme použiť na zasielanie informácií o produktoch, službách a postrehoch, o ktorých si myslíme, že by vás mohli zaujímať. Tieto oznámenia môžu byť zasielané e-mailom, SMS správou, poštou alebo telefonicky v súlade s vašimi marketingovými preferenciami a platnými globálnymi zákonmi vrátane zákonov týkajúcich sa ochrany údajov a elektronickej komunikácie. V dôsledku toho sa spôsob, akým vás kontaktujeme, bude líšiť v závislosti od toho, kto ste, v akom sme vzťahu s vami a kde sa nachádzate.
-              </p>
-              <p>
-                Bez ohľadu na to, na akom základe s vami zdieľame našu marketingovú komunikáciu, budeme dodržiavať miestne zákony a poskytneme vám možnosť kedykoľvek sa odhlásiť, v takom prípade vám prestaneme posielať našu marketingovú komunikáciu. Svoje marketingové preferencie môžete zmeniť aj tak, že nás kontaktujete na adrese <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-              </p>
-              <p>
-                Upozorňujeme, že aj keď sa odhlásite z odberu marketingovej komunikácie, môžeme vám stále posielať komunikáciu súvisiacu so službami, ktoré vám poskytujeme.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Právna povinnosť, súhlas (ktorý môžete odmietnuť alebo odvolať) a prípadne oprávnený záujem (aby ste boli informovaní o novinkách týkajúcich sa našich produktov a služieb).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Na účely výskumu, analýzy údajov a vývoja</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                môžeme analyzovať spolu s informáciami od iných klientov s cieľom vytvoriť prehľady, správy a ďalšie analytické nástroje na lepšie pochopenie a zlepšenie kvality našej ponuky; propagovať naše poradenstvo, produkty a služby; a hodnotiť efektívnosť našich marketingových aktivít, webových stránok a celkových služieb.
-              </p>
-              <p>
-                Upozorňujeme, že môžeme anonymizovať osobné údaje tak, aby neboli spojené so žiadnym konkrétnym klientom alebo osobou.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                V prípade potreby oprávnené záujmy (aby sme mohli zlepšiť naše služby).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Monitorovať určité aktivity, udržiavať bezpečnosť a výkon siete a chrániť pred kybernetickými útokmi</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Monitorujeme dotazy a transakcie, aby sme zabezpečili kvalitu služieb, dodržiavanie postupov a bojovali proti podvodom. Osobné údaje tiež používame podľa potreby na udržanie bezpečnosti siete, monitorovanie výkonu webových stránok a ochranu našich systémov pred kybernetickými útokmi .
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Právna povinnosť a prípadne oprávnené záujmy (na zabezpečenie kvality a zákonnosti našich služieb).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Aby sme udržiavali naše webové stránky a zabezpečili relevantnosť obsahu webových stránok</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Osobné údaje používame v prípade potreby na údržbu našich webových stránok a na zabezpečenie toho, aby bol obsah z našich webových stránok prezentovaný čo najefektívnejším spôsobom pre vás a vaše zariadenie.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Plnenie zmluvy a prípadne oprávnené záujmy (aby sme vám mohli poskytovať obsah a služby na webových stránkach).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p><strong>Na reorganizáciu alebo vykonanie zmien v našom podnikaní</strong></p>
-            </td>
-            <td width="317">
-              <p>
-                V prípade potreby, ak: (i) sme predmetom rokovaní o predaji nášho podniku alebo jeho časti tretej strane; (ii) sme predaní tretej strane; alebo (iii) prechádzame reorganizáciou.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Právna povinnosť alebo oprávnené záujmy (aby sme mohli zmeniť naše podnikanie).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>V súvislosti s právnymi alebo regulačnými povinnosťami</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Osobné údaje používame na splnenie našich regulačných požiadaviek na zverejňovanie informácií alebo ako súčasť dialógu s našimi regulačnými orgánmi, ak je to relevantné.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Právna povinnosť a v prípade potreby oprávnené záujmy (spolupracovať s orgánmi činnými v trestnom konaní a regulačnými orgánmi).
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="107">
-              <p>
-                <strong>Pre preverovanie podvodov, prania špinavých peňazí a sankcií</strong>
-              </p>
-            </td>
-            <td width="317">
-              <p>
-                Pri nadväzovaní alebo udržiavaní vzťahov s klientmi za účelom poskytovania určitých služieb používame osobné údaje na účely vykonávania kontrol podvodov, prania špinavých peňazí alebo sankcií.
-              </p>
-            </td>
-            <td width="176">
-              <p>
-                Právne povinnosti a v prípade potreby oprávnené záujmy (spolupracovať s orgánmi činnými v trestnom konaní a regulačnými orgánmi).
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Osobné údaje, ktoré zhromažďujeme a prijímame, môžeme použiť aj spôsobom, ktorý vám bol v čase ich zhromažďovania popísaný.
-      </p>
-      <h3><strong>Externé odkazy </strong>&nbsp;</h3>
-      <p>
-        Naše webové stránky môžu obsahovať odkazy na webové stránky, ktoré prevádzkujú iné organizácie ako MTE. Ak navštívite webovú stránku inej organizácie pomocou hypertextového odkazu na našej webovej stránke, táto druhá organizácia môže od vás zhromažďovať informácie. MTE nezodpovedá za obsah ani postupy ochrany osobných údajov prepojených webových stránok ani za ich používanie vašich osobných údajov. Ak opustíte webovú stránku MTE prostredníctvom takéhoto odkazu (kde sa nachádzate, zistíte kontrolou adresy URL v paneli s adresou vo vašom prehliadači), mali by ste si prečítať zásady ochrany osobných údajov, podmienky používania a ďalšie oznámenia danej webovej stránky, aby ste zistili, ako bude druhá organizácia nakladať s akýmikoľvek osobnými údajmi, ktoré od vás zhromažďuje.
-      </p>
-      <h2>KOMU ZVEREJŇUJEME OSOBNÉ ÚDAJE</h2>
-      <p>
-        Osobné údaje môžeme poskytnúť nasledujúcim kategóriám tretích strán:
-      </p>
-      <table width="601">
-        <tbody>
-          <tr>
-            <td width="301">
-              <p><strong>Kategórie tretích strán</strong></p>
-            </td>
-            <td width="301">
-              <p><strong>Účel zverejnenia</strong></p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Váš zamestnávateľ, združenie, skupina alebo sponzor benefitného programu, ak je to relevantné (t. j. klient spoločnosti MTE)
-              </p>
-            </td>
-            <td width="301"><p>Poskytovať služby nášmu klientovi</p></td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Pridružené spoločnosti MTE alebo iné subjekty v rámci skupiny spoločností Marsh McLennan (MMC)
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                Umožnite im poskytovať vám služby alebo vás kontaktovať ohľadom ďalších produktov a služieb.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>Agenti alebo poskytovatelia služieb tretích strán</p>
-            </td>
-            <td width="301">
-              <p>
-                Vykonávať funkcie alebo služby pre nás alebo v našom mene. Takéto tretie strany sú zmluvne obmedzené v používaní osobných údajov na iné účely ako na poskytovanie služieb pre MTE alebo v našom mene.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Marketingoví partneri vrátane našich pridružených spoločností a tretích strán, ktoré sme si najali my alebo naši klienti v súvislosti so službami.
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                V súlade so zákonom, aby sme vám poskytli informácie o našich produktoch, službách alebo poznatky.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Potenciálni partneri alebo nástupnícke subjekty</p></td>
-            <td width="301">
-              <p>
-                V kontexte fúzií, akvizícií, bankrotov, predaja aktív alebo iných transakcií, pri ktorých tretia strana preberá kontrolu nad celým naším majetkom alebo jeho časťou.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301"><p>Spoločnosti zaoberajúce sa analýzou webových stránok a reklamou</p></td>
-            <td width="301">
-              <p>
-                Pomôžte nám prispôsobiť reklamy a obsah na základe vašich záujmov, merať výkonnosť našich reklám a obsahu a získavať prehľad o publiku, ktoré vidí naše reklamy a obsah.
-              </p>
-            </td>
-          </tr>
-          <tr>
-            <td width="301">
-              <p>
-                Databázy boja proti podvodom, dozorné alebo regulačné orgány, orgány činné v trestnom konaní a iné tretie strany
-              </p>
-            </td>
-            <td width="301">
-              <p>
-                V prípade potreby na predchádzanie podvodom, komunikáciu s dozornými alebo regulačnými orgánmi, ochranu a obhajobu zákonných práv, bezpečnosti a ochrany spoločnosti MTE, našich pridružených spoločností a obchodných partnerov a používateľov akejkoľvek webovej stránky, presadzovanie Podmienok používania webovej stránky; reagovanie na tvrdenia o podozrení z nezákonnej činnosti alebo skutočnej nezákonnej činnosti; reagovanie na audit alebo vyšetrovanie sťažnosti alebo bezpečnostnej hrozby; alebo dodržiavanie platných zákonov, nariadení, súdnych procesov alebo vládnych požiadaviek.
-              </p>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        Môžeme tiež zverejniť anonymizované informácie, u ktorých nie je primerane pravdepodobné, že by vás identifikovali, na komerčne legitímne a zákonné obchodné účely. Ak máme anonymizované informácie, budeme ich uchovávať a používať bez toho, aby sme sa pokúšali o opätovnú identifikáciu údajov inak, ako to povoľuje zákon.
-      </p>
-      <h2>KROKY, KTORÉ PODNIKÁME NA OCHRANU OSOBNÝCH ÚDAJOV </h2>
-      <p>
-        Naša spoločnosť sa snaží dodržiavať všetky platné zákony o kybernetickej bezpečnosti a ochrane údajov. S ohľadom na tieto ciele má spoločnosť MMC vyhradeného riaditeľa pre informačnú bezpečnosť (CISO). a globálneho riaditeľa pre ochranu osobných údajov (GCPO). Vedúci oddelenia CISO je zodpovedný za riadenie globálneho tímu informačnej bezpečnosti a komplexného programu kybernetickej bezpečnosti. V rámci nášho programu kybernetickej bezpečnosti sme zaviedli komerčne primerané fyzické, administratívne a technické záruky na ochranu osobných údajov pred neoprávneným prístupom, použitím, zmenou a vymazaním.
-      </p>
-      <p>
-        GCPO vedie a dohliada na Centrum excelentnosti v oblasti ochrany súkromia a sieť zodpovedných osôb pre ochranu údajov, ktoré sú zodpovedné za implementáciu nášho komplexného globálneho programu ochrany súkromia. Sieť zodpovedných osôb pre ochranu údajov spája našich zodpovedných osôb pre ochranu údajov na celom svete a snaží sa o konzistentnú a dôkladnú implementáciu nášho programu ochrany súkromia všade, kde spracovávame údaje. Meno a kontaktné informácie zodpovednej osoby pre ochranu údajov vo vašej jurisdikcii získate tak, že nás kontaktujete na adrese <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-      </p>
-      <h2>VAŠE PRÁVA NA OCHRANU ÚDAJOV </h2>
-      <p>
-        V mnohých prípadoch spracovávame osobné údaje s cieľom poskytovať naše služby firemným klientom a mali by ste ich kontaktovať, aby ste uplatnili akékoľvek práva, ktoré vám môžu pripadať podľa platných zákonov o ochrane osobných údajov. Ak však konáme ako prevádzkovateľ alebo spoločnosť, ktorá je primárne zodpovedná za rozhodovanie o tom, ako sa vaše informácie spracúvajú, môžete mať niektoré alebo všetky práva uvedené nižšie v závislosti od jurisdikcie a nášho dôvodu na spracovanie vašich informácií. Upozorňujeme, že pred uplatnením ktoréhokoľvek z nižšie uvedených práv môžeme potrebovať vaše osobné údaje na overenie vašej totožnosti.
-      </p>
-      <ul>
-        <li>
-          <strong>Právo na prístup (právo vedieť) <br /></strong>
-          Môžete nás požiadať o poskytnutie ďalších podrobností o tom, ako používame vaše osobné údaje, o zdrojoch, kategóriách alebo konkrétnych osobných údajoch, ktoré sme zhromaždili, o kategóriách tretích strán, ktorým sme tieto informácie poskytli, a o vyžiadanie kópie osobných údajov, ktoré o vás uchovávame.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo na opravu <br /></strong>
-          Môžete nás požiadať o aktualizáciu akýchkoľvek nepresností v osobných údajoch, ktoré uchovávame. Ak vaše osobné údaje poskytneme iným osobám, v prípade možnosti ich o oprave informujeme.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo na vymazanie <br /></strong>
-          Môžete nás požiadať o vymazanie vašich osobných údajov, ak už nemáme zákonný dôvod na ich spracovanie.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo namietať proti spracovaniu alebo ho obmedziť <br /></strong>
-          Za určitých okolností, napríklad ak spochybňujete ich presnosť, máte právo obmedziť spracovanie vašich osobných údajov.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo na prenosnosť údajov <br /></strong>
-          Ak je to technicky uskutočniteľné, máte právo požiadať nás, aby sme tretej strane podľa vášho výberu preniesli kópiu osobných údajov, ktoré sme od vás získali, v štruktúrovanom, bežne používanom a strojovo čitateľnom formáte.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo na odvolanie súhlasu <br /></strong>
-          Ak sa spoliehame na váš súhlas ako na právny základ pre spracovanie vašich osobných údajov, máte právo tento súhlas odvolať.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Právo podať sťažnosť<br /></strong>
-          Ak máte obavy týkajúce sa akéhokoľvek aspektu našich postupov ochrany osobných údajov, máte právo podať sťažnosť príslušnému dozornému alebo regulačnému orgánu vo vašej jurisdikcii.
-        </li>
-      </ul>
-      <p>
-        Ak si želáte uplatniť ktorékoľvek z vyššie uvedených práv alebo požiadať o preskúmanie rozhodnutia alebo zamietnutia, kontaktujte nás pomocou príslušných kontaktných údajov:
-      </p>
-      <ul>
-        <li>
-          Ak sa nachádzate v Spojenom kráľovstve, Švajčiarsku alebo Európskom hospodárskom priestore, prosím,
-          <a
-            href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
-            >vyplňte tento formulár.</a
-          >
-        </li>
-        <li>
-          Pre osoby z iných krajín, prosím,
-          <a
-            href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
-            >vyplňte tento formulár.</a
-          >
-        </li>
-        <li>
-          Prípadne nám môžete poslať e-mail na adresu <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
-        </li>
-      </ul>
-      <p>
-        V závislosti od vašej krajiny môžete mať aj niektoré alebo všetky nasledujúce práva:
-      </p>
-      <ul>
-        <li>
+  privacy_notice:
+    marsh: |-
+      <div>
+        <h1><strong>OZNÁMENIE O OCHRANE OSOBNÝCH ÚDAJOV SPOLOČNOSTI MERCER TALENT ENTERPRISE </strong>&nbsp;</h1>
+        <p>Dátum účinnosti: 15 September 2024</p>
+        <p>
+          Toto oznámenie o ochrane osobných údajov popisuje, ako spoločnosť Mercer Talent Enterprise (“
+          <strong>MTE</strong>
+          ”) zhromažďuje, používa, zdieľa, uchováva, prenáša a inak spracováva informácie týkajúce sa identifikovaných alebo identifikovateľných osôb (ďalej len „osobné údaje“) a aké práva môžete mať v súvislosti s vašimi osobnými údajmi . Veríme, že je dôležité, aby ste pochopili, ako spracovávame osobné údaje, a preto vás povzbudzujeme, aby ste si našli chvíľku a oboznámili sa s našimi postupmi ochrany osobných údajov uvedenými nižšie.
+        </p>
+        <p>
+          Upozorňujeme, že spoločnosť MTE je poskytovateľom riešení v oblasti behaviorálnej vedy a v niektorých prípadoch konáme v mene a na základe pokynov klientov, finančných inštitúcií, obchodníkov a iných partnerov, ktorí konajú ako prevádzkovatelia údajov, a to aj pri spracovaní platobných transakcií. Ďalšie informácie týkajúce sa spracovania vašich osobných údajov v týchto kontextoch nájdete v zásadách ochrany osobných údajov týchto partnerov.
+        </p>
+        <h2>AKÝ JE NÁŠ VZŤAH K VÁM</h2>
+        <p>
+          Tretia strana vás žiada o vyplnenie posúdenia na platforme spoločnosti MTE. Táto tretia strana je klientom spoločnosti MTE a môže byť vaším zamestnávateľom, potenciálnym zamestnávateľom alebo inou spriaznenou stranou. Spoločnosť MTE zhromažďuje a spracováva vaše osobné údaje v mene našich klientov. Riadime sa pokynmi našich klientov týkajúcimi sa toho, aké osobné údaje máme zhromažďovať a ako ich spracovávať. Spoločnosť MTE preto koná ako spracovateľ pre našich klientov, ktorý určuje spracovanie vašich osobných údajov.
+        </p>
+        <p>
+          V prípade otázok týkajúcich sa spracovania vašich osobných údajov vám odporúčame prečítať si oznámenie o ochrane osobných údajov nášho klienta.
+        </p>
+        <h2>AKÉ OSOBNÉ ÚDAJE ZHROMAŽĎUJEME </h2>
+        <p>
+          Náš klient nám nariaďuje zhromažďovať určité informácie v jeho mene. Okrem vášho mena a e-mailovej adresy, ktoré sú potrebné na vytvorenie účtu, spoločnosť MTE nezávisle neurčuje, aké informácie sa zhromažďujú. Na základe potrieb a pokynov nášho klienta môžeme v prípade potreby zhromažďovať nasledujúce kategórie osobných údajov na splnenie našich zamýšľaných obchodných účelov:
+        </p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="146">
+                <p>
+                  <strong
+                    >Kategória
+                  </strong>
+                </p>
+              </td>
+              <td width="454">
+                <p>
+                  <strong
+                    >Príklady
+                  </strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biografické identifikátory</p></td>
+              <td width="454">
+                <p>Meno, dátum narodenia, vek, miesto narodenia, pohlavie.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Kontaktné informácie</p></td>
+              <td width="454">
+                <p>Domáca adresa, telefónne číslo, osobná e-mailová adresa.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Identifikačné informácie</p></td>
+              <td width="454">
+                <p>
+                  Daňové číslo, číslo sociálneho zabezpečenia alebo iné identifikačné číslo vydané vládou, číslo vodičského preukazu, informácie z pasu, údaje o bankovom účte, daňové priznanie k dani z príjmu, daňové identifikačné číslo.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146">
+                <p>Profesionálne alebo zamestnanecké informácie</p>
+              </td>
+              <td width="454">
+                <p>
+                  Zamestnávateľ alebo skupina, vzťah k našej spoločnosti, pracovná pozícia, kontaktné údaje spoločnosti, identifikačné číslo zamestnanca, pracovný stupeň, výkon zamestnanca, platové a odmeňovacie podmienky a pracovná história a/alebo váš vzťah k poistníkovi, poistenému, oprávnenej osobe alebo žiadateľovi o poistné plnenie.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Citlivé demografické atribúty</p></td>
+              <td width="454">
+                <p>
+                  Rasa, občianstvo, fyzické alebo duševné zdravie alebo postihnutie, pohlavie (vrátane rodu, rodovej identity, tehotenstva alebo pôrodu a súvisiacich zdravotných stavov), sexuálna orientácia, členstvo v odboroch, status veterána alebo vojaka.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biometrické a fyzické údaje</p></td>
+              <td width="454">
+                <p>
+                  Skenovanie tváre a monitorovanie tváre ako súčasť možností dozoru.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Údaje týkajúce sa vášho fyzického prostredia</p></td>
+              <td width="454">
+                <p>
+                  Video alebo vaša konkrétna lokalizovaná oblasť nasnímaná prostredníctvom videa alebo fotografie ako súčasť možností monitorovania. Konkrétne údaje zhromaždené týkajúce sa vášho fyzického prostredia sa budú líšiť v závislosti od toho, čo je viditeľné monitorovacími kamerami.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Internetová alebo iná podobná sieťová aktivita</p></td>
+              <td width="454">
+                <p>
+                  História prehliadania a vyhľadávania, interakcia s webovou stránkou, aplikáciou alebo reklamou, údaje zo súborov cookie alebo webových majákov, prihlasovacie údaje, názvy domén a interakcie s našimi e-mailami vrátane čítania a odpovedania na e-maily, poskytovateľ internetových služieb (ISP), podrobnosti o prehliadači, iná aktivita na webovej stránke, online identifikátory (vrátane IP adresy alebo ID zariadenia).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Akékoľvek iné dobrovoľne poskytnuté informácie</p></td>
+              <td width="454">
+                <p>
+                  Informácie týkajúce sa partnerov a závislých osôb (vrátane maloletých závislých osôb); kontaktné údaje v prípade núdze, vyhlásenia o zverejnení informácií, obmedzujúce zmluvy, geolokácia, marketingové a komunikačné preferencie, informácie týkajúce sa podujatí sponzorovaných spoločnosťou, ktorých ste sa zúčastnili, a vaša spätná väzba alebo odpovede na prieskumy, v ktorých sa rozhodnete identifikovať.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Upozorňujeme, že toto sú len príklady. Spoločnosť MTE sa snaží dodržiavať koncept minimalizácie údajov a zhromažďovať iba tie osobné údaje, ktoré sú nevyhnutne potrebné na poskytovanie služieb vám. Nemôžeme však kontrolovať informácie, ktoré si naši klienti vyžiadajú, ani informácie, ktoré nám dobrovoľne poskytnete.
+        </p>
+        <h2>AKO ZHROMAŽĎUJEME OSOBNÉ ÚDAJE</h2>
+        <h3>
           <strong>
-            Právo na súhlas s predajom alebo zdieľaním v rámci medzikontextovej reklamy alebo odhlásenie sa z nej <br />
+            Informácie poskytnuté vami, vašimi zástupcami alebo tretími stranami
           </strong>
-          Ak navštívite niektorú z našich webových stránok, môžeme poskytnúť informácie o vašej aktivite na internete alebo inej elektronickej sieti, biografické identifikátory, údaje o geolokácii a profesionálne informácie (v rozsahu, v akom ich možno odvodiť z vašej aktivity na našej webovej stránke) poskytovateľom analytických a reklamných služieb webových stránok na účely medzikontextovej behaviorálnej alebo cielenej reklamy s využitím reklamných súborov cookie. Podľa niektorých zákonov máte právo prihlásiť sa na odber týchto typov informácií alebo ich odmietnuť. Ak chcete vykonať svoj výber alebo zobraziť mená konkrétnych tretích strán, ktorým sme predali alebo zdieľali vaše informácie, kliknite na odkaz „Spravovať súbory cookie“ v dolnej časti našej webovej stránky. Ak chcete odhlásiť sa z predaja alebo zdieľania svojich informácií, uistite sa, že prepínače pre sledovacie nástroje „Reklama“ a „Analytika“ sú nastavené na možnosť „Nie“ alebo, ak je to k dispozícii, povoľte prepínač Nepredávať ani nezdieľať moje osobné údaje.
-          <p>
-            Môžete tiež implementovať nastavenie prehliadača alebo rozšírenie, ktoré automaticky oznamuje vaše preferencie predaja a zdieľania webovým stránkam, ktoré navštevujete. Naše webové stránky spracovávajú takéto „signály preferencií odhlásenia“ bezproblémovým spôsobom rozpoznávaním Globálnej kontroly súkromia (GPC). Ak chcete používať GPC, môžete si ho stiahnuť a povoliť prostredníctvom zúčastneného prehliadača alebo rozšírenia prehliadača. Viac informácií o sťahovaní GPC nájdete na <a href="https://globalprivacycontrol.org/">tu</a>.&nbsp;
-          </p>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>
-            Práva v súvislosti s automatizovaným rozhodovaním a profilovaním
-          <br /></strong>
-          V rozsahu, v akom automatizujeme spracovanie vašich osobných údajov, vám vopred poskytneme všetky oznámenia, a to aj týkajúce sa vašich práv, ktoré sú vyžadované zákonom.
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <strong>Priamy marketing a signály ”Nesledovať“ <br /></strong>
-          Môžete mať právo raz ročne požiadať o oznámenie o osobných údajoch, ktoré sme poskytli iným spoločnostiam na účely ich vlastného priameho marketingu, ak to zákon povoľuje. Ak je to relevantné, takéto oznámenie bude obsahovať zoznam kategórií osobných údajov, ktoré boli poskytnuté (ak nejaké existujú), a mená a adresy všetkých tretích strán, ktorým boli osobné údaje poskytnuté (ak nejaké existujú). Oznámenie sa bude vzťahovať na predchádzajúci kalendárny rok. Ak chcete zistiť, či sa na vás toto právo vzťahuje, môžete nás kontaktovať nižšie uvedenými spôsobmi, a ak áno, uplatniť si ho.
-        </li>
-      </ul>
-      <p>
-        Upozorňujeme, že niektoré z týchto práv môžu byť obmedzené, ak máme prevažujúci oprávnený záujem alebo zákonnú, regulačnú alebo zmluvnú povinnosť pokračovať v spracovaní osobných údajov, alebo ak môžu byť osobné údaje vyňaté zo zverejnenia alebo vymazania podľa platných právnych predpisov. Niektoré z týchto práv možno uplatniť len za určitých okolností alebo môžu byť inak obmedzené právnymi predpismi o ochrane údajov vo vašej jurisdikcii.
-      </p>
-      <h2>CEZHRANIČNÉ PREVODY </h2>
-      <p>
-        Ako globálna spoločnosť pôsobiaca vo viac ako 80 krajinách existujú okolnosti, za ktorých budeme musieť preniesť osobné údaje mimo krajiny, provincie alebo územia, v ktorom boli zhromaždené, na účely uvedené v tomto oznámení o ochrane osobných údajov. Konkrétne môžeme preniesť údaje s cieľom ponúkať, spravovať a riadiť služby, ktoré vám poskytujeme, a zvýšiť efektívnosť našich obchodných operácií. Vynaložíme maximálne úsilie, aby sme zabezpečili, že tieto prenosy budú v súlade so všetkými príslušnými právnymi predpismi o ochrane údajov a že práva a slobody jednotlivcov podľa týchto zákonov budú primerane chránené.
-      </p>
-      <p>
-        V prípade potreby takéhoto prenosu podnikneme kroky na zabezpečenie zavedenia vhodných záruk na ochranu osobných údajov, ako napríklad posúdenie vplyvu, rozhodnutie o primeranosti príslušného dozorného orgánu, použitie schválených záväzných podnikových pravidiel alebo štandardných zmluvných doložiek alebo váš súhlas.
-      </p>
-      <p>
-        Informácie o fungovaní záväzných podnikových pravidiel EÚ (Európskej únie) spoločnosti MMC (EU BCRs ) nájdete po kliknutí
-        <a
-          href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-EUBCR-Controller-and-Processor-Principles.pdf"
-          >sem</a
-        >.&nbsp;  Zoznam subjektov, ktoré súhlasili s dodržiavaním BCR EÚ, nájdete po kliknutí
-        <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
-          >sem</a
-        >.&nbsp;
-      </p>
-      <p>
-        Informácie o fungovaní záväzných podnikových pravidiel spoločnosti MMC pre Spojené kráľovstvo (UK BCRs) nájdete po kliknutí
-        <a
-          href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
-          >sem</a
-        >.&nbsp; Zoznam subjektov, ktoré súhlasili s tým, že budú viazané britskými BCRs, nájdete po kliknutí
-        <a
-          href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
-          >sem</a
-        >.&nbsp;&nbsp;&nbsp;
-      </p>
-      <h2>UCHOVÁVANIE VAŠICH INFORMÁCIÍ </h2>
-      <p>
-        Naše produkty, služby a regulačné povinnosti sú zložité, a preto sa naše doby uchovávania osobných údajov líšia. Pri stanovovaní doby uchovávania osobných údajov a záznamov, ktoré uchovávame, zohľadňujeme nasledujúce povinnosti:
-      </p>
-      <ul>
-        <li>
-          potreba uchovávať informácie na splnenie obchodných účelov alebo zmluvných záväzkov, na ktoré boli zhromaždené;
-        </li>
-        <li>
-          naše povinnosti plniť pokyny našich klientov týkajúce sa osobných údajov, ktoré spracovávame v ich mene;
-        </li>
-        <li>
-          naše povinnosti dodržiavať povinné zákonné a regulačné požiadavky na vedenie záznamov;
-        </li>
-        <li>
-          naše postupy zálohovania a obnovy po havárii; a
-        </li>
-        <li>
-          iné právne dôsledky, ako napríklad príslušné premlčacie lehoty.
-        </li>
-      </ul>
-      <p>
-        Na základe vyššie uvedených faktorov môžeme uchovávať osobné údaje aj po uplynutí doby, počas ktorej vám poskytujeme služby. Keď už osobné údaje nepotrebujeme uchovávať, naše firemné zásady vyžadujú, aby sme tieto informácie buď anonymizovali, alebo agregovali (v takom prípade môžeme anonymizované alebo agregované informácie ďalej uchovávať a používať na analytické účely), alebo ich bezpečne zničiť.
-      </p>
-      <h2>OTÁZKY ALEBO PRIPOMIENKY </h2>
-      <p>
-        Ak chcete odoslať otázky alebo žiadosti týkajúce sa tohto oznámenia o ochrane osobných údajov alebo postupov spoločnosti MTE v oblasti ochrany osobných údajov, pošlite nám e-mail na adresu <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>. Ak nás chcete kontaktovať poštou alebo telefonicky, kontaktujte svojho miestneho úradníka pre ochranu údajov. Kontaktné informácie svojho miestneho úradníka pre ochranu údajov získate tak, že nás kontaktujete na adrese
-        <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
-      </p>
-    </div>
+        </h3>
+        <p>Osobné údaje môžeme zhromažďovať z nasledujúcich zdrojov:</p>
+        <ul>
+          <li>
+            Priamo od vás, napríklad keď navštívite webovú stránku, vytvoríte si účet, vyplníte prieskum alebo nám inak poskytnete informácie.
+          </li>
+          <li>
+            Vaši zástupcovia vrátane vášho zamestnávateľa, združenia alebo sponzora skupiny či benefitného programu/plánu.
+          </li>
+        </ul>
+        <p>
+          Počas hodnotenia môžu byť osobné údaje zhromažďované prostredníctvom vašej webovej kamery, mikrofónu alebo iných hardvérových prvkov z vášho systému. Váš systém a program MTE si pred zhromažďovaním osobných údajov z vášho hardvéru vyžiadajú váš súhlas.
+        </p>
+        <p>
+          Ak nám poskytnete osobné údaje o iných osobách (napr. rodinných príslušníkoch, oprávnených osobách alebo osobách na nich závislých), vyhlasujete, že máte oprávnenie tieto informácie poskytnúť a že ste toto oznámenie o ochrane osobných údajov zdieľali v prípade potreby. Vedome nezhromažďujeme osobné údaje priamo od maloletých.
+        </p>
+        <h3><strong>Zber automatizovanými prostriedkami </strong>&nbsp;</h3>
+        <p>
+          Na webových stránkach našej spoločnosti používame súbory cookie a súvisiace technológie sledovania („súbory cookie“) . Ak je to vo vašej jurisdikcii k dispozícii, používatelia webových stránok sa môžu odhlásiť z používania určitých súborov cookie pomocou odkazu Spravovať súbory cookie v dolnej časti webovej stránky. Viac informácií o tom, ako používame súbory cookie, nájdete v našich
+          <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
+            >Oznámenie o súboroch cookie</a
+          >.&nbsp;
+        </p>
+        <h3><strong>Zber tretími stranami </strong>&nbsp;</h3>
+        <p>
+          Ak prostredníctvom nás uskutočníte transakciu, tretia strana (napr. poskytovateľ služieb alebo poisťovňa) môže v súvislosti s takouto transakciou zhromažďovať a spracovávať údaje o kreditnej karte alebo iné osobné údaje o vás, a to aj prostredníctvom súborov cookie. V týchto prípadoch a v prípade akejkoľvek inej dohody, v ktorej získame informácie od vášho zamestnávateľa, združenia alebo inej tretej strany, vám odporúčame prečítať si zásady ochrany osobných údajov tretej strany, kde sa dozviete viac o tom, ako budú vaše informácie použité a zverejnené.
+        </p>
+        <h2>AKO POUŽÍVAME OSOBNÉ ÚDAJE, KTORÉ ZHROMAŽĎUJEME </h2>
+        <p>Osobné údaje, ktoré zhromažďujeme, môžeme použiť:</p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Kategória
+                  </strong>
+                </p>
+              </td>
+              <td width="317">
+                <p><strong>Použitie</strong></p>
+              </td>
+              <td width="176">
+                <p><strong>Právny základ</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Na vykonávanie našej obchodnej činnosti</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  Osobné údaje používame v rozsahu nevyhnutnom na vykonávanie našej obchodnej činnosti vrátane overenia vašej totožnosti, odpovedania na vaše otázky, komunikácie s vami, spracovania transakcií, zriadenia online účtu alebo plnenia našich zmluvných záväzkov.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Plnenie zmluvy a prípadne oprávnené záujmy (aby sme mohli plniť naše povinnosti a poskytovať naše služby).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Poskytnúť vám marketingové materiály, ak to povoľujú platné právne predpisy</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Vaše kontaktné údaje môžeme použiť na zasielanie informácií o produktoch, službách a postrehoch, o ktorých si myslíme, že by vás mohli zaujímať. Tieto oznámenia môžu byť zasielané e-mailom, SMS správou, poštou alebo telefonicky v súlade s vašimi marketingovými preferenciami a platnými globálnymi zákonmi vrátane zákonov týkajúcich sa ochrany údajov a elektronickej komunikácie. V dôsledku toho sa spôsob, akým vás kontaktujeme, bude líšiť v závislosti od toho, kto ste, v akom sme vzťahu s vami a kde sa nachádzate.
+                </p>
+                <p>
+                  Bez ohľadu na to, na akom základe s vami zdieľame našu marketingovú komunikáciu, budeme dodržiavať miestne zákony a poskytneme vám možnosť kedykoľvek sa odhlásiť, v takom prípade vám prestaneme posielať našu marketingovú komunikáciu. Svoje marketingové preferencie môžete zmeniť aj tak, že nás kontaktujete na adrese <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+                </p>
+                <p>
+                  Upozorňujeme, že aj keď sa odhlásite z odberu marketingovej komunikácie, môžeme vám stále posielať komunikáciu súvisiacu so službami, ktoré vám poskytujeme.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Právna povinnosť, súhlas (ktorý môžete odmietnuť alebo odvolať) a prípadne oprávnený záujem (aby ste boli informovaní o novinkách týkajúcich sa našich produktov a služieb).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Na účely výskumu, analýzy údajov a vývoja</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  môžeme analyzovať spolu s informáciami od iných klientov s cieľom vytvoriť prehľady, správy a ďalšie analytické nástroje na lepšie pochopenie a zlepšenie kvality našej ponuky; propagovať naše poradenstvo, produkty a služby; a hodnotiť efektívnosť našich marketingových aktivít, webových stránok a celkových služieb.
+                </p>
+                <p>
+                  Upozorňujeme, že môžeme anonymizovať osobné údaje tak, aby neboli spojené so žiadnym konkrétnym klientom alebo osobou.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  V prípade potreby oprávnené záujmy (aby sme mohli zlepšiť naše služby).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Monitorovať určité aktivity, udržiavať bezpečnosť a výkon siete a chrániť pred kybernetickými útokmi</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Monitorujeme dotazy a transakcie, aby sme zabezpečili kvalitu služieb, dodržiavanie postupov a bojovali proti podvodom. Osobné údaje tiež používame podľa potreby na udržanie bezpečnosti siete, monitorovanie výkonu webových stránok a ochranu našich systémov pred kybernetickými útokmi .
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Právna povinnosť a prípadne oprávnené záujmy (na zabezpečenie kvality a zákonnosti našich služieb).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Aby sme udržiavali naše webové stránky a zabezpečili relevantnosť obsahu webových stránok</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Osobné údaje používame v prípade potreby na údržbu našich webových stránok a na zabezpečenie toho, aby bol obsah z našich webových stránok prezentovaný čo najefektívnejším spôsobom pre vás a vaše zariadenie.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Plnenie zmluvy a prípadne oprávnené záujmy (aby sme vám mohli poskytovať obsah a služby na webových stránkach).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>Na reorganizáciu alebo vykonanie zmien v našom podnikaní</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  V prípade potreby, ak: (i) sme predmetom rokovaní o predaji nášho podniku alebo jeho časti tretej strane; (ii) sme predaní tretej strane; alebo (iii) prechádzame reorganizáciou.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Právna povinnosť alebo oprávnené záujmy (aby sme mohli zmeniť naše podnikanie).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>V súvislosti s právnymi alebo regulačnými povinnosťami</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Osobné údaje používame na splnenie našich regulačných požiadaviek na zverejňovanie informácií alebo ako súčasť dialógu s našimi regulačnými orgánmi, ak je to relevantné.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Právna povinnosť a v prípade potreby oprávnené záujmy (spolupracovať s orgánmi činnými v trestnom konaní a regulačnými orgánmi).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>Pre preverovanie podvodov, prania špinavých peňazí a sankcií</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  Pri nadväzovaní alebo udržiavaní vzťahov s klientmi za účelom poskytovania určitých služieb používame osobné údaje na účely vykonávania kontrol podvodov, prania špinavých peňazí alebo sankcií.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Právne povinnosti a v prípade potreby oprávnené záujmy (spolupracovať s orgánmi činnými v trestnom konaní a regulačnými orgánmi).
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Osobné údaje, ktoré zhromažďujeme a prijímame, môžeme použiť aj spôsobom, ktorý vám bol v čase ich zhromažďovania popísaný.
+        </p>
+        <h3><strong>Externé odkazy </strong>&nbsp;</h3>
+        <p>
+          Naše webové stránky môžu obsahovať odkazy na webové stránky, ktoré prevádzkujú iné organizácie ako MTE. Ak navštívite webovú stránku inej organizácie pomocou hypertextového odkazu na našej webovej stránke, táto druhá organizácia môže od vás zhromažďovať informácie. MTE nezodpovedá za obsah ani postupy ochrany osobných údajov prepojených webových stránok ani za ich používanie vašich osobných údajov. Ak opustíte webovú stránku MTE prostredníctvom takéhoto odkazu (kde sa nachádzate, zistíte kontrolou adresy URL v paneli s adresou vo vašom prehliadači), mali by ste si prečítať zásady ochrany osobných údajov, podmienky používania a ďalšie oznámenia danej webovej stránky, aby ste zistili, ako bude druhá organizácia nakladať s akýmikoľvek osobnými údajmi, ktoré od vás zhromažďuje.
+        </p>
+        <h2>KOMU ZVEREJŇUJEME OSOBNÉ ÚDAJE</h2>
+        <p>
+          Osobné údaje môžeme poskytnúť nasledujúcim kategóriám tretích strán:
+        </p>
+        <table width="601">
+          <tbody>
+            <tr>
+              <td width="301">
+                <p><strong>Kategórie tretích strán</strong></p>
+              </td>
+              <td width="301">
+                <p><strong>Účel zverejnenia</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Váš zamestnávateľ, združenie, skupina alebo sponzor benefitného programu, ak je to relevantné (t. j. klient spoločnosti MTE)
+                </p>
+              </td>
+              <td width="301"><p>Poskytovať služby nášmu klientovi</p></td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Pridružené spoločnosti MTE alebo iné subjekty v rámci skupiny spoločností Marsh McLennan (MMC)
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Umožnite im poskytovať vám služby alebo vás kontaktovať ohľadom ďalších produktov a služieb.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>Agenti alebo poskytovatelia služieb tretích strán</p>
+              </td>
+              <td width="301">
+                <p>
+                  Vykonávať funkcie alebo služby pre nás alebo v našom mene. Takéto tretie strany sú zmluvne obmedzené v používaní osobných údajov na iné účely ako na poskytovanie služieb pre MTE alebo v našom mene.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Marketingoví partneri vrátane našich pridružených spoločností a tretích strán, ktoré sme si najali my alebo naši klienti v súvislosti so službami.
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  V súlade so zákonom, aby sme vám poskytli informácie o našich produktoch, službách alebo poznatky.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Potenciálni partneri alebo nástupnícke subjekty</p></td>
+              <td width="301">
+                <p>
+                  V kontexte fúzií, akvizícií, bankrotov, predaja aktív alebo iných transakcií, pri ktorých tretia strana preberá kontrolu nad celým naším majetkom alebo jeho časťou.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Spoločnosti zaoberajúce sa analýzou webových stránok a reklamou</p></td>
+              <td width="301">
+                <p>
+                  Pomôžte nám prispôsobiť reklamy a obsah na základe vašich záujmov, merať výkonnosť našich reklám a obsahu a získavať prehľad o publiku, ktoré vidí naše reklamy a obsah.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Databázy boja proti podvodom, dozorné alebo regulačné orgány, orgány činné v trestnom konaní a iné tretie strany
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  V prípade potreby na predchádzanie podvodom, komunikáciu s dozornými alebo regulačnými orgánmi, ochranu a obhajobu zákonných práv, bezpečnosti a ochrany spoločnosti MTE, našich pridružených spoločností a obchodných partnerov a používateľov akejkoľvek webovej stránky, presadzovanie Podmienok používania webovej stránky; reagovanie na tvrdenia o podozrení z nezákonnej činnosti alebo skutočnej nezákonnej činnosti; reagovanie na audit alebo vyšetrovanie sťažnosti alebo bezpečnostnej hrozby; alebo dodržiavanie platných zákonov, nariadení, súdnych procesov alebo vládnych požiadaviek.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Môžeme tiež zverejniť anonymizované informácie, u ktorých nie je primerane pravdepodobné, že by vás identifikovali, na komerčne legitímne a zákonné obchodné účely. Ak máme anonymizované informácie, budeme ich uchovávať a používať bez toho, aby sme sa pokúšali o opätovnú identifikáciu údajov inak, ako to povoľuje zákon.
+        </p>
+        <h2>KROKY, KTORÉ PODNIKÁME NA OCHRANU OSOBNÝCH ÚDAJOV </h2>
+        <p>
+          Naša spoločnosť sa snaží dodržiavať všetky platné zákony o kybernetickej bezpečnosti a ochrane údajov. S ohľadom na tieto ciele má spoločnosť MMC vyhradeného riaditeľa pre informačnú bezpečnosť (CISO). a globálneho riaditeľa pre ochranu osobných údajov (GCPO). Vedúci oddelenia CISO je zodpovedný za riadenie globálneho tímu informačnej bezpečnosti a komplexného programu kybernetickej bezpečnosti. V rámci nášho programu kybernetickej bezpečnosti sme zaviedli komerčne primerané fyzické, administratívne a technické záruky na ochranu osobných údajov pred neoprávneným prístupom, použitím, zmenou a vymazaním.
+        </p>
+        <p>
+          GCPO vedie a dohliada na Centrum excelentnosti v oblasti ochrany súkromia a sieť zodpovedných osôb pre ochranu údajov, ktoré sú zodpovedné za implementáciu nášho komplexného globálneho programu ochrany súkromia. Sieť zodpovedných osôb pre ochranu údajov spája našich zodpovedných osôb pre ochranu údajov na celom svete a snaží sa o konzistentnú a dôkladnú implementáciu nášho programu ochrany súkromia všade, kde spracovávame údaje. Meno a kontaktné informácie zodpovednej osoby pre ochranu údajov vo vašej jurisdikcii získate tak, že nás kontaktujete na adrese <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+        <h2>VAŠE PRÁVA NA OCHRANU ÚDAJOV </h2>
+        <p>
+          V mnohých prípadoch spracovávame osobné údaje s cieľom poskytovať naše služby firemným klientom a mali by ste ich kontaktovať, aby ste uplatnili akékoľvek práva, ktoré vám môžu pripadať podľa platných zákonov o ochrane osobných údajov. Ak však konáme ako prevádzkovateľ alebo spoločnosť, ktorá je primárne zodpovedná za rozhodovanie o tom, ako sa vaše informácie spracúvajú, môžete mať niektoré alebo všetky práva uvedené nižšie v závislosti od jurisdikcie a nášho dôvodu na spracovanie vašich informácií. Upozorňujeme, že pred uplatnením ktoréhokoľvek z nižšie uvedených práv môžeme potrebovať vaše osobné údaje na overenie vašej totožnosti.
+        </p>
+        <ul>
+          <li>
+            <strong>Právo na prístup (právo vedieť) <br /></strong>
+            Môžete nás požiadať o poskytnutie ďalších podrobností o tom, ako používame vaše osobné údaje, o zdrojoch, kategóriách alebo konkrétnych osobných údajoch, ktoré sme zhromaždili, o kategóriách tretích strán, ktorým sme tieto informácie poskytli, a o vyžiadanie kópie osobných údajov, ktoré o vás uchovávame.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo na opravu <br /></strong>
+            Môžete nás požiadať o aktualizáciu akýchkoľvek nepresností v osobných údajoch, ktoré uchovávame. Ak vaše osobné údaje poskytneme iným osobám, v prípade možnosti ich o oprave informujeme.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo na vymazanie <br /></strong>
+            Môžete nás požiadať o vymazanie vašich osobných údajov, ak už nemáme zákonný dôvod na ich spracovanie.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo namietať proti spracovaniu alebo ho obmedziť <br /></strong>
+            Za určitých okolností, napríklad ak spochybňujete ich presnosť, máte právo obmedziť spracovanie vašich osobných údajov.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo na prenosnosť údajov <br /></strong>
+            Ak je to technicky uskutočniteľné, máte právo požiadať nás, aby sme tretej strane podľa vášho výberu preniesli kópiu osobných údajov, ktoré sme od vás získali, v štruktúrovanom, bežne používanom a strojovo čitateľnom formáte.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo na odvolanie súhlasu <br /></strong>
+            Ak sa spoliehame na váš súhlas ako na právny základ pre spracovanie vašich osobných údajov, máte právo tento súhlas odvolať.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Právo podať sťažnosť<br /></strong>
+            Ak máte obavy týkajúce sa akéhokoľvek aspektu našich postupov ochrany osobných údajov, máte právo podať sťažnosť príslušnému dozornému alebo regulačnému orgánu vo vašej jurisdikcii.
+          </li>
+        </ul>
+        <p>
+          Ak si želáte uplatniť ktorékoľvek z vyššie uvedených práv alebo požiadať o preskúmanie rozhodnutia alebo zamietnutia, kontaktujte nás pomocou príslušných kontaktných údajov:
+        </p>
+        <ul>
+          <li>
+            Ak sa nachádzate v Spojenom kráľovstve, Švajčiarsku alebo Európskom hospodárskom priestore, prosím,
+            <a
+              href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
+              >vyplňte tento formulár.</a
+            >
+          </li>
+          <li>
+            Pre osoby z iných krajín, prosím,
+            <a
+              href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
+              >vyplňte tento formulár.</a
+            >
+          </li>
+          <li>
+            Prípadne nám môžete poslať e-mail na adresu <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
+          </li>
+        </ul>
+        <p>
+          V závislosti od vašej krajiny môžete mať aj niektoré alebo všetky nasledujúce práva:
+        </p>
+        <ul>
+          <li>
+            <strong>
+              Právo na súhlas s predajom alebo zdieľaním v rámci medzikontextovej reklamy alebo odhlásenie sa z nej <br />
+            </strong>
+            Ak navštívite niektorú z našich webových stránok, môžeme poskytnúť informácie o vašej aktivite na internete alebo inej elektronickej sieti, biografické identifikátory, údaje o geolokácii a profesionálne informácie (v rozsahu, v akom ich možno odvodiť z vašej aktivity na našej webovej stránke) poskytovateľom analytických a reklamných služieb webových stránok na účely medzikontextovej behaviorálnej alebo cielenej reklamy s využitím reklamných súborov cookie. Podľa niektorých zákonov máte právo prihlásiť sa na odber týchto typov informácií alebo ich odmietnuť. Ak chcete vykonať svoj výber alebo zobraziť mená konkrétnych tretích strán, ktorým sme predali alebo zdieľali vaše informácie, kliknite na odkaz „Spravovať súbory cookie“ v dolnej časti našej webovej stránky. Ak chcete odhlásiť sa z predaja alebo zdieľania svojich informácií, uistite sa, že prepínače pre sledovacie nástroje „Reklama“ a „Analytika“ sú nastavené na možnosť „Nie“ alebo, ak je to k dispozícii, povoľte prepínač Nepredávať ani nezdieľať moje osobné údaje.
+            <p>
+              Môžete tiež implementovať nastavenie prehliadača alebo rozšírenie, ktoré automaticky oznamuje vaše preferencie predaja a zdieľania webovým stránkam, ktoré navštevujete. Naše webové stránky spracovávajú takéto „signály preferencií odhlásenia“ bezproblémovým spôsobom rozpoznávaním Globálnej kontroly súkromia (GPC). Ak chcete používať GPC, môžete si ho stiahnuť a povoliť prostredníctvom zúčastneného prehliadača alebo rozšírenia prehliadača. Viac informácií o sťahovaní GPC nájdete na <a href="https://globalprivacycontrol.org/">tu</a>.&nbsp;
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>
+              Práva v súvislosti s automatizovaným rozhodovaním a profilovaním
+            <br /></strong>
+            V rozsahu, v akom automatizujeme spracovanie vašich osobných údajov, vám vopred poskytneme všetky oznámenia, a to aj týkajúce sa vašich práv, ktoré sú vyžadované zákonom.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Priamy marketing a signály ”Nesledovať“ <br /></strong>
+            Môžete mať právo raz ročne požiadať o oznámenie o osobných údajoch, ktoré sme poskytli iným spoločnostiam na účely ich vlastného priameho marketingu, ak to zákon povoľuje. Ak je to relevantné, takéto oznámenie bude obsahovať zoznam kategórií osobných údajov, ktoré boli poskytnuté (ak nejaké existujú), a mená a adresy všetkých tretích strán, ktorým boli osobné údaje poskytnuté (ak nejaké existujú). Oznámenie sa bude vzťahovať na predchádzajúci kalendárny rok. Ak chcete zistiť, či sa na vás toto právo vzťahuje, môžete nás kontaktovať nižšie uvedenými spôsobmi, a ak áno, uplatniť si ho.
+          </li>
+        </ul>
+        <p>
+          Upozorňujeme, že niektoré z týchto práv môžu byť obmedzené, ak máme prevažujúci oprávnený záujem alebo zákonnú, regulačnú alebo zmluvnú povinnosť pokračovať v spracovaní osobných údajov, alebo ak môžu byť osobné údaje vyňaté zo zverejnenia alebo vymazania podľa platných právnych predpisov. Niektoré z týchto práv možno uplatniť len za určitých okolností alebo môžu byť inak obmedzené právnymi predpismi o ochrane údajov vo vašej jurisdikcii.
+        </p>
+        <h2>CEZHRANIČNÉ PREVODY </h2>
+        <p>
+          Ako globálna spoločnosť pôsobiaca vo viac ako 80 krajinách existujú okolnosti, za ktorých budeme musieť preniesť osobné údaje mimo krajiny, provincie alebo územia, v ktorom boli zhromaždené, na účely uvedené v tomto oznámení o ochrane osobných údajov. Konkrétne môžeme preniesť údaje s cieľom ponúkať, spravovať a riadiť služby, ktoré vám poskytujeme, a zvýšiť efektívnosť našich obchodných operácií. Vynaložíme maximálne úsilie, aby sme zabezpečili, že tieto prenosy budú v súlade so všetkými príslušnými právnymi predpismi o ochrane údajov a že práva a slobody jednotlivcov podľa týchto zákonov budú primerane chránené.
+        </p>
+        <p>
+          V prípade potreby takéhoto prenosu podnikneme kroky na zabezpečenie zavedenia vhodných záruk na ochranu osobných údajov, ako napríklad posúdenie vplyvu, rozhodnutie o primeranosti príslušného dozorného orgánu, použitie schválených záväzných podnikových pravidiel alebo štandardných zmluvných doložiek alebo váš súhlas.
+        </p>
+        <p>
+          Informácie o fungovaní záväzných podnikových pravidiel EÚ (Európskej únie) spoločnosti MMC (EU BCRs ) nájdete po kliknutí
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-EUBCR-Controller-and-Processor-Principles.pdf"
+            >sem</a
+          >.&nbsp;  Zoznam subjektov, ktoré súhlasili s dodržiavaním BCR EÚ, nájdete po kliknutí
+          <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
+            >sem</a
+          >.&nbsp;
+        </p>
+        <p>
+          Informácie o fungovaní záväzných podnikových pravidiel spoločnosti MMC pre Spojené kráľovstvo (UK BCRs) nájdete po kliknutí
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
+            >sem</a
+          >.&nbsp; Zoznam subjektov, ktoré súhlasili s tým, že budú viazané britskými BCRs, nájdete po kliknutí
+          <a
+            href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
+            >sem</a
+          >.&nbsp;&nbsp;&nbsp;
+        </p>
+        <h2>UCHOVÁVANIE VAŠICH INFORMÁCIÍ </h2>
+        <p>
+          Naše produkty, služby a regulačné povinnosti sú zložité, a preto sa naše doby uchovávania osobných údajov líšia. Pri stanovovaní doby uchovávania osobných údajov a záznamov, ktoré uchovávame, zohľadňujeme nasledujúce povinnosti:
+        </p>
+        <ul>
+          <li>
+            potreba uchovávať informácie na splnenie obchodných účelov alebo zmluvných záväzkov, na ktoré boli zhromaždené;
+          </li>
+          <li>
+            naše povinnosti plniť pokyny našich klientov týkajúce sa osobných údajov, ktoré spracovávame v ich mene;
+          </li>
+          <li>
+            naše povinnosti dodržiavať povinné zákonné a regulačné požiadavky na vedenie záznamov;
+          </li>
+          <li>
+            naše postupy zálohovania a obnovy po havárii; a
+          </li>
+          <li>
+            iné právne dôsledky, ako napríklad príslušné premlčacie lehoty.
+          </li>
+        </ul>
+        <p>
+          Na základe vyššie uvedených faktorov môžeme uchovávať osobné údaje aj po uplynutí doby, počas ktorej vám poskytujeme služby. Keď už osobné údaje nepotrebujeme uchovávať, naše firemné zásady vyžadujú, aby sme tieto informácie buď anonymizovali, alebo agregovali (v takom prípade môžeme anonymizované alebo agregované informácie ďalej uchovávať a používať na analytické účely), alebo ich bezpečne zničiť.
+        </p>
+        <h2>OTÁZKY ALEBO PRIPOMIENKY </h2>
+        <p>
+          Ak chcete odoslať otázky alebo žiadosti týkajúce sa tohto oznámenia o ochrane osobných údajov alebo postupov spoločnosti MTE v oblasti ochrany osobných údajov, pošlite nám e-mail na adresu <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>. Ak nás chcete kontaktovať poštou alebo telefonicky, kontaktujte svojho miestneho úradníka pre ochranu údajov. Kontaktné informácie svojho miestneho úradníka pre ochranu údajov získate tak, že nás kontaktujete na adrese
+          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+      </div>

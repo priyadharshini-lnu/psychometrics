@@ -88,4 +88,42 @@ RSpec.describe CommunicationEmailMailer do
       end
     end
   end
+
+  describe 'translated campaign name in piped text' do
+    let(:project) { create(:project, subdomain: 'test-project') }
+    let(:user) { create(:user, project: project) }
+    let(:campaign) do
+      campaign = create(:campaign, name: 'English Campaign Name', project: project)
+      Mobility.with_locale(:ar) { campaign.update!(name: 'Arabic Campaign Name') }
+      campaign
+    end
+    let(:communication) do
+      create(:communication, body: 'Campaign: ${c://Campaign/Field}')
+    end
+    let(:communication_email) do
+      create(:communication_email, user: user, communication: communication)
+    end
+
+    before { communication.update!(project_campaign: campaign) }
+
+    context 'when the participant locale is English' do
+      before { user.user_profile.update!(locale: 'en') }
+
+      it 'renders the translated campaign name in the participant locale' do
+        mail = described_class.create(communication_email.id)
+        expect(mail.body.encoded).to include('English Campaign Name')
+        expect(mail.body.encoded).not_to include('Arabic Campaign Name')
+      end
+    end
+
+    context 'when the participant locale is Arabic' do
+      before { user.user_profile.update!(locale: 'ar') }
+
+      it 'renders the translated campaign name in the participant locale' do
+        mail = described_class.create(communication_email.id)
+        expect(mail.body.encoded).to include('Arabic Campaign Name')
+        expect(mail.body.encoded).not_to include('English Campaign Name')
+      end
+    end
+  end
 end

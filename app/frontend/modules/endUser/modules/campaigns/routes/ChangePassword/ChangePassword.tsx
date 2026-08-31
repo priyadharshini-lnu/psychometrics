@@ -11,6 +11,7 @@ import { changePassword } from '~/core/currentUser'
 import styles from './ChangePassword.less'
 import { useRecaptcha } from '~/hooks/useRecaptcha'
 import { getSecuritySettings } from '~/modules/endUser/core/config'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 const { disable_recaptcha } = window.PsyGlobalState.features
@@ -47,13 +48,9 @@ export const ChangePasswordComponent: React.FC<Props> = (
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('change_password_page.title')}
-          - ${I18n.t('frontend.lighthouse_app')}
-          `
-        }
-      </title>
+      <DocumentTitle
+        text={`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('change_password_page.title')}`}
+      />
       <GlintPageHeader />
       <Layout.Content className={styles.pageContent}>
         <Typography.Title level={1} className={styles.title}>{I18n.t('change_password_page.title')}</Typography.Title>

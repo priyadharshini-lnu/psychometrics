@@ -11,30 +11,24 @@ Warden::Manager.after_set_user do |user, auth, opts|
   auth.request.session["#{scope}.id"] = user.id
 end
 
-Warden::Manager.after_set_user do |user, auth, _opts|
-  request = auth.request
-  session = request.session
-  flash = session.dig(:flash, 'flashes')
-  notice = flash&.dig('notice')
+# Snapshots the prior sign-in fact once per authentication: the session marker feeds the React shell,
+# the flash suffix still serves every Rails-rendered channel.
+Warden::Manager.after_set_user do |user, auth, opts|
+  next if opts[:event] == :fetch
 
+  session = auth.request.session
+  next if session.dig('warden.user.user.session', 'need_two_factor_authentication')
+
+  notice = Users::SignInNotice.capture(user)
   next unless notice
 
-  unless session.dig('warden.user.user.session', 'need_two_factor_authentication')
-    I18n.locale = user.locale || user.project&.available_locales&.first || I18n.default_locale
+  session[Users::SignInNotice::SESSION_KEY] = notice
 
-    if user.last_unsuccessful_attempt.present?
+  flash = session.dig(:flash, 'flashes')
+  next unless flash&.dig('notice')
 
-      flash['notice'] += "  #{I18n.t('devise.sessions.unsuccessful_sign_in_time',
-                                     date_time: I18n.l(user.last_unsuccessful_attempt.in_time_zone(Time.zone),
-                                                       format: :short))}"
-    elsif user.last_sign_in_at.present?
-      flash['notice'] += "  #{I18n.t('devise.sessions.signed_in_time',
-                                     date_time: I18n.l(user.last_sign_in_at.in_time_zone(Time.zone),
-                                                       format: :short))}"
-    end
-
-    user.update(last_unsuccessful_attempt: nil) if user.last_unsuccessful_attempt
-  end
+  I18n.locale = user.locale || user.project&.available_locales&.first || I18n.default_locale
+  flash['notice'] += "  #{Users::SignInNotice.flash_suffix(notice)}"
 end
 
 Warden::Manager.before_logout do |_user, auth, opts|

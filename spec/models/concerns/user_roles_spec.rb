@@ -71,4 +71,26 @@ describe UserRoles do
       expect(current_user.is?(:superadmin)).to eq(true)
     end
   end
+
+  context '#support_admin?' do
+    let(:user) { create(:superadmin, email: 'Support.Admin@Example.com') }
+
+    it 'is true when the email is in the allowlist (case-insensitive)' do
+      allow(Settings).to receive(:support_admins).and_return('other@example.com, support.admin@example.com')
+
+      expect(user.support_admin?).to eq(true)
+    end
+
+    it 'is false when the email is not in the allowlist' do
+      allow(Settings).to receive(:support_admins).and_return('someone@example.com')
+
+      expect(user.support_admin?).to eq(false)
+    end
+
+    it 'is false when the allowlist is blank' do
+      allow(Settings).to receive(:support_admins).and_return(nil)
+
+      expect(user.support_admin?).to eq(false)
+    end
+  end
 end

@@ -4,11 +4,14 @@ import { useParams } from 'react-router-dom'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { OccupationsTable } from './OccupationsTable'
 import { OccupationsFilter } from './OccupationsFilter'
 import { OccupationsFormModal } from './OccupationsFormModal'
 import { RemoveOccupationsModal } from './RemoveOccupationsModal'
 import { OccupationTR } from '~/modules/admin/modules/campaigns/core/occupations'
+
+const { I18n } = window
 
 const MODALS = {
   OccupationsFormModal,
@@ -36,7 +39,12 @@ const OccupationsList: React.FC<PropsFromRedux> = ({ openModal }) => {
 
   return (
     <>
-      <Resource config={config} name="occupations">
+      <Resource
+        title={I18n.t('admin.navigation_occupations')}
+        config={config}
+        name="occupations"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDimensionsDimensionOccupations}
+      >
         <OccupationsFilter openModal={openModal} />
         <OccupationsTable openModal={openModal} />
         <Modals modals={MODALS} />

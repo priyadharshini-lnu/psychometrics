@@ -555,7 +555,7 @@ const UserDevelopmentPlanComponent = ({
     </>
   ) : (
     <Splitter
-      layout="horizontal"
+      orientation="horizontal"
       onResize={(sizes) => {
         if (sizes && sizes.length > 1 && isCommentsDrawerOpen) {
           setCommentsPanelSize(sizes[1])

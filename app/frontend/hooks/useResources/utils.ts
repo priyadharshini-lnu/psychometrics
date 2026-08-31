@@ -4,13 +4,10 @@ import { StringMap } from '@thetalententerprise/jsonapi-react'
 import { devtools } from 'zustand/middleware'
 import { create } from 'zustand'
 import {
-  BaseMeta, ResourceState, StateManager, Requests, RequestType,
+  BaseMeta, JsonApiErrorBody, ResourceErrors, ResourceState, StateManager, Requests, RequestType,
 } from './interfaces'
 
 const { I18n } = window
-interface Error {
-  [key: string]: string[] | string
-}
 
 interface JsonApiStandardError {
   title: string
@@ -29,11 +26,11 @@ interface Schema {
   }
 }
 
-export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = null): Error => {
+export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = null): ResourceErrors => {
   const attributePrefix = '/data/attributes/'
   const relationshipPrefix = '/data/relationships/'
 
-  return errors.reduce((acc, error: JsonApiStandardError) => {
+  return errors.reduce((acc: ResourceErrors, error: JsonApiStandardError) => {
     const pointer = error.source?.pointer
     let attribute: string
 
@@ -76,9 +73,9 @@ export const convertJsonApiErrors = (errors: StringMap, schema: Schema |null = n
   }, {})
 }
 
-export const formatErrors = (errors: StringMap | undefined, schema: Schema) => {
+export const formatErrors = (errors: StringMap | undefined, schema: Schema): ResourceErrors | null => {
   if (errors === undefined) return null
-  if (errors.status === '500') return { base: I18n.t('errors.error_500') }
+  if (errors.status === '500') return { base: [{ title: I18n.t('errors.error_500') }] }
 
   errors = [errors].flat().map((error) => {
     const pointer = error.source?.pointer ? humps.camelize(error.source.pointer) : null
@@ -107,6 +104,11 @@ export const createZutandStoreForJsonApi = <D, M extends BaseMeta = BaseMeta>(na
     ),
   )
 )
+
+export const baseErrorMessage = (
+  errors?: ResourceErrors | null,
+  field: keyof JsonApiErrorBody = 'title',
+): string => errors?.base?.[0]?.[field] ?? ''
 
 export const getErrorMsgFromJsonApiRequests = (requests: Requests, requestType: RequestType = 'fetch'): string => {
   const errors = requests[requestType]?.errors

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import {
-  Button, Input, Card, Typography, Row, Col, Spin, message, Tooltip, Space,
-} from 'antd'
-import { PlayCircleOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+  Button, Input, Card, Typography, Row, Col, Spin, Tooltip, Space, useApp,
+} from '@thetalententerprise/glint'
+import { PlayCircleOutlined, InfoCircleOutlined } from '@thetalententerprise/glint/icons'
 import { useResources } from '~/hooks/useResources/useResources'
 import { ReactCodemirror } from '~/glint/components/ReactCodemirror'
 import styles from './styles.less'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 type AdvancedPromptEditorProps = {
   value?: string
@@ -23,6 +24,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
   const [campaignId, setCampaignId] = useState<string>(campaignIdProp || '')
   const [renderedOutput, setRenderedOutput] = useState<string>('')
   const [isRendering, setIsRendering] = useState<boolean>(false)
+  const { message } = useApp()
 
   const { collectionAction } = useResources('assistants', {
     basePath: 'ai',
@@ -48,7 +50,7 @@ export const AdvancedPromptEditor: React.FC<AdvancedPromptEditorProps> = ({
       setRenderedOutput(response.attributes.renderedPrompt)
     } catch (error) {
       if (error.base) {
-        setRenderedOutput(error.base[0]?.detail)
+        setRenderedOutput(baseErrorMessage(error, 'detail'))
       }
       message.error(I18n.t('admin.template_render_failed'))
     } finally {

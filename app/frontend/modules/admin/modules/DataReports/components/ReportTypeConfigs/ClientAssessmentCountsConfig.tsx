@@ -1,5 +1,5 @@
 import React from 'react'
-import { DatePicker, Form, Select } from 'antd'
+import { DatePicker, Form, Select } from '@thetalententerprise/glint'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
 import dayjs from '~/utils/dayjs'
 

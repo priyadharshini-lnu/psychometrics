@@ -55,6 +55,7 @@ th:
     copied_successfully: คัดลอกสำเร็จ
     copied_to_clipboard: คัดลอกไปยังคลิปบอร์ด
     copy: คัดลอก
+    copyright: "© %{year} %{display_name}. สงวนลิขสิทธิ์ทุกประการ"
     create: สร้าง
     created_at: สร้างเมื่อ
     created_by: สร้างโดย
@@ -181,6 +182,29 @@ th:
     remove: เอาออก
     removed: ถูก เอา ออก
     replace: แทนที่
+    reports:
+      ai_rationale_evidence:
+        all_factors: ปัจจัยทั้งหมด
+        factor_label: ปัจจัย
+        hide_evidence: ซ่อนหลักฐาน
+        hide_rationale: ซ่อนเหตุผล
+        no_data: ไม่มีเหตุผลหรือข้อมูลหลักฐานใด ๆ จาก AI สำหรับคำถามที่เลือกไว้
+        no_question_selected: โปรดเลือกคำถามเพื่อแสดงเหตุผลและหลักฐานจาก AI
+        question_label: คำถาม
+        select_question: เลือกคำถาม
+      ai_transcript:
+        no_data: ไม่มีข้อมูลการถอดเสียงสำหรับคำถามที่เลือกไว้
+        no_question_selected: โปรดเลือกคำถามเพื่อแสดงข้อความถอดเสียง
+        question_label: คำถาม
+        select_question: เลือกคำถาม
+    reports_bar_gradient_direction: ทิศทางการไล่ระดับ
+    reports_bar_gradient_direction_bottom_to_top: จากล่างขึ้นบน
+    reports_bar_gradient_direction_left_to_right: จากซ้ายไปขวา
+    reports_bar_gradient_direction_right_to_left: จากขวาไปซ้าย
+    reports_bar_gradient_direction_top_to_bottom: จากบนลงล่าง
+    reports_bar_gradient_enabled: เปิดใช้งานการไล่ระดับสี
+    reports_bar_gradient_end_color: สีสุดท้าย
+    reports_bar_gradient_start_color: เริ่มสี
     reports_show_values_inside_bar: แสดงค่าภายในแท่ง
     reports_value_label_position: ตำแหน่งของป้ายค่า
     reports_value_label_position_center: ศูนย์
@@ -218,6 +242,7 @@ th:
     switch_to_laptop_or_desktop: เปลี่ยนไปใช้แล็ปท็อปหรือเดสก์ท็อป
     system_check_uploading: กำลังอัปโหลด
     table:
+      collapse: ทรุด
       entries:
         selected:
           one: เลือก 1 แถว
@@ -226,6 +251,7 @@ th:
           one: 'ทั้งหมด : 1'
           other: 'ทั้งหมด: {{count}}'
           zero: 'รวม: 0'
+      expand: ขยาย
     tags: แท็ก
     terms_conditions_privacy: คำชี้แจงความเป็นส่วนตัว
     tools: เครื่อง มือ

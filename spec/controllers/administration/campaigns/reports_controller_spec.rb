@@ -270,20 +270,28 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
   private
 
   def check_campaign_reports_and_assesment_response(parsed_response)
-    report_response = parsed_response['reports'].first
+    check_report_response(parsed_response['reports'].first)
+    check_assessment_response(parsed_response['assessments'].first)
+    check_assessor_assessment_response(parsed_response['assessor_assessments'].first)
+  end
+
+  def check_report_response(report_response)
     expect(report_response.keys).to contain_exactly(
       *%w[id report_id name user_access assessor_access report_family_name permissions user_dashboard main_report
           auto_assign available_languages report_locales effective_default_language internal custom_upload
-          assessment_ids external_settings report_provider status user_report_id]
+          assessment_ids external_settings report_provider status user_report_id
+          owner tenant_id]
     )
+    expect(report_response).not_to have_key('campaign_assessment_id')
     expect(report_response).to include({
       'name' => report.name,
       'report_family_name' => report_family.name,
       'user_access' => false,
       'assessor_access' => false
     })
+  end
 
-    assessment_response = parsed_response['assessments'].first
+  def check_assessment_response(assessment_response)
     expect(assessment_response.keys).to contain_exactly(
       *%w[
         id
@@ -325,21 +333,32 @@ RSpec.describe Administration::Campaigns::ReportsController, type: :controller d
         occupation_condition_set_name
         dimension_has_occupations
         occupation_condition_sets
+        owner
+        tenant_id
       ]
     )
+    expect(assessment_response['campaign_assessment_id']).to be_a(Integer)
     expect(assessment_response).to include({
       'name' => assessment.name,
       'category' => assessment.category,
       'norm_name' => nil,
       'has_external_norm' => false
     })
+  end
 
-    assessment_response = parsed_response['assessor_assessments'].first
+  def check_assessor_assessment_response(assessment_response)
     policy = Administration::CampaignAssessmentPolicy.new(current_user, assessor_assessment)
-    expect(assessment_response).to eq({
+    expect(assessment_response.keys).to contain_exactly(
+      *%w[id name linked_assessment_name permissions owner tenant dimension_id tenant_id]
+    )
+    expect(assessment_response).not_to have_key('campaign_assessment_id')
+    expect(assessment_response).to include({
       'id' => assessor_assessment.id,
       'name' => assessor_assessment.name,
       'linked_assessment_name' => nil,
+      'owner' => nil,
+      'tenant' => nil,
+      'dimension_id' => assessor_assessment.dimension_id,
       'permissions' => {
         'export_external_results' => policy.export_external_results?,
         'export_normed_results' => policy.export_normed_results?,

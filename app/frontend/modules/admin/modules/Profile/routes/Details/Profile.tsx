@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
-  Col, Row, Typography, Form, Upload, Input, Select, Layout, Space, Button, App,
-} from 'antd'
-import cs from 'classnames'
-import _ from 'lodash'
-import { PlusOutlined, EditOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+  Avatar, Button, Card, Col, Divider, Flex, Form, Input, Row, Select, Typography, Upload,
+  useApp, useGlintToken,
+} from '@thetalententerprise/glint'
+import type { UploadChangeParam } from '@thetalententerprise/glint'
+import { PlusOutlined } from '@thetalententerprise/glint/icons'
 import { useResources } from '~/hooks/useResources'
 import { camelizeKeys } from '~/utils/object'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -13,16 +13,10 @@ import {
   get as getCurrentUser, uploadAdminUserPhoto,
 } from '~/core/currentUser'
 import { CropImageModal } from '~/glint/components/CropImageModal'
-
-
-import styles from './styles.less'
 import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/users'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { useTimezones } from '~/hooks/useTimezones'
 
-const { Title } = Typography
 const { I18n } = window
-const { Content } = Layout
 
 interface Image {
   type?: string
@@ -54,10 +48,10 @@ function Profile ({
     fetchSingle({ id: currentUser.id })
   }, [currentUser.id])
 
-
   const [showCropper, setShowCropper] = useState(false)
   const [image, setImage] = useState<Image | null>(null)
-  const { message } = App.useApp()
+  const { message } = useApp()
+  const { controlHeightLG } = useGlintToken()
   const timezoneOptions = useTimezones()
 
   const {
@@ -108,181 +102,126 @@ function Profile ({
     })
   }
 
-  const onChangeFile = ({ file }) => {
-    const blob = URL.createObjectURL(file)
+  const onChangeFile = ({ file }: UploadChangeParam) => {
+    if (!(file instanceof Blob)) return
 
     setImage({
-      src: blob,
+      src: URL.createObjectURL(file),
       type: file.type,
     })
     setShowCropper(true)
   }
 
+  const localeOptions = locales.map((locale: string) => ({
+    value: locale,
+    label: I18n.t(`languages.${locale}`),
+  }))
+
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin/profile',
-            label: () => I18n.t('admin.profile'),
-          },
-          {
-            label: () => I18n.t('admin.profile_details'),
-          },
-        ]}
-      />
-      <Content className={styles.pageContent}>
-        <div className={styles.container}>
-          <Row gutter={[32, 32]}>
-            <Col span={24}>
-              <Title level={3}>{I18n.t('profile.title')}</Title>
-              <Row gutter={32}>
-                <Col xs={24} sm={24} md={12} lg={8}>
-                  <Form.Item>
-                    <Upload
-                      listType="picture-card"
-                      accept=".jpg, .jpeg, |image/*"
-                      showUploadList={false}
-                      maxCount={1}
-                      className={styles.upload}
-                      onChange={onChangeFile}
-                      beforeUpload={() => false}
-                    >
-                      <div
-                        aria-labelledby="upload-photo-label"
-                        tabIndex={0}
-                        role="button"
-                        className={cs(styles.uploadBtn, { [styles.withPhoto]: !!user.photoUrl }, 'h-100')}
-                      >
-                        {user.photoUrl && (
-                          <img
-                            src={user.photoUrl}
-                            alt={user.photoUrl
-                              ? I18n.t('profile.change_photo')
-                              : I18n.t('profile.add_photo')}
-                            className={styles.photo}
-                          />
-                        )}
-                        <div id="upload-photo-label" className={styles.controls}>
-                          {user.photoUrl ? <EditOutlined size={28} /> : <PlusOutlined size={28} />}
-                          <div className={styles.photoLabel}>
-                            {user.photoUrl
-                              ? I18n.t('profile.change_photo')
-                              : I18n.t('profile.add_photo')}
-                          </div>
-                        </div>
-                      </div>
-                    </Upload>
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24} md={12} lg={16}>
-                  <Form
-                    layout="vertical"
-                    initialValues={{
-                      firstName: user.firstName,
-                      lastName: user.lastName,
-                      locale: user.userProfile?.locale,
-                      timezone: user.userProfile?.timezone,
-                      email: user.email,
-                    }}
-                    onFinish={submitForm}
-                    className={styles.form}
-                  >
-                    <Row gutter={24}>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="firstName"
-                          label={I18n.t('shared.first_name')}
-                          hasFeedback
-                          help={errors?.firstName?.title}
-                          validateStatus={errors?.firstName ? 'error' : ''}
-                          required
-                        >
-                          <Input size="large" />
-                        </Form.Item>
-                      </Col>
-                      <Col xs={24} sm={24} md={12}>
-                        <Form.Item
-                          name="lastName"
-                          label={I18n.t('shared.last_name')}
-                          hasFeedback
-                          help={errors?.lastName?.title}
-                          validateStatus={errors?.lastName ? 'error' : ''}
-                          required
-                        >
-                          <Input size="large" />
-                        </Form.Item>
-                      </Col>
-                    </Row>
-                    <Form.Item name="email" label={I18n.t('shared.email')}>
-                      <Input size="large" disabled />
-                    </Form.Item>
-                    <Form.Item
-                      name="locale"
-                      label={I18n.t('profile.locale')}
-                      hasFeedback
-                      help={errors?.locale?.title}
-                      validateStatus={errors?.locale ? 'error' : ''}
-                    >
-                      <Select
-                        size="large"
-                        showSearch
-                        filterOption={(search, option) => I18n.t(`languages.${option?.value}`)
-                          .toLowerCase().includes(search.toLowerCase())}
-                      >
-                        {_.map(locales, locale => (
-                          <Select.Option key={locale} value={locale}>
-                            {I18n.t(`languages.${locale}`)}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-
-                    <Form.Item
-                      name="timezone"
-                      label={I18n.t('profile.timezone')}
-                      hasFeedback
-                      help={errors?.timezone?.title}
-                      validateStatus={errors?.timezone ? 'error' : ''}
-                    >
-                      <Select
-                        size="large"
-                        showSearch
-                        filterOption={(search, option) => `${option?.value}`
-                          .toLowerCase().includes(search.toLowerCase())}
-                      >
-                        {timezoneOptions.map((item, i) => (
-                          <Select.Option key={i} value={item.value}>
-                            {item.label}
-                          </Select.Option>
-                        ))}
-                      </Select>
-                    </Form.Item>
-                    <Space align="baseline" size="middle" className={styles.buttonSpaceContainer}>
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        className={styles.actionButton}
-                        loading={profileUpdateInProgress}
-                      >
-                        {I18n.t('shared.update')}
-                      </Button>
-                    </Space>
-                  </Form>
-                  <CropImageModal
-                    show={showCropper}
-                    onCrop={uploadFile}
-                    onCancel={() => setShowCropper(false)}
-                    image={image}
-                  />
-                </Col>
-              </Row>
+      <Card>
+        <Flex align="center" gap="middle">
+          {/* The dashed ring stays visible around the inset avatar, so hover still reads as "change photo". */}
+          <Upload
+            listType="picture-circle"
+            accept=".jpg, .jpeg, |image/*"
+            showUploadList={false}
+            maxCount={1}
+            onChange={onChangeFile}
+            beforeUpload={() => false}
+          >
+            {user.photoUrl ? (
+              <Avatar
+                src={user.photoUrl}
+                size={controlHeightLG * 2}
+                alt={I18n.t('profile.change_photo')}
+              />
+            ) : (
+              <Flex vertical align="center" gap="small">
+                <PlusOutlined />
+                <Typography.Text>{I18n.t('profile.add_photo')}</Typography.Text>
+              </Flex>
+            )}
+          </Upload>
+          <Flex vertical>
+            <Typography.Text strong ellipsis>{user.fullName}</Typography.Text>
+            <Typography.Text type="secondary" ellipsis>{user.email}</Typography.Text>
+          </Flex>
+        </Flex>
+        <Divider />
+        <Form
+          layout="vertical"
+          initialValues={{
+            firstName: user.firstName,
+            lastName: user.lastName,
+            locale: user.userProfile?.locale,
+            timezone: user.userProfile?.timezone,
+            email: user.email,
+          }}
+          onFinish={submitForm}
+        >
+          <Row gutter={16}>
+            <Col xs={24} md={12}>
+              <Form.Item
+                name="firstName"
+                label={I18n.t('shared.first_name')}
+                hasFeedback
+                help={errors?.firstName?.title}
+                validateStatus={errors?.firstName ? 'error' : ''}
+                required
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col xs={24} md={12}>
+              <Form.Item
+                name="lastName"
+                label={I18n.t('shared.last_name')}
+                hasFeedback
+                help={errors?.lastName?.title}
+                validateStatus={errors?.lastName ? 'error' : ''}
+                required
+              >
+                <Input />
+              </Form.Item>
             </Col>
           </Row>
-        </div>
-      </Content>
+          <Form.Item name="email" label={I18n.t('shared.email')}>
+            <Input disabled />
+          </Form.Item>
+          <Form.Item
+            name="locale"
+            label={I18n.t('profile.locale')}
+            hasFeedback
+            help={errors?.locale?.title}
+            validateStatus={errors?.locale ? 'error' : ''}
+          >
+            {/* Searching languages matches the translated name, not the locale code. */}
+            <Select options={localeOptions} showSearch={{ optionFilterProp: 'label' }} />
+          </Form.Item>
+          <Form.Item
+            name="timezone"
+            label={I18n.t('profile.timezone')}
+            hasFeedback
+            help={errors?.timezone?.title}
+            validateStatus={errors?.timezone ? 'error' : ''}
+          >
+            <Select options={timezoneOptions} showSearch />
+          </Form.Item>
+          <Flex justify="end">
+            <Button type="primary" htmlType="submit" loading={profileUpdateInProgress}>
+              {I18n.t('shared.update')}
+            </Button>
+          </Flex>
+        </Form>
+      </Card>
+      <CropImageModal
+        show={showCropper}
+        onCrop={uploadFile}
+        onCancel={() => setShowCropper(false)}
+        image={image}
+      />
     </>
-
   )
 }
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, MenuProps, Row, Col, Switch, App,
+  Button, Table, MenuProps, Row, Col, Switch, App,
   Typography,
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import { Link, useParams } from 'react-router-dom'
-import { MoreOutlined, ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { PropsFromRedux } from './connect'
@@ -80,9 +80,9 @@ const ReportList: React.FC<Props> = ({
             dataIndex="name"
             render={(text, record: UserReport) => (
               <>
-                <a onClick={() => setDrawerReport(record)}>
+                <Button type="link" size="small" className="p-0" onClick={() => setDrawerReport(record)}>
                   {text}
-                </a>
+                </Button>
                 {record.hoganParticipantId && (
                   <Typography.Text style={{ display: 'block', fontSize: '0.8em' }}>
                     (
@@ -135,11 +135,6 @@ const ReportList: React.FC<Props> = ({
                     message,
                   })
                 }
-                innerElement={(
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                )}
               />
             )}
           />

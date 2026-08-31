@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Button,
   Col,
@@ -17,6 +17,7 @@ import {
 } from '~/modules/admin/modules/campaigns/core/workshopActivity'
 import Form from '~/modules/admin/modules/campaigns/routes/Campaign/routes/Participants/Assessors/AssessorFormModal'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { ResourceAvatar } from '~/glint'
 import styles from './styles.less'
@@ -57,7 +58,7 @@ const connector = connect(state => ({
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) => {
+export const ActivitiesComponent: React.FC<PropsFromRedux & { toggle?: ReactNode }> = ({ currentUser, toggle }) => {
   const { id, campaignId, projectId } = useParams() as { id: string, campaignId: string, projectId: string }
   const [showForm, setShowForm] = useState(false)
 
@@ -77,15 +78,25 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
 
   return (
     <>
-      <Resource config={config} name="workshop_activities">
-        <Resource.Filter name="subject_full_name_or_subject_email_cont">
+      <Resource
+        title={I18n.t('admin.scheduling_tabs_assessment_center')}
+        config={config}
+        name="workshop_activities"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenterActivities}
+      >
+        <Resource.Filter
+          name="subject_full_name_or_subject_email_cont"
+          controls={toggle}
+        >
           <Controls setShowForm={setShowForm} />
         </Resource.Filter>
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column
             id="id"
+            hideable={false}
             width="3%"
             title={I18n.t('common.column.id')}
+            fixed="left"
           />
           <Resource.Column<WorkshopUserAcitivity>
             title={I18n.t('admin.scheduling_columns_subject')}
@@ -106,6 +117,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
                 </Col>
               </Row>
             )}
+            fixed="left"
           />
           <Resource.Column<WorkshopUserAcitivity>
             title={I18n.t('admin.scheduling_columns_assessor')}
@@ -164,6 +176,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
           <Resource.Column<WorkshopUserAcitivity>
             title={I18n.t('common.column.action')}
             id="actions"
+            hideable={false}
             key="actions"
             render={({ status, subject, evaluator }) => (
               (currentUser.id.toString() === evaluator.id && subject.id !== evaluator.id) && (
@@ -179,6 +192,7 @@ export const ActivitiesComponent: React.FC<PropsFromRedux> = ({ currentUser }) =
                 </Button>
               )
             )}
+            fixed="right"
           />
         </Resource.Table>
         {showForm && (

@@ -1,21 +1,14 @@
 import { Menu } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
-import {
-  ReportApprovalSetting,
-} from './ReportApprovalSetting'
-import RouteList from '~/components/RouteList'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { FactCheck, Settings } from '@thetalententerprise/glint/icons'
 import { PageHeader } from '../../PageHeader'
-import Options from './Options'
+import { TABS } from './routes'
 
-const routes = [
-  { redirect: true, from: '', to: 'options' },
-  { path: '/options', component: <Options /> },
-  { path: '/report_approval', component: <ReportApprovalSetting /> },
-]
 export default function Reports () {
   const navigate = useNavigate()
-  const params = useParams()
-  const selectedKey = params['*']
+  const { pathname } = useLocation()
+
+  const selectedKey = TABS.find(tab => pathname.endsWith(`/${tab}`))
 
   const goto = (key) => {
     navigate(
@@ -27,21 +20,23 @@ export default function Reports () {
       <PageHeader />
       <div>
         <Menu
-          selectedKeys={[selectedKey]}
+          selectedKeys={selectedKey ? [selectedKey] : []}
           onSelect={({ key }) => goto(key)}
           mode="horizontal"
           items={[
             {
               key: 'options',
+              icon: <Settings />,
               label: I18n.t('admin.threesixty_campaigns_menu_report_menu_report_options_title'),
             },
             {
               key: 'report_approval',
+              icon: <FactCheck />,
               label: I18n.t('admin.threesixty_campaigns_menu_report_menu_report_approval_title'),
             },
           ]}
         />
-        <RouteList routes={routes} urlPrefix="" />
+        <Outlet />
       </div>
     </>
   )

@@ -1,15 +1,15 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
+const page = () => import('./MeetingRoom')
 
-const MeetingRoom = lazy(() => import('./MeetingRoom'))
 const routes = [
   {
-    path: 'meet/create',
+    path: '/admin/meet/create',
     element: <div>create</div>,
   },
   {
-    path: 'meet/:roomId',
-    element: <MeetingRoom />,
+    path: '/admin/meet/:roomId',
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

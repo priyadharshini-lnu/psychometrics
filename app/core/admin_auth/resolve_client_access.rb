@@ -82,12 +82,18 @@ module AdminAuth
       ]
     end
 
+    # Assignments alone are not access: removing the client assessor membership revokes it, assignments or not.
     def user_is_assessor_for_client?
       return false unless user.respond_to?(:assessors)
+      return false unless client_assessor_membership?
 
       user.assessors.joins(:campaign).exists?(
         campaigns: { project_id: client_subtree_ids }
       )
+    end
+
+    def client_assessor_membership?
+      find_entry_memberships.exists?(role: Membership::CLIENT_ASSESSOR_ROLE)
     end
   end
 end

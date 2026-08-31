@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import {
   Form, Input, Select, Spin,
-} from 'antd'
+} from '@thetalententerprise/glint'
 import { debounce } from 'lodash'
 import { CampaignTemplate } from '~/modules/admin/core/types/campaignTemplates'
 import { useResources } from '~/hooks/useResources'
@@ -14,7 +14,6 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { isSuperAdmin } from '~/core/currentUser'
 import { useCurrentUser } from '~/hooks/useCurrentUser'
 
-const { Option } = Select
 
 type Props = {
   close (): void
@@ -22,6 +21,11 @@ type Props = {
 }
 
 const { I18n } = window
+
+type SelectSearchExtras = {
+  filterOption?: boolean
+  onSearch?: (value: string) => void
+}
 
 export const CampaignTemplatesFormModal: React.FC<Props> = ({
   close,
@@ -149,21 +153,14 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch={{ filterOption: false, onSearch: searchAvailableAssessments }}
+              showSearch
+              {...({ filterOption: false, onSearch: searchAvailableAssessments } as SelectSearchExtras)}
               placeholder={
                 I18n.t('admin.campaign_templates_form_assessment_placeholder')
               }
               notFoundContent={assessmentsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-            >
-              {
-                assessmentsOpts.map(({
-                  id,
-                  name,
-                }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
-            </Select>
+              options={assessmentsOpts.map(({ id, name }) => ({ value: id, label: name }))}
+            />
           </Form.Item>
           <Form.Item
             name="reportId"
@@ -172,21 +169,14 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch={{ filterOption: false, onSearch: searchAvailableReports }}
+              showSearch
+              {...({ filterOption: false, onSearch: searchAvailableReports } as SelectSearchExtras)}
               placeholder={
                 I18n.t('admin.campaign_templates_form_report_placeholder')
               }
               notFoundContent={reportsLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-            >
-              {
-                reportsOpts.map(({
-                  id,
-                  name,
-                }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
-            </Select>
+              options={reportsOpts.map(({ id, name }) => ({ value: id, label: name }))}
+            />
           </Form.Item>
           <Form.Item
             name="ownerId"
@@ -195,22 +185,17 @@ export const CampaignTemplatesFormModal: React.FC<Props> = ({
           >
             <Select
               disabled={disabled}
-              showSearch={{ filterOption: false, onSearch: searchAvailableOwners }}
+              showSearch
+              {...({ filterOption: false, onSearch: searchAvailableOwners } as SelectSearchExtras)}
               placeholder={
                 I18n.t('admin.campaign_templates_form_owner_placeholder')
               }
               notFoundContent={ownersLoading ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
-            >
-              {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
-              {
-                ownerOpts.map(({
-                  id,
-                  name,
-                }) => (
-                  <Option key={id} value={id}>{name}</Option>
-                ))
-              }
-            </Select>
+              options={[
+                ...(isSuperAdmin(currentUser) ? [{ value: null, label: I18n.t('admin.platform_owner') }] : []),
+                ...ownerOpts.map(({ id, name }) => ({ value: id, label: name })),
+              ]}
+            />
           </Form.Item>
         </>
       )}

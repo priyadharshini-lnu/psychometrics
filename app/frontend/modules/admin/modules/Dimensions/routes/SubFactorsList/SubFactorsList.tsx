@@ -5,11 +5,14 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { SubFactorsTR } from '~/modules/admin/modules/client/core/subFactors'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { SubFactorsFormModal } from './SubFactorsFormModal'
 import { SubFactorsTable } from './SubFactorsTable'
 import { SubFactorsFilter } from './SubFactorsFilter'
 import { RemoveSubFactorsModal } from '~/modules/admin/modules/Dimensions/components/RemoveSubFactorsModal'
 import { SubFactorsBreadcrumb } from './SubFactorsBreadcrumb'
+
+const { I18n } = window
 
 const MODALS = {
   SubFactorsFormModal,
@@ -45,7 +48,12 @@ const SubFactorsList: React.FC<PropsFromRedux> = ({ openModal }) => {
 
   return (
     <>
-      <Resource config={config} name={resourceName}>
+      <Resource
+        title={I18n.t('admin.navigation_factors')}
+        config={config}
+        name={resourceName}
+        settingsKey={TABLE_SETTINGS_KEYS.adminDimensionsSubFactors}
+      >
         <SubFactorsBreadcrumb />
         <SubFactorsFilter openModal={openModal} slug={slug} />
         <SubFactorsTable openModal={openModal} slug={slug} />

@@ -77,11 +77,13 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('shared.id')}
         id="id"
+        hideable={false}
         sorter
         render={proficiencyLevel => (
           proficiencyLevel.id
         )}
         width={200}
+        fixed="left"
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('admin.fields_proficiency_type')}
@@ -100,6 +102,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         }
         filteredValue={resource.getFilteredValue('proficiency_type_in') as string[]}
         width={200}
+        fixed="left"
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('admin.fields_skill_name')}
@@ -143,7 +146,8 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         )}
         sorter
         filters={
-          Array.from({ length: 9 }).map((_, index) => ({ text: index + 2, value: index + 2 }))
+          // antd hands the option value back verbatim; the URL round-trip makes the applied filter a string.
+          Array.from({ length: 9 }).map((_, index) => ({ text: index + 2, value: String(index + 2) }))
         }
         filteredValue={resource.getFilteredValue('level_in') as string[]}
       />
@@ -151,6 +155,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('shared.action')}
         id="action"
+        hideable={false}
         render={(_, proficiencyLevel) => (
           <Dropdown
             proficiencyLevel={proficiencyLevel}
@@ -159,6 +164,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
           />
         )}
         width={100}
+        fixed="right"
       />
     </Resource.Table>
   )

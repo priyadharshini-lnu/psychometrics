@@ -1,4 +1,7 @@
-import { Breadcrumb as AntBreadcrumb, Button } from 'antd'
+import {
+  Breadcrumb as AntBreadcrumb, Button, Flex, theme,
+} from 'antd'
+import { Link } from 'react-router-dom'
 import { PlusOutlined, UploadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { MediaLibrary } from '~/modules/admin/modules/client/core/libraries'
@@ -23,6 +26,7 @@ export const MediaLibraryFilter: React.FC<Props> = ({
   openModal,
 }) => {
   const { resource } = useResourceContext<MediaLibrary, MediaLibraryMeta>()
+  const { token } = theme.useToken()
 
   const tableLoading = resource.isLoading('fetch')
   const ancestors: AncestorItem[] = resource.meta?.ancestors || []
@@ -42,52 +46,33 @@ export const MediaLibraryFilter: React.FC<Props> = ({
     })
   }
 
-  const breadcrumbItems = isInsideFolder
-    ? [
-      {
-        title: (
-          <a href="/admin" style={{ color: 'var(--grey-text)' }}>
-            {I18n.t('admin.dashboard')}
-          </a>
-        ),
-      },
-      {
-        title: (
-          <a onClick={() => navigateToFolder(null)} style={{ color: 'var(--grey-text)' }}>
-            {I18n.t('admin.media_library')}
-          </a>
-        ),
-      },
-      ...ancestors.slice(0, -1).map(ancestor => ({
-        title: (
-          <a onClick={() => navigateToFolder(ancestor.id)} style={{ color: 'var(--grey-text)' }}>
-            {ancestor.name}
-          </a>
-        ),
-      })),
-      {
-        title: ancestors[ancestors.length - 1]?.name,
-      },
-    ]
-    : [
-      {
-        title: (
-          <a href="/admin" style={{ color: 'var(--grey-text)' }}>
-            {I18n.t('admin.dashboard')}
-          </a>
-        ),
-      },
-      {
-        title: I18n.t('admin.media_library'),
-      },
-    ]
+  // Only the folder navigator: at the root this would repeat the page title the sider nav already gives.
+  const breadcrumbItems = [
+    {
+      title: <Link to="/admin">{I18n.t('admin.dashboard')}</Link>,
+    },
+    {
+      title: <a onClick={() => navigateToFolder(null)}>{I18n.t('admin.media_library')}</a>,
+    },
+    ...ancestors.slice(0, -1).map(ancestor => ({
+      title: <a onClick={() => navigateToFolder(ancestor.id)}>{ancestor.name}</a>,
+    })),
+    {
+      title: ancestors[ancestors.length - 1]?.name,
+    },
+  ]
 
   return (
     <>
-      <div style={{ borderBottom: '1px solid #eeeeee', padding: 10 }} data-testid="breadcrumbs">
-        <AntBreadcrumb items={breadcrumbItems} />
-      </div>
-      <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
+      {isInsideFolder && (
+        <Flex style={{ paddingInline: token.padding, paddingTop: token.padding }} data-testid="breadcrumbs">
+          <AntBreadcrumb items={breadcrumbItems} />
+        </Flex>
+      )}
+      <Resource.Filter
+        placeholder={I18n.t('shared.search')}
+        name="filterable_fields"
+      >
         <Button
           disabled={tableLoading}
           onClick={() => openModal('MediaLibraryFormModal', {

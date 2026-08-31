@@ -6,6 +6,7 @@ import { triggerCollapse } from '~/modules/admin/core/ui/menu'
 import { useResources } from '~/hooks/useResources'
 import { Dashboard as DashboardType, DashboardTR } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { EmbeddedDashboard } from '../components/EmbeddedDashboard'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import styles from './Dashboard.less'
 
 const connecter = connect((state:RootState) => ({
@@ -36,6 +37,7 @@ export const DashboardComponent = ({ collapsed, triggerCollapse }) => {
 
   return (
     <div className={styles.fullScreen}>
+      <DocumentTitle text={dashboard?.name} />
       {dashboard && (
         <EmbeddedDashboard
           alwaysFullScreen

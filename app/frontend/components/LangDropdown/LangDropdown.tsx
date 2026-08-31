@@ -6,6 +6,7 @@ import { useMedia } from 'use-media'
 import cs from 'classnames'
 import { DownOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LanguageIcon } from '~/glint/icons/LanguageIcon'
+import { getLocalizedLanguageName } from '~/utils/locales'
 import styles from './styles.less'
 
 const { I18n } = window
@@ -36,7 +37,7 @@ export const LangDropdown: React.FC<Props & { useLoading?: boolean }> = ({
   }
 
   const menuItems = _.map(locales, (locale) => {
-    const localeItem = { key: locale, label: <span lang={locale}>{I18n.t(`languages_localized.${locale}`)}</span> }
+    const localeItem = { key: locale, label: <span lang={locale}>{getLocalizedLanguageName(locale)}</span> }
 
     if (isMobile) {
       return localeItem
@@ -73,7 +74,7 @@ export const LangDropdown: React.FC<Props & { useLoading?: boolean }> = ({
                   <>
                     <span lang={currentLocale}>
                       {isMobile ? null
-                        : I18n.t(`languages_localized.${currentLocale}`)}
+                        : getLocalizedLanguageName(currentLocale)}
                       {' '}
                       <DownOutlined />
                     </span>

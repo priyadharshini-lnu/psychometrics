@@ -10,6 +10,7 @@ import { MenuItem } from '~/interfaces/Antd'
 import { AdminRole, AdminRoleTR } from '~/modules/admin/modules/client/core/adminRole'
 import { AdminRolesForm } from './AdminRolesForm'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -34,7 +35,12 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
   }
 
   return (
-    <Resource config={config} name="admin_roles">
+    <Resource
+      title={I18n.t('admin.settings_tabs_admin_roles')}
+      config={config}
+      name="admin_roles"
+      settingsKey={TABLE_SETTINGS_KEYS.clientSettingsAdminRoles}
+    >
       <ResourceFilter openModal={openModal} />
       <Resource.Table
         pagination
@@ -60,6 +66,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<AdminRole>
           title={I18n.t('shared.name')}
           id="name"
+          hideable={false}
         />
         <Resource.Column<AdminRole>
           title={I18n.t('shared.description')}
@@ -68,6 +75,7 @@ const AdminRolesList: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<AdminRole>
           title={I18n.t('shared.action')}
           id="actions"
+          hideable={false}
           key="actions"
           width={100}
           fixed="right"

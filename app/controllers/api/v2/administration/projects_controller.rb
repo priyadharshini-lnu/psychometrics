@@ -63,6 +63,32 @@ module Api
       end
     end
 
+    def fetch_campaign_dashboard_instructions
+      list = request_locales.map do |locale|
+        Mobility.with_locale(locale) do
+          { locale: locale, campaignDashboardInstructions: dashboard_project.campaign_dashboard_instructions }
+        end
+      end
+
+      available_locales = dashboard_project.translations.pluck(:locale).uniq
+
+      render json: { list: list, availableLocales: available_locales }
+    end
+
+    def update_campaign_dashboard_instructions
+      locale = request_attributes[:locale] || I18n.default_locale.to_s
+      instructions = request_attributes[:campaign_dashboard_instructions]
+
+      Mobility.with_locale(locale) do
+        dashboard_project.update!(campaign_dashboard_instructions: instructions)
+      end
+
+      audit! :update_campaign_dashboard_instructions, dashboard_project, payload: params
+      render json: { campaignDashboardInstructions: instructions, locale: locale }
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { errors: e.record.errors.messages }, status: :unprocessable_content
+    end
+
     def context
       super.merge(
         client: client
@@ -74,6 +100,18 @@ module Api
     end
 
     private
+
+    def dashboard_project
+      @dashboard_project ||= Project.find(params[:id])
+    end
+
+    def request_attributes
+      params.dig(:data, :attributes) || params
+    end
+
+    def request_locales
+      Array(request_attributes[:locales]).presence || [I18n.default_locale.to_s]
+    end
 
     def include_inactive_users
       params[:include_inactive_users]&.to_s == 'true' || params.dig(:data, :attributes, :include_inactive_users)

@@ -98,7 +98,7 @@ const CopyNormsFormModal: React.FC<Props> = ({
               }}
               notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
             >
-              <Select.Option>{I18n.t('admin.tte')}</Select.Option>
+              <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>
               {getClients().map(({ id, name }) => (
                 <Select.Option key={id} value={id}>{name}</Select.Option>
               ))}

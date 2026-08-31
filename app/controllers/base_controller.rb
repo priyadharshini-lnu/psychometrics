@@ -215,7 +215,10 @@ class BaseController < ActionController::Base
     respond_to do |f|
       f.html do
         flash[:notice] = t('errors.try_again')
-        redirect_back(fallback_location: root_path)
+
+        referer = request.referer
+        redirect_url = Utility::Url.safe_internal_url?(referer) ? referer : root_path
+        redirect_to Utility::Url.with_query_params(redirect_url, notice: t('errors.csrf_retry'))
       end
       f.js { render(:error, locals: { message: t('errors.invalid_token') }) }
     end

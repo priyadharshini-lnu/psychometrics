@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { Radio, Space, Switch } from 'antd'
 import dayjs from '~/utils/dayjs'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { LicenseUsage, LicenseUsageTR } from '~/modules/admin/modules/client/core/license_usages'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser } from '~/core/currentUser'
@@ -46,16 +47,23 @@ const LicenseUsageComponent: React.FC<Props> = () => {
 
   return (
     <>
-      <Resource config={config} name="license_usages">
+      <Resource
+        title={I18n.t('license_usage.usages')}
+        config={config}
+        name="license_usages"
+        settingsKey={TABLE_SETTINGS_KEYS.clientLicensesUsages}
+      >
         <BreadcrumbsComponent />
         <Filter />
         <Resource.Table pagination>
           <Resource.Column<LicenseUsage>
             title={I18n.t('shared.id')}
             id="id"
+            hideable={false}
             dataIndex="id"
             sorter
             width={150}
+            fixed="left"
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('shared.active')}
@@ -63,6 +71,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             dataIndex="status"
             render={(_, licenseUsage) => <ActiveSwitch licenseUsage={licenseUsage} />}
             width={100}
+            fixed="left"
           />
           <Resource.Column<LicenseUsage>
             title={I18n.t('license_usage.campaign_name')}
@@ -109,6 +118,7 @@ const LicenseUsageComponent: React.FC<Props> = () => {
             id="status_updated_by_id"
             dataIndex={['statusUpdatedBy', 'name']}
             width={300}
+            fixed="right"
           />
         </Resource.Table>
       </Resource>

@@ -73,13 +73,13 @@ test('should display list of invites and bookings', async () => {
   )
   const container = await findByTestId('container')
   const tabs = await findAllByRole('tab')
-  const invitesDisplayed = await waitFor(() => container.querySelectorAll('.ant-tabs-tabpane-active .detailsCard'))
+  const invitesDisplayed = await waitFor(() => container.querySelectorAll('.ant-tabs-content-active .detailsCard'))
   expect(invitesDisplayed.length).toBe(invitesMockResponse.response.list.length)
   const bookingsTab = tabs[1]
   await act(async () => {
     await user.click(bookingsTab)
   })
-  const bookingsDisplayed = await waitFor(() => container.querySelectorAll('.ant-tabs-tabpane-active .detailsCard'))
+  const bookingsDisplayed = await waitFor(() => container.querySelectorAll('.ant-tabs-content-active .detailsCard'))
   expect(bookingsDisplayed.length).toBe(bookingsMockResponse.response.list.length)
 })
 
@@ -137,13 +137,13 @@ test('should display skeleton for both count & list of Invites and Bookings when
   )
   const container = await findByTestId('container')
   const tabs = await findAllByRole('tab')
-  const invitesSkeletonRows = await waitFor(() => container.querySelectorAll('.ant-tabs-tabpane-active .ant-skeleton.skeleton'))
+  const invitesSkeletonRows = await waitFor(() => container.querySelectorAll('.ant-tabs-content-active .ant-skeleton.skeleton'))
   expect(invitesSkeletonRows.length).toBe(SKELETON_ROWS)
   const bookingsTab = tabs[1]
   await act(async () => {
     await user.click(bookingsTab)
   })
-  const bookingsSkeletonRows = await waitFor(() => container.querySelectorAll('.ant-tabs-tabpane-active .ant-skeleton.skeleton'))
+  const bookingsSkeletonRows = await waitFor(() => container.querySelectorAll('.ant-tabs-content-active .ant-skeleton.skeleton'))
   expect(bookingsSkeletonRows.length).toBe(SKELETON_ROWS)
   const countSkeleton = await waitFor(() => container.querySelectorAll('.ant-spin.ant-spin-spinning'))
   expect(countSkeleton.length).toBe(2)

@@ -22,6 +22,7 @@ import { ReportList } from './ReportList'
 
 import styles from './styles.less'
 import { PageContentSkeleton } from '../../components/PageContentSkeleton'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 const { Content } = Layout
@@ -55,11 +56,7 @@ const InsightsComponent: FC<Props> = ({
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('campaign.dashboard_menu.insights')} - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle text={I18n.t('campaign.dashboard_menu.insights')} />
       <PageHeader>
         <Col flex="auto" span={24} className="ta-e">
           <Space>

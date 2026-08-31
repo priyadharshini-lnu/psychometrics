@@ -30,6 +30,7 @@ const { I18n } = window
 const Recordings: React.FC<Props> = ({ userRecordings }) => {
   const [showTranscription, setShowTranscription] = useState(false)
   const [transcriptionText, setTranscriptionText] = useState<string | null>('')
+  const [disableTranscriptDownload, setDisableTranscriptDownload] = useState(false)
 
   const closeShowTranscription = () => {
     setShowTranscription(false)
@@ -119,8 +120,12 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
               title={I18n.t('shared.transcriptions')}
               key="transcription_url"
               width="5%"
-              render={({ transcriptionUrl, transcriptionText }) => {
-                if (!transcriptionUrl) return null
+              render={({
+                transcriptionUrl,
+                transcriptionText,
+                disableTranscriptDownload: recordingDisableTranscriptDownload,
+              }) => {
+                if (!transcriptionText) return null
                 return (
                   <div className="vertical-align">
                     <Button
@@ -130,19 +135,22 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
                       onClick={() => {
                         setShowTranscription(!showTranscription)
                         setTranscriptionText(transcriptionText)
+                        setDisableTranscriptDownload(recordingDisableTranscriptDownload)
                       }}
                     >
                       View
                     </Button>
-                    <Button
-                      className="ps-0 ms-2"
-                      href={transcriptionUrl}
-                      target="_blank"
-                      icon={<DownloadOutlined />}
-                      type="link"
-                    >
-                      {I18n.t('common.text.download')}
-                    </Button>
+                    {transcriptionUrl && (
+                      <Button
+                        className="ps-0 ms-2"
+                        href={transcriptionUrl}
+                        target="_blank"
+                        icon={<DownloadOutlined />}
+                        type="link"
+                      >
+                        {I18n.t('common.text.download')}
+                      </Button>
+                    )}
                   </div>
                 )
               }}
@@ -154,6 +162,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
         transcriptionText={transcriptionText || ''}
         closeShowTranscription={closeShowTranscription}
         showTranscription={showTranscription}
+        disableTranscriptDownload={disableTranscriptDownload}
       />
     </div>
   )

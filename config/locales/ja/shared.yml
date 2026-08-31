@@ -55,6 +55,7 @@ ja:
     copied_successfully: コピーされました
     copied_to_clipboard: クリップボードにコピーされました
     copy: コピー
+    copyright: "© %{year} %{display_name}. 全著作権所有。"
     create: 作成
     created_at: 作成日時：
     created_by: 作成者
@@ -181,6 +182,29 @@ ja:
     remove: 削除
     removed: 削除
     replace: 置換
+    reports:
+      ai_rationale_evidence:
+        all_factors: すべての要因
+        factor_label: 要因
+        hide_evidence: 証拠隠滅
+        hide_rationale: 理由を非表示にする
+        no_data: 選択された質問に対するAIの根拠や証拠データは入手できません。
+        no_question_selected: AIの根拠と証拠を表示する質問を選択してください。
+        question_label: 質問
+        select_question: 質問を選択してください
+      ai_transcript:
+        no_data: 選択された質問に関する文字起こしデータは利用できません。
+        no_question_selected: 文字起こしを表示する質問を選択してください。
+        question_label: 質問
+        select_question: 質問を選択してください
+    reports_bar_gradient_direction: グラデーションの方向
+    reports_bar_gradient_direction_bottom_to_top: 下から上へ
+    reports_bar_gradient_direction_left_to_right: 左から右へ
+    reports_bar_gradient_direction_right_to_left: 右から左へ
+    reports_bar_gradient_direction_top_to_bottom: 上から下へ
+    reports_bar_gradient_enabled: グラデーションを有効にする
+    reports_bar_gradient_end_color: 最終色
+    reports_bar_gradient_start_color: 開始色
     reports_show_values_inside_bar: 棒グラフ内の値を表示する
     reports_value_label_position: 値ラベルの位置
     reports_value_label_position_center: センター
@@ -218,6 +242,7 @@ ja:
     switch_to_laptop_or_desktop: ノートパソコンまたはデスクトップに切り替える
     system_check_uploading: アップロード中
     table:
+      collapse: 崩壊
       entries:
         selected:
           one: 1行選択
@@ -226,6 +251,7 @@ ja:
           one: 合計：1
           other: 合計：1
           zero: 合計：0
+      expand: 拡大する
     tags: タグ
     terms_conditions_privacy: プライバシーに関する声明
     tools: ツール

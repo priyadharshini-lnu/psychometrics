@@ -1,3 +1,3 @@
-import { useSavedFilter } from './useSavedFilters'
+import { useSavedFilter } from './useSavedFilter'
 
 export { useSavedFilter }

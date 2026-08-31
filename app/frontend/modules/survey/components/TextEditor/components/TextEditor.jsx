@@ -206,7 +206,7 @@ const ContentEdit = ({
   return (
     <ContentEditable
       innerRef={editor}
-      className={styles.editor}
+      className={`${styles.editor} spellcheck-enabled`}
       onBlur={onBlur}
       onChange={onChange}
       onKeyDown={onKeyDown}

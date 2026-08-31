@@ -55,6 +55,7 @@ en:
     copied_successfully: Copied successfully
     copied_to_clipboard: Copied to clipboard
     copy: Copy
+    copyright: "© %{year} %{display_name}. All rights reserved."
     create: Create
     created_at: Created At
     created_by: Created By
@@ -181,6 +182,29 @@ en:
     remove: Remove
     removed: Removed
     replace: Replace
+    reports:
+      ai_rationale_evidence:
+        all_factors: All Factors
+        factor_label: Factors
+        hide_evidence: Hide Evidence
+        hide_rationale: Hide Rationale
+        no_data: No AI rationale or evidence data available for the selected question.
+        no_question_selected: Please select a question to display AI rationale and evidence.
+        question_label: Question
+        select_question: Select a question
+      ai_transcript:
+        no_data: No transcript data available for the selected question.
+        no_question_selected: Please select a question to display the transcript.
+        question_label: Question
+        select_question: Select a question
+    reports_bar_gradient_direction: Gradient direction
+    reports_bar_gradient_direction_bottom_to_top: Bottom to top
+    reports_bar_gradient_direction_left_to_right: Left to right
+    reports_bar_gradient_direction_right_to_left: Right to left
+    reports_bar_gradient_direction_top_to_bottom: Top to bottom
+    reports_bar_gradient_enabled: Enable gradient
+    reports_bar_gradient_end_color: End color
+    reports_bar_gradient_start_color: Start color
     reports_show_values_inside_bar: Show values inside bar
     reports_value_label_position: Value label position
     reports_value_label_position_center: Center
@@ -218,6 +242,7 @@ en:
     switch_to_laptop_or_desktop: Switch to Laptop or Desktop
     system_check_uploading: Uploading
     table:
+      collapse: Collapse
       entries:
         selected:
           one: 1 row selected
@@ -226,6 +251,7 @@ en:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Expand
     tags: Tags
     terms_conditions_privacy: Privacy Statement
     tools: Tools

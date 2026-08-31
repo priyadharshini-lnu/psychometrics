@@ -5,7 +5,7 @@ html
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
-    title = Settings.project_name
+    title = Branding.display_name
     = csrf_meta_tags
     = stylesheet_link_tag    'policy', media: 'all'
     = render 'layouts/favicons'
@@ -14,10 +14,13 @@ html
       .container-fluid
         .logo
           = link_to root_path
-            = image_tag 'mercer_lighthouseLogoTall.png', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+            = image_tag Branding.policy_logo,
+              class: 'img-responsive center-block headerLogo',
+              width: Branding.policy_logo_width,
+              alt: "#{Branding.policy_logo_name} logo"
     .container-fluid
       .content
-        = t('privacy_notice').html_safe
+        = Branding.privacy_notice.html_safe
 
     = render partial: 'layouts/consent_banner' unless Settings.osano_enabled
 

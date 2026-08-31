@@ -5,7 +5,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import {
   Table,
   Input,
-  Pagination,
   Button,
   Space,
   Image,
@@ -34,7 +33,6 @@ import { TableLayout } from '~/modules/admin/components/TableLayout'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { CreateProjectModal } from './CreateProjectModal'
 import styles from './styles.less'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { useClientContext } from '../../ClientContext'
 
 const { I18n } = window
@@ -59,7 +57,6 @@ type Props = PropsFromRedux & TableProps
 const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
   const { clientId } = useParams() as { clientId: string }
   const { modal, message } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
   const navigate = useNavigate()
 
   const {
@@ -117,17 +114,16 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
     <>
       <Table
         dataSource={data}
-        loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
         scroll={{ x: 'max-content' }}
         rowKey={row => row.id}
-        sticky={{ offsetHeader: 50 }}
+        sticky
       >
         <Column
           title={I18n.t('common.column.id')}
           dataIndex="id"
-          fixed={windowWidth > 800 ? 'left' : undefined}
+          fixed="left"
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -241,7 +237,7 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           <Column
             title={I18n.t('shared.action')}
             key="action"
-            fixed={windowWidth > 800 ? 'right' : undefined}
+            fixed="right"
             render={project => (
               <ConditionalDropdown
                 menu={
@@ -256,13 +252,6 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
           />
         )}
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
@@ -303,10 +292,17 @@ const ProjectListComponent: React.FC<Props> = ({ openModal }) => {
   return (
     <>
       <TableLayout
+        loading={tableLoading}
         table={ProjectTable}
         filters={Filter}
+        title={I18n.t('admin.projects')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: meta.recordCount ?? 0,
+          onChange: changePage,
+        }}
         recordCount={meta.recordCount}
-        loading={tableLoading}
         requestStatus={requests.fetch?.status}
         failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />

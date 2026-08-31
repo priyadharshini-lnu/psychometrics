@@ -34,6 +34,7 @@ module Threesixty
           load_templates(threesixty_campaign, assessment&.threesixty_campaign)
 
           campaign = threesixty_campaign.campaign
+          save_campaign_name_translations(campaign)
           if threesixty_campaign.assessment
             campaign.campaign_assessments.create(assessment_id: threesixty_campaign.assessment_id)
           end
@@ -74,6 +75,23 @@ module Threesixty
         return if form.tag_list.blank?
 
         campaign.save_tag_with_ownership(form.tag_list)
+        campaign.save!
+      end
+
+      def save_campaign_name_translations(campaign)
+        app_locale = I18n.locale.to_s
+        selected_locale = form.name_locale.presence || app_locale
+
+        Mobility.with_locale(app_locale) do
+          campaign.name = form.name
+        end
+
+        if form.translated_name.present?
+          Mobility.with_locale(selected_locale) do
+            campaign.name = form.translated_name
+          end
+        end
+
         campaign.save!
       end
 

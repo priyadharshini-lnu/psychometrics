@@ -20,6 +20,16 @@ module AdminJobs
         'Subject Email'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
@@ -41,6 +51,7 @@ module AdminJobs
                   joins('LEFT JOIN users u ON u.id = user_assessments.subject_id').
                   joins('LEFT JOIN campaigns cmp ON cmp.id = user_assessments.campaign_id').
                   joins('LEFT JOIN clients p ON p.id = cmp.project_id').
+                  joins('LEFT JOIN clients c ON c.id = p.tte_id').
                   joins(
                     'LEFT JOIN assessments_reports ar ' \
                     'ON ar.assessment_id = user_assessments.assessment_id'
@@ -64,6 +75,11 @@ module AdminJobs
                   )
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
         records = records.where(user_assessments: { completed_at: completed_at_range }) if completed_at_range
 
         records.

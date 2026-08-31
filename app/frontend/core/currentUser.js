@@ -15,6 +15,10 @@ export function isSuperAdmin (user) {
   return user.role === 'Users::SuperAdmin'
 }
 
+export function isSupportAdmin (user) {
+  return Boolean(user.supportAdmin ?? user.support_admin)
+}
+
 export function hasGrant (user, scope, action) {
   if (isSuperAdmin(user)) return true
   return getIn(user.grants, scope, []).includes(action)

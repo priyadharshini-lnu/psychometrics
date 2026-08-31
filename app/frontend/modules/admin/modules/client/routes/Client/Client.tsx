@@ -1,13 +1,14 @@
 import { FC, useEffect } from 'react'
 import {
-  useParams, useNavigate, useLocation,
+  useParams, useNavigate, useLocation, Outlet,
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  ShopOutlined, UserOutlined, SettingOutlined, SolutionOutlined, ExportOutlined, DatabaseOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+  AdminPanelSettings, Analytics, AssignmentInd,
+  Key, ReceiptLong, Settings, Work,
+} from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { Client as ClientType, ClientTR } from '~/modules/admin/modules/client/core/clients'
@@ -15,8 +16,6 @@ import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import settings from '~/modules/admin/modules/client/settings'
-import RouteList from '~/components/RouteList'
-import { routes } from './routes'
 import { ClientContext } from './ClientContext'
 
 const { I18n } = window
@@ -130,44 +129,44 @@ export const Client: FC<Props> = ({ currentUser }) => {
   const menuItems: MenuItem[] = [
     {
       key: 'projects',
-      icon: <ShopOutlined />,
+      icon: <Work />,
       label: I18n.t('admin.projects'),
     },
   ]
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'admins',
-    icon: <UserOutlined />,
+    icon: <AdminPanelSettings />,
     label: I18n.t('admin.client_admins'),
   })
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'assessors',
-    icon: <UserOutlined />,
+    icon: <AssignmentInd />,
     label: I18n.t('admin.assessors'),
   })
 
   isSuperAdmin(currentUser) && menuItems.push({
     key: 'settings',
-    icon: <SettingOutlined />,
+    icon: <Settings />,
     label: I18n.t('admin.settings'),
   })
 
   client?.meta.permissions.viewDataReports && menuItems.push({
     key: 'data_reports',
-    icon: <DatabaseOutlined />,
+    icon: <Analytics />,
     label: I18n.t('admin.data_reports'),
   })
 
   client?.meta.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
-    icon: <ExportOutlined />,
+    icon: <ReceiptLong />,
     label: I18n.t('admin.audit_reports'),
   })
   client?.meta.permissions.viewLicenses && menuItems.push(
     {
       key: 'licenses',
-      icon: <SolutionOutlined />,
+      icon: <Key />,
       label: I18n.t('admin.licenses'),
     },
   )
@@ -230,17 +229,16 @@ export const Client: FC<Props> = ({ currentUser }) => {
         request={getBreadcrumbRequest()}
         crumbs={getBreadcrumbCrumbs()}
       />
-      <Menu
-        items={menuItems}
-        onSelect={handleOnSelect}
-        selectedKeys={getActiveMenuKey(pathname)}
-        mode="horizontal"
-      />
-      <ClientContext.Provider value={{ client }}>
-        <RouteList
-          routes={routes}
-          urlPrefix=""
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={handleOnSelect}
+          selectedKeys={getActiveMenuKey(pathname)}
+          mode="horizontal"
         />
+      )}
+      <ClientContext.Provider value={{ client }}>
+        <Outlet />
       </ClientContext.Provider>
     </div>
   )

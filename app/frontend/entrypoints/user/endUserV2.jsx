@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client'
+import '@thetalententerprise/glint/fonts.css'
 import '~/modules/endUser/styles/global.less'
 import '~/styles/utils.less'
 import '~/utils/axiosInterceptors'

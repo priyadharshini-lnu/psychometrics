@@ -11,6 +11,16 @@ module AdminJobs
         'Last Activity Date (MAX last_activity_at)'
       ].freeze
 
+      parameter :start_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter start date'
+
+      parameter :end_date,
+                type: :date,
+                runtime_updatable: true,
+                description: 'Filter end date'
+
       def generate_file
         CSV.open(file_path, 'wb') do |csv|
           csv << HEADERS
@@ -27,16 +37,22 @@ module AdminJobs
       private
 
       def fetch_data
-        start_date = Time.zone.parse(activity_period[0])
-        end_date = Time.zone.parse(activity_period[1])
+        start_date = Time.zone.parse(config['start_date'])
+        end_date = Time.zone.parse(config['end_date'])
 
-        UserAssessment.
-          from('user_assessments ua').
-          joins('LEFT JOIN campaigns cmp ON ua.campaign_id = cmp.id').
-          joins('LEFT JOIN assessments a ON a.id = ua.assessment_id').
-          joins('LEFT JOIN clients p ON cmp.project_id = p.id').
-          joins('LEFT JOIN clients c ON c.id = p.tte_id').
-          where('p.ancestry_depth = ? AND c.ancestry_depth = ?', 1, 0).
+        records = UserAssessment.
+                  from('user_assessments ua').
+                  joins('LEFT JOIN campaigns cmp ON ua.campaign_id = cmp.id').
+                  joins('LEFT JOIN assessments a ON a.id = ua.assessment_id').
+                  joins('LEFT JOIN clients p ON cmp.project_id = p.id').
+                  joins('LEFT JOIN clients c ON c.id = p.tte_id').
+                  where('p.ancestry_depth = ? AND c.ancestry_depth = ?', 1, 0)
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
+        records.
           select(
             'c.id AS client_id',
             'c.name AS client_name',

@@ -13,6 +13,7 @@ asset_host: <%= ENV["ASSET_HOST"] %>
 file_host: <%= ENV["FILE_HOST"] %>
 cloudfront_domain: <%= ENV["CLOUDFRONT_DOMAIN"] %>
 platform_admins: <%= ENV["PLATFORM_ADMINS"] %>
+support_admins: <%= ENV["SUPPORT_ADMINS"] %>
 real_env: <%= ENV["REAL_ENV"] %>
 sentry_url: <%= ENV.fetch('SENTRY_URL', '') %>
 sentry_debug: <%= ENV.fetch('SENTRY_DEBUG', 'false') %>
@@ -24,6 +25,21 @@ react_dev:
   assessments: false
 privacy_url: <%= ENV.fetch('PRIVACY_URL', 'https://thetalententerprise.com/privacy-statement/') %>
 terms_url: <%= ENV.fetch('TERMS_URL', 'https://thetalententerprise.com/terms-of-service/') %>
+branding:
+  brand: <%= ENV.fetch('BRAND', 'marsh') %> # marsh | mercer_a_marsh_business
+  support_email: <%= ENV.fetch('SUPPORT_EMAIL', 'mte.surveys@mercer.com') %>
+  support_contact_email: <%= ENV.fetch('SUPPORT_CONTACT_EMAIL', 'mte.support@mercer.com') %>
+  assets:
+    marsh:
+      email_logo: branding/marsh/email-logo.png
+    mercer_a_marsh_business:
+      email_logo: branding/mercer_a_marsh_business/email-logo.png
+# Its own axis, not branding.brand: the masthead belongs to the notice version, not the deployment.
+privacy_notice:
+  version: <%= ENV.fetch('PRIVACY_NOTICE_VERSION', 'marsh') %> # marsh | mercer_a_marsh_business
+  logos:
+    marsh: branding/marsh/wordmark-navy.svg
+    mercer_a_marsh_business: branding/mercer_a_marsh_business/wordmark-navy.svg
 osano_enabled: <%= ENV.fetch('OSANO_ENABLED', 'true') == 'true' %>
 osano_key: <%= ENV.fetch('OSANO_KEY', '16CFuWSuPfE35eNP/8292079f-6816-474d-acf8-0a6feed3b869') %>
 short_url_host: <%= ENV.fetch('SHORT_URL_HOST', nil) %>
@@ -69,6 +85,7 @@ features:
   zip_s3_files_faas: <%= ENV.fetch('ZIP_S3_FILES_FAAS_ENABLED', 'false') == 'true' %>
   media_to_transcription_faas: <%= ENV.fetch('MEDIA_TO_TRANSCRIPTION_FAAS_ENABLED', 'false') == 'true' %>
   smtp_enabled: <%= ENV.fetch('SMTP_ENABLED', 'false') == 'true' %>
+  theme_switcher: <%= ENV.fetch('THEME_SWITCHER_ENABLED', 'false') == 'true' %>
   webhooks_enabled: <%= ENV.fetch('WEBHOOKS_ENABLED', 'false') == 'true' %>
   react_project_list: <%= ENV.fetch('REACT_PROJECT_LIST', 'false') == 'true' %>
   idp_enabled: <%= ENV.fetch('IDP_ENABLED', 'false') == 'true' %>

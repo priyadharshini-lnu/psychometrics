@@ -10,12 +10,7 @@ import {
   bulkDownload,
   BULK_DOWNLOAD,
   get as getReports,
-  fetchOtherReports,
-  getOther as getOtherReports,
 } from '~/modules/admin/modules/campaigns/core/reports'
-import {
-  fetchOtherAssessments, getOther as getOtherAssessments,
-} from '~/modules/admin/modules/campaigns/core/assessments'
 import { isRequestInProgress } from '~/core/request'
 
 const connecter = connect(
@@ -27,13 +22,9 @@ const connecter = connect(
     campaignPermissions: getCurrentCampaign(state).permissions,
     campaignTenantId: getCurrentCampaign(state).tenantId,
     otherAsessorAssessments: getAssessorAssessment(state),
-    otherReports: getOtherReports(state),
-    otherAssessments: getOtherAssessments(state),
   }),
   {
     fetchAssessmentAndReports,
-    fetchOtherReports,
-    fetchOtherAssessments,
     openModal,
     regenerateReports,
     bulkDownload,

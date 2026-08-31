@@ -2,9 +2,7 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
 import { useSelector } from 'react-redux'
-import {
-  FileOutlined, FolderOpenOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+import { Description, FolderOpen } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { isSuperAdmin, get as getCurrentUser } from '~/core/currentUser'
 import settings from '../../settings'
@@ -21,11 +19,11 @@ export const FirstLevelTabs: React.FC = () => {
   const currentUser = useSelector(getCurrentUser)
 
   const menuItems: MenuItem[] = [
-    { key: 'reports', icon: <FileOutlined />, label: I18n.t('reports.reports') },
+    { key: 'reports', icon: <Description />, label: I18n.t('reports.reports') },
   ]
 
   currentUser && isSuperAdmin(currentUser) && menuItems.push(
-    { key: 'report_families', icon: <FolderOpenOutlined />, label: I18n.t('report_bundles.report_bundles') },
+    { key: 'report_families', icon: <FolderOpen />, label: I18n.t('report_bundles.report_bundles') },
   )
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {
@@ -37,6 +35,8 @@ export const FirstLevelTabs: React.FC = () => {
     }
     return undefined
   }
+
+  if (menuItems.length < 2) return null
 
   return (
     <Menu

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import {
-  Table, Space, Pagination, Button, Checkbox, Menu, Input, Flex,
+  Table, Space, Button, Checkbox, Menu, Input, Flex,
   message, Tag,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
@@ -9,7 +9,6 @@ import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { ResourceType } from '~/modules/admin/components/UserSavedFilters/core'
 import { useSavedFilter } from '~/modules/admin/components/UserSavedFilters'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { useResources } from '~/hooks/useResources'
@@ -17,6 +16,7 @@ import { getErrorMsgFromJsonApiRequests } from '~/hooks/useResources/utils'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { Campaign, Task, TasksTR } from '../core'
 import { Tabs } from './Tabs'
+import { DocumentTitle } from '~/components/DocumentTitle'
 import styles from './TasksList.less'
 
 
@@ -54,7 +54,8 @@ const searchFilters = ['subject_full_name_cont', 'subject_email_cont']
 
 const TasksListComponent: React.FC<Props> = ({
   data, meta, isLoading, getSortOrder, handleTableChange, changePage, type,
-  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery, collectionAction, fetch,
+  currentPage, pageSize, changeFilter, getFilteredValue, requests, changeUrlQuery, appliedQuery,
+  collectionAction, fetch,
 }) => {
   const tableLoading = isLoading('fetch')
   const { collectionAction: search } = useResources<Campaign>('ai_score_approvals')
@@ -102,12 +103,33 @@ const TasksListComponent: React.FC<Props> = ({
     }
   }, [search, filterOptions, type])
 
+  const typedValue = (key?: string): string => (
+    key == null ? '' : [getFilteredValue(key) ?? ''].flat().join('')
+  )
+
+  // Two keys in one write: changeFilter builds each new URL from the same snapshot, so the second drops the first.
+  const applyFilters = (changes: Record<string, string | string[] | null>) => {
+    const filter = { ...appliedQuery?.filter }
+    Object.entries(changes).forEach(([key, value]) => {
+      if (value == null || value.length === 0) delete filter[key]
+      else filter[key] = value
+    })
+
+    changeUrlQuery({ ...appliedQuery, filter, page: { number: 1, size: appliedQuery?.page?.size } })
+  }
+
   const filterProps = (
     resource:string, query:string, filter: string, val: string | string[] = '', values?: FilterOption[],
+    textFilter?: string,
   ) => ({
-    filterDropdown: ({ close, setSelectedKeys, selectedKeys }) => {
+    // antd only remembers a selection its own confirm() committed, so the dropdown reads the applied filter back.
+    filterDropdown: ({ close, visible }) => {
       const [items, setItems] = useState<MenuItem[]>([])
       const [searchQuery, setSearchQuery] = useState<string>('')
+      const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+
+      const applied = [val].flat().filter(value => value !== '')
+      const text = typedValue(textFilter)
 
       const initItems = useCallback((payload?: FilterOption[]) => {
         if (payload && payload.length) {
@@ -130,22 +152,38 @@ const TasksListComponent: React.FC<Props> = ({
         setSelectedKeys(selectedKeys)
       }
 
-      const getResetDisabled = () => selectedKeys.length === 0
+      const getResetDisabled = () => selectedKeys.length === 0 && searchQuery === ''
 
+      // handleFilterChange writes a cleared key straight to the URL, so the two-key write has to land last.
       const filterOk = (close) => {
-        if (searchQuery && searchFilters.includes(filter)) {
-          changeFilter(filter, searchQuery)
-          handleFilterChange(filter, searchQuery)
+        const picked = selectedKeys.length ? selectedKeys : null
+
+        if (searchFilters.includes(filter)) {
+          changeFilter(filter, searchQuery || null)
+          handleFilterChange(filter, searchQuery || null)
+        } else if (textFilter) {
+          handleFilterChange(filter, searchQuery ? null : picked)
+          handleFilterChange(textFilter, searchQuery || null)
+          applyFilters(searchQuery
+            ? { [filter]: null, [textFilter]: searchQuery }
+            : { [filter]: picked, [textFilter]: null })
         } else {
-          changeFilter(filter, selectedKeys.length ? selectedKeys : null)
-          handleFilterChange(filter, selectedKeys.length ? selectedKeys : null)
+          changeFilter(filter, picked)
+          handleFilterChange(filter, picked)
         }
         close()
       }
 
       const filterReset = (close) => {
-        changeFilter(filter, null)
-        handleFilterChange(filter, null)
+        if (textFilter) {
+          handleFilterChange(filter, null)
+          handleFilterChange(textFilter, null)
+          applyFilters({ [filter]: null, [textFilter]: null })
+        } else {
+          changeFilter(filter, null)
+          handleFilterChange(filter, null)
+        }
+
         setSearchQuery('')
         setSelectedKeys([])
         close()
@@ -161,13 +199,11 @@ const TasksListComponent: React.FC<Props> = ({
       }
 
       useEffect(() => {
-        if (val) {
-          setSelectedKeys(typeof val === 'string' ? [val] : val)
-        } else {
-          setSelectedKeys([])
-          setSearchQuery('')
-        }
-      }, [val])
+        if (!visible) return
+
+        setSelectedKeys(applied)
+        setSearchQuery(searchFilters.includes(filter) ? applied.join('') : text)
+      }, [visible, applied.join(','), text])
 
       useEffect(() => {
         initItems(values)
@@ -210,13 +246,15 @@ const TasksListComponent: React.FC<Props> = ({
               size="small"
               onClick={() => filterOk(close)}
             >
-              {searchFilters.includes(filter) ? I18n.t('common.actions.search') : I18n.t('common.actions.done')}
+              {searchFilters.includes(filter) || (textFilter && searchQuery)
+                ? I18n.t('common.actions.search')
+                : I18n.t('common.actions.done')}
             </Button>
           </div>
         </div>
       )
     },
-    filtered: !!val?.length,
+    filtered: !!(val?.length || typedValue(textFilter).length),
     filterIcon: searchFilters.includes(filter) ? <SearchOutlined /> : null,
   })
 
@@ -281,9 +319,9 @@ const TasksListComponent: React.FC<Props> = ({
         rowKey={row => row?.id ?? -1}
         dataSource={data}
         pagination={false}
-        loading={tableLoading}
         onChange={handleTableChange}
-        scroll={{ x: true }}
+        scroll={{ x: 'max-content' }}
+        sticky
       >
         {type === 'myTasks' && (
           <Column
@@ -309,6 +347,7 @@ const TasksListComponent: React.FC<Props> = ({
           sorter
           sortOrder={getSortOrder('id')}
           fixed="left"
+          minWidth={100}
         />
         <Column
           title={I18n.t('admin.report_approval_columns_subject_email')}
@@ -336,7 +375,7 @@ const TasksListComponent: React.FC<Props> = ({
           key="client_name"
           {...filterProps(
             'client', 'client_id_in', 'client_id_in',
-            getFilteredValue('client_id_in'), filterOptions?.clients,
+            getFilteredValue('client_id_in'), filterOptions?.clients, 'client_name_cont',
           )}
           width={300}
         />
@@ -346,7 +385,7 @@ const TasksListComponent: React.FC<Props> = ({
           key="project_name"
           {...filterProps(
             'project', 'project_id_in', 'project_id_in',
-            getFilteredValue('project_id_in'), filterOptions?.projects,
+            getFilteredValue('project_id_in'), filterOptions?.projects, 'project_name_cont',
           )}
           width={300}
         />
@@ -356,7 +395,7 @@ const TasksListComponent: React.FC<Props> = ({
           key="campaign_name"
           {...filterProps(
             'campaign', 'campaign_id_in', 'campaign_id_in',
-            getFilteredValue('campaign_id_in'), filterOptions?.campaigns,
+            getFilteredValue('campaign_id_in'), filterOptions?.campaigns, 'campaign_name_cont',
           )}
           width={300}
         />
@@ -366,7 +405,7 @@ const TasksListComponent: React.FC<Props> = ({
           key="assessment_name"
           {...filterProps(
             'assessment', 'assessment_id_in', 'assessment_id_in',
-            getFilteredValue('assessment_id_in'), filterOptions?.assessments,
+            getFilteredValue('assessment_id_in'), filterOptions?.assessments, 'assessment_name_cont',
           )}
           width={300}
         />
@@ -420,37 +459,28 @@ const TasksListComponent: React.FC<Props> = ({
             </Space>
           )}
           fixed="right"
+          minWidth={150}
         />
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.dashboard'),
-          },
-          {
-            label: () => I18n.t('admin.scoring_approval_score_approvals'),
-          },
-        ]}
-      />
+      <DocumentTitle text={I18n.t('admin.ai_scoring_approvals')} />
       <Tabs />
       <div>
         <TableLayout
-          table={TasksTable}
-          recordCount={meta.recordCount}
           loading={tableLoading}
+          table={TasksTable}
+          title={I18n.t('admin.ai_scoring_approvals')}
+          pagination={{
+            page: currentPage,
+            pageSize,
+            total: meta.recordCount ?? 0,
+            onChange: changePage,
+          }}
+          recordCount={meta.recordCount}
           requestStatus={requests.fetch?.status}
           failureMsg={getErrorMsgFromJsonApiRequests(requests)}
         />

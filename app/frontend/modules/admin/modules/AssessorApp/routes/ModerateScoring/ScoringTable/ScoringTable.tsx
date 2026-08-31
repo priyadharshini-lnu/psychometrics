@@ -154,6 +154,13 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   const [disabledSave, setDisabledSave] = useState<boolean>(false)
   const [enabledNAFactors, setEnabledNAFactors] = useState<Record<string, boolean>>({})
 
+  const moderatableFactorIds = useMemo(() => new Set(
+    columnsData
+      .filter(factor => !factor.disallowLeadAssessorModeration)
+      .map(factor => factor.factorId),
+  ), [columnsData])
+  const hasModeratableFactors = moderatableFactorIds.size > 0
+
   useMessageBus('lead_assessor_assessment:status_change', (status) => {
     if (status === 'completed') {
       setDisabled(true)
@@ -235,7 +242,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
   }
 
   const handleSave = () => {
-    if (readOnly) { return }
+    if (readOnly || !hasModeratableFactors) { return }
 
     const factorOutOfRange = Object.keys(finalScores).find((key) => {
       const factor = columnsData.find(f => f.factorId === key)
@@ -277,17 +284,13 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
       return
     }
 
-    setDisabledSave(true)
-    const autoModeratedFactorIds = new Set(
-      columnsData.filter(f => f.disallowLeadAssessorModeration).map(f => f.factorId),
-    )
-
     const scores = Object.keys(finalScores)
-      .filter(key => !autoModeratedFactorIds.has(key))
+      .filter(key => moderatableFactorIds.has(key))
       .map(key => ({
         campaign_factor_id: factorIdToIdMap[`factorId${key}`],
         score: Number.isNaN((finalScores[key])) ? Number(finalScores[key]) : finalScores[key],
       }))
+
     return updateFinalScore(
       {
         action: 'save_assessor_scoring_factor_value',
@@ -528,16 +531,20 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
           >
             {scoresFinalized && I18n.t('admin.scores_finalized')}
           </Typography.Text>
-          <Button onClick={handleReset} disabled={disabled || scoresFinalized}>
-            {I18n.t('shared.reset')}
-          </Button>
-          <Button
-            type="primary"
-            disabled={disabled || disabledSave || scoresFinalized}
-            onClick={handleSave}
-          >
-            {I18n.t('shared.save')}
-          </Button>
+          {hasModeratableFactors && (
+            <>
+              <Button onClick={handleReset} disabled={readOnly || disabled || scoresFinalized}>
+                {I18n.t('shared.reset')}
+              </Button>
+              <Button
+                type="primary"
+                disabled={readOnly || disabled || disabledSave || scoresFinalized}
+                onClick={handleSave}
+              >
+                {I18n.t('shared.save')}
+              </Button>
+            </>
+          )}
         </Flex>
       </div>
       <Modal

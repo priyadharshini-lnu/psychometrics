@@ -8,11 +8,12 @@ import { useResources } from '~/hooks/useResources'
 
 interface Props {
   close(): void
+  parent?: { id: string, tenantId?: string }
 }
 
 const { I18n } = window
 
-export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
+export const ReportBundleReportFormModal: React.FC<Props> = ({ close, parent }) => {
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
   const [hoganPackages, setHoganPackages] = useState<HoganReportPackages | []>([])
@@ -22,9 +23,13 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close }) => {
   } = useResources<Report>('reports')
 
   const debouncedFetchReports = debounce((value: string) => {
+    const tenantId = (parent && parent.tenantId) || undefined
+    const filter: Record<string, string> = { filterable_fields: value, category_eq: 'common' }
+    if (tenantId) filter.tenant_id = tenantId
+
     fetchReports({
       apiConfig: {
-        filter: { filterable_fields: value, category_eq: 'common' },
+        filter,
         fields: { reports: ['name', 'hogan_report_packages'] },
       },
     })

@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react'
 import { useParams } from 'react-router-dom'
 import {
   Button, Descriptions, App, Space, Tag, Typography,
@@ -6,6 +7,7 @@ import {
   WorkshopInvitedSubject, WorkshopInvitedSubjectTR,
 } from '~/modules/admin/modules/UserAvailability/core/workshopInvitedSubjects'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ResourceAvatar, DateTimeWithZone } from '~/glint'
 import { formatWorkshopDate } from '~/utils/workshop'
 
@@ -19,7 +21,7 @@ const STATUSES_TO_COLOR = {
   requested_rescheduling_rejected: 'error',
 }
 
-export const RequestsTable = () => {
+export const RequestsTable: React.FC<{ toggle?: ReactNode }> = ({ toggle }) => {
   const { campaignId } = useParams() as { campaignId: string }
 
   const config = {
@@ -44,12 +46,22 @@ export const RequestsTable = () => {
   }
 
   return (
-    <Resource config={config} name="workshop_invited_subjects">
-      <br />
+    <Resource
+      title={I18n.t('admin.scheduling_tabs_invites')}
+      config={config}
+      name="workshop_invited_subjects"
+      settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingInvitesRequests}
+    >
+      <Resource.Filter
+        hideSearch
+        name=""
+        controls={toggle}
+      />
       <Resource.Table pagination>
         <Resource.Column<WorkshopInvitedSubject>
           title={I18n.t('admin.invite_request_subject_name')}
           id="user.firstName"
+          hideable={false}
           sorter
           render={(_, { user }) => (
             <Space>
@@ -65,6 +77,7 @@ export const RequestsTable = () => {
               </Space>
             </Space>
           )}
+          fixed="left"
         />
         <Resource.Column<WorkshopInvitedSubject>
           title={I18n.t('shared.status')}
@@ -73,6 +86,7 @@ export const RequestsTable = () => {
           render={(_, { status }) => (
             <Tag color={STATUSES_TO_COLOR[status]}>{I18n.t(`admin.statuses_${status}`)}</Tag>
           )}
+          fixed="left"
         />
         <Resource.Column<WorkshopInvitedSubject>
           title={I18n.t('admin.invite_request_workshop_time')}
@@ -101,9 +115,11 @@ export const RequestsTable = () => {
         />
         <Resource.Column<WorkshopInvitedSubject>
           id="action"
+          hideable={false}
           title={I18n.t('shared.action')}
           render={(_, workshopInvitedSubject) => <ActionButtons workshopInvitedSubject={workshopInvitedSubject} />}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
     </Resource>

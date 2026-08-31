@@ -5,7 +5,7 @@ class Api::V2::Administration::ProjectResource < Api::V2::Administration::BaseRe
 
   attributes :name, :number, :subdomain, :logo, :created_at, :updated_at,
              :locales, :disabled, :ancestry, :client_id,
-             :url, :enable_live_chat, :live_chat_token
+             :url, :enable_live_chat, :live_chat_token, :campaign_dashboard_instructions
 
   has_one :creator, foreign_key: :created_by_id
   has_one :modifier, foreign_key: :modified_by_id

@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DateTimeWithZone } from '~/glint'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { UserRecordingTR } from './userRecordings'
 import { TranscriptionDetailsDrawer } from '~/modules/admin/components/Recordings/TranscriptionDetailsDrawer'
 
@@ -25,7 +26,12 @@ export const RecordingsComponent = () => {
 
   return (
     <>
-      <Resource config={config} name="meeting_recordings">
+      <Resource
+        title={I18n.t('assessments_reports.menu.recordings')}
+        config={config}
+        name="meeting_recordings"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignParticipantsSubjectRecordings}
+      >
         <RecordingsTable />
       </Resource>
     </>
@@ -43,16 +49,19 @@ const RecordingsTable = () => {
   return (
     <>
       <Resource.Filter hideSearch name="" />
-      <Resource.Table pagination>
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_serial_no')}
           id="id"
+          hideable={false}
           width="3%"
+          fixed="left"
         />
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_recording_date')}
           id="recordingDate"
           width="5%"
+          fixed="left"
         />
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_assessment_center_date_and_time')}
@@ -150,6 +159,7 @@ const RecordingsTable = () => {
               </div>
             )
           }}
+          fixed="right"
         />
       </Resource.Table>
       <TranscriptionDetailsDrawer

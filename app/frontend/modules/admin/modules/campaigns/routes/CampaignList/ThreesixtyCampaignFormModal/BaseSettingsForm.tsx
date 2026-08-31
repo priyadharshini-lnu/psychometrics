@@ -1,4 +1,7 @@
-import { useState, useCallback } from 'react'
+import {
+  useState,
+  useCallback,
+} from 'react'
 import {
   Button,
   Flex,
@@ -20,12 +23,20 @@ import { camelizeKeys } from '~/utils/object'
 import { useResources } from '~/hooks/useResources'
 import { Tag } from '~/modules/admin/core/tags'
 import { TaggableResourceType } from '~/modules/admin/components/Resource/TagFilter/constants'
+import { LocaleSelectors } from '~/modules/admin/modules/campaigns/components/TranslationLocaleSelectors'
+import {
+  CampaignNameTranslationReference,
+  useLocaleAwareNameFieldSync,
+  useCampaignNameTranslations,
+} from '../CampaignNameTranslationsFields'
 
 const { I18n } = window
+const CURRENT_APP_LOCALE = I18n.locale || I18n.defaultLocale || 'en'
 
 const MAX_TAG_BATCH_SIZE = 100
 
 type Props = {
+  projectId: number;
   onFinish:(values) => void;
   onClose:() => void;
   initialSettings: {
@@ -41,7 +52,7 @@ type Props = {
 }
 
 const BaseSettingsForm = ({
-  onFinish, onClose, initialSettings, assessments, isSubmitting = false, features,
+  projectId, onFinish, onClose, initialSettings, assessments, isSubmitting = false, features,
 }: Props) => {
   const [form] = Form.useForm()
   const category = Form.useWatch('threesixty_category', form)
@@ -51,6 +62,16 @@ const BaseSettingsForm = ({
   const [isPrevious360, setIsPrevious360] = useState((initialSettings
     && initialSettings.threesixty_type === THREESIXTY_TYPES.PREVIOUS_360) ?? false)
   const skillRaterEnabled = camelizeKeys(features ?? {})?.skillRaterEnabled
+  const {
+    availableLocales: translationLocales,
+    editingLocale,
+    referenceLocale,
+    availableReferenceLocales,
+    referenceValue,
+    isLoading,
+    handleEditingLocaleChange,
+    handleReferenceLocaleChange,
+  } = useCampaignNameTranslations({ form, projectId, fieldName: 'translated_name' })
 
   const {
     data: tags, fetch: fetchTags, isLoading: isTagsLoading,
@@ -79,8 +100,25 @@ const BaseSettingsForm = ({
     value: locale,
   }))
 
+  useLocaleAwareNameFieldSync({
+    form,
+    appLocale: CURRENT_APP_LOCALE,
+    editingLocale,
+    sourceFieldName: 'name',
+    targetFieldName: 'translated_name',
+  })
+
   const handleFinish = (values) => {
-    onFinish(values)
+    const name = values.name?.trim()
+    const translatedName = values.translated_name?.trim()
+    const selectedLocale = editingLocale || CURRENT_APP_LOCALE
+
+    onFinish({
+      ...values,
+      name,
+      translated_name: translatedName,
+      name_locale: selectedLocale,
+    })
   }
 
   const handleChange = (values) => {
@@ -128,7 +166,6 @@ const BaseSettingsForm = ({
                 <Input name="threesixty_campaign_name" />
               </Form.Item>
             </Flex>
-
             <Flex vertical className="w-100">
               <Form.Item
                 name="status"
@@ -276,6 +313,27 @@ const BaseSettingsForm = ({
                 </Select>
               </Form.Item>
             </Flex>
+
+            <Form.Item label={I18n.t('admin.campaign_name_translations')}>
+              <LocaleSelectors
+                editingLocale={editingLocale}
+                referenceLocale={referenceLocale}
+                availableLocales={translationLocales}
+                availableNameLocales={availableReferenceLocales}
+                onEditingLocaleChange={handleEditingLocaleChange}
+                onReferenceLocaleChange={handleReferenceLocaleChange}
+                className="mb8"
+                vertical
+              />
+              <Form.Item name="translated_name" noStyle>
+                <Input name="threesixty_campaign_translated_name" placeholder={I18n.t('shared.name')} />
+              </Form.Item>
+            </Form.Item>
+            <CampaignNameTranslationReference
+              isLoading={isLoading}
+              referenceLocale={referenceLocale}
+              referenceValue={referenceValue}
+            />
           </Flex>
           <Flex
             flex="auto"

@@ -55,6 +55,7 @@ es-ES:
     copied_successfully: Se ha copiado correctamente
     copied_to_clipboard: Copiado al portapapeles
     copy: Copiar
+    copyright: "© %{year} %{display_name}. Todos los derechos reservados."
     create: Crear
     created_at: Creado/a el
     created_by: Creado por
@@ -181,6 +182,29 @@ es-ES:
     remove: Eliminar
     removed: Eliminado
     replace: Reemplazar
+    reports:
+      ai_rationale_evidence:
+        all_factors: Todos los factores
+        factor_label: Factores
+        hide_evidence: Ocultar pruebas
+        hide_rationale: Ocultar la justificación
+        no_data: No se dispone de datos ni justificaciones basadas en inteligencia artificial para la pregunta seleccionada.
+        no_question_selected: Seleccione una pregunta para ver la justificación y las pruebas basadas en la IA.
+        question_label: Pregunta
+        select_question: Seleccione una pregunta
+      ai_transcript:
+        no_data: No hay datos de transcripción disponibles para la pregunta seleccionada.
+        no_question_selected: Seleccione una pregunta para ver la transcripción.
+        question_label: Pregunta
+        select_question: Seleccione una pregunta
+    reports_bar_gradient_direction: Dirección del gradiente
+    reports_bar_gradient_direction_bottom_to_top: De abajo hacia arriba
+    reports_bar_gradient_direction_left_to_right: De izquierda a derecha
+    reports_bar_gradient_direction_right_to_left: De derecha a izquierda
+    reports_bar_gradient_direction_top_to_bottom: De arriba a abajo
+    reports_bar_gradient_enabled: Habilitar gradiente
+    reports_bar_gradient_end_color: Color final
+    reports_bar_gradient_start_color: Color inicial
     reports_show_values_inside_bar: Mostrar los valores dentro de la barra
     reports_value_label_position: Posición de la etiqueta de valor
     reports_value_label_position_center: Centro
@@ -218,6 +242,7 @@ es-ES:
     switch_to_laptop_or_desktop: Cambiar a ordenador portátil o de sobremesa
     system_check_uploading: Cargando
     table:
+      collapse: Colapsar
       entries:
         selected:
           one: 1 fila seleccionada
@@ -226,6 +251,7 @@ es-ES:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Expandir
     tags: Etiquetas
     terms_conditions_privacy: Declaración de privacidad
     tools: Herramientas

@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import {
   Row, Col, Typography, Spin,
 } from 'antd'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { useResources } from '~/hooks/useResources'
-import { Tabs } from './Tabs'
 import MaintenanceCard from './MaintenanceCard'
 import { MAINTENANCE_SUBSYSTEMS } from '../../core/constants'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -18,16 +17,6 @@ interface MaintenanceSetting {
   startTime: string
   endTime: string
 }
-
-const crumbs = [
-  {
-    link: () => '/admin',
-    label: () => I18n.t('users.dashboard'),
-  },
-  {
-    label: () => I18n.t('admin.settings'),
-  },
-]
 
 const MaintenanceList: React.FC = () => {
   const {
@@ -47,9 +36,9 @@ const MaintenanceList: React.FC = () => {
 
   return (
     <>
-      <Breadcrumb crumbs={crumbs} />
-      <Tabs />
+      <DocumentTitle text={I18n.t('admin.maintenance')} />
       <div className="p-4">
+        <Typography.Title level={4}>{I18n.t('admin.maintenance')}</Typography.Title>
         <Typography.Paragraph type="secondary" className="mb-8">
           {I18n.t('admin.maintenance_settings_description')}
         </Typography.Paragraph>

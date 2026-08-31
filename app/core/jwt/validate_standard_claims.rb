@@ -27,7 +27,6 @@ module Jwt
 
     def validate_required_and_type_claims
       missing_required_claim ||
-        blank_jti_claim ||
         invalid_issuer_claim ||
         invalid_iat_claim
     end
@@ -60,15 +59,8 @@ module Jwt
 
     def missing_required_claim
       return :missing_iss if payload['iss'].nil?
-      return :missing_jti if payload['jti'].nil?
       return :missing_aud if payload['aud'].nil?
       return :missing_exp if payload['exp'].nil?
-
-      nil
-    end
-
-    def blank_jti_claim
-      return :blank_jti if payload['jti'].to_s.strip.empty?
 
       nil
     end

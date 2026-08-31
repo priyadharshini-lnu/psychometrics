@@ -1,8 +1,9 @@
-import { ColumnProps } from 'antd/es/table'
+import type { TableColumnProps } from 'antd'
 
-interface Props<T> extends ColumnProps<T> {
+interface Props<T> extends TableColumnProps<T> {
   id: string
   sortingKey?: string
+  hideable?: boolean
 }
 
 

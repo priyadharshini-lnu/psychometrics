@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Outlet, useSearchParams } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ReportTable } from './ReportTable'
 import { ReportFilter } from './ReportFilter'
 import { DetailsDrawer } from './DetailsDrawer'
@@ -9,6 +9,7 @@ import { Tabs } from './Tabs'
 import { FirstLevelTabs } from '../../../components/FirstLevelTabs'
 import { ReportFormModal } from './ReportFormModal'
 import { Report, ReportTR } from '~/modules/admin/modules/client/core/reports'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -34,20 +35,13 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('reports.dashboard'),
-          },
-          {
-            label: () => I18n.t('reports.reports'),
-          },
-        ]}
-      />
-      <FirstLevelTabs />
-      <Tabs />
-      <Resource config={config} name="reports">
+      <DocumentTitle text={I18n.t('admin.reports')} />
+      <Resource
+        title={I18n.t('admin.reports')}
+        config={config}
+        name="reports"
+        settingsKey={TABLE_SETTINGS_KEYS.adminReports}
+      >
         <ReportFilter openModal={() => closeModal(false)} />
         <ReportTable openDrawer={setDrawerReport} />
         {!!drawerReport && (
@@ -61,5 +55,17 @@ const ReportList: React.FC<{ reportTab: string }> = ({ reportTab }) => {
     </>
   )
 }
+
+export const ReportsLayout: React.FC = () => (
+  <>
+    <FirstLevelTabs />
+    <Tabs />
+    <Outlet />
+  </>
+)
+
+export const ActiveReports = () => <ReportList reportTab="active" />
+export const ArchivedReports = () => <ReportList reportTab="archived" />
+export const DeletedReports = () => <ReportList reportTab="deleted" />
 
 export default ReportList

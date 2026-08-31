@@ -55,6 +55,7 @@ fr:
     copied_successfully: Copie effectuée
     copied_to_clipboard: Copié dans le presse-papiers
     copy: Copier
+    copyright: "© %{year} %{display_name}. Tous droits réservés."
     create: Créer
     created_at: Créé à
     created_by: Créé par
@@ -181,6 +182,29 @@ fr:
     remove: Retirer
     removed: Supprimé
     replace: Remplacer
+    reports:
+      ai_rationale_evidence:
+        all_factors: Tous les facteurs
+        factor_label: Facteurs
+        hide_evidence: Dissimuler des preuves
+        hide_rationale: Masquer la justification
+        no_data: Aucune justification ni donnée probante relative à l'IA n'est disponible pour la question sélectionnée.
+        no_question_selected: Veuillez sélectionner une question pour afficher la justification et les preuves relatives à l'IA.
+        question_label: Question
+        select_question: Sélectionnez une question
+      ai_transcript:
+        no_data: Aucune donnée de transcription n'est disponible pour la question sélectionnée.
+        no_question_selected: Veuillez sélectionner une question pour afficher la transcription.
+        question_label: Question
+        select_question: Sélectionnez une question
+    reports_bar_gradient_direction: Direction du gradient
+    reports_bar_gradient_direction_bottom_to_top: De bas en haut
+    reports_bar_gradient_direction_left_to_right: De gauche à droite
+    reports_bar_gradient_direction_right_to_left: De droite à gauche
+    reports_bar_gradient_direction_top_to_bottom: De haut en bas
+    reports_bar_gradient_enabled: Activer le dégradé
+    reports_bar_gradient_end_color: Couleur finale
+    reports_bar_gradient_start_color: Couleur de départ
     reports_show_values_inside_bar: Afficher les valeurs à l'intérieur de la barre
     reports_value_label_position: Position de l'étiquette de valeur
     reports_value_label_position_center: Centre
@@ -218,6 +242,7 @@ fr:
     switch_to_laptop_or_desktop: Passer à un ordinateur portable ou de bureau
     system_check_uploading: Téléchargement
     table:
+      collapse: Effondrement
       entries:
         selected:
           one: 1 ligne sélectionnée
@@ -226,6 +251,7 @@ fr:
           one: 'Total : 1'
           other: 'Total : {{count}}'
           zero: 'Total : 0'
+      expand: Développer
     tags: Tags
     terms_conditions_privacy: Déclaration de confidentialité
     tools: Outils

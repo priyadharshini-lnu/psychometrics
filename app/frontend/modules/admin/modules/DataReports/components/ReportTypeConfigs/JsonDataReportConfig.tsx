@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'antd'
+import { Form } from '@thetalententerprise/glint'
 import { LuaEditor } from '~/glint'
 import { ReportTypeConfigProps, ReportTypeDefinition } from './types'
 

@@ -14,7 +14,7 @@ module FormHelper
   end
 
   def flash_json_messages
-    flash.map do |key, value|
+    flash.to_hash.except('timedout', 'resent').map do |key, value|
       { type: key, value: value }
     end
   end

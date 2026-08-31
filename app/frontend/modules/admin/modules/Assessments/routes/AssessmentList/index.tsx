@@ -1,3 +1,2 @@
-import { AssessmentList } from './AssessmentList'
-
-export default AssessmentList
+export * from './AssessmentList'
+export { AssessmentList as default } from './AssessmentList'

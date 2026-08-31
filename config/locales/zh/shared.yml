@@ -55,6 +55,7 @@ zh:
     copied_successfully: 已成功复制
     copied_to_clipboard: 已复制到剪贴板
     copy: 复制
+    copyright: "© %{year} %{display_name}。版权所有。"
     create: 创建
     created_at: 创建时间
     created_by: 创建者
@@ -181,6 +182,29 @@ zh:
     remove: 移除
     removed: 已删除
     replace: 替换
+    reports:
+      ai_rationale_evidence:
+        all_factors: 所有因素
+        factor_label: 因素
+        hide_evidence: 隐藏证据
+        hide_rationale: 隐藏理由
+        no_data: 针对所选问题，没有可用的人工智能原理或证据数据。
+        no_question_selected: 请选择一个问题以显示人工智能的原理和证据。
+        question_label: 问题
+        select_question: 选择一个问题
+      ai_transcript:
+        no_data: 所选问题没有可用的记录数据。
+        no_question_selected: 请选择一个问题以显示其文字稿。
+        question_label: 问题
+        select_question: 选择一个问题
+    reports_bar_gradient_direction: 梯度方向
+    reports_bar_gradient_direction_bottom_to_top: 从下往上
+    reports_bar_gradient_direction_left_to_right: 从左到右
+    reports_bar_gradient_direction_right_to_left: 从右到左
+    reports_bar_gradient_direction_top_to_bottom: 从上到下
+    reports_bar_gradient_enabled: 启用渐变
+    reports_bar_gradient_end_color: 最终颜色
+    reports_bar_gradient_start_color: 起始颜色
     reports_show_values_inside_bar: 在柱形图内显示数值
     reports_value_label_position: 值标签的位置
     reports_value_label_position_center: 中心
@@ -218,6 +242,7 @@ zh:
     switch_to_laptop_or_desktop: 切换至笔记本电脑或台式机
     system_check_uploading: 正在上传
     table:
+      collapse: 坍塌
       entries:
         selected:
           one: 选中 1 行
@@ -226,6 +251,7 @@ zh:
           one: '共计 : 1'
           other: '共计 : {{count}}'
           zero: '总计 : 0'
+      expand: 扩张
     tags: 标签
     terms_conditions_privacy: 隐私声明
     tools: 工具

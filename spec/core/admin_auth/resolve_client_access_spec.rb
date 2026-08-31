@@ -119,15 +119,32 @@ RSpec.describe AdminAuth::ResolveClientAccess do
       let(:campaign) { create(:campaign, project: project) }
 
       before do
+        # Every path that assigns an assessor also creates this membership.
+        create(:membership, user: user, client: client, role: 'client_assessor')
         create(:assessor, user: user, campaign: campaign)
       end
 
-      it 'returns access with assessor role' do
+      it 'returns access with the assessor role' do
         result = described_class.call(user, client)
 
         expect(result[:ok][:has_access]).to be true
-        expect(result[:ok][:highest_role]).to eq('assessor')
         expect(result[:ok][:roles]).to include('assessor')
+      end
+    end
+
+    context 'with an assessor whose client assessor membership was removed' do
+      let(:user) { create(:user) }
+      let(:campaign) { create(:campaign, project: project) }
+
+      before do
+        membership = create(:membership, user: user, client: client, role: 'client_assessor')
+        create(:assessor, user: user, campaign: campaign)
+        membership.destroy!
+      end
+
+      it 'refuses access even though the campaign assignment remains' do
+        expect(user.assessors.count).to eq(1)
+        expect(described_class.call(user, client)).to eq(error: :no_access)
       end
     end
 

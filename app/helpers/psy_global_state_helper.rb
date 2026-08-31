@@ -4,6 +4,8 @@ module PsyGlobalStateHelper
   def psy_global_state_json
     {
       realEnv: Settings.real_env,
+      brand: Branding.brand,
+      supportEmail: Branding.support_email,
       adminLocales: Settings.admin_user_locales,
       recaptchaSiteKey: Recaptcha.configuration.site_key,
       sentryUrl: Settings.sentry_url.presence || '',
@@ -14,8 +16,29 @@ module PsyGlobalStateHelper
       features: Settings.features.to_h.transform_values { |v| v == true },
       clientContextData: client_context_data,
       switchableClients: switchable_clients_data,
-      recentClientIds: recent_client_ids_data
+      recentClientIds: recent_client_ids_data,
+      reactShell: react_shell?
     }.to_json
+  end
+
+  # True when the SPA owns the page's shell, so Rails renders no chrome around it.
+  # rubocop:disable Rails/HelperInstanceVariable -- controller state by design; layout and boot payload must agree
+  def react_shell?
+    @do_not_render_rails_menu.present? && @hide_navigation.blank?
+  end
+  # rubocop:enable Rails/HelperInstanceVariable
+
+  # The brand backdrop: Marsh pattern over a scheme-picked surface. Shared with the splash partial,
+  # which paints it itself on layouts where `react_shell?` is false and the html carries no background.
+  def brand_backdrop_style
+    "background: light-dark(#F7F4EF, #061047) url(#{image_url('marsh-pattern.png')}) center / cover no-repeat"
+  end
+
+  # Shell pages paint the brand backdrop from the first byte.
+  def shell_html_style
+    style = "color-scheme: #{Settings.features.theme_switcher ? 'light dark' : 'light'}"
+    style += "; #{brand_backdrop_style}" if react_shell?
+    style
   end
 
   private

@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import {
-  Table, Row, Col, Input, Select, Pagination, Button, Space, MenuProps, App,
+  Table, Input, Button, Space, MenuProps, App,
 } from 'antd'
+import { Select } from '@thetalententerprise/glint'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  AppstoreOutlined, PlusOutlined, MoreOutlined, ExclamationCircleOutlined,
+  PlusOutlined, ExclamationCircleOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { isRequestInProgress } from '~/core/request'
 import { MenuItem } from '~/interfaces/Antd'
@@ -25,6 +26,7 @@ import { openModal } from '~/modules/admin/core/ui/modals'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { ImportModal as ImportSmsInvites } from './ImportModal'
 import { ToolsDropdown } from './ToolsDropdown'
 import styles from './styles.less'
@@ -47,6 +49,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 
 interface OwnProps {
   openModal(name: string, data?: { campaignId: string, user?: User }): void
+  toggle?: ReactNode
 }
 
 type Props = OwnProps & TableProps & PropsFromRedux
@@ -59,7 +62,6 @@ const MODALS = {
 
 const { Column } = Table
 const { Search } = Input
-const { Option } = Select
 const { I18n } = window
 
 const SmsInvitesComponent: React.FC<Props> = ({
@@ -82,10 +84,16 @@ const SmsInvitesComponent: React.FC<Props> = ({
   changePage,
   openModal,
   remove,
+  toggle,
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { modal, message } = App.useApp()
+
+  const statusOptions = [
+    { value: 'all', label: I18n.t('admin.sms_invites_statuses_all') },
+    ...STATUSES.map(status => ({ value: status, label: I18n.t(`admin.sms_invites_statuses_${status}`) })),
+  ]
 
   useEffect(() => {
     fetch(campaignId, tableConfig)
@@ -116,49 +124,46 @@ const SmsInvitesComponent: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.sms_contact')}`}</span>
-        </Col>
-        <Space>
-          <Select
-            defaultValue={I18n.t('admin.sms_invites_statuses_all')}
-            value={filters.statusEq || I18n.t('admin.sms_invites_statuses_all')}
-            className={styles.statusFilter}
-            onChange={handleUserTypeFilterChange}
-          >
-            <Option value="all" key="all">
-              {I18n.t('admin.sms_invites_statuses_all')}
-            </Option>
-            {STATUSES.map(status => (
-              <Option value={status} key={status}>
-                {I18n.t(`admin.sms_invites_statuses_${status}`)}
-              </Option>
-            ))}
-          </Select>
-          <Search
-            placeholder={I18n.t('shared.search')}
-            className={styles.searchInput}
-            value={filters.filterableFields}
-            onChange={e => changeFilter('filterableFields', e.target.value)}
-          />
-          <ToolsDropdown campaignId={parsedCampaignId} openModal={openModal} permissions={permissions} />
-
-          {permissions.create && (
-            <Button type="primary" onClick={() => openModal('SmsInviteFormModal', { campaignId })}>
-              <PlusOutlined />
-              <span>{I18n.t('admin.sms_invites_actions_add')}</span>
-            </Button>
-          )}
-        </Space>
-      </Row>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        loading={isLoadingSMSInvites}
+        title={I18n.t('admin.participants_tabs_sms_contacts')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total,
+          onChange: changePage,
+          showSizeChanger: false,
+        }}
+        filters={(
+          <Space wrap>
+            {toggle}
+            <Select
+              value={filters.statusEq || 'all'}
+              options={statusOptions}
+              onChange={handleUserTypeFilterChange}
+              popupMatchSelectWidth={false}
+              style={{ minWidth: '200px' }}
+            />
+            <Search
+              placeholder={I18n.t('shared.search')}
+              className={styles.searchInput}
+              value={filters.filterableFields}
+              onChange={e => changeFilter('filterableFields', e.target.value)}
+            />
+            <ToolsDropdown campaignId={parsedCampaignId} openModal={openModal} permissions={permissions} />
+            {permissions.create && (
+              <Button type="primary" onClick={() => openModal('SmsInviteFormModal', { campaignId })}>
+                <PlusOutlined />
+                <span>{I18n.t('admin.sms_invites_actions_add')}</span>
+              </Button>
+            )}
+          </Space>
+        )}
+        table={(
           <Table
             className="mtm"
             rowKey="id"
-            loading={isLoadingSMSInvites}
             dataSource={list}
             onChange={onTableChange}
             pagination={false}
@@ -223,26 +228,12 @@ const SmsInvitesComponent: React.FC<Props> = ({
                       onRemove: () => handleDelete(smsInvite),
                     })
                   }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  )}
                 />
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={settings.pagination.defaultPageSize}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
       <Modals modals={MODALS} />
     </div>
   )
@@ -272,5 +263,5 @@ const getActionsMenuProps = ({ onEdit, onRemove, permissions }): MenuProps => {
   return ({ items: menuItems, onClick: handleMenuClick })
 }
 export const SmsInvitesTable = connecter(
-  withEnhancedTable<{}>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),
+  withEnhancedTable<{ toggle?: ReactNode }>(SmsInvitesComponent, 'smsInvites', { maintainHistory: true }),
 )

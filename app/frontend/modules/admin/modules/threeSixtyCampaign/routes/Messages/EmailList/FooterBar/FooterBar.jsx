@@ -27,7 +27,11 @@ export default function FooterBar ({ emailTemplate, addReminderRule, removeAllRe
         </div>
       </div>
       <div className={styles.switchContainer}>
-        <Switch checked={reminderRulesExists} onChange={handleSwitchChange} />
+        <Switch
+          checked={reminderRulesExists}
+          onChange={handleSwitchChange}
+          aria-label={I18n.t('admin.threesixty_campaigns_send_reminders_automatically')}
+        />
       </div>
       <ReminderRules rules={emailTemplate.meta.reminderRules} selectedEmailTemplateId={emailTemplate.id} />
     </div>

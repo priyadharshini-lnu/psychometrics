@@ -30,7 +30,7 @@ const RemapAssessment = ({
       open
       title="Remap Assessment"
       onCancel={close}
-      maskClosable={false}
+      mask={{ closable: false }}
       footer={(
         <div>
           <Button type="primary" onClick={save}>{I18n.t('common.actions.save')}</Button>

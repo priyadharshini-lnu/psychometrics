@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Input, Switch, Pagination, Button, MenuProps, App,
+  Table, Space, Input, Switch, Button, MenuProps, App,
   Typography, Tag,
 } from 'antd'
 import { useParams } from 'react-router-dom'
@@ -18,7 +18,6 @@ import { get as getCurrentUser } from '~/core/currentUser'
 import { SamlServiceProvider, SamlServiceProviderTR } from '~/modules/admin/modules/client/core/samlServiceProviders'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { AddEditSamlServiceProviderModal } from './AddEditSamlServiceProviderModal/AddEditSamlServiceProviderModal'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 const MODALS = {
   AddEditSamlServiceProviderModal,
@@ -55,7 +54,6 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
     },
   )
   const { modal, message } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
 
   useEffect(() => {
     fetch()
@@ -122,7 +120,6 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
     <>
       <Table
         dataSource={data}
-        loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
         scroll={{ x: 'max-content' }}
@@ -130,7 +127,7 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         <Column
           title={I18n.t('common.column.id')}
           dataIndex="id"
-          fixed={windowWidth > 800 ? 'left' : undefined}
+          fixed="left"
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -258,7 +255,7 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
         />
         <Column
           key="manage"
-          fixed={windowWidth > 800 ? 'right' : undefined}
+          fixed="right"
           title={I18n.t('admin.saml_service_provider_manage')}
           render={saml_service_provider => (
             <ConditionalDropdown
@@ -275,13 +272,6 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
           )}
         />
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
@@ -315,10 +305,17 @@ const SamlServiceProvidersListComponent: React.FC<Props> = ({ openModal }) => {
   return (
     <>
       <TableLayout
+        loading={tableLoading}
         table={SamlServiceProvidersTable}
         filters={Filter}
+        title={I18n.t('admin.saml_service_providers')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: meta.recordCount ?? 0,
+          onChange: changePage,
+        }}
         recordCount={meta.recordCount}
-        loading={tableLoading}
         requestStatus={requests.fetch?.status}
         failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />

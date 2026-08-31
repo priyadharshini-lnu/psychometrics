@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Pagination, Space, Typography, Input, Button, MenuProps,
+  Table, Space, Typography, Input, Button, MenuProps,
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
@@ -73,7 +73,6 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
     <>
       <Table
         dataSource={data}
-        loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
       >
@@ -128,13 +127,6 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
           )}
         />
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
@@ -165,8 +157,8 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
 
 
   return (
-    <div style={{ padding: 20 }}>
-      <Space>
+    <div>
+      <Space style={{ padding: 20 }}>
         <DirectionalNavigateBackIcon onClick={() => handleTabChange('integrations')} />
         <Typography.Title level={5}>
           {I18n.t('admin.integrations_actions_back')}
@@ -174,11 +166,18 @@ export const MettlScheduleRecordsComponent: React.FC<Props> = ({ openModal }) =>
       </Space>
 
       <TableLayout
+        loading={tableLoading}
         table={MettlScheduleRecordsTable}
         filters={Filter}
+        title={I18n.t('admin.projects_mettl_schedule_records_title')}
+        pagination={{
+          page: currentPage,
+          pageSize,
+          total: meta.recordCount ?? 0,
+          onChange: changePage,
+        }}
         recordCount={meta.recordCount}
         requestStatus={requests.fetch?.status}
-        loading={tableLoading}
       />
       <Modals modals={MODALS} />
     </div>

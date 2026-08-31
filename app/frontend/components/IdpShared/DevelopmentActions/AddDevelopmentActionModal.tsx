@@ -117,7 +117,7 @@ export const AddDevelopmentActionModal: React.FC<Props> = ({
           btnRef?.current?.focus()
         }
       }}
-      maskClosable={false}
+      mask={{ closable: false }}
       footer={(
         <Flex justify="flex-end" flex={1} gap={12}>
           {selectedDA.length > 0 && (

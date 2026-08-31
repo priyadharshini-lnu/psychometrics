@@ -11,6 +11,8 @@ declare global {
     antdLocale: Locale
     PsyGlobalState: {
       realEnv: string,
+      brand: string,
+      supportEmail: string,
       adminLocales:string,
       recaptchaSiteKey:string
       availableAiProviders: string,

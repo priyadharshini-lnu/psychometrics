@@ -196,6 +196,7 @@ export interface MediaResponse {
   createdAt: string
   transcriptionText?: string
   transcriptionUrl?: string
+  disableTranscriptDownload?: boolean
 }
 
 export interface I18nInterface {

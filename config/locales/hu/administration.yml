@@ -15,11 +15,6 @@ hu:
         simple_design:
           design: Tervezés
           or: Vagy
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: A bejelentkezés sikeres.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ hu:
           modal_title: Pontszám jóváhagyási beállítások
           remove_modal_success: 'Az értékelés azonosítószámának jóváhagyási beállítása: %{assessmentId} sikeresen törölve.'
           remove_modal_text: 'Biztosan törölni szeretné ezt a beállítást az értékelési azonosítóhoz: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Sikeresen bejelentkezett a(z) %{name} néven
+      bulk_import_translations:
+        details: Kampányfordítási sablon
+        download_template: Sablon letöltése
+        errors:
+          blank_campaign_id: "%{row} sor: A kampányazonosító nem lehet üres"
+          campaign_not_found: "%{row} sor: Az %{id} kampány nem található ebben a projektben"
+          generic: Valami hiba történt. Próbáld újra.
+          invalid_csv_format: 'Érvénytelen CSV-formátum: %{message}'
+          invalid_locales: 'Érvénytelen nyelvi oszlopok: %{locales}'
+          missing_required_columns: 'Hiányzó kötelező oszlopok: %{columns}'
+          must_be_csv: A fájlnak .csv formátumúnak kell lennie.
+          save_failed: 'Az %{id} kampány %{locale}-hez tartozó fordítását nem sikerült menteni: %{message}'
+        file_label: Fordítási fájl
+        import_started: A fordítás importálása folyamatban van. Kérjük, ellenőrizze a folyamatot az értesítésekben.
+        instructions_intro: Töltsd le a CSV-sablont, frissítsd a kampányneveket a kívánt nyelvi oszlopokban, majd töltsd fel a kész fájlt.
+        instructions_title: Utasítás
+        menu_label: Fordítások importálása
+        template_started: Sablon exportálása folyamatban. Kérjük, ellenőrizze a folyamatot az értesítésekben.
+        title: Kampánynév-fordítások importálása
+        upload_file: Fájl feltöltése
       validations:
         dates:
           end: a kezdő dátum után kell lennie
@@ -1937,7 +1949,6 @@ hu:
         export: Fordítások exportálása
         import: Fordítások importálása
         import_descr: Az Exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
-    tte: TTE
     update: Frissít
     users:
       create:

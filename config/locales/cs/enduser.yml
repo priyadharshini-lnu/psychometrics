@@ -11,6 +11,7 @@ cs:
     ai_idp_retake_step_chat_hint_no_document: Můžete chat znovu spustit, abyste sdíleli více informací, a já se budu snažit vám pomoci.
     ai_idp_summary_hint_no_document: S vaším svolením, pokud řeknete ano, mohu pro vás vytvořit plán rozvoje. Pokud ne, můžete chat znovu spustit a sdílet více detailů.
     all_checks_must_pass: Než budete moci pokračovat, musí být všechny kontroly úspěšné.
+    appearance: Vzhled
     approve_idp_plan: Schválit plán
     assessment_misconfigured: Nesprávné nastavení
     assessment_timing_duration_minutes: "%{duration} minut"
@@ -52,16 +53,49 @@ cs:
     camera_test_step: Krok pro testování obrazu a zvuku
     campaign: Kampaň
     campaign_check_status: 'Stav: %{status}'
+    card_action_retry: Zkusit znovu
+    card_action_review: Recenze
+    card_action_start: Start
+    change_password_warning: 'Důležité: Změnou hesla se odhlásíte.'
     chat_instructions: Pokyny k chatu
     check: Zkontrolovat
     check_video_recording: Zkontrolujte prosím své video i zvuk jeho přehráním.
     checking_browser_compatibility: Zjišťuji kompatibilitu prohlížeče...
     checking_latency: Zjišťuji latenci...
+    collapse_navigation: Sbalit navigaci
     complete_prework_message: Nejprve proveďte všechny přípravné úkoly.
     could_not_reach_servers: Při ověřování rychlosti připojení se nepodařilo navázat spojení s našimi servery. Zkontrolujte prosím připojení k internetu a zkuste to znovu.
+    dashboard: Dashboard
+    dashboard_active_programs: Aktivní programy
+    dashboard_begin_program: Spustit program
+    dashboard_continue_program: Pokračovat v programu
+    dashboard_days_left: Zbývá %{count} dní
+    dashboard_greeting_afternoon: Dobré odpoledne, %{name}.
+    dashboard_greeting_evening: Dobrý večer, %{name}.
+    dashboard_greeting_eyebrow: Vítej zpět
+    dashboard_greeting_morning: Dobré ráno, %{name}.
+    dashboard_instructions: Možná vám bylo zadáno více aktivit. Ujistěte se, že všechny zadané aktivity jsou v rámci každého programu splněny.
+    dashboard_reports_ready: Zprávy připraveny
+    dashboard_your_programs: Vaše programy
     day: den
     day_plural: dny
     details: Podrobnosti
+    details_back: Zadní
+    details_due: Splatné
+    details_group_locked_hint: Odemkne se po dokončení '%{group}'.
+    details_intro_tab: Zavedení
+    details_no_reports: Zatím žádné zprávy
+    details_open_heading: Otevřená cvičení
+    details_open_hint: Dokončete v libovolném pořadí, vlastním tempem.
+    details_percent_done: Hotovo na %{percent} %
+    details_progress: Pokrok
+    details_reports_ready: Vaše zprávy jsou připraveny
+    details_reports_tab: Zprávy
+    details_reserved: Rezervováno
+    details_sequential_heading: Sekvenční cvičení
+    details_sequential_hint: Dokončete v pořadí – každé odemknutí dalšího.
+    details_total: Celkový
+    details_view_details: Zobrazit podrobnosti
     development: Vývoj
     direct_reportees: Přímí zástupci
     download: Stáhnout
@@ -108,6 +142,10 @@ cs:
     localstorage_fix_title: Ve vašem prohlížeči není povoleno lokální úložiště
     localstorage_not_enabled_detail: Ve vašem prohlížeči není povoleno lokální úložiště. Ujistěte se prosím, že nepoužíváte režim soukromého prohlížení, protože v těchto režimech bývá lokální úložiště často zakázáno.
     localstorage_support: Funkce LocalStorage je povolena
+    login_sign_in_btn: Přihlásit se
+    login_sign_up_link: Registrovat se
+    login_welcome_description: Přihlaste se pomocí svého účtu Lighthouse
+    login_welcome_title: Vítejte v Majáku
     magic_link_interstitial_description: Z bezpečnostních důvodů vás žádáme o potvrzení tohoto přihlášení. Automatizované systémy tento krok nemohou provést.
     magic_link_interstitial_title: Chcete-li přihlášení dokončit, klikněte prosím na tlačítko níže.
     max_word_limit: Musí mít maximálně %{max} slov
@@ -124,6 +162,7 @@ cs:
     minute: minuta
     minute_plural: zápis
     my_plan: Můj plán
+    my_profile: Můj profil
     network: Síť
     network_check: Test rychlosti internetu
     network_check_description: Testujeme kvalitu vašeho internetového připojení mezi našimi servery a vaším zařízením.
@@ -135,6 +174,7 @@ cs:
     network_speed_meets_required_detail: Vaše rychlost internetového připojení splňuje minimální požadavky této kampaně
     network_test_step: Krok testování sítě
     no_audio_detected: Nebylo zjištěno žádné zvukové zařízení. Zkontrolujte prosím, zda je mikrofon připojen a zda správně funguje.
+    open_navigation: Otevřít navigaci
     pass: Přeskočit
     pause: Pauza
     pearson_timing_duration_minutes: Časový limit – %{duration} minut na dokončení
@@ -150,7 +190,13 @@ cs:
     proctored: Pod dohledem
     proctored_assessment_misconfigured_msg: Tento test je pod dohledem, ale chybí v něm nastavení času; obraťte se prosím na svého správce.
     profile: Profil
+    profile_cancel: Zrušit
     profile_details: Detaily
+    profile_edit: Upravit
+    profile_other_information: Další informace
+    profile_personal_information: Osobní údaje
+    profile_save: Uložit
+    profile_time: Čas
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Důvod zamítnutí plánu
     record: Záznam
@@ -167,9 +213,12 @@ cs:
     results: Výsledek
     safari_proctoring_description: Zdá se, že používáte prohlížeč Safari, který může mít určitá omezení, pokud jde o funkce sledování aktivované v rámci této kampaně. Pro co nejlepší zážitek doporučujeme používat prohlížeče Chrome,Edge nebo Firefox.
     safari_proctoring_title: Zjištěn prohlížeč Safari
+    scheduling: Plánování
     select_audio_device: Vybrat zvukové zařízení
     select_video_device: Vybrat video zařízení
     selected_count: Vybrané stránky
+    sign_out: Odhlásit se
+    signup_sign_in_link: Přihlásit se
     skill_type: Typ dovednosti
     speech_verification_error: Při ověřování vaší řeči došlo k chybě. Zkuste to prosím znovu.
     speech_verification_failed: Vaše výslovnost se neshodovala s testovací frází. Zkuste to prosím znovu a frázi vyslovte zřetelně.
@@ -177,6 +226,7 @@ cs:
     start_campaign_message_timed: Toto je časově omezená kampaň, klikněte prosím na tlačítko '%{buttonText}' pro zahájení aktivit.
     start_readiness_check: Spustit kontrolu připravenosti
     start_system_check: Spustit kontrolu systému
+    status_locked: Zamčeno
     stop: Zastav
     subinstruction_audio: Fungující mikrofon
     subinstruction_eight: Vyhraďte si na kompletní posouzení čas, během kterého vás nikdo nebude rušit
@@ -228,6 +278,21 @@ cs:
     tasks: Úkoly
     testing_download_speed: Testování rychlosti stahování...
     testing_upload_speed: Testuji rychlost nahrávání...
+    theme_active: Aktivní
+    theme_change: Změnit téma
+    theme_dark_theme: Tmavé téma
+    theme_ember: Žhavý popel
+    theme_light_theme: Světlé téma
+    theme_marsh: Bažina
+    theme_mode_dark: Tmavý
+    theme_mode_light: Světlo
+    theme_mode_system: Systém
+    theme_mode_title: Režim
+    theme_primer: Základní nátěr
+    theme_primer_colorblind: Primer pro barvoslepé
+    theme_primer_contrast: Základní barva s vysokým kontrastem
+    theme_primer_dimmed: Základní nátěr tlumený
+    theme_title: Téma
     time_commitment: Časová náročnost
     timed_activity_instruction: Toto je časově omezená aktivita. Po zahájení dohledu nad zkouškou budete mít <strong>%{time} minut</strong> na její dokončení.
     troubleshooting_guide: Průvodce řešením problémů

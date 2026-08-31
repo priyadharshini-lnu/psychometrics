@@ -85,4 +85,36 @@ position: 1, factor_type: 'assessment', output_type: :numeric)
     # No participants copied
     expect(new_campaign.campaign_users.count).to eq 0
   end
+
+  it 'copies sequencing group name translations' do
+    sequencing_group = create(:campaign_assessment_group, campaign: campaign, name: 'Group EN')
+    campaign_assessment.update!(campaign_assessment_group: sequencing_group)
+
+    Mobility.with_locale('en') do
+      campaign.update!(name: 'Campaign EN')
+    end
+
+    Mobility.with_locale('ar') do
+      sequencing_group.update!(name: 'Group AR')
+      campaign.update!(name: 'Campaign AR')
+    end
+
+    form = Campaigns::CopyForm.from_params(campaign.attributes.merge(name: 'Copied Campaign'))
+    new_campaign = described_class.call!(form, campaign)
+
+    copied_group = new_campaign.campaign_assessment_groups.find_by(position: sequencing_group.position)
+    expect(copied_group).to be_present
+
+    Mobility.with_locale('en') do
+      expect(copied_group.name).to eq('Group EN')
+      expect(new_campaign.name).to eq('Copied Campaign')
+    end
+
+    Mobility.with_locale('ar') do
+      expect(copied_group.name).to eq('Group AR')
+      expect(new_campaign.name).to eq('Campaign AR')
+    end
+
+    expect(new_campaign[:name]).to eq('Copied Campaign')
+  end
 end

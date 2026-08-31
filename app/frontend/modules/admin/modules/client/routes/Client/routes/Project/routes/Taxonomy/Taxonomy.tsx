@@ -1,14 +1,12 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import { Menu } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
+import {
+  Outlet, useLocation, useNavigate, useParams,
+} from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
-import { MenuItem } from '~/interfaces/Antd'
-import RouteList from '~/components/RouteList'
-import routeUtils from '~/utils/route'
-import JobRoles from '~/modules/admin/modules/SkillsTaxonomy/components/JobRoles'
-import Proficiency from '~/modules/admin/modules/SkillsTaxonomy/components/Proficiency'
-import SkillList from '~/modules/admin/modules/SkillsTaxonomy/components/SkillList'
-import Settings from '~/modules/admin/modules/SkillsTaxonomy/components/Settings'
+import {
+  Badge, Handyman, Lightbulb, Star,
+} from '@thetalententerprise/glint/icons'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/modules/admin/core/rootReducers'
 
@@ -24,65 +22,54 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 const TaxonomyComponent: FC<PropsFromRedux> = ({ features }) => {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const { projectId } = useParams() as { projectId: string }
   const skillRaterEnabled = features?.skillRaterEnabled
 
-  const routes = [
-    { redirect: true, from: '', to: `/admin/projects/${projectId}/taxonomy/skills` },
-    {
-      path: '/skills',
-      component: <SkillList />,
-    },
-    skillRaterEnabled ? {
-      path: '/job_roles',
-      component: <JobRoles />,
-    } : null,
-    skillRaterEnabled ? {
-      path: '/proficiency',
-      component: <Proficiency />,
-    } : null,
-    skillRaterEnabled ? {
-      path: '/settings',
-      component: <Settings />,
-    } : null,
-  ].filter(Boolean)
-
   const onSelect = ({ key }) => {
-    navigate(`/admin/projects/${projectId}/taxonomy${key}`)
+    navigate(`/admin/projects/${projectId}/taxonomy/${key}`)
   }
-  const menuItems: MenuItem[] = []
+  const menuItems: { key: string, icon: ReactNode, label: string }[] = []
 
   menuItems.push({
-    key: '/skills',
+    key: 'skills',
+    icon: <Lightbulb />,
     label: I18n.t('admin.skills'),
   })
 
   if (skillRaterEnabled) {
     menuItems.push({
-      key: '/job_roles',
+      key: 'job_roles',
+      icon: <Badge />,
       label: I18n.t('admin.job_roles'),
     })
 
     menuItems.push({
-      key: '/proficiency',
+      key: 'proficiency',
+      icon: <Star />,
       label: I18n.t('admin.proficiency'),
     })
 
     menuItems.push({
-      key: '/settings',
+      key: 'settings',
+      icon: <Handyman />,
       label: I18n.t('admin.tools'),
     })
   }
 
+  const activeTab = menuItems.find(({ key }) => pathname.includes(`/${key}`))
+
   return (
     <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      />
-      <RouteList routes={routes} urlPrefix="" />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={activeTab ? [activeTab.key] : []}
+          mode="horizontal"
+        />
+      )}
+      <Outlet />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { IResult, useClient } from '@thetalententerprise/jsonapi-react'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { message } from 'antd'
 import _ from 'lodash'
 import * as t from 'io-ts'
@@ -19,7 +19,7 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+  Requests, Options, BaseMeta, ResourceErrors, ResourceState, UrlQuery, ResponseType, ApiConfig,
   RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction, MemberAction,
   RemoveRelationships, AddRelationship,
 } from './interfaces'
@@ -60,6 +60,9 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const queryFromUrl = (trackUrl ? queryString?.q || initialFilterQuery
     : initialFilterQuery) as UrlQuery
   const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
+  // Mutations compose off this ref, so several writes in one tick build on each other instead of racing.
+  const queryStateRef = useRef<UrlQuery>(queryState)
+  queryStateRef.current = queryState
   const isMounted = useMountedState()
   const debounceQueryState = useDebounce(queryState, 300)
 
@@ -70,7 +73,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }, [queryFromUrl])
 
   useDeepCompareEffect(() => {
-    if (isMounted) fetch()
+    // Nothing awaits this refetch; the failure is already on requests.fetch, so catching only silences the rejection.
+    if (isMounted) fetch().catch(() => null)
   }, [debounceQueryState])
 
   const { data, requests, meta } = state
@@ -101,11 +105,11 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     }
   }
 
-  const getRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => (
+  const getRequestStatus = (type: RequestType, errors: ResourceErrors | null) => (
     errors ? RequestStatus.Failed : RequestStatus.Success
   )
 
-  const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
+  const setRequestStatus = (type: RequestType, errors: ResourceErrors | null) => {
     const status = getRequestStatus(type, errors)
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
   }
@@ -500,22 +504,25 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   })
 
   const removeSort = () => {
-    if (!queryState?.sort) { return }
-    const newUrlQuery = { ...queryState, sort: undefined }
+    const currentQuery = queryStateRef.current
+    if (!currentQuery?.sort) { return }
+    const newUrlQuery = { ...currentQuery, sort: undefined }
+    queryStateRef.current = newUrlQuery
     changeUrlQuery(newUrlQuery)
   }
 
   const changeSort = (column: React.Key, order: string) => {
+    const currentQuery = queryStateRef.current
     const newSort = (order === 'ascend' ? '' : '-') + column
-    if (queryState?.sort === newSort) { return }
-    let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, sort: `${order === 'ascend' ? '' : '-'}${column}` }
+    if (currentQuery?.sort === newSort) { return }
+    const newUrlQuery = { ...currentQuery, sort: newSort }
+    queryStateRef.current = newUrlQuery
     changeUrlQuery(newUrlQuery)
   }
 
   const changePage = (number: number, size: number) => {
-    let newUrlQuery = queryState || {}
-    newUrlQuery = { ...queryState, page: { number, size } }
+    const newUrlQuery = { ...queryStateRef.current, page: { number, size } }
+    queryStateRef.current = newUrlQuery
     changeUrlQuery(newUrlQuery)
   }
 
@@ -523,24 +530,26 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     if (value === '' || value === undefined || value == null) {
       return removeFilter(name)
     }
-    let newUrlQuery = queryState || {}
-    newUrlQuery = {
-      ...queryState,
-      filter: { ...queryState.filter, [name]: value },
-      page: { number: 1, size: queryState.page?.size },
+    const currentQuery = queryStateRef.current
+    const newUrlQuery = {
+      ...currentQuery,
+      filter: { ...currentQuery?.filter, [name]: value },
+      page: { number: 1, size: currentQuery?.page?.size },
     }
+    queryStateRef.current = newUrlQuery
     changeUrlQuery(newUrlQuery)
   }
 
   const removeFilter = (name: string) => {
-    if (!queryState?.filter?.[name]) { return }
-    let newUrlQuery = queryState || {}
-    const filter = queryState?.filter
+    const currentQuery = queryStateRef.current
+    if (!currentQuery?.filter?.[name]) { return }
+    const filter = currentQuery?.filter
     if (!filter) { return }
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { [name]: _, ...remainingFilter } = filter
-    newUrlQuery = { ...queryState, filter: remainingFilter }
+    const newUrlQuery = { ...currentQuery, filter: remainingFilter }
+    queryStateRef.current = newUrlQuery
     changeUrlQuery(newUrlQuery)
   }
 
@@ -563,7 +572,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
         const filterName = `${columnKey}_in`
         if (filterValues === null) {
           removeFilter(filterName)
-        } else if (!_.isEqual(filterValues, queryState?.filter?.[filterName])) {
+        } else if (!_.isEqual(filterValues, queryStateRef.current?.filter?.[filterName])) {
           const values = filterValues as string[]
           changeFilter(filterName, values)
         }
@@ -630,5 +639,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     addRelationships,
     uploadFileAction,
     getAppliedFiltersFromURL,
+    appliedQuery: queryFromUrl,
   }
 }

@@ -9,7 +9,7 @@ class PrivacySetting < ApplicationRecord
   belongs_to :project
   include Tenantable
 
-  translates :custom_privacy_consent_text, :custom_privacy_acknowledgment_text
+  translates :custom_privacy_consent_text, :custom_privacy_acknowledgment_text, :privacy_link_text
 
   after_commit :subscribe_to_dailyco_webhook, if: :video_recording_enabled_now?
 

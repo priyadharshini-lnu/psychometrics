@@ -1,9 +1,7 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Menu } from 'antd'
-import {
-  DeleteOutlined, CheckCircleOutlined, FolderOutlined,
-} from '~/glint/icons/AccessibleIconsAntDesign'
+import { Archive, CheckCircle, Delete } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import settings from '../../../../settings'
 
@@ -17,9 +15,9 @@ export const Tabs: React.FC = () => {
   }
 
   const menuItems: MenuItem[] = [
-    { key: 'active', icon: <CheckCircleOutlined />, label: I18n.t('reports.active') },
-    { key: 'archived', icon: <FolderOutlined />, label: I18n.t('reports.archived') },
-    { key: 'trash', icon: <DeleteOutlined />, label: I18n.t('reports.trash') },
+    { key: 'active', icon: <CheckCircle />, label: I18n.t('reports.active') },
+    { key: 'archived', icon: <Archive />, label: I18n.t('reports.archived') },
+    { key: 'trash', icon: <Delete />, label: I18n.t('reports.trash') },
   ]
 
   const getActiveMenuKey = (pathname: string): Array<string> | undefined => {

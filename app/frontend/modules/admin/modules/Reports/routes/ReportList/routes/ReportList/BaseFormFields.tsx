@@ -76,6 +76,8 @@ const BaseFormFieldsComp: React.FC<Props> = ({
 
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
   const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
+  const ownerId = Form.useWatch('ownerId', form)
+  const selectedOwnerId = ownerId ?? report?.owner?.id
 
   useEffect(() => {
     setAssessmentCache([...assessmentCache, ...assessments.filter(a => assessmentIds.includes(a.id))])
@@ -212,7 +214,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           }}
           notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
-          {isSuperAdmin(currentUser) && <Select.Option>TTE</Select.Option>}
+          {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
           {getClients().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}
@@ -244,7 +246,15 @@ const BaseFormFieldsComp: React.FC<Props> = ({
                 filterOption: false,
                 onSearch: (value) => {
                   fetchAssessments({
-                    apiConfig: { filter: { filterable_fields: value }, fields: { assessments: ['name'] } },
+                    apiConfig: {
+                      filter: {
+                        filterable_fields: value,
+                        owner_id: selectedOwnerId,
+                      },
+                      fields: {
+                        assessments: ['name'],
+                      },
+                    },
                   })
                 },
               }}

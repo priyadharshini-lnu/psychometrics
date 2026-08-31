@@ -8,6 +8,8 @@ import { Resource, useResourceContext } from '~/modules/admin/components/Resourc
 import { ReportBundle } from '~/modules/admin/modules/client/core/reports'
 import { ConfirmationModal } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -22,6 +24,7 @@ export const ReportBundleTable: React.FC<Props> = ({
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.id')}
       id="id"
+      hideable={false}
       sorter
       render={reportBundle => (
         <Link to={`/admin/report_families/${reportBundle.id}/reports`}>
@@ -29,17 +32,21 @@ export const ReportBundleTable: React.FC<Props> = ({
         </Link>
       )}
       width={150}
+      fixed="left"
     />
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.name')}
       id="name"
       width={400}
       sorter
+      fixed="left"
     />
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.owner')}
       id="tenant"
-      render={reportBundle => reportBundle.tenant?.name || I18n.t('admin.tte')}
+      render={reportBundle => reportBundle.tenant?.name || (
+        <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
+      )}
       width={200}
     />
     <Resource.Column<ReportBundle>
@@ -57,6 +64,7 @@ export const ReportBundleTable: React.FC<Props> = ({
     <Resource.Column<ReportBundle>
       title={I18n.t('common.column.action')}
       id="action"
+      hideable={false}
       render={(_, reportBundle) => (
         <Dropdown
           reportBundle={reportBundle}
@@ -64,6 +72,7 @@ export const ReportBundleTable: React.FC<Props> = ({
         />
       )}
       width={100}
+      fixed="right"
     />
   </Resource.Table>
 )
@@ -81,7 +90,7 @@ const Dropdown: React.FC<DropDownProps> = (
   const handleOnConfirm = () => resource.removeResource(reportBundle.id).then(() => {
     message.info(I18n.t('report_bundles.actions.remove.success_message', { name: reportBundle.name }))
   }).catch((err) => {
-    message.error(err.base[0].title)
+    message.error(baseErrorMessage(err))
   })
   return (
     <>

@@ -10,6 +10,8 @@ import { activeClientsProjectsDefinition } from './ActiveClientsProjectsConfig'
 import { clientAssessmentCountsDefinition } from './ClientAssessmentCountsConfig'
 import { userAccessReviewDefinition } from './UserAccessReviewConfig'
 import { campaignFactorScoresDefinition } from './CampaignFactorScoresConfig'
+import { campaignUserCreationDefinition } from './CampaignUserCreationConfig'
+import { proctoringSessionsDefinition } from './ProctoringSessionsConfig'
 
 export * from './types'
 
@@ -25,6 +27,8 @@ export const REPORT_TYPE_REGISTRY: Record<string, ReportTypeDefinition> = {
   client_assessment_counts: clientAssessmentCountsDefinition,
   user_access_review: userAccessReviewDefinition,
   campaign_factor_scores: campaignFactorScoresDefinition,
+  campaign_user_creation: campaignUserCreationDefinition,
+  proctoring_sessions: proctoringSessionsDefinition,
 }
 
 export const REPORT_TYPE_KEYS = Object.keys(REPORT_TYPE_REGISTRY) as Array<keyof typeof REPORT_TYPE_REGISTRY>

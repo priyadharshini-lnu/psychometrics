@@ -105,6 +105,7 @@ const SingleLinePreview: FC<Props> = ({
               onContextMenu={handleConextMenu}
               onCopy={handleCopyContentEvents}
               onCut={handleCopyContentEvents}
+              className="spellcheck-enabled"
             />
           )}
         </Col>

@@ -76,6 +76,31 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe '#root_domain_assessor?' do
+    it 'is true for a global assessor with no assessor records and no client access' do
+      global_assessor = create(:user, role: User::ADMIN_ROLE, global_assessor: true)
+
+      expect(global_assessor.accessible_client_ids).to be_empty
+      expect(global_assessor).to be_root_domain_assessor
+    end
+
+    it 'is false for an assessor whose membership was deleted but whose assessor records remain' do
+      orphaned_assessor = create(:user, :assessor, global_assessor: true)
+      orphaned_assessor.memberships.destroy_all
+
+      expect(orphaned_assessor.accessible_client_ids).to be_empty
+      expect(orphaned_assessor).not_to be_root_domain_assessor
+    end
+
+    it 'is false for an assessor who still holds a client assessor membership' do
+      assessor = create(:user, :assessor)
+      Membership.create!(user: assessor, client: assessor.assessors.first.campaign.project.client,
+                         role: Membership::CLIENT_ASSESSOR_ROLE)
+
+      expect(assessor).not_to be_root_domain_assessor
+    end
+  end
+
   describe '#timeout_in' do
     before do
       allow(Settings.features).to receive(:disable_session_timeout).and_return(false)

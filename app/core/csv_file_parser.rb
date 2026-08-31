@@ -33,7 +33,8 @@ class CsvFileParser < BaseCommand
   end
 
   def uploaded_file?(file)
-    file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile)
+    file.is_a?(ActionDispatch::Http::UploadedFile) || file.is_a?(Rack::Test::UploadedFile) ||
+      file.respond_to?(:path)
   end
 
   def parse_uploaded_file

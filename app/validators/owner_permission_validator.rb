@@ -16,7 +16,7 @@ class OwnerPermissionValidator < ActiveModel::EachValidator
           'administration.assessments.errors.owner_validation',
           resource_name: resource_name,
           permission: 'manage',
-          client_name: record.owner&.name || 'TTE'
+          client_name: record.owner&.name || I18n.t('admin.platform_owner')
         )
       )
     end

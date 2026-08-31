@@ -3,7 +3,7 @@ export interface State {
 }
 
 export interface TableConfig {
-  filters: Record<string, string>,
+  filters: Record<string, string | string[]>,
   sort: {
     columnName?: string
     order?: string

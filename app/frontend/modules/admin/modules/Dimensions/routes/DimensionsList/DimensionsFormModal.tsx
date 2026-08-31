@@ -64,7 +64,7 @@ export const DimensionsFormModal: React.FC<Props> = ({ close, dimension }) => {
     }))
 
     if (isSuperAdmin(currentUser)) {
-      clientsOptions.unshift({ label: I18n.t('admin.tte'), value: null })
+      clientsOptions.unshift({ label: I18n.t('admin.platform_owner'), value: null })
     }
 
     return clientsOptions

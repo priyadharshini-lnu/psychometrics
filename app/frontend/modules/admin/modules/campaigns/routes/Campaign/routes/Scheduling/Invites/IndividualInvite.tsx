@@ -1,8 +1,9 @@
-import { Space, Tabs } from 'antd'
+import { Menu } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 
 import { useDispatch } from 'react-redux'
+import { Event, Mail } from '@thetalententerprise/glint/icons'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import { SubjectList } from './Subjects/SubjectList'
 import { WorkshopList } from './Workshops/WorkshopList'
@@ -64,29 +65,24 @@ export const IndividualInvite = () => {
           />
         )}
       </div>
-      <Tabs
-        style={{ paddingInline: '20px' }}
-        onTabClick={tab => routeUtils.moveTo(navigate, prefixPath, `/${tab}`, true)}
-        activeKey={tabName}
-        destroyOnHidden
-        type="card"
+      <Menu
         items={[
           {
             key: 'subjects',
-            label: (
-              <Space>
-                {I18n.t('admin.individual_invite_tabs_invitation_status')}
-              </Space>
-            ),
-            children: <SubjectList />,
+            icon: <Mail />,
+            label: I18n.t('admin.individual_invite_tabs_invitation_status'),
           },
           {
             key: 'assessment_center',
+            icon: <Event />,
             label: I18n.t('admin.individual_invite_tabs_assessment_center'),
-            children: <WorkshopList />,
           },
         ]}
+        onSelect={({ key }) => routeUtils.moveTo(navigate, prefixPath, `/${key}`, true)}
+        selectedKeys={tabName ? [tabName] : []}
+        mode="horizontal"
       />
+      {tabName === 'assessment_center' ? <WorkshopList /> : <SubjectList />}
       <Modals modals={MODALS} />
     </>
   )

@@ -5,7 +5,7 @@ import {
   MenuProps, Input, InputRef, Row, Col, Form, Button,
 } from 'antd'
 
-import { useSearchParams } from 'react-router-dom'
+import { useMatch, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { MenuItem } from '~/interfaces/Antd'
 import Utils from '~/modules/survey/utils/Utils'
@@ -44,6 +44,10 @@ export const getOptionListMenuProps = ({
   const { defaultLanguage } = useSelector((state:RootState) => state.survey.builder?.assessment || {})
   const currentLocale = params.get('assessmentLang') || 'en'
   const isAssessmentDefaultLocale = defaultLanguage === currentLocale
+  const adminBlockRoute = useMatch('/admin/templates/blocks/:id/edit')
+  const legacyBlockRoute = useMatch('/administration/templates/blocks/:id/edit')
+  // A block has no assessment and no language picker, so the default-locale gate does not apply there.
+  const allowOptionEditing = Boolean(adminBlockRoute || legacyBlockRoute) || isAssessmentDefaultLocale
 
   const generateValueFromLabel = (labelText: string): string => labelText
     .toLowerCase()
@@ -221,7 +225,7 @@ export const getOptionListMenuProps = ({
             i={i}
             removeOption={removeOption}
             onEditOption={handleEditOption}
-            allowRemoveOption={isAssessmentDefaultLocale}
+            allowRemoveOption={allowOptionEditing}
           />
         </DnDElement>
       ),
@@ -292,7 +296,7 @@ export const getOptionListMenuProps = ({
       ),
     }]
 
-  menuItems = isAssessmentDefaultLocale ? [...menuItems, ...addNewOptionMenuItems] : menuItems
+  menuItems = allowOptionEditing ? [...menuItems, ...addNewOptionMenuItems] : menuItems
 
   return ({ items: menuItems, className: styles.optionList })
 }

@@ -14,6 +14,7 @@ module Api
               optional(:user_id).array(:string)
               optional(:client_id).maybe(:string)
               optional(:project_id).maybe(:string)
+              optional(:campaign_id).maybe(:string)
             end
             attribute[:role].filled(:string)
             attribute[:grant_names].filled(:hash).schema do

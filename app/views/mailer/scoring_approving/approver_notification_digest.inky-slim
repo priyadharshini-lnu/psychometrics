@@ -10,4 +10,4 @@ p = I18n.t('admin.ai_scoring_approval_digest_mailer_awaiting_contact_reason')
 
 p = I18n.t('admin.ai_scoring_approval_digest_mailer_access_link_intro')
 
-= link_to I18n.t('admin.ai_scoring_approval_digest_mailer_link_text'), administration_to_admin_url(@url)
+= link_to I18n.t('admin.ai_scoring_approval_digest_mailer_link_text'), @url

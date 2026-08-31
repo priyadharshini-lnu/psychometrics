@@ -11,6 +11,7 @@ sk:
     ai_idp_retake_step_chat_hint_no_document: Môžeš začať chat, aby si zdieľal viac detailov, a ja sa budem snažiť ti pomôcť.
     ai_idp_summary_hint_no_document: S vaším dovolením, ak poviete áno, môžem pre vás vytvoriť plán rozvoja. Ak nie, môžete chat reštartovať a zdieľať viac detailov.
     all_checks_must_pass: Všetky kontroly musia prebehnúť úspešne, aby ste mohli pokračovať.
+    appearance: Vzhľad
     approve_idp_plan: Schváliť plán
     assessment_misconfigured: Hodnotenie je nesprávne nakonfigurované
     assessment_timing_duration_minutes: "%{duration} minút"
@@ -52,16 +53,49 @@ sk:
     camera_test_step: Krok na otestovanie obrazu a zvuku
     campaign: Kampaň
     campaign_check_status: 'Stav: %{status}'
+    card_action_retry: Skúsiť znova
+    card_action_review: Recenzia
+    card_action_start: Štart
+    change_password_warning: 'Dôležité: Zmenou hesla sa odhlásite.'
     chat_instructions: Pokyny pre chat
     check: Skontrolujte
     check_video_recording: Skontrolujte si prosím video aj zvuk prehratím nahrávky.
     checking_browser_compatibility: Overovanie kompatibility prehliadača...
     checking_latency: Kontrola latencie...
+    collapse_navigation: Zbaliť navigáciu
     complete_prework_message: Najskôr si splňte všetky prípravné úlohy.
     could_not_reach_servers: Nepodarilo sa pripojiť k našim serverom na overenie rýchlosti siete. Skontrolujte si pripojenie k internetu a skúste to znovu.
+    dashboard: Prístrojová doska
+    dashboard_active_programs: Aktívne programy
+    dashboard_begin_program: Spustiť program
+    dashboard_continue_program: Pokračovať v programe
+    dashboard_days_left: Zostáva %{count} dní
+    dashboard_greeting_afternoon: Dobrý deň, %{name}.
+    dashboard_greeting_evening: Dobrý večer, %{name}.
+    dashboard_greeting_eyebrow: Vitaj späť
+    dashboard_greeting_morning: Dobré ráno, %{name}.
+    dashboard_instructions: Možno vám bolo pridelených viacero aktivít. Uistite sa, že všetky pridelené aktivity sú splnené v rámci každého programu.
+    dashboard_reports_ready: Správy sú pripravené
+    dashboard_your_programs: Vaše programy
     day: deň
     day_plural: dni
     details: Podrobnosti
+    details_back: Späť
+    details_due: Dátum splatnosti
+    details_group_locked_hint: Odomkne sa po dokončení „%{group}“.
+    details_intro_tab: Úvod
+    details_no_reports: Zatiaľ žiadne správy
+    details_open_heading: Otvorené cvičenia
+    details_open_hint: Dokončite v ľubovoľnom poradí, vlastným tempom.
+    details_percent_done: Hotovo na %{percent} %
+    details_progress: Pokrok
+    details_reports_ready: Vaše správy sú pripravené
+    details_reports_tab: Správy
+    details_reserved: Rezervované
+    details_sequential_heading: Sekvenčné cvičenia
+    details_sequential_hint: Dokončite v poradí – každé odomknutie nasledujúceho.
+    details_total: Celkom
+    details_view_details: Zobraziť podrobnosti
     development: Vývoj
     direct_reportees: Priami podriadení
     download: Stiahnuť
@@ -108,6 +142,10 @@ sk:
     localstorage_fix_title: V tvojom prehliadači nie je povolené lokálne ukladanie
     localstorage_not_enabled_detail: V tvojom prehliadači nie je povolené lokálne ukladanie. Uisti sa, že nie si v režime súkromného prehliadania, pretože v týchto režimoch je lokálne ukladanie často vypnuté.
     localstorage_support: Funkcia LocalStorage je povolená
+    login_sign_in_btn: Prihlásiť sa
+    login_sign_up_link: Zaregistrovať sa
+    login_welcome_description: Prihláste sa pomocou svojho účtu Lighthouse
+    login_welcome_title: Vitajte v Majáku
     magic_link_interstitial_description: V záujme vašej bezpečnosti vás žiadame o potvrdenie tohto prihlásenia. Automatizované systémy nemôžu tento krok vykonať.
     magic_link_interstitial_title: Na dokončenie prihlásenia kliknite na tlačidlo nižšie.
     max_word_limit: Musí mať najviac %{max} slov
@@ -124,6 +162,7 @@ sk:
     minute: minúta
     minute_plural: zápisnica
     my_plan: Môj plán
+    my_profile: Môj profil
     network: Sieť
     network_check: Test rýchlosti internetu
     network_check_description: Testujeme kvalitu vášho internetového pripojenia medzi našimi servermi a vaším zariadením.
@@ -135,6 +174,7 @@ sk:
     network_speed_meets_required_detail: Vaša rýchlosť internetu spĺňa minimálne požiadavky kampane
     network_test_step: Krok testovania siete
     no_audio_detected: Nebolo zistené žiadne zvukové signály. Skontrolujte, či je mikrofón pripojený a správne funguje.
+    open_navigation: Otvoriť navigáciu
     pass: Preskočiť
     pause: Pauza
     pearson_timing_duration_minutes: Časovo obmedzené – %{duration} minút na dokončenie
@@ -150,7 +190,13 @@ sk:
     proctored: Pod dohľadom
     proctored_assessment_misconfigured_msg: Toto hodnotenie prebieha pod dohľadom, chýba však potrebné nastavenie času. Prosím, kontaktujte svojho správcu.
     profile: Profil
+    profile_cancel: Zrušiť
     profile_details: Podrobnosti profilu
+    profile_edit: Upraviť
+    profile_other_information: Ďalšie informácie
+    profile_personal_information: Osobné informácie
+    profile_save: Uložiť
+    profile_time: Čas
     question_counter: Otázka %{current} z %{total}
     reason_for_idp_plan_rejection: Dôvod odmietnutia
     record: Záznam
@@ -167,9 +213,12 @@ sk:
     results: Výsledok
     safari_proctoring_description: Zdá sa, že používate prehliadač Safari, ktorý môže mať určité obmedzenia, pokiaľ ide o funkcie sledovania aktivované v rámci tejto kampane. Pre optimálny zážitok odporúčame používať prehliadače Chrome, Edge alebo Firefox.
     safari_proctoring_title: Zistený prehliadač Safari
+    scheduling: Plánovanie
     select_audio_device: Vyberte zvukové zariadenie
     select_video_device: Vyberte video zariadenie
     selected_count: Vybrané
+    sign_out: Odhlásiť sa
+    signup_sign_in_link: Prihlásiť sa
     skill_type: Typ zručnosti
     speech_verification_error: Pri overovaní vašej reči došlo k chybe. Skúste to prosím znova.
     speech_verification_failed: Vaša reč sa nezhodovala s testovacou frázou. Skúste to prosím znova a vyslovte frázu zreteľne.
@@ -177,6 +226,7 @@ sk:
     start_campaign_message_timed: Toto je časovo obmedzená kampaň, kliknite prosím na tlačidlo '%{buttonText}' pre spustenie aktivít.
     start_readiness_check: Spustiť kontrolu pripravenosti
     start_system_check: Spustiť kontrolu systému
+    status_locked: Zamknuté
     stop: Zastav
     subinstruction_audio: Fungujúci mikrofón
     subinstruction_eight: Vyhraďte si na kompletné posúdenie čas bez prerušenia
@@ -228,6 +278,21 @@ sk:
     tasks: Úlohy
     testing_download_speed: Testovanie rýchlosti sťahovania...
     testing_upload_speed: Testovanie rýchlosti odosielania...
+    theme_active: Aktívne
+    theme_change: Zmeniť tému
+    theme_dark_theme: Tmavá téma
+    theme_ember: Uhlie
+    theme_light_theme: Svetlá téma
+    theme_marsh: Močiar
+    theme_mode_dark: Tmavé
+    theme_mode_light: Svetlo
+    theme_mode_system: Systém
+    theme_mode_title: Režim
+    theme_primer: Základný náter
+    theme_primer_colorblind: Primer pre farboslepých
+    theme_primer_contrast: Vysoký kontrast v základnej farbe
+    theme_primer_dimmed: Základný náter stlmený
+    theme_title: Téma
     time_commitment: Časová náročnosť
     timed_activity_instruction: Táto úloha je časovo obmedzená. Po spustení dohliadanej relácie budete mať na jej dokončenie <strong>%{time} minút</strong>.
     troubleshooting_guide: Príručka na riešenie problémov

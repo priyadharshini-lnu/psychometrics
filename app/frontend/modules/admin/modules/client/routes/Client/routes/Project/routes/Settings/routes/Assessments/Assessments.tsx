@@ -202,13 +202,14 @@ const AssessmentListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   )
 
   return (
-    <Row className="pl">
+    <Row>
       <Col span={24}>
         <TableLayout
+          embedded
           table={AssessmentsTable}
           filters={Filter}
+          title={I18n.t('admin.project_tabs_assessments_title')}
           recordCount={meta.recordCount}
-          loading={tableLoading}
           requestStatus={requests.fetch?.status}
           failureMsg={getErrorMsgFromJsonApiRequests(requests)}
         />

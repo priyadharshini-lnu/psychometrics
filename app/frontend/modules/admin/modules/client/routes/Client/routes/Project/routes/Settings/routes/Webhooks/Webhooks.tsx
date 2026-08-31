@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Input, Switch, Pagination, Button, MenuProps, App, Typography,
+  Table, Space, Input, Switch, Button, MenuProps, App, Typography,
   Row,
   Col,
 } from 'antd'
@@ -21,7 +21,6 @@ import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { AddEditWebhookModal } from './AddEditWebhookModal/AddEditWebhookModal'
 import PushWebhookModal from '~/modules/admin/components/PushWebhookModal/PushWebhookModal'
 import { truncateWithStartEndCharCount } from '~/utils/string'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 import { getClientId } from '~/modules/admin/modules/client/core/projects'
 
@@ -62,7 +61,6 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
     },
   )
   const { modal, message } = App.useApp()
-  const { width: windowWidth } = useWindowSize()
 
   useEffect(() => {
     fetch()
@@ -105,7 +103,6 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
     <>
       <Table
         dataSource={data}
-        loading={tableLoading}
         onChange={handleTableChange}
         pagination={false}
         scroll={{ x: 'max-content' }}
@@ -113,7 +110,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         <Column
           title={I18n.t('shared.id')}
           dataIndex="id"
-          fixed={windowWidth > 800 ? 'left' : undefined}
+          fixed="left"
           key="id"
           sorter
           sortOrder={getSortOrder('id')}
@@ -163,7 +160,7 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
         />
         <Column
           key="manage"
-          fixed={windowWidth > 800 ? 'right' : undefined}
+          fixed="right"
           title={I18n.t('shared.manage')}
           render={webhook => (
             <ConditionalDropdown
@@ -180,13 +177,6 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
           )}
         />
       </Table>
-      <Pagination
-        current={currentPage}
-        pageSize={pageSize}
-        total={meta.recordCount}
-        onChange={changePage}
-        className="pl"
-      />
     </>
   )
 
@@ -218,13 +208,20 @@ const WebhooksListComponent: React.FC<Props> = ({ openModal, clientId }) => {
   )
 
   return (
-    <Row className="pl">
+    <Row>
       <Col span={24}>
         <TableLayout
+          loading={tableLoading}
           table={WebhooksTable}
           filters={Filter}
+          title={I18n.t('admin.project_tabs_webhooks_title')}
+          pagination={{
+            page: currentPage,
+            pageSize,
+            total: meta.recordCount ?? 0,
+            onChange: changePage,
+          }}
           recordCount={meta.recordCount}
-          loading={tableLoading}
           requestStatus={requests.fetch?.status}
           failureMsg={getErrorMsgFromJsonApiRequests(requests)}
         />

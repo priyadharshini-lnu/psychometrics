@@ -657,10 +657,20 @@ const CampaignOptions: React.FC<Props> = ({
 
         {!features?.disable_meeting_recording && (
           options.allowVideoCallRecording && (
-            <Option
-              label={I18n.t('admin.enable_video_call_recording')}
-              {...parametersForField('enableVideoCallRecording')}
-            />
+            <>
+              <Option
+                label={I18n.t('admin.enable_video_call_recording')}
+                {...parametersForField('enableVideoCallRecording')}
+              />
+              <Option
+                label={I18n.t('admin.hide_participant_video')}
+                {...parametersForField('hideParticipantVideo')}
+              />
+              <Option
+                label={I18n.t('admin.disable_transcript_download')}
+                {...parametersForField('disableTranscriptDownload')}
+              />
+            </>
           )
         )}
 

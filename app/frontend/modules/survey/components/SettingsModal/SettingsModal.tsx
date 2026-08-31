@@ -93,7 +93,7 @@ const SettingsModalComponent = ({
       width="50%"
       title={I18n.t('administration.assessments.settings.title')}
       open
-      maskClosable
+      mask={{ closable: true }}
       onCancel={close}
       footer={[
         <Button key="close" onClick={close}>

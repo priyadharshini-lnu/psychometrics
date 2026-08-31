@@ -13,6 +13,7 @@ import { changeLabel } from '../LabelChanger'
 import { getCorrectResults } from '../ResultManager'
 import ChartOptions from './ChartOptions'
 import Series from './Series'
+import { applyBarGradientToSeries } from './barGradient'
 import styles from './styles.less'
 
 Highcharts3D(Highcharts)
@@ -138,10 +139,10 @@ export const Bar: React.FC<Props> = ({
     if (!data) {
       return null
     }
-    const series = Utils.checkAndFilterValues(
+    const series = applyBarGradientToSeries(Utils.checkAndFilterValues(
       { hideEmptyColumns, hideZeroValueColumns },
       data.series(getCorrectResults(model), sourceModel, model, model.props.dataFormat, factors),
-    )
+    ), model)
 
     let reversedX = false
     let reversedY = false

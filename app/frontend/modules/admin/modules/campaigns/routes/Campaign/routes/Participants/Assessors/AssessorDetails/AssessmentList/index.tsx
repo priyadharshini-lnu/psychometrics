@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Row, Col, Table, MenuProps, Input, Pagination, Button, Space, App,
+  Table, MenuProps, Input, Button, Space, App,
 } from 'antd'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
 import type { MessageInstance } from 'antd/es/message/interface'
@@ -8,10 +8,11 @@ import { connect, ConnectedProps } from 'react-redux'
 import isEmpty from 'lodash/isEmpty'
 import { useParams } from 'react-router-dom'
 import {
-  MoreOutlined, AppstoreOutlined, ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
+  ExclamationCircleOutlined, PlusOutlined, DeleteOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import {
   get as getAssessorAssessments, fetch, reset, resetProgress, selectRecords, getSelectedIds, bulkDelete, BULK_DELETE,
   rescore,
@@ -101,47 +102,48 @@ const AssessmentList: React.FC<Props> = ({
 
   return (
     <>
-      <Row justify="space-between" className="pm">
-        <Col span={4} className="pls">
-          <AppstoreOutlined style={{ fontSize: '16px' }} />
-          <span className="mlm">{`${total} ${I18n.t('admin.assessments')}`}</span>
-        </Col>
-        <div className="float-r">
-          <div className={styles.newReportButton}>
-            <Space>
-              {!isEmpty(selectedIds) && assessor && assessor.permissions.removeSubject && (
-                <Button
-                  type="default"
-                  danger
-                  icon={<DeleteOutlined />}
-                  onClick={handleBulkDelete}
-                  disabled={bulkDeleteInProgress}
-                  loading={bulkDeleteInProgress}
-                >
-                  <span>{I18n.t('shared.remove')}</span>
-                </Button>
-              )}
-              <Search
-                placeholder={I18n.t('shared.search')}
-                className={styles.searchInput}
-                value={filters.filterableFields}
-                onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}
-              />
-              {assessor && assessor.permissions.addSubject && (
-                <Button
-                  type="primary"
-                  onClick={() => openModal('AddAssessmentModal')}
-                >
-                  <PlusOutlined />
-                  <span>{I18n.t('admin.assessor_assessments_actions_add_subject')}</span>
-                </Button>
-              )}
-            </Space>
-          </div>
-        </div>
-      </Row>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        title={I18n.t('common.model.assessments')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pagination.defaultPageSize,
+          total,
+          onChange: changePage,
+          showSizeChanger: false,
+        }}
+        filters={(
+          <Space>
+            {!isEmpty(selectedIds) && assessor && assessor.permissions.removeSubject && (
+              <Button
+                type="default"
+                danger
+                icon={<DeleteOutlined />}
+                onClick={handleBulkDelete}
+                disabled={bulkDeleteInProgress}
+                loading={bulkDeleteInProgress}
+              >
+                <span>{I18n.t('shared.remove')}</span>
+              </Button>
+            )}
+            <Search
+              placeholder={I18n.t('shared.search')}
+              className={styles.searchInput}
+              value={filters.filterableFields}
+              onChange={e => changeFilter('filterBySubjectOrAssessment', e.target.value)}
+            />
+            {assessor && assessor.permissions.addSubject && (
+              <Button
+                type="primary"
+                onClick={() => openModal('AddAssessmentModal')}
+              >
+                <PlusOutlined />
+                <span>{I18n.t('admin.assessor_assessments_actions_add_subject')}</span>
+              </Button>
+            )}
+          </Space>
+        )}
+        table={(
           <Table
             className="mtm mbl"
             rowKey="id"
@@ -195,26 +197,12 @@ const AssessmentList: React.FC<Props> = ({
                       message,
                     })
                   }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  )}
                 />
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={settings.pagination.defaultPageSize}
-          total={total}
-          onChange={changePage}
-          hideOnSinglePage
-        />
-      </div>
+        )}
+      />
       <Modals modals={MODALS} />
     </>
   )

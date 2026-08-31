@@ -5,7 +5,6 @@ import { SmsInvitesTable } from './SmsInvitesTable'
 import { SmsHistoriesList } from './SmsHistoriesList'
 import settings from '~/modules/admin/modules/campaigns/settings'
 import routeUtils from '~/utils/route'
-import styles from './styles.less'
 
 const { I18n } = window
 
@@ -20,18 +19,17 @@ export const SmsInvites = () => {
     setTab(currentTab)
   }
 
+  const toggle = (
+    <Radio.Group onChange={e => handleTabChange(e.target.value)} value={currentTab}>
+      <Radio.Button value="invites">{I18n.t('admin.sms_invites_contacts')}</Radio.Button>
+      <Radio.Button value="history">{I18n.t('admin.sms_histories_history')}</Radio.Button>
+    </Radio.Group>
+  )
+
   return (
-    <div style={{ padding: 20 }}>
-      <div className={styles.controls}>
-        <Radio.Group onChange={e => handleTabChange(e.target.value)} defaultValue={currentTab}>
-          <Radio.Button value="invites">{I18n.t('admin.sms_invites_contacts')}</Radio.Button>
-          <Radio.Button value="history">
-            {I18n.t('admin.sms_histories_history')}
-          </Radio.Button>
-        </Radio.Group>
-      </div>
-      {currentTab === 'invites' && <SmsInvitesTable />}
-      {currentTab === 'history' && <SmsHistoriesList />}
+    <div>
+      {currentTab === 'invites' && <SmsInvitesTable toggle={toggle} />}
+      {currentTab === 'history' && <SmsHistoriesList toggle={toggle} />}
     </div>
   )
 }

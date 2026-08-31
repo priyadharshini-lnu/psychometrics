@@ -2,6 +2,7 @@
 
 class DataReport < ApplicationRecord
   include GeoFilterable
+  include RansackSearchableFields
 
   audited
 
@@ -26,7 +27,9 @@ class DataReport < ApplicationRecord
     client_assessment_counts: 7,
     active_clients_projects: 8,
     user_access_review: 9,
-    campaign_factor_scores: 10
+    campaign_factor_scores: 10,
+    campaign_user_creation: 11,
+    proctoring_sessions: 12
   }
 
   enum :scope, { client: 0, global: 1 }, prefix: :scope
@@ -53,9 +56,22 @@ class DataReport < ApplicationRecord
     %w[id name configuration created_at id_value updated_at last_updated_by_id owner_id report_type scope]
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[audits data_report_jobs last_updated_by owner tenant]
+  end
+
+  def runtime_parameters_enabled
+    handler_class = AdminJobs::DataReportExport::REPORT_TYPE_HANDLERS[report_type]
+    handler_class&.runtime_parameters&.any? || false
+  end
+
   # Ransacker for scope enum - converts string values to integers for filtering
   ransacker :scope, formatter: proc { |v| scopes[v] } do |parent|
     parent.table[:scope]
+  end
+
+  ransacker :report_type, formatter: proc { |v| report_types[v] } do |parent|
+    parent.table[:report_type]
   end
 
   private

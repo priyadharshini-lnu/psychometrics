@@ -35,7 +35,7 @@ module Administration
             I18n.t(
               'administration.imports.errors.norm.dimension_not_found',
               dimension_name: headers[1],
-              client_name: owner&.name || 'TTE'
+              client_name: owner&.name || I18n.t('admin.platform_owner')
             )
           )
         end

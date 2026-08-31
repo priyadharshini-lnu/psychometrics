@@ -81,6 +81,7 @@ module Administration
           hash(Administration::MicrositeUserAssessmentSchema.schema(_, _))
         end
         required(:hogan_participant_id).maybe(:str?)
+        required(:owner).maybe(:hash?)
       end
     end
   end

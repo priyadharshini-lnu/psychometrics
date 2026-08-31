@@ -8,11 +8,12 @@ import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getPrivacyText,
   privacyPageLink,
+  enablePrivacyLink,
   getSecondaryLogo,
   getName,
   getSecondaryLogoAltText,
 } from '~/modules/endUser/modules/campaigns/core/project'
-import lighthouseLogo from '~/assets/tte-logo-no-text-raster.png'
+import { monogramHeightPx, monogramNavyUrl } from '~/utils/branding'
 import { useIsProctored } from '~/hooks/useProctoringState'
 
 import { PageFooter } from '~/glint'
@@ -24,6 +25,7 @@ const { I18n } = window
 const mapStateToProps = (state: RootState) => ({
   privacyText: getPrivacyText(state),
   privacyPageLink: privacyPageLink(state),
+  enablePrivacyLink: enablePrivacyLink(state),
   secondaryLogo: getSecondaryLogo(state),
   secondaryLogoAltText: getSecondaryLogoAltText(state),
   projectName: getName(state),
@@ -36,6 +38,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 const FooterComponent: FC<PropsFromRedux> = ({
   privacyText,
   privacyPageLink,
+  enablePrivacyLink,
   secondaryLogo,
   projectName,
   secondaryLogoAltText,
@@ -45,11 +48,12 @@ const FooterComponent: FC<PropsFromRedux> = ({
 
   return (
     <PageFooter
-      footerLeft={secondaryLogo && <TTELogo />}
+      footerLeft={secondaryLogo && <BrandMonogram />}
       footerMiddle={(
         <ProductUsageLinks
           privacyText={privacyText}
           privacyPageLink={privacyPageLink}
+          enablePrivacyLink={enablePrivacyLink}
         />
       )}
       footerRight={(
@@ -63,18 +67,24 @@ const FooterComponent: FC<PropsFromRedux> = ({
   )
 }
 
-const TTELogo: FC = () => (
-  <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
+const BrandMonogram: FC = () => (
+  <img
+    alt={I18n.t('shared.mte_logo_alt_text')}
+    src={monogramNavyUrl()}
+    className={styles.footerLighthouseLogo}
+    height={monogramHeightPx()}
+  />
 )
 
-type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink'>
+type ProductsUsageLinksProps = Pick<PropsFromRedux, 'privacyText' | 'privacyPageLink' | 'enablePrivacyLink'>
 
 const ProductUsageLinks: FC<ProductsUsageLinksProps> = ({
   privacyText,
   privacyPageLink,
+  enablePrivacyLink,
 }) => {
   let privacyLink: JSX.Element | null = null
-  if (privacyText && privacyPageLink) {
+  if (enablePrivacyLink && privacyText && privacyPageLink) {
     privacyLink = (
       <Button
         className="ps-0 pe-0"
@@ -132,7 +142,7 @@ const PartnerLogo: FC<PartnerLogsProps> = ({
     )
   }
 
-  return <img src={lighthouseLogo} alt={I18n.t('shared.mte_logo_alt_text')} className={styles.footerLighthouseLogo} />
+  return <BrandMonogram />
 }
 
 export const Footer = connector(FooterComponent)

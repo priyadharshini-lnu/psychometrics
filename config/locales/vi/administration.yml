@@ -15,11 +15,6 @@ vi:
         simple_design:
           design: Thiết kế
           or: Hoặc
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Đăng nhập thành công.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ vi:
           modal_title: Cài đặt phê duyệt điểm số
           remove_modal_success: 'Cài đặt phê duyệt cho ID đánh giá: %{assessmentId} đã được xóa thành công.'
           remove_modal_text: 'Bạn có chắc chắn muốn xóa cài đặt này cho ID đánh giá: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Bạn đã đăng nhập thành công dưới dạng %{name}
+      bulk_import_translations:
+        details: Mẫu dịch chiến dịch
+        download_template: Tải xuống mẫu
+        errors:
+          blank_campaign_id: 'Hàng %{row}: ID chiến dịch không được để trống'
+          campaign_not_found: 'Hàng %{row}: Chiến dịch %{id} không được tìm thấy trong dự án này'
+          generic: Đã xảy ra lỗi. Vui lòng thử lại.
+          invalid_csv_format: 'Định dạng CSV không hợp lệ: %{message}'
+          invalid_locales: 'Cột ngôn ngữ không hợp lệ: %{locales}'
+          missing_required_columns: 'Thiếu các cột bắt buộc: %{columns}'
+          must_be_csv: Tệp phải là tệp .csv.
+          save_failed: 'Không thể lưu bản dịch Chiến dịch %{id} cho %{locale}: %{message}'
+        file_label: Tệp dịch
+        import_started: Quá trình nhập bản dịch đang diễn ra. Vui lòng kiểm tra tiến độ trong phần thông báo.
+        instructions_intro: Tải xuống mẫu CSV, cập nhật tên chiến dịch trong các cột ngôn ngữ bạn muốn, sau đó tải lên tệp đã hoàn chỉnh.
+        instructions_title: Hướng dẫn
+        menu_label: Nhập bản dịch
+        template_started: Đang tiến hành xuất mẫu. Vui lòng kiểm tra tiến độ trong phần thông báo.
+        title: Nhập bản dịch tên chiến dịch
+        upload_file: Tải lên tệp
       validations:
         dates:
           end: phải sau ngày bắt đầu
@@ -1937,7 +1949,6 @@ vi:
         export: Xuất bản dịch
         import: Nhập bản dịch
         import_descr: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
-    tte: TTE
     update: Cập nhật
     users:
       create:

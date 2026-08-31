@@ -11,7 +11,7 @@ module ScoringApproving
       @setting = @score_approval.setting
       @review_role = @setting&.one_level_approve? ? 'approver' : 'assessor'
       @review_stage = @setting&.one_level_approve? ? 'approval' : 'QC'
-      @url = administration_ai_scoring_approvals_all_url("#{@score_approval.id}/review")
+      @url = admin_all_url("ai_scoring_approvals/#{@score_approval.id}/review")
 
       send_email(
         user,

@@ -103,6 +103,7 @@ sk:
     ai_scoring_approval_stale_description: Zmeny v konfigurácii od posledného spustenia mohli ovplyvniť výsledok. Vykonajte nové vyhodnotenie, aby sa výsledok aktualizoval na základe najnovších nastavení.
     ai_scoring_approval_stale_title: Výsledok môže byť neaktuálny
     ai_scoring_approvals: Schvaľovanie bodovania umelou inteligenciou
+    ai_scoring_errors_label: Chyby v bodovaní umelej inteligencie
     ai_scoring_refresh_score: Aktualizovať skóre
     ai_scoring_refresh_score_confirm_description: Týmto sa pre toto hodnotenie opäť spustí vyhodnocovanie umelou inteligenciou s použitím najnovšej konfigurácie. Naozaj to chcete urobiť?
     ai_scoring_refresh_score_confirm_title: Obnoviť skóre AI?
@@ -122,6 +123,12 @@ sk:
     alt_text_long: Prekračuje maximálny limit 100 znakov.
     api_keys: Kľúče API
     api_keys_form_title: Kľúč API
+    appearance: Vzhľad
+    appearance_dark: Tmavé
+    appearance_dark_theme: Tmavá téma
+    appearance_light: Svetlo
+    appearance_light_theme: Svetlá téma
+    appearance_system: Systém
     application: Žiadosť
     application_add: Pridať žiadosť
     application_name: Názov aplikácie
@@ -131,7 +138,6 @@ sk:
     application_settings_at_least_one_url_required: Pred povolením bielej listiny adries URL povoľte aspoň jeden záznam adresy URL.
     application_settings_confirm_delete_ip: Naozaj chcete túto IP adresu vymazať?
     application_settings_confirm_delete_url: Naozaj chcete odstrániť túto URL adresu?
-    application_settings_edit_ip_address: Upraviť IP adresu / rozsah CIDR
     application_settings_enable_ip_whitelisting: Aktivovať zoznam povolených IP adries
     application_settings_enable_url_whitelisting: Povoliť bielu listinu URL adries
     application_settings_invalid_ip_format: Neplatná IP adresa alebo formát CIDR
@@ -195,6 +201,8 @@ sk:
     assessor_add_subject_modal_subject: Predmet
     assessor_add_subject_modal_subject_placeholder: Predmet hľadania..
     assessor_add_subject_modal_title: Pridanie predmetu
+    assessor_assessment_drawer_title: Podrobnosti o hodnotení
+    assessor_assessment_id: ID hodnotenia hodnotiteľa
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Vyberte hodnotenie
     assessor_assessment_name: Hodnotenie hodnotiteľa
     assessor_assessments: Hodnotenia hodnotiteľov
@@ -345,9 +353,15 @@ sk:
     campaign_assessment_modals_update_occupation_condition_set_select: Vyberte súbor podmienok povolania
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Sada podmienok povolania bola úspešne aktualizovaná
     campaign_assessment_modals_update_occupation_condition_set_title: Aktualizácia súboru stavov obsadenosti
+    campaign_dashboard_instructions_label: Pokyny pre panel kampane
+    campaign_dashboard_instructions_save: Uložiť pokyny
+    campaign_dashboard_instructions_save_error: Pokyny na paneli kampane sa nepodarilo uložiť
+    campaign_dashboard_instructions_save_success: Pokyny pre panel kampane boli úspešne uložené
     campaign_factors: Faktory kampane
     campaign_id_placeholder: Predstavte ID kampane
     campaign_name: Názov kampane
+    campaign_name_translations: Preklady názvov kampaní
+    campaign_name_translations_fetch_error: Chyba pri načítaní prekladov názvov kampaní
     campaign_report_generate_modal_subtitle: Vyberte požadovaný jazyk pre každú správu
     campaign_report_id: ID správy o kampani
     campaign_results_export_details: Výsledky generované artefaktmi kampane AI
@@ -419,6 +433,7 @@ sk:
     category: Kategória
     cell_save_msg: Platné zmeny sa automaticky uložia hneď, ako po úprave opustíte bunku.
     change_reason: Dôvod zmeny
+    change_report_dates_message: Chcete zmeniť rozsah dátumov prehľadu?
     change_score: zmenené skóre
     change_score_log: Záznam zmien skóre
     characters: postavy
@@ -513,6 +528,7 @@ sk:
     created_successfully: AI Assistant bol úspešne vytvorený.
     current: Súčasný
     current_job_role: Aktuálna pracovná pozícia
+    current_locale: Aktuálne miestne nastavenie
     custom_formula: Vlastný vzorec
     custom_message_description: Túto správu je možné odoslať komukoľvek, kto sa zúčastňuje hodnotenia
     custom_message_name: Vlastná správa
@@ -663,7 +679,7 @@ sk:
     dimensions_import_modal_import_dimension: Importovať dimenziu
     dimensions_import_modal_import_scheduled: Naplánovaný import
     dimensions_import_modal_operation: Operácia
-    dimensions_import_modal_owner_global: TTE (globálne)
+    dimensions_import_modal_owner_global: Globálne
     dimensions_import_modal_owner_input_validation: Prosím, vyberte vlastníka
     dimensions_import_modal_owner_select: Výber vlastníka
     dimensions_import_modal_select_json: Vyberte súbor JSON
@@ -680,6 +696,7 @@ sk:
     disable_dp: Nepovoliť ďalšie spracovanie údajov
     disable_proctoring: Vypnúť dohľad
     disable_report_download: Zakázať preberanie správ
+    disable_transcript_download: Zakázať sťahovanie prepisov
     disallow_lead_assessor_moderation: Zakázať moderovanie hlavným hodnotiteľom
     disallow_lead_assessor_moderation_info: Skóre sa vypočíta automaticky na základe všetkých odoslaných formulárov hodnotiteľov a hlavný hodnotiteľ ho nemôže zmeniť na obrazovke moderovania
     discard_all_questions: Vynulovať všetky otázky
@@ -831,10 +848,13 @@ sk:
     feature_flags_ai_group: Funkcie umelej inteligencie
     feature_flags_communication_group: Komunikácia
     feature_flags_platform_group: Funkcie platformy
+    feature_flags_superadmin_group: Vymedzenie rozsahu nájomníka
+    feature_glint_ui_description: Vytvorte zážitok účastníka pomocou dizajnového systému Glint
     feature_global_skills_description: Prístup k globálnej knižnici zručností pre hodnotenia
     feature_idp_description: Aktivovať individuálne plánovanie rozvoja pre účastníkov
     feature_not_available: Táto funkcia nie je k dispozícii
     feature_sms_notification_description: Povoliť SMS upozornenia na pozvánky a pripomienky týkajúce sa kampaní
+    feature_superadmin_tenant_scoping_description: Ak je toto nastavenie zakázané, dotazy superadministrátora nebudú obmedzené na údaje tohto klienta.
     fields_level: Úroveň
     fields_level_description: Popis úrovne
     fields_level_name: Názov úrovne
@@ -866,6 +886,7 @@ sk:
     form_datasheet: Dátový hárok
     form_datasheet_columns: Stĺpce údajového hárka
     form_end_date: Dátum ukončenia
+    form_fields_to_display: Polia na zobrazenie
     form_include_all_datasheet_columns: Zahrnúť všetky stĺpce údajového hárka
     form_name: Meno
     form_no_assessment_selected: Zatiaľ neboli pridané žiadne hodnotenia. Začnite kliknutím na "Pridať".
@@ -890,8 +911,11 @@ sk:
     generate_transcription: Vytvoriť prepis
     generated_at_time: Generované v %{time}
     generated_value: Vytvorená hodnota
+    glint_ui: Používateľské rozhranie Glint
+    glint_ui_disabled_by_client: Používateľské rozhranie Glint je klientom zakázané
     global_skills: Globálne zručnosti
     global_skills_disabled_by_client: Globálne zručnosti sú zakázané klientom
+    go_back: Späť
     grant_type_label: Typ grantu
     grant_type_name: oauth_grant_type
     graphic: Grafika
@@ -906,6 +930,7 @@ sk:
     header_logout_title: Si si istý, že sa chceš odhlásiť?
     hide_all: Skryť všetko
     hide_middle_scores: Skryť stredné skóre
+    hide_participant_video: Skryť video účastníka
     high: Vysoká
     hogan: Hogan
     hogan_assessment: Hoganovo hodnotenie
@@ -1251,6 +1276,7 @@ sk:
     key_id: ID kľúča
     keywords: Kľúčové slová
     keywords_placeholder: Zadajte kľúčové slová oddelené čiarkami.
+    language: Jazyk
     language_id: Kód jazyka
     last_name_required: Prízvisko je povinné
     lead_assessment: Hodnotenie potenciálnych zákazníkov
@@ -1488,6 +1514,8 @@ sk:
     owner_resource_norm: norma
     owner_resource_report: správa
     owner_resource_report_bundle: balík správ
+    page_load_failed: Túto stránku sa nepodarilo načítať.
+    page_load_failed_hint: Aplikácia mohla byť aktualizovaná – pre pokračovanie ju znova načítajte.
     parsed_dependencies_help: Analyzované závislosti pre používateľa, ktoré používa AI Assistant na generovanie výsledkov artefaktov
     parsed_dependencies_title: Analyzované závislosti
     parsed_dependencies_view: Zobrazenie analyzovaných závislostí
@@ -1949,6 +1977,7 @@ sk:
     piped_text_modal_title: Pridanie textu s kanálom
     piped_text_modal_user_reports: Správy používateľov
     piped_text_modal_users: Používateľov
+    platform_owner: Platform
     playground: Ihrisko
     playground_info: Otestujte artefakt pomocou vzorových údajov a zobrazte ukážku vygenerovaných výsledkov.
     playground_placeholder: Zadanie testovacích údajov
@@ -2102,6 +2131,7 @@ sk:
     projects_mettl_schedule_records_secure_browser_enabled: Povoliť zabezpečený prehliadač
     projects_mettl_schedule_records_settings: Nastavenia
     projects_mettl_schedule_records_show_remaining_counts: Povoliť zobrazenie zostávajúceho počtu
+    projects_mettl_schedule_records_title: Mettl Harmonogramy
     projects_mettl_schedule_records_visual_proctoring_enabled: Povolenie vizuálneho proctoringu
     projects_mettl_schedule_records_web_proctoring_enabled: Povoliť webový proctoring
     projects_profile_settings_form_fields_enabled: Povolené
@@ -2179,6 +2209,38 @@ sk:
     raw_score: Hrubý výsledok
     reason_for_changes: Dôvod zmien
     recents: Najnovšie
+    record_history_changes: zmeny
+    record_history_changes_in_request: zmeny v tejto žiadosti
+    record_history_date_range_invalid: Dátum ukončenia musí byť rovnaký alebo neskorší ako dátum začiatku.
+    record_history_date_range_required: Vyberte rozsah dátumov.
+    record_history_date_range_too_large: Rozsah dátumov nemôže presiahnuť %{days} dní. Zúžte vyhľadávanie.
+    record_history_filter_actor: Filtrovať podľa e-mailu herca
+    record_history_filter_field: Filtrovať podľa zmeneného poľa
+    record_history_filter_type: Filtrovať podľa typu záznamu
+    record_history_id_required: Zadajte ID záznamu
+    record_history_include_related: Zahrnúť súvisiace záznamy
+    record_history_last_30_days: Posledných 30 dní
+    record_history_last_7_days: Posledných 7 dní
+    record_history_no_results: Pre tento záznam sa nenašla žiadna história zmien.
+    record_history_no_results_for: Nenašli sa žiadne zmeny pre
+    record_history_records_changed: záznamy zmenené
+    record_history_related_tag: Súvisiace
+    record_history_request_banner: Zobrazujú sa všetky zmeny v žiadosti
+    record_history_request_label: 'Žiadosť:'
+    record_history_request_or_record_required: Zadajte UUID požiadavky alebo vyberte typ záznamu a ID.
+    record_history_request_uuid: Vyžiadať UUID
+    record_history_request_uuid_placeholder: Zadajte UUID požiadavky
+    record_history_revision_failed: Nepodarilo sa načítať stav záznamu pre túto verziu.
+    record_history_search_hint: Zadajte UUID požiadavky alebo vyberte typ záznamu a ID záznamu na sledovanie histórie zmien.
+    record_history_select_type: Vyberte typ záznamu
+    record_history_state_at_version: Stav pri verzii
+    record_history_system: Systém
+    record_history_title: História zmien záznamov
+    record_history_type_required: Vyberte typ záznamu
+    record_history_version: Verzia
+    record_history_view_audit_log: Zobraziť v protokoloch auditu
+    record_history_view_full: Zobraziť celú históriu
+    record_history_view_request: Zobraziť žiadosť
     record_id: ID záznamu
     recordings: Nahrávky
     reflection_questions: Otázky na zamyslenie
@@ -2294,6 +2356,7 @@ sk:
     report_no_evaluations: Správa o %{user} nie je dostupná – neboli prijaté žiadne hodnotenia.
     report_not_generated: Report pre %{user} spĺňa podmienky dostupnosti, ale ešte nebol vygenerovaný. Prosím, najskôr vygenerujte správu.
     report_on_hold: Správa o %{user} momentálne pozastavená
+    report_owner: Majiteľ
     report_pdf_status: Stav správy v PDF
     report_review_abort_qc: Prerušte kontrolu kvality
     report_review_approve: Schváliť
@@ -2314,10 +2377,12 @@ sk:
     report_types:
       active_clients_projects: Aktívni klienti a projekty
       campaign_factor_scores: Skóre faktorov kampane
+      campaign_user_creation: Vytvorenie používateľa kampane
       client_assessment_counts: Hodnotenie klientov je dôležité
       hogan_usage_report: Využitie hodnotenia Hogan
       json_data_report: Správa s údajmi vo formáte JSON
       pearson_usage_report: Využitie hodnotenia spoločnosti Pearson
+      proctoring_sessions: Dozorné stretnutia
       report_usage_summary: Súhrn využitia správy
       saville_usage_report: Využitie hodnotenia Saville
       user_access_review: Kontrola prístupových práv používateľov
@@ -2377,6 +2442,17 @@ sk:
     role_project_admin: Správca projektu
     role_superadmin: Superadministrátor
     run: Spustiť
+    runtime_configuration_invalid_json_object: runtime_configuration musí byť platný objekt JSON
+    runtime_configuration_invalid_parameter: nie je parameter aktualizovateľný za behu
+    runtime_parameter_date_range_required: Vyberte dátum začiatku aj dátum ukončenia
+    runtime_parameter_editable_section_title: Rozsah dátumov
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Zahrnuté filtre
+    runtime_parameter_modal_subtitle: Skontrolujte podrobnosti a v prípade potreby aktualizujte rozsah dátumov.
+    runtime_parameter_modal_title: Spustiť správu
+    runtime_parameter_not_set: Nie je poskytnuté
+    runtime_parameter_submit_button: Spustiť teraz
+    runtime_parameter_value_column: Hodnota
     saml_idp_certificate_available: Dostupné (kliknite pre kopírovanie)
     saml_idp_certificate_label: Certifikát
     saml_idp_entity_id_label: Identifikátor subjektu/Emitent
@@ -2451,11 +2527,16 @@ sk:
       approval_status_in: Stav schválenia
       approver_user_id_in: Schvaľovateľ
       assessment_id_in: Hodnotenie
+      assessment_name_cont: Hodnotenie
       campaign_id_in: Kampaň
+      campaign_name_cont: Kampaň
       client_id_in: Klient
+      client_name_cont: Klient
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: Používateľ QC
       report_id_in: Správa
+      report_name_cont: Správa
       subject_email_cont: Predmet e-mailu
       subject_full_name_cont: Názov predmetu
       user_email_cont: E-mail používateľa
@@ -2511,6 +2592,7 @@ sk:
     scheduling_columns_start_time: Dátum a čas
     scheduling_columns_subject: Predmet
     scheduling_columns_title: Titul
+    scheduling_columns_video_hidden_for_privacy: Video je skryté z dôvodu ochrany súkromia kandidáta.
     scheduling_columns_view_recording: Zobraziť záznam
     scheduling_errors_assessor_already_assigned: Hodnotiteľ, ktorý už bol pridelený k tomuto hodnoteniu. Vyberte si iného hodnotiteľa alebo hodnotiteľa.
     scheduling_errors_date_required: Vyberte dátum
@@ -2600,6 +2682,12 @@ sk:
     score: Skóre
     score_approval_not_allowed_to_approve: Toto skóre nemôžete schváliť.
     score_approval_not_allowed_to_discard: Toto skóre nemôžete zahodiť.
+    score_approval_reset: Obnoviť schválenie
+    score_approval_reset_description: Týmto sa schválenie vráti do stavu čakajúceho. Skóre sa nezmení. Túto akciu nie je možné vrátiť späť.
+    score_approval_reset_not_allowed: Toto schválenie skóre nie je možné v aktuálnom stave resetovať.
+    score_approval_reset_recompute_description: Týmto sa resetuje schválenie, z výsledkov používateľa sa odstránia skóre umelej inteligencie a vymažú sa všetky vygenerované prehľady. Túto akciu nie je možné vrátiť späť.
+    score_approval_reset_success: Schválenie skóre bolo resetované.
+    score_approval_reset_title: Resetovať schválenie skóre?
     score_definition_placeholder: Zadajte definíciu pre túto úroveň skóre
     score_definitions: Definície skóre
     score_max: Maximálny počet bodov
@@ -2831,6 +2919,7 @@ sk:
     sheets_tabs_settings: Nastavenia
     show_all: Zobraziť všetko
     show_all_assessment_responses: Zobraziť všetky odpovede hodnotenia
+    show_form_field_titles: Zobraziť názvy polí formulára
     show_middle_scores: Zobraziť ďalšie skóre pre %{count} (voliteľné)...
     show_original: Zobraziť originál
     show_submenu: Zobraziť podmenu
@@ -2948,7 +3037,14 @@ sk:
     smtp_settings_user_name: Používateľské meno
     specialty_questions: Špecifické otázky
     sso_email_mismatch: Ste prihlásení na inom účte u poskytovateľa identít. Odhláste sa, prosím, u poskytovateľa identít a skúste to znova.
+    sso_enforce_for: Vynútiť jednorazové prihlásenie pre
+    sso_enforce_for_all: Všetci používatelia
+    sso_enforce_for_none: Žiadne
+    sso_enforce_for_specific_domains: Konkrétne domény
     sso_enforced: Vynútiť SSO
+    sso_enforced_domains: Vynútené domény
+    sso_enforced_domains_hint: napr. se.com (presná zhoda) alebo *.se.com (iba subdomény)
+    sso_enforced_domains_placeholder: Zadajte doménu (domény) a stlačte Enter
     sso_label: SSO
     sso_not_enabled: Pre tohto klienta nie je povolené SSO
     sso_settings: Nastavenia SSO
@@ -3063,11 +3159,15 @@ sk:
     success_title: Vytvorené hodnotiace centrá
     success_update: Nastavenia návrhu boli úspešne uložené
     suitability_id: Identifikačný kód vhodnosti
+    superadmin_tenant_scoping: Superadministrátor
     superadmin_use_root_domain: Superadministrátori sa musia prihlásiť cez hlavnú doménu
     switch_client: Prepnúť klienta
     system_prompt: Systémová výzva
     tab_text_one: Ponuka
     tab_text_two: Podmenu
+    table_display_columns: Stĺpce
+    table_display_filters: Filtre
+    table_display_title: Displej
     table_more_actions: Ďalšie akcie
     tabs_results: Výsledky
     tabs_settings: Nastavenia
@@ -3083,12 +3183,38 @@ sk:
     taxonomy_title: Taxonómia zručností
     template_and_campaign_required: Prosím, uveďte šablónu aj ID kampane
     template_render_failed: Nepodarilo sa vykresliť šablónu
+    tenant_repair_confirm_message: 'Nastaviť tenant_id na %{new_tenant} na %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Nastaviť tenant_id na null pre %{model} #%{id}?'
+    tenant_repair_confirm_title: Potvrdiť aktualizáciu nájomníka
+    tenant_repair_correct: Správne
+    tenant_repair_current_tenant: Súčasný nájomca
+    tenant_repair_find_record: Nájsť záznam
+    tenant_repair_global_tenant: globálny
+    tenant_repair_invalid_model: Neplatný alebo nenájomný typ modelu
+    tenant_repair_invalid_record_id: Zadajte platné ID záznamu
+    tenant_repair_invalid_tenant_id: Zadajte platné pozitívne ID nájomníka alebo ho nechajte prázdne, aby bolo nulové
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Zadajte text pre vyhľadávanie...
+    tenant_repair_moved_from: 'zmenil sa nájomca:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: ID nového nájomníka
+    tenant_repair_preview_title: Náhľad záznamu
+    tenant_repair_request_failed: Žiadosť zlyhala
+    tenant_repair_resolved_tenant: Vyriešený nájomca
+    tenant_repair_success: Nájomník bol úspešne aktualizovaný.
+    tenant_repair_title: Oprava nájomníka
+    tenant_repair_update: Aktualizácia
+    tenant_repair_will_set_null: Nastaví tenant_id na null
+    tenant_repair_will_set_value: Nastaví tenant_id na %{value}
     test_generate: Testovanie generovania
     test_render: Testovací render
     test_render_tooltip: Otestujte šablónu promptu s údajmi o kampani, aby ste zistili, čo bude odoslané AI asistentovi.
     text_danger: Text(nebezpečenstvo)
     text_success: Text (úspech)
     text_warning: Text(varovanie)
+    themes:
+      marsh-dark: Močiarna tma
+      marsh-light: Močiarne svetlo
     this_field_is_required: Toto pole je povinné
     threesixity_advance_settings_campaign_template: Šablóna kampane
     threesixity_advance_settings_factors: Faktory
@@ -3110,6 +3236,7 @@ sk:
     threesixity_success: Kampaň Multi Rater bola úspešne vytvorená.
     threesixity_success_job: Úloha na vytvorenie kampane Multi Rater bola úspešne naplánovaná.
     threesixty: Kampaň 360
+    threesixty_campaigns_instruction_visible_to_participants: Ukážte tento pokyn účastníkom
     threesixty_campaigns_mail_history_date: Dátum
     threesixty_campaigns_mail_history_download_details: Stiahnite si podrobnosti
     threesixty_campaigns_mail_history_emails_sent: Odoslané e-maily
@@ -3125,6 +3252,8 @@ sk:
     threesixty_campaigns_menu_report_menu_report_approval_title: Nastavenia schválenia zostavy
     threesixty_campaigns_menu_report_menu_report_options_title: Možnosti zostavy
     threesixty_campaigns_menu_report_title: Správa
+    threesixty_campaigns_schedule_date_presets: Prednastavené dátumy plánu
+    threesixty_campaigns_send_reminders_automatically: Automaticky posielať pripomienky
     time_label: Čas
     time_zone: Časové pásmo
     timed_label: 'Časový limit: %{time_text}'
@@ -3177,7 +3306,6 @@ sk:
       title: Preklady
     translations_export_failure_msg: Chyba pri exporte prekladov
     translations_export_success_msg: Export prebiehajúcich vývojových akcií.
-    tte: TTE
     type_by_skill: Podľa zručnosti
     type_by_skill_type: Podľa typu zručnosti
     type_default: Predvolené nastavenie

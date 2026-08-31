@@ -18,6 +18,7 @@ import {
 } from '~/modules/endUser/modules/campaigns/core/userAssessment'
 import styles from './styles.less'
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -40,7 +41,6 @@ const connector = connect(
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
 const { Content } = Layout
-const { I18n } = window
 
 type Params = {
   userAssessmentId: string
@@ -127,7 +127,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
 
   return (
     <>
-      <title>{`${assessment.name} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+      <DocumentTitle text={assessment.name} />
       <Content className={styles.agileContent}>
         <div id="agile-container" className={styles.agileContainer} />
       </Content>

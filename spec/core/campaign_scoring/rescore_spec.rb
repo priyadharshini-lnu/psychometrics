@@ -61,12 +61,54 @@ describe CampaignScoring::Rescore do
     campaign_factor_values = described_class.call!(campaign, user)
     indexed_campaign_factor_values = campaign_factor_values.index_by(&:campaign_factor_id)
 
-    expect(CampaignFactorValue.find_by(id: campaign_factor_value.id)).to eq(nil)
+    # Verify record was updated, not destroyed
+    updated_cfv = CampaignFactorValue.find_by(id: campaign_factor_value.id)
+    expect(updated_cfv).to eq(campaign_factor_value)
+    expect(updated_cfv.numeric_value).to eq(2)
+
     expect(indexed_campaign_factor_values[cf_factor1.id].value).to eq(2)
     expect(indexed_campaign_factor_values[cf_factor2.id].value).to eq(4.8)
     expect(indexed_campaign_factor_values[cf_factor3.id].value).to eq('Senior')
     expect(indexed_campaign_factor_values[cf_factor4.id].value).to eq(10)
     expect(indexed_campaign_factor_values[cf_factor5.id].value).to eq(((2 + 4.8) / 2) + (10 * 0.5))
+  end
+
+  it 'updates existing auto-calculated factor values in-place' do
+    cf_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessment', assessment_score_type: 'score'
+    )
+    existing_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign,
+      numeric_value: 0, calculation_type: :auto
+    )
+    original_id = existing_value.id
+
+    described_class.call!(campaign, user)
+
+    reloaded_value = CampaignFactorValue.find_by(id: original_id)
+    expect(reloaded_value).to_not be_nil
+    expect(reloaded_value.id).to eq(original_id)
+    expect(reloaded_value.numeric_value).to eq(2)
+    expect(reloaded_value.calculation_type).to eq('auto')
+  end
+
+  it 'preserves manual factor values and their calculation_type during rescore' do
+    cf_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: 'assessor_scoring', assessment_score_type: 'score'
+    )
+    manual_value = create(
+      :campaign_factor_value, campaign_factor: cf_factor, user: user, campaign: campaign,
+      numeric_value: 50, calculation_type: :manual
+    )
+
+    described_class.call!(campaign, user)
+
+    reloaded_value = CampaignFactorValue.find_by(id: manual_value.id)
+    expect(reloaded_value).to_not be_nil
+    expect(reloaded_value.numeric_value).to eq(50)
+    expect(reloaded_value.calculation_type).to eq('manual')
   end
 
   it "doesn't remove manually saved factor with type assessor_scoring " do

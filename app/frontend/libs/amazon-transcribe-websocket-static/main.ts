@@ -155,7 +155,7 @@ export const stopTranscription = function (): Promise<void> {
     }
 
     try {
-      currentSocket.send(createEndOfStreamBinaryMessage())
+      currentSocket.send(createEndOfStreamBinaryMessage() as Uint8Array<ArrayBuffer>)
     } catch {
       requestSocketClose()
     }
@@ -192,7 +192,7 @@ export const transcribe = ({
 
       // Skip empty frames — sending zero-length binary causes an immediate AWS close (code 1005)
       if (currentSocket?.readyState === WebSocket.OPEN && binary.length > 0) {
-        currentSocket.send(binary)
+        currentSocket.send(binary as Uint8Array<ArrayBuffer>)
       }
     })
   }

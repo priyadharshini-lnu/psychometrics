@@ -22,22 +22,27 @@ import { toReadableString } from '~/modules/admin/modules/SheetManagement/utils'
 
 const { I18n } = window
 
+interface OwnProps {
+  parentResourceType: ParentResourceType
+  parentResourceId: number
+  sheetType: SheetType
+}
+
 const connector = connect(
-  (state: RootState) => ({
-    permissions: getPermissions(state),
-    columns: getColumns(state),
-  }),
+  (state: RootState, { parentResourceType, parentResourceId, sheetType }: OwnProps) => {
+    const sheet = { parentType: parentResourceType, parentId: parentResourceId, sheetType }
+
+    return {
+      permissions: getPermissions(state, sheet),
+      columns: getColumns(state, sheet),
+    }
+  },
   {
     fetch,
     updateColumn,
     updateSorting,
   },
 )
-interface OwnProps {
-  parentResourceType: ParentResourceType
-  parentResourceId: number
-  sheetType: SheetType
-}
 
 type PropsFromRedux = OwnProps & ConnectedProps<typeof connector>
 
@@ -193,7 +198,7 @@ export const SheetSettingsComponent: FC<PropsFromRedux> = ({
               parentResourceId={parentResourceId}
               sheetType={sheetType}
             />
-            <Divider type="vertical" />
+            <Divider orientation="vertical" />
             {permissions.update && (
               <Button
                 type="primary"

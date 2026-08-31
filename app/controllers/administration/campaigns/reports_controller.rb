@@ -153,7 +153,7 @@ module Administration
 
       def assessments_and_reports
         reports = Panko::ArraySerializer.new(
-          campaign.campaign_reports.includes(:report_family, report: :assessments),
+          campaign.campaign_reports.includes(:report_family, report: %i[assessments owner]),
           each_serializer: Administration::CampaignReportSerializer,
           context: {
             current_user: current_user,
@@ -165,7 +165,7 @@ module Administration
         assessments = Panko::ArraySerializer.new(
           campaign.campaign_assessments.includes(
             :norm, :mettl_schedule_record,
-            assessment: [:norms, :linked_assessment, :linked_assessor_form, :translations,
+            assessment: [:owner, :norms, :linked_assessment, :linked_assessor_form, :translations,
                          { dimension: :occupation_condition_sets }]
           ),
           each_serializer: Administration::CampaignAssessmentSerializer,
@@ -200,7 +200,7 @@ module Administration
       def other
         excluded_report_ids = campaign.campaign_reports.map(&:report_id)
         user_reports = campaign.user_reports.where.not(report_id: excluded_report_ids).
-                       preload(:report).
+                       preload(report: %i[owner assessments_reports]).
                        select(:report_id).
                        distinct(:report_id).
                        order(report_id: :desc)

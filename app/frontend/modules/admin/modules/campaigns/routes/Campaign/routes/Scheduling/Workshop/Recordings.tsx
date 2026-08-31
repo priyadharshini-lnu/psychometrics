@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import {
   Button,
   Modal,
@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { ConnectedProps, connect } from 'react-redux'
 import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { WorkshopRecordingTR } from '~/modules/admin/modules/campaigns/core/workshopRecording'
 import { TranscriptionDetailsDrawer } from '~/modules/admin/components/Recordings/TranscriptionDetailsDrawer'
@@ -20,7 +21,7 @@ const connector = connect(state => ({
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-export const RecordingsComponent: React.FC<PropsFromRedux> = () => {
+export const RecordingsComponent: React.FC<PropsFromRedux & { toggle?: ReactNode }> = ({ toggle }) => {
   const { id, campaignId } = useParams() as { id: string, campaignId: string }
 
   const config = {
@@ -34,14 +35,19 @@ export const RecordingsComponent: React.FC<PropsFromRedux> = () => {
 
   return (
     <>
-      <Resource config={config} name="workshop_recordings">
-        <RecordingsTable />
+      <Resource
+        title={I18n.t('admin.scheduling_tabs_assessment_center')}
+        config={config}
+        name="workshop_recordings"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenterRecordings}
+      >
+        <RecordingsTable toggle={toggle} />
       </Resource>
     </>
   )
 }
 
-const RecordingsTable = () => {
+const RecordingsTable: React.FC<{ toggle?: ReactNode }> = ({ toggle }) => {
   const [showTranscription, setShowTranscription] = useState(false)
   const [transcriptionText, setTranscriptionText] = useState<string | null>('')
 
@@ -51,17 +57,20 @@ const RecordingsTable = () => {
 
   return (
     <>
-      <Resource.Filter hideSearch name="" />
-      <Resource.Table pagination>
+      <Resource.Filter hideSearch name="" controls={toggle} />
+      <Resource.Table embedded pagination>
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_serial_no')}
           id="id"
+          hideable={false}
           width="3%"
+          fixed="left"
         />
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_recording_date')}
           id="recording_date"
           width="5%"
+          fixed="left"
         />
         <Resource.Column
           title={I18n.t('admin.scheduling_columns_assessor')}
@@ -153,6 +162,7 @@ const RecordingsTable = () => {
               </div>
             )
           }}
+          fixed="right"
         />
       </Resource.Table>
       <TranscriptionDetailsDrawer

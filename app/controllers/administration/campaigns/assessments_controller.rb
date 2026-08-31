@@ -141,7 +141,7 @@ module Administration
       def other
         excluded_assessment_ids = campaign.campaign_assessments.map(&:assessment_id)
         user_assessments = campaign.user_assessments.where.not(assessment_id: excluded_assessment_ids).
-                           preload(assessment: %i[translations dimension]).
+                           preload(assessment: %i[translations dimension owner]).
                            select(:assessment_id).
                            distinct(:assessment_id).
                            order(assessment_id: :desc)

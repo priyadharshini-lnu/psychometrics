@@ -28,8 +28,9 @@ RSpec.describe Administration::ThreesixtyCampaigns::ReportsController, type: :co
       allow(AdminAuth::SessionRegistry).to receive(:session_active?).and_return(false)
       allow(Reports::PrepareDataForReport).to receive(:call!).and_return({})
 
+      # The route segment is a Campaign id despite its name; the controller finds by campaign_id.
       get :show, params: {
-        threesixty_campaign_id: threesixty_campaign.id,
+        threesixty_campaign_id: campaign.id,
         subject_id: subject.id,
         user_token: current_user.authentication_token
       }
@@ -44,7 +45,7 @@ RSpec.describe Administration::ThreesixtyCampaigns::ReportsController, type: :co
       allow(AdminAuth::SessionRegistry).to receive(:session_active?).and_return(false)
 
       get :show, params: {
-        threesixty_campaign_id: threesixty_campaign.id,
+        threesixty_campaign_id: campaign.id,
         subject_id: subject.id
       }
 

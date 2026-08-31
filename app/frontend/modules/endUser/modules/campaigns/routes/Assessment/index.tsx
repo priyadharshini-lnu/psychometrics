@@ -39,6 +39,7 @@ import { useDeviceDetection } from '~/hooks/useDeviceDetection'
 import { protectContent } from '~/utils/contentProtection'
 
 import styles from './UserAssessment.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Content } = Layout
 
@@ -255,7 +256,7 @@ const UserAssessmentComponent: FC<UserAssessmentProps> = ({
     && ((instructions && instructions.enabled) || (assessmentTimer && !assessmentStartedAt))) {
     return (
       <>
-        <title>{`${assessmentName || ''} - ${I18n.t('frontend.lighthouse_app')}`}</title>
+        <DocumentTitle text={assessmentName} />
         <GlintPageHeader>
           <Col offset={4} span={16} className="ta-c">
             <Space align="center" size="large">

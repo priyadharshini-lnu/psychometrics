@@ -27,7 +27,7 @@ html.body-full-height lang="#{I18n.locale}"
       __INITIAL_STATE__ = {
         csrfToken: '#{form_authenticity_token}',
         user: #{::Auth::CurrentUserSerializer.new.serialize((current_user || resource || User.new)).to_json.html_safe},
-        projectConfig: #{::Auth::ProjectConfigSerializer.new(context: { background: image_url(randomized_background_image) }).serialize(@current_project || Client.new).to_json.html_safe},
+        projectConfig: #{::Auth::ProjectConfigSerializer.new(context: { background: image_url(auth_background_image), glint_background: image_url(auth_background_image) }).serialize(@current_project || Client.new).to_json.html_safe},
         flash: #{flash_json_messages.to_json.html_safe}
       }
     - action = "#{controller_name}/#{action_name}"

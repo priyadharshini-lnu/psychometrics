@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import {
   Flex, Button, Typography, Modal, Card, Tooltip,
-} from 'antd'
+} from '@thetalententerprise/glint'
 import cs from 'classnames'
-import { EyeOutlined, ReloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { EyeOutlined, ReloadOutlined } from '@thetalententerprise/glint/icons'
 import { SafeHTML } from '~/components/SafeHTML'
 import { useResources } from '~/hooks/useResources/useResources'
 import '~/libs/htmldiff.cjs'

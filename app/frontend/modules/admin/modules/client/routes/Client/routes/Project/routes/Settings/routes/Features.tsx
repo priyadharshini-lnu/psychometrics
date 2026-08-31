@@ -26,6 +26,7 @@ interface ProjectFeatures {
   id: string;
   aiTranslation: boolean;
   aiContentAnalysis: boolean;
+  glintUi: boolean;
 }
 
 interface ClientFeatures {
@@ -38,6 +39,7 @@ interface ClientFeatures {
   id: string;
   aiTranslation: boolean;
   aiContentAnalysis: boolean;
+  glintUi: boolean;
 }
 
 interface Project {
@@ -173,6 +175,7 @@ export const Features: React.FC = () => {
     idp: false,
     aiTranslation: false,
     aiContentAnalysis: false,
+    glintUi: false,
   }
 
   const clientFeatures = clientFeaturesData[0] || {
@@ -184,6 +187,7 @@ export const Features: React.FC = () => {
     idp: false,
     aiTranslation: false,
     aiContentAnalysis: false,
+    glintUi: false,
   }
 
   useEffect(() => {
@@ -227,6 +231,14 @@ export const Features: React.FC = () => {
     }
   }, [clientFeatures.globalSkills])
 
+  useEffect(() => {
+    if (!clientFeatures.glintUi) {
+      form.setFieldsValue({
+        glintUi: false,
+      })
+    }
+  }, [clientFeatures.glintUi])
+
   const isFetchLoading = isLoading('fetch')
 
   const transformValues = (values) => {
@@ -240,6 +252,7 @@ export const Features: React.FC = () => {
       globalSkills: !clientFeatures.globalSkills ? false : values.globalSkills || false,
       aiTranslation: !clientFeatures.aiTranslation ? false : values.aiTranslation || false,
       aiContentAnalysis: !clientFeatures.aiContentAnalysis ? false : values.aiContentAnalysis || false,
+      glintUi: !clientFeatures.glintUi ? false : values.glintUi || false,
     }
     return {
       ...transformedValues,
@@ -392,6 +405,15 @@ export const Features: React.FC = () => {
                       ? I18n.t('admin.global_skills_disabled_by_client')
                       : undefined}
                     disabled={!clientFeatures.globalSkills}
+                  />
+                  <FeatureToggle
+                    name="glintUi"
+                    label={I18n.t('admin.glint_ui')}
+                    tooltip={I18n.t('admin.feature_glint_ui_description')}
+                    help={!clientFeatures.glintUi
+                      ? I18n.t('admin.glint_ui_disabled_by_client')
+                      : undefined}
+                    disabled={!clientFeatures.glintUi}
                     isLast
                   />
                 </FeatureCard>

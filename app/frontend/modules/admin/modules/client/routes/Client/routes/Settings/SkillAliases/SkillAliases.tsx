@@ -8,6 +8,7 @@ import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { SkillAliasForm } from './SkillAliasForm'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
@@ -34,7 +35,12 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
   }
 
   return (
-    <Resource config={config} name="skill_aliases">
+    <Resource
+      title={I18n.t('admin.settings_tabs_skill_aliases')}
+      config={config}
+      name="skill_aliases"
+      settingsKey={TABLE_SETTINGS_KEYS.clientSettingsSkillAliases}
+    >
       <ResourceFilter openModal={openModal} />
       <Resource.Table
         pagination
@@ -42,6 +48,7 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<SkillAlias>
           title={I18n.t('admin.settings_skill_aliases_alias')}
           id="name"
+          hideable={false}
           width={300}
         />
         <Resource.Column<SkillAlias>
@@ -53,6 +60,7 @@ const SkillAliasesList: React.FC<Props> = ({ openModal }) => {
         <Resource.Column<SkillAlias>
           title={I18n.t('shared.action')}
           id="actions"
+          hideable={false}
           key="actions"
           render={skillAlias => (
             <ConditionalDropdown

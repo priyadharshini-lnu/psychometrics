@@ -10,4 +10,4 @@ p You are receiving this email as you have been added as an approver for the rep
 
 p You can access the report via the following link:
 
-= link_to 'Reports', administration_to_admin_url(@url)
+= link_to 'Reports', @url

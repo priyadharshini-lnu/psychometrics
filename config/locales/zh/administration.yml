@@ -15,11 +15,6 @@ zh:
         simple_design:
           design: 设计
           or: 或者
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: 登录成功。
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ zh:
           modal_title: 评分审批设置
           remove_modal_success: 评估ID为%{assessmentId}的审批设置已成功删除
           remove_modal_text: 您确定要删除评估ID为%{assessmentId}的此设置吗？
-      assessors:
-        spoof:
-          successfully: 您已成功登录 %{name}
+      bulk_import_translations:
+        details: 活动翻译模板
+        download_template: 下载模板
+        errors:
+          blank_campaign_id: 第 %{row} 行：活动 ID 不能为空
+          campaign_not_found: 第 %{row} 行：本项目中未找到活动 %{id}
+          generic: 出错了，请重试。
+          invalid_csv_format: 无效的 CSV 格式：%{message}
+          invalid_locales: 无效的语言列：%{locales}
+          missing_required_columns: 缺少必填列：%{columns}
+          must_be_csv: 文件必须是 .csv 文件
+          save_failed: "%{id} 活动翻译（%{locale}）无法保存：%{message}"
+        file_label: 翻译文件
+        import_started: 翻译导入正在进行中。请在通知中查看进度。
+        instructions_intro: 下载 CSV 模板，在所需的任意语言列中更新活动名称，然后上传完成的文件。
+        instructions_title: 指示
+        menu_label: 导入翻译
+        template_started: 模板导出正在进行中。请在通知中查看进度。
+        title: 导入活动名称翻译
+        upload_file: 上传文件
       validations:
         dates:
           end: 必须在开始日期之后
@@ -1937,7 +1949,6 @@ zh:
         export: 出口翻译
         import: 进口翻译
         import_descr: 请参阅导出功能，提取可用于此处导入的模板。
-    tte: TTE
     update: 更新
     users:
       create:

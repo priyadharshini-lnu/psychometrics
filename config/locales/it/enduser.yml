@@ -11,6 +11,7 @@ it:
     ai_idp_retake_step_chat_hint_no_document: Puoi riavviare la chat per condividere più dettagli, e farò del mio meglio per aiutarti.
     ai_idp_summary_hint_no_document: Con il tuo permesso, se dici di sì, posso creare un piano di sviluppo per te. Se no, puoi riavviare la chat per condividere più dettagli.
     all_checks_must_pass: È necessario che tutti i controlli abbiano esito positivo prima di poter procedere.
+    appearance: Aspetto
     approve_idp_plan: Approva Piano
     assessment_misconfigured: Configurazione errata della valutazione
     assessment_timing_duration_minutes: "%{duration} minuti"
@@ -52,16 +53,49 @@ it:
     camera_test_step: Fase di verifica audio e video
     campaign: Campagna
     campaign_check_status: 'Stato: %{status}'
+    card_action_retry: Riprova
+    card_action_review: Revisione
+    card_action_start: Inizio
+    change_password_warning: 'Importante: la modifica della password comporterà il logout.'
     chat_instructions: Istruzioni per la chat
     check: Controlla
     check_video_recording: Ti preghiamo di controllare video e audio riproducendo la registrazione.
     checking_browser_compatibility: Verifica della compatibilità del browser...
     checking_latency: Verifica della latenza...
+    collapse_navigation: Comprimi la navigazione
     complete_prework_message: Per iniziare, completa tutte le attività preliminari.
     could_not_reach_servers: Impossibile connettersi ai nostri server per verificare la velocità di rete. Controlla la tua connessione Internet e riprova.
+    dashboard: Pannello di controllo
+    dashboard_active_programs: Programmi attivi
+    dashboard_begin_program: Avviare il programma
+    dashboard_continue_program: Continua il programma
+    dashboard_days_left: "%{count} giorni rimanenti"
+    dashboard_greeting_afternoon: Buon pomeriggio, %{name}.
+    dashboard_greeting_evening: Buonasera, %{name}.
+    dashboard_greeting_eyebrow: Bentornato
+    dashboard_greeting_morning: Buongiorno, %{name}.
+    dashboard_instructions: Potrebbero esserti state assegnate diverse attività da completare. Assicurati di portare a termine tutte le attività assegnate in ogni programma.
+    dashboard_reports_ready: Rapporti pronti
+    dashboard_your_programs: I tuoi programmi
     day: giorno
     day_plural: giorni
     details: Dettagli
+    details_back: Indietro
+    details_due: Dovuto
+    details_group_locked_hint: Si sblocca dopo il completamento di '%{group}'.
+    details_intro_tab: Introduzione
+    details_no_reports: Nessuna segnalazione ancora
+    details_open_heading: Esercizi aperti
+    details_open_hint: Completatelo in qualsiasi ordine, al vostro ritmo.
+    details_percent_done: "%{percent}% completato"
+    details_progress: Progressi
+    details_reports_ready: I tuoi report sono pronti
+    details_reports_tab: Rapporti
+    details_reserved: Prenotato
+    details_sequential_heading: Esercizi sequenziali
+    details_sequential_hint: 'Completate il gioco in ordine: ogni passaggio sblocca il successivo.'
+    details_total: Totale
+    details_view_details: Visualizza i dettagli
     development: Sviluppo
     direct_reportees: Collegati
     download: Scarica
@@ -108,6 +142,10 @@ it:
     localstorage_fix_title: La memorizzazione locale non è abilitata nel tuo browser
     localstorage_not_enabled_detail: La memoria locale non è abilitata nel tuo browser. Assicurati di non trovarti in modalità privata o in incognito, poiché in queste modalità la memoria locale è spesso disabilitata.
     localstorage_support: LocalStorage abilitato
+    login_sign_in_btn: Registrazione
+    login_sign_up_link: Iscrizione
+    login_welcome_description: Accedi con il tuo account Lighthouse
+    login_welcome_title: Benvenuti al faro
     magic_link_interstitial_description: Per motivi di sicurezza, ti chiediamo di confermare questo accesso. I sistemi automatizzati non possono completare questa operazione.
     magic_link_interstitial_title: Per completare l'accesso, clicca sul pulsante qui sotto.
     max_word_limit: Deve essere al massimo %{max} parole
@@ -124,6 +162,7 @@ it:
     minute: minuto
     minute_plural: verbali
     my_plan: Il mio piano
+    my_profile: Il mio profilo
     network: Rete
     network_check: Test di velocità Internet
     network_check_description: Verifica della qualità della tua connessione Internet tra i nostri server e il tuo dispositivo.
@@ -135,6 +174,7 @@ it:
     network_speed_meets_required_detail: La tua velocità di connessione Internet soddisfa i requisiti minimi previsti dalla campagna
     network_test_step: Fase di test della rete
     no_audio_detected: Non viene rilevato alcun segnale audio. Verifica che il microfono sia collegato e funzioni correttamente.
+    open_navigation: Apri navigazione
     pass: Passa
     pause: Pausa
     pearson_timing_duration_minutes: A tempo - %{duration} minuti per completarlo
@@ -150,7 +190,13 @@ it:
     proctored: Sotto la supervisione di un sorvegliante
     proctored_assessment_misconfigured_msg: Questa valutazione è sorvegliata, ma manca l'impostazione del tempo richiesta; si prega di contattare l'amministratore.
     profile: Profilo
+    profile_cancel: Cancellare
     profile_details: Dettagli
+    profile_edit: Modificare
+    profile_other_information: Altre informazioni
+    profile_personal_information: Informazioni personali
+    profile_save: Salva
+    profile_time: Tempo
     question_counter: Domanda %{current} di %{total}
     reason_for_idp_plan_rejection: Motivo del rifiuto
     record: Registro
@@ -167,9 +213,12 @@ it:
     results: Risultato
     safari_proctoring_description: Sembra che tu stia utilizzando il browser Safari, che potrebbe presentare alcune limitazioni per quanto riguarda le funzionalità di monitoraggio attivate per questa campagna. Per un'esperienza ottimale, ti consigliamo di utilizzare i browser Chrome, Edge o Firefox.
     safari_proctoring_title: Rilevato il browser Safari
+    scheduling: Pianificazione
     select_audio_device: Seleziona dispositivo audio
     select_video_device: Seleziona dispositivo video
     selected_count: Selezionato
+    sign_out: disconnessione
+    signup_sign_in_link: Registrazione
     skill_type: Tipo di abilità
     speech_verification_error: Si è verificato un errore durante la verifica del tuo discorso. Prova di nuovo.
     speech_verification_failed: Il tuo discorso non corrispondeva alla frase di prova. Prova di nuovo e pronuncia la frase in modo chiaro.
@@ -177,6 +226,7 @@ it:
     start_campaign_message_timed: Questa è una campagna a tempo, clicca sul pulsante '%{buttonText}' per iniziare le attività.
     start_readiness_check: Avvia il controllo di preparazione
     start_system_check: Avvia il controllo del sistema
+    status_locked: Chiuso
     stop: Basta
     subinstruction_audio: Microfono funzionante
     subinstruction_eight: Riservatevi un po' di tempo senza interruzioni per la valutazione completa
@@ -228,6 +278,21 @@ it:
     tasks: Campagne
     testing_download_speed: Verifica della velocità di download...
     testing_upload_speed: Verifica della velocità di upload...
+    theme_active: Attivo
+    theme_change: Cambia tema
+    theme_dark_theme: Tema oscuro
+    theme_ember: Brace
+    theme_light_theme: Tema leggero
+    theme_marsh: Palude
+    theme_mode_dark: Buio
+    theme_mode_light: Leggero
+    theme_mode_system: Sistema
+    theme_mode_title: Modalità
+    theme_primer: Primer
+    theme_primer_colorblind: Primer per daltonici
+    theme_primer_contrast: Primer ad alto contrasto
+    theme_primer_dimmed: Primer attenuato
+    theme_title: Tema
     time_commitment: Impegno in termini di tempo
     timed_activity_instruction: 'Si tratta di un''attività a tempo: una volta avviata la sessione di sorveglianza, avrai a disposizione <strong>%{time} minuti</strong> per completarla.'
     troubleshooting_guide: Guida alla risoluzione dei problemi

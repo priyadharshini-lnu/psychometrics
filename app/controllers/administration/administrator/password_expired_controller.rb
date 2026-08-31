@@ -12,7 +12,10 @@ module Administration
           warden.session(scope)['enforce_password_change'] = false
           set_flash_message :notice, :updated
           bypass_sign_in resource, scope: scope
-          redirect_to stored_location_for(scope) || :root
+          # The flash covers Rails-rendered landings; the param covers the shell, which renders none.
+          redirect_to Utility::Url.with_query_params(
+            stored_location_for(scope) || root_path, 'notice' => 'password_updated'
+          )
         else
           clean_up_passwords(resource)
           respond_with(resource, action: :show)

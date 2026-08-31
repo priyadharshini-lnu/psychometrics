@@ -6,7 +6,7 @@ module Auth
                :saml_enforced, :saml_domain_enforcement_enabled, :client_logo, :secondary_logo, :primary_color,
                :error_color, :warning_color, :success_color, :info_color, :background_size, :require_mobile_number,
                :hide_signup, :magic_link_enabled, :disallow_password_login, :logo_alt_text,
-               :enable_recaptcha
+               :enable_recaptcha, :glint_ui, :privacy_link_text, :privacy_link_url, :enable_privacy_link
 
     DELEGATE_METHODS = %i[primary_color error_color warning_color success_color info_color].freeze
 
@@ -29,7 +29,7 @@ module Auth
     end
 
     def background
-      design_setting&.background&.url || fallback_background
+      design_setting&.background&.url || glint_fallback_background || fallback_background
     end
 
     def background_overlay
@@ -52,14 +52,36 @@ module Auth
       object.registration_setting.require_mobile_number
     end
 
+    # Safe for the `Client.new` fallback the layout passes on project-less routes —
+    # `project_feature_enabled?` only exists on projects, so those render legacy.
+    def glint_ui
+      object.respond_to?(:project_feature_enabled?) && object.project_feature_enabled?(:glint_ui)
+    end
+
     def hide_signup
       object.registration_setting.hide_signup
+    end
+
+    def privacy_link_text
+      privacy_setting&.privacy_link_text
+    end
+
+    def privacy_link_url
+      privacy_setting&.privacy_link_url
+    end
+
+    def enable_privacy_link
+      privacy_setting&.enable_privacy_link
     end
 
     private
 
     def security_setting
       object.security_setting
+    end
+
+    def privacy_setting
+      object.privacy_setting
     end
 
     # Withholding the design setting falls every branding attribute back to platform defaults.
@@ -69,6 +91,10 @@ module Auth
 
     def fallback_background
       context[:background] unless background_color
+    end
+
+    def glint_fallback_background
+      context[:glint_background] if glint_ui
     end
   end
 end

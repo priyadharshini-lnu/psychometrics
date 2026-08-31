@@ -4,16 +4,12 @@ import { Link, useParams } from 'react-router-dom'
 import {
   Table,
   MenuProps,
-  Row,
-  Col,
   Input,
-  Pagination,
   Avatar,
   Tag,
   Space,
 } from 'antd'
 import map from 'lodash/map'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint'
@@ -39,7 +35,7 @@ import {
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import Modals from '~/modules/admin/components/Modals/'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
-import { CountDisplay } from '~/components/CountDisplay'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { isRequestInProgress } from '~/core/request'
 import { get as getCurrentUser } from '~/core/currentUser'
 import ThreesixtyCampaignFormModal from '../CampaignList/ThreesixtyCampaignFormModal'
@@ -49,11 +45,11 @@ import CommonCampaignFormModal from './CommonCampaignFormModal'
 import CreateCampaignDropdown from './CreateCampaignDropdown'
 import { PDFPasswordModal } from './PDFPasswordModal'
 import ToolsDropdown from './ToolsDropdown'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { UserFilterModal } from '../Campaign/routes/Participants/Subjects/UserFilterModal'
 import ConvertOrCopyAsTemplateModal from
   '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ConvertOrCopyAsTemplateModal'
 import { CampaignTagFilter } from './CampaignTagFilter'
+import BulkImportCampaignTranslationsModal from './BulkImportCampaignTranslationsModal'
 
 const MODALS = {
   CommonCampaignFormModal,
@@ -63,6 +59,7 @@ const MODALS = {
   CopyCampaignModal,
   UserFilterModal,
   ConvertOrCopyAsTemplateModal,
+  BulkImportCampaignTranslationsModal,
 }
 
 const { I18n } = window
@@ -108,7 +105,6 @@ const CampaignListComponent: React.FC<Props> = ({
 }) => {
   const params = useParams() as { projectId: string }
   const projectId = parseInt(params.projectId, 10)
-  const { width: windowWidth } = useWindowSize()
   useEffect(() => {
     fetch(projectId, tableConfig)
   }, [tableConfig])
@@ -119,222 +115,208 @@ const CampaignListComponent: React.FC<Props> = ({
 
   const displayableType = (type: string) => I18n.t(`admin.campaigns_types_${type}`)
 
+  const CampaignsTable = (
+    <Table
+      rowKey={row => row?.id ?? -1}
+      dataSource={list}
+      onChange={onTableChange}
+      pagination={false}
+      scroll={{ x: 'max-content' }}
+      sticky
+    >
+      <Column
+        title={I18n.t('shared.id')}
+        dataIndex="id"
+        fixed="left"
+        key="id"
+        sorter
+        sortOrder={getSortOrder('id')}
+        width={100}
+      />
+      <Column
+        title={I18n.t('shared.name')}
+        key="name"
+        sorter
+        sortOrder={getSortOrder('name')}
+        render={({
+          name, campaignUrl, isTemplate, tagList,
+        }) => (
+          <div>
+            <Link to={campaignUrl}>{name}</Link>
+            {(isTemplate || tagList?.length > 0) && (
+              <div>
+                {isTemplate && (
+                  <Tag color="gold">
+                    {I18n.t('admin.campaigns_listing_template')}
+                  </Tag>
+                )}
+                {tagList?.map((tag: string) => (
+                  <Tag key={tag}>{tag}</Tag>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+        minWidth={150}
+      />
+      <Column
+        title={I18n.t('admin.dates_start')}
+        key="startDate"
+        sorter
+        sortOrder={getSortOrder('startDate')}
+        render={({ startDate }) => (
+          <div style={{ minWidth: 150 }}>
+            {startDate ? dayjs(startDate).format('L LT') : ' - '}
+          </div>
+        )}
+        minWidth={150}
+      />
+      <Column
+        title={I18n.t('admin.dates_end')}
+        key="endDate"
+        sorter
+        sortOrder={getSortOrder('endDate')}
+        render={({ endDate }) => (
+          <div style={{ minWidth: 150 }}>
+            {endDate ? dayjs(endDate).format('L LT') : ' - '}
+          </div>
+        )}
+      />
+      <Column
+        title={I18n.t('shared.status')}
+        key="status"
+        render={({ status }) => (
+          <div style={{ minWidth: 100 }}>
+            {I18n.t(`admin.campaigns_filters_${status}`)}
+          </div>
+        )}
+        filterMultiple={false}
+        filters={map(STATUSES, status => ({
+          text: I18n.t(`admin.campaigns_filters_${status}`),
+          value: status,
+        }))}
+        filteredValue={getFilteredValue('statusEq')}
+      />
+      <Column
+        title={I18n.t('shared.type')}
+        key="type"
+        render={({ type }) => (
+          <div style={{ minWidth: 100 }}>
+            {displayableType(type)}
+          </div>
+        )}
+        filterMultiple={false}
+        filters={map(TYPES, type => ({
+          text: displayableType(type),
+          value: type,
+        }))}
+        filteredValue={getFilteredValue('type')}
+      />
+      <Column
+        title={I18n.t('admin.campaigns_listing_assessments')}
+        key="assessments"
+        render={({ assessments }) => (
+          <div style={{ minWidth: 150 }}>
+            <ResourcesTag resources={assessments} />
+          </div>
+        )}
+      />
+      <Column
+        title={I18n.t('admin.campaigns_listing_reports')}
+        key="reports"
+        render={({ reports }) => (
+          <div style={{ minWidth: 150 }}>
+            <ResourcesTag resources={reports} />
+          </div>
+        )}
+      />
+      <Column
+        title={I18n.t('shared.actions')}
+        key="action"
+        fixed="right"
+        width={100}
+        render={campaign => (
+          <ConditionalDropdown
+            menu={
+              getActionsMenuProps({
+                onEdit: () => {
+                  openModal('CommonCampaignFormModal', {
+                    projectId,
+                    campaign: {
+                      ...campaign,
+                      startDate:
+                        campaign.startDate && dayjs(campaign.startDate),
+                      endDate:
+                        campaign.endDate && dayjs(campaign.endDate),
+                    },
+                  })
+                },
+                onDelete: () => {
+                  openModal('RemoveCampaignModal', {
+                    projectId,
+                    campaign,
+                  })
+                },
+                onCopy: () => {
+                  openModal('CopyCampaignModal', {
+                    projectId,
+                    campaign,
+                    onSuccess: () => fetch(projectId, tableConfig),
+                  })
+                },
+                onConvert: () => {
+                  openModal('ConvertOrCopyAsTemplateModal', {
+                    visible: true,
+                    campaignId: campaign.id,
+                    projectId,
+                  })
+                },
+                showPDFPasswordModal,
+                campaign,
+              })
+            }
+          />
+        )}
+      />
+    </Table>
+  )
+
+  const Filter = (
+    <Space>
+      <CampaignTagFilter
+        changeFilter={changeFilter}
+        removeFilter={removeFilter}
+      />
+      <Search
+        placeholder={I18n.t('common.actions.search')}
+        value={filters.filterableFields}
+        onChange={e => changeFilter('filterableFields', e.target.value)}
+      />
+      <ToolsDropdown openModal={openModal} />
+      {permissions.create && (
+        <CreateCampaignDropdown
+          openModal={openModal}
+          projectId={projectId}
+        />
+      )}
+    </Space>
+  )
+
   return (
     <div>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pt-4 pb-4 ps-4 pe-4"
-      >
-        <Col>
-          <CountDisplay
-            selectedCount={0}
-            totalCount={total}
-            isLoading={isLoading}
-          />
-        </Col>
-        <Col>
-          <Space>
-            <CampaignTagFilter
-              changeFilter={changeFilter}
-              removeFilter={removeFilter}
-            />
-            <Search
-              placeholder={I18n.t('common.actions.search')}
-              value={filters.filterableFields}
-              onChange={e => changeFilter('filterableFields', e.target.value)}
-            />
-            <ToolsDropdown openModal={openModal} />
-            {permissions.create && (
-              <CreateCampaignDropdown
-                openModal={openModal}
-                projectId={projectId}
-              />
-            )}
-          </Space>
-        </Col>
-      </Row>
-      <Row>
-        <Col span={24}>
-          <Table
-            rowKey={row => row?.id ?? -1}
-            dataSource={list}
-            onChange={onTableChange}
-            pagination={false}
-            scroll={{ x: 'max-content' }}
-            loading={isLoading}
-            sticky={{ offsetHeader: 50 }}
-          >
-            <Column
-              title={I18n.t('shared.id')}
-              dataIndex="id"
-              fixed={windowWidth > 800 ? 'left' : undefined}
-              key="id"
-              sorter
-              sortOrder={getSortOrder('id')}
-              width={100}
-            />
-            <Column
-              title={I18n.t('shared.name')}
-              key="name"
-              sorter
-              sortOrder={getSortOrder('name')}
-              render={({
-                name, campaignUrl, isTemplate, tagList,
-              }) => (
-                <div>
-                  <Link to={campaignUrl}>{name}</Link>
-                  {(isTemplate || tagList?.length > 0) && (
-                    <div>
-                      {isTemplate && (
-                        <Tag color="gold">
-                          {I18n.t('admin.campaigns_listing_template')}
-                        </Tag>
-                      )}
-                      {tagList?.map((tag: string) => (
-                        <Tag key={tag}>{tag}</Tag>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )}
-              minWidth={150}
-            />
-            <Column
-              title={I18n.t('admin.dates_start')}
-              key="startDate"
-              sorter
-              sortOrder={getSortOrder('startDate')}
-              render={({ startDate }) => (
-                <div style={{ minWidth: 150 }}>
-                  {startDate ? dayjs(startDate).format('L LT') : ' - '}
-                </div>
-              )}
-              minWidth={150}
-            />
-            <Column
-              title={I18n.t('admin.dates_end')}
-              key="endDate"
-              sorter
-              sortOrder={getSortOrder('endDate')}
-              render={({ endDate }) => (
-                <div style={{ minWidth: 150 }}>
-                  {endDate ? dayjs(endDate).format('L LT') : ' - '}
-                </div>
-              )}
-            />
-            <Column
-              title={I18n.t('shared.status')}
-              key="status"
-              render={({ status }) => (
-                <div style={{ minWidth: 100 }}>
-                  {I18n.t(`admin.campaigns_filters_${status}`)}
-                </div>
-              )}
-              filterMultiple={false}
-              filters={map(STATUSES, status => ({
-                text: I18n.t(`admin.campaigns_filters_${status}`),
-                value: status,
-              }))}
-              filteredValue={getFilteredValue('statusEq')}
-            />
-            <Column
-              title={I18n.t('shared.type')}
-              key="type"
-              render={({ type }) => (
-                <div style={{ minWidth: 100 }}>
-                  {displayableType(type)}
-                </div>
-              )}
-              filterMultiple={false}
-              filters={map(TYPES, type => ({
-                text: displayableType(type),
-                value: type,
-              }))}
-              filteredValue={getFilteredValue('type')}
-            />
-            <Column
-              title={I18n.t('admin.campaigns_listing_assessments')}
-              key="assessments"
-              render={({ assessments }) => (
-                <div style={{ minWidth: 150 }}>
-                  <ResourcesTag resources={assessments} />
-                </div>
-              )}
-            />
-            <Column
-              title={I18n.t('admin.campaigns_listing_reports')}
-              key="reports"
-              render={({ reports }) => (
-                <div style={{ minWidth: 150 }}>
-                  <ResourcesTag resources={reports} />
-                </div>
-              )}
-            />
-            <Column
-              title={I18n.t('shared.actions')}
-              key="action"
-              fixed={windowWidth > 800 ? 'right' : undefined}
-              width={100}
-              render={campaign => (
-                <ConditionalDropdown
-                  menu={
-                    getActionsMenuProps({
-                      onEdit: () => {
-                        openModal('CommonCampaignFormModal', {
-                          projectId,
-                          campaign: {
-                            ...campaign,
-                            startDate:
-                              campaign.startDate && dayjs(campaign.startDate),
-                            endDate:
-                              campaign.endDate && dayjs(campaign.endDate),
-                          },
-                        })
-                      },
-                      onDelete: () => {
-                        openModal('RemoveCampaignModal', {
-                          projectId,
-                          campaign,
-                        })
-                      },
-                      onCopy: () => {
-                        openModal('CopyCampaignModal', {
-                          projectId,
-                          campaign,
-                          onSuccess: () => fetch(projectId, tableConfig),
-                        })
-                      },
-                      onConvert: () => {
-                        openModal('ConvertOrCopyAsTemplateModal', {
-                          visible: true,
-                          campaignId: campaign.id,
-                          projectId,
-                        })
-                      },
-                      showPDFPasswordModal,
-                      campaign,
-                    })
-                  }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  )}
-                />
-              )}
-            />
-          </Table>
-        </Col>
-      </Row>
-      <div className="pl">
-        <Pagination
-          current={page}
-          pageSize={pageSize || DEFAULT_PAGE_SIZE}
-          total={total}
-          onChange={changePage}
-        />
-      </div>
+      <TableLayout
+        loading={isLoading}
+        table={CampaignsTable}
+        filters={Filter}
+        title={I18n.t('admin.campaigns')}
+        pagination={{
+          page,
+          pageSize: pageSize || DEFAULT_PAGE_SIZE,
+          total,
+          onChange: changePage,
+        }}
+        recordCount={total}
+      />
       <Modals modals={MODALS} />
     </div>
   )

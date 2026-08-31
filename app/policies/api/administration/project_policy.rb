@@ -23,6 +23,14 @@ module Api
         has_permission?(:projects, :manage_users, project_id: project_id)
       end
 
+      def fetch_campaign_dashboard_instructions?
+        has_permission?(:projects, :manage, project_id: project_id)
+      end
+
+      def update_campaign_dashboard_instructions?
+        has_permission?(:projects, :manage, project_id: project_id)
+      end
+
       def workshop_status_export?
         has_permission?(:workshops, :export_status, project_id: project_id)
       end

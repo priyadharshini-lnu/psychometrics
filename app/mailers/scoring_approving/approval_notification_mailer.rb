@@ -8,7 +8,7 @@ module ScoringApproving
       @score_approval = score_approval
       @user = user
       @project = @score_approval.project
-      @url = administration_ai_scoring_approvals_all_url('approved')
+      @url = admin_all_url('ai_scoring_approvals/approved')
 
       send_email(
         user,

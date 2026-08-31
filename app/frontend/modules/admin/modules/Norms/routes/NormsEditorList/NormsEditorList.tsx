@@ -1,7 +1,10 @@
 import NormsEditor from './NormsEditor'
 import { NormsEditorBreadcrumb } from './NormsEditorBreadcrumb'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { NormTR } from '~/modules/admin/modules/client/core/norms'
+
+const { I18n } = window
 
 const NormsEditorList = () => {
   const baseApiConfig = {
@@ -15,7 +18,12 @@ const NormsEditorList = () => {
     },
   }
   return (
-    <Resource config={baseApiConfig} name="norms">
+    <Resource
+      title={I18n.t('admin.norms')}
+      config={baseApiConfig}
+      name="norms"
+      settingsKey={TABLE_SETTINGS_KEYS.adminNormsEditor}
+    >
       <NormsEditorBreadcrumb />
       <NormsEditor />
     </Resource>

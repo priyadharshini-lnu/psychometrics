@@ -39,7 +39,9 @@ const ProjectLicensesTableComponent: React.FC<Props> = ({
         <Resource.Column<License>
           title={I18n.t('licenses.report_family')}
           id="report_family_id"
+          hideable={false}
           dataIndex={['reportFamily', 'name']}
+          fixed="left"
         />
         <Resource.Column<License>
           title={I18n.t('licenses.type')}
@@ -54,6 +56,7 @@ const ProjectLicensesTableComponent: React.FC<Props> = ({
             ]
           }
           filteredValue={typeFilteredValue}
+          fixed="left"
         />
         <Resource.Column<License>
           title={I18n.t('licenses.project_specific')}
@@ -98,6 +101,7 @@ const ProjectLicensesTableComponent: React.FC<Props> = ({
         <Resource.Column<License>
           title={I18n.t('common.column.action')}
           id="actions"
+          hideable={false}
           key="actions"
           render={license => (
             <ConditionalDropdown
@@ -112,6 +116,7 @@ const ProjectLicensesTableComponent: React.FC<Props> = ({
               }
             />
           )}
+          fixed="right"
         />
       </Resource.Table>
     </>

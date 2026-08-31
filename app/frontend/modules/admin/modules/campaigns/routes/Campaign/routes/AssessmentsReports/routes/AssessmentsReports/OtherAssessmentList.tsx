@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Table, Row, Col, Pagination, App,
+  Button, Table, Row, Col, App, Drawer, Descriptions,
 } from 'antd'
+import { DataTablePagination } from '@thetalententerprise/glint'
 import _ from 'lodash'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
+import { OtherAssessment } from '~/modules/admin/modules/campaigns/interfaces/OtherAssessment'
 import {
   rescoreResponses, remove, exportRawResults, exportScoringResults,
   exportNormedResults, exportRawFactorScores, exportAiFactorScores, exportExternalResults,
@@ -16,10 +18,13 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
+import { SectionTitle } from '~/modules/admin/components/TableTitle'
 import { getActionsMenuProps } from './AssessmentList/getActionsMenuProps'
 
 const { Column } = Table
 const { I18n } = window
+
+const PAGE_SIZE = 5
 
 interface OwnProps { }
 
@@ -66,6 +71,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   exportExternalResults,
   onTableChange,
 }) => {
+  const [drawerAssessment, setDrawerAssessment] = useState<OtherAssessment | undefined>(undefined)
   useEffect(() => {
     fetchOtherAssessments(campaignId, tableConfig)
   }, [tableConfig.page])
@@ -76,11 +82,21 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   const parsedCampaignId = parseInt(campaignId, 10)
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
 
+  if (total === 0) { return null }
+
   return (
     <>
+      <SectionTitle>{I18n.t('admin.other_assessments')}</SectionTitle>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={list} pagination={false} onChange={onTableChange}>
+          <Table<OtherAssessment>
+            className="mtm"
+            rowKey="id"
+            dataSource={list}
+            pagination={false}
+            onChange={onTableChange}
+            onRow={getTenantRowAttributes}
+          >
             <Column
               title={I18n.t('common.column.id')}
               dataIndex="id"
@@ -90,6 +106,11 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
               dataIndex="name"
+              render={(text: string, assessment: OtherAssessment) => (
+                <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(assessment)}>
+                  {text}
+                </Button>
+              )}
             />
             <Column
               title={I18n.t('common.column.category')}
@@ -121,28 +142,59 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
                       modal,
                     })
                   }
-                  innerElement={(
-                    <a>
-                      <MoreOutlined />
-                    </a>
-                  )}
                 />
               )}
             />
           </Table>
         </Col>
       </Row>
-      <Row className="pt-4 pb-4 ps-4 pe-4">
-        <Col>
-          <Pagination
-            hideOnSinglePage
-            current={parsedPage}
-            pageSize={tableConfig.pageSize}
-            total={total}
-            onChange={changePage}
-          />
-        </Col>
-      </Row>
+      <DataTablePagination
+        page={parsedPage}
+        pageSize={tableConfig.pageSize ?? PAGE_SIZE}
+        total={total}
+        onChange={changePage}
+        showSizeChanger
+        hideOnSinglePage
+      />
+      {!!drawerAssessment && (
+        <Drawer
+          title={I18n.t('campaign_assessment.drawer.title')}
+          placement="right"
+          closable
+          onClose={() => setDrawerAssessment(undefined)}
+          open
+          width="40%"
+        >
+          <Descriptions
+            layout="horizontal"
+            rootClassName="w-100"
+            bordered
+            column={1}
+          >
+            <Descriptions.Item
+              label={I18n.t('campaign_assessment.column.assessment_name')}
+              key="name"
+              className="va-t"
+            >
+              {drawerAssessment.name}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={I18n.t('common.column.owner')}
+              key="owner"
+              className="va-t"
+            >
+              {drawerAssessment.owner?.name || I18n.t('admin.platform_owner')}
+            </Descriptions.Item>
+            <Descriptions.Item
+              label={I18n.t('campaign_assessment.column.dimension_id')}
+              key="dimension_id"
+              className="va-t"
+            >
+              {drawerAssessment.dimensionId ?? '-'}
+            </Descriptions.Item>
+          </Descriptions>
+        </Drawer>
+      )}
     </>
   )
 }
@@ -152,6 +204,6 @@ export const OtherAssessmentList = withEnhancedTable<OwnProps>(
   'otherAssessments',
   {
     maintainHistory: false,
-    pageSize: 5,
+    pageSize: PAGE_SIZE,
   },
 )

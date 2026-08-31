@@ -103,6 +103,7 @@ hu:
     ai_scoring_approval_stale_description: A legutóbbi futtatás óta végrehajtott konfigurációs frissítések megváltoztathatták az értékelést. Az értékelés frissítéséhez hajtsa végre az újbóli értékelést a legfrissebb beállítások alapján.
     ai_scoring_approval_stale_title: Az eredmény elavult lehet
     ai_scoring_approvals: AI pontszámok jóváhagyása
+    ai_scoring_errors_label: AI pontozási hibák
     ai_scoring_refresh_score: Pontszám frissítése
     ai_scoring_refresh_score_confirm_description: Ezzel a legújabb beállítások alapján újra futtatja az értékelés mesterséges intelligenciás pontozását. Biztosan ezt szeretné?
     ai_scoring_refresh_score_confirm_title: Frissítsd az AI-pontszámokat?
@@ -122,6 +123,12 @@ hu:
     alt_text_long: Túllépi a 100 karakteres maximális korlátot.
     api_keys: API-kulcsok
     api_keys_form_title: API-kulcs
+    appearance: Megjelenés
+    appearance_dark: Sötét
+    appearance_dark_theme: Sötét téma
+    appearance_light: Fény
+    appearance_light_theme: Világos téma
+    appearance_system: Rendszer
     application: Alkalmazás
     application_add: Alkalmazás hozzáadása
     application_name: Alkalmazás neve
@@ -131,7 +138,6 @@ hu:
     application_settings_at_least_one_url_required: Kérjük, engedélyezzen legalább egy URL-bejegyzést az URL-engedélyezési listára való felkerülés előtt.
     application_settings_confirm_delete_ip: Biztosan törölni szeretné ezt az IP-címet?
     application_settings_confirm_delete_url: Biztosan törölni szeretné ezt az URL-t?
-    application_settings_edit_ip_address: IP-cím / CIDR-tartomány szerkesztése
     application_settings_enable_ip_whitelisting: IP-címek fehérlistájának engedélyezése
     application_settings_enable_url_whitelisting: URL-engedélyezés engedélyezése
     application_settings_invalid_ip_format: Érvénytelen IP-cím vagy CIDR-formátum
@@ -195,6 +201,8 @@ hu:
     assessor_add_subject_modal_subject: Tárgy
     assessor_add_subject_modal_subject_placeholder: Téma keresése..
     assessor_add_subject_modal_title: Tárgy hozzáadása
+    assessor_assessment_drawer_title: Értékelés részletei
+    assessor_assessment_id: Értékelő értékelési azonosítója
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Értékelés kiválasztása
     assessor_assessment_name: Értékelő értékelése
     assessor_assessments: Értékelő értékelések
@@ -345,9 +353,15 @@ hu:
     campaign_assessment_modals_update_occupation_condition_set_select: Foglalkozási állapotkészlet kiválasztása
     campaign_assessment_modals_update_occupation_condition_set_success_msg: A „Foglalkozás és állapot” készlet frissítése sikeresen megtörtént
     campaign_assessment_modals_update_occupation_condition_set_title: A foglalkozási állapotkészlet frissítése
+    campaign_dashboard_instructions_label: Kampány Irányítópult Utasítások
+    campaign_dashboard_instructions_save: Utasítások mentése
+    campaign_dashboard_instructions_save_error: Nem sikerült menteni a kampány irányítópultjának utasításait
+    campaign_dashboard_instructions_save_success: A kampány irányítópultjának utasításai sikeresen mentésre kerültek
     campaign_factors: Kampány tényezők
     campaign_id_placeholder: Jelentkezik a kampányazonosító
     campaign_name: Kampány neve
+    campaign_name_translations: Kampánynevek fordításai
+    campaign_name_translations_fetch_error: Hiba a kampánynevek fordításainak lekérésekor
     campaign_report_generate_modal_subtitle: Válassza ki a kívánt nyelvet az egyes jelentésekhez
     campaign_report_id: Kampányjelentés azonosítója
     campaign_results_export_details: A kampány AI-artefaktumai eredményeket hoztak
@@ -419,6 +433,7 @@ hu:
     category: Kategória
     cell_save_msg: A szerkesztés után, amint elhagyja a cellát, a érvényes módosítások automatikusan mentésre kerülnek.
     change_reason: Változás oka
+    change_report_dates_message: Szeretné módosítani a jelentés dátumtartományát?
     change_score: módosított pontszám
     change_score_log: Pontszám-napló módosítása
     characters: szereplők
@@ -513,6 +528,7 @@ hu:
     created_successfully: Az AI Assistant sikeresen létrejött.
     current: Aktuális
     current_job_role: Jelenlegi munkakör
+    current_locale: Jelenlegi területi beállítás
     custom_formula: Szokásos képlet
     custom_message_description: Ezt az üzenetet az értékelésben részt vevő bárki megkaphatja
     custom_message_name: Egyéni üzenet
@@ -663,7 +679,7 @@ hu:
     dimensions_import_modal_import_dimension: Dimenzió importálása
     dimensions_import_modal_import_scheduled: Tervezett importálás
     dimensions_import_modal_operation: Művelet
-    dimensions_import_modal_owner_global: TTE (globális)
+    dimensions_import_modal_owner_global: Globális
     dimensions_import_modal_owner_input_validation: Kérjük, válasszon egy tulajdonost
     dimensions_import_modal_owner_select: Tulajdonos kiválasztása
     dimensions_import_modal_select_json: JSON fájl kiválasztása
@@ -680,6 +696,7 @@ hu:
     disable_dp: Ne engedélyezze a további adatfeldolgozást
     disable_proctoring: A felügyelet letiltása
     disable_report_download: Jelentés letöltésének letiltása
+    disable_transcript_download: Átirat letöltésének letiltása
     disallow_lead_assessor_moderation: A vezető értékelő moderálásának letiltása
     disallow_lead_assessor_moderation_info: A pontszámot a rendszer automatikusan kiszámítja az összes értékelői űrlap benyújtása alapján, és a vezető értékelő a moderálási képernyőn nem módosíthatja azt.
     discard_all_questions: Minden kérdés visszaállítása
@@ -831,10 +848,13 @@ hu:
     feature_flags_ai_group: AI funkciók
     feature_flags_communication_group: Kommunikáció
     feature_flags_platform_group: A platform jellemzői
+    feature_flags_superadmin_group: Bérlői hatókör meghatározása
+    feature_glint_ui_description: A résztvevői élmény megjelenítése a Glint tervezőrendszerrel
     feature_global_skills_description: Hozzáférés a globális készségek könyvtárához az értékelésekhez
     feature_idp_description: Engedélyezze az egyéni fejlesztési terv készítését a résztvevők számára
     feature_not_available: Ez a funkció nem érhető el
     feature_sms_notification_description: SMS-értesítések engedélyezése kampánymeghívók és emlékeztetők esetén
+    feature_superadmin_tenant_scoping_description: Ha le van tiltva, a szuperadminisztrátori lekérdezések hatóköre nem terjed ki az adott ügyfél adataira.
     fields_level: Szint
     fields_level_description: Szint leírása
     fields_level_name: Szint neve
@@ -866,6 +886,7 @@ hu:
     form_datasheet: Adatlap
     form_datasheet_columns: Adatlap oszlopok
     form_end_date: Befejezés dátuma
+    form_fields_to_display: Megjelenítendő mezők
     form_include_all_datasheet_columns: Az adatlap összes oszlopának belefoglalása
     form_name: Név
     form_no_assessment_selected: Még nincs értékelés. Kattintson a "Hozzáadás" gombra a kezdéshez.
@@ -890,8 +911,11 @@ hu:
     generate_transcription: Átírás létrehozása
     generated_at_time: Generálva %{time}
     generated_value: Generált érték
+    glint_ui: Csillogó felhasználói felület
+    glint_ui_disabled_by_client: A Glint felhasználói felületét letiltotta az ügyfél.
     global_skills: Globális készségek
     global_skills_disabled_by_client: A globális képességeket az ügyfél letiltja
+    go_back: Vissza
     grant_type_label: Támogatás típusa
     grant_type_name: oauth_grant_type
     graphic: Grafika
@@ -906,6 +930,7 @@ hu:
     header_logout_title: Biztos vagy benne, hogy ki akarsz jelentkezni?
     hide_all: Az összes elrejtése
     hide_middle_scores: Középső pontszámok elrejtése
+    hide_participant_video: Résztvevő videójának elrejtése
     high: Magas
     hogan: Hogan
     hogan_assessment: Hogan-értékelés
@@ -1251,6 +1276,7 @@ hu:
     key_id: Kulcsazonosító
     keywords: Kulcsszavak
     keywords_placeholder: Írja be a kulcsszavakat vesszővel elválasztva.
+    language: Nyelv
     language_id: Nyelv azonosító
     last_name_required: A vezetéknév megadása kötelező
     lead_assessment: Lead értékelése
@@ -1488,6 +1514,8 @@ hu:
     owner_resource_norm: norma
     owner_resource_report: jelentés
     owner_resource_report_bundle: jelentéscsomag
+    page_load_failed: Ez az oldal nem tölthető be.
+    page_load_failed_hint: Lehetséges, hogy az alkalmazás frissült – töltse be újra a folytatáshoz.
     parsed_dependencies_help: Az AI Assistant által az összetevő-eredmények létrehozásához használt felhasználó elemzett függőségei
     parsed_dependencies_title: Elemzett függőségek
     parsed_dependencies_view: Elemzett függőségek megtekintése
@@ -1949,6 +1977,7 @@ hu:
     piped_text_modal_title: Továbbított szöveg hozzáadása
     piped_text_modal_user_reports: Felhasználói jelentések
     piped_text_modal_users: Felhasználók
+    platform_owner: Platform
     playground: Játszótér
     playground_info: Tesztelje az összetevőt mintaadatokkal a generált eredmények előnézetéhez.
     playground_placeholder: Tesztadatok megadása
@@ -2102,6 +2131,7 @@ hu:
     projects_mettl_schedule_records_secure_browser_enabled: Biztonságos böngésző engedélyezése
     projects_mettl_schedule_records_settings: Beállítások
     projects_mettl_schedule_records_show_remaining_counts: Hátralévő szám megjelenítésének engedélyezése
+    projects_mettl_schedule_records_title: Mettl ütemtervek
     projects_mettl_schedule_records_visual_proctoring_enabled: Vizuális felügyelet engedélyezése
     projects_mettl_schedule_records_web_proctoring_enabled: Webes felügyelet engedélyezése
     projects_profile_settings_form_fields_enabled: Engedélyezve
@@ -2179,6 +2209,38 @@ hu:
     raw_score: Nyers pontszám
     reason_for_changes: A változások oka
     recents: Legutóbbi bejegyzések
+    record_history_changes: változások
+    record_history_changes_in_request: változtatások ebben a kérésben
+    record_history_date_range_invalid: A befejezési dátumnak a kezdő dátummal egyező vagy későbbinek kell lennie.
+    record_history_date_range_required: Kérjük, válasszon ki egy dátumtartományt.
+    record_history_date_range_too_large: A dátumtartomány nem haladhatja meg az %{days} napot. Kérjük, szűkítse a keresést.
+    record_history_filter_actor: Szűrés színész e-mail címe szerint
+    record_history_filter_field: Szűrés módosított mező szerint
+    record_history_filter_type: Szűrés rekordtípus szerint
+    record_history_id_required: Kérjük, adjon meg egy rekordazonosítót
+    record_history_include_related: Kapcsolódó rekordok beillesztése
+    record_history_last_30_days: Utolsó 30 nap
+    record_history_last_7_days: Utolsó 7 nap
+    record_history_no_results: Nem található változástörténet ehhez a rekordhoz.
+    record_history_no_results_for: 'Nem találhatók változtatások a következőhöz:'
+    record_history_records_changed: megváltozott rekordok
+    record_history_related_tag: Összefüggő
+    record_history_request_banner: A kérés összes módosításának megjelenítése
+    record_history_request_label: 'Kér:'
+    record_history_request_or_record_required: Adjon meg egy kérés UUID-ját, vagy válasszon ki egy rekordtípust és azonosítót.
+    record_history_request_uuid: UUID kérése
+    record_history_request_uuid_placeholder: Adja meg a kérés UUID-ját
+    record_history_revision_failed: Nem sikerült betölteni a rekord állapotát ehhez a verzióhoz.
+    record_history_search_hint: Adjon meg egy kérés UUID-ját, vagy válasszon ki egy rekordtípust és rekordazonosítót a változástörténet nyomon követéséhez.
+    record_history_select_type: Rekordtípus kiválasztása
+    record_history_state_at_version: Állapot a verzióban
+    record_history_system: Rendszer
+    record_history_title: Változástörténet rögzítése
+    record_history_type_required: Kérjük, válasszon egy rekordtípust
+    record_history_version: Változat
+    record_history_view_audit_log: Megtekintés az auditnaplókban
+    record_history_view_full: Teljes előzmények megtekintése
+    record_history_view_request: Kérés megtekintése
     record_id: Bejegyzés azonosítója
     recordings: Felvételek
     reflection_questions: Reflexiós kérdések
@@ -2294,6 +2356,7 @@ hu:
     report_no_evaluations: A %{user} jelentése nem érhető el – értékelések nem érkeztek.
     report_not_generated: Jelentés %{user} megfelel a rendelkezésre állási feltételeknek, de még nem készült el. Kérem, előbb készítsd el a jelentést.
     report_on_hold: A %{user} jelentése jelenleg szünetben van
+    report_owner: Tulajdonos
     report_pdf_status: Jelentés PDF-formátumban
     report_review_abort_qc: Minőségellenőrzés megszakítása
     report_review_approve: Jóváhagy
@@ -2314,10 +2377,12 @@ hu:
     report_types:
       active_clients_projects: Aktív ügyfelek és projektek
       campaign_factor_scores: Kampánytényező-pontszámok
+      campaign_user_creation: Kampányfelhasználó létrehozása
       client_assessment_counts: Az ügyfelek értékelése számít
       hogan_usage_report: A Hogan-értékelés használata
       json_data_report: JSON-adatjelentés
       pearson_usage_report: A Pearson értékelési eszközök használata
+      proctoring_sessions: Felügyelői ülések
       report_usage_summary: A jelentés használatának összefoglalása
       saville_usage_report: A Saville-értékelés használata
       user_access_review: Felhasználói hozzáférési felülvizsgálat
@@ -2377,6 +2442,17 @@ hu:
     role_project_admin: Projektadminisztrátor
     role_superadmin: Szuperadmin
     run: Futtatás
+    runtime_configuration_invalid_json_object: A runtime_configuration értékének érvényes JSON objektumnak kell lennie.
+    runtime_configuration_invalid_parameter: nem futásidejűleg frissíthető paraméter
+    runtime_parameter_date_range_required: Kérjük, válassza ki mind a kezdő dátumot, mind a befejező dátumot
+    runtime_parameter_editable_section_title: Dátumtartomány
+    runtime_parameter_filter_column: Szűrő
+    runtime_parameter_locked_section_title: Belefoglalt szűrők
+    runtime_parameter_modal_subtitle: Tekintse át a részleteket, és szükség esetén frissítse a dátumtartományt.
+    runtime_parameter_modal_title: Jelentés futtatása
+    runtime_parameter_not_set: Nincs megadva
+    runtime_parameter_submit_button: Futtatás most
+    runtime_parameter_value_column: Érték
     saml_idp_certificate_available: Elérhető (kattints a másoláshoz)
     saml_idp_certificate_label: Igazolás
     saml_idp_entity_id_label: Entity ID/Kibocsátó
@@ -2451,11 +2527,16 @@ hu:
       approval_status_in: Jóváhagyási állapot
       approver_user_id_in: Jóváhagyó
       assessment_id_in: Értékelés
+      assessment_name_cont: Értékelés
       campaign_id_in: Kampány
+      campaign_name_cont: Kampány
       client_id_in: Ügyfél
+      client_name_cont: Ügyfél
       project_id_in: Projekt
+      project_name_cont: Projekt
       qc_user_id_in: QC-felhasználó
       report_id_in: Jelentés
+      report_name_cont: Jelentés
       subject_email_cont: Tárgy E-mail
       subject_full_name_cont: Tárgy neve
       user_email_cont: Felhasználói e-mail-cím
@@ -2511,6 +2592,7 @@ hu:
     scheduling_columns_start_time: Dátum és idő
     scheduling_columns_subject: Tárgy
     scheduling_columns_title: Cím
+    scheduling_columns_video_hidden_for_privacy: A videó a jelöltek adatainak védelme érdekében rejtve van.
     scheduling_columns_view_recording: Felvétel megtekintése
     scheduling_errors_assessor_already_assigned: Az értékeléshez már van hozzárendelt értékelő. Kérjük, válasszon másik értékelést vagy értékelőt.
     scheduling_errors_date_required: Kérjük, válasszon egy dátumot
@@ -2600,6 +2682,12 @@ hu:
     score: Pontszám
     score_approval_not_allowed_to_approve: Nem engedélyezheti ezt az eredményt.
     score_approval_not_allowed_to_discard: Ezt a pontszámot nem szabad eldobni.
+    score_approval_reset: Jóváhagyás visszaállítása
+    score_approval_reset_description: Ez visszaállítja a jóváhagyást függőben lévő állapotba. A pontszámok nem változnak. Ez a művelet nem vonható vissza.
+    score_approval_reset_not_allowed: Ez a pontszám jóváhagyása jelenlegi állapotában nem állítható vissza.
+    score_approval_reset_recompute_description: Ez visszaállítja a jóváhagyást, eltávolítja az AI-pontszámokat a felhasználó eredményeiből, és törli az összes létrehozott jelentést. Ez a művelet nem vonható vissza.
+    score_approval_reset_success: A pontszám jóváhagyása visszaállítva.
+    score_approval_reset_title: Visszaállítja a pontszám jóváhagyását?
     score_definition_placeholder: Írja be a pontszám szintjének meghatározását
     score_definitions: Pontszámok meghatározása
     score_max: Pontszám Max
@@ -2831,6 +2919,7 @@ hu:
     sheets_tabs_settings: Beállítások
     show_all: Összes megjelenítése
     show_all_assessment_responses: Az összes értékelési válasz megjelenítése
+    show_form_field_titles: Űrlapmezők címeinek megjelenítése
     show_middle_scores: "%{count}-nak további pontszámok megjelenítése (opcionális)..."
     show_original: Eredeti megjelenítése
     show_submenu: Almenü megjelenítése
@@ -2953,7 +3042,14 @@ hu:
     smtp_settings_user_name: Felhasználónév
     specialty_questions: Speciális kérdések
     sso_email_mismatch: Az azonosítószolgáltatón egy másik fiókba van bejelentkezve. Kérjük, jelentkezzen ki az azonosítószolgáltatóból, majd próbálja meg újra.
+    sso_enforce_for: 'Egyszeri bejelentkezés kényszerítése a következőhöz:'
+    sso_enforce_for_all: Minden felhasználó
+    sso_enforce_for_none: Egyik sem
+    sso_enforce_for_specific_domains: Specifikus domainek
     sso_enforced: Az SSO érvényesítése
+    sso_enforced_domains: Kényszerített domainek
+    sso_enforced_domains_hint: pl. se.com (pontos egyezés) vagy *.se.com (csak aldomének)
+    sso_enforced_domains_placeholder: Írja be a domain(eke)t, és nyomja meg az Enter billentyűt
     sso_label: SSO
     sso_not_enabled: Az SSO nincs engedélyezve ezen az ügyféloldalon
     sso_settings: SSO-beállítások
@@ -3068,11 +3164,15 @@ hu:
     success_title: Létrehozott értékelési központok
     success_update: A tervezési beállítások mentése sikeresen megtörtént
     suitability_id: Alkalmassági azonosító
+    superadmin_tenant_scoping: Szuperadminisztrátor
     superadmin_use_root_domain: A szuperadminisztrátoroknak a fő domainen keresztül kell bejelentkezniük
     switch_client: Ügyfélváltás
     system_prompt: Rendszerkérés
     tab_text_one: Menü
     tab_text_two: Almenü
+    table_display_columns: Oszlopok
+    table_display_filters: Szűrők
+    table_display_title: Kijelző
     table_more_actions: További műveletek
     tabs_results: Eredmények
     tabs_settings: Beállítások
@@ -3088,12 +3188,38 @@ hu:
     taxonomy_title: Készségek taxonómiája
     template_and_campaign_required: Kérjük, adja meg mind a sablont, mind a kampányazonosítót
     template_render_failed: Nem sikerült megjeleníteni sablont
+    tenant_repair_confirm_message: 'A tenant_id-t %{new_tenant}-ra kell állítani a %{model} #%{id} időpontban?'
+    tenant_repair_confirm_message_null: 'A tenant_id null értékre állítása %{model} #%{id} esetén?'
+    tenant_repair_confirm_title: Bérlő frissítésének megerősítése
+    tenant_repair_correct: Helyes
+    tenant_repair_current_tenant: Jelenlegi bérlő
+    tenant_repair_find_record: Rekord keresése
+    tenant_repair_global_tenant: globális
+    tenant_repair_invalid_model: Érvénytelen vagy nem bérlős modelltípus
+    tenant_repair_invalid_record_id: Adjon meg egy érvényes rekordazonosítót
+    tenant_repair_invalid_tenant_id: Adjon meg egy érvényes pozitív bérlőazonosítót, vagy hagyja üresen, ha nullára állítja be.
+    tenant_repair_model_label: Modell
+    tenant_repair_model_placeholder: Gépeléssel kereshet...
+    tenant_repair_moved_from: 'bérlő megváltozott:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Új bérlő azonosítója
+    tenant_repair_preview_title: Felvétel előnézete
+    tenant_repair_request_failed: A kérés sikertelen
+    tenant_repair_resolved_tenant: Megoldott bérlő
+    tenant_repair_success: A bérlő sikeresen frissítve.
+    tenant_repair_title: Bérlői korrekció
+    tenant_repair_update: Frissítés
+    tenant_repair_will_set_null: A tenant_id értéke null lesz.
+    tenant_repair_will_set_value: A tenant_id értéke %{value} lesz.
     test_generate: Teszt generálása
     test_render: Tesztrender
     test_render_tooltip: Teszteld a prompt sablonodat kampányadatokkal, hogy megbizonyosodj arról, mi fog elküldeni az AI asszisztensnek.
     text_danger: Szöveg(veszély)
     text_success: Szöveg (siker)
     text_warning: Szöveg(figyelmeztetés)
+    themes:
+      marsh-dark: Mocsári sötét
+      marsh-light: Mocsári fény
     this_field_is_required: Ez a mező kötelező
     threesixity_advance_settings_campaign_template: Kampány sablon
     threesixity_advance_settings_factors: Tényezők
@@ -3115,6 +3241,7 @@ hu:
     threesixity_success: Sikeresen létrehozták a Multi Rater kampányt.
     threesixity_success_job: A Multi Rater kampány létrehozási feladata sikeresen ütemezve volt.
     threesixty: 360°-os kampány
+    threesixty_campaigns_instruction_visible_to_participants: Mutasd meg ezt az utasítást a résztvevőknek
     threesixty_campaigns_mail_history_date: Dátum
     threesixty_campaigns_mail_history_download_details: Részletek letöltése
     threesixty_campaigns_mail_history_emails_sent: Elküldött e-mailek
@@ -3130,6 +3257,8 @@ hu:
     threesixty_campaigns_menu_report_menu_report_approval_title: Jelentés jóváhagyási beállításai
     threesixty_campaigns_menu_report_menu_report_options_title: Jelentés beállításai
     threesixty_campaigns_menu_report_title: Jelentés
+    threesixty_campaigns_schedule_date_presets: Előre beállított ütemezési dátumok
+    threesixty_campaigns_send_reminders_automatically: Emlékeztetők automatikus küldése
     time_label: Idő
     time_zone: Időzóna
     timed_label: 'Időzített: %{time_text}'
@@ -3182,7 +3311,6 @@ hu:
       title: Fordítások
     translations_export_failure_msg: Hiba a fordítások exportálása során
     translations_export_success_msg: Folyamatban lévő fejlesztési tevékenységek exportálása.
-    tte: TTE
     type_by_skill: Készség szerint
     type_by_skill_type: Képességtípusonként
     type_default: Alapértelmezett

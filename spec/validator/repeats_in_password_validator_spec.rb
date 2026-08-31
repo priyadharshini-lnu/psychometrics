@@ -9,7 +9,13 @@ describe RepeatsInPasswordValidator do
     end
 
     model do
-      validates :password, repeats_in_password: true
+      validate :validate_password_repeats
+
+      private
+
+      def validate_password_repeats
+        RepeatsInPasswordValidator.new(attributes: [:password]).validate_each(self, :password, password)
+      end
     end
   end
 

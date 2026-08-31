@@ -15,6 +15,7 @@ interface Props {
   removeGroup: (groupId: number) => Promise<{ response: number }>
   updateAssessmentGroups: (groupId: number) => void
   modifyGroup: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
+  onManageTranslations?: () => void
 }
 
 export const GroupSortable: FC<Props> = ({
@@ -27,6 +28,7 @@ export const GroupSortable: FC<Props> = ({
   removeGroup,
   modifyGroup,
   updateAssessmentGroups,
+  onManageTranslations,
 }) => {
   const {
     attributes, listeners, setNodeRef, transform, transition, isDragging,
@@ -47,7 +49,6 @@ export const GroupSortable: FC<Props> = ({
   const containerStyle: CSSProperties = { opacity: isDragging ? '0.5' : undefined }
   return (
     <GroupedAssessmentContainer
-      sortId={sortId}
       group={group}
       assessmentCount={assessmentCount}
       isLoading={isLoading}
@@ -59,6 +60,7 @@ export const GroupSortable: FC<Props> = ({
       modifyGroup={modifyGroup}
       removeGroup={id => removeGroup(id)}
       updateAssessmentGroups={response => updateAssessmentGroups(response)}
+      onManageTranslations={onManageTranslations}
     >
       {children}
     </GroupedAssessmentContainer>

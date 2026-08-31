@@ -890,6 +890,7 @@ fr:
         export_campaign_datasheet: Fiche technique de la campagne d'exportation
         export_campaign_factors: Facteurs de la campagne d'exportation
         export_campaign_scorings: Scores de la campagne d'exportation
+        export_campaign_translations: Traductions de campagnes d'exportation
         export_dashboard_as_file: Exporter le tableau de bord sous forme de fichier
         export_development_action_translations: Action pour le développement des exportations Traductions
         export_development_actions: Actions de développement des exportations
@@ -917,6 +918,7 @@ fr:
         import_assessors: Évaluateurs des importations
         import_campaign_ai_artifacts: Importer les artefacts de l’IA de campagne
         import_campaign_factors: Facteurs de la campagne d'importation
+        import_campaign_translations: Importer les traductions de la campagne
         import_client_assessors: Importer les évaluateurs clients
         import_datasheet: Fiche technique d'importation
         import_development_action_translations: Importation Développement Action Traductions
@@ -958,6 +960,7 @@ fr:
         super_admin_assessment_raw_result_export: Super Admin Exportation des résultats bruts
         super_admin_datasheet_export: Super Admin Datasheet Export
         super_admin_external_assessment_export: Super Admin Évaluation externe Exportation
+        superadmin_record_change_history: Historique des modifications d'enregistrement
         threesixty_campaign_export_completion_status: Statut d'achèvement de l'exportation de la campagne Threesixty
         threesixty_campaign_export_scores: La campagne Threesixty marque des points à l'exportation
         workshop_status_export: Exportation du statut du centre d'évaluation
@@ -1151,7 +1154,7 @@ fr:
       read_only: En mode lecture seule, vous ne pouvez pas modifier les résultats.
       save: Économiser
       submissionFailedAlert:
-        description: Impossible de se connecter au serveur. Veuillez rafraîchir la page et réessayer. Si cela ne fonctionne pas, veuillez contacter le support via le chat en direct ou mte.surveys@mercer.com
+        description: Impossible de se connecter au serveur. Veuillez rafraîchir la page et réessayer. Si cela ne fonctionne pas, veuillez contacter le support via le chat en direct ou %{support_email}
         title: Échec de la dernière demande
       submit: Soumettre
       warning: AVERTISSEMENT
@@ -1886,7 +1889,6 @@ fr:
       select: Sélectionner
       selected: Sélectionné
       subject: Sujet
-      total: Total
       view_as: Voir en tant que
     tooltips:
       hide: Cacher
@@ -1980,7 +1982,7 @@ fr:
           project: 'Projet : %{section_name}'
         subject: Invitation Lighthouse
       password_change:
-        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse mte.support@mercer.com '
+        body: 'Bonjour %{name} ! Votre mot de passe a été modifié. Si vous n''avez pas fait cette demande, veuillez contacter immédiatement le service d''assistance à l''adresse %{support_contact_email} '
         regards: 'Cordialement, l''équipe de Lighthouse '
         subject: Votre mot de passe Lighthouse a changé
       reset_password_instructions:
@@ -2111,6 +2113,7 @@ fr:
       max_generation_limit: Limite maximale de production dépassée, contactez votre administration.
     assessments:
       timed_out: Vous ne pourrez pas passer l'évaluation %{assessment_name} car elle a dépassé le temps imparti.
+    csrf_retry: Veuillez réessayer.
     equal_to_current_password: doit être différent du mot de passe actuel.
     equal_to_email: doit être différent de l'email.
     error: Erreur
@@ -2321,7 +2324,6 @@ fr:
     error_warning: Oups, un problème s'est produit lors de votre évaluation. Veuillez contacter le service d'assistance.
     hogan:
       cannot_start: Vous ne pouvez pas démarrer l'évaluation hogan pour l'instant. Veuillez essayer dans quelques minutes.
-    lighthouse_app: Phare de Mercer
     login: Connexion
     maintenance:
       notification: Lighthouse sera mis hors service pour une maintenance programmée dans 60 secondes
@@ -2941,8 +2943,6 @@ fr:
     zh-HK: Chinois (Hong Kong)
     zh-Hant: Chinois - Traditionnel
     zh-TW: Chinois (Taiwan)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: Nom de la campagne
     status_updated_at: Dernière mise à jour du statut
@@ -3003,12 +3003,11 @@ fr:
           invalid: Le périmètre doit être « openid »
   mailer:
     copyright:
-      text: Phare. Tous droits réservés
+      text: "© %{year} %{display_name}. Tous droits réservés"
     footer:
       regards: Cordialement,
-      team_name: Équipe Lighthouse
+      team_name: Équipe %{display_name}
       technical_support: Pour tout problème technique, écrivez-nous à %{email} et nous répondrons dans les 24 heures.
-    from: L'entreprise des talents
     idp:
       manager_unread_comments:
         body: |-
@@ -3065,8 +3064,6 @@ fr:
         instructions: Cliquez sur le lien ci-dessous pour vous connecter à lighthouse.
         signin_link: Lien de connexion
       subject: Lien de connexion pour Lighthouse
-    powered_by:
-      text: Propulsé par Lighthouse.
     users:
       account_disable: Votre compte a été désactivé pour cause d'inactivité
       warning: Votre compte sera bientôt désactivé pour cause d'inactivité
@@ -4129,7 +4126,6 @@ fr:
     admins: Administrateurs
     create_global_assessor: Créer un évaluateur global
     create_superadmin: Créer un super administrateur
-    dashboard: Tableau de bord
     drawer:
       link: Lien
       role: Rôle

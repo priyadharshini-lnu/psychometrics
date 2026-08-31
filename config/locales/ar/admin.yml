@@ -103,6 +103,7 @@ ar:
     ai_scoring_approval_stale_description: ربما تكون تحديثات الإعدادات التي تمت منذ آخر عملية تشغيل قد أدت إلى تغيير النتيجة. أعد التقييم لتحديث النتيجة باستخدام أحدث الإعدادات.
     ai_scoring_approval_stale_title: قد تكون النتيجة قديمة
     ai_scoring_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
+    ai_scoring_errors_label: أخطاء التقييم بالذكاء الاصطناعي
     ai_scoring_refresh_score: تحديث النتيجة
     ai_scoring_refresh_score_confirm_description: سيؤدي هذا إلى إعادة إجراء التقييم بالذكاء الاصطناعي لهذا الاختبار باستخدام أحدث إعدادات التكوين. هل أنت متأكد؟
     ai_scoring_refresh_score_confirm_title: هل تريد تحديث نتائج الذكاء الاصطناعي؟
@@ -122,6 +123,12 @@ ar:
     alt_text_long: يتجاوز الحد الأقصى البالغ 100 حرف.
     api_keys: مفاتيح API
     api_keys_form_title: مفتاح API
+    appearance: مظهر
+    appearance_dark: مظلم
+    appearance_dark_theme: الوضع الداكن
+    appearance_light: ضوء
+    appearance_light_theme: الوضع الفاتح
+    appearance_system: نظام
     application: التطبيق
     application_add: إضافة طلب
     application_name: اسم التطبيق
@@ -194,6 +201,8 @@ ar:
     assessor_add_subject_modal_subject: الموضوع
     assessor_add_subject_modal_subject_placeholder: البحث عن مشارك..
     assessor_add_subject_modal_title: إضافة مشارك
+    assessor_assessment_drawer_title: تفاصيل التقييم
+    assessor_assessment_id: رقم تعريف التقييم الخاص بالمُقيِّم
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: اختر تقييمًا
     assessor_assessment_name: تقييم المقيم
     assessor_assessments: تقييمات المقيم
@@ -344,9 +353,15 @@ ar:
     campaign_assessment_modals_update_occupation_condition_set_select: تحديد مجموعة شروط المهنة
     campaign_assessment_modals_update_occupation_condition_set_success_msg: تم تحديث «مجموعة شروط المهنة» بنجاح
     campaign_assessment_modals_update_occupation_condition_set_title: تحديث مجموعة حالات المهنة
+    campaign_dashboard_instructions_label: تعليمات لوحة معلومات الحملة
+    campaign_dashboard_instructions_save: حفظ التعليمات
+    campaign_dashboard_instructions_save_error: فشل حفظ تعليمات لوحة معلومات الحملة
+    campaign_dashboard_instructions_save_success: تم حفظ تعليمات لوحة معلومات الحملة بنجاح
     campaign_factors: عوامل الحملة
     campaign_id_placeholder: ادخل معرف الحملة
     campaign_name: اسم الحملة
+    campaign_name_translations: ترجمات أسماء الحملات
+    campaign_name_translations_fetch_error: حدث خطأ أثناء جلب ترجمات اسم الحملة
     campaign_report_generate_modal_subtitle: حدد اللغة المطلوبة لكل تقرير
     campaign_report_id: رقم تقرير الحملة
     campaign_results_export_details: نتائج تم إنشاؤها بواسطة أداة الذكاء الاصطناعي للحملة
@@ -418,6 +433,7 @@ ar:
     category: فئة
     cell_save_msg: يتم حفظ التغييرات الصحيحة تلقائيًا بمجرد مغادرة الخلية بعد التعديل.
     change_reason: سبب التغيير
+    change_report_dates_message: هل تريد تغيير نطاق تاريخ التقرير؟
     change_score: النتيجة المتغيرة
     change_score_log: سجل تغيير النتيجة
     characters: شخصيات
@@ -512,6 +528,7 @@ ar:
     created_successfully: تم إنشاء مساعد الذكاء الاصطناعي بنجاح.
     current: الحالي
     current_job_role: الدور الوظيفي الحالي
+    current_locale: اللغة الحالية
     custom_formula: صيغة مخصصة
     custom_message_description: يمكن إرسال هذه الرسالة إلى أي شخص يشارك في التقييم
     custom_message_name: رسالة مخصصة
@@ -662,7 +679,7 @@ ar:
     dimensions_import_modal_import_dimension: بُعد الاستيراد
     dimensions_import_modal_import_scheduled: الاستيراد المجدول
     dimensions_import_modal_operation: عملية
-    dimensions_import_modal_owner_global: تي تي إي (عالمي)
+    dimensions_import_modal_owner_global: عالمي
     dimensions_import_modal_owner_input_validation: يرجى اختيار المالك
     dimensions_import_modal_owner_select: اختر مالكاً
     dimensions_import_modal_select_json: تحديد ملف JSON
@@ -679,6 +696,7 @@ ar:
     disable_dp: عدم السماح بمعالجة البيانات الإضافية
     disable_proctoring: تعطيل المراقبة
     disable_report_download: تعطيل تنزيل التقرير
+    disable_transcript_download: تعطيل تنزيل النص
     disallow_lead_assessor_moderation: منع المراقبة من قِبل المقيم الرئيسي
     disallow_lead_assessor_moderation_info: سيتم حساب النتيجة تلقائيًا استنادًا إلى جميع نماذج التقييم التي تم تقديمها، ولا يمكن للمقيم الرئيسي تغييرها من شاشة المراجعة
     discard_all_questions: إعادة تعيين جميع الأسئلة
@@ -830,10 +848,13 @@ ar:
     feature_flags_ai_group: ميزات الذكاء الاصطناعي
     feature_flags_communication_group: الاتصال
     feature_flags_platform_group: ميزات المنصة
+    feature_flags_superadmin_group: تحديد نطاق المستأجر
+    feature_glint_ui_description: قدّم تجربة المشاركين باستخدام نظام تصميم Glint
     feature_global_skills_description: الوصول إلى مكتبة المهارات العالمية للتقييمات
     feature_idp_description: تمكين تخطيط التنمية الفردية للمشاركين
     feature_not_available: هذه الميزة غير متوفرة
     feature_sms_notification_description: تمكين إشعارات الرسائل القصيرة لدعوات الحملات والتذكيرات
+    feature_superadmin_tenant_scoping_description: عند تعطيل هذه الميزة، لن يتم حصر استعلامات المشرف الرئيسي على بيانات هذا العميل.
     fields_level: المستوى
     fields_level_description: وصف المستوى
     fields_level_name: اسم المستوى
@@ -865,6 +886,7 @@ ar:
     form_datasheet: ورقة البيانات
     form_datasheet_columns: أعمدة ورقة البيانات
     form_end_date: تاريخ الانتهاء
+    form_fields_to_display: الحقول المراد عرضها
     form_include_all_datasheet_columns: تضمين جميع أعمدة ورقة البيانات
     form_name: اسم
     form_no_assessment_selected: لم تتم إضافة أي تقييمات حتى الآن. انقر فوق "إضافة" للبدء.
@@ -889,8 +911,11 @@ ar:
     generate_transcription: إنشاء نسخة مكتوبة
     generated_at_time: تم إنشاؤه في %{time}
     generated_value: القيمة المولدة
+    glint_ui: واجهة مستخدم Glint
+    glint_ui_disabled_by_client: تم تعطيل واجهة المستخدم Glint بواسطة العميل
     global_skills: المهارات العالمية
     global_skills_disabled_by_client: يتم تعطيل المهارات العالمية من قبل العميل
+    go_back: خلف
     grant_type_label: نوع المنحة
     grant_type_name: oauth_grant_type
     graphic: رسم بياني
@@ -905,6 +930,7 @@ ar:
     header_logout_title: هل أنت متأكد أنك تريد تسجيل الخروج؟
     hide_all: إخفاء الكل
     hide_middle_scores: إخفاء النتائج المتوسطة
+    hide_participant_video: إخفاء فيديو المشارك
     high: مرتفع
     hogan: هوجان
     hogan_assessment: تقييم هوجان
@@ -1250,6 +1276,7 @@ ar:
     key_id: معرّف المفتاح
     keywords: الكلمات المفتاحية
     keywords_placeholder: أدخل الكلمات الرئيسية مفصولة بفواصل.
+    language: لغة
     language_id: معرف اللغة
     last_name_required: الاسم الأخير مطلوب
     lead_assessment: التقييم الرئيسي
@@ -1487,6 +1514,8 @@ ar:
     owner_resource_norm: معيار
     owner_resource_report: تقرير
     owner_resource_report_bundle: مجموعة تقارير
+    page_load_failed: تعذر تحميل هذه الصفحة.
+    page_load_failed_hint: ربما تم تحديث التطبيق - أعد تحميل الصفحة للمتابعة.
     parsed_dependencies_help: التبعيات التي تم تحليلها للمستخدم المستخدم من قبل مساعد الذكاء الاصطناعي لإنشاء نتائج البيانات الاصطناعية
     parsed_dependencies_title: التبعيات التي تم تحليلها
     parsed_dependencies_view: عرض التبعيات التي تم تحليلها
@@ -1948,6 +1977,7 @@ ar:
     piped_text_modal_title: إضافة نص موصول
     piped_text_modal_user_reports: تقارير المستخدمين
     piped_text_modal_users: المستخدمون
+    platform_owner: Platform
     playground: ملعب
     playground_info: اختبر الأداة الخاصة بك باستخدام عينة البيانات لمعاينة النتائج التي تم إنشاؤها.
     playground_placeholder: إدخال بيانات الاختبار
@@ -2101,6 +2131,7 @@ ar:
     projects_mettl_schedule_records_secure_browser_enabled: تمكين المتصفح الآمن
     projects_mettl_schedule_records_settings: الإعدادات
     projects_mettl_schedule_records_show_remaining_counts: تمكين عرض عدد العناصر المتبقية
+    projects_mettl_schedule_records_title: جداول ميتل
     projects_mettl_schedule_records_visual_proctoring_enabled: تمكين المراقبة البصرية
     projects_mettl_schedule_records_web_proctoring_enabled: تمكين مراقبة الويب
     projects_profile_settings_form_fields_enabled: تمكين
@@ -2178,6 +2209,38 @@ ar:
     raw_score: الدرجة الأولية
     reason_for_changes: سبب التغييرات
     recents: الأحدث
+    record_history_changes: التغييرات
+    record_history_changes_in_request: تغييرات في هذا الطلب
+    record_history_date_range_invalid: يجب أن يكون تاريخ الانتهاء في تاريخ البدء أو بعده.
+    record_history_date_range_required: يرجى تحديد نطاق زمني.
+    record_history_date_range_too_large: لا يمكن أن يتجاوز نطاق التاريخ %{days} يومًا. يُرجى تضييق نطاق البحث.
+    record_history_filter_actor: تصفية النتائج حسب البريد الإلكتروني للممثل
+    record_history_filter_field: تصفية حسب الحقل المتغير
+    record_history_filter_type: تصفية حسب نوع السجل
+    record_history_id_required: الرجاء إدخال رقم السجل
+    record_history_include_related: قم بتضمين السجلات ذات الصلة
+    record_history_last_30_days: آخر 30 يومًا
+    record_history_last_7_days: آخر 7 أيام
+    record_history_no_results: لم يتم العثور على سجل التغييرات لهذا السجل.
+    record_history_no_results_for: لم يتم العثور على أي تغييرات لـ
+    record_history_records_changed: تم تغيير السجلات
+    record_history_related_tag: متعلق ب
+    record_history_request_banner: عرض جميع التغييرات في الطلب
+    record_history_request_label: 'طلب:'
+    record_history_request_or_record_required: أدخل معرّف الطلب الفريد (UUID) أو اختر نوع السجل ومعرّفه.
+    record_history_request_uuid: طلب UUID
+    record_history_request_uuid_placeholder: أدخل معرّف الطلب الفريد (UUID)
+    record_history_revision_failed: فشل تحميل حالة السجل لهذه النسخة.
+    record_history_search_hint: أدخل معرّف الطلب الفريد (UUID)، أو حدد نوع السجل ومعرّف السجل لتتبع سجل التغييرات.
+    record_history_select_type: حدد نوع السجل
+    record_history_state_at_version: الحالة في الإصدار
+    record_history_system: نظام
+    record_history_title: سجل التغييرات
+    record_history_type_required: الرجاء تحديد نوع السجل
+    record_history_version: إصدار
+    record_history_view_audit_log: عرض في سجلات التدقيق
+    record_history_view_full: عرض السجل الكامل
+    record_history_view_request: عرض الطلب
     record_id: معرف السجل
     recordings: التسجيلات
     reflection_questions: أسئلة للتفكير
@@ -2293,6 +2356,7 @@ ar:
     report_no_evaluations: تقرير %{user} غير متوفر - لم يتم استلام أي تقييمات.
     report_not_generated: التقرير %{user} يفي بشروط التوفر لكنه لم يتم إعداده بعد. يرجى إنشاء التقرير أولا.
     report_on_hold: تقرير %{user} معلق حاليا
+    report_owner: مالك
     report_pdf_status: حالة ملف PDF
     report_review_abort_qc: إبطال ضمان الجودة
     report_review_approve: صدق
@@ -2313,10 +2377,12 @@ ar:
     report_types:
       active_clients_projects: العملاء والمشاريع الحالية
       campaign_factor_scores: درجات عوامل الحملة الانتخابية
+      campaign_user_creation: إنشاء مستخدم الحملة
       client_assessment_counts: أهمية تقييم العملاء
       hogan_usage_report: استخدام تقييم هوجان
       json_data_report: تقرير بيانات JSON
       pearson_usage_report: استخدام تقييمات بيرسون
+      proctoring_sessions: جلسات المراقبة
       report_usage_summary: ملخص استخدام التقرير
       saville_usage_report: استخدام تقييم سافيل
       user_access_review: مراجعة صلاحيات المستخدم
@@ -2376,6 +2442,17 @@ ar:
     role_project_admin: مدير المشروع
     role_superadmin: المسؤول الأعلى
     run: تشغيل
+    runtime_configuration_invalid_json_object: يجب أن يكون runtime_configuration كائن JSON صالحًا
+    runtime_configuration_invalid_parameter: لا يُعدّ مُعاملًا قابلًا للتحديث أثناء التشغيل
+    runtime_parameter_date_range_required: يرجى تحديد كل من تاريخ البدء وتاريخ الانتهاء
+    runtime_parameter_editable_section_title: نطاق التاريخ
+    runtime_parameter_filter_column: فلتر
+    runtime_parameter_locked_section_title: الفلاتر المضمنة
+    runtime_parameter_modal_subtitle: راجع التفاصيل وقم بتحديث نطاق التاريخ إذا لزم الأمر.
+    runtime_parameter_modal_title: تشغيل التقرير
+    runtime_parameter_not_set: غير متوفر
+    runtime_parameter_submit_button: اركض الآن
+    runtime_parameter_value_column: قيمة
     saml_idp_certificate_available: متوفر (انقر للنسخة)
     saml_idp_certificate_label: شهادة
     saml_idp_entity_id_label: معرف الكيان/المصدر
@@ -2450,11 +2527,16 @@ ar:
       approval_status_in: حالة الموافقة
       approver_user_id_in: الموافق
       assessment_id_in: التقييم
+      assessment_name_cont: تقدير
       campaign_id_in: حملة
+      campaign_name_cont: حملة
       client_id_in: العميل
+      client_name_cont: عميل
       project_id_in: المشروع
+      project_name_cont: مشروع
       qc_user_id_in: مستخدم QC
       report_id_in: تقرير
+      report_name_cont: تقرير
       subject_email_cont: موضوع البريد الإلكتروني
       subject_full_name_cont: اسم المادة
       user_email_cont: البريد الإلكتروني للمستخدم
@@ -2510,6 +2592,7 @@ ar:
     scheduling_columns_start_time: التاريخ والوقت
     scheduling_columns_subject: الموضوع
     scheduling_columns_title: العنوان
+    scheduling_columns_video_hidden_for_privacy: تم إخفاء الفيديو حفاظاً على خصوصية المرشح.
     scheduling_columns_view_recording: عرض التسجيل
     scheduling_errors_assessor_already_assigned: تم تعيين مقيّم لهذا التقييم بالفعل. يرجى اختيار تقييم أو مقيّم آخر.
     scheduling_errors_date_required: يرجى اختيار تاريخ
@@ -2602,6 +2685,12 @@ ar:
     score: النتيجة
     score_approval_not_allowed_to_approve: لا يجوز لك الموافقة على هذه النتيجة.
     score_approval_not_allowed_to_discard: لا يجوز لك التخلص من هذه النتيجة.
+    score_approval_reset: إعادة تعيين الموافقة
+    score_approval_reset_description: سيؤدي هذا إلى إعادة الموافقة إلى حالة "معلقة". لن تتغير الدرجات. لا يمكن التراجع عن هذا الإجراء.
+    score_approval_reset_not_allowed: لا يمكن إعادة ضبط هذه الموافقة على النتيجة في حالتها الحالية.
+    score_approval_reset_recompute_description: سيؤدي هذا إلى إعادة ضبط الموافقة، وإزالة درجات الذكاء الاصطناعي من نتائج المستخدم، وحذف أي تقارير تم إنشاؤها. لا يمكن التراجع عن هذا الإجراء.
+    score_approval_reset_success: تمت إعادة ضبط معدل الموافقة على النقاط.
+    score_approval_reset_title: هل تمت الموافقة على إعادة ضبط النتيجة؟
     score_definition_placeholder: أدخل تعريف مستوى النقاط هذا
     score_definitions: تعريفات النقاط
     score_max: النتيجة القصوى
@@ -2833,6 +2922,7 @@ ar:
     sheets_tabs_settings: الإعدادات
     show_all: عرض الكل
     show_all_assessment_responses: عرض جميع ردود التقييم
+    show_form_field_titles: عرض عناوين حقول النموذج
     show_middle_scores: عرض المزيد من النتائج لـ%{count}(اختياري)...
     show_original: عرض الأصل
     show_submenu: عرض القائمة الفرعية
@@ -2955,7 +3045,14 @@ ar:
     smtp_settings_user_name: اسم المستخدم
     specialty_questions: أسئلة متخصصة
     sso_email_mismatch: أنت مسجل الدخول إلى حساب آخر لدى مزود الهوية. يرجى تسجيل الخروج من حسابك لدى مزود الهوية ومحاولة الدخول مرة أخرى.
+    sso_enforce_for: فرض تسجيل الدخول الموحد لـ
+    sso_enforce_for_all: جميع المستخدمين
+    sso_enforce_for_none: لا أحد
+    sso_enforce_for_specific_domains: مجالات محددة
     sso_enforced: تفعيل تسجيل الدخول الموحد (SSO)
+    sso_enforced_domains: النطاقات المفروضة
+    sso_enforced_domains_hint: على سبيل المثال، se.com (مطابقة تامة) أو *.se.com (النطاقات الفرعية فقط)
+    sso_enforced_domains_placeholder: أدخل اسم النطاق (النطاقات) واضغط على مفتاح الإدخال (Enter).
     sso_label: تسجيل الدخول عبر مزود خدمة واحد (SSO)
     sso_not_enabled: لم يتم تمكين تسجيل الدخول الأحادي (SSO) لهذا العميل
     sso_settings: إعدادات تسجيل الدخول الموحد (SSO)
@@ -3070,11 +3167,15 @@ ar:
     success_title: تم إنشاء مراكز التقييم
     success_update: تم حفظ إعدادات التصميم بنجاح
     suitability_id: رقم الملاءمة
+    superadmin_tenant_scoping: المشرف المتميز
     superadmin_use_root_domain: يجب على المسؤولين الرئيسيين تسجيل الدخول عبر النطاق الرئيسي
     switch_client: تبديل العميل
     system_prompt: موجه النظام
     tab_text_one: قائمة الطعام
     tab_text_two: القائمة الفرعية
+    table_display_columns: الأعمدة
+    table_display_filters: الفلاتر
+    table_display_title: عرض
     table_more_actions: المزيد من الإجراءات
     tabs_results: النتائج
     tabs_settings: الإعدادات
@@ -3090,12 +3191,38 @@ ar:
     taxonomy_title: تصنيف المهارات
     template_and_campaign_required: يرجى تقديم كل من القالب ومعرف الحملة
     template_render_failed: فشل في عرض القالب
+    tenant_repair_confirm_message: 'قم بتعيين tenant_id إلى %{new_tenant} على %{model} #%{id}؟'
+    tenant_repair_confirm_message_null: 'قم بتعيين قيمة tenant_id إلى null على %{model} #%{id}؟'
+    tenant_repair_confirm_title: تأكيد تحديث بيانات المستأجر
+    tenant_repair_correct: صحيح
+    tenant_repair_current_tenant: المستأجر الحالي
+    tenant_repair_find_record: البحث عن سجل
+    tenant_repair_global_tenant: عالمي
+    tenant_repair_invalid_model: نوع النموذج غير صالح أو غير قابل للتأجير
+    tenant_repair_invalid_record_id: أدخل رقم تعريف سجل صالح
+    tenant_repair_invalid_tenant_id: أدخل رقم تعريف المستأجر الصحيح أو اتركه فارغًا لجعله فارغًا
+    tenant_repair_model_label: نموذج
+    tenant_repair_model_placeholder: اكتب للبحث...
+    tenant_repair_moved_from: 'تم تغيير المستأجر:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: هوية المستأجر الجديد
+    tenant_repair_preview_title: معاينة التسجيل
+    tenant_repair_request_failed: فشل الطلب
+    tenant_repair_resolved_tenant: مستأجر تم حل مشكلته
+    tenant_repair_success: تم تحديث بيانات المستأجر بنجاح.
+    tenant_repair_title: تصحيح بيانات المستأجر
+    tenant_repair_update: تحديث
+    tenant_repair_will_set_null: سيتم تعيين قيمة tenant_id إلى null
+    tenant_repair_will_set_value: سيتم تعيين معرّف المستأجر إلى %{value}
     test_generate: اختبار التوليد
     test_render: اختبار العرض
     test_render_tooltip: اختبر قالب التوجيه الخاص بك باستخدام بيانات الحملة لمعرفة ما سيتم إرساله إلى مساعد الذكاء الاصطناعي.
     text_danger: نص (خطر)
     text_success: النص (نجاح)
     text_warning: نص (تحذير)
+    themes:
+      marsh-dark: مارش دارك
+      marsh-light: مارش لايت
     this_field_is_required: هذا الحقل مطلوب
     threesixity_advance_settings_campaign_template: قالب الحملة
     threesixity_advance_settings_factors: العوامل
@@ -3117,6 +3244,7 @@ ar:
     threesixity_success: تم إنشاء الحملة متعددة التقييمات بنجاح.
     threesixity_success_job: تم جدولة مهمة إنشاء الحملة متعددة التقييمات بنجاح.
     threesixty: حملة 360
+    threesixty_campaigns_instruction_visible_to_participants: اعرض هذه التعليمات على المشاركين
     threesixty_campaigns_mail_history_date: التاريخ
     threesixty_campaigns_mail_history_download_details: تفاصيل التنزيل
     threesixty_campaigns_mail_history_emails_sent: رسائل البريد الإلكتروني المرسلة
@@ -3132,6 +3260,8 @@ ar:
     threesixty_campaigns_menu_report_menu_report_approval_title: إعدادات الموافقة على التقارير
     threesixty_campaigns_menu_report_menu_report_options_title: خيارات التقرير
     threesixty_campaigns_menu_report_title: تقرير
+    threesixty_campaigns_schedule_date_presets: تواريخ الجدول الزمني المحددة مسبقًا
+    threesixty_campaigns_send_reminders_automatically: إرسال التذكيرات تلقائياً
     time_label: الوقت
     time_zone: المنطقة الزمنية
     timed_label: 'الرابط: %{time_text}'
@@ -3184,7 +3314,6 @@ ar:
       title: الترجمات
     translations_export_failure_msg: خطأ أثناء تصدير الترجمات
     translations_export_success_msg: تصدير إجراءات التطوير قيد التنفيذ.
-    tte: TTE
     type_by_skill: حسب المهارة
     type_by_skill_type: حسب نوع المهارة
     type_default: الافتراضي

@@ -2,7 +2,7 @@
   .tte-logo
     = image_tag('tte-logo-no-text.svg', class: 'logo')
   .links
-    = link_to t('shared.terms_conditions_privacy'), 'https://thetalententerprise.com/privacy-statement/', rel: 'noopener noreferrer', target: '_blank'
+    = link_to t('shared.terms_conditions_privacy'), Settings.privacy_url, rel: 'noopener noreferrer', target: '_blank'
     - if @current_project&.privacy_link
       = link_to "#{@current_project.privacy_link.text}", "#{@current_project.privacy_link.link}", target: '_blank'
   - if @current_project&.design_setting&.secondary_logo&.url

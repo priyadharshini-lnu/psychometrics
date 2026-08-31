@@ -76,7 +76,6 @@ module Api
 
     def impersonate_on_root_domain(target_user)
       impersonate_as_admin(target_user)
-      flash.now[:success] = I18n.t('administration.administrators.list.actions.spoof.login_successful')
       redirect_to(root_admin_redirect_path_for(target_user))
     end
 

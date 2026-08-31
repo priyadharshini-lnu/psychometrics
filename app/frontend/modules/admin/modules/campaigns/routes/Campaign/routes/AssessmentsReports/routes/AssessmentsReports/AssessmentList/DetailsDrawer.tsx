@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import {
-  Drawer, Row, Descriptions, Switch,
+  Button, Drawer, Row, Descriptions, Switch,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
@@ -90,6 +90,13 @@ export const DetailsDrawer: FC<Props> = ({
             {assessment.name}
           </Descriptions.Item>
           <Descriptions.Item
+            label={I18n.t('common.column.owner')}
+            key="owner"
+            className="va-t"
+          >
+            {assessment.owner?.name || I18n.t('admin.platform_owner')}
+          </Descriptions.Item>
+          <Descriptions.Item
             label={I18n.t('campaign_assessment.column.dimension_id')}
             key="dimension_id"
             className="va-t"
@@ -104,14 +111,17 @@ export const DetailsDrawer: FC<Props> = ({
               className="va-t"
             >
               {assessment.permissions.updateOccupationConditionSet ? (
-                <a
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
                   onClick={() => openModal('UpdateConditionSetModal', {
                     campaignId: parseInt(campaignId, 10),
                     campaignAssessmentId: assessment.id,
                   })}
                 >
                   {assessment.occupationConditionSetName || I18n.t('common.text.default')}
-                </a>
+                </Button>
               ) : (
                 assessment.occupationConditionSetName || I18n.t('common.text.default')
               )}

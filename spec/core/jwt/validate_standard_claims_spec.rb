@@ -9,7 +9,6 @@ RSpec.describe Jwt::ValidateStandardClaims do
   let(:payload) do
     {
       'iss' => '123',
-      'jti' => SecureRandom.uuid,
       'aud' => 'https://client.ttedev.me',
       'exp' => Time.current.to_i + 300
     }

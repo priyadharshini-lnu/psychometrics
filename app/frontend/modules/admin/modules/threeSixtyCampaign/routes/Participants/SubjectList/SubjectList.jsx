@@ -1,24 +1,24 @@
 import { useEffect, useMemo, useState } from 'react'
 import _ from 'lodash'
 import {
-  Table, Row, Col, App, Checkbox,
+  Button, Table, App, Flex,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { CountDisplay } from '~/components/CountDisplay'
 import userPresenter from '~/presenters/user'
 import UserEditModal from '~/modules/admin/modules/threeSixtyCampaign/components/UserEditModal'
 import ResetSubjectModal from '~/modules/admin/modules/threeSixtyCampaign/components/ResetSubjectModal'
 import ResetPasswordModal from '~/modules/admin/modules/threeSixtyCampaign/routes/Participants/ResetPasswordModal'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import ToolsDropdown from '../ToolsDropdown'
 import { Manage } from '../Manage'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import SubjectImportModal from './SubjectImportModal'
-import Pagination from '../../../components/Pagination'
+import settings from '../../../settings'
 import SearchInput from '../SearchInput'
-import { useWindowSize } from '~/hooks/useWindowSize'
 import { useSelectAll } from '~/hooks/useSelectAll'
 import { getFeatures } from '~/core/config'
 
@@ -47,11 +47,11 @@ function SubjectList ({
   template,
 }) {
   const { projectId, campaignId } = useParams()
-  const [params] = useSearchParams()
-  const page = params.get('page') || 1
+  const [params, setParams] = useSearchParams()
+  const page = Number(params.get('page')) || 1
   const { message } = App.useApp()
   const [showResetSubjectModal, setShowResetSubjectModal] = useState(false)
-  const { width: windowWidth } = useWindowSize()
+  const screens = useBreakpoint()
   const isSkillRater = category === 'skill_rater'
   const {
     isAllSelected, excludedKeys, selectedKeys, onSelectionChange, onAllSelect,
@@ -66,7 +66,6 @@ function SubjectList ({
   }, [page, searchTerm])
 
   useEffect(() => {
-    // Dynamically update the selected count whenever selection changes
     const count = isAllSelected ? total - excludedKeys.length : selectedKeys.length
     setSelectedCount(count)
   }, [isAllSelected, excludedKeys, selectedKeys, total])
@@ -79,6 +78,11 @@ function SubjectList ({
 
   const curriedFetchSubjects = _.curry(fetchSubjects)
 
+  const changePage = (nextPage) => {
+    params.set('page', nextPage)
+    setParams(params)
+  }
+
   const openParticipantModal = (user) => {
     openModal('ParticipantModal', {
       user,
@@ -90,73 +94,69 @@ function SubjectList ({
 
   return (
     <>
-      <Row
-        justify="space-between"
-        align="middle"
-        className="pb-4 ps-3 pe-5"
-      >
-        <Col>
-          <CountDisplay
-            selectedCount={selectedCount ?? 0}
-            totalCount={total}
-          />
-        </Col>
-        <Col span={20} className="text-align-r">
-          <SearchInput
-            onChange={curriedFetchSubjects(campaignId)}
-            path="/participants/subjects"
-            searchTerm={searchTerm}
-          />
-          <Manage />
-          {!template
-          && (
-            <ToolsDropdown
-              isBulk
-              title={I18n.t('shared.actions')}
-              permissions={permissions}
-              selectedKeys={selectedKeys}
-              excludedKeys={excludedKeys}
-              isAllSelected={isAllSelected}
-              normalizedSubjectsData={normalizedSubjectsData}
-              cachingEnabled={cachingEnabled}
-              allowCaching={allowCaching}
+      <TableLayout
+        title={I18n.t('admin.subjects_title')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pageLimit,
+          total,
+          onChange: changePage,
+          showSizeChanger: false,
+        }}
+        selectionSetting={{
+          selectionAllowed: true,
+          hasSelectInAllPages: isAllSelected,
+          onSelectionChange: onAllSelect,
+          label: I18n.t('admin.scoring_select_all', { n: total ?? 0 }),
+        }}
+        selectedCount={selectedCount}
+        filters={(
+          <Flex gap={8}>
+            <SearchInput
+              onChange={curriedFetchSubjects(campaignId)}
+              path="/participants/subjects"
+              searchTerm={searchTerm}
+              style={{ marginRight: 0 }}
             />
-          )
-          }
-          {!template && (
-            <ToolsDropdown
-              permissions={permissions}
-              selectedKeys={selectedKeys}
-              excludedKeys={excludedKeys}
-              isAllSelected={isAllSelected}
-              normalizedSubjectsData={normalizedSubjectsData}
-              cachingEnabled={cachingEnabled}
-              allowCaching={allowCaching}
-            />
-          )}
-          {permissions.addSubject && !template && (
-            <CreateSubjectsDropdown />
-          )}
-        </Col>
-      </Row>
-      <div className="pb-4 ps-3 pe-5">
-        <Row>
-          <Col>
-            <Checkbox
-              checked={isAllSelected && total === selectedCount}
-              onChange={e => onAllSelect(e.target.checked)}
-              className="font-normal text-nowrap flex items-center"
-              indeterminate={isAllSelected && total !== selectedCount}
-            >
-              {I18n.t('admin.scoring_select_all', { n: total ?? 0 })}
-            </Checkbox>
-          </Col>
-        </Row>
-      </div>
-      <Row>
-        <Col span={24}>
+            <Manage />
+            {!template
+            && (
+              <ToolsDropdown
+                isBulk
+                title={I18n.t('shared.actions')}
+                permissions={permissions}
+                selectedKeys={selectedKeys}
+                excludedKeys={excludedKeys}
+                isAllSelected={isAllSelected}
+                normalizedSubjectsData={normalizedSubjectsData}
+                cachingEnabled={cachingEnabled}
+                allowCaching={allowCaching}
+              />
+            )
+            }
+            {!template && (
+              <ToolsDropdown
+                permissions={permissions}
+                selectedKeys={selectedKeys}
+                excludedKeys={excludedKeys}
+                isAllSelected={isAllSelected}
+                normalizedSubjectsData={normalizedSubjectsData}
+                cachingEnabled={cachingEnabled}
+                allowCaching={allowCaching}
+                placement="bottomRight"
+                menuStyle={{
+                  maxHeight: '270px',
+                }}
+              />
+            )}
+            {permissions.addSubject && !template && (
+              <CreateSubjectsDropdown />
+            )}
+          </Flex>
+        )}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             dataSource={subjects}
             pagination={false}
@@ -165,21 +165,24 @@ function SubjectList ({
           >
             <Column
               title={I18n.t('shared.name')}
-              fixed={windowWidth > 800 ? 'left' : undefined}
+              fixed={screens.md ? 'left' : undefined}
               key="fullName"
+              minWidth={200}
               render={({ user, permissions }) => (
-                <a
-                  role="button"
-                  tabIndex="0"
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
                   onClick={() => openParticipantModal(user, permissions)}
                 >
                   {userPresenter.getFullName(user)}
-                </a>
+                </Button>
               )}
             />
             <Column
               title={I18n.t('shared.email')}
               key="user_email"
+              minWidth={200}
               render={({ user }) => user.email}
             />
 
@@ -188,11 +191,13 @@ function SubjectList ({
                 <Column
                   title={I18n.t('admin.current_job_role')}
                   key="current_job_role"
+                  minWidth={150}
                   render={({ user }) => user.currentJobRole || '—'}
                 />
                 <Column
                   title={I18n.t('admin.target_job_role')}
                   key="target_job_role"
+                  minWidth={150}
                   render={({ user }) => user.targetJobRole || '—'}
                 />
               </>
@@ -202,22 +207,26 @@ function SubjectList ({
               title={I18n.t('admin.evaluations_received')}
               dataIndex="evaluators"
               key="received_evaluations"
+              minWidth={100}
             />
             <Column
               title={I18n.t('admin.evaluations_completed')}
               dataIndex="evaluations"
               key="completed_evaluations"
+              minWidth={100}
             />
 
             <Column
               title={I18n.t('admin.report_status')}
               key="report_status"
+              minWidth={150}
               render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)}
             />
 
             <Column
               title={I18n.t('admin.evaluation_status')}
               key="status"
+              minWidth={150}
               render={(record) => {
                 const { status } = record
                 return I18n.t(`admin.${status}`)
@@ -226,8 +235,9 @@ function SubjectList ({
 
             <Column
               key="action"
-              fixed={windowWidth > 800 ? 'right' : undefined}
+              fixed={screens.md ? 'right' : undefined}
               title={I18n.t('shared.action')}
+              minWidth={100}
               render={({
                 id, user: { email }, user, permissions, userReportId,
               }) => (
@@ -264,11 +274,8 @@ function SubjectList ({
               )}
             />
           </Table>
-          <div className="pm">
-            <Pagination total={total} path="/participants/subjects" />
-          </div>
-        </Col>
-      </Row>
+        )}
+      />
       <SubjectImportModal />
       <UserEditModal />
       <ResetSubjectModal open={showResetSubjectModal} />

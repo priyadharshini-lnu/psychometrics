@@ -1,12 +1,12 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Drawer, Tree, Button, Empty, Tooltip, Select, Col, Row, Typography, Space, Tag,
+  Drawer, Tree, Tooltip, Typography, Space, Tag,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
-import { FullWidthSkeleton } from '~/glint'
+import { DirectionalNavigateBackIcon, FullWidthSkeleton } from '~/glint'
 import { DeleteOutlined, PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { SubFactorsForm } from '~/modules/admin/modules/Dimensions/components/SubFactorsForm'
 import { SubFactors, SubFactorsTR } from '~/modules/admin/modules/client/core/subFactors'
@@ -23,238 +23,234 @@ const MODALS = {
 
 const { I18n } = window
 
+type FormState = {
+  mode: 'edit' | 'add'
+  factor?: SubFactors
+  conditionSetId: string
+}
+
 export const OccupationFactorsDrawer: React.FC<{
-   open: boolean; handleClose: () => void; occupationId?: number; occupationName?: string }> = (
-     {
-       open, handleClose, occupationId, occupationName,
-     },
-   ) => {
-     const [selectedConditionSetId, setSelectedConditionSetId] = useState<string | null>(null)
-     const [selectedFactorId, setSelectedFactorId] = useState<string | null>(null)
-     const [isAddingFactor, setIsAddingFactor] = useState(false)
-     const { dimensionId } = useParams() as { dimensionId: string }
-     const [factorsDataState, setFactorsDataState] = useState<{
-       data: SubFactors[], requests: {}, meta: {}, query: {},
-     }>({
-       data: [], requests: {}, meta: {}, query: {},
-     })
-     const dispatch = useDispatch()
+  open: boolean; handleClose: () => void; occupationId?: number; occupationName?: string
+}> = ({
+  open, handleClose, occupationId, occupationName,
+}) => {
+  const [formState, setFormState] = useState<FormState | null>(null)
+  const [factorsByConditionSet, setFactorsByConditionSet] = useState<Record<string, SubFactors[]>>({})
+  const [isLoadingFactors, setIsLoadingFactors] = useState(false)
+  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([])
+  const { dimensionId } = useParams() as { dimensionId: string }
+  const dispatch = useDispatch()
 
-     const {
-       data: occupationsFactors, fetch: fetchOccupationFactors,
-       isLoading: isFactorsLoading, changeFilter, getFilteredValue,
-     } = useResources<SubFactors>('occupations_factors', {
-       basePath: `dimensions/${dimensionId}/occupations/${occupationId}/`,
-       stateManager: { state: factorsDataState, setState: setFactorsDataState },
-       responseType: SubFactorsTR,
-     })
+  const {
+    data: conditionSets,
+    fetch: fetchConditionSets,
+    isLoading: isConditionSetsLoading,
+  } = useResources<OccupationConditionSet>('occupation_condition_sets', {
+    basePath: `dimensions/${dimensionId}/`,
+    responseType: OccupationConditionSetTR,
+  })
 
-     const {
-       data: conditionSets,
-       fetch: fetchConditionSets, isLoading: isConditionSetsLoading,
-     } = useResources<OccupationConditionSet>('occupation_condition_sets', {
-       basePath: `dimensions/${dimensionId}/`,
-       responseType: OccupationConditionSetTR,
-     })
+  const { fetch: fetchFactors } = useResources<SubFactors>('occupations_factors', {
+    basePath: `dimensions/${dimensionId}/occupations/${occupationId}/`,
+    responseType: SubFactorsTR,
+  })
 
-     const defaultSet = conditionSets.find(cs => cs.isDefault)
+  const fetchAllFactors = (conditionSetList: OccupationConditionSet[]) => {
+    setIsLoadingFactors(true)
+    const buildRequest = (cs: OccupationConditionSet) => {
+      const filter = { condition_set_id: cs.id }
+      return fetchFactors({ apiConfig: { filter } }).then(({ data }) => ({ id: cs.id, data }))
+    }
+    const requests = conditionSetList.map(buildRequest)
+    return Promise.all(requests).then((results) => {
+      const grouped: Record<string, SubFactors[]> = {}
+      results.forEach(({ id, data }) => { grouped[id] = data })
+      setFactorsByConditionSet(grouped)
+    }).finally(() => {
+      setIsLoadingFactors(false)
+    })
+  }
 
-     const currentConditionSetId = selectedConditionSetId
-       || defaultSet?.id
-       || conditionSets[0]?.id || null
+  const refreshFactors = () => {
+    fetchConditionSets().then(({ data: conditionSetList }) => {
+      fetchAllFactors(conditionSetList)
+    })
+  }
 
-     const clearSelectedFactor = () => {
-       selectedFactorId && setSelectedFactorId(null)
-       isAddingFactor && setIsAddingFactor(false)
-     }
+  useEffect(() => {
+    if (open) {
+      fetchConditionSets().then(({ data: conditionSetList }) => {
+        fetchAllFactors(conditionSetList)
+      })
+    }
+  }, [occupationId, open])
 
-     const selectedFactor = useMemo(
-       () => occupationsFactors.find(
-         factor => factor.id === selectedFactorId,
-       ), [currentConditionSetId, selectedFactorId],
-     )
-     const transformedSelectedFactor = selectedFactor
-       && { ...selectedFactor, factorId: String(selectedFactor.factorId) }
+  useEffect(() => {
+    if (conditionSets.length) {
+      setExpandedKeys(conditionSets.map(cs => `cs-${cs.id}`))
+    }
+  }, [conditionSets])
 
-     const showForm = isAddingFactor || !!selectedFactor
-     const conditionSetHasOccupationFactors = occupationsFactors && occupationsFactors.length > 0
+  const handleRemoveFactor = (factor: SubFactors) => {
+    dispatch(openModal('RemoveSubFactorsModal', {
+      subFact: factor,
+      slug: 'occupations',
+      occupationId,
+      onSuccessfulRemoval: refreshFactors,
+    }))
+    if (formState?.factor?.id === factor.id) setFormState(null)
+  }
 
-     useEffect(() => {
-       if (open) {
-         fetchConditionSets().then(({ data }) => {
-           const defaultSet = data.find(cs => cs.isDefault)
-           if (defaultSet?.id && getFilteredValue('condition_set_id') === defaultSet?.id) {
-             fetchOccupationFactors({ apiConfig: { filter: { condition_set_id: defaultSet.id } } })
-             return
-           }
-           defaultSet?.id && changeFilter('condition_set_id', defaultSet?.id)
-         })
-       }
-     }, [occupationId, open])
+  const handleTreeSelect = (selectedKeys: React.Key[]) => {
+    if (!selectedKeys.length) return
+    const key = selectedKeys[0] as string
 
-     useEffect(() => {
-       if (open && selectedConditionSetId) {
-         changeFilter('condition_set_id', selectedConditionSetId || '')
-       }
-     }, [selectedConditionSetId, open])
+    if (key.startsWith('add-')) {
+      const conditionSetId = key.replace('add-', '')
+      setFormState({ mode: 'add', conditionSetId })
+      return
+    }
 
-     useEffect(() => () => {
-       if (!open) {
-         setSelectedConditionSetId(null)
-         clearSelectedFactor()
-       }
-     }, [open])
+    const matchEntry = ([, factors]: [string, SubFactors[]]) => factors.some(f => f.id === key)
+    const matchingEntry = Object.entries(factorsByConditionSet).find(matchEntry)
+    if (matchingEntry) {
+      const [csId, factors] = matchingEntry
+      const found = factors.find(f => f.id === key)
+      setFormState({ mode: 'edit', factor: found, conditionSetId: csId })
+    }
+  }
 
-     const handleConditionSetChange = (value: string) => {
-       setSelectedConditionSetId(value)
-       clearSelectedFactor()
-     }
+  const handleFormSuccess = () => {
+    refreshFactors()
+    setFormState(null)
+  }
 
-     const handleRemoveFactor = (id: string) => {
-       dispatch(openModal('RemoveSubFactorsModal', {
-         subFact: occupationsFactors.find(factor => factor.id === id),
-         slug: 'occupations',
-         occupationId,
-         onSuccessfulRemoval: () => {
-           fetchOccupationFactors()
-         },
-       }))
-       if (selectedFactorId === id) setSelectedFactorId(null)
-     }
+  const sortedConditionSets = [...conditionSets].sort(
+    (a, b) => (b.isDefault ? 1 : 0) - (a.isDefault ? 1 : 0),
+  )
 
-     const handleSelectFactor = (selectedKeys) => {
-       if (!selectedKeys.length) return
-       setIsAddingFactor(false)
-       setSelectedFactorId(selectedKeys[0])
-     }
+  const buildTreeData = () => sortedConditionSets.map((cs) => {
+    const csFactors = factorsByConditionSet[cs.id] || []
+    return {
+      key: `cs-${cs.id}`,
+      title: (
+        <Space>
+          {cs.name}
+          {cs.isDefault && <Tag color="var(--ant-primary-color)">{I18n.t('admin.default')}</Tag>}
+        </Space>
+      ),
+      selectable: false,
+      children: [
+        ...csFactors.map(factor => ({
+          key: factor.id,
+          title: (
+            <div className="flex items-center justify-between w-100 pthalf pbhalf">
+              <span>{factor.factorName}</span>
+              <Tooltip title={I18n.t('shared.remove')}>
+                <DeleteOutlined
+                  className="cursor-pointer"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    handleRemoveFactor(factor)
+                  }}
+                />
+              </Tooltip>
+            </div>
+          ),
+          isLeaf: true,
+        })),
+        {
+          key: `add-${cs.id}`,
+          title: (
+            <Typography.Link>
+              <PlusOutlined />
+              {' '}
+              {I18n.t('admin.scoring_add_factor')}
+            </Typography.Link>
+          ),
+          isLeaf: true,
+        },
+      ],
+    }
+  })
 
-     const handleAddFactor = () => {
-       setSelectedFactorId(null)
-       setIsAddingFactor(true)
-     }
+  const editSelectedKeys = formState?.mode === 'edit' && formState.factor ? [formState.factor.id] : []
+  const addSelectedKeys = formState?.mode === 'add' ? [`add-${formState.conditionSetId}`] : []
+  const selectedKeys = editSelectedKeys.length ? editSelectedKeys : addSelectedKeys
 
-     const handleFormClose = (data) => {
-       setFactorsDataState({
-         ...factorsDataState,
-         data: [...factorsDataState.data.filter(factor => factor.id !== data.id), data],
-       })
-       clearSelectedFactor()
-     }
+  const transformedFactor = formState?.factor
+    ? { ...formState.factor, factorId: String(formState.factor.factorId) }
+    : undefined
 
-     const treeData = occupationsFactors.map(factor => ({
-       key: factor.id,
-       title: (
-         <div className="flex items-center justify-between w-100">
-           <Space>
-             <Typography.Text
-               style={{
-                 background: selectedFactorId === factor.id ? 'transparent' : undefined,
-               }}
-               code
-             >
-               {factor.factorId}
-             </Typography.Text>
-             {factor.factorName}
-           </Space>
-           <Tooltip title={I18n.t('shared.remove')}>
-             <DeleteOutlined
-               onClick={(event) => {
-                 event.stopPropagation()
-                 handleRemoveFactor(factor.id)
-               }}
-             />
-           </Tooltip>
-         </div>
-       ),
-     }))
+  const selectedConditionSet = formState
+    ? conditionSets.find(cs => cs.id === formState.conditionSetId)
+    : undefined
 
-     const occupationFactorsList = conditionSetHasOccupationFactors ? (
-       <Tree
-         showLine
-         blockNode
-         selectedKeys={selectedFactorId ? [selectedFactorId] : []}
-         treeData={treeData}
-         onSelect={handleSelectFactor}
-       />
-     ) : (
-       <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={I18n.t('admin.empty_occupation_condition_set_msg')} />
-     )
+  const contextTitle = formState?.mode === 'add'
+    ? `${I18n.t('admin.scoring_add_factor')} • ${selectedConditionSet?.name}`
+    : `${I18n.t('admin.scoring_edit_factor')} • ${formState?.factor?.factorName}`
 
-     return (
-       <Drawer
-         open={open}
-         onClose={handleClose}
-         title={(
-           <>
-             {occupationName}
-             {' '}
-             -
-             {' '}
-             <Tag className="fs-20">{I18n.t('admin.occupation_factors_title')}</Tag>
-           </>
-         )}
-         size={960}
-       >
-         <Row gutter={[24, 0]}>
-           <Col span={10} style={{ borderInlineEnd: '1px solid #f0f0f0' }}>
-             <label className="mb-2">
-               {I18n.t('admin.select_condition_set')}
-             </label>
-             <Select
-               loading={isConditionSetsLoading('fetch')}
-               className="w-100 mb-4"
-               value={currentConditionSetId}
-               onChange={handleConditionSetChange}
-               options={conditionSets.map(({ id, name, isDefault }) => ({
-                 value: id,
-                 label: (
-                   <Space className="w-100" styles={{ root: { justifyContent: 'space-between' } }}>
-                     {name}
-                     {isDefault && (
-                       <Tag className="ta-e" color="var(--ant-primary-color)">{I18n.t('admin.default')}</Tag>
-                     )}
-                   </Space>
-                 ),
-               }))}
-             />
-             {isFactorsLoading('fetch') ? (
-               <FullWidthSkeleton height="1.25rem" rows={4} active />
-             ) : occupationFactorsList}
-             <Button
-               size="small"
-               type="dashed"
-               block
-               className="mt-4"
-               icon={<PlusOutlined />}
-               onClick={handleAddFactor}
-               style={{ backgroundColor: isAddingFactor ? 'var(--ant-primary-1)' : undefined }}
-             >
-               {I18n.t('admin.scoring_add_factor')}
-             </Button>
-           </Col>
-           <Col span={14}>
-             {showForm ? (
-               <SubFactorsForm
-                 occupationId={occupationId}
-                 key={isAddingFactor ? 'new' : selectedFactorId}
-                 subFact={transformedSelectedFactor}
-                 slug="occupations"
-                 showSubmitButton
-                 onStatusChange={() => {}}
-                 onSuccessfulSubmission={handleFormClose}
-                 occupationConditionSetId={currentConditionSetId}
-               />
-             ) : (
-               <Typography.Text
-                 className="h-100 flex justify-center items-center"
-                 type="secondary"
-               >
-                 {I18n.t('admin.add_or_select_factor_msg')}
-               </Typography.Text>
-             )}
-           </Col>
-         </Row>
-         <Modals modals={MODALS} />
-       </Drawer>
-     )
-   }
+  const isLoading = isConditionSetsLoading('fetch') || isLoadingFactors
+
+  return (
+    <Drawer
+      open={open}
+      onClose={handleClose}
+      closeIcon={<DirectionalNavigateBackIcon />}
+      title={occupationName}
+      width="70%"
+    >
+      <div className="flex w-100">
+        <div
+          className="me-8 pe-8 ps-8 border-r-1 overflow-y-auto"
+          style={{
+            flex: '0 0 360px',
+          }}
+        >
+          {isLoading ? (
+            <FullWidthSkeleton height="1.25rem" rows={6} active />
+          ) : (
+            <Tree
+              showLine
+              blockNode
+              expandedKeys={expandedKeys}
+              onExpand={setExpandedKeys}
+              selectedKeys={selectedKeys}
+              treeData={buildTreeData()}
+              onSelect={handleTreeSelect}
+            />
+          )}
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {formState ? (
+            <>
+              <div className="mb-6">
+                <Typography.Text className="fs-14" type="secondary">
+                  {contextTitle}
+                </Typography.Text>
+              </div>
+              <SubFactorsForm
+                key={formState.mode === 'add' ? `new-${formState.conditionSetId}` : formState.factor?.id}
+                occupationId={occupationId}
+                subFact={transformedFactor}
+                slug="occupations"
+                showSubmitButton
+                onStatusChange={() => {}}
+                onSuccessfulSubmission={handleFormSuccess}
+                occupationConditionSetId={formState.conditionSetId}
+              />
+            </>
+          ) : (
+            <Typography.Text
+              className="h-100 flex justify-center items-center"
+              type="secondary"
+            >
+              {I18n.t('admin.add_or_select_factor_msg')}
+            </Typography.Text>
+          )}
+        </div>
+      </div>
+      <Modals modals={MODALS} />
+    </Drawer>
+  )
+}

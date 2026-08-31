@@ -22,7 +22,7 @@ export default interface Module {
       type: string
     }
     sourceType: 'Factor' | 'Question' | 'ConditionalText' | 'ConditionalFactorOccupationText' |
-      'PipedText' | 'ResultText' | 'ResponseText' | 'AIContent'
+      'PipedText' | 'ResultText' | 'ResponseText' | 'AIContent' | 'AIRationaleEvidence' | 'AITranscript'
     mainHeaderColor: RgbaColor | string
     secondHeaderColor: RgbaColor | string
     scoreBackgroundColor: RgbaColor | string
@@ -40,6 +40,9 @@ export default interface Module {
     position: {width: number, height: number, top: number, left: number}
     style: any // eslint-disable-line @typescript-eslint/no-explicit-any
     question?: number
+    hideRationale?: boolean
+    hideEvidence?: boolean
+    selectedFactors?: number[]
     tableColumns?: TableColumn
     pagination?: {
       enabled: boolean,

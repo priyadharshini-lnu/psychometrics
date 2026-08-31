@@ -32,11 +32,13 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
         <Resource.Column<InterviewQuestion>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={skill => (
             skill.id
           )}
           width={10}
+          fixed="left"
         />
         <Resource.Column<InterviewQuestion>
           title={I18n.t('admin.interview_questions_question')}
@@ -44,6 +46,7 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
           width={300}
           render={item => <Typography.Text copyable>{item.question}</Typography.Text>}
           sorter
+          fixed="left"
         />
         <Resource.Column<InterviewQuestion>
           title={I18n.t('shared.description')}
@@ -81,6 +84,7 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
         <Resource.Column<InterviewQuestion>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           render={(_, interviewQuestion) => (
             <Dropdown
               interviewQuestion={interviewQuestion}
@@ -89,6 +93,7 @@ export const InterviewQuestionTable: React.FC<Props> = () => {
             />
           )}
           width={100}
+          fixed="right"
         />
       </Resource.Table>
       <ConfirmationModal

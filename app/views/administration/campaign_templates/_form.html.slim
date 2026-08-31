@@ -5,7 +5,7 @@
       = f.input :name
       = f.input :owner_id,
                 as: :select,
-                collection: [['TTE', nil], *Client.tenancies.order(:name).map { |u| [u.name, u.id] }],
+                collection: [[t('admin.platform_owner'), nil], *Client.tenancies.order(:name).map { |u| [u.name, u.id] }],
                 input_html: { data: { live_search: true } }
       = f.input :assessment_id,
                 as: :select,

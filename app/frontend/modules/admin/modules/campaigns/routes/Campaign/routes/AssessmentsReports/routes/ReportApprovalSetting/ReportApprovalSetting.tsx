@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Space, Pagination, Button, MenuProps,
+  Table, Space, Button, MenuProps,
 } from 'antd'
+import { DataTablePagination } from '@thetalententerprise/glint'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -145,12 +146,12 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
             />
           )}
       </Table>
-      <Pagination
-        current={currentPage}
+      <DataTablePagination
+        page={currentPage}
         pageSize={pageSize}
-        total={meta.recordCount}
+        total={meta.recordCount ?? 0}
         onChange={changePage}
-        className="pl"
+        showSizeChanger
       />
     </>
   )
@@ -179,8 +180,8 @@ const ReportApprovalSettingComponent: React.FC<Props> = ({
       <TableLayout
         table={ApprovalSettingsTable}
         filters={filter}
+        title={I18n.t('assessments_reports.menu.report_approval')}
         recordCount={meta.recordCount}
-        loading={tableLoading}
         requestStatus={requests.fetch?.status}
         failureMsg={getErrorMsgFromJsonApiRequests(requests)}
       />

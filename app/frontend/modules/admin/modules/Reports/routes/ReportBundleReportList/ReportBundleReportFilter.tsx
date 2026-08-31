@@ -15,7 +15,10 @@ export const ReportBundleReportFilter: React.FC<{ openModal: () => void }> = ({
   const tableLoading = resource.isLoading('fetch')
 
   return (
-    <Resource.Filter placeholder={I18n.t('common.actions.search')} name="filterable_fields">
+    <Resource.Filter
+      placeholder={I18n.t('common.actions.search')}
+      name="filterable_fields"
+    >
       <Button type="primary" disabled={tableLoading} onClick={openModal}>
         <PlusOutlined />
         {I18n.t('report_bundles.reports.actions.add')}

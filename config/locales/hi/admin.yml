@@ -103,6 +103,7 @@ hi:
     ai_scoring_approval_stale_description: पिछली रन के बाद कॉन्फ़िगरेशन अपडेट्स ने स्कोर बदल दिया हो सकता है। नवीनतम सेटिंग्स का उपयोग करके इसे अपडेट करने के लिए पुनः स्कोर करें।
     ai_scoring_approval_stale_title: स्कोर पुराना हो सकता है
     ai_scoring_approvals: एआई स्कोरिंग अनुमोदन
+    ai_scoring_errors_label: एआई स्कोरिंग त्रुटियाँ
     ai_scoring_refresh_score: स्कोर ताज़ा करें
     ai_scoring_refresh_score_confirm_description: यह नवीनतम कॉन्फ़िगरेशन का उपयोग करके इस मूल्यांकन के लिए एआई स्कोरिंग को फिर से चलाएगा। क्या आप सुनिश्चित हैं?
     ai_scoring_refresh_score_confirm_title: AI स्कोर रिफ्रेश करें?
@@ -122,6 +123,12 @@ hi:
     alt_text_long: 100 अक्षरों की अधिकतम सीमा से अधिक है।
     api_keys: एपीआई कुंजी
     api_keys_form_title: एपीआई कुंजी
+    appearance: उपस्थिति
+    appearance_dark: अँधेरा
+    appearance_dark_theme: डार्क थीम
+    appearance_light: रोशनी
+    appearance_light_theme: प्रकाश थीम
+    appearance_system: प्रणाली
     application: आवेदन
     application_add: आवेदन जोड़ें
     application_name: आवेदन का नाम
@@ -194,6 +201,8 @@ hi:
     assessor_add_subject_modal_subject: विषय
     assessor_add_subject_modal_subject_placeholder: विषय खोजें..
     assessor_add_subject_modal_title: विषय जोड़ें
+    assessor_assessment_drawer_title: मूल्यांकन विवरण
+    assessor_assessment_id: मूल्यांकनकर्ता मूल्यांकन आईडी
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: एक मूल्यांकन चुनें
     assessor_assessment_name: मूल्यांकनकर्ता मूल्यांकन
     assessor_assessments: मूल्यांकनकर्ता मूल्यांकन
@@ -344,9 +353,15 @@ hi:
     campaign_assessment_modals_update_occupation_condition_set_select: व्यावसायिक स्थिति सेट चुनें
     campaign_assessment_modals_update_occupation_condition_set_success_msg: ऑक्यूपेशन कंडीशन सेट सफलतापूर्वक अपडेट हो गया।
     campaign_assessment_modals_update_occupation_condition_set_title: व्यवसाय स्थिति सेट अपडेट करें
+    campaign_dashboard_instructions_label: कैंपेन डैशबोर्ड निर्देश
+    campaign_dashboard_instructions_save: निर्देश सहेजें
+    campaign_dashboard_instructions_save_error: कैंपेन डैशबोर्ड निर्देश सहेजने में विफल
+    campaign_dashboard_instructions_save_success: कैंपेन डैशबोर्ड के निर्देश सफलतापूर्वक सहेज लिए गए हैं।
     campaign_factors: अभियान कारक
     campaign_id_placeholder: अभियान आईडी दर्ज करें
     campaign_name: अभियान का नाम
+    campaign_name_translations: अभियान के नाम का अनुवाद
+    campaign_name_translations_fetch_error: अभियान के नाम के अनुवाद प्राप्त करने में त्रुटि
     campaign_report_generate_modal_subtitle: प्रत्येक रिपोर्ट के लिए आवश्यक भाषा चुनें
     campaign_report_id: अभियान रिपोर्ट आईडी
     campaign_results_export_details: अभियान एआई कलाकृतियों ने परिणाम उत्पन्न किए
@@ -418,6 +433,7 @@ hi:
     category: श्रेणी
     cell_save_msg: संपादन के बाद सेल से बाहर निकलते ही मान्य परिवर्तन स्वचालित रूप से सहेजे जाते हैं।
     change_reason: कारण बदलें
+    change_report_dates_message: क्या आप रिपोर्ट की तिथि सीमा बदलना चाहते हैं?
     change_score: बदला हुआ स्कोर
     change_score_log: स्कोर लॉग बदलें
     characters: चरित्र
@@ -512,6 +528,7 @@ hi:
     created_successfully: एआई असिस्टेंट सफलतापूर्वक बनाया गया।
     current: वर्तमान
     current_job_role: वर्तमान नौकरी की भूमिका
+    current_locale: वर्तमान स्थान
     custom_formula: अनुकूलित सूत्र
     custom_message_description: यह संदेश मूल्यांकन में भाग लेने वाले किसी भी व्यक्ति को भेजा जा सकता है।
     custom_message_name: अनुकूलित संदेश
@@ -662,7 +679,7 @@ hi:
     dimensions_import_modal_import_dimension: आयाम आयात करें
     dimensions_import_modal_import_scheduled: आयात निर्धारित
     dimensions_import_modal_operation: संचालन
-    dimensions_import_modal_owner_global: टीटीई (वैश्विक)
+    dimensions_import_modal_owner_global: वैश्विक
     dimensions_import_modal_owner_input_validation: कृपया एक मालिक चुनें
     dimensions_import_modal_owner_select: एक मालिक चुनें
     dimensions_import_modal_select_json: JSON फ़ाइल चुनें
@@ -681,6 +698,7 @@ hi:
     disable_dp: आगे डेटा प्रसंस्करण की अनुमति न दें
     disable_proctoring: प्रॉक्टरिंग अक्षम करें
     disable_report_download: रिपोर्ट डाउनलोड अक्षम करें
+    disable_transcript_download: ट्रांसक्रिप्ट डाउनलोड अक्षम करें
     disallow_lead_assessor_moderation: लीड आकलनकर्ता की मध्यस्थता निषेध करें
     disallow_lead_assessor_moderation_info: स्कोर सभी आकलनकर्ता फॉर्म जमा होने पर स्वचालित रूप से गणना किया जाएगा और मुख्य आकलनकर्ता इसे मॉडरेशन स्क्रीन से नहीं बदल सकता।
     discard_all_questions: सभी प्रश्नों को रीसेट करें
@@ -832,10 +850,13 @@ hi:
     feature_flags_ai_group: एआई सुविधाएँ
     feature_flags_communication_group: संचार
     feature_flags_platform_group: प्लेटफ़ॉर्म की विशेषताएँ
+    feature_flags_superadmin_group: किरायेदार का दायरा निर्धारण
+    feature_glint_ui_description: ग्लिंट डिज़ाइन सिस्टम के साथ प्रतिभागी अनुभव को प्रस्तुत करें
     feature_global_skills_description: मूल्यांकन के लिए वैश्विक कौशल लाइब्रेरी तक पहुँचें
     feature_idp_description: प्रतिभागियों के लिए व्यक्तिगत विकास योजना सक्षम करें
     feature_not_available: यह सुविधा उपलब्ध नहीं है
     feature_sms_notification_description: अभियान के निमंत्रणों और अनुस्मारकों के लिए एसएमएस सूचनाएं सक्षम करें
+    feature_superadmin_tenant_scoping_description: अक्षम होने पर, सुपरएडमिन क्वेरी इस क्लाइंट के डेटा तक सीमित नहीं रहेंगी।
     fields_level: स्तर
     fields_level_description: स्तर का विवरण
     fields_level_name: स्तर का नाम
@@ -867,6 +888,7 @@ hi:
     form_datasheet: डेटाशीट
     form_datasheet_columns: डेटाशीट स्तंभ
     form_end_date: अंतिम तिथि
+    form_fields_to_display: प्रदर्शित करने के लिए फ़ील्ड
     form_include_all_datasheet_columns: सभी डेटाशीट स्तंभ शामिल करें
     form_name: नाम
     form_no_assessment_selected: अभी तक कोई आकलन नहीं जोड़ा गया है। शुरू करने के लिए "Add" पर क्लिक करें।
@@ -891,8 +913,11 @@ hi:
     generate_transcription: प्रतिलेखन उत्पन्न करें
     generated_at_time: "%{time} पर उत्पन्न"
     generated_value: उत्पन्न मूल्य
+    glint_ui: ग्लिंट यूआई
+    glint_ui_disabled_by_client: क्लाइंट द्वारा ग्लिंट यूआई को अक्षम कर दिया गया है।
     global_skills: वैश्विक कौशल
     global_skills_disabled_by_client: ग्लोबल स्किल्स क्लाइंट द्वारा अक्षम किया गया है।
+    go_back: पीछे
     grant_type_label: अनुदान का प्रकार
     grant_type_name: ओएथ_ग्रांट_टाइप
     graphic: चित्रात्मक
@@ -907,6 +932,7 @@ hi:
     header_logout_title: क्या आप वास्तव में लॉगआउट करना चाहते हैं?
     hide_all: सब छुपाएँ
     hide_middle_scores: मध्य स्कोर छिपाएँ
+    hide_participant_video: प्रतिभागी का वीडियो छुपाएँ
     high: उच्च
     hogan: होगन
     hogan_assessment: होगन मूल्यांकन
@@ -1252,6 +1278,7 @@ hi:
     key_id: मुख्य आईडी
     keywords: मुख्य शब्द
     keywords_placeholder: अल्पविरामों से अलग किए गए कीवर्ड दर्ज करें।
+    language: भाषा
     language_id: भाषा आईडी
     last_name_required: अंतिम नाम अनिवार्य है
     lead_assessment: लीड मूल्यांकन
@@ -1491,6 +1518,8 @@ hi:
     owner_resource_norm: आदर्श
     owner_resource_report: प्रतिवेदन
     owner_resource_report_bundle: रिपोर्ट बंडल
+    page_load_failed: यह पेज लोड नहीं हो सका।
+    page_load_failed_hint: ऐप अपडेट हो गया होगा - जारी रखने के लिए रीलोड करें।
     parsed_dependencies_help: आर्टिफैक्ट परिणामों के निर्माण के लिए AI सहायक द्वारा उपयोग किए गए उपयोगकर्ता की पार्स की गई निर्भरताएँ
     parsed_dependencies_title: विश्लेषित निर्भरताएँ
     parsed_dependencies_view: पार्स की गई निर्भरताएँ देखें
@@ -1952,6 +1981,7 @@ hi:
     piped_text_modal_title: पाइप्ड टेक्स्ट जोड़ें
     piped_text_modal_user_reports: उपयोगकर्ता रिपोर्टें
     piped_text_modal_users: उपयोगकर्ता
+    platform_owner: Platform
     playground: खेल का मैदान
     playground_info: उत्पन्न परिणामों का पूर्वावलोकन करने के लिए अपने आर्टिफैक्ट को नमूना डेटा के साथ परीक्षण करें।
     playground_placeholder: परीक्षण डेटा दर्ज करें
@@ -2105,6 +2135,7 @@ hi:
     projects_mettl_schedule_records_secure_browser_enabled: सुरक्षित ब्राउज़र सक्षम करें
     projects_mettl_schedule_records_settings: सेटिंग्स
     projects_mettl_schedule_records_show_remaining_counts: शेष संख्या दिखाने की सुविधा सक्षम करें
+    projects_mettl_schedule_records_title: धातु अनुसूचियाँ
     projects_mettl_schedule_records_visual_proctoring_enabled: दृश्य निगरानी सक्षम करें
     projects_mettl_schedule_records_web_proctoring_enabled: वेब प्रॉक्टरिंग सक्षम करें
     projects_profile_settings_form_fields_enabled: सक्षम
@@ -2182,6 +2213,38 @@ hi:
     raw_score: कच्चा स्कोर
     reason_for_changes: बदलाव का कारण
     recents: हाल के
+    record_history_changes: परिवर्तन
+    record_history_changes_in_request: इस अनुरोध में परिवर्तन
+    record_history_date_range_invalid: समाप्ति तिथि प्रारंभ तिथि के बराबर या उसके बाद होनी चाहिए।
+    record_history_date_range_required: कृपया तिथि सीमा का चयन करें।
+    record_history_date_range_too_large: दिनांक सीमा %{days} दिनों से अधिक नहीं हो सकती। कृपया अपनी खोज को सीमित करें।
+    record_history_filter_actor: अभिनेता के ईमेल के आधार पर फ़िल्टर करें
+    record_history_filter_field: परिवर्तित फ़ील्ड के आधार पर फ़िल्टर करें
+    record_history_filter_type: रिकॉर्ड प्रकार के आधार पर फ़िल्टर करें
+    record_history_id_required: कृपया रिकॉर्ड आईडी दर्ज करें
+    record_history_include_related: संबंधित रिकॉर्ड शामिल करें
+    record_history_last_30_days: पिछले 30 दिनों
+    record_history_last_7_days: पिछले 7 दिन
+    record_history_no_results: इस रिकॉर्ड के लिए कोई परिवर्तन इतिहास नहीं मिला।
+    record_history_no_results_for: कोई परिवर्तन नहीं पाया गया
+    record_history_records_changed: रिकॉर्ड बदल गए
+    record_history_related_tag: संबंधित
+    record_history_request_banner: अनुरोध में हुए सभी बदलाव दिखाए जा रहे हैं
+    record_history_request_label: 'अनुरोध:'
+    record_history_request_or_record_required: अनुरोध UUID दर्ज करें या रिकॉर्ड प्रकार और ID चुनें।
+    record_history_request_uuid: अनुरोध UUID
+    record_history_request_uuid_placeholder: अनुरोध UUID दर्ज करें
+    record_history_revision_failed: इस संस्करण के लिए रिकॉर्ड स्थिति लोड करने में विफलता।
+    record_history_search_hint: अनुरोध UUID दर्ज करें, या परिवर्तन इतिहास का पता लगाने के लिए रिकॉर्ड प्रकार और रिकॉर्ड ID का चयन करें।
+    record_history_select_type: रिकॉर्ड प्रकार का चयन करें
+    record_history_state_at_version: राज्य संस्करण पर
+    record_history_system: प्रणाली
+    record_history_title: रिकॉर्ड परिवर्तन इतिहास
+    record_history_type_required: कृपया रिकॉर्ड प्रकार का चयन करें
+    record_history_version: संस्करण
+    record_history_view_audit_log: ऑडिट लॉग में देखें
+    record_history_view_full: पूरा इतिहास देखें
+    record_history_view_request: अनुरोध देखें
     record_id: रिकॉर्ड आईडी
     recordings: रिकॉर्डिंग्स
     reflection_questions: चिंतन प्रश्न
@@ -2297,6 +2360,7 @@ hi:
     report_no_evaluations: "%{user} के लिए रिपोर्ट उपलब्ध नहीं है - कोई मूल्यांकन प्राप्त नहीं हुए हैं।"
     report_not_generated: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा करती है लेकिन अभी तक उत्पन्न नहीं की गई है। कृपया पहले रिपोर्ट उत्पन्न करें।"
     report_on_hold: "%{user} के लिए रिपोर्ट वर्तमान में रोक दी गई है।"
+    report_owner: मालिक
     report_pdf_status: रिपोर्ट पीडीएफ स्थिति
     report_review_abort_qc: QC रद्द करें
     report_review_approve: अनुमोदित करें
@@ -2317,10 +2381,12 @@ hi:
     report_types:
       active_clients_projects: सक्रिय ग्राहक और परियोजनाएँ
       campaign_factor_scores: अभियान कारक स्कोर
+      campaign_user_creation: अभियान उपयोगकर्ता निर्माण
       client_assessment_counts: ग्राहक मूल्यांकन मायने रखता है
       hogan_usage_report: होगन मूल्यांकन उपयोग
       json_data_report: जेएसओएन डेटा रिपोर्ट
       pearson_usage_report: पियर्सन मूल्यांकन उपयोग
+      proctoring_sessions: निगरानी सत्र
       report_usage_summary: उपयोग सारांश रिपोर्ट
       saville_usage_report: सैविल मूल्यांकन का उपयोग
       user_access_review: उपयोगकर्ता पहुँच समीक्षा
@@ -2380,6 +2446,17 @@ hi:
     role_project_admin: परियोजना प्रशासक
     role_superadmin: सुपर एडमिन
     run: दौड़ो
+    runtime_configuration_invalid_json_object: runtime_configuration एक मान्य JSON ऑब्जेक्ट होना चाहिए।
+    runtime_configuration_invalid_parameter: यह रनटाइम-अपडेट करने योग्य पैरामीटर नहीं है
+    runtime_parameter_date_range_required: कृपया प्रारंभ तिथि और समाप्ति तिथि दोनों का चयन करें।
+    runtime_parameter_editable_section_title: दिनांक सीमा
+    runtime_parameter_filter_column: फ़िल्टर
+    runtime_parameter_locked_section_title: शामिल फ़िल्टर
+    runtime_parameter_modal_subtitle: विवरणों की समीक्षा करें और आवश्यकता पड़ने पर तिथि सीमा को अपडेट करें।
+    runtime_parameter_modal_title: रिपोर्ट चलाएं
+    runtime_parameter_not_set: उपलब्ध नहीं कराया
+    runtime_parameter_submit_button: अब दौड़े
+    runtime_parameter_value_column: कीमत
     saml_idp_certificate_available: उपलब्ध (नकल करने के लिए क्लिक करें)
     saml_idp_certificate_label: प्रमाणपत्र
     saml_idp_entity_id_label: इकाई आईडी/जारीकर्ता
@@ -2454,11 +2531,16 @@ hi:
       approval_status_in: अनुमोदन की स्थिति
       approver_user_id_in: अनुमोदक
       assessment_id_in: मूल्यांकन
+      assessment_name_cont: आकलन
       campaign_id_in: अभियान
+      campaign_name_cont: अभियान
       client_id_in: ग्राहक
+      client_name_cont: ग्राहक
       project_id_in: परियोजना
+      project_name_cont: परियोजना
       qc_user_id_in: क्यूसी यूज़र
       report_id_in: रिपोर्ट
+      report_name_cont: प्रतिवेदन
       subject_email_cont: विषय ईमेल
       subject_full_name_cont: विषय नाम
       user_email_cont: उपयोगकर्ता ईमेल
@@ -2514,6 +2596,7 @@ hi:
     scheduling_columns_start_time: दिनांक और समय
     scheduling_columns_subject: विषय
     scheduling_columns_title: शीर्षक
+    scheduling_columns_video_hidden_for_privacy: उम्मीदवार की निजता के लिए वीडियो को छिपा दिया गया है।
     scheduling_columns_view_recording: रिकॉर्डिंग देखें
     scheduling_errors_assessor_already_assigned: इस मूल्यांकन के लिए आकलनकर्ता पहले से ही नियुक्त है। कृपया कोई अन्य मूल्यांकन या आकलनकर्ता चुनें।
     scheduling_errors_date_required: कृपया एक तारीख चुनें
@@ -2606,6 +2689,12 @@ hi:
     score: स्कोर
     score_approval_not_allowed_to_approve: आपको इस स्कोर को मंजूरी देने की अनुमति नहीं है।
     score_approval_not_allowed_to_discard: आपको इस स्कोर को त्यागने की अनुमति नहीं है।
+    score_approval_reset: अनुमोदन रीसेट करें
+    score_approval_reset_description: इससे अनुमोदन प्रक्रिया लंबित स्थिति में वापस चली जाएगी। स्कोर में कोई बदलाव नहीं होगा। इस कार्रवाई को पूर्ववत नहीं किया जा सकता।
+    score_approval_reset_not_allowed: इस स्कोर अनुमोदन को इसकी वर्तमान स्थिति में रीसेट नहीं किया जा सकता है।
+    score_approval_reset_recompute_description: इससे अनुमोदन प्रक्रिया रीसेट हो जाएगी, उपयोगकर्ता के परिणामों से AI स्कोर हटा दिए जाएंगे और सभी जेनरेट की गई रिपोर्ट डिलीट हो जाएंगी। इस कार्रवाई को पूर्ववत नहीं किया जा सकता।
+    score_approval_reset_success: स्कोर अनुमोदन को रीसेट कर दिया गया है।
+    score_approval_reset_title: स्कोर अनुमोदन को रीसेट करें?
     score_definition_placeholder: इस स्कोर स्तर के लिए परिभाषा दर्ज करें
     score_definitions: स्कोर परिभाषाएँ
     score_max: अधिकतम स्कोर
@@ -2837,6 +2926,7 @@ hi:
     sheets_tabs_settings: सेटिंग्स
     show_all: सभी दिखाएँ
     show_all_assessment_responses: सभी मूल्यांकन प्रतिक्रियाएँ दिखाएँ
+    show_form_field_titles: फॉर्म फ़ील्ड शीर्षक दिखाएँ
     show_middle_scores: "%{count} को और स्कोर दिखाएँ (वैकल्पिक)..."
     show_original: मूल दिखाएँ
     show_submenu: उप मेनू दिखाएँ
@@ -2959,7 +3049,14 @@ hi:
     smtp_settings_user_name: उपयोगकर्ता नाम
     specialty_questions: विशेष प्रश्न
     sso_email_mismatch: आप पहचान प्रदाता पर एक अलग खाते में साइन इन हैं। कृपया अपने पहचान प्रदाता से साइन आउट करें और फिर से प्रयास करें।
+    sso_enforce_for: एसएसओ लागू करें
+    sso_enforce_for_all: सभी उपयोगकर्ता
+    sso_enforce_for_none: कोई नहीं
+    sso_enforce_for_specific_domains: विशिष्ट डोमेन
     sso_enforced: एसएसओ लागू करें
+    sso_enforced_domains: लागू डोमेन
+    sso_enforced_domains_hint: उदाहरण के लिए se.com (सटीक मिलान) या *.se.com (केवल उपडोमेन)
+    sso_enforced_domains_placeholder: डोमेन दर्ज करें और एंटर दबाएं
     sso_label: एकल साइन-ऑन
     sso_not_enabled: इस क्लाइंट के लिए SSO सक्षम नहीं है।
     sso_settings: एसएसओ सेटिंग्स
@@ -3074,11 +3171,15 @@ hi:
     success_title: मूल्यांकन केंद्र बनाए गए
     success_update: डिज़ाइन सेटिंग्स सफलतापूर्वक सहेजी गईं
     suitability_id: उपयुक्तता आईडी
+    superadmin_tenant_scoping: सुपरएडमिन
     superadmin_use_root_domain: सुपर एडमिनिस्ट्रेटर्स को मुख्य डोमेन के माध्यम से साइन इन करना चाहिए।
     switch_client: स्विच क्लाइंट
     system_prompt: प्रणाली संकेत
     tab_text_one: मेनू
     tab_text_two: उपमेनू
+    table_display_columns: कॉलम
+    table_display_filters: फिल्टर
+    table_display_title: प्रदर्शन
     table_more_actions: अधिक क्रियाएँ
     tabs_results: परिणाम
     tabs_settings: सेटिंग्स
@@ -3094,12 +3195,38 @@ hi:
     taxonomy_title: कौशल वर्गीकरण
     template_and_campaign_required: कृपया टेम्पलेट और अभियान दोनों आईडी प्रदान करें।
     template_render_failed: टेम्पलेट रेंडर करने में असफल
+    tenant_repair_confirm_message: "%{model} #%{id} पर tenant_id को %{new_tenant} पर सेट करें?"
+    tenant_repair_confirm_message_null: "%{model} #%{id} पर tenant_id को null पर सेट करें?"
+    tenant_repair_confirm_title: किरायेदार अपडेट की पुष्टि करें
+    tenant_repair_correct: सही
+    tenant_repair_current_tenant: वर्तमान किरायेदार
+    tenant_repair_find_record: रिकॉर्ड खोजें
+    tenant_repair_global_tenant: वैश्विक
+    tenant_repair_invalid_model: अमान्य या किरायेदार-योग्य नहीं मॉडल प्रकार
+    tenant_repair_invalid_record_id: एक वैध रिकॉर्ड आईडी दर्ज करें
+    tenant_repair_invalid_tenant_id: वैध सकारात्मक किरायेदार आईडी दर्ज करें या इसे खाली छोड़ दें ताकि यह शून्य हो जाए।
+    tenant_repair_model_label: नमूना
+    tenant_repair_model_placeholder: खोजने के लिए टाइप करें...
+    tenant_repair_moved_from: 'किरायेदार बदल गया:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: नए किरायेदार की आईडी
+    tenant_repair_preview_title: रिकॉर्ड पूर्वावलोकन
+    tenant_repair_request_failed: अनुरोध विफल रहा
+    tenant_repair_resolved_tenant: किरायेदार की समस्या का समाधान हो गया
+    tenant_repair_success: किरायेदार का डेटा सफलतापूर्वक अपडेट हो गया है।
+    tenant_repair_title: किरायेदार सुधार
+    tenant_repair_update: अद्यतन
+    tenant_repair_will_set_null: tenant_id को null पर सेट किया जाएगा
+    tenant_repair_will_set_value: tenant_id को %{value} पर सेट किया जाएगा
     test_generate: परीक्षण उत्पन्न करें
     test_render: परीक्षण रेंडर
     test_render_tooltip: यह जांचने के लिए कि AI सहायक को क्या भेजा जाएगा, अपने प्रॉम्प्ट टेम्पलेट को अभियान डेटा के साथ परीक्षण करें।
     text_danger: पाठ (खतरा)
     text_success: टेक्स्ट (सफलता)
     text_warning: टेक्स्ट (चेतावनी)
+    themes:
+      marsh-dark: दलदल अंधेरा
+      marsh-light: दलदली प्रकाश
     this_field_is_required: यह फ़ील्ड अनिवार्य है
     threesixity_advance_settings_campaign_template: अभियान टेम्पलेट
     threesixity_advance_settings_factors: तत्व
@@ -3121,6 +3248,7 @@ hi:
     threesixity_success: मल्टी रेटर अभियान सफलतापूर्वक बनाया गया।
     threesixity_success_job: मल्टी रेटर अभियान निर्माण का कार्य सफलतापूर्वक अनुसूचित किया गया।
     threesixty: 360 अभियान
+    threesixty_campaigns_instruction_visible_to_participants: प्रतिभागियों को यह निर्देश दिखाएं
     threesixty_campaigns_mail_history_date: दिनांक
     threesixty_campaigns_mail_history_download_details: डाउनलोड विवरण
     threesixty_campaigns_mail_history_emails_sent: भेजे गए ईमेल
@@ -3136,6 +3264,8 @@ hi:
     threesixty_campaigns_menu_report_menu_report_approval_title: रिपोर्ट अनुमोदन सेटिंग्स
     threesixty_campaigns_menu_report_menu_report_options_title: रिपोर्ट विकल्प
     threesixty_campaigns_menu_report_title: रिपोर्ट
+    threesixty_campaigns_schedule_date_presets: पूर्व निर्धारित कार्यक्रम तिथियां
+    threesixty_campaigns_send_reminders_automatically: स्वचालित रूप से रिमाइंडर भेजें
     time_label: समय
     time_zone: समय क्षेत्र
     timed_label: 'समयबद्ध: %{time_text}'
@@ -3188,7 +3318,6 @@ hi:
       title: अनुवाद
     translations_export_failure_msg: अनुवादों को निर्यात करते समय त्रुटि
     translations_export_success_msg: प्रगति में विकास क्रियाओं का निर्यात हो रहा है।
-    tte: टीटीई
     type_by_skill: कौशल द्वारा
     type_by_skill_type: कौशल प्रकार के अनुसार
     type_default: डिफ़ॉल्ट

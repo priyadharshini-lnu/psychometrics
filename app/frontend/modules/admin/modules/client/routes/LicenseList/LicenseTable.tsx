@@ -37,14 +37,17 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
       <Resource.Column<License>
         title={I18n.t('common.column.id')}
         id="id"
+        hideable={false}
         dataIndex="id"
         width={150}
+        fixed="left"
       />
       <Resource.Column<License>
         title={I18n.t('licenses.report_family')}
         id="report_family_id"
         dataIndex={['reportFamily', 'name']}
         width={300}
+        fixed="left"
       />
       <Resource.Column<License>
         title={I18n.t('licenses.enabled')}
@@ -121,6 +124,7 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
             <Resource.Column<License>
               title={I18n.t('common.column.action')}
               id="actions"
+              hideable={false}
               key="actions"
               render={license => (
                 <ConditionalDropdown

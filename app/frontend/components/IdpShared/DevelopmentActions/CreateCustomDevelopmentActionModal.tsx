@@ -61,7 +61,7 @@ export const CreateCustomDevelopmentActionModal = ({
       cancelText={I18n.t('common.actions.cancel')}
       width={800}
       wrapClassName={wrapClassName}
-      maskClosable={false}
+      mask={{ closable: false }}
       afterOpenChange={(isOpen) => {
         if (isOpen && btnRef && btnRef?.current) {
           btnRef?.current?.focus()

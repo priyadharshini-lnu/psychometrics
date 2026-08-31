@@ -55,6 +55,7 @@ ru:
     copied_successfully: Копирование завершено успешно
     copied_to_clipboard: Скопировано в буфер обмена
     copy: Копировать
+    copyright: "© %{year} %{display_name}. Все права защищены."
     create: Создать
     created_at: Создано в
     created_by: Создано
@@ -181,6 +182,29 @@ ru:
     remove: Удалить
     removed: Удалено
     replace: Заменить
+    reports:
+      ai_rationale_evidence:
+        all_factors: Все факторы
+        factor_label: Факторы
+        hide_evidence: Скрыть улики
+        hide_rationale: Скрыть обоснование
+        no_data: Для выбранного вопроса отсутствуют данные, подтверждающие обоснование или доказательства эффективности ИИ.
+        no_question_selected: Пожалуйста, выберите вопрос, чтобы отобразить обоснование и доказательства, представленные ИИ.
+        question_label: Вопрос
+        select_question: Выберите вопрос
+      ai_transcript:
+        no_data: Данные стенограммы по выбранному вопросу отсутствуют.
+        no_question_selected: Пожалуйста, выберите вопрос, чтобы отобразить стенограмму.
+        question_label: Вопрос
+        select_question: Выберите вопрос
+    reports_bar_gradient_direction: Направление градиента
+    reports_bar_gradient_direction_bottom_to_top: Снизу вверх
+    reports_bar_gradient_direction_left_to_right: слева направо
+    reports_bar_gradient_direction_right_to_left: Справа налево
+    reports_bar_gradient_direction_top_to_bottom: Сверху вниз
+    reports_bar_gradient_enabled: Включить градиент
+    reports_bar_gradient_end_color: Конечный цвет
+    reports_bar_gradient_start_color: Начальный цвет
     reports_show_values_inside_bar: Показать значения внутри столбца
     reports_value_label_position: Положение метки значения
     reports_value_label_position_center: Центр
@@ -218,6 +242,7 @@ ru:
     switch_to_laptop_or_desktop: Переключиться на ноутбук или настольный компьютер
     system_check_uploading: Загрузка
     table:
+      collapse: Крах
       entries:
         selected:
           one: Выбран 1 ряд
@@ -226,6 +251,7 @@ ru:
           one: 'Всего: 1'
           other: 'Всего: {{count}}'
           zero: 'Всего: 0'
+      expand: Расширять
     tags: Теги
     terms_conditions_privacy: Заявление о конфиденциальности
     tools: Инструменты

@@ -14,11 +14,17 @@
       "url": "https://thetalententerprise.com"
     },
     "termsOfService": "https://thetalententerprise.com/privacy-statement/",
-    "description": "## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\nBasic Auth is used to make API calls. Use the **API Key** as the Username and **Token** as the password.\n\n## Single Sign-On\nSingle Sign-On (SSO) is a feature that allows users to access multiple applications with one set of login credentials.\n\nThere are 3 ways to use SSO feature.\n\n### SAML 2.0\nLighthouse supports SAML 2.0 for SSO. Please contact your TTE Project Manager to configure your Identity Provider (IdP).\n\n### SSO URLs using REST API\nThe Lighthouse API provides a way to generate SSO URLs using the REST API. The SSO URL can be used to authenticate users and redirect them to the participant dashboard.\n\n### JWT\nYou can pass JWT token to any of the Lighthouse Participant portal URLs to authenticate the user. The JWT token should be passed as a query parameter `jwt`.\n\nExample:\n```\n  https://<subdomain>.tte-lighthouse.com/?jwt=<jwt_token>\n```\nThe JWT token should be signed with the API Token provided by TTE. API Token is also used as a password for Basic Authentication for the APIs.\n\nFollowing are the claims that should be present in the payload:\n- `sub`: User's email address or User ID\n- `exp`: Expiry time of the token\n\nFollowing are the claims that should be present in the header:\n- `alg`: Use `HS256`\n- `api_key`: API Key provided by TTE\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n\n### Data Schema\nWhile designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.\n\nNew attributes could also be added to the request schema but would be optional.\n"
+    "description": "## Introduction\nLighthouse REST API enables developers to integrate Lighthouse with other services such as Applicant Tracking Systems, ERP, Performance Management Systems etc. Which means you control the entire hiring or development process within your own/third-party system, with candidate results available to your system as soon as the candidate completes the assessment.\n\nTo access the Lighthouse REST API, you will need to obtain the API Key and Token. Contact Mercer for more information about getting started.\n\n## Base URL\nAll URLs referenced in this documentation have the following base component.\n\n`https://%<host>s%<basePath>s`\n\nTo ensure data privacy and security, all requests should be made over `https`. `http` is not supported.\n\n## Authentication\n\nLighthouse REST APIs support two authentication methods.\n\n### Basic Auth\nUse the **API Key** as the Username and **Token** as the password.\n\n### Bearer JWT (RS256)\nREST API requests can be authenticated using a short-lived JWT passed as a Bearer token in the `Authorization` header.\n\n```\nAuthorization: Bearer <jwt_token>\n```\n\nThe JWT must be signed using **RS256** with a private key whose corresponding public key has been\nconfigured for your Lighthouse Application. The token is not accepted as a query parameter.\n\n#### Following are the claims that should be present in the payload:\n\n| Field | Description | Required / Optional |\n|-------|-------------|-------------------- |\n| `iss` | Your Lighthouse Application ID | Required |\n| `jti` | Unique token identifier (UUID recommended) | Optional |\n| `aud` | Client project URL in subdomain + domain format, e.g. `https://client.tte-lighthouse.com` | Required |\n| `exp` | Token expiry (Unix timestamp). Recommended: less than 5 minutes. Maximum: 1 hour | Required |\n\n#### Following are the claims that should be present in the header:\n- `alg`: Use RS256\n- `kid`: RS256 key ID identifying the signing key\n- `typ`: `JWT`\n\n#### JWT Header\n\n```json\n{\n  \"alg\": \"RS256\",\n  \"typ\": \"JWT\",\n  \"kid\": 45\n}\n```\n\n#### JWT Payload Example\n\n```json\n{\n  \"iss\": 1024,\n  \"aud\": \"https://client.tte-lighthouse.com\",\n  \"exp\": 1778767200\n}\n```\n\n#### Validation Rules\n- The `aud` claim must match the client project URL using subdomain + domain format only. Path-based\n  audience values are rejected.\n- Tokens signed with algorithms other than RS256 are rejected.\n- Tokens with an expiry greater than 1 hour are rejected.\n- The `kid` must identify an active public key configured for the Application identified by `iss`.\n\n## Single Sign-On\nSingle Sign-On (SSO) is a feature that allows users to access multiple applications with one set of login credentials.\n\nThere are 3 ways to use the SSO feature.\n\n### SAML 2.0\nLighthouse supports SAML 2.0 for SSO. Please contact your TTE Project Manager to configure your Identity Provider (IdP).\n\n### SSO URLs using REST API\nThe Lighthouse API provides a way to generate SSO URLs using the REST API. The SSO URL can be used to authenticate users and redirect them to the participant dashboard.\n\n### Single Sign-On with JWT\nLighthouse supports participant SSO via a signed RS256 JWT submitted as a form POST.\nThis method keeps the token out of browser history, URL query strings, referrer headers, and access logs.\n\n**Endpoint:** `POST /login/jwt`\n\n**Request:** Submit the token as a form field named `token`.\n\n```\nPOST /login/jwt\nContent-Type: application/x-www-form-urlencoded\n\ntoken=<jwt_token>\n```\nThe JWT token should be signed with the Private Key.\n\n#### Following are the claims that should be present in the payload:\n\n| Field | Description | Required / Optional |\n|-------|-------------|----------|\n| `iss` | Lighthouse Application ID | Required |\n| `jti` | Unique token identifier (UUID recommended) | Optional. Required if single_use is true  |\n| `aud` | Client project URL in subdomain + domain format, e.g. `https://client.tte-lighthouse.com` | Required |\n| `sub` | Lighthouse User's email address or User ID  | Required |\n| `exp` | Token expiry (Unix timestamp). Recommended: less than 5 minutes. Maximum: 1 hour | Required |\n| `tg` | Target type: `cmp` (campaign) or `asmt` (assessment) | Optional. Required when ret_url is specified  |\n| `tg_cmp_id` | Target Campaign ID. The campaign must belong to the signing Application's tenant | Required if tg is cmp/asmt  |\n| `tg_asmt_id` | Target Assessment ID | Required if tg is asmt |\n| `ret_url` | Return URL to redirect the user after completion of the activities | Optional |\n| `single_use` | Invalidate token after single use | Optional. Default false |\n\n#### Following are the claims that should be present in the header:\n- `alg`: Use RS256\n- `kid`: RS256 key ID identifying the signing key\n- `typ`: `JWT`\n\n#### Single-Use Tokens\nWhen single_use is set to true, the iss + jti combination is recorded on first use and subsequent requests with the same\ntoken are rejected until the token expires. When single_use is false or omitted, the token may be reused until it expires.\n\n#### Validation Rules\n- The `aud` claim must match the client project URL using subdomain + domain format only. Path-based audience values are rejected.\n- Tokens signed with algorithms other than `RS256` are rejected.\n- Tokens with an expiry greater than 1 hour are rejected.\n- The `kid` must identify an active public key configured for the Application identified by `iss`.\n\n#### Return URL Placeholder Substitution\nThe `ret_url` may contain the placeholder `ASSESSMENT_STATUS`, e.g. `https://webhook.cool/?status=ASSESSMENT_STATUS`.\nLighthouse substitutes this placeholder with one of the following values upon redirect:\n\n| Value | Meaning |\n|-------|---------|\n| `assessment_completed` | Participant completed the assessment |\n| `assessment_pending` | Assessment is pending or incomplete |\n| `campaign_completed` | Participant completed all campaign activities |\n| `campaign_pending` | Campaign activities are pending |\n\n#### Token Replay Handling\nIf `single_use` is `true` and the token has already been used, Lighthouse redirects to `ret_url`\n(if provided) with the appropriate pending status substituted. If no `ret_url` is available, a\ngeneric authentication failure response is returned. Invalid or unverified tokens never result in a redirect to `ret_url`.\n\n## Workflow\nThere is no particular workflow you need to follow. A typical workflow is shown below.\n\n<img src=\"https://static.tte-lighthouse.com/lighthouse/Lighthouse-Typical-Integration.svg\" style=\"width: 100%%;\"/>\n\n## Terminology\n\n### Assessments\nAssessments are pre-configured for a campaign. Any user added to the campaign gets assigned the configured assessments.\n\n### Campaigns\nCampaigns can be pre-configured with default assessments and reports. This is a way to group users by specific use case. For recruitment, a Campaign could mean a position.\n\n### Results\nAfter the user sits the required assessments, a third-party system can periodically poll the results endpoint for competency scores and a PDF Report.\n\n### Data Schema\nWhile designing the parsers for the API responses and webhook results, the possibility of new properties being introduced to objects at any level should be considered with the ongoing updates of the Lighthouse APIs.\n\nNew attributes could also be added to the request schema but would be optional.\n"
   },
   "securityDefinitions": {
     "basic": {
       "type": "basic"
+    },
+    "bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "RS256-signed JWT. Enter the **full header value** including the Bearer prefix: `Bearer <your_jwt_token>`. See the Authentication section for required claims and validation rules."
     }
   },
   "paths": {
@@ -35,7 +41,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -157,7 +164,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -249,7 +257,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -321,7 +330,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -389,7 +399,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -491,7 +502,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -557,7 +569,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -616,7 +629,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -667,7 +681,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -729,7 +744,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -829,7 +845,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -890,7 +907,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -961,7 +979,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1044,7 +1063,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1110,7 +1130,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1194,7 +1215,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1260,7 +1282,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1326,7 +1349,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1432,7 +1456,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1496,7 +1521,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1580,7 +1606,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1707,7 +1734,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1802,7 +1830,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -1914,7 +1943,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2036,7 +2066,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2102,7 +2133,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2222,7 +2254,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2311,7 +2344,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "consumes": [
@@ -2367,7 +2401,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "consumes": [
@@ -2426,7 +2461,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2488,7 +2524,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2568,7 +2605,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2645,7 +2683,8 @@
         ],
         "security": [
           {
-            "basic": []
+            "basic": [],
+            "bearer": []
           }
         ],
         "parameters": [
@@ -2682,6 +2721,9 @@
   "security": [
     {
       "basic": []
+    },
+    {
+      "bearer": []
     }
   ],
   "basePath": "/api/v1",

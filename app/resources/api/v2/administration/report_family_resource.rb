@@ -5,6 +5,10 @@ class Api::V2::Administration::ReportFamilyResource < Api::V2::Administration::B
 
   audit_log_for :create, payload: '*'
   ransack_filters %i[name_cont filterable_fields tenant_id_eq]
+  filter :owner_id, apply: lambda { |records, value, _options|
+    owner_id = value.is_a?(Array) ? value[0] : value
+    records.owned_by_client_or_tte(owner_id)
+  }
 
   has_one :tenant, class_name: 'Client', foreign_key: :tenant_id
 

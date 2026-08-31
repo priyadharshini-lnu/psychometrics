@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
 import {
-  Form, Switch, DatePicker, Button,
+  Form, Switch, DatePicker, Button, Flex,
 } from 'antd'
 import dayjs from '~/utils/dayjs'
 import ResourceForm from '~/components/ResourceForm'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
 import { useResources } from '~/hooks/useResources'
-import styles from './styles.less'
 
 const { I18n } = window
 
@@ -92,114 +91,109 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
   }
 
   return (
-    <div className="pb-8">
-      <div className={styles.scrollableContent}>
-        <ResourceForm
-          resourceName="maintenance_settings"
-          readableResourceName={I18n.t('admin.maintenance_settings')}
-          resource={formattedResource}
-          showSuccessMessages
-          storeManager={{ form }}
-          formProps={{
-            labelAlign: 'left',
-            preserve: false,
-            layout: 'vertical',
-          }}
-          request={{
-            createResource,
-            updateResource,
-          }}
-          transformValues={transformValues}
-          onSuccessfulSubmission={handleSuccess}
-        >
-          {() => (
-            <>
-              <Form.Item style={{ marginBottom: '1rem' }}>
-                <div className="flex items-center">
-                  <Form.Item
-                    name="maintenanceWindowEnabled"
-                    valuePropName="checked"
-                    noStyle
-                  >
-                    <Switch />
-                  </Form.Item>
-                  <label className="ms-4">
-                    {I18n.t('admin.enable_maintenance')}
-                  </label>
-                </div>
-              </Form.Item>
-              <Form.Item
-                name="timeZone"
-                label={I18n.t('admin.timezone')}
-                rules={[{ required: true, message: I18n.t('validations.blank') }]}
-              >
-                <TimeZoneSelect />
-              </Form.Item>
-              <Form.Item
-                name="startTime"
-                label={I18n.t('admin.start_time')}
-                rules={[{ required: true, message: I18n.t('validations.blank') }]}
-              >
-                <DatePicker
-                  showTime={{
-                    format: TIME_FORMAT,
-                    use12Hours: true,
-                    minuteStep: 15,
-                    showNow: false,
-                  }}
-                  format={`${DATE_FORMAT} ${TIME_FORMAT}`}
-                  style={{ width: '100%' }}
-                  placeholder={I18n.t('admin.select_start_time')}
-                  disabledDate={date => date.isBefore(dayjs(), 'day')}
-                />
-              </Form.Item>
-              <Form.Item
-                name="endTime"
-                label={I18n.t('admin.end_time')}
-                rules={[
-                  { required: true, message: I18n.t('validations.blank') },
-                  ({ getFieldValue }) => ({
-                    validator (_, value) {
-                      const startTime = getFieldValue('startTime')
-                      if (!value || !startTime) return Promise.resolve()
-                      if (value.isSameOrBefore(startTime)) {
-                        return Promise.reject(new Error(I18n.t('admin.end_time_must_be_after_start_time')))
-                      }
-                      return Promise.resolve()
-                    },
-                  }),
-                ]}
-              >
-                <DatePicker
-                  showTime={{
-                    format: TIME_FORMAT,
-                    use12Hours: true,
-                    minuteStep: 15,
-                    showNow: false,
-                  }}
-                  format={`${DATE_FORMAT} ${TIME_FORMAT}`}
-                  style={{ width: '100%' }}
-                  placeholder={I18n.t('admin.select_end_time')}
-                  disabledDate={(date) => {
-                    const startTime = form.getFieldValue('startTime')
-                    if (!startTime) return false
-                    return date.isBefore(startTime, 'day')
-                  }}
-                />
-              </Form.Item>
-            </>
-          )}
-        </ResourceForm>
-      </div>
-      <div
-        className={styles.footer}
+    <Flex vertical gap="middle">
+      <ResourceForm
+        resourceName="maintenance_settings"
+        readableResourceName={I18n.t('admin.maintenance_settings')}
+        resource={formattedResource}
+        showSuccessMessages
+        storeManager={{ form }}
+        formProps={{
+          labelAlign: 'left',
+          preserve: false,
+          layout: 'vertical',
+        }}
+        request={{
+          createResource,
+          updateResource,
+        }}
+        transformValues={transformValues}
+        onSuccessfulSubmission={handleSuccess}
       >
+        {() => (
+          <>
+            <Form.Item>
+              <Flex align="center" gap="middle">
+                <Form.Item
+                  name="maintenanceWindowEnabled"
+                  valuePropName="checked"
+                  noStyle
+                >
+                  <Switch />
+                </Form.Item>
+                <label>
+                  {I18n.t('admin.enable_maintenance')}
+                </label>
+              </Flex>
+            </Form.Item>
+            <Form.Item
+              name="timeZone"
+              label={I18n.t('admin.timezone')}
+              rules={[{ required: true, message: I18n.t('validations.blank') }]}
+            >
+              <TimeZoneSelect />
+            </Form.Item>
+            <Form.Item
+              name="startTime"
+              label={I18n.t('admin.start_time')}
+              rules={[{ required: true, message: I18n.t('validations.blank') }]}
+            >
+              <DatePicker
+                showTime={{
+                  format: TIME_FORMAT,
+                  use12Hours: true,
+                  minuteStep: 15,
+                  showNow: false,
+                }}
+                format={`${DATE_FORMAT} ${TIME_FORMAT}`}
+                style={{ width: '100%' }}
+                placeholder={I18n.t('admin.select_start_time')}
+                disabledDate={date => date.isBefore(dayjs(), 'day')}
+              />
+            </Form.Item>
+            <Form.Item
+              name="endTime"
+              label={I18n.t('admin.end_time')}
+              rules={[
+                { required: true, message: I18n.t('validations.blank') },
+                ({ getFieldValue }) => ({
+                  validator (_, value) {
+                    const startTime = getFieldValue('startTime')
+                    if (!value || !startTime) return Promise.resolve()
+                    if (value.isSameOrBefore(startTime)) {
+                      return Promise.reject(new Error(I18n.t('admin.end_time_must_be_after_start_time')))
+                    }
+                    return Promise.resolve()
+                  },
+                }),
+              ]}
+            >
+              <DatePicker
+                showTime={{
+                  format: TIME_FORMAT,
+                  use12Hours: true,
+                  minuteStep: 15,
+                  showNow: false,
+                }}
+                format={`${DATE_FORMAT} ${TIME_FORMAT}`}
+                style={{ width: '100%' }}
+                placeholder={I18n.t('admin.select_end_time')}
+                disabledDate={(date) => {
+                  const startTime = form.getFieldValue('startTime')
+                  if (!startTime) return false
+                  return date.isBefore(startTime, 'day')
+                }}
+              />
+            </Form.Item>
+          </>
+        )}
+      </ResourceForm>
+      <Flex justify="end" gap="small">
         <Button onClick={onCancel}>
           {I18n.t('shared.cancel')}
         </Button>
         <Button
           type="primary"
-          className="ms-2"
           onClick={() => form.submit()}
           loading={
             maintenanceSetting
@@ -209,8 +203,8 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
         >
           {I18n.t('shared.save')}
         </Button>
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   )
 }
 

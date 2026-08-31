@@ -21,6 +21,14 @@ module Administration
             required(:update_external_config).filled(:bool?)
             required(:schedule_assessment).filled(:bool?)
           end
+          required(:owner).maybe do
+            hash do
+              required(:id).filled(:int?)
+              required(:name).filled(:str?)
+            end
+          end
+          required(:dimension_id).maybe(:int?)
+          required(:tenant_id).maybe(:int?)
         end
       end
     end

@@ -3,6 +3,12 @@
 module UserRoles
   extend ActiveSupport::Concern
 
+  class_methods do
+    def support_admin_emails
+      Settings.support_admins.to_s.split(',').map { |email| email.strip.downcase }.compact_blank
+    end
+  end
+
   # Roles constants
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'
   REGULAR_ROLE = 'Users::Regular'
@@ -91,6 +97,13 @@ module UserRoles
 
   def superadmin?
     role == SUPER_ADMIN_ROLE
+  end
+
+  def support_admin?
+    return false unless superadmin?
+    return false if email.blank?
+
+    self.class.support_admin_emails.include?(email.strip.downcase)
   end
 
   def application?

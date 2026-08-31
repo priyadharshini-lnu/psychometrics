@@ -1,8 +1,9 @@
 import React from 'react'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { NormTR } from '~/modules/admin/modules/client/core/norms'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import NormTable from './NormTable'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -20,19 +21,13 @@ const NormsList: React.FC = () => {
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('admin.dashboard'),
-          },
-          {
-            label: () => I18n.t('admin.norms'),
-          },
-        ]}
-      />
-
-      <Resource config={baseApiConfig} name="norms">
+      <DocumentTitle text={I18n.t('admin.norms')} />
+      <Resource
+        title={I18n.t('admin.norms')}
+        config={baseApiConfig}
+        name="norms"
+        settingsKey={TABLE_SETTINGS_KEYS.adminNorms}
+      >
         <NormTable />
       </Resource>
     </>

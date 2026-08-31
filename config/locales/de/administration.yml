@@ -15,11 +15,6 @@ de:
         simple_design:
           design: Gestaltung
           or: Oder
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Anmeldung erfolgreich.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ de:
           modal_title: Einstellungen für die Genehmigung von Bewertungen
           remove_modal_success: 'Die Genehmigungseinstellung für die Bewertungs-ID: %{assessmentId} wurde erfolgreich gelöscht.'
           remove_modal_text: Sind Sie sicher, dass Sie diese Einstellung für die Bewertungs-ID „%{assessmentId}“ löschen möchten?
-      assessors:
-        spoof:
-          successfully: Sie wurden erfolgreich als %{name} angemeldet
+      bulk_import_translations:
+        details: Vorlage für die Kampagnenübersetzung
+        download_template: Vorlage herunterladen
+        errors:
+          blank_campaign_id: 'Zeile %{row}: Die Kampagnen-ID darf nicht leer sein.'
+          campaign_not_found: 'Zeile %{row}: Kampagne %{id} wurde in diesem Projekt nicht gefunden.'
+          generic: Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.
+          invalid_csv_format: 'Ungültiges CSV-Format: %{message}'
+          invalid_locales: 'Ungültige Sprachspalten: %{locales}'
+          missing_required_columns: 'Fehlende erforderliche Spalten: %{columns}'
+          must_be_csv: Die Datei muss eine .csv-Datei sein.
+          save_failed: 'Die Übersetzung der Kampagne %{id} für %{locale} konnte nicht gespeichert werden: %{message}'
+        file_label: Übersetzungsdatei
+        import_started: Der Übersetzungsimport läuft. Bitte verfolgen Sie den Fortschritt in den Benachrichtigungen.
+        instructions_intro: Laden Sie die CSV-Vorlage herunter, aktualisieren Sie die Kampagnennamen in den gewünschten Sprachspalten und laden Sie anschließend die fertige Datei hoch.
+        instructions_title: Anweisungen
+        menu_label: Übersetzungen importieren
+        template_started: Der Export der Vorlage läuft. Bitte verfolgen Sie den Fortschritt in den Benachrichtigungen.
+        title: Importieren von Kampagnennamenübersetzungen
+        upload_file: Datei hochladen
       validations:
         dates:
           end: muss nach dem Startdatum liegen
@@ -1937,7 +1949,6 @@ de:
         export: Übersetzungen exportieren
         import: Übersetzungen importieren
         import_descr: Mit der Exportfunktion können Sie eine Vorlage extrahieren, die Sie für den Import verwenden können.
-    tte: TTE
     update: Update
     users:
       create:
