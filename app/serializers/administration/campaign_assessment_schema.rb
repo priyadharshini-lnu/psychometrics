@@ -105,6 +105,8 @@ module Administration
             end
           end
         end
+        required(:owner).maybe(:hash?)
+        required(:tenant_id).maybe(:int?)
       end
     end
   end

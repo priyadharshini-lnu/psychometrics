@@ -31,9 +31,9 @@ module Administration
       Utility::Url.redirect_to_safe_internal_url(self, handoff_url, allow_other_host: true)
     end
 
+    # The shell renders no flash, so the reason travels as a query param the boot code toasts and strips.
     def default_handoff_error_redirect
-      flash[:alert] = I18n.t('admin.handoff_invalid_token', default: I18n.t('errors.forbidden'))
-      redirect_to admin_path
+      redirect_to admin_path(notice: :handoff_failed)
     end
   end
 end

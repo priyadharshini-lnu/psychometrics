@@ -23,6 +23,9 @@ export const REMOVE = 'resource/campaign/REMOVE'
 export const COPY = 'resource/campaign/COPY'
 export const FETCH_TEMPLATES_AND_ASSESSMENTS = 'campaigns/FETCH_TEMPLATES_AND_ASSESSMENTS'
 export const PDF_PASSWORD = 'campaigns/FETCH_PDF_PASSWORD'
+export const FETCH_NAME_TRANSLATIONS = 'campaigns/FETCH_NAME_TRANSLATIONS'
+export const EXPORT_CAMPAIGN_TRANSLATIONS = 'campaigns/EXPORT_CAMPAIGN_TRANSLATIONS'
+export const IMPORT_CAMPAIGN_TRANSLATIONS = 'campaigns/IMPORT_CAMPAIGN_TRANSLATIONS'
 
 export const fetch = (projectId: number, tableConfig: TableConfig) => ({
   type: FETCH,
@@ -41,6 +44,52 @@ export const fetchPdfPassword = (projectId, campaignId: number) : ApiAction<{ pd
     method: 'get',
     loader: true,
     url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/pdf_password`,
+  },
+})
+
+const CampaignNameWithLocaleTR = t.type({
+  name: t.union([t.string, t.null]),
+  locale: t.string,
+})
+
+const FetchNameTranslationsResponseTR = t.type({
+  list: t.array(CampaignNameWithLocaleTR),
+  availableLocales: t.array(t.string),
+})
+
+export type FetchNameTranslationsResponse = t.TypeOf<typeof FetchNameTranslationsResponseTR>
+
+export const fetchNameTranslations = (
+  projectId: number,
+  campaignId: number,
+  locales: Array<string | undefined>,
+): ApiAction<FetchNameTranslationsResponse> => ({
+  type: FETCH_NAME_TRANSLATIONS,
+  request: {
+    method: 'get',
+    url: `/administration/projects/${projectId}/new_campaigns/${campaignId}/fetch_name_translations`,
+    body: {
+      locales: locales.filter(Boolean),
+    },
+    typedResponse: FetchNameTranslationsResponseTR,
+  },
+})
+
+export const exportCampaignTranslations = (projectId: number) => ({
+  type: EXPORT_CAMPAIGN_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/new_campaigns/export_campaign_translations`,
+  },
+})
+
+export const importCampaignTranslations = (projectId: number, data: FormData) => ({
+  type: IMPORT_CAMPAIGN_TRANSLATIONS,
+  request: {
+    method: 'post',
+    url: `/administration/projects/${projectId}/new_campaigns/import_campaign_translations`,
+    body: data,
+    contentType: 'multipart/form-data;' as const,
   },
 })
 

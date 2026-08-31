@@ -25,7 +25,10 @@ export const NormFilter: React.FC<Props> = ({
 
   return (
     <>
-      <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
+      <Resource.Filter
+        placeholder={I18n.t('shared.search')}
+        name="filterable_fields"
+      >
         <ConditionalDropdown
           menu={{
             items: [{

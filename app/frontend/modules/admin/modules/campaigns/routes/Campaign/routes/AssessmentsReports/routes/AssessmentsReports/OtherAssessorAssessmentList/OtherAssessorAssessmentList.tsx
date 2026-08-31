@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-  Table, MenuProps, Row, Col, App,
+  Button, Table, MenuProps, Row, Col, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MessageInstance } from 'antd/es/message/interface'
-import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import Assessment from '~/modules/admin/modules/campaigns/interfaces/Assessment'
 import {
   rescoreResponses, exportRawResults, exportScoringResults, exportNormedResults,
@@ -16,6 +16,7 @@ import {
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getAssessorAssessment } from '~/modules/admin/modules/campaigns/core/campaignAssessorAssessments'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { AssessorDrawerAssessment, DetailsDrawer } from '../AssessorAssessmentList/DetailsDrawer'
 
 const connecter = connect(
   (state: RootState) => ({
@@ -51,32 +52,44 @@ const AssessmentList: React.FC<Props> = ({
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
+  const [selectedAssessment, setSelectedAssessment] = useState<AssessorDrawerAssessment | undefined>(undefined)
 
   return (
-    <Row>
-      <Col span={24}>
-        <Table className="mtm" rowKey="id" dataSource={assessments} pagination={false}>
-          <Column
-            title={I18n.t('common.column.id')}
-            dataIndex="id"
-            key="id"
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.assessment_name')}
-            key="name"
-            dataIndex="name"
-          />
-          <Column
-            title={I18n.t('common.column.linked_assessment')}
-            key="linkedAssessment"
-            render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
-          />
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={assessment => (
-              <ConditionalDropdown
-                menu={
+    <>
+      <Row>
+        <Col span={24}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={assessments}
+            pagination={false}
+            onRow={getTenantRowAttributes}
+          >
+            <Column
+              title={I18n.t('common.column.id')}
+              dataIndex="id"
+              key="id"
+            />
+            <Column
+              title={I18n.t('campaign_assessment.column.assessment_name')}
+              key="name"
+              render={assessment => (
+                <Button type="link" size="small" className="p-0" onClick={() => setSelectedAssessment(assessment)}>
+                  {assessment.name}
+                </Button>
+              )}
+            />
+            <Column
+              title={I18n.t('common.column.linked_assessment')}
+              key="linkedAssessment"
+              render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
+            />
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              render={assessment => (
+                <ConditionalDropdown
+                  menu={
                   getActionsMenuProps({
                     assessment,
                     openModal,
@@ -90,17 +103,19 @@ const AssessmentList: React.FC<Props> = ({
                     message,
                   })
                 }
-                innerElement={(
-                  <a>
-                    <MoreOutlined />
-                  </a>
-                )}
-              />
-            )}
-          />
-        </Table>
-      </Col>
-    </Row>
+                />
+              )}
+            />
+          </Table>
+        </Col>
+      </Row>
+      {!!selectedAssessment && (
+        <DetailsDrawer
+          close={() => setSelectedAssessment(undefined)}
+          assessorAssessment={selectedAssessment}
+        />
+      )}
+    </>
   )
 }
 

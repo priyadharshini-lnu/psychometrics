@@ -63,7 +63,7 @@ const SamlComponent: React.FC<Props> = ({
     .then((action: { response: Record<string, unknown> }) => action.response)
 
   return (
-    <Row justify="space-between">
+    <Row justify="space-between" style={{ padding: '0 20px' }}>
       <Col sm={24} md={16} xl={12} xxl={10}>
         <ResourceForm
           resourceName="samlSetting"

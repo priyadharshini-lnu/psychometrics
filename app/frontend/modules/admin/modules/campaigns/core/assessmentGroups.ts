@@ -27,6 +27,17 @@ const CampaignAssessmentTR = t.type({
 })
 export type CampaignAssessment = t.TypeOf<typeof CampaignAssessmentTR>
 
+const GroupNameWithLocaleTR = t.type({
+  name: t.union([t.string, t.null]),
+  locale: t.string,
+})
+const FetchNameTranslationsResponseTR = t.type({
+  list: t.array(GroupNameWithLocaleTR),
+  availableLocales: t.array(t.string),
+})
+export type GroupNameWithLocale = t.TypeOf<typeof GroupNameWithLocaleTR>
+export type FetchNameTranslationsResponse = t.TypeOf<typeof FetchNameTranslationsResponseTR>
+
 export const FETCH = 'resource/campaigns/campaign_assessment_groups/FETCH'
 export const FetchResponseTR = t.type({
   assessments: t.array(CampaignAssessmentTR),
@@ -55,7 +66,7 @@ export const create = (campaignId: number, position: number, groupType: string):
     body: {
       resource: {
         campaignId,
-        name: groupType === 'assessment_center' ? 'Assessment Center' : 'Untitled group',
+        name: `${groupType === 'assessment_center' ? 'Assessment Center' : 'Untitled group'} ${position}`,
         position,
         previousAssessmentsRequired: false,
         previousGroupRequired: false,
@@ -74,6 +85,7 @@ export const update = (
   campaignId: number,
   id: number,
   data: Partial<CampaignAssessmentGroup>,
+  locale = 'en',
 ): ApiAction<UpdateResponse> => ({
   type: UPDATE,
   id,
@@ -83,8 +95,26 @@ export const update = (
     loader: true,
     body: {
       resource: data,
+      locale,
     },
     typedResponse: UpdateResponseTR,
+  },
+})
+
+export const FETCH_NAME_TRANSLATIONS = 'resource/campaigns/campaign_assessment_groups/FETCH_NAME_TRANSLATIONS'
+export const fetchNameTranslations = (
+  campaignId: number,
+  groupId: number,
+  locales: Array<string | null>,
+): ApiAction<FetchNameTranslationsResponse> => ({
+  type: FETCH_NAME_TRANSLATIONS,
+  request: {
+    url: `/administration/new_campaigns/${campaignId}/campaign_assessment_groups/${groupId}/fetch_name_translations`,
+    method: 'get',
+    body: {
+      locales: locales.filter(locale => locale),
+    },
+    typedResponse: FetchNameTranslationsResponseTR,
   },
 })
 

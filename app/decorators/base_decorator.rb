@@ -117,7 +117,7 @@ class BaseDecorator < Draper::Decorator
       url = "/admin/clients/#{object.owner_id}/projects"
       helpers.link_to(object.owner.name, url)
     else
-      I18n.t('administration.tte')
+      I18n.t('admin.platform_owner')
     end
   end
 

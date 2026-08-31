@@ -11,6 +11,7 @@ vi:
     ai_idp_retake_step_chat_hint_no_document: Bạn có thể khởi động lại cuộc trò chuyện để chia sẻ thêm chi tiết và tôi sẽ cố gắng hết sức để hỗ trợ bạn.
     ai_idp_summary_hint_no_document: Với sự cho phép của bạn, nếu bạn đồng ý, tôi có thể tạo một kế hoạch phát triển cho bạn. Nếu không, bạn có thể bắt đầu lại cuộc trò chuyện để chia sẻ thêm chi tiết.
     all_checks_must_pass: Tất cả các bước kiểm tra phải được hoàn tất trước khi bạn có thể tiếp tục.
+    appearance: Vẻ bề ngoài
     approve_idp_plan: Phê duyệt kế hoạch
     assessment_misconfigured: Cài đặt đánh giá không chính xác
     assessment_timing_duration_minutes: "%{duration} phút"
@@ -52,16 +53,49 @@ vi:
     camera_test_step: Bước kiểm tra video và âm thanh
     campaign: Chiến dịch
     campaign_check_status: 'Trạng thái: %{status}'
+    card_action_retry: Thử lại
+    card_action_review: Ôn tập
+    card_action_start: Bắt đầu
+    change_password_warning: 'Quan trọng: Việc thay đổi mật khẩu sẽ đăng xuất bạn.'
     chat_instructions: Hướng dẫn trò chuyện
     check: Kiểm tra
     check_video_recording: Vui lòng kiểm tra video và âm thanh của bạn bằng cách phát lại.
     checking_browser_compatibility: Đang kiểm tra tính tương thích của trình duyệt...
     checking_latency: Đang kiểm tra độ trễ...
+    collapse_navigation: Thu gọn điều hướng
     complete_prework_message: Hãy hoàn thành tất cả các bài tập chuẩn bị trước khi bắt đầu.
     could_not_reach_servers: Không thể kết nối với máy chủ của chúng tôi để kiểm tra tốc độ mạng. Vui lòng kiểm tra kết nối Internet của bạn và thử lại.
+    dashboard: Bảng điều khiển
+    dashboard_active_programs: Các chương trình tích cực
+    dashboard_begin_program: Bắt đầu chương trình
+    dashboard_continue_program: Tiếp tục chương trình
+    dashboard_days_left: Còn %{count} ngày
+    dashboard_greeting_afternoon: Chào buổi chiều, %{name}.
+    dashboard_greeting_evening: Chào buổi tối, %{name}.
+    dashboard_greeting_eyebrow: Chào mừng trở lại!
+    dashboard_greeting_morning: Chào buổi sáng, %{name}.
+    dashboard_instructions: Bạn có thể được giao nhiều hoạt động cần hoàn thành. Hãy đảm bảo rằng tất cả các hoạt động được giao đều được hoàn thành trong mọi chương trình.
+    dashboard_reports_ready: Báo cáo đã sẵn sàng
+    dashboard_your_programs: Chương trình của bạn
     day: ngày
     day_plural: ngày
     details: Chi tiết
+    details_back: Mặt sau
+    details_due: Quá hạn
+    details_group_locked_hint: Mở khóa sau khi hoàn thành '%{group}'.
+    details_intro_tab: Giới thiệu
+    details_no_reports: Chưa có báo cáo nào.
+    details_open_heading: các bài tập mở
+    details_open_hint: Hoàn thành theo bất kỳ thứ tự nào, với tốc độ của riêng bạn.
+    details_percent_done: "%{percent}% hoàn thành"
+    details_progress: Tiến triển
+    details_reports_ready: Báo cáo của bạn đã sẵn sàng.
+    details_reports_tab: Báo cáo
+    details_reserved: Kín đáo
+    details_sequential_heading: Bài tập tuần tự
+    details_sequential_hint: Hoàn thành theo thứ tự — mỗi phần sẽ mở khóa phần tiếp theo.
+    details_total: Tổng cộng
+    details_view_details: Xem chi tiết
     development: Phát triển
     direct_reportees: Người báo cáo trực tiếp
     download: Tải xuống
@@ -108,6 +142,10 @@ vi:
     localstorage_fix_title: Tính năng Lưu trữ cục bộ chưa được bật trong trình duyệt của bạn
     localstorage_not_enabled_detail: Tính năng Local Storage hiện chưa được bật trong trình duyệt của bạn. Vui lòng đảm bảo rằng bạn không đang ở chế độ riêng tư/ẩn danh, vì tính năng localStorage thường bị tắt trong các chế độ này.
     localstorage_support: Đã bật LocalStorage
+    login_sign_in_btn: Đăng nhập
+    login_sign_up_link: Đăng ký
+    login_welcome_description: Đăng nhập bằng tài khoản Lighthouse của bạn
+    login_welcome_title: Chào mừng đến với Lighthouse
     magic_link_interstitial_description: Vì lý do bảo mật, chúng tôi yêu cầu bạn xác nhận thao tác đăng nhập này. Hệ thống tự động không thể thực hiện bước này.
     magic_link_interstitial_title: Để hoàn tất việc đăng nhập, vui lòng nhấp vào nút bên dưới.
     max_word_limit: Phải có tối đa %{max} từ
@@ -124,6 +162,7 @@ vi:
     minute: phút
     minute_plural: biên bản
     my_plan: Kế hoạch của tôi
+    my_profile: Hồ sơ của tôi
     network: Mạng
     network_check: Kiểm tra tốc độ Internet
     network_check_description: Đang kiểm tra chất lượng kết nối internet giữa máy chủ của chúng tôi và thiết bị của bạn.
@@ -135,6 +174,7 @@ vi:
     network_speed_meets_required_detail: Tốc độ Internet của bạn đáp ứng các yêu cầu tối thiểu của chiến dịch
     network_test_step: Bước kiểm tra mạng
     no_audio_detected: Không phát hiện thấy âm thanh. Vui lòng kiểm tra xem micrô của bạn đã được kết nối và hoạt động bình thường chưa.
+    open_navigation: Mở điều hướng
     pass: Bỏ qua
     pause: Tạm dừng
     pearson_timing_duration_minutes: Có giới hạn thời gian - %{duration} phút để hoàn thành
@@ -150,7 +190,13 @@ vi:
     proctored: Có giám thị
     proctored_assessment_misconfigured_msg: Bài kiểm tra này có giám thị nhưng chưa được thiết lập thời gian phù hợp; vui lòng liên hệ với quản trị viên của bạn.
     profile: Hồ sơ
+    profile_cancel: Hủy bỏ
     profile_details: Chi tiết
+    profile_edit: Biên tập
+    profile_other_information: Thông tin khác
+    profile_personal_information: Thông tin cá nhân
+    profile_save: Cứu
+    profile_time: Thời gian
     question_counter: Câu hỏi %{current} trong tổng số %{total}
     reason_for_idp_plan_rejection: Lý do từ chối
     record: Bảng ghi chép
@@ -167,9 +213,12 @@ vi:
     results: Kết quả
     safari_proctoring_description: Có vẻ như bạn đang sử dụng trình duyệt Safari, trình duyệt này có thể có một số hạn chế liên quan đến các tính năng theo dõi được kích hoạt trong chiến dịch này. Để có trải nghiệm tốt nhất, chúng tôi khuyên bạn nên sử dụng trình duyệt Chrome, Edge hoặc Firefox.
     safari_proctoring_title: Đã phát hiện trình duyệt Safari
+    scheduling: Lên lịch
     select_audio_device: Chọn thiết bị âm thanh
     select_video_device: Chọn thiết bị video
     selected_count: Đã chọn
+    sign_out: Đăng xuất
+    signup_sign_in_link: Đăng nhập
     skill_type: Loại kỹ năng
     speech_verification_error: Đã xảy ra lỗi trong quá trình xác minh giọng nói của bạn. Vui lòng thử lại.
     speech_verification_failed: Câu nói của bạn không khớp với cụm từ kiểm tra. Vui lòng thử lại và phát âm cụm từ đó một cách rõ ràng.
@@ -177,6 +226,7 @@ vi:
     start_campaign_message_timed: Đây là một chiến dịch có thời gian, vui lòng nhấp vào nút '%{buttonText}' để bắt đầu các hoạt động.
     start_readiness_check: Bắt đầu kiểm tra sự sẵn sàng
     start_system_check: Bắt đầu kiểm tra hệ thống
+    status_locked: Đã khóa
     stop: Dừng lại
     subinstruction_audio: Microphone đang hoạt động
     subinstruction_eight: Hãy dành ra một khoảng thời gian không bị gián đoạn để tiến hành đánh giá toàn diện
@@ -228,6 +278,21 @@ vi:
     tasks: Nhiệm vụ
     testing_download_speed: Đang kiểm tra tốc độ tải xuống...
     testing_upload_speed: Đang kiểm tra tốc độ tải lên...
+    theme_active: Tích cực
+    theme_change: Thay đổi chủ đề
+    theme_dark_theme: Chủ đề tối
+    theme_ember: Than hồng
+    theme_light_theme: Chủ đề sáng
+    theme_marsh: Đầm lầy
+    theme_mode_dark: Tối tăm
+    theme_mode_light: Ánh sáng
+    theme_mode_system: Hệ thống
+    theme_mode_title: Cách thức
+    theme_primer: Mồi
+    theme_primer_colorblind: Kem lót dành cho người mù màu
+    theme_primer_contrast: Kem lót có độ tương phản cao
+    theme_primer_dimmed: Lớp lót mờ
+    theme_title: Chủ đề
     time_commitment: Thời gian cam kết
     timed_activity_instruction: Đây là bài tập có giới hạn thời gian. Sau khi bắt đầu phiên giám sát, bạn sẽ có <strong>%{time} phút</strong> để hoàn thành bài tập.
     troubleshooting_guide: Hướng dẫn khắc phục sự cố

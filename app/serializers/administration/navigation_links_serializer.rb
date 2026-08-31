@@ -11,6 +11,7 @@ module Administration
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/CyclomaticComplexity
     # rubocop:disable Metrics/BlockLength -- This block needs to be long due to the complex navigation structure
+    # Key names are load-bearing: AdminShell's brandHomePath reads dashboards/clients/users/assessor_dashboard.
     def links
       preload_membership_associations
       {}.tap do |links|
@@ -18,8 +19,8 @@ module Administration
         links['profile_details'] = "#{admin_path}/profile/details"
         links['profile'] = "#{admin_path}/profile"
         links['change_password'] = "#{admin_path}/profile/change_password"
-        links['assessor_dashboard'] = assessors_dashboard_path if policy(%i[assessors campaign]).index?
-        links['assessor_workshops'] = assessors_assessment_centers_path if policy(%i[assessors workshop]).index?
+        links['assessor_dashboard'] = assessors_dashboard_path if assessor_dashboard?
+        links['assessor_workshops'] = assessors_assessment_centers_path if assessor_workshops?
         links['clients'] = "#{admin_path}/clients" if policy(%i[administration client]).index?
         links['skills_taxonomy'] = "#{admin_path}/skills_taxonomy" if policy(%i[api administration skill]).index?
         links['development_actions'] = "#{admin_path}/development_actions" if policy(%i[api administration
@@ -77,6 +78,18 @@ module Administration
     # rubocop:enable Metrics/AbcSize
     # rubocop:enable Metrics/CyclomaticComplexity
     # rubocop:enable Metrics/BlockLength
+
+    def assessor_footprint?
+      object.is?(:client_assessor)
+    end
+
+    def assessor_dashboard?
+      policy(%i[assessors campaign]).index? && assessor_footprint?
+    end
+
+    def assessor_workshops?
+      policy(%i[assessors workshop]).index? && assessor_footprint?
+    end
 
     def policy(name)
       klass = "#{Array.wrap(name).map(&:to_s).map(&:camelize).join('::')}Policy".constantize # rubocop:disable Performance/MapMethodChain

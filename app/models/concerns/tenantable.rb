@@ -10,17 +10,24 @@ module Tenantable
     end
 
     class_attribute :tenant_source_association
+    class_attribute :tenant_source_fk_columns, default: []
 
     before_validation :resolve_tenant_id, if: :should_resolve_tenant?
     after_commit :cascade_tenant_id_to_dependents, if: :saved_change_to_tenant_id?, on: :update
   end
 
-  TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id].freeze
+  TENANT_DERIVING_COLUMNS = %w[owner_id project_id client_id campaign_id threesixty_campaign_id].freeze
   DEPENDENT_REGISTRY = Hash.new { |h, k| h[k] = [] }
 
   class_methods do
     def tenant_source(*association_names)
       self.tenant_source_association = Array(association_names.flatten).map(&:to_sym)
+      self.tenant_source_fk_columns = tenant_source_association.filter_map do |assoc_name|
+        reflection = reflect_on_association(assoc_name)
+        next unless reflection&.macro == :belongs_to
+
+        reflection.foreign_key.to_s
+      end
       register_as_tenant_dependent
     end
 
@@ -46,9 +53,14 @@ module Tenantable
 
   def should_resolve_tenant?
     return false unless has_attribute?(:tenant_id)
+    return true if should_force_tenant_resolution? && ActsAsTenant.current_tenant
     return false if ActsAsTenant.current_tenant
 
-    new_record? || parent_association_changed?
+    new_record? || parent_association_changed? || tenant_source_fk_changed?
+  end
+
+  def should_force_tenant_resolution?
+    false
   end
 
   def cascade_tenant_id_to_dependents
@@ -57,6 +69,11 @@ module Tenantable
 
   def parent_association_changed?
     persisted? && changed.intersect?(TENANT_DERIVING_COLUMNS)
+  end
+
+  def tenant_source_fk_changed?
+    self.class.tenant_source_fk_columns.present? &&
+      changed.intersect?(self.class.tenant_source_fk_columns)
   end
 
   def resolve_tenant_id

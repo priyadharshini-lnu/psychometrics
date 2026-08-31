@@ -14,8 +14,9 @@ const ImportModal = (props) => {
     validateEndpoint,
     importEndpoint,
     onClose,
+    afterClose,
     translations,
-    isOpen = true,
+    open = true,
     fileAccept = '.json',
     fileLabel = I18n.t('admin.dimensions_import_modal_select_json'),
     fileErrorMessage = I18n.t('admin.dimensions_import_modal_errors_file_error'),
@@ -30,7 +31,6 @@ const ImportModal = (props) => {
     showFileErrorAlert = true,
     chooseFileButtonLabel,
   } = props
-  const [show, setShow] = useState(isOpen)
   const [file, setFile] = useState(null)
   const [fileError, setFileError] = useState(null)
   const [jsonFileContent, setJsonFileContent] = useState(null)
@@ -102,20 +102,6 @@ const ImportModal = (props) => {
       ),
     },
   ]
-
-  const handleClose = () => {
-    setShow(false)
-    if (onClose) {
-      onClose()
-    } else {
-      setTimeout(() => {
-        const modalContainer = document.getElementById('modal-container')
-        if (modalContainer) {
-          modalContainer.innerHTML = ''
-        }
-      }, 300)
-    }
-  }
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
@@ -199,10 +185,9 @@ const ImportModal = (props) => {
 
     submitPromise
       .then(() => {
-        setShow(false)
         message.success(successMessage || I18n.t('admin.dimensions_import_modal_import_scheduled'))
-        if (onClose) onClose()
         setIsImporting(false)
+        onClose()
       })
       .catch((error) => {
         const defaultError = I18n.t('admin.dimensions_import_modal_error_occurred')
@@ -337,7 +322,7 @@ const ImportModal = (props) => {
   )
 
   const modalFooter = [
-    <Button key="cancel" onClick={handleClose}>
+    <Button key="cancel" onClick={() => onClose()}>
       {translations?.cancel || 'Cancel'}
     </Button>,
     importFilevalidatonPending && (
@@ -354,9 +339,11 @@ const ImportModal = (props) => {
 
   return (
     <Modal
-      open={show}
+      open={open}
       title={title}
-      onCancel={handleClose}
+      onCancel={() => onClose()}
+      afterClose={afterClose}
+      destroyOnHidden
       footer={modalFooter}
       width="90%" // Set width to 90% of the viewport
       style={{

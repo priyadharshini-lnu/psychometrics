@@ -55,6 +55,7 @@ de:
     copied_successfully: Erfolgreich kopiert
     copied_to_clipboard: In die Zwischenablage kopiert
     copy: Kopie
+    copyright: "© %{year} %{display_name}. Alle Rechte vorbehalten."
     create: Erstellen
     created_at: Erstellt am
     created_by: Erstellt von
@@ -181,6 +182,29 @@ de:
     remove: Entfernen
     removed: Entfernt
     replace: Ersetzen
+    reports:
+      ai_rationale_evidence:
+        all_factors: Alle Faktoren
+        factor_label: Faktoren
+        hide_evidence: Beweise verbergen
+        hide_rationale: Begründung ausblenden
+        no_data: Für die ausgewählte Frage liegen keine KI-Begründungen oder Evidenzdaten vor.
+        no_question_selected: Bitte wählen Sie eine Frage aus, um die Begründung und die Belege der KI anzuzeigen.
+        question_label: Frage
+        select_question: Wählen Sie eine Frage aus
+      ai_transcript:
+        no_data: Für die ausgewählte Frage sind keine Transkriptdaten verfügbar.
+        no_question_selected: Bitte wählen Sie eine Frage aus, um das Transkript anzuzeigen.
+        question_label: Frage
+        select_question: Wählen Sie eine Frage aus
+    reports_bar_gradient_direction: Gradientenrichtung
+    reports_bar_gradient_direction_bottom_to_top: Von unten nach oben
+    reports_bar_gradient_direction_left_to_right: Von links nach rechts
+    reports_bar_gradient_direction_right_to_left: Von rechts nach links
+    reports_bar_gradient_direction_top_to_bottom: Von oben nach unten
+    reports_bar_gradient_enabled: Farbverlauf aktivieren
+    reports_bar_gradient_end_color: Endfarbe
+    reports_bar_gradient_start_color: Startfarbe
     reports_show_values_inside_bar: Werte innerhalb des Balkens anzeigen
     reports_value_label_position: Position des Wertetiketts
     reports_value_label_position_center: Mitte
@@ -218,6 +242,7 @@ de:
     switch_to_laptop_or_desktop: Wechseln Sie zu Laptop oder Desktop
     system_check_uploading: Hochladen
     table:
+      collapse: Zusammenbruch
       entries:
         selected:
           one: 1 Zeile ausgewählt
@@ -226,6 +251,7 @@ de:
           one: 'Gesamt : 1'
           other: 'Gesamt : {{count}}'
           zero: 'Gesamt : 0'
+      expand: Expandieren
     tags: Tags
     terms_conditions_privacy: Datenschutzerklärung
     tools: Werkzeuge

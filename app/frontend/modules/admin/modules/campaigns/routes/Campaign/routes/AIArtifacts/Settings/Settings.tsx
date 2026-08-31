@@ -2,11 +2,14 @@ import React from 'react'
 import { useParams } from 'react-router'
 import Modals from '~/modules/admin/components/Modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { SettingsTable } from './SettingsTable'
 import { SettingsFilter } from './SettingsFilter'
 import { SettingsDrawer } from './SettingsDrawer'
 import { AiArtifact } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 import { AIArtifactsImportModal } from './AIArtifactsImportModal'
+
+const { I18n } = window
 
 const MODALS = {
   AIArtifactsImportModal,
@@ -40,7 +43,12 @@ const Settings: React.FC = () => {
 
   return (
     <>
-      <Resource config={config} name="ai_artifacts">
+      <Resource
+        title={I18n.t('admin.tabs_settings')}
+        config={config}
+        name="ai_artifacts"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignAiArtifactsSettings}
+      >
         <SettingsFilter onCreateAIArtifact={handleOpenDrawer} />
         <SettingsTable onEditAIArtifact={handleOpenDrawer} />
         <SettingsDrawer

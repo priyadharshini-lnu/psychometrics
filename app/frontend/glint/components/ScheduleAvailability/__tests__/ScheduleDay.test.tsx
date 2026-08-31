@@ -97,13 +97,21 @@ describe('Add button should be ', () => {
     const startTimePicker = screen.getByPlaceholderText(/to/i)
     const endTimePicker = screen.getByPlaceholderText(/from/i)
 
+    // each picker owns its clear button, so resolve it from the picker root
+    const clearButtonFor = (picker: HTMLElement) => {
+      const clear = picker.closest('.ant-picker')?.querySelector<HTMLElement>('.ant-picker-clear')
+      if (!clear) throw new Error('picker clear button not found')
+      return clear
+    }
+
     await act(async () => {
       await user.hover(startTimePicker).then(async () => {
-        const close = screen.getAllByRole('img')[1]
+        const close = clearButtonFor(startTimePicker)
+        close.style['pointer-events'] = 'auto'
         await user.click(close)
       })
       await user.hover(endTimePicker).then(async () => {
-        const close = screen.getAllByRole('img')[1]
+        const close = clearButtonFor(endTimePicker)
         close.style['pointer-events'] = 'auto'
         await user.click(close)
       })
@@ -267,15 +275,22 @@ test('Time lesser than start time should be disabled while selecting end time', 
     await user.click(startTimePicker)
   })
 
+  // One pick per act(): the panel re-renders between picks, so nodes must be re-queried.
   const _1hour = screen.getByText('01')
-  const _15mins = screen.getByText('15')
-  const startTimePickerOkButton = screen.getByText('OK')
   _1hour.style['pointer-events'] = 'auto'
-  _15mins.style['pointer-events'] = 'auto'
-  startTimePickerOkButton.style['pointer-events'] = 'auto'
   await act(async () => {
     await user.click(_1hour)
+  })
+
+  const _15mins = screen.getByText('15')
+  _15mins.style['pointer-events'] = 'auto'
+  await act(async () => {
     await user.click(_15mins)
+  })
+
+  const startTimePickerOkButton = screen.getByText('OK')
+  startTimePickerOkButton.style['pointer-events'] = 'auto'
+  await act(async () => {
     await user.click(startTimePickerOkButton)
   })
   expect(screen.getByDisplayValue('1:15 AM')).toBeInTheDocument()
@@ -285,12 +300,14 @@ test('Time lesser than start time should be disabled while selecting end time', 
     await user.click(endTimePicker)
   })
   const _1hourEndTime = screen.getAllByText('12')[1]
-  const _15minsEndTime = screen.getAllByText('15')[1]
   _1hourEndTime.style['pointer-events'] = 'auto'
-  _15minsEndTime.style['pointer-events'] = 'auto'
-  const endTimePickerOkButton = screen.getAllByRole('button')[1]
   await act(async () => {
     await user.click(_1hourEndTime)
+  })
+
+  const _15minsEndTime = screen.getAllByText('15')[1]
+  _15minsEndTime.style['pointer-events'] = 'auto'
+  await act(async () => {
     await user.click(_15minsEndTime)
   })
   expect(screen.queryByDisplayValue('12:15 AM')).toBe(null)

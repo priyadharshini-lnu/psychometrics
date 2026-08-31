@@ -103,6 +103,7 @@ ru:
     ai_scoring_approval_stale_description: Изменения в настройках, внесенные после последнего запуска, могли повлиять на результат. Выполните повторный расчет, чтобы обновить результат с учетом последних настроек.
     ai_scoring_approval_stale_title: Результат может быть устаревшим
     ai_scoring_approvals: Утверждение оценок ИИ
+    ai_scoring_errors_label: Ошибки оценки ИИ
     ai_scoring_refresh_score: Обновить оценку
     ai_scoring_refresh_score_confirm_description: Это приведет к повторному расчету оценки с помощью ИИ для данного теста с использованием последней конфигурации. Вы уверены?
     ai_scoring_refresh_score_confirm_title: Обновить оценки ИИ?
@@ -122,6 +123,12 @@ ru:
     alt_text_long: Превышает максимальный лимит в 100 символов.
     api_keys: API-ключи
     api_keys_form_title: ключ API
+    appearance: Появление
+    appearance_dark: Темный
+    appearance_dark_theme: Темная тема
+    appearance_light: Свет
+    appearance_light_theme: Светлая тема
+    appearance_system: Система
     application: Заявка
     application_add: Добавить заявку
     application_name: Название приложения
@@ -131,7 +138,6 @@ ru:
     application_settings_at_least_one_url_required: Перед включением белого списка URL-адресов, пожалуйста, активируйте хотя бы одну запись URL.
     application_settings_confirm_delete_ip: Вы уверены, что хотите удалить этот IP-адрес?
     application_settings_confirm_delete_url: Вы уверены, что хотите удалить этот URL?
-    application_settings_edit_ip_address: Изменить IP-адрес / диапазон CIDR
     application_settings_enable_ip_whitelisting: Включить белый список IP-адресов
     application_settings_enable_url_whitelisting: Включить белый список URL-адресов
     application_settings_invalid_ip_format: Недопустимый IP-адрес или формат CIDR
@@ -195,6 +201,8 @@ ru:
     assessor_add_subject_modal_subject: Тема
     assessor_add_subject_modal_subject_placeholder: Поиск по теме...
     assessor_add_subject_modal_title: Добавить тему
+    assessor_assessment_drawer_title: Детали оценки
+    assessor_assessment_id: Идентификатор оценки оценщика
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Выберите оценку
     assessor_assessment_name: Оценка оценщика
     assessor_assessments: Оценки оценщиков
@@ -345,9 +353,15 @@ ru:
     campaign_assessment_modals_update_occupation_condition_set_select: Выбрать набор условий по профессии
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Набор условий занятости успешно обновлен
     campaign_assessment_modals_update_occupation_condition_set_title: Обновление набора условий занятости
+    campaign_dashboard_instructions_label: Инструкции по использованию панели управления кампанией
+    campaign_dashboard_instructions_save: Инструкции по сохранению
+    campaign_dashboard_instructions_save_error: Не удалось сохранить инструкции панели управления кампанией.
+    campaign_dashboard_instructions_save_success: Инструкции на панели управления кампанией успешно сохранены.
     campaign_factors: Факторы кампании
     campaign_id_placeholder: Введите идентификатор кампании
     campaign_name: Название кампании
+    campaign_name_translations: Переводы названий кампаний
+    campaign_name_translations_fetch_error: Ошибка при получении переводов названий кампаний.
     campaign_report_generate_modal_subtitle: Выберите нужный язык для каждого отчета
     campaign_report_id: Идентификатор отчета о кампании
     campaign_results_export_details: Результаты, полученные с помощью искусственного интеллекта кампании
@@ -419,6 +433,7 @@ ru:
     category: Категория
     cell_save_msg: Допустимые изменения сохраняются автоматически, как только вы выходите из ячейки после редактирования.
     change_reason: Причина изменения
+    change_report_dates_message: Вы хотите изменить диапазон дат для отчета?
     change_score: измененный счет
     change_score_log: Журнал изменений
     characters: символы
@@ -513,6 +528,7 @@ ru:
     created_successfully: AI Assistant был успешно создан.
     current: Текущий
     current_job_role: Текущая должность
+    current_locale: Текущая локаль
     custom_formula: Индивидуальная формула
     custom_message_description: Это сообщение может быть отправлено любому участнику оценки.
     custom_message_name: Пользовательское сообщение
@@ -663,7 +679,7 @@ ru:
     dimensions_import_modal_import_dimension: Импорт измерения
     dimensions_import_modal_import_scheduled: Импорт запланирован
     dimensions_import_modal_operation: Операция
-    dimensions_import_modal_owner_global: TTE (Global)
+    dimensions_import_modal_owner_global: Global
     dimensions_import_modal_owner_input_validation: Пожалуйста, выберите владельца
     dimensions_import_modal_owner_select: Выберите владельца
     dimensions_import_modal_select_json: Выберите файл JSON
@@ -680,6 +696,7 @@ ru:
     disable_dp: Не разрешать дальнейшую обработку данных
     disable_proctoring: Отключить наблюдение
     disable_report_download: Отключить загрузку отчетов
+    disable_transcript_download: Отключить загрузку стенограммы
     disallow_lead_assessor_moderation: Запретить модерацию ведущего эксперта
     disallow_lead_assessor_moderation_info: Оценка будет рассчитываться автоматически на основе всех отправленных форм оценщиков, и ведущий оценщик не сможет изменить её на экране модерации
     discard_all_questions: Сбросить все вопросы
@@ -831,10 +848,13 @@ ru:
     feature_flags_ai_group: Функции искусственного интеллекта
     feature_flags_communication_group: Коммуникация
     feature_flags_platform_group: Особенности платформы
+    feature_flags_superadmin_group: Определение потребностей арендатора
+    feature_glint_ui_description: Создайте удобный интерфейс для участников с помощью системы дизайна Glint.
     feature_global_skills_description: Доступ к глобальной библиотеке навыков для оценки
     feature_idp_description: Включить индивидуальное планирование развития для участников
     feature_not_available: Эта функция недоступна
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
+    feature_superadmin_tenant_scoping_description: При отключении этой функции запросы суперадминистратора не будут распространяться на данные этого клиента.
     fields_level: Уровень
     fields_level_description: Описание уровня
     fields_level_name: Название уровня
@@ -866,6 +886,7 @@ ru:
     form_datasheet: Технические характеристики
     form_datasheet_columns: Столбцы таблицы данных
     form_end_date: Дата окончания
+    form_fields_to_display: Поля для отображения
     form_include_all_datasheet_columns: Включить все столбцы таблицы данных
     form_name: Имя
     form_no_assessment_selected: Оценок еще нет. Нажмите «Добавить», чтобы начать.
@@ -890,8 +911,11 @@ ru:
     generate_transcription: Создать транскрипцию
     generated_at_time: Создано на сайте %{time}
     generated_value: Созданная стоимость
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Пользовательский интерфейс Glint отключен клиентом.
     global_skills: Глобальные навыки
     global_skills_disabled_by_client: Global Skills отключен клиентом
+    go_back: Назад
     grant_type_label: Тип гранта
     grant_type_name: oauth_grant_type
     graphic: Графика
@@ -906,6 +930,7 @@ ru:
     header_logout_title: Вы уверены, что хотите выйти из системы?
     hide_all: Скрыть все
     hide_middle_scores: Скрыть средние оценки
+    hide_participant_video: Скрыть видео участника
     high: Высокий
     hogan: Хоган
     hogan_assessment: Оценка Хогана
@@ -1251,6 +1276,7 @@ ru:
     key_id: Идентификатор ключа
     keywords: Ключевые слова
     keywords_placeholder: Введите ключевые слова, разделенные запятыми.
+    language: Язык
     language_id: Идентификатор языка
     last_name_required: Фамилия обязательна
     lead_assessment: Оценка свинца
@@ -1488,6 +1514,8 @@ ru:
     owner_resource_norm: норма
     owner_resource_report: отчет
     owner_resource_report_bundle: пакет отчетов
+    page_load_failed: Эта страница не загрузилась.
+    page_load_failed_hint: Возможно, приложение обновилось — перезагрузите страницу, чтобы продолжить.
     parsed_dependencies_help: Анализированные зависимости для пользователя, используемые ИИ-помощником для генерации результатов артефакта
     parsed_dependencies_title: Анализируемые зависимости
     parsed_dependencies_view: Просмотр проанализированных зависимостей
@@ -1949,6 +1977,7 @@ ru:
     piped_text_modal_title: Добавить текст в трубе
     piped_text_modal_user_reports: Отчеты пользователей
     piped_text_modal_users: Пользователи
+    platform_owner: Platform
     playground: Игровая площадка
     playground_info: Протестируйте свой артефакт с помощью примеров данных, чтобы предварительно просмотреть сгенерированные результаты.
     playground_placeholder: Введите тестовые данные
@@ -2102,6 +2131,7 @@ ru:
     projects_mettl_schedule_records_secure_browser_enabled: Включить безопасный браузер
     projects_mettl_schedule_records_settings: Настройки
     projects_mettl_schedule_records_show_remaining_counts: Включить отображение оставшегося количества
+    projects_mettl_schedule_records_title: Расписание Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Включить визуальный контроль
     projects_mettl_schedule_records_web_proctoring_enabled: Включить веб-контроль
     projects_profile_settings_form_fields_enabled: Включено
@@ -2179,6 +2209,38 @@ ru:
     raw_score: Брутто-балл
     reason_for_changes: Причина изменений
     recents: Последние
+    record_history_changes: изменения
+    record_history_changes_in_request: изменения в этом запросе
+    record_history_date_range_invalid: Дата окончания должна совпадать с датой начала или быть позже.
+    record_history_date_range_required: Пожалуйста, выберите диапазон дат.
+    record_history_date_range_too_large: Диапазон дат не может превышать %{days} дней. Пожалуйста, сузьте область поиска.
+    record_history_filter_actor: Фильтр по электронной почте актера
+    record_history_filter_field: Фильтрация по измененному полю
+    record_history_filter_type: Фильтрация по типу записи
+    record_history_id_required: Пожалуйста, введите идентификатор записи.
+    record_history_include_related: Включите связанные записи
+    record_history_last_30_days: Последние 30 дней
+    record_history_last_7_days: Последние 7 дней
+    record_history_no_results: История изменений для этой записи не найдена.
+    record_history_no_results_for: Изменений не обнаружено.
+    record_history_records_changed: записи изменены
+    record_history_related_tag: Связанный
+    record_history_request_banner: Отображение всех изменений в запросе
+    record_history_request_label: 'Запрос:'
+    record_history_request_or_record_required: Введите UUID запроса или выберите тип записи и идентификатор.
+    record_history_request_uuid: Запрос UUID
+    record_history_request_uuid_placeholder: Введите UUID запроса
+    record_history_revision_failed: Не удалось загрузить состояние записи для этой версии.
+    record_history_search_hint: Введите UUID запроса или выберите тип записи и идентификатор записи, чтобы отследить историю изменений.
+    record_history_select_type: Выберите тип записи
+    record_history_state_at_version: Состояние на версии
+    record_history_system: Система
+    record_history_title: История изменений записей
+    record_history_type_required: Пожалуйста, выберите тип записи.
+    record_history_version: Версия
+    record_history_view_audit_log: Просмотреть в журналах аудита
+    record_history_view_full: Просмотреть полную историю
+    record_history_view_request: Просмотреть запрос
     record_id: Идентификатор записи
     recordings: Записи
     reflection_questions: Вопросы для размышления
@@ -2294,6 +2356,7 @@ ru:
     report_no_evaluations: Отчет по программе «%{user}» недоступен — оценки не поступали.
     report_not_generated: Отчет «%{user}» соответствует условиям доступности, но еще не сгенерирован. Сначала сгенерируйте отчет.
     report_on_hold: Отчет по программе «%{user}» в настоящее время приостановлен.
+    report_owner: Владелец
     report_pdf_status: Отчет о состоянии в формате PDF
     report_review_abort_qc: Прервать контроль качества
     report_review_approve: Утвердить
@@ -2314,10 +2377,12 @@ ru:
     report_types:
       active_clients_projects: Текущие клиенты и проекты
       campaign_factor_scores: Оценки факторов кампании
+      campaign_user_creation: Создание пользователей кампании
       client_assessment_counts: Оценка клиентов имеет значение
       hogan_usage_report: Использование системы оценки Hogan
       json_data_report: Отчет по данным в формате JSON
       pearson_usage_report: Использование оценочных материалов Pearson
+      proctoring_sessions: Сеансы прокторинга
       report_usage_summary: Сводка по использованию отчета
       saville_usage_report: Использование системы оценки Saville
       user_access_review: Проверка прав доступа пользователей
@@ -2377,6 +2442,17 @@ ru:
     role_project_admin: Администратор проекта
     role_superadmin: Супер-администратор
     run: Запустить
+    runtime_configuration_invalid_json_object: runtime_configuration должен быть допустимым объектом JSON.
+    runtime_configuration_invalid_parameter: не является параметром, обновляемым во время выполнения.
+    runtime_parameter_date_range_required: Пожалуйста, выберите дату начала и дату окончания.
+    runtime_parameter_editable_section_title: Диапазон дат
+    runtime_parameter_filter_column: Фильтр
+    runtime_parameter_locked_section_title: Включенные фильтры
+    runtime_parameter_modal_subtitle: Проверьте детали и при необходимости обновите диапазон дат.
+    runtime_parameter_modal_title: Отчет о выполнении
+    runtime_parameter_not_set: Не предоставлено
+    runtime_parameter_submit_button: Запустите сейчас
+    runtime_parameter_value_column: Ценить
     saml_idp_certificate_available: Доступно (щелкните, чтобы скопировать)
     saml_idp_certificate_label: Сертификат
     saml_idp_entity_id_label: Идентификатор субъекта/эмитента
@@ -2451,11 +2527,16 @@ ru:
       approval_status_in: Статус утверждения
       approver_user_id_in: Утверждающий
       assessment_id_in: Оценка
+      assessment_name_cont: Оценка
       campaign_id_in: Кампания
+      campaign_name_cont: Кампания
       client_id_in: Клиент
+      client_name_cont: Клиент
       project_id_in: Проект
+      project_name_cont: Проект
       qc_user_id_in: Пользователь QC
       report_id_in: Отчет
+      report_name_cont: Отчет
       subject_email_cont: Тема письма
       subject_full_name_cont: Название предмета
       user_email_cont: Электронная почта пользователя
@@ -2511,6 +2592,7 @@ ru:
     scheduling_columns_start_time: Дата и время
     scheduling_columns_subject: Тема
     scheduling_columns_title: Название
+    scheduling_columns_video_hidden_for_privacy: Видео скрыто в целях защиты личной информации кандидата.
     scheduling_columns_view_recording: Просмотреть запись
     scheduling_errors_assessor_already_assigned: Оценщик уже назначен для этой оценки. Выберите другую оценку или другого оценщика.
     scheduling_errors_date_required: Пожалуйста, выберите дату
@@ -2603,6 +2685,12 @@ ru:
     score: Счет
     score_approval_not_allowed_to_approve: Вы не имеете права утверждать эту оценку.
     score_approval_not_allowed_to_discard: Вы не имеете права отбрасывать этот результат.
+    score_approval_reset: Сбросить подтверждение
+    score_approval_reset_description: Это переведет запрос на одобрение обратно в статус «ожидает подтверждения». Баллы не изменятся. Это действие необратимо.
+    score_approval_reset_not_allowed: В текущем состоянии подтверждение этого балла не может быть сброшено.
+    score_approval_reset_recompute_description: Это приведет к сбросу подтверждения, удалению оценок ИИ из результатов пользователя и удалению всех сгенерированных отчетов. Это действие необратимо.
+    score_approval_reset_success: Подтверждение оценки сброшено.
+    score_approval_reset_title: Сбросить подтверждение оценки?
     score_definition_placeholder: Введите определение для этого уровня оценки
     score_definitions: Определения баллов
     score_max: Максимальный балл
@@ -2834,6 +2922,7 @@ ru:
     sheets_tabs_settings: Настройки
     show_all: Показать все
     show_all_assessment_responses: Показать все ответы на оценку
+    show_form_field_titles: Показать заголовки полей формы
     show_middle_scores: Показать больше результатов для «%{count}» (необязательно)...
     show_original: Показать оригинал
     show_submenu: Показать подменю
@@ -2956,7 +3045,14 @@ ru:
     smtp_settings_user_name: Имя пользователя
     specialty_questions: Специальные вопросы
     sso_email_mismatch: Вы вошли в систему под другой учетной записью у поставщика услуг аутентификации. Пожалуйста, выйдите из системы у поставщика услуг аутентификации и попробуйте снова.
+    sso_enforce_for: Внедрить единый вход для
+    sso_enforce_for_all: Все пользователи
+    sso_enforce_for_none: Никто
+    sso_enforce_for_specific_domains: Конкретные области
     sso_enforced: Принудительное использование SSO
+    sso_enforced_domains: Принудительные домены
+    sso_enforced_domains_hint: например, se.com (точное совпадение) или *.se.com (только поддомены)
+    sso_enforced_domains_placeholder: Введите домен(ы) и нажмите Enter.
     sso_label: SSO
     sso_not_enabled: Для этого клиента не включена функция единого входа (SSO)
     sso_settings: Настройки SSO
@@ -3071,11 +3167,15 @@ ru:
     success_title: Созданы центры оценки
     success_update: Настройки дизайна были успешно сохранены
     suitability_id: Идентификатор соответствия
+    superadmin_tenant_scoping: Суперадминистратор
     superadmin_use_root_domain: Суперадминистраторы должны входить в систему через основной домен
     switch_client: Клиент Switch
     system_prompt: Системный запрос
     tab_text_one: Меню
     tab_text_two: подменю
+    table_display_columns: Колонки
+    table_display_filters: Фильтры
+    table_display_title: Отображать
     table_more_actions: Дополнительные действия
     tabs_results: Результаты
     tabs_settings: Настройки
@@ -3091,12 +3191,38 @@ ru:
     taxonomy_title: Таксономия навыков
     template_and_campaign_required: Пожалуйста, укажите идентификатор шаблона и кампании.
     template_render_failed: Не удалось отобразить шаблон
+    tenant_repair_confirm_message: 'Установить tenant_id равным %{new_tenant} на %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Установить tenant_id в значение null для %{model} #%{id}?'
+    tenant_repair_confirm_title: Подтвердите обновление данных арендатора.
+    tenant_repair_correct: Правильный
+    tenant_repair_current_tenant: Текущий арендатор
+    tenant_repair_find_record: Найти запись
+    tenant_repair_global_tenant: глобальный
+    tenant_repair_invalid_model: Недопустимый или непригодный для использования тип модели
+    tenant_repair_invalid_record_id: Введите действительный идентификатор записи.
+    tenant_repair_invalid_tenant_id: Введите действительный положительный идентификатор арендатора или оставьте поле пустым, чтобы оно стало пустым.
+    tenant_repair_model_label: Модель
+    tenant_repair_model_placeholder: Введите текст для поиска...
+    tenant_repair_moved_from: 'Сменился арендатор:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Идентификатор нового арендатора
+    tenant_repair_preview_title: Предварительный просмотр записи
+    tenant_repair_request_failed: Запрос не выполнен
+    tenant_repair_resolved_tenant: Проблема с арендатором решена
+    tenant_repair_success: Информация об арендаторе успешно обновлена.
+    tenant_repair_title: Исправление ошибок арендатора
+    tenant_repair_update: Обновлять
+    tenant_repair_will_set_null: Присвоит переменной tenant_id значение null.
+    tenant_repair_will_set_value: Будет установлен tenant_id в значение %{value}
     test_generate: Тест Создать
     test_render: Тестовый рендер
     test_render_tooltip: Протестируйте свой шаблон подсказки с помощью данных кампании, чтобы проверить, что будет отправлено помощнику ИИ.
     text_danger: Текст (опасность)
     text_success: Текст (успех)
     text_warning: Текст (предупреждение)
+    themes:
+      marsh-dark: Темное болото
+      marsh-light: Свет болота
     this_field_is_required: Это поле является обязательным для заполнения
     threesixity_advance_settings_campaign_template: Шаблон кампании
     threesixity_advance_settings_factors: Факторы
@@ -3118,6 +3244,7 @@ ru:
     threesixity_success: Кампания Multi Rater была успешно создана.
     threesixity_success_job: Задание по созданию кампании Multi Rater было успешно запланировано.
     threesixty: Кампания «360»
+    threesixty_campaigns_instruction_visible_to_participants: Покажите эту инструкцию участникам.
     threesixty_campaigns_mail_history_date: Дата
     threesixty_campaigns_mail_history_download_details: Скачать подробную информацию
     threesixty_campaigns_mail_history_emails_sent: Отправленные электронные письма
@@ -3133,6 +3260,8 @@ ru:
     threesixty_campaigns_menu_report_menu_report_approval_title: Настройки утверждения отчетов
     threesixty_campaigns_menu_report_menu_report_options_title: Параметры отчета
     threesixty_campaigns_menu_report_title: Отчет
+    threesixty_campaigns_schedule_date_presets: Предварительно установленные даты расписания
+    threesixty_campaigns_send_reminders_automatically: Автоматическая отправка напоминаний
     time_label: Время
     time_zone: Часовой пояс
     timed_label: 'Ссылка: %{time_text}'
@@ -3185,7 +3314,6 @@ ru:
       title: Переводы
     translations_export_failure_msg: Ошибка при экспорте переводов
     translations_export_success_msg: Экспорт текущих действий по развитию.
-    tte: TTE
     type_by_skill: По навыкам
     type_by_skill_type: По типу навыков
     type_default: По умолчанию

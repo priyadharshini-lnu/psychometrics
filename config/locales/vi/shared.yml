@@ -55,6 +55,7 @@ vi:
     copied_successfully: Đã sao chép thành công
     copied_to_clipboard: Đã sao chép vào khay nhớ tạm
     copy: Sao chép
+    copyright: "© %{year} %{display_name}. Bảo lưu mọi quyền."
     create: Tạo
     created_at: Được tạo ra tại
     created_by: Tạo bởi
@@ -181,6 +182,29 @@ vi:
     remove: Di dời
     removed: Gỡ bỏ
     replace: Thay thế
+    reports:
+      ai_rationale_evidence:
+        all_factors: Tất cả các yếu tố
+        factor_label: Các yếu tố
+        hide_evidence: Che giấu bằng chứng
+        hide_rationale: Ẩn lý do
+        no_data: Không có cơ sở lý luận hoặc dữ liệu bằng chứng nào về trí tuệ nhân tạo (AI) cho câu hỏi đã chọn.
+        no_question_selected: Vui lòng chọn một câu hỏi để hiển thị lý lẽ và bằng chứng do AI đưa ra.
+        question_label: Câu hỏi
+        select_question: Chọn một câu hỏi
+      ai_transcript:
+        no_data: Không có dữ liệu bản ghi nào cho câu hỏi đã chọn.
+        no_question_selected: Vui lòng chọn một câu hỏi để hiển thị bản ghi.
+        question_label: Câu hỏi
+        select_question: Chọn một câu hỏi
+    reports_bar_gradient_direction: Hướng độ dốc
+    reports_bar_gradient_direction_bottom_to_top: Từ dưới lên trên
+    reports_bar_gradient_direction_left_to_right: Từ trái sang phải
+    reports_bar_gradient_direction_right_to_left: Từ phải sang trái
+    reports_bar_gradient_direction_top_to_bottom: Từ trên xuống dưới
+    reports_bar_gradient_enabled: Bật chế độ chuyển màu
+    reports_bar_gradient_end_color: Màu cuối
+    reports_bar_gradient_start_color: Màu khởi đầu
     reports_show_values_inside_bar: Hiển thị các giá trị bên trong thanh
     reports_value_label_position: Vị trí nhãn giá trị
     reports_value_label_position_center: Trung tâm
@@ -218,6 +242,7 @@ vi:
     switch_to_laptop_or_desktop: Chuyển sang máy tính xách tay hoặc máy tính để bàn
     system_check_uploading: Đang tải lên
     table:
+      collapse: Sụp đổ
       entries:
         selected:
           one: Đã chọn 1 hàng
@@ -226,6 +251,7 @@ vi:
           one: 'Tổng cộng: 1'
           other: 'Tổng cộng: {{count}}'
           zero: 'Tổng cộng: 0'
+      expand: Mở rộng
     tags: Tags
     terms_conditions_privacy: Tuyên bố về quyền riêng tư
     tools: Công cụ

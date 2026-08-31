@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import {
-  Card, Col, Row, Skeleton, Pagination,
+  Card, Col, Row, Skeleton,
 } from 'antd'
+import { DataTablePagination } from '@thetalententerprise/glint'
 import { useNavigate } from 'react-router-dom'
 import { useResources } from '~/hooks/useResources'
 import styles from './Dashboard.less'
 import { DashboardTR, Dashboard as DashboardType } from '../../campaigns/core/dashboard'
 import { settings } from '../settings'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Meta } = Card
 const { I18n } = window
@@ -31,6 +33,7 @@ export const DashboardList = () => {
 
   return (
     <div className="p-6">
+      <DocumentTitle text={I18n.t('admin.dashboards')} />
       <h3>{I18n.t('admin.dashboards')}</h3>
       <Row>
         {data.map(dashboard => (
@@ -45,12 +48,12 @@ export const DashboardList = () => {
           </Col>
         ))}
       </Row>
-      <Pagination
-        current={currentPage}
+      <DataTablePagination
+        page={currentPage}
         pageSize={pageSize}
-        total={meta.recordCount}
+        total={meta.recordCount ?? 0}
         onChange={changePage}
-        className="pl"
+        showSizeChanger
       />
     </div>
   )

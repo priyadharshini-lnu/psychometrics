@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::DataReportJobResource < Api::V2::Administration::BaseResource
+  include Rails.application.routes.url_helpers
+
   attributes :status, :created_at, :file
 
   has_one :created_by, class_name: 'User'
@@ -8,7 +10,10 @@ class Api::V2::Administration::DataReportJobResource < Api::V2::Administration::
   ransack_filters %i[data_report_owner_id_eq]
 
   def file
-    @model.file&.url
+    download_api_v2_administration_data_report_data_report_job_path(
+      @model.data_report,
+      @model
+    )
   end
 
   def self.records(options)

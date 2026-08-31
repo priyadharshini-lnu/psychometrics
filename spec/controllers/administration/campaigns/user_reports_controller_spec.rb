@@ -753,7 +753,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
       *%w[id permissions report_id name user_access report_family_name
           status internal custom_upload report_provider report_download_urls
           comments_count edits_count hogan_participant_id available_languages effective_default_language
-          campaign_id approval_status assessment_ids external_settings]
+          campaign_id approval_status assessment_ids external_settings owner]
     )
     expect(report_response).to include({
       'report_id' => report.id,
@@ -783,7 +783,7 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
         simulation_content_variations hogan_participant_id users_result_id prework
         pearson_user_assessment_details saville_user_assessment_details simulation_user_assessment_details
         skillvue_user_assessment_details yoodli_user_assessment_details mhs_user_assessment_details
-        hogan_user_assessment_details microsite_user_assessment_details
+        hogan_user_assessment_details microsite_user_assessment_details owner
       ]
     )
     expect(assessment_response).to include({

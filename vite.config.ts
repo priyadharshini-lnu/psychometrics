@@ -5,6 +5,7 @@ import RubyPlugin from 'vite-plugin-ruby'
 import loadCssModulePlugin from './config/vite-plugins/load-css-module'
 import videojsRecordCompat from './config/vite-plugins/videojs-record-compat'
 import cjsInteropPlugin from './config/vite-plugins/cjs-interop'
+import entrySizeBudget from './config/vite-plugins/entry-size-budget'
 import gzipPlugin from 'rollup-plugin-gzip'
 import react from '@vitejs/plugin-react'
 import checker from 'vite-plugin-checker'
@@ -28,6 +29,10 @@ if (SSL) {
   }
 }
 
+// checker runs on the `typescript` package, which is aliased to the TS 6 API
+// (@typescript/typescript6) because vite-plugin-checker can't use TS 7's compiler API yet.
+// TODO: remove the @typescript/typescript6 alias once v7 tooling is available.
+// Tracking: https://github.com/typescript-eslint/typescript-eslint/issues/10940
 const devPlugins = __DEV__ ? [
   dts({
     insertTypesEntry: true,
@@ -62,6 +67,12 @@ export default defineConfig({
   plugins: [
     videojsRecordCompat(),
     cjsInteropPlugin(['react-froala-wysiwyg', 'react-contenteditable', 'words-count']),
+    // 555.7 kB measured with every section split out; the rest is headroom for shell work, not a folded-in page.
+    entrySizeBudget({
+      entry: 'entrypoints/admin/admin.jsx',
+      label: 'The admin app',
+      maxKb: 800,
+    }),
     sentryVitePlugin({
       org: process.env.SENTRY_ORG,
       project: process.env.SENTRY_PROJECT,
@@ -77,9 +88,7 @@ export default defineConfig({
     RubyPlugin(),
     react(),
     // visualizer({open: true}),
-    svgr({
-      exportAsDefault: false,
-    }),
+    svgr(),
     ...devPlugins,
     loadCssModulePlugin({
       include: (id) => {
@@ -124,7 +133,7 @@ export default defineConfig({
       },
       plugins: [
         gzipPlugin({
-          customCompression: content => brotliPromise(Buffer.from(content)),
+          customCompression: content => brotliPromise(typeof content === 'string' ? content : Uint8Array.from(content)),
           fileName: '.br'
         })
       ],

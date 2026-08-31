@@ -890,6 +890,7 @@ hi:
         export_campaign_datasheet: निर्यात अभियान डेटाशीट
         export_campaign_factors: निर्यात अभियान कारक
         export_campaign_scorings: अभियान स्कोरिंग्स का निर्यात करें
+        export_campaign_translations: निर्यात अभियान अनुवाद
         export_dashboard_as_file: डैशबोर्ड को फ़ाइल के रूप में निर्यात करें
         export_development_action_translations: निर्यात विकास कार्रवाई अनुवाद
         export_development_actions: निर्यात विकास कार्यवाही
@@ -917,6 +918,7 @@ hi:
         import_assessors: आयात मूल्यांकनकर्ता
         import_campaign_ai_artifacts: अभियान अभियान एआई कलाकृतियाँ आयात करें
         import_campaign_factors: अभियान कारक आयात करें
+        import_campaign_translations: आयात अभियान अनुवाद
         import_client_assessors: क्लाइंट आकलनकर्ताओं को आयात करें
         import_datasheet: डेटाशीट आयात करें
         import_development_action_translations: विकास कार्रवाई अनुवादों का आयात करें
@@ -958,6 +960,7 @@ hi:
         super_admin_assessment_raw_result_export: सुपर एडमिन कच्चे परिणाम निर्यात
         super_admin_datasheet_export: सुपर एडमिन डेटाशीट निर्यात
         super_admin_external_assessment_export: सुपर एडमिन बाह्य मूल्यांकन निर्यात
+        superadmin_record_change_history: रिकॉर्ड परिवर्तन इतिहास
         threesixty_campaign_export_completion_status: थ्रीसिक्स्टी अभियान निर्यात पूर्णता स्थिति
         threesixty_campaign_export_scores: थ्रीसिक्स्टी अभियान ने एक्सपोर्ट हासिल किया
         workshop_status_export: मूल्यांकन केंद्र स्थिति निर्यात
@@ -1154,7 +1157,7 @@ hi:
       read_only: पढ़ने के लिए केवल मोड में, आप किसी भी परिणाम को नहीं बदल सकते।
       save: बचाएँ
       submissionFailedAlert:
-        description: सर्वर से जुड़ने में असमर्थ। कृपया पेज रिफ्रेश करें और फिर से प्रयास करें। यदि यह काम नहीं करता है, तो कृपया लाइव चैट या mte.surveys@mercer.com के माध्यम से सहायता से संपर्क करें।
+        description: सर्वर से जुड़ने में असमर्थ। कृपया पेज रिफ्रेश करें और फिर से प्रयास करें। यदि यह काम नहीं करता है, तो कृपया लाइव चैट या %{support_email} के माध्यम से सहायता से संपर्क करें।
         title: अंतिम अनुरोध विफल
       submit: सबमिट करें
       warning: चेतावनी
@@ -1891,7 +1894,6 @@ hi:
       select: चुनें
       selected: चयनित
       subject: विषय
-      total: कुल
       view_as: के रूप में देखें
     tooltips:
       hide: छिपाएँ
@@ -1998,7 +2000,7 @@ hi:
 
           आपका पासवर्ड बदल दिया गया है।
 
-          यदि आपने यह अनुरोध नहीं किया था, तो कृपया तुरंत mte.support@mercer.com पर सहायता से संपर्क करें।
+          यदि आपने यह अनुरोध नहीं किया था, तो कृपया तुरंत %{support_contact_email} पर सहायता से संपर्क करें।
         regards: |
           सादर,
           लाइटहाउस टीम
@@ -2143,6 +2145,7 @@ hi:
       max_generation_limit: अधिकतम पीढ़ी सीमा पार हो गई है, अपने प्रशासन से संपर्क करें।
     assessments:
       timed_out: आप %{assessment_name} मूल्यांकन नहीं कर पाएंगे क्योंकि इसका समय समाप्त हो गया है।
+    csrf_retry: 'कृपया पुन: प्रयास करें'
     equal_to_current_password: वर्तमान पासवर्ड से अलग होना चाहिए।
     equal_to_email: ईमेल से अलग होना चाहिए।
     error: त्रुटि
@@ -2353,7 +2356,6 @@ hi:
     error_warning: ओह, आपके मूल्यांकन में कुछ गड़बड़ी हो गई। कृपया सहायता से संपर्क करें।
     hogan:
       cannot_start: आप अभी होगन मूल्यांकन शुरू नहीं कर सकते। कृपया कुछ मिनटों बाद फिर प्रयास करें।
-    lighthouse_app: मर्सर लाइटहाउस
     login: लॉगिन
     maintenance:
       notification: लाइटहाउस 60 सेकंड में निर्धारित रखरखाव के लिए बंद हो जाएगा।
@@ -3033,12 +3035,11 @@ hi:
           invalid: स्कोप 'openid' होना चाहिए।
   mailer:
     copyright:
-      text: लाइटहाउस। सर्वाधिकार सुरक्षित
+      text: "© %{year} %{display_name}। सर्वाधिकार सुरक्षित"
     footer:
       regards: सादर,
-      team_name: लाइटहाउस टीम
+      team_name: "%{display_name} टीम"
       technical_support: किसी भी तकनीकी समस्या के लिए, कृपया हमें %{email} पर लिखें और हम 24 घंटों के भीतर उत्तर देंगे।
-    from: प्रतिभा उद्यम
     idp:
       manager_unread_comments:
         body: |
@@ -3099,8 +3100,6 @@ hi:
         instructions: लाइटहाउस में साइन इन करने के लिए नीचे दिए गए लिंक पर क्लिक करें।
         signin_link: साइनइन लिंक
       subject: लाइटहाउस के लिए साइनइन लिंक
-    powered_by:
-      text: लाइटहाउस द्वारा संचालित।
     users:
       account_disable: आपका खाता निष्क्रियता के कारण अक्षम कर दिया गया है।
       warning: आपका खाता निष्क्रियता के कारण जल्द ही अक्षम कर दिया जाएगा।
@@ -4160,7 +4159,6 @@ hi:
     admins: प्रशासक
     create_global_assessor: ग्लोबल असेसर बनाएँ
     create_superadmin: सुपर एडमिन बनाएँ
-    dashboard: डैशबोर्ड
     drawer:
       link: लिंक
       role: भूमिका

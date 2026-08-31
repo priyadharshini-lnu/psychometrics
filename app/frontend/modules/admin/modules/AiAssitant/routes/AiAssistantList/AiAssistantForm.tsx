@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Form, Input, Select, Button, Row, Col, Typography, Flex, message, Spin, Popover,
-  Descriptions, Switch, Tooltip, App, InputNumber, Collapse,
-} from 'antd'
+  Form, Input, Select, Button, Row, Col, Typography, Flex, Spin, Popover,
+  Descriptions, Switch, Tooltip, useApp, InputNumber, Collapse,
+} from '@thetalententerprise/glint'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { PlusOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { Add, InfoCircleOutlined } from '@thetalententerprise/glint/icons'
 import { AiAssistantTR, AiAssistant } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
 import { getAvailableAiProviders } from '~/core/config'
 import { ASSISTANT_TYPES, DEPENDENCY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
@@ -20,6 +20,13 @@ type Props = {
 
 const { I18n } = window
 
+const THINKING_EFFORT_OPTIONS = [
+  { value: 'none', label: I18n.t('admin.model_params_thinking_effort_none') },
+  { value: 'low', label: I18n.t('admin.model_params_thinking_effort_low') },
+  { value: 'medium', label: I18n.t('admin.model_params_thinking_effort_medium') },
+  { value: 'high', label: I18n.t('admin.model_params_thinking_effort_high') },
+]
+
 const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   const config = {
     basePath: '/ai',
@@ -27,7 +34,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   }
   const resource = useResources('assistants', config)
   const [form] = Form.useForm()
-  const { modal } = App.useApp()
+  const { modal, message } = useApp()
 
   const [listError, setListError] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -198,29 +205,34 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
                           size="small"
                           column={1}
                           style={{ maxWidth: 280 }}
-                        >
-                          <Descriptions.Item label={I18n.t('admin.ai_assistant_model_label')}>
-                            {selectedProvider.model}
-                          </Descriptions.Item>
-                          {selectedProvider.description && (
-                            <Descriptions.Item label={I18n.t('shared.description')}>
-                              {selectedProvider.description}
-                            </Descriptions.Item>
-                          )}
-                          {selectedProvider.region && (
-                            <Descriptions.Item label={I18n.t('admin.ai_assistant_model_region_label')}>
-                              {selectedProvider.region}
-                            </Descriptions.Item>
-                          )}
-                          {selectedProvider.provider && (
-                            <Descriptions.Item label={I18n.t('admin.ai_assistant_model_provider')}>
-                              {selectedProvider.provider}
-                            </Descriptions.Item>
-                          )}
-                          <Descriptions.Item label={I18n.t('admin.ai_assistant_model_id_label')}>
-                            {selectedProvider.model_id}
-                          </Descriptions.Item>
-                        </Descriptions>
+                          items={[
+                            {
+                              key: 'model',
+                              label: I18n.t('admin.ai_assistant_model_label'),
+                              children: selectedProvider.model,
+                            },
+                            ...(selectedProvider.description ? [{
+                              key: 'description',
+                              label: I18n.t('shared.description'),
+                              children: selectedProvider.description,
+                            }] : []),
+                            ...(selectedProvider.region ? [{
+                              key: 'region',
+                              label: I18n.t('admin.ai_assistant_model_region_label'),
+                              children: selectedProvider.region,
+                            }] : []),
+                            ...(selectedProvider.provider ? [{
+                              key: 'provider',
+                              label: I18n.t('admin.ai_assistant_model_provider'),
+                              children: selectedProvider.provider,
+                            }] : []),
+                            {
+                              key: 'model_id',
+                              label: I18n.t('admin.ai_assistant_model_id_label'),
+                              children: selectedProvider.model_id,
+                            },
+                          ]}
+                        />
             )}
                     >
                       <span><InfoCircleOutlined style={{ cursor: 'pointer' }} /></span>
@@ -231,26 +243,25 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
   )}
             rules={[{ required: true }]}
           >
-            <Select>
-              {availableAiProviders.map(provider => (
-                <Select.Option key={provider.model_id} value={provider.model_id}>
-                  {provider.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <Select
+              options={availableAiProviders.map(provider => ({
+                value: provider.model_id,
+                label: provider.name,
+              }))}
+            />
           </Form.Item>
           <Form.Item
             name="assistantType"
             label={I18n.t('shared.type')}
             tooltip={aiAssistant?.inUse ? I18n.t('admin.type_locked_tooltip') : undefined}
           >
-            <Select disabled={aiAssistant?.inUse}>
-              {Object.values(ASSISTANT_TYPES).map(type => (
-                <Select.Option key={type.id} value={type.id}>
-                  {type.name}
-                </Select.Option>
-              ))}
-            </Select>
+            <Select
+              disabled={aiAssistant?.inUse}
+              options={Object.values(ASSISTANT_TYPES).map(type => ({
+                value: type.id,
+                label: type.name,
+              }))}
+            />
           </Form.Item>
 
           {/* Hidden field to track advanced prompting state */}
@@ -314,14 +325,10 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
               >
                 <Select
                   showSearch
-                  filterOption={false}
                   mode="multiple"
                   placeholder={I18n.t('admin.ai_assistant_select_dependencies')}
-                >
-                  {allowedDependencies.map(({ id, name }) => (
-                    <Select.Option key={id} value={id}>{name}</Select.Option>
-                  ))}
-                </Select>
+                  options={allowedDependencies.map(({ id, name }) => ({ value: id, label: name }))}
+                />
               </Form.Item>
               {assistantType === ASSISTANT_TYPES.content_writer.id && (
                 <>
@@ -352,7 +359,7 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
                             <Col>
                               <Button
                                 onClick={() => add()}
-                                icon={<PlusOutlined />}
+                                icon={<Add />}
                               >
                                 {I18n.t('admin.add_output_schema_key')}
                               </Button>
@@ -427,20 +434,10 @@ const AiAssistantForm: React.FC<Props> = ({ aiAssistant }: Props) => {
                             label={I18n.t('admin.model_params_thinking_effort')}
                             tooltip={I18n.t('admin.model_params_thinking_effort_tooltip')}
                           >
-                            <Select allowClear>
-                              <Select.Option value="none">
-                                {I18n.t('admin.model_params_thinking_effort_none')}
-                              </Select.Option>
-                              <Select.Option value="low">
-                                {I18n.t('admin.model_params_thinking_effort_low')}
-                              </Select.Option>
-                              <Select.Option value="medium">
-                                {I18n.t('admin.model_params_thinking_effort_medium')}
-                              </Select.Option>
-                              <Select.Option value="high">
-                                {I18n.t('admin.model_params_thinking_effort_high')}
-                              </Select.Option>
-                            </Select>
+                            <Select
+                              allowClear
+                              options={THINKING_EFFORT_OPTIONS}
+                            />
                           </Form.Item>
                         </Col>
                         <Col span={12}>

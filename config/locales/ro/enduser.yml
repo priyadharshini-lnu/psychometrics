@@ -11,6 +11,7 @@ ro:
     ai_idp_retake_step_chat_hint_no_document: Poți reporni chatul pentru a împărtăși mai multe detalii, iar eu voi face tot posibilul să te ajut.
     ai_idp_summary_hint_no_document: Cu permisiunea dumneavoastră, dacă spuneți da, pot crea un plan de dezvoltare pentru dumneavoastră. Dacă nu, poți reporni chatul pentru a împărtăși mai multe detalii.
     all_checks_must_pass: Toate verificările trebuie să fie efectuate cu succes înainte de a putea continua.
+    appearance: Aspect
     approve_idp_plan: Aprobă planul
     assessment_misconfigured: Configurare incorectă a evaluării
     assessment_timing_duration_minutes: "%{duration} minute"
@@ -52,16 +53,49 @@ ro:
     camera_test_step: Etapa de testare video și audio
     campaign: Campanie
     campaign_check_status: 'Stare: %{status}'
+    card_action_retry: Reîncercați
+    card_action_review: Recenzie
+    card_action_start: Început
+    change_password_warning: 'Important: Schimbarea parolei vă va deconecta.'
     chat_instructions: Instrucțiuni pentru chat
     check: Verificați
     check_video_recording: Vă rugăm să verificați înregistrarea video și audio redând-o.
     checking_browser_compatibility: Se verifică compatibilitatea browserului...
     checking_latency: Verificarea latenței...
+    collapse_navigation: Restrângeți navigarea
     complete_prework_message: Finalizează toate sarcinile preliminare pentru a începe.
     could_not_reach_servers: Nu s-a putut stabili conexiunea cu serverele noastre pentru a verifica viteza rețelei. Vă rugăm să verificați conexiunea la internet și să încercați din nou.
+    dashboard: Bord
+    dashboard_active_programs: Programe active
+    dashboard_begin_program: Porniți programul
+    dashboard_continue_program: Continuați programul
+    dashboard_days_left: "%{count} zile rămase"
+    dashboard_greeting_afternoon: Bună ziua, %{name}.
+    dashboard_greeting_evening: Bună seara, %{name}.
+    dashboard_greeting_eyebrow: Bine ai revenit
+    dashboard_greeting_morning: Bună dimineața, %{name}.
+    dashboard_instructions: Este posibil să vi s-au atribuit mai multe activități de finalizat. Asigurați-vă că toate activitățile atribuite sunt finalizate în cadrul fiecărui program.
+    dashboard_reports_ready: Rapoarte gata
+    dashboard_your_programs: Programele dumneavoastră
     day: zi
     day_plural: zile
     details: Detalii
+    details_back: Spate
+    details_due: Scadent
+    details_group_locked_hint: Se deblochează după ce se finalizează „%{group}”.
+    details_intro_tab: Introducere
+    details_no_reports: Încă nu există rapoarte
+    details_open_heading: Exerciții deschise
+    details_open_hint: Completează în orice ordine, în ritmul tău propriu.
+    details_percent_done: Gata cu 0%
+    details_progress: Progres
+    details_reports_ready: Rapoartele dumneavoastră sunt gata
+    details_reports_tab: Rapoarte
+    details_reserved: Rezervat
+    details_sequential_heading: Exerciții secvențiale
+    details_sequential_hint: Completează în ordine — fiecare deblochează următorul.
+    details_total: Total
+    details_view_details: Vedeți detaliile
     development: Dezvoltare
     direct_reportees: Raportări directe
     download: Descărcați
@@ -108,6 +142,10 @@ ro:
     localstorage_fix_title: Funcția de stocare locală nu este activată în browserul dumneavoastră
     localstorage_not_enabled_detail: Funcția de stocare locală nu este activată în browserul dumneavoastră. Vă rugăm să vă asigurați că nu vă aflați în modul privat/incognito, deoarece funcția localStorage este adesea dezactivată în aceste moduri.
     localstorage_support: LocalStorage activat
+    login_sign_in_btn: Conectare
+    login_sign_up_link: Înscrie-te
+    login_welcome_description: Conectați-vă cu contul dvs. Lighthouse
+    login_welcome_title: Bun venit la Lighthouse
     magic_link_interstitial_description: Pentru siguranța dumneavoastră, vă rugăm să confirmați această autentificare. Sistemele automate nu pot efectua acest pas.
     magic_link_interstitial_title: Pentru a finaliza autentificarea, te rugăm să dai clic pe butonul de mai jos.
     max_word_limit: Trebuie să aibă cel mult %{max} cuvinte
@@ -124,6 +162,7 @@ ro:
     minute: minut
     minute_plural: procese verbale
     my_plan: Planul meu
+    my_profile: Profilul meu
     network: Rețea
     network_check: Test de viteză internet
     network_check_description: Verificăm calitatea conexiunii tale la internet între serverele noastre și dispozitivul tău.
@@ -135,6 +174,7 @@ ro:
     network_speed_meets_required_detail: Viteza ta de internet îndeplinește cerințele minime pentru campanie
     network_test_step: Etapa de testare a rețelei
     no_audio_detected: Nu s-a detectat niciun semnal audio. Vă rugăm să verificați dacă microfonul este conectat și funcționează corect.
+    open_navigation: Deschideți navigarea
     pass: Treci
     pause: Pauză
     pearson_timing_duration_minutes: Cu limită de timp – %{duration} minute pentru finalizare
@@ -150,7 +190,13 @@ ro:
     proctored: Sub supraveghere
     proctored_assessment_misconfigured_msg: Această evaluare se desfășoară sub supraveghere, dar nu are setările de timp necesare; vă rugăm să contactați administratorul.
     profile: Profil
+    profile_cancel: Anula
     profile_details: Detalii
+    profile_edit: Edita
+    profile_other_information: Alte informații
+    profile_personal_information: Informații personale
+    profile_save: Salva
+    profile_time: Timp
     question_counter: Întrebarea %{current} din %{total}
     reason_for_idp_plan_rejection: Motivul respingerii
     record: Registru
@@ -167,9 +213,12 @@ ro:
     results: Rezultat
     safari_proctoring_description: Se pare că utilizați browserul Safari, care poate prezenta anumite limitări în ceea ce privește funcțiile de monitorizare activate pentru această campanie. Pentru o experiență optimă, vă recomandăm să utilizați browserele Chrome, Edge sau Firefox.
     safari_proctoring_title: S-a detectat browserul Safari
+    scheduling: Programare
     select_audio_device: Selectează dispozitivul audio
     select_video_device: Selectează dispozitivul video
     selected_count: Selectat
+    sign_out: Sign out
+    signup_sign_in_link: Conectare
     skill_type: Tip de abilitate
     speech_verification_error: A apărut o eroare în timpul verificării discursului dumneavoastră. Vă rugăm să încercați din nou.
     speech_verification_failed: Discursul dumneavoastră nu a corespuns frazei de test. Vă rugăm să încercați din nou și să rostiți fraza clar.
@@ -177,6 +226,7 @@ ro:
     start_campaign_message_timed: Aceasta este o campanie cu timp limitat, vă rugăm să apăsați butonul "%{buttonText}" pentru a începe activitățile.
     start_readiness_check: Începe verificarea pregătirii
     start_system_check: Pornește verificarea sistemului
+    status_locked: Blocat
     stop: Oprește-te
     subinstruction_audio: Microfon funcțional
     subinstruction_eight: Rezervați-vă un interval de timp neîntrerupt pentru evaluarea completă
@@ -228,6 +278,21 @@ ro:
     tasks: Sarcini
     testing_download_speed: Se testează viteza de descărcare...
     testing_upload_speed: Se testează viteza de încărcare...
+    theme_active: Activ
+    theme_change: Schimbă tema
+    theme_dark_theme: Temă întunecată
+    theme_ember: Jăratic
+    theme_light_theme: Temă luminoasă
+    theme_marsh: Mlaştină
+    theme_mode_dark: Întuneric
+    theme_mode_light: Aprinde
+    theme_mode_system: Sistem
+    theme_mode_title: Mod
+    theme_primer: Grund
+    theme_primer_colorblind: Primer pentru daltonism
+    theme_primer_contrast: Primer cu contrast ridicat
+    theme_primer_dimmed: Primer estompat
+    theme_title: Temă
     time_commitment: Timpul necesar
     timed_activity_instruction: Aceasta este o activitate cronometrată; după ce începeți sesiunea de supraveghere, veți avea la dispoziție <strong>%{time} minute</strong> pentru a o finaliza.
     troubleshooting_guide: Ghid de depanare

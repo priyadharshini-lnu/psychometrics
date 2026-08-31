@@ -55,7 +55,7 @@ interface State {
 export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
   const [state, setState] = useState<State>({ ...(model.props.background || defaultBackground) })
 
-  const librarySocket = useRef<null>()
+  const librarySocket = useRef<ReturnType<typeof Socket.library> | null>(null)
 
   useEffect(() => {
     LibraryTransport.init()
@@ -145,7 +145,7 @@ export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
       width="70%"
       title={I18n.t('administration.block_settings.modal.title')}
       open
-      maskClosable={false}
+      mask={{ closable: false }}
       onCancel={close}
       footer={[
         <Button key="back" onClick={close}>

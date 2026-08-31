@@ -7,6 +7,7 @@ import {
   connect, ConnectedProps, useDispatch, useSelector,
 } from 'react-redux'
 import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { getLocalizedLanguageName } from '~/utils/locales'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import {
   bulkDownloadIdpReports, DOWNLOAD_IDP_REPORTS,
@@ -89,7 +90,7 @@ const BulkDownloadIdpReports: React.FC<PropsFromRedux & OwnProps> = ({
         <Form.Item name="lang" rules={[{ required: true }]}>
           <Select
             options={I18n.availableLocales.map(locale => ({
-              label: I18n.t(`languages_localized.${locale}`),
+              label: getLocalizedLanguageName(locale),
               value: locale,
             }))}
             placeholder={I18n.t('shared.select_language')}

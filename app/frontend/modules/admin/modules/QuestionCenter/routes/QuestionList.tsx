@@ -11,7 +11,9 @@ import {
 import { ConfirmationModal } from '~/glint'
 import { Question, QuestionTR } from '~/modules/admin/modules/QuestionCenter/core/questions'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
-import { useDocumentTitle } from '~/hooks/useDocumentTitle'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
+import { DocumentTitle } from '~/components/DocumentTitle'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import { useResources } from '~/hooks/useResources'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals/'
@@ -95,7 +97,6 @@ const ActionsCell = ({ record }: { record: Question }) => {
 
 const QuestionList: React.FC = () => {
   const dispatch = useDispatch()
-  useDocumentTitle(I18n.t('admin.question_center_page_title'))
 
   const config = {
     trackUrl: true,
@@ -111,7 +112,10 @@ const QuestionList: React.FC = () => {
   const handleNewQuestion = () => dispatch(openModal('CreateQuestionFormModal'))
 
   const Filter = (
-    <Resource.Filter name="filterable_fields" placeholder={I18n.t('shared.search')}>
+    <Resource.Filter
+      name="filterable_fields"
+      placeholder={I18n.t('shared.search')}
+    >
       <Button
         type="primary"
         icon={<PlusOutlined />}
@@ -129,14 +133,17 @@ const QuestionList: React.FC = () => {
         dataIndex="id"
         title={I18n.t('shared.id') || 'ID'}
         sorter
+        fixed="left"
       />
       <Resource.Column<Question>
         id="disabled"
         title={I18n.t('shared.active')}
         render={question => <ActiveSwitch question={question} />}
+        fixed="left"
       />
       <Resource.Column<Question>
         id="name"
+        hideable={false}
         dataIndex="name"
         title={I18n.t('shared.name')}
         sorter
@@ -182,7 +189,7 @@ const QuestionList: React.FC = () => {
           <Link to={`/admin/clients/${record.owner.id}`}>
             {ownerName}
           </Link>
-        ) : I18n.t('admin.tte'))}
+        ) : <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>)}
       />
       <Resource.Column<Question>
         id="created_at"
@@ -204,18 +211,28 @@ const QuestionList: React.FC = () => {
       />
       <Resource.Column<Question>
         id="actions"
+        hideable={false}
         title={I18n.t('shared.actions')}
         render={(_, record) => <ActionsCell record={record} />}
+        fixed="right"
       />
     </Resource.Table>
   )
 
   return (
-    <Resource config={config} name="questions">
-      {Filter}
-      {Table}
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.question_center')} />
+      <Resource
+        title={I18n.t('admin.questions')}
+        config={config}
+        name="questions"
+        settingsKey={TABLE_SETTINGS_KEYS.adminQuestionCenterQuestions}
+      >
+        {Filter}
+        {Table}
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 

@@ -15,11 +15,6 @@ ro:
         simple_design:
           design: Design
           or: Sau
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Autentificare reușită.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ ro:
           modal_title: Setări de aprobare a punctajului
           remove_modal_success: 'Setarea de aprobare pentru ID-ul evaluării: %{assessmentId} a fost șters cu succes.'
           remove_modal_text: 'Sunteți sigur că doriți să ștergeți această setare pentru ID-ul de evaluare: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: V-ați autentificat cu succes ca %{name}
+      bulk_import_translations:
+        details: Șablon de traducere pentru campanie
+        download_template: Descărcați șablonul
+        errors:
+          blank_campaign_id: 'Rândul %{row}: ID-ul campaniei nu poate fi lăsat necompletat'
+          campaign_not_found: 'Rândul %{row}: Campania %{id} nu a fost găsită în acest proiect'
+          generic: Ceva nu a mers bine. Vă rugăm să încercați din nou.
+          invalid_csv_format: 'Format CSV nevalid: %{message}'
+          invalid_locales: 'Coloane de limbă nevalide: %{locales}'
+          missing_required_columns: 'Coloane obligatorii lipsă: %{columns}'
+          must_be_csv: Fișierul trebuie să fie un fișier .csv
+          save_failed: 'Traducerea campaniei %{id} pentru %{locale} nu a putut fi salvată: %{message}'
+        file_label: Fișier de traducere
+        import_started: Importul traducerii este în curs. Vă rugăm să verificați progresul în notificări.
+        instructions_intro: Descărcați șablonul CSV, actualizați numele campaniilor în orice coloane lingvistice doriți, apoi încărcați fișierul finalizat.
+        instructions_title: Instrucţiuni
+        menu_label: Importați traducerile
+        template_started: Exportul șablonului este în curs. Vă rugăm să verificați progresul în notificări.
+        title: Importați traducerile numelor campaniei
+        upload_file: Încărcați fișierul
       validations:
         dates:
           end: trebuie să fie după data de începere
@@ -1937,7 +1949,6 @@ ro:
         export: Exportați traduceri
         import: Importați traduceri
         import_descr: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
-    tte: TTE
     update: Actualiza
     users:
       create:

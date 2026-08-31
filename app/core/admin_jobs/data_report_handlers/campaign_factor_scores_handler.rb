@@ -48,6 +48,10 @@ module AdminJobs
                   where('p.ancestry_depth = ? AND cl.ancestry_depth = ?', 1, 0).
                   where(cu: { campaign_scores_finalized: true })
 
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(cl: { id: geo_restricted_top_level_client_ids })
+        end
+
         records = records.where(p: { id: project_ids }) if project_ids.present?
 
         records.

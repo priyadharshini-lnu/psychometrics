@@ -2,7 +2,22 @@
 
 module Administration
   class AssessorAssessmentSerializer < Panko::Serializer
-    attributes :id, :name, :permissions, :linked_assessment_name
+    attributes :id, :name, :permissions, :linked_assessment_name, :owner, :tenant,
+               :dimension_id, :tenant_id
+
+    delegate :dimension_id, to: :object
+
+    delegate :tenant_id, to: :object
+
+    def owner
+      return unless object.owner
+
+      { id: object.owner.id, name: object.owner.name }
+    end
+
+    def tenant
+      owner
+    end
 
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
     delegate :linked_assessment, to: :object

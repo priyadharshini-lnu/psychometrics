@@ -12,4 +12,5 @@ export default interface Report {
   availableLanguages?: string[]
   internal: boolean
   customUpload: boolean
+  tenantId?: number | null
 }

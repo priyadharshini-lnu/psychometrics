@@ -18,6 +18,10 @@ module Api
         has_permission?(:clients, :export_data_report) && authorized_for_data_report?
       end
 
+      def download?
+        index?
+      end
+
       private
 
       def authorized_for_data_report?

@@ -1,10 +1,14 @@
 import React from 'react'
-import { Tabs } from 'antd'
+import { Menu } from 'antd'
 import { connect } from 'react-redux'
 import {
   Navigate, useNavigate, useLocation, useParams, useRoutes,
 } from 'react-router-dom'
 import { RootState } from 'modules/admin/core/rootReducers'
+import {
+  AdminPanelSettings, Apps, Flag, Label, Login,
+  Monitoring, Palette, Send, VisibilityOff,
+} from '@thetalententerprise/glint/icons'
 import { Siem } from './Siem'
 import { AdminRoles } from './AdminRoles'
 import { SkillAliases } from './SkillAliases'
@@ -66,40 +70,78 @@ export const SettingsComponent: React.FC<{ currentUser: User }> = ({ currentUser
     return 'roles'
   }
 
-  const handleTabChange = (key: string) => {
+  const onSelect = ({ key }) => {
     navigate(`${settingsBase}/${key}`)
   }
 
-  const tabItems = [
-    { key: 'roles', label: I18n.t('admin.settings_tabs_admin_roles'), children: routeContent },
+  const menuItems: { key: string, icon: React.ReactNode, label: string }[] = [
+    {
+      key: 'roles',
+      icon: <AdminPanelSettings />,
+      label: I18n.t('admin.settings_tabs_admin_roles'),
+    },
     ...(isSuperAdmin(currentUser)
       ? [
-        { key: 'applications', label: I18n.t('admin.applications'), children: routeContent },
-        { key: 'smtp', label: I18n.t('admin.smtp_settings_smtp'), children: routeContent },
-        { key: 'sso_settings', label: I18n.t('admin.sso_settings_tab'), children: routeContent },
-        { key: 'login_page_design', label: I18n.t('admin.login_page_design_tab'), children: routeContent },
+        {
+          key: 'applications',
+          icon: <Apps />,
+          label: I18n.t('admin.applications'),
+        },
+        {
+          key: 'smtp',
+          icon: <Send />,
+          label: I18n.t('admin.smtp_settings_smtp'),
+        },
+        {
+          key: 'sso_settings',
+          icon: <Login />,
+          label: I18n.t('admin.sso_settings_tab'),
+        },
+        {
+          key: 'login_page_design',
+          icon: <Palette />,
+          label: I18n.t('admin.login_page_design_tab'),
+        },
       ]
       : []
     ),
-    { key: 'siem', label: I18n.t('admin.settings_tabs_siem'), children: routeContent },
-    { key: 'skill_aliases', label: I18n.t('admin.settings_tabs_skill_aliases'), children: routeContent },
+    {
+      key: 'siem',
+      icon: <Monitoring />,
+      label: I18n.t('admin.settings_tabs_siem'),
+    },
+    {
+      key: 'skill_aliases',
+      icon: <Label />,
+      label: I18n.t('admin.settings_tabs_skill_aliases'),
+    },
     ...(isSuperAdmin(currentUser)
       ? [
-        { key: 'privacy_settings', label: I18n.t('admin.project_tabs_privacy'), children: routeContent },
-        { key: 'features', label: I18n.t('admin.settings_tabs_feature_flags'), children: routeContent },
+        {
+          key: 'privacy_settings',
+          icon: <VisibilityOff />,
+          label: I18n.t('admin.project_tabs_privacy'),
+        },
+        {
+          key: 'features',
+          icon: <Flag />,
+          label: I18n.t('admin.settings_tabs_feature_flags'),
+        },
       ]
       : []
     ),
   ]
 
   return (
-    <Tabs
-      activeKey={getActiveKey()}
-      items={tabItems}
-      onChange={handleTabChange}
-      tabBarStyle={{ padding: '0 20px' }}
-      destroyOnHidden
-    />
+    <div>
+      <Menu
+        items={menuItems}
+        onSelect={onSelect}
+        selectedKeys={[getActiveKey()]}
+        mode="horizontal"
+      />
+      {routeContent}
+    </div>
   )
 }
 

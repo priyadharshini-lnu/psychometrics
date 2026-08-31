@@ -15,11 +15,6 @@ id:
         simple_design:
           design: Desain
           or: Atau
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Login berhasil.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ id:
           modal_title: Pengaturan Persetujuan Penilaian
           remove_modal_success: 'Pengaturan persetujuan untuk ID penilaian: %{assessmentId} telah dihapus dengan sukses.'
           remove_modal_text: 'Apakah Anda yakin ingin menghapus pengaturan ini untuk ID penilaian: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Anda berhasil masuk sebagai %{name}
+      bulk_import_translations:
+        details: Templat terjemahan kampanye
+        download_template: Unduh templat
+        errors:
+          blank_campaign_id: 'Baris %{row}: ID Kampanye tidak boleh kosong'
+          campaign_not_found: 'Baris %{row}: Kampanye %{id} tidak ditemukan dalam proyek ini'
+          generic: Terjadi kesalahan. Silakan coba lagi.
+          invalid_csv_format: 'Format CSV tidak valid: %{message}'
+          invalid_locales: 'Kolom bahasa tidak valid: %{locales}'
+          missing_required_columns: 'Kolom yang dibutuhkan hilang: %{columns}'
+          must_be_csv: File harus berupa file .csv.
+          save_failed: 'Terjemahan kampanye %{id} untuk %{locale} tidak dapat disimpan: %{message}'
+        file_label: Berkas terjemahan
+        import_started: Proses impor terjemahan sedang berlangsung. Silakan periksa perkembangannya di notifikasi.
+        instructions_intro: Unduh templat CSV, perbarui nama kampanye di kolom bahasa apa pun yang Anda inginkan, lalu unggah file yang sudah selesai.
+        instructions_title: Instruksi
+        menu_label: Impor terjemahan
+        template_started: Ekspor templat sedang berlangsung. Silakan periksa perkembangannya di notifikasi.
+        title: Impor Terjemahan Nama Kampanye
+        upload_file: Unggah file
       validations:
         dates:
           end: harus setelah tanggal mulai
@@ -1937,7 +1949,6 @@ id:
         export: Ekspor Terjemahan
         import: Impor Terjemahan
         import_descr: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
-    tte: TTE
     update: Pemutakhiran
     users:
       create:

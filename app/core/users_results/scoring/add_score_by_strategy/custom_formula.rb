@@ -24,7 +24,7 @@ module UsersResults
             'answer' => proc { |json_path| answer_from_json_path(json_path) }
           }
           lua.helpers = {
-            'round' => proc { |value, precision = 0| value&.round(precision) },
+            'round' => proc { |value, precision = 0| round_value(value, precision) },
             'percentile' => proc { |value| Ztable.percentile(value) },
             'average' => proc { |values, precision = nil| calculate_average(values, precision) }
           }
@@ -56,6 +56,20 @@ module UsersResults
 
         def answer_from_json_path(json_path)
           JsonPath.new(json_path).on(answers).first
+        end
+
+        def round_value(value, precision)
+          numeric_value = coerce_numeric_value(value)
+          return nil if numeric_value.nil?
+
+          numeric_value.round(precision)
+        end
+
+        def coerce_numeric_value(value)
+          return value if value.is_a?(Numeric)
+          return nil if value.nil?
+
+          raise 'helpers.round: First parameter must be numeric.'
         end
 
         def calculate_average(values, precision)

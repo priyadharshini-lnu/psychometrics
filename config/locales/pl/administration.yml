@@ -15,11 +15,6 @@ pl:
         simple_design:
           design: Projekt
           or: Lub
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Logowanie powiodło się.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ pl:
           modal_title: Ustawienia zatwierdzania punktacji
           remove_modal_success: 'Ustawienie zatwierdzenia dla identyfikatora oceny: %{assessmentId} zostało pomyślnie usunięte.'
           remove_modal_text: 'Czy na pewno chcesz usunąć to ustawienie dla identyfikatora oceny: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Udało Ci się zalogować jako %{name}
+      bulk_import_translations:
+        details: Szablon tłumaczenia kampanii
+        download_template: Pobierz szablon
+        errors:
+          blank_campaign_id: 'Wiersz %{row}: Identyfikator kampanii nie może być pusty'
+          campaign_not_found: 'Wiersz %{row}: Kampania %{id} nie została znaleziona w tym projekcie'
+          generic: Coś poszło nie tak. Spróbuj ponownie.
+          invalid_csv_format: 'Nieprawidłowy format CSV: %{message}'
+          invalid_locales: 'Nieprawidłowe kolumny językowe: %{locales}'
+          missing_required_columns: 'Brak wymaganych kolumn: %{columns}'
+          must_be_csv: Plik musi być plikiem .csv
+          save_failed: 'Nie udało się zapisać tłumaczenia kampanii %{id} dla %{locale}: %{message}'
+        file_label: Plik tłumaczenia
+        import_started: Importowanie tłumaczeń w toku. Proszę sprawdzić postęp w powiadomieniach.
+        instructions_intro: Pobierz szablon CSV, zaktualizuj nazwy kampanii w kolumnach dowolnego języka, a następnie prześlij wypełniony plik.
+        instructions_title: Instrukcje
+        menu_label: Importuj tłumaczenia
+        template_started: Eksport szablonu w toku. Proszę sprawdzić postęp w powiadomieniach.
+        title: Importuj tłumaczenia nazw kampanii
+        upload_file: Prześlij plik
       validations:
         dates:
           end: Musi być po dacie rozpoczęcia
@@ -1937,7 +1949,6 @@ pl:
         export: Eksport tłumaczeń
         import: Importowanie tłumaczeń
         import_descr: Zapoznaj się z funkcją eksportu, aby wyodrębnić szablon, którego można użyć do importowania tutaj.
-    tte: Prąd elektryczny i prąd
     update: Aktualizacja
     users:
       create:

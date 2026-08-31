@@ -1,3 +1,4 @@
+import React, { ReactNode } from 'react'
 import {
   Tag, Button, App, MenuProps, Tooltip, Typography,
 } from 'antd'
@@ -11,6 +12,7 @@ import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { MenuItem } from '~/interfaces/Antd'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { formatWorkshopDate } from '~/utils/workshop'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -23,7 +25,7 @@ const MODALS = {
 
 const { I18n } = window
 
-export const InvitesTable = () => {
+export const InvitesTable: React.FC<{ toggle?: ReactNode }> = ({ toggle }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const dispatch = useDispatch()
 
@@ -44,6 +46,7 @@ export const InvitesTable = () => {
   return (
     <div>
       <Resource
+        title={I18n.t('admin.scheduling_tabs_invites')}
         config={{
           basePath: `campaigns/${campaignId}`,
           apiConfig: {
@@ -56,15 +59,18 @@ export const InvitesTable = () => {
           },
         }}
         name="workshop_invites"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingInvites}
       >
-        <Filter openForm={openForm} />
+        <Filter openForm={openForm} toggle={toggle} />
         <Resource.Table pagination>
           <Resource.Column
             title={I18n.t('shared.id')}
             id="id"
+            hideable={false}
             sorter
             width={100}
             render={(_, { id }) => <Link to={`${location.pathname}/${id}/subjects`}>{id}</Link>}
+            fixed="left"
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('admin.invite_title')}
@@ -80,6 +86,7 @@ export const InvitesTable = () => {
               </Tooltip>
             )}
             width={250}
+            fixed="left"
           />
           <Resource.Column<WorkshopInvite>
             title={I18n.t('shared.name')}
@@ -123,6 +130,7 @@ export const InvitesTable = () => {
           <Resource.Column<WorkshopInvite>
             title={I18n.t('shared.action')}
             id="actions"
+            hideable={false}
             render={data => (
               <ConditionalDropdown
                 menu={
@@ -144,13 +152,18 @@ export const InvitesTable = () => {
 
 interface FilterProps {
   openForm: () => void
+  toggle?: ReactNode
 }
 
-const Filter: React.FC<FilterProps> = ({ openForm }) => {
+const Filter: React.FC<FilterProps> = ({ openForm, toggle }) => {
   const { resource } = useResourceContext<WorkshopInvite, { permissions: { create: boolean } }>()
 
   return (
-    <Resource.Filter placeholder={I18n.t('shared.search')} name="filterable_fields">
+    <Resource.Filter
+      placeholder={I18n.t('shared.search')}
+      name="filterable_fields"
+      controls={toggle}
+    >
       {resource.meta.permissions.create && (
         <Button type="primary" onClick={openForm}>
           <PlusOutlined />

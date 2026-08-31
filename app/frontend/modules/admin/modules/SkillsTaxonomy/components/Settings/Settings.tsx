@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
 import { Tabs } from '../Tabs'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { TaxonomyImport } from './TaxonomyImport'
+import { DocumentTitle } from '~/components/DocumentTitle'
+
+const { I18n } = window
 
 const connecter = connect(
   (state: RootState) => ({
@@ -15,26 +17,12 @@ const connecter = connect(
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
-const { I18n } = window
-
 const Settings: React.FC<PropsFromRedux> = ({ features }) => {
   const { projectId } = useParams()
 
   return (
     <>
-      {!projectId && (
-        <Breadcrumb
-          crumbs={[
-            {
-              link: () => '/admin',
-              label: () => I18n.t('admin.dashboard'),
-            },
-            {
-              label: () => I18n.t('admin.navigation_skills_taxonomy'),
-            },
-          ]}
-        />
-      )}
+      {!projectId && <DocumentTitle text={I18n.t('admin.tools')} />}
       { !projectId && <Tabs featureFlags={features} />}
       <TaxonomyImport />
     </>

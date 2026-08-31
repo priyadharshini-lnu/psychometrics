@@ -1,20 +1,13 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { MenuItem } from '~/interfaces/Antd'
-import { Weightages } from './Weigthages'
-import RouteList from '~/components/RouteList'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { BarChart, Settings } from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
+import { usePageHeld } from '~/components/PageFallback'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
-
-import { ScoringGroups } from './ScoringGroups'
-import { SubjectScoresList } from './SubjectScores'
-
-export { SubjectScoresList } from './SubjectScores'
-export { ScoringGroups } from './ScoringGroups'
 
 const { I18n } = window
 
@@ -27,39 +20,37 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = PropsFromRedux
 
-const routes = [
-  { redirect: true, from: '', to: 'subject_scores' },
-  { path: '/subject_scores', component: <SubjectScoresList /> },
-  { path: '/settings', component: <ScoringGroups /> },
-  { path: '/settings/weightages', component: <Weightages /> },
-]
-
 const ScoringComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+  const held = usePageHeld()
   const prefix = `${settings.urlPrefix}/:campaignId/scoring`
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
-  const menuItems: MenuItem[] = [
+  const menuItems = [
     ...(campaignPermissions.viewCampaignScoring ? [{
       key: '/subject_scores',
+      icon: <BarChart />,
       label: I18n.t('admin.scoring_tabs_subject_scores'),
     }] : []),
     ...(campaignPermissions.viewCampaignScoringSetting ? [{
       key: '/settings',
+      icon: <Settings />,
       label: I18n.t('admin.scoring_tabs_settings'),
     }] : [])]
 
+  const activeTab = menuItems.find(({ key }) => pathname.includes(key))
+
   return (
     <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
-        mode="horizontal"
-      />
-      <RouteList
-        routes={routes}
-        urlPrefix=""
-      />
+      {!held && menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={activeTab ? [activeTab.key] : []}
+          mode="horizontal"
+        />
+      )}
+      <Outlet />
     </div>
   )
 }

@@ -1,12 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, ReactNode, useState } from 'react'
 import {
-  Row, Col, Button, Empty,
-  Checkbox,
+  Row, Col, Button, Empty, Checkbox, Flex, Typography, theme,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import {
+  DataTableFrame, DataTableExpandButton, DataTablePagination, DataTablePaginationProps,
+} from '@thetalententerprise/glint'
 import { ReloadOutlined, IssuesCloseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { CountDisplay } from '~/components/CountDisplay'
 import { hasErrorsToHandle } from '~/components/ErrorModal/ErrorModal'
+import { TableTitle } from '~/modules/admin/components/TableTitle'
 import { getRequestErrors } from '~/core/errors'
 
 const connector = connect(state => ({
@@ -17,9 +19,8 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 
 type Props = {
   recordCount?: number
-  loading: boolean
   disableHeader?: boolean
-  requestStatus: string | undefined
+  requestStatus?: string
   filters?: React.ReactChild
   table: React.ReactChild
   failureMsg?: string
@@ -30,64 +31,107 @@ type Props = {
     label: string
   },
   selectedCount?: number
+  loading?: boolean
+  title: string
+  embedded?: boolean
+  controls?: React.ReactNode
+  sider?: ReactNode
+  siderOpen?: boolean
+  pagination?: Pick<
+    Extract<DataTablePaginationProps, { page: number }>,
+    'page' | 'pageSize' | 'total' | 'onChange' | 'showSizeChanger'
+  >
 }
 
 const { I18n } = window
 
+export const SHOW_TITLES = true
+
+const renderTotal = (start: number, end: number, total: number) => (
+  I18n.t('shared.table.entries.total', { count: total })
+)
+
 const TableLayout1: FC<Props & PropsFromRedux> = ({
-  recordCount, loading, filters, table, requestStatus,
+  recordCount, filters, table, requestStatus,
   disableHeader, failureMsg, selectionSetting, selectedCount, errors,
+  title, embedded, pagination, loading, controls, sider, siderOpen,
 }) => {
   const requestFailed = requestStatus === 'failed'
+  const [expanded, setExpanded] = useState(false)
+  const { token } = theme.useToken()
 
   if (hasErrorsToHandle(errors.errors)?.statusCode) {
     return null
   }
 
-  return (
-    <>
-      {!disableHeader && (
-        <Row
-          justify="space-between"
-          align="middle"
-          className="pt-4 pb-4 ps-4 pe-4"
-        >
-          <Col>
-            <CountDisplay
-              selectedCount={selectedCount ?? 0}
-              totalCount={requestFailed ? 0 : recordCount || 0}
-              isLoading={loading}
-            />
-          </Col>
-          <Col>
-            {filters}
-          </Col>
-        </Row>
+  const total = pagination?.total ?? recordCount ?? 0
+  const paging: DataTablePaginationProps = pagination
+    ? { ...pagination, total, showSizeChanger: pagination.showSizeChanger ?? true }
+    : { paged: false, total }
+
+  const footer = (
+    <DataTablePagination
+      {...paging}
+      renderTotal={renderTotal}
+      controls={(
+        <Flex align="center" gap="small">
+          <DataTableExpandButton
+            expanded={expanded}
+            onToggle={() => setExpanded(current => !current)}
+            expandLabel={I18n.t('shared.table.expand')}
+            collapseLabel={I18n.t('shared.table.collapse')}
+          />
+          {controls}
+        </Flex>
       )}
+    />
+  )
+
+  const selection = (selectionSetting?.selectionAllowed || !!selectedCount) && (
+    <Flex align="center" gap="small" wrap>
       {selectionSetting?.selectionAllowed && (
-        <div className="pb-4 ps-5 pe-5">
-          <Row>
-            <Col>
-              <Checkbox
-                checked={selectionSetting.hasSelectInAllPages && recordCount === selectedCount}
-                onChange={e => selectionSetting.onSelectionChange(e.target.checked)}
-                className="font-normal text-nowrap flex items-center"
-                indeterminate={selectionSetting.hasSelectInAllPages && recordCount !== selectedCount}
-              >
-                {selectionSetting.label}
-              </Checkbox>
-            </Col>
-          </Row>
-        </div>
+        <Checkbox
+          checked={selectionSetting.hasSelectInAllPages && recordCount === selectedCount}
+          onChange={e => selectionSetting.onSelectionChange(e.target.checked)}
+          indeterminate={selectionSetting.hasSelectInAllPages && recordCount !== selectedCount}
+        >
+          {selectionSetting.label}
+        </Checkbox>
       )}
       {!!selectedCount && (
-        <Row className="pb-4 ps-5">
-          <Col>
-            {selectedCount}
-            {' '}
-            {I18n.t('common.text.selected')}
-          </Col>
-        </Row>
+        <Typography.Text type="secondary">
+          {selectedCount}
+          {' '}
+          {I18n.t('common.text.selected')}
+        </Typography.Text>
+      )}
+    </Flex>
+  )
+
+  const header = !disableHeader && (
+    <Row
+      justify="space-between"
+      align="middle"
+      style={{ paddingInline: token.padding, paddingBlock: token.paddingSM }}
+    >
+      <Col>
+        <Flex align="center" gap="middle" wrap>
+          {SHOW_TITLES && <TableTitle>{title}</TableTitle>}
+          {selection}
+        </Flex>
+      </Col>
+      <Col>
+        {filters}
+      </Col>
+    </Row>
+  )
+
+  const content = (
+    <>
+      {disableHeader && selection && (
+        <div style={{ paddingInline: token.padding, paddingBottom: token.paddingSM }}>
+          {selection}
+        </div>
       )}
       <Row>
         <Col span={24}>
@@ -95,6 +139,32 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
         </Col>
       </Row>
     </>
+  )
+
+  // Frameless while collapsed: the frame bounds its own scroll region, and an embedded table scrolls with the page.
+  if (embedded && !expanded) {
+    return (
+      <>
+        {header}
+        {content}
+        {footer}
+      </>
+    )
+  }
+
+  // Toolbar, not children: the frame keeps it out of the bounded scroll region, so it stays put over the rows.
+  return (
+    <DataTableFrame
+      scrollRegionLabel={title}
+      expanded={expanded}
+      toolbar={header}
+      footer={footer}
+      loading={loading}
+      sider={sider}
+      siderOpen={siderOpen}
+    >
+      {content}
+    </DataTableFrame>
   )
 }
 

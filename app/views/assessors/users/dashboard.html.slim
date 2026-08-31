@@ -1,7 +1,0 @@
-div#assessor-app-container
-
-javascript [nonce=content_security_policy_nonce]:
-  I18n.availableLocales = #{(Settings.enduser_locales).to_json.html_safe}
-  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
-
-= vite_javascript_tag 'entrypoints/admin/assessor_app.jsx'

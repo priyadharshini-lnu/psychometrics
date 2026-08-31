@@ -18,7 +18,7 @@ import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { RootState } from '~/modules/admin/core/rootReducers'
-import { CreateResource, UpdateResource } from '~/hooks/useResources/interfaces'
+import { CreateResource, ResourceErrors, UpdateResource } from '~/hooks/useResources/interfaces'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
 import { UserDetails } from '~/modules/admin/modules/client/core/users'
@@ -53,7 +53,7 @@ type PropsFromRedux = ConnectedProps<typeof connecter>
 interface OwnProps {
   updateAdmin?: UpdateResource<Admin>
   createAdmin: CreateResource<Admin>
-  requestErrors?: { [key: string]: string; }[] | null | undefined
+  requestErrors?: ResourceErrors[] | null
   permissions: AdminPermissions
   currentUserGrants: CurrentUserPermissions
   isSuperAdmin: boolean

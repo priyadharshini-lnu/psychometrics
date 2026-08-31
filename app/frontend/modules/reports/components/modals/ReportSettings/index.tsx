@@ -55,7 +55,7 @@ export const ReportSettingsComponent = ({
       open
       footer={null}
       onCancel={close}
-      maskClosable={false}
+      mask={{ closable: false }}
       width={1000}
     >
       <Tabs

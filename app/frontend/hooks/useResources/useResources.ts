@@ -19,7 +19,7 @@ import { useDeepCompareEffect } from '../useDeepCompareEffect'
 import { useDebounce } from '../useDebounce'
 import { useMountedState } from '../useMountedState'
 import {
-  Requests, Options, BaseMeta, ResourceState, UrlQuery, ResponseType, ApiConfig,
+  Requests, Options, BaseMeta, ResourceErrors, ResourceState, UrlQuery, ResponseType, ApiConfig,
   RequestStatus, RequestType, CreateResource, UpdateResource, RemoveResource, HttpAction, MemberAction,
   RemoveRelationships, AddRelationship,
 } from './interfaces'
@@ -70,7 +70,8 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   }, [queryFromUrl])
 
   useDeepCompareEffect(() => {
-    if (isMounted) fetch()
+    // Nothing awaits this refetch; the failure is already on requests.fetch, so catching only silences the rejection.
+    if (isMounted) fetch().catch(() => null)
   }, [debounceQueryState])
 
   const { data, requests, meta } = state
@@ -101,11 +102,11 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     }
   }
 
-  const getRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => (
+  const getRequestStatus = (type: RequestType, errors: ResourceErrors | null) => (
     errors ? RequestStatus.Failed : RequestStatus.Success
   )
 
-  const setRequestStatus = (type: RequestType, errors: Record<string, unknown> | null) => {
+  const setRequestStatus = (type: RequestType, errors: ResourceErrors | null) => {
     const status = getRequestStatus(type, errors)
     setRequests({ ...requests, [type]: { status, errors: errors ? [errors].flat() : null } })
   }
@@ -630,5 +631,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     addRelationships,
     uploadFileAction,
     getAppliedFiltersFromURL,
+    appliedQuery: queryFromUrl,
   }
 }

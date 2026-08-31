@@ -28,6 +28,10 @@ interface State {
   enable_recaptcha?: boolean,
   external_logout_redirect_enabled?: boolean,
   external_logout_url?: string
+  privacy_link_text?: string | null,
+  privacy_link_url?: string | null,
+  enable_privacy_link?: boolean,
+  glint_ui?: boolean,
 }
 
 export const defaultState: State = {
@@ -47,6 +51,10 @@ export const defaultState: State = {
   disallow_password_login: false,
   enable_recaptcha: false,
   external_logout_redirect_enabled: false,
+  privacy_link_text: null,
+  privacy_link_url: null,
+  enable_privacy_link: false,
+  glint_ui: false,
 }
 
 export default createReducer({}, defaultState)

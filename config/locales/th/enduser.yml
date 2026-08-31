@@ -11,6 +11,7 @@ th:
     ai_idp_retake_step_chat_hint_no_document: คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติม และฉันจะพยายามอย่างเต็มที่เพื่อช่วยเหลือคุณ
     ai_idp_summary_hint_no_document: หากคุณตอบตกลง ฉันสามารถสร้างแผนการพัฒนาให้คุณได้ หากไม่เป็นเช่นนั้น คุณสามารถเริ่มแชทใหม่เพื่อแบ่งปันรายละเอียดเพิ่มเติมได้
     all_checks_must_pass: ต้องผ่านการตรวจสอบทั้งหมดก่อนจึงจะสามารถดำเนินการต่อได้
+    appearance: รูปร่าง
     approve_idp_plan: อนุมัติแผน
     assessment_misconfigured: การประเมินค่าถูกตั้งค่าไม่ถูกต้อง
     assessment_timing_duration_minutes: "%{duration} นาที"
@@ -52,16 +53,49 @@ th:
     camera_test_step: ขั้นตอนการทดสอบวิดีโอและเสียง
     campaign: รณรงค์
     campaign_check_status: 'สถานะ: %{status}'
+    card_action_retry: ลองใหม่อีกครั้ง
+    card_action_review: ทบทวน
+    card_action_start: เริ่ม
+    change_password_warning: 'สำคัญ: การเปลี่ยนรหัสผ่านจะทำให้คุณออกจากระบบ'
     chat_instructions: คำแนะนำในการแชท
     check: ตรวจสอบ
     check_video_recording: กรุณาตรวจสอบวิดีโอและเสียงของคุณโดยการเล่นย้อนกลับ
     checking_browser_compatibility: กำลังตรวจสอบความเข้ากันได้ของเบราว์เซอร์...
     checking_latency: กำลังตรวจสอบความหน่วง...
+    collapse_navigation: ยุบแถบนำทาง
     complete_prework_message: กรุณาทำภารกิจเตรียมงานทั้งหมดให้เสร็จสมบูรณ์เพื่อเริ่มต้น
     could_not_reach_servers: ไม่สามารถติดต่อเซิร์ฟเวอร์ของเราเพื่อตรวจสอบความเร็วเครือข่ายได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณและลองใหม่อีกครั้ง
+    dashboard: แดชบอร์ด
+    dashboard_active_programs: โปรแกรมเชิงรุก
+    dashboard_begin_program: เริ่มโปรแกรม
+    dashboard_continue_program: ดำเนินโครงการต่อไป
+    dashboard_days_left: เหลืออีก 0 วัน
+    dashboard_greeting_afternoon: สวัสดีตอนบ่ายค่ะ %{name}
+    dashboard_greeting_evening: สวัสดีตอนเย็นค่ะ %{name}
+    dashboard_greeting_eyebrow: ยินดีต้อนรับกลับมา
+    dashboard_greeting_morning: อรุณสวัสดิ์ %{name}
+    dashboard_instructions: คุณอาจได้รับมอบหมายกิจกรรมหลายอย่างให้ทำ โปรดตรวจสอบให้แน่ใจว่าได้ทำกิจกรรมที่ได้รับมอบหมายทั้งหมดในทุกโปรแกรมเรียบร้อยแล้ว
+    dashboard_reports_ready: รายงานพร้อมแล้ว
+    dashboard_your_programs: โปรแกรมของคุณ
     day: วัน
     day_plural: วัน
     details: รายละเอียด
+    details_back: กลับ
+    details_due: เนื่องจาก
+    details_group_locked_hint: จะปลดล็อกหลังจากทำ '%{group}' เสร็จสมบูรณ์
+    details_intro_tab: การแนะนำ
+    details_no_reports: ยังไม่มีรายงานใดๆ
+    details_open_heading: แบบฝึกหัดเปิด
+    details_open_hint: สามารถทำตามลำดับใดก็ได้ ตามความสะดวกของคุณ
+    details_percent_done: X__เสร็จสมบูรณ์ 0%
+    details_progress: ความคืบหน้า
+    details_reports_ready: รายงานของคุณพร้อมแล้ว
+    details_reports_tab: รายงาน
+    details_reserved: ที่สงวนไว้
+    details_sequential_heading: แบบฝึกหัดตามลำดับ
+    details_sequential_hint: ทำตามลำดับให้ครบ — แต่ละด่านจะปลดล็อกด่านต่อไป
+    details_total: ทั้งหมด
+    details_view_details: ดูรายละเอียด
     development: การพัฒนา
     direct_reportees: ผู้รายงานโดยตรง
     download: ดาวน์โหลด
@@ -108,6 +142,10 @@ th:
     localstorage_fix_title: การเก็บข้อมูลในเครื่องไม่ได้รับการเปิดใช้งานในเบราว์เซอร์ของคุณ
     localstorage_not_enabled_detail: การเก็บข้อมูลในเครื่องไม่ได้เปิดใช้งานในเบราว์เซอร์ของคุณ โปรดตรวจสอบว่าคุณไม่ได้อยู่ในโหมดส่วนตัว/ไม่ระบุตัวตน เนื่องจาก localStorage มักถูกปิดใช้งานในโหมดเหล่านี้
     localstorage_support: เปิดใช้งาน LocalStorage
+    login_sign_in_btn: เข้าสู่ระบบ
+    login_sign_up_link: ลงทะเบียน
+    login_welcome_description: ลงชื่อเข้าใช้ด้วยบัญชี Lighthouse ของคุณ
+    login_welcome_title: ยินดีต้อนรับสู่ไลท์เฮาส์
     magic_link_interstitial_description: เพื่อความปลอดภัยของคุณ เราขอให้คุณยืนยันการเข้าสู่ระบบนี้ ระบบอัตโนมัติไม่สามารถดำเนินการขั้นตอนนี้ได้
     magic_link_interstitial_title: เพื่อดำเนินการลงชื่อเข้าใช้ให้เสร็จสมบูรณ์ กรุณาคลิกปุ่มด้านล่าง
     max_word_limit: ต้องมีไม่เกิน %{max} คำ
@@ -124,6 +162,7 @@ th:
     minute: นาที
     minute_plural: นาที
     my_plan: แผนของฉัน
+    my_profile: โปรไฟล์ของฉัน
     network: เครือข่าย
     network_check: ทดสอบความเร็วอินเทอร์เน็ต
     network_check_description: กำลังทดสอบคุณภาพการเชื่อมต่ออินเทอร์เน็ตของคุณระหว่างเซิร์ฟเวอร์ของเราและอุปกรณ์ของคุณ
@@ -135,6 +174,7 @@ th:
     network_speed_meets_required_detail: ความเร็วอินเทอร์เน็ตของคุณตรงตามข้อกำหนดขั้นต่ำสำหรับแคมเปญ
     network_test_step: ขั้นตอนการทดสอบเครือข่าย
     no_audio_detected: ไม่พบเสียง โปรดตรวจสอบว่าไมโครโฟนของคุณเชื่อมต่อและทำงานอย่างถูกต้อง
+    open_navigation: เปิดการนำทาง
     pass: ผ่าน
     pause: หยุดชั่วคราว
     pearson_timing_duration_minutes: มีเวลาจำกัด - ใช้เวลา%{duration} นาทีเพื่อเสร็จสิ้น
@@ -150,7 +190,13 @@ th:
     proctored: การสอบที่มีผู้คุมสอบ
     proctored_assessment_misconfigured_msg: การประเมินนี้มีการควบคุมดูแล แต่ไม่มีการกำหนดเวลาที่จำเป็น กรุณาติดต่อผู้ดูแลระบบของคุณ
     profile: โปรไฟล์
+    profile_cancel: ยกเลิก
     profile_details: รายละเอียด
+    profile_edit: แก้ไข
+    profile_other_information: ข้อมูลอื่นๆ
+    profile_personal_information: ข้อมูลส่วนบุคคล
+    profile_save: บันทึก
+    profile_time: เวลา
     question_counter: Question %{current} of %{total}
     reason_for_idp_plan_rejection: เหตุผลในการปฏิเสธ
     record: ลงทะเบียน
@@ -167,9 +213,12 @@ th:
     results: ผลลัพธ์
     safari_proctoring_description: ดูเหมือนว่าคุณกำลังใช้ Safari ซึ่งอาจมีข้อจำกัดบางประการเกี่ยวกับคุณสมบัติการตรวจสอบที่เปิดใช้งานสำหรับแคมเปญนี้ เพื่อให้ได้รับประสบการณ์ที่ดีที่สุด เราขอแนะนำให้ใช้ Chrome, Edge หรือ Firefox
     safari_proctoring_title: ตรวจพบเบราว์เซอร์ Safari
+    scheduling: การจัดตารางเวลา
     select_audio_device: เลือกอุปกรณ์เสียง
     select_video_device: เลือกอุปกรณ์วิดีโอ
     selected_count: เลือก
+    sign_out: ออกจากระบบ
+    signup_sign_in_link: เข้าสู่ระบบ
     skill_type: ประเภททักษะ
     speech_verification_error: เกิดข้อผิดพลาดในระหว่างการตรวจสอบเสียงของคุณ กรุณาลองใหม่อีกครั้ง
     speech_verification_failed: คำพูดของคุณไม่ตรงกับวลีทดสอบ กรุณาลองอีกครั้งและพูดวลีให้ชัดเจน
@@ -177,6 +226,7 @@ th:
     start_campaign_message_timed: นี่เป็นแคมเปญแบบกําหนดเวลา โปรดคลิกปุ่ม '%{buttonText}' เพื่อเริ่มกิจกรรม
     start_readiness_check: เริ่มการตรวจสอบความพร้อม
     start_system_check: เริ่มการตรวจสอบระบบ
+    status_locked: ล็อก
     stop: หยุด
     subinstruction_audio: ไมโครโฟนที่ใช้งานได้
     subinstruction_eight: จัดสรรเวลาที่ไม่มีการรบกวนสำหรับการประเมินอย่างเต็มรูปแบบ
@@ -228,6 +278,21 @@ th:
     tasks: งาน
     testing_download_speed: กำลังทดสอบความเร็วในการดาวน์โหลด...
     testing_upload_speed: กำลังทดสอบความเร็วในการอัปโหลด...
+    theme_active: คล่องแคล่ว
+    theme_change: เปลี่ยนธีม
+    theme_dark_theme: ธีมสีเข้ม
+    theme_ember: เอมเบอร์
+    theme_light_theme: ธีมสีอ่อน
+    theme_marsh: บึง
+    theme_mode_dark: มืด
+    theme_mode_light: แสงสว่าง
+    theme_mode_system: ระบบ
+    theme_mode_title: โหมด
+    theme_primer: ไพรเมอร์
+    theme_primer_colorblind: ไพรเมอร์สำหรับคนตาบอดสี
+    theme_primer_contrast: ไพรเมอร์ความคมชัดสูง
+    theme_primer_dimmed: ไพรเมอร์จางลง
+    theme_title: ธีม
     time_commitment: เวลาที่ต้องใช้
     timed_activity_instruction: นี่คือกิจกรรมที่มีเวลาจำกัด หลังจากที่คุณเริ่มเซสชันการตรวจสอบแล้ว คุณจะมีเวลา <strong>%{time} นาที</strong> ในการทำกิจกรรมให้เสร็จ
     troubleshooting_guide: คู่มือการแก้ไขปัญหา

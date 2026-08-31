@@ -1,10 +1,11 @@
-import { lazy } from 'react'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const MediaLibraryList = lazy(() => import('../components/MediaLibraryList'))
+const page = () => import('../components/MediaLibraryList')
+
 const MediaLibraryRoutes = [
   {
     path: 'libraries/*',
-    element: <MediaLibraryList />,
+    lazy: lazyRoute(page, m => m.default),
   },
 ]
 

@@ -1,7 +1,4 @@
 row
   columns.email-copyright.footer
-    |  ©
-    = Time.now.year
-    |
-    = t('mailer.copyright.text')
+    = t('mailer.copyright.text', year: Time.now.year, display_name: Branding.display_name)
   spacer[size="16"]

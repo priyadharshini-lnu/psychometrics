@@ -73,6 +73,17 @@ module Administration
             required(:manageDatasheets).filled(:bool?)
           end
           required(:name).filled(:str?)
+          required(:email).maybe(:str?)
+          required(:first_name).maybe(:str?)
+          required(:last_name).maybe(:str?)
+          required(:photo).maybe(:str?)
+          required(:preferences).array(:hash) do
+            required(:category).filled(:str?)
+            required(:config_key).filled(:str?)
+            required(:payload).maybe(:hash)
+            required(:resource_type).maybe(:str?)
+            required(:resource_id).maybe(:int?)
+          end
         end
       end
     end

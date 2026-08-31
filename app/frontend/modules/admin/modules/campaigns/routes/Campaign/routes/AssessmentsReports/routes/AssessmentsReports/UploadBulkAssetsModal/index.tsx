@@ -135,7 +135,7 @@ const UploadBulkAssetsModal: React.FC<Props> = ({
           {I18n.t('common.actions.upload')}
         </Button>,
       ]}
-      maskClosable={false}
+      mask={{ closable: false }}
     >
       <div style={{ marginBottom: 16 }}>
         <p

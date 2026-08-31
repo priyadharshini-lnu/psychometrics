@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import {
   Avatar, Dropdown, Button, Typography, Flex, Modal,
 } from 'antd'
@@ -9,52 +9,23 @@ import { useMedia } from 'use-media'
 import {
   UserOutlined, LockOutlined, LogoutOutlined, DownOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
+import { currentUserFromInitialState } from '~/components/AdminShell/currentUserDetails'
 
 const { I18n } = window
-
-type UserDetails = {
-  id: string
-  name: string
-  email: string
-  firstName: string
-  lastName: string
-  roleTitle: string
-  photo?: string
-}
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 interface Props {
   hideProfileLinks?: boolean
 }
 
 export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false }) => {
-  const [user, setUser] = useState<UserDetails | null>(null)
+  // Server-seeded, so the menu renders complete on first paint instead of filling in after a round trip.
+  const user = useMemo(currentUserFromInitialState, [])
   const isMobile = useMedia({ maxWidth: 600 })
 
   const avatarSrc = useMemo(() => {
     if (!user?.email) return null
     return createAvatar(shapes, { size: 48, seed: user.email }).toDataUri()
   }, [user?.email])
-
-  useEffect(() => {
-    fetch('/api/v2/administration/users/current_user_details', {
-      headers: { 'X-CSRF-Token': csrfToken() },
-    })
-      .then(res => res.json())
-      .then(({ data }) => {
-        const attr = data?.attributes || {}
-        setUser({
-          id: data.id,
-          name: attr.name,
-          email: attr.email,
-          firstName: attr.first_name,
-          lastName: attr.last_name,
-          roleTitle: attr.role_title,
-          photo: attr.photo,
-        })
-      })
-  }, [])
 
   const handleLogout = () => {
     Modal.confirm({
@@ -78,9 +49,11 @@ export const UserProfileDropdown: React.FC<Props> = ({ hideProfileLinks = false 
               {user?.name}
             </Typography.Title>
             <Typography.Text>{user?.email}</Typography.Text>
-            <Typography.Text style={{ fontSize: 12 }}>
-              {`${I18n.t('admin.role')} - ${user?.roleTitle}`}
-            </Typography.Text>
+            {user?.roleTitle && (
+              <Typography.Text style={{ fontSize: 12 }}>
+                {`${I18n.t('admin.role')} - ${user.roleTitle}`}
+              </Typography.Text>
+            )}
           </Flex>
         </Flex>
       ),

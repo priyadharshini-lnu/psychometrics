@@ -11,6 +11,7 @@ hu:
     ai_idp_retake_step_chat_hint_no_document: Újraindíthatod a csevegést, hogy részletezhesd, és mindent megteszek, hogy segítsek.
     ai_idp_summary_hint_no_document: Ha engedélyed van, ha igent mondasz, készíthetek neked fejlesztési tervet. Ha nem, újraindíthatod a csevegést, hogy részletesebben osszd meg.
     all_checks_must_pass: Minden ellenőrzésnek sikeresnek kell lennie, mielőtt továbbhaladhatna.
+    appearance: Megjelenés
     approve_idp_plan: Terv jóváhagyása
     assessment_misconfigured: A beállítás hibás
     assessment_timing_duration_minutes: "%{duration} perc"
@@ -52,16 +53,49 @@ hu:
     camera_test_step: Videó- és hangteszt lépés
     campaign: Kampány
     campaign_check_status: 'Állapot: %{status}'
+    card_action_retry: Újrapróbálkozás
+    card_action_review: Véleményezés
+    card_action_start: Indul
+    change_password_warning: 'Fontos: A jelszó megváltoztatásával kijelentkezhet.'
     chat_instructions: Csevegési útmutató
     check: Ellenőrizze
     check_video_recording: Kérjük, lejátszással ellenőrizze a videó- és hangfelvételt.
     checking_browser_compatibility: A böngésző kompatibilitásának ellenőrzése...
     checking_latency: A késleltetés ellenőrzése...
+    collapse_navigation: Navigáció összecsukása
     complete_prework_message: Kezdéshez végezze el az összes előkészítő feladatot.
     could_not_reach_servers: Nem sikerült kapcsolatba lépni a szerverünkkel a hálózati sebesség ellenőrzése érdekében. Kérjük, ellenőrizze az internetkapcsolatát, majd próbálja meg újra.
+    dashboard: Műszerfal
+    dashboard_active_programs: Aktív programok
+    dashboard_begin_program: Program indítása
+    dashboard_continue_program: Folytassa a programot
+    dashboard_days_left: "%{count} nap van hátra"
+    dashboard_greeting_afternoon: Jó napot kívánok, %{name}.
+    dashboard_greeting_evening: Jó estét, %{name}.
+    dashboard_greeting_eyebrow: Üdv ismét
+    dashboard_greeting_morning: Jó reggelt, %{name}.
+    dashboard_instructions: Lehetséges, hogy több feladatot is kiosztottak. Győződjön meg róla, hogy minden kijelölt feladatot minden programban elvégez.
+    dashboard_reports_ready: Jelentések készen állnak
+    dashboard_your_programs: A programjaid
     day: nap
     day_plural: napok
     details: Részletek
+    details_back: Vissza
+    details_due: Esedékes
+    details_group_locked_hint: Feloldás az '%{group}' befejezése után.
+    details_intro_tab: Bevezetés
+    details_no_reports: Még nincsenek jelentések
+    details_open_heading: Nyílt gyakorlatok
+    details_open_hint: Tetszőleges sorrendben, a saját tempódban végezd el.
+    details_percent_done: "%{percent}% kész"
+    details_progress: Előrehalad
+    details_reports_ready: A jelentései készen állnak
+    details_reports_tab: Jelentések
+    details_reserved: Fenntartott
+    details_sequential_heading: Szekvenciális gyakorlatok
+    details_sequential_hint: Sorrendben teljesítendő – mindegyik feloldja a következőt.
+    details_total: Teljes
+    details_view_details: Részletek megtekintése
     development: Fejlesztés
     direct_reportees: Közvetlen beosztottak
     download: Letöltés
@@ -108,6 +142,10 @@ hu:
     localstorage_fix_title: A böngészőben a helyi tárolás nincs engedélyezve
     localstorage_not_enabled_detail: A böngészőjében nincs engedélyezve a helyi tárolás. Kérjük, ellenőrizze, hogy nem privát/inkognitó módban van-e, mivel ezekben a módokban a localStorage gyakran le van tiltva.
     localstorage_support: A LocalStorage engedélyezve
+    login_sign_in_btn: Bejelentkezés
+    login_sign_up_link: Regisztráció
+    login_welcome_description: Jelentkezzen be Lighthouse-fiókjával
+    login_welcome_title: Üdvözöljük a Lighthouse-ban
     magic_link_interstitial_description: Biztonsági okokból kérjük, erősítse meg a bejelentkezést. Az automatizált rendszerek nem tudják elvégezni ezt a lépést.
     magic_link_interstitial_title: A bejelentkezés befejezéséhez kérjük, kattintson az alábbi gombra.
     max_word_limit: Legfeljebb %{max} szó lehet
@@ -124,6 +162,7 @@ hu:
     minute: perc
     minute_plural: jegyzőkönyv
     my_plan: A tervem
+    my_profile: Saját profilom
     network: Hálózat
     network_check: Internet-sebességmérő
     network_check_description: Ellenőrizzük az internetkapcsolat minőségét a szerverünk és az Ön készüléke között.
@@ -135,6 +174,7 @@ hu:
     network_speed_meets_required_detail: Az internetkapcsolatod sebessége megfelel a kampány minimális követelményeinek
     network_test_step: Hálózati tesztlépés
     no_audio_detected: Nem érzékelhető hang. Kérjük, ellenőrizze, hogy a mikrofon csatlakoztatva van-e és megfelelően működik-e.
+    open_navigation: Navigáció megnyitása
     pass: Tovább
     pause: Szünet
     pearson_timing_duration_minutes: Időkorlát – %{duration} perc a feladat elvégzésére
@@ -150,7 +190,13 @@ hu:
     proctored: Felügyelt
     proctored_assessment_misconfigured_msg: Ez a felmérés felügyelet alatt zajlik, de hiányzik a szükséges időbeállítás; kérjük, vegye fel a kapcsolatot a rendszergazdával.
     profile: Profil
+    profile_cancel: Mégsem
     profile_details: Részletek
+    profile_edit: Szerkesztés
+    profile_other_information: Egyéb információk
+    profile_personal_information: Személyes adatok
+    profile_save: Megtakarítás
+    profile_time: Idő
     question_counter: Kérdés %{current} / %{total}
     reason_for_idp_plan_rejection: Az elutasítás oka
     record: Napló
@@ -167,9 +213,12 @@ hu:
     results: Eredmény
     safari_proctoring_description: Úgy tűnik, hogy a Safari böngészőt használja, amely bizonyos korlátozásokat jelenthet a kampányhoz kapcsolódó nyomonkövetési funkciók tekintetében. A legjobb felhasználói élmény érdekében a Chrome, Edge vagy a Firefox böngésző használatát javasoljuk.
     safari_proctoring_title: Safari böngésző észlelve
+    scheduling: Ütemezés
     select_audio_device: Hangkészülék kiválasztása
     select_video_device: Videóeszköz kiválasztása
     selected_count: Kiválasztott
+    sign_out: Kijelentkezés
+    signup_sign_in_link: Bejelentkezés
     skill_type: Képesség típusa
     speech_verification_error: Hiba történt a beszéd ellenőrzése közben. Kérjük, próbálja meg újra.
     speech_verification_failed: A beszéde nem egyezett meg a tesztmondattal. Kérjük, próbálja meg újra, és mondja ki a mondatot tisztán.
@@ -177,6 +226,7 @@ hu:
     start_campaign_message_timed: Ez egy időzített kampány, kérjük, kattints a '%{buttonText}' gombra a tevékenységek elindításához.
     start_readiness_check: Indítsa el az indulás előtti ellenőrzést
     start_system_check: Rendszerellenőrzés indítása
+    status_locked: Bezárt
     stop: Állj meg
     subinstruction_audio: Működő mikrofon
     subinstruction_eight: Szánjon rá zavartalan időt a teljes értékelésre
@@ -228,6 +278,21 @@ hu:
     tasks: Feladatok
     testing_download_speed: A letöltési sebesség tesztelése...
     testing_upload_speed: A feltöltési sebesség tesztelése...
+    theme_active: Aktív
+    theme_change: Téma módosítása
+    theme_dark_theme: Sötét téma
+    theme_ember: Parázs
+    theme_light_theme: Világos téma
+    theme_marsh: Mocsár
+    theme_mode_dark: Sötét
+    theme_mode_light: Fény
+    theme_mode_system: Rendszer
+    theme_mode_title: Mód
+    theme_primer: Alapozó
+    theme_primer_colorblind: Alapozó Színvak
+    theme_primer_contrast: Nagy kontrasztú alapozó
+    theme_primer_dimmed: Primer halványított
+    theme_title: Téma
     time_commitment: Időigény
     timed_activity_instruction: Ez egy időre korlátozott feladat; a felügyeleti munkamenet elindítása után <strong>%{time} perc</strong> áll rendelkezésedre a feladat elvégzésére.
     troubleshooting_guide: Hibaelhárítási útmutató

@@ -36,11 +36,21 @@ module AdminJobs
       def fetch_data
         return [] if project_ids.blank?
 
-        UserReport.
-          joins(:user, :report, :campaign).
-          joins('LEFT JOIN campaign_users cu ON cu.campaign_id = campaigns.id AND cu.user_id = user_reports.user_id').
-          joins('LEFT JOIN clients p ON p.id = campaigns.project_id').
-          where('p.id IN (?)', project_ids). # rubocop:disable Rails/WhereEquals
+        records = UserReport.
+                  joins(:user, :report, :campaign).
+                  joins(
+                    'LEFT JOIN campaign_users cu ON cu.campaign_id = campaigns.id ' \
+                    'AND cu.user_id = user_reports.user_id'
+                  ).
+                  joins('LEFT JOIN clients p ON p.id = campaigns.project_id').
+                  joins('LEFT JOIN clients c ON c.id = p.tte_id').
+                  where('p.id IN (?)', project_ids) # rubocop:disable Rails/WhereEquals
+
+        if geo_restricted_top_level_client_ids.any?
+          records = records.where.not(c: { id: geo_restricted_top_level_client_ids })
+        end
+
+        records.
           distinct.
           order('p.id, p.name, campaigns.id, campaigns.name').
           pluck(

@@ -1,10 +1,12 @@
 import { Menu } from 'antd'
 import { connect } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 
 
 import { useEffect } from 'react'
-import RouteList from '~/components/RouteList'
+import {
+  Groups, Person, Settings, SupervisorAccount,
+} from '@thetalententerprise/glint/icons'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { set as setSelectedTab, get as getSelectedTab } from '../../core/selectedParticipantTab'
 import {
@@ -12,20 +14,15 @@ import {
 } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
 import routeUtils from '~/utils/route'
 import settings from '../../settings'
+import { TABS } from './routes'
 import { PageHeader } from '../../PageHeader'
 import CampaignNameConfirmationModal from '../../components/CampaignNameConfirmationModal'
 import ResetCampaignModal from '../../components/ResetCampaignModal'
 import ManageRelationshipsModal from './ManageRelationshipsModal'
 import ParticipantModal from './ParticipantModal'
-import Options from './Options'
-import SubjectList from './SubjectList'
-import EvaluatorList
-  from './EvaluatorList'
-import ManagerList from './ManagerList'
 import Modals from '~/modules/admin/components/Modals'
 import FactorBenchmarkScoreModal from '~/modules/admin/modules/threeSixtyCampaign/components/FactorBenchmarkScoreModal'
 
-import styles from './styles.less'
 import ImportRawModal from './ImportRawModal'
 import BulkDownloadModal from '../../components/BulkDownloadModal'
 import RegenerateReportModal from '../../components/RegenerateReportModal'
@@ -46,22 +43,17 @@ const MODALS = {
   ParticipantModal,
 }
 
-const routes = [
-  { redirect: true, from: '', to: 'subjects' },
-  { path: '/options', component: <Options /> },
-  { path: '/subjects', component: <SubjectList /> },
-  { path: '/evaluators', component: <EvaluatorList /> },
-  { path: '/managers', component: <ManagerList /> },
-]
-
 const { I18n } = window
 
 function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
+
+  const activeTab = TABS.find(tab => pathname.endsWith(`/${tab}`))
 
   useEffect(() => {
-    setSelectedTab(`/participants${routeUtils.getActiveRoutePath(routes)}`)
-  }, [])
+    activeTab && setSelectedTab(`/participants/${activeTab}`)
+  }, [activeTab])
 
   const onSelect = ({ key }) => {
     setSelectedTab(key)
@@ -70,19 +62,23 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
   const menuItems = [
     {
       key: '/participants/subjects',
+      icon: <Person />,
       label: I18n.t('admin.subjects_title'),
     },
     {
       key: '/participants/evaluators',
+      icon: <Groups />,
       label: I18n.t('admin.evaluators_title'),
     },
     {
       key: '/participants/managers',
+      icon: <SupervisorAccount />,
       label: I18n.t('admin.managers_title'),
     },
   ]
   campaignPermissions.editParticipantOptions && menuItems.push({
     key: '/participants/options',
+    icon: <Settings />,
     label: I18n.t('admin.options_title'),
   })
   return (
@@ -95,12 +91,7 @@ function Index ({ setSelectedTab, selectedTab, campaignPermissions }) {
           selectedKeys={[selectedTab]}
           mode="horizontal"
         />
-        <div className={styles.container}>
-          <RouteList
-            routes={routes}
-            urlPrefix=""
-          />
-        </div>
+        <Outlet />
         <ManageRelationshipsModal />
         <ResetCampaignModal />
         <CampaignNameConfirmationModal />

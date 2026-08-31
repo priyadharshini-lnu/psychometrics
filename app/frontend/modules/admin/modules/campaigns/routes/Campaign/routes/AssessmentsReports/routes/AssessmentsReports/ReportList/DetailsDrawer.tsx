@@ -18,11 +18,13 @@ type ExternalSettings = {
 
 export type DrawerReport = {
   id?: number
+  owner?: { id: string; name: string } | null
   externalSettings?: ExternalSettings
   external_settings?: ExternalSettings
   assessmentIds?: number[]
   assessment_ids?: number[]
   reportProvider?: string
+  report_provider?: string
   effectiveDefaultLanguage?: string
   effective_default_language?: string
   availableLanguages?: string[]
@@ -32,9 +34,10 @@ export type DrawerReport = {
 interface Props {
   close: () => void
   report: DrawerReport
+  isOtherReport?: boolean
 }
 
-export const DetailsDrawer: FC<Props> = ({ close, report }) => {
+export const DetailsDrawer: FC<Props> = ({ close, report, isOtherReport = false }) => {
   const externalSettings = report.externalSettings ?? report.external_settings ?? {}
   const hasExternalSettings = [
     externalSettings.report_id,
@@ -92,13 +95,21 @@ export const DetailsDrawer: FC<Props> = ({ close, report }) => {
           bordered
           column={1}
         >
+          {!isOtherReport && (
+            <Descriptions.Item
+              label={I18n.t('admin.campaign_report_id')}
+              className="va-t w-30"
+              labelStyle={{ width: '40%' }}
+              contentStyle={{ width: '60%' }}
+            >
+              {report.id}
+            </Descriptions.Item>
+          )}
           <Descriptions.Item
-            label={I18n.t('admin.campaign_report_id')}
-            className="va-t w-30"
-            labelStyle={{ width: '40%' }}
-            contentStyle={{ width: '60%' }}
+            label={I18n.t('common.column.owner')}
+            className="va-t"
           >
-            {report.id}
+            {report.owner?.name || I18n.t('admin.platform_owner')}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('admin.assessment_ids')}
@@ -112,7 +123,7 @@ export const DetailsDrawer: FC<Props> = ({ close, report }) => {
             label={I18n.t('admin.provider')}
             className="va-t"
           >
-            {report.reportProvider}
+            {report.reportProvider ?? report.report_provider}
           </Descriptions.Item>
           <Descriptions.Item
             label={I18n.t('admin.default_language')}

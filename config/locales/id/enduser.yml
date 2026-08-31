@@ -11,6 +11,7 @@ id:
     ai_idp_retake_step_chat_hint_no_document: Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut, dan saya akan melakukan yang terbaik untuk membantu Anda.
     ai_idp_summary_hint_no_document: Dengan izin Anda, jika Anda mengatakan ya, saya dapat membuat rencana pengembangan untuk Anda. Jika tidak, Anda dapat memulai ulang obrolan untuk membagikan detail lebih lanjut.
     all_checks_must_pass: Semua pemeriksaan harus lolos terlebih dahulu sebelum Anda dapat melanjutkan.
+    appearance: Penampilan
     approve_idp_plan: Setujui Rencana
     assessment_misconfigured: Konfigurasi penilaian salah
     assessment_timing_duration_minutes: "%{duration} menit"
@@ -52,16 +53,49 @@ id:
     camera_test_step: Langkah Pengujian Video dan Audio
     campaign: Kampanye
     campaign_check_status: 'Status: %{status}'
+    card_action_retry: Mencoba kembali
+    card_action_review: Tinjauan
+    card_action_start: Awal
+    change_password_warning: 'Penting: Mengubah kata sandi akan membuat Anda keluar dari akun.'
     chat_instructions: Petunjuk Obrolan
     check: Periksa
     check_video_recording: Silakan periksa video dan audio Anda dengan memutarnya kembali.
     checking_browser_compatibility: Memeriksa kompatibilitas browser...
     checking_latency: Memeriksa latensi...
+    collapse_navigation: Tutup navigasi
     complete_prework_message: Selesaikan semua tugas persiapan untuk memulai.
     could_not_reach_servers: Tidak dapat terhubung ke server kami untuk memeriksa kecepatan jaringan. Silakan periksa koneksi internet Anda dan coba lagi.
+    dashboard: Dasbor
+    dashboard_active_programs: Program aktif
+    dashboard_begin_program: Mulai program
+    dashboard_continue_program: Lanjutkan program
+    dashboard_days_left: "%{count} hari tersisa"
+    dashboard_greeting_afternoon: Selamat siang, %{name}.
+    dashboard_greeting_evening: Selamat malam, %{name}.
+    dashboard_greeting_eyebrow: Selamat Datang kembali
+    dashboard_greeting_morning: Selamat pagi, %{name}.
+    dashboard_instructions: Anda mungkin telah diberi beberapa tugas untuk diselesaikan. Pastikan semua tugas yang diberikan diselesaikan di setiap program.
+    dashboard_reports_ready: Laporan sudah siap
+    dashboard_your_programs: Program Anda
     day: hari
     day_plural: hari
     details: Rincian
+    details_back: Kembali
+    details_due: Jatuh tempo
+    details_group_locked_hint: Terbuka setelah '%{group}' selesai.
+    details_intro_tab: Perkenalan
+    details_no_reports: Belum ada laporan
+    details_open_heading: Latihan terbuka
+    details_open_hint: Selesaikan dalam urutan apa pun, sesuai dengan kecepatan Anda sendiri.
+    details_percent_done: "%{percent}% selesai"
+    details_progress: Kemajuan
+    details_reports_ready: Laporan Anda sudah siap.
+    details_reports_tab: Laporan
+    details_reserved: Disimpan
+    details_sequential_heading: Latihan berurutan
+    details_sequential_hint: Selesaikan secara berurutan — setiap item akan membuka item berikutnya.
+    details_total: Total
+    details_view_details: Lihat detailnya
     development: Pengembangan
     direct_reportees: Bawahan Langsung
     download: Unduh
@@ -108,6 +142,10 @@ id:
     localstorage_fix_title: Penyimpanan Lokal tidak diaktifkan di browser Anda
     localstorage_not_enabled_detail: Penyimpanan Lokal tidak diaktifkan di browser Anda. Pastikan Anda tidak sedang berada dalam mode privat/inkognito, karena localStorage sering kali dinonaktifkan dalam mode-mode tersebut.
     localstorage_support: LocalStorage Diaktifkan
+    login_sign_in_btn: Masuk
+    login_sign_up_link: Mendaftar
+    login_welcome_description: Masuk dengan akun Lighthouse Anda
+    login_welcome_title: Selamat datang di Lighthouse
     magic_link_interstitial_description: Demi keamanan Anda, kami meminta Anda untuk mengonfirmasi proses masuk ini. Sistem otomatis tidak dapat menyelesaikan langkah ini.
     magic_link_interstitial_title: Untuk menyelesaikan proses masuk, silakan klik tombol di bawah ini.
     max_word_limit: Maksimal %{max} kata
@@ -124,6 +162,7 @@ id:
     minute: menit
     minute_plural: notulen
     my_plan: Rencanaku
+    my_profile: Profil saya
     network: Jaringan
     network_check: Tes Kecepatan Internet
     network_check_description: Memeriksa kualitas koneksi internet Anda antara server kami dan perangkat Anda.
@@ -135,6 +174,7 @@ id:
     network_speed_meets_required_detail: Kecepatan internet Anda memenuhi persyaratan minimum untuk kampanye ini
     network_test_step: Langkah Pengujian Jaringan
     no_audio_detected: Tidak terdeteksi suara. Silakan periksa apakah mikrofon Anda sudah terhubung dan berfungsi dengan baik.
+    open_navigation: Buka navigasi
     pass: Lewati
     pause: Jeda
     pearson_timing_duration_minutes: Berbatas Waktu - %{duration} menit untuk menyelesaikannya
@@ -150,7 +190,13 @@ id:
     proctored: Diawasi
     proctored_assessment_misconfigured_msg: Penilaian ini diawasi, namun pengaturan waktunya belum lengkap; silakan hubungi administrator Anda.
     profile: Profil
+    profile_cancel: Membatalkan
     profile_details: Detail
+    profile_edit: Edit
+    profile_other_information: Informasi lainnya
+    profile_personal_information: Informasi pribadi
+    profile_save: Menyimpan
+    profile_time: Waktu
     question_counter: Pertanyaan %{current} dari %{total}
     reason_for_idp_plan_rejection: Alasan Penolakan
     record: Daftar
@@ -167,9 +213,12 @@ id:
     results: Hasil
     safari_proctoring_description: Sepertinya Anda menggunakan peramban Safari, yang mungkin memiliki beberapa batasan terkait fitur pelacakan yang diaktifkan untuk kampanye ini. Untuk pengalaman terbaik, kami menyarankan Anda menggunakan peramban Chrome, Edge atau Firefox.
     safari_proctoring_title: Browser Safari Terdeteksi
+    scheduling: Penjadwalan
     select_audio_device: Pilih Perangkat Audio
     select_video_device: Pilih Perangkat Video
     selected_count: Dipilih
+    sign_out: Keluar
+    signup_sign_in_link: Masuk
     skill_type: Jenis Keterampilan
     speech_verification_error: Terjadi kesalahan saat memverifikasi ucapan Anda. Silakan coba lagi.
     speech_verification_failed: Ucapan Anda tidak sesuai dengan frasa uji. Silakan coba lagi dan ucapkan frasa tersebut dengan jelas.
@@ -177,6 +226,7 @@ id:
     start_campaign_message_timed: Ini adalah kampanye berjangka waktu, silakan klik tombol '%{buttonText}' untuk memulai aktivitas.
     start_readiness_check: Mulai Pemeriksaan Kesiapan
     start_system_check: Mulai Pemeriksaan Sistem
+    status_locked: Terkunci
     stop: Berhenti
     subinstruction_audio: Mikrofon berfungsi
     subinstruction_eight: Sisihkan waktu yang tidak terganggu untuk penilaian menyeluruh
@@ -228,6 +278,21 @@ id:
     tasks: Tugas
     testing_download_speed: Sedang menguji kecepatan unduh...
     testing_upload_speed: Memeriksa kecepatan unggah...
+    theme_active: Aktif
+    theme_change: Ubah tema
+    theme_dark_theme: Tema gelap
+    theme_ember: Bara
+    theme_light_theme: Tema terang
+    theme_marsh: Rawa
+    theme_mode_dark: Gelap
+    theme_mode_light: Lampu
+    theme_mode_system: Sistem
+    theme_mode_title: Mode
+    theme_primer: Dasar-dasar
+    theme_primer_colorblind: Primer Buta Warna
+    theme_primer_contrast: Primer Kontras Tinggi
+    theme_primer_dimmed: Primer Diredupkan
+    theme_title: Tema
     time_commitment: Waktu yang Diperlukan
     timed_activity_instruction: Ini adalah kegiatan yang dibatasi waktu; setelah Anda memulai sesi pengawasan, Anda akan memiliki waktu <strong>%{time} menit</strong> untuk menyelesaikannya.
     troubleshooting_guide: Panduan Pemecahan Masalah

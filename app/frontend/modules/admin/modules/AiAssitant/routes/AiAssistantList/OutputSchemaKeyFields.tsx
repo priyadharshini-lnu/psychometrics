@@ -1,8 +1,8 @@
 import React from 'react'
 import {
   Form, Input, Select, Button, Flex, Divider, Tooltip,
-} from 'antd'
-import { DeleteOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+} from '@thetalententerprise/glint'
+import { DeleteOutlined } from '@thetalententerprise/glint/icons'
 import { SCHEMA_KEY_TYPES } from '~/modules/admin/modules/AiAssitant/core/constants'
 
 const { I18n } = window
@@ -60,7 +60,6 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
         name={[name, 'keyType']}
       >
         <Select
-          filterOption={false}
           defaultValue={SCHEMA_KEY_TYPES.string.value}
           options={Object.values(SCHEMA_KEY_TYPES)}
         />
@@ -89,7 +88,7 @@ export const OutputSchemaKeyFields: React.FC<Props> = ({
           onClick={() => {
             remove(index)
           }}
-          danger
+          {...({ color: 'danger' } as unknown as Record<string, unknown>)}
           shape="circle"
           icon={<DeleteOutlined />}
         />

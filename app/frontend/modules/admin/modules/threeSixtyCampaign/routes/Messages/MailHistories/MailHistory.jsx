@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import {
-  Table, Dropdown, Tag, message,
+  Table, Button, Dropdown, Tag, message,
 } from 'antd'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import dayjs from '~/utils/dayjs'
 import { STATUSES } from '~/modules/admin/constants/mailHistory'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import styles from './styles.less'
-import Pagination from '../../../components/Pagination'
+import settings from '../../../settings'
 import EmailScheduleModal from '../EmailList/EmailScheduleModal'
-import { useWindowSize } from '~/hooks/useWindowSize'
 
 export default function MailHistory ({
   fetch,
@@ -19,19 +19,26 @@ export default function MailHistory ({
   mailHistories: { list, total },
 }) {
   const { campaignId } = useParams()
-  const { width: windowWidth } = useWindowSize()
+  const [params, setParams] = useSearchParams()
   useEffect(() => {
     fetch(campaignId, page)
   }, [page])
+
+  const changePage = (nextPage) => {
+    params.set('page', nextPage)
+    setParams(params)
+    fetch(campaignId, nextPage)
+  }
 
   const unDelivered = ({ status }) => status === STATUSES.UNDELIVERED
 
   const columns = [
     {
       title: I18n.t('shared.status'),
-      fixed: windowWidth > 800 ? 'left' : undefined,
+      fixed: 'left',
       dataIndex: 'status',
       key: 'status',
+      minWidth: 150,
       render: (text) => {
         const color = text === STATUSES.SUCCESS ? 'green' : 'grey'
 
@@ -42,16 +49,19 @@ export default function MailHistory ({
       title: I18n.t('admin.threesixty_campaigns_mail_history_recipient'),
       dataIndex: 'recipient',
       key: 'recipient',
+      minWidth: 200,
     },
     {
       title: I18n.t('admin.threesixty_campaigns_mail_history_subject'),
       dataIndex: 'subject',
       key: 'subjects',
+      minWidth: 200,
     },
     {
       title: I18n.t('admin.threesixty_campaigns_mail_history_date'),
       dataIndex: 'scheduledDate',
       key: 'scheduledDate',
+      minWidth: 150,
       render: (date, record) => (
         <>
           {dayjs(date).format('YYYY-MM-DD HH:mm:ss')}
@@ -63,11 +73,13 @@ export default function MailHistory ({
       title: I18n.t('admin.threesixty_campaigns_mail_history_emails_sent'),
       dataIndex: 'emailsSent',
       key: 'emailsSent',
+      minWidth: 100,
     },
     {
       title: I18n.t('shared.actions'),
-      fixed: windowWidth > 800 ? 'right' : undefined,
+      fixed: 'right',
       key: 'actions',
+      minWidth: 100,
       render: (_, record) => (
         <ActionMenu
           unDelivered={unDelivered(record)}
@@ -81,23 +93,29 @@ export default function MailHistory ({
   ]
 
   return (
-    <div className="mtl">
-      <Table
-        rowKey={record => record.id}
-        dataSource={list}
-        columns={columns}
-        pagination={false}
-        scroll={{ x: 'max-content' }}
+    <>
+      <TableLayout
+        title={I18n.t('admin.mail_history')}
+        recordCount={total}
+        pagination={{
+          page,
+          pageSize: settings.pageLimit,
+          total,
+          onChange: changePage,
+          showSizeChanger: false,
+        }}
+        table={(
+          <Table
+            rowKey={record => record.id}
+            dataSource={list}
+            columns={columns}
+            pagination={false}
+            scroll={{ x: 'max-content' }}
+          />
+        )}
       />
-      <div className="pm">
-        <Pagination
-          total={total}
-          onChange={page => fetch(campaignId, page)}
-          path="/messages/mail_histories"
-        />
-      </div>
       <EmailScheduleModal onSave={() => fetch(campaignId, page)} />
-    </div>
+    </>
   )
 }
 
@@ -144,9 +162,7 @@ const ActionMenu = ({
       trigger={['click']}
       placement="bottomCenter"
     >
-      <a>
-        <MoreOutlined />
-      </a>
+      <Button type="link" icon={<MoreOutlined />} />
     </Dropdown>
   )
 }

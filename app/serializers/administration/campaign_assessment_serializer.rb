@@ -10,9 +10,10 @@ module Administration
                :simulation_content_variations, :pearson_variations, :caching_enabled, :allow_caching, :mhs_norm_regions,
                :mhs_norm_options, :proctoring_enabled, :is_timed, :fixed_time_duration,
                :occupation_condition_set_id, :occupation_condition_set_name, :dimension_has_occupations,
-               :occupation_condition_sets
+               :occupation_condition_sets, :owner, :tenant_id
 
     delegate :id, :name, :dimension_id, :category, to: :assessment
+    delegate :tenant_id, to: :assessment, allow_nil: true
     delegate :name, :id, to: :linked_assessment, prefix: true, allow_nil: true
 
     def is_timed
@@ -155,6 +156,12 @@ module Administration
 
     def allow_caching
       object.assessment&.allow_caching? || false
+    end
+
+    def owner
+      return unless assessment&.owner
+
+      { id: assessment.owner.id, name: assessment.owner.name }
     end
 
     private

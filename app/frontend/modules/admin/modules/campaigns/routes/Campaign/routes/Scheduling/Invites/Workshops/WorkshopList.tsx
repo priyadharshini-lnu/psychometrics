@@ -11,6 +11,7 @@ import {
 import { WorkshopShort, WorkshopShortTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { WorkshopInvite } from '~/modules/admin/modules/campaigns/core/invites'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { WorkshopAddFormModal } from './WorkshopAddFormModal'
@@ -28,6 +29,7 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
   return (
     <>
       <Resource
+        title={I18n.t('admin.individual_invite_tabs_assessment_center')}
         config={{
           basePath: `campaigns/${campaignId}/workshop_invites/${inviteId}`,
           trackUrl: true,
@@ -37,24 +39,30 @@ export const WorkshopListComponent:React.FC<Props> = ({ openModal }) => {
           },
         }}
         name="workshops"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingInvitesInviteAssessmentCenters}
       >
-        <Resource.Filter placeholder="Search" name="filterable_fields">
+        <Resource.Filter
+          placeholder="Search"
+          name="filterable_fields"
+        >
           <Button type="primary" onClick={() => openModal('WorkshopAddFormModal')}>
             <PlusOutlined />
             {' '}
             {I18n.t('shared.add')}
           </Button>
         </Resource.Filter>
-        <Resource.Table pagination>
+        <Resource.Table embedded pagination>
           <Resource.Column<WorkshopShort>
             title={I18n.t('shared.name')}
             id="name"
+            hideable={false}
             sorter
             width="90%"
             render={(_, { name }) => name}
           />
           <Resource.Column<WorkshopShort>
             id="remove"
+            hideable={false}
             title={I18n.t('shared.remove')}
             render={(_, workshop) => <RemoveWorkshop campaignId={campaignId} inviteId={inviteId} workshop={workshop} />}
             width={100}

@@ -2,33 +2,49 @@ import React, { Suspense } from 'react'
 import {
   createBrowserRouter, Outlet, RouterProvider,
 } from 'react-router-dom'
-import { PortalMenu } from '~/components/MainMenu'
+import { AdminShell, AdminTheme } from '~/components/AdminShell'
+import RouteErrorBoundary from '~/components/RouteErrorBoundary'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
-import { DefaultAntThemeWrapper, PageLoadSpinner } from '~/glint'
+import { PageFallback } from '~/components/PageFallback'
 import { settings } from './settings'
 import { DashboardReport } from './routes/DashboardReport'
 
+// No ownedPathPrefixes: this router owns only the dashboard route, so every main-menu target needs a full load.
 const Main: React.FC = () => (
-  <Suspense fallback={(
-    <DefaultAntThemeWrapper>
-      <PageLoadSpinner size="large" />
-    </DefaultAntThemeWrapper>
-    )}
-  >
-    <PortalMenu />
-    <Outlet />
+  <AdminShell>
+    <RouteErrorBoundary>
+      <Suspense fallback={<PageFallback />}>
+        <Outlet />
+      </Suspense>
+    </RouteErrorBoundary>
     <IncorrectResponseErrorModal />
-  </Suspense>
+  </AdminShell>
+)
+
+// Inside the router because the theme reads the location, above every route so one provider covers them all.
+const ThemedRoot: React.FC = () => (
+  <AdminTheme>
+    <Outlet />
+  </AdminTheme>
 )
 
 export const router = createBrowserRouter([
   {
-    path: settings.urlPrefix,
-    element: <DashboardReport />,
+    element: <ThemedRoot />,
+    children: [
+      {
+        path: settings.urlPrefix,
+        element: <RouteErrorBoundary><DashboardReport /></RouteErrorBoundary>,
+      },
+      { path: '*', element: <Main /> },
+    ],
   },
-  { path: '*', element: <Main /> },
 ])
 
 export function Layout () {
-  return <Suspense fallback="loading..."><RouterProvider router={router} /></Suspense>
+  return (
+    <Suspense fallback="loading...">
+      <RouterProvider router={router} />
+    </Suspense>
+  )
 }

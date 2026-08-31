@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get '/admin/templates/questions/:id/edit', to: 'administration/templates/questions#edit',
       as: :admin_template_question_edit
     get '/admin/templates/blocks/:id/edit', to: 'administration/templates/blocks#edit', as: :admin_template_block_edit
-    get '/admin/*all', to: 'administration/app#dashboard'
+    get '/admin/*all', to: 'administration/app#dashboard', as: :admin_all
   end
 
   get '/global_config', to: 'apps#global_config'
@@ -424,6 +424,9 @@ Rails.application.routes.draw do
           end
 
           resources :campaign_assessment_groups, only: %i[index create update destroy] do
+            member do
+              get :fetch_name_translations
+            end
             collection do
               post :update_positions
             end
@@ -477,6 +480,8 @@ Rails.application.routes.draw do
             collection do
               get :templates_and_assessment
               post :search_users
+              post :export_campaign_translations
+              post :import_campaign_translations
             end
 
             get 'users/:id/spoof', to: '/administration/campaigns/users#spoof'
@@ -486,6 +491,7 @@ Rails.application.routes.draw do
               get :fetch_campaign_options
               get :fetch_campaign_instructions
               get :fetch_descriptions
+              get :fetch_name_translations
               put :update_campaign_options
               get :pdf_password
               get '*all', to: 'new_campaigns#show', constraints: { all: /.*/ }
@@ -819,13 +825,14 @@ Rails.application.routes.draw do
         end
       end
 
-      get 'report_approvals', to: 'report_approvals#app', as: :report_approvals
-      get 'report_approvals/*all', to: 'report_approvals#app',
-        constraints: { all: /.*/, format: :html }, as: :report_approvals_all
+      # Legacy paths baked into approval emails; the SPA has only ever served these under /admin.
+      get 'report_approvals', to: redirect(path: '/admin/report_approvals')
+      get 'report_approvals/*all', to: redirect(path: '/admin/report_approvals/%{all}'),
+        constraints: { all: /.*/, format: :html }
 
-      get 'ai_scoring_approvals', to: 'ai_scoring_approvals#app', as: :ai_scoring_approvals
-      get 'ai_scoring_approvals/*all', to: 'ai_scoring_approvals#app',
-        constraints: { all: /.*/, format: :html }, as: :ai_scoring_approvals_all
+      get 'ai_scoring_approvals', to: redirect(path: '/admin/ai_scoring_approvals')
+      get 'ai_scoring_approvals/*all', to: redirect(path: '/admin/ai_scoring_approvals/%{all}'),
+        constraints: { all: /.*/, format: :html }
 
       resources :report_families, only: [:index] do
         scope module: :report_families do
@@ -1530,6 +1537,7 @@ as: :simulation_progress_notification
               get :datasheet_for_assessor
             end
           end
+          jsonapi_resources :user_preferences
           jsonapi_resources :design_settings, only: %i[index update] do
             scope module: :design_settings do
               resource :uploads, only: %i[update]
@@ -1549,6 +1557,8 @@ as: :simulation_progress_notification
             post :toggle_status, on: :member
           end
           jsonapi_resources :projects do
+            post :fetch_campaign_dashboard_instructions, on: :member
+            post :update_campaign_dashboard_instructions, on: :member
             jsonapi_resources :webhooks do
               post :send_test
             end
@@ -1793,6 +1803,7 @@ only: %i[index create update]
               post :discard_question
               post :discard_all_questions
               post :rescore
+              post :reset_approval
               get :subject_assessment
             end
           end
@@ -1814,6 +1825,7 @@ only: %i[index create update]
             end
             resources :data_report_jobs, only: %i[index] do
               get :get_password, on: :member
+              get :download, on: :member
             end
           end
           jsonapi_resources :user_idp_plans, only: %i[create show update] do
@@ -1912,6 +1924,23 @@ only: %i[index create update]
           jsonapi_resources :media_responses, only: %i[index] do
             member do
               post :generate_transcription
+            end
+          end
+
+          jsonapi_resources :record_change_histories, only: [] do
+            collection do
+              get :auditable_types
+              post :search
+              post :export
+              get :revision
+            end
+          end
+
+          jsonapi_resources :tenant_repairs, only: [] do
+            collection do
+              get :search_models
+              get :preview
+              post :update_tenant
             end
           end
 

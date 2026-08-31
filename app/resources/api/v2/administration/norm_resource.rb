@@ -9,6 +9,10 @@ class Api::V2::Administration::NormResource < Api::V2::Administration::BaseResou
   has_one :updated_by, class_name: 'User'
 
   ransack_filters %i[filterable_fields]
+  filter :owner_id, apply: lambda { |records, value, _options|
+    owner_id = value.is_a?(Array) ? value[0] : value
+    records.owned_by_client_or_tte(owner_id)
+  }
 
   before_create do
     @model.created_by_id = context[:user].id

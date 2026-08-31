@@ -28,7 +28,11 @@ class EndUser::UsersController < ApplicationController
                          subject_campaigns | evaluator_campaigns
 
         campaigns = ::Campaign.where(id: user_campaigns).visible_to_end_user.
-                    includes(:threesixty_campaign, { campaign_options: :translations }).group_by(&:type)
+                    includes(
+                      :threesixty_campaign,
+                      :translations,
+                      { campaign_options: :translations }
+                    ).group_by(&:type)
 
         serializer_context = {
           current_user: current_user,

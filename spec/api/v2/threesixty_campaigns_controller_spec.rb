@@ -21,6 +21,7 @@ RSpec.describe Api::V2::Administration::ThreesixtyCampaignsController, type: :re
           type: 'threesixty_campaigns',
           attributes: {
             name: 'new campaign',
+            name_locale: 'en',
             threesixty_type: Threesixty::Campaign::STANDARD_360,
             campaign_template_id: campaign_template.id.to_s,
             factors: assessment.dimension.factor_ids,
@@ -44,6 +45,7 @@ RSpec.describe Api::V2::Administration::ThreesixtyCampaignsController, type: :re
         'data' => { 'campaign_template_id' => campaign_template.id.to_s,
                     'factors' => assessment.dimension.factor_ids,
                     'name' => 'new campaign', 'threesixty_type' => 'standard_360',
+                    'name_locale' => 'en',
                     'questions' => [{ 'id' => question.id, 'selected_choice_indexes' => [0, 2] }] }
       })
     end

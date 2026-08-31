@@ -890,6 +890,7 @@ ar:
         export_campaign_datasheet: ورقة بيانات حملة التصدير
         export_campaign_factors: عوامل حملة التصدير
         export_campaign_scorings: حملات التصدير
+        export_campaign_translations: ترجمات حملات التصدير
         export_dashboard_as_file: تصدير لوحة المعلومات كملف
         export_development_action_translations: ترجمات إجراءات تطوير التصدير
         export_development_actions: إجراءات تنمية الصادرات
@@ -917,6 +918,7 @@ ar:
         import_assessors: مقيمو الاستيراد
         import_campaign_ai_artifacts: استيراد قطع أثرية من الذكاء الاصطناعي للحملة
         import_campaign_factors: استيراد عوامل الحملة
+        import_campaign_translations: استيراد ترجمات الحملات
         import_client_assessors: استيراد مقيمي العملاء
         import_datasheet: استيراد ورقة البيانات
         import_development_action_translations: استيراد ترجمات إجراءات التطوير
@@ -958,6 +960,7 @@ ar:
         super_admin_assessment_raw_result_export: تصدير النتائج الأولية للمسؤول الفائق
         super_admin_datasheet_export: تصدير ورقة بيانات المشرف المتميز
         super_admin_external_assessment_export: تصدير التقييم الخارجي للمشرف المتميز
+        superadmin_record_change_history: سجل التغييرات
         threesixty_campaign_export_completion_status: حالة إتمام تصدير حملة Threesixty
         threesixty_campaign_export_scores: تصدير درجات الحملة Threesixty
         workshop_status_export: تصدير حالة مركز التقييم
@@ -1155,7 +1158,7 @@ ar:
       read_only: هو وضع القراءة فقط، لا يمكنك تغيير أي نتائج.
       save: حفظ
       submissionFailedAlert:
-        description: تعذر الاتصال بالخادم. الرجاء <a href=""><strong>انقر هنا</strong></a> لتحديث الصفحة والمحاولة مرة أخرى. إذا لم يفلح ذلك ، فيرجى الاتصال بالدعم عبر الدردشة المباشرة أو mte.surveys@mercer.com
+        description: تعذر الاتصال بالخادم. الرجاء <a href=""><strong>انقر هنا</strong></a> لتحديث الصفحة والمحاولة مرة أخرى. إذا لم يفلح ذلك ، فيرجى الاتصال بالدعم عبر الدردشة المباشرة أو %{support_email}
         title: فشل الطلب الأخير
       submit: إرسال
       warning: تحذير
@@ -1899,7 +1902,6 @@ ar:
       select: اختار
       selected: المحدد
       subject: موضوع
-      total: مجموع
       view_as: عرض ك
     tooltips:
       hide: أخفى
@@ -2006,7 +2008,7 @@ ar:
 
           تم تغيير كلمة المرور الخاصة بك.
 
-          إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على mte.support@mercer.com
+          إذا لم تقدم هذا الطلب، فيرجى الاتصال بالدعم على الفور على %{support_contact_email}
         regards: |-
           يتعلق
           فريق Lighthouseة
@@ -2151,6 +2153,7 @@ ar:
       max_generation_limit: تم تجاوز الحد الأقصى للتوليد ، اتصل بإدارتك.
     assessments:
       timed_out: لن تتمكن من إجراء تقييم %{assessment_name} نظرًا لانتهاء المهلة المحددة له.
+    csrf_retry: يرجى المحاولة مرة أخرى
     equal_to_current_password: يجب أن تكون مختلفة عن كلمة المرور الحالية.
     equal_to_email: يجب أن تكون مختلفة عن البريد الإلكتروني.
     error: الخطأ
@@ -2361,7 +2364,6 @@ ar:
     error_warning: عفوا ، حدث خطأ ما في تقييمك. يرجى الاتصال بالدعم.
     hogan:
       cannot_start: لا يمكنك بدء تقييم هوجان الآن. يرجى المحاولة بعد بضع دقائق.
-    lighthouse_app: منارة ميرسر
     login: تسجيل الدخول
     maintenance:
       notification: سيتم تعطيل Lighthouseة للصيانة المجدولة في غضون 60 ثانية
@@ -2981,8 +2983,6 @@ ar:
     zh-HK: الصينية (هونغ كونغ)
     zh-Hant: الصينية - التقليدية
     zh-TW: الصينية (تايوان)
-  languages_localized:
-    sl: Slovenščina
   license_usage:
     campaign_name: اسم الحملة
     status_updated_at: آخر تحديث للحالة
@@ -3043,12 +3043,11 @@ ar:
           invalid: يجب أن يكون النطاق 'مفتوحا'
   mailer:
     copyright:
-      text: جميع الحقوق محفوظة Lighthouse
+      text: "© %{year} %{display_name}. جميع الحقوق محفوظة"
     footer:
       regards: مع أطيب التحيات،
-      team_name: فريق Lighthouse
+      team_name: فريق %{display_name}
       technical_support: لأي مشاكل تقنية، يرجى الكتابة إلينا على %{email} وسنرد خلال 24 ساعة.
-    from: مؤسسة المواهب
     idp:
       manager_unread_comments:
         body: |-
@@ -3105,8 +3104,6 @@ ar:
         instructions: انقر على الرابط أدناه لتسجيل الدخول إلى Lighthouse.
         signin_link: رابط تسجيل الدخول
       subject: رابط تسجيل الدخول إلى Lighthouse
-    powered_by:
-      text: مدعوم من Lighthouse
     users:
       account_disable: تم تعطيل حسابك بسبب عدم النشاط
       warning: سيتم تعطيل حسابك قريبا بسبب عدم النشاط
@@ -4169,7 +4166,6 @@ ar:
     admins: المسؤولون
     create_global_assessor: إنشاء مقيم عالمي
     create_superadmin: إنشاء مشرف متميز
-    dashboard: لوحه القياده
     drawer:
       link: رابط
       role: دور

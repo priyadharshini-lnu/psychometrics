@@ -1,6 +1,6 @@
 div class=(['center', 'box', 'devise', 'upgrade'].compact.join(' '))
   div style="text-align: center;"
-    = image_tag 'tteLogo.svg', alt: 'The Talent Enterprise logo', style: 'width: 160px; margin-bottom: 30px;'
+    = image_tag 'tteLogo.svg', alt: "#{Branding.display_name} logo", style: 'width: 160px; margin-bottom: 30px;'
   .unsupported-browsers
     .icon = image_tag("browsers/not_supported.svg")
     .message = t('browsers.support.message')

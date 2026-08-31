@@ -1,12 +1,12 @@
 import { Flex } from 'antd'
 import cs from 'classnames'
 import bg from '../../../assets/MainBackground.png'
-import mercer from '../../../assets/MercerLogo.svg'
 import styles from './Last.less'
 import Page from '../../Page'
 import { useTemplate } from '~/modules/idpReport/hooks/useIdpData'
 import { usePageFontStyles } from '~/modules/idpReport/hooks/usePageFontStyles'
 import { useI18n } from '~/modules/idpReport/I18nContext'
+import { wordmarkWhiteUrl } from '~/utils/branding'
 
 
 const Last = ({ rtl }) => {
@@ -27,7 +27,7 @@ const Last = ({ rtl }) => {
         />
         {(logo_type === 'both' || logo_type === 'mercer_only') && (
           <div className={styles.mercerLogo}>
-            <img src={mercer} />
+            <img src={wordmarkWhiteUrl()} />
           </div>
         )}
         {client_logo && (logo_type === 'both' || logo_type === 'client_only') && (

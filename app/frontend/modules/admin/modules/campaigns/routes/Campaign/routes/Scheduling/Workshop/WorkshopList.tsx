@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Row, Avatar, Button, Space, Dropdown, message,
+  Avatar, Button, Space, Dropdown, message,
 } from 'antd'
 import {
   useLocation, useNavigate, Link, useParams,
@@ -13,9 +13,11 @@ import {
 import dayjs from '~/utils/dayjs'
 import { Workshop, WorkshopTR } from '~/modules/admin/modules/campaigns/core/workshop'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { ResourceAvatar, DatePickerWithRanges, DateTimeWithZone } from '~/glint'
 import { setData } from '~/modules/admin/core/ui/temp'
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -48,7 +50,12 @@ export const WorkshopList: React.FC = () => {
 
   return (
     <>
-      <Resource config={config} name="workshops">
+      <Resource
+        title={I18n.t('admin.scheduling_tabs_assessment_center')}
+        config={config}
+        name="workshops"
+        settingsKey={TABLE_SETTINGS_KEYS.campaignSchedulingAssessmentCenters}
+      >
         <Filter openForm={openForm} />
         <Resource.Table pagination>
           <Resource.Column<Workshop>
@@ -61,13 +68,15 @@ export const WorkshopList: React.FC = () => {
           <Resource.Column<Workshop>
             title={I18n.t('shared.name')}
             id="name"
+            hideable={false}
             minWidth={150}
             render={(_, { id, name }) => (
-              <Link to={`${id}`} state={{ search: location.search }}>
+              <Link to={`${id}/subjects`} state={{ search: location.search }}>
                 {name}
               </Link>
             )}
             sorter
+            fixed="left"
           />
           <Resource.Column<Workshop>
             title={I18n.t('admin.scheduling_columns_start_time')}
@@ -114,6 +123,7 @@ export const WorkshopList: React.FC = () => {
           <Resource.Column<Workshop>
             title={I18n.t('shared.action')}
             id="action"
+            hideable={false}
             width={100}
             render={(_, workshop) => <Menu workshop={workshop} />}
             fixed="right"
@@ -142,7 +152,7 @@ const MenuComponent = ({ workshop, setData }) => {
       resource.fetch()
       message.success(I18n.t('admin.workshop_actions_remove_workshop'))
     }).catch((error) => {
-      message.error(error.base[0].title)
+      message.error(baseErrorMessage(error))
     })
   }
 
@@ -247,18 +257,12 @@ const WorkshopDatePicker = () => {
   }
 
   return (
-    <Row
-      justify="space-between"
-      align="middle"
-      className="pt-4 pb-4 ps-4 pe-4"
-    >
-      <DatePickerWithRanges
-        allowClear={false}
-        onChange={onDateChange}
-        format="DD/MMM/YYYY"
-        defaultValue={[initialStartDate, initialEndDate]}
-      />
-    </Row>
+    <DatePickerWithRanges
+      allowClear={false}
+      onChange={onDateChange}
+      format="DD/MMM/YYYY"
+      defaultValue={[initialStartDate, initialEndDate]}
+    />
   )
 }
 

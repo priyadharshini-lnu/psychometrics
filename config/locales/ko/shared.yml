@@ -55,6 +55,7 @@ ko:
     copied_successfully: 복사되었습니다
     copied_to_clipboard: 클립보드에 복사됨
     copy: 복사
+    copyright: "© %{year} %{display_name}. 모든 권리 보유."
     create: 만들기
     created_at: 만든 곳
     created_by: 만든 사람
@@ -181,6 +182,29 @@ ko:
     remove: 제거
     removed: 제거됨
     replace: 교체
+    reports:
+      ai_rationale_evidence:
+        all_factors: 모든 요소
+        factor_label: 요인
+        hide_evidence: 증거를 숨기다
+        hide_rationale: 이유 숨기기
+        no_data: 선택한 질문에 대한 AI 근거 또는 증거 데이터가 없습니다.
+        no_question_selected: AI가 제시하는 추론 과정과 근거를 보려면 질문을 선택하세요.
+        question_label: 질문
+        select_question: 질문을 선택하세요
+      ai_transcript:
+        no_data: 선택한 질문에 대한 녹취록 데이터가 없습니다.
+        no_question_selected: 질문을 선택하시면 해당 질문의 답변을 보실 수 있습니다.
+        question_label: 질문
+        select_question: 질문을 선택하세요
+    reports_bar_gradient_direction: 경사 방향
+    reports_bar_gradient_direction_bottom_to_top: 아래에서 위로
+    reports_bar_gradient_direction_left_to_right: 왼쪽에서 오른쪽으로
+    reports_bar_gradient_direction_right_to_left: 오른쪽에서 왼쪽으로
+    reports_bar_gradient_direction_top_to_bottom: 위에서 아래로
+    reports_bar_gradient_enabled: 그라디언트 활성화
+    reports_bar_gradient_end_color: 끝 색상
+    reports_bar_gradient_start_color: 시작 색상
     reports_show_values_inside_bar: 막대 내부의 값 표시
     reports_value_label_position: 값 레이블 위치
     reports_value_label_position_center: 중앙
@@ -218,6 +242,7 @@ ko:
     switch_to_laptop_or_desktop: 노트북 또는 데스크톱으로 전환
     system_check_uploading: 업로드 중
     table:
+      collapse: 무너지다
       entries:
         selected:
           one: 1행 선택됨
@@ -226,6 +251,7 @@ ko:
           one: '합계 : 1'
           other: '합계 : {{count}}'
           zero: '합계 : 0'
+      expand: 확장하다
     tags: 태그
     terms_conditions_privacy: 개인정보 처리방침
     tools: 도구

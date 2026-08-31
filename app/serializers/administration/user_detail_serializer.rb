@@ -51,7 +51,7 @@ module Administration
         :saville_user_assessment,
         :simulation_user_assessment,
         :project_assessments,
-        assessment: [:norms]
+        assessment: %i[owner norms]
       )
 
       unless current_user.has_permission?(
@@ -70,7 +70,7 @@ module Administration
     def user_reports
       user_reports = object.user_reports.with_attached_pdf_file.where(
         campaign: campaign
-      ).includes(:report, :report_family)
+      ).includes(:report_family, report: :owner)
       Panko::ArraySerializer.new(
         user_reports,
         each_serializer: Administration::UserReportSerializer,

@@ -1,5 +1,3 @@
 div#three-sixty-container
 
-javascript [nonce=content_security_policy_nonce]:
-  window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
 = vite_javascript_tag 'entrypoints/admin/threesixty_campaign.jsx'

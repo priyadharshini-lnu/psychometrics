@@ -11,8 +11,8 @@ import {
 } from '~/modules/admin/modules/UserAvailability/core/userAvailabilityDates'
 import { ScheduleAvailability } from '~/glint'
 import { ErrorMessage } from '~/glint/components/ScheduleAvailability/interfaces'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { CountDisplay } from '~/components/CountDisplay'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -88,71 +88,62 @@ const AvailabilityListing = () => {
   }
 
   return (
-    <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin/user_availability',
-            label: () => I18n.t('admin.availability'),
-          },
-        ]}
-      />
-      <Layout.Content>
-        <Row
-          justify="space-between"
-          align="middle"
-          className="pt-4 pb-4 ps-4 pe-4"
-        >
-          <Col>
-            <CountDisplay
-              totalCount={meta.recordCount}
-              isLoading={isLoading('fetch')}
+    <Layout.Content>
+      <DocumentTitle text={I18n.t('admin.availability')} />
+      <Row
+        justify="space-between"
+        align="middle"
+        className="pt-4 pb-4 ps-4 pe-4"
+      >
+        <Col>
+          <CountDisplay
+            totalCount={meta.recordCount}
+            isLoading={isLoading('fetch')}
+          />
+        </Col>
+        <Col>
+          <Space>
+            <Button
+              type="primary"
+              disabled={showNewScheduleForm}
+              onClick={() => setShowNewScheduleForm(true)}
+            >
+              <PlusOutlined />
+              {I18n.t('frontend.availability.add_new_availability')}
+            </Button>
+          </Space>
+        </Col>
+      </Row>
+      <Row className="p-10">
+        <Col lg={24} xxl={18}>
+          {showNewScheduleForm && (
+            <ScheduleAvailability
+              id="new"
+              onFormSubmit={data => handleCreate(data)}
+              className="mb-10"
+              collapsed={false}
+              removable={userAvailabilityDates.length > 0}
+              onRemove={() => setShowNewScheduleForm(false)}
+              errorMessages={errors?.newForm}
             />
-          </Col>
-          <Col>
-            <Space>
-              <Button
-                type="primary"
-                disabled={showNewScheduleForm}
-                onClick={() => setShowNewScheduleForm(true)}
-              >
-                <PlusOutlined />
-                {I18n.t('frontend.availability.add_new_availability')}
-              </Button>
-            </Space>
-          </Col>
-        </Row>
-        <Row className="p-10">
-          <Col lg={24} xxl={18}>
-            {showNewScheduleForm && (
-              <ScheduleAvailability
-                id="new"
-                onFormSubmit={data => handleCreate(data)}
-                className="mb-10"
-                collapsed={false}
-                removable={userAvailabilityDates.length > 0}
-                onRemove={() => setShowNewScheduleForm(false)}
-                errorMessages={errors?.newForm}
-              />
-            )}
-            {userAvailabilityDates.map((userAvailabilityDate, index) => (
-              <ScheduleAvailability
-                id={userAvailabilityDate.id}
-                key={userAvailabilityDate.id}
-                onFormSubmit={data => handleUpdate({ ...data, id: userAvailabilityDate.id })}
-                initialAvailability={
-                { ...userAvailabilityDate, availabilityDays: userAvailabilityDate.userAvailabilityDays }
-              }
-                onRemove={id => handleOnRemove(id)}
-                collapsed={false}
-                className={`${index !== 0 ? 'mt-10' : ''}`}
-                errorMessages={errors[userAvailabilityDate.id]}
-              />
-            ))}
-          </Col>
-        </Row>
-      </Layout.Content>
-    </>
+          )}
+          {userAvailabilityDates.map((userAvailabilityDate, index) => (
+            <ScheduleAvailability
+              id={userAvailabilityDate.id}
+              key={userAvailabilityDate.id}
+              onFormSubmit={data => handleUpdate({ ...data, id: userAvailabilityDate.id })}
+              initialAvailability={
+              { ...userAvailabilityDate, availabilityDays: userAvailabilityDate.userAvailabilityDays }
+            }
+              onRemove={id => handleOnRemove(id)}
+              collapsed={false}
+              className={`${index !== 0 ? 'mt-10' : ''}`}
+              errorMessages={errors[userAvailabilityDate.id]}
+            />
+          ))}
+        </Col>
+      </Row>
+    </Layout.Content>
   )
 }
 

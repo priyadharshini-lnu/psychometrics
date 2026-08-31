@@ -103,6 +103,7 @@ vi:
     ai_scoring_approval_stale_description: Các thay đổi về cấu hình kể từ lần chạy gần nhất có thể đã làm thay đổi điểm số. Hãy tính lại điểm để cập nhật điểm số dựa trên các cài đặt mới nhất.
     ai_scoring_approval_stale_title: Điểm số có thể đã lỗi thời
     ai_scoring_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
+    ai_scoring_errors_label: Lỗi chấm điểm của AI
     ai_scoring_refresh_score: Cập nhật điểm số
     ai_scoring_refresh_score_confirm_description: Thao tác này sẽ thực hiện lại việc chấm điểm bằng AI cho bài đánh giá này dựa trên cấu hình mới nhất. Bạn có chắc chắn không?
     ai_scoring_refresh_score_confirm_title: Cập nhật điểm AI?
@@ -122,6 +123,12 @@ vi:
     alt_text_long: Vượt quá giới hạn tối đa là 100 ký tự.
     api_keys: Khóa API
     api_keys_form_title: Khóa API
+    appearance: Vẻ bề ngoài
+    appearance_dark: Tối tăm
+    appearance_dark_theme: Chủ đề tối
+    appearance_light: Ánh sáng
+    appearance_light_theme: Chủ đề sáng
+    appearance_system: Hệ thống
     application: Ứng dụng
     application_add: Thêm ứng dụng
     application_name: Tên ứng dụng
@@ -131,7 +138,6 @@ vi:
     application_settings_at_least_one_url_required: Vui lòng bật ít nhất một mục URL trước khi bật tính năng cho phép URL vào danh sách trắng.
     application_settings_confirm_delete_ip: Bạn có chắc chắn muốn xóa địa chỉ IP này không?
     application_settings_confirm_delete_url: Bạn có chắc chắn muốn xóa URL này không?
-    application_settings_edit_ip_address: Chỉnh sửa địa chỉ IP / Phạm vi CIDR
     application_settings_enable_ip_whitelisting: Bật tính năng danh sách trắng IP
     application_settings_enable_url_whitelisting: Bật danh sách trắng URL
     application_settings_invalid_ip_format: Địa chỉ IP hoặc định dạng CIDR không hợp lệ
@@ -195,6 +201,8 @@ vi:
     assessor_add_subject_modal_subject: Chủ thể
     assessor_add_subject_modal_subject_placeholder: Chủ đề tìm kiếm..
     assessor_add_subject_modal_title: Thêm chủ đề
+    assessor_assessment_drawer_title: Chi tiết đánh giá
+    assessor_assessment_id: Mã số đánh giá của người thẩm định
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Chọn đánh giá
     assessor_assessment_name: Đánh giá của người đánh giá
     assessor_assessments: Đánh giá của người đánh giá
@@ -345,9 +353,15 @@ vi:
     campaign_assessment_modals_update_occupation_condition_set_select: Chọn Bộ điều kiện nghề nghiệp
     campaign_assessment_modals_update_occupation_condition_set_success_msg: Bộ điều kiện nghề nghiệp đã được cập nhật thành công
     campaign_assessment_modals_update_occupation_condition_set_title: Cập nhật Bộ điều kiện nghề nghiệp
+    campaign_dashboard_instructions_label: Hướng dẫn sử dụng bảng điều khiển chiến dịch
+    campaign_dashboard_instructions_save: Lưu hướng dẫn
+    campaign_dashboard_instructions_save_error: Không thể lưu hướng dẫn bảng điều khiển chiến dịch.
+    campaign_dashboard_instructions_save_success: Hướng dẫn bảng điều khiển chiến dịch đã được lưu thành công.
     campaign_factors: Các yếu tố chiến dịch
     campaign_id_placeholder: Nhập mã chiến dịch
     campaign_name: Tên chiến dịch
+    campaign_name_translations: Bản dịch tên chiến dịch
+    campaign_name_translations_fetch_error: Lỗi khi tải bản dịch tên chiến dịch
     campaign_report_generate_modal_subtitle: Chọn ngôn ngữ cần thiết cho từng báo cáo.
     campaign_report_id: Mã báo cáo chiến dịch
     campaign_results_export_details: Các sản phẩm trí tuệ nhân tạo (AI) của chiến dịch đã tạo ra kết quả.
@@ -419,6 +433,7 @@ vi:
     category: Loại
     cell_save_msg: Các thay đổi hợp lệ sẽ được lưu tự động ngay khi bạn rời khỏi ô sau khi chỉnh sửa.
     change_reason: Lý do thay đổi
+    change_report_dates_message: Bạn có muốn thay đổi phạm vi ngày của báo cáo không?
     change_score: Điểm số đã thay đổi
     change_score_log: Nhật ký thay đổi điểm số
     characters: nhân vật
@@ -513,6 +528,7 @@ vi:
     created_successfully: Trợ lý AI đã được tạo thành công.
     current: Dòng
     current_job_role: Vai trò công việc hiện tại
+    current_locale: Ngôn ngữ hiện tại
     custom_formula: Công thức tùy chỉnh
     custom_message_description: Thông báo này có thể được gửi cho bất kỳ ai tham gia đánh giá
     custom_message_name: Tin nhắn tùy chỉnh
@@ -663,7 +679,7 @@ vi:
     dimensions_import_modal_import_dimension: Kích thước nhập khẩu
     dimensions_import_modal_import_scheduled: Nhập theo lịch trình
     dimensions_import_modal_operation: Hoạt động
-    dimensions_import_modal_owner_global: TTE (Toàn cầu)
+    dimensions_import_modal_owner_global: Toàn cầu
     dimensions_import_modal_owner_input_validation: Vui lòng chọn chủ sở hữu.
     dimensions_import_modal_owner_select: Chọn chủ sở hữu
     dimensions_import_modal_select_json: Chọn tệp JSON
@@ -680,6 +696,7 @@ vi:
     disable_dp: Không cho phép xử lý dữ liệu thêm
     disable_proctoring: Tắt tính năng giám sát
     disable_report_download: Tắt tính năng tải xuống báo cáo
+    disable_transcript_download: Tắt tính năng tải xuống bản ghi
     disallow_lead_assessor_moderation: Không cho phép Trưởng ban đánh giá thực hiện việc kiểm duyệt
     disallow_lead_assessor_moderation_info: Điểm số sẽ được tính tự động dựa trên tất cả các biểu mẫu do người đánh giá gửi lên và người đánh giá chính không thể thay đổi điểm số này từ màn hình kiểm duyệt
     discard_all_questions: Đặt lại tất cả câu hỏi
@@ -831,10 +848,13 @@ vi:
     feature_flags_ai_group: Tính năng Trí tuệ Nhân tạo
     feature_flags_communication_group: Giao tiếp
     feature_flags_platform_group: Tính năng của nền tảng
+    feature_flags_superadmin_group: Xác định phạm vi thuê nhà
+    feature_glint_ui_description: Tối ưu hóa trải nghiệm người tham gia bằng hệ thống thiết kế Glint.
     feature_global_skills_description: Truy cập thư viện kỹ năng toàn cầu để thực hiện đánh giá.
     feature_idp_description: Kích hoạt Kế hoạch Phát triển Cá nhân cho các thành viên tham gia.
     feature_not_available: Tính năng này hiện không khả dụng
     feature_sms_notification_description: Bật thông báo SMS cho lời mời và nhắc nhở chiến dịch.
+    feature_superadmin_tenant_scoping_description: Khi bị vô hiệu hóa, các truy vấn quản trị viên cấp cao sẽ không được giới hạn phạm vi đối với dữ liệu của khách hàng này.
     fields_level: Mức
     fields_level_description: Mô tả cấp độ
     fields_level_name: Tên cấp độ
@@ -866,6 +886,7 @@ vi:
     form_datasheet: Bảng dữ liệu
     form_datasheet_columns: Cột bảng dữ liệu
     form_end_date: Ngày kết thúc
+    form_fields_to_display: Các trường cần hiển thị
     form_include_all_datasheet_columns: Bao gồm tất cả các cột biểu dữ liệu
     form_name: Tên
     form_no_assessment_selected: Chưa có đánh giá nào được thêm vào. Nhấp vào "Thêm" để bắt đầu.
@@ -890,8 +911,11 @@ vi:
     generate_transcription: Tạo bản chép lời
     generated_at_time: Được tạo tại %{time}
     generated_value: Giá trị được tạo ra
+    glint_ui: Giao diện người dùng Glint
+    glint_ui_disabled_by_client: Giao diện Glint UI đã bị vô hiệu hóa bởi máy khách.
     global_skills: Kỹ năng toàn cầu
     global_skills_disabled_by_client: Kỹ năng toàn cầu bị vô hiệu hóa bởi khách hàng
+    go_back: Mặt sau
     grant_type_label: Loại tài trợ
     grant_type_name: oauth_grant_type
     graphic: Đồ họa
@@ -906,6 +930,7 @@ vi:
     header_logout_title: Bạn có chắc chắn muốn đăng xuất.
     hide_all: Ẩn tất cả
     hide_middle_scores: Ẩn điểm số trung bình
+    hide_participant_video: Ẩn video của người tham gia
     high: Cao
     hogan: Hogan
     hogan_assessment: Đánh giá Hogan
@@ -1251,6 +1276,7 @@ vi:
     key_id: Mã định danh
     keywords: Từ khóa
     keywords_placeholder: Nhập các từ khóa cách nhau bằng dấu phẩy.
+    language: Ngôn ngữ
     language_id: Mã ngôn ngữ
     last_name_required: Họ là bắt buộc
     lead_assessment: Đánh giá khách hàng tiềm năng
@@ -1488,6 +1514,8 @@ vi:
     owner_resource_norm: chuẩn mực
     owner_resource_report: báo cáo
     owner_resource_report_bundle: gói báo cáo
+    page_load_failed: Trang này không thể tải được.
+    page_load_failed_hint: Ứng dụng có thể đã được cập nhật — hãy tải lại trang để tiếp tục.
     parsed_dependencies_help: Các phần phụ thuộc được phân tích cú pháp cho người dùng được Trợ lý AI sử dụng để tạo kết quả tạo tác
     parsed_dependencies_title: Các phụ thuộc được phân tích cú pháp
     parsed_dependencies_view: Xem các phần phụ thuộc được phân tích cú pháp
@@ -1949,6 +1977,7 @@ vi:
     piped_text_modal_title: Thêm văn bản đường ống
     piped_text_modal_user_reports: Báo cáo của người dùng
     piped_text_modal_users: Người dùng
+    platform_owner: Platform
     playground: Sân chơi
     playground_info: Kiểm tra cấu phần phần mềm của bạn với dữ liệu mẫu để xem trước kết quả được tạo.
     playground_placeholder: Nhập dữ liệu thử nghiệm
@@ -2102,6 +2131,7 @@ vi:
     projects_mettl_schedule_records_secure_browser_enabled: Bật trình duyệt bảo mật
     projects_mettl_schedule_records_settings: Cài đặt
     projects_mettl_schedule_records_show_remaining_counts: Bật hiển thị số lượng còn lại
+    projects_mettl_schedule_records_title: Lịch trình Mettl
     projects_mettl_schedule_records_visual_proctoring_enabled: Bật giám sát trực quan
     projects_mettl_schedule_records_web_proctoring_enabled: Bật giám sát web
     projects_profile_settings_form_fields_enabled: Kích hoạt
@@ -2179,6 +2209,38 @@ vi:
     raw_score: Điểm thô
     reason_for_changes: Lý do thay đổi
     recents: Các bài viết gần đây
+    record_history_changes: thay đổi
+    record_history_changes_in_request: những thay đổi trong yêu cầu này
+    record_history_date_range_invalid: Ngày kết thúc phải trùng hoặc sau ngày bắt đầu.
+    record_history_date_range_required: Vui lòng chọn khoảng thời gian.
+    record_history_date_range_too_large: Khoảng thời gian không được vượt quá %{days} ngày. Vui lòng thu hẹp phạm vi tìm kiếm.
+    record_history_filter_actor: Lọc theo email diễn viên
+    record_history_filter_field: Lọc theo trường đã thay đổi
+    record_history_filter_type: Lọc theo loại bản ghi
+    record_history_id_required: Vui lòng nhập mã số hồ sơ.
+    record_history_include_related: Bao gồm các hồ sơ liên quan
+    record_history_last_30_days: 30 ngày qua
+    record_history_last_7_days: 7 ngày qua
+    record_history_no_results: Không tìm thấy lịch sử thay đổi nào cho bản ghi này.
+    record_history_no_results_for: Không tìm thấy thay đổi nào cho
+    record_history_records_changed: hồ sơ đã thay đổi
+    record_history_related_tag: Có liên quan
+    record_history_request_banner: Hiển thị tất cả các thay đổi trong yêu cầu
+    record_history_request_label: 'Lời yêu cầu:'
+    record_history_request_or_record_required: Nhập UUID của yêu cầu hoặc chọn loại bản ghi và ID.
+    record_history_request_uuid: Yêu cầu UUID
+    record_history_request_uuid_placeholder: Nhập UUID yêu cầu
+    record_history_revision_failed: Không thể tải trạng thái bản ghi cho phiên bản này.
+    record_history_search_hint: Nhập UUID của yêu cầu, hoặc chọn loại bản ghi và ID bản ghi để theo dõi lịch sử thay đổi.
+    record_history_select_type: Chọn loại bản ghi
+    record_history_state_at_version: Trạng thái tại phiên bản
+    record_history_system: Hệ thống
+    record_history_title: Lịch sử thay đổi bản ghi
+    record_history_type_required: Vui lòng chọn loại bản ghi
+    record_history_version: Phiên bản
+    record_history_view_audit_log: Xem trong Nhật ký Kiểm toán
+    record_history_view_full: Xem toàn bộ lịch sử
+    record_history_view_request: Xem yêu cầu
     record_id: ID bản ghi
     recordings: Ghi
     reflection_questions: Câu hỏi suy ngẫm
@@ -2294,6 +2356,7 @@ vi:
     report_no_evaluations: Báo cáo cho %{user} không có sẵn - không nhận được đánh giá.
     report_not_generated: Báo cáo cho %{user} đáp ứng các điều kiện khả dụng nhưng chưa được tạo. Vui lòng tạo báo cáo trước.
     report_on_hold: Báo cáo cho %{user} hiện đang bị tạm dừng
+    report_owner: Người sở hữu
     report_pdf_status: Trạng thái báo cáo PDF
     report_review_abort_qc: Hủy bỏ QC
     report_review_approve: Chấp nhận
@@ -2314,10 +2377,12 @@ vi:
     report_types:
       active_clients_projects: Khách hàng và dự án đang triển khai
       campaign_factor_scores: Điểm số các yếu tố chiến dịch
+      campaign_user_creation: Tạo người dùng chiến dịch
       client_assessment_counts: Việc đánh giá khách hàng rất quan trọng
       hogan_usage_report: Việc sử dụng công cụ đánh giá Hogan
       json_data_report: Báo cáo dữ liệu JSON
       pearson_usage_report: Việc sử dụng các bài kiểm tra của Pearson
+      proctoring_sessions: Các buổi giám sát thi
       report_usage_summary: Tóm tắt báo cáo về tình hình sử dụng
       saville_usage_report: Cách sử dụng công cụ đánh giá Saville
       user_access_review: Kiểm tra quyền truy cập của người dùng
@@ -2377,6 +2442,17 @@ vi:
     role_project_admin: Quản trị dự án
     role_superadmin: Quản trị viên cao cấp
     run: Chạy
+    runtime_configuration_invalid_json_object: runtime_configuration phải là một đối tượng JSON hợp lệ.
+    runtime_configuration_invalid_parameter: không phải là tham số có thể cập nhật trong quá trình chạy.
+    runtime_parameter_date_range_required: Vui lòng chọn cả Ngày bắt đầu và Ngày kết thúc.
+    runtime_parameter_editable_section_title: Khoảng thời gian
+    runtime_parameter_filter_column: Lọc
+    runtime_parameter_locked_section_title: Các bộ lọc đi kèm
+    runtime_parameter_modal_subtitle: Xem lại chi tiết và cập nhật phạm vi ngày nếu cần.
+    runtime_parameter_modal_title: Chạy báo cáo
+    runtime_parameter_not_set: Không được cung cấp
+    runtime_parameter_submit_button: Chạy ngay
+    runtime_parameter_value_column: Giá trị
     saml_idp_certificate_available: Có sẵn (bấm để sao chép)
     saml_idp_certificate_label: Chứng chỉ
     saml_idp_entity_id_label: ID thực thể/Tổ chức phát hành
@@ -2451,11 +2527,16 @@ vi:
       approval_status_in: Tình trạng phê duyệt
       approver_user_id_in: Người phê duyệt
       assessment_id_in: Đánh giá
+      assessment_name_cont: Đánh giá
       campaign_id_in: Chiến dịch
+      campaign_name_cont: Chiến dịch
       client_id_in: Khách hàng
+      client_name_cont: Khách hàng
       project_id_in: Dự án
+      project_name_cont: Dự án
       qc_user_id_in: Người dùng QC
       report_id_in: Báo cáo
+      report_name_cont: Báo cáo
       subject_email_cont: Tiêu đề email
       subject_full_name_cont: Tên môn học
       user_email_cont: Email người dùng
@@ -2511,6 +2592,7 @@ vi:
     scheduling_columns_start_time: Ngày giờ
     scheduling_columns_subject: Chủ thể
     scheduling_columns_title: Tiêu đề
+    scheduling_columns_video_hidden_for_privacy: Video đã được ẩn đi để bảo vệ quyền riêng tư của ứng viên.
     scheduling_columns_view_recording: Xem bản ghi
     scheduling_errors_assessor_already_assigned: Người đánh giá đã được chỉ định cho bài đánh giá này. Vui lòng chọn một đánh giá hoặc đánh giá khác.
     scheduling_errors_date_required: Vui lòng chọn ngày
@@ -2600,6 +2682,12 @@ vi:
     score: Điểm
     score_approval_not_allowed_to_approve: Bạn không được phép phê duyệt điểm số này.
     score_approval_not_allowed_to_discard: Bạn không được phép loại bỏ điểm số này.
+    score_approval_reset: Đặt lại phê duyệt
+    score_approval_reset_description: Thao tác này sẽ chuyển trạng thái phê duyệt trở lại trạng thái chờ xử lý. Điểm số sẽ không thay đổi. Hành động này không thể hoàn tác.
+    score_approval_reset_not_allowed: Trạng thái phê duyệt điểm này không thể được đặt lại ở trạng thái hiện tại.
+    score_approval_reset_recompute_description: Thao tác này sẽ đặt lại trạng thái phê duyệt, xóa điểm AI khỏi kết quả của người dùng và xóa mọi báo cáo đã tạo. Hành động này không thể hoàn tác.
+    score_approval_reset_success: Quá trình phê duyệt điểm số đã được thiết lập lại.
+    score_approval_reset_title: Đặt lại phê duyệt điểm số?
     score_definition_placeholder: Nhập định nghĩa cho mức điểm này.
     score_definitions: Định nghĩa điểm số
     score_max: Điểm tối đa
@@ -2831,6 +2919,7 @@ vi:
     sheets_tabs_settings: Cài đặt
     show_all: Hiển thị tất cả
     show_all_assessment_responses: Hiển thị tất cả phản hồi đánh giá
+    show_form_field_titles: Hiển thị tiêu đề trường biểu mẫu
     show_middle_scores: Hiển thị thêm điểm số của "%{count}" (tùy chọn)...
     show_original: Hiển thị bản gốc
     show_submenu: Hiển thị menu phụ
@@ -2948,7 +3037,14 @@ vi:
     smtp_settings_user_name: Tên người dùng
     specialty_questions: Các câu hỏi chuyên sâu
     sso_email_mismatch: Bạn đang đăng nhập vào một tài khoản khác trên nhà cung cấp dịch vụ xác thực. Vui lòng đăng xuất khỏi nhà cung cấp dịch vụ xác thực và thử lại.
+    sso_enforce_for: Bắt buộc sử dụng SSO cho
+    sso_enforce_for_all: Tất cả người dùng
+    sso_enforce_for_none: Không có
+    sso_enforce_for_specific_domains: Các miền cụ thể
     sso_enforced: Áp dụng SSO
+    sso_enforced_domains: Các miền được thực thi
+    sso_enforced_domains_hint: 'Ví dụ: se.com (khớp chính xác) hoặc *.se.com (chỉ dành cho tên miền phụ)'
+    sso_enforced_domains_placeholder: Nhập tên miền và nhấn Enter.
     sso_label: Đăng nhập một lần (SSO)
     sso_not_enabled: Chức năng SSO chưa được kích hoạt cho khách hàng này
     sso_settings: Cài đặt SSO
@@ -3063,11 +3159,15 @@ vi:
     success_title: Các trung tâm đánh giá được tạo ra
     success_update: Cài đặt thiết kế đã được lưu thành công
     suitability_id: Mã phù hợp
+    superadmin_tenant_scoping: Quản trị viên cấp cao
     superadmin_use_root_domain: Quản trị viên cấp cao phải đăng nhập qua miền chính
     switch_client: Chuyển đổi ứng dụng khách
     system_prompt: Nhắc nhở hệ thống
     tab_text_one: Thực đơn
     tab_text_two: Thực đơn con
+    table_display_columns: Cột
+    table_display_filters: Bộ lọc
+    table_display_title: Trưng bày
     table_more_actions: Hành động khác
     tabs_results: Kết quả
     tabs_settings: Cài đặt
@@ -3083,12 +3183,38 @@ vi:
     taxonomy_title: Phân loại kỹ năng
     template_and_campaign_required: Vui lòng cung cấp cả mẫu và ID chiến dịch
     template_render_failed: Không thể hiển thị mẫu
+    tenant_repair_confirm_message: 'Đặt tenant_id thành %{new_tenant} trên %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Đặt tenant_id thành null trên %{model} #%{id}?'
+    tenant_repair_confirm_title: Xác nhận cập nhật thông tin người thuê nhà
+    tenant_repair_correct: Chính xác
+    tenant_repair_current_tenant: Người thuê nhà hiện tại
+    tenant_repair_find_record: Tìm hồ sơ
+    tenant_repair_global_tenant: toàn cầu
+    tenant_repair_invalid_model: Loại mô hình không hợp lệ hoặc không thể cho thuê
+    tenant_repair_invalid_record_id: Nhập mã định danh bản ghi hợp lệ.
+    tenant_repair_invalid_tenant_id: Nhập mã số người thuê hợp lệ hoặc để trống để đặt là null.
+    tenant_repair_model_label: Người mẫu
+    tenant_repair_model_placeholder: Nhập để tìm kiếm...
+    tenant_repair_moved_from: 'Người thuê nhà đã thay đổi:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Mã số người thuê mới
+    tenant_repair_preview_title: Bản ghi xem trước
+    tenant_repair_request_failed: Yêu cầu không thành công
+    tenant_repair_resolved_tenant: Người thuê nhà đã được giải quyết
+    tenant_repair_success: Thông tin người thuê đã được cập nhật thành công.
+    tenant_repair_title: Sửa lỗi người thuê nhà
+    tenant_repair_update: Cập nhật
+    tenant_repair_will_set_null: Sẽ đặt tenant_id thành null
+    tenant_repair_will_set_value: Sẽ đặt tenant_id thành %{value}
     test_generate: Tạo thử nghiệm
     test_render: Kết xuất thử nghiệm
     test_render_tooltip: Kiểm tra mẫu lời nhắc của bạn với dữ liệu chiến dịch để kiểm tra nội dung sẽ được gửi đến trợ lý AI.
     text_danger: Văn bản (cảnh báo)
     text_success: Thông báo thành công
     text_warning: Văn bản (cảnh báo)
+    themes:
+      marsh-dark: Đầm lầy tối
+      marsh-light: Đèn đầm lầy
     this_field_is_required: Trường này là bắt buộc.
     threesixity_advance_settings_campaign_template: Mẫu chiến dịch
     threesixity_advance_settings_factors: Yếu tố
@@ -3110,6 +3236,7 @@ vi:
     threesixity_success: Chiến dịch Multi Rater đã được tạo thành công.
     threesixity_success_job: Công việc tạo Chiến dịch Multi Rater đã được lên lịch thành công.
     threesixty: Chiến dịch 360
+    threesixty_campaigns_instruction_visible_to_participants: Hãy cho người tham gia xem hướng dẫn này.
     threesixty_campaigns_mail_history_date: Ngày
     threesixty_campaigns_mail_history_download_details: Chi tiết tải xuống
     threesixty_campaigns_mail_history_emails_sent: Email đã gửi
@@ -3125,6 +3252,8 @@ vi:
     threesixty_campaigns_menu_report_menu_report_approval_title: Cài đặt phê duyệt báo cáo
     threesixty_campaigns_menu_report_menu_report_options_title: Tùy chọn báo cáo
     threesixty_campaigns_menu_report_title: Báo cáo
+    threesixty_campaigns_schedule_date_presets: Ngày theo lịch trình đã được thiết lập sẵn
+    threesixty_campaigns_send_reminders_automatically: Tự động gửi lời nhắc
     time_label: Thời gian
     time_zone: Múi giờ
     timed_label: 'Đã lên lịch: %{time_text}'
@@ -3177,7 +3306,6 @@ vi:
       title: Bản dịch
     translations_export_failure_msg: Lỗi khi xuất bản dịch
     translations_export_success_msg: Xuất các hành động phát triển đang được tiến hành.
-    tte: TTE
     type_by_skill: Theo kỹ năng
     type_by_skill_type: Theo loại kỹ năng
     type_default: Mặc định

@@ -2,15 +2,18 @@ import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { JobRolesFilters } from './JobRolesFilters'
 import { JobRolesTable } from './JobRolesTable'
 import { JobRolesFormModal } from './JobRolesFormModal'
 import Modals from '~/modules/admin/components/Modals'
 import { JobRolesImportModal } from './JobRolesImportModal'
 import { Tabs } from '../Tabs'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { getFeatures } from '~/core/config'
 import { RootState } from '~/core/reducers'
+import { DocumentTitle } from '~/components/DocumentTitle'
+
+const { I18n } = window
 
 const MODALS = {
   JobRolesFormModal,
@@ -27,8 +30,6 @@ const connecter = connect(
 )
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
-
-const { I18n } = window
 
 const JobRoles: React.FC<PropsFromRedux> = ({ features, openModal }) => {
   const { projectId } = useParams()
@@ -49,21 +50,14 @@ const JobRoles: React.FC<PropsFromRedux> = ({ features, openModal }) => {
 
   return (
     <>
-      {!projectId && (
-        <Breadcrumb
-          crumbs={[
-            {
-              link: () => '/admin',
-              label: () => I18n.t('admin.dashboard'),
-            },
-            {
-              label: () => I18n.t('admin.navigation_skills_taxonomy'),
-            },
-          ]}
-        />
-      )}
+      {!projectId && <DocumentTitle text={I18n.t('admin.job_roles')} />}
       { !projectId && <Tabs featureFlags={features} />}
-      <Resource config={config} name="job_roles">
+      <Resource
+        title={I18n.t('admin.job_roles')}
+        config={config}
+        name="job_roles"
+        settingsKey={TABLE_SETTINGS_KEYS.adminSkillsJobRoles}
+      >
         <JobRolesFilters openModal={openModal} />
         <JobRolesTable openModal={handleOpenModal} />
         <Modals modals={MODALS} />

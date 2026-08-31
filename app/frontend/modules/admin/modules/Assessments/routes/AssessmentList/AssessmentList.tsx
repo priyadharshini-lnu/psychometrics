@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import { Outlet } from 'react-router-dom'
 import { Resource } from '~/modules/admin/components/Resource'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { AssessmentTable } from './AssessmentTable'
 import { AssessmentFilter } from './AssessmentFilter'
 import { DetailsDrawer } from './DetailsDrawer'
 import { Tabs } from './Tabs'
 import { AssessmentFormModal } from './AssessmentFormModal'
 import { Assessment, AssessmentTR } from '~/modules/admin/modules/client/core/assessments'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -26,20 +28,14 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
 
   return (
     <>
-      <Breadcrumb
-        crumbs={[
-          {
-            link: () => '/admin',
-            label: () => I18n.t('assessments.dashboard'),
-          },
-          {
-            label: () => I18n.t('assessments.assessments'),
-          },
-        ]}
-      />
-      <Tabs />
-      <Resource config={config} name="assessments">
-        <AssessmentFilter openModal={() => closeModal(false)} />
+      <DocumentTitle text={I18n.t('assessments.assessments')} />
+      <Resource
+        title={I18n.t('assessments.assessments')}
+        config={config}
+        name="assessments"
+        settingsKey={TABLE_SETTINGS_KEYS.adminAssessments}
+        header={<AssessmentFilter openModal={() => closeModal(false)} />}
+      >
         <AssessmentTable openDrawer={setDrawerAssessment} />
         {!!drawerAssessment && (
           <DetailsDrawer
@@ -57,3 +53,13 @@ export const AssessmentList: React.FC<{ assessmentTab: string }> = ({ assessment
     </>
   )
 }
+
+export const AssessmentsLayout: React.FC = () => (
+  <>
+    <Tabs />
+    <Outlet />
+  </>
+)
+export const ActiveAssessments = () => <AssessmentList assessmentTab="active" />
+export const ArchivedAssessments = () => <AssessmentList assessmentTab="archived" />
+export const DeletedAssessments = () => <AssessmentList assessmentTab="deleted" />

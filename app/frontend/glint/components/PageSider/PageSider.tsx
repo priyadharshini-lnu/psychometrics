@@ -26,6 +26,8 @@ export type SiderMenuItem = MenuItem & {
   children?: MenuItem[]
 }
 
+export type PageSiderLogoSize = 'default' | 'medium' | 'compact'
+
 type PageSiderProps = {
   items: SiderMenuItem[]
   logo: string
@@ -38,6 +40,7 @@ type PageSiderProps = {
   openKeys?: string[]
   onSiderCollapse?: (collapsed: boolean) => void
   showMaintenanceAlert?: boolean
+  logoSize?: PageSiderLogoSize
 }
 
 export const PageSider: FC<PageSiderProps> = ({
@@ -52,6 +55,7 @@ export const PageSider: FC<PageSiderProps> = ({
   onOpenChange,
   logoLinkUrl,
   showMaintenanceAlert = false,
+  logoSize = 'default',
 }) => {
   const [menuCollapsed, setMenuCollapsed] = useState(false)
   const [drawerOpen, setDrawerOpen] = useState(false)
@@ -100,7 +104,14 @@ export const PageSider: FC<PageSiderProps> = ({
   const logoEle = (
     <div className={styles.logoContainer}>
       <Link to={logoLinkUrl || '/'}>
-        <img src={logo} className={styles.sidebarLogo} alt={logoAltText} />
+        <img
+          src={logo}
+          className={cs(styles.sidebarLogo, {
+            [styles.sidebarLogoMedium]: logoSize === 'medium',
+            [styles.sidebarLogoCompact]: logoSize === 'compact',
+          })}
+          alt={logoAltText}
+        />
       </Link>
     </div>
   )

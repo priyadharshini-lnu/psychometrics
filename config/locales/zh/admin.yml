@@ -103,6 +103,7 @@ zh:
     ai_scoring_approval_stale_description: 自上次运行以来，配置更新可能已导致评分发生变化。请重新评分以使用最新设置更新评分。
     ai_scoring_approval_stale_title: 分数可能已过时
     ai_scoring_approvals: AI评分审批
+    ai_scoring_errors_label: AI评分错误
     ai_scoring_refresh_score: 刷新分数
     ai_scoring_refresh_score_confirm_description: 这将使用最新配置重新运行该评估的 AI 评分。您确定吗？
     ai_scoring_refresh_score_confirm_title: 刷新 AI 评分？
@@ -122,6 +123,12 @@ zh:
     alt_text_long: 超过 100 个字符的最大限制。
     api_keys: API 密钥
     api_keys_form_title: 服务协议密钥
+    appearance: 外貌
+    appearance_dark: 黑暗的
+    appearance_dark_theme: 深色主题
+    appearance_light: 光
+    appearance_light_theme: 浅色主题
+    appearance_system: 系统
     application: 应用
     application_add: 添加应用程序
     application_name: 应用程序名称
@@ -131,7 +138,6 @@ zh:
     application_settings_at_least_one_url_required: 请先启用至少一个URL条目，然后再启用URL白名单。
     application_settings_confirm_delete_ip: 您确定要删除这个 IP 地址吗？
     application_settings_confirm_delete_url: 您确定要删除此网址吗？
-    application_settings_edit_ip_address: 编辑 IP 地址 / CIDR 范围
     application_settings_enable_ip_whitelisting: 启用 IP 白名单
     application_settings_enable_url_whitelisting: 启用网址白名单
     application_settings_invalid_ip_format: IP 地址或 CIDR 格式无效
@@ -195,6 +201,8 @@ zh:
     assessor_add_subject_modal_subject: 主题
     assessor_add_subject_modal_subject_placeholder: 搜索主题...
     assessor_add_subject_modal_title: 添加主题
+    assessor_assessment_drawer_title: 评估详情
+    assessor_assessment_id: 评估员评估 ID
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: 选择一项评估
     assessor_assessment_name: 评估员 评估
     assessor_assessments: 评估员 评估
@@ -345,9 +353,15 @@ zh:
     campaign_assessment_modals_update_occupation_condition_set_select: 选择职业状况集
     campaign_assessment_modals_update_occupation_condition_set_success_msg: "“占用状态集”已成功更新"
     campaign_assessment_modals_update_occupation_condition_set_title: 更新职业状态集
+    campaign_dashboard_instructions_label: 活动控制面板使用说明
+    campaign_dashboard_instructions_save: 保存说明
+    campaign_dashboard_instructions_save_error: 保存活动控制面板说明失败
+    campaign_dashboard_instructions_save_success: 活动控制面板说明已成功保存
     campaign_factors: 活动因素
     campaign_id_placeholder: 这时，活动ID
     campaign_name: 活动名称
+    campaign_name_translations: 活动名称翻译
+    campaign_name_translations_fetch_error: 获取活动名称翻译时出错
     campaign_report_generate_modal_subtitle: 为每份报告选择所需的语言
     campaign_report_id: 活动报告编号
     campaign_results_export_details: 活动人工智能生成物产出结果
@@ -419,6 +433,7 @@ zh:
     category: 类别
     cell_save_msg: 编辑完成后，只要离开单元格，有效的更改就会自动保存。
     change_reason: 变更原因
+    change_report_dates_message: 您想更改报告日期范围吗？
     change_score: 更改后的分数
     change_score_log: 变更评分记录
     characters: 字符
@@ -513,6 +528,7 @@ zh:
     created_successfully: AI 助手创建成功。
     current: 当前
     current_job_role: 当前工作角色
+    current_locale: 当前区域设置
     custom_formula: 自定义公式
     custom_message_description: 该信息可发送给参与评估的任何人
     custom_message_name: 自定义信息
@@ -663,7 +679,7 @@ zh:
     dimensions_import_modal_import_dimension: 进口尺寸
     dimensions_import_modal_import_scheduled: 计划导入
     dimensions_import_modal_operation: 运行
-    dimensions_import_modal_owner_global: TTE（全球）
+    dimensions_import_modal_owner_global: 全球
     dimensions_import_modal_owner_input_validation: 请选择业主
     dimensions_import_modal_owner_select: 选择所有者
     dimensions_import_modal_select_json: 选择 JSON 文件
@@ -680,6 +696,7 @@ zh:
     disable_dp: 不允许进一步处理数据
     disable_proctoring: 禁用监考功能
     disable_report_download: 禁用报告下载
+    disable_transcript_download: 禁用文字稿下载
     disallow_lead_assessor_moderation: 禁止首席评估员进行审核
     disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
     discard_all_questions: 重置所有问题
@@ -831,10 +848,13 @@ zh:
     feature_flags_ai_group: 人工智能功能
     feature_flags_communication_group: 沟通
     feature_flags_platform_group: 平台功能
+    feature_flags_superadmin_group: 租户范围界定
+    feature_glint_ui_description: 使用 Glint 设计系统呈现参与者体验
     feature_global_skills_description: 访问全球技能库进行评估
     feature_idp_description: 为参与者启用个人发展规划
     feature_not_available: 此功能不可用
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
+    feature_superadmin_tenant_scoping_description: 禁用后，超级管理员查询将不再局限于此客户端的数据。
     fields_level: 级别
     fields_level_description: 等级描述
     fields_level_name: 级别名称
@@ -866,6 +886,7 @@ zh:
     form_datasheet: 数据表
     form_datasheet_columns: 数据表列
     form_end_date: 结束日期
+    form_fields_to_display: 要显示的字段
     form_include_all_datasheet_columns: 包括所有数据表列
     form_name: 名称
     form_no_assessment_selected: 尚未添加任何评估。单击“添加”开始。
@@ -890,8 +911,11 @@ zh:
     generate_transcription: 生成转录文本
     generated_at_time: 生成时间%{time}
     generated_value: 产生的价值
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI 已被客户端禁用
     global_skills: 全球技能
     global_skills_disabled_by_client: 客户端禁用了全局技能
+    go_back: 后退
     grant_type_label: 赠款类型
     grant_type_name: oauth_grant_type
     graphic: 图形
@@ -906,6 +930,7 @@ zh:
     header_logout_title: 你确定要登出吗？
     hide_all: 隐藏全部
     hide_middle_scores: 隐藏中间分数
+    hide_participant_video: 隐藏参与者视频
     high: 高
     hogan: 霍根
     hogan_assessment: 霍根评估
@@ -1251,6 +1276,7 @@ zh:
     key_id: 密钥 ID
     keywords: 关键词
     keywords_placeholder: 请输入以逗号分隔的关键词。
+    language: 语言
     language_id: 语言代码
     last_name_required: 必须填写姓氏
     lead_assessment: 铅评估
@@ -1488,6 +1514,8 @@ zh:
     owner_resource_norm: 规范
     owner_resource_report: 报告
     owner_resource_report_bundle: 报告包
+    page_load_failed: 此页面无法加载。
+    page_load_failed_hint: 应用程序可能已更新——请重新加载以继续。
     parsed_dependencies_help: AI 助手用于生成项目结果的用户的解析依赖项
     parsed_dependencies_title: 解析的依赖项
     parsed_dependencies_view: 查看解析的依赖项
@@ -1949,6 +1977,7 @@ zh:
     piped_text_modal_title: 添加管道文字
     piped_text_modal_user_reports: 用户报告
     piped_text_modal_users: 用户
+    platform_owner: Platform
     playground: 操场
     playground_info: 使用示例数据测试您的项目，以预览生成的结果。
     playground_placeholder: 输入测试数据
@@ -2102,6 +2131,7 @@ zh:
     projects_mettl_schedule_records_secure_browser_enabled: 启用安全浏览器
     projects_mettl_schedule_records_settings: 设置
     projects_mettl_schedule_records_show_remaining_counts: 启用显示剩余计数
+    projects_mettl_schedule_records_title: 梅特尔时间表
     projects_mettl_schedule_records_visual_proctoring_enabled: 启用可视化监考
     projects_mettl_schedule_records_web_proctoring_enabled: 启用网络监考
     projects_profile_settings_form_fields_enabled: 已启用
@@ -2179,6 +2209,38 @@ zh:
     raw_score: 原始分数
     reason_for_changes: 变更原因
     recents: 最近
+    record_history_changes: 变化
+    record_history_changes_in_request: 此请求的变更
+    record_history_date_range_invalid: 结束日期必须等于或晚于开始日期。
+    record_history_date_range_required: 请选择日期范围。
+    record_history_date_range_too_large: 日期范围不能超过 %{days} 天。请缩小搜索范围。
+    record_history_filter_actor: 按演员邮箱筛选
+    record_history_filter_field: 按已更改字段筛选
+    record_history_filter_type: 按记录类型筛选
+    record_history_id_required: 请输入记录 ID
+    record_history_include_related: 包括相关记录
+    record_history_last_30_days: 过去30天
+    record_history_last_7_days: 过去7天
+    record_history_no_results: 未找到此记录的更改历史记录。
+    record_history_no_results_for: 未发现任何更改
+    record_history_records_changed: 记录已更改
+    record_history_related_tag: 有关的
+    record_history_request_banner: 显示请求中的所有更改
+    record_history_request_label: 要求：
+    record_history_request_or_record_required: 输入请求 UUID 或选择记录类型和 ID。
+    record_history_request_uuid: 请求 UUID
+    record_history_request_uuid_placeholder: 输入请求 UUID
+    record_history_revision_failed: 无法加载此版本的记录状态。
+    record_history_search_hint: 输入请求 UUID，或选择记录类型和记录 ID 以跟踪更改历史记录。
+    record_history_select_type: 选择记录类型
+    record_history_state_at_version: 版本状态
+    record_history_system: 系统
+    record_history_title: 记录变更历史
+    record_history_type_required: 请选择记录类型
+    record_history_version: 版本
+    record_history_view_audit_log: 查看审计日志
+    record_history_view_full: 查看完整历史记录
+    record_history_view_request: 查看请求
     record_id: 记录编号
     recordings: 录音
     reflection_questions: 思考题
@@ -2294,6 +2356,7 @@ zh:
     report_no_evaluations: "%{user}报告不可得——尚未收到任何评估。"
     report_not_generated: "%{user}的报告符合可用性条件但尚未生成。请先生成报告。"
     report_on_hold: "%{user}报告目前处于暂停状态"
+    report_owner: 所有者
     report_pdf_status: 报告 PDF 状态
     report_review_abort_qc: 中止质控
     report_review_approve: 批准
@@ -2314,10 +2377,12 @@ zh:
     report_types:
       active_clients_projects: 当前客户与项目
       campaign_factor_scores: 竞选因素得分
+      campaign_user_creation: 活动用户创建
       client_assessment_counts: 客户评估很重要
       hogan_usage_report: 霍根评估的使用
       json_data_report: JSON 数据报告
       pearson_usage_report: 皮尔森测评的使用
+      proctoring_sessions: 监考会议
       report_usage_summary: 报告使用情况摘要
       saville_usage_report: 萨维尔评估的使用
       user_access_review: 用户访问审查
@@ -2377,6 +2442,17 @@ zh:
     role_project_admin: 项目管理员
     role_superadmin: 超级管理员
     run: 运行
+    runtime_configuration_invalid_json_object: runtime_configuration 必须是有效的 JSON 对象
+    runtime_configuration_invalid_parameter: 不是一个运行时可更新的参数
+    runtime_parameter_date_range_required: 请同时选择开始日期和结束日期
+    runtime_parameter_editable_section_title: 日期范围
+    runtime_parameter_filter_column: 筛选
+    runtime_parameter_locked_section_title: 包含的过滤器
+    runtime_parameter_modal_subtitle: 请核对详细信息，如有需要，请更新日期范围。
+    runtime_parameter_modal_title: 运行报告
+    runtime_parameter_not_set: 未提供
+    runtime_parameter_submit_button: 立即运行
+    runtime_parameter_value_column: 价值
     saml_idp_certificate_available: 可用（点击复制）
     saml_idp_certificate_label: 证书
     saml_idp_entity_id_label: 实体编号/发行人
@@ -2451,11 +2527,16 @@ zh:
       approval_status_in: 审批状态
       approver_user_id_in: 审批人
       assessment_id_in: 评估
+      assessment_name_cont: 评估
       campaign_id_in: 活动
+      campaign_name_cont: 活动
       client_id_in: 客户
+      client_name_cont: 客户
       project_id_in: 项目
+      project_name_cont: 项目
       qc_user_id_in: QC 用户
       report_id_in: 报告
+      report_name_cont: 报告
       subject_email_cont: 邮件主题
       subject_full_name_cont: 科目名称
       user_email_cont: 用户邮箱
@@ -2511,6 +2592,7 @@ zh:
     scheduling_columns_start_time: 日期和时间
     scheduling_columns_subject: 主题
     scheduling_columns_title: 标题
+    scheduling_columns_video_hidden_for_privacy: 为保护候选人隐私，视频已隐藏。
     scheduling_columns_view_recording: 查看录制
     scheduling_errors_assessor_already_assigned: 已为该评估指派评估员，请选择其他评估或评估员。
     scheduling_errors_date_required: 请选择日期
@@ -2603,6 +2685,12 @@ zh:
     score: 得分
     score_approval_not_allowed_to_approve: 您无权批准此分数。
     score_approval_not_allowed_to_discard: 你不得丢弃这张记分卡。
+    score_approval_reset: 重置批准
+    score_approval_reset_description: 这将使审批状态重新变为待处理。评分不会改变。此操作无法撤销。
+    score_approval_reset_not_allowed: 此分数确认状态目前无法重置。
+    score_approval_reset_recompute_description: 这将重置审批结果，从用户结果中移除 AI 评分，并删除所有生成的报告。此操作无法撤销。
+    score_approval_reset_success: 评分审核已重置。
+    score_approval_reset_title: 重置分数批准？
     score_definition_placeholder: 输入此分数等级的定义
     score_definitions: 分数定义
     score_max: 得分上限
@@ -2834,6 +2922,7 @@ zh:
     sheets_tabs_settings: 设置
     show_all: 显示全部
     show_all_assessment_responses: 显示所有评估回复
+    show_form_field_titles: 显示表单字段标题
     show_middle_scores: 显示更多%{count}的评分（可选）...
     show_original: 显示原文
     show_submenu: 显示子菜单
@@ -2956,7 +3045,14 @@ zh:
     smtp_settings_user_name: 用户名
     specialty_questions: 专业问题
     sso_email_mismatch: 您在身份提供商上登录的是另一个账户。请先从身份提供商中退出，然后重试。
+    sso_enforce_for: 强制执行 SSO
+    sso_enforce_for_all: 所有用户
+    sso_enforce_for_none: 没有任何
+    sso_enforce_for_specific_domains: 特定领域
     sso_enforced: 强制实施单点登录
+    sso_enforced_domains: 强制执行的域名
+    sso_enforced_domains_hint: 例如：se.com（完全匹配）或 *.se.com（仅限子域名）
+    sso_enforced_domains_placeholder: 输入域名并按回车键
     sso_label: SSO
     sso_not_enabled: 此客户端未启用单点登录
     sso_settings: 单点登录设置
@@ -3071,11 +3167,15 @@ zh:
     success_title: 创建评估中心
     success_update: 设计设置已成功保存
     suitability_id: 适用性标识
+    superadmin_tenant_scoping: 超级管理员
     superadmin_use_root_domain: 超级管理员必须通过主域登录
     switch_client: 切换客户端
     system_prompt: 系统提示
     tab_text_one: 菜单
     tab_text_two: 子菜单
+    table_display_columns: 列
+    table_display_filters: 过滤器
+    table_display_title: 展示
     table_more_actions: 更多行动
     tabs_results: 成果
     tabs_settings: 设置
@@ -3091,12 +3191,38 @@ zh:
     taxonomy_title: 技能分类法
     template_and_campaign_required: 请同时提供模板和战役ID
     template_render_failed: 模板渲染失败
+    tenant_repair_confirm_message: '在 %{model} #%{id} 上将 tenant_id 设置为 %{new_tenant}？'
+    tenant_repair_confirm_message_null: '将 %{model} #%{id} 上的 tenant_id 设置为 null？'
+    tenant_repair_confirm_title: 确认租户更新
+    tenant_repair_correct: 正确的
+    tenant_repair_current_tenant: 现有租户
+    tenant_repair_find_record: 查找记录
+    tenant_repair_global_tenant: 全球的
+    tenant_repair_invalid_model: 无效或不可出租的模型类型
+    tenant_repair_invalid_record_id: 请输入有效的记录 ID
+    tenant_repair_invalid_tenant_id: 请输入有效的租户 ID，或留空表示无效。
+    tenant_repair_model_label: 模型
+    tenant_repair_model_placeholder: 输入搜索内容...
+    tenant_repair_moved_from: 租户变更：
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: 新租户 ID
+    tenant_repair_preview_title: 唱片预览
+    tenant_repair_request_failed: 请求失败
+    tenant_repair_resolved_tenant: 已解决的租户
+    tenant_repair_success: 租户信息已成功更新。
+    tenant_repair_title: 租户纠正
+    tenant_repair_update: 更新
+    tenant_repair_will_set_null: 将 tenant_id 设置为 null
+    tenant_repair_will_set_value: 将 tenant_id 设置为 %{value}
     test_generate: 测试生成
     test_render: 测试渲染
     test_render_tooltip: 用活动数据测试你的提示模板，看看会发送给AI助手的内容。
     text_danger: 文本（危险）
     text_success: 文本（成功）
     text_warning: 文本（警告）
+    themes:
+      marsh-dark: 沼泽暗色
+      marsh-light: 沼泽灯
     this_field_is_required: 此字段为必填项
     threesixity_advance_settings_campaign_template: 活动模板
     threesixity_advance_settings_factors: 因素
@@ -3118,6 +3244,7 @@ zh:
     threesixity_success: 多评级活动已成功创建。
     threesixity_success_job: 多评级活动创建任务已成功安排。
     threesixty: 360营销活动
+    threesixty_campaigns_instruction_visible_to_participants: 向参与者展示此说明
     threesixty_campaigns_mail_history_date: 日期
     threesixty_campaigns_mail_history_download_details: 下载详细信息
     threesixty_campaigns_mail_history_emails_sent: 已发送电子邮件
@@ -3133,6 +3260,8 @@ zh:
     threesixty_campaigns_menu_report_menu_report_approval_title: 报告审批设置
     threesixty_campaigns_menu_report_menu_report_options_title: 报告选项
     threesixty_campaigns_menu_report_title: 报告
+    threesixty_campaigns_schedule_date_presets: 预设日程日期
+    threesixty_campaigns_send_reminders_automatically: 自动发送提醒
     time_label: 时间
     time_zone: 时区
     timed_label: 时间戳：%{time_text}
@@ -3185,7 +3314,6 @@ zh:
       title: 翻译
     translations_export_failure_msg: 导出翻译时出错
     translations_export_success_msg: 导出开发行动正在进行中。
-    tte: TTE
     type_by_skill: 通过技能
     type_by_skill_type: 按技能类型
     type_default: 默认

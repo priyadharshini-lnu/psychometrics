@@ -1,47 +1,41 @@
 import React from 'react'
 import { Menu } from 'antd'
-import { useNavigate } from 'react-router-dom'
-import { MenuItem } from '~/interfaces/Antd'
-import RouteList from '~/components/RouteList'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { Insights, Settings } from '@thetalententerprise/glint/icons'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
-import { Result } from './Results'
-import Settings from './Settings'
 
 const { I18n } = window
 
-const routes = [
-  { redirect: true, from: '', to: 'results' },
-  { path: '/results', component: <Result /> },
-  { path: '/settings', component: <Settings /> },
-]
-
 export const AIArtifacts: React.FC = () => {
   const navigate = useNavigate()
+  const { pathname } = useLocation()
   const prefix = `${settings.urlPrefix}/:campaignId/ai_artifacts`
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
 
-  const menuItems: MenuItem[] = [
+  const menuItems = [
     {
       key: '/results',
+      icon: <Insights />,
       label: I18n.t('admin.tabs_results'),
     },
     {
       key: '/settings',
+      icon: <Settings />,
       label: I18n.t('admin.tabs_settings'),
     }]
+
+  const activeTab = menuItems.find(({ key }) => pathname.includes(key))
+
   return (
     <div>
       <Menu
         items={menuItems}
         onSelect={onSelect}
-        selectedKeys={[routeUtils.getActiveRoutePath(routes)]}
+        selectedKeys={activeTab ? [activeTab.key] : []}
         mode="horizontal"
       />
-      <RouteList
-        routes={routes}
-        urlPrefix=""
-      />
+      <Outlet />
     </div>
   )
 }

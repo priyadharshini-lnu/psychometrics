@@ -203,6 +203,51 @@ describe CampaignScoring::CalculateAndSave do
     expect(cf_factor2.campaign_factor_values.find_by(user: user).numeric_value).to eq(4.5)
   end
 
+  it 'removes stale auto-moderated factor value when assessor evaluations are reset and rescored' do
+    campaign_user = create(:campaign_user, campaign: campaign, user: user)
+
+    cf_factor1 = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: :assessor_scoring, assessment_score_type: 'score'
+    )
+
+    assessor_assessment = create(:assessment, category: :assessor_form)
+    assessor_user_assessment = create(:user_assessment, campaign: campaign, subject: user,
+      assessment: assessor_assessment, relationship: Relationship.assessor_relationship, status: :completed)
+    assessor_user_assessment.users_result.update!(scoring: { factor1.id.to_s => { 'score' => 3 } })
+    FactoryBot.create(:factors_scoring, factor: factor1, assessment: assessor_user_assessment.assessment)
+
+    # Auto-moderation produces and stores the factor value.
+    described_class.call!(campaign, user)
+    expect(cf_factor1.campaign_factor_values.find_by(user: user).numeric_value).to eq(3)
+
+    # Simulate resetting the assessor evaluation: the scoring is cleared.
+    assessor_user_assessment.update!(status: :not_started)
+    assessor_user_assessment.users_result.update!(scoring: nil)
+
+    campaign_user.reload.update!(campaign_scores_finalized: false, campaign_scores_finalized_date: nil)
+
+    # Rescoring from the scoring tab uses force_recalculate.
+    described_class.call!(campaign, user, force_recalculate: true)
+
+    expect(cf_factor1.campaign_factor_values.find_by(user: user)).to be_nil
+  end
+
+  it 'keeps a manual (lead assessor moderated) factor value when recalculation yields no value' do
+    create(:campaign_user, campaign: campaign, user: user)
+
+    cf_factor1 = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, assessment: assessment, factor: factor1,
+      factor_type: :assessor_scoring, assessment_score_type: 'score'
+    )
+    create(:campaign_factor_value, campaign_factor: cf_factor1, user: user, campaign: campaign,
+      numeric_value: 7, calculation_type: :manual)
+
+    described_class.call!(campaign, user, force_recalculate: true)
+
+    expect(cf_factor1.campaign_factor_values.find_by(user: user).numeric_value).to eq(7)
+  end
+
   it 'calls publish_campaign_results_available if all scores were calculated and finalized' do
     campaign_user = create(:campaign_user, campaign: campaign, user: user, campaign_scores_finalized: false)
     create(

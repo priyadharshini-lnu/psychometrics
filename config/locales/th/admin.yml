@@ -103,6 +103,7 @@ th:
     ai_scoring_approval_stale_description: การอัปเดตการกำหนดค่าตั้งแต่การรันครั้งล่าสุดอาจทำให้คะแนนเปลี่ยนแปลงได้ ให้ทำการคำนวณคะแนนใหม่โดยใช้การตั้งค่าล่าสุดเพื่ออัปเดตคะแนน
     ai_scoring_approval_stale_title: คะแนนอาจล้าสมัย
     ai_scoring_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
+    ai_scoring_errors_label: ข้อผิดพลาดในการให้คะแนนของ AI
     ai_scoring_refresh_score: รีเฟรชคะแนน
     ai_scoring_refresh_score_confirm_description: นี่จะทำการประเมินคะแนน AI สำหรับการประเมินนี้ใหม่โดยใช้การตั้งค่าล่าสุด คุณแน่ใจหรือไม่?
     ai_scoring_refresh_score_confirm_title: รีเฟรชคะแนน AI?
@@ -122,6 +123,12 @@ th:
     alt_text_long: เกินขีดจํากัดสูงสุดที่ 100 อักขระ
     api_keys: กุญแจ API
     api_keys_form_title: กุญแจ API
+    appearance: รูปร่าง
+    appearance_dark: มืด
+    appearance_dark_theme: ธีมสีเข้ม
+    appearance_light: แสงสว่าง
+    appearance_light_theme: ธีมสีอ่อน
+    appearance_system: ระบบ
     application: การสมัคร
     application_add: เพิ่มแอปพลิเคชัน
     application_name: ชื่อแอปพลิเคชัน
@@ -131,7 +138,6 @@ th:
     application_settings_at_least_one_url_required: โปรดเปิดใช้งานรายการ URL อย่างน้อยหนึ่งรายการก่อนเปิดใช้งานการอนุญาตพิเศษ URL
     application_settings_confirm_delete_ip: คุณแน่ใจหรือไม่ว่าต้องการลบที่อยู่ IP นี้?
     application_settings_confirm_delete_url: คุณแน่ใจหรือไม่ว่าต้องการลบ URL นี้?
-    application_settings_edit_ip_address: แก้ไขที่อยู่ IP / ช่วง CIDR
     application_settings_enable_ip_whitelisting: เปิดใช้งานการอนุญาต IP แบบ whitelist
     application_settings_enable_url_whitelisting: เปิดใช้งานการอนุญาต URL
     application_settings_invalid_ip_format: ที่อยู่ IP หรือรูปแบบ CIDR ไม่ถูกต้อง
@@ -195,6 +201,8 @@ th:
     assessor_add_subject_modal_subject: หัวข้อ
     assessor_add_subject_modal_subject_placeholder: ค้นหาหัวข้อ..
     assessor_add_subject_modal_title: เพิ่มหัวเรื่อง
+    assessor_assessment_drawer_title: รายละเอียดการประเมิน
+    assessor_assessment_id: รหัสการประเมินของผู้ประเมิน
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: เลือกการประเมิน
     assessor_assessment_name: การประเมินผู้ประเมิน
     assessor_assessments: การประเมินผู้ประเมิน
@@ -345,9 +353,15 @@ th:
     campaign_assessment_modals_update_occupation_condition_set_select: เลือกชุดเงื่อนไขอาชีพ
     campaign_assessment_modals_update_occupation_condition_set_success_msg: ชุดเงื่อนไขอาชีพได้รับการอัปเดตสำเร็จแล้ว
     campaign_assessment_modals_update_occupation_condition_set_title: อัปเดตชุดเงื่อนไขอาชีพ
+    campaign_dashboard_instructions_label: คำแนะนำการใช้งานแดชบอร์ดแคมเปญ
+    campaign_dashboard_instructions_save: คำแนะนำในการบันทึก
+    campaign_dashboard_instructions_save_error: ไม่สามารถบันทึกคำแนะนำแดชบอร์ดแคมเปญได้
+    campaign_dashboard_instructions_save_success: บันทึกคำแนะนำแดชบอร์ดแคมเปญสำเร็จแล้ว
     campaign_factors: ปัจจัยของแคมเปญ
     campaign_id_placeholder: ป้อนรหัสแคมเปญ
     campaign_name: ชื่อแคมเปญ
+    campaign_name_translations: การแปลชื่อแคมเปญ
+    campaign_name_translations_fetch_error: เกิดข้อผิดพลาดในการดึงคำแปลชื่อแคมเปญ
     campaign_report_generate_modal_subtitle: เลือกภาษาที่ต้องการสำหรับแต่ละรายงาน
     campaign_report_id: รายงานแคมเปญ ID
     campaign_results_export_details: แคมเปญ AI สร้างผลลัพธ์
@@ -419,6 +433,7 @@ th:
     category: หมวดหมู่
     cell_save_msg: การเปลี่ยนแปลงที่ถูกต้องจะถูกบันทึกโดยอัตโนมัติเมื่อคุณออกจากเซลล์หลังจากแก้ไข
     change_reason: เหตุผลในการเปลี่ยนแปลง
+    change_report_dates_message: คุณต้องการเปลี่ยนช่วงวันที่ของรายงานหรือไม่
     change_score: คะแนนเปลี่ยนแปลง
     change_score_log: บันทึกการเปลี่ยนแปลงคะแนน
     characters: ตัวอักษร
@@ -513,6 +528,7 @@ th:
     created_successfully: ผู้ช่วย AI ถูกสร้างขึ้นสำเร็จแล้ว
     current: ปัจจุบัน
     current_job_role: บทบาทงานปัจจุบัน
+    current_locale: ภาษาท้องถิ่นปัจจุบัน
     custom_formula: สูตรที่กําหนดเอง
     custom_message_description: ข้อความนี้สามารถส่งไปยังทุกคนที่เข้าร่วมการประเมิน
     custom_message_name: ข้อความที่กําหนดเอง
@@ -663,7 +679,7 @@ th:
     dimensions_import_modal_import_dimension: นำเข้ามิติ
     dimensions_import_modal_import_scheduled: นำเข้าตามกำหนดการ
     dimensions_import_modal_operation: การผ่าตัด
-    dimensions_import_modal_owner_global: ทีทีเอ (ทั่วโลก)
+    dimensions_import_modal_owner_global: ทั่วโลก
     dimensions_import_modal_owner_input_validation: กรุณาเลือกเจ้าของ
     dimensions_import_modal_owner_select: เลือกเจ้าของ
     dimensions_import_modal_select_json: เลือกไฟล์ JSON
@@ -680,6 +696,7 @@ th:
     disable_dp: ไม่อนุญาตให้ประมวลผลข้อมูลเพิ่มเติม
     disable_proctoring: ปิดการใช้งานการตรวจสอบ
     disable_report_download: ปิดการดาวน์โหลดรายงาน
+    disable_transcript_download: ปิดใช้งานการดาวน์โหลดเอกสารถอดเสียง
     disallow_lead_assessor_moderation: ไม่อนุญาตให้ผู้ประเมินหลักเป็นผู้กลั่นกรอง
     disallow_lead_assessor_moderation_info: คะแนนจะถูกคำนวณโดยอัตโนมัติตามการส่งแบบฟอร์มของผู้ประเมินทั้งหมด และผู้ประเมินหลักไม่สามารถเปลี่ยนแปลงคะแนนจากหน้าจอการตรวจสอบได้
     discard_all_questions: รีเซ็ตคำถามทั้งหมด
@@ -831,10 +848,13 @@ th:
     feature_flags_ai_group: คุณสมบัติของ AI
     feature_flags_communication_group: การสื่อสาร
     feature_flags_platform_group: คุณสมบัติของแพลตฟอร์ม
+    feature_flags_superadmin_group: การกำหนดขอบเขตผู้เช่า
+    feature_glint_ui_description: สร้างประสบการณ์ที่ดีให้กับผู้เข้าร่วมด้วยระบบการออกแบบ Glint
     feature_global_skills_description: เข้าถึงคลังทักษะระดับโลกสำหรับการประเมิน
     feature_idp_description: เปิดใช้งานการวางแผนพัฒนาบุคคลสำหรับผู้เข้าร่วม
     feature_not_available: คุณสมบัตินี้ไม่สามารถใช้งานได้
     feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
+    feature_superadmin_tenant_scoping_description: เมื่อปิดใช้งาน การสืบค้นข้อมูลโดยผู้ดูแลระบบสูงสุดจะไม่จำกัดเฉพาะข้อมูลของไคลเอ็นต์นี้
     fields_level: ระดับ
     fields_level_description: คําอธิบายระดับ
     fields_level_name: ชื่อระดับ
@@ -866,6 +886,7 @@ th:
     form_datasheet: เอกสารข้อมูล
     form_datasheet_columns: คอลัมน์แผ่นข้อมูล
     form_end_date: วันที่สิ้นสุด
+    form_fields_to_display: ช่องที่จะแสดง
     form_include_all_datasheet_columns: รวมคอลัมน์แผ่นข้อมูลทั้งหมด
     form_name: ชื่อ
     form_no_assessment_selected: ยังไม่มีการเพิ่มการประเมิน คลิก "เพิ่ม" เพื่อเริ่มต้น
@@ -890,8 +911,11 @@ th:
     generate_transcription: สร้างการถอดความ
     generated_at_time: สร้างขึ้นที่ %{time}
     generated_value: มูลค่าที่สร้างขึ้น
+    glint_ui: กลินท์ UI
+    glint_ui_disabled_by_client: Glint UI ถูกปิดใช้งานโดยไคลเอ็นต์
     global_skills: ทักษะระดับโลก
     global_skills_disabled_by_client: Global Skills ถูกปิดใช้งานโดยลูกค้า
+    go_back: กลับ
     grant_type_label: ประเภทการให้ทุน
     grant_type_name: oauth_grant_type
     graphic: กราฟิก
@@ -906,6 +930,7 @@ th:
     header_logout_title: คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ
     hide_all: ซ่อนทั้งหมด
     hide_middle_scores: ซ่อนคะแนนกลาง
+    hide_participant_video: ซ่อนวิดีโอของผู้เข้าร่วม
     high: สูง
     hogan: โฮแกน
     hogan_assessment: การประเมินโฮแกน
@@ -1251,6 +1276,7 @@ th:
     key_id: รหัสประจำตัว
     keywords: คำสำคัญ
     keywords_placeholder: กรุณากรอกคำค้นหาโดยคั่นด้วยเครื่องหมายจุลภาค
+    language: ภาษา
     language_id: รหัสภาษา
     last_name_required: กรุณาระบุนามสกุล
     lead_assessment: การประเมินโอกาสในการขาย
@@ -1488,6 +1514,8 @@ th:
     owner_resource_norm: นอร์ม
     owner_resource_report: รายงาน
     owner_resource_report_bundle: ชุดรายงาน
+    page_load_failed: ไม่สามารถโหลดหน้านี้ได้
+    page_load_failed_hint: แอปอาจมีการอัปเดตแล้ว โปรดรีเฟรชหน้าเว็บเพื่อดำเนินการต่อ
     parsed_dependencies_help: การพึ่งพาที่แยกวิเคราะห์สําหรับผู้ใช้ที่ใช้โดย AI Assistant สําหรับการสร้างผลลัพธ์สิ่งประดิษฐ์
     parsed_dependencies_title: การพึ่งพาที่แยกวิเคราะห์
     parsed_dependencies_view: ดูการพึ่งพาที่แยกวิเคราะห์
@@ -1949,6 +1977,7 @@ th:
     piped_text_modal_title: เพิ่มข้อความท่อ
     piped_text_modal_user_reports: รายงานของผู้ใช้
     piped_text_modal_users: ผู้เข้าร่วม
+    platform_owner: Platform
     playground: สนามเด็กเล่น
     playground_info: ทดสอบสิ่งประดิษฐ์ของคุณด้วยข้อมูลตัวอย่างเพื่อดูตัวอย่างผลลัพธ์ที่สร้างขึ้น
     playground_placeholder: ป้อนข้อมูลการทดสอบ
@@ -2102,6 +2131,7 @@ th:
     projects_mettl_schedule_records_secure_browser_enabled: เปิดใช้งานเบราว์เซอร์ที่ปลอดภัย
     projects_mettl_schedule_records_settings: การตั้งค่า
     projects_mettl_schedule_records_show_remaining_counts: เปิดใช้งานการแสดงจํานวนที่เหลือ
+    projects_mettl_schedule_records_title: ตารางเมตต์ล
     projects_mettl_schedule_records_visual_proctoring_enabled: เปิดใช้งานการคุมสอบด้วยภาพ
     projects_mettl_schedule_records_web_proctoring_enabled: เปิดใช้งาน Web Proctoring
     projects_profile_settings_form_fields_enabled: เปิด
@@ -2179,6 +2209,38 @@ th:
     raw_score: คะแนนดิบ
     reason_for_changes: เหตุผลของการเปลี่ยนแปลง
     recents: รายการล่าสุด
+    record_history_changes: การเปลี่ยนแปลง
+    record_history_changes_in_request: การเปลี่ยนแปลงในคำขอนี้
+    record_history_date_range_invalid: วันสิ้นสุดต้องตรงกับวันเริ่มต้นหรือหลังจากนั้น
+    record_history_date_range_required: โปรดเลือกช่วงวันที่
+    record_history_date_range_too_large: ช่วงเวลาการค้นหาต้องไม่เกิน %{days} วัน โปรดจำกัดขอบเขตการค้นหาให้แคบลง
+    record_history_filter_actor: กรองตามอีเมลของนักแสดง
+    record_history_filter_field: กรองตามฟิลด์ที่เปลี่ยนแปลง
+    record_history_filter_type: กรองตามประเภทบันทึก
+    record_history_id_required: โปรดป้อนรหัสบันทึก
+    record_history_include_related: รวมเอกสารที่เกี่ยวข้องด้วย
+    record_history_last_30_days: 30 วันที่ผ่านมา
+    record_history_last_7_days: 7 วันที่ผ่านมา
+    record_history_no_results: ไม่พบประวัติการเปลี่ยนแปลงสำหรับข้อมูลนี้
+    record_history_no_results_for: ไม่พบการเปลี่ยนแปลงใดๆ
+    record_history_records_changed: บันทึกมีการเปลี่ยนแปลง
+    record_history_related_tag: ที่เกี่ยวข้อง
+    record_history_request_banner: แสดงการเปลี่ยนแปลงทั้งหมดในคำขอ
+    record_history_request_label: 'ขอ:'
+    record_history_request_or_record_required: ป้อน UUID ของคำขอ หรือเลือกประเภทและรหัสของเรคอร์ด
+    record_history_request_uuid: UUID ที่ร้องขอ
+    record_history_request_uuid_placeholder: ป้อน UUID ของคำขอ
+    record_history_revision_failed: ไม่สามารถโหลดสถานะบันทึกสำหรับเวอร์ชันนี้ได้
+    record_history_search_hint: ป้อน UUID ของคำขอ หรือเลือกประเภทบันทึกและรหัสบันทึกเพื่อติดตามประวัติการเปลี่ยนแปลง
+    record_history_select_type: เลือกประเภทบันทึก
+    record_history_state_at_version: สถานะในเวอร์ชัน
+    record_history_system: ระบบ
+    record_history_title: ประวัติการเปลี่ยนแปลงบันทึก
+    record_history_type_required: โปรดเลือกประเภทบันทึก
+    record_history_version: เวอร์ชั่น
+    record_history_view_audit_log: ดูในบันทึกการตรวจสอบ
+    record_history_view_full: ดูประวัติทั้งหมด
+    record_history_view_request: ดูคำขอ
     record_id: รหัสเรกคอร์ด
     recordings: บันทึก
     reflection_questions: คําถามไตร่ตรอง
@@ -2294,6 +2356,7 @@ th:
     report_no_evaluations: ไม่มีรายงานสําหรับ %{user} - ไม่ได้รับการประเมิน
     report_not_generated: รายงานสําหรับ %{user} ตรงตามเงื่อนไขความพร้อมใช้งานแต่ยังไม่ได้สร้าง โปรดสร้างรายงานก่อน
     report_on_hold: รายงานสําหรับ %{user} ถูกระงับในขณะนี้
+    report_owner: เจ้าของ
     report_pdf_status: รายงานสถานะ PDF
     report_review_abort_qc: ยกเลิก QC
     report_review_approve: อนุมัติ
@@ -2314,10 +2377,12 @@ th:
     report_types:
       active_clients_projects: ลูกค้าและโครงการที่ใช้งานอยู่
       campaign_factor_scores: คะแนนปัจจัยของแคมเปญ
+      campaign_user_creation: การสร้างผู้ใช้แคมเปญ
       client_assessment_counts: การประเมินลูกค้าสำคัญ
       hogan_usage_report: การใช้งานแบบประเมินโฮแกน
       json_data_report: รายงานข้อมูล JSON
       pearson_usage_report: การใช้งานการประเมินผล Pearson
+      proctoring_sessions: การสอบคุมสอบ
       report_usage_summary: รายงานสรุปการใช้งาน
       saville_usage_report: การใช้งานการประเมิน Saville
       user_access_review: การตรวจสอบสิทธิ์การเข้าถึงของผู้ใช้
@@ -2377,6 +2442,17 @@ th:
     role_project_admin: ผู้ดูแลโครงการ
     role_superadmin: ผู้ดูแลระบบระดับสูง
     run: วิ่ง
+    runtime_configuration_invalid_json_object: runtime_configuration ต้องเป็นอ็อบเจ็กต์ JSON ที่ถูกต้อง
+    runtime_configuration_invalid_parameter: ไม่ใช่พารามิเตอร์ที่สามารถอัปเดตได้ในระหว่างการทำงาน
+    runtime_parameter_date_range_required: โปรดเลือกทั้งวันเริ่มต้นและวันสิ้นสุด
+    runtime_parameter_editable_section_title: ช่วงวันที่
+    runtime_parameter_filter_column: กรอง
+    runtime_parameter_locked_section_title: ตัวกรองที่รวมอยู่
+    runtime_parameter_modal_subtitle: ตรวจสอบรายละเอียดและอัปเดตช่วงวันที่หากจำเป็น
+    runtime_parameter_modal_title: รายงานการเรียกใช้
+    runtime_parameter_not_set: ไม่ได้ระบุ
+    runtime_parameter_submit_button: วิ่งเลยตอนนี้
+    runtime_parameter_value_column: ค่า
     saml_idp_certificate_available: มีจําหน่าย (คลิกเพื่อคัดลอก)
     saml_idp_certificate_label: ใบรับรอง
     saml_idp_entity_id_label: รหัสเอนทิตี/ผู้ออก
@@ -2451,11 +2527,16 @@ th:
       approval_status_in: สถานะการอนุมัติ
       approver_user_id_in: ผู้อนุมัติ
       assessment_id_in: การประเมิน
+      assessment_name_cont: การประเมิน
       campaign_id_in: แคมเปญ
+      campaign_name_cont: แคมเปญ
       client_id_in: ลูกค้า
+      client_name_cont: ลูกค้า
       project_id_in: โครงการ
+      project_name_cont: โครงการ
       qc_user_id_in: ผู้ใช้ QC
       report_id_in: รายงาน
+      report_name_cont: รายงาน
       subject_email_cont: หัวข้ออีเมล
       subject_full_name_cont: ชื่อเรื่อง
       user_email_cont: อีเมลผู้ใช้
@@ -2511,6 +2592,7 @@ th:
     scheduling_columns_start_time: วันที่ & เวลา
     scheduling_columns_subject: หัวข้อ
     scheduling_columns_title: ชื่อเรื่อง
+    scheduling_columns_video_hidden_for_privacy: วิดีโอถูกซ่อนไว้เพื่อความเป็นส่วนตัวของผู้สมัคร
     scheduling_columns_view_recording: View การบันทึก
     scheduling_errors_assessor_already_assigned: ผู้ประเมินได้รับมอบหมายให้ทําการประเมินนี้แล้ว โปรดเลือกการประเมินหรือผู้ประเมินอื่น
     scheduling_errors_date_required: โปรดเลือกวันที่
@@ -2600,6 +2682,12 @@ th:
     score: คะแนน
     score_approval_not_allowed_to_approve: คุณไม่ได้รับอนุญาตให้อนุมัติคะแนนนี้
     score_approval_not_allowed_to_discard: คุณไม่สามารถทิ้งคะแนนนี้ได้
+    score_approval_reset: รีเซ็ตการอนุมัติ
+    score_approval_reset_description: การดำเนินการนี้จะทำให้สถานะการอนุมัติกลับไปเป็น "รอการอนุมัติ" อีกครั้ง คะแนนจะไม่เปลี่ยนแปลง การดำเนินการนี้ไม่สามารถยกเลิกได้
+    score_approval_reset_not_allowed: ไม่สามารถรีเซ็ตคะแนนอนุมัตินี้ได้ในสถานะปัจจุบัน
+    score_approval_reset_recompute_description: การดำเนินการนี้จะรีเซ็ตการอนุมัติ ลบคะแนน AI ออกจากผลลัพธ์ของผู้ใช้ และลบรายงานที่สร้างขึ้นทั้งหมด การดำเนินการนี้ไม่สามารถย้อนกลับได้
+    score_approval_reset_success: ระบบได้รีเซ็ตการอนุมัติคะแนนแล้ว
+    score_approval_reset_title: การอนุมัติการรีเซ็ตคะแนน?
     score_definition_placeholder: ป้อนคำจำกัดความสำหรับระดับคะแนนนี้
     score_definitions: คำจำกัดความของคะแนน
     score_max: คะแนนสูงสุด
@@ -2831,6 +2919,7 @@ th:
     sheets_tabs_settings: การตั้งค่า
     show_all: ดูรีวิวทั้งหมด
     show_all_assessment_responses: แสดงคำตอบการประเมินทั้งหมด
+    show_form_field_titles: แสดงชื่อช่องกรอกข้อมูลในแบบฟอร์ม
     show_middle_scores: แสดงคะแนนเพิ่มเติมของ%{count} (ไม่บังคับ)...
     show_original: แสดงต้นฉบับ
     show_submenu: แสดงเมนูย่อย
@@ -2948,7 +3037,14 @@ th:
     smtp_settings_user_name: ชื่อผู้ใช้
     specialty_questions: คำถามเฉพาะทาง
     sso_email_mismatch: คุณกำลังเข้าสู่ระบบด้วยบัญชีอื่นบนผู้ให้บริการข้อมูลประจำตัว กรุณาออกจากระบบจากผู้ให้บริการข้อมูลประจำตัวของคุณและลองอีกครั้ง
+    sso_enforce_for: บังคับใช้ SSO สำหรับ
+    sso_enforce_for_all: ผู้ใช้ทั้งหมด
+    sso_enforce_for_none: ไม่มี
+    sso_enforce_for_specific_domains: โดเมนเฉพาะ
     sso_enforced: บังคับใช้ระบบเข้าสู่ระบบครั้งเดียว (SSO)
+    sso_enforced_domains: โดเมนที่ถูกบังคับใช้
+    sso_enforced_domains_hint: เช่น se.com (ตรงกันทุกประการ) หรือ *.se.com (เฉพาะโดเมนย่อย)
+    sso_enforced_domains_placeholder: ป้อนโดเมนและกด Enter
     sso_label: SSO
     sso_not_enabled: SSO ไม่ได้รับการเปิดใช้งานสำหรับลูกค้านี้
     sso_settings: การตั้งค่า SSO
@@ -3063,11 +3159,15 @@ th:
     success_title: สร้างศูนย์การประเมิน
     success_update: บันทึกการตั้งค่าการออกแบบสําเร็จแล้ว
     suitability_id: ความเหมาะสม ID
+    superadmin_tenant_scoping: ผู้ดูแลระบบสูงสุด
     superadmin_use_root_domain: ผู้ดูแลระบบระดับสูงต้องลงชื่อเข้าใช้ผ่านโดเมนหลัก
     switch_client: สลับลูกค้า
     system_prompt: คำสั่งของระบบ
     tab_text_one: เมนู
     tab_text_two: เมนูย่อย
+    table_display_columns: คอลัมน์
+    table_display_filters: ตัวกรอง
+    table_display_title: แสดง
     table_more_actions: การดําเนินการเพิ่มเติม
     tabs_results: ผลลัพธ์
     tabs_settings: การตั้งค่า
@@ -3083,12 +3183,38 @@ th:
     taxonomy_title: อนุกรมวิธานทักษะ
     template_and_campaign_required: โปรดระบุทั้งเทมเพลตและรหัสแคมเปญ
     template_render_failed: แสดงเทมเพลตไม่สําเร็จ
+    tenant_repair_confirm_message: 'ตั้งค่า tenant_id เป็น %{new_tenant} บน %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'ตั้งค่า tenant_id เป็น null บน %{model} #%{id}?'
+    tenant_repair_confirm_title: ยืนยันการอัปเดตข้อมูลผู้เช่า
+    tenant_repair_correct: ถูกต้อง
+    tenant_repair_current_tenant: ผู้เช่าปัจจุบัน
+    tenant_repair_find_record: ค้นหาบันทึก
+    tenant_repair_global_tenant: ทั่วโลก
+    tenant_repair_invalid_model: รูปแบบโมเดลไม่ถูกต้องหรือไม่สามารถรองรับผู้เช่าได้
+    tenant_repair_invalid_record_id: ป้อนรหัสบันทึกที่ถูกต้อง
+    tenant_repair_invalid_tenant_id: ป้อนรหัสผู้เช่าที่ถูกต้อง หรือเว้นว่างไว้เพื่อให้เป็นค่าว่าง
+    tenant_repair_model_label: แบบอย่าง
+    tenant_repair_model_placeholder: พิมพ์เพื่อค้นหา...
+    tenant_repair_moved_from: 'ผู้เช่าเปลี่ยนแล้ว:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: รหัสผู้เช่าใหม่
+    tenant_repair_preview_title: ตัวอย่างการบันทึก
+    tenant_repair_request_failed: คำขอไม่สำเร็จ
+    tenant_repair_resolved_tenant: ผู้เช่าที่ได้รับการแก้ไขแล้ว
+    tenant_repair_success: ข้อมูลผู้เช่าได้รับการอัปเดตเรียบร้อยแล้ว
+    tenant_repair_title: การแก้ไขของผู้เช่า
+    tenant_repair_update: อัปเดต
+    tenant_repair_will_set_null: จะตั้งค่า tenant_id เป็น null
+    tenant_repair_will_set_value: จะตั้งค่า tenant_id เป็น %{value}
     test_generate: ทดสอบสร้าง
     test_render: ทดสอบการแสดงผล
     test_render_tooltip: ทดสอบเทมเพลตพร้อมท์ของคุณด้วยข้อมูลแคมเปญเพื่อตรวจสอบว่าอะไรจะถูกส่งไปยังผู้ช่วย AI
     text_danger: ข้อความ(อันตราย)
     text_success: ข้อความ (สำเร็จ)
     text_warning: ข้อความ (คำเตือน)
+    themes:
+      marsh-dark: มาร์ชดาร์ก
+      marsh-light: มาร์ชไลท์
     this_field_is_required: ฟิลด์นี้จำเป็นต้องกรอก
     threesixity_advance_settings_campaign_template: เทมเพลตแคมเปญ
     threesixity_advance_settings_factors: ปัจจัย
@@ -3110,6 +3236,7 @@ th:
     threesixity_success: สร้างแคมเปญ Multi Rater เรียบร้อยแล้ว
     threesixity_success_job: งานการสร้างแคมเปญ Multi Rater ถูกตั้งเวลาเรียบร้อยแล้ว
     threesixty: แคมเปญ 360
+    threesixty_campaigns_instruction_visible_to_participants: แสดงคำแนะนำนี้ให้ผู้เข้าร่วมชม
     threesixty_campaigns_mail_history_date: วันที่
     threesixty_campaigns_mail_history_download_details: รายละเอียดการดาวน์โหลด
     threesixty_campaigns_mail_history_emails_sent: อีเมลที่ส่งแล้ว
@@ -3125,6 +3252,8 @@ th:
     threesixty_campaigns_menu_report_menu_report_approval_title: การตั้งค่าการอนุมัติรายงาน
     threesixty_campaigns_menu_report_menu_report_options_title: ตัวเลือกรายงาน
     threesixty_campaigns_menu_report_title: รายงาน
+    threesixty_campaigns_schedule_date_presets: กำหนดวันที่ล่วงหน้า
+    threesixty_campaigns_send_reminders_automatically: ส่งการแจ้งเตือนโดยอัตโนมัติ
     time_label: เวลา
     time_zone: โซนเวลา
     timed_label: 'จับเวลา: %{time_text}'
@@ -3177,7 +3306,6 @@ th:
       title: การแปล
     translations_export_failure_msg: ข้อผิดพลาดขณะส่งออกคําแปล
     translations_export_success_msg: การส่งออกการดําเนินการพัฒนาที่กําลังดําเนินการอยู่
-    tte: ทีทีอี
     type_by_skill: ตามทักษะ
     type_by_skill_type: ตามประเภททักษะ
     type_default: ค่าเริ่มต้น

@@ -77,11 +77,13 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('shared.id')}
         id="id"
+        hideable={false}
         sorter
         render={proficiencyLevel => (
           proficiencyLevel.id
         )}
         width={200}
+        fixed="left"
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('admin.fields_proficiency_type')}
@@ -100,6 +102,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         }
         filteredValue={resource.getFilteredValue('proficiency_type_in') as string[]}
         width={200}
+        fixed="left"
       />
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('admin.fields_skill_name')}
@@ -151,6 +154,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
       <Resource.Column<ProficiencyLevel>
         title={I18n.t('shared.action')}
         id="action"
+        hideable={false}
         render={(_, proficiencyLevel) => (
           <Dropdown
             proficiencyLevel={proficiencyLevel}
@@ -159,6 +163,7 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
           />
         )}
         width={100}
+        fixed="right"
       />
     </Resource.Table>
   )

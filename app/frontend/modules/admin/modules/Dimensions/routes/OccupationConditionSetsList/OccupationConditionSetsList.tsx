@@ -1,8 +1,9 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import Modals from '~/modules/admin/components/Modals'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 import { useResources } from '~/hooks/useResources'
 import { DimensionTR, Dimension } from '~/modules/admin/modules/client/core/dimensions'
@@ -48,16 +49,18 @@ const OccupationConditionSetsList: React.FC = () => {
           { link: () => '/admin', label: () => I18n.t('admin.dashboard') },
           { link: () => '/admin/dimensions', label: () => I18n.t('admin.dimensions_index_title') },
           {
-            label: () => (
-              <Link to={`/admin/dimensions/${dimensionId}/occupations`}>
-                {dimension ? `${dimension.name} - ${I18n.t('admin.navigation_occupations')}` : ''}
-              </Link>
-            ),
+            link: () => `/admin/dimensions/${dimensionId}/occupations`,
+            label: () => (dimension ? `${dimension.name} - ${I18n.t('admin.navigation_occupations')}` : ''),
           },
           { label: () => I18n.t('admin.occupation_condition_sets') },
         ]}
       />
-      <Resource config={config} name="occupation_condition_sets">
+      <Resource
+        title={I18n.t('admin.occupation_condition_sets')}
+        config={config}
+        name="occupation_condition_sets"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDimensionsDimensionOccupationConditionSets}
+      >
         <OccupationConditionSetsFilter openModal={name => dispatch(openModal(name))} />
         <OccupationConditionSetsTable />
         <Modals modals={MODALS} />

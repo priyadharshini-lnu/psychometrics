@@ -39,6 +39,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
   const { campaignId, userId } = useParams<{ campaignId?: string, userId?: string }>()
   const [showTranscription, setShowTranscription] = useState(false)
   const [transcriptionText, setTranscriptionText] = useState<string | null>('')
+  const [disableTranscriptionDownload, setDisableTranscriptionDownload] = useState(false)
 
   if (campaignId) { parsedCampaignId = parseInt(campaignId, 10) }
   if (userId) { parsedUserId = parseInt(userId, 10) }
@@ -88,9 +89,10 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                   recordingUrl={recording.recordingUrl}
                   recordingDate={recording.recordingDate}
                   serialNo={recording.id}
+                  hideParticipantVideo={recording.hideParticipantVideo}
                 />
               </div>
-              {recording.transcriptionUrl && (
+              {recording.transcriptionText && (
                 <div className={styles.groupColumn}>
                   <Typography.Text strong>
                     {I18n.t('shared.transcriptions')}
@@ -104,19 +106,22 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
                       onClick={() => {
                         setShowTranscription(!showTranscription)
                         setTranscriptionText(recording.transcriptionText)
+                        setDisableTranscriptionDownload(recording.disableTranscriptDownload)
                       }}
                     >
                       View
                     </Button>
-                    <Button
-                      className="ps-0 ms-2"
-                      href={recording.transcriptionUrl}
-                      target="_blank"
-                      icon={<DownloadOutlined />}
-                      type="link"
-                    >
-                      {I18n.t('shared.download')}
-                    </Button>
+                    {recording.transcriptionUrl && (
+                      <Button
+                        className="ps-0 ms-2"
+                        href={recording.transcriptionUrl}
+                        target="_blank"
+                        icon={<DownloadOutlined />}
+                        type="link"
+                      >
+                        {I18n.t('shared.download')}
+                      </Button>
+                    )}
                   </div>
                 </div>
               )}
@@ -128,6 +133,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
         transcriptionText={transcriptionText || ''}
         closeShowTranscription={closeShowTranscription}
         showTranscription={showTranscription}
+        disableTranscriptDownload={disableTranscriptionDownload}
       />
     </div>
   )
@@ -147,8 +153,22 @@ const RecordingUrlColumn: React.FC<{
   recordingUrl: string
   recordingDate: string
   serialNo: number | string
-}> = ({ recordingUrl, recordingDate, serialNo }) => {
+  hideParticipantVideo: boolean
+}> = ({
+  recordingUrl,
+  recordingDate,
+  serialNo,
+  hideParticipantVideo,
+}) => {
   const [open, setOpen] = useState(false)
+
+  if (hideParticipantVideo) {
+    return (
+      <Typography.Text type="secondary">
+        {I18n.t('admin.scheduling_columns_video_hidden_for_privacy')}
+      </Typography.Text>
+    )
+  }
 
   if (!recordingUrl) return <span>NA</span>
 

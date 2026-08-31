@@ -13,7 +13,11 @@ module Api
           client_id = values.dig(:data, :attributes, :client_id) || values.dig(:data, :attributes, :project_id)
           campaign_id = values.dig(:data, :attributes, :campaign_id)
           role = values.dig(:data, :attributes, :role)
-          if ::Membership.exists?(user_id: value, client_id: client_id, campaign_id: campaign_id, role: role)
+          user_ids = value.presence || begin
+            email = values.dig(:data, :attributes, :email)
+            [::User.find_by(email: email)&.id].compact
+          end
+          if ::Membership.exists?(user_id: user_ids, client_id: client_id, campaign_id: campaign_id, role: role)
             key.failure(:already_added)
           end
         end

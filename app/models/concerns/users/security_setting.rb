@@ -8,10 +8,9 @@ module Users
     included do
       include SecurityContextLoggable
 
-      # file deepcode ignore WeakPassword: <password_complexity handles this>
-      validates :password, presence: { if: :password_required? }
-      validates :password, confirmation: { if: :password_required? }
-      validates :password, repeats_in_password: true, if: :restrict_sequences?
+      validate :validate_password_presence
+      validate :validate_password_confirmation
+      validate :validate_password_repeats
       validate :validate_password_length, if: :password_required?
 
       before_save :capture_security_changes
@@ -51,6 +50,27 @@ module Users
         if password_length.exclude?(password.length)
           errors.add(:password, :too_short, count: password_length.min)
         end
+      end
+
+      def validate_password_presence
+        return unless password_required?
+        return if password.present?
+
+        errors.add(:password, :blank)
+      end
+
+      def validate_password_confirmation
+        return unless password_required?
+        return if password_confirmation.nil?
+        return if password.to_s == password_confirmation.to_s
+
+        errors.add(:password_confirmation, :confirmation, attribute: self.class.human_attribute_name(:password))
+      end
+
+      def validate_password_repeats
+        return unless restrict_sequences?
+
+        RepeatsInPasswordValidator.new(attributes: [:password]).validate_each(self, :password, password)
       end
 
       def password_complexity

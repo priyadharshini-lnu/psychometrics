@@ -103,6 +103,7 @@ nl:
     ai_scoring_approval_stale_description: Configuratie-updates sinds de laatste uitvoering kunnen de score hebben gewijzigd. Voer een nieuwe beoordeling uit om de score bij te werken met de nieuwste instellingen.
     ai_scoring_approval_stale_title: De score is mogelijk verouderd
     ai_scoring_approvals: AI-scoring goedkeuringen
+    ai_scoring_errors_label: Fouten bij het scoren door AI
     ai_scoring_refresh_score: Score vernieuwen
     ai_scoring_refresh_score_confirm_description: Hiermee wordt de AI-beoordeling voor deze toets opnieuw uitgevoerd met de nieuwste instellingen. Weet u het zeker?
     ai_scoring_refresh_score_confirm_title: AI-scores vernieuwen?
@@ -122,6 +123,12 @@ nl:
     alt_text_long: Overschrijdt de maximumlimiet van 100 tekens.
     api_keys: API-sleutels
     api_keys_form_title: api-sleutel
+    appearance: Verschijning
+    appearance_dark: Donker
+    appearance_dark_theme: Donker thema
+    appearance_light: Licht
+    appearance_light_theme: Licht thema
+    appearance_system: Systeem
     application: Toepassing
     application_add: Toepassing toevoegen
     application_name: Naam van de applicatie
@@ -131,7 +138,6 @@ nl:
     application_settings_at_least_one_url_required: Schakel ten minste één URL-item in voordat u de URL-whitelist inschakelt.
     application_settings_confirm_delete_ip: Weet je zeker dat je dit IP-adres wilt verwijderen?
     application_settings_confirm_delete_url: Weet je zeker dat je deze URL wilt verwijderen?
-    application_settings_edit_ip_address: IP-adres / CIDR-bereik bewerken
     application_settings_enable_ip_whitelisting: IP-whitelisting inschakelen
     application_settings_enable_url_whitelisting: Schakel URL-whitelisting in
     application_settings_invalid_ip_format: Ongeldig IP-adres of CIDR-formaat
@@ -195,6 +201,8 @@ nl:
     assessor_add_subject_modal_subject: Onderwerp
     assessor_add_subject_modal_subject_placeholder: Zoek onderwerp...
     assessor_add_subject_modal_title: Onderwerp toevoegen
+    assessor_assessment_drawer_title: Beoordelingsdetails
+    assessor_assessment_id: Beoordelings-ID van de assessor
     assessor_assessment_modals_add_assessor_assessment_assessment_placeholder: Selecteer een beoordeling
     assessor_assessment_name: Beoordelaar Beoordeling
     assessor_assessments: Beoordelingen door beoordelaars
@@ -345,9 +353,15 @@ nl:
     campaign_assessment_modals_update_occupation_condition_set_select: Selecteer een reeks beroepsgerelateerde aandoeningen
     campaign_assessment_modals_update_occupation_condition_set_success_msg: De set met beroepsomstandigheden is succesvol bijgewerkt
     campaign_assessment_modals_update_occupation_condition_set_title: Set met beroepsstatus bijwerken
+    campaign_dashboard_instructions_label: Instructies voor het campagnedashboard
+    campaign_dashboard_instructions_save: Bewaarinstructies
+    campaign_dashboard_instructions_save_error: Het opslaan van de instructies voor het campagnedashboard is mislukt.
+    campaign_dashboard_instructions_save_success: Instructies voor het campagnedashboard succesvol opgeslagen
     campaign_factors: Campagne factoren
     campaign_id_placeholder: Voer campagne-ID in
     campaign_name: Campagnenaam
+    campaign_name_translations: Campagnenaamvertalingen
+    campaign_name_translations_fetch_error: Fout bij het ophalen van vertalingen van campagnenamen.
     campaign_report_generate_modal_subtitle: Selecteer de gewenste taal voor elk rapport
     campaign_report_id: Campagneverslag-ID
     campaign_results_export_details: Campagne AI-artefacten hebben resultaten opgeleverd
@@ -419,6 +433,7 @@ nl:
     category: Categorie
     cell_save_msg: Geldige wijzigingen worden automatisch opgeslagen zodra u de cel na het bewerken verlaat.
     change_reason: Reden voor wijziging
+    change_report_dates_message: Wilt u het datumbereik van het rapport wijzigen?
     change_score: gewijzigde score
     change_score_log: Wijzigingslogboek
     characters: tekens
@@ -513,6 +528,7 @@ nl:
     created_successfully: AI Assistant is succesvol aangemaakt.
     current: Huidige
     current_job_role: Huidige Functierol
+    current_locale: Huidige locatie
     custom_formula: Aangepaste formule
     custom_message_description: Dit bericht kan naar iedereen gestuurd worden die deelneemt aan de beoordeling
     custom_message_name: Aangepast bericht
@@ -663,7 +679,7 @@ nl:
     dimensions_import_modal_import_dimension: Dimensie importeren
     dimensions_import_modal_import_scheduled: Geplande import
     dimensions_import_modal_operation: Operatie
-    dimensions_import_modal_owner_global: TTE (Wereldwijd)
+    dimensions_import_modal_owner_global: Wereldwijd
     dimensions_import_modal_owner_input_validation: Selecteer een eigenaar
     dimensions_import_modal_owner_select: Selecteer een eigenaar
     dimensions_import_modal_select_json: Selecteer JSON-bestand
@@ -680,6 +696,7 @@ nl:
     disable_dp: Verdere verwerking van gegevens niet toestaan
     disable_proctoring: Toezicht uitschakelen
     disable_report_download: Downloaden van rapporten uitschakelen
+    disable_transcript_download: Transcriptdownload uitschakelen
     disallow_lead_assessor_moderation: Moderatie door hoofdbeoordelaar uitschakelen
     disallow_lead_assessor_moderation_info: De score wordt automatisch berekend op basis van alle ingediende beoordelingsformulieren en de hoofdbeoordelaar kan deze niet wijzigen via het moderatiescherm
     discard_all_questions: Alle vragen resetten
@@ -831,10 +848,13 @@ nl:
     feature_flags_ai_group: AI-functies
     feature_flags_communication_group: Communicatie
     feature_flags_platform_group: Platformfuncties
+    feature_flags_superadmin_group: Inventarisatie van huurders
+    feature_glint_ui_description: Geef de gebruikerservaring vorm met het Glint-ontwerpsysteem.
     feature_global_skills_description: Toegang tot de wereldwijde vaardighedenbibliotheek voor beoordelingen
     feature_idp_description: Individuele ontwikkelingsplanning voor deelnemers inschakelen
     feature_not_available: Deze functie is niet beschikbaar
     feature_sms_notification_description: SMS-meldingen inschakelen voor campagne-uitnodigingen en herinneringen
+    feature_superadmin_tenant_scoping_description: Indien uitgeschakeld, zijn superadmin-query's niet van toepassing op de gegevens van deze client.
     fields_level: Niveau
     fields_level_description: Niveau Beschrijving
     fields_level_name: Niveau Naam
@@ -866,6 +886,7 @@ nl:
     form_datasheet: Gegevensblad
     form_datasheet_columns: Gegevensblad kolommen
     form_end_date: Einddatum
+    form_fields_to_display: Te tonen velden
     form_include_all_datasheet_columns: Alle kolommen van gegevensbladen opnemen
     form_name: Naam
     form_no_assessment_selected: Er zijn nog geen assessments toegevoegd. Klik op "Toevoegen" om aan de slag te gaan.
@@ -890,8 +911,11 @@ nl:
     generate_transcription: Transcriptie genereren
     generated_at_time: Gegenereerd op %{time}
     generated_value: Gegenereerde waarde
+    glint_ui: Glint UI
+    glint_ui_disabled_by_client: Glint UI is uitgeschakeld door de client.
     global_skills: Wereldwijde vaardigheden
     global_skills_disabled_by_client: Global Skills is uitgeschakeld door de klant
+    go_back: Rug
     grant_type_label: Soort subsidie
     grant_type_name: oauth_grant_type
     graphic: Afbeelding
@@ -906,6 +930,7 @@ nl:
     header_logout_title: Weet je zeker dat je wilt uitloggen?
     hide_all: Alles verbergen
     hide_middle_scores: Verberg middelste scores
+    hide_participant_video: Video van deelnemer verbergen
     high: Hoog
     hogan: Hogan
     hogan_assessment: Hogan-beoordeling
@@ -1251,6 +1276,7 @@ nl:
     key_id: Sleutel-ID
     keywords: Sleutelwoorden
     keywords_placeholder: Voer trefwoorden in, gescheiden door komma's.
+    language: Taal
     language_id: Taalcode
     last_name_required: Achternaam is verplicht
     lead_assessment: Beoordeling van lood
@@ -1488,6 +1514,8 @@ nl:
     owner_resource_norm: norm
     owner_resource_report: rapport
     owner_resource_report_bundle: rapportbundel
+    page_load_failed: Deze pagina kon niet worden geladen.
+    page_load_failed_hint: De app is mogelijk bijgewerkt. Vernieuw de pagina om verder te gaan.
     parsed_dependencies_help: Geparseerde afhankelijkheden voor de gebruiker die door de AI-assistent wordt gebruikt voor het genereren van artefactresultaten
     parsed_dependencies_title: Geparseerde afhankelijkheden
     parsed_dependencies_view: Geparseerde afhankelijkheden weergeven
@@ -1949,6 +1977,7 @@ nl:
     piped_text_modal_title: Tekst met passepoil toevoegen
     piped_text_modal_user_reports: Rapporten van gebruikers
     piped_text_modal_users: Gebruikers
+    platform_owner: Platform
     playground: Speelplaats
     playground_info: Test uw artefact met voorbeeldgegevens om een voorbeeld van de gegenereerde resultaten te bekijken.
     playground_placeholder: Testgegevens invoeren
@@ -2102,6 +2131,7 @@ nl:
     projects_mettl_schedule_records_secure_browser_enabled: Veilige browser inschakelen
     projects_mettl_schedule_records_settings: Instellingen
     projects_mettl_schedule_records_show_remaining_counts: Weergave van resterende telling inschakelen
+    projects_mettl_schedule_records_title: Mettl-schema's
     projects_mettl_schedule_records_visual_proctoring_enabled: Visuele tests inschakelen
     projects_mettl_schedule_records_web_proctoring_enabled: Webtests inschakelen
     projects_profile_settings_form_fields_enabled: Ingeschakeld
@@ -2179,6 +2209,38 @@ nl:
     raw_score: Ruwe score
     reason_for_changes: Reden voor wijzigingen
     recents: Laatste
+    record_history_changes: veranderingen
+    record_history_changes_in_request: wijzigingen in dit verzoek
+    record_history_date_range_invalid: De einddatum moet op of na de startdatum liggen.
+    record_history_date_range_required: Selecteer een datumbereik.
+    record_history_date_range_too_large: De periode tussen de zoekopdracht mag niet langer zijn dan %{days} dagen. Verfijn uw zoekopdracht.
+    record_history_filter_actor: Filteren op e-mailadres van de acteur
+    record_history_filter_field: Filteren op gewijzigd veld
+    record_history_filter_type: Filteren op recordtype
+    record_history_id_required: Voer een record-ID in.
+    record_history_include_related: Voeg gerelateerde documenten toe.
+    record_history_last_30_days: Afgelopen 30 dagen
+    record_history_last_7_days: Afgelopen 7 dagen
+    record_history_no_results: Er is geen wijzigingsgeschiedenis gevonden voor dit record.
+    record_history_no_results_for: Geen wijzigingen gevonden voor
+    record_history_records_changed: records gewijzigd
+    record_history_related_tag: Verwant
+    record_history_request_banner: Alle wijzigingen in het verzoek weergeven
+    record_history_request_label: 'Verzoek:'
+    record_history_request_or_record_required: Voer een aanvraag-UUID in of kies een recordtype en ID.
+    record_history_request_uuid: Verzoek-UUID
+    record_history_request_uuid_placeholder: Voer de aanvraag-UUID in
+    record_history_revision_failed: Het laden van de recordstatus voor deze versie is mislukt.
+    record_history_search_hint: Voer een aanvraag-UUID in, of selecteer een recordtype en record-ID om de wijzigingsgeschiedenis te traceren.
+    record_history_select_type: Selecteer het recordtype
+    record_history_state_at_version: Status bij versie
+    record_history_system: Systeem
+    record_history_title: Geschiedenis van recordwijzigingen
+    record_history_type_required: Selecteer een recordtype
+    record_history_version: Versie
+    record_history_view_audit_log: Bekijken in auditlogboeken
+    record_history_view_full: Bekijk de volledige geschiedenis
+    record_history_view_request: Verzoek bekijken
     record_id: Record-id
     recordings: Opnamen
     reflection_questions: Reflectie vragen
@@ -2294,6 +2356,7 @@ nl:
     report_no_evaluations: Rapport voor %{user} is niet beschikbaar - er zijn geen evaluaties ontvangen.
     report_not_generated: Rapport voor %{user} voldoet aan de beschikbaarheidsvoorwaarden maar nog niet is opgesteld. Wilt u eerst het rapport genereren.
     report_on_hold: Rapport voor %{user} is momenteel in de wacht gezet
+    report_owner: Eigenaar
     report_pdf_status: Status van het rapport (PDF)
     report_review_abort_qc: QC afbreken
     report_review_approve: Goedkeuren
@@ -2314,10 +2377,12 @@ nl:
     report_types:
       active_clients_projects: Actieve klanten en projecten
       campaign_factor_scores: Scores van campagnefactoren
+      campaign_user_creation: Campagnegebruikers aanmaken
       client_assessment_counts: De beoordeling door de klant telt
       hogan_usage_report: Gebruik van de Hogan-beoordeling
       json_data_report: JSON-gegevensrapport
       pearson_usage_report: Gebruik van Pearson Assessment
+      proctoring_sessions: Toezichtsessies
       report_usage_summary: Overzicht van het rapportgebruik
       saville_usage_report: Gebruik van Saville Assessment
       user_access_review: Beoordeling van gebruikerstoegang
@@ -2377,6 +2442,17 @@ nl:
     role_project_admin: Projectbeheerder
     role_superadmin: Superbeheerder
     run: Rennen
+    runtime_configuration_invalid_json_object: runtime_configuration moet een geldig JSON-object zijn.
+    runtime_configuration_invalid_parameter: is geen parameter die tijdens de uitvoering kan worden bijgewerkt
+    runtime_parameter_date_range_required: Selecteer zowel de begindatum als de einddatum.
+    runtime_parameter_editable_section_title: Datumbereik
+    runtime_parameter_filter_column: Filter
+    runtime_parameter_locked_section_title: Inclusief filters
+    runtime_parameter_modal_subtitle: Controleer de details en pas de periode indien nodig aan.
+    runtime_parameter_modal_title: Rapport uitvoeren
+    runtime_parameter_not_set: Niet verstrekt
+    runtime_parameter_submit_button: Ren nu
+    runtime_parameter_value_column: Waarde
     saml_idp_certificate_available: Beschikbaar (klik om te kopiëren)
     saml_idp_certificate_label: Certificaat
     saml_idp_entity_id_label: Entiteits-ID/Uitgever
@@ -2451,11 +2527,16 @@ nl:
       approval_status_in: Goedkeuringsstatus
       approver_user_id_in: Goedkeurder
       assessment_id_in: Beoordeling
+      assessment_name_cont: Onderzoek
       campaign_id_in: Campagne
+      campaign_name_cont: Campagne
       client_id_in: Klant
+      client_name_cont: Cliënt
       project_id_in: Project
+      project_name_cont: Project
       qc_user_id_in: QC-gebruiker
       report_id_in: Verslag
+      report_name_cont: Rapport
       subject_email_cont: Onderwerp E-mail
       subject_full_name_cont: Onderwerpnaam
       user_email_cont: E-mailadres van de gebruiker
@@ -2511,6 +2592,7 @@ nl:
     scheduling_columns_start_time: Datum en tijd
     scheduling_columns_subject: Onderwerp
     scheduling_columns_title: Titel
+    scheduling_columns_video_hidden_for_privacy: De video is verborgen om de privacy van de kandidaat te beschermen.
     scheduling_columns_view_recording: Opname bekijken
     scheduling_errors_assessor_already_assigned: Selecteer een andere beoordeling of beoordelaar.
     scheduling_errors_date_required: Selecteer een datum
@@ -2603,6 +2685,12 @@ nl:
     score: Score
     score_approval_not_allowed_to_approve: Je mag deze score niet goedkeuren.
     score_approval_not_allowed_to_discard: Je mag deze score niet weggooien.
+    score_approval_reset: Goedkeuring opnieuw instellen
+    score_approval_reset_description: Hierdoor wordt de goedkeuring teruggezet naar de status 'in behandeling'. De scores blijven ongewijzigd. Deze actie kan niet ongedaan worden gemaakt.
+    score_approval_reset_not_allowed: Deze scoregoedkeuring kan in de huidige staat niet worden gereset.
+    score_approval_reset_recompute_description: Hierdoor wordt de goedkeuring gereset, worden de AI-scores uit de resultaten van de gebruiker verwijderd en worden alle gegenereerde rapporten gewist. Deze actie kan niet ongedaan worden gemaakt.
+    score_approval_reset_success: De goedkeuring van de score is gereset.
+    score_approval_reset_title: Goedkeuring voor het resetten van de score?
     score_definition_placeholder: Voer de definitie voor dit score niveau in
     score_definitions: Score definities
     score_max: Maximale score
@@ -2834,6 +2922,7 @@ nl:
     sheets_tabs_settings: Instellingen
     show_all: Alles weergeven
     show_all_assessment_responses: Alle beoordelingsreacties weergeven
+    show_form_field_titles: Toon veldtitels van formulieren
     show_middle_scores: "%{count}e scores weergeven (optioneel)..."
     show_original: Origineel weergeven
     show_submenu: Submenu weergeven
@@ -2956,7 +3045,14 @@ nl:
     smtp_settings_user_name: Gebruikersnaam
     specialty_questions: Specifieke vragen
     sso_email_mismatch: U bent aangemeld bij een ander account bij de identiteitsprovider. Meld u af bij uw identiteitsprovider en probeer het opnieuw.
+    sso_enforce_for: SSO afdwingen voor
+    sso_enforce_for_all: Alle gebruikers
+    sso_enforce_for_none: Geen
+    sso_enforce_for_specific_domains: Specifieke domeinen
     sso_enforced: SSO afdwingen
+    sso_enforced_domains: Verplichte domeinen
+    sso_enforced_domains_hint: bijv. se.com (exacte overeenkomst) of *.se.com (alleen subdomeinen)
+    sso_enforced_domains_placeholder: Voer de domeinnaam/domeinen in en druk op Enter.
     sso_label: SSO
     sso_not_enabled: SSO is niet ingeschakeld voor deze client
     sso_settings: SSO-instellingen
@@ -3071,11 +3167,15 @@ nl:
     success_title: Opgezette beoordelingscentra
     success_update: De ontwerpinstellingen zijn succesvol opgeslagen
     suitability_id: Geschiktheids-ID
+    superadmin_tenant_scoping: Superadmin
     superadmin_use_root_domain: Superbeheerders moeten inloggen via het hoofddomein
     switch_client: Client wisselen
     system_prompt: Systeem prompt
     tab_text_one: Menu
     tab_text_two: Submenu
+    table_display_columns: Kolommen
+    table_display_filters: Filters
+    table_display_title: Weergave
     table_more_actions: Meer acties
     tabs_results: Resultaten
     tabs_settings: Instellingen
@@ -3091,12 +3191,38 @@ nl:
     taxonomy_title: Taxonomie van vaardigheden
     template_and_campaign_required: Geef zowel het sjabloon als de campagne-ID
     template_render_failed: Sjabloon niet kunnen renderen
+    tenant_repair_confirm_message: 'Stel tenant_id in op %{new_tenant} op %{model} #%{id}?'
+    tenant_repair_confirm_message_null: 'Stel tenant_id in op null voor %{model} #%{id}?'
+    tenant_repair_confirm_title: Bevestig de update van de huurder
+    tenant_repair_correct: Juist
+    tenant_repair_current_tenant: Huidige huurder
+    tenant_repair_find_record: Zoek record
+    tenant_repair_global_tenant: wereldwijd
+    tenant_repair_invalid_model: Ongeldig of niet-verhuurbaar modeltype
+    tenant_repair_invalid_record_id: Voer een geldig record-ID in
+    tenant_repair_invalid_tenant_id: Voer een geldig, positief huurders-ID in of laat het veld leeg.
+    tenant_repair_model_label: Model
+    tenant_repair_model_placeholder: Typ om te zoeken...
+    tenant_repair_moved_from: 'Huurder gewijzigd:'
+    tenant_repair_moved_to: "→"
+    tenant_repair_new_tenant_id_label: Nieuwe huurder-ID
+    tenant_repair_preview_title: Recordvoorbeeld
+    tenant_repair_request_failed: Verzoek mislukt
+    tenant_repair_resolved_tenant: Huurder opgelost
+    tenant_repair_success: De tenant is succesvol bijgewerkt.
+    tenant_repair_title: Correctie huurder
+    tenant_repair_update: Update
+    tenant_repair_will_set_null: De tenant_id wordt op null gezet.
+    tenant_repair_will_set_value: De tenant_id wordt ingesteld op %{value}
     test_generate: Test genereren
     test_render: Testrendering
     test_render_tooltip: Test je prompttemplate met campagnedata om te zien wat er naar de AI-assistent wordt gestuurd.
     text_danger: Tekst(gevaar)
     text_success: Tekst (succes)
     text_warning: Tekst(waarschuwing)
+    themes:
+      marsh-dark: Moeras Donker
+      marsh-light: Moeraslicht
     this_field_is_required: Dit veld is verplicht
     threesixity_advance_settings_campaign_template: Campagne Sjabloon
     threesixity_advance_settings_factors: Factoren
@@ -3118,6 +3244,7 @@ nl:
     threesixity_success: Campagne met meerdere beoordelaars is succesvol aangemaakt.
     threesixity_success_job: De taak voor het maken van een campagne met meerdere beoordelaars is met succes gepland.
     threesixty: 360°-campagne
+    threesixty_campaigns_instruction_visible_to_participants: Laat deze instructie aan de deelnemers zien.
     threesixty_campaigns_mail_history_date: Datum
     threesixty_campaigns_mail_history_download_details: Details downloaden
     threesixty_campaigns_mail_history_emails_sent: Verzonden e-mails
@@ -3133,6 +3260,8 @@ nl:
     threesixty_campaigns_menu_report_menu_report_approval_title: Instellingen voor goedkeuring van rapporten
     threesixty_campaigns_menu_report_menu_report_options_title: Rapportopties
     threesixty_campaigns_menu_report_title: Rapporteer
+    threesixty_campaigns_schedule_date_presets: Vooraf ingestelde planningsdata
+    threesixty_campaigns_send_reminders_automatically: Automatisch herinneringen verzenden
     time_label: Tijd
     time_zone: Tijdzone
     timed_label: 'Tijdcode: %{time_text}'
@@ -3185,7 +3314,6 @@ nl:
       title: Vertalingen
     translations_export_failure_msg: Fout tijdens het exporteren van vertalingen
     translations_export_success_msg: Het exporteren van ontwikkelingsacties in uitvoering.
-    tte: TTE
     type_by_skill: Door Behendigheid
     type_by_skill_type: Op vaardigheidstype
     type_default: Standaard

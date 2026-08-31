@@ -14,9 +14,11 @@ export const OccupationConditionSetsTable: React.FC = () => (
   <Resource.Table pagination>
     <Resource.Column
       id="id"
+      hideable={false}
       title={I18n.t('shared.id')}
       dataIndex="id"
       key="id"
+      fixed="left"
     />
     <Resource.Column
       id="name"
@@ -29,6 +31,7 @@ export const OccupationConditionSetsTable: React.FC = () => (
           {record.isDefault && <Tag color="processing">{I18n.t('admin.default')}</Tag>}
         </Space>
       )}
+      fixed="left"
     />
     <Resource.Column
       id="scoreType"
@@ -38,11 +41,13 @@ export const OccupationConditionSetsTable: React.FC = () => (
     />
     <Resource.Column<OccupationConditionSet>
       id="actions"
+      hideable={false}
       title={I18n.t('admin.actions')}
       key="actions"
       render={(_, record) => (
         <Dropdown occupationConditionSet={record} />
       )}
+      fixed="right"
     />
   </Resource.Table>
 )

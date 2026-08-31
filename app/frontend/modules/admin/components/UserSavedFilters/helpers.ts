@@ -1,4 +1,3 @@
-
 import { UserSavedFilter } from './core'
 
 const { I18n } = window
@@ -18,10 +17,6 @@ export type FilterOptions = {
   [key: string]: FilterOption[] | undefined
 }
 
-/**
- * Maps filter keys to their corresponding filterOptions keys.
- * Update this when adding new _id_in filters that need name resolution.
- */
 const filterKeyToOptionsMapping: Record<string, string> = {
   client_id_in: 'clients',
   project_id_in: 'projects',
@@ -38,12 +33,10 @@ const toTitleCase = (str: string): string => str
   .map(part => part.charAt(0).toUpperCase() + part.slice(1))
   .join(' ')
 
-export const getFilterLabel = (filterKey: string): string => {
-  const translationKey = `admin.saved_filter_label.${filterKey}`
-  const translated = I18n.t(translationKey)
-  if (translated !== translationKey) return translated
-  return toTitleCase(filterKey)
-}
+// i18n-js answers a missing key with its own placeholder text, never the key, so the fallback has to be handed over.
+export const getFilterLabel = (filterKey: string): string => I18n.t(
+  `admin.saved_filter_label.${filterKey}`, { defaultValue: toTitleCase(filterKey) },
+)
 
 export const getFilterDetails = (savedFilters: UserSavedFilter[],
   label: string) => savedFilters.filter((item: UserSavedFilter) => item.name === label)

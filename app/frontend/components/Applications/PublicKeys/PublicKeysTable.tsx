@@ -12,11 +12,13 @@ export const PublicKeysTable: React.FC = () => {
   return (
     <>
       <Resource.Table
+        embedded
         pagination
       >
         <Resource.Column<PublicKey>
           title={I18n.t('shared.id')}
           id="id"
+          hideable={false}
           sorter
           render={record => (
             <Button
@@ -26,11 +28,13 @@ export const PublicKeysTable: React.FC = () => {
               {record.id}
             </Button>
           )}
+          fixed="left"
         />
         <Resource.Column<PublicKey>
           title={I18n.t('admin.key_id')}
           id="key_id"
           dataIndex="keyId"
+          fixed="left"
         />
         <Resource.Column<PublicKey>
           title={I18n.t('shared.status')}
@@ -55,6 +59,7 @@ export const PublicKeysTable: React.FC = () => {
           title={I18n.t('shared.created_by')}
           id="created_by"
           dataIndex="createdBy"
+          fixed="right"
         />
       </Resource.Table>
       {selectedPublicKey && (

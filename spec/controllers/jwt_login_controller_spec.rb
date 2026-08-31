@@ -42,6 +42,24 @@ RSpec.describe JwtLoginController, type: :controller do
       expect(controller.current_user).to eq(participant)
     end
 
+    it 'authenticates and redirects to dashboard when target is absent' do
+      token = build_token
+
+      post :login_jwt, params: { token: token }
+
+      expect(response).to redirect_to(root_path)
+      expect(controller.current_user).to eq(participant)
+    end
+
+    it 'rejects token when return_url is present without target' do
+      token = build_token('ret_url' => 'https://example.com/done')
+
+      post :login_jwt, params: { token: token }
+
+      expect(response).to have_http_status(:unauthorized)
+      expect(response.body).to eq(I18n.t('shared.authentication_failed'))
+    end
+
     it 'authenticates and redirects to assessment for valid asmt token' do
       user_assessment = create(:user_assessment, campaign: campaign, evaluator: participant, subject: participant)
       token = build_token(
@@ -57,41 +75,35 @@ RSpec.describe JwtLoginController, type: :controller do
     end
 
     it 'redirects to return_url with pending status on single-use replay' do
-      ret_url = "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
       token = build_token(
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
         'single_use' => true,
-        'ret_url' => ret_url
+        'ret_url' => 'https://example.com?status=ASSESSMENT_STATUS'
       )
 
       post :login_jwt, params: { token: token }
       sign_out(participant)
       post :login_jwt, params: { token: token }
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=campaign_pending"
-      )
+      expect(response).to redirect_to('https://example.com?status=campaign_pending')
     end
 
     it 'redirects to return_url with assessment pending status on single-use replay for asmt target' do
       user_assessment = create(:user_assessment, campaign: campaign, evaluator: participant, subject: participant)
-      ret_url = "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
       token = build_token(
         'tg' => 'asmt',
         'tg_cmp_id' => campaign.id.to_s,
         'tg_asmt_id' => user_assessment.id.to_s,
         'single_use' => true,
-        'ret_url' => ret_url
+        'ret_url' => 'https://example.com?status=ASSESSMENT_STATUS'
       )
 
       post :login_jwt, params: { token: token }
       sign_out(participant)
       post :login_jwt, params: { token: token }
 
-      expect(response).to redirect_to(
-        "https://#{project.subdomain}.#{Settings.domain}/done?status=assessment_pending"
-      )
+      expect(response).to redirect_to('https://example.com?status=assessment_pending')
     end
 
     it 'returns unprocessable entity when replay happens without return_url' do
@@ -136,7 +148,6 @@ RSpec.describe JwtLoginController, type: :controller do
           'aud' => Jwt::BuildAudience.call!(application: application_user),
           'exp' => 15.minutes.from_now.to_i,
           'sub' => participant.id.to_s,
-          'kid' => key_id,
           'tg' => 'cmp',
           'tg_cmp_id' => campaign.id.to_s
         },
@@ -190,7 +201,7 @@ RSpec.describe JwtLoginController, type: :controller do
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
         'single_use' => true,
-        'ret_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS",
+        'ret_url' => 'https://example.com/done?status=ASSESSMENT_STATUS',
         'exp' => 1.minute.ago.to_i
       )
 
@@ -208,10 +219,9 @@ RSpec.describe JwtLoginController, type: :controller do
         'aud' => Jwt::BuildAudience.call!(application: application_user),
         'exp' => 15.minutes.from_now.to_i,
         'sub' => participant.id.to_s,
-        'kid' => key_id,
         'tg' => 'cmp',
         'tg_cmp_id' => campaign.id.to_s,
-        'ret_url' => "https://#{project.subdomain}.#{Settings.domain}/done?status=ASSESSMENT_STATUS"
+        'ret_url' => 'https://example.com/done?status=ASSESSMENT_STATUS'
       }
       forged_token = JWT.encode(forged_payload, forged_private_key, 'RS256', { kid: key_id })
 
@@ -266,8 +276,7 @@ RSpec.describe JwtLoginController, type: :controller do
       'jti' => SecureRandom.uuid,
       'aud' => Jwt::BuildAudience.call!(application: application_user),
       'exp' => 15.minutes.from_now.to_i,
-      'sub' => participant.id.to_s,
-      'kid' => key_id
+      'sub' => participant.id.to_s
     }.merge(overrides)
 
     JWT.encode(payload, rsa_private_key, 'RS256', { kid: key_id })

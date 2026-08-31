@@ -35,13 +35,16 @@ export const UserTableComponent: React.FC<Props> = ({
     <Resource.Column<User>
       title={I18n.t('shared.id')}
       id="id"
+      hideable={false}
       sorter
       render={user => <Button type="link" onClick={() => openDrawer(user)}>{user.id}</Button>}
+      fixed="left"
     />
     <Resource.Column<User>
       id="disabled"
       title={I18n.t('shared.active')}
       render={user => <ActiveSwitch user={user} />}
+      fixed="left"
     />
     <Resource.Column<User>
       title={I18n.t('shared.first_name')}
@@ -86,6 +89,7 @@ export const UserTableComponent: React.FC<Props> = ({
     <Resource.Column<User>
       title={I18n.t('shared.action')}
       id="action"
+      hideable={false}
       render={(_, user) => (
         <Dropdown
           userTab={userTab}
@@ -95,6 +99,7 @@ export const UserTableComponent: React.FC<Props> = ({
         />
       )}
       width={100}
+      fixed="right"
     />
   </Resource.Table>
 )

@@ -1,7 +1,7 @@
 import {
   Button, MenuProps,
 } from 'antd'
-import { ToolOutlined, DownOutlined, MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 
@@ -24,11 +24,7 @@ export const ToolsDropdown: React.FC<{
   return (
     <ConditionalDropdown
       menu={getMenuProps({ onClick })}
-      innerElement={isBulk ? (btn) : (
-        <a>
-          <MoreOutlined />
-        </a>
-      )}
+      innerElement={isBulk ? btn : undefined}
       className="mrm"
     />
   )

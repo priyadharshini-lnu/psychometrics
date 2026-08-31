@@ -18,17 +18,11 @@ class SmtpSetting < ApplicationRecord
             numericality: { only_integer: true, greater_than: 0 }
 
   def from_name_and_email
-    no_reply_email = "no-reply@#{Settings.domain}"
-    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
-
-    "#{from_name} <#{from_email.presence || no_reply_email}>"
+    sender_address
   end
 
   def admin_sender_from
-    no_reply_email = "no-reply@#{Settings.domain}"
-    return "#{I18n.t('mailer.from')} <#{no_reply_email}>" unless enabled?
-
-    "#{from_name} <#{from_email.presence || no_reply_email}>"
+    sender_address
   end
 
   def settings_for_email
@@ -49,6 +43,13 @@ class SmtpSetting < ApplicationRecord
   end
 
   private
+
+  def sender_address
+    no_reply_email = "no-reply@#{Settings.domain}"
+    return Branding.mail_from(no_reply_email) unless enabled?
+
+    Branding.mail_from(from_email.presence || no_reply_email, name: from_name)
+  end
 
   def clear_smtp_credentials_if_needed
     return unless use_sender_verification?

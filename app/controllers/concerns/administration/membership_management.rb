@@ -90,7 +90,6 @@ module Administration
       role_name = resource.role.to_s.humanize.titleize
       siem_log_impersonation_event(target_user, role_name)
 
-      flash.now[:success] = t('administration.memberships.spoof.successfully', name: resource.decorate.display_name)
       spoof_admin_routing(target_user, client: client, fallback_redirect_url: admin_path)
     end
 

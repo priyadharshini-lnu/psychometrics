@@ -1,5 +1,7 @@
 import React, { ReactElement } from 'react'
-import { Dropdown, MenuProps, DropdownProps } from 'antd'
+import {
+  Button, Dropdown, MenuProps, DropdownProps,
+} from 'antd'
 import compact from 'lodash/compact'
 import castArray from 'lodash/castArray'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -15,11 +17,7 @@ interface Props extends Pick<DropdownProps, 'placement'> {
 const ConditionalDropdown: React.FC<Props> = ({
   menu, innerElement, className, hideForEmptyMenu, placement, autoAdjustOverflow,
 }) => {
-  const defaultInnerElement = (
-    <a>
-      <MoreOutlined />
-    </a>
-  )
+  const defaultInnerElement = <Button type="link" icon={<MoreOutlined />} />
 
   const removeInvalidDividers = (menuItems) => {
     if (menuItems.every(menuItem => menuItem.type === 'divider')) { return [] }
@@ -58,12 +56,19 @@ const ConditionalDropdown: React.FC<Props> = ({
 
   const filteredMenuItems = removeInvalidElements(menu)
   const hasChildrens = (filteredMenuItems?.length > 0)
+  const dropdownMenu = {
+    ...menu,
+    items: filteredMenuItems,
+    style: {
+      ...(menu?.style || {}),
+    },
+  }
 
   if (!hasChildrens && hideForEmptyMenu) { return null }
 
   return (
     <Dropdown
-      menu={{ ...menu, items: filteredMenuItems }}
+      menu={dropdownMenu}
       trigger={['click']}
       disabled={!hasChildrens}
       className={className || ''}

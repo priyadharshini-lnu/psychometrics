@@ -12,7 +12,7 @@ const getCustomMenuProps = ({
   permissions, onExport, handleRescoreAssessment, regenerateReports, handleExportRawResults,
   handleExportThreeSixtyScores, handleBulkDownloads, openModal, isBulk, handleBulkMarkAsDone,
   selectedKeys, excludedKeys, isAllSelected, handleTemplateConversion, handleToggleCaching, cachingEnabled,
-  allowCaching,
+  allowCaching, menuStyle,
 }) => {
   const handleMenuClick = ({ key }) => {
     if (key === 'export_raw_labels') {
@@ -142,7 +142,7 @@ const getCustomMenuProps = ({
     },
   ]
 
-  return { items: isBulk ? bulkActionItems : menuItems, onClick: handleMenuClick }
+  return { items: isBulk ? bulkActionItems : menuItems, onClick: handleMenuClick, style: menuStyle }
 }
 
 export default function ToolsDropdown ({
@@ -150,7 +150,7 @@ export default function ToolsDropdown ({
   rescoreAssessment, permissions,
   exportCompletionStatuses, regenerateReports, exportRawResults, exportThreeSixtyScores, bulkDownloads,
   reportAvailableLanguages, reportDefaultLanguage, isBulk, markAsDone, selectedKeys,
-  excludedKeys, title, isAllSelected, toggleCaching, cachingEnabled, allowCaching,
+  excludedKeys, title, isAllSelected, toggleCaching, cachingEnabled, allowCaching, placement = 'bottomLeft', menuStyle,
 }) {
   const { projectId } = useParams()
 
@@ -369,6 +369,7 @@ export default function ToolsDropdown ({
           isAllSelected,
           cachingEnabled,
           allowCaching,
+          menuStyle,
         })
       }
       className="mrm"
@@ -380,6 +381,8 @@ export default function ToolsDropdown ({
           <DownOutlined />
         </Button>
       )}
+      placement={placement}
+
     />
   )
 }

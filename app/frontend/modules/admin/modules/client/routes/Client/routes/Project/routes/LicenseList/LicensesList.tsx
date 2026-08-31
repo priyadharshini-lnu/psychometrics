@@ -7,6 +7,7 @@ import {
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { LicenseTR } from '~/modules/admin/modules/client/core/licenses'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -52,8 +53,16 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
 
   return (
     <>
-      <Resource config={config} name="licenses">
-        <Resource.Filter placeholder={I18n.t('common.actions.search')} name="report_family_name_cont">
+      <Resource
+        title={I18n.t('admin.project_licenses')}
+        config={config}
+        name="licenses"
+        settingsKey={TABLE_SETTINGS_KEYS.projectLicenses}
+      >
+        <Resource.Filter
+          placeholder={I18n.t('common.actions.search')}
+          name="report_family_name_cont"
+        >
           {(currentUser.permissions.manageProjectLicenses)
               && (
                 <Button

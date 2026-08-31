@@ -2,7 +2,7 @@ row
   columns.email-content
     p = t('mailer.footer.regards')
     p
-      | #{t('mailer.footer.team_name')}
+      | #{t('mailer.footer.team_name', display_name: Branding.display_name)}
       spacer[size="16"]
     p
-      | #{t('mailer.footer.technical_support', email: mail_to('mte.surveys@mercer.com')).html_safe}
+      | #{t('mailer.footer.technical_support', email: mail_to(Branding.support_email)).html_safe}

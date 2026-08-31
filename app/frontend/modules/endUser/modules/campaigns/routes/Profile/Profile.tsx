@@ -28,6 +28,7 @@ import { CustomField } from './fields/CustomField'
 import { useSetAccessibilityAttributesOnSelect } from '~/hooks/useSetAccessibilityAttributesOnSelect'
 
 import styles from './styles.less'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { Text, Title } = Typography
 const { I18n } = window
@@ -184,12 +185,7 @@ function ProfileComponent ({
 
   return (
     <>
-      <title>
-        {
-          `${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}
-          - ${I18n.t('frontend.lighthouse_app')}`
-        }
-      </title>
+      <DocumentTitle text={`${I18n.t('campaign.dashboard_menu.profile')} ${I18n.t('campaign.details')}`} />
       <PageHeader>{headerElement}</PageHeader>
       <Content className={styles.pageContent}>
         <div className={styles.container}>

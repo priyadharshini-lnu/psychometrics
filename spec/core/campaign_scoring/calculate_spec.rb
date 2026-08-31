@@ -545,6 +545,28 @@ describe CampaignScoring::Calculate do
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
+  it 'raises an error when round receives a string answer from assessments' do
+    answers = {}
+    answers[question.id.to_s] = { 'dirty' => false,
+                                  'answers' => [{ 'index' => 0, 'value' => '2.267' }] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      answers: answers, subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    rounded_score = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula',
+      formula: "return helpers.round(assessment.form_answer(#{assessment.id}, #{question.id}, 0), 2)"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[rounded_score].value).to eq(nil)
+    expect(values[rounded_score].error_message).to eq('helpers.round: First parameter must be numeric.')
+  end
+
   it 'can use user answers of type from assessor assessment' do
     answers = {}
     answers[question.id.to_s] = { 'dirty' => false,

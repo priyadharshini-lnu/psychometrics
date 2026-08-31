@@ -79,81 +79,111 @@ export const NormsFormModalComponent: React.FC<Props> = ({
         updateResource: resource.updateResource,
       }}
     >
-      {() => (
-        <>
-          <Form.Item
-            name="name"
-            label={I18n.t('shared.name')}
-            rules={[{ required: true }]}
-          >
-            <Input name="client_name" />
-          </Form.Item>
+      {(form) => {
+        const ownerId = Form.useWatch('ownerId', form)
+        const selectedOwnerId = ownerId ?? norm?.owner?.id
 
-          <Form.Item
-            name="ownerId"
-            label={I18n.t('shared.owner')}
-            initialValue={norm?.owner?.id || null}
-          >
-            <Select
-              showSearch={{
-                filterOption: false,
-                onSearch: (value) => {
-                  fetchClients({
-                    apiConfig: { filter: { filterable_fields: value }, fields: { clients: ['name'] } },
-                  })
-                },
-              }}
-              notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+        return (
+          <>
+            <Form.Item
+              name="name"
+              label={I18n.t('shared.name')}
+              rules={[{ required: true }]}
             >
-              {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.tte')}</Select.Option>}
-              {getClients().map(({ id, name }) => (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+              <Input name="client_name" />
+            </Form.Item>
 
-          <Form.Item
-            name="dimensionId"
-            label={I18n.t('shared.dimension')}
-            rules={[{ required: true }]}
-          >
-            <Select
-              showSearch={{
-                filterOption: false,
-                onSearch: (value) => {
-                  fetchDimensions({
-                    apiConfig: { filter: { filterable_fields: value }, fields: { dimensions: ['name'] } },
-                  })
-                },
-              }}
-              notFoundContent={isDimensionsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
+            <Form.Item
+              name="ownerId"
+              label={I18n.t('shared.owner')}
+              initialValue={norm?.owner?.id || null}
             >
-              {getDimensions().map(({ id, name }) => (
-                <Select.Option key={id} value={id}>{name}</Select.Option>
-              ))}
-            </Select>
-          </Form.Item>
+              <Select
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (value) => {
+                    fetchClients({
+                      apiConfig: {
+                        filter: { filterable_fields: value },
+                        fields: { clients: ['name'] },
+                      },
+                    })
+                  },
+                }}
+                notFoundContent={
+                  isClientsLoading('fetch')
+                    ? <Spin size="small" />
+                    : I18n.t('shared.no_results_found')
+                }
+              >
+                {isSuperAdmin(currentUser) && (
+                  <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>
+                )}
+                {getClients().map(({ id, name }) => (
+                  <Select.Option key={id} value={id}>
+                    {name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
 
-          <Form.Item
-            name="normType"
-            label={I18n.t('admin.norms_score_types_norm_type')}
-            rules={[{ required: true }]}
-          >
-            <Select
-              disabled={!!norm}
-              showSearch
-              filterOption={false}
+            <Form.Item
+              name="dimensionId"
+              label={I18n.t('shared.dimension')}
+              rules={[{ required: true }]}
             >
-              <Select.Option key="five_scale" value="five_scale">
-                {I18n.t('admin.norms_score_types_five_scale')}
-              </Select.Option>
-              <Select.Option key="percentile" value="percentile">
-                {I18n.t('admin.norms_score_types_percentage')}
-              </Select.Option>
-            </Select>
-          </Form.Item>
-        </>
-      )}
+              <Select
+                showSearch={{
+                  filterOption: false,
+                  onSearch: (value) => {
+                    fetchDimensions({
+                      apiConfig: {
+                        filter: {
+                          filterable_fields: value,
+                          owner_id: selectedOwnerId,
+                        },
+                        fields: {
+                          dimensions: ['name'],
+                        },
+                      },
+                    })
+                  },
+                }}
+                notFoundContent={
+                  isDimensionsLoading('fetch')
+                    ? <Spin size="small" />
+                    : I18n.t('shared.no_results_found')
+                }
+              >
+                {getDimensions().map(({ id, name }) => (
+                  <Select.Option key={id} value={id}>
+                    {name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item
+              name="normType"
+              label={I18n.t('admin.norms_score_types_norm_type')}
+              rules={[{ required: true }]}
+            >
+              <Select
+                disabled={!!norm}
+                showSearch
+                filterOption={false}
+              >
+                <Select.Option key="five_scale" value="five_scale">
+                  {I18n.t('admin.norms_score_types_five_scale')}
+                </Select.Option>
+                <Select.Option key="percentile" value="percentile">
+                  {I18n.t('admin.norms_score_types_percentage')}
+                </Select.Option>
+              </Select>
+            </Form.Item>
+          </>
+        )
+      }}
     </ResourceFormModal>
   )
 }

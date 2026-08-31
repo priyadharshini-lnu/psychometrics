@@ -9,7 +9,7 @@
       - if current_user.is?(:superadmin)
         = f.association :owner,
                         collection: root_clients.order(:name),
-                        include_blank: t('administration.tte'),
+                        include_blank: t('admin.platform_owner'),
                         input_html: { data: { live_search: true } }
       - elsif current_user.is?(:client_admin) && root_clients.count > 1
         = f.association :owner,

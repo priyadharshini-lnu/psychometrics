@@ -1,39 +1,23 @@
-import { lazy } from 'react'
-import RouteList from '~/components/RouteList'
+import { Navigate } from 'react-router-dom'
+import { lazyRoute } from '~/utils/lazyRoute'
 
-const UserList = lazy(() => import('./UserList'))
-
-const RegularUserList = () => <UserList userTab="Users::Regular" />
-const AdminUserList = () => <UserList userTab="Users::Admin" />
-const SuperAdminUserList = () => <UserList userTab="Users::SuperAdmin" />
-const GlobalAssessorUserList = () => <UserList userTab="Users::GlobalAssessors" />
-
-export const routes = [
-  { redirect: true, from: '', to: 'users' },
-  {
-    path: '/users',
-    component: <RegularUserList />,
-  },
-  {
-    path: '/admins',
-    component: <AdminUserList />,
-  },
-  {
-    path: '/superadmins',
-    component: <SuperAdminUserList />,
-  },
-  {
-    path: '/global-assessors',
-    component: <GlobalAssessorUserList />,
-  },
-]
-
-const Layout = () => <RouteList routes={routes} urlPrefix="" />
+const page = () => import('./UserList')
 
 const UserRoutes = [
   {
-    path: 'users/*',
-    element: <Layout />,
+    path: 'users',
+    children: [
+      { index: true, element: <Navigate to="users" replace /> },
+      {
+        lazy: lazyRoute(page, m => m.UsersLayout),
+        children: [
+          { path: 'users', lazy: lazyRoute(page, m => m.RegularUsers) },
+          { path: 'admins', lazy: lazyRoute(page, m => m.AdminUsers) },
+          { path: 'superadmins', lazy: lazyRoute(page, m => m.SuperAdminUsers) },
+          { path: 'global-assessors', lazy: lazyRoute(page, m => m.GlobalAssessorUsers) },
+        ],
+      },
+    ],
   },
 ]
 

@@ -1,19 +1,19 @@
-import { Skeleton } from 'antd'
+import { Flex, Skeleton, theme } from 'antd'
 import React, { useEffect } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import {
+  Outlet, useLocation, useNavigate, useParams,
+} from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import _ from 'lodash'
 import { useResources } from '~/hooks/useResources'
 import {
   Dashboard as DashboardType, DashboardTR, useDashboardStore,
 } from '~/modules/admin/modules/campaigns/core/dashboard'
-import RouteList from '~/components/RouteList'
 import { get as getCurrentCampaign, FETCH as FETCHING_CAMPAIGN } from '~/modules/admin/modules/campaigns/core/current'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentUser, isSuperAdmin } from '~/core/currentUser'
 import { isRequestInProgress } from '~/core/request'
 import { Menu } from './Menu'
-import routes from './routes'
 import { ToolsMenu } from './ToolsMenu'
 
 const connecter = connect(
@@ -32,6 +32,7 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
   const navigate = useNavigate()
   const location = useLocation()
   const stateManager = useDashboardStore()
+  const { token } = theme.useToken()
   const {
     fetch, isRequestSuccessful, data,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR, stateManager })
@@ -80,16 +81,16 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
 
   return (
     <>
-      <div style={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16,
-      }}
-      >
-        <Menu
-          dashboardInitialized={dashboardInitialized}
-          dashboardPreviewAvailable={dashboardPreviewAvailable}
-          canManageDashboard={canManageDashboard}
-          campaignPermissions={campaignPermissions}
-        />
+      <Flex align="center" style={{ marginBottom: token.margin }}>
+        {/* The growing column stretches the strip across the row, and holds the button right when it hides. */}
+        <Flex flex="auto" vertical>
+          <Menu
+            dashboardInitialized={dashboardInitialized}
+            dashboardPreviewAvailable={dashboardPreviewAvailable}
+            canManageDashboard={canManageDashboard}
+            campaignPermissions={campaignPermissions}
+          />
+        </Flex>
         {dashboardInitialized && dashboardPreviewAvailable && dashboard?.dashboardType === 'powerbi' && (
           <ToolsMenu
             campaignId={campaignId}
@@ -98,8 +99,8 @@ const DashboardComponent: React.FC<Props> = ({ campaignPermissions, currentUser,
             campaignPermissions={campaignPermissions}
           />
         )}
-      </div>
-      <RouteList routes={routes} urlPrefix="" />
+      </Flex>
+      <Outlet />
     </>
   )
 }

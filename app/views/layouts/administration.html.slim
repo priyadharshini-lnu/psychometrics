@@ -1,13 +1,17 @@
 doctype html
-html lang="en"
+html lang="en" style=shell_html_style
   head
     = render 'layouts/osano_script'
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     = csrf_meta_tags
+    - if react_shell?
+      = preload_link_tag image_url('marsh-pattern.png'), as: :image
     = vite_javascript_tag "entrypoints/locales/#{I18n.locale || 'en'}.ts"
     = render 'layouts/pys_global_state'
+    javascript [nonce=content_security_policy_nonce]:
+      window.__INITIAL_STATE__ = #{@init_state.to_json.html_safe}
     = stylesheet_link_tag 'administration', media: 'all'
     - if Rails.env.test?
       = stylesheet_link_tag 'test'
@@ -19,22 +23,26 @@ html lang="en"
     = vite_react_refresh_tag
     = render 'shared/webspellchecker'
 
-  body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}"
+  / Transparent body outranks the legacy stylesheet's hardcoded white and lets the html backdrop through.
+  body#administration class=(I18n.locale == :ar ? 'rtl' : 'ltr' ) data-locale="#{@selected_locale || params[:lang] || I18n.locale}" style=('background: transparent' if react_shell?)
     = render 'shared/maintenance_alert_banner'
     - if session[:impersonated_by_id].present?
       #impersonation-banner-portal data-sign-out-path="#{destroy_administration_session_path}"
       = vite_javascript_tag 'entrypoints/impersonation_banner.tsx'
-    .page-container
+    / React owns the whole shell (glint AppShell); Rails renders no chrome around it.
+    - if react_shell?
+      = render 'layouts/admin_splash'
+      = yield
+    / Rails-rendered pages get no shell — just a way back — until they join the SPA.
+    - else
       - unless @hide_navigation
-        = render partial: 'left_sidebar'
-      .page-content
-        - unless @hide_navigation || request.path =~ /\/admin\/meet\//
-          = render partial: 'top_sidebar'
-        #flash-messages-container
-          #flash-messages.col-md-12
-              = flash_messages
-        .page-content-wrap
-          = yield
+        #admin-back-bar
+        = vite_javascript_tag 'entrypoints/admin/back_bar.tsx'
+      #flash-messages-container
+        #flash-messages.col-md-12
+            = flash_messages
+      .page-content-wrap
+        = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')
     = audio_tag('administration/fail.mp3', preload: 'auto', id: 'audio-fail')

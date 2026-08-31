@@ -8,6 +8,14 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
   before(:each) { login_user(current_user) }
   after(:each) { sign_out(current_user) }
 
+  def build_csv_upload(content = "Campaign ID,English / en\n1,Test\n")
+    file = Tempfile.new(['campaign-translations', '.csv'])
+    file.write(content)
+    file.rewind
+
+    Rack::Test::UploadedFile.new(file.path, 'text/csv', original_filename: 'campaign-translations.csv')
+  end
+
   describe 'DELETE' do
     it 'removes campaign_report' do
       expect do
@@ -49,6 +57,63 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
     end
   end
 
+  describe 'fetch_name_translations' do
+    it 'returns name translations for requested locales and available locales list' do
+      Mobility.with_locale('en') do
+        campaign.update!(name: 'Campaign EN')
+      end
+      Mobility.with_locale('ar') do
+        campaign.update!(name: 'Campaign AR')
+      end
+      Mobility.with_locale('fr') do
+        campaign.update!(name: 'Campaign FR')
+      end
+
+      get :fetch_name_translations,
+          params: { id: campaign.id, project_id: campaign.project_id, locales: %w[en ar] }
+
+      parsed_body = response.parsed_body
+
+      expect(parsed_body).to eq(
+        {
+          'list' => [
+            { 'name' => 'Campaign EN', 'locale' => 'en' },
+            { 'name' => 'Campaign AR', 'locale' => 'ar' }
+          ],
+          'available_locales' => %w[en ar fr]
+        }
+      )
+    end
+  end
+
+  describe 'PUT update' do
+    it 'updates campaign name translation for selected locale only' do
+      Mobility.with_locale('en') do
+        campaign.update!(name: 'Campaign EN')
+      end
+
+      put :update,
+          params: {
+            id: campaign.id,
+            project_id: campaign.project_id,
+            resource: {
+              name: 'Campaign AR Updated',
+              name_locale: 'ar',
+              status: 'active',
+              type: 'common'
+            }
+          }
+
+      expect(response).to have_http_status(:ok)
+
+      campaign.reload
+
+      Mobility.with_locale('ar') do
+        expect(campaign.name).to eq('Campaign AR Updated')
+      end
+    end
+  end
+
   describe 'update_campaign_options' do
     it 'updates system check options and returns serialized options' do
       campaign_option = campaign.campaign_options
@@ -79,6 +144,43 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
       expect(parsed['skip_assessment_level_checks']).to be false
       expect(parsed['minimum_upload_speed']).to eq(123)
       expect(parsed['minimum_download_speed']).to eq(456)
+    end
+  end
+
+  describe 'translation import/export' do
+    it 'starts export campaign translations job' do
+      expect(AdminJob).to receive(:call).with(:export_campaign_translations, { project_id: campaign.project_id },
+                                              current_user)
+
+      post :export_campaign_translations, params: { project_id: campaign.project_id }
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'starts import campaign translations job when form is valid' do
+      file = build_csv_upload
+      form = instance_double(Api::V2::Administration::CampaignTranslationImportForm, valid?: true, row_count: 2,
+processed_file: file)
+      allow(Api::V2::Administration::CampaignTranslationImportForm).to receive(:new).and_return(form)
+      allow(AdminJob).to receive(:call)
+
+      post :import_campaign_translations, params: { project_id: campaign.project_id, file: file }
+
+      expect(AdminJob).to have_received(:call).with(:import_campaign_translations, { project_id: campaign.project_id },
+                                                    current_user, file)
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'returns unprocessable entity when import form is invalid' do
+      file = build_csv_upload
+      errors = instance_double(ActiveModel::Errors, full_messages: ['Bad CSV'])
+      form = instance_double(Api::V2::Administration::CampaignTranslationImportForm, valid?: false, errors: errors)
+      allow(Api::V2::Administration::CampaignTranslationImportForm).to receive(:new).and_return(form)
+
+      post :import_campaign_translations, params: { project_id: campaign.project_id, file: file }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(response.parsed_body).to eq('errors' => ['Bad CSV'])
     end
   end
 end

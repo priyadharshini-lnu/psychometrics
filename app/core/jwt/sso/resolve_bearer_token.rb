@@ -28,13 +28,10 @@ module Jwt
         participant = resolve_participant(claims)
         return broadcast(:error, :participant_not_found) unless participant
 
-        if participant.project.client != application_and_key[:application].tenant
-          return broadcast(:error,
-                           :invalid_application_or_key)
-        end
+        target_result = resolve_target_route(claims, participant)
+        return broadcast(:error, :invalid_target) if target_result[:error]
 
-        target = resolve_target_route(claims, participant)
-        return broadcast(:error, :invalid_target) unless target
+        target = target_result[:ok]
 
         return_url_result = validate_return_url(claims, application_and_key[:application])
         return broadcast(:error, return_url_result[:error]) if return_url_result.key?(:error)
@@ -43,16 +40,20 @@ module Jwt
 
         token_replayed = token_replayed?(claims)
         if token_replayed
-          replay_url = build_replay_url(return_url, target[:replay_status])
-          return broadcast(:token_reuse_detected, return_url: replay_url)
+          replay_url = build_replay_url(return_url, target&.dig(:replay_status))
+          return broadcast(
+            :token_reuse_detected,
+            return_url: replay_url,
+            application: application_and_key[:application]
+          )
         end
 
         broadcast(:ok, {
           participant: participant,
           return_url: return_url,
-          target_type: target[:target_type],
-          campaign_id: target[:campaign_id],
-          user_assessment_id: target[:user_assessment_id]
+          target_type: target&.dig(:target_type),
+          campaign_id: target&.dig(:campaign_id),
+          user_assessment_id: target&.dig(:user_assessment_id)
         })
       end
 
@@ -83,23 +84,24 @@ module Jwt
         return nil if audience.blank?
 
         result = ValidateClaims.call(payload: verified[:payload], header: verified[:header],
-                                     expected_audience: audience)
+                                     expected_audience: audience, application: application)
         result[:ok]
       end
 
       def resolve_participant(claims)
-        result = ResolveParticipant.call(subject: claims['sub'], campaign_id: claims['tg_cmp_id'])
+        result = ResolveParticipant.call(
+          subject: claims['sub']
+        )
         result[:ok]
       end
 
       def resolve_target_route(claims, participant)
-        result = ResolveTargetRoute.call(
+        ResolveTargetRoute.call(
           target_type: claims['tg'],
           campaign_id: claims['tg_cmp_id'],
           assessment_id: claims['tg_asmt_id'],
           participant: participant
         )
-        result[:ok]
       end
 
       def validate_return_url(claims, application)

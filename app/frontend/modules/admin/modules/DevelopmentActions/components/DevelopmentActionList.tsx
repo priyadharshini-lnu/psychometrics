@@ -5,11 +5,14 @@ import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import { DevelopmentActionTR, DevelopmentAction } from '~/modules/admin/modules/client/core/developmentAction'
 import { Resource } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { DevelopmentActionsFormModal } from './DevelopmentActionsFormModal'
 import { DevelopmentActionsTable } from './DevelopmentActionsTable'
 import { DevelopmentActionsFilter } from './DevelopmentActionsFilter'
 import { DevelopmentActionsImportModal } from './DevelopmentActionsImportModal'
-import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { DocumentTitle } from '~/components/DocumentTitle'
+
+const { I18n } = window
 
 const connector = connect(
   () => ({
@@ -25,8 +28,6 @@ const MODALS = {
   DevelopmentActionsFormModal,
   DevelopmentActionsImportModal,
 }
-
-const { I18n } = window
 
 const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
   const { projectId: projectIdParam } = useParams()
@@ -60,20 +61,13 @@ const DevelopmentActionList: React.FC<PropsFromRedux> = ({ openModal }) => {
 
   return (
     <>
-      {!projectIdParam && (
-        <Breadcrumb
-          crumbs={[
-            {
-              link: () => '/admin',
-              label: () => I18n.t('admin.dashboard'),
-            },
-            {
-              label: () => I18n.t('admin.development_actions_heading'),
-            },
-          ]}
-        />
-      )}
-      <Resource config={config} name="development_actions">
+      <DocumentTitle text={I18n.t('admin.development_actions')} />
+      <Resource
+        title={I18n.t('admin.development_actions')}
+        config={config}
+        name="development_actions"
+        settingsKey={TABLE_SETTINGS_KEYS.adminDevelopmentActions}
+      >
         <DevelopmentActionsFilter openModal={openModal} />
         <DevelopmentActionsTable openModal={handleOpenModal} />
         <Modals modals={MODALS} />

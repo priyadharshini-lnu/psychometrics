@@ -68,6 +68,10 @@ interface MicrositeUserAssessmentDetails {
 export default interface UserAssessment {
   id: number
   name: string
+  owner?: {
+    id: number | string
+    name: string | null
+  } | null
   category: string
   assessmentId: number
   isExpired: boolean

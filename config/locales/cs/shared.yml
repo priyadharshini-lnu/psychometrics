@@ -55,6 +55,7 @@ cs:
     copied_successfully: Kopírování proběhlo úspěšně
     copied_to_clipboard: Zkopírováno do schránky
     copy: Kopírovat
+    copyright: "© %{year} %{display_name}. Všechna práva vyhrazena."
     create: Vytvořit
     created_at: Vytvořeno v
     created_by: Vytvořil
@@ -181,6 +182,29 @@ cs:
     remove: Odstranit
     removed: Odstraněno
     replace: Nahradit
+    reports:
+      ai_rationale_evidence:
+        all_factors: Všechny faktory
+        factor_label: Faktory
+        hide_evidence: Skrýt důkazy
+        hide_rationale: Skrýt odůvodnění
+        no_data: Pro vybranou otázku není k dispozici žádné odůvodnění ani důkazy o umělé inteligenci.
+        no_question_selected: Vyberte prosím otázku pro zobrazení odůvodnění a důkazů týkajících se umělé inteligence.
+        question_label: Otázka
+        select_question: Vyberte otázku
+      ai_transcript:
+        no_data: Pro vybranou otázku nejsou k dispozici žádná data přepisu.
+        no_question_selected: Vyberte prosím otázku pro zobrazení přepisu.
+        question_label: Otázka
+        select_question: Vyberte otázku
+    reports_bar_gradient_direction: Směr gradientu
+    reports_bar_gradient_direction_bottom_to_top: Zdola nahoru
+    reports_bar_gradient_direction_left_to_right: Zleva doprava
+    reports_bar_gradient_direction_right_to_left: Zprava doleva
+    reports_bar_gradient_direction_top_to_bottom: Shora dolů
+    reports_bar_gradient_enabled: Povolit přechod
+    reports_bar_gradient_end_color: Koncová barva
+    reports_bar_gradient_start_color: Počáteční barva
     reports_show_values_inside_bar: Zobrazit hodnoty uvnitř sloupce
     reports_value_label_position: Poloha štítku s hodnotou
     reports_value_label_position_center: Střed
@@ -218,6 +242,7 @@ cs:
     switch_to_laptop_or_desktop: Přepnout na notebook nebo stolní počítač
     system_check_uploading: Nahrávání
     table:
+      collapse: Kolaps
       entries:
         selected:
           one: vybrán 1 řádek
@@ -226,6 +251,7 @@ cs:
           one: 'Celkem : 1'
           other: 'Celkem : {{count}}'
           zero: 'Celkem : 0'
+      expand: Rozšířit
     tags: Štítky
     terms_conditions_privacy: Prohlášení o ochraně soukromí
     tools: Nářadí

@@ -1,18 +1,13 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
+import { AssignmentInd, Person, Sms } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
-import RouteList from '~/components/RouteList'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
-
-import Subjects from './Subjects'
-import Assessors from './Assessors'
-import { SmsInvites } from './SmsInvites'
-import UserDetails from './Subjects/UserDetails'
 
 const { I18n } = window
 
@@ -31,35 +26,31 @@ const ParticipantComponent: React.FC<Props> = ({ campaignPermissions }) => {
   const onSelect = ({ key }) => routeUtils.moveTo(navigate, prefix, key)
   const menuItems: MenuItem[] = [{
     key: '/participants/subjects',
+    icon: <Person />,
     label: I18n.t('admin.participants_tabs_subjects'),
   }]
   campaignPermissions.viewAssessors && menuItems.push({
     key: '/participants/assessors',
+    icon: <AssignmentInd />,
     label: I18n.t('admin.participants_tabs_assessors'),
   })
   campaignPermissions.viewSmsInvites && menuItems.push({
     key: '/participants/sms/invites',
+    icon: <Sms />,
     label: I18n.t('admin.participants_tabs_sms_contacts'),
   })
 
   return (
     <div>
-      <Menu
-        items={menuItems}
-        onSelect={onSelect}
-        selectedKeys={getActiveLocationPath()}
-        mode="horizontal"
-      />
-      <RouteList
-        routes={[
-          { redirect: true, from: '', to: 'subjects' },
-          { path: '/subjects', component: <Subjects /> },
-          { path: '/subjects/:id/:tab', component: <UserDetails /> },
-          { path: '/assessors', component: <Assessors /> },
-          { path: '/sms/:tab', component: <SmsInvites /> },
-        ]}
-        urlPrefix=""
-      />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={onSelect}
+          selectedKeys={getActiveLocationPath()}
+          mode="horizontal"
+        />
+      )}
+      <Outlet />
     </div>
   )
 }

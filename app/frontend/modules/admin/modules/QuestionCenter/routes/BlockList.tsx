@@ -9,12 +9,15 @@ import {
   PlusOutlined, CopyOutlined, DeleteOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ConfirmationModal } from '~/glint'
+import { PlaceholderText } from '~/components/PlaceholderText'
 import { Block, BlockTR } from '~/modules/admin/modules/QuestionCenter/core/blocks'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals/'
 import CopyBlockFormModal from './CopyBlockFormModal'
 import CreateBlockModal from './CreateBlockModal'
+import { DocumentTitle } from '~/components/DocumentTitle'
 
 const { I18n } = window
 
@@ -161,7 +164,10 @@ const BlockList: React.FC = () => {
   }
 
   const Filter = (
-    <Resource.Filter name="name_cont" placeholder={I18n.t('shared.search')}>
+    <Resource.Filter
+      name="filterable_fields"
+      placeholder={I18n.t('shared.search')}
+    >
       <CreateBlockButton />
     </Resource.Filter>
   )
@@ -173,15 +179,18 @@ const BlockList: React.FC = () => {
         dataIndex="id"
         title={I18n.t('shared.id') || 'ID'}
         sorter
+        fixed="left"
       />
       <Resource.Column<Block>
         id="active"
         title={I18n.t('shared.active')}
         render={block => <ActiveSwitch block={block} />}
         sorter
+        fixed="left"
       />
       <Resource.Column<Block>
         id="name"
+        hideable={false}
         dataIndex="name"
         title={I18n.t('shared.name')}
         sorter
@@ -222,11 +231,11 @@ const BlockList: React.FC = () => {
           <Link to={`/admin/clients/${record.owner.id}`}>
             {ownerName}
           </Link>
-        ) : I18n.t('admin.tte'))}
+        ) : <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>)}
       />
       <Resource.Column<Block>
         id="created_at"
-        dataIndex="created_at"
+        dataIndex="createdAt"
         title={I18n.t('shared.created_at')}
         render={createdAt => (
           dayjs(createdAt).format('lll')
@@ -235,18 +244,28 @@ const BlockList: React.FC = () => {
       />
       <Resource.Column<Block>
         id="actions"
+        hideable={false}
         title={I18n.t('shared.actions')}
         render={(_, record) => <ActionsCell record={record} />}
+        fixed="right"
       />
     </Resource.Table>
   )
 
   return (
-    <Resource config={config} name="blocks">
-      {Filter}
-      {Table}
-      <Modals modals={MODALS} />
-    </Resource>
+    <>
+      <DocumentTitle text={I18n.t('admin.blocks_title')} />
+      <Resource
+        title={I18n.t('admin.blocks_title')}
+        config={config}
+        name="blocks"
+        settingsKey={TABLE_SETTINGS_KEYS.adminQuestionCenterBlocks}
+      >
+        {Filter}
+        {Table}
+        <Modals modals={MODALS} />
+      </Resource>
+    </>
   )
 }
 

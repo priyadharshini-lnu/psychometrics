@@ -15,11 +15,6 @@ sr-Latn:
         simple_design:
           design: Dizajn
           or: Ili
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Prijava uspešna.
     ai_assistants:
       artifacts:
         parsers:
@@ -489,9 +484,26 @@ sr-Latn:
           modal_title: Подешавања за одобравање бодовања
           remove_modal_success: 'Подешавање одобрења за ИД процене: %{assessmentId} је успешно избрисан'
           remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Uspešno ste se prijavili kao %{name}
+      bulk_import_translations:
+        details: Шаблон за превод кампање
+        download_template: Преузми шаблон
+        errors:
+          blank_campaign_id: 'Ред %{row}: ИД кампање не може бити празан'
+          campaign_not_found: 'Ред %{row}: Кампања %{id} није пронађена у овом пројекту'
+          generic: Дошло је до грешке. Молимо вас покушајте поново.
+          invalid_csv_format: 'Неважећи CSV формат: %{message}'
+          invalid_locales: 'Неважеће језичке колоне: %{locales}'
+          missing_required_columns: 'Недостају обавезне колоне: %{columns}'
+          must_be_csv: Датотека мора бити .csv датотека
+          save_failed: 'Превод кампање %{id} за %{locale} није могао бити сачуван: %{message}'
+        file_label: Датотека за превод
+        import_started: Увоз превода је у току. Молимо вас да проверите напредак у обавештењима.
+        instructions_intro: Преузмите CSV шаблон, ажурирајте називе кампања у било којим језичким колонама које желите, а затим отпремите завршену датотеку.
+        instructions_title: Упутства
+        menu_label: Увези преводе
+        template_started: Извоз шаблона је у току. Молимо вас да проверите напредак у обавештењима.
+        title: Увези преводе назива кампање
+        upload_file: Отпреми датотеку
       validations:
         dates:
           end: mora biti nakon datuma početka
@@ -1937,7 +1949,6 @@ sr-Latn:
         export: Izvezi prevode
         import: Uvezi prevod
         import_descr: Pogledajte Izvoz funkcionalnost da izvučete šablon koji se može koristiti za uvoz ovde.
-    tte: TTE
     update: Ažuriranje
     users:
       create:

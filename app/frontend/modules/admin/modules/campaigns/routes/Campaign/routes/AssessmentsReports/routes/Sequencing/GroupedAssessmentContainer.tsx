@@ -1,13 +1,12 @@
 import React, {
-  CSSProperties, LegacyRef, RefObject, FC,
+  CSSProperties, FC,
 } from 'react'
 import {
   Switch, Card, Space, Typography, Button, Tooltip, message, Result, App, Badge,
 } from 'antd'
-import cs from 'classnames'
 import { DraggableSyntheticListeners } from '@dnd-kit/core'
 import {
-  DeleteOutlined, DragOutlined, BlockOutlined,
+  DeleteOutlined, DragOutlined, BlockOutlined, EditOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { ButtonColorType } from '~/interfaces/Antd'
 
@@ -29,15 +28,14 @@ interface Props {
   removeGroup?: (groupId: number) => Promise<{ response: number }>
   updateAssessmentGroups?: (groupId: number) => void
   modifyGroup?: (groupdId: number, data: Partial<CampaignAssessmentGroup>) => void
-  sortId?: string
+  onManageTranslations?: () => void
   dragStyle?: CSSProperties
   attributes?: ButtonAttributes
   listeners?: DraggableSyntheticListeners
-  ref: LegacyRef<HTMLDivElement>
   style?: CSSProperties
 }
 
-export const GroupedAssessmentContainer = React.forwardRef(
+export const GroupedAssessmentContainer = React.forwardRef<HTMLDivElement, Props>(
   (
     {
       group,
@@ -45,6 +43,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
       removeGroup,
       modifyGroup,
       updateAssessmentGroups,
+      onManageTranslations,
       isLoading,
       children,
       dragStyle,
@@ -52,7 +51,7 @@ export const GroupedAssessmentContainer = React.forwardRef(
       listeners,
       style,
     }: Props,
-    ref: RefObject<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLDivElement>,
   ) => {
     const { modal } = App.useApp()
     const handleDelete = () => {
@@ -79,14 +78,6 @@ export const GroupedAssessmentContainer = React.forwardRef(
           }
         },
       })
-    }
-
-    const handleTitleChange = (value: string) => {
-      if (value) {
-        modifyGroup?.(group.id, {
-          name: value,
-        })
-      }
     }
 
     const handleAssessmentInOrderChange = (checked: boolean) => {
@@ -127,16 +118,19 @@ export const GroupedAssessmentContainer = React.forwardRef(
                 />
                 <Typography.Text
                   title={group.name}
-                  className={cs(styles.maxWidth30Chars, styles.editableText)}
+                  className={styles.maxWidth30Chars}
                   ellipsis
-                  editable={{
-                    onChange: handleTitleChange,
-                    tooltip: I18n.t('assessments_reports.sequencing.edit_group_name'),
-                    triggerType: ['icon', 'text'],
-                  }}
                 >
                   {group.name}
                 </Typography.Text>
+                <Tooltip title={I18n.t('assessments_reports.sequencing.edit_group_name')}>
+                  <Button
+                    icon={<EditOutlined />}
+                    size="small"
+                    type="text"
+                    onClick={() => onManageTranslations?.()}
+                  />
+                </Tooltip>
               </Space>
             )}
             extra={(

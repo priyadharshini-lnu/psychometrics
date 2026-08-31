@@ -1,15 +1,14 @@
 import React, { useEffect, useMemo } from 'react'
 import { Menu } from 'antd'
 import { ItemType } from 'antd/es/menu/interface'
-import { useNavigate, useParams, useLocation } from 'react-router-dom'
-import RouteList from '~/components/RouteList'
+import {
+  Outlet, useNavigate, useParams, useLocation,
+} from 'react-router-dom'
+import { Apartment, Hub, Psychology } from '@thetalententerprise/glint/icons'
 import routeUtils from '~/utils/route'
 import settings from '../../../../settings'
 import { useResources } from '~/hooks/useResources'
 import { DimensionTR, Dimension } from '~/modules/admin/modules/client/core/dimensions'
-import FactorsList from './FactorsList'
-import OccupationsList from './OccupationsList'
-import InnovationStylesList from './InnovationStylesList'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
 
 const { I18n } = window
@@ -33,13 +32,17 @@ const DimensionComponent: React.FC = () => {
 
   const menuItems: ItemType[] = useMemo(() => {
     const items: ItemType[] = [
-      { key: '/factors', label: I18n.t('admin.navigation_factors') },
+      { key: '/factors', icon: <Hub />, label: I18n.t('admin.navigation_factors') },
     ]
     if (dimensions?.occupationsEnabled) {
-      items.push({ key: '/occupations', label: I18n.t('admin.navigation_occupations') })
+      items.push({ key: '/occupations', icon: <Apartment />, label: I18n.t('admin.navigation_occupations') })
     }
     if (dimensions?.innovationStylesEnabled) {
-      items.push({ key: '/innovation_styles', label: I18n.t('admin.navigation_innovation_styles') })
+      items.push({
+        key: '/innovation_styles',
+        icon: <Psychology />,
+        label: I18n.t('admin.navigation_innovation_styles'),
+      })
     }
     return items
   }, [dimensionId, dimensions])
@@ -71,21 +74,15 @@ const DimensionComponent: React.FC = () => {
           { label: () => breadcrumbTitle },
         ]}
       />
-      <Menu
-        items={menuItems}
-        onSelect={({ key }) => routeUtils.moveTo(navigate, prefix, key)}
-        selectedKeys={[activePath]}
-        mode="horizontal"
-      />
-      <RouteList
-        routes={[
-          { redirect: true, from: '', to: 'factors' },
-          { path: '/factors', component: <FactorsList /> },
-          { path: '/occupations', component: <OccupationsList /> },
-          { path: '/innovation_styles', component: <InnovationStylesList /> },
-        ]}
-        urlPrefix=""
-      />
+      {menuItems.length > 1 && (
+        <Menu
+          items={menuItems}
+          onSelect={({ key }) => routeUtils.moveTo(navigate, prefix, key)}
+          selectedKeys={[activePath]}
+          mode="horizontal"
+        />
+      )}
+      <Outlet />
     </div>
   )
 }

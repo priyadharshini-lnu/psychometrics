@@ -4,7 +4,4 @@ wrapper.secondary
     row
       columns.small-12.powered-by-tte[valign="middle" dir=(@is_rtl ? 'rtl' : 'ltr')]
         center
-          = image_tag('mercer-logo-rgb-midnight.png', width: 100, height: 28)
-          spacer[size="16"]
-          p.text-center
-            = t('mailer.powered_by.text')
+          = image_tag(Branding.email_logo, size: Branding.email_logo_size(28))

@@ -34,10 +34,32 @@ module Campaigns
       campaign.dup.tap do |new_campaign|
         attrs = form.attributes.except(:copy_campaign_factors, :copy_campaign_ai_artifacts)
         new_campaign.update!(attrs)
+        copy_campaign_name_translations(campaign, new_campaign, attrs[:name])
         new_options = campaign.campaign_options.dup
         new_options.campaign = new_campaign
         new_options.save!
       end
+    end
+
+    def copy_campaign_name_translations(source_campaign, target_campaign, default_name)
+      default_locale = I18n.default_locale.to_s
+
+      source_campaign.translations.each do |translation|
+        next if translation.locale == default_locale && default_name.present?
+
+        Mobility.with_locale(translation.locale) do
+          target_campaign.name = translation.name
+        end
+      end
+
+      if default_name.present?
+        Mobility.with_locale(default_locale) do
+          target_campaign.name = default_name
+        end
+        target_campaign.update_column(:name, default_name)
+      end
+
+      target_campaign.save!
     end
 
     def copy_assessments_and_reports(new_campaign)
@@ -58,12 +80,22 @@ module Campaigns
       campaign.campaign_assessment_groups.each do |cag|
         new_cag = cag.dup
         new_cag.save!
+        copy_group_translations(cag, new_cag)
         new_campaign.campaign_assessments.where(campaign_assessment_group_id: cag.id).
           update_all(campaign_assessment_group_id: new_cag.id)
         new_campaign.campaign_assessor_assessments.where(campaign_assessment_group_id: cag.id).
           update_all(campaign_assessment_group_id: new_cag.id)
         new_campaign.campaign_assessment_groups << new_cag
       end
+    end
+
+    def copy_group_translations(source_group, target_group)
+      source_group.translations.each do |translation|
+        Mobility.with_locale(translation.locale) do
+          target_group.name = translation.name
+        end
+      end
+      target_group.save!
     end
 
     def copy_datasheet_columns(new_campaign)

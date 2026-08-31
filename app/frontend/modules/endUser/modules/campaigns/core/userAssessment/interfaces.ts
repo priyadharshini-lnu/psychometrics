@@ -4,6 +4,7 @@ export interface UserAssessment {
   assessmentCategory: string
   assessmentName: string
   assessmentIconUrl: string | null
+  assessmentPosterUrl: string | null
   timing: string
   completionPercent: number | null
   completionReason: string | null

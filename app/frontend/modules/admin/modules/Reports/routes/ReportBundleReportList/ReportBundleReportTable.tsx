@@ -8,6 +8,8 @@ import { Report } from '~/modules/admin/modules/client/core/reports'
 import { ReportBundleReport } from '~/modules/admin/modules/client/core/reportBundleReports'
 import { ConfirmationModal } from '~/glint'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
+import { PlaceholderText } from '~/components/PlaceholderText'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -16,6 +18,7 @@ export const ReportBundleReportTable: React.FC = () => (
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.id')}
       id="reportId"
+      hideable={false}
       sorter
       fixed="left"
       minWidth={100}
@@ -29,7 +32,9 @@ export const ReportBundleReportTable: React.FC = () => (
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.owner')}
       id="ownerName"
-      render={reportBundleReport => reportBundleReport.ownerName || I18n.t('admin.tte')}
+      render={reportBundleReport => reportBundleReport.ownerName || (
+        <PlaceholderText>{I18n.t('admin.platform_owner')}</PlaceholderText>
+      )}
       width={240}
     />
     <Resource.Column<ReportBundleReport>
@@ -50,10 +55,12 @@ export const ReportBundleReportTable: React.FC = () => (
     <Resource.Column<ReportBundleReport>
       title={I18n.t('common.column.action')}
       id="action"
+      hideable={false}
       render={(_, reportBundleReport) => (
         <Dropdown reportBundleReport={reportBundleReport} />
       )}
       width={100}
+      fixed="right"
     />
   </Resource.Table>
 )
@@ -70,7 +77,7 @@ const Dropdown: React.FC<DropDownProps> = (
   const handleOnConfirm = () => resource.removeResource(reportBundleReport.id).then(() => {
     message.info(I18n.t('report_bundles.reports.actions.remove.success_message', { name: reportBundleReport.name }))
   }).catch((err) => {
-    message.error(err.base[0].title)
+    message.error(baseErrorMessage(err))
   })
   return (
     <>

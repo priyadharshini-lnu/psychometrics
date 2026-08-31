@@ -14,6 +14,10 @@ class Api::V2::Administration::ReportResource < Api::V2::Administration::BaseRes
   audit_log_for :destroy, payload: ->(_, client) { client.attributes.slice('id', 'name', 'description') }
 
   add_tag_filter
+  filter :tenant_id, apply: lambda { |records, value, _options|
+    tenant_id = value.is_a?(Array) ? value[0] : value
+    records.owned_by_client_or_tte(tenant_id)
+  }
 
   has_one :owner
   has_many :assessments

@@ -11,6 +11,7 @@ import {
 } from '~/modules/admin/modules/client/core/idp'
 import { SafeHTML } from '~/components/SafeHTML'
 import { useResources } from '~/hooks/useResources'
+import { baseErrorMessage } from '~/hooks/useResources/utils'
 
 const { I18n } = window
 
@@ -98,7 +99,7 @@ export const ChatInstructions: FC<Props> = ({ idp, fetch }) => {
       })
       await updateResource({ id: idp.id, showChatInstructions: value })
     } catch (err) {
-      message.error(err.base[0].title)
+      message.error(baseErrorMessage(err))
     }
   }
   return (

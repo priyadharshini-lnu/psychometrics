@@ -12,7 +12,7 @@ import {
 } from '~/glint/icons/AccessibleIconsAntDesign'
 
 
-import lighthouseLogo from '~/assets/lighthouseLogoTall.png'
+import { brand, wordmarkNavyUrl } from '~/utils/branding'
 import { RootState } from '~/modules/endUser/core/rootReducers'
 import {
   getProjectLogo,
@@ -25,7 +25,7 @@ import {
 } from '~/modules/endUser/core/config'
 
 import { CampaignIcon } from '~/glint/icons'
-import { PageSider } from '~/glint'
+import { PageSider, type PageSiderLogoSize } from '~/glint'
 import styles from './styles.less'
 import { getFeatures } from '~/core/config'
 
@@ -52,6 +52,11 @@ type UserPageSiderProps = {
 } & PropsFromRedux
 
 const { I18n } = window
+
+const BRAND_LOGO_SIZES: Record<string, PageSiderLogoSize> = {
+  marsh: 'compact',
+  mercer_a_marsh_business: 'medium',
+}
 
 const getMenuItems = ({
   showCampaign,
@@ -134,7 +139,8 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
   const campaignIdRef = useRef<string>('')
   const isAnonym = pathname.includes('/anonym/')
   const isThreesixty = pathname.includes('/threesixty_campaigns/')
-  const siderLogo = logo || lighthouseLogo
+  const siderLogo = logo || wordmarkNavyUrl()
+  const siderLogoSize = logo ? 'default' : BRAND_LOGO_SIZES[brand()]
   const [openKey, setOpenKey] = useState<string[]>([])
 
   useEffect(() => {
@@ -209,6 +215,7 @@ const UserPageSiderComponent: FC<UserPageSiderProps> = ({
     !isAnonym ? (
       <PageSider
         logo={siderLogo}
+        logoSize={siderLogoSize}
         logoAltText={logoAltText || projectName}
         logoLinkUrl={updateProfileRequired ? '/profile_details' : ''}
         activeKey={activeItem}

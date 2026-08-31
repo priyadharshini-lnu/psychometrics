@@ -1,9 +1,10 @@
-import { useNavigate, useLocation, useParams } from 'react-router'
+import {
+  useNavigate, useLocation, useParams, Outlet,
+} from 'react-router'
 import { Menu } from 'antd'
 
+import { AssignmentInd, Person } from '@thetalententerprise/glint/icons'
 import settings from '~/modules/admin/modules/client/routes/Client/routes/Project/settings'
-import RouteList from '~/components/RouteList'
-import { routes } from './routes'
 
 const { I18n } = window
 
@@ -27,8 +28,8 @@ export const Users = () => {
   }
 
   const menuItems = [
-    { key: 'participants', label: I18n.t('admin.participants') },
-    { key: 'assessors', label: I18n.t('admin.assessors') },
+    { key: 'participants', icon: <Person />, label: I18n.t('admin.participants') },
+    { key: 'assessors', icon: <AssignmentInd />, label: I18n.t('admin.assessors') },
   ]
 
   return (
@@ -39,10 +40,7 @@ export const Users = () => {
         selectedKeys={handleSelectedKeys()}
         mode="horizontal"
       />
-      <RouteList
-        routes={routes}
-        urlPrefix={`${settings.urlPrefix}/:projectId/users`}
-      />
+      <Outlet />
     </div>
   )
 }

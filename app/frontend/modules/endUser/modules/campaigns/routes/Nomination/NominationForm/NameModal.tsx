@@ -25,7 +25,7 @@ export const NameModal: FC<Props> = ({
   return (
     <Modal
       closable={false}
-      maskClosable={false}
+      mask={{ closable: false }}
       title={(
         <div className="help-modal-header">
           {I18n.t('threesixty.set_name_for_evaluator')}

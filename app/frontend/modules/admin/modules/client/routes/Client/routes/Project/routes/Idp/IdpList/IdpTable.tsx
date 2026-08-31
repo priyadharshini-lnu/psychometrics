@@ -62,12 +62,15 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
           width={100}
           sorter
           sortOrder={getSortOrder('id')}
+          fixed="left"
         />
         <Resource.Column<Idp>
           title={`${I18n.t('shared.name')}`}
           id="name"
+          hideable={false}
           render={item => <Link to={`/admin/projects/${projectId}/idp/templates/${item.id}`}>{item?.name}</Link>}
           sorter
+          fixed="left"
         />
 
         <Resource.Column<Idp>
@@ -96,6 +99,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
         <Resource.Column<Idp>
           title={I18n.t('shared.action')}
           id="action"
+          hideable={false}
           width={100}
           render={idp => (
             <ConditionalDropdown
@@ -112,6 +116,7 @@ const IdpTable: React.FC<Props> = ({ openModal, clientId, aiAssistedIdpFeatureEn
               }
             />
           )}
+          fixed="right"
         />
       </Resource.Table>
       <Modals modals={MODALS} />

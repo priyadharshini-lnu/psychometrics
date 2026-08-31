@@ -15,11 +15,6 @@ sr-Cyrl:
         simple_design:
           design: Дизајн
           or: Или
-    administrators:
-      list:
-        actions:
-          spoof:
-            login_successful: Пријава успешна.
     ai_assistants:
       artifacts:
         parsers:
@@ -501,9 +496,26 @@ sr-Cyrl:
           modal_title: Подешавања за одобравање бодовања
           remove_modal_success: 'Подешавање за одобрење ИД процене: %{assessmentId} је успешно избрисано'
           remove_modal_text: 'Да ли сте сигурни да желите да избришете ову поставку за идентификациони број процене: %{assessmentId}?'
-      assessors:
-        spoof:
-          successfully: Успешно сте се пријавили као %{name}
+      bulk_import_translations:
+        details: Шаблон за превод кампање
+        download_template: Преузми шаблон
+        errors:
+          blank_campaign_id: 'Ред %{row}: ИД кампање не може бити празан'
+          campaign_not_found: 'Ред %{row}: Кампања %{id} није пронађена у овом пројекту'
+          generic: Дошло је до грешке. Молимо вас покушајте поново.
+          invalid_csv_format: 'Неважећи CSV формат: %{message}'
+          invalid_locales: 'Неважеће језичке колоне: %{locales}'
+          missing_required_columns: 'Недостају обавезне колоне: %{columns}'
+          must_be_csv: Датотека мора бити .csv датотека
+          save_failed: 'Превод кампање %{id} за %{locale} није могао бити сачуван: %{message}'
+        file_label: Датотека за превод
+        import_started: Увоз превода је у току. Молимо вас да проверите напредак у обавештењима.
+        instructions_intro: Преузмите CSV шаблон, ажурирајте називе кампања у било којим језичким колонама које желите, а затим отпремите завршену датотеку.
+        instructions_title: Упутства
+        menu_label: Увези преводе
+        template_started: Извоз шаблона је у току. Молимо вас да проверите напредак у обавештењима.
+        title: Увези преводе назива кампање
+        upload_file: Отпреми датотеку
       validations:
         dates:
           end: мора да буде након датума почетка
@@ -1997,7 +2009,6 @@ sr-Cyrl:
         export: Извоз превода
         import: Увоз превода
         import_descr: Погледајте функционалност за извоз да бисте извукли шаблон који се овде може користити за увоз.
-    tte: ТТЕ
     update: Ажурирање
     users:
       create:

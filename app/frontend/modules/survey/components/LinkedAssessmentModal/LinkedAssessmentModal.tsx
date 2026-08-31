@@ -53,7 +53,7 @@ const LinkedAssessmentModalComponent = ({
       width="50%"
       title={I18n.t('administration.assessments.linkedAssessment.title')}
       open
-      maskClosable
+      mask={{ closable: true }}
       onCancel={close}
       footer={[
         <Button type="primary" key="save" onClick={save}>

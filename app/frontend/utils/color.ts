@@ -29,3 +29,12 @@ export const hexToRgba = (hex: string): RgbaColor => {
     a: hex.length === 8 ? round(parseInt(hex.substring(6, 8), 16) / 255, 2) : 1,
   }
 }
+
+// antd's palette generator desaturates very dark seeds (e.g. the Marsh navy #061047) into
+// grays when it produces light shades. Blending the seed straight toward white keeps its hue
+// at any brightness, so brand-derived surfaces stay on-brand whatever primary a project sets.
+export const tintTowardWhite = (hex: string, whiteRatio: number): string => {
+  const { r, g, b } = hexToRgba(hex)
+  const blend = (channel: number) => Math.round(channel + (255 - channel) * whiteRatio)
+  return rgba2hex({ r: blend(r), g: blend(g), b: blend(b) })
+}

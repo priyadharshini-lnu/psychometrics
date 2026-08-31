@@ -22,7 +22,7 @@ module AdminJobs
         user_result.completed_at.to_s,
         ua.score_calculated_at.to_s,
         I18n.t("activerecord.attributes.users_result.statuses.#{user_result.real_status}"),
-        user_result.ai_scoring_status,
+        ai_scoring_status_with_errors(user_result),
         ua.approval_status,
         ua.approval_status_updated_at,
         user_name(ua.score_assessed_by&.first_name, ua.score_assessed_by&.last_name),
@@ -152,6 +152,23 @@ module AdminJobs
 
     def child_factors_scope
       @child_factors_scope ||= Factor.where(id: ordered_factors.select { |f| f.parent_factors.any? }.map(&:id))
+    end
+
+    def ai_scoring_status_with_errors(user_result)
+      status = user_result.ai_scoring_status
+      errors = user_result.ai_scoring_errors
+      return status if errors.blank?
+
+      "#{status}\n\n#{format_ai_scoring_errors(errors)}"
+    end
+
+    def format_ai_scoring_errors(error_groups)
+      return error_groups.first[:message] if error_groups.length == 1
+
+      error_groups.map do |group|
+        question_prefix = group[:questions].map { |id| "question_#{id}" }.join(', ')
+        "#{question_prefix}: #{group[:message]}"
+      end.join("\n")
     end
 
     def file_name

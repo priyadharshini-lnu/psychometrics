@@ -104,7 +104,7 @@ const AIGeneratedDevelopmentActionsModalComponent: React.FC<Props> = ({
       open={open}
       onCancel={onCancel}
       closeIcon={<Button style={{ border: 'none' }} ref={btnRef} icon={<CloseOutlined />} />}
-      maskClosable={false}
+      mask={{ closable: false }}
       footer={!!developmentActions.length && [
         <Flex vertical flex={1} align="end">
           <Button
