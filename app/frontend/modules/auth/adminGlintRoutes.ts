@@ -10,6 +10,9 @@ export const ADMIN_SET_PASSWORD_PATHS = ['/administration/passwords/edit', '/adm
 
 export const ADMIN_PASSWORD_EXPIRED_PATH = '/administration/password_expired'
 
+// Devise serves admins and participants from this one path, so it is admin-only via the flag, never by path alone.
+export const TWO_FACTOR_PATH = '/users/two_factor_authentication'
+
 export const ADMIN_GLINT_ROUTES = [
   ...ADMIN_LOGIN_PATHS,
   ADMIN_FORGOT_PASSWORD_PATH,
@@ -18,6 +21,8 @@ export const ADMIN_GLINT_ROUTES = [
   ADMIN_PASSWORD_EXPIRED_PATH,
 ]
 
-export const isAdminGlintRoute = (pathname: string) => (
-  ADMIN_GLINT_ROUTES.includes(pathname.replace(/\/+$/, '') || '/')
-)
+export const isAdminGlintRoute = (pathname: string, adminSide = false) => {
+  const path = pathname.replace(/\/+$/, '') || '/'
+
+  return ADMIN_GLINT_ROUTES.includes(path) || (adminSide && path === TWO_FACTOR_PATH)
+}

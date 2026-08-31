@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, InputHTMLAttributes, ReactNode } from 'react'
 import { Form, Input } from '@thetalententerprise/glint'
 
 export type AuthFieldProps = {
@@ -9,6 +9,8 @@ export type AuthFieldProps = {
   placeholder?: string
   defaultValue?: string
   autoComplete?: string
+  inputMode?: InputHTMLAttributes<HTMLInputElement>['inputMode']
+  pattern?: string
   error?: string[]
   hint?: ReactNode
   secure?: boolean
@@ -24,6 +26,8 @@ export const AuthField: FC<AuthFieldProps> = ({
   placeholder,
   defaultValue,
   autoComplete,
+  inputMode,
+  pattern,
   error,
   hint,
   secure,
@@ -60,6 +64,8 @@ export const AuthField: FC<AuthFieldProps> = ({
           placeholder={placeholder}
           defaultValue={defaultValue}
           autoComplete={autoComplete}
+          inputMode={inputMode}
+          pattern={pattern}
           status={status}
           disabled={disabled}
         />

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger */
-import { CSSProperties } from 'react'
+import { CSSProperties, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import {
   Layout, Row, Col, Space, theme, Flex,
@@ -52,6 +52,10 @@ const ClientPrivacyLink = ({ config }) => {
 
 export const LayoutComponent = ({ config }) => {
   const { token } = useToken()
+
+  // Legacy auth routes never mount AuthTheme, so they must clear the admin splash themselves.
+  useEffect(() => { document.getElementById('admin-splash')?.remove() }, [])
+
   const primaryColor = config.primary_color || DEFAULT_PRIMARY_COLOR
 
   const isNeedReverse = () => {
