@@ -36,9 +36,8 @@ branding:
       email_logo: branding/mercer_a_marsh_business/email-logo.png
 # Its own axis, not branding.brand: the masthead belongs to the notice version, not the deployment.
 privacy_notice:
-  version: <%= ENV.fetch('PRIVACY_NOTICE_VERSION', 'current') %> # current | marsh | mercer_a_marsh_business
+  version: <%= ENV.fetch('PRIVACY_NOTICE_VERSION', 'marsh') %> # marsh | mercer_a_marsh_business
   logos:
-    current: branding/lockup-fullcolor.png
     marsh: branding/marsh/wordmark-navy.svg
     mercer_a_marsh_business: branding/mercer_a_marsh_business/wordmark-navy.svg
 osano_enabled: <%= ENV.fetch('OSANO_ENABLED', 'true') == 'true' %>

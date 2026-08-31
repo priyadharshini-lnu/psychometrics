@@ -33,7 +33,7 @@ RSpec.describe 'HomeController', type: :request do
   end
 
   it 'never serves a blank privacy page when the chosen version has no copy yet' do
-    allow(Settings.privacy_notice).to receive(:version).and_return('marsh')
+    allow(Settings.privacy_notice).to receive(:version).and_return('no_such_version')
 
     get '/privacy-statement'
 

@@ -22,7 +22,6 @@ describe Branding do
       Config::Options.new.merge!(
         version: version,
         logos: {
-          'current' => 'branding/lockup-fullcolor.png',
           'marsh' => 'branding/marsh/wordmark-navy.svg',
           'mercer_a_marsh_business' => 'branding/mercer_a_marsh_business/wordmark-navy.svg'
         }
@@ -101,43 +100,44 @@ describe Branding do
       expect(described_class.privacy_notice).to eq('<p>Draft notice</p>')
     end
 
-    it 'serves the current notice, and warns, when the selected version is still a placeholder' do
-      stub_notice_version('marsh')
+    it 'serves the published notice, and warns, when the selected version is still a placeholder' do
+      stub_notice_version('unwritten_draft')
+      I18n.backend.store_translations(:en, privacy_notice: { unwritten_draft: '<!-- not written yet -->' })
       allow(Rails.logger).to receive(:warn)
 
-      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.current'))
-      expect(Rails.logger).to have_received(:warn).with(/"marsh" has no copy yet/)
+      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.marsh'))
+      expect(Rails.logger).to have_received(:warn).with(/"unwritten_draft" has no copy yet/)
     end
 
-    it 'serves the current notice when the selected version does not exist at all' do
+    it 'serves the published notice when the selected version does not exist at all' do
       stub_notice_version('no_such_version')
       allow(Rails.logger).to receive(:warn)
 
-      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.current'))
+      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.marsh'))
     end
 
     it 'falls back within the reader locale rather than dropping to English' do
-      stub_notice_version('marsh')
+      stub_notice_version('no_such_version')
       allow(Rails.logger).to receive(:warn)
 
-      expect(described_class.privacy_notice(locale: :fr)).to eq(I18n.t('privacy_notice.current', locale: :fr))
-      expect(described_class.privacy_notice(locale: :fr)).not_to eq(I18n.t('privacy_notice.current', locale: :en))
+      expect(described_class.privacy_notice(locale: :fr)).to eq(I18n.t('privacy_notice.marsh', locale: :fr))
+      expect(described_class.privacy_notice(locale: :fr)).not_to eq(I18n.t('privacy_notice.marsh', locale: :en))
     end
 
     it 'does not derive the version from the brand' do
       stub_brand('mercer_a_marsh_business')
-      stub_notice_version('current')
+      stub_notice_version('marsh')
 
-      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.current'))
+      expect(described_class.privacy_notice).to eq(I18n.t('privacy_notice.marsh'))
     end
   end
 
   describe '.policy_logo' do
     it 'follows the notice version rather than the brand' do
       stub_brand('marsh')
-      stub_notice_version('current')
+      stub_notice_version('mercer_a_marsh_business')
 
-      expect(described_class.policy_logo).to eq('branding/lockup-fullcolor.png')
+      expect(described_class.policy_logo).to eq('branding/mercer_a_marsh_business/wordmark-navy.svg')
     end
 
     it 'serves each published version its own logo' do
@@ -150,25 +150,18 @@ describe Branding do
       expect(described_class.policy_logo).to eq('branding/mercer_a_marsh_business/wordmark-navy.svg')
     end
 
-    it 'serves the current logo, and warns, when the selected version has none' do
-      stub_brand('marsh')
+    it 'serves the published logo, and warns, when the selected version has none' do
+      stub_brand('mercer_a_marsh_business')
       stub_notice_version('legal_draft')
       allow(Rails.logger).to receive(:warn)
 
-      expect(described_class.policy_logo).to eq('branding/lockup-fullcolor.png')
+      expect(described_class.policy_logo).to eq('branding/marsh/wordmark-navy.svg')
       expect(Rails.logger).to have_received(:warn).with(/"legal_draft" has no logo/)
     end
   end
 
   describe '.policy_logo_name' do
-    it 'names what the artwork shows, not the deployed brand' do
-      stub_brand('marsh')
-      stub_notice_version('current')
-
-      expect(described_class.policy_logo_name).to eq('Lighthouse')
-    end
-
-    it 'names the brand whose wordmark the version carries' do
+    it 'names the brand whose wordmark the version carries, not the deployed brand' do
       stub_brand('marsh')
 
       stub_notice_version('mercer_a_marsh_business')
@@ -183,7 +176,7 @@ describe Branding do
       stub_notice_version('legal_draft')
       allow(Rails.logger).to receive(:warn)
 
-      expect(described_class.policy_logo_name).to eq('Lighthouse')
+      expect(described_class.policy_logo_name).to eq('Marsh')
     end
 
     it 'names the version the same way in every locale' do
