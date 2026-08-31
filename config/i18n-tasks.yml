@@ -35,7 +35,6 @@ data:
     # - config/locales/%{locale}.yml
     - ['administration.*', 'config/locales/%{locale}/administration.yml']
     - ['privacy_policy.*', 'config/locales/%{locale}/policy.yml']
-    - ['privacy_notice.marsh', 'config/locales/%{locale}/privacy_notice_marsh.yml']
     - ['privacy_notice.mercer_a_marsh_business', 'config/locales/%{locale}/privacy_notice_mercer_a_marsh_business.yml']
     - ['privacy_notice.*', 'config/locales/%{locale}/privacy_notice.yml']
     - ['cookies_notice', 'config/locales/%{locale}/cookies_notice.yml']

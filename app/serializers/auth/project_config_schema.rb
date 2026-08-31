@@ -19,7 +19,6 @@ module Auth
 
         required(:id).filled(:int?)
         required(:hide_signup).filled(:bool?)
-
         OPTIONAL_STRING_KEYS.each { |key| required(key).maybe(:str?) }
         OPTIONAL_BOOLEAN_KEYS.each { |key| required(key).maybe(:bool?) }
       end

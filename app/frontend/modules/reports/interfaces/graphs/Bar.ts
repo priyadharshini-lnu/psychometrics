@@ -39,6 +39,7 @@ interface Props extends TextCondition {
   showLegend: boolean
   hideEmptyColumns: boolean
   hideZeroValueColumns: boolean
+  filter?: string[] | string | null
   barGradient: BarGradient
   showValues: boolean
   showValuesInsideBar: boolean

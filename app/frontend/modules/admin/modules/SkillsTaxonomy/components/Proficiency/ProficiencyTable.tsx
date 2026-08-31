@@ -146,7 +146,8 @@ export const ProficiencyTable: React.FC<Props> = ({ openModal }) => {
         )}
         sorter
         filters={
-          Array.from({ length: 9 }).map((_, index) => ({ text: index + 2, value: index + 2 }))
+          // antd hands the option value back verbatim; the URL round-trip makes the applied filter a string.
+          Array.from({ length: 9 }).map((_, index) => ({ text: index + 2, value: String(index + 2) }))
         }
         filteredValue={resource.getFilteredValue('level_in') as string[]}
       />

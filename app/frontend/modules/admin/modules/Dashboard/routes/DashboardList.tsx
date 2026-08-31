@@ -53,6 +53,7 @@ export const DashboardList = () => {
         pageSize={pageSize}
         total={meta.recordCount ?? 0}
         onChange={changePage}
+        showSizeChanger
       />
     </div>
   )

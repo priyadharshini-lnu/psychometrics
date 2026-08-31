@@ -133,6 +133,7 @@ const SmsInvitesComponent: React.FC<Props> = ({
           pageSize: settings.pagination.defaultPageSize,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         filters={(
           <Space wrap>

@@ -42,7 +42,7 @@ interface Props {
   tableConfig: TableConfig
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
-  changePage(page: number): void
+  changePage(page: number, pageSize?: number): void
   openModal(name: string, data?: { campaignId: string, code?: RegistrationCode }): void
 }
 
@@ -79,6 +79,7 @@ const RegistrationCodes: React.FC<Props> = ({
           pageSize: DEFAULT_PAGE_SIZE,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         filters={permissions.create ? (
           <Button type="primary" onClick={() => openModal('CodeModal', { campaignId })}>

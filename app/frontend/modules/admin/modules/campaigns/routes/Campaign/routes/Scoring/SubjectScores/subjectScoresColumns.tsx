@@ -103,10 +103,10 @@ export function createSortedTableColumns (
       width: 80,
       fixed: 'left',
       filters: [
-        { text: 'Active', value: true },
-        { text: 'Inactive', value: false },
+        { text: 'Active', value: 'true' },
+        { text: 'Inactive', value: 'false' },
       ],
-      filteredValue: (getFilteredValue('campaign_users_active_in') || [true]),
+      filteredValue: getFilteredValue('campaign_users_active_in'),
     },
     {
       title: I18n.t('admin.scoring_subject'),

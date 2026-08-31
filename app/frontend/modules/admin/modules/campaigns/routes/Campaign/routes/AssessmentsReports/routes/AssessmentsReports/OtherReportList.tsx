@@ -133,6 +133,7 @@ const OtherReportListComponent: React.FC<Props> = ({
         pageSize={tableConfig.pageSize ?? PAGE_SIZE}
         total={total}
         onChange={changePage}
+        showSizeChanger
         hideOnSinglePage
       />
       {!!drawerReport && (

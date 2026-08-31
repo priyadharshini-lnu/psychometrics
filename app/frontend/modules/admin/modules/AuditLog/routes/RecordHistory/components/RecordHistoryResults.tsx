@@ -6,7 +6,6 @@ import { DataTablePagination } from '@thetalententerprise/glint'
 import dayjs from '~/utils/dayjs'
 import { ResourceAvatar } from '~/glint/components/ResourceAvatar'
 import { PageContentSkeleton } from '~/modules/endUser/modules/campaigns/components/PageContentSkeleton'
-import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import JsonDiff from '../../AuditLogInfo/JsonDiff'
 import { AuditHistoryEntry } from '~/modules/admin/modules/AuditLog/core'
 import {
@@ -32,10 +31,11 @@ type Props = {
   rootType?: string
   rootId?: string
   page: number
+  pageSize: number
   parsed: Record<string, string>
   resultTypes: string[]
   resultFields: string[]
-  setPage: (nextPage: number) => void
+  setPage: (nextPage: number, nextPageSize: number) => void
   onTypeFilter: (type?: string) => void
   onFieldFilter: (field?: string) => void
   onShowRevision: (entry: AuditHistoryEntry) => void
@@ -75,6 +75,7 @@ const RecordHistoryResults: React.FC<Props> = ({
   rootType,
   rootId,
   page,
+  pageSize,
   parsed,
   resultTypes,
   resultFields,
@@ -273,9 +274,10 @@ const RecordHistoryResults: React.FC<Props> = ({
           </div>
           <DataTablePagination
             page={page}
-            pageSize={DEFAULT_PAGE_SIZE}
+            pageSize={pageSize}
             total={total}
             onChange={setPage}
+            showSizeChanger
             hideOnSinglePage
           />
         </>
