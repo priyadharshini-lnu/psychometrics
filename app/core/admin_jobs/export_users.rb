@@ -19,6 +19,7 @@ module AdminJobs
       campaign_user = user.campaign_users.find { |cu| cu.campaign_id == campaign.id }
       row = [
         campaign_user.decorate.status_text,
+        user.is_uat ? 'Yes' : 'No',
         user.first_name,
         user.last_name,
         user.email,

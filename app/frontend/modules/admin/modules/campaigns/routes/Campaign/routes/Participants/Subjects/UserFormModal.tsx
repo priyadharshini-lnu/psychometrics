@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Form, FormInstance, Input, Radio, Space,
+  Checkbox, Form, FormInstance, Input, Radio, Space,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -101,6 +101,17 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
           >
             <Input name="participant_locale" />
           </Form.Item>
+          {!isEdit && (
+            <Form.Item
+              name="isUat"
+              valuePropName="checked"
+              label={I18n.t('admin.campaign_users_uat_label')}
+            >
+              <Checkbox>
+                {I18n.t('admin.campaign_users_uat_description')}
+              </Checkbox>
+            </Form.Item>
+          )}
           {!isEdit && (
             <Form.Item
               name="operation"

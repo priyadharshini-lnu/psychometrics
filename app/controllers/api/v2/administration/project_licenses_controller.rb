@@ -82,6 +82,14 @@ module Api
             project_id: params[:project_id]
           )
         end
+
+        def meta_details
+          {
+            uat_users_count: lambda {
+              ::User.where(project_id: project.id, is_uat: true).count
+            }
+          }
+        end
       end
     end
   end

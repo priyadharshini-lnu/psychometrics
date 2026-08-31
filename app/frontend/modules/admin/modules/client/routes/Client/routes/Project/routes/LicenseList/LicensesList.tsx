@@ -2,13 +2,14 @@
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Button,
+  Button, Table as AntTable,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
-import { Resource } from '~/modules/admin/components/Resource'
+import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
+import { BaseMeta } from '~/hooks/useResources/interfaces'
 import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
-import { LicenseTR } from '~/modules/admin/modules/client/core/licenses'
+import { License, LicenseTR } from '~/modules/admin/modules/client/core/licenses'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import Modals from '~/modules/admin/components/Modals'
@@ -36,6 +37,40 @@ const connecter = connect(
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
 
+interface LicenseMeta extends BaseMeta {
+  uatUsersCount?: number
+}
+
+const UatLicenseRow: React.FC = () => {
+  const { resource } = useResourceContext<License, LicenseMeta>()
+  const uatUsersCount = resource.meta.uatUsersCount || 0
+
+  if (!uatUsersCount) return null
+
+  return (
+    <AntTable
+      className="mbm"
+      columns={[
+        { dataIndex: 'label' },
+        { dataIndex: 'usage' },
+        { dataIndex: 'billing' },
+      ]}
+      dataSource={[
+        {
+          id: 'uat-users',
+          label: I18n.t('admin.campaign_users_uat_license_label'),
+          usage: I18n.t('admin.campaign_users_uat_license_count', { count: uatUsersCount }),
+          billing: I18n.t('admin.campaign_users_uat_license_non_billable'),
+        },
+      ]}
+      pagination={false}
+      rowKey="id"
+      showHeader={false}
+      size="small"
+    />
+  )
+}
+
 const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
   const { projectId } = useParams() as { projectId: string }
   const config = {
@@ -44,7 +79,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
     basePath: `projects/${projectId}`,
     apiConfig: {
       include: ['report_family'],
-      include_meta: ['permissions'],
+      include_meta: ['permissions', 'uat_users_count'],
       filter: {
         for_project: projectId,
       },
@@ -53,7 +88,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
 
   return (
     <>
-      <Resource
+      <Resource<License, LicenseMeta>
         title={I18n.t('admin.project_licenses')}
         config={config}
         name="licenses"
@@ -77,6 +112,7 @@ const LicenseList: React.FC<Props> = ({ currentUser, openModal }) => {
                 </Button>
               )}
         </Resource.Filter>
+        <UatLicenseRow />
         <ProjectLicensesTable />
         <Modals modals={MODALS} />
       </Resource>

@@ -162,6 +162,7 @@ class User < ApplicationRecord
   validates :email, format: { with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email? }
   validates :email, presence: true
   validates :role, inclusion: { in: UserRoles::USER_ROLES.values }, presence: true, allow_nil: true
+  validate :ensure_is_uat_immutable, on: :update
 
   before_save :ensure_authentication_token
   before_save do
@@ -315,6 +316,12 @@ class User < ApplicationRecord
     self.authentication_token = generate_authentication_token if authentication_token.blank?
   end
 
+  def ensure_is_uat_immutable
+    return unless will_save_change_to_is_uat?
+
+    errors.add(:is_uat, :immutable)
+  end
+
   # If user was already created and was invited by mail (with link to set password)
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
@@ -432,7 +439,7 @@ class User < ApplicationRecord
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       %i[hris_data_cont role_scope_in filterable_fields admins search_query with_access_to_campaign
-         with_campaign_user]
+         with_campaign_user admins_for_campaign]
     end
 
     # Available role for the filter form

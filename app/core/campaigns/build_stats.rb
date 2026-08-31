@@ -28,7 +28,7 @@ module Campaigns
 
     def build_users
       campaign_users = CampaignUser.joins(:user).
-                       where(campaign_id: campaign.id, active: campaign_users_active_in).
+                       where(campaign_id: campaign.id, active: campaign_users_active_in, users: { is_uat: false }).
                        select('campaign_users.id, campaign_users.status, users.email')
 
       filtered_users = campaign_users.select { |cu| campaign_user_passes_datasheet_filter?(cu) }
@@ -43,7 +43,7 @@ module Campaigns
 
     def build_assessments
       campaign_users = CampaignUser.joins(:user).
-                       where(campaign_id: campaign.id, active: campaign_users_active_in).
+                       where(campaign_id: campaign.id, active: campaign_users_active_in, users: { is_uat: false }).
                        select('campaign_users.id, campaign_users.status, users.email')
       filtered_user_ids = campaign_users.select { |cu| campaign_user_passes_datasheet_filter?(cu) }.map(&:id)
 

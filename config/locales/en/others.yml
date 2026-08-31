@@ -214,6 +214,8 @@ en:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+            uat:
+              invalid: 'UAT must be one of: %{accepted_values}, or blank'
         job_roles_translations_form:
           attributes:
             file:

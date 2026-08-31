@@ -44,7 +44,7 @@ module AdminJobs
                   ).
                   joins('LEFT JOIN clients p ON p.id = campaigns.project_id').
                   joins('LEFT JOIN clients c ON c.id = p.tte_id').
-                  where('p.id IN (?)', project_ids) # rubocop:disable Rails/WhereEquals
+                  where('p.id IN (?) AND users.is_uat = false', project_ids)
 
         if geo_restricted_top_level_client_ids.any?
           records = records.where.not(c: { id: geo_restricted_top_level_client_ids })

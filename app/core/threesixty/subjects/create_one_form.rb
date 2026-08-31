@@ -9,6 +9,7 @@ module Threesixty
       attribute :locale, String
       attribute :current_job_role, String
       attribute :target_job_role, String
+      attribute :is_uat, Boolean, default: false
 
       validates :email, :first_name, :last_name, presence: true
       validates :email, format: { with: Devise.email_regexp }

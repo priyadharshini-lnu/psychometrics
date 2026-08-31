@@ -14,6 +14,7 @@ import {
   ReceiptLong,
   Settings,
   Storage,
+  MessageOutlined,
 } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { getFeatures } from '~/core/config'
@@ -84,6 +85,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/settings/')) {
       return ['settings']
     }
+    if (pathname.includes('/communication_center')) {
+      return ['communication_center']
+    }
     if (pathname.includes('/audit_reports')) {
       return ['audit_reports']
     }
@@ -138,6 +142,8 @@ const Project: FC<Props> = ({
         if (pathname.includes('/applications')) return I18n.t('admin.applications')
         return I18n.t('admin.settings')
       }
+      case 'communication_center':
+        return I18n.t('admin.communication_center')
       case 'audit_reports':
         return I18n.t('admin.audit_reports')
       case 'idp':
@@ -191,6 +197,12 @@ const Project: FC<Props> = ({
     key: 'settings',
     icon: <Settings />,
     label: I18n.t('admin.settings'),
+  })
+
+  currentUser.permissions.viewCommunicationCenter && menuItems.push({
+    key: 'communication_center',
+    icon: <MessageOutlined />,
+    label: I18n.t('admin.communication_center'),
   })
   currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',

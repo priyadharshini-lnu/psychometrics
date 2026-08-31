@@ -76,7 +76,10 @@ RSpec.describe UserReport, type: :model do
     let(:user_report) do
       create(:user_report, user: user, campaign_id: campaign_user.campaign_id, user_access: true)
     end
-    let(:communication) { create(:communication, kind: :report_available, campaign_id: user_report.campaign_id) }
+    let(:communication) do
+      create(:communication, kind: :report_available, campaign_id: user_report.campaign_id,
+                              client: campaign_user.campaign.project.parent)
+    end
 
     context 'when status changes to prepared and communication exists' do
       it 'creates communication emails with the same resource' do
@@ -119,6 +122,76 @@ RSpec.describe UserReport, type: :model do
         user_report.update!(status: 'not_prepared')
 
         expect(CommunicationEmail.count).to eq(0)
+      end
+    end
+
+    context 'when a report_available delivery exists (Template/Delivery system)' do
+      let(:delivery) { create(:communication_delivery, :report_available, campaign: campaign_user.campaign) }
+
+      context 'and use_new_communication_center is enabled for the client' do
+        before { campaign_user.campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+        it 'creates a communication_email sourced from the delivery' do
+          delivery
+
+          user_report.update!(status: 'prepared')
+
+          expect(CommunicationEmail.count).to eq(1)
+          communication_email = CommunicationEmail.last
+
+          expect(communication_email.communication_delivery).to eq(delivery)
+          expect(communication_email.user).to eq(user)
+          expect(communication_email.campaign_user).to eq(campaign_user)
+          expect(communication_email.communication_email_resources.first.resource).to eq(user_report)
+        end
+
+        it 'does not resend once already sent via the delivery, but does not block a later status flip either' do
+          delivery
+
+          user_report.update!(status: 'prepared')
+          expect(CommunicationEmail.count).to eq(1)
+
+          user_report.update!(status: 'not_prepared')
+          user_report.update!(status: 'prepared')
+
+          expect(CommunicationEmail.count).to eq(1)
+        end
+
+        context 'when a legacy Communication is also configured for the same campaign' do
+          it 'sends the delivery-sourced email only -- the flag suppresses the legacy send' do
+            communication
+            delivery
+
+            user_report.update!(status: 'prepared')
+
+            expect(CommunicationEmail.count).to eq(1)
+            expect(CommunicationEmail.where(communication_delivery: delivery).count).to eq(1)
+            expect(CommunicationEmail.where(communication: communication)).to be_empty
+          end
+        end
+      end
+
+      context 'and use_new_communication_center is disabled for the client (default)' do
+        it 'does not create a communication_email, even though an active delivery exists' do
+          delivery
+
+          user_report.update!(status: 'prepared')
+
+          expect(CommunicationEmail.count).to eq(0)
+        end
+
+        context 'when a legacy Communication is also configured for the same campaign' do
+          it 'sends the legacy email only' do
+            communication
+            delivery
+
+            user_report.update!(status: 'prepared')
+
+            expect(CommunicationEmail.count).to eq(1)
+            expect(CommunicationEmail.where(communication: communication).count).to eq(1)
+            expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+          end
+        end
       end
     end
   end

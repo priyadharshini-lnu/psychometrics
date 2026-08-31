@@ -16,6 +16,11 @@ new_assignment_communications:
   class: Communications::NewAssignmentJob
   queue: communication
 
+communication_deliveries_tick_job:
+  cron: "*/5 * * * *" # At every 5th minute
+  class: Communications::Deliveries::TickJob
+  queue: communication
+
 workshop_upcoming_reminder_job:
   cron: "0 10 */1 * *" # At 10:00 on every day-of-month
   class: Communications::WorkshopUpcomingReminderJob

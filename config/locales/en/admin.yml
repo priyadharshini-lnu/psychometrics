@@ -391,6 +391,12 @@ en:
     campaign_templates_remove_confirm_success: Campaing template '%{name}'' was successfully removed.
     campaign_templates_remove_confirm_title: Remove Campaign Template
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
+    campaign_users_import_uat_hint: Set the UAT column to Yes for test users that should be excluded from licensing, analytics, and webhooks.
+    campaign_users_uat_description: Mark this participant as a UAT test user.
+    campaign_users_uat_label: UAT Participant
+    campaign_users_uat_license_count: "%{count} users"
+    campaign_users_uat_license_label: UAT users
+    campaign_users_uat_license_non_billable: Non-billable
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template
     campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes
@@ -495,6 +501,107 @@ en:
     common_type: Type
     common_unselect_all: Unselect all
     communication_center: Communication Center
+    communication_center_manage_translations_action: Manage translations
+    communication_center_translation_updated_success: Translation updated successfully
+    communication_center_translations_modal_title: Manage translations
+    communication_deliveries: Deliveries
+    communication_delivery: Communication Delivery
+    communication_delivery_assessment_group_label: Assessment group
+    communication_delivery_at_label: Delivery date & time
+    communication_delivery_at_past_error: Delivery date must be in the future
+    communication_delivery_cancel_action: Cancel
+    communication_delivery_cancel_error: Failed to cancel the delivery
+    communication_delivery_cc_users_label: CC recipients
+    communication_delivery_completion_status_hint: If a completion code is specified, it will only be sent if the user's assessment has this completion status code.
+    communication_delivery_completion_status_label: Assessment completion status code
+    communication_delivery_delay_hours_label: Delay (hours)
+    communication_delivery_details_title: Delivery details
+    communication_delivery_emails_sent_label: Sent
+    communication_delivery_emails_total_label: Total emails
+    communication_delivery_end_date_label: End date
+    communication_delivery_frequency_daily: Daily
+    communication_delivery_frequency_label: Frequency
+    communication_delivery_frequency_specific_weekdays: Specific weekdays
+    communication_delivery_frequency_weekly: Weekly
+    communication_delivery_interval_number_label: Interval
+    communication_delivery_interval_period_days: Days
+    communication_delivery_interval_period_hours: Hours
+    communication_delivery_interval_period_label: Interval period
+    communication_delivery_interval_period_months: Months
+    communication_delivery_interval_period_weeks: Weeks
+    communication_delivery_new_button: New delivery
+    communication_delivery_recipients_all: All participants
+    communication_delivery_recipients_label: Recipients
+    communication_delivery_recipients_new_assignment: New assignment
+    communication_delivery_recipients_new_users: New users
+    communication_delivery_recipients_selected: Selected participants
+    communication_delivery_rule_in_progress: In progress
+    communication_delivery_rule_label: Delivery rule
+    communication_delivery_rule_not_completed: Not completed
+    communication_delivery_rule_not_started: Not started
+    communication_delivery_rule_send_now: Send now
+    communication_delivery_rule_specific_datetime: Specific date & time
+    communication_delivery_search_users_placeholder: Search by name or email
+    communication_delivery_selected_assessments_label: Assessments
+    communication_delivery_selected_users_label: Select users
+    communication_delivery_start_date_label: Start date
+    communication_delivery_template_label: Template
+    communication_delivery_time_of_day_label: Time of day
+    communication_delivery_timezone_label: Timezone
+    communication_delivery_trigger_type_label: Trigger type
+    communication_delivery_trigger_type_manual: Manual
+    communication_delivery_trigger_type_scheduled: Scheduled
+    communication_delivery_weekday_fri: Friday
+    communication_delivery_weekday_mon: Monday
+    communication_delivery_weekday_sat: Saturday
+    communication_delivery_weekday_sun: Sunday
+    communication_delivery_weekday_thu: Thursday
+    communication_delivery_weekday_tue: Tuesday
+    communication_delivery_weekday_wed: Wednesday
+    communication_delivery_weekdays_label: Weekdays
+    communication_email_created_at_label: Created at
+    communication_email_not_sent: Not sent
+    communication_email_preview_action: Preview
+    communication_email_preview_date_label: Date
+    communication_email_preview_from_label: From
+    communication_email_preview_title: Email preview
+    communication_email_preview_to_label: To
+    communication_email_preview_warning: This is a re-rendered preview of the template and may not reflect the exact content of the email that was actually sent.
+    communication_email_recipient_email_label: Recipient email
+    communication_email_recipient_name_label: Recipient name
+    communication_email_retrigger_action: Retrigger
+    communication_email_retrigger_error: Failed to retrigger email
+    communication_email_sent_at_label: Sent at
+    communication_email_status_label: Status
+    communication_email_subject_label: Subject
+    communication_emails: Emails
+    communication_template: Communication Template
+    communication_template_body_label: Message
+    communication_template_create_new_action: Create new
+    communication_template_kind_label: Communication type
+    communication_template_level_campaign: Campaign
+    communication_template_level_client: Client
+    communication_template_level_platform: Platform
+    communication_template_level_project: Project
+    communication_template_name_label: Template name
+    communication_template_new_button: New template
+    communication_template_override_inherited_action: Override inherited
+    communication_template_override_picker_search_placeholder: Search templates to override
+    communication_template_override_picker_title: Override inherited template
+    communication_template_recipients_all: All
+    communication_template_recipients_label: Default recipients
+    communication_template_recipients_new_assignment: New assignment
+    communication_template_recipients_new_users: New users
+    communication_template_recipients_selected: Selected
+    communication_template_source_created: Created
+    communication_template_source_label: Source
+    communication_template_source_override_of: Override of %{level}
+    communication_template_status_active: Active
+    communication_template_status_archived: Archived
+    communication_template_status_draft: Draft
+    communication_template_status_label: Status
+    communication_template_subject_label: Subject
+    communication_templates: Templates
     communications: Communications
     communications_form_insert_piped_text: Insert Piped Text
     completed: Completed
@@ -705,6 +812,8 @@ en:
     disable_proctoring: Disable Proctoring
     disable_report_download: Disable report download
     disable_transcript_download: Disable Transcript Download
+    disable_webhooks: Disable Webhooks
+    disable_webhooks_hint: When enabled, no webhook or downstream integration events are sent to the client for this campaign, regardless of participant type. Only Super Admins can change this.
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
@@ -863,6 +972,7 @@ en:
     feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     feature_superadmin_tenant_scoping_description: When disabled, superadmin queries will not be scoped to this client's data
+    feature_use_new_communication_center_description: Use only the new Communication Center for this client and stop sending legacy communications
     fields_level: Level
     fields_level_description: Level Description
     fields_level_name: Level Name
@@ -3126,15 +3236,19 @@ en:
     status_details: Status Details
     statuses_accepted: Accepted
     statuses_cancelled: Cancelled
+    statuses_failed: Failed
     statuses_late_cancelled: Late Cancelled
     statuses_late_rescheduled: Late Rescheduled
     statuses_pending: Pending
+    statuses_queued: Queued
     statuses_requested_cancellation: Requested Cancellation
     statuses_requested_cancellation_rejected: Cancellation Rejected
     statuses_requested_rescheduling: Requested Rescheduling
     statuses_requested_rescheduling_rejected: Rescheduling Rejected
     statuses_rescheduled: Rescheduled
     statuses_scheduled: Scheduled
+    statuses_sent: Sent
+    statuses_skipped: Skipped
     steps_basic_information: Basic Information
     steps_facilitators: Facilitators
     steps_invite_options: Invite Options
@@ -3340,6 +3454,7 @@ en:
     url_label: URL
     url_name: url
     url_whitelisting: URL Whitelisting
+    use_new_communication_center: Use New Communication Center
     used_tokens_input_tokens: Input Tokens
     used_tokens_output_tokens: Output Tokens
     used_tokens_thinking_tokens: Thinking Tokens

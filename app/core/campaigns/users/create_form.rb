@@ -15,6 +15,7 @@ module Campaigns
       attribute :schedule_start_date, DateTime
       attribute :schedule_end_date, DateTime
       attribute :gender, String
+      attribute :is_uat, Boolean, default: false
       attribute :external_id, String, default: nil
       attribute :current_job_role, String, default: nil
       attribute :target_job_role, String, default: nil

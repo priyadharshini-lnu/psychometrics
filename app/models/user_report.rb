@@ -289,25 +289,25 @@ class UserReport < ApplicationRecord
     status == 'prepared' && user_access == true
   end
 
-  def report_available_email_already_sent?
+  def legacy_report_available_email_already_sent?
     communication_emails.joins(:communication).exists?(communications: { kind: :report_available })
+  end
+
+  def delivery_report_available_email_already_sent?
+    communication_emails.joins(communication_delivery: :communication_template).
+      exists?(communication_templates: { kind: :report_available })
   end
 
   def can_notify_report_availablity?
     return false unless report_available_for_end_user?
-    return false if report_available_email_already_sent?
+    return false if legacy_report_available_email_already_sent? && delivery_report_available_email_already_sent?
 
     true
   end
 
   def schedule_report_available_notification
-    communication = Communication.order(:created_at).where(kind: :report_available, campaign_id: campaign_id).last
-    return unless communication
-
-    communication.create_communication_email_with_resources(
-      { user: user, campaign_user: campaign_user },
-      self
-    )
+    schedule_legacy_report_available_notification unless legacy_report_available_email_already_sent?
+    schedule_delivery_report_available_notification unless delivery_report_available_email_already_sent?
   end
 
   def last_assessment_completed_at
@@ -317,6 +317,29 @@ class UserReport < ApplicationRecord
   end
 
   private
+
+  def schedule_legacy_report_available_notification
+    communication = Communication.order(:created_at).where(kind: :report_available, campaign_id: campaign_id).last
+    return unless communication
+
+    communication.create_communication_email_with_resources(
+      { user: user, campaign_user: campaign_user },
+      self
+    )
+  end
+
+  def schedule_delivery_report_available_notification
+    delivery = CommunicationDelivery.joins(:communication_template).find_by(
+      communication_templates: { kind: :report_available }, campaign_id: campaign_id, status: :active
+    )
+    return unless delivery
+    return unless delivery.client&.feature_enabled?(:use_new_communication_center)
+
+    CommunicationEmail.create_with_resources(
+      { communication_delivery_id: delivery.id, user: user, campaign_user: campaign_user },
+      self
+    )
+  end
 
   def validate_campaign_owner_compatibility_with_report_owner?
     return false if skip_owner_validation == true

@@ -42,6 +42,15 @@ RSpec.describe Administration::Campaigns::UsersController, type: :controller do
       check_report_response(parsed_response['user_reports'].first, user_report)
       check_assessment_response(parsed_response['user_assessments'].first, user_assessment)
     end
+
+    it 'prefixes full_name for UAT users' do
+      uat_user = create(:user, :with_project_membership, project_id: campaign.project_id, is_uat: true)
+      create(:campaign_user, campaign: campaign, user: uat_user)
+
+      get :show, params: { new_campaign_id: campaign.id, id: uat_user.id }
+
+      expect(response.parsed_body['full_name']).to start_with('UAT - ')
+    end
   end
 
   describe 'import' do

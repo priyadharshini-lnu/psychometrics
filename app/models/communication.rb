@@ -177,6 +177,8 @@ class Communication < ApplicationRecord
   end
 
   def create_communication_email_with_resources(attributes, resources)
+    return if client.feature_enabled?(:use_new_communication_center)
+
     CommunicationEmail.create_with_resources(attributes.merge(communication_id: id), resources)
   end
 

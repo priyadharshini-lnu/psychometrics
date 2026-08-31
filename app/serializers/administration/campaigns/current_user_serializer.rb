@@ -45,6 +45,7 @@ module Administration
             'manage_project_privacy_setting',
             'manage_project_assessments',
             'view_audit_reports',
+            'view_communication_center',
             'access_project_taxonomy'
           ],
           {

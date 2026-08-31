@@ -145,6 +145,37 @@ RSpec.describe Administration::Projects::NewCampaignsController, type: :controll
       expect(parsed['minimum_upload_speed']).to eq(123)
       expect(parsed['minimum_download_speed']).to eq(456)
     end
+
+    it 'lets a Super Admin toggle disable_webhooks' do
+      campaign_option = campaign.campaign_options
+
+      patch :update_campaign_options,
+            params: {
+              id: campaign.id,
+              project_id: campaign.project_id,
+              resource: { disable_webhooks: true }
+            }
+
+      expect(response).to have_http_status(:ok)
+      expect(campaign_option.reload.disable_webhooks).to be true
+      expect(response.parsed_body['disable_webhooks']).to be true
+    end
+
+    it 'ignores disable_webhooks submitted by a non Super Admin' do
+      sign_out(current_user)
+      project_admin = create(:project_admin, project: campaign.project)
+      login_user(project_admin)
+
+      patch :update_campaign_options,
+            params: {
+              id: campaign.id,
+              project_id: campaign.project_id,
+              resource: { disable_webhooks: true }
+            }
+
+      expect(response).to have_http_status(:ok)
+      expect(campaign.campaign_options.reload.disable_webhooks).to be false
+    end
   end
 
   describe 'translation import/export' do

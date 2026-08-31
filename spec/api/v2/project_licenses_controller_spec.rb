@@ -27,6 +27,19 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
       expect(license_response['attributes']['project_license_details']['usage_limit']).
         to eq(project_license.usage_limit)
     end
+
+    it 'returns UAT users count for project license page' do
+      create(:user, project: project, is_uat: true)
+      create(:user, project: project, is_uat: true)
+      create(:user, project: project, is_uat: false)
+
+      get "/api/v2/administration/projects/#{project.id}/licenses",
+          params: { include_meta: 'uat_users_count' },
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      expect(JSON.parse(response.body).dig('meta', 'uat_users_count')).to eq(2)
+    end
   end
 
   describe 'POST /projects/:project_id/licenses' do

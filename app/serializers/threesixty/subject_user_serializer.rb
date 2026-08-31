@@ -2,7 +2,8 @@
 
 module Threesixty
   class SubjectUserSerializer < Panko::Serializer
-    attributes :id, :first_name, :last_name, :email, :photo, :gender, :age, :current_job_role, :target_job_role
+    attributes :id, :first_name, :last_name, :email, :photo, :gender, :age, :current_job_role, :target_job_role,
+               :is_uat
 
     delegate :user_profile, to: :object
     delegate :gender, :age, to: :user_profile

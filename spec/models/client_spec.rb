@@ -84,6 +84,48 @@ describe Client, type: :model do
     end
   end
 
+  describe '.communication_center_active?' do
+    let(:client) { create(:tenancy) }
+    let(:project) { create(:project, parent: client) }
+    let(:campaign) { create(:campaign, project: project) }
+
+    it 'returns true when both project_id and campaign_id are blank (no owning client to gate against)' do
+      expect(Client.communication_center_active?).to be true
+    end
+
+    context 'when resolved by project_id' do
+      it 'returns true when the root client has the flag enabled' do
+        client.client_feature.update!(use_new_communication_center: true)
+
+        expect(Client.communication_center_active?(project_id: project.id)).to be true
+      end
+
+      it 'returns false when the root client has the flag disabled' do
+        expect(Client.communication_center_active?(project_id: project.id)).to be false
+      end
+    end
+
+    context 'when resolved by campaign_id' do
+      it 'returns true when the root client has the flag enabled' do
+        client.client_feature.update!(use_new_communication_center: true)
+
+        expect(Client.communication_center_active?(campaign_id: campaign.id)).to be true
+      end
+
+      it 'returns false when the root client has the flag disabled' do
+        expect(Client.communication_center_active?(campaign_id: campaign.id)).to be false
+      end
+    end
+
+    it 'returns false when the given project_id does not resolve to a real client' do
+      expect(Client.communication_center_active?(project_id: -1)).to be false
+    end
+
+    it 'returns false when the given campaign_id does not resolve to a real campaign' do
+      expect(Client.communication_center_active?(campaign_id: -1)).to be false
+    end
+  end
+
   describe '#hogan_group_name' do
     let(:project) { create(:project) }
 

@@ -61,9 +61,25 @@ class Api::V2::Administration::CampaignResource < Api::V2::Administration::BaseR
           project_id: @model.project_id,
           campaign_id: @model.id
         }
-      )
+      ).merge(communication_center_permissions)
     }
     # rubocop:enable Metrics/BlockLength
+  end
+
+  # Reuses Administration::ProjectPolicy#view_communication_center? (the same permission Client/Project
+  # nav already consume) rather than defining a duplicate check on Administration::CampaignPolicy --
+  # record is nil since that policy resolves entirely from project_id/campaign_id context, never record.
+  def communication_center_permissions
+    GetPermissionsHash.call!(
+      Administration::ProjectPolicy,
+      context[:user],
+      nil,
+      ['view_communication_center'],
+      {
+        project_id: @model.project_id,
+        campaign_id: @model.id
+      }
+    )
   end
 
   def tag_list

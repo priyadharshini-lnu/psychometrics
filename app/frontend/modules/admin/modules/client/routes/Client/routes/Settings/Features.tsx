@@ -26,6 +26,7 @@ interface ClientFeatures {
   id: string;
   aiTranslation: boolean;
   aiContentAnalysis: boolean;
+  useNewCommunicationCenter: boolean;
   superadminTenantScoping: boolean;
   glintUi: boolean;
 }
@@ -122,6 +123,7 @@ export const Features: React.FC = () => {
     idp: false,
     aiTranslation: false,
     aiContentAnalysis: false,
+    useNewCommunicationCenter: false,
     superadminTenantScoping: false,
     glintUi: false,
   }
@@ -139,6 +141,7 @@ export const Features: React.FC = () => {
       aiContentAnalysis: !values.aiAssistants ? false : values.aiContentAnalysis || false,
       globalSkills: values.globalSkills || false,
       idp: values.idp || false,
+      useNewCommunicationCenter: values.useNewCommunicationCenter || false,
       superadminTenantScoping: values.superadminTenantScoping ?? false,
       glintUi: values.glintUi || false,
     }
@@ -224,6 +227,11 @@ export const Features: React.FC = () => {
                       name="smsNotification"
                       label={I18n.t('admin.sms_notification')}
                       tooltip={I18n.t('admin.feature_sms_notification_description')}
+                    />
+                    <FeatureToggle
+                      name="useNewCommunicationCenter"
+                      label={I18n.t('admin.use_new_communication_center')}
+                      tooltip={I18n.t('admin.feature_use_new_communication_center_description')}
                       isLast
                     />
                   </FeatureCard>

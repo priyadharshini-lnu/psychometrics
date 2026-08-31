@@ -19,6 +19,12 @@ module Administration
       has_permission?(:clients, :export_data_report, project_id: project_id)
     end
 
+    def view_communication_center?
+      Settings.features.communication_center_enabled &&
+        record.client.feature_enabled?(:use_new_communication_center) &&
+        (@user.is?(:superadmin) || has_permission?(:communications, :view, project_id: project_id))
+    end
+
     def copy?
       if record.project? || record.campaign? || record.sub_campaign?
         record.active? && (@user.is?(:superadmin) || @user.has_permission?(:projects, :manage, project_id: project_id))

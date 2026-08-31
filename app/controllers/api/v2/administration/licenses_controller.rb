@@ -29,6 +29,9 @@ module Api
             %w[index create update view_license_usages],
             { project_id: params[:client_id] }
           )
+        },
+        uat_users_count: lambda {
+          ::User.where(project_id: client.projects.select(:id), is_uat: true).count
         }
       }
     end

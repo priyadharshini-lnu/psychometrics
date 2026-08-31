@@ -91,6 +91,56 @@ describe Threesixty::Subjects::CreateAll do
       expect(participants.map { |s| s.subject.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
     end
 
+    context 'with UAT flag' do
+      it 'persists is_uat = true when the UI toggle is enabled' do
+        result = described_class.call!([{ email: 'uat@example.com', is_uat: true }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(true)
+      end
+
+      it 'persists is_uat = false when the UI toggle is not enabled' do
+        result = described_class.call!([{ email: 'plain@example.com', is_uat: false }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(false)
+      end
+
+      it 'defaults is_uat to false when nothing is provided' do
+        result = described_class.call!([{ email: 'default@example.com' }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(false)
+      end
+
+      it 'persists is_uat = true for a "Yes" value in the import UAT column' do
+        result = described_class.call!([{ email: 'imported@example.com', uat: 'Yes' }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(true)
+      end
+
+      it 'persists is_uat = false for a "No" value in the import UAT column' do
+        result = described_class.call!([{ email: 'imported@example.com', uat: 'No' }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(false)
+      end
+
+      it 'persists is_uat = false for a blank value in the import UAT column' do
+        result = described_class.call!([{ email: 'imported@example.com', uat: '' }], threesixty_campaign)
+
+        expect(result[:subjects].first.user.reload.is_uat).to eq(false)
+      end
+
+      it 'does not change is_uat for an already existing subject' do
+        user = create(:user, project: threesixty_campaign.project, email: 'existing-uat@example.com', is_uat: true)
+        create(:threesixty_subject, user: user, campaign: threesixty_campaign.campaign)
+
+        expect do
+          described_class.call!([{ email: 'existing-uat@example.com', is_uat: false, first_name: 'Dan' }],
+                                threesixty_campaign)
+        end.to_not(change { user.reload.is_uat })
+
+        expect(user.reload.first_name).to eq('Dan')
+      end
+    end
+
     context 'with job role assignments' do
       it 'assigns current and target job roles to new users' do
         subject_data = {

@@ -16,7 +16,7 @@ module Campaigns
 
     def get_filtered_user_ids
       campaign_user_data = CampaignUser.joins(:user).
-                           where(campaign_id: campaign.id, active: campaign_users_active_in).
+                           where(campaign_id: campaign.id, active: campaign_users_active_in, users: { is_uat: false }).
                            select('campaign_users.id, users.email')
 
       valid_users_ids = campaign_user_data.map(&:id)

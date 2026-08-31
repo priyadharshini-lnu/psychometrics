@@ -33,6 +33,7 @@ export interface CommonCampaignPermissions {
   viewCampaign: boolean
   manageIdpPlans: boolean
   manageAiScoringApprovalSettings: boolean
+  viewCommunicationCenter: boolean
 }
 
 export default interface Campaign {
@@ -103,4 +104,6 @@ export interface CampaignOptions {
   faceDetectionEnabled: boolean
   minimumFaceDetectionRatio: number
   phraseVerificationEnabled: boolean
+  disableWebhooks?: boolean
+  manageWebhookSettings?: boolean
 }

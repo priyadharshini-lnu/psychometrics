@@ -17,6 +17,7 @@ module Campaigns
         attribute :schedule_start_date, DateTime
         attribute :schedule_end_date, DateTime
         attribute :manager_id, Integer
+        attribute :is_uat, Boolean, default: false
         attribute :external_id, String, default: nil
         attribute :current_job_role, String, default: nil
         attribute :target_job_role, String, default: nil
@@ -48,6 +49,10 @@ module Campaigns
 
         def active
           super.nil? || super
+        end
+
+        def is_uat # rubocop:disable Naming/PredicatePrefix
+          super == true
         end
 
         def validate_job_roles

@@ -36,6 +36,8 @@ en:
         ai_assisted_idp_feature_error: Can't be true if ai assistants feature is disabled
       client_sso_settings:
         sso_enforced_requires_enabled: Cannot be enabled without SSO being enabled
+      communication_center:
+        invalid_locale: is not a supported locale
       create_superadmin:
         uniq_email: Email should be uniq.
       development_actions:

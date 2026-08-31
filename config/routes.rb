@@ -1461,6 +1461,17 @@ as: :simulation_progress_notification
             end
           end
           jsonapi_resources :campaign_templates
+          jsonapi_resources :communication_templates do
+            post :update_translation, on: :member
+          end
+          jsonapi_resources :communication_deliveries do
+            post :cancel, on: :member
+            post :update_translation, on: :member
+          end
+          jsonapi_resources :communication_emails, except: %i[create update] do
+            get :preview, on: :member
+            post :retrigger, on: :member
+          end
           jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy
