@@ -47,7 +47,7 @@ module Administration
             redirect_to new_administration_session_path
           end
         else
-          flash[:alert] = I18n.t('devise.failure.not_found_in_database')
+          session[:user_email] = params.dig(:user, :email)
           redirect_to new_administration_session_path
         end
       end
