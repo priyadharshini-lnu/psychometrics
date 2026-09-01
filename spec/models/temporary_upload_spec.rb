@@ -16,29 +16,6 @@ RSpec.describe TemporaryUpload, type: :model do
     it { should validate_presence_of(:service_name) }
     it { should validate_presence_of(:bucket) }
     it { should validate_presence_of(:status) }
-
-    it 'allows non-svg files larger than 5 megabytes when under the default limit' do
-      upload = build(
-        :temporary_upload,
-        filename: 'test.pdf',
-        content_type: 'application/pdf',
-        byte_size: TemporaryUpload::MAX_SVG_FILE_SIZE + 1
-      )
-
-      expect(upload).to be_valid
-    end
-
-    it 'rejects svg files larger than 5 megabytes' do
-      upload = build(
-        :temporary_upload,
-        filename: 'test.svg',
-        content_type: 'image/svg+xml',
-        byte_size: TemporaryUpload::MAX_SVG_FILE_SIZE + 1
-      )
-
-      expect(upload).to be_invalid
-      expect(upload.errors[:byte_size]).to include("must be less than or equal to #{TemporaryUpload::MAX_SVG_FILE_SIZE}")
-    end
   end
 
   describe 'scopes' do

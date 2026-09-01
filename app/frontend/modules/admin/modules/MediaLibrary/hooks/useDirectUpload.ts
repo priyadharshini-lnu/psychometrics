@@ -6,7 +6,7 @@ import { calculateMD5Checksum } from '~/utils/fileChecksum'
 
 const { I18n } = window
 const MAX_DIRECT_UPLOAD_SIZE_MB = 100
-const MAX_SVG_DIRECT_UPLOAD_SIZE_MB = 5
+const MAX_DIRECT_UPLOAD_SIZE_BYTES = MAX_DIRECT_UPLOAD_SIZE_MB * 1024 * 1024
 const s3Axios = axios.create()
 
 type UseDirectUploadOptions = {
@@ -22,20 +22,10 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
   const pendingBatchFiles = React.useRef<Array<File & { uid: string }>>([])
   const batchFlushScheduled = React.useRef(false)
 
-  const isSvgFile = (file: Pick<File, 'name' | 'type'>) => (
-    file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg')
-  )
-
-  const getMaxFileSizeMb = (file: Pick<File, 'name' | 'type'>) => (
-    isSvgFile(file) ? MAX_SVG_DIRECT_UPLOAD_SIZE_MB : MAX_DIRECT_UPLOAD_SIZE_MB
-  )
-
-  const getMaxFileSizeBytes = (file: Pick<File, 'name' | 'type'>) => getMaxFileSizeMb(file) * 1024 * 1024
-
-  const showMaxFileSizeError = (name: string, maxFileSizeMb: number) => {
+  const showMaxFileSizeError = (name: string) => {
     message.error(I18n.t('admin.file_size_must_be_less_than_mb', {
       name,
-      max_size_mb: maxFileSizeMb,
+      max_size_mb: MAX_DIRECT_UPLOAD_SIZE_MB,
     }))
   }
 
@@ -102,7 +92,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
       files.forEach((f) => {
         updateFileInList(f.uid, { status: 'error' })
         if (isSizeError) {
-          showMaxFileSizeError(f.name, getMaxFileSizeMb(f))
+          showMaxFileSizeError(f.name)
         } else {
           message.error(I18n.t('admin.file_upload_failed', { name: f.name }))
         }
@@ -133,10 +123,8 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
   }
 
   const handleBeforeUpload = (file: File & { uid: string }) => {
-    const maxFileSizeMb = getMaxFileSizeMb(file)
-
-    if (file.size > getMaxFileSizeBytes(file)) {
-      showMaxFileSizeError(file.name, maxFileSizeMb)
+    if (file.size > MAX_DIRECT_UPLOAD_SIZE_BYTES) {
+      showMaxFileSizeError(file.name)
       return Upload.LIST_IGNORE
     }
 

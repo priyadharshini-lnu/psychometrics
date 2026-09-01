@@ -24,17 +24,12 @@ module Api
       content_type = file_params.require(:content_type)
       byte_size = file_params.require(:byte_size).to_i
       file_key = "#{Settings.aws.s3.temporary_upload_folder}/#{SecureRandom.uuid}/#{filename}"
-      max_file_size = if TemporaryUpload.svg_file?(filename: filename, content_type: content_type)
-                        TemporaryUpload::MAX_SVG_FILE_SIZE
-                      else
-                        TemporaryUpload::MAX_FILE_SIZE
-                      end
 
       post = Aws::S3::Bucket.new(bucket).presigned_post(
         key: file_key,
         content_type: content_type,
         expires: 15.minutes.from_now,
-        content_length_range: 1..max_file_size
+        content_length_range: 1..TemporaryUpload::MAX_FILE_SIZE
       )
 
       temporary_upload = current_user.temporary_uploads.create!(
