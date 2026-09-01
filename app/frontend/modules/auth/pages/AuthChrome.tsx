@@ -1,7 +1,10 @@
 /* eslint-disable react/no-danger */
-import { MouseEvent } from 'react'
-import { theme } from 'antd'
-import { Flex, Typography } from '@thetalententerprise/glint'
+import { MouseEvent, useContext } from 'react'
+import { ConfigProvider } from 'antd'
+import {
+  Flex, GlintThemeContext, Layout, MARSH_LIGHT, Typography,
+} from '@thetalententerprise/glint'
+import type { AuthFeatureFit, AuthLayoutMode } from '@thetalententerprise/glint'
 import { useManageCookies } from '~/hooks/useManageCookies'
 import { LangControl } from '~/components/LangControl'
 import { RootState } from '../core/reducers'
@@ -12,6 +15,16 @@ const { I18n } = window
 type Config = RootState['projectConfig']
 
 const SMALL_PRINT = { fontSize: 12.5 }
+
+const LOGIN_BOX_LAYOUT: Record<Config['login_box_position'], AuthLayoutMode> = {
+  left: 'feature-end',
+  right: 'feature-start',
+  auto: 'feature-end',
+}
+
+const featureFitOf = (backgroundSize: Config['background_size']): AuthFeatureFit => (
+  backgroundSize === 'contain' ? 'contain' : 'cover'
+)
 
 const ManageCookiesLink = () => {
   const { available, openDrawer } = useManageCookies()
@@ -33,8 +46,8 @@ const ManageCookiesLink = () => {
 }
 
 const LighthouseBrand = () => {
-  const { token } = theme.useToken()
   const Wordmark = wordmarkCurrentColor()
+  const { mode } = useContext(GlintThemeContext)
 
   return (
     <Flex
@@ -42,7 +55,8 @@ const LighthouseBrand = () => {
       gap="small"
       role="img"
       aria-label={I18n.t('auth.lighthouse_logo_alt_text')}
-      style={{ color: token.colorTextHeading }}
+      // Read off the unseeded theme constant, not the live token: our mark never takes the client's brand colour.
+      style={{ color: mode === 'dark' ? MARSH_LIGHT.token.colorWhite : MARSH_LIGHT.token.colorPrimary }}
     >
       <Wordmark aria-hidden style={{ blockSize: `${wordmarkHeightPx()}px`, inlineSize: 'auto' }} />
     </Flex>
@@ -90,7 +104,18 @@ export const buildAuthChrome = (config: Config) => {
     </>
   )
 
-  const feature = config.background ? <img src={config.background} alt="" /> : null
+  const featureTheme = config.background_color
+    ? { components: { Layout: { bodyBg: config.background_color } } }
+    : undefined
+
+  const feature = (
+    <ConfigProvider theme={featureTheme}>
+      <Layout>
+        {config.background ? <img src={config.background} alt="" /> : null}
+        {config.background_overlay ? <img src={config.background_overlay} alt="" /> : null}
+      </Layout>
+    </ConfigProvider>
+  )
 
   const footer = (
     <Flex vertical gap="large">
@@ -129,5 +154,11 @@ export const buildAuthChrome = (config: Config) => {
     </Flex>
   )
 
-  return { brand, feature, footer }
+  return {
+    brand,
+    feature,
+    footer,
+    layout: LOGIN_BOX_LAYOUT[config.login_box_position],
+    featureFit: featureFitOf(config.background_size),
+  }
 }

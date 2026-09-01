@@ -60,7 +60,9 @@ const SignupPageComponent: React.FC<Props> = ({
   const showRegistrationCode = !user.sms_invite_code
     && (!user.registration_code || (errors.registration_code || []).length > 0)
 
-  const { brand, feature, footer } = buildAuthChrome(projectConfig)
+  const {
+    brand, feature, footer, layout, featureFit,
+  } = buildAuthChrome(projectConfig)
   const spaLink = (to: string) => ({
     href: to,
     onClick: (e: React.MouseEvent) => {
@@ -96,6 +98,8 @@ const SignupPageComponent: React.FC<Props> = ({
         brand={brand}
         feature={feature}
         footer={footer}
+        layout={layout}
+        featureFit={featureFit}
         title={I18n.t('auth.registration.title')}
         subtitle={I18n.t('auth.registration.description')}
         alerts={alerts}

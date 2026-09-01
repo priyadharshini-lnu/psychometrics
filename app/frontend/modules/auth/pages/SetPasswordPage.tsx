@@ -70,7 +70,9 @@ const SetPasswordPageComponent: React.FC<Props> = ({
 
   const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
-  const { brand, feature, footer } = buildAuthChrome(projectConfig)
+  const {
+    brand, feature, footer, layout, featureFit,
+  } = buildAuthChrome(projectConfig)
 
   let action = '/administration/passwords'
   if (expired) action = '/administration/password_expired'
@@ -82,6 +84,8 @@ const SetPasswordPageComponent: React.FC<Props> = ({
         brand={brand}
         feature={feature}
         footer={footer}
+        layout={layout}
+        featureFit={featureFit}
         title={I18n.t(expired ? 'auth.expired_password.title' : 'auth.set_password.title')}
         subtitle={I18n.t(expired ? 'auth.expired_password.description' : 'auth.set_password.description')}
         alerts={alerts}

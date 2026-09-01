@@ -65,6 +65,6 @@ export default defineConfig({
     __PROD__,
     __TEST__,
     __MOCK_SERVER_PORT__: env.MOCK_SERVER_PORT || '3037',
-    'process.env': process.env,
+    'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
   },
 })
