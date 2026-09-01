@@ -37,7 +37,8 @@ const LegacyAuthApp = () => {
 
 export const App = () => {
   const glintUi = useSelector((state: RootState) => Boolean(state.projectConfig?.glint_ui))
-  const onAdminRoute = isAdminGlintRoute(window.location.pathname)
+  const adminSide = useSelector((state: RootState) => state.projectConfig?.id === undefined)
+  const onAdminRoute = isAdminGlintRoute(window.location.pathname, adminSide)
 
   // Above the router, so a dead auth chunk shows the error card instead of a silently blank login page.
   return (

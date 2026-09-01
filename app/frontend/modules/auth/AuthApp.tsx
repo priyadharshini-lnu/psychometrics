@@ -12,6 +12,7 @@ import {
   ADMIN_LOGIN_PATHS,
   ADMIN_PASSWORD_EXPIRED_PATH,
   ADMIN_SET_PASSWORD_PATHS,
+  TWO_FACTOR_PATH,
 } from './adminGlintRoutes'
 import { RootState } from './core/reducers'
 import { LoginPage } from './pages/LoginPage'
@@ -19,6 +20,7 @@ import { AdminLoginPage } from './pages/AdminLoginPage'
 import { SignupPage } from './pages/SignupPage'
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
 import { SetPasswordPage } from './pages/SetPasswordPage'
+import { TwoFactorAuthPage } from './pages/TwoFactorAuthPage'
 
 const { antdLocale, I18n } = window
 const px2rem = px2remTransformer({ rootValue: 16 })
@@ -28,6 +30,7 @@ const AuthLayout = lazy(() => import('./Layout').then(m => ({ default: m.AuthLay
 
 export const AuthApp = () => {
   const glintUi = useSelector((state: RootState) => Boolean(state.projectConfig?.glint_ui))
+  const adminSide = useSelector((state: RootState) => state.projectConfig?.id === undefined)
   const direction = I18n.currentLocale() === 'ar' ? 'rtl' : 'ltr'
 
   // Only the legacy tree may run under px2rem; transforming glint's styles destabilizes antd alignment.
@@ -64,6 +67,10 @@ export const AuthApp = () => {
           path={ADMIN_PASSWORD_EXPIRED_PATH}
           element={<AuthTheme><SetPasswordPage variant="expired" /></AuthTheme>}
         />
+        {/* Participants share this path and keep the legacy screen, so it is registered admin-side only. */}
+        {adminSide ? (
+          <Route path={TWO_FACTOR_PATH} element={<AuthTheme><TwoFactorAuthPage /></AuthTheme>} />
+        ) : null}
         {glintUi ? (
           <>
             <Route path="/users/sign_in" element={<AuthTheme><LoginPage /></AuthTheme>} />
