@@ -77,7 +77,9 @@ const LoginPageComponent: React.FC<Props> = ({
   const isMagicOnly = projectConfig.disallow_password_login
   const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
-  const { brand, feature, footer } = buildAuthChrome(projectConfig)
+  const {
+    brand, feature, footer, layout, featureFit,
+  } = buildAuthChrome(projectConfig)
   const spaLink = (to: string) => ({
     href: to,
     onClick: (e: React.MouseEvent) => {
@@ -175,6 +177,8 @@ const LoginPageComponent: React.FC<Props> = ({
         brand={brand}
         feature={feature}
         footer={footer}
+        layout={layout}
+        featureFit={featureFit}
         title={I18n.t('enduser.login_welcome_title')}
         subtitle={I18n.t('enduser.login_welcome_description')}
         alerts={alerts}
