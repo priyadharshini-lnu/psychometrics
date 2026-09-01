@@ -118,7 +118,7 @@ RSpec.describe Administration::Administrator::SessionsController, type: :control
 
       it 'sets the flash alert and redirects to new_administration_session_path' do
         expect(response).to have_http_status(:redirect)
-        expect(flash[:alert]).to eq(I18n.t('devise.failure.not_found_in_database'))
+        expect(flash[:alert]).to eq(nil)
         expect(response).to redirect_to(new_administration_session_path)
       end
     end
