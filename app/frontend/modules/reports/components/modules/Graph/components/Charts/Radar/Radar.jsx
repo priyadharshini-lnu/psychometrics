@@ -54,6 +54,16 @@ class Radar extends Component {
     const data = Series[sourceType]
     if (!data) { return null }
     const series = data.series(getCorrectResults(model), sourceModel, model, factors)
+    const hasMultipleResponses = series.length > 1
+    const labelOffsetStep = hasMultipleResponses ? 14 : 0
+    const seriesWithLabelOffsets = series.map((item, index) => ({
+      ...item,
+      dataLabels: {
+        ...(item.dataLabels || {}),
+        y: (index - ((series.length - 1) / 2)) * labelOffsetStep,
+        allowOverlap: !hasMultipleResponses,
+      },
+    }))
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!series.length) { return null }
@@ -81,7 +91,7 @@ class Radar extends Component {
                 formatter: function () {
                   return _.round(this.point.y, 2)
                 },
-                allowOverlap: true,
+                allowOverlap: !hasMultipleResponses,
               },
             },
             line: {
@@ -129,7 +139,7 @@ class Radar extends Component {
               },
             },
           },
-          series,
+          series: seriesWithLabelOffsets,
         },
       ),
     )
