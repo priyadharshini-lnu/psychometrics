@@ -172,7 +172,6 @@ describe('admin route table', () => {
       '/admin/assessments/trash',
       '/admin/assessments/:id/edit',
       '/admin/campaign_templates/*',
-      '/admin/dashboards/:dashboardId',
       '/admin/dashboards/*',
       '/admin/norms',
       '/admin/norms/:normId/editor',
@@ -212,6 +211,7 @@ describe('admin full-screen route table', () => {
     expect(fullPaths(fullScreenRoutes)).toEqual([
       '/admin/meet/create',
       '/admin/meet/:roomId',
+      '/admin/dashboards/:dashboardId',
     ])
   })
 })
