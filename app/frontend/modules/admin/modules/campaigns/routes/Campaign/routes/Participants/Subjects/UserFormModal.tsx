@@ -27,19 +27,31 @@ const OPERATIONS_OPTIONS = [
 
 const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
   const [email, setEmail] = useState('')
+  const [existingUserIsUat, setExistingUserIsUat] = useState<boolean | null>(null)
   const { projectId } = useParams()
   const autocompletedUsers = useSelector((state: RootState) => getAutocomplete(state)?.users || [])
 
 
   const onSelectUser = (userValue: string, formInstance: FormInstance) => {
     const user = JSON.parse(userValue)
+    const isUat = Boolean(user.is_uat ?? user.isUat)
 
+    setExistingUserIsUat(isUat)
     formInstance.setFieldsValue({
       email: user.email,
       firstName: user.firstName || user.first_name,
       lastName: user.lastName || user.last_name,
       locale: user.locale,
+      isUat,
     })
+  }
+
+  const onEmailChange = (value: string, formInstance: FormInstance) => {
+    setEmail(value)
+    if (existingUserIsUat !== null) {
+      setExistingUserIsUat(null)
+      formInstance.setFieldsValue({ isUat: false })
+    }
   }
 
   return (
@@ -73,7 +85,7 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
             <UserAutocomplete
               onSelect={(userValue: string) => onSelectUser(userValue, form)}
               source="users"
-              onChange={setEmail}
+              onChange={(value: string) => onEmailChange(value, form)}
               value={email}
               users={autocompletedUsers}
               url={`/administration/projects/${projectId}/search_users`}
@@ -106,8 +118,11 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
               name="isUat"
               valuePropName="checked"
               label={I18n.t('admin.campaign_users_uat_label')}
+              extra={existingUserIsUat === null
+                ? undefined
+                : I18n.t('admin.campaign_users_uat_locked_hint')}
             >
-              <Checkbox>
+              <Checkbox disabled={existingUserIsUat !== null}>
                 {I18n.t('admin.campaign_users_uat_description')}
               </Checkbox>
             </Form.Item>

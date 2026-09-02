@@ -397,6 +397,7 @@ en:
     campaign_users_uat_license_count: "%{count} users"
     campaign_users_uat_license_label: UAT users
     campaign_users_uat_license_non_billable: Non-billable
+    campaign_users_uat_locked_hint: This participant already exists. UAT status is set when a participant is first created and cannot be changed.
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template
     campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes

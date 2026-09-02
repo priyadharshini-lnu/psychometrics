@@ -30,6 +30,8 @@ function CreateSubjectModal ({
   const [form] = Form.useForm()
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
+  const [existingUserIsUat, setExistingUserIsUat] = useState(null)
+
   const [jobRoleFilter, setJobRoleFilter] = useState('')
   const {
     data: jobRoles = [],
@@ -81,7 +83,9 @@ function CreateSubjectModal ({
 
   const onSelectUser = (user) => {
     const data = JSON.parse(user)
+    const isUat = Boolean(data.is_uat ?? data.isUat)
     setAutocompletedUser(data.email)
+    setExistingUserIsUat(isUat)
 
     // Pre-populate form fields
     form.setFieldsValue({
@@ -89,6 +93,7 @@ function CreateSubjectModal ({
       firstName: data.firstName || data.first_name,
       lastName: data.lastName || data.last_name,
       locale: data.locale,
+      isUat,
     })
   }
 
@@ -168,6 +173,10 @@ function CreateSubjectModal ({
             value={autocompletedUser}
             onChange={(value) => {
               setAutocompletedUser(value)
+              if (existingUserIsUat !== null) {
+                setExistingUserIsUat(null)
+                form.setFieldValue({ isUat: false })
+              }
               form.validateFields(['email'])
             }}
             onSelect={onSelectUser}
@@ -218,8 +227,11 @@ function CreateSubjectModal ({
           name="isUat"
           valuePropName="checked"
           label={I18n.t('admin.campaign_users_uat_label')}
+          extra={existingUserIsUat !== null
+            ? undefined
+            : I18n.t('admin.campaign_users_uat_locked_hint')}
         >
-          <Checkbox>
+          <Checkbox disabled={existingUserIsUat !== null}>
             {I18n.t('admin.campaign_users_uat_description')}
           </Checkbox>
         </Form.Item>
