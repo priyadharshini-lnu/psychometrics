@@ -8,8 +8,9 @@ import {
 import { useBreakpoint } from '@thetalententerprise/glint'
 import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DateTimeWithZone } from '~/glint'
-import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
+import { getCurrent, FETCH_SINGLE } from '~/modules/admin/modules/AssessorApp/core/users'
 import { get as getUserRecordings } from '~/modules/admin/modules/AssessorApp/core/userRecordings'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { TranscriptionDetailsDrawer } from '~/modules/admin/components/Recordings/TranscriptionDetailsDrawer'
 
@@ -17,6 +18,7 @@ const connecter = connect(
   (state: RootState) => ({
     user: getCurrent(state),
     userRecordings: getUserRecordings(state),
+    loading: isRequestInProgress(state, FETCH_SINGLE),
   }),
   {
   },
@@ -28,7 +30,7 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const Recordings: React.FC<Props> = ({ userRecordings }) => {
+const Recordings: React.FC<Props> = ({ userRecordings, loading }) => {
   const [showTranscription, setShowTranscription] = useState(false)
   const [transcriptionText, setTranscriptionText] = useState<string | null>('')
   const [disableTranscriptDownload, setDisableTranscriptDownload] = useState(false)
@@ -46,6 +48,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
             className="mtm mbl"
             rowKey="id"
             dataSource={userRecordings}
+            loading={loading}
             scroll={{ x: 'max-content' }}
             sticky
             pagination={false}

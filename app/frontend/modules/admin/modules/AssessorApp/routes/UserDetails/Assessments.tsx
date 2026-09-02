@@ -8,10 +8,11 @@ import {
 } from 'antd'
 import { useBreakpoint } from '@thetalententerprise/glint'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
+import { getCurrent, FETCH_SINGLE } from '~/modules/admin/modules/AssessorApp/core/users'
 import {
   get as getUserAssessments, isEvaluationCompleted,
 } from '~/modules/admin/modules/AssessorApp/core/userAssessments'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ReportList from './ReportList'
 import { SectionTitle } from '~/modules/admin/components/TableTitle'
@@ -23,6 +24,7 @@ const connecter = connect(
     user: getCurrent(state),
     userAssessments: getUserAssessments(state),
     evaluationCompleted: isEvaluationCompleted(state),
+    loading: isRequestInProgress(state, FETCH_SINGLE),
   }),
   {
   },
@@ -34,7 +36,9 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const Assessments: React.FC<Props> = ({ user, userAssessments, evaluationCompleted }) => {
+const Assessments: React.FC<Props> = ({
+  user, userAssessments, evaluationCompleted, loading,
+}) => {
   const { campaignId } = useParams() as {campaignId: string}
   const navigate = useNavigate()
   const { token } = theme.useToken()
@@ -76,6 +80,7 @@ const Assessments: React.FC<Props> = ({ user, userAssessments, evaluationComplet
               className="mtm mbl"
               rowKey="id"
               dataSource={userAssessments}
+              loading={loading}
               scroll={{ x: 'max-content' }}
               sticky
               pagination={false}

@@ -8,11 +8,14 @@ import { useBreakpoint } from '@thetalententerprise/glint'
 import { Link, useParams } from 'react-router-dom'
 import { MoreOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { get as getUserReports } from '~/modules/admin/modules/AssessorApp/core/userReports'
+import { FETCH_SINGLE } from '~/modules/admin/modules/AssessorApp/core/users'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 
 const connecter = connect(
   (state: RootState) => ({
     userReports: getUserReports(state).list,
+    loading: isRequestInProgress(state, FETCH_SINGLE),
   }),
   {
   },
@@ -24,7 +27,7 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const UserReports: React.FC<Props> = ({ userReports }) => {
+const UserReports: React.FC<Props> = ({ userReports, loading }) => {
   const { campaignId } = useParams() as {campaignId: string}
   const parsedCampaignId = parseInt(campaignId, 10)
   const screens = useBreakpoint()
@@ -36,6 +39,7 @@ const UserReports: React.FC<Props> = ({ userReports }) => {
           className="mtm mbl"
           rowKey="id"
           dataSource={userReports}
+          loading={loading}
           scroll={{ x: 'max-content' }}
           sticky
           pagination={false}
