@@ -56,6 +56,18 @@ class WorkshopInvite < ApplicationRecord
     end
   end
 
+  def next_bookable_workshop
+    workshops.
+      select { |w| w.booked_seats < w.total_seats && !w.scheduling_lead_time_passed? }.
+      min_by(&:start_time)
+  end
+
+  def next_future_workshop
+    workshops.
+      select { |w| w.start_time > Time.current }.
+      min_by(&:start_time)
+  end
+
   def end_user_url
     Utility::Url.generate(:invites_url, subdomain: campaign.project.subdomain)
   end

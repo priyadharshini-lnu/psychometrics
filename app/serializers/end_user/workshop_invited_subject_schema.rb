@@ -12,6 +12,11 @@ module EndUser
         required(:duration).filled(:int?)
         required(:status).filled(:str?)
         required(:workshop_invite_id).filled(:int?)
+
+        required(:slots_count).filled(:int?)
+        required(:seats_available).filled(:int?)
+        required(:meeting_type).maybe(:str?)
+        required(:upcoming_slot_date).maybe(:str?)
       end
     end
   end
