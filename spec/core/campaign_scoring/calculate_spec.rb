@@ -545,6 +545,25 @@ describe CampaignScoring::Calculate do
     expect(values[skill_score_from_json_path].value).to eq(2.2)
   end
 
+  it 'can use external results from user assessment' do
+    external_results = { 'scores' => [{ 'value' => 3.3 }, { 'value' => 'Ruby' }] }
+
+    create(
+      :users_result, campaign: campaign, assessment: assessment,
+      external_results: external_results, subject: user, evaluator: user, status: :completed, score_calculated: true
+    )
+
+    external_result_from_json_path = create(
+      :campaign_factor, campaign: campaign, assessment: assessment, factor: factor,
+      factor_type: 'formula',
+      formula: "return assessment.external_result(#{assessment.id}, \"$.scores[0].value\")"
+    )
+
+    values = described_class.call!(campaign, user)
+
+    expect(values[external_result_from_json_path].value).to eq(3.3)
+  end
+
   it 'raises an error when round receives a string answer from assessments' do
     answers = {}
     answers[question.id.to_s] = { 'dirty' => false,

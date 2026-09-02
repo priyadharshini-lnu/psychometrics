@@ -472,6 +472,18 @@ describe UsersResults::Scoring::AddScore do
       end
     end
 
+    describe 'when custom formula contains assessment.external_result' do
+      let(:custom_formula) { 'return assessment.external_result("$.scores[0].value")' }
+
+      it 'calculates lua script properly' do
+        external_results = { 'scores' => [{ 'value' => 3.3 }, { 'value' => 'Ruby' }] }
+        result = described_class.call!({ factor_hash: factor_hash, factor_ids: factor_ids, scoring: scoring,
+                                         norm: five_scale_norm, external_results: external_results })
+
+        expect(result[factor2.id.to_s]['score']).to eq(3.3)
+      end
+    end
+
     describe 'formula factor can depend on other formula factor' do
       let(:custom_formula) { "return assessment.raw_score(#{factor1.id})" }
 
