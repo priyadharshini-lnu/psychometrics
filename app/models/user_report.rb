@@ -128,13 +128,15 @@ class UserReport < ApplicationRecord
   end
 
   def start_approval!
-    return unless not_ready?
-    return unless has_approval_workflow?
+    with_lock do
+      return unless not_ready?
+      return unless has_approval_workflow?
 
-    if threesixty?
-      ready! if threesixty_report_ready_for_approval?
-    elsif common_report_ready_for_approval?
-      ready!
+      if threesixty?
+        ready! if threesixty_report_ready_for_approval?
+      elsif common_report_ready_for_approval?
+        ready!
+      end
     end
   end
 
