@@ -45,7 +45,7 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
         <Typography.Text type="secondary">{dayjs(job.createdAt).fromNow()}</Typography.Text>
       </Typography.Text>
       {job.isValid ? (
-        <Typography.Link href={job.titleLink.href}>
+        <Typography.Link href={job.titleLink.href} target="_blank" rel="noopener noreferrer">
           {job.titleLink.label}
         </Typography.Link>
       ) : (
