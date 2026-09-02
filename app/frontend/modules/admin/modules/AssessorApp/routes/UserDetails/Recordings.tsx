@@ -5,6 +5,7 @@ import {
   Tooltip,
   Modal,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { DownloadOutlined, EyeInvisibleOutlined, EyeOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { DateTimeWithZone } from '~/glint'
 import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
@@ -31,6 +32,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
   const [showTranscription, setShowTranscription] = useState(false)
   const [transcriptionText, setTranscriptionText] = useState<string | null>('')
   const [disableTranscriptDownload, setDisableTranscriptDownload] = useState(false)
+  const screens = useBreakpoint()
 
   const closeShowTranscription = () => {
     setShowTranscription(false)
@@ -40,11 +42,19 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
     <div>
       <Row>
         <Col span={24}>
-          <Table className="mtm mbl" rowKey="id" dataSource={userRecordings} pagination={false}>
+          <Table
+            className="mtm mbl"
+            rowKey="id"
+            dataSource={userRecordings}
+            scroll={{ x: 'max-content' }}
+            sticky
+            pagination={false}
+          >
             <Column
               title={I18n.t('admin.scheduling_columns_serial_no')}
               dataIndex="id"
               key="id"
+              fixed={screens.md ? 'left' : undefined}
             />
             <Column
               title={I18n.t('admin.scheduling_columns_recording_date')}
@@ -62,6 +72,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
             <Column
               title={I18n.t('admin.scheduling_columns_assessor')}
               key="assessors"
+              width={200}
               render={({ assessors }) => {
                 if (!assessors || assessors.length === 0) return null
                 const maxShown = 1
@@ -83,6 +94,7 @@ const Recordings: React.FC<Props> = ({ userRecordings }) => {
             <Column
               title={I18n.t('admin.scheduling_columns_participants')}
               key="participants"
+              width={200}
               render={({ participants }) => {
                 if (!participants || participants.length === 0) return null
                 const maxShown = 1

@@ -130,7 +130,7 @@ const AssessmentList: React.FC<Props> = ({ openModal, campaignTenantId }) => {
             <Column
               title={I18n.t('shared.assessment_name')}
               key="name"
-              width={300}
+              width={220}
               fixed={screens.md ? 'left' : undefined}
               render={resource => (
                 <Button

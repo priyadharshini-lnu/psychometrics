@@ -108,7 +108,7 @@ const OtherReportListComponent: React.FC<Props> = ({
               title={I18n.t('campaign_report.column.report_name')}
               key="name"
               dataIndex="name"
-              width={300}
+              width={220}
               fixed={screens.md ? 'left' : undefined}
               render={(text, report) => (
                 <Button

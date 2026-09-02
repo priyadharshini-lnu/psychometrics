@@ -81,7 +81,7 @@ const AssessmentList: React.FC<Props> = ({
             <Column
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
-              width={300}
+              width={220}
               fixed={screens.md ? 'left' : undefined}
               render={assessment => (
                 <Button type="link" size="small" className="p-0" onClick={() => setSelectedAssessment(assessment)}>

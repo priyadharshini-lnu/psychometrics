@@ -27,13 +27,15 @@ const Breadcrumb: React.FC<Props> = ({
     if (request) fetch(request)
   }, [JSON.stringify(request)])
 
-  // Labels resolve from fetched state, so an unresolved crumb is dropped rather than titled "undefined".
-  const crumbsForTitle = crumbs.slice(-2).map(({ label }) => label(state)).reverse()
-    .filter((label): label is string => Boolean(label))
-
-  const breadcrumbItems = crumbs.map((crumb) => {
+  const resolvedCrumbs = crumbs.flatMap((crumb) => {
     const label = crumb.label(state)
 
+    return label ? [{ crumb, label }] : []
+  })
+
+  const crumbsForTitle = resolvedCrumbs.slice(-2).map(({ label }) => label).reverse()
+
+  const breadcrumbItems = resolvedCrumbs.map(({ crumb, label }) => {
     const tags = request?.fields
       ?.map(field => state[field as keyof State] as { name?: string; tags?: string[] })
       ?.find(resource => resource?.name === label)

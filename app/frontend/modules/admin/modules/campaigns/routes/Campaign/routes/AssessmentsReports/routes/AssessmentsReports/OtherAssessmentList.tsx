@@ -117,7 +117,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
               dataIndex="name"
-              width={300}
+              width={220}
               fixed={screens.md ? 'left' : undefined}
               render={(text: string, assessment: OtherAssessment) => (
                 <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(assessment)}>

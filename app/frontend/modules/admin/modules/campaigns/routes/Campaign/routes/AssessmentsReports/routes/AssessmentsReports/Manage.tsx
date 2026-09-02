@@ -117,11 +117,18 @@ const Manage: React.FC<Props> = ({
 
   return (
     <div>
-      <Row justify="space-between" style={{ marginTop: token.margin }}>
-        <Col span={4}>
+      <Row
+        justify="space-between"
+        align="middle"
+        style={{
+          paddingInlineEnd: token.padding,
+          paddingBlock: token.padding,
+        }}
+      >
+        <Col>
           <SectionTitle>{I18n.t('admin.reports')}</SectionTitle>
         </Col>
-        <div>
+        <Col>
           <div className={styles.newReportButton}>
             <Space>
               {reportPermissions.bulkDownload && (
@@ -171,7 +178,7 @@ const Manage: React.FC<Props> = ({
               )}
             </Space>
           </div>
-        </div>
+        </Col>
       </Row>
       <Flex vertical gap="large">
         <ReportList />
