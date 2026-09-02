@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import {
-  Button, Table, MenuProps, Row, Col, Switch, App,
+  Button, Table, MenuProps, Switch, App,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { camelizeKeys } from '~/utils/object'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import { MenuItem } from '~/interfaces/Antd'
@@ -36,6 +38,7 @@ const ReportList: React.FC<Props> = ({
   features,
 }) => {
   const [drawerReport, setDrawerReport] = useState<DrawerReport>()
+  const screens = useBreakpoint()
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message } = App.useApp()
@@ -48,148 +51,161 @@ const ReportList: React.FC<Props> = ({
   }
 
   return (
-    <Row>
-      <Col span={24}>
-        <Table
-          className="mtm"
-          rowKey="id"
-          dataSource={list}
-          loading={isReportsLoading}
-          pagination={false}
-          rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
-          scroll={{ x: 'max-content' }}
-          onRow={getTenantRowAttributes}
-        >
-          <Column
-            title={I18n.t('common.column.id')}
-            dataIndex="reportId"
-            key="reportId"
-            fixed="left"
-            width={50}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.report_name')}
-            key="name"
-            dataIndex="name"
-            render={(text, record) => (
-              <Button type="link" size="small" className="p-0" onClick={() => setDrawerReport(record as DrawerReport)}>
-                {text}
-              </Button>
-            )}
-            fixed="left"
-          />
-          <Column
-            title={I18n.t('campaign_report.column.report_bundle')}
-            key="reportFamilyName"
-            dataIndex="reportFamilyName"
-          />
-          <Column
-            title={I18n.t('campaign_report.column.auto_assign')}
-            key="autoAssign"
-            render={({ autoAssign, id }) => (
-              <Switch
-                checked={autoAssign}
-                disabled={!reportPermissions.toggleAutoAssign}
-                onChange={() => toggleAutoAssign(parsedCampaignId, id)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.user_access')}
-            key="userAccess"
-            render={({ userAccess, id }) => (
-              <Switch
-                checked={userAccess}
-                disabled={!reportPermissions.toggleUserAccess}
-                onChange={() => openModal('ToggleUserAccessModal', {
-                  campaignId,
-                  campaignReportId: id,
-                  userAccess,
-                })}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.assessor_access')}
-            key="userAccess"
-            render={({ assessorAccess, id }) => (
-              <Switch
-                checked={assessorAccess}
-                disabled={!reportPermissions.toggleAssessorAccess}
-                onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.user_dashboard')}
-            key="userDashboard"
-            render={({ userDashboard, id }) => (
-              <Switch
-                checked={userDashboard}
-                disabled={!reportPermissions.toggleUserDashboard}
-                onChange={() => toggleUserDashboard(parsedCampaignId, id)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.main_report')}
-            key="userDashboard"
-            render={({ mainReport, id }) => (
-              <Switch
-                checked={mainReport}
-                disabled={!reportPermissions.toggleMainReport}
-                onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_report.column.locales')}
-            key="availableLocales"
-            render={({
-              id, availableLanguages, effectiveDefaultLanguage, reportLocales, internal,
-            }) => (
-              <Locales
-                id={id}
-                availableLanguages={availableLanguages}
-                defaultLanguage={effectiveDefaultLanguage}
-                reportLocales={reportLocales}
-                campaignId={campaignId}
-                internal={internal}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={report => (
-              <ConditionalDropdown
-                menu={
-                  getActionsMenuProps({
-                    campaignId: parsedCampaignId,
-                    campaignReportId: report.id,
-                    reportId: report.reportId,
-                    reportName: report.name,
-                    permissions: report.permissions,
-                    customUpload: report.customUpload,
-                    openModal,
-                    exportData: handleExportData,
-                    uploadBulkAssetsEnabled,
-                  })
-                }
-              />
-            )}
-            width={50}
-            fixed="right"
-          />
-        </Table>
-        {drawerReport ? (
-          <DetailsDrawer
-            close={() => setDrawerReport(undefined)}
-            report={drawerReport}
-          />
-        ) : null}
-      </Col>
-    </Row>
+    <>
+      <TableLayout
+        embedded
+        disableHeader
+        title={I18n.t('admin.reports')}
+        recordCount={list.length}
+        table={(
+          <Table
+            rowKey="id"
+            dataSource={list}
+            loading={isReportsLoading}
+            pagination={false}
+            rowSelection={{ type: 'checkbox', onChange: (ids: number[]) => { selectRecords(ids) } }}
+            scroll={{ x: 'max-content' }}
+            sticky
+            onRow={getTenantRowAttributes}
+          >
+            <Column
+              title={I18n.t('common.column.id')}
+              dataIndex="reportId"
+              key="reportId"
+              fixed={screens.md ? 'left' : undefined}
+              width={50}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.report_name')}
+              key="name"
+              dataIndex="name"
+              width={300}
+              render={(text, record) => (
+                <Button
+                  type="link"
+                  size="small"
+                  className="p-0"
+                  onClick={() => setDrawerReport(record as DrawerReport)}
+                >
+                  {text}
+                </Button>
+              )}
+              fixed={screens.md ? 'left' : undefined}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.report_bundle')}
+              key="reportFamilyName"
+              dataIndex="reportFamilyName"
+              width={200}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.auto_assign')}
+              key="autoAssign"
+              render={({ autoAssign, id }) => (
+                <Switch
+                  checked={autoAssign}
+                  disabled={!reportPermissions.toggleAutoAssign}
+                  onChange={() => toggleAutoAssign(parsedCampaignId, id)}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.user_access')}
+              key="userAccess"
+              render={({ userAccess, id }) => (
+                <Switch
+                  checked={userAccess}
+                  disabled={!reportPermissions.toggleUserAccess}
+                  onChange={() => openModal('ToggleUserAccessModal', {
+                    campaignId,
+                    campaignReportId: id,
+                    userAccess,
+                  })}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.assessor_access')}
+              key="userAccess"
+              render={({ assessorAccess, id }) => (
+                <Switch
+                  checked={assessorAccess}
+                  disabled={!reportPermissions.toggleAssessorAccess}
+                  onChange={() => toggleAssessorAccess(parsedCampaignId, id)}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.user_dashboard')}
+              key="userDashboard"
+              render={({ userDashboard, id }) => (
+                <Switch
+                  checked={userDashboard}
+                  disabled={!reportPermissions.toggleUserDashboard}
+                  onChange={() => toggleUserDashboard(parsedCampaignId, id)}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.main_report')}
+              key="userDashboard"
+              render={({ mainReport, id }) => (
+                <Switch
+                  checked={mainReport}
+                  disabled={!reportPermissions.toggleMainReport}
+                  onChange={() => toggleMainReport(parsedCampaignId, id, !mainReport)}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_report.column.locales')}
+              key="availableLocales"
+              render={({
+                id, availableLanguages, effectiveDefaultLanguage, reportLocales, internal,
+              }) => (
+                <Locales
+                  id={id}
+                  availableLanguages={availableLanguages}
+                  defaultLanguage={effectiveDefaultLanguage}
+                  reportLocales={reportLocales}
+                  campaignId={campaignId}
+                  internal={internal}
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              render={report => (
+                <ConditionalDropdown
+                  menu={
+                    getActionsMenuProps({
+                      campaignId: parsedCampaignId,
+                      campaignReportId: report.id,
+                      reportId: report.reportId,
+                      reportName: report.name,
+                      permissions: report.permissions,
+                      customUpload: report.customUpload,
+                      openModal,
+                      exportData: handleExportData,
+                      uploadBulkAssetsEnabled,
+                    })
+                  }
+                />
+              )}
+              width={50}
+              fixed={screens.md ? 'right' : undefined}
+            />
+          </Table>
+        )}
+      />
+      {drawerReport ? (
+        <DetailsDrawer
+          close={() => setDrawerReport(undefined)}
+          report={drawerReport}
+        />
+      ) : null}
+    </>
   )
 }
 

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
-  Button, Table, Row, Col, App, Drawer, Descriptions,
+  Button, Table, App, Drawer, Descriptions,
 } from 'antd'
-import { DataTablePagination } from '@thetalententerprise/glint'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import _ from 'lodash'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
 import { fetchOtherAssessments, getOther } from '~/modules/admin/modules/campaigns/core/assessments'
@@ -18,7 +18,7 @@ import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
-import { SectionTitle } from '~/modules/admin/components/TableTitle'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { getActionsMenuProps } from './AssessmentList/getActionsMenuProps'
 
 const { Column } = Table
@@ -77,6 +77,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
 
   const { campaignId } = useParams() as { campaignId: string }
+  const screens = useBreakpoint()
   const { message, modal } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -86,14 +87,23 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
 
   return (
     <>
-      <SectionTitle>{I18n.t('admin.other_assessments')}</SectionTitle>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        embedded
+        title={I18n.t('admin.other_assessments')}
+        pagination={{
+          page: parsedPage,
+          pageSize: tableConfig.pageSize ?? PAGE_SIZE,
+          total,
+          onChange: changePage,
+          hideOnSinglePage: true,
+        }}
+        table={(
           <Table<OtherAssessment>
-            className="mtm"
             rowKey="id"
             dataSource={list}
             pagination={false}
+            scroll={{ x: 'max-content' }}
+            sticky
             onChange={onTableChange}
             onRow={getTenantRowAttributes}
           >
@@ -101,11 +111,14 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               title={I18n.t('common.column.id')}
               dataIndex="id"
               key="id"
+              fixed={screens.md ? 'left' : undefined}
             />
             <Column
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
               dataIndex="name"
+              width={300}
+              fixed={screens.md ? 'left' : undefined}
               render={(text: string, assessment: OtherAssessment) => (
                 <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(assessment)}>
                   {text}
@@ -123,6 +136,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.action')}
               key="action"
+              fixed={screens.md ? 'right' : undefined}
               render={assessment => (
                 <ConditionalDropdown
                   menu={
@@ -146,15 +160,7 @@ const OtherAssessmentListComponent: React.FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <DataTablePagination
-        page={parsedPage}
-        pageSize={tableConfig.pageSize ?? PAGE_SIZE}
-        total={total}
-        onChange={changePage}
-        showSizeChanger
-        hideOnSinglePage
+        )}
       />
       {!!drawerAssessment && (
         <Drawer

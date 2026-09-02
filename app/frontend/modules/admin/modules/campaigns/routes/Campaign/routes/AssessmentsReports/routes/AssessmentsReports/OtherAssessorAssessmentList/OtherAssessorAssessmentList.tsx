@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import {
-  Button, Table, MenuProps, Row, Col, App,
+  Button, Table, MenuProps, App,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MessageInstance } from 'antd/es/message/interface'
@@ -16,6 +17,7 @@ import {
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getAssessorAssessment } from '~/modules/admin/modules/campaigns/core/campaignAssessorAssessments'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { AssessorDrawerAssessment, DetailsDrawer } from '../AssessorAssessmentList/DetailsDrawer'
 
 const connecter = connect(
@@ -51,28 +53,36 @@ const AssessmentList: React.FC<Props> = ({
 }) => {
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
+  const screens = useBreakpoint()
   const { message } = App.useApp()
   const [selectedAssessment, setSelectedAssessment] = useState<AssessorDrawerAssessment | undefined>(undefined)
 
   return (
     <>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        embedded
+        title={I18n.t('admin.other_assessor_assessments')}
+        recordCount={assessments.length}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             dataSource={assessments}
             pagination={false}
+            scroll={{ x: 'max-content' }}
+            sticky
             onRow={getTenantRowAttributes}
           >
             <Column
               title={I18n.t('common.column.id')}
               dataIndex="id"
               key="id"
+              fixed={screens.md ? 'left' : undefined}
             />
             <Column
               title={I18n.t('campaign_assessment.column.assessment_name')}
               key="name"
+              width={300}
+              fixed={screens.md ? 'left' : undefined}
               render={assessment => (
                 <Button type="link" size="small" className="p-0" onClick={() => setSelectedAssessment(assessment)}>
                   {assessment.name}
@@ -82,11 +92,13 @@ const AssessmentList: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.linked_assessment')}
               key="linkedAssessment"
+              width={200}
               render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
             />
             <Column
               title={I18n.t('common.column.action')}
               key="action"
+              fixed={screens.md ? 'right' : undefined}
               render={assessment => (
                 <ConditionalDropdown
                   menu={
@@ -107,8 +119,8 @@ const AssessmentList: React.FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-      </Row>
+        )}
+      />
       {!!selectedAssessment && (
         <DetailsDrawer
           close={() => setSelectedAssessment(undefined)}
