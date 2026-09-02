@@ -209,6 +209,7 @@ RSpec.describe Users::SessionsController, type: :controller do
           :sign_out, user,
           user: user,
           payload: { email: user.email },
+          project: user.project,
           impersonated_by_id: nil
         )
 
