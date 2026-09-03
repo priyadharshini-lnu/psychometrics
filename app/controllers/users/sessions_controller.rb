@@ -23,6 +23,7 @@ module Users
           :sign_out, logged_in_user,
           user: logged_in_user,
           payload: { email: logged_in_user.email },
+          project: logged_in_user.project,
           impersonated_by_id: impersonator_id
         )
         Utility::Cookie.expire_auth_cookies(response)
