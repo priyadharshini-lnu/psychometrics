@@ -3,6 +3,7 @@ import {
   Button, MenuProps,
 } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { ToolOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { RootState } from '~/modules/admin/core/rootReducers'
@@ -74,9 +75,9 @@ const getMenuProps = ({
     campaignPermissions.editDimension && {
       key: 'dimension',
       label: (
-        <a href={`/administration/dimensions/${dimensionId}/factors`}>
+        <Link to={`/admin/dimensions/${dimensionId}/factors`}>
           {I18n.t('admin.threesixty_campaigns_manage_dimension')}
-        </a>),
+        </Link>),
     },
     campaignPermissions.editReport && {
       key: 'report',
