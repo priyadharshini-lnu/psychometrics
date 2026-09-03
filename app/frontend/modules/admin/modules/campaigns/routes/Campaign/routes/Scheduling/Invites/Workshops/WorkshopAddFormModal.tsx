@@ -57,7 +57,7 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
   const [searchValue, setSearchValue] = useState('')
   const [error, setError] = useState(false)
   const {
-    data: assessmetnCenters, setData, getResource, fetch: fetchWorkshops,
+    data: assessmentCenters, setData, getResource, fetch: fetchWorkshops,
   } = useResources<Workshop>('workshops', {
     basePath: `campaigns/${campaignId}`,
   })
@@ -72,14 +72,14 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
     setSearchValue('')
     setData([])
     if (_.find(selectedWorkshops, { id: value })) { return }
-    const resource = getResource(value)
-    if (resource) {
-      setSelectedWorkshops([...selectedWorkshops, resource])
+    const selectedWorkshop = getResource(value)
+    if (selectedWorkshop) {
+      setSelectedWorkshops(prev => [...prev, selectedWorkshop])
     }
   }
 
   const removeWorkshop = (id) => {
-    setSelectedWorkshops(selectedWorkshops.filter(w => w.id !== id))
+    setSelectedWorkshops(prev => prev.filter(w => w.id !== id))
   }
 
   const loadWorkshops = (search?: string) => {
@@ -101,9 +101,15 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
     })
   }
 
-  const searchWorkshops = useDebouncedCallback(() => {
-    loadWorkshops(searchValue)
+  const searchWorkshops = useDebouncedCallback((value: string) => {
+    loadWorkshops(value)
   }, 200)
+
+  const handleWorkshopSelectOpenChange = (open: boolean) => {
+    if (open && assessmentCenters.length === 0 && !searchValue) {
+      loadWorkshops()
+    }
+  }
 
   const create = () => {
     if (selectedWorkshops.length > 0) {
@@ -147,22 +153,25 @@ export const WorkshopAddFormModal:React.FC<Props> = ({ close }) => {
                     searchValue,
                     onSearch: (value) => {
                       setSearchValue(value)
-                      searchWorkshops()
+                      searchWorkshops(value)
                     },
                   }}
                   placeholder={
                     I18n.t('admin.invite_basic_info_assessment_centers_placeholder')
                   }
-                  options={assessmetnCenters.map(workshop => ({
-                    label: workshop.name, value: workshop.id,
-                  }))}
+                  options={assessmentCenters
+                    .filter(workshop => !_.find(selectedWorkshops, { id: workshop.id }))
+                    .map(workshop => ({
+                      label: workshop.name, value: workshop.id,
+                    }))}
                   onSelect={changeWorkshops}
+                  onDropdownVisibleChange={handleWorkshopSelectOpenChange}
                   value={null}
                 />
               </Col>
               <Col span={24}>
                 {selectedWorkshops.map(workshop => (
-                  <Tag closable onClose={() => removeWorkshop(workshop.id)}>
+                  <Tag key={workshop.id} closable onClose={() => removeWorkshop(workshop.id)}>
                     {workshop.name}
                   </Tag>
                 ))}
