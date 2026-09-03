@@ -10,12 +10,9 @@ import rootSagas from '~/modules/endUser/core/rootSagas'
 import connection from '~/core/connection'
 import evaluation from '../modules/AssessorApp/core/evaluation'
 
-const sagaMiddleware = createSagaMiddleware()
-
 let composeEnhancers = compose
 /* eslint no-underscore-dangle: 0 */
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
-const middleware = [api, sagaMiddleware, flowMiddleware, thunk]
 
 if (__DEV__) {
   if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
@@ -32,10 +29,11 @@ const rootReducers = combineReducers({
 export type RootState = ReturnType<typeof rootReducers>
 
 export default (): ReturnType<typeof createStore> => {
+  const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     rootReducers,
     __INITIAL_STATE__,
-    composeEnhancers(applyMiddleware(...middleware)),
+    composeEnhancers(applyMiddleware(api, sagaMiddleware, flowMiddleware, thunk)),
   )
   sagaMiddleware.run(rootSagas)
   return store
