@@ -28,7 +28,11 @@ module Api
       end
       message_key ||= 'reset_password_success'
       success_message = I18n.t("reset_password_modal.messages.#{message_key}", email: @resource.email)
-      login_url = Utility::Url.generate(:user_session_url, subdomain: @resource.project&.subdomain)
+      login_url = if @resource.admin?
+                    Utility::Url.generate(:new_administration_session_url)
+                  else
+                    Utility::Url.generate(:user_session_url, subdomain: @resource.project.subdomain)
+                  end
       render json: json_api_attributes(
         @resource,
         { password: auto_generated_password, login_url: login_url, success_message: success_message }
