@@ -60,6 +60,7 @@ export const fetch = (campaignId: number, tableConfig: TableConfig): ApiAction<S
     method: 'get',
     url: `/assessors/campaigns/${campaignId}/users`,
     debounce: 500,
+    loader: true,
     tableConfig,
     typedResponse: UserListResponseTR,
   },
@@ -70,6 +71,7 @@ export const fetchSingle = (campaignId: number, userId: number): ApiAction<Fetch
   request: {
     method: 'get',
     url: `/assessors/campaigns/${campaignId}/users/${userId}`,
+    loader: true,
     typedResponse: FetchSingleTR,
   },
 })

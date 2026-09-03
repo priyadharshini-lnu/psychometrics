@@ -6,11 +6,13 @@ import {
   Table, Row, Col, Button,
   Space, theme,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useNavigate, useParams } from 'react-router-dom'
-import { getCurrent } from '~/modules/admin/modules/AssessorApp/core/users'
+import { getCurrent, FETCH_SINGLE } from '~/modules/admin/modules/AssessorApp/core/users'
 import {
   get as getUserAssessments, isEvaluationCompleted,
 } from '~/modules/admin/modules/AssessorApp/core/userAssessments'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import ReportList from './ReportList'
 import { SectionTitle } from '~/modules/admin/components/TableTitle'
@@ -22,6 +24,7 @@ const connecter = connect(
     user: getCurrent(state),
     userAssessments: getUserAssessments(state),
     evaluationCompleted: isEvaluationCompleted(state),
+    loading: isRequestInProgress(state, FETCH_SINGLE),
   }),
   {
   },
@@ -33,15 +36,18 @@ type Props = PropsFromRedux
 const { Column } = Table
 const { I18n } = window
 
-const Assessments: React.FC<Props> = ({ user, userAssessments, evaluationCompleted }) => {
+const Assessments: React.FC<Props> = ({
+  user, userAssessments, evaluationCompleted, loading,
+}) => {
   const { campaignId } = useParams() as {campaignId: string}
   const navigate = useNavigate()
   const { token } = theme.useToken()
+  const screens = useBreakpoint()
 
   return (
     <>
       <div>
-        <Row justify="space-between" align="middle">
+        <Row justify="space-between" align="middle" style={{ paddingInlineEnd: token.padding }}>
           <Col><SectionTitle>{I18n.t('common.model.assessments')}</SectionTitle></Col>
           <Col>
             <Space>
@@ -70,16 +76,27 @@ const Assessments: React.FC<Props> = ({ user, userAssessments, evaluationComplet
         </Row>
         <Row>
           <Col span={24}>
-            <Table className="mtm mbl" rowKey="id" dataSource={userAssessments} pagination={false}>
+            <Table
+              className="mtm mbl"
+              rowKey="id"
+              dataSource={userAssessments}
+              loading={loading}
+              scroll={{ x: 'max-content' }}
+              sticky
+              pagination={false}
+            >
               <Column
                 title={I18n.t('common.column.id')}
                 dataIndex="id"
                 key="id"
+                fixed={screens.md ? 'left' : undefined}
               />
               <Column
                 title={I18n.t('campaign_assessment.column.assessment_name')}
                 key="assessmentName"
                 dataIndex="assessmentName"
+                width={300}
+                fixed={screens.md ? 'left' : undefined}
               />
               <Column
                 title={I18n.t('common.column.responses_count')}

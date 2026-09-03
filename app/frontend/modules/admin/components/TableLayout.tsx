@@ -39,7 +39,7 @@ type Props = {
   siderOpen?: boolean
   pagination?: Pick<
     Extract<DataTablePaginationProps, { page: number }>,
-    'page' | 'pageSize' | 'total' | 'onChange' | 'showSizeChanger'
+    'page' | 'pageSize' | 'total' | 'onChange' | 'showSizeChanger' | 'hideOnSinglePage'
   >
 }
 
@@ -144,11 +144,11 @@ const TableLayout1: FC<Props & PropsFromRedux> = ({
   // Frameless while collapsed: the frame bounds its own scroll region, and an embedded table scrolls with the page.
   if (embedded && !expanded) {
     return (
-      <>
+      <Flex vertical>
         {header}
         {content}
         {footer}
-      </>
+      </Flex>
     )
   }
 

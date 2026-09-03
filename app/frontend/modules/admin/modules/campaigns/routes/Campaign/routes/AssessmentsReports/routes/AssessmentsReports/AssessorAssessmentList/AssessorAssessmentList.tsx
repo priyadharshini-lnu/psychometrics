@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button, Table, Row, Col, message, MenuProps, App,
+  Button, Table, message, MenuProps, App, Space,
   Switch,
 } from 'antd'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
+import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
 import { getTenantRowAttributes } from '~/utils/tableRowTenantAttributes'
@@ -15,10 +17,17 @@ import { BaseMeta } from '~/hooks/useResources/interfaces'
 
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { openModal } from '~/modules/admin/core/ui/modals'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
+import { get as getCurrentCampaign } from '~/modules/admin/modules/campaigns/core/current'
+import { RootState } from '~/modules/admin/core/rootReducers'
 import { DetailsDrawer } from './DetailsDrawer'
 
-const connecter = connect(() => ({}),
-  { openModal })
+const connecter = connect(
+  (state: RootState) => ({
+    campaignTenantId: getCurrentCampaign(state).tenantId,
+  }),
+  { openModal },
+)
 
 type PropsFromRedux = ConnectedProps<typeof connecter>
 
@@ -27,8 +36,10 @@ const { I18n } = window
 
 type Props = PropsFromRedux
 
-const AssessmentList: React.FC<Props> = ({ openModal }) => {
+const AssessmentList: React.FC<Props> = ({ openModal, campaignTenantId }) => {
   const { campaignId } = useParams() as { campaignId: string }
+  const parsedCampaignId = parseInt(campaignId, 10)
+  const screens = useBreakpoint()
   const { modal } = App.useApp()
   const [selectedAssessorAssessment, setSelectedAssessorAssessment] = useState<CampaignAssessorAssessments | undefined>(
     undefined,
@@ -37,7 +48,8 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
   const stateManager = useCampaignAssessorAssessmentsStore()
 
   const {
-    data, fetch, removeResource, updateResource, meta, isLoading: isAssessorAssessmentLoading,
+    data, fetch, createResource, removeResource, updateResource, meta,
+    isLoading: isAssessorAssessmentLoading,
   } = useResources<CampaignAssessorAssessments>(
     'campaign_assessor_assessments',
     {
@@ -78,24 +90,48 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
 
   return (
     <>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        embedded
+        title={I18n.t('admin.assessor_assessments')}
+        recordCount={data.length}
+        filters={(
+          <Space wrap>
+            {meta?.permissions?.create && (
+              <Button
+                type="primary"
+                onClick={() => openModal('AddAssessorAssessmentModal', {
+                  addAssessorAssessment: createResource,
+                  campaignId: parsedCampaignId,
+                  campaignTenantId,
+                })}
+              >
+                <PlusOutlined />
+                <span>{I18n.t('shared.add')}</span>
+              </Button>
+            )}
+          </Space>
+        )}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             loading={isAssessorAssessmentLoading('fetch')}
             dataSource={data}
             pagination={false}
+            scroll={{ x: 'max-content' }}
+            sticky
             onRow={getTenantRowAttributes}
           >
             <Column
               title={I18n.t('shared.id')}
               dataIndex="assessmentId"
               key="id"
+              fixed={screens.md ? 'left' : undefined}
             />
             <Column
               title={I18n.t('shared.assessment_name')}
               key="name"
+              width={220}
+              fixed={screens.md ? 'left' : undefined}
               render={resource => (
                 <Button
                   type="link"
@@ -110,6 +146,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             <Column
               title={I18n.t('shared.linked_assessment')}
               key="linkedAssessment"
+              width={200}
               render={({ linkedAssessmentName }) => linkedAssessmentName || I18n.t('common.text.na')}
             />
             <Column
@@ -128,6 +165,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             <Column
               title={I18n.t('admin.assessment_center_group')}
               key="assessmentCenterGroups"
+              width={200}
               render={resource => (
                 <Button
                   type="link"
@@ -147,6 +185,7 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
             <Column
               key="manage"
               title={I18n.t('shared.manage')}
+              fixed={screens.md ? 'right' : undefined}
               render={assessorAssessment => (
                 <ConditionalDropdown
                   menu={
@@ -160,8 +199,8 @@ const AssessmentList: React.FC<Props> = ({ openModal }) => {
               )}
             />
           </Table>
-        </Col>
-      </Row>
+        )}
+      />
       {!!selectedAssessorAssessment && (
         <DetailsDrawer
           close={() => setSelectedAssessorAssessment(undefined)}

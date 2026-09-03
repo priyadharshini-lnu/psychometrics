@@ -11,6 +11,7 @@ import styles from './EmbeddedDashboard.less'
 import { EmbeddedPowerBiDashboard } from './EmbeddedPowerBiDashboard'
 import { Dashboard as DashboardType } from '~/modules/admin/modules/campaigns/core/dashboard'
 import { EmbeddedOracleAnalytics } from './EmbeddedOracleAnalytics'
+import { settings } from '../../settings'
 
 interface OwnProps {
   alwaysFullScreen?: boolean
@@ -43,7 +44,7 @@ export const EmbeddedDashboard: React.FC<Props> = ({
           className={styles.pageHeader}
           onBack={() => {
             if (alwaysFullScreen) {
-              navigate(-1)
+              navigate(settings.urlPrefix)
             } else {
               setIsFullScreenMode(false)
             }

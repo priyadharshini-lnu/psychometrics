@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import {
-  Table, Row, Col, Switch, App, Tag, Button, Space, theme,
+  Table, Switch, App, Tag, Button, Space,
 } from 'antd'
 import _ from 'lodash'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
-import { SectionTitle } from '~/modules/admin/components/TableTitle'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import ConditionalDropdown from '~/components/ConditionalDropdown'
 import { getActionsMenuProps } from './getActionsMenuProps'
 import { PropsFromRedux } from './connect'
@@ -66,7 +67,7 @@ const AssessmentList: React.FC<Props> = ({
   const parsedProjectId = parseInt(projectId, 10)
   const parsedCampaignId = parseInt(campaignId, 10)
   const { message, modal } = App.useApp()
-  const { token } = theme.useToken()
+  const screens = useBreakpoint()
   const bulkLoading = bulkExportRawFactorScoresLoading || bulkExportNormFactorScoresLoading
 
   const hasAnyExportPermission = (assessment: Assessment) => (
@@ -156,13 +157,13 @@ const AssessmentList: React.FC<Props> = ({
   }, [campaignOptions?.selectiveProctoringEnabled, parsedProjectId, parsedCampaignId])
 
   return (
-    <Row>
-      <Col span={24}>
-        <Row justify="space-between" style={{ marginTop: token.margin }}>
-          <Col span={8}>
-            <SectionTitle>{I18n.t('admin.assessments_label')}</SectionTitle>
-          </Col>
-          <Space>
+    <>
+      <TableLayout
+        embedded
+        title={I18n.t('admin.assessments_label')}
+        recordCount={list.length}
+        filters={(
+          <Space wrap>
             <Button
               type="default"
               onClick={() => setBulkModalOpen(true)}
@@ -171,273 +172,284 @@ const AssessmentList: React.FC<Props> = ({
               {I18n.t('campaign_report.actions.bulk_download')}
             </Button>
           </Space>
-        </Row>
-        <Table
-          className="mtm"
-          rowKey="id"
-          loading={isLoadingAssessmentsAndReports}
-          dataSource={list}
-          pagination={false}
-          rowSelection={{
-            type: 'checkbox',
-            selectedRowKeys: selectedAssessmentIds,
-            onChange: (ids: React.Key[]) => setSelectedAssessmentIds(ids.map(id => Number(id))),
-            preserveSelectedRowKeys: true,
-            getCheckboxProps: (record: Assessment) => ({
-              disabled: !hasAnyExportPermission(record),
-            }),
-          }}
-          onRow={getTenantRowAttributes}
-        >
-          <Column
-            title={I18n.t('common.column.id')}
-            dataIndex="assessmentId"
-            key="assessmentId"
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.assessment_name')}
-            key="name"
-            dataIndex="name"
-            width={220}
-            render={(text, record: Assessment) => (
-              <>
-                <div>
-                  <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(record)}>
-                    {text}
-                  </Button>
-                </div>
-                {record.isTimed && record.fixedTimeDuration && (
-                  <Tag color="blue">
-                    {I18n.t('admin.timed_label', { time_text: secondsToDayHoursAndMinutes(record.fixedTimeDuration) })}
-                  </Tag>
-                )}
-              </>
-            )}
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.auto_assign')}
-            key="autoAssign"
-            render={({ autoAssign, id }) => (
-              <Switch
-                checked={autoAssign}
-                disabled={!permissions.toggleAutoAssign}
-                onChange={() => toggleAutoAssign(parsedCampaignId, id, !autoAssign)}
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('common.column.require_scheduling')}
-            key="requireScheduling"
-            width={100}
-            render={({ requireScheduling, id }) => (
-              <Switch
-                checked={requireScheduling}
-                disabled={!permissions.toggleRequireScheduling}
-                onChange={() => {
-                  toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
-                }}
-              />
-            )}
-          />
-          {campaignOptions.selectiveProctoringEnabled && (
+        )}
+        table={(
+          <Table
+            rowKey="id"
+            loading={isLoadingAssessmentsAndReports}
+            dataSource={list}
+            pagination={false}
+            scroll={{ x: 'max-content' }}
+            sticky
+            rowSelection={{
+              type: 'checkbox',
+              selectedRowKeys: selectedAssessmentIds,
+              onChange: (ids: React.Key[]) => setSelectedAssessmentIds(ids.map(id => Number(id))),
+              preserveSelectedRowKeys: true,
+              getCheckboxProps: (record: Assessment) => ({
+                disabled: !hasAnyExportPermission(record),
+              }),
+            }}
+            onRow={getTenantRowAttributes}
+          >
             <Column
-              title={I18n.t('admin.proctoring')}
-              key="selectiveProctoring"
-              render={(assessment: Assessment) => (
+              title={I18n.t('common.column.id')}
+              dataIndex="assessmentId"
+              key="assessmentId"
+              fixed={screens.md ? 'left' : undefined}
+            />
+            <Column
+              title={I18n.t('campaign_assessment.column.assessment_name')}
+              key="name"
+              dataIndex="name"
+              width={220}
+              fixed={screens.md ? 'left' : undefined}
+              render={(text, record: Assessment) => (
+                <>
+                  <div>
+                    <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(record)}>
+                      {text}
+                    </Button>
+                  </div>
+                  {record.isTimed && record.fixedTimeDuration && (
+                    <Tag color="blue">
+                      {I18n.t('admin.timed_label', {
+                        time_text: secondsToDayHoursAndMinutes(record.fixedTimeDuration),
+                      })}
+                    </Tag>
+                  )}
+                </>
+              )}
+            />
+            <Column
+              title={I18n.t('campaign_assessment.column.auto_assign')}
+              key="autoAssign"
+              render={({ autoAssign, id }) => (
                 <Switch
-                  checked={assessment.proctoringEnabled}
-                  disabled={!campaignOptions.selectiveProctoringEnabled}
-                  onChange={checked => handleToggleSelectiveProctoring(assessment, checked)}
-                  loading={assessment.id === assessmentIdRef.current && loadingUpdateProctoringSettings}
+                  checked={autoAssign}
+                  disabled={!permissions.toggleAutoAssign}
+                  onChange={() => toggleAutoAssign(parsedCampaignId, id, !autoAssign)}
                 />
               )}
             />
-          )}
-          <Column
-            title={I18n.t('campaign_assessment.column.norm')}
-            key="normName"
-            render={({
-              normName, id, isExternal, hasExternalNorm,
-            }) => {
-              if (isExternal && !hasExternalNorm) {
-                return I18n.t('common.text.na')
-              }
-              return (
-                permissions.updateNorm ? (
+            <Column
+              title={I18n.t('common.column.require_scheduling')}
+              key="requireScheduling"
+              width={100}
+              render={({ requireScheduling, id }) => (
+                <Switch
+                  checked={requireScheduling}
+                  disabled={!permissions.toggleRequireScheduling}
+                  onChange={() => {
+                    toggleRequireScheduling(parsedCampaignId, id, !requireScheduling)
+                  }}
+                />
+              )}
+            />
+            {campaignOptions.selectiveProctoringEnabled && (
+              <Column
+                title={I18n.t('admin.proctoring')}
+                key="selectiveProctoring"
+                render={(assessment: Assessment) => (
+                  <Switch
+                    checked={assessment.proctoringEnabled}
+                    disabled={!campaignOptions.selectiveProctoringEnabled}
+                    onChange={checked => handleToggleSelectiveProctoring(assessment, checked)}
+                    loading={assessment.id === assessmentIdRef.current && loadingUpdateProctoringSettings}
+                  />
+                )}
+              />
+            )}
+            <Column
+              title={I18n.t('campaign_assessment.column.norm')}
+              key="normName"
+              width={200}
+              render={({
+                normName, id, isExternal, hasExternalNorm,
+              }) => {
+                if (isExternal && !hasExternalNorm) {
+                  return I18n.t('common.text.na')
+                }
+                return (
+                  permissions.updateNorm ? (
+                    <Button
+                      type="link"
+                      size="small"
+                      className="p-0"
+                      onClick={
+                        () => openModal('UpdateNormModal',
+                          { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                      }
+                    >
+                      {normName || I18n.t('common.text.default')}
+                    </Button>
+                  ) : normName || I18n.t('common.text.default')
+                )
+              }}
+            />
+            <Column
+              title={I18n.t('campaign_assessment.column.assessor_form')}
+              key="linkedAssessment"
+              width={200}
+              render={({ assessorFormName }) => assessorFormName || I18n.t('common.text.na')}
+            />
+
+            <Column
+              title={I18n.t('campaign_assessment.column.locales')}
+              key="availableLocales"
+              width={200}
+              render={({
+                availableLocales, id, isExternal, category, allLocales,
+              }) => {
+                if (isExternal && category !== 'simulation') {
+                  return I18n.t('common.text.na')
+                }
+                if (!permissions.updateAvailableLocales) {
+                  return _.join(availableLocales, '')
+                }
+                return (
                   <Button
                     type="link"
                     size="small"
                     className="p-0"
                     onClick={
-                      () => openModal('UpdateNormModal',
-                        { projectId: parsedProjectId, campaignId: parsedCampaignId, campaignAssessmentId: id })
+                      () => openModal('UpdateLocalesModal',
+                        {
+                          projectId: parsedProjectId,
+                          campaignId: parsedCampaignId,
+                          campaignAssessmentId: id,
+                          availableLocales,
+                          allLocales,
+                        })
                     }
                   >
-                    {normName || I18n.t('common.text.default')}
+                    {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
                   </Button>
-                ) : normName || I18n.t('common.text.default')
-              )
-            }}
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.assessor_form')}
-            key="linkedAssessment"
-            render={({ assessorFormName }) => assessorFormName || I18n.t('common.text.na')}
-          />
+                )
+              }}
+            />
 
-          <Column
-            title={I18n.t('campaign_assessment.column.locales')}
-            key="availableLocales"
-            render={({
-              availableLocales, id, isExternal, category, allLocales,
-            }) => {
-              if (isExternal && category !== 'simulation') {
-                return I18n.t('common.text.na')
-              }
-              if (!permissions.updateAvailableLocales) {
-                return _.join(availableLocales, '')
-              }
-              return (
-                <Button
-                  type="link"
-                  size="small"
-                  className="p-0"
-                  onClick={
-                    () => openModal('UpdateLocalesModal',
-                      {
-                        projectId: parsedProjectId,
-                        campaignId: parsedCampaignId,
-                        campaignAssessmentId: id,
-                        availableLocales,
-                        allLocales,
-                      })
+            <Column
+              title={I18n.t('campaign_assessment.column.universal_link')}
+              key="universalLink"
+              render={({
+                enableUniversalLinks, universalLink, id, isExternal, allowMultipleResponses,
+              }) => {
+                if (isExternal) {
+                  return (
+                    I18n.t('common.text.na')
+                  )
+                }
+
+                const open = (response?: { universalLink: string, enableUniversalLinks: boolean }) => {
+                  openModal('UniversalLinkModal',
+                    {
+                      projectId: parsedProjectId,
+                      campaignId: parsedCampaignId,
+                      campaignAssessmentId: id,
+                      universalLink: universalLink || response?.universalLink,
+                      enableUniversalLinks: enableUniversalLinks || response?.enableUniversalLinks,
+                      allowMultipleResponses,
+                      manageUniversalLink: permissions.enableUniversalLink,
+                    })
+                }
+                return (!universalLink
+                  ? (
+                    <Button
+                      type="link"
+                      size="small"
+                      className="p-0"
+                      onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}
+                    >
+                      {I18n.t('frontend.activate')}
+                    </Button>
+                  )
+                  : (
+                    <Button type="link" size="small" className="p-0" onClick={() => open()}>
+                      {I18n.t('frontend.manage')}
+                    </Button>
+                  )
+                )
+              }}
+            />
+            <Column
+              title={I18n.t('campaign_assessment.column.prework')}
+              key="category"
+              render={assessment => (
+                <Switch
+                  checked={assessment.prework}
+                  disabled={!permissions.updatePrework}
+                  onChange={
+                    checked => handleTogglePrework(assessment, parsedCampaignId, checked)
                   }
-                >
-                  {_.isEmpty(availableLocales) ? I18n.t('frontend.manage') : _.join(availableLocales, ', ')}
-                </Button>
-              )
-            }}
-          />
-
-          <Column
-            title={I18n.t('campaign_assessment.column.universal_link')}
-            key="universalLink"
-            render={({
-              enableUniversalLinks, universalLink, id, isExternal, allowMultipleResponses,
-            }) => {
-              if (isExternal) {
-                return (
-                  I18n.t('common.text.na')
-                )
-              }
-
-              const open = (response?: { universalLink: string, enableUniversalLinks: boolean }) => {
-                openModal('UniversalLinkModal',
-                  {
-                    projectId: parsedProjectId,
-                    campaignId: parsedCampaignId,
-                    campaignAssessmentId: id,
-                    universalLink: universalLink || response?.universalLink,
-                    enableUniversalLinks: enableUniversalLinks || response?.enableUniversalLinks,
-                    allowMultipleResponses,
-                    manageUniversalLink: permissions.enableUniversalLink,
-                  })
-              }
-              return (!universalLink
-                ? (
-                  <Button
-                    type="link"
-                    size="small"
-                    className="p-0"
-                    onClick={() => enableUniversalLink(campaignId, id).then(({ response }) => open(response))}
-                  >
-                    {I18n.t('frontend.activate')}
-                  </Button>
-                )
-                : (
-                  <Button type="link" size="small" className="p-0" onClick={() => open()}>
-                    {I18n.t('frontend.manage')}
-                  </Button>
-                )
-              )
-            }}
-          />
-          <Column
-            title={I18n.t('campaign_assessment.column.prework')}
-            key="category"
-            render={assessment => (
-              <Switch
-                checked={assessment.prework}
-                disabled={!permissions.updatePrework}
-                onChange={
-                  checked => handleTogglePrework(assessment, parsedCampaignId, checked)
-                }
-              />
-            )}
-          />
-          <Column
-            title={I18n.t('common.column.action')}
-            key="action"
-            render={assessment => (
-              <ConditionalDropdown
-                menu={
-                  getActionsMenuProps({
-                    assessment,
-                    campaignId: parsedCampaignId,
-                    projectId: parsedProjectId,
-                    openModal,
-                    rescoreResponses: (
-                      aiRescore = false,
-                    ) => rescoreResponses(parsedCampaignId, assessment.id, aiRescore),
-                    regenerateTranscriptions: (
-                      () => regenerateTranscriptions(parsedCampaignId, assessment.id)
-                    ),
-                    exportRawResults,
-                    exportScoringResults,
-                    exportNormedResults,
-                    exportRawFactorScores,
-                    exportAiFactorScores,
-                    exportOccupations,
-                    normalizeFactorScores: (
-                      () => normalizeFactorScores(parsedCampaignId, assessment.id)
-                    ),
-                    exportExternalResults,
-                    updateExternalConfig,
-                    message,
-                    modal,
-                  })
-                }
-              />
-            )}
-          />
-        </Table>
-        {drawerAssessment ? (
-          <DetailsDrawer
-            close={() => setDrawerAssessment(undefined)}
-            assessment={drawerAssessment}
-            campaignId={campaignId}
-            openModal={openModal}
-            updateMettlSchedule={updateMettlSchedule}
-            loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
-            updatePearsonVariation={updatePearsonVariation}
-            updateMhsConfidenceInterval={updateMhsConfidenceInterval}
-            updateMhsLeadershipBar={updateMhsLeadershipBar}
-            updateMhsNormRegion={updateMhsNormRegion}
-            updateMhsNormOption={updateMhsNormOption}
-            toggleAssessmentCaching={toggleAssessmentCaching}
-          />
-        ) : null}
-        {bulkModalOpen && (
-          <BulkDownloadAssessmentsModal
-            selectedIds={selectedAssessmentIds}
-            assessments={list}
-            loading={bulkLoading}
-            close={() => setBulkModalOpen(false)}
-            onSubmit={handleBulkDownload}
-          />
+                />
+              )}
+            />
+            <Column
+              title={I18n.t('common.column.action')}
+              key="action"
+              fixed={screens.md ? 'right' : undefined}
+              render={assessment => (
+                <ConditionalDropdown
+                  menu={
+                    getActionsMenuProps({
+                      assessment,
+                      campaignId: parsedCampaignId,
+                      projectId: parsedProjectId,
+                      openModal,
+                      rescoreResponses: (
+                        aiRescore = false,
+                      ) => rescoreResponses(parsedCampaignId, assessment.id, aiRescore),
+                      regenerateTranscriptions: (
+                        () => regenerateTranscriptions(parsedCampaignId, assessment.id)
+                      ),
+                      exportRawResults,
+                      exportScoringResults,
+                      exportNormedResults,
+                      exportRawFactorScores,
+                      exportAiFactorScores,
+                      exportOccupations,
+                      normalizeFactorScores: (
+                        () => normalizeFactorScores(parsedCampaignId, assessment.id)
+                      ),
+                      exportExternalResults,
+                      updateExternalConfig,
+                      message,
+                      modal,
+                    })
+                  }
+                />
+              )}
+            />
+          </Table>
         )}
-      </Col>
-    </Row>
+      />
+      {drawerAssessment ? (
+        <DetailsDrawer
+          close={() => setDrawerAssessment(undefined)}
+          assessment={drawerAssessment}
+          campaignId={campaignId}
+          openModal={openModal}
+          updateMettlSchedule={updateMettlSchedule}
+          loadingUpdateMettlSchedule={loadingUpdateMettlSchedule}
+          updatePearsonVariation={updatePearsonVariation}
+          updateMhsConfidenceInterval={updateMhsConfidenceInterval}
+          updateMhsLeadershipBar={updateMhsLeadershipBar}
+          updateMhsNormRegion={updateMhsNormRegion}
+          updateMhsNormOption={updateMhsNormOption}
+          toggleAssessmentCaching={toggleAssessmentCaching}
+        />
+      ) : null}
+      {bulkModalOpen && (
+        <BulkDownloadAssessmentsModal
+          selectedIds={selectedAssessmentIds}
+          assessments={list}
+          loading={bulkLoading}
+          close={() => setBulkModalOpen(false)}
+          onSubmit={handleBulkDownload}
+        />
+      )}
+    </>
   )
 }
 

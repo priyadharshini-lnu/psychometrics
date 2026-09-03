@@ -6,6 +6,7 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { Link, useParams } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { MenuItem } from '~/interfaces/Antd'
@@ -36,6 +37,7 @@ const ReportList: React.FC<Props> = ({
   removeFile,
 }) => {
   const [drawerReport, setDrawerReport] = useState<UserReport | undefined>()
+  const screens = useBreakpoint()
   const { campaignId, projectId, id: userId } = useParams() as {
     campaignId: string
     projectId: string
@@ -68,16 +70,21 @@ const ReportList: React.FC<Props> = ({
               disabled: !record.permissions.downloadReport,
             }),
           }}
+          scroll={{ x: 'max-content' }}
+          sticky
         >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="reportId"
             key="reportId"
+            fixed={screens.md ? 'left' : undefined}
+            width={50}
           />
           <Column
             title={I18n.t('campaign_report.column.report_name')}
             key="name"
             dataIndex="name"
+            width={220}
             render={(text, record: UserReport) => (
               <>
                 <Button type="link" size="small" className="p-0" onClick={() => setDrawerReport(record)}>
@@ -92,11 +99,13 @@ const ReportList: React.FC<Props> = ({
                 )}
               </>
             )}
+            fixed={screens.md ? 'left' : undefined}
           />
           <Column
             title={I18n.t('campaign_report.column.report_bundle')}
             key="reportFamilyName"
             dataIndex="reportFamilyName"
+            width={220}
           />
           <Column
             title={I18n.t('common.column.status')}
@@ -137,6 +146,8 @@ const ReportList: React.FC<Props> = ({
                 }
               />
             )}
+            width={50}
+            fixed={screens.md ? 'right' : undefined}
           />
         </Table>
         {drawerReport ? (

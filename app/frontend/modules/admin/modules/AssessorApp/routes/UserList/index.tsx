@@ -6,7 +6,8 @@ import {
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import settings from '~/modules/admin/settings'
-import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
+import { get as getUsers, fetch, FETCH } from '~/modules/admin/modules/AssessorApp/core/users'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
@@ -17,6 +18,7 @@ import styles from './styles.less'
 const connecter = connect(
   (state: RootState) => ({
     users: getUsers(state),
+    loading: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,
@@ -34,6 +36,7 @@ const { I18n } = window
 const UserList: React.FC<Props> = (
   {
     users: { list, total },
+    loading,
     fetch,
     tableConfig: {
       filters,
@@ -72,6 +75,7 @@ const UserList: React.FC<Props> = (
         ]}
       />
       <TableLayout
+        loading={loading}
         title={I18n.t('admin.navigation_users')}
         recordCount={total}
         pagination={{

@@ -46,7 +46,7 @@ const Recordings: React.FC<Props> = ({ userRecordings, fetchRecordings, header }
 
   useEffect(() => {
     fetchRecordings(parsedCampaignId, parsedUserId)
-  }, [])
+  }, [parsedUserId])
 
   const closeShowTranscription = () => {
     setShowTranscription(false)

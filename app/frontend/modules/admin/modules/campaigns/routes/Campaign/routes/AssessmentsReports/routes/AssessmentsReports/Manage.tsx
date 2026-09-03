@@ -36,10 +36,6 @@ import UpdateLocalesModal from './UpdateLocalesModal'
 import { PropsFromRedux } from './connect'
 import styles from './styles.less'
 import RescoreResponseModal from '~/modules/admin/modules/campaigns/components/RescoreResponseModal'
-import { useResources } from '~/hooks/useResources'
-import {
-  CampaignAssessorAssessments, useCampaignAssessorAssessmentsStore,
-} from '~/modules/admin/modules/client/core/campaignAssessorAssessments'
 import { SchedulingCampaignAssessmentModal } from './AssessmentList/SchedulingCampaignAssessmentModal'
 import { UserFilterModal } from '../../../Participants/Subjects/UserFilterModal'
 import { ApplyToExistingUsersFormModal } from './AssessmentList/ApplyToExistingUsersModal'
@@ -89,7 +85,6 @@ const Manage: React.FC<Props> = ({
   bulkDownload,
   bulkDownloadInProgress,
   campaignPermissions,
-  campaignTenantId,
   otherAsessorAssessments,
 }) => {
   useEffect(() => {
@@ -98,8 +93,6 @@ const Manage: React.FC<Props> = ({
 
   const { campaignId } = useParams() as { campaignId: string }
   const parsedCampaignId = parseInt(campaignId, 10)
-
-  const stateManager = useCampaignAssessorAssessmentsStore()
 
   const { message } = App.useApp()
   const { token } = theme.useToken()
@@ -122,23 +115,20 @@ const Manage: React.FC<Props> = ({
       })
   }
 
-  const {
-    createResource, meta: campaignAssessorAssessmentsMeta,
-  } = useResources<CampaignAssessorAssessments>(
-    'campaign_assessor_assessments',
-    {
-      stateManager,
-      basePath: `campaigns/${campaignId}`,
-    },
-  )
-
   return (
     <div>
-      <Row justify="space-between" style={{ marginTop: token.margin }}>
-        <Col span={4}>
+      <Row
+        justify="space-between"
+        align="middle"
+        style={{
+          paddingInlineEnd: token.padding,
+          paddingBlock: token.padding,
+        }}
+      >
+        <Col>
           <SectionTitle>{I18n.t('admin.reports')}</SectionTitle>
         </Col>
-        <div>
+        <Col>
           <div className={styles.newReportButton}>
             <Space>
               {reportPermissions.bulkDownload && (
@@ -188,56 +178,20 @@ const Manage: React.FC<Props> = ({
               )}
             </Space>
           </div>
-        </div>
+        </Col>
       </Row>
-      <Flex vertical>
+      <Flex vertical gap="large">
         <ReportList />
-        <div className={styles.tableDivider} />
         <AssessmentList />
-
-        <div className={styles.tableDivider} />
-
-        <Row justify="space-between" style={{ marginTop: token.margin }}>
-          <Col span={8}>
-            <SectionTitle>
-              {I18n.t('admin.assessor_assessments')}
-            </SectionTitle>
-          </Col>
-
-          {campaignAssessorAssessmentsMeta?.permissions?.create
-            && (
-              <Button
-                type="primary"
-                onClick={
-                () => openModal('AddAssessorAssessmentModal', {
-                  addAssessorAssessment: createResource,
-                  campaignId: parsedCampaignId,
-                  campaignTenantId,
-                })
-              }
-              >
-                <PlusOutlined />
-                <span>
-                  {I18n.t('shared.add')}
-                </span>
-              </Button>
-            )}
-        </Row>
 
         {campaignPermissions.viewAssessors && <AssessorAssessmentList />}
 
         {campaignPermissions.viewAssessors && otherAsessorAssessments.length > 0 && (
-          <>
-            <div className={styles.tableDivider} />
-            <SectionTitle>{I18n.t('admin.other_assessor_assessments')}</SectionTitle>
-            <OtherAssessorAssessmentList />
-          </>
+          <OtherAssessorAssessmentList />
         )}
 
-        <div className={styles.tableDivider} />
         <OtherReportList />
 
-        <div className={styles.tableDivider} />
         <OtherAssessmentList />
       </Flex>
       <Modals modals={MODALS} />

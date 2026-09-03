@@ -105,6 +105,9 @@ module CampaignScoring
         'answer' => proc { |assessment_id, json_path, relationship_name = Relationship::SELF|
                       answer_from_json_path(assessment_id, json_path, relationship_name)
                     },
+        'external_result' => proc { |assessment_id, json_path|
+                               external_result_from_json_path(assessment_id, json_path)
+                             },
         'status' => proc { |assessment_id| assessment_status(assessment_id) }
       }
       lua.user = {
@@ -184,6 +187,15 @@ module CampaignScoring
       return nil unless users_result
 
       JsonPath.new(json_path).on(users_result.answers).first
+    end
+
+    def external_result_from_json_path(assessment_id, json_path)
+      user_assessment = assessment_of_relationship(assessment_id, Relationship::SELF)
+
+      users_result = user_assessment&.users_result
+      return nil unless users_result
+
+      JsonPath.new(json_path).on(users_result.external_results).first
     end
 
     def answer_for_question(assessment_id, question_id, relationship_name)

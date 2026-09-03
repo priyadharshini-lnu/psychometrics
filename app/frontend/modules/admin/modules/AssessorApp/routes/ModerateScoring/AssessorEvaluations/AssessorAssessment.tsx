@@ -14,6 +14,7 @@ import { fetchAssessorAssessment, getAssessorForm, getAssessorResults } from '..
 const { Content } = Layout
 
 const connecter = connect((state: RootState, props: {assessmentId: number}) => ({
+  loadedUserId: state.assessors.scoreModerate.userId,
   assessorForm: getAssessorForm(state.assessors.scoreModerate, props.assessmentId),
   assessorResults: getAssessorResults(state.assessors.scoreModerate, props.assessmentId),
 }), {
@@ -39,6 +40,7 @@ const AssessmentProvider = (props) => {
 
 const UserAssessment: React.FC<Props> = ({
   assessmentId,
+  loadedUserId,
   assessorForm,
   assessorResults,
   fetch,
@@ -53,10 +55,10 @@ const UserAssessment: React.FC<Props> = ({
   const [resultId, setResultId] = useState(null)
 
   useEffect(() => {
-    if (!assessorForm) {
+    if (!assessorForm || loadedUserId !== parsedUserId) {
       fetch(parsedCampaignId, parsedUserId, assessmentId)
     }
-  }, [])
+  }, [parsedUserId])
 
   useEffect(() => {
     assessorResults && setResultId(assessorResults[0].id)

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {
-  Button, Table, MenuProps, Row, Col, App,
+  Button, Table, MenuProps, App,
 } from 'antd'
-import { DataTablePagination } from '@thetalententerprise/glint'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import { useParams } from 'react-router-dom'
 import { connect, ConnectedProps } from 'react-redux'
 import { MenuItem } from '~/interfaces/Antd'
@@ -19,7 +19,7 @@ import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { openModal } from '~/modules/admin/core/ui/modals'
-import { SectionTitle } from '~/modules/admin/components/TableTitle'
+import { TableLayout } from '~/modules/admin/components/TableLayout'
 import { DetailsDrawer, DrawerReport } from './ReportList/DetailsDrawer'
 
 const { Column } = Table
@@ -63,6 +63,7 @@ const OtherReportListComponent: React.FC<Props> = ({
   }, [tableConfig.page])
   const { campaignId } = useParams() as { campaignId: string }
   const parsedPage = parseInt(tableConfig.page as unknown as string, 10)
+  const screens = useBreakpoint()
   const { message } = App.useApp()
 
   const parsedCampaignId = parseInt(campaignId, 10)
@@ -77,14 +78,23 @@ const OtherReportListComponent: React.FC<Props> = ({
 
   return (
     <>
-      <SectionTitle>{I18n.t('admin.other_reports')}</SectionTitle>
-      <Row>
-        <Col span={24}>
+      <TableLayout
+        embedded
+        title={I18n.t('admin.other_reports')}
+        pagination={{
+          page: parsedPage,
+          pageSize: tableConfig.pageSize ?? PAGE_SIZE,
+          total,
+          onChange: changePage,
+          hideOnSinglePage: true,
+        }}
+        table={(
           <Table
-            className="mtm"
             rowKey="id"
             dataSource={list}
             pagination={false}
+            scroll={{ x: 'max-content' }}
+            sticky
             onChange={onTableChange}
             onRow={getTenantRowAttributes}
           >
@@ -92,11 +102,14 @@ const OtherReportListComponent: React.FC<Props> = ({
               title={I18n.t('common.column.id')}
               dataIndex="id"
               key="id"
+              fixed={screens.md ? 'left' : undefined}
             />
             <Column
               title={I18n.t('campaign_report.column.report_name')}
               key="name"
               dataIndex="name"
+              width={220}
+              fixed={screens.md ? 'left' : undefined}
               render={(text, report) => (
                 <Button
                   type="link"
@@ -112,6 +125,7 @@ const OtherReportListComponent: React.FC<Props> = ({
             <Column
               title={I18n.t('common.column.action')}
               key="action"
+              fixed={screens.md ? 'right' : undefined}
               render={report => (
                 <ConditionalDropdown
                   menu={
@@ -126,15 +140,7 @@ const OtherReportListComponent: React.FC<Props> = ({
               )}
             />
           </Table>
-        </Col>
-      </Row>
-      <DataTablePagination
-        page={parsedPage}
-        pageSize={tableConfig.pageSize ?? PAGE_SIZE}
-        total={total}
-        onChange={changePage}
-        showSizeChanger
-        hideOnSinglePage
+        )}
       />
       {!!drawerReport && (
         <DetailsDrawer

@@ -32,6 +32,7 @@ const { I18n } = window
 interface ScoringTableProps {
   onSave: () => void
   readOnly: boolean
+  showsLoadedUser: boolean
 }
 
 type DataType = {
@@ -80,7 +81,7 @@ const processData = (dataWithAverages, averageRow, scoreRange, weightedAverageRo
   return baseData
 }
 
-const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
+const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly, showsLoadedUser }) => {
   const { campaignId, userId } = useParams() as { campaignId: string, userId: string }
   const { message } = App.useApp()
 
@@ -206,7 +207,7 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     fetchFactors()
     fetchFinalScore()
     fetchFactorWeightages()
-  }, [])
+  }, [userId])
 
   const initializeFinalScores = useCallback(() => {
     const newFinalScores = {}
@@ -510,10 +511,11 @@ const ScoringTable: React.FC<ScoringTableProps> = ({ onSave, readOnly }) => {
     <>
       <div className={styles.container}>
         <h3 className={styles.header}>{I18n.t('admin.scoring_scoring')}</h3>
-        {isFactorsLoading('fetch')
-        && isFinalScoreLoading('fetch')
-        && isScoresLoading('fetch')
-        && isWeightageLoading('fetch') ? <Skeleton active />
+        {!showsLoadedUser
+        || isFactorsLoading('fetch')
+        || isFinalScoreLoading('fetch')
+        || isScoresLoading('fetch')
+        || isWeightageLoading('fetch') ? <Skeleton active />
           : (
             <Table
               dataSource={dataSource}
