@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class AddAllowDataAccessToBiToClients < ActiveRecord::Migration[8.0]
+class AddAllowDataAccessToBiToClients < ActiveRecord::Migration[8.0] # rubocop:disable Metrics/ClassLength
   def up
     add_column :clients, :allow_data_access_to_bi, :boolean, null: false, default: false
 
@@ -333,12 +333,16 @@ class AddAllowDataAccessToBiToClients < ActiveRecord::Migration[8.0]
         sheet_columns.name AS field_name,
         sheet_row_data.numeric_value,
         sheet_row_data.string_value
-      FROM ((((public.sheet_row_data
-        JOIN public.sheet_rows ON ((sheet_rows.id = sheet_row_data.sheet_row_id)))
-        JOIN public.sheets ON ((sheets.id = sheet_rows.sheet_id)))
-        JOIN public.sheet_columns ON ((sheet_columns.sheet_id = sheets.id)))
-        LEFT JOIN public.campaigns ON ((campaigns.id = sheets.campaign_id)))
-      WHERE ((sheets.type)::text = 'Datasheet'::text);
+      FROM
+        public.sheet_row_data
+        JOIN public.sheet_rows ON sheet_rows.id = sheet_row_data.sheet_row_id
+        JOIN public.sheets ON sheets.id = sheet_rows.sheet_id
+        JOIN public.sheet_columns ON sheet_columns.id = sheet_row_data.sheet_column_id
+        LEFT JOIN public.campaigns ON campaigns.id = sheets.campaign_id
+        JOIN public.clients bi_projects ON bi_projects.id = COALESCE(sheets.project_id, campaigns.project_id)
+        AND bi_projects.allow_data_access_to_bi
+      WHERE
+        (sheets.type)::text = 'Datasheet'::text;
     SQL
 
     execute <<-SQL.squish

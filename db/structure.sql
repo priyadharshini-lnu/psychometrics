@@ -195,64 +195,6 @@ CREATE VIEW bi_models.admin_users AS
 
 
 --
--- Name: assessments; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.assessments (
-    id integer NOT NULL,
-    name character varying,
-    category character varying,
-    dimension_id integer,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    flow json,
-    norm_rules json,
-    description text,
-    timing character varying,
-    access_reports_at timestamp without time zone,
-    status integer,
-    owner_id integer,
-    type character varying,
-    enable_back boolean DEFAULT false NOT NULL,
-    enable_progress boolean DEFAULT true,
-    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying,
-    archived boolean DEFAULT false,
-    resources json,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    deleted_at timestamp without time zone,
-    deleted_by_id bigint,
-    instructions json DEFAULT '{}'::json,
-    options json DEFAULT '{}'::json,
-    default_norm_id integer,
-    poster character varying,
-    project_id bigint,
-    created_by_id bigint,
-    updated_by_id bigint,
-    external_settings jsonb DEFAULT '{}'::jsonb,
-    linked_assessment_id integer,
-    linked_questions json DEFAULT '{}'::json,
-    default_language character varying DEFAULT 'en'::character varying,
-    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
-    translations_migrated boolean DEFAULT true,
-    data_role integer DEFAULT 0 NOT NULL,
-    tenant_id bigint
-);
-
-
---
--- Name: assessments; Type: VIEW; Schema: bi_models; Owner: -
---
-
-CREATE VIEW bi_models.assessments AS
- SELECT id,
-    name,
-    category
-   FROM public.assessments;
-
-
---
 -- Name: campaign_factor_groups; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -456,17 +398,6 @@ CREATE VIEW bi_models.campaigns AS
 
 
 --
--- Name: clients; Type: VIEW; Schema: bi_models; Owner: -
---
-
-CREATE VIEW bi_models.clients AS
- SELECT id,
-    name
-   FROM public.clients
-  WHERE (ancestry_depth = 0);
-
-
---
 -- Name: sheet_columns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -567,50 +498,6 @@ CREATE VIEW bi_models.end_users AS
     users.email
    FROM (public.users
      JOIN public.clients bi_projects ON (((bi_projects.id = users.project_id) AND bi_projects.allow_data_access_to_bi)));
-
-
---
--- Name: factors; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.factors (
-    id integer NOT NULL,
-    name character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    dimension_id integer NOT NULL,
-    parent_id integer,
-    disabled boolean DEFAULT false,
-    icon character varying,
-    description text,
-    scoring_strategy smallint DEFAULT 0 NOT NULL,
-    code character varying,
-    use_percentage boolean DEFAULT false,
-    use_sub_factor_norm_score boolean,
-    external_scoring jsonb DEFAULT '[]'::jsonb,
-    scale_min double precision,
-    scale_max double precision,
-    custom_formula character varying,
-    "precision" integer,
-    skill_id bigint,
-    factor_type integer DEFAULT 0 NOT NULL,
-    score_min integer,
-    score_max integer,
-    score_definitions jsonb DEFAULT '[]'::jsonb,
-    what_to_look_for text,
-    child_factor_type integer,
-    tenant_id bigint
-);
-
-
---
--- Name: factors; Type: VIEW; Schema: bi_models; Owner: -
---
-
-CREATE VIEW bi_models.factors AS
- SELECT id,
-    name
-   FROM public.factors;
 
 
 --
@@ -1909,6 +1796,53 @@ CREATE SEQUENCE public.assessment_translations_id_seq
 --
 
 ALTER SEQUENCE public.assessment_translations_id_seq OWNED BY public.assessment_translations.id;
+
+
+--
+-- Name: assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessments (
+    id integer NOT NULL,
+    name character varying,
+    category character varying,
+    dimension_id integer,
+    disabled boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    flow json,
+    norm_rules json,
+    description text,
+    timing character varying,
+    access_reports_at timestamp without time zone,
+    status integer,
+    owner_id integer,
+    type character varying,
+    enable_back boolean DEFAULT false NOT NULL,
+    enable_progress boolean DEFAULT true,
+    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
+    icon character varying,
+    archived boolean DEFAULT false,
+    resources json,
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    deleted_at timestamp without time zone,
+    deleted_by_id bigint,
+    instructions json DEFAULT '{}'::json,
+    options json DEFAULT '{}'::json,
+    default_norm_id integer,
+    poster character varying,
+    project_id bigint,
+    created_by_id bigint,
+    updated_by_id bigint,
+    external_settings jsonb DEFAULT '{}'::jsonb,
+    linked_assessment_id integer,
+    linked_questions json DEFAULT '{}'::json,
+    default_language character varying DEFAULT 'en'::character varying,
+    campaign_factors_list jsonb DEFAULT '[]'::jsonb,
+    translations_migrated boolean DEFAULT true,
+    data_role integer DEFAULT 0 NOT NULL,
+    tenant_id bigint
+);
 
 
 --
@@ -4355,6 +4289,40 @@ CREATE SEQUENCE public.factor_translations_id_seq
 --
 
 ALTER SEQUENCE public.factor_translations_id_seq OWNED BY public.factor_translations.id;
+
+
+--
+-- Name: factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors (
+    id integer NOT NULL,
+    name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    dimension_id integer NOT NULL,
+    parent_id integer,
+    disabled boolean DEFAULT false,
+    icon character varying,
+    description text,
+    scoring_strategy smallint DEFAULT 0 NOT NULL,
+    code character varying,
+    use_percentage boolean DEFAULT false,
+    use_sub_factor_norm_score boolean,
+    external_scoring jsonb DEFAULT '[]'::jsonb,
+    scale_min double precision,
+    scale_max double precision,
+    custom_formula character varying,
+    "precision" integer,
+    skill_id bigint,
+    factor_type integer DEFAULT 0 NOT NULL,
+    score_min integer,
+    score_max integer,
+    score_definitions jsonb DEFAULT '[]'::jsonb,
+    what_to_look_for text,
+    child_factor_type integer,
+    tenant_id bigint
+);
 
 
 --
