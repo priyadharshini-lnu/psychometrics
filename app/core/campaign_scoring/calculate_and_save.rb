@@ -43,7 +43,10 @@ module CampaignScoring
     end
 
     def persist_factor_value(campaign_factor, factor_value, existing_campaign_factor_value)
-      return if factor_value.error?
+      if factor_value.error?
+        clear_stale_auto_factor_value(existing_campaign_factor_value)
+        return
+      end
 
       if factor_value.value.nil?
         remove_stale_auto_factor_value(existing_campaign_factor_value)
@@ -72,6 +75,12 @@ module CampaignScoring
       return unless existing_campaign_factor_value&.auto?
 
       existing_campaign_factor_value.destroy!
+    end
+
+    def clear_stale_auto_factor_value(existing_campaign_factor_value)
+      return unless existing_campaign_factor_value&.auto?
+
+      existing_campaign_factor_value.update!(numeric_value: nil, string_value: nil, label: nil)
     end
 
     def lock_key
