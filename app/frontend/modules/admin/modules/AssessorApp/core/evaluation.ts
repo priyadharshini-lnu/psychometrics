@@ -36,6 +36,7 @@ export interface AssessorAssessment {
   completed_at: string
 }
 export interface State {
+  userId: null | number
   userInfo: UserInfo,
   currentAssessorFormId: null | number
   currentAssessmentId?: null | number
@@ -49,6 +50,7 @@ export interface State {
 }
 
 const defaultState: State = {
+  userId: null,
   userInfo: {},
   currentAssessorFormId: null,
   currentAssessmentId: null,
@@ -72,7 +74,7 @@ type FetchAssessorAssessmentsType = ApiActionResponse<{
     [assessment_id:number]:AssessorAssessment[]
   }
   subject_assessments: UserAssessment[]
-}>
+}> & { requestAction: { userId?: number } }
 
 // TODO: @fedor implement typedResponse and assessment/result type
 type FetchType = ApiActionResponse<{
@@ -101,6 +103,7 @@ export const fetchAssessorAssessments = (parsedCampaignId: number, userId: numbe
     body: {},
     camelize: false,
   },
+  userId,
 })
 
 export const fetchAssessorAssessment = (evaluationId: number, { edit, read, lang }) => ({
@@ -131,8 +134,11 @@ export const updateAssessorAssessmentStatus = (assessmentId: number, userAssessm
 })
 
 const HANDLERS = {
-  [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
+  [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, {
+    response, requestAction: { userId },
+  }: FetchAssessorAssessmentsType) => ({
     ...state,
+    userId: userId ?? null,
     userInfo: response.user_info,
     assessorAssessments: response.assessor_assessments,
     subjectAssessments: response.subject_assessments,

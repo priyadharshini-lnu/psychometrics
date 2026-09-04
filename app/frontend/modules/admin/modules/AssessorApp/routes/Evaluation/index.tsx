@@ -1,7 +1,7 @@
 import { useEffect, FC } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
-  Splitter, Tabs,
+  Card, Splitter, Tabs,
 } from 'antd'
 import type { TabsProps } from 'antd'
 import { useParams, useLocation, useNavigate } from 'react-router-dom'
@@ -37,7 +37,9 @@ interface Props extends ConnectedProps<typeof connector> {}
 
 const Evaluation: FC<Props> = ({
   fetchAll, changeForm, changeSubjectAssessment,
-  evaluation: { userInfo, assessorAssessments, subjectAssessments },
+  evaluation: {
+    userId: loadedUserId, userInfo, assessorAssessments, subjectAssessments,
+  },
   currentAssessmentId, currentAssessorFormId,
 }) => {
   let parsedCampaignId; let
@@ -57,7 +59,7 @@ const Evaluation: FC<Props> = ({
     if (x_navigation_minimize) {
       x_navigation_minimize('close')
     }
-  }, [])
+  }, [parsedUserId])
 
   useEffect(() => {
     const tabId = params.get('tab')
@@ -75,6 +77,10 @@ const Evaluation: FC<Props> = ({
       }
     }
   }, [assessorAssessments])
+
+  if (loadedUserId !== parsedUserId) {
+    return <Card loading variant="borderless" />
+  }
 
   const changeAssessorForm = (id:string) => {
     params.delete('read')

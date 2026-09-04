@@ -19,6 +19,7 @@ const Result = function (question, answers = null, notApplicable = null, results
   this.notApplicable = notApplicable
   this.moduleResult = new Res(this)
   this.richTextEditorAnswerWordCount = richTextEditorAnswerWordCount
+  this.dispatch = null
 }
 
 Result.prototype = new EventEmitter()
@@ -120,8 +121,15 @@ _.extend(Result.prototype, {
     this.richTextEditorAnswerCount = richTextEditorAnswerCount
   },
 
+  setDispatch (dispatch) {
+    this.dispatch = dispatch
+  },
+
   reduxAnswer () {
-    getStore() && getStore().dispatch({ type: 'flow_processor/ANSWER', result: this.toJSON() })
+    const action = { type: 'flow_processor/ANSWER', result: this.toJSON() }
+    if (this.dispatch) { return this.dispatch(action) }
+
+    return getStore() && getStore().dispatch(action)
   },
 
   isEmpty () {

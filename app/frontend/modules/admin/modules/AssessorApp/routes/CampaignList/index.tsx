@@ -10,7 +10,8 @@ import capitalize from 'lodash/capitalize'
 import { useNavigate } from 'react-router-dom'
 import dayjs from '~/utils/dayjs'
 import { STATUSES, DEFAULT_PAGE_SIZE } from '~/constants/campaign'
-import { get as getCampaigns, fetch } from '~/modules/admin/modules/AssessorApp/core/campaigns'
+import { get as getCampaigns, fetch, FETCH } from '~/modules/admin/modules/AssessorApp/core/campaigns'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
@@ -21,6 +22,7 @@ import { DocumentTitle } from '~/components/DocumentTitle'
 const connecter = connect(
   (state: RootState) => ({
     campaigns: getCampaigns(state),
+    loading: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,
@@ -37,6 +39,7 @@ const { I18n } = window
 const CampaignList: React.FC<Props> = (
   {
     campaigns: { list, total },
+    loading,
     fetch,
     tableConfig: {
       filters,
@@ -71,6 +74,7 @@ const CampaignList: React.FC<Props> = (
     <>
       <DocumentTitle text={I18n.t('campaign.campaigns')} />
       <TableLayout
+        loading={loading}
         title={I18n.t('campaign.campaigns')}
         recordCount={total}
         pagination={{
