@@ -7,6 +7,7 @@ export const ProjectGeneralSettingsTR = t.type({
   number: t.union([t.string, t.null]),
   clientId: t.union([t.string, t.null]),
   enableLiveChat: t.boolean,
+  allowDataAccessToBi: t.boolean,
   locales: t.array(t.string),
   showBookings: t.boolean,
   campaignDashboardInstructions: t.union([t.string, t.null]),
