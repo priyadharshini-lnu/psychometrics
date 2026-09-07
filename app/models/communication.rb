@@ -81,7 +81,7 @@ class Communication < ApplicationRecord
   end
 
   def reminder_type?
-    reminder? || workshop_invite_reminder?
+    reminder? || workshop_invite_reminder? || workshop_upcoming_reminder?
   end
 
   def self.lower_communications(communication)

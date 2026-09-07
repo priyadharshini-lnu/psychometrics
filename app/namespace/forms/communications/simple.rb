@@ -200,6 +200,10 @@ module Forms
         kind == 'workshop_invite_reminder'
       end
 
+      def workshop_upcoming_reminder?
+        kind == 'workshop_upcoming_reminder'
+      end
+
       def invitation?
         kind == 'invitation'
       end
@@ -221,11 +225,11 @@ module Forms
       end
 
       def custom_reminder?
-        (reminder? || workshop_invite_reminder?) && reminder_type == 'custom'
+        (reminder? || workshop_invite_reminder? || workshop_upcoming_reminder?) && reminder_type == 'custom'
       end
 
       def timeframes_reminder?
-        (reminder? || workshop_invite_reminder?) && reminder_type == 'timeframes'
+        (reminder? || workshop_invite_reminder? || workshop_upcoming_reminder?) && reminder_type == 'timeframes'
       end
     end
   end

@@ -78,7 +78,7 @@ module Facades
       end
 
       def show_delivery_intervals?
-        %w[reminder workshop_invite_reminder].include?(form.kind)
+        %w[reminder workshop_invite_reminder workshop_upcoming_reminder].include?(form.kind)
       end
 
       def show_stop_reminder?

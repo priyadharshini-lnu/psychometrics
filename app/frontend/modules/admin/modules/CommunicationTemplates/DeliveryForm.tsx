@@ -159,6 +159,7 @@ export const DeliveryForm: React.FC<Props> = ({ close, scope }) => {
 
   const isReminderTemplate = selectedTemplate?.kind === 'reminder'
   const isWorkshopInviteReminder = selectedTemplate?.kind === 'workshop_invite_reminder'
+  const isWorkshopUpcomingReminder = selectedTemplate?.kind === 'workshop_upcoming_reminder'
   const isBookingSummary = selectedTemplate?.kind === 'assessment_center_booking_summary'
   const isReportAvailable = selectedTemplate?.kind === 'report_available'
   const isCompletion = selectedTemplate?.kind === 'completion'
@@ -168,6 +169,7 @@ export const DeliveryForm: React.FC<Props> = ({ close, scope }) => {
   const hasNoDeliveryRule = selectedTemplate ? NO_DELIVERY_RULE_KINDS.includes(selectedTemplate.kind) : false
   const isSpecificDatetime = deliveryRule === 'specific_datetime'
   const isReminderRule = REMINDER_DELIVERY_RULES.includes(deliveryRule) || isWorkshopInviteReminder
+    || isWorkshopUpcomingReminder
   const isBookingSummarySchedule = triggerType === 'scheduled' && isBookingSummary
   const deliveryFrequency = Form.useWatch('deliveryFrequency', form)
 
