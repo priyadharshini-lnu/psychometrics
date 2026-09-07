@@ -17,7 +17,8 @@ module Communications
         Communication.workshop_upcoming_reminder.
           where(id: communication.id).
           joins(workshops: %i[workshop_subjects]).
-          where(workshops: { start_time: day_range_for_reminder }, workshop_subjects: { scheduling_status: :scheduled }).
+          where(workshops: { start_time: day_range_for_reminder },
+                workshop_subjects: { scheduling_status: :scheduled }).
           where.not(workshops: { status: :closed }).
           select('DISTINCT workshop_subjects.id workshop_subject_id, communications.*').
           find_each do |communication|
@@ -45,13 +46,15 @@ module Communications
           day_range_for_reminder = reminder_range_for(delivery)
           CommunicationDelivery.joins(campaign: { workshops: :workshop_subjects }).
             where(id: delivery.id).
-            where(workshops: { start_time: day_range_for_reminder }, workshop_subjects: { scheduling_status: :scheduled }).
+            where(workshops: { start_time: day_range_for_reminder },
+                  workshop_subjects: { scheduling_status: :scheduled }).
             where.not(workshops: { status: :closed }).
             select('DISTINCT workshop_subjects.id workshop_subject_id, communication_deliveries.*').
             find_each do |delivery|
               workshop_subject = WorkshopSubject.find(delivery.workshop_subject_id)
 
-              next unless workshop_subject.workshop&.campaign_assessment_group_id == delivery.campaign_assessment_group_id
+              next unless workshop_subject.workshop&.campaign_assessment_group_id ==
+                            delivery.campaign_assessment_group_id
 
               CommunicationEmail.create!(
                 communication_delivery: delivery,
