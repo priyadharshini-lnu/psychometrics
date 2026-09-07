@@ -54,7 +54,7 @@ module Communications
               workshop_subject = WorkshopSubject.find(delivery.workshop_subject_id)
 
               next unless workshop_subject.workshop&.campaign_assessment_group_id ==
-                            delivery.campaign_assessment_group_id
+                          delivery.campaign_assessment_group_id
 
               CommunicationEmail.create!(
                 communication_delivery: delivery,
