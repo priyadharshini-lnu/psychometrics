@@ -2,9 +2,807 @@
 en:
   privacy_notice:
     mercer_a_marsh_business: |-
-      <!--
-        PLACEHOLDER - NOT LEGAL TEXT, DO NOT PUBLISH.
-        The Mercer, a Marsh business privacy notice has not been written yet. Legal replaces
-        this whole comment with the approved HTML; until then the site keeps rendering
-        privacy_notice.current, whatever Settings.privacy_notice.version is set to.
-      -->
+      <div>
+        <h1><strong>MERCER TALENT ENTERPRISE PRIVACY NOTICE</strong>&nbsp;</h1>
+        <p>Effective Date: 15 September 2024</p>
+        <p>
+          This Privacy Notice describes how Mercer Talent Enterprise (“
+          <strong>MTE</strong>”), collect, use, share, retain, transfer and otherwise process information relating to identified or identifiable individuals (Personal Information), and the rights you may have regarding your Personal Information. We believe that it is important for you to understand how we process Personal Information and encourage you to take a moment to familiarize yourself with our privacy practices outlined below.
+        </p>
+        <p>
+          Please note that MTE is a provider of behavioral science assessment solutions and in some instances, we act on behalf of and under the instructions of clients, financial institutions, merchants, and other partners who act as data controllers, including for processing payment transactions. Please refer to privacy policies of those partners for more information regarding the processing of your Personal Information in these contexts.
+        </p>
+        <h2>WHAT IS OUR RELATIONSHIP TO YOU</h2>
+        <p>
+          You are being asked by a third party to complete an assessment on MTE’s platform. This third party is MTE’s client and may be your employer, potential employer, or another related party. MTE collects and processes your Personal Information on behalf of our clients. We follow instructions provided by our clients regarding what Personal Information to collect and how to process such Personal Information. MTE therefore acts as a Processor for our clients who determine the processing of your Personal Information.
+        </p>
+        <p>
+          To the extent that you have questions about the processing of your Personal Information, we encourage you to visit the privacy notice of our client.
+        </p>
+        <h2>WHAT PERSONAL INFORMATION DO WE COLLECT &nbsp;</h2>
+        <p>
+          Our client directs us to collect certain information on their behalf. Other than your name and email address, which is required to create an account, MTE does not independently determine what information is collected. Based on the needs and direction of our client, we may collect the following categories of Personal Information where appropriate to fulfil our intended business purposes:
+        </p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="146">
+                <p>
+                  <strong
+                    >Category
+                  </strong>
+                </p>
+              </td>
+              <td width="454">
+                <p>
+                  <strong
+                    >Examples
+                  </strong>
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biographical identifiers</p></td>
+              <td width="454">
+                <p>Name, date of birth, age, place of birth, gender.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Contact information</p></td>
+              <td width="454">
+                <p>Home address, telephone number, personal email address.</p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Identification information</p></td>
+              <td width="454">
+                <p>
+                  Tax number, social security number or other government issued
+                  identification number, driver’s license number, passport
+                  information, bank account details, income tax declaration, income
+                  tax number.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146">
+                <p>Professional or employment-related information</p>
+              </td>
+              <td width="454">
+                <p>
+                  Employer or group, relationship to our company, job title, business
+                  contact details, employee ID, employment grade, employee
+                  performance, salary and remuneration arrangements and employment
+                  history, and/or your relationship to the policyholder, insured,
+                  beneficiary or claimant.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Sensitive demographic attributes</p></td>
+              <td width="454">
+                <p>
+                  Race, citizenship, physical or mental health or disability, sex
+                  (including gender, gender identity, pregnancy or childbirth and
+                  related medical conditions), sexual orientation, union membership,
+                  veteran, or military status.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Biometric and physical data</p></td>
+              <td width="454">
+                <p>
+                  Facial scans and facial monitoring as part of proctoring options.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Data concerning your physical environment</p></td>
+              <td width="454">
+                <p>
+                  Video or your specifical localized area taken via video or photo as
+                  part of proctoring options. The specific data collected regarding
+                  your physical environment will vary based on what is visible to the
+                  proctoring cameras.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Internet or other similar network activity</p></td>
+              <td width="454">
+                <p>
+                  Browsing and search history, interaction with a website,
+                  application, or advertisement, data from cookies or web beacons,
+                  login credentials, domain names, and interactions with our emails,
+                  including when you read and respond to emails, ISP (Internet Service
+                  Provider), browser details, other website activity, online
+                  identifiers (including IP address or device ID).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="146"><p>Any other voluntarily provided information</p></td>
+              <td width="454">
+                <p>
+                  Information regarding partners and dependents (including minor
+                  dependents); emergency contact details, disclosure statements,
+                  restrictive covenants, geolocation, marketing and communication
+                  preferences, information related to company-sponsored events that
+                  you have attended, and your feedback or survey responses where you
+                  choose to identify yourself.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Please note that these are examples. MTE strives to adhere to the concept of
+          data minimization and seeks to collect only the Personal Information that is
+          strictly necessary for the provision of services to you. However, we are
+          unable to control the information requested by our clients or the
+          information that you voluntarily provide.
+        </p>
+        <h2>HOW WE COLLECT PERSONAL INFORMATION</h2>
+        <h3>
+          <strong
+            >Information Provided by You, Your Representatives or Third
+            Parties</strong
+          >
+        </h3>
+        <p>We may collect Personal Information from the following sources:</p>
+        <ul>
+          <li>
+            Directly from you, for example when you visit a website, create an
+            account, complete a survey, or otherwise give us information.
+          </li>
+          <li>
+            Your representatives, including your employer, association, or group or
+            benefit program/plan sponsor.
+          </li>
+        </ul>
+        <p>
+          During the assessment, personal information may be collected via your
+          webcam, microphone, or other hardware elements from your system. Your system
+          and the MTE program will ask for your consent prior to collecting personal
+          information from your hardware.
+        </p>
+        <p>
+          If you supply us with Personal Information about other people (e.g., family
+          members, beneficiaries, or dependents), you represent that you have the
+          authority to provide this information and that you have shared this Privacy
+          Notice where appropriate. We do not knowingly collect Personal Information
+          directly from minors.
+        </p>
+        <h3><strong>Collection by Automated Means</strong>&nbsp;</h3>
+        <p>
+          We use cookies and related tracking technologies (“Cookies”) on our
+          company-owned websites. If available based on your jurisdiction, website
+          users can opt-out of our use of certain Cookies using the Manage Cookies
+          link at the bottom of the website. To find out more about how we use
+          Cookies, please see our
+          <a href="https://www.mercer.com/en-sa/footer/mercer-cookie-notice/"
+            >Cookie Notice</a
+          >.&nbsp;
+        </p>
+        <h3><strong>Collection by Third Parties</strong>&nbsp;</h3>
+        <p>
+          If you conduct a transaction through us, a third party (e.g., a service
+          provider or insurer) may collect and process credit card or other Personal
+          Information about you, including through Cookies, in connection with such a
+          transaction. In those instances, and for any other arrangement where we
+          receive information from your employer, association or other third party, we
+          encourage you to read the third party’s privacy policy to learn more about
+          how your information will be used and disclosed by them.
+        </p>
+        <h2>HOW WE USE THE PERSONAL INFORMATION WE COLLECT&nbsp;</h2>
+        <p>We may use Personal Information we collect:&nbsp;</p>
+        <table width="600">
+          <tbody>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >Category
+                  </strong>
+                </p>
+              </td>
+              <td width="317">
+                <p><strong>Use</strong></p>
+              </td>
+              <td width="176">
+                <p><strong>Legal Basis</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>To conduct our business</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  We use Personal Information as necessary to conduct our business,
+                  including to verify your identity, respond to your queries,
+                  communicate with you, process transactions, establish an online
+                  account, or carry out our contractual obligations.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Contract performance and, where applicable, legitimate interests (to
+                  enable us to perform our obligations and provide our services.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >To provide you with marketing material where permissible under
+                    applicable law</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  We may use your contact details to send you information about
+                  products, services, and insights we think might be of interest to
+                  you. These communications may be sent by email, text, post, or phone
+                  in accordance with your marketing preferences and applicable global
+                  laws, including those relating to data protection and electronic
+                  communication. As a result, the basis on which we contact you will
+                  vary depending on who you are, our relationship with you, and where
+                  you are located.
+                </p>
+                <p>
+                  Regardless of the basis on which we share our marketing
+                  communications with you, we will comply with local law and provide
+                  an option for you to unsubscribe at any time in which case we will
+                  stop sending you our marketing communications. You can also change
+                  your marketing preferences by contacting us at privacy@mmc.com.
+                </p>
+                <p>
+                  Please note that, even if you opt-out of receiving marketing
+                  communications, we may still send you communications in connection
+                  with the services we provide to you.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Legal obligation, consent (which you can refuse or withdraw) and,
+                  where applicable, legitimate interest (to keep you updated with news
+                  in relation to our products and services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >For research, data analytics and development purposes</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  We may analyse Personal Information together with information from
+                  other clients to create insights, reports, and other analytics to
+                  better understand and improve the quality of our offering; market
+                  our advice, products, and services; and evaluate the effectiveness
+                  of our marketing activities, websites, and overall service.
+                </p>
+                <p>
+                  Please note that we may de-identify Personal Information such that
+                  it is not associated with any particular client or individual.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Where applicable, legitimate interests (to allow us to improve our
+                  services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >To monitor certain activities and maintain network security and
+                    performance, and protect against cyber attacks</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  We monitor queries and transactions to ensure service quality,
+                  compliance with procedures and to combat fraud. We also use Personal
+                  Information as necessary to maintain network security, monitor
+                  website performance, and protect our systems against cyber attacks.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Legal obligation, and, where applicable, legitimate interests (to
+                  ensure the quality and legality of our services).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >To maintain our websites and ensure website content is
+                    relevant</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  We use Personal Information as necessary to maintain our websites
+                  and ensure that content from our websites is presented in the most
+                  effective manner for you and for your device.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Contract performance and, where applicable, legitimate interests (to
+                  allow us to provide you with content and services on the websites).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p><strong>To reorganise or make changes to our business</strong></p>
+              </td>
+              <td width="317">
+                <p>
+                  As necessary if we: (i) are subject to negotiations for the sale of
+                  our business or part thereof to a third party; (ii) are sold to a
+                  third party; or (iii) undergo a re-organisation.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Legal obligation or legitimate interests (to allow us to change our
+                  business).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong>In connection with legal or regulatory obligations</strong>
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  We use Personal Information to comply with our regulatory disclosure
+                  requirements or as part of dialogue with our regulators as
+                  applicable.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Legal obligation, and where appropriate, legitimate interests (to
+                  cooperate with law enforcement and regulatory authorities).
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="107">
+                <p>
+                  <strong
+                    >For Fraud, Anti-Money Laundering and Sanctions Screenings</strong
+                  >
+                </p>
+              </td>
+              <td width="317">
+                <p>
+                  When establishing or maintaining client relationships for the
+                  provision of certain services we use Personal Information for the
+                  purposes of carrying out fraud, anti-money laundering or sanctions
+                  checks.
+                </p>
+              </td>
+              <td width="176">
+                <p>
+                  Legal obligations and, where appropriate, legitimate interests (to
+                  cooperate with law enforcement and regulatory authorities).
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          We may also use the Personal Information we collect and receive as otherwise
+          described to you at the point of collection.
+        </p>
+        <h3><strong>External Links</strong>&nbsp;</h3>
+        <p>
+          Our websites may include links to websites that are operated by
+          organizations other than MTE.&nbsp; If you access another organization’s
+          website using a hyperlink on our website, the other organization may collect
+          information from you.&nbsp; MTE is not responsible for the content or
+          privacy practices of linked websites or their use of your Personal
+          Information.&nbsp; If you leave a MTE website via such a link (you can tell
+          where you are by checking the URL in the location bar on your browser), you
+          should refer to that website’s privacy policies, terms of use, and other
+          notices to determine how the other organization will handle any Personal
+          Information they collect from you.&nbsp;
+        </p>
+        <h2>WHO WE DISCLOSE PERSONAL INFORMATION TO</h2>
+        <p>
+          We may disclose Personal Information to the following categories of third
+          parties:&nbsp;
+        </p>
+        <table width="601">
+          <tbody>
+            <tr>
+              <td width="301">
+                <p><strong>Categories of third parties</strong></p>
+              </td>
+              <td width="301">
+                <p><strong>Purpose for Disclosure</strong></p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Your employer, association, group, or benefit program sponsor, when
+                  applicable (i.e., MTE’s Client)&nbsp;
+                </p>
+              </td>
+              <td width="301"><p>To provide services to our client</p></td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  MTE affiliates or other entities within the Marsh McLennan group of
+                  companies (MMC)
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  Enable them to provide services to you or contact you regarding
+                  additional products and services.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>Agents or third-party service providers&nbsp;</p>
+              </td>
+              <td width="301">
+                <p>
+                  Perform functions or services for us or on our behalf. Such third
+                  parties are contractually restricted from using Personal Information
+                  for purposes other than providing services for or on behalf of
+                  MTE.&nbsp;
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Marketing partners, including our affiliates and third parties
+                  engaged by us or our clients in connection with the services.
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  As permitted by law to provide you with information about our
+                  products, services or insights.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Potential partners or successor entities</p></td>
+              <td width="301">
+                <p>
+                  In the context of mergers, acquisitions, bankruptcies, asset sales
+                  or other transactions where a third party assumes control of all or
+                  part of our assets.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301"><p>Website analytics and advertising companies</p></td>
+              <td width="301">
+                <p>
+                  Help us to personalize ads and content based on your interests,
+                  measure the performance of our ads and content, and derive insights
+                  about the audiences who see our ads and content.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td width="301">
+                <p>
+                  Anti-fraud databases, supervisory or regulatory authorities, law
+                  enforcement and other third parties
+                </p>
+              </td>
+              <td width="301">
+                <p>
+                  As necessary to prevent fraud, communicate with supervisory or
+                  regulatory authorities, protect and defend the legal rights, safety,
+                  and security of MTE, our affiliates and business partners, and users
+                  of any website,&nbsp;enforce the Terms of Use of a website; respond
+                  to claims of suspected or actual illegal activity; respond to an
+                  audit or investigate a complaint or security threat; or comply with
+                  applicable law, regulation, legal process, or governmental request.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          We may also disclose de-identified information that is not reasonably likely
+          to identify you for commercially legitimate and lawful business
+          purposes.&nbsp; Where we have de-identified information, we will maintain
+          and use it without attempting to re-identify the data other than as
+          permitted under law.&nbsp;
+        </p>
+        <h2>STEPS WE TAKE TO PROTECT PERSONAL INFORMATION&nbsp;</h2>
+        <p>
+          Our company strives to comply with all applicable cybersecurity and data
+          protection laws. With these goals in mind, MMC has a dedicated Chief
+          Information Security Officer (CISO) and a Global Chief Privacy Officer
+          (GCPO). The CISO is responsible for managing a Global Information Security
+          team and a comprehensive cybersecurity program.&nbsp; As part of our
+          cybersecurity program, we have implemented commercially reasonable physical,
+          administrative, and technical safeguards to protect Personal Information
+          from unauthorized access, use, alteration, and deletion.&nbsp;&nbsp;&nbsp;
+        </p>
+        <p>
+          The GCPO leads and oversees a Privacy Center of Excellence and a Data
+          Protection Officer Network responsible for implementing our comprehensive
+          global privacy program. The Data Protection Officer Network connects our
+          Data Protection Officers across the world and seeks to implement our privacy
+          program consistently and thoroughly wherever we process data. You can obtain
+          the name and contact information for the Data Protection Officer in your
+          jurisdiction by contacting us at privacy@mmc.com.
+        </p>
+        <h2>YOUR DATA PROTECTION RIGHTS&nbsp;</h2>
+        <p>
+          In many cases, we handle Personal Information to provide our services to
+          corporate clients, and you should contact them to exercise any rights you
+          may have under applicable privacy laws. However, where we act as the
+          controller or business that is primarily responsible for deciding how your
+          information is processed, you may have some or all the rights listed below,
+          depending on the jurisdiction and our reason for processing your
+          information. &nbsp;Please note that we may need to use your Personal
+          Information to verify your identity prior to responding to any of the below
+          rights.
+        </p>
+        <ul>
+          <li>
+            <strong>Right of access (Right to know)<br /></strong>You may ask us to
+            provide you with further details on how we make use of your Personal
+            Information, the sources, the categories or specific pieces of Personal
+            Information we have collected, the categories of third parties to whom we
+            have disclosed the information, and to request a copy of the Personal
+            Information that we hold about you.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to correct<br /></strong>You may ask us to update any
+            inaccuracies in the Personal Information we hold. If we disclose your
+            Personal Information to others, we will tell them about the correction
+            where possible.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to delete<br /></strong>You may ask us to erase your
+            Personal Information where we no longer have lawful grounds to process it.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to object to or restrict processing<br /></strong>You may
+            have a right to restrict the processing of your Personal Information in
+            certain circumstances, such as where you contest its accuracy.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to data portability<br /></strong>You may have the right,
+            where it is technically feasible, to ask that we transfer to a third party
+            of your choice a copy of Personal Information we have obtained from you,
+            in a structured, commonly used, and machine-readable format.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to withdraw consent<br /></strong>If we rely on your consent
+            as our legal basis for processing your Personal Information, you have the
+            right to withdraw that consent.
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Right to lodge a complaint<br /></strong>You may have the right to
+            lodge a complaint with the relevant supervisory or regulatory authority in
+            your jurisdiction if you have a concern about any aspect of our privacy
+            practices.
+          </li>
+        </ul>
+        <p>
+          If you wish to exercise any of the above rights or request review of a
+          decision or denial, please contact us using the applicable contact
+          information:
+        </p>
+        <ul>
+          <li>
+            If you are in the United Kingdom, Switzerland or European Economic Area, please
+            <a
+              href="https://mmc-dev-privacy.my.onetrust.com/webform/4da460d1-7bcf-4ff1-ac37-c4b804769467/draft/ea953d72-fded-42ee-b1dd-c0a5a83b7891"
+              >complete this form </a
+            >
+          </li>
+          <li>
+            For individuals in other countries, please
+            <a
+              href="https://privacyportal.onetrust.com/webform/ee9df2bb-0ef3-4485-bc63-4db420e77359/225910f5-5666-468a-b1e7-39c70e24f4cc"
+              >complete this form </a
+            >
+          </li>
+          <li>
+            Alternatively, you may email us at <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>
+          </li>
+        </ul>
+        <p>
+          Depending on your country, you may also have some or all the following
+          rights:&nbsp;&nbsp;
+        </p>
+        <ul>
+          <li>
+            <strong
+              >Right to Opt in or out of Sale or Sharing for Cross-Context Advertising
+              <br /></strong
+            >If you visit one of our websites, we may disclose your internet or other
+            electronic network activity information, biographical identifiers,
+            geolocation data, and professional information (to the extent it can be
+            derived from your activity on our website) to website analytic and
+            advertising providers for cross-context behavioral or targeted advertising
+            purposes utilizing advertising cookies.&nbsp; Under some laws, you may
+            have the right to opt in or out of these types of disclosures.&nbsp; To
+            make your selection(s) or to view the names of specific third parties with
+            whom we have sold or shared your information, please click on the “Manage
+            Cookies” link at the bottom of our webpage. If you would like to opt out
+            of the sale or sharing of your information, ensure the toggles for
+            “Advertising” and “Analytics” trackers are set to “No” or, where
+            available, enable the Do Not Sell or Share My Personal Information toggle.
+            <p>
+              You may also implement a browser setting or extension to communicate
+              your selling and sharing preferences automatically to the websites you
+              visit.&nbsp; Our websites process such “opt-out preference signals” in a
+              frictionless manner by recognizing the Global Privacy Control (GPC). If
+              you want to use GPC, you can download and enable it via a participating
+              browser or browser extension. More information about downloading GPC is
+              available <a href="https://globalprivacycontrol.org/">here</a>.&nbsp;
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong
+              >Rights in relation to automated decision making and profiling
+              <br /></strong
+            >To the extent we engage in the automated processing of your Personal
+            Information, we will provide you in advance with any notices, including
+            regarding your rights, that are required under law.&nbsp;&nbsp;
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <strong>Direct Marketing and Do Not Track Signals<br /></strong>You may
+            have a right to request and obtain a notice once a year about the Personal
+            Information we disclosed to other businesses for their own direct
+            marketing purposes, where permitted by law.&nbsp; If applicable, such a
+            notice will include a list of the categories of Personal Information that
+            were disclosed (if any) and the names and addresses of all third parties
+            to whom the Personal Information was disclosed (if any).&nbsp; The notice
+            will cover the preceding calendar year.&nbsp; You may contact us as
+            provided below if you would like to learn if this right applies to you
+            and, if so, exercise that right.&nbsp;&nbsp;
+          </li>
+        </ul>
+        <p>
+          Please note that some of these rights may be limited where we have an
+          overriding legitimate interest or legal, regulatory, or contractual
+          obligation to continue to process the Personal Information, or where the
+          Personal Information may be exempt from disclosure or erasure under
+          applicable law.&nbsp;&nbsp;Some of these rights can be exercised only in
+          certain circumstances or may otherwise be limited by data protection
+          legislation in your jurisdiction.
+        </p>
+        <h2>CROSS-BORDER TRANSFERS&nbsp;&nbsp;</h2>
+        <p>
+          As a global company operating across more than 80 countries, there are
+          circumstances in which we will have to transfer Personal Information out of
+          the country, province, or territory in which it was collected for the
+          purposes outlined in this Privacy Notice. Specifically, we may transfer data
+          to offer, administer, and manage the Services provided to you, and to
+          enhance the efficiency of our business operations. We will make every effort
+          to ensure that these transfers adhere to all relevant data protection
+          legislation, and that the rights and freedoms of individuals under such laws
+          are appropriately safeguarded.
+        </p>
+        <p>
+          Where the need for such a transfer arises, we will take steps to ensure that
+          there are appropriate safeguards in place to protect Personal Information
+          such as an impact assessment, adequacy decision by the appropriate
+          supervisory authority, the use of approved binding corporate rules or
+          standard contractual clauses, or your consent.&nbsp;
+        </p>
+        <p>
+          For information regarding how MMC’s EU (European Union) Binding Corporate
+          Rules (EU BCRs) operate, click
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-EUBCR-Controller-and-Processor-Principles.pdf"
+            >here</a
+          >.&nbsp; For a list of entities that have agreed to be bound by the EU BCRs,
+          click
+          <a href="https://www.marshmclennan.com/privacy-statement/bcr-entities.html"
+            >here</a
+          >.&nbsp;
+        </p>
+        <p>
+          For information regarding how MMC’s UK Binding Corporate Rules (UK BCRs)
+          operate, click
+          <a
+            href="https://www.marshmclennan.com/content/dam/mmc-web/Archive/Images/Files/02March2022-UKBCR-Controller-and-Processor-Principles.pdf"
+            >here</a
+          >.&nbsp; For a list of entities that have agreed to be bound by the UK BCRs,
+          click
+          <a
+            href="https://www.marshmclennan.com/privacy-statement/bcr-entities-uk.html"
+            >here</a
+          >.&nbsp;&nbsp;&nbsp;
+        </p>
+        <h2>RETENTION OF YOUR INFORMATION&nbsp;</h2>
+        <p>
+          Our products, services, and regulatory obligations are complex, and thus our
+          retention periods for Personal Information vary.&nbsp; We consider the
+          following obligations when setting retention periods for Personal
+          Information and the records we maintain:
+        </p>
+        <ul>
+          <li>
+            the need to retain information to accomplish the business purposes or
+            contractual obligations for which it was collected;
+          </li>
+          <li>
+            our duties to effectuate our clients’ instructions with respect to
+            Personal Information we process on their behalf;
+          </li>
+          <li>
+            our duties to comply with mandatory legal and regulatory record-keeping
+            requirements;
+          </li>
+          <li>our backup and disaster recovery procedures; and</li>
+          <li>
+            other legal impacts such as the applicable statute of limitations periods.
+          </li>
+        </ul>
+        <p>
+          Based on the factors above, we may retain Personal Information beyond the
+          period for which we provide services to you. When we no longer need to
+          retain Personal Information, our company policies require that we either
+          de-identify or aggregate the information (in which case we may further
+          retain and use the de-identified or aggregated information for analytics
+          purposes) or securely destroy it.&nbsp;
+        </p>
+        <h2>QUESTIONS OR CONCERNS&nbsp;</h2>
+        <p>
+          To submit questions or requests regarding this Privacy Notice or MTE’s
+          privacy practices, please email us at
+          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.&nbsp; &nbsp;If you
+          would prefer to contact us by post or by phone, please contact your local
+          Data Protection Officer. You can obtain the contact information for your
+          local Data Protection Officer by contacting us at
+          <a href="mailto:privacy@mmc.com">privacy@mmc.com</a>.
+        </p>
+      </div>

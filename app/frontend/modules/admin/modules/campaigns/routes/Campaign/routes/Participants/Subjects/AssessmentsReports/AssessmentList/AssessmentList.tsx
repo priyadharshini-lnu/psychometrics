@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
+import { useBreakpoint } from '@thetalententerprise/glint'
 import _ from 'lodash'
 import { useParams } from 'react-router-dom'
 import { ExclamationCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -61,6 +62,7 @@ const AssessmentList: React.FC<Props> = ({
   updateMhsNormOption,
 }) => {
   const [drawerAssessment, setDrawerAssessment] = useState<UserAssessment | undefined>()
+  const screens = useBreakpoint()
 
   const { projectId, campaignId, id } = useParams() as { projectId: string, campaignId: string, id: string }
   const parsedProjectId = parseInt(projectId, 10)
@@ -71,16 +73,26 @@ const AssessmentList: React.FC<Props> = ({
   return (
     <Row>
       <Col span={24}>
-        <Table className="mtm" rowKey="id" dataSource={list} pagination={false}>
+        <Table
+          className="mtm"
+          rowKey="id"
+          dataSource={list}
+          pagination={false}
+          scroll={{ x: 'max-content' }}
+          sticky
+        >
           <Column
             title={I18n.t('common.column.id')}
             dataIndex="assessmentId"
             key="assessmentId"
+            fixed={screens.md ? 'left' : undefined}
+            width={50}
           />
           <Column
             title={I18n.t('campaign_assessment.column.assessment_name')}
             key="name"
             dataIndex="name"
+            width={220}
             render={(text, record: UserAssessment) => (
               <>
                 <Button type="link" size="small" className="p-0" onClick={() => setDrawerAssessment(record)}>
@@ -95,6 +107,7 @@ const AssessmentList: React.FC<Props> = ({
                 )}
               </>
             )}
+            fixed={screens.md ? 'left' : undefined}
           />
           <Column
             title={I18n.t('common.column.require_scheduling')}
@@ -150,6 +163,7 @@ const AssessmentList: React.FC<Props> = ({
           <Column
             title={I18n.t('campaign_assessment.column.norm')}
             key="normName"
+            width={220}
             render={({
               normName, category, id, isExternal, hasExternalNorm, permissions,
             }) => {
@@ -212,6 +226,8 @@ const AssessmentList: React.FC<Props> = ({
                 }
               />
             )}
+            width={50}
+            fixed={screens.md ? 'right' : undefined}
           />
         </Table>
         {drawerAssessment ? (

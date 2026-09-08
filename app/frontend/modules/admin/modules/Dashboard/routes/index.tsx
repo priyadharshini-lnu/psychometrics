@@ -1,12 +1,16 @@
 import { lazyRoute } from '~/utils/lazyRoute'
+import { settings } from '../settings'
 
 const page = () => import('../pages')
 
-const DashboardRoutes = [
+export const DashboardFullScreenRoutes = [
   {
-    path: 'dashboards/:dashboardId',
+    path: `${settings.urlPrefix}/:dashboardId`,
     lazy: lazyRoute(page, m => m.Dashboard),
   },
+]
+
+const DashboardRoutes = [
   {
     path: 'dashboards/*',
     lazy: lazyRoute(page, m => m.DashboardList),

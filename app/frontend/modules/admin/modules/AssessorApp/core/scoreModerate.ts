@@ -81,6 +81,7 @@ export const ResultTR = t.type({
 export type Result = t.TypeOf<typeof ResultTR>
 
 export interface State {
+  userId: null | number
   leadAssessorUserAssessmentId: null | number
   loaded: boolean
   leadAssessorForm: null | UserAssessment
@@ -94,6 +95,7 @@ export interface State {
 }
 
 const defaultState: State = {
+  userId: null,
   leadAssessorUserAssessmentId: null,
   leadAssessorForm: null,
   assessorResponses: {},
@@ -107,6 +109,7 @@ const defaultState: State = {
 }
 
 const FETCH_LEAD_ASSESSMENT = 'assessors/evaluating/FETCH_LEAD_ASSESSMENT'
+const FETCH_LEAD_ASSESSMENT_REQUEST = 'assessors/evaluating/FETCH_LEAD_ASSESSMENT_REQUEST'
 const FETCH_ASSESSOR_ASSESSMENTS = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENTS'
 const FETCH_ASSESSOR_ASSESSMENT = 'assessors/evaluating/FETCH_ASSESSOR_ASSESSMENT'
 export const FETCH_RECORDINGS = 'assessors/evaluating/FETCH_RECORDINGS'
@@ -118,6 +121,10 @@ export type FetchLeadAssessmentsType = ApiActionResponse<{
   lead_assessor_result: Result
   assessor_can_moderate_scores: boolean
 }>
+
+type Stamped = { requestAction: { userId?: number } }
+
+const belongsToLoadedUser = (state: State, { requestAction }: Stamped) => requestAction.userId === state.userId
 
 type FetchAssessorAssessmentsType = ApiActionResponse<{
   assessor_assessments: UserAssessment[]
@@ -146,6 +153,7 @@ export const fetchLeadAssessment = (parsedCampaignId: number, userId: number) =>
     body: {},
     camelize: false,
   },
+  userId,
 })
 
 export const fetchReports = (parsedCampaignId: number, userId: number) => ({
@@ -155,6 +163,7 @@ export const fetchReports = (parsedCampaignId: number, userId: number) => ({
     url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}/reports`,
     body: {},
   },
+  userId,
 })
 
 export const fetchAssessorAssessments = (parsedCampaignId: number, userId: number) => ({
@@ -176,6 +185,7 @@ export const fetchAssessorAssessment = (parsedCampaignId: number, userId: number
     camelize: false,
   },
   assessmentId,
+  userId,
 })
 
 export const fetchRecordings = (parsedCampaignId: number, userId: number) => ({
@@ -185,35 +195,51 @@ export const fetchRecordings = (parsedCampaignId: number, userId: number) => ({
     url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}/recordings`,
     body: {},
   },
+  userId,
 })
 
 const HANDLERS = {
-  [FETCH_LEAD_ASSESSMENT]: (state: State, { response }: FetchLeadAssessmentsType) => ({
-    ...state,
-    leadAssessorUserAssessmentId: response.lead_assessor_user_assessment_id,
-    leadAssessorForm: response.lead_assessor_form,
-    leadAssessorResult: response.lead_assessor_result,
-    canModerateScore: response.assessor_can_moderate_scores,
-    loaded: true,
+  [FETCH_LEAD_ASSESSMENT_REQUEST]: (_: State, { userId }: { type: string, userId?: number }): State => ({
+    ...defaultState,
+    userId: userId ?? null,
   }),
+  [FETCH_LEAD_ASSESSMENT]: (state: State, action: FetchLeadAssessmentsType & Stamped) => (
+    belongsToLoadedUser(state, action)
+      ? {
+        ...state,
+        leadAssessorUserAssessmentId: action.response.lead_assessor_user_assessment_id,
+        leadAssessorForm: action.response.lead_assessor_form,
+        leadAssessorResult: action.response.lead_assessor_result,
+        canModerateScore: action.response.assessor_can_moderate_scores,
+        loaded: true,
+      }
+      : state
+  ),
   [FETCH_ASSESSOR_ASSESSMENTS]: (state: State, { response }: FetchAssessorAssessmentsType) => ({
     ...state,
     assessorAssessments: response.assessor_assessments,
   }),
-  [FETCH_REPORTS]: (state: State, { response }: FetchReportsType) => ({
-    ...state,
-    userReports: response.reports,
-    mainReportId: response.mainReportId,
-  }),
-  [FETCH_ASSESSOR_ASSESSMENT]: (state: State, { response, requestAction: { assessmentId } }: FetchType) => ({
-    ...state,
-    assessorForms: { ...state.assessorForms, [assessmentId]: response.assessment },
-    assessorResponses: { ...state.assessorResponses, [assessmentId]: response.results },
-  }),
-  [FETCH_RECORDINGS]: (state: State, { response }: FetchRecordingsType) => ({
-    ...state,
-    userRecordings: response.userRecordings,
-  }),
+  [FETCH_REPORTS]: (state: State, action: FetchReportsType & Stamped) => (
+    belongsToLoadedUser(state, action)
+      ? { ...state, userReports: action.response.reports, mainReportId: action.response.mainReportId }
+      : state
+  ),
+  [FETCH_ASSESSOR_ASSESSMENT]: (
+    state: State, action: FetchType & { requestAction: { userId?: number, assessmentId: number } },
+  ) => (
+    belongsToLoadedUser(state, action)
+      ? {
+        ...state,
+        assessorForms: { ...state.assessorForms, [action.requestAction.assessmentId]: action.response.assessment },
+        assessorResponses: { ...state.assessorResponses, [action.requestAction.assessmentId]: action.response.results },
+      }
+      : state
+  ),
+  [FETCH_RECORDINGS]: (state: State, action: FetchRecordingsType & Stamped) => (
+    belongsToLoadedUser(state, action)
+      ? { ...state, userRecordings: action.response.userRecordings }
+      : state
+  ),
 }
 
 export const assessorCanModerateScore = state => state.canModerateScore

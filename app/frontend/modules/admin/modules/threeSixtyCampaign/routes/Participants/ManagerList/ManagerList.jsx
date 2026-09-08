@@ -46,6 +46,7 @@ export default function ManagerList ({
           pageSize: settings.pageLimit,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         filters={(
           <Flex gap={8}>

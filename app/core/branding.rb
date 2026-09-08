@@ -2,13 +2,12 @@
 
 # Names are static because config/locales/*/branding.yml was deleted; the commented lookups need it back.
 module Branding
-  PUBLISHED_PRIVACY_NOTICE_VERSION = 'current'
+  PUBLISHED_PRIVACY_NOTICE_VERSION = 'marsh'
   PRODUCT_NAME = 'Lighthouse'
   DISPLAY_NAMES = { 'marsh' => 'Marsh', 'mercer_a_marsh_business' => 'Mercer, a Marsh business' }.freeze
   LEGAL_NAMES = { 'marsh' => 'Marsh', 'mercer_a_marsh_business' => 'Mercer Talent Enterprise' }.freeze
   # The masthead follows the notice version, not the deployment brand.
   POLICY_LOGO_NAMES = {
-    'current' => PRODUCT_NAME,
     'marsh' => DISPLAY_NAMES.fetch('marsh'),
     'mercer_a_marsh_business' => DISPLAY_NAMES.fetch('mercer_a_marsh_business')
   }.freeze

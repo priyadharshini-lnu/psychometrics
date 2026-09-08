@@ -1,5 +1,7 @@
 .admin-email-logo {
   margin-bottom: 20px;
+  width: auto;
+  height: 34px;
 }
 
 .email-content {
@@ -54,6 +56,11 @@
   &[dir="rtl"] {
     direction: rtl;
   }
+}
+
+.powered-by-tte img {
+  width: auto;
+  height: 28px;
 }
 
 [dir="rtl"] {

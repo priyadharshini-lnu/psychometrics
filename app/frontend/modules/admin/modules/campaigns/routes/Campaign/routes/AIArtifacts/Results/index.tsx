@@ -398,7 +398,11 @@ export const Result = () => {
               (isAllSelected && meta.recordCount) ? (meta.recordCount - excludedKeys.length) : selectedKeys.length
             }
             pagination={{
-              page: currentPage, pageSize, total: meta.recordCount ?? 0, onChange: changePage,
+              page: currentPage,
+              pageSize,
+              total: meta.recordCount ?? 0,
+              onChange: changePage,
+              showSizeChanger: false,
             }}
           />
         </>

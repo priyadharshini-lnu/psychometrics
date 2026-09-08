@@ -8,6 +8,7 @@ require_relative '../lib/middlewares/check_session'
 require_relative '../lib/middlewares/set_timeout_header_middleware'
 require_relative '../lib/middlewares/sidekiq_auth_middleware'
 require_relative '../lib/middlewares/admin_context_resolver'
+require_relative '../lib/middlewares/malformed_multipart_handler'
 
 # Load application constants
 require_relative '../lib/timezone_helper'
@@ -74,6 +75,7 @@ module Psychometrics
       ActionView::Template.register_template_handler :am, Handlers::CsvHandler::Handler
     end
 
+    config.middleware.insert_before(Warden::Manager, Middlewares::MalformedMultipartHandler)
     config.middleware.insert_before(Warden::Manager, Middlewares::AdminContextResolver)
     config.middleware.use(Middlewares::SetLocaleMiddleware)
     config.middleware.use(Middlewares::CheckSession)

@@ -126,7 +126,7 @@ const SubjectScoresListComponent: React.FC<Props & OwnProps > = ({ openModal, ca
           campaign_users_active_in: 'true',
         },
       },
-      initialFilter: storedSettings.filters,
+      initialFilter: { campaign_users_active_in: ['true'], ...storedSettings.filters },
     },
   )
 

@@ -63,7 +63,7 @@ interface Props extends ConnectedProps<typeof connecter> {
   changeFilter(filterName: string, filterValue: string): void
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
-  changePage(page: number): void
+  changePage(page: number, pageSize?: number): void
 }
 
 const AssessorList: React.FC<Props> = ({
@@ -130,6 +130,7 @@ const AssessorList: React.FC<Props> = ({
           pageSize: settings.pagination.defaultPageSize,
           total,
           onChange: changePage,
+          showSizeChanger: false,
         }}
         filters={(
           <Space>

@@ -62,7 +62,9 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
 
   const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
-  const { brand, feature, footer } = buildAuthChrome(projectConfig)
+  const {
+    brand, feature, footer, layout, featureFit,
+  } = buildAuthChrome(projectConfig)
 
   return (
     <>
@@ -70,6 +72,8 @@ const ForgotPasswordPageComponent: React.FC<Props> = ({
         brand={brand}
         feature={feature}
         footer={footer}
+        layout={layout}
+        featureFit={featureFit}
         title={I18n.t('auth.reset_password.title')}
         subtitle={I18n.t('auth.reset_password.description')}
         alerts={alerts}

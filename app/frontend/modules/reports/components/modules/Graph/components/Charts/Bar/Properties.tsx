@@ -13,6 +13,7 @@ import { RootState } from '~/modules/reports/core/rootReducers'
 import PropertyPixelOrPercent from '~/modules/reports/components/PropertyPixelOrPercent'
 import { isGraphValueCondition } from '~/modules/reports/utils/GraphValueCondition'
 import Series from './Series'
+import { isMultiSeriesGraph } from './barGradient'
 import { GraphPropertyDropdown } from '../CommonPropertyComponents/GraphPropertyDropdown'
 
 const { I18n } = window
@@ -243,6 +244,7 @@ const Properties: React.FC<Props> = ({ modules, questions }: Props) => {
         <>
           <BarGradientOptions
             gradient={model.props.barGradient}
+            showColorPickers={!isMultiSeriesGraph(model)}
             onEnabledChange={changeGradientEnabled}
             onDirectionChange={changeGradientDirection}
             onColorChange={changeGradientColor}
@@ -369,6 +371,7 @@ interface AxisOptionsProps {
 
 interface BarGradientOptionsProps {
   gradient: NonNullable<PropertiesModel['props']['barGradient']>
+  showColorPickers: boolean
   onEnabledChange: (value: boolean) => void
   onDirectionChange: (value: NonNullable<PropertiesModel['props']['barGradient']>['direction']) => void
   onColorChange: (type: 'startColor' | 'endColor', color: RgbaColor | string) => void
@@ -376,6 +379,7 @@ interface BarGradientOptionsProps {
 
 const BarGradientOptions: React.FC<BarGradientOptionsProps> = ({
   gradient,
+  showColorPickers,
   onEnabledChange,
   onDirectionChange,
   onColorChange,
@@ -390,18 +394,24 @@ const BarGradientOptions: React.FC<BarGradientOptionsProps> = ({
     </Checkbox>
     {gradient.enabled && (
       <>
-        <Typography.Text>{I18n.t('shared.reports_bar_gradient_start_color')}</Typography.Text>
-        <ColorPicker
-          getValueInHexFormat
-          value={gradient.startColor}
-          onChange={color => onColorChange('startColor', color)}
-        />
-        <Typography.Text>{I18n.t('shared.reports_bar_gradient_end_color')}</Typography.Text>
-        <ColorPicker
-          getValueInHexFormat
-          value={gradient.endColor}
-          onChange={color => onColorChange('endColor', color)}
-        />
+        {/* Start/end colours only apply to single-value charts. Multi-value charts (360, etc.)
+            fade each bar from its own role colour, so showing shared pickers would mislead. */}
+        {showColorPickers && (
+          <>
+            <Typography.Text>{I18n.t('shared.reports_bar_gradient_start_color')}</Typography.Text>
+            <ColorPicker
+              getValueInHexFormat
+              value={gradient.startColor}
+              onChange={color => onColorChange('startColor', color)}
+            />
+            <Typography.Text>{I18n.t('shared.reports_bar_gradient_end_color')}</Typography.Text>
+            <ColorPicker
+              getValueInHexFormat
+              value={gradient.endColor}
+              onChange={color => onColorChange('endColor', color)}
+            />
+          </>
+        )}
         <Typography.Text>{I18n.t('shared.reports_bar_gradient_direction')}</Typography.Text>
         <Select
           size="small"

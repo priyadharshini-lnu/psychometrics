@@ -2914,10 +2914,10 @@
   resolved "https://mgti-dal-so-art.mrshmc.com/artifactory/api/npm/npm/@testing-library/user-event/-/user-event-14.5.2.tgz#db7257d727c891905947bd1c1a99da20e03c2ebd"
   integrity sha512-YAh82Wh4TIrxYLmfGcixwD18oIjyC1pFQC2Y01F2lzV2HTMiYrI0nze0FD0ocB//CKS/7jIUgae+adPqxK5yCQ==
 
-"@thetalententerprise/glint@0.80.0":
-  version "0.80.0"
-  resolved "https://npm.pkg.github.com/download/@thetalententerprise/glint/0.80.0/56b87a09dcc78811ae42d0f7010b33d6713701e9#56b87a09dcc78811ae42d0f7010b33d6713701e9"
-  integrity sha512-vD+0NoKvm6FIxqQ+cN9mCWal6gKp5YmKo0Z2bLVWlSvMe0GeQMl31Ag6ph0e1zYw87zLeEspl5yO/lshbfe4XQ==
+"@thetalententerprise/glint@0.81.0":
+  version "0.81.0"
+  resolved "https://npm.pkg.github.com/download/@thetalententerprise/glint/0.81.0/4ac4e5b86d8948e2150e1ca880e926f4e8d362dc#4ac4e5b86d8948e2150e1ca880e926f4e8d362dc"
+  integrity sha512-xY8D9LsvGw4ZQvflZMlj8kcgJFKN3eelnmCE1AZF3DTTIcnyh9BTbnplbzbj83M8qvLPG9pl0KfBA0XIZAHJRA==
   dependencies:
     "@ant-design/colors" "^8.0.1"
     "@ant-design/icons" "^6.3.2"

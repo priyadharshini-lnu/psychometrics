@@ -94,7 +94,8 @@ RSpec.describe WorkshopInvitedSubject, type: :model do
     let!(:workshop_invite) { create(:workshop_invite, workshops: [workshop], campaign: campaign) }
     let!(:communication) do
       create(:communication, kind: :workshop_invite,
-        campaign_id: campaign.id, project_id: campaign.project.id, client_id: campaign.project.parent.id)
+        campaign_id: campaign.id, project_id: campaign.project.id, client_id: campaign.project.parent.id,
+        campaign_assessment_group: workshop_invite.campaign_assessment_group)
     end
 
     let!(:prework_user_assessment) do

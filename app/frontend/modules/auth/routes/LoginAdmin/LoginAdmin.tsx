@@ -59,7 +59,7 @@ const LoginComponent: React.FC<Props> = ({
 
       {!ssoEnforced && (
         (!isEmailStep)
-          ? <LoginForm csrfToken={csrfToken} user={user} />
+          ? <LoginForm csrfToken={csrfToken} user={user} isTwoStepFlow={isTwoStepFlow} />
           : <EmailForm csrfToken={csrfToken} user={user} />
       )}
     </div>

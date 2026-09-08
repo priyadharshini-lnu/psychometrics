@@ -38,6 +38,7 @@ export const fetch = (tableConfig: TableConfig): ApiAction<State> => ({
     method: 'get',
     url: '/assessors/campaigns',
     debounce: 500,
+    loader: true,
     tableConfig,
     typedResponse: CampaignListResponseTR,
   },

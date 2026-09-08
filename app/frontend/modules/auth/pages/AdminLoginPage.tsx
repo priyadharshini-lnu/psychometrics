@@ -63,7 +63,9 @@ const AdminLoginPageComponent: React.FC<Props> = ({
 
   const alerts: AuthAlertItem[] = (errors.base || []).map((value): AuthAlertItem => ({ type: 'error', title: value }))
 
-  const { brand, feature, footer } = buildAuthChrome(projectConfig)
+  const {
+    brand, feature, footer, layout, featureFit,
+  } = buildAuthChrome(projectConfig)
 
   const secondaryActions = ssoEnabled ? (
     <Button
@@ -141,6 +143,8 @@ const AdminLoginPageComponent: React.FC<Props> = ({
         brand={brand}
         feature={feature}
         footer={footer}
+        layout={layout}
+        featureFit={featureFit}
         title={I18n.t('auth.login.title')}
         subtitle={I18n.t('auth.login.description')}
         alerts={alerts}

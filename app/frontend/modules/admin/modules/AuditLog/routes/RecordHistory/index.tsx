@@ -9,6 +9,7 @@ import dayjs from '~/utils/dayjs'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { RangeValueType } from '~/interfaces/Antd'
 import useAsyncRequestResponse from '~/hooks/useAsyncRequestResponse'
+import { DEFAULT_PAGE_SIZE } from '~/constants/campaign'
 import {
   fetchAuditableTypes,
   exportRecordHistory,
@@ -80,6 +81,7 @@ const RecordHistory: React.FC<Props> = ({
   const { message: messageApi } = App.useApp()
   const [form] = Form.useForm()
   const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGE_SIZE)
   const [isExportLoading, setIsExportLoading] = useState(false)
   const [revisionVersion, setRevisionVersion] = useState<number | null>(null)
   const [isRevisionLoading, setIsRevisionLoading] = useState(false)
@@ -146,6 +148,7 @@ const RecordHistory: React.FC<Props> = ({
       runSearch({
         requestUuid,
         page,
+        size: pageSize,
         auditableType: parsed.auditable_type,
         changedField: parsed.changed_field,
       })
@@ -154,6 +157,7 @@ const RecordHistory: React.FC<Props> = ({
         recordType: rootType,
         recordId: rootId,
         page,
+        size: pageSize,
         startDate: parsed.start_date,
         endDate: parsed.end_date,
         associatedRecord: parsed.associated_record === 'true',
@@ -161,7 +165,7 @@ const RecordHistory: React.FC<Props> = ({
         changedField: parsed.changed_field,
       })
     }
-  }, [search, page])
+  }, [search, page, pageSize])
 
   const pushQuery = (nextParams: Record<string, string | undefined>) => {
     const active = Object.fromEntries(Object.entries(nextParams).filter(([, value]) => value))
@@ -209,6 +213,7 @@ const RecordHistory: React.FC<Props> = ({
           recordType,
           recordId,
           page: 1,
+          size: pageSize,
           startDate: nextQuery.start_date,
           endDate: nextQuery.end_date,
           associatedRecord: associatedRecord || false,
@@ -242,6 +247,7 @@ const RecordHistory: React.FC<Props> = ({
         runSearch({
           requestUuid: normalizedRequestUuid,
           page: 1,
+          size: pageSize,
           auditableType: undefined,
           changedField: undefined,
         })
@@ -368,10 +374,14 @@ const RecordHistory: React.FC<Props> = ({
           rootType={rootType}
           rootId={rootId}
           page={page}
+          pageSize={pageSize}
           parsed={parsed}
           resultTypes={resultTypes}
           resultFields={resultFields}
-          setPage={setPage}
+          setPage={(nextPage, nextPageSize) => {
+            setPage(nextPage)
+            setPageSize(nextPageSize)
+          }}
           onTypeFilter={handleTypeFilter}
           onFieldFilter={handleFieldFilter}
           onShowRevision={showRevision}

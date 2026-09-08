@@ -114,11 +114,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           <Typography.Text>{description}</Typography.Text>
         </div>
       </Space>
-      <Row className={styles.cardFooter}>
+      <Row className={styles.cardFooter} wrap>
         <Col
-          lg={progressBarSpanLg}
-          md={8}
-          xs={progressBarSpanXs}
+          lg={progressPercentage !== undefined ? progressBarSpanLg : 0}
+          md={progressPercentage !== undefined ? progressBarSpanLg : 0}
+          xs={progressPercentage !== undefined ? progressBarSpanXs : 0}
+          style={showReadinessCheck ? { minWidth: '100px', marginBottom: '1rem' } : {}}
         >
           {progressPercentage !== undefined && (
             <Progress
@@ -129,9 +130,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
         </Col>
         {showReadinessCheck ? (
           <Col
-            lg={24 - progressBarSpanLg}
-            md={16}
-            xs={24 - progressBarSpanXs}
+            flex={progressPercentage !== undefined ? '1 1 200px' : 1}
             className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
           >
             <Flex justify="end">
@@ -172,12 +171,12 @@ export const DetailsCard: FC<DetailsCardProps> = ({
           <>
             {buttonText && (
               <Col
-                lg={24 - progressBarSpanLg}
-                md={16}
-                xs={24 - progressBarSpanXs}
+                lg={progressPercentage !== undefined ? 24 - progressBarSpanLg : 24}
+                md={progressPercentage !== undefined ? 16 : 24}
+                xs={progressPercentage !== undefined ? 24 - progressBarSpanXs : 24}
                 className={cs({ [styles.buttonCol]: true, [styles.withFooter]: footer })}
               >
-                <Space>
+                <Flex gap={8} wrap justify="end">
                   {secondaryBtnText && (
                     <ButtonWrapper wrapText={actionDisabled ? actionDisabledText : undefined}>
                       <ScrollToViewOnFocusButton
@@ -208,7 +207,7 @@ export const DetailsCard: FC<DetailsCardProps> = ({
                       <DirectionalArrowIcon aria-label="" className={styles.buttonIcon} />
                     </ScrollToViewOnFocusButton>
                   </ButtonWrapper>
-                </Space>
+                </Flex>
               </Col>
             )}
           </>

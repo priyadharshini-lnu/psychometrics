@@ -303,7 +303,7 @@ const ParticipantsComponent: FC<Props> = ({
         title={I18n.t('admin.participants')}
         pagination={{
           page,
-          pageSize: settings.pagination.defaultPageSize,
+          pageSize: tableConfig.pageSize ?? settings.pagination.defaultPageSize,
           total: totalParticipants,
           onChange: changePage,
         }}

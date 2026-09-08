@@ -1,0 +1,3 @@
+common:
+  application_logging:
+    enabled: false

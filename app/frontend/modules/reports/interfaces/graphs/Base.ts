@@ -6,6 +6,7 @@ export interface BasePropertiesModel<Props = {}, T = ''> extends BaseModel<Props
   update: () => void
   getSourceType(): string
   getSourceModel(): SourceModel
+  isMultiFiltering?: () => boolean
 }
 
 interface BaseModel<Props = {}, Type = ''> {

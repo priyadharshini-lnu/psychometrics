@@ -17,6 +17,7 @@ import { sendMessage } from '~/utils/messageBus'
 const { Content } = Layout
 
 const connecter = connect((state: RootState) => ({
+  loadedUserId: state.assessors.scoreModerate.userId,
   userAssessmentId: state.assessors.scoreModerate.leadAssessorUserAssessmentId,
   assessorForm: getLeadAssessorForm(state.assessors.scoreModerate),
   assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
@@ -43,6 +44,7 @@ const Evaluation = (props) => {
 }
 
 const LeadAssessorAssessment: React.FC<Props> = ({
+  loadedUserId,
   userAssessmentId,
   assessorForm,
   assessorResult,
@@ -68,8 +70,8 @@ const LeadAssessorAssessment: React.FC<Props> = ({
       sendMessage('lead_assessor_assessment:status_change', status)
     })
     fetchAssessorAssessments(parsedCampaignId, parsedUserId)
-  }, [])
-  const loaded = !!assessorForm
+  }, [parsedUserId])
+  const loaded = !!assessorForm && loadedUserId === parsedUserId
   const bodyStyles = { padding: 0 }
 
   return (

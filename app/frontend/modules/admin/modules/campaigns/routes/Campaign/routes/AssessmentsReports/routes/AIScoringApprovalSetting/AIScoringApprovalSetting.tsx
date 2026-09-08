@@ -140,6 +140,7 @@ const AIScoringApprovalSettingComponent: React.FC<Props> = ({
         pageSize={pageSize}
         total={meta.recordCount ?? 0}
         onChange={changePage}
+        showSizeChanger
       />
     </>
   )

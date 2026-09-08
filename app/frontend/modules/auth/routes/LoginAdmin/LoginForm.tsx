@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { Input } from 'antd'
 import { Link } from 'react-router-dom'
 import { ButtonWithArrow } from '~/glint/components/ButtonWithArrow'
@@ -14,10 +14,12 @@ const { disable_recaptcha } = window.PsyGlobalState.features
 interface LoginFormProps {
   csrfToken: string
   user: { email: string }
+  isTwoStepFlow?: boolean
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ csrfToken, user, isTwoStepFlow = false }) => {
   const formRef = useRef<HTMLFormElement>(null)
+  const [emailValue, setEmailValue] = useState(user.email || '')
 
   const {
     recaptchaToken,
@@ -54,8 +56,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ csrfToken, user }) => {
           label={I18n.t('auth.email')}
           name="user[email]"
           placeholder={I18n.t('auth.email_placeholder')}
-          defaultValue={user.email}
+          value={emailValue}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailValue(e.target.value)}
+          disabled={isTwoStepFlow}
         />
+        {isTwoStepFlow && (
+          <Input type="hidden" name="user[email]" value={emailValue} />
+        )}
         <InputField
           label={I18n.t('auth.password')}
           name="user[password]"

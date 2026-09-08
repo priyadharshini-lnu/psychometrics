@@ -43,6 +43,7 @@ const currentFontSize = (): number => parseFloat(
 const setFontSize = (rem: number): void => {
   if (rem >= FONT_MIN && rem <= FONT_MAX) {
     document.documentElement.style.setProperty('font-size', `${rem}rem`)
+    document.body.style.setProperty('font-size', `${rem}rem`)
   }
 }
 

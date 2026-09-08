@@ -62,7 +62,7 @@ interface Props {
   removeFilter(filterName: string): void
   onTableChange(): void
   getSortOrder(column: string): 'descend' | 'ascend'
-  changePage(page: number): void
+  changePage(page: number, pageSize?: number): void
   openModal(name: string, data?: object): void
   exportCompletionStatuses(campaignId: number): Promise<void>
   exportCompactCompletionStatuses(campaignId: number): Promise<void>

@@ -128,10 +128,11 @@ const ReportTableCompnent: React.FC<Props> = ({
           id="provider"
           width={300}
           filters={
+            // antd hands the option value back verbatim; the URL round-trip makes the applied filter a string.
             settings.providers.map(
               (t: [number, string]) => ({
                 text: I18n.t(`admin.${t[1]}`),
-                value: t[0],
+                value: String(t[0]),
               }),
             )
         }

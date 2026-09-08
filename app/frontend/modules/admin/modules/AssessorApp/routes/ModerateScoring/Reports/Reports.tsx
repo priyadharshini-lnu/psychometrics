@@ -17,6 +17,7 @@ type Tab = GetProp<TabsProps, 'items'>[number]
 const { I18n } = window
 
 const connector = connect((state: RootState) => ({
+  loadedUserId: state.assessors.scoreModerate.userId,
   scoreModerate: state.assessors.scoreModerate,
   loading: isRequestInProgress(state, FETCH_REPORTS),
 }), {
@@ -28,7 +29,7 @@ interface Props extends ConnectedProps<typeof connector> {
 }
 
 export const ReportsComponent: FC<Props> = ({
-  fetchReports, scoreModerate: { userReports, mainReportId }, header,
+  fetchReports, loadedUserId, scoreModerate: { userReports, mainReportId }, header,
 }) => {
   let parsedCampaignId
   let parsedUserId
@@ -38,10 +39,10 @@ export const ReportsComponent: FC<Props> = ({
   if (userId) { parsedUserId = parseInt(userId, 10) }
 
   useEffect(() => {
-    if (!userReports) {
+    if (!userReports || loadedUserId !== parsedUserId) {
       fetchReports(parsedCampaignId, parsedUserId)
     }
-  }, [])
+  }, [parsedUserId])
 
 
   if (!userReports) {
