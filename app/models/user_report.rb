@@ -52,7 +52,11 @@ class UserReport < ApplicationRecord
     "private/projects/#{project.id}/user_report/#{id}/#{attribute_name}/#{filename}"
   end
 
-  enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
+  enum :status, { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }, scopes: false
+  scope :not_prepared, -> { where(status: statuses[:not_prepared]) }
+  scope :generating, -> { where(status: statuses[:generating]) }
+  scope :failed, -> { where(status: statuses[:failed]) }
+  scope :prepared, -> { where(status: statuses[:prepared]) }
 
   after_commit :schedule_report_available_notification,
                if: proc {
