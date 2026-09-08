@@ -384,7 +384,7 @@ en:
     campaign_templates_form_name_placeholder: Enter name
     campaign_templates_form_owner: Owner
     campaign_templates_form_owner_placeholder: Select an owner
-    campaign_templates_form_report: report
+    campaign_templates_form_report: Report
     campaign_templates_form_report_placeholder: Select a report
     campaign_templates_form_title: Campaign Template
     campaign_templates_remove_confirm_content: Are you sure you want to remove the campaign template '%{name}'?
