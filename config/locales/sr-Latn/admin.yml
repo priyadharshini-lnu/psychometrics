@@ -238,11 +238,6 @@ sr-Latn:
     assessor_remove_confirmation: Da li ste sigurni da želite da uklonite procenjivača sa imejlom %{email} iz ove kampanje?
     assessor_remove_has_evaluations: Овом процењивачу је додељено %{evaluation_count} образаца за процену. Све евалуације које је попунио биће изгубљене.
     assessor_remove_in_assessment_centers: Овај процењивач је део %{workshop_count} процењивачког центра/центара. Наставак ће га уклонити из свих процењивачких центара.
-    assessor_statuses_completed: Završeno
-    assessor_statuses_not_completed: Nije završeno
-    assessor_subjects_statuses_completed: Završeno
-    assessor_subjects_statuses_in_progress: U toku
-    assessor_subjects_statuses_not_started: Nije započeto
     assessor_toolbar_export: Izvezi procenjivače
     assessor_toolbar_import: Uvezi procenjivače
     assessor_workshops: Centar za procenu
@@ -1121,6 +1116,7 @@ sr-Latn:
     import_title: Uvoz predmeta iz CSV-a
     import_upload: Otpremanje
     import_users: Uvoz korisnika
+    in_progress: U toku
     inactive: Neaktivni
     include_locales_label: Uključi prevode
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ sr-Latn:
     norms_title: Norma
     not_completed: Nije završeno
     not_completed_tooltip: "%{completed} evaluatori su dodeljeni, ali samo %{submitted} su završili evaluacije"
+    not_started: Nije započeto
     notes: Beleške
     nothing_assigned: Nema dodeljenih evaluatora
     nothing_assigned_tooltip: Nijedna evaluacija nije dodeljena ovom korisniku

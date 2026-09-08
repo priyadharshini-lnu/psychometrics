@@ -9,17 +9,21 @@ class Assessors::UsersController < Administration::BaseController
   render_entrypoint :dashboard, element: 'admin-app-container', entry: 'admin/admin'
 
   def index
-    users = user_scope.ransack(params[:filters]).result
+    ransack_filters = filters.except('evaluation_status_in', 'moderation_status_in')
+    ransack_filters['full_name_cont'] = Array(ransack_filters['full_name_cont']).first
+    users = user_scope.ransack(ransack_filters).result
+    users = filter_by_status(users)
     paginated_users = users.page(params[:page])
+    paginated_user_ids = paginated_users.pluck(:id)
     serialized_users = Panko::ArraySerializer.new(
       paginated_users, each_serializer: Administration::Assessors::UserSerializer,
       context: {
         current_user: current_user, project_id: campaign.project_id,
         evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
-          paginated_users.pluck(:id), current_user, params[:campaign_id]
+          paginated_user_ids, current_user, params[:campaign_id]
         ),
         moderation_count: ::Assessors::SubjectEvaluationsCount.call!(
-          paginated_users.pluck(:id), current_user, params[:campaign_id],
+          paginated_user_ids, current_user, params[:campaign_id],
           assessment_category: :lead_assessor_form
         )
       }
@@ -62,7 +66,14 @@ class Assessors::UsersController < Administration::BaseController
         context: {
           current_user: current_user,
           project_id: campaign.project_id,
-          campaign: campaign
+          campaign: campaign,
+          evaluations_count: ::Assessors::SubjectEvaluationsCount.call!(
+            [@user.id], current_user, params[:campaign_id]
+          ),
+          moderation_count: ::Assessors::SubjectEvaluationsCount.call!(
+            [@user.id], current_user, params[:campaign_id],
+            assessment_category: :lead_assessor_form
+          )
         }
       ).serialize(@user),
       user_assessments: serialized_user_assessments,
@@ -113,5 +124,30 @@ class Assessors::UsersController < Administration::BaseController
 
   def user_scope
     User.where(id: current_user.evaluation_assessments.where(campaign_id: params[:campaign_id]).select('subject_id'))
+  end
+
+  def filter_by_status(users)
+    evaluation_statuses = Array(filters['evaluation_status_in']).compact_blank
+    moderation_statuses = Array(filters['moderation_status_in']).compact_blank
+    return users if evaluation_statuses.blank? && moderation_statuses.blank?
+
+    user_ids = users.pluck(:id)
+    evaluations_count = ::Assessors::SubjectEvaluationsCount.call!(user_ids, current_user, params[:campaign_id])
+    moderation_count = ::Assessors::SubjectEvaluationsCount.call!(
+      user_ids, current_user, params[:campaign_id], assessment_category: :lead_assessor_form
+    )
+    default_counts = UserAssessment.statuses_count.merge(total: 0)
+
+    users.where(id: user_ids.select do |user_id|
+      evaluation_status = ::Assessors::GetStatusFromCounts.call!(evaluations_count[user_id] || default_counts).to_s
+      moderation_status = ::Assessors::GetStatusFromCounts.call!(moderation_count[user_id] || default_counts).to_s
+
+      (evaluation_statuses.blank? || evaluation_statuses.include?(evaluation_status)) &&
+        (moderation_statuses.blank? || moderation_statuses.include?(moderation_status))
+    end)
+  end
+
+  def filters
+    @filters ||= params[:filters].respond_to?(:to_unsafe_h) ? params[:filters].to_unsafe_h : params.fetch(:filters, {})
   end
 end

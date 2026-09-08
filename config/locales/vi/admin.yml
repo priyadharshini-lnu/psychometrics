@@ -238,11 +238,6 @@ vi:
     assessor_remove_confirmation: Bạn có chắc chắn muốn xóa người đánh giá có email %{email} khỏi chiến dịch này không?
     assessor_remove_has_evaluations: Người đánh giá này được giao %{evaluation_count} biểu mẫu đánh giá. Tất cả các đánh giá mà họ đã điền sẽ bị mất.
     assessor_remove_in_assessment_centers: Người đánh giá này thuộc trung tâm đánh giá %{workshop_count}. Việc tiếp tục sẽ loại bỏ họ khỏi tất cả các trung tâm đánh giá.
-    assessor_statuses_completed: Hoàn thành
-    assessor_statuses_not_completed: Chưa hoàn thành
-    assessor_subjects_statuses_completed: Hoàn thành
-    assessor_subjects_statuses_in_progress: Đang tiến hành
-    assessor_subjects_statuses_not_started: Chưa bắt đầu
     assessor_toolbar_export: Giám định viên xuất khẩu
     assessor_toolbar_import: Giám định viên nhập khẩu
     assessor_workshops: Trung tâm đánh giá
@@ -1121,6 +1116,7 @@ vi:
     import_title: Nhập chủ đề từ CSV
     import_upload: Tải lên
     import_users: Nhập người dùng
+    in_progress: Đang tiến hành
     inactive: Không hoạt động
     include_locales_label: Bao gồm bản dịch
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ vi:
     norms_title: Chuẩn
     not_completed: Chưa hoàn thành
     not_completed_tooltip: "%{completed} người đánh giá được chỉ định nhưng chỉ %{submitted} đã hoàn thành đánh giá"
+    not_started: Chưa bắt đầu
     notes: Ghi chú
     nothing_assigned: Không có người đánh giá được chỉ định
     nothing_assigned_tooltip: Không có đánh giá nào được chỉ định cho người dùng này

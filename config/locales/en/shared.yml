@@ -91,6 +91,7 @@ en:
     'false': false
     file: File
     file_upload_button: Select File
+    filters: Filters
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate

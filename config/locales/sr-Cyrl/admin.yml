@@ -238,11 +238,6 @@ sr-Cyrl:
     assessor_remove_confirmation: Да ли сте сигурни да желите да уклоните процењивача са адресом електронске поште %{email} из ове кампање?
     assessor_remove_has_evaluations: Овом процењивачу је додељено %{evaluation_count} образаца за процену. Све евалуације које је попунио биће изгубљене.
     assessor_remove_in_assessment_centers: Овај процењивач је део %{workshop_count} процењивачког центра/центара. Наставак ће га уклонити из свих процењивачких центара.
-    assessor_statuses_completed: Завршено
-    assessor_statuses_not_completed: Није завршено
-    assessor_subjects_statuses_completed: Завршено
-    assessor_subjects_statuses_in_progress: У току
-    assessor_subjects_statuses_not_started: Није започето
     assessor_toolbar_export: Експортни процењивачи
     assessor_toolbar_import: Увозни процењивачи
     assessor_workshops: Центар за процену
@@ -1123,6 +1118,7 @@ sr-Cyrl:
     import_title: Увоз предмета из CSV-а
     import_upload: Отпреми
     import_users: Увоз корисника
+    in_progress: У току
     inactive: Неактиван
     include_locales_label: Укључи преводе
     include_locales_name: укључи локале
@@ -1460,6 +1456,7 @@ sr-Cyrl:
     norms_title: Норм
     not_completed: Није завршено
     not_completed_tooltip: "%{completed} Процењивачи су додељени, али само %{submitted} су завршили процене."
+    not_started: Није започето
     notes: Белешке
     nothing_assigned: Није додељено ниједног оцењивача
     nothing_assigned_tooltip: Овом кориснику нису додељене никакве оцене.

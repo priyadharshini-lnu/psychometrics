@@ -15,6 +15,7 @@ export const UserAssessmentTR = t.type({
 export const CampaignFactorTR = t.type({
   id: t.string,
   name: t.string,
+  position: t.number,
   outputType: t.keyof(CampaignFactorOutputType),
 })
 
@@ -56,12 +57,16 @@ export const UserRecordingTR = t.type({
     t.type({
       id: t.union([t.string, t.number]),
       email: t.string,
+      firstName: t.string,
+      lastName: t.string,
     }),
   ),
   participants: t.array(
     t.type({
       id: t.union([t.string, t.number]),
       email: t.string,
+      firstName: t.string,
+      lastName: t.string,
     }),
   ),
   transcriptionUrl: t.union([t.string, t.null]),
@@ -89,6 +94,7 @@ export interface State {
   assessorAssessments: UserAssessment[]
   userReports: null | UserReport[]
   mainReportId: null | number
+  mainReport: null | UserReport
   assessorResponses: {[id:number]: Result[]}
   canModerateScore: boolean,
   userRecordings: null | UserRecording[];
@@ -103,6 +109,7 @@ const defaultState: State = {
   assessorAssessments: [],
   userReports: null,
   mainReportId: null,
+  mainReport: null,
   loaded: false,
   canModerateScore: false,
   userRecordings: [],
@@ -133,6 +140,7 @@ type FetchAssessorAssessmentsType = ApiActionResponse<{
 type FetchReportsType = ApiActionResponse<{
   reports: UserReport[]
   mainReportId: number
+  mainReport: UserReport | null
 }>
 
 // TODO: @fedor implement typedResponse and assessment/result type
@@ -193,6 +201,7 @@ export const fetchRecordings = (parsedCampaignId: number, userId: number) => ({
   request: {
     method: 'get',
     url: `/assessors/campaigns/${parsedCampaignId}/score_moderations/${userId}/recordings`,
+    loader: true,
     body: {},
   },
   userId,

@@ -238,11 +238,6 @@ ru:
     assessor_remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
     assessor_remove_has_evaluations: Этому оценщику назначено %{evaluation_count} форм оценки. Все заполненные им оценки будут утеряны.
     assessor_remove_in_assessment_centers: Этот оценщик является сотрудником оценочного центра %{workshop_count}. Дальнейшие действия приведут к его исключению из всех оценочных центров.
-    assessor_statuses_completed: Завершено
-    assessor_statuses_not_completed: Не завершено
-    assessor_subjects_statuses_completed: Завершено
-    assessor_subjects_statuses_in_progress: В процессе
-    assessor_subjects_statuses_not_started: Не начато
     assessor_toolbar_export: Эксперты по экспорту
     assessor_toolbar_import: Эксперты по импорту
     assessor_workshops: Центр оценки
@@ -1121,6 +1116,7 @@ ru:
     import_title: Импорт предметов из CSV
     import_upload: Загрузить
     import_users: Импорт пользователей
+    in_progress: В процессе
     inactive: Неактивный
     include_locales_label: Включить переводы
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ ru:
     norms_title: Норма
     not_completed: Не завершено
     not_completed_tooltip: "%{completed} оценщики назначены, но только %{submitted} завершили оценки"
+    not_started: Не начато
     notes: Примечания
     nothing_assigned: Оценщики не назначены
     nothing_assigned_tooltip: Этому пользователю не было присвоено никаких оценок.

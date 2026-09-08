@@ -238,11 +238,6 @@ cs:
     assessor_remove_confirmation: Jste si jisti, že chcete z této kampaně odstranit hodnotitele s e-mailem %{email}?
     assessor_remove_has_evaluations: Tento hodnotitel má přiřazen %{evaluation_count} formulářů hodnotitelů. Všechna hodnocení, která vyplnil, budou ztracena.
     assessor_remove_in_assessment_centers: Tento hodnotitel je součástí hodnotícího centra (center) %{workshop_count}. Pokračováním bude odstraněn ze všech hodnotících center.
-    assessor_statuses_completed: Dokončeno
-    assessor_statuses_not_completed: Nedokončeno
-    assessor_subjects_statuses_completed: Dokončeno
-    assessor_subjects_statuses_in_progress: Probíhá
-    assessor_subjects_statuses_not_started: Nebylo zahájeno
     assessor_toolbar_export: Hodnotitelé vývozu
     assessor_toolbar_import: Posuzovatelé dovozu
     assessor_workshops: Hodnotící centrum
@@ -1121,6 +1116,7 @@ cs:
     import_title: Importovat předměty z CSV
     import_upload: Upload
     import_users: Importovat uživatele
+    in_progress: Probíhá
     inactive: Neaktivní
     include_locales_label: Zahrnout překlady
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ cs:
     norms_title: Norm
     not_completed: Nedokončeno
     not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
+    not_started: Nebylo zahájeno
     notes: Poznámky
     nothing_assigned: Žádní hodnotitelé nejsou přiděleni
     nothing_assigned_tooltip: Tomuto uživateli nebyly přiřazeny žádné hodnocení

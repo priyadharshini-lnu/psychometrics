@@ -13,9 +13,13 @@ import { PageFallback, PageHoldArea } from '~/components/PageFallback'
 import routes from './routes'
 import fullScreenRoutes from './routes/fullScreen'
 import assessorRoutes from './modules/AssessorApp/routes'
+import newAssessorRoutes from './modules/AssessorApp/newExperience/routes'
 import assessorSettings from './modules/AssessorApp/settings'
+import { isNewExperienceEnabled } from './modules/AssessorApp/context/useNewExperience'
+import { NewExperienceNotice } from './modules/AssessorApp/context/NewExperienceNotice'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
+import { AssessorAppTourProvider } from './modules/AssessorApp/newExperience/routes/AssessorAppTour'
 
 const OWNED_PATH_PREFIXES = ['/admin', assessorSettings.urlPrefix]
 
@@ -33,7 +37,13 @@ const AssessorGate: React.FC = () => {
 
   if (!links.assessorDashboard) return <Navigate to="/admin" replace />
 
-  return <Outlet />
+
+  return (
+    <>
+      <NewExperienceNotice />
+      <Outlet />
+    </>
+  )
 }
 
 const RoutedPage: React.FC = () => {
@@ -76,7 +86,9 @@ const pageArea = (children: RouteObject[]): RouteObject => ({
 
 const ThemedRoot: React.FC = () => (
   <AdminTheme>
-    <Outlet />
+    <AssessorAppTourProvider>
+      <Outlet />
+    </AssessorAppTourProvider>
   </AdminTheme>
 )
 
@@ -99,7 +111,11 @@ export const router = createBrowserRouter([
       {
         path: `${assessorSettings.urlPrefix}/*`,
         element: <Main />,
-        children: [pageArea([{ element: <AssessorGate />, children: assessorRoutes }])],
+        children: [pageArea([{
+          element: <AssessorGate />,
+          children: isNewExperienceEnabled()
+            ? newAssessorRoutes : assessorRoutes,
+        }])],
       },
       { path: '*', element: <Main /> },
     ],

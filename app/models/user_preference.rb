@@ -31,4 +31,7 @@ class UserPreference < ApplicationRecord
 
     where('name ILIKE :q OR description ILIKE :q', q: "%#{query}%")
   }
+  def should_force_tenant_resolution?
+    true
+  end
 end

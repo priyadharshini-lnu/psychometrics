@@ -238,11 +238,6 @@ th:
     assessor_remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินที่มีอีเมล %{email} ออกจากแคมเปญนี้?
     assessor_remove_has_evaluations: ผู้ประเมินรายนี้ได้รับมอบหมายแบบฟอร์มประเมินจำนวน %{evaluation_count} แบบ การประเมินทั้งหมดที่ผู้ประเมินรายนี้ได้กรอกไว้จะสูญหายไป
     assessor_remove_in_assessment_centers: ผู้ประเมินรายนี้เป็นส่วนหนึ่งของศูนย์ประเมิน %{workshop_count} แห่ง การดำเนินการต่อไปจะลบผู้ประเมินรายนี้ออกจากศูนย์ประเมินทั้งหมด
-    assessor_statuses_completed: เสร็จสมบูรณ์
-    assessor_statuses_not_completed: ยังไม่เสร็จสมบูรณ์
-    assessor_subjects_statuses_completed: เสร็จสมบูรณ์
-    assessor_subjects_statuses_in_progress: อยู่ระหว่างดําเนินการ
-    assessor_subjects_statuses_not_started: ยังไม่ได้เริ่มต้น
     assessor_toolbar_export: ผู้ประเมินการส่งออก
     assessor_toolbar_import: ผู้ประเมินนําเข้า
     assessor_workshops: ศูนย์ประเมินผล
@@ -1121,6 +1116,7 @@ th:
     import_title: นําเข้าหัวเรื่องจาก CSV
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
+    in_progress: อยู่ระหว่างดําเนินการ
     inactive: เกียจคร้าน
     include_locales_label: รวมคําแปล
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ th:
     norms_title: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
+    not_started: ยังไม่ได้เริ่มต้น
     notes: หมายเหตุ
     nothing_assigned: ไม่มีการกําหนดผู้ประเมิน
     nothing_assigned_tooltip: ไม่มีการกําหนดการประเมินให้กับผู้ใช้รายนี้

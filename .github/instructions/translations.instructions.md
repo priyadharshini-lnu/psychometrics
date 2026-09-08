@@ -131,5 +131,6 @@ const message = I18n.t('admin.items_count_message', { count: 5 })
 - **Never hardcode text** that users will see
 - **Always use namespaced keys** (e.g., `admin.section.key`, not just `key`)
 - **Keep keys descriptive** and organized hierarchically
+- **Avoid creating new keys** if an existing key can be reused , check admin.yml or enduser.yml (Based on the routes) and shared.yml for existing translations
 - **Reuse existing translations** when possible before creating new ones
 - **Check existing translations** in the YAML files to avoid duplicates

@@ -238,11 +238,6 @@ nl:
     assessor_remove_confirmation: Weet je zeker dat je de beoordelaar met e-mailadres %{email} uit deze campagne wilt verwijderen?
     assessor_remove_has_evaluations: Aan deze beoordelaar zijn %{evaluation_count} beoordelingsformulieren toegewezen. Alle door hem/haar ingevulde evaluaties gaan verloren.
     assessor_remove_in_assessment_centers: Deze beoordelaar maakt deel uit van beoordelingscentrum(s) %{workshop_count}. Door verder te gaan, wordt deze beoordelaar van alle beoordelingscentra verwijderd.
-    assessor_statuses_completed: Voltooid
-    assessor_statuses_not_completed: Niet voltooid
-    assessor_subjects_statuses_completed: Voltooid
-    assessor_subjects_statuses_in_progress: In uitvoering
-    assessor_subjects_statuses_not_started: Niet gestart
     assessor_toolbar_export: Exporteurs
     assessor_toolbar_import: Importeurs
     assessor_workshops: Beoordelingscentrum
@@ -1121,6 +1116,7 @@ nl:
     import_title: Importeer onderwerpen uit CSV
     import_upload: Uploaden
     import_users: Importgebruikers
+    in_progress: In uitvoering
     inactive: Inactief
     include_locales_label: Vertalingen opnemen
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ nl:
     norms_title: Norm
     not_completed: Niet voltooid
     not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
+    not_started: Niet gestart
     notes: Opmerkingen
     nothing_assigned: Geen beoordelaars toegewezen
     nothing_assigned_tooltip: Er zijn geen evaluaties aan deze gebruiker toegekend

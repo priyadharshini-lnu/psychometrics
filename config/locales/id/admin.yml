@@ -238,11 +238,6 @@ id:
     assessor_remove_confirmation: Apakah Anda yakin ingin menghapus penilai dengan email %{email} dari kampanye ini?
     assessor_remove_has_evaluations: Penilai ini memiliki %{evaluation_count} formulir penilaian yang ditugaskan. Semua evaluasi yang telah mereka isi akan hilang.
     assessor_remove_in_assessment_centers: Penilai ini merupakan bagian dari pusat penilaian %{workshop_count}. Melanjutkan proses akan menghapus mereka dari semua pusat penilaian.
-    assessor_statuses_completed: Selesai
-    assessor_statuses_not_completed: Tidak Selesai
-    assessor_subjects_statuses_completed: Selesai
-    assessor_subjects_statuses_in_progress: Sedang Berlangsung
-    assessor_subjects_statuses_not_started: Belum Dimulai
     assessor_toolbar_export: Ekspor Penilai
     assessor_toolbar_import: Impor Penilai
     assessor_workshops: Pusat Penilaian
@@ -1121,6 +1116,7 @@ id:
     import_title: Impor Subjek dari CSV
     import_upload: Unggah
     import_users: Impor Pengguna
+    in_progress: Sedang Berlangsung
     inactive: Aktif
     include_locales_label: Sertakan Terjemahan
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ id:
     norms_title: Norma
     not_completed: Belum Selesai
     not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
+    not_started: Belum Dimulai
     notes: Catatan
     nothing_assigned: Tidak Ada Evaluator yang Ditugaskan
     nothing_assigned_tooltip: Tidak ada evaluasi yang ditetapkan untuk pengguna ini

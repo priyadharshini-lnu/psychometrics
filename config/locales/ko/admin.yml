@@ -238,11 +238,6 @@ ko:
     assessor_remove_confirmation: 이메일 %{email}을 사용하는 평가자를 이 캠페인에서 제거하시겠습니까?
     assessor_remove_has_evaluations: 이 평가자에게는 %{evaluation_count}개의 평가 양식이 배정되었습니다. 이 평가자가 작성한 모든 평가는 삭제됩니다.
     assessor_remove_in_assessment_centers: 이 평가자는 %{workshop_count}개의 평가 센터에 소속되어 있습니다. 진행하면 모든 평가 센터에서 제외됩니다.
-    assessor_statuses_completed: 완료
-    assessor_statuses_not_completed: 완료되지 않음
-    assessor_subjects_statuses_completed: 완료
-    assessor_subjects_statuses_in_progress: 진행 중
-    assessor_subjects_statuses_not_started: 시작되지 않음
     assessor_toolbar_export: 내보내기 평가자
     assessor_toolbar_import: 평가자 가져오기
     assessor_workshops: 평가 센터
@@ -1121,6 +1116,7 @@ ko:
     import_title: CSV에서 주제 가져오기
     import_upload: 업로드
     import_users: 사용자 가져오기
+    in_progress: 진행 중
     inactive: 비활성
     include_locales_label: 번역 포함
     include_locales_name: 포함_로컬
@@ -1458,6 +1454,7 @@ ko:
     norms_title: 표준
     not_completed: 미완성
     not_completed_tooltip: 평가자는 %{completed} 배정되지만 평가를 완료한 사람은 %{submitted}입니다
+    not_started: 시작되지 않음
     notes: 참고
     nothing_assigned: 평가자 배정 없음
     nothing_assigned_tooltip: 이 사용자에게는 평가가 할당되지 않았습니다

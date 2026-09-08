@@ -238,11 +238,6 @@ bg:
     assessor_remove_confirmation: Сигурни ли сте, че искате да премахнете оценителя с имейл %{email} от тази кампания?
     assessor_remove_has_evaluations: Този оценител има %{evaluation_count} формуляра за оценител. Всички оценки, които е попълнил, ще бъдат загубени.
     assessor_remove_in_assessment_centers: Този оценител е част от %{workshop_count} център(ове) за оценяване. Продължаването ще го премахне от всички центрове за оценяване.
-    assessor_statuses_completed: Завършен
-    assessor_statuses_not_completed: Не е завършено
-    assessor_subjects_statuses_completed: Завършен
-    assessor_subjects_statuses_in_progress: В процес на изпълнение
-    assessor_subjects_statuses_not_started: Не е започнато
     assessor_toolbar_export: Експортирам оценители
     assessor_toolbar_import: Импортирам оценители
     assessor_workshops: Център за оценяване
@@ -1121,6 +1116,7 @@ bg:
     import_title: Вносни теми от CSV
     import_upload: Качвам
     import_users: Импортиране на потребители
+    in_progress: В процес на изпълнение
     inactive: Неактивен
     include_locales_label: Включете преводи
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ bg:
     norms_title: Норма
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
+    not_started: Не е започнато
     notes: Бележки
     nothing_assigned: Няма назначени оценители
     nothing_assigned_tooltip: Не са възложени оценки на този потребител

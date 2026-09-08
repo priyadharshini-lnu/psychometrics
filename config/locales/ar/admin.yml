@@ -238,11 +238,6 @@ ar:
     assessor_remove_confirmation: هل أنت متأكد أنك تريد إزالة المقيم بالبريد الإلكتروني %{email} من هذه الحملة؟
     assessor_remove_has_evaluations: تم تخصيص %{evaluation_count} نموذج تقييم لهذا المُقيِّم. ستُفقد جميع التقييمات التي قام بتعبئتها.
     assessor_remove_in_assessment_centers: هذا المُقيِّم جزء من مركز (مراكز) التقييم %{workshop_count}. سيؤدي المتابعة إلى إزالته من جميع مراكز التقييم.
-    assessor_statuses_completed: تم اكماله
-    assessor_statuses_not_completed: لم يتم اكماله
-    assessor_subjects_statuses_completed: تم اكماله
-    assessor_subjects_statuses_in_progress: قيد التنفيذ
-    assessor_subjects_statuses_not_started: لم يبدأ
     assessor_toolbar_export: تصدير المقيمين
     assessor_toolbar_import: استيراد المقيمين
     assessor_workshops: مركز التقييم
@@ -1121,6 +1116,7 @@ ar:
     import_title: المواد المستوردة من CSV
     import_upload: رفع
     import_users: استيراد المستخدمين
+    in_progress: قيد التنفيذ
     inactive: كسلان
     include_locales_label: صر مربع
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ ar:
     norms_title: المعيار
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
+    not_started: لم يبدأ
     notes: ملاحظات
     nothing_assigned: لا يتم تعيين مقيمين
     nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم

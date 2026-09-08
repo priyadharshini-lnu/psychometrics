@@ -238,11 +238,6 @@ zh-Hant:
     assessor_remove_confirmation: 您確定要從此活動中移除電子郵件 %{email} 的評估員嗎？
     assessor_remove_has_evaluations: 該評估員已分配 %{evaluation_count} 份評估表。他們已填寫的所有評估表都將遺失。
     assessor_remove_in_assessment_centers: 該評估員隸屬於 %{workshop_count} 個評估中心。繼續操作將使其從所有評估中心移除。
-    assessor_statuses_completed: 已完成
-    assessor_statuses_not_completed: 未完成
-    assessor_subjects_statuses_completed: 已完成
-    assessor_subjects_statuses_in_progress: 進行中
-    assessor_subjects_statuses_not_started: 尚未開始
     assessor_toolbar_export: 出口評稅員
     assessor_toolbar_import: 進口評估員
     assessor_workshops: 評估中心
@@ -1121,6 +1116,7 @@ zh-Hant:
     import_title: 從 CSV 匯入主體
     import_upload: 上傳
     import_users: 匯入使用者
+    in_progress: 進行中
     inactive: 閒置
     include_locales_label: 包含翻譯
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ zh-Hant:
     norms_title: 標準
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評估員被指派，但只有%{submitted}完成評估"
+    not_started: 尚未開始
     notes: 注意事項
     nothing_assigned: 未指派評審
     nothing_assigned_tooltip: 此用戶尚未被分配任何評估

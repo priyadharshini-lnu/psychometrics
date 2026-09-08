@@ -238,11 +238,6 @@ hu:
     assessor_remove_confirmation: Biztos vagy benne, hogy el akarod távolítani a(z) %{email} e-mail címmel rendelkező értékelőt ebből a kampányból?
     assessor_remove_has_evaluations: Ehhez az értékelőhöz %{evaluation_count} értékelői űrlap van hozzárendelve. Az összes kitöltött értékelése elvész.
     assessor_remove_in_assessment_centers: Ez az értékelő %{workshop_count} értékelőközpontban vesz részt. A folytatás az összes értékelőközpontból eltávolítja.
-    assessor_statuses_completed: Befejezett
-    assessor_statuses_not_completed: Nem fejeződött be
-    assessor_subjects_statuses_completed: Befejezett
-    assessor_subjects_statuses_in_progress: Folyamatban
-    assessor_subjects_statuses_not_started: Nincs elindítva
     assessor_toolbar_export: Értékelők exportálása
     assessor_toolbar_import: Értékelők importálása
     assessor_workshops: Értékelési központ
@@ -1121,6 +1116,7 @@ hu:
     import_title: Témák importálása a CSV-ből
     import_upload: Feltölt
     import_users: Importfelhasználók
+    in_progress: Folyamatban
     inactive: Inaktív
     include_locales_label: Fordítások belefoglalása
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ hu:
     norms_title: Norma
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
+    not_started: Nincs elindítva
     notes: Megjegyzések
     nothing_assigned: Nincsenek értékelők kijelölve
     nothing_assigned_tooltip: Ehhez a felhasználóhoz nem rendeltek értékeléseket

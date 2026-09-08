@@ -183,7 +183,7 @@ const AssessorList: React.FC<Props> = ({
             <Column
               title={I18n.t('shared.status')}
               key="status"
-              render={({ status }) => I18n.t(`admin.assessor_statuses_${status}`)}
+              render={({ status }) => I18n.t(`admin.${status}`)}
             />
             <Column
               title={I18n.t('admin.assessor_evaluations')}

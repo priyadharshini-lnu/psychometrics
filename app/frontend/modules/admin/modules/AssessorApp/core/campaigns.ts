@@ -7,6 +7,8 @@ import { TableConfig } from '~/modules/admin/core/filterAndPagination/interfaces
 import { createReducer } from '~/utils/redux'
 
 const CampaignTR = t.type({
+  clientName: t.string,
+  projectName: t.string,
   id: t.number,
   name: t.string,
   status: t.string,
@@ -16,6 +18,9 @@ const CampaignTR = t.type({
   totalSubjectModerationCount: t.number,
   evaluationCompletionStatus: t.string,
   moderationCompletionStatus: t.string,
+  startDate: t.union([t.string, t.null]),
+  endDate: t.union([t.string, t.null]),
+  totalSubjectsCount: t.number,
 })
 
 const CampaignListResponseTR = t.type({

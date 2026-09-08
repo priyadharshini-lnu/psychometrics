@@ -10,7 +10,7 @@ module Api
       datasheet_columns = Sheets::GetColumns.call!(campaign.datasheet, by_access: :assessor)
       user = User.find(params[:filter][:user_id])
       unless Users::GetLeadAssessor.call!(campaign, user) == current_user
-        raise Pundit::NotAuthorizedError, "You are not authorized to access datasheet for user with id: #{user.id}"
+        return render json: {}
       end
 
       datasheet = campaign.datasheet_data(user.email)

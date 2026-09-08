@@ -238,11 +238,6 @@ en-US:
     assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
     assessor_remove_has_evaluations: This assessor has %{evaluation_count} assessor form(s) assigned. All evaluations they have filled will be lost.
     assessor_remove_in_assessment_centers: This assessor is part of %{workshop_count} assessment center(s). Proceeding will remove them from all assessment centers.
-    assessor_statuses_completed: Completed
-    assessor_statuses_not_completed: Not Completed
-    assessor_subjects_statuses_completed: Completed
-    assessor_subjects_statuses_in_progress: In Progress
-    assessor_subjects_statuses_not_started: Not Started
     assessor_toolbar_export: Export Assessors
     assessor_toolbar_import: Import Assessors
     assessor_workshops: Assessment Center
@@ -1121,6 +1116,7 @@ en-US:
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    in_progress: In Progress
     inactive: Inactive
     include_locales_label: Include Translations
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ en-US:
     norms_title: Norm
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    not_started: Not Started
     notes: Notes
     nothing_assigned: No Evaluators Assigned
     nothing_assigned_tooltip: No evaluations have been assigned to this user

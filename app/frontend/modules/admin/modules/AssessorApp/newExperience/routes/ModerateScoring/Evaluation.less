@@ -1,0 +1,47 @@
+@import '~/styles/spacing.less';
+
+.container {
+  display: flex;
+  min-height: 90vh;
+  background: var(--white-bg);
+}
+
+.sidebar {
+  width: 25.5rem;
+  min-width: 0;
+  border-inline-end: 1px solid var(--ant-color-border-secondary);
+  background: var(--white-bg);
+  overflow: hidden;
+}
+
+.sidebarCollapsed {
+  width: 0;
+  border-inline-end: 0;
+}
+
+.sidebarHeader {
+  border-bottom: 1px solid var(--ant-color-border-secondary);
+  background: var(--ant-layout-body-bg);
+}
+
+.sidebarContent {
+  height: calc(100% - 3.5rem);
+  overflow-y: auto;
+  background: var(--white-bg);
+}
+
+.groupSection {
+  background: var(--white-bg);
+  border-bottom: 1px solid var(--ant-color-border-secondary);
+}
+
+.factorLabel {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.formPanel {
+  flex: 1;
+  min-width: 0;
+  background: var(--white-bg);
+}

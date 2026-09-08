@@ -31,7 +31,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   resourceName: string, options: Options<R[], M> = {},
 ) {
   const {
-    apiConfig, stateManager, responseType, trackUrl, basePath, initialFilter,
+    apiConfig, stateManager, responseType, trackUrl, urlFilterNames, basePath, initialFilter,
   } = options
 
   const [camelizeExcept, camelizeOnly] = [apiConfig?.camelizeExcept, apiConfig?.camelizeOnly]
@@ -59,7 +59,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const initialFilterQuery = initialFilter ? { filter: initialFilter } : {}
   const queryFromUrl = (trackUrl ? queryString?.q || initialFilterQuery
     : initialFilterQuery) as UrlQuery
-  const [queryState, setQueryState] = useState<UrlQuery>(queryFromUrl)
+  const trackedQuery = urlFilterNames && queryFromUrl.filter
+    ? { ...queryFromUrl, filter: _.pick(queryFromUrl.filter, urlFilterNames) }
+    : queryFromUrl
+  const [queryState, setQueryState] = useState<UrlQuery>(trackedQuery)
   // Mutations compose off this ref, so several writes in one tick build on each other instead of racing.
   const queryStateRef = useRef<UrlQuery>(queryState)
   queryStateRef.current = queryState
@@ -67,10 +70,10 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
   const debounceQueryState = useDebounce(queryState, 300)
 
   useDeepCompareEffect(() => {
-    if (trackUrl && !isEqual(queryState, queryFromUrl)) {
-      setQueryState(queryFromUrl)
+    if (trackUrl && !isEqual(queryState, trackedQuery)) {
+      setQueryState(trackedQuery)
     }
-  }, [queryFromUrl])
+  }, [trackedQuery])
 
   useDeepCompareEffect(() => {
     // Nothing awaits this refetch; the failure is already on requests.fetch, so catching only silences the rejection.
@@ -260,7 +263,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
           // TODO: camelize whole response - https://dev.azure.com/mmctech/Mercer-Career-Lighthouse/_workitems/edit/1254018
           // remove below hack after implmenting this
           const camelizedData = camelizeKeys(responseData || response, { except: camelizeExcept, only: camelizeOnly })
-          if (typeof camelizedData === 'object') {
+          if (typeof camelizedData === 'object' && !_.isEmpty(meta)) {
             camelizedData.responseMeta = meta // hack to get around the fact that the meta is not being passed
           }
           resolve(camelizedData)
@@ -607,7 +610,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     return request ? request.status === RequestStatus.Success : false
   }
 
-  const getAppliedFiltersFromURL = () => queryFromUrl.filter
+  const getAppliedFiltersFromURL = () => trackedQuery.filter
 
   return {
     data,
@@ -639,6 +642,6 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
     addRelationships,
     uploadFileAction,
     getAppliedFiltersFromURL,
-    appliedQuery: queryFromUrl,
+    appliedQuery: trackedQuery,
   }
 }

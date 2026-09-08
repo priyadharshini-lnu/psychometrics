@@ -238,11 +238,6 @@ es-ES:
     assessor_remove_confirmation: "¿Está seguro de que desea eliminar al asesor con correo electrónico %{email} de esta campaña?"
     assessor_remove_has_evaluations: Este evaluador tiene asignados %{evaluation_count} formularios de evaluación. Todas las evaluaciones que haya completado se perderán.
     assessor_remove_in_assessment_centers: Este evaluador forma parte de %{workshop_count} centros de evaluación. Al continuar, será excluido de todos los centros de evaluación.
-    assessor_statuses_completed: Completado/a
-    assessor_statuses_not_completed: No completado/a
-    assessor_subjects_statuses_completed: Completado/a
-    assessor_subjects_statuses_in_progress: En curso
-    assessor_subjects_statuses_not_started: No iniciado
     assessor_toolbar_export: Asesores de exportación
     assessor_toolbar_import: Evaluadores de importaciones
     assessor_workshops: Centro de evaluación
@@ -1121,6 +1116,7 @@ es-ES:
     import_title: Temas importados de CSV
     import_upload: Subir
     import_users: Importar usuarios
+    in_progress: En curso
     inactive: Inactivo
     include_locales_label: Incluir traducciones
     include_locales_name: incluir_locales
@@ -1458,6 +1454,7 @@ es-ES:
     norms_title: Norma
     not_completed: No completado
     not_completed_tooltip: "%{completed} se asignan evaluadores, pero solo %{submitted} han completado las evaluaciones"
+    not_started: No iniciado
     notes: Notas
     nothing_assigned: No se asignaron evaluadores
     nothing_assigned_tooltip: No se han asignado evaluaciones a este usuario

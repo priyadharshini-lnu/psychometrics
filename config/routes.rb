@@ -144,6 +144,8 @@ Rails.application.routes.draw do
     resources :campaigns, only: [] do
       resources :user_reports, only: [:show]
     end
+
+    resources :participants, only: [:index]
   end
 
   # Administration panel

@@ -218,6 +218,15 @@ en:
     assessor_assessments_reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
     assessor_assessments_subject_email: Subject Email
     assessor_assessments_subject_name: Subject Name
+    assessor_campaign_users_awaiting_moderation: Awaiting moderation
+    assessor_campaign_users_awaiting_moderation_subtitle: ready to consolidate
+    assessor_campaign_users_candidates_subtitle: assigned to you
+    assessor_campaign_users_completed: Completed
+    assessor_campaign_users_completed_subtitle: signed off
+    assessor_campaign_users_in_progress: In progress
+    assessor_campaign_users_in_progress_subtitle: being assessed
+    assessor_campaign_users_not_started: Not started
+    assessor_campaign_users_not_started_subtitle: evaluations
     assessor_campaigns_statuses_completed: Completed
     assessor_campaigns_statuses_in_progress: In progress
     assessor_campaigns_statuses_not_started: Not started
@@ -226,6 +235,20 @@ en:
     assessor_create_assessor: Add Assessor
     assessor_dashboard: Assessor Dashboard
     assessor_email: Assessor's Email
+    assessor_evaluation: Assessor Evaluation
+    assessor_evaluation_by_campaign: By Campaign
+    assessor_evaluation_by_participant: By Participant
+    assessor_evaluation_candidate: Candidate
+    assessor_evaluation_candidates: Candidates
+    assessor_evaluation_completed: Evaluation completed
+    assessor_evaluation_date_range: Date Start – Date End
+    assessor_evaluation_moderation_waiting: Moderation waiting
+    assessor_evaluation_tour_profile_description: Your account, role and language and toggle to enable the new experience live here. Open it to review your details or sign out.
+    assessor_evaluation_tour_profile_title: Your profile & settings
+    assessor_evaluation_tour_table_description: Open any row to see their assessments, then Evaluate their responses or Moderate the final scores.
+    assessor_evaluation_tour_table_title: Pick a candidate
+    assessor_evaluation_tour_tabs_description: Switch between By Participant (one person at a time) and By Campaign.
+    assessor_evaluation_tour_tabs_title: Two ways to work
     assessor_evaluations: Assessor Evaluations
     assessor_first_name: Assessor's First Name
     assessor_form: Assessor Form
@@ -233,18 +256,24 @@ en:
     assessor_last_name: Assessor's Last Name
     assessor_modals_import_body: Refer to the Export functionality to extract a template that can be used to Import here.
     assessor_modals_import_title: Import Assessors
+    assessor_new_experience: New Experience
     assessor_overview: Overview
     assessor_placeholder: Search Assessor...
     assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
     assessor_remove_has_evaluations: This assessor has %{evaluation_count} assessor form(s) assigned. All evaluations they have filled will be lost.
     assessor_remove_in_assessment_centers: This assessor is part of %{workshop_count} assessment center(s). Proceeding will remove them from all assessment centers.
-    assessor_statuses_completed: Completed
-    assessor_statuses_not_completed: Not Completed
-    assessor_subjects_statuses_completed: Completed
-    assessor_subjects_statuses_in_progress: In progress
-    assessor_subjects_statuses_not_started: Not started
+    assessor_switch_to_classic: Switch to Classic
     assessor_toolbar_export: Export Assessors
     assessor_toolbar_import: Import Assessors
+    assessor_tour_button: Tour
+    assessor_try_new_experience: Try New Experience
+    assessor_user_assessment_name: Assessment name
+    assessor_user_candidate_id: Candidate ID
+    assessor_user_evaluate: Evaluate
+    assessor_user_evaluation: Evaluation
+    assessor_user_evaluation_progress: Evaluation Progress
+    assessor_user_moderate: Moderate scores
+    assessor_user_moderation: Moderation
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
@@ -484,6 +513,7 @@ en:
     clients_search_placeholder: Search Client
     closed: Closed
     code_required: Code is required
+    collapse_all: Collapse all
     collapse_filters: Collapse Filters
     column_code: Code
     column_invitation_status: Invitation Status
@@ -605,6 +635,7 @@ en:
     communication_templates: Templates
     communications: Communications
     communications_form_insert_piped_text: Insert Piped Text
+    competency_indicator: Competency / Indicator
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
     components_input_duration_placeholder: Enter as '1d 2h 3m'
@@ -913,6 +944,7 @@ en:
     evaluator_welcome_name: Evaluator welcome
     evaluators_title: Evaluators
     evidence_from_transcript: Evidence from Transcript
+    expand_all: Expand all
     expand_filters: Expand Filters
     export_admin_roles_permissions: Admin Roles and Permissions export
     export_admins_with_permissions: Admin Roles and Permissions export
@@ -1240,6 +1272,7 @@ en:
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    in_progress: In Progress
     inactive: Inactive
     include_locales_label: Include Translations
     include_locales_name: include_locales
@@ -1518,6 +1551,7 @@ en:
     model_params_thinking_effort_none: None
     model_params_thinking_effort_tooltip: Controls how much reasoning the model applies before responding. Higher effort produces more thorough answers but takes longer. Use 'None' to disable reasoning entirely.
     model_params_title: Advanced Model Configuration
+    moderate_scoring_lead_assessor_form: Lead Assessor Form
     must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
@@ -1530,6 +1564,24 @@ en:
     navigation_registration_codes: Registration codes
     navigation_skills_taxonomy: Skills Taxonomy
     navigation_users: Users
+    new_experience_badge: New Experience
+    new_experience_bullet_brief_rest: competency guidance stays on screen while you rate.
+    new_experience_bullet_brief_strong: The brief beside your scoring
+    new_experience_bullet_candidate_rest: every assessor form for that candidate, together.
+    new_experience_bullet_candidate_strong: One candidate, one view
+    new_experience_bullet_moderation_rest: every assessor's score side by side, one final call.
+    new_experience_bullet_moderation_strong: Moderation in minutes
+    new_experience_footer_note: The new experience becomes the default for everyone soon. You can always switch to New Experience from your Profile details.
+    new_experience_headline: One flow, from first review to final sign-off.
+    new_experience_notice_body: We've redesigned the assessor experience. You can try it now or enable it later from your Profile settings.
+    new_experience_notice_maybe_later: Maybe Later
+    new_experience_notice_title: New Assessor Experience Available
+    new_experience_preview_alt: Preview of the new assessor experience
+    new_experience_sub_copy: Candidate, evaluation, moderation and the assessment centre now work as one connected view not five screens you hold together yourself.
+    new_experience_word_assessment_centre: Assessment Centre Run the session and track every subject.
+    new_experience_word_candidate: Candidate One candidate, all their assessments together.
+    new_experience_word_evaluate: Evaluate The brief and your scoring, side by side.
+    new_experience_word_moderate: Moderate Every assessors score, one final call.
     new_folder: New folder
     new_score: New Score
     no_assessments_found: No Assessments Found
@@ -1577,6 +1629,7 @@ en:
     norms_title: Norm
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    not_started: Not started
     notes: Notes
     nothing_assigned: No Evaluators Assigned
     nothing_assigned_tooltip: No evaluations have been assigned to this user
@@ -2478,6 +2531,7 @@ en:
     report_on_hold: Report for %{user} is currently on hold
     report_owner: Owner
     report_pdf_status: Report PDF Status
+    report_pdf_unavailable: The PDF for this report is not available yet.
     report_review_abort_qc: Abort QC
     report_review_approve: Approve
     report_review_approve_changes: Approve Changes
@@ -2848,6 +2902,7 @@ en:
     scoring_approval_score_approvals: AI Scoring Approvals
     scoring_assessment: Assessment
     scoring_assessment_scoring_type: Assessment Scoring Type
+    scoring_assessor_number: Assessor %{number}
     scoring_average: Average
     scoring_campaign_scoring_variables: Campaign Scoring Variables
     scoring_desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.

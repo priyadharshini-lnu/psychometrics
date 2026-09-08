@@ -27,6 +27,9 @@ vi.mock('~/components/IncorrectResponseErrorModal', () => ({ default: () => null
 vi.mock('~/components/ErrorModal', () => ({ default: () => null }))
 vi.mock('~/components/SessionTimeoutModal', () => ({ SessionTimeoutModal: () => null }))
 vi.mock('~/components/DisplayExceptionModal', () => ({ DisplayExceptionModal: () => null }))
+vi.mock('~/modules/admin/modules/AssessorApp/context/NewExperienceNotice', () => ({
+  NewExperienceNotice: () => null,
+}))
 
 vi.mock('~/modules/admin/modules/AssessorApp/routes/CampaignList', () => ({ default: stub('campaign-list') }))
 vi.mock('~/modules/admin/modules/AssessorApp/routes/UserList', () => ({ default: stub('user-list') }))

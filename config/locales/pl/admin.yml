@@ -238,11 +238,6 @@ pl:
     assessor_remove_confirmation: Czy na pewno chcesz usunąć asesora z adresem e-mail %{email} z tej kampanii?
     assessor_remove_has_evaluations: Ten asesor ma przypisane %{evaluation_count} formularzy asesora. Wszystkie wystawione przez niego oceny zostaną utracone.
     assessor_remove_in_assessment_centers: Ten asesor jest częścią %{workshop_count} centrów oceny. Kontynuacja spowoduje usunięcie go ze wszystkich centrów oceny.
-    assessor_statuses_completed: Zakończono
-    assessor_statuses_not_completed: Nie skończone
-    assessor_subjects_statuses_completed: Zakończono
-    assessor_subjects_statuses_in_progress: W toku
-    assessor_subjects_statuses_not_started: Nie rozpoczęto
     assessor_toolbar_export: Asesorzy eksportowi
     assessor_toolbar_import: Asesorzy importowi
     assessor_workshops: Centrum oceny zintegrowanej
@@ -1121,6 +1116,7 @@ pl:
     import_title: Importuj tematy z CSV
     import_upload: Przesyłać
     import_users: Import użytkowników
+    in_progress: W toku
     inactive: Nieaktywny
     include_locales_label: Uwzględnij tłumaczenia
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ pl:
     norms_title: Norma
     not_completed: Nieukończone
     not_completed_tooltip: Przydzielani są %{completed} oceniający, ale tylko %{submitted} zakończyli oceny
+    not_started: Nie rozpoczęto
     notes: Notatki
     nothing_assigned: Nie przydzielono żadnych ewaluatorów
     nothing_assigned_tooltip: Nie przypisano temu użytkownikowi żadnych ocen

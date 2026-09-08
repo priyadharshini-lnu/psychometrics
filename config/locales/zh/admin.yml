@@ -238,11 +238,6 @@ zh:
     assessor_remove_confirmation: 您确定要将电子邮件地址为 %{email} 的评估员从该活动中删除吗？
     assessor_remove_has_evaluations: 该评估员已分配 %{evaluation_count} 份评估表。他们已填写的所有评估表都将丢失。
     assessor_remove_in_assessment_centers: 该评估员隶属于 %{workshop_count} 个评估中心。继续操作将使其从所有评估中心移除。
-    assessor_statuses_completed: 已完成
-    assessor_statuses_not_completed: 未完成
-    assessor_subjects_statuses_completed: 已完成
-    assessor_subjects_statuses_in_progress: 进行中
-    assessor_subjects_statuses_not_started: 未开始
     assessor_toolbar_export: 出口评估员
     assessor_toolbar_import: 进口评估员
     assessor_workshops: 评估中心
@@ -1121,6 +1116,7 @@ zh:
     import_title: 从CSV导入主题
     import_upload: 上传
     import_users: 导入用户
+    in_progress: 进行中
     inactive: 不活动
     include_locales_label: 包括翻译
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ zh:
     norms_title: 常模
     not_completed: 未完成
     not_completed_tooltip: "%{completed}评估员被分配，但只有%{submitted}完成了评估"
+    not_started: 未开始
     notes: 说明
     nothing_assigned: 未指定评审员
     nothing_assigned_tooltip: 该用户尚未被分配任何评估

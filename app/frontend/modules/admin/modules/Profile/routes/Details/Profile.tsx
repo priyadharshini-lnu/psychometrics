@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {
   Avatar, Button, Card, Col, Divider, Flex, Form, Input, Row, Select, Typography, Upload,
-  useApp, useGlintToken,
+  useApp, useGlintToken, Switch,
 } from '@thetalententerprise/glint'
 import type { UploadChangeParam } from '@thetalententerprise/glint'
 import { PlusOutlined } from '@thetalententerprise/glint/icons'
@@ -13,6 +13,10 @@ import {
   get as getCurrentUser, uploadAdminUserPhoto,
 } from '~/core/currentUser'
 import { CropImageModal } from '~/glint/components/CropImageModal'
+import { useCurrentUserDetails } from '~/components/AdminShell/AdminTheme'
+import { findPreference } from '~/components/AdminShell/currentUserDetails'
+import { UserPreference } from '~/components/AdminShell/core'
+
 import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/users'
 import { useTimezones } from '~/hooks/useTimezones'
 
@@ -42,7 +46,7 @@ interface AdminUser extends User{
 }
 
 function Profile ({
-  currentUser, uploadPhoto, locales,
+  currentUser, uploadPhoto, locales, isAssessor,
 }) {
   useEffect(() => {
     fetchSingle({ id: currentUser.id })
@@ -53,6 +57,9 @@ function Profile ({
   const { message } = useApp()
   const { controlHeightLG } = useGlintToken()
   const timezoneOptions = useTimezones()
+
+  const details = useCurrentUserDetails()
+  const { createResource: savePreference } = useResources<UserPreference>('user_preferences')
 
   const {
     fetchSingle, getResource, updateResource, isLoading,
@@ -87,19 +94,58 @@ function Profile ({
   }
 
   const submitForm = (values) => {
-    updateResource({
-      id: currentUser.id,
-      firstName: values.firstName,
-      lastName: values.lastName,
-      userProfileData: {
-        locale: values.locale,
-        timezone: values.timezone,
-      },
-    }).then(() => {
-      message.success(I18n.t('profile.success_update'), 5)
-    }).catch((e) => {
-      setErrors(e.errors || e)
-    })
+    const promises: Promise<unknown>[] = []
+
+    if (isAssessor) {
+      promises.push(
+        savePreference({
+          category: 'workspace',
+          config_key: 'new_experience',
+          payload: { enabled: values.newExperience },
+        }),
+      )
+    }
+
+    promises.push(
+      updateResource({
+        id: currentUser.id,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        userProfileData: {
+          locale: values.locale,
+          timezone: values.timezone,
+        },
+      }),
+    )
+
+    Promise.all(promises)
+      .then(() => {
+        message.success(I18n.t('profile.success_update'), 5)
+
+        const currentPreference = findPreference(
+          details?.preferences ?? [], 'workspace', 'new_experience',
+        )?.enabled === true
+        if (isAssessor && values.newExperience !== currentPreference) {
+          const referrerPath = document.referrer
+            ? new URL(document.referrer).pathname
+            : null
+          let destination = '/assessors'
+          if (referrerPath && referrerPath.startsWith('/assessors')) {
+            const withoutEvaluation = referrerPath.replace(/\/evaluation/, '')
+            if (referrerPath.includes('/evaluation')) {
+              // was in evaluation view → strip it
+              destination = withoutEvaluation
+            } else {
+              // was in non-evaluation view → inject /evaluation after /assessors
+              destination = referrerPath.replace(/^\/assessors/, '/assessors/evaluation')
+            }
+          }
+          window.location.href = destination
+        }
+      })
+      .catch((e) => {
+        setErrors(e.errors || e)
+      })
   }
 
   const onChangeFile = ({ file }: UploadChangeParam) => {
@@ -157,6 +203,9 @@ function Profile ({
             locale: user.userProfile?.locale,
             timezone: user.userProfile?.timezone,
             email: user.email,
+            newExperience: findPreference(
+              details?.preferences ?? [], 'workspace', 'new_experience',
+            )?.enabled === true,
           }}
           onFinish={submitForm}
         >
@@ -208,6 +257,15 @@ function Profile ({
           >
             <Select options={timezoneOptions} showSearch />
           </Form.Item>
+          {isAssessor && (
+            <Form.Item
+              name="newExperience"
+              label={I18n.t('admin.assessor_new_experience')}
+              valuePropName="checked"
+            >
+              <Switch />
+            </Form.Item>
+          )}
           <Flex justify="end">
             <Button type="primary" htmlType="submit" loading={profileUpdateInProgress}>
               {I18n.t('shared.update')}
@@ -228,6 +286,7 @@ function Profile ({
 const connector = connect((state: RootState) => ({
   currentUser: camelizeKeys(getCurrentUser(state)),
   locales: state.config.availableLocales,
+  isAssessor: !!state.ui.menu.links.assessorDashboard,
 }), {
   uploadPhoto: uploadAdminUserPhoto,
 })

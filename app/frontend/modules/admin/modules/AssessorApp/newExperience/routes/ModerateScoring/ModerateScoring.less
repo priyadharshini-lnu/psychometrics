@@ -1,0 +1,110 @@
+@import '~/styles/antv4.variable.less';
+
+.pageRoot {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.stickyHeader {
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.stickyTabs {
+  margin-bottom: 0;
+
+  :global {
+    .ant-tabs-nav {
+      margin-bottom: 0;
+      &::before {
+        // Span full width breaking out of ps-6 pe-6 padding and icon rail.
+        left: -3rem;
+        right: calc(-3rem - 56px);
+      }
+    }
+  }
+}
+
+.bodyArea {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.evaluation {
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tabContentHidden {
+  display: none;
+}
+
+.contentSplitter {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+}
+
+.splitterCollapsed {
+  :global {
+    .ant-splitter-bar {
+      display: none;
+    }
+  }
+}
+
+.splitterDraggerIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--ant-color-border-secondary);
+  background: var(--white-bg);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.14);
+  color: var(--ant-color-primary);
+  display: inline-flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.rightPanel {
+  min-width: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.panelContent {
+  min-width: 0;
+  height: 100%;
+}
+
+.panelContent > * {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  background: var(--white-bg);
+  height: 100%;
+  overflow: hidden;
+}
+
+.menu {
+  width: 60px;
+  flex-shrink: 0;
+  z-index: 2;
+  background: var(--white-bg);
+}
+
+.inactiveTab {
+  display: none;
+}
+
+.tabheader {
+  flex-shrink: 0;
+  background-color: var(--white-bg);
+  border-bottom: 1px solid var(--ant-color-border-secondary);
+}
+
+.withoutBorder {
+  border-bottom: none;
+}

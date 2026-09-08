@@ -238,11 +238,6 @@ sl:
     assessor_remove_confirmation: Ali ste prepričani, da želite odstraniti ocenjevalca z e-poštnim naslovom %{email} iz te kampanje?
     assessor_remove_has_evaluations: Ta ocenjevalec ima dodeljenih %{evaluation_count} obrazcev za ocenjevanje. Vse ocene, ki jih je izpolnil, bodo izgubljene.
     assessor_remove_in_assessment_centers: Ta ocenjevalec je del ocenjevalnih centrov %{workshop_count}. Če nadaljujete, bo odstranjen iz vseh ocenjevalnih centrov.
-    assessor_statuses_completed: Zaključeno
-    assessor_statuses_not_completed: Ni zaključeno
-    assessor_subjects_statuses_completed: Zaključeno
-    assessor_subjects_statuses_in_progress: V teku
-    assessor_subjects_statuses_not_started: Ni začeto
     assessor_toolbar_export: Ocenjevalci izvoza
     assessor_toolbar_import: Ocenjevalci uvoza
     assessor_workshops: Ocenjevalni center
@@ -1121,6 +1116,7 @@ sl:
     import_title: Uvoz subjektov iz CSV
     import_upload: Upload
     import_users: Uvoz uporabnikov
+    in_progress: V teku
     inactive: Neaktiven
     include_locales_label: Vključi prevode
     include_locales_name: include_locales
@@ -1458,6 +1454,7 @@ sl:
     norms_title: Norma
     not_completed: Ni dokončano
     not_completed_tooltip: Dodeljeni so %{completed} ocenjevalci, vendar so ocene zaključili le %{submitted}
+    not_started: Ni začeto
     notes: Opombe
     nothing_assigned: Brez dodeljenih ocenjevalcev
     nothing_assigned_tooltip: Uporabniku niso bile dodeljene nobene ocene

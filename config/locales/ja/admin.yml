@@ -238,11 +238,6 @@ ja:
     assessor_remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
     assessor_remove_has_evaluations: この評価者には%{evaluation_count}件の評価フォームが割り当てられています。この評価者が記入したすべての評価は失われます。
     assessor_remove_in_assessment_centers: この評価担当者は%{workshop_count}評価センターに所属しています。この手続きにより、すべての評価センターから削除されます。
-    assessor_statuses_completed: 完了済み
-    assessor_statuses_not_completed: 未完了
-    assessor_subjects_statuses_completed: 完了済み
-    assessor_subjects_statuses_in_progress: 進行中
-    assessor_subjects_statuses_not_started: 未着手
     assessor_toolbar_export: 輸出アセッサ
     assessor_toolbar_import: インポートアセッサー
     assessor_workshops: アセスメント・センター
@@ -1121,6 +1116,7 @@ ja:
     import_title: CSVから主題をインポートする
     import_upload: アップロード
     import_users: インポートユーザー
+    in_progress: 進行中
     inactive: 活動休止中
     include_locales_label: 翻訳を含む
     include_locales_name: インクルード・ローカル
@@ -1458,6 +1454,7 @@ ja:
     norms_title: ノーム
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
+    not_started: 未着手
     notes: 備考
     nothing_assigned: 評価者は割り当てられていません
     nothing_assigned_tooltip: このユーザーには評価が割り当てられていません

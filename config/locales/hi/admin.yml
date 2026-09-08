@@ -238,11 +238,6 @@ hi:
     assessor_remove_confirmation: क्या आप सुनिश्चित हैं कि आप इस अभियान से %{email} ईमेल वाले आकलनकर्ता को हटाना चाहते हैं?
     assessor_remove_has_evaluations: इस मूल्यांकनकर्ता को %{evaluation_count} मूल्यांकनकर्ता प्रपत्र आवंटित किए गए हैं। उनके द्वारा भरे गए सभी मूल्यांकन नष्ट हो जाएंगे।
     assessor_remove_in_assessment_centers: यह मूल्यांकनकर्ता %{workshop_count} मूल्यांकन केंद्रों का हिस्सा है। आगे की कार्यवाही में इन्हें सभी मूल्यांकन केंद्रों से हटा दिया जाएगा।
-    assessor_statuses_completed: पूर्ण
-    assessor_statuses_not_completed: पूर्ण नहीं
-    assessor_subjects_statuses_completed: पूर्ण
-    assessor_subjects_statuses_in_progress: प्रगति में
-    assessor_subjects_statuses_not_started: शुरू नहीं हुआ
     assessor_toolbar_export: निर्यात आकलनकर्ता
     assessor_toolbar_import: आयात मूल्यांकनकर्ता
     assessor_workshops: मूल्यांकन केंद्र
@@ -1123,6 +1118,7 @@ hi:
     import_title: CSV से विषय आयात करें
     import_upload: अपलोड
     import_users: उपयोगकर्ताओं को आयात करें
+    in_progress: प्रगति में
     inactive: निष्क्रिय
     include_locales_label: अनुवाद शामिल करें
     include_locales_name: लोकलाइज़ेशन शामिल करें
@@ -1460,6 +1456,7 @@ hi:
     norms_title: नॉर्म
     not_completed: पूर्ण नहीं
     not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
+    not_started: शुरू नहीं हुआ
     notes: टिप्पणियाँ
     nothing_assigned: कोई मूल्यांकनकर्ता नियुक्त नहीं हैं
     nothing_assigned_tooltip: इस उपयोगकर्ता को कोई मूल्यांकन नहीं दिया गया है।

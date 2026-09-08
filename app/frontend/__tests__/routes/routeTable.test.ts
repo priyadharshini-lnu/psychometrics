@@ -215,6 +215,8 @@ describe('admin full-screen route table', () => {
     expect(fullPaths(fullScreenRoutes)).toEqual([
       '/admin/meet/create',
       '/admin/meet/:roomId',
+      '/assessors/evaluation/campaigns/:campaignId/moderate_scoring/:userId',
+      '/assessors/evaluation/campaigns/:campaignId/evaluations/:userId',
       '/admin/dashboards/:dashboardId',
     ])
   })

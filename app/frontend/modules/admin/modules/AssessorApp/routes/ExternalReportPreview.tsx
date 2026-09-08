@@ -77,7 +77,13 @@ const ExternalReportPreviewComponent: FC<Props> = ({
               </div>
             )}
             extra={userReport.canDownloadReport ? [
-              <Button href={userReport.pdfUrl} download target="_blank">{I18n.t('common.text.download')}</Button>,
+              <Button
+                href={userReport.pdfUrl ?? undefined}
+                download
+                target="_blank"
+              >
+                {I18n.t('common.text.download')}
+              </Button>,
             ] : []}
           >
             <Row justify="space-between">
