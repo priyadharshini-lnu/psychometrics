@@ -14,7 +14,10 @@ module ProctoringSessions
       license_usage = proctoring_session.license_usage
       ProctoringSession.transaction do
         proctoring_session.update!(invalid_session: true)
-        license_usage&.license&.decrement!(:used_number, license_usage.proctoring_credits_debited)
+        # UAT usage never incremented the billable counter, so it must not decrement it.
+        unless license_usage&.is_uat?
+          license_usage&.license&.decrement!(:used_number, license_usage.proctoring_credits_debited)
+        end
       end
 
       broadcast :ok

@@ -18,6 +18,12 @@ class License < ApplicationRecord
   validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :number, numericality: { greater_than_or_equal_to: 1 }
+  validates :uat_usage_limit,
+            numericality: {
+              only_integer: true,
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: ->(license) { license.uat_usage_limit_ceiling }
+            }
   validates :report_family_id, presence: true, if: :type_common?
   validate :used_number_validation
   validate :license_expire_validation
@@ -42,6 +48,9 @@ class License < ApplicationRecord
   }
 
   enum :type, { common: 0, threesixty: 1, proctoring: 2, idp: 3, ai_assistant: 4 }, prefix: :type
+
+  UAT_USAGE_LIMIT_CEILINGS = { 'proctoring' => 300 }.freeze
+  DEFAULT_UAT_USAGE_LIMIT_CEILING = 30
 
   scope :for_project, lambda { |project_id|
     return all unless project_id
@@ -97,6 +106,32 @@ class License < ApplicationRecord
     return false if end_date < Time.zone.today || start_date > Time.zone.today
 
     number + overuse_number > used_number
+  end
+
+  def uat_usage_limit_ceiling
+    UAT_USAGE_LIMIT_CEILINGS.fetch(type, DEFAULT_UAT_USAGE_LIMIT_CEILING)
+  end
+
+  # Proctoring records how many credits a session debited; every other type is one credit
+  # per usage row.
+  def uat_used_number
+    scope = license_usages.where(is_uat: true)
+    return scope.count unless type_proctoring?
+
+    scope.sum('COALESCE(proctoring_credits_debited, 1)')
+  end
+
+  def uat_used_number_for_project(project)
+    scope = license_usages.where(project: project, is_uat: true)
+    return scope.count unless type_proctoring?
+
+    scope.sum('COALESCE(proctoring_credits_debited, 1)')
+  end
+
+  def enough_uat_licenses?(credits = 1)
+    return false if end_date < Time.zone.today || start_date > Time.zone.today
+
+    (uat_usage_limit - uat_used_number) >= credits
   end
 
   # If license became unlimited

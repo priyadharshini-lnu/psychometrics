@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import {
-  Checkbox, Form, FormInstance, Input, Radio, Space,
+  Checkbox, Form, FormInstance, Input, Radio, Space, Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import UserAutocomplete from '~/components/UserAutocomplete'
 import ResourceFormModal from '~/components/ResourceFormModal'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
 
@@ -14,6 +15,7 @@ const { I18n } = window
 interface Props {
   campaignId: string
   close(): void
+  canManageUat?: boolean
   user?: {
     id: number
   }
@@ -25,16 +27,28 @@ const OPERATIONS_OPTIONS = [
   'add_and_allow_new_response',
 ]
 
-const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
+const uatLabel = (
+  <Space size={4}>
+    <span>{I18n.t('admin.campaign_users_uat_label')}</span>
+    <Tooltip title={I18n.t('admin.campaign_users_uat_tooltip')}>
+      <span>
+        <InfoCircleOutlined />
+      </span>
+    </Tooltip>
+  </Space>
+)
+
+const UserFormModal: React.FC<Props> = ({
+  campaignId, close, canManageUat, user,
+}) => {
   const [email, setEmail] = useState('')
   const [existingUserIsUat, setExistingUserIsUat] = useState<boolean | null>(null)
   const { projectId } = useParams()
   const autocompletedUsers = useSelector((state: RootState) => getAutocomplete(state)?.users || [])
 
-
   const onSelectUser = (userValue: string, formInstance: FormInstance) => {
     const user = JSON.parse(userValue)
-    const isUat = Boolean(user.is_uat ?? user.isUat)
+    const isUat = Boolean(user.isUat ?? user.is_uat)
 
     setExistingUserIsUat(isUat)
     formInstance.setFieldsValue({
@@ -113,11 +127,11 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
           >
             <Input name="participant_locale" />
           </Form.Item>
-          {!isEdit && (
+          {!isEdit && canManageUat && (
             <Form.Item
               name="isUat"
               valuePropName="checked"
-              label={I18n.t('admin.campaign_users_uat_label')}
+              label={uatLabel}
               extra={existingUserIsUat === null
                 ? undefined
                 : I18n.t('admin.campaign_users_uat_locked_hint')}

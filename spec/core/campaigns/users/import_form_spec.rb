@@ -154,6 +154,7 @@ describe Campaigns::Users::ImportForm do
 
     it 'skips license consumption requirement for UAT users' do
       License.where(client_id: campaign.client_id).update_all('used_number = number + overuse_number')
+      create(:license, client: campaign.client, number: 1, used_number: 1, overuse_number: 0, uat_usage_limit: 1)
       uat_options = {
         import_data: [UserDecorator.export_headers, valid_attrs.merge(is_uat: 'Yes')],
         operation: 'add_and_allow_new_response'
@@ -161,6 +162,20 @@ describe Campaigns::Users::ImportForm do
       uat_form = described_class.new(uat_options).with_context(campaign: campaign, current_user: user)
 
       expect(uat_form.valid?).to eq(true)
+    end
+
+    it 'adds an error when UAT license capacity is exhausted' do
+      License.where(client_id: campaign.client_id).update_all('used_number = number + overuse_number')
+      uat_options = {
+        import_data: [UserDecorator.export_headers, valid_attrs.merge(is_uat: 'Yes')],
+        operation: 'add_and_allow_new_response'
+      }
+      uat_form = described_class.new(uat_options).with_context(campaign: campaign, current_user: user)
+
+      expect(uat_form.valid?).to eq(false)
+      expect(uat_form.errors.details[:import_data]).to include(
+        hash_including(error: :not_enough_uat_licenses, required_count: 1, available_count: 0)
+      )
     end
 
     it 'passes when enough licenses are available' do

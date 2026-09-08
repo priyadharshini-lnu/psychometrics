@@ -27,19 +27,6 @@ RSpec.describe Api::V2::Administration::LicensesController, type: :request do
       expect(license_response).to have_relationship(:report_family).
         with_data({ 'id' => license.report_family_id.to_s, 'type' => 'report_families' })
     end
-
-    it 'returns UAT users count for client license page' do
-      create(:user, project: create(:project, parent: client), is_uat: true)
-      create(:user, project: create(:project, parent: client), is_uat: true)
-      create(:user, project: create(:project, parent: client), is_uat: false)
-
-      get "/api/v2/administration/clients/#{client_id}/licenses",
-          params: { include_meta: 'uat_users_count' },
-          headers: { 'Content-Type' => 'application/vnd.api+json' }
-
-      expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).dig('meta', 'uat_users_count')).to eq(2)
-    end
   end
 
   describe 'POST /api/v2/administration/clients/:client_id/licenses' do
@@ -50,10 +37,9 @@ RSpec.describe Api::V2::Administration::LicensesController, type: :request do
           attributes: {
             number: 100,
             overuse_number: 0,
-            used_number: 1,
-            start_date: '2017-05-01',
-            end_date: '2021-01-01',
-            report_family_id: 2,
+            start_date: Time.zone.today.to_s,
+            end_date: (Time.zone.today + 1.day).to_s,
+            report_family_id: license.report_family_id.to_s,
             disabled: false,
             type: 'common'
           },

@@ -423,10 +423,9 @@ en:
     campaign_users_import_uat_hint: Set the UAT column to Yes for test users that should be excluded from licensing, analytics, and webhooks.
     campaign_users_uat_description: Mark this participant as a UAT test user.
     campaign_users_uat_label: UAT Participant
-    campaign_users_uat_license_count: "%{count} users"
-    campaign_users_uat_license_label: UAT users
     campaign_users_uat_license_non_billable: Non-billable
     campaign_users_uat_locked_hint: This participant already exists. UAT status is set when a participant is first created and cannot be changed.
+    campaign_users_uat_tooltip: UAT users are real participants for testing. They can take assessments normally, but are excluded from billable license usage, analytics, and outbound webhooks.
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template
     campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes
@@ -845,7 +844,7 @@ en:
     disable_report_download: Disable report download
     disable_transcript_download: Disable Transcript Download
     disable_webhooks: Disable Webhooks
-    disable_webhooks_hint: When enabled, no webhook or downstream integration events are sent to the client for this campaign, regardless of participant type. Only Super Admins can change this.
+    disable_webhooks_hint: When this is toggled on, no webhook or downstream integration events are sent to the client for this campaign, regardless of participant type. Only Super Admins can change this.
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
@@ -1742,6 +1741,7 @@ en:
         manage_messages: Manage Messages
         manage_options: Manage Options
         manage_report_approvals: Manage Report Approvals
+        manage_uat: Manage UAT Users
         manage_users: Manage Users
         participant_options: Participant Options
         report_options: Report Options

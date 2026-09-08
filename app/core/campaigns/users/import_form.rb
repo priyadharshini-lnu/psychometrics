@@ -17,6 +17,7 @@ module Campaigns
       validate :validate_manager_emails
       validate :validate_overwrite_permission
       validate :validate_available_licenses
+      validate :validate_available_uat_licenses
 
       private
 
@@ -86,6 +87,29 @@ module Campaigns
           required_count: new_non_uat_user_emails.size,
           available_count: available_license_count
         )
+      end
+
+      # UAT rows draw from the licence's separate UAT pool, so a bulk import must fail up
+      # front rather than part-way through when that pool cannot cover the batch.
+      def validate_available_uat_licenses
+        return if errors.any?
+        return unless licenses_required?
+        return if uat_new_user_emails.empty?
+        return if available_uat_license_count >= uat_new_user_emails.size
+
+        errors.add(
+          :import_data,
+          :not_enough_uat_licenses,
+          required_count: uat_new_user_emails.size,
+          available_count: available_uat_license_count
+        )
+      end
+
+      def available_uat_license_count
+        @available_uat_license_count ||= License.not_expired.
+                                         for_project(campaign.project_id).
+                                         where(client_id: campaign.client_id).
+                                         sum { |license| license.uat_usage_limit - license.uat_used_number }
       end
 
       def licenses_required?

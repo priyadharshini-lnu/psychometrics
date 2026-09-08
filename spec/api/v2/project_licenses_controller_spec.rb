@@ -28,17 +28,22 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
         to eq(project_license.usage_limit)
     end
 
-    it 'returns UAT users count for project license page' do
-      create(:user, project: project, is_uat: true)
-      create(:user, project: project, is_uat: true)
-      create(:user, project: project, is_uat: false)
+    it 'returns project scoped UAT usage for project license page' do
+      other_project = create(:project, parent: client)
+      uat_user = create(:user, project: project, is_uat: true)
+      other_uat_user = create(:user, project: other_project, is_uat: true)
+      create(:license_usage, license: license, project: project, user: uat_user, client: client, is_uat: true)
+      create(:license_usage, license: license, project: other_project, user: other_uat_user, client: client,
+                             is_uat: true)
 
       get "/api/v2/administration/projects/#{project.id}/licenses",
-          params: { include_meta: 'uat_users_count' },
           headers: { 'Content-Type' => 'application/vnd.api+json' }
 
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body).dig('meta', 'uat_users_count')).to eq(2)
+      license_response = JSON.parse(response.body)['data'].find { |record| record['id'] == license.id.to_s }
+
+      expect(license_response['attributes']['uat_used_number']).to eq(2)
+      expect(license_response['attributes']['project_uat_used_number']).to eq(1)
     end
   end
 

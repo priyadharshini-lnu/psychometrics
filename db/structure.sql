@@ -5426,7 +5426,8 @@ CREATE TABLE public.license_usages (
     consumer_type character varying,
     project_id bigint,
     project_license_id bigint,
-    tenant_id bigint
+    tenant_id bigint,
+    is_uat boolean DEFAULT false NOT NULL
 );
 
 
@@ -5467,7 +5468,8 @@ CREATE TABLE public.licenses (
     disabled boolean DEFAULT false,
     type integer DEFAULT 0,
     is_project_specific boolean DEFAULT false NOT NULL,
-    tenant_id bigint
+    tenant_id bigint,
+    uat_usage_limit integer DEFAULT 0 NOT NULL
 );
 
 
@@ -17602,6 +17604,13 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_license_id_and_is_uat; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_license_id_and_is_uat ON public.license_usages USING btree (license_id, is_uat);
+
+
+--
 -- Name: index_license_usages_on_project_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -25934,6 +25943,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260903000001'),
+('20260902081312'),
 ('20260821000001'),
 ('20260819072637'),
 ('20260819000001'),

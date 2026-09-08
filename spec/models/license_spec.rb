@@ -163,4 +163,100 @@ RSpec.describe License, type: :model do
       )
     end
   end
+
+  describe 'uat_usage_limit' do
+    let(:report_family) { create(:report_family) }
+    let(:user_counted_usage_limit_ceiling) { License::DEFAULT_UAT_USAGE_LIMIT_CEILING }
+    let(:proctoring_usage_limit_ceiling) { License::UAT_USAGE_LIMIT_CEILINGS.fetch('proctoring') }
+
+    it 'defaults to zero' do
+      expect(create(:license).uat_usage_limit).to eq(0)
+    end
+
+    it 'allows up to the ceiling for user-counted licenses' do
+      license = build(:license, type: :common, report_family: report_family,
+                                uat_usage_limit: user_counted_usage_limit_ceiling)
+
+      expect(license).to be_valid
+    end
+
+    it 'rejects more than the ceiling for user-counted licenses' do
+      license = build(:license, type: :common, report_family: report_family,
+                                uat_usage_limit: user_counted_usage_limit_ceiling + 1)
+
+      expect(license).not_to be_valid
+      expect(license.errors[:uat_usage_limit]).to be_present
+    end
+
+    it 'allows up to the ceiling for proctoring licenses, which are counted in credits' do
+      license = build(:proctoring_license, uat_usage_limit: proctoring_usage_limit_ceiling)
+
+      expect(license.tap(&:valid?).errors[:uat_usage_limit]).to be_empty
+    end
+
+    it 'rejects more than the ceiling for proctoring licenses' do
+      license = build(:proctoring_license, uat_usage_limit: proctoring_usage_limit_ceiling + 1)
+
+      expect(license).not_to be_valid
+      expect(license.errors[:uat_usage_limit]).to be_present
+    end
+
+    it 'rejects a negative limit' do
+      license = build(:license, report_family: report_family, uat_usage_limit: -1)
+
+      expect(license).not_to be_valid
+    end
+  end
+
+  describe '#uat_used_number' do
+    it 'counts flagged usage rows and ignores billable ones' do
+      license = create(:license, uat_usage_limit: 10)
+      create(:license_usage, license: license, client: license.client, is_uat: true)
+      create(:license_usage, license: license, client: license.client, is_uat: false)
+
+      expect(license.uat_used_number).to eq(1)
+    end
+
+    it 'counts each UAT campaign usage row' do
+      license = create(:license, uat_usage_limit: 10)
+      create_list(:license_usage, 2, license: license, client: license.client, is_uat: true)
+
+      expect(license.uat_used_number).to eq(2)
+    end
+  end
+
+  describe '#uat_used_number for proctoring' do
+    it 'sums the debited credits rather than counting rows' do
+      license = create(:proctoring_license, uat_usage_limit: 300)
+      create(:license_usage, license: license, client: license.client, is_uat: true,
+                             proctoring_credits_debited: 7)
+      create(:license_usage, license: license, client: license.client, is_uat: true,
+                             proctoring_credits_debited: 5)
+
+      expect(license.uat_used_number).to eq(12)
+    end
+
+    it 'treats legacy rows without a debited value as a single credit' do
+      license = create(:proctoring_license, uat_usage_limit: 300)
+      create(:license_usage, license: license, client: license.client, is_uat: true,
+                             proctoring_credits_debited: nil)
+
+      expect(license.uat_used_number).to eq(1)
+    end
+  end
+
+  describe '#enough_uat_licenses?' do
+    it 'is false once the pool is consumed' do
+      license = create(:license, uat_usage_limit: 1)
+      create(:license_usage, license: license, client: license.client, is_uat: true)
+
+      expect(license.enough_uat_licenses?).to eq(false)
+    end
+
+    it 'is true while the pool has room' do
+      license = create(:license, uat_usage_limit: 1)
+
+      expect(license.enough_uat_licenses?).to eq(true)
+    end
+  end
 end

@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
-  Modal, Button, Form, Input, Select, Alert, Checkbox,
+  Modal, Button, Form, Input, Select, Alert, Checkbox, Space, Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckOutlined, InfoCircleOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
@@ -96,6 +96,16 @@ function CreateSubjectModal ({
       isUat,
     })
   }
+  const uatLabel = (
+    <Space size={4}>
+      <span>{I18n.t('admin.campaign_users_uat_label')}</span>
+      <Tooltip title={I18n.t('admin.campaign_users_uat_tooltip')}>
+        <span>
+          <InfoCircleOutlined />
+        </span>
+      </Tooltip>
+    </Space>
+  )
 
   const handleSubmit = async (values) => {
     // Validate for whitespace before submitting
@@ -175,7 +185,7 @@ function CreateSubjectModal ({
               setAutocompletedUser(value)
               if (existingUserIsUat !== null) {
                 setExistingUserIsUat(null)
-                form.setFieldValue({ isUat: false })
+                form.setFieldsValue({ isUat: false })
               }
               form.validateFields(['email'])
             }}
@@ -226,8 +236,8 @@ function CreateSubjectModal ({
         <Form.Item
           name="isUat"
           valuePropName="checked"
-          label={I18n.t('admin.campaign_users_uat_label')}
-          extra={existingUserIsUat !== null
+          label={uatLabel}
+          extra={existingUserIsUat === null
             ? undefined
             : I18n.t('admin.campaign_users_uat_locked_hint')}
         >

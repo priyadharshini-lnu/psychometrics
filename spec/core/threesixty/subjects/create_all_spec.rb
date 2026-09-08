@@ -15,7 +15,8 @@ describe Threesixty::Subjects::CreateAll do
       client: campaign.client,
       type: 'threesixty',
       start_date: 1.day.ago,
-      end_date: 1.day.from_now
+      end_date: 1.day.from_now,
+      uat_usage_limit: 30
     )
   end
 
@@ -96,6 +97,17 @@ describe Threesixty::Subjects::CreateAll do
         result = described_class.call!([{ email: 'uat@example.com', is_uat: true }], threesixty_campaign)
 
         expect(result[:subjects].first.user.reload.is_uat).to eq(true)
+      end
+
+      it 'records UAT usage without touching billable counters' do
+        result = described_class.call!([{ email: 'uat-usage@example.com', is_uat: true }], threesixty_campaign)
+        user = result[:subjects].first.user
+
+        usage = LicenseUsage.find_by!(license: threesixty_license, user: user)
+
+        expect(usage.is_uat).to eq(true)
+        expect(threesixty_license.reload.used_number).to eq(0)
+        expect(threesixty_license.uat_used_number).to eq(1)
       end
 
       it 'persists is_uat = false when the UI toggle is not enabled' do

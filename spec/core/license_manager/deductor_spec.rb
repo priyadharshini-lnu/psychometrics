@@ -194,18 +194,50 @@ describe LicenseManager::Deductor do
     context 'when user is marked as UAT' do
       let(:user) { create(:user, is_uat: true) }
 
-      it 'does not create billable usage or increment used counts' do
-        project_license = create(:project_license, license: license, project: project, enabled: true, used_number: 0)
-        deductor = described_class.new(
+      def deduct
+        described_class.new(
           campaign: campaign,
+          user: user,
+          license_type: 'common',
+          context: { report_family_id: report_family.id }
+        ).call
+      end
+
+      before { license.update!(uat_usage_limit: 5) }
+
+      it 'records a flagged usage row without touching billable counters' do
+        project_license = create(:project_license, license: license, project: project, enabled: true, used_number: 0)
+
+        expect { deduct }.to change(LicenseUsage, :count).by(1)
+
+        expect(LicenseUsage.last.is_uat).to eq(true)
+        expect(license.reload.used_number).to eq(0)
+        expect(project_license.reload.used_number).to eq(0)
+        expect(license.uat_used_number).to eq(1)
+      end
+
+      it 'raises once the UAT pool is exhausted' do
+        license.update!(uat_usage_limit: 0)
+
+        expect { deduct }.to raise_error(Licenses::NotEnoughError)
+      end
+
+      it 'enforces the UAT ceiling across campaigns' do
+        license.update!(uat_usage_limit: 30)
+        create_list(:campaign, 30, project: project).each do |other_campaign|
+          create(:license_usage, license: license, campaign: other_campaign, user: user, client: client, is_uat: true)
+        end
+        next_campaign = create(:campaign, project: project)
+        next_deductor = described_class.new(
+          campaign: next_campaign,
           user: user,
           license_type: 'common',
           context: { report_family_id: report_family.id }
         )
 
-        expect { deductor.call }.not_to change(LicenseUsage, :count)
-        expect(license.reload.used_number).to eq(0)
-        expect(project_license.reload.used_number).to eq(0)
+        expect(license.reload.uat_used_number).to eq(30)
+        expect { next_deductor.call }.to raise_error(Licenses::NotEnoughError)
+        expect(license.reload.uat_used_number).to eq(30)
       end
     end
   end

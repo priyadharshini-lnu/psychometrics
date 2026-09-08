@@ -432,6 +432,7 @@ en:
               invalid_reports_header: Invalid header, take header from sample file
               manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
               not_enough_licenses: Import requires %{required_count} licenses, but only %{available_count} are available. Please reduce the number of new users or add more licenses before importing.
+              not_enough_uat_licenses: Import requires %{required_count} UAT test licenses, but only %{available_count} are available. Please reduce the number of new UAT users or raise the UAT usage limit before importing.
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
@@ -2998,6 +2999,7 @@ en:
     end_date: End date
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'. Please check if you have enough project or client licenses available, or contact the administrator."
     not_enough_license_count: Not enough licenses, please contact administrator
+    not_enough_uat_license: "'%{client_name}' does not have enough UAT test licenses for '%{report_name}'. Increase the UAT usage limit on that license, or contact the administrator."
     number: Number
     overuse_number: Over use allowance
     project_specific: Project Specific
@@ -3012,6 +3014,11 @@ en:
       idp: IDP
       proctoring: Proctoring
       threesixty: Threesixty
+    uat_usage_limit_credits: UAT test credits
+    uat_usage_limit_credits_hint: Proctoring is billed in credits, so this is the maximum credits UAT test users may consume from this license (max 300).
+    uat_usage_limit_users: UAT test users
+    uat_usage_limit_users_hint: Maximum UAT test users that may be created against this license (max 30). Test users never consume billable licenses.
+    uat_used: Test used
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   lti:

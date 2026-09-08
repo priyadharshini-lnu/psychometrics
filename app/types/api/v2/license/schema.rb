@@ -24,6 +24,7 @@ module Api
             optional(:disabled).filled(:bool)
             optional(:enabled).filled(:bool)
             optional(:is_project_specific).filled(:bool)
+            optional(:uat_usage_limit).filled(:integer)
           end
         end
 

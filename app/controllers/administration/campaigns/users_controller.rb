@@ -54,7 +54,8 @@ module Administration
             %w[remove destroy],
             'export_sign_in_url',
             'bulk_download_idp_reports',
-            'allow_include_reflective_questions'
+            'allow_include_reflective_questions',
+            'manage_uat'
           ],
           {
             project_id: campaign.project_id,
@@ -187,7 +188,7 @@ module Administration
       end
 
       def create
-        form = ::Campaigns::Users::CreateForm.from_params(resource_params).with_context(campaign: campaign)
+        form = ::Campaigns::Users::CreateForm.from_params(uat_scoped_resource_params).with_context(campaign: campaign)
         if form.valid?
           ::Campaigns::Users::Create.call(form, campaign, current_user) do
             on(:ok) do |user|
@@ -337,6 +338,18 @@ module Administration
 
       def include_inactive_users
         params[:include_inactive_users] == true
+      end
+
+      def uat_scoped_resource_params
+        return resource_params if manage_uat?
+
+        resource_params.except(:is_uat)
+      end
+
+      def manage_uat?
+        Administration::Campaigns::UserPolicy.new(
+          current_user, nil, { project_id: campaign.project_id, campaign_id: campaign.id }
+        ).manage_uat?
       end
 
       def resource_class

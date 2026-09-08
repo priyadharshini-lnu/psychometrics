@@ -24,6 +24,7 @@ const defaultState = {
   list: [],
   total: 0,
   permissions: {
+    manageUat: false,
     create: false,
     exportUsers: false,
     exportCompletionStatus: false,
@@ -280,6 +281,7 @@ export interface State {
   list: User[]
   total: number
   permissions: {
+    manageUat: boolean
     create: boolean
     exportUsers: boolean,
     exportCompletionStatus: boolean,
@@ -294,6 +296,7 @@ type FetchType = ApiActionResponse<{
   list: [],
   total: number,
   permissions: {
+    manageUat: boolean,
     create: boolean,
     exportUsers: boolean,
     exportCompletionStatus: boolean,

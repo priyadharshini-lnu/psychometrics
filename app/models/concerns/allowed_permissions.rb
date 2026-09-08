@@ -32,6 +32,7 @@ module AllowedPermissions
       view
       manage
       manage_users
+      manage_uat
       manage_admins
       manage_options
       manage_messages
@@ -111,6 +112,7 @@ module AllowedPermissions
       view
       manage
       manage_users
+      manage_uat
       manage_admins
       manage_options
       manage_messages
@@ -173,6 +175,7 @@ module AllowedPermissions
       view
       manage
       manage_users
+      manage_uat
       manage_options
       manage_report_approvals
       manage_ai_scoring_approval_settings
@@ -221,6 +224,7 @@ module AllowedPermissions
       view
       manage
       manage_users
+      manage_uat
       participant_options
       reset_nominations
       report_options
