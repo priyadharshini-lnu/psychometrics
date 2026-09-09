@@ -237,7 +237,9 @@ class Client < ApplicationRecord
       attempts_to_lock: 3,
       auto_unlock_time: 15,
       enable_recaptcha: true,
-      enforce_password_policy: true
+      enforce_password_policy: true,
+      tfa_enabled: true,
+      restrict_sequences: true
     )
   end
 
