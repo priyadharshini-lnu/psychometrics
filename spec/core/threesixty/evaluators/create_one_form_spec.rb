@@ -64,7 +64,7 @@ describe Threesixty::Evaluators::CreateOneForm do
   end
 
   it 'valid password' do
-    form = described_class.new(evaluator_password: 'strong_password').with_context(campaign: campaign)
+    form = described_class.new(evaluator_password: 'strongPassword@13').with_context(campaign: campaign)
     form.validate
 
     expect(form.errors.messages[:evaluator_password]).to be_empty

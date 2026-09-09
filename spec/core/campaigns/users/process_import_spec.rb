@@ -14,7 +14,7 @@ describe Campaigns::Users::ProcessImport do
         last_name: 'Tar',
         email: 'fedor@gmail.com',
         mobile_number: '+971111111111',
-        password: 'asdasd1234',
+        password: 'Password@13',
         schedule_start_date: 1.day.from_now.to_s,
         schedule_end_date: 2.days.from_now.to_s,
         created_at: '11 Jul 2020 / 16:39',
@@ -31,7 +31,7 @@ describe Campaigns::Users::ProcessImport do
         last_name: 'Ata',
         email: 'vlad@gmail.com',
         mobile_number: nil,
-        password: 'asdfd',
+        password: 'Password@14',
         age: 35,
         created_at: '11 Jul 2020 / 17:25',
         custom_field: '1111',
@@ -43,7 +43,7 @@ describe Campaigns::Users::ProcessImport do
         last_name: 'Uki',
         email: 'namu@gmail.com',
         mobile_number: nil,
-        password: 'AAA',
+        password: 'Password@15',
         created_at: '11 Jul 2020 / 17:25',
         custom_field: '1111',
         manager_email: nil
@@ -262,17 +262,17 @@ describe Campaigns::Users::ProcessImport do
   end
 
   describe 'chunked processing' do
-    let(:strong_password) { 'A!newpass123' }
+    before { stub_const("#{described_class}::CHUNK_SIZE", 2) }
 
     it 'processes records across chunk boundaries' do
-      chunked_rows = (1..501).map do |i|
+      chunked_rows = (1..5).map do |i|
         {
           active: true,
           first_name: "User#{i}",
           last_name: 'Chunk',
           email: "chunk_user_#{i}@example.com",
           mobile_number: nil,
-          password: strong_password,
+          password: 'Password@16',
           created_at: '11 Jul 2020 / 17:25',
           manager_email: nil
         }
@@ -282,10 +282,10 @@ describe Campaigns::Users::ProcessImport do
         campaign, current_user, chunked_rows, 'add_with_existing_response', admin_job_record
       )
 
-      expect(imported_users.size).to eq(501)
-      expect(campaign.users.find_by(email: 'chunk_user_500@example.com')).to be_present
-      expect(campaign.users.find_by(email: 'chunk_user_501@example.com')).to be_present
-      expect(admin_job_record.reload.completed_tasks).to eq(501)
+      expect(imported_users.size).to eq(5)
+      expect(campaign.users.find_by(email: 'chunk_user_4@example.com')).to be_present
+      expect(campaign.users.find_by(email: 'chunk_user_5@example.com')).to be_present
+      expect(admin_job_record.reload.completed_tasks).to eq(5)
     end
   end
 end

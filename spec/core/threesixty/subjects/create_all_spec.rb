@@ -68,19 +68,20 @@ describe Threesixty::Subjects::CreateAll do
     end
 
     it 'saves new user with the provides password' do
-      result = described_class.call!([{ email: 'daniel@cc.com', password: 'provided_password' }], threesixty_campaign)
+      result = described_class.call!([{ email: 'daniel@cc.com', password: 'provided_Password@13' }],
+                                     threesixty_campaign)
       user = result[:subjects].first.user
 
-      expect(user.reload.valid_password?('provided_password')).to eq(true)
+      expect(user.reload.valid_password?('provided_Password@13')).to eq(true)
     end
 
     it "doesn't update password for existing used" do
-      user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', password: 'old_password')
+      user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', password: 'old_Password@13')
       create(:threesixty_subject, user: user, campaign: threesixty_campaign.campaign)
 
-      described_class.call!([{ email: 'daniel@cc.com', password: 'new_password' }], threesixty_campaign)
+      described_class.call!([{ email: 'daniel@cc.com', password: 'new_Password@13' }], threesixty_campaign)
 
-      expect(user.reload.valid_password?('old_password')).to eq(true)
+      expect(user.reload.valid_password?('old_Password@13')).to eq(true)
     end
 
     it do
