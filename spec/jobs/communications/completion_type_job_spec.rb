@@ -82,6 +82,98 @@ describe Communications::CompletionTypeJob, type: :job do
     expect(communication.reload.emails).to be_empty
   end
 
+  describe 'selected_admins and selected_assessors recipients (legacy Communication)' do
+    let(:admin_one) { create(:user) }
+    let(:admin_two) { create(:user) }
+
+    it 'sends one email per selected admin, addressed to the admin rather than the subject' do
+      user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign)
+      communication = create(:communication, kind: :completion, project_campaign: campaign,
+        project_id: campaign.project_id, assessment_id: user_assessment.assessment.id,
+        recipients: :selected_admins, user_ids: [admin_one.id, admin_two.id])
+
+      expect do
+        described_class.perform_now(user_assessment)
+      end.to change(CommunicationEmail, :count).by(2)
+
+      emails = communication.reload.emails
+      expect(emails.pluck(:user_id)).to contain_exactly(admin_one.id, admin_two.id)
+      expect(emails.pluck(:campaign_user_id)).to all(eq(campaign_user.id))
+    end
+
+    describe 'selected_assessors, via the linked assessor-form assessment' do
+      let(:assessor_relationship) { create(:relationship, name: 'Assessor', type: :global) }
+      let(:assessor_form_assessment) { create(:assessment) }
+      let(:main_assessment) { create(:assessment, linked_assessor_form: assessor_form_assessment) }
+
+      before do
+        create(:user_assessment, subject: user, evaluator: admin_one, campaign: campaign,
+          assessment: assessor_form_assessment, relationship: assessor_relationship)
+      end
+
+      it 'emails the assessor linked via the assessor-form assessment' do
+        user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign,
+          assessment: main_assessment)
+        communication = create(:communication, kind: :completion, project_campaign: campaign,
+          project_id: campaign.project_id, assessment_id: main_assessment.id,
+          recipients: :selected_assessors, user_ids: [admin_one.id, admin_two.id])
+
+        expect do
+          described_class.perform_now(user_assessment)
+        end.to change(CommunicationEmail, :count).by(1)
+
+        expect(communication.reload.emails.first.user_id).to eq(admin_one.id)
+      end
+
+      it 'does not email a selected assessor who is not the one linked via the assessor-form assessment' do
+        user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign,
+          assessment: main_assessment)
+        create(:communication, kind: :completion, project_campaign: campaign,
+          project_id: campaign.project_id, assessment_id: main_assessment.id,
+          recipients: :selected_assessors, user_ids: [admin_two.id])
+
+        expect do
+          described_class.perform_now(user_assessment)
+        end.to_not change(CommunicationEmail, :count)
+      end
+
+      it 'does not email anyone when the completed assessment has no linked assessor-form assessment' do
+        user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign)
+        create(:communication, kind: :completion, project_campaign: campaign,
+          project_id: campaign.project_id, assessment_id: user_assessment.assessment.id,
+          recipients: :selected_assessors, user_ids: [admin_one.id])
+
+        expect do
+          described_class.perform_now(user_assessment)
+        end.to_not change(CommunicationEmail, :count)
+      end
+    end
+
+    it 'does not duplicate emails to selected admins/assessors when the job is retried' do
+      user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign)
+      communication = create(:communication, kind: :completion, project_campaign: campaign,
+        project_id: campaign.project_id, assessment_id: user_assessment.assessment.id,
+        recipients: :selected_admins, user_ids: [admin_one.id, admin_two.id])
+
+      described_class.perform_now(user_assessment)
+      expect do
+        described_class.perform_now(user_assessment)
+      end.to_not change(CommunicationEmail, :count)
+
+      expect(communication.reload.emails.count).to eq(2)
+    end
+
+    it 'still sends a single email to the subject for the pre-existing all/selected recipient types' do
+      user_assessment = create(:user_assessment, subject: user, evaluator: user, campaign: campaign)
+      communication = create(:communication, kind: :completion, project_campaign: campaign,
+        project_id: campaign.project_id, assessment_id: user_assessment.assessment.id)
+
+      described_class.perform_now(user_assessment)
+
+      expect(communication.reload.emails.first.user_id).to eq(campaign_user.user_id)
+    end
+  end
+
   describe 'delivery-sourced completion (Template/Delivery system)' do
     # A send_now/invitation delivery (built in the "ignores other kinds" example below) enqueues a real
     # DispatchJob via CommunicationDelivery#after_create_commit; the test env's ActiveJob adapter is :async, so

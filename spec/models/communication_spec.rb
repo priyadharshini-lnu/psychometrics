@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Communication, type: :model do
+  it {
+    should define_enum_for(:recipients).
+      with_values(all: 0, selected: 1, new_users: 2, new_assignment: 3, selected_admins: 4, selected_assessors: 5).
+      with_suffix
+  }
+
   context 'Associations' do
     it { should have_many(:emails) }
     it { should belong_to(:assessment) }

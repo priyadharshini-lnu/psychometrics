@@ -637,6 +637,12 @@ en:
     competency_indicator: Competency / Indicator
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    completion_recipients_all: All Subjects
+    completion_recipients_list: 'Recipients List:'
+    completion_recipients_selected: Selected Subjects
+    completion_recipients_selected_admins: Selected Admins
+    completion_recipients_selected_assessors: Selected Assessors
+    completion_recipients_selected_assessors_hint: Only the assessor assigned to the completing subject's linked assessor form will be emailed, even if other assessors are selected above.
     components_input_duration_placeholder: Enter as '1d 2h 3m'
     concise: Concise
     condition_sets: Condition Sets

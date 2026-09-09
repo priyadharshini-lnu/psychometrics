@@ -51,7 +51,9 @@ class Communication < ApplicationRecord
   belongs_to :end_level, class_name: 'Client', optional: true
   belongs_to :campaign, class_name: 'Client', optional: true
 
-  enum :recipients, { all: 0, selected: 1, new_users: 2, new_assignment: 3 }, suffix: true
+  enum :recipients, {
+    all: 0, selected: 1, new_users: 2, new_assignment: 3, selected_admins: 4, selected_assessors: 5
+  }, suffix: true
   enum :kind, {
     invitation: 0, reminder: 1, completion: 2, other: 3,
     workshop_invite: 4, workshop_invite_reminder: 5,  workshop_booked: 6, workshop_upcoming_reminder: 7,

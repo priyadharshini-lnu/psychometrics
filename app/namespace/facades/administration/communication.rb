@@ -7,6 +7,7 @@ module Facades
                   :assessments, :assessment_center_groups
 
       include EmailDelivery
+      include CompletionRecipients
 
       delegate :assessment_selection, to: :form
 
@@ -115,7 +116,7 @@ module Facades
       end
 
       def memberships_behavior
-        'client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+        'client-resettable project-resettable campaign-resettable sub_campaign-resettable users-resettable'
       end
 
       def cc_behavior
@@ -123,7 +124,7 @@ module Facades
       end
 
       def admin_recipients_behavior
-        'client-resettable project-resettable campaign-resettable sub_campaign-resettable'
+        'client-resettable project-resettable campaign-resettable sub_campaign-resettable users-resettable'
       end
 
       def assessment_center_group_behavior

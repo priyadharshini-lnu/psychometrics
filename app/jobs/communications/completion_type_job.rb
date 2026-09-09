@@ -30,13 +30,38 @@ module Communications
         end
         next if communication.selected_recipients? && communication.user_ids.exclude?(user_assessment.user_id)
 
-        communication_email_attrs = { campaign_user_id: campaign_user.id }
-        next communication.emails.create(communication_email_attrs) if communication.delivery_delay_hours.blank?
-
-        ScheduleDelayedCommunication.set(wait: communication.delivery_delay_hours.hours).perform_later(
-          communication, communication_email_attrs
-        )
+        completion_recipient_user_ids(communication, user_assessment).each do |recipient_user_id|
+          communication_email_attrs = { campaign_user_id: campaign_user.id, user_id: recipient_user_id }.compact
+          create_or_schedule_completion_email(communication, communication_email_attrs,
+                                              deduplicate: recipient_user_id.present?)
+        end
       end
+    end
+
+    def completion_recipient_user_ids(communication, user_assessment)
+      return communication.user_ids if communication.selected_admins_recipients?
+      return assigned_assessor_ids(communication, user_assessment) if communication.selected_assessors_recipients?
+
+      [nil]
+    end
+
+    def assigned_assessor_ids(communication, user_assessment)
+      assessor_user_assessment = user_assessment.linked_assessor_user_assessment
+      return [] unless assessor_user_assessment
+
+      communication.user_ids & [assessor_user_assessment.evaluator_id]
+    end
+
+    def create_or_schedule_completion_email(communication, communication_email_attrs, deduplicate:)
+      if communication.delivery_delay_hours.blank?
+        return communication.emails.find_or_create_by(communication_email_attrs) if deduplicate
+
+        return communication.emails.create(communication_email_attrs)
+      end
+
+      ScheduleDelayedCommunication.set(wait: communication.delivery_delay_hours.hours).perform_later(
+        communication, communication_email_attrs
+      )
     end
 
     def send_delivery_completion_emails(user_assessment, campaign_user)

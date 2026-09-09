@@ -37,6 +37,8 @@ $(function () {
       $('[data-behavior~=campaign-resettable]').val(null)
     } else if (isCollectionContain(dataBehavior, 'sub_campaign_id')) {
       $('[data-behavior~=sub_campaign-resettable]').val(null)
+    } else if (isCollectionContain(dataBehavior, 'recipients')) {
+      $('[data-behavior~=users-resettable]').val(null)
     }
 
     // Sync WYSIWYG with form
