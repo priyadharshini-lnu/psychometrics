@@ -54,6 +54,28 @@ class Radar extends Component {
     const data = Series[sourceType]
     if (!data) { return null }
     const series = data.series(getCorrectResults(model), sourceModel, model, factors)
+    const hasMultipleResponses = series.length > 1
+    const labelOffsetStep = hasMultipleResponses ? 14 : 0
+    const seriesWithLabelOffsets = series.map((item, index) => ({
+      ...item,
+      data: item.data.map((point, pointIndex) => {
+        const angle = ((model.props.startAngle || 0) + ((pointIndex * 360) / item.data.length)) * (Math.PI / 180)
+        const labelOffset = (index - ((series.length - 1) / 2)) * labelOffsetStep
+        const dataLabels = {
+          ...(typeof point === 'object' ? point.dataLabels : {}),
+          x: Math.cos(angle) * labelOffset,
+          y: Math.sin(angle) * labelOffset,
+        }
+
+        return typeof point === 'object'
+          ? { ...point, dataLabels }
+          : { y: point, dataLabels }
+      }),
+      dataLabels: {
+        ...(item.dataLabels || {}),
+        allowOverlap: true,
+      },
+    }))
     const { fontSize, fontColor: color, fontFamily } = model.props.style
     const { fontSize: legendFontSize, fontColor: legendColor, fontFamily: legendFontFamily } = model.props.legendStyle
     if (!series.length) { return null }
@@ -82,6 +104,8 @@ class Radar extends Component {
                   return _.round(this.point.y, 2)
                 },
                 allowOverlap: true,
+                crop: false,
+                overflow: 'allow',
               },
             },
             line: {
@@ -129,7 +153,7 @@ class Radar extends Component {
               },
             },
           },
-          series,
+          series: seriesWithLabelOffsets,
         },
       ),
     )
