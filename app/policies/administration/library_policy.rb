@@ -6,6 +6,10 @@ module Administration
       super || @user.has_grant?(:libraries, :view)
     end
 
+    def builder_index?
+      index?
+    end
+
     def create?
       @user.is?(:superadmin) || @user.has_grant?(:libraries, :manage)
     end

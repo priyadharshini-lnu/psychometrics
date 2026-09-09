@@ -688,12 +688,19 @@ Rails.application.routes.draw do
           resource :builders, only: %i[show update] do
             member do
               post :upload_campaign_factors
+              get  :norms
+              get  :block_templates
+              get  :question_templates
+              get  :block_template
+              get  :question_template
+              get  :geo
             end
           end
           resource :scoring, only: [:update], controller: :scoring
           resource :agiles, only: %i[show update]
         end
       end
+      get '/builders/library', to: 'libraries#builder_index'
       ### END ASSESSMENTS
 
       ### DIMENSIONS

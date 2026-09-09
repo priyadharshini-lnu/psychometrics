@@ -11,16 +11,13 @@ export default class Scoring extends Component {
 
   componentDidMount () {
     const {
-      fetch, init, subscribeSocket, socketInitialized,
+      fetch, init,
     } = this.props
-    if (!socketInitialized) {
-      const urldata = location.pathname.match(/assessments\/(\d+)/)
-      const id = urldata && urldata[1]
-      subscribeSocket('Assessments::Channel', { assessment_id: id })
-      fetch(id).then(({ response }) => {
-        init(response)
-      })
-    }
+    const urldata = location.pathname.match(/assessments\/(\d+)/)
+    const id = urldata && urldata[1]
+    fetch(id).then(({ response }) => {
+      init(response)
+    })
   }
 
   updateType = type => this.setState({ type })

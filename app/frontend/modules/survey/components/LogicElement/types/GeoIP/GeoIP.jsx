@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import PropTypes from 'prop-types'
 import Async from 'react-select/async'
-import Socket from '~/modules/survey/cable'
+import store from '~/modules/survey/store'
+import { fetchGeo } from '~/modules/survey/core/builder/assessment/actions'
 import styles from '../../Condition.less'
 import GeoIPStyles from './GeoIP.less'
 import { KEY_OPTIONS, PREDICATE_OPTIONS } from './Constants'
@@ -36,11 +37,12 @@ export default class GeoIP extends Component {
     this.forceUpdate()
   }
 
-  loadOptions = (input, callback) => {
+  loadOptions = (input) => {
     const { condition } = this.props
-    Socket.socket().perform('geo_filter', { column: condition.key, q: input, without_notification: true }, (data) => {
-      callback(null, { options: data })
-    })
+    const assessmentId = store.getState().survey.builder.assessment.id
+    return store.dispatch(fetchGeo(assessmentId, { column: condition.key, q: input, without_notification: true }))
+      .then(({ response }) => response)
+      .catch(() => [])
   }
 
   renderInput () {

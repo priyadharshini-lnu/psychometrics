@@ -70,11 +70,14 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
     let popupTimer: NodeJS.Timeout
     let delayTimeoutTimer: NodeJS.Timeout
 
+    const currentUserId = currentUser?.id
+    if (!currentUserId) return undefined
+
     const links = document.querySelectorAll("link[rel*='icon']") as NodeListOf<HTMLLinkElement>
     const favicons = Array.from(links).map(link => link.href)
     originalFavicons.current = favicons
 
-    const apiTimeoutValue = currentNextTimeout[currentUser.id] || ''
+    const apiTimeoutValue = currentNextTimeout[currentUserId] || ''
 
     const timeoutEpochValue = parseInt(apiTimeoutValue, 10) / 1000
     if (isNaN(timeoutEpochValue) || timeoutEpochValue <= 0) {
@@ -107,7 +110,7 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
       clearTimeout(popupTimer)
       clearTimeout(delayTimeoutTimer)
     }
-  }, [currentNextTimeout])
+  }, [currentNextTimeout, currentUser?.id])
 
   const startFlashing = () => {
     if (!isFlashing.current) {

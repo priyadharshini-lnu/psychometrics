@@ -21,6 +21,10 @@ module Administration
         end
       end
 
+      def show
+        render json: BlockSerializer.new(context: { include: '**' }).serialize(resource)
+      end
+
       def new
         @_resource = resource_class.new
       end
