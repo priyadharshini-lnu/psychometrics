@@ -36,6 +36,13 @@ export default function FactorList ({ model, onChange }) {
               isMulti
               onChange={factors => onChange('factorIds', (factors || []).map(f => f.id))}
               placeholder={I18nStore.t('reports.modules.common.all_factors')}
+              styles={{
+                multiValueLabel: baseStyles => ({
+                  ...baseStyles,
+                  whiteSpace: 'normal',
+                  overflow: 'hidden',
+                }),
+              }}
             />
           </div>
         )}
