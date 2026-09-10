@@ -18,6 +18,11 @@ export { Users as ProjectUsers } from './routes/Client/routes/Project/routes/Use
 export { Datasheet as ProjectDatasheet } from './routes/Client/routes/Project/routes/Datasheet'
 export { Settings as ProjectSettings } from './routes/Client/routes/Project/routes/Settings'
 export { DataExports as ProjectDataExports } from './routes/Client/routes/Project/routes/DataExports'
+export {
+  BulkReports as ProjectBulkReports,
+  BulkReportJobDetail as ProjectBulkReportJobDetail,
+  GenerateExport as ProjectBulkReportsGenerate,
+} from './routes/Client/routes/Project/routes/BulkReports'
 export { Idp as ProjectIdp } from './routes/Client/routes/Project/routes/Idp'
 export { Taxonomy as ProjectTaxonomy } from './routes/Client/routes/Project/routes/Taxonomy'
 export { default as ProjectLicenseList } from './routes/Client/routes/Project/routes/LicenseList'

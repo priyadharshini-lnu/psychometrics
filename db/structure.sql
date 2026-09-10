@@ -2263,6 +2263,43 @@ ALTER SEQUENCE public.blocks_id_seq OWNED BY public.blocks.id;
 
 
 --
+-- Name: bulk_report_jobs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.bulk_report_jobs (
+    id bigint NOT NULL,
+    project_id bigint,
+    admin_job_record_id integer,
+    bulk_report_id integer,
+    created_by_id integer,
+    start_date character varying,
+    end_date character varying,
+    tenant_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: bulk_report_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.bulk_report_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bulk_report_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.bulk_report_jobs_id_seq OWNED BY public.bulk_report_jobs.id;
+
+
+--
 -- Name: bulk_reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10777,6 +10814,13 @@ ALTER TABLE ONLY public.blocks ALTER COLUMN id SET DEFAULT nextval('public.block
 
 
 --
+-- Name: bulk_report_jobs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bulk_report_jobs ALTER COLUMN id SET DEFAULT nextval('public.bulk_report_jobs_id_seq'::regclass);
+
+
+--
 -- Name: bulk_reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12631,6 +12675,14 @@ ALTER TABLE ONLY public.audits
 
 ALTER TABLE ONLY public.blocks
     ADD CONSTRAINT blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bulk_report_jobs bulk_report_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bulk_report_jobs
+    ADD CONSTRAINT bulk_report_jobs_pkey PRIMARY KEY (id);
 
 
 --
@@ -15643,6 +15695,20 @@ CREATE INDEX index_blocks_on_template_id ON public.blocks USING btree (template_
 --
 
 CREATE INDEX index_blocks_on_tenant_id ON public.blocks USING btree (tenant_id);
+
+
+--
+-- Name: index_bulk_report_jobs_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bulk_report_jobs_on_project_id ON public.bulk_report_jobs USING btree (project_id);
+
+
+--
+-- Name: index_bulk_report_jobs_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bulk_report_jobs_on_tenant_id ON public.bulk_report_jobs USING btree (tenant_id);
 
 
 --
@@ -24328,6 +24394,14 @@ ALTER TABLE ONLY public.question_recoding
 
 
 --
+-- Name: bulk_report_jobs fk_rails_b2d596d728; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bulk_report_jobs
+    ADD CONSTRAINT fk_rails_b2d596d728 FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: threesixty_campaigns fk_rails_b2d78bd457; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -25961,6 +26035,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20260825000001'),
 ('20260903000001'),
 ('20260902081312'),
+('20260826144406'),
 ('20260821000001'),
 ('20260819072637'),
 ('20260819000001'),

@@ -349,6 +349,79 @@ en:
     bulk_assets_modal_title: Upload CSV and ZIP files
     bulk_export_assessments_file: Bulk assessments export file
     bulk_export_invalid_params: Invalid bulk export parameters
+    bulk_reports: Bulk reports
+    bulk_reports_all_of_year: All of %{year}
+    bulk_reports_all_tags: All tags
+    bulk_reports_bundled_into_single: bundled into a single
+    bulk_reports_campaign_count_one: "%{count} campaign"
+    bulk_reports_campaign_count_other: "%{count} campaigns"
+    bulk_reports_campaign_search_placeholder: Search campaigns or projects...
+    bulk_reports_campaigns_shown_count: "%{selected} selected - %{shown} shown"
+    bulk_reports_campaigns_without_reports_warning: 'Selected campaigns without configured reports: %{count}. They will be skipped.'
+    bulk_reports_candidate_abbreviation: cand.
+    bulk_reports_complete_every_step: Complete every step to enable
+    bulk_reports_date_range_required: Both a start and end date are required to continue.
+    bulk_reports_date_range_summary: Assessments completed %{start} to %{end} will be included.
+    bulk_reports_description: Build one export job across multiple campaigns. Pick the campaigns, choose which reports and languages to include, set a date range, then submit.
+    bulk_reports_deselect_all_shown: Deselect all shown
+    bulk_reports_download_notification_sent: Download notification sent
+    bulk_reports_emailed_when_ready: and emailed to you when ready.
+    bulk_reports_end_date_placeholder: Select end date and time
+    bulk_reports_end_date_required: Please select an end date.
+    bulk_reports_error_try_again: Error - try again
+    bulk_reports_files_estimated_across: files estimated across
+    bulk_reports_files_pending: Files will appear here once the job has completed.
+    bulk_reports_generate_export: Generate export
+    bulk_reports_invalid_date_range: End date must be on or after the start date.
+    bulk_reports_job_details_title: 'Job #%{id}'
+    bulk_reports_job_not_found: This job could not be found.
+    bulk_reports_job_queued: Job queued
+    bulk_reports_languages_progress_one: "%{done} of %{total} report set"
+    bulk_reports_languages_progress_other: "%{done} of %{total} reports set"
+    bulk_reports_languages_set_for_all_one: Set for all %{count} report
+    bulk_reports_languages_set_for_all_other: Set for all %{count} reports
+    bulk_reports_last_30_days: Last 30 days
+    bulk_reports_last_90_days: Last 90 days
+    bulk_reports_no_campaigns_found: No campaigns found for this project.
+    bulk_reports_no_campaigns_match_filters: No campaigns match your search or tag filters.
+    bulk_reports_no_campaigns_selected: No campaigns selected
+    bulk_reports_no_files_yet: Files are not available yet for this job.
+    bulk_reports_no_language_selected: no language selected
+    bulk_reports_no_languages_available: No languages available for this report.
+    bulk_reports_no_reports_configured: None of the selected campaigns have reports configured. Go back and check your campaign configuration.
+    bulk_reports_no_reports_selected: No reports selected
+    bulk_reports_no_reports_selected_for_languages: No reports selected. Go back and choose at least one report.
+    bulk_reports_no_tags_found: No tags found
+    bulk_reports_none_selected: None selected
+    bulk_reports_queued_by: Queued by
+    bulk_reports_queuing_jobs: Queuing jobs...
+    bulk_reports_ready_to_generate: Ready to generate
+    bulk_reports_report_count_one: "%{count} report"
+    bulk_reports_report_count_other: "%{count} reports"
+    bulk_reports_reports_and_languages: Reports & languages
+    bulk_reports_review_submit: Review & submit
+    bulk_reports_review_submit_description: Check the job below. You can jump back to any step to make changes.
+    bulk_reports_select_all_shown: Select all shown
+    bulk_reports_select_campaigns: Select campaigns
+    bulk_reports_select_campaigns_description: Search by name or project, and narrow the list with tag filters. Then tick the campaigns to include.
+    bulk_reports_select_date_range: Select date range
+    bulk_reports_select_date_range_description: Include only assessments completed within this range. Leave a preset or set exact dates.
+    bulk_reports_select_languages: Select languages
+    bulk_reports_select_languages_description: Each report supports a different set of languages. Pick at least one language per report. It is generated in every language you choose.
+    bulk_reports_select_reports: Select reports
+    bulk_reports_select_reports_description: Each selected report is generated for every candidate or campaign in the export, in every chosen language.
+    bulk_reports_selected_tags_count_one: "%{count} tag selected"
+    bulk_reports_selected_tags_count_other: "%{count} tags selected"
+    bulk_reports_start_date_placeholder: Select start date and time
+    bulk_reports_start_date_required: Please select a start date.
+    bulk_reports_step_coming_soon: This step is coming soon.
+    bulk_reports_submit_error: Something went wrong. Please try again.
+    bulk_reports_submit_success: Export job queued. You will receive a notification when the download is ready.
+    bulk_reports_summary_description: Updates as you build the job
+    bulk_reports_summary_title: Download summary
+    bulk_reports_title: Bulk Reports
+    bulk_reports_view_downloads: View bulk report downloads
+    bulk_reports_year_to_date: Year to date
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign: Campaign
     campaign_admin: Campaign Admin
@@ -2089,6 +2162,7 @@ en:
         title: Registration Settings
       reports:
         manage: Manage
+        project_bulk_reports: Project Bulk Reports
         title: Reports
         view: View
       responseMeta:
@@ -2246,6 +2320,7 @@ en:
     project_admins: Project Admins
     project_assessor: Project Assessor
     project_features: Project Features
+    project_id: Project ID
     project_ids: Project IDs
     project_ids_required: project_ids is required for this report type
     project_licenses: Project Licenses

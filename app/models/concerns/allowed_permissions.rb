@@ -53,7 +53,7 @@ module AllowedPermissions
     'questions' => %w[view manage],
     'libraries' => %w[view manage],
     'communications' => %w[view manage],
-    'reports' => %w[view manage],
+    'reports' => %w[view manage project_bulk_reports],
     'results' => %w[
       view_report
       download_report
@@ -154,7 +154,7 @@ module AllowedPermissions
     'registration_codes' => %w[view manage],
     'communications' => %w[view manage],
     'assessors' => %w[view manage],
-    'reports' => %w[view manage],
+    'reports' => %w[view manage project_bulk_reports],
     'datasheets' => %w[view manage],
     'workshops' => %w[view manage export_status view_recordings],
     'idp_templates' => %w[view manage],
@@ -188,6 +188,7 @@ module AllowedPermissions
     'sms_histories' => %w[view],
     'communications' => %w[view manage],
     'datasheets' => %w[view manage],
+    'reports' => %w[project_bulk_reports],
     'registration_codes' => %w[view manage],
     'results' => %w[
       view_report

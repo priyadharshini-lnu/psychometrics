@@ -9,6 +9,7 @@ import {
   AccountTree,
   AdminPanelSettings,
   Campaign,
+  DownloadOutlined,
   Explore,
   Key,
   ReceiptLong,
@@ -88,6 +89,9 @@ const Project: FC<Props> = ({
     if (pathname.includes('/communication_center')) {
       return ['communication_center']
     }
+    if (pathname.includes('/bulk_reports')) {
+      return ['bulk_reports']
+    }
     if (pathname.includes('/audit_reports')) {
       return ['audit_reports']
     }
@@ -146,6 +150,8 @@ const Project: FC<Props> = ({
         return I18n.t('admin.communication_center')
       case 'audit_reports':
         return I18n.t('admin.audit_reports')
+      case 'bulk_reports':
+        return I18n.t('admin.bulk_reports_title')
       case 'idp':
         return I18n.t('admin.idp_idp')
       case 'taxonomy':
@@ -204,6 +210,13 @@ const Project: FC<Props> = ({
     icon: <MessageOutlined />,
     label: I18n.t('admin.communication_center'),
   })
+
+  currentUser.permissions.manageProjectBulkReports && menuItems.push({
+    key: 'bulk_reports',
+    icon: <DownloadOutlined />,
+    label: I18n.t('admin.bulk_reports_title'),
+  })
+
   currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ReceiptLong />,

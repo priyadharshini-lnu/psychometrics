@@ -52,6 +52,7 @@ export const TABLE_SETTINGS_KEYS = {
   communicationCenterDeliveryEmails: 'communication_center.delivery.emails',
   communicationCenterTemplates: 'communication_center.templates',
   dataReportsJobs: 'data_reports.jobs',
+  projectBulkReports: 'project.bulk_reports',
   projectIdpInterviewQuestions: 'project.idp.interview_questions',
   projectIdpReflectionQuestions: 'project.idp.reflection_questions',
   projectIdpTemplates: 'project.idp.templates',

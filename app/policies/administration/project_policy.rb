@@ -57,6 +57,10 @@ module Administration
       has_permission?(:skills, :view, project_id: project_id)
     end
 
+    def manage_project_bulk_reports?
+      @user.has_grant?(:reports, :project_bulk_reports)
+    end
+
     private
 
     def can_manage_project?

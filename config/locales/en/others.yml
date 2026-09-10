@@ -948,6 +948,7 @@ en:
         migrate_assessment_translations: Assessment Translation migration
         migrate_communication_center: Communication Center Migration
         normalize_factor_scores: Normalize Factor Scores
+        project_bulk_download_reports: Project Bulk Download Reports
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
         regenerate_assessment_transcriptions: Regenerate Assessment Transcriptions

@@ -1450,6 +1450,15 @@ as: :simulation_progress_notification
               post :export_completion_status
               post :export_compact_completion_status
             end
+            jsonapi_resources :campaigns, only: %i[index], controller: 'projects/campaigns'
+            jsonapi_resources :bulk_report_jobs, only: %i[index show], controller: 'projects/bulk_report_jobs' do
+              collection do
+                post :bulk_download
+              end
+              member do
+                get :download_file
+              end
+            end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
