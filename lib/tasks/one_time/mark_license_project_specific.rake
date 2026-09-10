@@ -12,9 +12,12 @@ namespace :one_time do
       ActiveSupport::Notifications.unsubscribe(sub)
     end
     license_id = args[:license_id]
-    raise ArgumentError, 'license_id is required, e.g. rake one_time:mark_license_project_specific[123]' if license_id.blank?
+    if license_id.blank?
+      raise ArgumentError,
+            'license_id is required, e.g. rake one_time:mark_license_project_specific[123]'
+    end
 
-    dry_run = ActiveModel::Type::Boolean.new.cast(ENV['DRY_RUN'])
+    dry_run = ActiveModel::Type::Boolean.new.cast(ENV.fetch('DRY_RUN', 'false'))
 
     ActsAsTenant.without_tenant do
       license = License.find(license_id)
