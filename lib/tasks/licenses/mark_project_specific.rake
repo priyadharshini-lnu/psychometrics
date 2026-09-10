@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-namespace :one_time do
+namespace :licenses do
   desc 'Convert an existing non-project-specific license (with usages) into a project-specific one. ' \
        'Creates a ProjectLicense per project that has used the license, backfills its used_number/usage_limit ' \
        'from historical license_usages, links those license_usages to the new project_license, and finally ' \
        'sets licenses.is_project_specific to true. Usage: ' \
-       'rake one_time:mark_license_project_specific[LICENSE_ID] or ' \
-       'DRY_RUN=true rake one_time:mark_license_project_specific[LICENSE_ID] to preview changes.'
-  task :mark_license_project_specific, [:license_id] => :environment do |_task, args|
+       'rake licenses:mark_project_specific[LICENSE_ID] or ' \
+       'DRY_RUN=true rake licenses:mark_project_specific[LICENSE_ID] to preview changes.'
+  task :mark_project_specific, [:license_id] => :environment do |_task, args|
     ActiveSupport::Notifications.notifier.listeners_for('sql.active_record').each do |sub|
       ActiveSupport::Notifications.unsubscribe(sub)
     end
     license_id = args[:license_id]
     if license_id.blank?
       raise ArgumentError,
-            'license_id is required, e.g. rake one_time:mark_license_project_specific[123]'
+            'license_id is required, e.g. rake licenses:mark_project_specific[123]'
     end
 
     dry_run = ActiveModel::Type::Boolean.new.cast(ENV.fetch('DRY_RUN', 'false'))
