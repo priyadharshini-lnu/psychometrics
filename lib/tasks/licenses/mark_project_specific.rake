@@ -8,9 +8,9 @@ namespace :licenses do
        'rake licenses:mark_project_specific license_id=LICENSE_ID or ' \
        'DRY_RUN=true rake licenses:mark_project_specific license_id=LICENSE_ID to preview changes.'
   task :mark_project_specific, [:license_id] => :environment do |_task, args|
-    ActiveSupport::Notifications.notifier.listeners_for('sql.active_record').each do |sub|
-      ActiveSupport::Notifications.unsubscribe(sub)
-    end
+    old_log_level = SemanticLogger.default_level
+    SemanticLogger.default_level = :error
+
     license_id = args[:license_id] || ENV.fetch('license_id', nil)
     if license_id.blank?
       raise ArgumentError,
@@ -30,6 +30,8 @@ namespace :licenses do
       log_start(license, dry_run)
       process_license(license, dry_run)
     end
+  ensure
+    SemanticLogger.default_level = old_log_level
   end
 
   def log_start(license, dry_run)
