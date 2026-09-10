@@ -5,16 +5,16 @@ namespace :licenses do
        'Creates a ProjectLicense per project that has used the license, backfills its used_number/usage_limit ' \
        'from historical license_usages, links those license_usages to the new project_license, and finally ' \
        'sets licenses.is_project_specific to true. Usage: ' \
-       'rake licenses:mark_project_specific[LICENSE_ID] or ' \
-       'DRY_RUN=true rake licenses:mark_project_specific[LICENSE_ID] to preview changes.'
+       'rake licenses:mark_project_specific license_id=LICENSE_ID or ' \
+       'DRY_RUN=true rake licenses:mark_project_specific license_id=LICENSE_ID to preview changes.'
   task :mark_project_specific, [:license_id] => :environment do |_task, args|
     ActiveSupport::Notifications.notifier.listeners_for('sql.active_record').each do |sub|
       ActiveSupport::Notifications.unsubscribe(sub)
     end
-    license_id = args[:license_id]
+    license_id = args[:license_id] || ENV.fetch('license_id', nil)
     if license_id.blank?
       raise ArgumentError,
-            'license_id is required, e.g. rake licenses:mark_project_specific[123]'
+            'license_id is required, e.g. rake licenses:mark_project_specific license_id=123'
     end
 
     dry_run = ActiveModel::Type::Boolean.new.cast(ENV.fetch('DRY_RUN', 'false'))
