@@ -24,34 +24,50 @@ namespace :one_time do
         next
       end
 
-      puts "Processing license #{license.id} (client_id: #{license.client_id}, tenant_id: #{license.tenant_id})"
-      puts "DRY RUN: no changes will be persisted" if dry_run
+      log_start(license, dry_run)
+      process_license(license, dry_run)
+    end
+  end
 
-      ActiveRecord::Base.transaction do
-        project_usage_counts = license.license_usages.where(status: :active).group(:project_id).count
+  def log_start(license, dry_run)
+    puts "Processing license #{license.id} (client_id: #{license.client_id}, tenant_id: #{license.tenant_id})"
+    puts 'DRY RUN: no changes will be persisted' if dry_run
+  end
 
-        if project_usage_counts.blank?
-          puts 'No existing license_usages with a project_id were found for this license.'
-        end
+  def process_license(license, dry_run)
+    ActiveRecord::Base.transaction do
+      backfill_project_licenses(license, dry_run)
+      finalize_project_specific_flag(license, dry_run)
 
-        project_usage_counts.each do |project_id, active_usage_count|
-          if project_id.nil?
-            puts 'Skipping usages with no project_id (cannot backfill a ProjectLicense for them).'
-            next
-          end
+      raise ActiveRecord::Rollback if dry_run
+    end
+  end
 
-          project_license = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
-          link_license_usages_to_project_license(license, project_id, project_license, dry_run)
-        end
+  def backfill_project_licenses(license, dry_run)
+    project_usage_counts = license.license_usages.where(status: :active).group(:project_id).count
 
-        if dry_run
-          puts "Would set license #{license.id}.is_project_specific = true"
-          raise ActiveRecord::Rollback
-        else
-          license.update!(is_project_specific: true)
-          puts "License #{license.id} marked as project specific."
-        end
+    if project_usage_counts.blank?
+      puts 'No existing license_usages with a project_id were found for this license.'
+      return
+    end
+
+    project_usage_counts.each do |project_id, active_usage_count|
+      if project_id.nil?
+        puts 'Skipping usages with no project_id (cannot backfill a ProjectLicense for them).'
+        next
       end
+
+      project_license = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
+      link_license_usages_to_project_license(license, project_id, project_license, dry_run)
+    end
+  end
+
+  def finalize_project_specific_flag(license, dry_run)
+    if dry_run
+      puts "Would set license #{license.id}.is_project_specific = true"
+    else
+      license.update!(is_project_specific: true)
+      puts "License #{license.id} marked as project specific."
     end
   end
 
