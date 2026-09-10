@@ -38,12 +38,24 @@ namespace :one_time do
   end
 
   def process_license(license, dry_run)
+    created_count = 0
+    updated_count = 0
+    linked_count  = 0
+
     ActiveRecord::Base.transaction do
-      backfill_project_licenses(license, dry_run)
+      created_count, updated_count, linked_count = backfill_project_licenses(license, dry_run)
       finalize_project_specific_flag(license, dry_run)
 
       raise ActiveRecord::Rollback if dry_run
     end
+
+    puts ''
+    puts '=== Summary ==='
+    puts "  ProjectLicense records created : #{created_count}"
+    puts "  ProjectLicense records updated : #{updated_count}"
+    puts "  LicenseUsage rows linked       : #{linked_count}"
+    puts "  is_project_specific flag       : #{dry_run ? 'would be set to true (dry run)' : 'set to true'}"
+    puts dry_run ? '  (no changes were persisted — dry run)' : '  Done.'
   end
 
   def backfill_project_licenses(license, dry_run)
@@ -51,8 +63,12 @@ namespace :one_time do
 
     if project_usage_counts.blank?
       puts 'No existing license_usages with a project_id were found for this license.'
-      return
+      return [0, 0, 0]
     end
+
+    created_count = 0
+    updated_count = 0
+    linked_count  = 0
 
     project_usage_counts.each do |project_id, active_usage_count|
       if project_id.nil?
@@ -60,9 +76,13 @@ namespace :one_time do
         next
       end
 
-      project_license = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
-      link_license_usages_to_project_license(license, project_id, project_license, dry_run)
+      project_license, was_new = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
+      was_new ? created_count += 1 : updated_count += 1
+
+      linked_count += link_license_usages_to_project_license(license, project_id, project_license, dry_run)
     end
+
+    [created_count, updated_count, linked_count]
   end
 
   def finalize_project_specific_flag(license, dry_run)
@@ -88,16 +108,17 @@ namespace :one_time do
          "enabled=#{project_license.enabled}"
 
     project_license.save! unless dry_run
-    project_license
+    [project_license, is_new_record]
   end
 
   def link_license_usages_to_project_license(license, project_id, project_license, dry_run)
     usages = license.license_usages.where(project_id: project_id, project_license_id: nil)
     count = usages.count
-    return if count.zero?
+    return 0 if count.zero?
 
     puts "  Linking #{count} license_usage(s) for project #{project_id} to project_license " \
          "#{dry_run ? '(not yet created)' : project_license.id}"
     usages.update_all(project_license_id: project_license.id) unless dry_run
+    count
   end
 end
