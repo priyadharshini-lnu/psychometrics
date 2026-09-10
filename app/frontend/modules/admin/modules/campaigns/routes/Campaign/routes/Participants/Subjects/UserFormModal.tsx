@@ -38,6 +38,13 @@ const uatLabel = (
   </Space>
 )
 
+const uatHint = (isEdit: boolean, existingUserIsUat: boolean | null): string | undefined => {
+  if (isEdit) return I18n.t('admin.campaign_users_uat_readonly_hint')
+  if (existingUserIsUat !== null) return I18n.t('admin.campaign_users_uat_locked_hint')
+
+  return undefined
+}
+
 const UserFormModal: React.FC<Props> = ({
   campaignId, close, canManageUat, user,
 }) => {
@@ -127,16 +134,14 @@ const UserFormModal: React.FC<Props> = ({
           >
             <Input name="participant_locale" />
           </Form.Item>
-          {!isEdit && canManageUat && (
+          {(isEdit || canManageUat) && (
             <Form.Item
               name="isUat"
               valuePropName="checked"
               label={uatLabel}
-              extra={existingUserIsUat === null
-                ? undefined
-                : I18n.t('admin.campaign_users_uat_locked_hint')}
+              extra={uatHint(isEdit, existingUserIsUat)}
             >
-              <Checkbox disabled={existingUserIsUat !== null}>
+              <Checkbox disabled={isEdit || (existingUserIsUat !== null)}>
                 {I18n.t('admin.campaign_users_uat_description')}
               </Checkbox>
             </Form.Item>

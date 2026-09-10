@@ -425,6 +425,7 @@ en:
     campaign_users_uat_label: UAT Participant
     campaign_users_uat_license_non_billable: Non-billable
     campaign_users_uat_locked_hint: This participant already exists. UAT status is set when a participant is first created and cannot be changed.
+    campaign_users_uat_readonly_hint: UAT status is set at creation and cannot be changed.
     campaign_users_uat_tooltip: UAT users are real participants for testing. They can take assessments normally, but are excluded from billable license usage, analytics, and outbound webhooks.
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template

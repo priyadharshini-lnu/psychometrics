@@ -3021,7 +3021,7 @@ en:
     uat_usage_limit_credits_hint: Proctoring is billed in credits, so this is the maximum credits UAT test users may consume from this license (max 300).
     uat_usage_limit_users: UAT test users
     uat_usage_limit_users_hint: Maximum UAT test users that may be created against this license (max 30). Test users never consume billable licenses.
-    uat_used: Test used
+    uat_used: UAT used licenses
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   lti:
