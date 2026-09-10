@@ -132,7 +132,8 @@ class AdminJobRecord < ApplicationRecord
     copy_assessment: 106,
     superadmin_record_change_history: 107,
     export_campaign_translations: 108,
-    import_campaign_translations: 109
+    import_campaign_translations: 109,
+    migrate_communication_center: 110
   }
 
   enum :status, { scheduled: 0, in_progress: 1, completed: 2, failed: 3 }

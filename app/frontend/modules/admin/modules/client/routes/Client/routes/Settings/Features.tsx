@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Switch, Form, Typography, Button, Spin, Tooltip, Card, Row, Col, Space, Flex, theme,
+  Switch, Form, Typography, Button, Spin, Tooltip, Card, Row, Col, Space, Flex, theme, Modal, Descriptions, App,
 } from 'antd'
 import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
   QuestionCircleOutlined,
   MessageOutlined,
@@ -12,6 +13,8 @@ import {
 import { AIEditorIcon } from '~/glint/icons/AIEditorIcon'
 import { useResources } from '~/hooks/useResources'
 import ResourceForm from '~/components/ResourceForm'
+import { get as getCurrentUser, isSupportAdmin } from '~/core/currentUser'
+import { RootState } from '~/modules/admin/core/rootReducers'
 
 const { Text } = Typography
 const { I18n } = window
@@ -29,6 +32,16 @@ interface ClientFeatures {
   useNewCommunicationCenter: boolean;
   superadminTenantScoping: boolean;
   glintUi: boolean;
+}
+
+interface MigrationStats {
+  wouldMigrate?: number;
+  wouldBackfill?: number;
+  wouldUsers?: number;
+  wouldCcUsers?: number;
+  wouldAssessments?: number;
+  skipped?: number;
+  migrationErrors?: string[];
 }
 
 interface FeatureCardProps {
@@ -95,11 +108,21 @@ export const Features: React.FC = () => {
   const [form] = Form.useForm()
   const aiAssistants = Form.useWatch('aiAssistants', form)
   const { token } = theme.useToken()
+  const { message } = App.useApp()
+  const currentUser = useSelector((state: RootState) => getCurrentUser(state))
+  const showMigrationTools = isSupportAdmin(currentUser)
+
+  const [previewVisible, setPreviewVisible] = useState(false)
+  const [previewStats, setPreviewStats] = useState<MigrationStats | null>(null)
+  const [isPreviewing, setIsPreviewing] = useState(false)
+  const [isRunning, setIsRunning] = useState(false)
+
   const {
     data: featuresData,
     fetch: fetchFeature,
     updateResource,
     isLoading,
+    collectionAction,
   } = useResources<ClientFeatures>(
     'client_features',
     {
@@ -108,7 +131,6 @@ export const Features: React.FC = () => {
       apiConfig: { filter: { client_id_eq: clientId } },
     },
   )
-
 
   useEffect(() => {
     fetchFeature()
@@ -148,6 +170,44 @@ export const Features: React.FC = () => {
     return transformedValues
   }
 
+  const handleValuesChange = () => {
+    if (features.id) {
+      form.submit()
+    }
+  }
+
+  const handlePreview = async () => {
+    setIsPreviewing(true)
+    try {
+      const result = await collectionAction({
+        action: 'migrate_communication_center',
+        method: 'post',
+        apiConfig: { query: { dry_run: true } },
+      })
+      setPreviewStats(result as MigrationStats)
+      setPreviewVisible(true)
+    } catch {
+      message.error(I18n.t('admin.communication_center_migration_error'))
+    } finally {
+      setIsPreviewing(false)
+    }
+  }
+
+  const handleMigrate = async () => {
+    setIsRunning(true)
+    try {
+      await collectionAction({
+        action: 'migrate_communication_center',
+        method: 'post',
+      })
+      message.success(I18n.t('admin.communication_center_migration_enqueued'))
+    } catch {
+      message.error(I18n.t('admin.communication_center_migration_error'))
+    } finally {
+      setIsRunning(false)
+    }
+  }
+
   return (
     <div className="p-6">
       { isFetchLoading ? (
@@ -170,6 +230,7 @@ export const Features: React.FC = () => {
                 sm: 24, md: 12, lg: 10, xl: 10,
               },
               labelAlign: 'left',
+              onValuesChange: handleValuesChange,
             }}
             transformValues={transformValues}
           >
@@ -228,12 +289,48 @@ export const Features: React.FC = () => {
                       label={I18n.t('admin.sms_notification')}
                       tooltip={I18n.t('admin.feature_sms_notification_description')}
                     />
-                    <FeatureToggle
-                      name="useNewCommunicationCenter"
-                      label={I18n.t('admin.use_new_communication_center')}
-                      tooltip={I18n.t('admin.feature_use_new_communication_center_description')}
-                      isLast
-                    />
+                    {showMigrationTools && (
+                      <Form.Item
+                        label={(
+                          <Space size={4}>
+                            <span>{I18n.t('admin.use_new_communication_center')}</span>
+                            <Tooltip title={I18n.t('admin.feature_use_new_communication_center_description')}>
+                              <span
+                                role="button"
+                                tabIndex={0}
+                                className="cursor-help"
+                                onClick={(e) => { e.preventDefault(); e.stopPropagation() }}
+                                onKeyDown={(e) => { e.stopPropagation() }}
+                              >
+                                <QuestionCircleOutlined style={{ color: '#8c8c8c' }} />
+                              </span>
+                            </Tooltip>
+                          </Space>
+                        )}
+                        className="mb-0"
+                      >
+                        <Space size={8}>
+                          <Form.Item name="useNewCommunicationCenter" noStyle>
+                            <Switch />
+                          </Form.Item>
+                          <Button
+                            type="primary"
+                            onClick={handlePreview}
+                            loading={isPreviewing}
+                          >
+                            {I18n.t('admin.communication_center_migration_run_button')}
+                          </Button>
+                        </Space>
+                      </Form.Item>
+                    )}
+                    {!showMigrationTools && (
+                      <FeatureToggle
+                        name="useNewCommunicationCenter"
+                        label={I18n.t('admin.use_new_communication_center')}
+                        tooltip={I18n.t('admin.feature_use_new_communication_center_description')}
+                        isLast
+                      />
+                    )}
                   </FeatureCard>
 
                   <FeatureCard
@@ -271,21 +368,58 @@ export const Features: React.FC = () => {
                   </FeatureCard>
                 </Col>
 
-                <Col span={24}>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    size="large"
-                    loading={isLoading(`update@${featuresData[0]?.id}`)}
-                  >
-                    {I18n.t('shared.update')}
-                  </Button>
-                </Col>
               </Row>
             )}
           </ResourceForm>
         )
       }
+
+      <Modal
+        title={I18n.t('admin.communication_center_migration_modal_title')}
+        open={previewVisible}
+        onCancel={() => setPreviewVisible(false)}
+        footer={(
+          <Space>
+            <Button onClick={() => setPreviewVisible(false)}>
+              {I18n.t('shared.cancel')}
+            </Button>
+            <Button
+              type="primary"
+              loading={isRunning}
+              onClick={() => {
+                setPreviewVisible(false)
+                handleMigrate()
+              }}
+            >
+              {I18n.t('admin.communication_center_migration_run_button')}
+            </Button>
+          </Space>
+        )}
+      >
+        <p>{I18n.t('admin.communication_center_migration_modal_intro')}</p>
+        {previewStats && (
+          <Descriptions column={1} size="small" bordered>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_would_migrate')}>
+              {previewStats.wouldMigrate ?? 0}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_skipped')}>
+              {previewStats.skipped ?? 0}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_would_backfill')}>
+              {previewStats.wouldBackfill ?? 0}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_would_users')}>
+              {previewStats.wouldUsers ?? 0}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_would_cc_users')}>
+              {previewStats.wouldCcUsers ?? 0}
+            </Descriptions.Item>
+            <Descriptions.Item label={I18n.t('admin.communication_center_migration_would_assessments')}>
+              {previewStats.wouldAssessments ?? 0}
+            </Descriptions.Item>
+          </Descriptions>
+        )}
+      </Modal>
     </div>
   )
 }

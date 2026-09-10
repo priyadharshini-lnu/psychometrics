@@ -3408,7 +3408,8 @@ CREATE TABLE public.communication_deliveries (
     next_run_at timestamp(6) without time zone,
     campaign_assessment_group_id bigint,
     paused_at timestamp(6) without time zone,
-    project_id bigint
+    project_id bigint,
+    source_communication_id bigint
 );
 
 
@@ -3700,7 +3701,8 @@ CREATE TABLE public.communication_templates (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     subject character varying,
-    body text
+    body text,
+    source_communication_id bigint
 );
 
 
@@ -14489,10 +14491,24 @@ CREATE UNIQUE INDEX idx_ai_factor_scores_unique_with_question ON public.ai_facto
 
 
 --
+-- Name: idx_comm_deliveries_on_source_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_comm_deliveries_on_source_communication_id ON public.communication_deliveries USING btree (source_communication_id);
+
+
+--
 -- Name: idx_comm_emails_delivery_user_occurrence_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX idx_comm_emails_delivery_user_occurrence_uniq ON public.communication_emails USING btree (communication_delivery_id, user_id, occurrence_key) WHERE (communication_delivery_id IS NOT NULL);
+
+
+--
+-- Name: idx_comm_templates_on_source_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX idx_comm_templates_on_source_communication_id ON public.communication_templates USING btree (source_communication_id);
 
 
 --
@@ -25942,6 +25958,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260825000001'),
 ('20260903000001'),
 ('20260902081312'),
 ('20260821000001'),
@@ -27062,4 +27079,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160712152012'),
 ('20160707123619'),
 ('20160704140756');
-

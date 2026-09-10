@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Switch, Form, Button, Spin, Card, Row, Col, Typography, Tooltip, Space, Flex, theme,
+  Switch, Form, Spin, Card, Row, Col, Typography, Tooltip, Space, Flex, theme,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import {
@@ -259,6 +259,12 @@ export const Features: React.FC = () => {
     }
   }
 
+  const handleValuesChange = () => {
+    if (features.id) {
+      form.submit()
+    }
+  }
+
   const aiAssistedIdpDisabledReason = (() => {
     if (!clientFeatures.aiAssistedIdp) {
       return I18n.t('admin.ai_assisted_idp_disabled_by_client')
@@ -304,6 +310,7 @@ export const Features: React.FC = () => {
               sm: 24, md: 12, lg: 10, xl: 10,
             },
             labelAlign: 'left',
+            onValuesChange: handleValuesChange,
           }}
           transformValues={transformValues}
         >
@@ -419,16 +426,6 @@ export const Features: React.FC = () => {
                 </FeatureCard>
               </Col>
 
-              <Col span={24}>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  size="large"
-                  loading={isLoading(`update@${featuresData[0]?.id}`)}
-                >
-                  {I18n.t('shared.update')}
-                </Button>
-              </Col>
             </Row>
           )}
         </ResourceForm>

@@ -53,7 +53,19 @@ class CommunicationDelivery < ApplicationRecord
   validates :trigger_type, presence: true
   validate :campaign_or_project_scope
 
-  after_create_commit { Communications::Deliveries::Trigger.call(self) }
+  after_create_commit :trigger_emails
+
+  # Wrap any block that creates CommunicationDelivery records when the
+  # after_create_commit email trigger should be suppressed (e.g. migrations,
+  # data backfills). Using a class-level flag rather than skip_callback because
+  # after_create_commit fires after the transaction commits -- skip_callback
+  # wrappers around create! do not reach that point.
+  def self.without_trigger_emails
+    @skip_trigger_emails = true
+    yield
+  ensure
+    @skip_trigger_emails = false
+  end
 
   # Campaign-or-project lookup for the IDP-shaped kinds (campaign takes priority, falls back to project).
   # None of these kinds filter by campaign_assessment_group_id -- see .active_for_campaign_assessment_group
@@ -118,5 +130,11 @@ class CommunicationDelivery < ApplicationRecord
   def campaign_or_project_scope_errors
     errors.add(:base, 'campaign or project is required') if campaign.blank? && project.blank?
     errors.add(:base, 'campaign and project cannot both be set') if campaign.present? && project.present?
+  end
+
+  def trigger_emails
+    return if self.class.instance_variable_get(:@skip_trigger_emails)
+
+    Communications::Deliveries::Trigger.call(self)
   end
 end

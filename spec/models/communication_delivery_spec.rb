@@ -271,4 +271,42 @@ RSpec.describe CommunicationDelivery, type: :model do
       end
     end
   end
+
+  describe '.without_trigger_emails' do
+    before do
+      allow(Communications::Deliveries::Trigger).to receive(:call)
+    end
+
+    context 'inside the block' do
+      it 'does NOT call Trigger when a delivery is created' do
+        described_class.without_trigger_emails do
+          build(:communication_delivery).save!
+        end
+
+        expect(Communications::Deliveries::Trigger).not_to have_received(:call)
+      end
+    end
+
+    context 'outside the block' do
+      it 'DOES call Trigger when a delivery is created normally' do
+        build(:communication_delivery).save!
+
+        expect(Communications::Deliveries::Trigger).to have_received(:call).once
+      end
+    end
+
+    context 'when the block raises an exception' do
+      it 'resets the suppression flag so subsequent creates fire Trigger again' do
+        begin
+          described_class.without_trigger_emails { raise 'oops' }
+        rescue RuntimeError
+          nil
+        end
+
+        build(:communication_delivery).save!
+
+        expect(Communications::Deliveries::Trigger).to have_received(:call).once
+      end
+    end
+  end
 end

@@ -532,6 +532,18 @@ en:
     common_unselect_all: Unselect all
     communication_center: Communication Center
     communication_center_manage_translations_action: Manage translations
+    communication_center_migration_enqueued: Migration job enqueued. Check logs for progress.
+    communication_center_migration_error: Migration request failed. Please try again or check the logs.
+    communication_center_migration_modal_intro: 'The following changes will be applied when you run the migration for this client:'
+    communication_center_migration_modal_title: Communication Center Migration Preview
+    communication_center_migration_preview_button: Preview Migration
+    communication_center_migration_run_button: Run Migration
+    communication_center_migration_skipped: Already migrated (will be skipped)
+    communication_center_migration_would_assessments: Assessments to migrate
+    communication_center_migration_would_backfill: Emails to backfill
+    communication_center_migration_would_cc_users: CC users to migrate
+    communication_center_migration_would_migrate: Communications to migrate
+    communication_center_migration_would_users: Selected users to migrate
     communication_center_translation_updated_success: Translation updated successfully
     communication_center_translations_modal_title: Manage translations
     communication_deliveries: Deliveries

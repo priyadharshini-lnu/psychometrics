@@ -1370,7 +1370,11 @@ as: :simulation_progress_notification
                 post :parse_metadata
               end
             end
-            jsonapi_resources :client_features, only: %i[index update]
+            jsonapi_resources :client_features, only: %i[index update] do
+              collection do
+                post :migrate_communication_center
+              end
+            end
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection

@@ -946,6 +946,7 @@ en:
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
+        migrate_communication_center: Communication Center Migration
         normalize_factor_scores: Normalize Factor Scores
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
@@ -989,6 +990,8 @@ en:
     errors: Errors
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
+    migrate_communication_center:
+      client_not_found: Client with id=%{id} not found
     more: More
     results: Results
     super_admin:
