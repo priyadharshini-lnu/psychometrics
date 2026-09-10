@@ -575,6 +575,10 @@ th:
       enabled: เปิด
       loading: 'การโหลด   '
       save: บันทึก
+    communication_center:
+      errors:
+        terminal_state: การส่งมอบสินค้าอยู่ในขั้นตอนสุดท้ายแล้ว
+        update_translation: ไม่สามารถอัปเดตคำแปลสำหรับภาษาท้องถิ่นนี้ได้
     communication_settings: การตั้งค่า
     communications:
       create:

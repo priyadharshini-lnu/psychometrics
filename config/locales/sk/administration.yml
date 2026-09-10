@@ -575,6 +575,10 @@ sk:
       enabled: Povolené
       loading: Nakladanie...
       save: Zachrániť
+    communication_center:
+      errors:
+        terminal_state: Doručenie je už v konečnom stave.
+        update_translation: Preklad pre toto miestne nastavenie sa nepodarilo aktualizovať.
     communication_settings: Nastavenia
     communications:
       create:

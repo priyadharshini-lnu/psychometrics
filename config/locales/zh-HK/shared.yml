@@ -37,8 +37,10 @@ zh-HK:
     campaign: 活动
     campaign_id: 競選識別碼
     cancel: 銷
+    candidates: 候選人
     category: 類別
     change_password: 更改密碼
+    clear: 清除
     clear_filters: 透明過濾器
     client: 客户
     close: 关闭
@@ -86,11 +88,15 @@ zh-HK:
     end_date: 結束日期
     ending_proctoring_session_msg: 本次监考环节即将结束。<p>请稍候，我们正在保存您的答题内容并跳转回首页。</p>
     error: 错误
+    errors: 錯誤
     export: 出口
     failed: 失败
     'false': false
     file: 文件
     file_upload_button: 选择文件
+    filename: 檔案名稱
+    files: 文件
+    filters: 過濾器
     first_name: 名字
     formal_learning: 正式學習
     generate: 生成
@@ -105,6 +111,7 @@ zh-HK:
     impersonation_banner_aria_label: 主動模仿會話
     impersonation_end_session: 出口
     import: 导入
+    in_progress: 進行中
     inactive: 非活动状态
     internet_disconnected_message: 正在嘗試重新連接。請檢查您的互聯網連接。
     is_impersonating: 冒充
@@ -112,6 +119,7 @@ zh-HK:
     issuer_claim_label: 发行人 (iss)
     jwt_claims_details: JWT 索赔详情
     key_id_claim_label: 密钥 ID (kid)
+    languages: 語言
     last_name: 姓氏
     last_updated: 最後更新
     learning_on_the_job_label: 邊做邊學
@@ -151,6 +159,7 @@ zh-HK:
     no_results_found: 未找到任何结果
     none: 沒
     not_requested: 尚未请求
+    not_set: 未設定
     ok: 好
     options: 选项
     overview: 概述
@@ -215,12 +224,14 @@ zh-HK:
     reset_password: 重設密碼
     response_text: 响应文本
     return_url_not_whitelisted: 此應用程式未將返回 URL 列入白名單。
+    review: 審查
     rte_paste_content_exceeds_char_limit: 文字超過 {{maxCharacterLimit}} 的字元限制，無法貼上。
     rte_paste_content_exceeds_word_limit: 文字超過 {{maxWordLimit}} 的字數限制，無法貼上。
     run: 跑
     save: 存檔
     saving_video: 正在保存视频... 请勿关闭或刷新浏览器
     schedule_time: 排程時間
+    scheduled: 已安排
     scoring_details: 计分详情
     search: 尋
     select_camera: 选择相机

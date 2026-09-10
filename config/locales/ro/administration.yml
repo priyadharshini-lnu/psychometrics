@@ -575,6 +575,10 @@ ro:
       enabled: Activat
       loading: Încărcare...
       save: Salva
+    communication_center:
+      errors:
+        terminal_state: Livrarea este deja într-o stare terminală.
+        update_translation: Nu se poate actualiza traducerea pentru această setare regională.
     communication_settings: Setări
     communications:
       create:

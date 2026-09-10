@@ -37,8 +37,10 @@ ja:
     campaign: キャンペーン
     campaign_id: キャンペーンID
     cancel: キャンセル
+    candidates: 候補者
     category: カテゴリー
     change_password: パスワードの変更
+    clear: クリア
     clear_filters: 絞り込みをクリア
     client: クライアント
     close: 閉じる
@@ -86,11 +88,15 @@ ja:
     end_date: 終了日
     ending_proctoring_session_msg: 試験監督セッションを終了します。<p>回答内容を保存し、ホームページに戻るまでしばらくお待ちください。</p>
     error: エラー
+    errors: エラー
     export: 輸出
     failed: 失敗した
     'false': false
     file: ファイル
     file_upload_button: ファイルを選択
+    filename: ファイル名
+    files: ファイル
+    filters: フィルター
     first_name: 名
     formal_learning: 正式な学習
     generate: 生成
@@ -105,6 +111,7 @@ ja:
     impersonation_banner_aria_label: アクティブなりすましセッション
     impersonation_end_session: 出口
     import: 輸入
+    in_progress: 進行中
     inactive: 活動休止中
     internet_disconnected_message: 再接続の試行中です。インターネット接続を確認してください。
     is_impersonating: なりすましをしている
@@ -112,6 +119,7 @@ ja:
     issuer_claim_label: 発行体 (iss)
     jwt_claims_details: JWTの請求明細
     key_id_claim_label: キーID (kid)
+    languages: 言語
     last_name: 姓
     last_updated: 最終更新日
     learning_on_the_job_label: 現場での学び
@@ -151,6 +159,7 @@ ja:
     no_results_found: 検索結果が見つかりませんでした
     none: なし
     not_requested: まだリクエストされていません
+    not_set: 設定されていません
     ok: OK
     options: オプション
     overview: 概要
@@ -215,12 +224,14 @@ ja:
     reset_password: パスワードをリセット
     response_text: 応答テキスト
     return_url_not_whitelisted: このアプリケーションでは、戻りURLがホワイトリストに登録されていません。
+    review: レビュー
     rte_paste_content_exceeds_char_limit: テキストは{{maxCharacterLimit}}の文字数制限を超えており、貼り付けができません。
     rte_paste_content_exceeds_word_limit: テキストは{{maxWordLimit}}のワード制限を超えており、貼り付けができません。
     run: 走る
     save: 保存
     saving_video: ビデオ保存中...ブラウザを閉じたり更新したりしないでください
     schedule_time: スケジュール時間
+    scheduled: 予定
     scoring_details: 得点詳細
     search: 検索
     select_camera: カメラを選択してください

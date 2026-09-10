@@ -37,8 +37,10 @@ ar:
     campaign: حملة
     campaign_id: معرف الحملة
     cancel: إلغاء
+    candidates: مرشحين
     category: فئة
     change_password: تغيير كلمة المرور
+    clear: واضح
     clear_filters: امسح المُرشحات
     client: العميل
     close: إغلاق
@@ -86,11 +88,15 @@ ar:
     end_date: تاريخ الانتهاء
     ending_proctoring_session_msg: نحن بصدد إنهاء جلسة المراقبة. <p>يرجى الانتظار حتى ننتهي من حفظ إجاباتك ونعيد توجيهك إلى الصفحة الرئيسية.</p>
     error: خطأ
+    errors: أخطاء
     export: تصدير
     failed: فشل
     'false': false
     file: ملف
     file_upload_button: اختر ملفًا
+    filename: اسم الملف
+    files: الملفات
+    filters: الفلاتر
     first_name: الاسم الاول
     formal_learning: التعلم الرسمي
     generate: توليد
@@ -105,6 +111,7 @@ ar:
     impersonation_banner_aria_label: جلسة انتحال شخصية نشطة
     impersonation_end_session: مخرج
     import: استيراد
+    in_progress: في تَقَدم
     inactive: كسلان
     internet_disconnected_message: نحاول إعادة الاتصال بالإنترنت. يرجى التحقق من اتصالك بالإنترنت الخاص بك.
     is_impersonating: ينتحل شخصية
@@ -112,6 +119,7 @@ ar:
     issuer_claim_label: المُصدر (iss)
     jwt_claims_details: تفاصيل مطالبات JWT
     key_id_claim_label: معرّف المفتاح (kid)
+    languages: اللغات
     last_name: إسم العائلة
     last_updated: آخر تحديث
     learning_on_the_job_label: التعلم أثناء العمل
@@ -151,6 +159,7 @@ ar:
     no_results_found: لم يتم العثور على نتائج
     none: اي
     not_requested: لم يتم طلبه بعد
+    not_set: غير محدد
     ok: موافق
     options: خيارات
     overview: نظرة عامة
@@ -215,12 +224,14 @@ ar:
     reset_password: إعادة تعيين كلمة المرور
     response_text: نص الرد
     return_url_not_whitelisted: عنوان URL الخاص بالعودة غير مدرج في القائمة البيضاء لهذا التطبيق.
+    review: مراجعة
     rte_paste_content_exceeds_char_limit: النص يتجاوز حد الأحرف في {{maxCharacterLimit}} ولا يمكن لصقه.
     rte_paste_content_exceeds_word_limit: النص يتجاوز حد الكلمات في {{maxWordLimit}} ولا يمكن لصقه.
     run: ركض
     save: حفظ
     saving_video: حفظ الفيديو... يرجى عدم إغلاق أو تحديث المتصفح
     schedule_time: الجدول الزمني
+    scheduled: مُجدول
     scoring_details: تفاصيل النقاط
     search: بحث
     select_camera: اختر كاميرا

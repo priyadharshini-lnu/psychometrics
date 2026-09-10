@@ -37,8 +37,10 @@ cs:
     campaign: Kampaň
     campaign_id: Identifikace kampaně
     cancel: Zrušit
+    candidates: Kandidáti
     category: Kategorie
     change_password: Změna hesla
+    clear: Jasný
     clear_filters: Vymazat filtry
     client: Klient
     close: Zavřít
@@ -86,11 +88,15 @@ cs:
     end_date: Datum ukončení
     ending_proctoring_session_msg: Tuto relaci s dohledem ukončujeme. <p>Počkejte prosím, než uložíme vaše odpovědi a přesměrujeme vás zpět na úvodní stránku.</p>
     error: Chyba
+    errors: Chyby
     export: Export
     failed: Neúspěšný
     'false': false
     file: Soubor
     file_upload_button: Vybrat soubor
+    filename: Název souboru
+    files: Soubory
+    filters: Filtry
     first_name: Jméno
     formal_learning: Formální učení
     generate: Generovat
@@ -105,6 +111,7 @@ cs:
     impersonation_banner_aria_label: Aktivní relace zosobnění
     impersonation_end_session: Výstup
     import: Import
+    in_progress: Probíhá
     inactive: Neaktivní
     internet_disconnected_message: Probíhá pokus o opětovné připojení. Zkontrolujte připojení k internetu.
     is_impersonating: vydává se za
@@ -112,6 +119,7 @@ cs:
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Podrobnosti k reklamacím JWT
     key_id_claim_label: ID klíče (kid)
+    languages: Jazyky
     last_name: Příjmení
     last_updated: Poslední aktualizace
     learning_on_the_job_label: Učení se přímo v práci
@@ -151,6 +159,7 @@ cs:
     no_results_found: Nenalezeny žádné výsledky
     none: Žádné
     not_requested: Dosud nepožadováno
+    not_set: Není nastaveno
     ok: OK
     options: Možnosti
     overview: Přehled
@@ -215,12 +224,14 @@ cs:
     reset_password: Obnovit heslo
     response_text: Odpověď
     return_url_not_whitelisted: Zpáteční adresa URL není pro tuto aplikaci na seznamu povolených.
+    review: Recenze
     rte_paste_content_exceeds_char_limit: Text překračuje limit znaků {{maxCharacterLimit}} a nelze jej vložit.
     rte_paste_content_exceeds_word_limit: Text překračuje limit slov {{maxWordLimit}} a nelze jej vložit.
     run: Spustit
     save: Uložit
     saving_video: Ukládání videa... Prosím, nezavírejte ani neobnovujte prohlížeč
     schedule_time: Časový plán
+    scheduled: Naplánováno
     scoring_details: Podrobnosti o bodování
     search: Hledat
     select_camera: Vyberte kameru

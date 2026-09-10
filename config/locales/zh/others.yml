@@ -214,6 +214,8 @@ zh:
               inclusion: 地点错误
             password:
               too_short: 密码太短，至少需要 %{count} 字符
+            uat:
+              invalid: UAT 必须是以下值之一：%{accepted_values} 或空白
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ zh:
               invalid_reports_header: 无效标头，从示例文件中获取标头
               manager_not_found: 行 %{row_number}：活动或 CSV 中不存在电子邮件 %{email} 的经理
               not_enough_licenses: 导入需要 %{required_count} 个许可证，但只有 %{available_count} 个可用许可证。请在导入前减少新用户数量或添加更多许可证。
+              not_enough_uat_licenses: 导入需要 %{required_count} 个 UAT 测试许可证，但只有 %{available_count} 个可用。请在导入前减少新增 UAT 用户数量或提高 UAT 使用限制。
               user_update_failed: '%{email} 的用户更新失败，错误信息为"%{error}'
             locale:
               inclusion: 地点错误
@@ -943,7 +946,9 @@ zh:
         import_sms_invites: 导入短信邀请
         import_users: 导入用户
         migrate_assessment_translations: 评估 翻译迁移
+        migrate_communication_center: 通信中心迁移
         normalize_factor_scores: 因子得分标准化
+        project_bulk_download_reports: 项目批量下载报告
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
         regenerate_assessment_transcriptions: 重新生成评估记录
@@ -986,6 +991,8 @@ zh:
     errors: 错误
     invalid_job: 该通知对应已删除的记录
     mark_as_read: 标记所有已读内容
+    migrate_communication_center:
+      client_not_found: 未找到 id=%{id} 的客户端
     more: 更多信息
     results: 成果
     super_admin:
@@ -2967,6 +2974,7 @@ zh:
     end_date: 结束日期
     not_enough_license: '%{client_name}"没有足够的许可用于"%{report_name}"。'
     not_enough_license_count: 许可证数量不足，请联系管理员
+    not_enough_uat_license: "'%{client_name}' 没有足够的 UAT 测试许可证来支持 '%{report_name}'。请增加该许可证的 UAT 使用限制，或联系管理员。"
     number: 数量
     overuse_number: 超额使用津贴
     project_specific: 项目专属
@@ -2981,6 +2989,11 @@ zh:
       idp: IDP
       proctoring: 监考
       threesixty: Threesixty
+    uat_usage_limit_credits: 用户验收测试积分
+    uat_usage_limit_credits_hint: 监考费用按积分计费，因此这是 UAT 测试用户可从该许可证中消耗的最大积分（最多 300）。
+    uat_usage_limit_users: 用户验收测试用户
+    uat_usage_limit_users_hint: 此许可证最多可创建 30 个 UAT 测试用户。测试用户不会占用任何计费许可证。
+    uat_used: UAT 使用的许可证
     used_number: 二手许可证
     used_out_of: 完成于 %{used}中 %{total}。
   lti:

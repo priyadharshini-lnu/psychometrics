@@ -575,6 +575,10 @@ ja:
       enabled: 有効
       loading: 積載。。。
       save: セーブ
+    communication_center:
+      errors:
+        terminal_state: 配送は既に最終段階に入っています。
+        update_translation: この地域向けの翻訳を更新できません。
     communication_settings: 設定
     communications:
       create:

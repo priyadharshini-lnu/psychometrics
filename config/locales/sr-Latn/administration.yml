@@ -575,6 +575,10 @@ sr-Latn:
       enabled: Omogućeno
       loading: Učitavanje...
       save: Sačuvaj
+    communication_center:
+      errors:
+        terminal_state: Испорука је већ у терминалном стању.
+        update_translation: Није могуће ажурирати превод за овај локалитет.
     communication_settings: Podešavanja
     communications:
       create:

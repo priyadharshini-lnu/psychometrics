@@ -37,8 +37,10 @@ sk:
     campaign: Kampaň
     campaign_id: Identifikácia kampane
     cancel: Zrušiť
+    candidates: Kandidáti
     category: Kategória
     change_password: Zmeniť heslo
+    clear: Jasné
     clear_filters: Vymazať filtre
     client: Klient
     close: Zatvoriť
@@ -86,11 +88,15 @@ sk:
     end_date: Dátum ukončenia
     ending_proctoring_session_msg: Toto je koniec testu. <p>Počkajte, prosím, kým uložíme vaše odpovede a presmerujeme vás späť na úvodnú stránku.</p>
     error: Chyba
+    errors: Chyby
     export: Vývoz
     failed: Neúspešný
     'false': false
     file: Súbor
     file_upload_button: Vyberte súbor
+    filename: Názov súboru
+    files: Súbory
+    filters: Filtre
     first_name: Kresťanské meno
     formal_learning: Formálne učenie
     generate: Generovať
@@ -105,6 +111,7 @@ sk:
     impersonation_banner_aria_label: Aktívna relácia zosobnenia
     impersonation_end_session: VÝCHOD
     import: Import
+    in_progress: Prebieha
     inactive: Neaktívny
     internet_disconnected_message: Pokúšam sa znovu pripojiť. Skontrolujte, prosím, svoje internetové pripojenie.
     is_impersonating: vydáva sa za
@@ -112,6 +119,7 @@ sk:
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Podrobnosti o reklamáciách spoločnosti JWT
     key_id_claim_label: ID kľúča (kid)
+    languages: Jazyky
     last_name: Priezvisko
     last_updated: Posledná aktualizácia
     learning_on_the_job_label: Učenie sa priamo v práci
@@ -151,6 +159,7 @@ sk:
     no_results_found: Nenašli sa žiadne výsledky
     none: Žiadny
     not_requested: Ešte nebolo požiadané
+    not_set: Nie je nastavené
     ok: Ok
     options: Možnosti
     overview: Prehľad
@@ -215,12 +224,14 @@ sk:
     reset_password: Obnovenie hesla
     response_text: Text odpovede
     return_url_not_whitelisted: URL adresa pre spätné odkazy nie je pre túto aplikáciu na bielej listine.
+    review: Recenzia
     rte_paste_content_exceeds_char_limit: Text prekračuje limit znakov {{maxCharacterLimit}} a nie je možné ho vložiť.
     rte_paste_content_exceeds_word_limit: Text prekračuje limit slov {{maxWordLimit}} a nedá sa vložiť.
     run: Bežať
     save: Uložiť
     saving_video: Ukladanie videa... Prosím, nezatvárajte ani neobnovujte prehliadač
     schedule_time: Naplánovať čas
+    scheduled: Naplánované
     scoring_details: Podrobnosti o bodovaní
     search: Vyhľadávanie
     select_camera: Vyberte kameru

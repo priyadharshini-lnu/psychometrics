@@ -218,6 +218,15 @@ sr-Latn:
     assessor_assessments_reset_successfully: Resetovanje evaluacije za predmet sa e-poštom "%{subjectEmail}" je bio uspešno.
     assessor_assessments_subject_email: Naslov e-pošte
     assessor_assessments_subject_name: Ime i prezime
+    assessor_campaign_users_awaiting_moderation: Чека се модерација
+    assessor_campaign_users_awaiting_moderation_subtitle: спреман за консолидацију
+    assessor_campaign_users_candidates_subtitle: додељено вам је
+    assessor_campaign_users_completed: Завршено
+    assessor_campaign_users_completed_subtitle: потписано
+    assessor_campaign_users_in_progress: У току
+    assessor_campaign_users_in_progress_subtitle: процењује се
+    assessor_campaign_users_not_started: Није започето
+    assessor_campaign_users_not_started_subtitle: евалуације
     assessor_campaigns_statuses_completed: Završeno
     assessor_campaigns_statuses_in_progress: U toku
     assessor_campaigns_statuses_not_started: Nije započeto
@@ -226,6 +235,20 @@ sr-Latn:
     assessor_create_assessor: Dodaj procenjivača
     assessor_dashboard: Kontrolna tabla procenjivača
     assessor_email: Imejl procenjivača
+    assessor_evaluation: Процена проценитеља
+    assessor_evaluation_by_campaign: По кампањи
+    assessor_evaluation_by_participant: Од стране учесника
+    assessor_evaluation_candidate: Кандидат
+    assessor_evaluation_candidates: Кандидати
+    assessor_evaluation_completed: Евалуација завршена
+    assessor_evaluation_date_range: Датум почетка – Датум завршетка
+    assessor_evaluation_moderation_waiting: Чекање на модерацију
+    assessor_evaluation_tour_profile_description: Ваш налог, улога и језик, као и преклопник за омогућавање новог искуства, доступни су овде. Отворите га да бисте прегледали своје податке или се одјавили.
+    assessor_evaluation_tour_profile_title: Ваш профил и подешавања
+    assessor_evaluation_tour_table_description: Отворите било који ред да бисте видели њихове процене, а затим процените њихове одговоре или модерирајте коначне резултате.
+    assessor_evaluation_tour_table_title: Изаберите кандидата
+    assessor_evaluation_tour_tabs_description: Пребацујте се између „По учеснику“ (једна особа истовремено) и „По кампањи“.
+    assessor_evaluation_tour_tabs_title: Два начина рада
     assessor_evaluations: Evaluacija procenjivača
     assessor_first_name: Ime procenjivača
     assessor_form: Obrazac ocenjivača
@@ -233,13 +256,24 @@ sr-Latn:
     assessor_last_name: Prezime procenjivača
     assessor_modals_import_body: Pogledajte opciju Izvoz da izvučete šablon koji se može koristiti za Uvoz ovde.
     assessor_modals_import_title: Uvezi procenjivače
+    assessor_new_experience: Ново искуство
     assessor_overview: Pregled
     assessor_placeholder: Pretraga procenjivača...
     assessor_remove_confirmation: Da li ste sigurni da želite da uklonite procenjivača sa imejlom %{email} iz ove kampanje?
     assessor_remove_has_evaluations: Овом процењивачу је додељено %{evaluation_count} образаца за процену. Све евалуације које је попунио биће изгубљене.
     assessor_remove_in_assessment_centers: Овај процењивач је део %{workshop_count} процењивачког центра/центара. Наставак ће га уклонити из свих процењивачких центара.
+    assessor_switch_to_classic: Пређи на класично
     assessor_toolbar_export: Izvezi procenjivače
     assessor_toolbar_import: Uvezi procenjivače
+    assessor_tour_button: Обилазак
+    assessor_try_new_experience: Испробајте ново искуство
+    assessor_user_assessment_name: Назив процене
+    assessor_user_candidate_id: Идентификациони број кандидата
+    assessor_user_evaluate: Процени
+    assessor_user_evaluation: Евалуација
+    assessor_user_evaluation_progress: Напредак евалуације
+    assessor_user_moderate: Умерени резултати
+    assessor_user_moderation: Модерација
     assessor_workshops: Centar za procenu
     assessors: Ocenjivači
     assistant_toolbar_failed: Није успело да генерише важећи излаз након више покушаја
@@ -307,6 +341,79 @@ sr-Latn:
     bulk_assets_modal_title: Отпремите CSV и ZIP датотеке
     bulk_export_assessments_file: Датотека за масовни извоз процена
     bulk_export_invalid_params: Неважећи параметри за масовни извоз
+    bulk_reports: Групни извештаји
+    bulk_reports_all_of_year: Све од %{year}
+    bulk_reports_all_tags: Све ознаке
+    bulk_reports_bundled_into_single: обједињено у једно
+    bulk_reports_campaign_count_one: Кампања %{count}
+    bulk_reports_campaign_count_other: "%{count} кампање"
+    bulk_reports_campaign_search_placeholder: Претражите кампање или пројекте...
+    bulk_reports_campaigns_shown_count: Изабрано је %{selected} - приказано је %{shown}
+    bulk_reports_campaigns_without_reports_warning: 'Изабране кампање без конфигурисаних извештаја: %{count}. Биће прескочене.'
+    bulk_reports_candidate_abbreviation: канд.
+    bulk_reports_complete_every_step: Завршите сваки корак да бисте омогућили
+    bulk_reports_date_range_required: За наставак су потребни и почетни и крајњи датум.
+    bulk_reports_date_range_summary: Биће укључене завршене процене од %{start} до %{end}.
+    bulk_reports_description: Направите један задатак извоза за више кампања. Изаберите кампање, одаберите које извештаје и језике да укључите, подесите распон датума, а затим пошаљите.
+    bulk_reports_deselect_all_shown: Поништи избор свих приказаних
+    bulk_reports_download_notification_sent: Обавештење о преузимању је послато
+    bulk_reports_emailed_when_ready: и послато вам је имејлом када буде спремно.
+    bulk_reports_end_date_placeholder: Изаберите датум и време завршетка
+    bulk_reports_end_date_required: Молимо вас да изаберете крајњи датум.
+    bulk_reports_error_try_again: Грешка - покушајте поново
+    bulk_reports_files_estimated_across: датотеке процењене преко
+    bulk_reports_files_pending: Датотеке ће се појавити овде када се посао заврши.
+    bulk_reports_generate_export: Генериши извоз
+    bulk_reports_invalid_date_range: Крајњи датум мора бити исти као и почетни датум или касније.
+    bulk_reports_job_details_title: Посао бр. %{id}
+    bulk_reports_job_not_found: Овај посао није могао бити пронађен.
+    bulk_reports_job_queued: Посао је стављен у ред чекања
+    bulk_reports_languages_progress_one: "%{done} од %{total} скупа извештаја"
+    bulk_reports_languages_progress_other: Скуп извештаја %{done} од %{total}
+    bulk_reports_languages_set_for_all_one: Постављено за све извештаје %{count}
+    bulk_reports_languages_set_for_all_other: Постављено за све %{count} извештаје
+    bulk_reports_last_30_days: Последњих 30 дана
+    bulk_reports_last_90_days: Последњих 90 дана
+    bulk_reports_no_campaigns_found: Није пронађена ниједна кампања за овај пројекат.
+    bulk_reports_no_campaigns_match_filters: Ниједна кампања се не подудара са вашом претрагом или филтерима за ознаке.
+    bulk_reports_no_campaigns_selected: Ниједна кампања није изабрана
+    bulk_reports_no_files_yet: Датотеке још увек нису доступне за овај задатак.
+    bulk_reports_no_language_selected: није изабран језик
+    bulk_reports_no_languages_available: Нема доступних језика за овај извештај.
+    bulk_reports_no_reports_configured: Ниједна од изабраних кампања нема конфигурисане извештаје. Вратите се и проверите конфигурацију кампање.
+    bulk_reports_no_reports_selected: Ниједан извештај није изабран
+    bulk_reports_no_reports_selected_for_languages: Није изабран ниједан извештај. Вратите се и изаберите барем један извештај.
+    bulk_reports_no_tags_found: Није пронађена ниједна ознака
+    bulk_reports_none_selected: Ниједна није изабрана
+    bulk_reports_queued_by: У реду за
+    bulk_reports_queuing_jobs: Послови у реду чекања...
+    bulk_reports_ready_to_generate: Спремно за генерисање
+    bulk_reports_report_count_one: Извештај %{count}
+    bulk_reports_report_count_other: "%{count} извештаја"
+    bulk_reports_reports_and_languages: Извештаји и језици
+    bulk_reports_review_submit: Прегледај и пошаљи
+    bulk_reports_review_submit_description: Проверите задатак испод. Можете се вратити на било који корак да бисте направили измене.
+    bulk_reports_select_all_shown: Изабери све приказане
+    bulk_reports_select_campaigns: Изаберите кампање
+    bulk_reports_select_campaigns_description: Претражите по имену или пројекту и сузите листу помоћу филтера ознака. Затим означите кампање које желите да укључите.
+    bulk_reports_select_date_range: Изаберите период
+    bulk_reports_select_date_range_description: Укључите само процене завршене у овом распону. Оставите унапред подешене или поставите тачне датуме.
+    bulk_reports_select_languages: Изаберите језике
+    bulk_reports_select_languages_description: Сваки извештај подржава другачији скуп језика. Изаберите барем један језик по извештају. Генерише се на сваком језику који изаберете.
+    bulk_reports_select_reports: Изаберите извештаје
+    bulk_reports_select_reports_description: Сваки изабрани извештај се генерише за сваког кандидата или кампању у извозу, на сваком изабраном језику.
+    bulk_reports_selected_tags_count_one: Ознака %{count} је изабрана
+    bulk_reports_selected_tags_count_other: Изабрано је %{count} ознака
+    bulk_reports_start_date_placeholder: Изаберите датум и време почетка
+    bulk_reports_start_date_required: Молимо вас да изаберете датум почетка.
+    bulk_reports_step_coming_soon: Овај корак ускоро долази.
+    bulk_reports_submit_error: Дошло је до грешке. Молимо вас покушајте поново.
+    bulk_reports_submit_success: Извоз је стављен у ред чекања. Добићете обавештење када преузимање буде спремно.
+    bulk_reports_summary_description: Ажурирања док градите посао
+    bulk_reports_summary_title: Преузми резиме
+    bulk_reports_title: Групни извештаји
+    bulk_reports_view_downloads: Преглед преузимања групних извештаја
+    bulk_reports_year_to_date: Од почетка године
     bulk_upload_ai_artifacts: Bulk Upload AI artefakte
     campaign: Kampanja
     campaign_admin: Administrator kampanje
@@ -378,6 +485,13 @@ sr-Latn:
     campaign_templates_remove_confirm_success: Šablon kampanje '%{name}'' je uspešno uklonjen.
     campaign_templates_remove_confirm_title: Ukloni šablon kampanje
     campaign_user_job_roles_cannot_be_same: Циљна радна улога мора бити различита од тренутне радне улоге.
+    campaign_users_import_uat_hint: Поставите колону UAT на Да за пробне кориснике који треба да буду искључени из лиценцирања, аналитике и вебхукова.
+    campaign_users_uat_description: Означи овог учесника као корисника UAT теста.
+    campaign_users_uat_label: Учесник UAT-а
+    campaign_users_uat_license_non_billable: Ненаплативо
+    campaign_users_uat_locked_hint: Овај учесник већ постоји. Статус UAT-а се подешава када се учесник први пут креира и не може се променити.
+    campaign_users_uat_readonly_hint: Статус UAT-а се подешава при креирању и не може се променити.
+    campaign_users_uat_tooltip: Корисници UAT-а су прави учесници тестирања. Могу полагати тестове нормално, али су искључени из коришћења наплативих лиценци, аналитике и одлазних вебхукова.
     campaigns: Kampanje
     campaigns_convert_to_template: Pretvori u šablon
     campaigns_extend_time_success_message: Tajmer kampanje produžen na %{minutes} minuta
@@ -464,6 +578,7 @@ sr-Latn:
     clients_search_placeholder: Претрага клијента
     closed: Zatvoreno
     code_required: Kod je obavezan
+    collapse_all: Склопи све
     collapse_filters: Spusti filtere
     column_code: Šifra
     column_invitation_status: Status pozivnice
@@ -482,10 +597,130 @@ sr-Latn:
     common_type: Tip
     common_unselect_all: Poništi izbor svih
     communication_center: Centar za komunikaciju
+    communication_center_manage_translations_action: Управљајте преводима
+    communication_center_migration_enqueued: Миграција је стављена у ред чекања. Проверите логове за напредак.
+    communication_center_migration_error: Захтев за миграцију није успео. Молимо покушајте поново или проверите логове.
+    communication_center_migration_modal_intro: 'Следеће промене ће бити примењене када покренете миграцију за овог клијента:'
+    communication_center_migration_modal_title: Преглед миграције комуникационог центра
+    communication_center_migration_preview_button: Преглед миграције
+    communication_center_migration_run_button: Покрени миграцију
+    communication_center_migration_skipped: Већ мигрирано (биће прескочено)
+    communication_center_migration_would_assessments: Процене за миграцију
+    communication_center_migration_would_backfill: Имејлови за попуњавање
+    communication_center_migration_would_cc_users: Корисници кредитних картица за миграцију
+    communication_center_migration_would_migrate: Комуникације за миграцију
+    communication_center_migration_would_users: Изабрани корисници за миграцију
+    communication_center_translation_updated_success: Превод је успешно ажуриран
+    communication_center_translations_modal_title: Управљајте преводима
+    communication_deliveries: Испоруке
+    communication_delivery: Испорука комуникације
+    communication_delivery_assessment_group_label: Група за процену
+    communication_delivery_at_label: Датум и време испоруке
+    communication_delivery_at_past_error: Датум испоруке мора бити у будућности
+    communication_delivery_cancel_action: Откажи
+    communication_delivery_cancel_error: Отказивање испоруке није успело
+    communication_delivery_cc_users_label: Примаоци копије
+    communication_delivery_completion_status_hint: Ако је наведен код завршетка, биће послат само ако корисникова процена има овај код статуса завршетка.
+    communication_delivery_completion_status_label: Код статуса завршетка процене
+    communication_delivery_delay_hours_label: Кашњење (сати)
+    communication_delivery_details_title: Детаљи испоруке
+    communication_delivery_emails_sent_label: Послато
+    communication_delivery_emails_total_label: Укупан број имејлова
+    communication_delivery_end_date_label: Крајњи датум
+    communication_delivery_frequency_daily: Дневно
+    communication_delivery_frequency_label: Учесталост
+    communication_delivery_frequency_specific_weekdays: Одређени радни дани
+    communication_delivery_frequency_weekly: Недељно
+    communication_delivery_interval_number_label: Интервал
+    communication_delivery_interval_period_days: Дани
+    communication_delivery_interval_period_hours: Сати
+    communication_delivery_interval_period_label: Интервални период
+    communication_delivery_interval_period_months: Месеци
+    communication_delivery_interval_period_weeks: Недеље
+    communication_delivery_new_button: Нова испорука
+    communication_delivery_recipients_all: Сви учесници
+    communication_delivery_recipients_label: Примаоци
+    communication_delivery_recipients_new_assignment: Нови задатак
+    communication_delivery_recipients_new_users: Нови корисници
+    communication_delivery_recipients_selected: Одабрани учесници
+    communication_delivery_rule_in_progress: У току
+    communication_delivery_rule_label: Правило испоруке
+    communication_delivery_rule_not_completed: Није завршено
+    communication_delivery_rule_not_started: Није започето
+    communication_delivery_rule_send_now: Пошаљи сада
+    communication_delivery_rule_specific_datetime: Тачан датум и време
+    communication_delivery_search_users_placeholder: Претрага по имену или имејлу
+    communication_delivery_selected_assessments_label: Процене
+    communication_delivery_selected_users_label: Изаберите кориснике
+    communication_delivery_start_date_label: Датум почетка
+    communication_delivery_template_label: Шаблон
+    communication_delivery_time_of_day_label: Доба дана
+    communication_delivery_timezone_label: Временска зона
+    communication_delivery_trigger_type_label: Тип окидача
+    communication_delivery_trigger_type_manual: Ручно
+    communication_delivery_trigger_type_scheduled: Заказано
+    communication_delivery_weekday_fri: Петак
+    communication_delivery_weekday_mon: Понедељак
+    communication_delivery_weekday_sat: Субота
+    communication_delivery_weekday_sun: Недеља
+    communication_delivery_weekday_thu: Четвртак
+    communication_delivery_weekday_tue: Уторак
+    communication_delivery_weekday_wed: Среда
+    communication_delivery_weekdays_label: Радним данима
+    communication_email_created_at_label: Направљено у
+    communication_email_not_sent: Није послато
+    communication_email_preview_action: Преглед
+    communication_email_preview_date_label: Датум
+    communication_email_preview_from_label: Од
+    communication_email_preview_title: Преглед имејла
+    communication_email_preview_to_label: До
+    communication_email_preview_warning: Ово је поново приказани преглед шаблона и можда не одражава тачан садржај имејла који је заправо послат.
+    communication_email_recipient_email_label: Имејл примаоца
+    communication_email_recipient_name_label: Име примаоца
+    communication_email_retrigger_action: Поново покрени
+    communication_email_retrigger_error: Поновно покретање имејла није успело
+    communication_email_sent_at_label: Послато у
+    communication_email_status_label: Статус
+    communication_email_subject_label: Предмет
+    communication_emails: Имејлови
+    communication_template: Шаблон за комуникацију
+    communication_template_body_label: Порука
+    communication_template_create_new_action: Направи ново
+    communication_template_kind_label: Тип комуникације
+    communication_template_level_campaign: Кампања
+    communication_template_level_client: Клијент
+    communication_template_level_platform: Платформа
+    communication_template_level_project: Пројекат
+    communication_template_name_label: Назив шаблона
+    communication_template_new_button: Нови шаблон
+    communication_template_override_inherited_action: Замени наслеђено
+    communication_template_override_picker_search_placeholder: Претражите шаблоне за замену
+    communication_template_override_picker_title: Замени наслеђени шаблон
+    communication_template_recipients_all: Сви
+    communication_template_recipients_label: Подразумевани примаоци
+    communication_template_recipients_new_assignment: Нови задатак
+    communication_template_recipients_new_users: Нови корисници
+    communication_template_recipients_selected: Изабрано
+    communication_template_source_created: Креирано
+    communication_template_source_label: Извор
+    communication_template_source_override_of: Преписивање %{level}
+    communication_template_status_active: Активно
+    communication_template_status_archived: Архивирано
+    communication_template_status_draft: Нацрт
+    communication_template_status_label: Статус
+    communication_template_subject_label: Предмет
+    communication_templates: Шаблони
     communications: Komunikacije
     communications_form_insert_piped_text: Umetni cevni tekst
+    competency_indicator: Компетенција / Индикатор
     completed: Dovršeno
     completed_tooltip: Svi evaluatori su dostavili ocenu
+    completion_recipients_all: Сви предмети
+    completion_recipients_list: 'Листа прималаца:'
+    completion_recipients_selected: Одабрани предмети
+    completion_recipients_selected_admins: Изабрани администратори
+    completion_recipients_selected_assessors: Изабрани проценитељи
+    completion_recipients_selected_assessors_hint: Само ће оцењивач додељен повезаном обрасцу за оцењивање испитаника који је попунио пријаву бити послат имејлом, чак и ако су други оцењивачи изабрани горе.
     components_input_duration_placeholder: Unesi kao '1d 2h 3m'
     concise: Сажето
     condition_sets: Скупovi стања
@@ -692,6 +927,8 @@ sr-Latn:
     disable_proctoring: Онемогућите надзор
     disable_report_download: Onemogući preuzimanje izveštaja
     disable_transcript_download: Онемогући преузимање транскрипта
+    disable_webhooks: Онемогући вебхукове
+    disable_webhooks_hint: Када је ово укључено, клијенту се не шаљу вебхук или догађаји низводне интеграције за ову кампању, без обзира на тип учесника. Само супер администратори могу ово да промене.
     disallow_lead_assessor_moderation: Забрани посредовање водећег процењивача
     disallow_lead_assessor_moderation_info: Резултат ће бити аутоматски израчунат на основу свих поднетих формулара процењивача, а водећи процењивач га не може променити са екрана за модерацију.
     discard_all_questions: Ресетовати сва питања
@@ -790,6 +1027,7 @@ sr-Latn:
     evaluator_welcome_name: Evaluator je dobrodošao
     evaluators_title: Evaluatori
     evidence_from_transcript: Докази из транскрипта
+    expand_all: Прошири све
     expand_filters: Proširi filtere
     export_admin_roles_permissions: Uloge administratora i izvoz dozvola
     export_admins_with_permissions: Uloge administratora i izvoz dozvola
@@ -850,6 +1088,7 @@ sr-Latn:
     feature_not_available: Ова функција није доступна
     feature_sms_notification_description: Омогућите СМС обавештења за позиве и подсетнике кампање
     feature_superadmin_tenant_scoping_description: Када је онемогућено, упити суперадминистратора неће бити ограничени на податке овог клијента
+    feature_use_new_communication_center_description: Користите само нови Комуникациони центар за овог клијента и престаните са слањем застарелих комуникација
     fields_level: Nivo
     fields_level_description: Opis nivoa
     fields_level_name: Ime nivoa
@@ -1395,6 +1634,7 @@ sr-Latn:
     model_params_thinking_effort_none: Ниједан
     model_params_thinking_effort_tooltip: Контролише колико резоновања модел примењује пре него што одговори. Већи напор даје темељније одговоре, али траје дуже. Користите „Ништа“ да бисте потпуно онемогућили резоновање.
     model_params_title: Напредна конфигурација модела
+    moderate_scoring_lead_assessor_form: Образац за водећег проценитеља
     must_be_a_valid_url: Неважећи УРЛ. Наведите потпуни УРЛ са протоколом http или https.
     name: Име
     name_max_length: Име не смеје бити дуže од %{length} карактера
@@ -1407,6 +1647,24 @@ sr-Latn:
     navigation_registration_codes: Registracioni kodovi
     navigation_skills_taxonomy: Taksonomija veština
     navigation_users: Korisnici
+    new_experience_badge: Ново искуство
+    new_experience_bullet_brief_rest: Смернице за компетенције остају на екрану док оцењујете.
+    new_experience_bullet_brief_strong: Кратак опис поред вашег бодовања
+    new_experience_bullet_candidate_rest: сваки образац за процену за тог кандидата, заједно.
+    new_experience_bullet_candidate_strong: Један кандидат, једно мишљење
+    new_experience_bullet_moderation_rest: сваки резултат процењивача упоредо, један коначни позив.
+    new_experience_bullet_moderation_strong: Модерација у минутима
+    new_experience_footer_note: Ново искуство ускоро постаје подразумевано за све. Увек можете да пређете на Ново искуство из детаља свог профила.
+    new_experience_headline: Један ток, од првог прегледа до коначног одобрења.
+    new_experience_notice_body: Редизајнирали смо искуство процењивача. Можете га испробати сада или га омогућити касније у подешавањима профила.
+    new_experience_notice_maybe_later: Можда касније
+    new_experience_notice_title: Доступно ново искуство проценитеља
+    new_experience_preview_alt: Преглед новог искуства за процењиваче
+    new_experience_sub_copy: Кандидат, евалуација, модерација и центар за процену сада функционишу као један повезани приказ, а не као пет екрана које сами држите заједно.
+    new_experience_word_assessment_centre: Центар за процену Водите сесију и пратите сваки предмет.
+    new_experience_word_candidate: Кандидат Један кандидат, све њихове процене заједно.
+    new_experience_word_evaluate: Процените бриф и своје бодовање, упоредо.
+    new_experience_word_moderate: Умерено Сваки процењивач бодује, једна последња одлука.
     new_folder: Нова фасцикла
     new_score: Нова оцена
     no_assessments_found: Revizija ID
@@ -1567,6 +1825,7 @@ sr-Latn:
         manage_messages: Upravljanje porukama
         manage_options: Upravljanje opcijama
         manage_report_approvals: Upravljanje odobrenjima izveštaja
+        manage_uat: Управљање UAT корисницима
         manage_users: Upravljanje korisnicima
         participant_options: Opcije učesnika
         report_options: Opcije izveštaja
@@ -1895,6 +2154,7 @@ sr-Latn:
         title: Podešavanja registracije
       reports:
         manage: Upravljanje
+        project_bulk_reports: Групни извештаји о пројекту
         title: Izveštaji
         view: Prikaz
       responseMeta:
@@ -2052,6 +2312,7 @@ sr-Latn:
     project_admins: Administratori projekta
     project_assessor: Пројектни процењивач
     project_features: Karakteristike projekta
+    project_id: ИД пројекта
     project_ids: ИД пројеката
     project_ids_required: project_ids је обавезан за овај тип извештаја.
     project_licenses: Пројектне лиценце
@@ -2111,6 +2372,7 @@ sr-Latn:
     projects_form_project_number: Broj projekta
     projects_form_subdomain: Poddomen
     projects_form_title: Projekat
+    projects_general_settings_allow_data_access_to_bi: Дозволите приступ Powerbi-ју за овај пројекат
     projects_general_settings_live_chat: Omogućite ćaskanje uživo
     projects_general_settings_locales_label: Lokali
     projects_general_settings_project_number_label: Broj projekta
@@ -2355,6 +2617,7 @@ sr-Latn:
     report_on_hold: Izveštaj za %{user} je trenutno na čekanju
     report_owner: Власник
     report_pdf_status: Пријави статус PDF-а
+    report_pdf_unavailable: ПДФ за овај извештај још увек није доступан.
     report_review_abort_qc: Prekini QC
     report_review_approve: Odobri
     report_review_approve_changes: Odobri izmene
@@ -2722,6 +2985,7 @@ sr-Latn:
     scoring_approval_score_approvals: АИ оцењивање одобрења
     scoring_assessment: Procena
     scoring_assessment_scoring_type: Tip procene bodovanja
+    scoring_assessor_number: Проценитељ %{number}
     scoring_average: Prosečno
     scoring_campaign_scoring_variables: Varijable bodovanja kampanje
     scoring_desc: Prekoračili ste maksimalnu granicu od %{n} faktora kampanje. Dodatni faktori se ne mogu dodati. Molimo vas da pregledate i upravljate postojećim faktorima pre nego što nastavite.
@@ -3107,15 +3371,19 @@ sr-Latn:
     status_details: Detalji o statusu
     statuses_accepted: Prihvatio
     statuses_cancelled: Otkazano
+    statuses_failed: Неуспешно
     statuses_late_cancelled: Kasno otkazano
     statuses_late_rescheduled: Kasno prebačeno
     statuses_pending: Neobrađeno
+    statuses_queued: У реду чекања
     statuses_requested_cancellation: Traženo otkazivanje
     statuses_requested_cancellation_rejected: Otkazivanje odbijeno
     statuses_requested_rescheduling: Traženo ponovno zakazivanje
     statuses_requested_rescheduling_rejected: Ponovno zakazivanje odbijeno
     statuses_rescheduled: Ponovno zakazano
     statuses_scheduled: Planirano
+    statuses_sent: Послато
+    statuses_skipped: Прескочено
     steps_basic_information: Osnovne informacije
     steps_facilitators: Facilitatori
     steps_invite_options: Opcije pozivanja
@@ -3321,6 +3589,7 @@ sr-Latn:
     url_label: URL
     url_name: URL
     url_whitelisting: Стављање URL-ова на белу листу
+    use_new_communication_center: Користите нови комуникациони центар
     used_tokens_input_tokens: Ulazni tokeni
     used_tokens_output_tokens: Izlazni tokeni
     used_tokens_thinking_tokens: Токени за размишљање

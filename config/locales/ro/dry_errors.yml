@@ -36,6 +36,8 @@ ro:
         ai_assisted_idp_feature_error: Nu poate fi adevărat dacă funcția AI Assistants este dezactivată
       client_sso_settings:
         sso_enforced_requires_enabled: Nu poate fi activată fără ca SSO să fie activat
+      communication_center:
+        invalid_locale: nu este o setare regională acceptată
       create_superadmin:
         uniq_email: E-mailul ar trebui să fie unic.
       development_actions:

@@ -218,6 +218,15 @@ ko:
     assessor_assessments_reset_successfully: '"%{subjectEmail}" 이메일의 주제에 대한 평가 재설정에 성공했습니다.'
     assessor_assessments_subject_email: 제목 이메일
     assessor_assessments_subject_name: 제목 이름
+    assessor_campaign_users_awaiting_moderation: 검토 대기 중
+    assessor_campaign_users_awaiting_moderation_subtitle: 통합 준비 완료
+    assessor_campaign_users_candidates_subtitle: 당신에게 배정되었습니다
+    assessor_campaign_users_completed: 완전한
+    assessor_campaign_users_completed_subtitle: 서명 완료
+    assessor_campaign_users_in_progress: 진행 중
+    assessor_campaign_users_in_progress_subtitle: 평가 중
+    assessor_campaign_users_not_started: 시작 안 함
+    assessor_campaign_users_not_started_subtitle: 평가
     assessor_campaigns_statuses_completed: 완료
     assessor_campaigns_statuses_in_progress: 진행 중
     assessor_campaigns_statuses_not_started: 시작되지 않음
@@ -226,6 +235,20 @@ ko:
     assessor_create_assessor: 평가자 추가
     assessor_dashboard: 평가자 대시보드
     assessor_email: 평가자 이메일
+    assessor_evaluation: 평가자 평가
+    assessor_evaluation_by_campaign: 캠페인을 통해
+    assessor_evaluation_by_participant: 참가자 작성
+    assessor_evaluation_candidate: 후보자
+    assessor_evaluation_candidates: 후보자들
+    assessor_evaluation_completed: 평가 완료
+    assessor_evaluation_date_range: 시작일 – 종료일
+    assessor_evaluation_moderation_waiting: 중재 대기 중
+    assessor_evaluation_tour_profile_description: 여기에서 계정, 역할, 언어 및 새로운 환경 활성화 여부를 확인할 수 있습니다. 세부 정보를 확인하려면 열어보시고, 로그아웃하려면 로그아웃하세요.
+    assessor_evaluation_tour_profile_title: 내 프로필 및 설정
+    assessor_evaluation_tour_table_description: 아무 행이나 열어서 평가 내용을 확인한 다음, 답변을 평가하거나 최종 점수를 조정할 수 있습니다.
+    assessor_evaluation_tour_table_title: 후보자를 선택하세요
+    assessor_evaluation_tour_tabs_description: 참가자별(한 번에 한 명씩)과 캠페인별 보기 모드를 전환할 수 있습니다.
+    assessor_evaluation_tour_tabs_title: 두 가지 작업 방식
     assessor_evaluations: 평가자 평가
     assessor_first_name: 평가자 이름
     assessor_form: 평가자 양식
@@ -233,13 +256,24 @@ ko:
     assessor_last_name: 평가자 성
     assessor_modals_import_body: 여기에서 가져오기에 사용할 수 있는 템플릿을 추출하려면 내보내기 기능을 참조하세요.
     assessor_modals_import_title: 평가자 가져오기
+    assessor_new_experience: 새로운 경험
     assessor_overview: 개요
     assessor_placeholder: 검색 평가자...
     assessor_remove_confirmation: 이메일 %{email}을 사용하는 평가자를 이 캠페인에서 제거하시겠습니까?
     assessor_remove_has_evaluations: 이 평가자에게는 %{evaluation_count}개의 평가 양식이 배정되었습니다. 이 평가자가 작성한 모든 평가는 삭제됩니다.
     assessor_remove_in_assessment_centers: 이 평가자는 %{workshop_count}개의 평가 센터에 소속되어 있습니다. 진행하면 모든 평가 센터에서 제외됩니다.
+    assessor_switch_to_classic: 클래식으로 전환
     assessor_toolbar_export: 내보내기 평가자
     assessor_toolbar_import: 평가자 가져오기
+    assessor_tour_button: 관광
+    assessor_try_new_experience: 새로운 경험을 해보세요
+    assessor_user_assessment_name: 평가 명칭
+    assessor_user_candidate_id: 후보자 ID
+    assessor_user_evaluate: 평가하다
+    assessor_user_evaluation: 평가
+    assessor_user_evaluation_progress: 평가 진행 상황
+    assessor_user_moderate: 보통 점수
+    assessor_user_moderation: 절도
     assessor_workshops: 평가 센터
     assessors: 평가자
     assistant_toolbar_failed: 여러 번 시도한 후에도 유효한 출력을 생성하지 못했습니다.
@@ -307,6 +341,79 @@ ko:
     bulk_assets_modal_title: CSV 및 ZIP 파일 업로드
     bulk_export_assessments_file: 일괄 과세 내역 내보내기 파일
     bulk_export_invalid_params: 잘못된 일괄 내보내기 매개변수
+    bulk_reports: 대량 보고서
+    bulk_reports_all_of_year: "%{year}의 모든 것"
+    bulk_reports_all_tags: 모든 태그
+    bulk_reports_bundled_into_single: 하나의 묶음으로
+    bulk_reports_campaign_count_one: "%{count} 캠페인"
+    bulk_reports_campaign_count_other: "%{count} 캠페인"
+    bulk_reports_campaign_search_placeholder: 검색 캠페인 또는 프로젝트...
+    bulk_reports_campaigns_shown_count: "%{selected} 선택됨 - %{shown} 표시됨"
+    bulk_reports_campaigns_without_reports_warning: '보고서가 구성되지 않은 선택된 캠페인: %{count}. 해당 캠페인은 건너뛰게 됩니다.'
+    bulk_reports_candidate_abbreviation: 후보자
+    bulk_reports_complete_every_step: 활성화하려면 모든 단계를 완료하세요.
+    bulk_reports_date_range_required: 계속 진행하려면 시작일과 종료일 모두 입력해야 합니다.
+    bulk_reports_date_range_summary: "%{start}부터 %{end}까지 완료된 평가가 포함됩니다."
+    bulk_reports_description: 여러 캠페인에 걸쳐 하나의 내보내기 작업을 생성하세요. 캠페인을 선택하고, 포함할 보고서와 언어를 선택하고, 날짜 범위를 설정한 다음 제출하세요.
+    bulk_reports_deselect_all_shown: 표시된 항목 모두 선택 해제
+    bulk_reports_download_notification_sent: 다운로드 알림이 전송되었습니다.
+    bulk_reports_emailed_when_ready: 준비가 완료되면 이메일로 보내드리겠습니다.
+    bulk_reports_end_date_placeholder: 종료 날짜와 시간을 선택하세요
+    bulk_reports_end_date_required: 종료일을 선택해 주세요.
+    bulk_reports_error_try_again: 오류입니다. 다시 시도해 주세요.
+    bulk_reports_files_estimated_across: 파일 추정치 전체
+    bulk_reports_files_pending: 작업이 완료되면 파일이 여기에 나타납니다.
+    bulk_reports_generate_export: 내보내기 생성
+    bulk_reports_invalid_date_range: 종료일은 시작일과 같거나 그 이후여야 합니다.
+    bulk_reports_job_details_title: '작업 #%{id}'
+    bulk_reports_job_not_found: 해당 채용 공고를 찾을 수 없습니다.
+    bulk_reports_job_queued: 작업 대기 중
+    bulk_reports_languages_progress_one: "%{done} of %{total} 보고서 세트"
+    bulk_reports_languages_progress_other: "%{total}의 %{done}이 보고서 세트로 설정되었습니다."
+    bulk_reports_languages_set_for_all_one: 모든 %{count} 보고서에 대한 설정
+    bulk_reports_languages_set_for_all_other: 모든 %{count} 보고서에 대해 설정됨
+    bulk_reports_last_30_days: 지난 30일
+    bulk_reports_last_90_days: 지난 90일
+    bulk_reports_no_campaigns_found: 이 프로젝트에 대한 캠페인을 찾을 수 없습니다.
+    bulk_reports_no_campaigns_match_filters: 검색 또는 태그 필터와 일치하는 캠페인이 없습니다.
+    bulk_reports_no_campaigns_selected: 선택된 캠페인이 없습니다
+    bulk_reports_no_files_yet: 해당 작업에 필요한 파일이 아직 준비되지 않았습니다.
+    bulk_reports_no_language_selected: 선택된 언어 없음
+    bulk_reports_no_languages_available: 이 보고서는 특정 언어로 제공되지 않습니다.
+    bulk_reports_no_reports_configured: 선택한 캠페인 중 보고서가 구성된 캠페인이 없습니다. 캠페인 구성을 다시 확인하세요.
+    bulk_reports_no_reports_selected: 선택된 보고서가 없습니다.
+    bulk_reports_no_reports_selected_for_languages: 선택된 보고서가 없습니다. 돌아가서 보고서를 하나 이상 선택하세요.
+    bulk_reports_no_tags_found: 태그를 찾을 수 없습니다.
+    bulk_reports_none_selected: 선택된 항목 없음
+    bulk_reports_queued_by: 대기열에 추가됨
+    bulk_reports_queuing_jobs: 작업 대기열...
+    bulk_reports_ready_to_generate: 생성 준비 완료
+    bulk_reports_report_count_one: "%{count} 보고서"
+    bulk_reports_report_count_other: "%{count}이 보고합니다"
+    bulk_reports_reports_and_languages: 보고서 및 언어
+    bulk_reports_review_submit: 검토 후 제출
+    bulk_reports_review_submit_description: 아래 작업을 확인하세요. 언제든지 이전 단계로 돌아가서 변경할 수 있습니다.
+    bulk_reports_select_all_shown: 표시된 모든 항목을 선택하세요
+    bulk_reports_select_campaigns: 캠페인을 선택하세요
+    bulk_reports_select_campaigns_description: 이름이나 프로젝트로 검색하고 태그 필터를 사용하여 목록을 좁히세요. 그런 다음 포함할 캠페인을 선택하세요.
+    bulk_reports_select_date_range: 날짜 범위를 선택하세요
+    bulk_reports_select_date_range_description: 이 범위 내에서 완료된 평가만 포함하세요. 미리 설정된 날짜를 사용하거나 정확한 날짜를 설정하세요.
+    bulk_reports_select_languages: 언어를 선택하세요
+    bulk_reports_select_languages_description: 각 보고서는 서로 다른 언어 세트를 지원합니다. 보고서당 최소 하나 이상의 언어를 선택하세요. 선택하신 모든 언어로 보고서가 생성됩니다.
+    bulk_reports_select_reports: 보고서를 선택하세요
+    bulk_reports_select_reports_description: 선택한 보고서는 내보내기에 포함된 모든 후보자 또는 캠페인에 대해 선택한 모든 언어로 생성됩니다.
+    bulk_reports_selected_tags_count_one: "%{count} 태그가 선택되었습니다"
+    bulk_reports_selected_tags_count_other: "%{count}개의 태그가 선택되었습니다"
+    bulk_reports_start_date_placeholder: 시작 날짜와 시간을 선택하세요
+    bulk_reports_start_date_required: 시작일을 선택해 주세요.
+    bulk_reports_step_coming_soon: 이 기능은 곧 출시될 예정입니다.
+    bulk_reports_submit_error: 오류가 발생했습니다. 다시 시도해 주세요.
+    bulk_reports_submit_success: 내보내기 작업이 대기열에 추가되었습니다. 다운로드가 완료되면 알림을 받게 됩니다.
+    bulk_reports_summary_description: 작업을 진행하면서 업데이트됩니다.
+    bulk_reports_summary_title: 다운로드 요약
+    bulk_reports_title: 대량 보고서
+    bulk_reports_view_downloads: 일괄 보고서 다운로드 보기
+    bulk_reports_year_to_date: 올해 현재까지
     bulk_upload_ai_artifacts: 대량 업로드 AI 아티팩트
     campaign: 캠페인
     campaign_admin: 캠페인 관리자
@@ -378,6 +485,13 @@ ko:
     campaign_templates_remove_confirm_success: 캠패인 템플릿 '%{name}''을 성공적으로 제거했습니다.
     campaign_templates_remove_confirm_title: 캠페인 템플릿 제거
     campaign_user_job_roles_cannot_be_same: 지원 직무는 현재 직무와 달라야 합니다.
+    campaign_users_import_uat_hint: 라이선스, 분석 및 웹훅에서 제외해야 하는 테스트 사용자의 경우 UAT 열을 '예'로 설정하십시오.
+    campaign_users_uat_description: 이 참가자를 UAT 테스트 사용자로 표시하세요.
+    campaign_users_uat_label: UAT 참가자
+    campaign_users_uat_license_non_billable: 청구 불가
+    campaign_users_uat_locked_hint: 이 참가자는 이미 존재합니다. UAT 상태는 참가자가 처음 생성될 때 설정되며 변경할 수 없습니다.
+    campaign_users_uat_readonly_hint: UAT 상태는 생성 시 설정되며 변경할 수 없습니다.
+    campaign_users_uat_tooltip: UAT 사용자는 실제 테스트 참여자입니다. 이들은 정상적으로 평가에 참여할 수 있지만, 유료 라이선스 사용, 분석 및 아웃바운드 웹훅에서는 제외됩니다.
     campaigns: 캠페인
     campaigns_convert_to_template: 템플릿으로 변환
     campaigns_extend_time_success_message: 캠페인 타이머가 %{minutes}분으로 연장되었습니다
@@ -464,6 +578,7 @@ ko:
     clients_search_placeholder: 클라이언트 검색
     closed: 닫힘
     code_required: 코드 필요
+    collapse_all: 모두 접기
     collapse_filters: 필터 축소
     column_code: 코드
     column_invitation_status: 초대 상태
@@ -482,10 +597,130 @@ ko:
     common_type: 유형
     common_unselect_all: 모두 선택 취소
     communication_center: 커뮤니케이션 센터
+    communication_center_manage_translations_action: 번역 관리
+    communication_center_migration_enqueued: 마이그레이션 작업이 대기열에 추가되었습니다. 진행 상황은 로그를 확인하세요.
+    communication_center_migration_error: 마이그레이션 요청이 실패했습니다. 다시 시도하거나 로그를 확인하십시오.
+    communication_center_migration_modal_intro: 이 클라이언트에 대한 마이그레이션을 실행하면 다음과 같은 변경 사항이 적용됩니다.
+    communication_center_migration_modal_title: 커뮤니케이션 센터 마이그레이션 미리보기
+    communication_center_migration_preview_button: 마이그레이션 미리보기
+    communication_center_migration_run_button: 마이그레이션 실행
+    communication_center_migration_skipped: 이미 이전되었으므로 (건너뛰겠습니다)
+    communication_center_migration_would_assessments: 평가 및 마이그레이션
+    communication_center_migration_would_backfill: 누락된 이메일을 채우기 위해
+    communication_center_migration_would_cc_users: CC 사용자 마이그레이션
+    communication_center_migration_would_migrate: 커뮤니케이션을 통해 이주
+    communication_center_migration_would_users: 마이그레이션할 사용자 선택
+    communication_center_translation_updated_success: 번역이 성공적으로 업데이트되었습니다.
+    communication_center_translations_modal_title: 번역 관리
+    communication_deliveries: 배송
+    communication_delivery: 의사소통 전달
+    communication_delivery_assessment_group_label: 평가 그룹
+    communication_delivery_at_label: 배송 날짜 및 시간
+    communication_delivery_at_past_error: 배송일은 미래 날짜여야 합니다.
+    communication_delivery_cancel_action: 취소
+    communication_delivery_cancel_error: 배송 취소에 실패했습니다
+    communication_delivery_cc_users_label: CC 수신자
+    communication_delivery_completion_status_hint: 완료 코드가 지정된 경우, 해당 사용자의 평가에 이 완료 상태 코드가 있는 경우에만 전송됩니다.
+    communication_delivery_completion_status_label: 평가 완료 상태 코드
+    communication_delivery_delay_hours_label: 지연 시간(시간)
+    communication_delivery_details_title: 배송 정보
+    communication_delivery_emails_sent_label: 전송된
+    communication_delivery_emails_total_label: 총 이메일 수
+    communication_delivery_end_date_label: 종료일
+    communication_delivery_frequency_daily: 일일
+    communication_delivery_frequency_label: 빈도
+    communication_delivery_frequency_specific_weekdays: 특정 요일
+    communication_delivery_frequency_weekly: 주간
+    communication_delivery_interval_number_label: 간격
+    communication_delivery_interval_period_days: 날
+    communication_delivery_interval_period_hours: 영업시간
+    communication_delivery_interval_period_label: 간격 기간
+    communication_delivery_interval_period_months: 개월
+    communication_delivery_interval_period_weeks: 몇 주
+    communication_delivery_new_button: 새로운 배송
+    communication_delivery_recipients_all: 모든 참가자
+    communication_delivery_recipients_label: 수혜자
+    communication_delivery_recipients_new_assignment: 새로운 임무
+    communication_delivery_recipients_new_users: 신규 사용자
+    communication_delivery_recipients_selected: 선정된 참가자들
+    communication_delivery_rule_in_progress: 진행 중
+    communication_delivery_rule_label: 배송 규칙
+    communication_delivery_rule_not_completed: 미완료
+    communication_delivery_rule_not_started: 시작 안 함
+    communication_delivery_rule_send_now: 지금 보내기
+    communication_delivery_rule_specific_datetime: 특정 날짜 및 시간
+    communication_delivery_search_users_placeholder: 이름 또는 이메일로 검색하세요
+    communication_delivery_selected_assessments_label: 평가
+    communication_delivery_selected_users_label: 사용자 선택
+    communication_delivery_start_date_label: 시작일
+    communication_delivery_template_label: 주형
+    communication_delivery_time_of_day_label: 하루 중 시간대
+    communication_delivery_timezone_label: 시간대
+    communication_delivery_trigger_type_label: 트리거 유형
+    communication_delivery_trigger_type_manual: 수동
+    communication_delivery_trigger_type_scheduled: 예정된
+    communication_delivery_weekday_fri: 금요일
+    communication_delivery_weekday_mon: 월요일
+    communication_delivery_weekday_sat: 토요일
+    communication_delivery_weekday_sun: 일요일
+    communication_delivery_weekday_thu: 목요일
+    communication_delivery_weekday_tue: 화요일
+    communication_delivery_weekday_wed: 수요일
+    communication_delivery_weekdays_label: 평일
+    communication_email_created_at_label: '생성일:'
+    communication_email_not_sent: 전송되지 않음
+    communication_email_preview_action: 시사
+    communication_email_preview_date_label: 날짜
+    communication_email_preview_from_label: 에서
+    communication_email_preview_title: 이메일 미리보기
+    communication_email_preview_to_label: 에게
+    communication_email_preview_warning: 이 이미지는 템플릿을 다시 렌더링한 미리보기 이미지이며, 실제로 전송된 이메일의 내용과 정확히 일치하지 않을 수 있습니다.
+    communication_email_recipient_email_label: 수신자 이메일
+    communication_email_recipient_name_label: 수신자 이름
+    communication_email_retrigger_action: 재방아쇠
+    communication_email_retrigger_error: 이메일 재전송에 실패했습니다.
+    communication_email_sent_at_label: 보낸 날짜
+    communication_email_status_label: 상태
+    communication_email_subject_label: 주제
+    communication_emails: 이메일
+    communication_template: 커뮤니케이션 템플릿
+    communication_template_body_label: 메시지
+    communication_template_create_new_action: 새 항목 생성
+    communication_template_kind_label: 통신 유형
+    communication_template_level_campaign: 운동
+    communication_template_level_client: 고객
+    communication_template_level_platform: 플랫폼
+    communication_template_level_project: 프로젝트
+    communication_template_name_label: 템플릿 이름
+    communication_template_new_button: 새 템플릿
+    communication_template_override_inherited_action: 상속됨을 재정의합니다.
+    communication_template_override_picker_search_placeholder: 검색 템플릿을 재정의합니다.
+    communication_template_override_picker_title: 상속된 템플릿을 재정의합니다
+    communication_template_recipients_all: 모두
+    communication_template_recipients_label: 기본 수신자
+    communication_template_recipients_new_assignment: 새로운 임무
+    communication_template_recipients_new_users: 신규 사용자
+    communication_template_recipients_selected: 선택된
+    communication_template_source_created: 생성됨
+    communication_template_source_label: 원천
+    communication_template_source_override_of: "%{level} 재정의"
+    communication_template_status_active: 활동적인
+    communication_template_status_archived: 보관됨
+    communication_template_status_draft: 초안
+    communication_template_status_label: 상태
+    communication_template_subject_label: 주제
+    communication_templates: 템플릿
     communications: 커뮤니케이션
     communications_form_insert_piped_text: 파이프 텍스트 삽입
+    competency_indicator: 역량/지표
     completed: 완료
     completed_tooltip: 모든 평가자가 평가를 제출했습니다
+    completion_recipients_all: 모든 과목
+    completion_recipients_list: '수신자 목록:'
+    completion_recipients_selected: 선택된 과목
+    completion_recipients_selected_admins: 선택된 관리자
+    completion_recipients_selected_assessors: 선정된 평가자
+    completion_recipients_selected_assessors_hint: 위에서 다른 평가자를 선택했더라도, 과제 완료 시 연결된 평가자 양식에 지정된 평가자에게만 이메일이 발송됩니다.
     components_input_duration_placeholder: 1일 2시간 3분 으로 입력합니다
     concise: 간결한
     condition_sets: 조건 집합
@@ -692,6 +927,8 @@ ko:
     disable_proctoring: 감독 기능 비활성화
     disable_report_download: 보고서 다운로드 비활성화
     disable_transcript_download: 성적 증명서 다운로드 비활성화
+    disable_webhooks: 웹훅 비활성화
+    disable_webhooks_hint: 이 옵션을 켜면 참가자 유형에 관계없이 해당 캠페인에 대한 웹훅 또는 하위 통합 이벤트가 클라이언트로 전송되지 않습니다. 이 설정은 최고 관리자만 변경할 수 있습니다.
     disallow_lead_assessor_moderation: 주 심사위원의 검토 기능 비활성화
     disallow_lead_assessor_moderation_info: 점수는 모든 평가자 양식 제출 내용을 바탕으로 자동 산출되며, 주 평가자는 검토 화면에서 이를 변경할 수 없습니다.
     discard_all_questions: 모든 질문 재설정
@@ -790,6 +1027,7 @@ ko:
     evaluator_welcome_name: 평가자 환영
     evaluators_title: 평가자
     evidence_from_transcript: 기록물 증거
+    expand_all: 모두 펼치기
     expand_filters: 필터 확장
     export_admin_roles_permissions: 관리자 역할 및 권한 내보내기
     export_admins_with_permissions: 관리자 역할 및 권한 내보내기
@@ -850,6 +1088,7 @@ ko:
     feature_not_available: 이 기능은 사용할 수 없습니다
     feature_sms_notification_description: 캠페인 초대 및 알림에 대한 SMS 알림 활성화
     feature_superadmin_tenant_scoping_description: 이 기능을 비활성화하면 최고 관리자 권한으로 실행하는 쿼리는 해당 클라이언트의 데이터로 제한되지 않습니다.
+    feature_use_new_communication_center_description: 이 고객에게는 새로운 커뮤니케이션 센터만 사용하고 기존 방식의 커뮤니케이션은 더 이상 보내지 마십시오.
     fields_level: 레벨
     fields_level_description: 레벨 설명
     fields_level_name: 레벨 이름
@@ -1395,6 +1634,7 @@ ko:
     model_params_thinking_effort_none: 없음
     model_params_thinking_effort_tooltip: 모델이 응답하기 전에 적용하는 추론 수준을 조절합니다. 추론 수준이 높을수록 더 자세한 답변을 제공하지만 시간이 더 오래 걸립니다. '없음'을 선택하면 추론 기능이 완전히 비활성화됩니다.
     model_params_title: 고급 모델 구성
+    moderate_scoring_lead_assessor_form: 수석 평가자 양식
     must_be_a_valid_url: URL이 잘못되었습니다. http 또는 https 프로토콜이 포함된 전체 URL을 입력해 주세요.
     name: 이름
     name_max_length: 이름은 %{length}자를 초과할 수 없습니다.
@@ -1407,6 +1647,24 @@ ko:
     navigation_registration_codes: 등록 코드
     navigation_skills_taxonomy: 기술 분류
     navigation_users: 사용자
+    new_experience_badge: 새로운 경험
+    new_experience_bullet_brief_rest: 평가하는 동안 역량 관련 안내가 화면에 계속 표시됩니다.
+    new_experience_bullet_brief_strong: 점수 옆에 있는 요약 정보
+    new_experience_bullet_candidate_rest: 해당 후보자에 대한 모든 평가자 양식을 함께 제출합니다.
+    new_experience_bullet_candidate_strong: 한 후보, 하나의 견해
+    new_experience_bullet_moderation_rest: 모든 평가자의 점수를 나란히 놓고 최종 결정을 내립니다.
+    new_experience_bullet_moderation_strong: 중재 시간(분)
+    new_experience_footer_note: 새로운 환경은 곧 모든 사용자에게 기본 설정으로 적용됩니다. 프로필 정보에서 언제든지 새로운 환경으로 전환할 수 있습니다.
+    new_experience_headline: 최초 검토부터 최종 승인까지 하나의 흐름으로 진행됩니다.
+    new_experience_notice_body: 평가자 환경을 새롭게 디자인했습니다. 지금 바로 사용해 보시거나, 나중에 프로필 설정에서 활성화하실 수 있습니다.
+    new_experience_notice_maybe_later: 나중에
+    new_experience_notice_title: 신규 평가사 경력직 채용 공고
+    new_experience_preview_alt: 새로운 평가자 경험 미리보기
+    new_experience_sub_copy: 이제 지원자, 평가, 검토 및 평가 센터는 사용자가 직접 여러 화면을 보는 것이 아니라 하나의 연결된 화면으로 작동합니다.
+    new_experience_word_assessment_centre: 평가 센터에서 세션을 진행하고 모든 과목을 추적합니다.
+    new_experience_word_candidate: 한 후보자에 대한 모든 평가 결과를 종합합니다.
+    new_experience_word_evaluate: 과제 내용과 본인의 평가 점수를 나란히 비교하여 검토하십시오.
+    new_experience_word_moderate: 보통. 모든 평가자의 점수, 최종 결정.
     new_folder: 새 폴더
     new_score: 새로운 점수
     no_assessments_found: 감사 ID
@@ -1567,6 +1825,7 @@ ko:
         manage_messages: 메시지 관리
         manage_options: 옵션 관리
         manage_report_approvals: 보고서 승인 관리
+        manage_uat: UAT 사용자 관리
         manage_users: 사용자 관리
         participant_options: 참가자 옵션
         report_options: 보고서 옵션
@@ -1895,6 +2154,7 @@ ko:
         title: 등록 설정
       reports:
         manage: 관리
+        project_bulk_reports: 프로젝트 대량 보고서
         title: 보고서
         view: 보기
       responseMeta:
@@ -2052,6 +2312,7 @@ ko:
     project_admins: 프로젝트 관리자
     project_assessor: 프로젝트 평가자
     project_features: 프로젝트 특징
+    project_id: 프로젝트 ID
     project_ids: 프로젝트 ID
     project_ids_required: 이 보고서 유형에서는 project_ids가 필수 항목입니다.
     project_licenses: 프로젝트 라이선스
@@ -2111,6 +2372,7 @@ ko:
     projects_form_project_number: 프로젝트 번호
     projects_form_subdomain: 하위 도메인
     projects_form_title: 프로젝트
+    projects_general_settings_allow_data_access_to_bi: 이 프로젝트에 PowerBI 액세스 권한을 허용해 주세요.
     projects_general_settings_live_chat: 실시간 채팅 사용
     projects_general_settings_locales_label: 로케일
     projects_general_settings_project_number_label: 프로젝트 번호
@@ -2355,6 +2617,7 @@ ko:
     report_on_hold: "%{user} 보고서는 현재 보류 중입니다"
     report_owner: 소유자
     report_pdf_status: PDF 상태 보고
+    report_pdf_unavailable: 이 보고서의 PDF 파일은 아직 제공되지 않습니다.
     report_review_abort_qc: QC 중단
     report_review_approve: 승인
     report_review_approve_changes: 변경 사항 승인
@@ -2725,6 +2988,7 @@ ko:
     scoring_approval_score_approvals: AI 채점 승인
     scoring_assessment: 평가
     scoring_assessment_scoring_type: 평가 채점 유형
+    scoring_assessor_number: 평가자 %{number}
     scoring_average: 평균
     scoring_campaign_scoring_variables: 캠페인 점수 변수
     scoring_desc: 캠페인 요소의 최대 한도인 %{n}개를 초과했습니다. 추가 요소를 추가할 수 없습니다. 계속 진행하기 전에 기존 요소를 검토하고 관리하세요.
@@ -3115,15 +3379,19 @@ ko:
     status_details: 상태 세부사항
     statuses_accepted: 수락됨
     statuses_cancelled: 취소됨
+    statuses_failed: 실패한
     statuses_late_cancelled: 늦게 취소됨
     statuses_late_rescheduled: 늦은 일정 변경
     statuses_pending: 보류 중
+    statuses_queued: 대기열에 있음
     statuses_requested_cancellation: 취소 요청
     statuses_requested_cancellation_rejected: 취소 거부됨
     statuses_requested_rescheduling: 일정 변경 요청
     statuses_requested_rescheduling_rejected: 일정 변경 거부됨
     statuses_rescheduled: 일정 변경
     statuses_scheduled: 예약됨
+    statuses_sent: 전송된
+    statuses_skipped: 건너뛰었습니다
     steps_basic_information: 기본 정보
     steps_facilitators: 퍼실리테이터
     steps_invite_options: 초대 옵션
@@ -3329,6 +3597,7 @@ ko:
     url_label: URL
     url_name: URL
     url_whitelisting: URL 화이트리스트
+    use_new_communication_center: 새로운 커뮤니케이션 센터를 이용하세요
     used_tokens_input_tokens: 입력 토큰
     used_tokens_output_tokens: 출력 토큰
     used_tokens_thinking_tokens: 사고 토큰

@@ -36,6 +36,8 @@ ja:
         ai_assisted_idp_feature_error: AI アシスタント機能が無効になっている場合は当てはまりません
       client_sso_settings:
         sso_enforced_requires_enabled: SSOが有効になっていないと、この機能は有効にできません
+      communication_center:
+        invalid_locale: サポートされていないロケールです
       create_superadmin:
         uniq_email: 電子メールはユニックでなければならない。
       development_actions:

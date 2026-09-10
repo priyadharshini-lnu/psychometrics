@@ -37,8 +37,10 @@ it:
     campaign: Campagna
     campaign_id: ID della campagna elettorale
     cancel: Annulla
+    candidates: Candidati
     category: Categoria
     change_password: Modifica la password
+    clear: Chiaro
     clear_filters: Cancella i filtri
     client: Cliente
     close: Chiudi
@@ -86,11 +88,15 @@ it:
     end_date: Data di fine
     ending_proctoring_session_msg: La sessione di sorveglianza sta per concludersi. <p>Attendi mentre salviamo le tue risposte e ti reindirizziamo alla pagina iniziale.</p>
     error: Errore
+    errors: Errori
     export: Esporta
     failed: Fallito
     'false': false
     file: File
     file_upload_button: Seleziona file
+    filename: Nome file
+    files: File
+    filters: Filtri
     first_name: Nome
     formal_learning: Apprendimento Formale
     generate: Generare
@@ -105,6 +111,7 @@ it:
     impersonation_banner_aria_label: Sessione di impersonificazione attiva
     impersonation_end_session: Uscita
     import: Importazione
+    in_progress: In corso
     inactive: Inattivo
     internet_disconnected_message: Si prega di controllare la connessione a Internet.
     is_impersonating: sta impersonando
@@ -112,6 +119,7 @@ it:
     issuer_claim_label: Emittente (iss)
     jwt_claims_details: Dettagli dei sinistri JWT
     key_id_claim_label: ID chiave (kid)
+    languages: Lingue
     last_name: Cognome
     last_updated: Ultimo aggiornamento
     learning_on_the_job_label: Imparare sul campo
@@ -151,6 +159,7 @@ it:
     no_results_found: Nessun risultato trovato
     none: Nessuno
     not_requested: Non ancora richiesto
+    not_set: Non impostato
     ok: Ok
     options: Opzioni
     overview: Panoramica
@@ -215,12 +224,14 @@ it:
     reset_password: Reimpostare la password
     response_text: Testo di risposta
     return_url_not_whitelisted: L'URL di ritorno non è incluso nella lista bianca per questa applicazione.
+    review: Revisione
     rte_paste_content_exceeds_char_limit: Il testo supera il limite di caratteri di {{maxCharacterLimit}} e non può essere incollato.
     rte_paste_content_exceeds_word_limit: Il testo supera il limite di parole di {{maxWordLimit}} e non può essere incollato.
     run: Correre
     save: Salva
     saving_video: Salvataggio del video... Per favore, non chiudere né aggiornare il browser
     schedule_time: Orario di programmazione
+    scheduled: Programmato
     scoring_details: Dettagli del punteggio
     search: Cerca
     select_camera: Seleziona una fotocamera

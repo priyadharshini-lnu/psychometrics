@@ -36,6 +36,8 @@ nl:
         ai_assisted_idp_feature_error: Kan niet waar zijn als de functie voor ai-assistenten is uitgeschakeld
       client_sso_settings:
         sso_enforced_requires_enabled: Kan niet worden ingeschakeld als SSO niet is ingeschakeld
+      communication_center:
+        invalid_locale: is geen ondersteunde taal
       create_superadmin:
         uniq_email: E-mail moet uniek zijn.
       development_actions:

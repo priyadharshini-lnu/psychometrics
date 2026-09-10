@@ -214,6 +214,8 @@ sk:
               inclusion: Nesprávna lokalita
             password:
               too_short: Heslo je príliš krátke. Minimálny požadovaný znak %{count}
+            uat:
+              invalid: 'UAT musí byť jeden z: %{accepted_values} alebo prázdny'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ sk:
               invalid_reports_header: Neplatná hlavička, prevezmite hlavičku zo vzorového súboru
               manager_not_found: 'Riadok %{row_number}: správca s e-mailom %{email} nie je prítomný v kampani ani v súbore CSV'
               not_enough_licenses: Import vyžaduje %{required_count} licencií, ale k dispozícii je iba %{available_count}. Pred importom znížte počet nových používateľov alebo pridajte ďalšie licencie.
+              not_enough_uat_licenses: Import vyžaduje %{required_count} testovacích licencií UAT, ale k dispozícii je iba %{available_count}. Pred importom znížte počet nových používateľov UAT alebo zvýšte limit používania UAT.
               user_update_failed: Aktualizácia používateľa zlyhala pre %{email} s chybou %{error}
             locale:
               inclusion: Nesprávna lokalita
@@ -943,7 +946,9 @@ sk:
         import_sms_invites: Importovať SMS pozvánku
         import_users: Importovať používateľov
         migrate_assessment_translations: Hodnotenie Migrácia prekladu
+        migrate_communication_center: Migrácia komunikačného centra
         normalize_factor_scores: Normalizujte skóre faktorov
+        project_bulk_download_reports: Hromadné sťahovanie prehľadov projektu
         project_compact_completion_status_export: Export stavu dokončenia kompaktného súboru
         project_completion_status_export: Export stavu dokončenia
         regenerate_assessment_transcriptions: Obnoviť prepisy hodnotení
@@ -986,6 +991,8 @@ sk:
     errors: Chyby
     invalid_job: Toto oznámenie zodpovedá vymazanému záznamu
     mark_as_read: Označiť všetko ako prečítané
+    migrate_communication_center:
+      client_not_found: Klient s ID=%{id} nebol nájdený
     more: Viacej
     results: Výsledky
     super_admin:
@@ -2984,6 +2991,7 @@ sk:
     end_date: Dátum ukončenia
     not_enough_license: "'%{client_name}' nemá dostatok licencií pre '%{report_name}'"
     not_enough_license_count: Nedostatok licencií, kontaktujte administrátora
+    not_enough_uat_license: "„%{client_name}“ nemá dostatok testovacích licencií UAT pre „%{report_name}“. Zvýšte limit používania UAT pre túto licenciu alebo kontaktujte administrátora."
     number: Číslo
     overuse_number: Povolenie na nadmerné používanie
     project_specific: Špecifické pre projekt
@@ -2998,6 +3006,11 @@ sk:
       idp: IDP
       proctoring: Proctoring
       threesixty: Trišesťdesiat
+    uat_usage_limit_credits: Kredity za test UAT
+    uat_usage_limit_credits_hint: Dozor sa účtuje v kreditoch, takže ide o maximálny počet kreditov, ktoré môžu používatelia testu UAT z tejto licencie spotrebovať (maximálne 300).
+    uat_usage_limit_users: Používatelia testu UAT
+    uat_usage_limit_users_hint: Maximálny počet testovacích používateľov UAT, ktorých je možné vytvoriť s touto licenciou (max. 30). Testovací používatelia nikdy nespotrebúvajú fakturovateľné licencie.
+    uat_used: Použité licencie UAT
     used_number: Použité licencie
     used_out_of: "%{used} z %{total}"
   lti:

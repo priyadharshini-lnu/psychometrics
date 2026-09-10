@@ -575,6 +575,10 @@ sl:
       enabled: Omogočeno
       loading: Nakladanje...
       save: Shrani
+    communication_center:
+      errors:
+        terminal_state: Dostava je že v končnem stanju.
+        update_translation: Prevoda za to jezikovno nastavitev ni mogoče posodobiti.
     communication_settings: Nastavitve
     communications:
       create:

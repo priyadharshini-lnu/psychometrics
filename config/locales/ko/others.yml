@@ -214,6 +214,8 @@ ko:
               inclusion: 잘못된 로캘
             password:
               too_short: 비밀번호가 너무 짧습니다. 최소 %{count}자 필요
+            uat:
+              invalid: UAT는 %{accepted_values} 또는 공백 중 하나여야 합니다.
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ ko:
               invalid_reports_header: 헤더가 잘못되었습니다. 샘플 파일에서 헤더를 가져옵니다
               manager_not_found: '행 %{row_number}: 이메일 %{email}을 사용하는 관리자가 캠페인 또는 CSV에 없습니다'
               not_enough_licenses: 가져오기에는 %{required_count}개의 라이선스가 필요하지만, %{available_count}개만 사용 가능합니다. 가져오기 전에 신규 사용자 수를 줄이거나 라이선스를 추가하십시오.
+              not_enough_uat_licenses: 가져오기에는 %{required_count}개의 UAT 테스트 라이선스가 필요하지만, %{available_count}개만 사용 가능합니다. 가져오기 전에 신규 UAT 사용자 수를 줄이거나 UAT 사용 제한을 늘리십시오.
               user_update_failed: 오류 '%{email}'로 %{error}에 대한 사용자 업데이트에 실패했습니다
             locale:
               inclusion: 잘못된 로캘
@@ -943,7 +946,9 @@ ko:
         import_sms_invites: SMS 초대 가져오기
         import_users: 사용자 가져오기
         migrate_assessment_translations: 평가 번역 마이그레이션
+        migrate_communication_center: 커뮤니케이션 센터 마이그레이션
         normalize_factor_scores: 팩터 점수 정규화
+        project_bulk_download_reports: 프로젝트 일괄 다운로드 보고서
         project_compact_completion_status_export: 컴팩트 완료 상태 내보내기
         project_completion_status_export: 완료 상태 내보내기
         regenerate_assessment_transcriptions: 평가 녹취록 재생성
@@ -986,6 +991,8 @@ ko:
     errors: 오류
     invalid_job: 이 알림은 삭제된 레코드에 해당합니다
     mark_as_read: 모두 읽음 표시
+    migrate_communication_center:
+      client_not_found: ID가 %{id}인 클라이언트를 찾을 수 없습니다.
     more: 자세히 보기
     results: 결과
     super_admin:
@@ -2963,6 +2970,7 @@ ko:
     end_date: 종료 날짜
     not_enough_license: "'%{client_name}'에 '%{report_name}'에 대한 라이선스가 충분하지 않습니다"
     not_enough_license_count: 라이선스가 충분하지 않은 경우 관리자에게 문의하세요
+    not_enough_uat_license: "'%{client_name}'에는 '%{report_name}'에 필요한 UAT 테스트 라이선스가 부족합니다. 해당 라이선스의 UAT 사용 제한을 늘리거나 관리자에게 문의하십시오."
     number: 번호
     overuse_number: 초과 사용 허용량
     project_specific: 프로젝트 특화
@@ -2977,6 +2985,11 @@ ko:
       idp: IDP
       proctoring: 감독
       threesixty: 쓰리식스티
+    uat_usage_limit_credits: UAT 테스트 크레딧
+    uat_usage_limit_credits_hint: 시험 감독은 크레딧으로 청구되므로 UAT 테스트 사용자가 이 라이선스에서 사용할 수 있는 최대 크레딧은 300으로 제한됩니다.
+    uat_usage_limit_users: UAT 테스트 사용자
+    uat_usage_limit_users_hint: 이 라이선스로 생성할 수 있는 UAT 테스트 사용자 수는 최대 30명입니다. 테스트 사용자는 유료 라이선스를 사용하지 않습니다.
+    uat_used: UAT에서 라이선스를 사용했습니다.
     used_number: 사용한 라이선스
     used_out_of: 총 %{used} 중 %{total}
   lti:

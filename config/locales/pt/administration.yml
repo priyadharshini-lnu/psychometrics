@@ -575,6 +575,10 @@ pt:
       enabled: Ativado
       loading: Carregamento...
       save: Salvar
+    communication_center:
+      errors:
+        terminal_state: A entrega já está em estado final.
+        update_translation: Não foi possível atualizar a tradução para este idioma.
     communication_settings: Definições
     communications:
       create:

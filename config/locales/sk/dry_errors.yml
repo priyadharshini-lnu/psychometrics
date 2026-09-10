@@ -36,6 +36,8 @@ sk:
         ai_assisted_idp_feature_error: Nemôže to byť pravda, ak je funkcia ai asistentov vypnutá
       client_sso_settings:
         sso_enforced_requires_enabled: Túto funkciu nie je možné aktivovať, pokiaľ nie je aktivované SSO
+      communication_center:
+        invalid_locale: nie je podporované miestne nastavenie
       create_superadmin:
         uniq_email: E-mail by mal byť uniq.
       development_actions:

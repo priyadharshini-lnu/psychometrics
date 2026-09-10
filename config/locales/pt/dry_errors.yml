@@ -36,6 +36,8 @@ pt:
         ai_assisted_idp_feature_error: Não pode ser verdade se o recurso de assistentes de IA estiver desativado
       client_sso_settings:
         sso_enforced_requires_enabled: Não pode ser ativado sem que o SSO esteja ativado
+      communication_center:
+        invalid_locale: não é uma localidade suportada
       create_superadmin:
         uniq_email: O correio eletrónico deve ser uniq.
       development_actions:

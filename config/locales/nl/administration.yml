@@ -575,6 +575,10 @@ nl:
       enabled: Ingeschakeld
       loading: Laden...
       save: Sla
+    communication_center:
+      errors:
+        terminal_state: De levering bevindt zich al in de eindfase.
+        update_translation: Het is niet mogelijk om de vertaling voor deze regio bij te werken.
     communication_settings: Instellingen
     communications:
       create:

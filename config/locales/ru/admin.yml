@@ -218,6 +218,15 @@ ru:
     assessor_assessments_reset_successfully: Сброс оценки для предмета с адресом электронной почты «%{subjectEmail}» выполнен успешно.
     assessor_assessments_subject_email: Тема письма
     assessor_assessments_subject_name: Название предмета
+    assessor_campaign_users_awaiting_moderation: Ожидает модерации
+    assessor_campaign_users_awaiting_moderation_subtitle: готовы к консолидации
+    assessor_campaign_users_candidates_subtitle: назначено вам
+    assessor_campaign_users_completed: Завершенный
+    assessor_campaign_users_completed_subtitle: подписано
+    assessor_campaign_users_in_progress: В ходе выполнения
+    assessor_campaign_users_in_progress_subtitle: проходит оценку
+    assessor_campaign_users_not_started: Не началось
+    assessor_campaign_users_not_started_subtitle: оценки
     assessor_campaigns_statuses_completed: Завершено
     assessor_campaigns_statuses_in_progress: В процессе
     assessor_campaigns_statuses_not_started: Не начато
@@ -226,6 +235,20 @@ ru:
     assessor_create_assessor: Добавить оценщика
     assessor_dashboard: Панель инструментов оценщика
     assessor_email: Электронная почта оценщика
+    assessor_evaluation: Оценка эксперта
+    assessor_evaluation_by_campaign: По кампании
+    assessor_evaluation_by_participant: Участником
+    assessor_evaluation_candidate: Кандидат
+    assessor_evaluation_candidates: Кандидаты
+    assessor_evaluation_completed: Оценка завершена.
+    assessor_evaluation_date_range: Дата начала – Дата окончания
+    assessor_evaluation_moderation_waiting: Ожидание модерации
+    assessor_evaluation_tour_profile_description: Здесь вы можете указать свою учетную запись, роль и язык, а также включить новый функционал. Откройте его, чтобы просмотреть свои данные или выйти из системы.
+    assessor_evaluation_tour_profile_title: Ваш профиль и настройки
+    assessor_evaluation_tour_table_description: Откройте любую строку, чтобы увидеть их оценки, затем оцените их ответы или скорректируйте итоговые баллы.
+    assessor_evaluation_tour_table_title: Выберите кандидата
+    assessor_evaluation_tour_tabs_description: Переключайтесь между режимами «По участникам» (по одному человеку за раз) и «По кампаниям».
+    assessor_evaluation_tour_tabs_title: Два способа работы
     assessor_evaluations: Оценки экспертов
     assessor_first_name: Имя оценщика
     assessor_form: Форма оценщика
@@ -233,13 +256,24 @@ ru:
     assessor_last_name: Фамилия оценщика
     assessor_modals_import_body: Обратитесь к функции «Экспорт», чтобы извлечь шаблон, который можно использовать для импорта здесь.
     assessor_modals_import_title: Эксперты по импорту
+    assessor_new_experience: Новый опыт
     assessor_overview: Обзор
     assessor_placeholder: Поиск оценщика...
     assessor_remove_confirmation: Вы уверены, что хотите удалить оценщика с адресом электронной почты %{email} из этой кампании?
     assessor_remove_has_evaluations: Этому оценщику назначено %{evaluation_count} форм оценки. Все заполненные им оценки будут утеряны.
     assessor_remove_in_assessment_centers: Этот оценщик является сотрудником оценочного центра %{workshop_count}. Дальнейшие действия приведут к его исключению из всех оценочных центров.
+    assessor_switch_to_classic: Переключиться на классический
     assessor_toolbar_export: Эксперты по экспорту
     assessor_toolbar_import: Эксперты по импорту
+    assessor_tour_button: Тур
+    assessor_try_new_experience: Попробуйте что-нибудь новое!
+    assessor_user_assessment_name: Название оценки
+    assessor_user_candidate_id: Идентификационный номер кандидата
+    assessor_user_evaluate: Оценивать
+    assessor_user_evaluation: Оценка
+    assessor_user_evaluation_progress: Ход оценки
+    assessor_user_moderate: Умеренные баллы
+    assessor_user_moderation: Модерация
     assessor_workshops: Центр оценки
     assessors: Оценщики
     assistant_toolbar_failed: Не удалось сгенерировать действительный результат после нескольких попыток
@@ -307,6 +341,79 @@ ru:
     bulk_assets_modal_title: Загрузить файлы CSV и ZIP
     bulk_export_assessments_file: Файл экспорта данных массовой оценки
     bulk_export_invalid_params: Недопустимые параметры массового экспорта
+    bulk_reports: Массовые отчеты
+    bulk_reports_all_of_year: Все %{year}
+    bulk_reports_all_tags: Все теги
+    bulk_reports_bundled_into_single: объединены в один
+    bulk_reports_campaign_count_one: кампания %{count}
+    bulk_reports_campaign_count_other: кампании %{count}
+    bulk_reports_campaign_search_placeholder: Поисковые кампании или проекты...
+    bulk_reports_campaigns_shown_count: "%{selected} выбран - %{shown} показан"
+    bulk_reports_campaigns_without_reports_warning: 'Выбранные кампании без настроенных отчетов: %{count}. Они будут пропущены.'
+    bulk_reports_candidate_abbreviation: канд.
+    bulk_reports_complete_every_step: Выполните все шаги для включения.
+    bulk_reports_date_range_required: Для продолжения работы необходимы как дата начала, так и дата окончания.
+    bulk_reports_date_range_summary: Включены будут результаты выполненных заданий %{start}–%{end}.
+    bulk_reports_description: Создайте одно задание экспорта для нескольких кампаний. Выберите кампании, укажите, какие отчеты и языки включить, задайте диапазон дат, а затем отправьте.
+    bulk_reports_deselect_all_shown: Снимите выделение со всех отображаемых элементов.
+    bulk_reports_download_notification_sent: Уведомление о загрузке отправлено.
+    bulk_reports_emailed_when_ready: и будет отправлено вам по электронной почте, когда будет готово.
+    bulk_reports_end_date_placeholder: Выберите дату и время окончания.
+    bulk_reports_end_date_required: Пожалуйста, выберите дату окончания.
+    bulk_reports_error_try_again: Ошибка - попробуйте еще раз.
+    bulk_reports_files_estimated_across: файлы оценены по всему
+    bulk_reports_files_pending: Файлы появятся здесь после завершения работы.
+    bulk_reports_generate_export: Сгенерировать экспорт
+    bulk_reports_invalid_date_range: Дата окончания должна совпадать с датой начала или быть позже.
+    bulk_reports_job_details_title: 'Задание #%{id}'
+    bulk_reports_job_not_found: Найти эту вакансию не удалось.
+    bulk_reports_job_queued: Задание поставлено в очередь
+    bulk_reports_languages_progress_one: "%{done} из набора отчетов %{total}"
+    bulk_reports_languages_progress_other: "%{done} из %{total} отчетов набор"
+    bulk_reports_languages_set_for_all_one: Настроено для всего отчета %{count}
+    bulk_reports_languages_set_for_all_other: Устанавливается для всех отчетов %{count}
+    bulk_reports_last_30_days: Последние 30 дней
+    bulk_reports_last_90_days: Последние 90 дней
+    bulk_reports_no_campaigns_found: Кампаний по этому проекту не найдено.
+    bulk_reports_no_campaigns_match_filters: Ни одна рекламная кампания не соответствует вашим поисковым запросам или фильтрам по тегам.
+    bulk_reports_no_campaigns_selected: Кампании не выбраны
+    bulk_reports_no_files_yet: Файлы для этой вакансии пока недоступны.
+    bulk_reports_no_language_selected: Язык не выбран
+    bulk_reports_no_languages_available: Для данного отчета нет доступных языков.
+    bulk_reports_no_reports_configured: Ни для одной из выбранных кампаний не настроены отчеты. Вернитесь и проверьте конфигурацию вашей кампании.
+    bulk_reports_no_reports_selected: Отчеты не выбраны
+    bulk_reports_no_reports_selected_for_languages: Отчеты не выбраны. Вернитесь назад и выберите хотя бы один отчет.
+    bulk_reports_no_tags_found: Теги не найдены
+    bulk_reports_none_selected: Ничего не выбрано
+    bulk_reports_queued_by: В очереди по
+    bulk_reports_queuing_jobs: В очереди на работу...
+    bulk_reports_ready_to_generate: Готов к генерации
+    bulk_reports_report_count_one: Отчет %{count}
+    bulk_reports_report_count_other: "%{count} сообщает"
+    bulk_reports_reports_and_languages: Отчеты и языки
+    bulk_reports_review_submit: Просмотрите и отправьте.
+    bulk_reports_review_submit_description: Проверьте вакансию ниже. Вы можете вернуться к любому шагу, чтобы внести изменения.
+    bulk_reports_select_all_shown: Выберите все показанные
+    bulk_reports_select_campaigns: Выберите кампании
+    bulk_reports_select_campaigns_description: Выполните поиск по названию или проекту и сузьте список с помощью фильтров по тегам. Затем отметьте кампании, которые хотите включить в поиск.
+    bulk_reports_select_date_range: Выберите диапазон дат
+    bulk_reports_select_date_range_description: Включайте только те оценки, которые были выполнены в указанном диапазоне. Оставьте заданную дату или укажите точные даты.
+    bulk_reports_select_languages: Выберите языки
+    bulk_reports_select_languages_description: Каждый отчет поддерживает свой набор языков. Выберите как минимум один язык для каждого отчета. Он будет сгенерирован на любом выбранном вами языке.
+    bulk_reports_select_reports: Избранные отчеты
+    bulk_reports_select_reports_description: Для каждого выбранного кандидата или кампании, включенных в экспорт, генерируется отдельный отчет на каждом выбранном языке.
+    bulk_reports_selected_tags_count_one: Выбран тег %{count}
+    bulk_reports_selected_tags_count_other: Выбраны теги %{count}
+    bulk_reports_start_date_placeholder: Выберите дату и время начала.
+    bulk_reports_start_date_required: Пожалуйста, выберите дату начала.
+    bulk_reports_step_coming_soon: Этот этап будет предпринят в ближайшее время.
+    bulk_reports_submit_error: Произошла ошибка. Пожалуйста, попробуйте еще раз.
+    bulk_reports_submit_success: Задача экспорта поставлена в очередь. Вы получите уведомление, когда загрузка будет готова.
+    bulk_reports_summary_description: Обновления по мере создания задания.
+    bulk_reports_summary_title: Скачать сводку
+    bulk_reports_title: Массовые отчеты
+    bulk_reports_view_downloads: Просмотреть возможность массовой загрузки отчетов
+    bulk_reports_year_to_date: С начала года
     bulk_upload_ai_artifacts: Массовая загрузка артефактов искусственного интеллекта
     campaign: Кампания
     campaign_admin: Администратор кампании
@@ -378,6 +485,13 @@ ru:
     campaign_templates_remove_confirm_success: Шаблон кампании «%{name}» был успешно удален.
     campaign_templates_remove_confirm_title: Удалить шаблон кампании
     campaign_user_job_roles_cannot_be_same: Целевая должность должна отличаться от текущей должности.
+    campaign_users_import_uat_hint: Установите для столбца UAT значение «Да» для тестовых пользователей, которых следует исключить из лицензирования, аналитики и веб-хуков.
+    campaign_users_uat_description: Отметьте этого участника как пользователя, проводившего тестирование UAT.
+    campaign_users_uat_label: Участник UAT
+    campaign_users_uat_license_non_billable: Не подлежит оплате
+    campaign_users_uat_locked_hint: Этот участник уже существует. Статус UAT устанавливается при первом создании участника и не может быть изменен.
+    campaign_users_uat_readonly_hint: Статус UAT устанавливается при создании и не может быть изменен.
+    campaign_users_uat_tooltip: Пользователи UAT — это реальные участники тестирования. Они могут проходить тестирование в обычном режиме, но не имеют доступа к платным лицензиям, аналитике и исходящим веб-хукам.
     campaigns: Кампании
     campaigns_convert_to_template: Преобразовать в шаблон
     campaigns_extend_time_success_message: Время проведения кампании продлено до %{minutes} минут
@@ -464,6 +578,7 @@ ru:
     clients_search_placeholder: Поиск клиента
     closed: Закрыто
     code_required: Требуется код
+    collapse_all: Свернуть все
     collapse_filters: Свернуть фильтры
     column_code: Код
     column_invitation_status: Статус приглашения
@@ -482,10 +597,130 @@ ru:
     common_type: Тип
     common_unselect_all: Отменить выбор всего
     communication_center: Коммуникационный центр
+    communication_center_manage_translations_action: Управление переводами
+    communication_center_migration_enqueued: Задача миграции поставлена в очередь. Проверьте журналы для отслеживания хода выполнения.
+    communication_center_migration_error: Запрос на миграцию не выполнен. Пожалуйста, попробуйте еще раз или проверьте журналы.
+    communication_center_migration_modal_intro: 'При выполнении миграции для этого клиента будут применены следующие изменения:'
+    communication_center_migration_modal_title: Предварительный просмотр миграции в коммуникационный центр
+    communication_center_migration_preview_button: Предварительный просмотр миграции
+    communication_center_migration_run_button: Миграция запуска
+    communication_center_migration_skipped: Уже перенесено (будет пропущено)
+    communication_center_migration_would_assessments: Оценки для миграции
+    communication_center_migration_would_backfill: Электронные письма для заполнения вакансий.
+    communication_center_migration_would_cc_users: Пользователи CC перейдут на другую платформу.
+    communication_center_migration_would_migrate: Коммуникации для миграции
+    communication_center_migration_would_users: Выбранные пользователи для миграции
+    communication_center_translation_updated_success: Перевод успешно обновлен.
+    communication_center_translations_modal_title: Управление переводами
+    communication_deliveries: Доставка
+    communication_delivery: Доставка коммуникаций
+    communication_delivery_assessment_group_label: Оценочная группа
+    communication_delivery_at_label: Дата и время доставки
+    communication_delivery_at_past_error: Дата доставки должна быть в будущем.
+    communication_delivery_cancel_action: Отмена
+    communication_delivery_cancel_error: Не удалось отменить доставку.
+    communication_delivery_cc_users_label: Получатели CC
+    communication_delivery_completion_status_hint: Если указан код завершения, он будет отправлен только в том случае, если оценка пользователя имеет этот код статуса завершения.
+    communication_delivery_completion_status_label: код статуса завершения оценки
+    communication_delivery_delay_hours_label: Задержка (в часах)
+    communication_delivery_details_title: Информация о доставке
+    communication_delivery_emails_sent_label: Отправил
+    communication_delivery_emails_total_label: Общее количество писем
+    communication_delivery_end_date_label: Дата окончания
+    communication_delivery_frequency_daily: Ежедневно
+    communication_delivery_frequency_label: Частота
+    communication_delivery_frequency_specific_weekdays: Конкретные дни недели
+    communication_delivery_frequency_weekly: Еженедельно
+    communication_delivery_interval_number_label: Интервал
+    communication_delivery_interval_period_days: Дни
+    communication_delivery_interval_period_hours: Часы
+    communication_delivery_interval_period_label: Интервал
+    communication_delivery_interval_period_months: Месяцы
+    communication_delivery_interval_period_weeks: Недели
+    communication_delivery_new_button: Новая поставка
+    communication_delivery_recipients_all: Все участники
+    communication_delivery_recipients_label: Получатели
+    communication_delivery_recipients_new_assignment: Новое задание
+    communication_delivery_recipients_new_users: Новые пользователи
+    communication_delivery_recipients_selected: Избранные участники
+    communication_delivery_rule_in_progress: В ходе выполнения
+    communication_delivery_rule_label: Правила доставки
+    communication_delivery_rule_not_completed: Не завершено
+    communication_delivery_rule_not_started: Не началось
+    communication_delivery_rule_send_now: Отправить сейчас
+    communication_delivery_rule_specific_datetime: Точная дата и время
+    communication_delivery_search_users_placeholder: Поиск по имени или электронной почте
+    communication_delivery_selected_assessments_label: Оценки
+    communication_delivery_selected_users_label: Выберите пользователей
+    communication_delivery_start_date_label: Дата начала
+    communication_delivery_template_label: Шаблон
+    communication_delivery_time_of_day_label: Время суток
+    communication_delivery_timezone_label: Часовой пояс
+    communication_delivery_trigger_type_label: Тип триггера
+    communication_delivery_trigger_type_manual: Руководство
+    communication_delivery_trigger_type_scheduled: Запланировано
+    communication_delivery_weekday_fri: Пятница
+    communication_delivery_weekday_mon: Понедельник
+    communication_delivery_weekday_sat: Суббота
+    communication_delivery_weekday_sun: Воскресенье
+    communication_delivery_weekday_thu: Четверг
+    communication_delivery_weekday_tue: Вторник
+    communication_delivery_weekday_wed: Среда
+    communication_delivery_weekdays_label: Будни
+    communication_email_created_at_label: Создано в
+    communication_email_not_sent: Не отправлено
+    communication_email_preview_action: Предварительный просмотр
+    communication_email_preview_date_label: Дата
+    communication_email_preview_from_label: От
+    communication_email_preview_title: Предварительный просмотр письма
+    communication_email_preview_to_label: К
+    communication_email_preview_warning: Это повторно отрендеренная предварительная версия шаблона, и она может не точно отражать содержимое фактически отправленного электронного письма.
+    communication_email_recipient_email_label: Адрес электронной почты получателя
+    communication_email_recipient_name_label: Имя получателя
+    communication_email_retrigger_action: Повторный запуск
+    communication_email_retrigger_error: Не удалось повторно отправить электронное письмо.
+    communication_email_sent_at_label: Отправлено в
+    communication_email_status_label: Статус
+    communication_email_subject_label: Предмет
+    communication_emails: Электронные письма
+    communication_template: Шаблон коммуникации
+    communication_template_body_label: Сообщение
+    communication_template_create_new_action: Создать новый
+    communication_template_kind_label: Тип связи
+    communication_template_level_campaign: Кампания
+    communication_template_level_client: Клиент
+    communication_template_level_platform: Платформа
+    communication_template_level_project: Проект
+    communication_template_name_label: Название шаблона
+    communication_template_new_button: Новый шаблон
+    communication_template_override_inherited_action: Переопределить унаследованный
+    communication_template_override_picker_search_placeholder: Поиск шаблонов для переопределения
+    communication_template_override_picker_title: Переопределить унаследованный шаблон
+    communication_template_recipients_all: Все
+    communication_template_recipients_label: Получатели по умолчанию
+    communication_template_recipients_new_assignment: Новое задание
+    communication_template_recipients_new_users: Новые пользователи
+    communication_template_recipients_selected: Избранные
+    communication_template_source_created: Созданный
+    communication_template_source_label: Источник
+    communication_template_source_override_of: Переопределение %{level}
+    communication_template_status_active: Активный
+    communication_template_status_archived: Архив
+    communication_template_status_draft: Черновик
+    communication_template_status_label: Статус
+    communication_template_subject_label: Предмет
+    communication_templates: Шаблоны
     communications: Коммуникации
     communications_form_insert_piped_text: Вставить текст из конвейера
+    competency_indicator: Компетенция / Индикатор
     completed: Завершено
     completed_tooltip: Все эксперты представили свои оценки.
+    completion_recipients_all: Все предметы
+    completion_recipients_list: 'Список получателей:'
+    completion_recipients_selected: Избранные темы
+    completion_recipients_selected_admins: Избранные администраторы
+    completion_recipients_selected_assessors: Избранные оценщики
+    completion_recipients_selected_assessors_hint: Электронное письмо будет отправлено только тому эксперту, который указан в форме эксперта, относящейся к заполняемому предмету, даже если выше были выбраны другие эксперты.
     components_input_duration_placeholder: Введите как «1 дн. 2 ч. 3 мин.».
     concise: Лаконичный
     condition_sets: Наборы условий
@@ -692,6 +927,8 @@ ru:
     disable_proctoring: Отключить наблюдение
     disable_report_download: Отключить загрузку отчетов
     disable_transcript_download: Отключить загрузку стенограммы
+    disable_webhooks: Отключить веб-хуки
+    disable_webhooks_hint: При включении этой опции клиенту не отправляются события веб-перехватчика или события интеграции с нижестоящими системами для данной кампании, независимо от типа участника. Изменить это могут только суперадминистраторы.
     disallow_lead_assessor_moderation: Запретить модерацию ведущего эксперта
     disallow_lead_assessor_moderation_info: Оценка будет рассчитываться автоматически на основе всех отправленных форм оценщиков, и ведущий оценщик не сможет изменить её на экране модерации
     discard_all_questions: Сбросить все вопросы
@@ -790,6 +1027,7 @@ ru:
     evaluator_welcome_name: Приветствие оценщика
     evaluators_title: Оценщики
     evidence_from_transcript: Доказательства из стенограммы
+    expand_all: Развернуть все
     expand_filters: Развернуть фильтры
     export_admin_roles_permissions: Экспорт ролей и разрешений администратора
     export_admins_with_permissions: Экспорт ролей и разрешений администратора
@@ -850,6 +1088,7 @@ ru:
     feature_not_available: Эта функция недоступна
     feature_sms_notification_description: Включить SMS-уведомления о приглашениях и напоминаниях о кампаниях
     feature_superadmin_tenant_scoping_description: При отключении этой функции запросы суперадминистратора не будут распространяться на данные этого клиента.
+    feature_use_new_communication_center_description: Используйте для этого клиента только новый Центр связи и прекратите отправку сообщений в устаревшем формате.
     fields_level: Уровень
     fields_level_description: Описание уровня
     fields_level_name: Название уровня
@@ -1395,6 +1634,7 @@ ru:
     model_params_thinking_effort_none: Никто
     model_params_thinking_effort_tooltip: Регулирует, насколько тщательно модель обрабатывает информацию перед ответом. Чем больше усилий, тем более полные ответы, но тем дольше ответ. Используйте «Нет», чтобы полностью отключить обработку информации.
     model_params_title: Расширенная конфигурация модели
+    moderate_scoring_lead_assessor_form: Форма для ведущего оценщика
     must_be_a_valid_url: Неверный URL-адрес. Укажите полный URL-адрес с протоколом http или https
     name: Имя
     name_max_length: Имя не может превышать %{length} символов
@@ -1407,6 +1647,24 @@ ru:
     navigation_registration_codes: Регистрационные коды
     navigation_skills_taxonomy: Таксономия навыков
     navigation_users: Пользователи
+    new_experience_badge: Новый опыт
+    new_experience_bullet_brief_rest: Пока вы оцениваете, на экране остается подсказка по оценке компетенций.
+    new_experience_bullet_brief_strong: Краткое описание рядом с вашей оценкой
+    new_experience_bullet_candidate_rest: все формы оценки для данного кандидата, вместе.
+    new_experience_bullet_candidate_strong: Один кандидат, одна точка зрения
+    new_experience_bullet_moderation_rest: Оценки всех экспертов отображаются рядом, и принимается окончательное решение.
+    new_experience_bullet_moderation_strong: Умеренность в минутах
+    new_experience_footer_note: Новый интерфейс скоро станет стандартным для всех. Вы всегда можете переключиться на новый интерфейс в разделе сведений о вашем профиле.
+    new_experience_headline: Единый процесс, от первого ознакомления до окончательного утверждения.
+    new_experience_notice_body: Мы обновили интерфейс оценщика. Вы можете попробовать его сейчас или включить позже в настройках своего профиля.
+    new_experience_notice_maybe_later: Возможно, позже
+    new_experience_notice_title: Доступен новый опыт работы оценщиком.
+    new_experience_preview_alt: Предварительный обзор нового опыта работы оценщика
+    new_experience_sub_copy: Теперь кандидат, оценка, модерация и центр оценки работают как единое целое, а не как пять экранов, которые вы держите вместе.
+    new_experience_word_assessment_centre: 'Центр оценки: Проведите сессию и отслеживайте результаты по каждому предмету.'
+    new_experience_word_candidate: Кандидат Один, все его оценки вместе.
+    new_experience_word_evaluate: Сравните бриф и вашу оценку, расположив их рядом.
+    new_experience_word_moderate: Средняя оценка. Оценка выставляется всеми экспертами, принимается окончательное решение.
     new_folder: Новая папка
     new_score: Новый счет
     no_assessments_found: Идентификатор аудита
@@ -1567,6 +1825,7 @@ ru:
         manage_messages: Управление сообщениями
         manage_options: Управление параметрами
         manage_report_approvals: Управление утверждением отчетов
+        manage_uat: Управление пользователями UAT
         manage_users: Управление пользователями
         participant_options: Варианты для участников
         report_options: Параметры отчета
@@ -1895,6 +2154,7 @@ ru:
         title: Настройки регистрации
       reports:
         manage: Управлять
+        project_bulk_reports: Отчеты по проектам в пакетном режиме
         title: Отчеты
         view: Просмотр
       responseMeta:
@@ -2052,6 +2312,7 @@ ru:
     project_admins: Администраторы проекта
     project_assessor: Эксперт по оценке проектов
     project_features: Особенности проекта
+    project_id: Идентификатор проекта
     project_ids: Идентификаторы проектов
     project_ids_required: Для данного типа отчета требуется поле project_ids
     project_licenses: Лицензии на проекты
@@ -2111,6 +2372,7 @@ ru:
     projects_form_project_number: Номер проекта
     projects_form_subdomain: Субдомен
     projects_form_title: Проект
+    projects_general_settings_allow_data_access_to_bi: Предоставьте доступ к PowerBI для этого проекта.
     projects_general_settings_live_chat: Включить онлайн-чат
     projects_general_settings_locales_label: Локаль
     projects_general_settings_project_number_label: Номер проекта
@@ -2355,6 +2617,7 @@ ru:
     report_on_hold: Отчет по программе «%{user}» в настоящее время приостановлен.
     report_owner: Владелец
     report_pdf_status: Отчет о состоянии в формате PDF
+    report_pdf_unavailable: PDF-версия этого отчета пока недоступна.
     report_review_abort_qc: Прервать контроль качества
     report_review_approve: Утвердить
     report_review_approve_changes: Утвердить изменения
@@ -2725,6 +2988,7 @@ ru:
     scoring_approval_score_approvals: Утверждение оценок ИИ
     scoring_assessment: Оценка
     scoring_assessment_scoring_type: Тип оценки
+    scoring_assessor_number: Оценщик %{number}
     scoring_average: Среднее
     scoring_campaign_scoring_variables: Переменные оценки кампании
     scoring_desc: Вы превысили максимальный лимит факторов кампании %{n}. Дополнительные факторы не могут быть добавлены. Пожалуйста, просмотрите и управляйте существующими факторами, прежде чем продолжить.
@@ -3115,15 +3379,19 @@ ru:
     status_details: Детали статуса
     statuses_accepted: Принято
     statuses_cancelled: Отменено
+    statuses_failed: Неуспешный
     statuses_late_cancelled: Позднее отменен
     statuses_late_rescheduled: Позднее перенесено
     statuses_pending: В ожидании
+    statuses_queued: В очереди
     statuses_requested_cancellation: Запрошенная отмена
     statuses_requested_cancellation_rejected: Отмена отклонена
     statuses_requested_rescheduling: Запрос на перенос сроков
     statuses_requested_rescheduling_rejected: Перенос отклонен
     statuses_rescheduled: Перенесенный
     statuses_scheduled: Запланированный
+    statuses_sent: Отправил
+    statuses_skipped: Пропущено
     steps_basic_information: Основная информация
     steps_facilitators: Фасилитаторы
     steps_invite_options: Параметры приглашения
@@ -3329,6 +3597,7 @@ ru:
     url_label: URL
     url_name: URL
     url_whitelisting: Внесение URL-адресов в белый список
+    use_new_communication_center: Используйте новый центр связи
     used_tokens_input_tokens: Входные токены
     used_tokens_output_tokens: Выходные токены
     used_tokens_thinking_tokens: Мыслительные жетоны

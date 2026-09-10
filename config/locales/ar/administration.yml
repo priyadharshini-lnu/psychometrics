@@ -575,6 +575,10 @@ ar:
       enabled: مفعل
       loading: تحميل...
       save: حفظ
+    communication_center:
+      errors:
+        terminal_state: عملية التسليم وصلت بالفعل إلى المرحلة النهائية.
+        update_translation: تعذر تحديث الترجمة لهذه اللغة.
     communication_settings: الإعدادات
     communications:
       create:

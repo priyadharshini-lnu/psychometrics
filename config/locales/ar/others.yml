@@ -214,6 +214,8 @@ ar:
               inclusion: لغة خاطئة
             password:
               too_short: كلمة المرور قصيرة جدا. الحد الأدنى المطلوب من الأحرف %{count}
+            uat:
+              invalid: 'يجب أن تكون قيمة UAT إحدى القيم التالية: %{accepted_values}، أو فارغة.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ ar:
               invalid_reports_header: رأس غير صالح، خذ رأسا من نموذج الملف
               manager_not_found: 'الصف %{row_number}: مدير يحتوي على بريد إلكتروني %{email} غير موجود في الحملة أو في ملف CSV'
               not_enough_licenses: يتطلب الاستيراد %{required_count} ترخيصًا، ولكن لا يتوفر سوى %{available_count}. يُرجى تقليل عدد المستخدمين الجدد أو إضافة المزيد من التراخيص قبل الاستيراد.
+              not_enough_uat_licenses: يتطلب الاستيراد %{required_count} ترخيصًا لاختبار قبول المستخدم، ولكن لا يتوفر سوى %{available_count}. يُرجى تقليل عدد مستخدمي اختبار قبول المستخدم الجدد أو رفع حد استخدام اختبار قبول المستخدم قبل الاستيراد.
               user_update_failed: تعذر تحديث المستخدم ل %{email} مع الخطأ '%{error}'
             locale:
               inclusion: لغة خاطئة
@@ -943,7 +946,9 @@ ar:
         import_sms_invites: استيراد دعوة SMS
         import_users: استيراد المستخدمين
         migrate_assessment_translations: ترحيل ترجمة التقييم
+        migrate_communication_center: هجرة مركز الاتصالات
         normalize_factor_scores: تطبيع درجات العامل
+        project_bulk_download_reports: تنزيل التقارير المجمعة للمشروع
         project_compact_completion_status_export: تصدير حالة الإكمال المضغوط
         project_completion_status_export: حالة الإكمال التصدير
         regenerate_assessment_transcriptions: إعادة إنشاء نصوص التقييم
@@ -986,6 +991,8 @@ ar:
     errors: اخطاء
     invalid_job: يتوافق هذا الإشعار مع السجل المحذوف
     mark_as_read: ضع علامة على الكل مقروءا
+    migrate_communication_center:
+      client_not_found: لم يتم العثور على العميل ذي المعرف %{id}
     more: أكثر
     results: النتائج
     super_admin:
@@ -2997,6 +3004,7 @@ ar:
     end_date: تاريخ الانتهاء
     not_enough_license: لا يحتوي "%{client_name}" على تراخيص كافية ل "%{report_name}"
     not_enough_license_count: لا توجد تراخيص كافية، يرجى الاتصال بالمسؤول
+    not_enough_uat_license: لا يملك المستخدم '%{client_name}' عدداً كافياً من تراخيص اختبار قبول المستخدم (UAT) للمستخدم '%{report_name}'. قم بزيادة حد استخدام اختبار قبول المستخدم (UAT) لهذا الترخيص، أو تواصل مع المسؤول.
     number: رقم
     overuse_number: بدل الاستخدام الزائد
     project_specific: مشروع محدد
@@ -3011,6 +3019,11 @@ ar:
       idp: آي دي بي
       proctoring: المراقبة
       threesixty: تريويكسيكستي
+    uat_usage_limit_credits: نقاط اختبار UAT
+    uat_usage_limit_credits_hint: يتم احتساب رسوم المراقبة بالوحدات، لذا فإن هذا هو الحد الأقصى للوحدات التي يمكن لمستخدمي اختبار قبول المستخدم استهلاكها من هذه الرخصة (بحد أقصى 300).
+    uat_usage_limit_users: مستخدمو اختبار قبول المستخدم
+    uat_usage_limit_users_hint: الحد الأقصى لعدد مستخدمي اختبار قبول المستخدم (UAT) الذين يمكن إنشاؤهم بموجب هذه الرخصة (بحد أقصى 30 مستخدمًا). لا يستهلك مستخدمو الاختبار تراخيص مدفوعة الأجر.
+    uat_used: تراخيص مستخدمة في اختبار قبول المستخدم
     used_number: التراخيص المستخدمة
     used_out_of: "%{used} من %{total}"
   lti:

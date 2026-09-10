@@ -37,8 +37,10 @@ th:
     campaign: แคมเปญ
     campaign_id: รหัสแคมเปญ
     cancel: ยกเลิก
+    candidates: ผู้สมัคร
     category: หมวดหมู่
     change_password: เปลี่ยนรหัสผ่าน
+    clear: ชัดเจน
     clear_filters: เคลียร์ตัวกรอง
     client: ลูกค้า
     close: ปิด
@@ -86,11 +88,15 @@ th:
     end_date: วันที่สิ้นสุด
     ending_proctoring_session_msg: เรากำลังจะสิ้นสุดการตรวจสอบการสอบ <p>กรุณารอขณะที่เราบันทึกคำตอบของคุณและนำคุณกลับไปยังหน้าแรก</p>
     error: ข้อผิดพลาด
+    errors: ข้อผิดพลาด
     export: ส่งออก
     failed: ล้มเหลว
     'false': false
     file: ไฟล์
     file_upload_button: เลือกไฟล์
+    filename: ชื่อไฟล์
+    files: ไฟล์
+    filters: ตัวกรอง
     first_name: ชื่อจริง
     formal_learning: การเรียนรู้อย่างเป็นทางการ
     generate: สร้าง
@@ -105,6 +111,7 @@ th:
     impersonation_banner_aria_label: เซสชันการปลอมตัวแบบแอคทีฟ
     impersonation_end_session: ทางออก
     import: นําเข้า
+    in_progress: กำลังดำเนินการ
     inactive: เกียจคร้าน
     internet_disconnected_message: กำลังพยายามเชื่อมต่อใหม่ โปรดตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณ
     is_impersonating: กำลังแอบอ้าง
@@ -112,6 +119,7 @@ th:
     issuer_claim_label: ผู้ออก (iss)
     jwt_claims_details: รายละเอียดคำร้องของ JWT
     key_id_claim_label: รหัสหลัก (kid)
+    languages: ภาษา
     last_name: นามสกุล
     last_updated: อัพเดทล่าสุด
     learning_on_the_job_label: การเรียนรู้ในการทํางาน
@@ -151,6 +159,7 @@ th:
     no_results_found: ไม่พบผลลัพธ์
     none: ไม่มีใคร
     not_requested: ยังไม่ได้ร้องขอ
+    not_set: ไม่ได้ตั้งค่า
     ok: ตกลง
     options: ตัวเลือก
     overview: ภาพรวม
@@ -215,12 +224,14 @@ th:
     reset_password: รีเซ็ตรหัสผ่าน
     response_text: ข้อความตอบกลับ
     return_url_not_whitelisted: URL สำหรับส่งคืนข้อมูลไม่ได้อยู่ในรายการที่อนุญาตสำหรับแอปพลิเคชันนี้
+    review: ทบทวน
     rte_paste_content_exceeds_char_limit: ข้อความเกินขีดจํากัดอักขระของ {{maxCharacterLimit}} และไม่สามารถวางได้
     rte_paste_content_exceeds_word_limit: ข้อความเกินขีดจํากัดของคําที่ {{maxWordLimit}} และไม่สามารถวางได้
     run: วิ่ง
     save: บันทึก
     saving_video: กําลังบันทึกวิดีโอ... กรุณาอย่าปิดหรือรีเฟรชเบราว์เซอร์
     schedule_time: กําหนดเวลา
+    scheduled: กำหนดการ
     scoring_details: รายละเอียดการให้คะแนน
     search: ค้นหา
     select_camera: เลือกกล้อง

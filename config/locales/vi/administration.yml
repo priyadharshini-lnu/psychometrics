@@ -575,6 +575,10 @@ vi:
       enabled: Kích hoạt
       loading: Tải...
       save: Cứu
+    communication_center:
+      errors:
+        terminal_state: Việc giao hàng hiện đang ở giai đoạn cuối.
+        update_translation: Không thể cập nhật bản dịch cho khu vực này.
     communication_settings: Cài đặt
     communications:
       create:

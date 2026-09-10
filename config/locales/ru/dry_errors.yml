@@ -36,6 +36,8 @@ ru:
         ai_assisted_idp_feature_error: Не может быть правдой, если функция AI-помощников отключена.
       client_sso_settings:
         sso_enforced_requires_enabled: Невозможно включить, если не включена функция SSO
+      communication_center:
+        invalid_locale: не является поддерживаемой локалью
       create_superadmin:
         uniq_email: Электронная почта должна быть уникальной.
       development_actions:

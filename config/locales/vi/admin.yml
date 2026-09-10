@@ -218,6 +218,15 @@ vi:
     assessor_assessments_reset_successfully: Đặt lại đánh giá cho chủ đề có email "%{subjectEmail}" đã thành công.
     assessor_assessments_subject_email: Email chủ đề
     assessor_assessments_subject_name: Tên chủ đề
+    assessor_campaign_users_awaiting_moderation: Đang chờ kiểm duyệt
+    assessor_campaign_users_awaiting_moderation_subtitle: sẵn sàng hợp nhất
+    assessor_campaign_users_candidates_subtitle: được giao cho bạn
+    assessor_campaign_users_completed: Hoàn thành
+    assessor_campaign_users_completed_subtitle: đã ký xong
+    assessor_campaign_users_in_progress: Đang tiến hành
+    assessor_campaign_users_in_progress_subtitle: đang được đánh giá
+    assessor_campaign_users_not_started: Chưa bắt đầu
+    assessor_campaign_users_not_started_subtitle: đánh giá
     assessor_campaigns_statuses_completed: Hoàn thành
     assessor_campaigns_statuses_in_progress: Đang tiến hành
     assessor_campaigns_statuses_not_started: Chưa bắt đầu
@@ -226,6 +235,20 @@ vi:
     assessor_create_assessor: Thêm đánh giá viên
     assessor_dashboard: Bảng điều khiển đánh giá viên
     assessor_email: Email của thẩm định viên
+    assessor_evaluation: Đánh giá của người thẩm định
+    assessor_evaluation_by_campaign: Theo chiến dịch
+    assessor_evaluation_by_participant: Theo người tham gia
+    assessor_evaluation_candidate: Ứng viên
+    assessor_evaluation_candidates: Ứng viên
+    assessor_evaluation_completed: Đánh giá đã hoàn tất
+    assessor_evaluation_date_range: Ngày bắt đầu – Ngày kết thúc
+    assessor_evaluation_moderation_waiting: Đang chờ kiểm duyệt
+    assessor_evaluation_tour_profile_description: Bạn có thể chọn tài khoản, vai trò, ngôn ngữ và nút bật/tắt để kích hoạt trải nghiệm mới tại đây. Mở ra để xem lại thông tin chi tiết hoặc đăng xuất.
+    assessor_evaluation_tour_profile_title: Hồ sơ và cài đặt của bạn
+    assessor_evaluation_tour_table_description: Mở bất kỳ hàng nào để xem đánh giá của họ, sau đó Đánh giá câu trả lời hoặc Điều chỉnh điểm số cuối cùng.
+    assessor_evaluation_tour_table_title: Chọn một ứng viên
+    assessor_evaluation_tour_tabs_description: Bạn có thể chuyển đổi giữa chế độ Theo người tham gia (từng người một) và Theo chiến dịch.
+    assessor_evaluation_tour_tabs_title: Hai cách làm việc
     assessor_evaluations: Đánh giá của người đánh giá
     assessor_first_name: Tên của giám định viên
     assessor_form: Biểu mẫu đánh giá viên
@@ -233,13 +256,24 @@ vi:
     assessor_last_name: Họ của giám định viên
     assessor_modals_import_body: Tham khảo chức năng Xuất để trích xuất mẫu có thể được sử dụng để Nhập tại đây.
     assessor_modals_import_title: Giám định viên nhập khẩu
+    assessor_new_experience: Trải nghiệm mới
     assessor_overview: Tổng quan
     assessor_placeholder: Tìm kiếm thẩm định viên...
     assessor_remove_confirmation: Bạn có chắc chắn muốn xóa người đánh giá có email %{email} khỏi chiến dịch này không?
     assessor_remove_has_evaluations: Người đánh giá này được giao %{evaluation_count} biểu mẫu đánh giá. Tất cả các đánh giá mà họ đã điền sẽ bị mất.
     assessor_remove_in_assessment_centers: Người đánh giá này thuộc trung tâm đánh giá %{workshop_count}. Việc tiếp tục sẽ loại bỏ họ khỏi tất cả các trung tâm đánh giá.
+    assessor_switch_to_classic: Chuyển sang chế độ Cổ điển
     assessor_toolbar_export: Giám định viên xuất khẩu
     assessor_toolbar_import: Giám định viên nhập khẩu
+    assessor_tour_button: Chuyến du lịch
+    assessor_try_new_experience: Hãy thử trải nghiệm mới
+    assessor_user_assessment_name: Tên bài đánh giá
+    assessor_user_candidate_id: Mã số ứng viên
+    assessor_user_evaluate: Đánh giá
+    assessor_user_evaluation: Sự đánh giá
+    assessor_user_evaluation_progress: Tiến độ đánh giá
+    assessor_user_moderate: Điểm trung bình
+    assessor_user_moderation: Sự điều độ
     assessor_workshops: Trung tâm đánh giá
     assessors: Đánh giá viên
     assistant_toolbar_failed: Không thể tạo ra kết quả hợp lệ sau nhiều lần thử.
@@ -307,6 +341,79 @@ vi:
     bulk_assets_modal_title: Tải lên các tệp CSV và ZIP
     bulk_export_assessments_file: Tệp xuất kết quả đánh giá hàng loạt
     bulk_export_invalid_params: Các tham số xuất hàng loạt không hợp lệ
+    bulk_reports: Báo cáo hàng loạt
+    bulk_reports_all_of_year: Tất cả %{year}
+    bulk_reports_all_tags: Tất cả các thẻ
+    bulk_reports_bundled_into_single: được đóng gói thành một
+    bulk_reports_campaign_count_one: Chiến dịch %{count}
+    bulk_reports_campaign_count_other: Chiến dịch %{count}
+    bulk_reports_campaign_search_placeholder: Các chiến dịch hoặc dự án tìm kiếm...
+    bulk_reports_campaigns_shown_count: "%{selected} được chọn - %{shown} được hiển thị"
+    bulk_reports_campaigns_without_reports_warning: 'Các chiến dịch đã chọn không có báo cáo được cấu hình: %{count}. Chúng sẽ bị bỏ qua.'
+    bulk_reports_candidate_abbreviation: ứng viên
+    bulk_reports_complete_every_step: Hoàn thành mọi bước để kích hoạt
+    bulk_reports_date_range_required: Cần phải có cả ngày bắt đầu và ngày kết thúc để tiếp tục.
+    bulk_reports_date_range_summary: Các bài đánh giá đã hoàn thành từ %{start} đến %{end} sẽ được bao gồm.
+    bulk_reports_description: Tạo một tác vụ xuất dữ liệu duy nhất cho nhiều chiến dịch. Chọn các chiến dịch, chọn báo cáo và ngôn ngữ cần bao gồm, đặt phạm vi ngày, sau đó gửi đi.
+    bulk_reports_deselect_all_shown: Bỏ chọn tất cả các tùy chọn hiển thị
+    bulk_reports_download_notification_sent: Đã gửi thông báo tải xuống.
+    bulk_reports_emailed_when_ready: và sẽ được gửi qua email cho bạn khi hoàn tất.
+    bulk_reports_end_date_placeholder: Chọn ngày và giờ kết thúc
+    bulk_reports_end_date_required: Vui lòng chọn ngày kết thúc.
+    bulk_reports_error_try_again: Lỗi - hãy thử lại
+    bulk_reports_files_estimated_across: các tệp được ước tính trên
+    bulk_reports_files_pending: Các tệp sẽ xuất hiện ở đây sau khi công việc hoàn tất.
+    bulk_reports_generate_export: Tạo bản xuất
+    bulk_reports_invalid_date_range: Ngày kết thúc phải trùng hoặc sau ngày bắt đầu.
+    bulk_reports_job_details_title: 'Công việc #%{id}'
+    bulk_reports_job_not_found: Không tìm thấy công việc này.
+    bulk_reports_job_queued: Công việc đã được xếp vào hàng đợi
+    bulk_reports_languages_progress_one: "%{done} trong số %{total} báo cáo tập hợp"
+    bulk_reports_languages_progress_other: "%{done} trong số %{total} báo cáo đã được thiết lập"
+    bulk_reports_languages_set_for_all_one: Đặt cho tất cả báo cáo %{count}
+    bulk_reports_languages_set_for_all_other: Đặt cho tất cả các báo cáo %{count}
+    bulk_reports_last_30_days: 30 ngày qua
+    bulk_reports_last_90_days: 90 ngày qua
+    bulk_reports_no_campaigns_found: Không tìm thấy chiến dịch nào cho dự án này.
+    bulk_reports_no_campaigns_match_filters: Không có chiến dịch nào phù hợp với bộ lọc tìm kiếm hoặc thẻ của bạn.
+    bulk_reports_no_campaigns_selected: Không có chiến dịch nào được chọn
+    bulk_reports_no_files_yet: Hiện chưa có hồ sơ cho công việc này.
+    bulk_reports_no_language_selected: Chưa chọn ngôn ngữ nào
+    bulk_reports_no_languages_available: Báo cáo này hiện không có sẵn ngôn ngữ nào.
+    bulk_reports_no_reports_configured: Không có chiến dịch nào trong số các chiến dịch đã chọn được cấu hình báo cáo. Hãy quay lại và kiểm tra cấu hình chiến dịch của bạn.
+    bulk_reports_no_reports_selected: Không có báo cáo nào được chọn.
+    bulk_reports_no_reports_selected_for_languages: Chưa có báo cáo nào được chọn. Quay lại và chọn ít nhất một báo cáo.
+    bulk_reports_no_tags_found: Không tìm thấy thẻ nào
+    bulk_reports_none_selected: Không có mục nào được chọn
+    bulk_reports_queued_by: Đã xếp hàng bởi
+    bulk_reports_queuing_jobs: Đang xếp hàng chờ xử lý công việc...
+    bulk_reports_ready_to_generate: Sẵn sàng tạo
+    bulk_reports_report_count_one: Báo cáo %{count}
+    bulk_reports_report_count_other: Báo cáo %{count}
+    bulk_reports_reports_and_languages: Báo cáo & ngôn ngữ
+    bulk_reports_review_submit: Xem xét và gửi
+    bulk_reports_review_submit_description: Hãy kiểm tra công việc bên dưới. Bạn có thể quay lại bất kỳ bước nào để thực hiện thay đổi.
+    bulk_reports_select_all_shown: Chọn tất cả các tùy chọn được hiển thị
+    bulk_reports_select_campaigns: Chọn chiến dịch
+    bulk_reports_select_campaigns_description: Tìm kiếm theo tên hoặc dự án, và thu hẹp danh sách bằng bộ lọc thẻ. Sau đó chọn các chiến dịch cần đưa vào.
+    bulk_reports_select_date_range: Chọn phạm vi ngày
+    bulk_reports_select_date_range_description: Chỉ bao gồm các bài đánh giá đã hoàn thành trong khoảng thời gian này. Để nguyên ngày mặc định hoặc đặt ngày chính xác.
+    bulk_reports_select_languages: Chọn ngôn ngữ
+    bulk_reports_select_languages_description: Mỗi báo cáo hỗ trợ một bộ ngôn ngữ khác nhau. Vui lòng chọn ít nhất một ngôn ngữ cho mỗi báo cáo. Báo cáo sẽ được tạo bằng tất cả các ngôn ngữ bạn đã chọn.
+    bulk_reports_select_reports: Chọn báo cáo
+    bulk_reports_select_reports_description: Mỗi báo cáo được chọn sẽ được tạo cho từng ứng viên hoặc chiến dịch trong tệp xuất, bằng mọi ngôn ngữ đã chọn.
+    bulk_reports_selected_tags_count_one: Thẻ %{count} đã được chọn
+    bulk_reports_selected_tags_count_other: "%{count} thẻ đã được chọn"
+    bulk_reports_start_date_placeholder: Chọn ngày và giờ bắt đầu
+    bulk_reports_start_date_required: Vui lòng chọn ngày bắt đầu.
+    bulk_reports_step_coming_soon: Bước này sẽ sớm được triển khai.
+    bulk_reports_submit_error: Đã xảy ra lỗi. Vui lòng thử lại.
+    bulk_reports_submit_success: Quá trình xuất dữ liệu đang chờ xử lý. Bạn sẽ nhận được thông báo khi quá trình tải xuống hoàn tất.
+    bulk_reports_summary_description: Cập nhật khi bạn xây dựng công việc
+    bulk_reports_summary_title: Tải xuống bản tóm tắt
+    bulk_reports_title: Báo cáo số lượng lớn
+    bulk_reports_view_downloads: Xem các bản tải xuống báo cáo hàng loạt
+    bulk_reports_year_to_date: Tính đến thời điểm hiện tại trong năm
     bulk_upload_ai_artifacts: Tải lên hàng loạt hiện vật AI
     campaign: Chiến dịch
     campaign_admin: Quản trị viên chiến dịch
@@ -378,6 +485,13 @@ vi:
     campaign_templates_remove_confirm_success: Bản mẫu Campaing '%{name}'' đã bị xóa thành công.
     campaign_templates_remove_confirm_title: Xóa mẫu chiến dịch
     campaign_user_job_roles_cannot_be_same: Vị trí công việc mục tiêu phải khác với vị trí công việc hiện tại.
+    campaign_users_import_uat_hint: Đặt cột UAT thành Có cho những người dùng thử nghiệm cần được loại trừ khỏi việc cấp phép, phân tích và webhook.
+    campaign_users_uat_description: Đánh dấu người tham gia này là người dùng thử nghiệm UAT.
+    campaign_users_uat_label: Người tham gia UAT
+    campaign_users_uat_license_non_billable: Không tính phí
+    campaign_users_uat_locked_hint: Người tham gia này đã tồn tại. Trạng thái UAT được thiết lập khi người tham gia được tạo lần đầu và không thể thay đổi.
+    campaign_users_uat_readonly_hint: Trạng thái UAT được thiết lập khi tạo và không thể thay đổi.
+    campaign_users_uat_tooltip: Người dùng UAT là những người tham gia thực sự vào quá trình thử nghiệm. Họ có thể làm bài kiểm tra như bình thường, nhưng không được tính phí sử dụng giấy phép, phân tích và webhook gửi đi.
     campaigns: Chiến dịch
     campaigns_convert_to_template: Chuyển đổi sang mẫu
     campaigns_extend_time_success_message: Bộ hẹn giờ chiến dịch được mở rộng đến %{minutes} phút
@@ -464,6 +578,7 @@ vi:
     clients_search_placeholder: Tìm kiếm khách hàng
     closed: Khép kín
     code_required: Mã là bắt buộc
+    collapse_all: Thu gọn tất cả
     collapse_filters: Thu gọn bộ lọc
     column_code: Mã số
     column_invitation_status: Tình trạng lời mời
@@ -482,10 +597,130 @@ vi:
     common_type: Kiểu
     common_unselect_all: Bỏ chọn tất cả
     communication_center: Trung tâm truyền thông
+    communication_center_manage_translations_action: Quản lý bản dịch
+    communication_center_migration_enqueued: Công việc di chuyển dữ liệu đã được xếp vào hàng đợi. Vui lòng kiểm tra nhật ký để xem tiến độ.
+    communication_center_migration_error: Yêu cầu di chuyển dữ liệu đã thất bại. Vui lòng thử lại hoặc kiểm tra nhật ký.
+    communication_center_migration_modal_intro: 'Những thay đổi sau đây sẽ được áp dụng khi bạn chạy quá trình di chuyển dữ liệu cho khách hàng này:'
+    communication_center_migration_modal_title: Xem trước quá trình di chuyển Trung tâm Truyền thông
+    communication_center_migration_preview_button: Xem trước quá trình di chuyển
+    communication_center_migration_run_button: Chạy quá trình di chuyển
+    communication_center_migration_skipped: Đã chuyển đổi (sẽ được bỏ qua)
+    communication_center_migration_would_assessments: Đánh giá để di chuyển
+    communication_center_migration_would_backfill: Email để bổ sung
+    communication_center_migration_would_cc_users: Người dùng CC sẽ được chuyển đổi
+    communication_center_migration_would_migrate: Thông tin liên lạc cần được chuyển đổi
+    communication_center_migration_would_users: Người dùng được chọn để di chuyển
+    communication_center_translation_updated_success: Bản dịch đã được cập nhật thành công
+    communication_center_translations_modal_title: Quản lý bản dịch
+    communication_deliveries: Giao hàng
+    communication_delivery: Truyền thông
+    communication_delivery_assessment_group_label: Nhóm đánh giá
+    communication_delivery_at_label: Ngày và giờ giao hàng
+    communication_delivery_at_past_error: Ngày giao hàng phải là trong tương lai.
+    communication_delivery_cancel_action: Hủy bỏ
+    communication_delivery_cancel_error: Không thể hủy đơn hàng
+    communication_delivery_cc_users_label: Người nhận CC
+    communication_delivery_completion_status_hint: Nếu mã hoàn thành được chỉ định, mã này sẽ chỉ được gửi nếu bài đánh giá của người dùng có mã trạng thái hoàn thành này.
+    communication_delivery_completion_status_label: Mã trạng thái hoàn thành đánh giá
+    communication_delivery_delay_hours_label: Thời gian trì hoãn (giờ)
+    communication_delivery_details_title: Chi tiết giao hàng
+    communication_delivery_emails_sent_label: Đã gửi
+    communication_delivery_emails_total_label: Tổng số email
+    communication_delivery_end_date_label: Ngày kết thúc
+    communication_delivery_frequency_daily: Hằng ngày
+    communication_delivery_frequency_label: Tính thường xuyên
+    communication_delivery_frequency_specific_weekdays: Các ngày trong tuần cụ thể
+    communication_delivery_frequency_weekly: Hàng tuần
+    communication_delivery_interval_number_label: Khoảng thời gian
+    communication_delivery_interval_period_days: Ngày
+    communication_delivery_interval_period_hours: Giờ
+    communication_delivery_interval_period_label: Khoảng thời gian
+    communication_delivery_interval_period_months: Tháng
+    communication_delivery_interval_period_weeks: Tuần
+    communication_delivery_new_button: Giao hàng mới
+    communication_delivery_recipients_all: Tất cả người tham gia
+    communication_delivery_recipients_label: Người nhận
+    communication_delivery_recipients_new_assignment: Nhiệm vụ mới
+    communication_delivery_recipients_new_users: Người dùng mới
+    communication_delivery_recipients_selected: Những người tham gia được chọn
+    communication_delivery_rule_in_progress: Đang tiến hành
+    communication_delivery_rule_label: Quy tắc giao hàng
+    communication_delivery_rule_not_completed: Chưa hoàn thành
+    communication_delivery_rule_not_started: Chưa bắt đầu
+    communication_delivery_rule_send_now: Gửi ngay
+    communication_delivery_rule_specific_datetime: Ngày và giờ cụ thể
+    communication_delivery_search_users_placeholder: Tìm kiếm theo tên hoặc email
+    communication_delivery_selected_assessments_label: Đánh giá
+    communication_delivery_selected_users_label: Chọn người dùng
+    communication_delivery_start_date_label: Ngày bắt đầu
+    communication_delivery_template_label: Bản mẫu
+    communication_delivery_time_of_day_label: Thời gian trong ngày
+    communication_delivery_timezone_label: Múi giờ
+    communication_delivery_trigger_type_label: Loại kích hoạt
+    communication_delivery_trigger_type_manual: Thủ công
+    communication_delivery_trigger_type_scheduled: Đã lên lịch
+    communication_delivery_weekday_fri: Thứ sáu
+    communication_delivery_weekday_mon: Thứ hai
+    communication_delivery_weekday_sat: Thứ bảy
+    communication_delivery_weekday_sun: Chủ nhật
+    communication_delivery_weekday_thu: Thứ năm
+    communication_delivery_weekday_tue: Thứ ba
+    communication_delivery_weekday_wed: Thứ Tư
+    communication_delivery_weekdays_label: Các ngày trong tuần
+    communication_email_created_at_label: Được tạo vào lúc
+    communication_email_not_sent: Chưa gửi
+    communication_email_preview_action: Xem trước
+    communication_email_preview_date_label: Ngày
+    communication_email_preview_from_label: Từ
+    communication_email_preview_title: Xem trước qua email
+    communication_email_preview_to_label: ĐẾN
+    communication_email_preview_warning: Đây là bản xem trước được chỉnh sửa lại của mẫu và có thể không phản ánh chính xác nội dung của email thực tế đã được gửi.
+    communication_email_recipient_email_label: Email người nhận
+    communication_email_recipient_name_label: Tên người nhận
+    communication_email_retrigger_action: Kích hoạt lại
+    communication_email_retrigger_error: Không thể gửi lại email.
+    communication_email_sent_at_label: Đã gửi lúc
+    communication_email_status_label: Trạng thái
+    communication_email_subject_label: Chủ thể
+    communication_emails: Email
+    communication_template: Mẫu giao tiếp
+    communication_template_body_label: Tin nhắn
+    communication_template_create_new_action: Tạo mới
+    communication_template_kind_label: Loại hình giao tiếp
+    communication_template_level_campaign: Chiến dịch
+    communication_template_level_client: Khách hàng
+    communication_template_level_platform: Nền tảng
+    communication_template_level_project: Dự án
+    communication_template_name_label: Tên mẫu
+    communication_template_new_button: Mẫu mới
+    communication_template_override_inherited_action: Ghi đè quyền kế thừa
+    communication_template_override_picker_search_placeholder: Tìm kiếm các mẫu để ghi đè
+    communication_template_override_picker_title: Ghi đè mẫu kế thừa
+    communication_template_recipients_all: Tất cả
+    communication_template_recipients_label: Người nhận mặc định
+    communication_template_recipients_new_assignment: Nhiệm vụ mới
+    communication_template_recipients_new_users: Người dùng mới
+    communication_template_recipients_selected: Đã chọn
+    communication_template_source_created: Tạo
+    communication_template_source_label: Nguồn
+    communication_template_source_override_of: Ghi đè %{level}
+    communication_template_status_active: Tích cực
+    communication_template_status_archived: Đã lưu trữ
+    communication_template_status_draft: Bản nháp
+    communication_template_status_label: Trạng thái
+    communication_template_subject_label: Chủ thể
+    communication_templates: Mẫu
     communications: Truyền thông
     communications_form_insert_piped_text: Chèn văn bản có đường dẫn
+    competency_indicator: Năng lực / Chỉ số
     completed: Hoàn thành
     completed_tooltip: Tất cả các đánh giá viên đã gửi đánh giá
+    completion_recipients_all: Tất cả các môn học
+    completion_recipients_list: 'Danh sách người nhận:'
+    completion_recipients_selected: Các môn học được chọn
+    completion_recipients_selected_admins: Quản trị viên được chọn
+    completion_recipients_selected_assessors: Các chuyên gia đánh giá được lựa chọn
+    completion_recipients_selected_assessors_hint: Chỉ người đánh giá được chỉ định cho biểu mẫu đánh giá liên kết của môn học hoàn thành mới nhận được email, ngay cả khi các người đánh giá khác được chọn ở trên.
     components_input_duration_placeholder: Nhập là '1d 2h 3m'
     concise: Ngắn gọn
     condition_sets: Tập điều kiện
@@ -692,6 +927,8 @@ vi:
     disable_proctoring: Tắt tính năng giám sát
     disable_report_download: Tắt tính năng tải xuống báo cáo
     disable_transcript_download: Tắt tính năng tải xuống bản ghi
+    disable_webhooks: Vô hiệu hóa Webhooks
+    disable_webhooks_hint: Khi tùy chọn này được bật, không có webhook hoặc sự kiện tích hợp hạ nguồn nào được gửi đến máy khách cho chiến dịch này, bất kể loại người tham gia nào. Chỉ Quản trị viên cấp cao mới có thể thay đổi cài đặt này.
     disallow_lead_assessor_moderation: Không cho phép Trưởng ban đánh giá thực hiện việc kiểm duyệt
     disallow_lead_assessor_moderation_info: Điểm số sẽ được tính tự động dựa trên tất cả các biểu mẫu do người đánh giá gửi lên và người đánh giá chính không thể thay đổi điểm số này từ màn hình kiểm duyệt
     discard_all_questions: Đặt lại tất cả câu hỏi
@@ -790,6 +1027,7 @@ vi:
     evaluator_welcome_name: Chào mừng người đánh giá
     evaluators_title: Người đánh giá
     evidence_from_transcript: Bằng chứng từ bản ghi âm
+    expand_all: Mở rộng tất cả
     expand_filters: Mở rộng bộ lọc
     export_admin_roles_permissions: Xuất vai trò và quyền của quản trị viên
     export_admins_with_permissions: Xuất vai trò và quyền của quản trị viên
@@ -850,6 +1088,7 @@ vi:
     feature_not_available: Tính năng này hiện không khả dụng
     feature_sms_notification_description: Bật thông báo SMS cho lời mời và nhắc nhở chiến dịch.
     feature_superadmin_tenant_scoping_description: Khi bị vô hiệu hóa, các truy vấn quản trị viên cấp cao sẽ không được giới hạn phạm vi đối với dữ liệu của khách hàng này.
+    feature_use_new_communication_center_description: Chỉ sử dụng Trung tâm liên lạc mới cho khách hàng này và ngừng gửi các thông báo cũ.
     fields_level: Mức
     fields_level_description: Mô tả cấp độ
     fields_level_name: Tên cấp độ
@@ -1395,6 +1634,7 @@ vi:
     model_params_thinking_effort_none: Không có
     model_params_thinking_effort_tooltip: Tham số này điều chỉnh mức độ suy luận mà mô hình áp dụng trước khi phản hồi. Càng nhiều nỗ lực càng tạo ra câu trả lời kỹ lưỡng hơn nhưng sẽ mất nhiều thời gian hơn. Sử dụng 'None' để tắt hoàn toàn khả năng suy luận.
     model_params_title: Cấu hình mô hình nâng cao
+    moderate_scoring_lead_assessor_form: Mẫu đơn dành cho người đánh giá chính
     must_be_a_valid_url: URL không hợp lệ. Vui lòng nhập URL đầy đủ kèm theo giao thức http hoặc https
     name: Tên
     name_max_length: Tên không được vượt quá %{length} ký tự.
@@ -1407,6 +1647,24 @@ vi:
     navigation_registration_codes: Mã đăng ký
     navigation_skills_taxonomy: Phân loại kỹ năng
     navigation_users: Người dùng
+    new_experience_badge: Trải nghiệm mới
+    new_experience_bullet_brief_rest: Hướng dẫn về năng lực vẫn hiển thị trên màn hình trong khi bạn đánh giá.
+    new_experience_bullet_brief_strong: Tóm tắt ngắn gọn bên cạnh phần chấm điểm của bạn
+    new_experience_bullet_candidate_rest: Tất cả các mẫu đánh giá dành cho ứng viên đó, gộp lại.
+    new_experience_bullet_candidate_strong: Một ứng cử viên, một quan điểm
+    new_experience_bullet_moderation_rest: Điểm số của từng người đánh giá được đặt cạnh nhau, đưa ra quyết định cuối cùng.
+    new_experience_bullet_moderation_strong: Kiểm soát trong vài phút
+    new_experience_footer_note: Giao diện mới sẽ sớm trở thành giao diện mặc định cho tất cả mọi người. Bạn luôn có thể chuyển sang Giao diện mới từ chi tiết Hồ sơ của mình.
+    new_experience_headline: Một quy trình duy nhất, từ khâu xem xét ban đầu đến khi phê duyệt cuối cùng.
+    new_experience_notice_body: Chúng tôi đã thiết kế lại trải nghiệm người đánh giá. Bạn có thể dùng thử ngay bây giờ hoặc kích hoạt tính năng này sau trong phần cài đặt Hồ sơ của mình.
+    new_experience_notice_maybe_later: Có lẽ sau này
+    new_experience_notice_title: Trải nghiệm dành cho người đánh giá mới
+    new_experience_preview_alt: Xem trước trải nghiệm đánh giá viên mới
+    new_experience_sub_copy: Ứng viên, đánh giá, kiểm duyệt và trung tâm khảo thí giờ đây hoạt động như một giao diện thống nhất, không còn là năm màn hình riêng biệt mà bạn phải tự điều khiển nữa.
+    new_experience_word_assessment_centre: 'Trung tâm đánh giá: Tổ chức buổi đánh giá và theo dõi kết quả từng môn học.'
+    new_experience_word_candidate: Ứng viên số một, tất cả các bài đánh giá của họ được tổng hợp lại.
+    new_experience_word_evaluate: Hãy so sánh bản tóm tắt yêu cầu và cách chấm điểm của bạn một cách song song.
+    new_experience_word_moderate: 'Mức độ khó: Trung bình. Điểm số của tất cả người chấm, quyết định cuối cùng chỉ còn một.'
     new_folder: Thư mục mới
     new_score: Điểm mới
     no_assessments_found: Mã kiểm toán
@@ -1567,6 +1825,7 @@ vi:
         manage_messages: Quản lý tin nhắn
         manage_options: Quản lý tùy chọn
         manage_report_approvals: Quản lý phê duyệt báo cáo
+        manage_uat: Quản lý người dùng UAT
         manage_users: Quản lý người dùng
         participant_options: Lựa chọn người tham gia
         report_options: Tùy chọn báo cáo
@@ -1895,6 +2154,7 @@ vi:
         title: Cài đặt đăng ký
       reports:
         manage: Điều khiển
+        project_bulk_reports: Báo cáo số lượng lớn dự án
         title: Báo cáo
         view: Cảnh
       responseMeta:
@@ -2052,6 +2312,7 @@ vi:
     project_admins: Quản trị viên dự án
     project_assessor: Chuyên gia đánh giá dự án
     project_features: Tính năng dự án
+    project_id: Mã dự án
     project_ids: Mã dự án
     project_ids_required: project_ids là trường bắt buộc đối với loại báo cáo này
     project_licenses: Giấy phép dự án
@@ -2111,6 +2372,7 @@ vi:
     projects_form_project_number: Số dự án
     projects_form_subdomain: Tên miền phụ
     projects_form_title: Dự án
+    projects_general_settings_allow_data_access_to_bi: Cho phép truy cập PowerBI cho dự án này.
     projects_general_settings_live_chat: Bật trò chuyện trực tiếp
     projects_general_settings_locales_label: Địa điểm
     projects_general_settings_project_number_label: Số dự án
@@ -2355,6 +2617,7 @@ vi:
     report_on_hold: Báo cáo cho %{user} hiện đang bị tạm dừng
     report_owner: Người sở hữu
     report_pdf_status: Trạng thái báo cáo PDF
+    report_pdf_unavailable: Hiện tại chưa có file PDF của báo cáo này.
     report_review_abort_qc: Hủy bỏ QC
     report_review_approve: Chấp nhận
     report_review_approve_changes: Phê duyệt thay đổi
@@ -2722,6 +2985,7 @@ vi:
     scoring_approval_score_approvals: Ứng dụng đánh giá và phê duyệt bằng trí tuệ nhân tạo (AI)
     scoring_assessment: Đánh giá
     scoring_assessment_scoring_type: Loại điểm đánh giá
+    scoring_assessor_number: Người đánh giá %{number}
     scoring_average: Trung bình
     scoring_campaign_scoring_variables: Biến tính điểm chiến dịch
     scoring_desc: Bạn đã vượt quá giới hạn tối đa của %{n} yếu tố chiến dịch. Các yếu tố bổ sung không thể được thêm vào. Vui lòng xem xét và quản lý các yếu tố hiện có của bạn trước khi tiếp tục.
@@ -3107,15 +3371,19 @@ vi:
     status_details: Chi tiết trạng thái
     statuses_accepted: Chấp nhận
     statuses_cancelled: Bị hủy bỏ
+    statuses_failed: Thất bại
     statuses_late_cancelled: Hủy đặt chỗ muộn
     statuses_late_rescheduled: Đã hoãn lại
     statuses_pending: Chờ
+    statuses_queued: Đã xếp hàng
     statuses_requested_cancellation: Yêu cầu hủy bỏ
     statuses_requested_cancellation_rejected: Hủy bỏ bị từ chối
     statuses_requested_rescheduling: Yêu cầu lên lịch lại
     statuses_requested_rescheduling_rejected: Lên lịch lại bị từ chối
     statuses_rescheduled: Dời
     statuses_scheduled: Dự kiến
+    statuses_sent: Đã gửi
+    statuses_skipped: Bỏ qua
     steps_basic_information: Thông tin cơ bản
     steps_facilitators: Điều phối viên
     steps_invite_options: Tùy chọn mời
@@ -3321,6 +3589,7 @@ vi:
     url_label: Địa chỉ
     url_name: Địa chỉ
     url_whitelisting: Danh sách trắng URL
+    use_new_communication_center: Sử dụng Trung tâm liên lạc mới
     used_tokens_input_tokens: Mã thông báo đầu vào
     used_tokens_output_tokens: Mã thông báo đầu ra
     used_tokens_thinking_tokens: Thẻ tư duy

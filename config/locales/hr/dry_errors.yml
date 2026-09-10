@@ -36,6 +36,8 @@ hr:
         ai_assisted_idp_feature_error: Ne može biti istina ako je značajka AI pomoćnika onemogućena
       client_sso_settings:
         sso_enforced_requires_enabled: Ne može se omogućiti bez omogućenog SSO-a.
+      communication_center:
+        invalid_locale: nije podržana lokalizacija
       create_superadmin:
         uniq_email: E-pošta bi trebala biti jedinstvena.
       development_actions:

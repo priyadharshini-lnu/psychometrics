@@ -575,6 +575,10 @@ cs:
       enabled: Povoleno
       loading: Nakládka...
       save: Uložit
+    communication_center:
+      errors:
+        terminal_state: Dodávka je již v terminálním stavu.
+        update_translation: Nelze aktualizovat překlad pro toto národní prostředí.
     communication_settings: Nastavení
     communications:
       create:

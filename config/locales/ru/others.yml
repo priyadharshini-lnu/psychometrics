@@ -214,6 +214,8 @@ ru:
               inclusion: Неправильная локаль
             password:
               too_short: Пароль слишком короткий. Требуется минимум %{count} символов.
+            uat:
+              invalid: 'UAT должен быть одним из следующих значений: %{accepted_values} или пустое значение.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ ru:
               invalid_reports_header: Недопустимый заголовок, взять заголовок из файла-образца
               manager_not_found: 'Строка %{row_number}: Менеджер с адресом электронной почты %{email} отсутствует в кампании или в CSV-файле.'
               not_enough_licenses: Для импорта требуется %{required_count} лицензий, но доступно только %{available_count}. Пожалуйста, уменьшите количество новых пользователей или добавьте больше лицензий перед импортом.
+              not_enough_uat_licenses: Для импорта требуется %{required_count} лицензий UAT, но доступны только %{available_count}. Пожалуйста, уменьшите количество новых пользователей UAT или увеличьте лимит использования UAT перед импортом.
               user_update_failed: Ошибка обновления пользователя %{email} с ошибкой «%{error}»
             locale:
               inclusion: Неправильная локаль
@@ -943,7 +946,9 @@ ru:
         import_sms_invites: Импорт SMS-приглашений
         import_users: Импорт пользователей
         migrate_assessment_translations: Оценка Перевод миграция
+        migrate_communication_center: Миграция коммуникационного центра
         normalize_factor_scores: Нормализация факторных оценок
+        project_bulk_download_reports: Отчеты по проекту (массовая загрузка)
         project_compact_completion_status_export: Экспорт статуса завершения компактного формата
         project_completion_status_export: Статус завершения Экспорт
         regenerate_assessment_transcriptions: Восстановить стенограммы оценок
@@ -986,6 +991,8 @@ ru:
     errors: Ошибки
     invalid_job: Это уведомление соответствует удаленной записи.
     mark_as_read: Пометить все как прочитанные
+    migrate_communication_center:
+      client_not_found: Клиент с идентификатором %{id} не найден.
     more: Больше
     results: Результаты
     super_admin:
@@ -2996,6 +3003,7 @@ ru:
     end_date: Дата окончания
     not_enough_license: "«%{client_name}» не имеет достаточного количества лицензий для «%{report_name}». Проверьте, достаточно ли у вас лицензий для проекта или клиента, или обратитесь к администратору."
     not_enough_license_count: Недостаточно лицензий, обратитесь к администратору
+    not_enough_uat_license: Для '%{client_name}' недостаточно лицензий на тестирование UAT для '%{report_name}'. Увеличьте лимит использования UAT для этой лицензии или свяжитесь с администратором.
     number: Номер
     overuse_number: Допуск на чрезмерное использование
     project_specific: Специфические для проекта
@@ -3010,6 +3018,11 @@ ru:
       idp: ВПЛ
       proctoring: Прокторинг
       threesixty: Триста шестьдесят
+    uat_usage_limit_credits: Кредиты за тестирование UAT
+    uat_usage_limit_credits_hint: Оплата за контроль за проведением тестирования производится в виде кредитов, поэтому это максимальное количество кредитов, которое пользователи UAT-тестирования могут использовать в рамках данной лицензии (максимум 300).
+    uat_usage_limit_users: пользователи UAT-тестирования
+    uat_usage_limit_users_hint: Максимальное количество пользователей, которых можно создать для тестирования UAT с использованием данной лицензии (макс. 30). Пользователи тестирования никогда не расходуют платные лицензии.
+    uat_used: UAT использовал лицензии
     used_number: Использованные лицензии
     used_out_of: "%{used} из %{total}"
   lti:

@@ -214,6 +214,8 @@ de:
               inclusion: Falsches Gebietsschema
             password:
               too_short: Das Passwort ist zu kurz, mindestens %{count} Zeichen erforderlich
+            uat:
+              invalid: 'UAT muss einer der folgenden Werte sein: %{accepted_values} oder leer'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ de:
               invalid_reports_header: Ungültiger Header, Header aus Beispieldatei übernehmen
               manager_not_found: 'Zeile %{row_number}: Manager mit E-Mail %{email} ist weder in der Kampagne noch in der CSV vorhanden'
               not_enough_licenses: Für den Import werden %{required_count}-Lizenzen benötigt, es sind jedoch nur %{available_count}-Lizenzen verfügbar. Bitte reduzieren Sie die Anzahl neuer Benutzer oder fügen Sie weitere Lizenzen hinzu, bevor Sie importieren.
+              not_enough_uat_licenses: Für den Import werden %{required_count} UAT-Testlizenzen benötigt, es sind jedoch nur %{available_count} verfügbar. Bitte reduzieren Sie die Anzahl neuer UAT-Benutzer oder erhöhen Sie das UAT-Nutzungslimit vor dem Import.
               user_update_failed: Benutzeraktualisierung für %{email} mit Fehler '%{error}' fehlgeschlagen
             locale:
               inclusion: Falsches Gebietsschema
@@ -943,7 +946,9 @@ de:
         import_sms_invites: SMS-Einladung importieren
         import_users: Benutzer importieren
         migrate_assessment_translations: Bewertung Übersetzung Migration
+        migrate_communication_center: Migration des Kommunikationszentrums
         normalize_factor_scores: Faktorwerte normalisieren
+        project_bulk_download_reports: Berichte zum Massen-Download von Projekten
         project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
         project_completion_status_export: Export des Fertigstellungsstatus
         regenerate_assessment_transcriptions: Transkripte der Beurteilung neu generieren
@@ -986,6 +991,8 @@ de:
     errors: Fehler
     invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
     mark_as_read: Markieren Sie alle gelesenen
+    migrate_communication_center:
+      client_not_found: Client mit der ID %{id} nicht gefunden
     more: Mehr
     results: Ergebnisse
     super_admin:
@@ -2971,6 +2978,7 @@ de:
     end_date: Datum des Endes
     not_enough_license: "'%{client_name}' hat nicht genügend Lizenzen für '%{report_name}'"
     not_enough_license_count: Nicht genügend Lizenzen, bitte kontaktieren Sie den Administrator
+    not_enough_uat_license: Für „%{client_name}“ sind nicht genügend UAT-Testlizenzen für „%{report_name}“ vorhanden. Erhöhen Sie das UAT-Nutzungslimit dieser Lizenz oder wenden Sie sich an den Administrator.
     number: Nummer
     overuse_number: Mehrverbrauchsvergütung
     project_specific: Projektspezifisch
@@ -2985,6 +2993,11 @@ de:
       idp: IDP
       proctoring: Proctoring
       threesixty: Dreiundsechzig
+    uat_usage_limit_credits: UAT-Testgutschriften
+    uat_usage_limit_credits_hint: Die Abrechnung der Prüfungsaufsicht erfolgt in Credits. Dies ist die maximale Anzahl an Credits, die Benutzer von UAT-Tests mit dieser Lizenz verbrauchen können (maximal 300).
+    uat_usage_limit_users: UAT-Testbenutzer
+    uat_usage_limit_users_hint: Maximal 30 UAT-Testbenutzer können mit dieser Lizenz erstellt werden. Testbenutzer verbrauchen niemals kostenpflichtige Lizenzen.
+    uat_used: UAT verwendete Lizenzen
     used_number: Gebrauchte Lizenzen
     used_out_of: "%{used} von %{total}"
   lti:
