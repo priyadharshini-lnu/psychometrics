@@ -9,11 +9,13 @@ import {
   AccountTree,
   AdminPanelSettings,
   Campaign,
+  DownloadOutlined,
   Explore,
   Key,
   ReceiptLong,
   Settings,
   Storage,
+  MessageOutlined,
 } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { getFeatures } from '~/core/config'
@@ -84,6 +86,12 @@ const Project: FC<Props> = ({
     if (pathname.includes('/settings/')) {
       return ['settings']
     }
+    if (pathname.includes('/communication_center')) {
+      return ['communication_center']
+    }
+    if (pathname.includes('/bulk_reports')) {
+      return ['bulk_reports']
+    }
     if (pathname.includes('/audit_reports')) {
       return ['audit_reports']
     }
@@ -138,8 +146,12 @@ const Project: FC<Props> = ({
         if (pathname.includes('/applications')) return I18n.t('admin.applications')
         return I18n.t('admin.settings')
       }
+      case 'communication_center':
+        return I18n.t('admin.communication_center')
       case 'audit_reports':
         return I18n.t('admin.audit_reports')
+      case 'bulk_reports':
+        return I18n.t('admin.bulk_reports_title')
       case 'idp':
         return I18n.t('admin.idp_idp')
       case 'taxonomy':
@@ -192,6 +204,19 @@ const Project: FC<Props> = ({
     icon: <Settings />,
     label: I18n.t('admin.settings'),
   })
+
+  currentUser.permissions.viewCommunicationCenter && menuItems.push({
+    key: 'communication_center',
+    icon: <MessageOutlined />,
+    label: I18n.t('admin.communication_center'),
+  })
+
+  currentUser.permissions.manageProjectBulkReports && menuItems.push({
+    key: 'bulk_reports',
+    icon: <DownloadOutlined />,
+    label: I18n.t('admin.bulk_reports_title'),
+  })
+
   currentUser.permissions.viewAuditReports && menuItems.push({
     key: 'audit_reports',
     icon: <ReceiptLong />,

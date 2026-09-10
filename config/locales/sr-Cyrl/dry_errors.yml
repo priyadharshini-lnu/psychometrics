@@ -36,6 +36,8 @@ sr-Cyrl:
         ai_assisted_idp_feature_error: Не може бити истина ако је функција АИ асистента онемогућена
       client_sso_settings:
         sso_enforced_requires_enabled: Не може се омогућити без омогућавања SSO-а
+      communication_center:
+        invalid_locale: није подржани локалитет
       create_superadmin:
         uniq_email: Е -маил треба да буде уник.
       development_actions:

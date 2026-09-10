@@ -70,6 +70,18 @@ class WorkshopSubject < ApplicationRecord
   end
 
   def send_workshop_booked_email
+    send_legacy_workshop_booked_email
+    send_delivery_workshop_booked_email
+  end
+
+  def send_workshop_cancelled_email
+    send_legacy_workshop_cancelled_email
+    send_delivery_workshop_cancelled_email
+  end
+
+  private
+
+  def send_legacy_workshop_booked_email
     communication = campaign.
                     communications.
                     workshop_booked.
@@ -83,7 +95,20 @@ class WorkshopSubject < ApplicationRecord
     )
   end
 
-  def send_workshop_cancelled_email
+  def send_delivery_workshop_booked_email
+    delivery = CommunicationDelivery.active_for_campaign_assessment_group(
+      'workshop_booked', campaign_id: campaign_id,
+      campaign_assessment_group_id: workshop.campaign_assessment_group_id
+    )
+    return unless delivery
+
+    CommunicationEmail.create!(
+      communication_delivery: delivery, campaign_user: campaign_user, workshop: workshop,
+      workshop_invite: workshop_invite
+    )
+  end
+
+  def send_legacy_workshop_cancelled_email
     communication = campaign.communications.workshop_cancelled.
                     where(campaign_assessment_group_id: workshop.campaign_assessment_group_id).last
 
@@ -91,6 +116,19 @@ class WorkshopSubject < ApplicationRecord
 
     communication.emails.create(
       campaign_user: campaign_user, workshop: workshop, workshop_invite: workshop_invite
+    )
+  end
+
+  def send_delivery_workshop_cancelled_email
+    delivery = CommunicationDelivery.active_for_campaign_assessment_group(
+      'workshop_cancelled', campaign_id: campaign_id,
+      campaign_assessment_group_id: workshop.campaign_assessment_group_id
+    )
+    return unless delivery
+
+    CommunicationEmail.create!(
+      communication_delivery: delivery, campaign_user: campaign_user, workshop: workshop,
+      workshop_invite: workshop_invite
     )
   end
 end

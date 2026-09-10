@@ -53,6 +53,9 @@ module Administration
         if policy(%i[administration communication]).index?
           links['communication_center'] = administration_communications_path
         end
+        if object.is?(:superadmin) && Settings.features.communication_center_enabled
+          links['new_communication_center'] = "#{admin_path}/communication_center"
+        end
         links['reports'] = "#{admin_path}/reports" if policy(%i[administration report]).index?
         if policy(%i[administration report_approval]).index?
           links['report_approvals'] = "#{admin_path}/report_approvals/my_tasks"

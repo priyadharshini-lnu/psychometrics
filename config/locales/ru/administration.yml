@@ -575,6 +575,10 @@ ru:
       enabled: Включено
       loading: Загрузка...
       save: Сохранить
+    communication_center:
+      errors:
+        terminal_state: Доставка уже находится в завершающей стадии.
+        update_translation: Не удалось обновить перевод для данной языковой версии.
     communication_settings: Настройки
     communications:
       create:

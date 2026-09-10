@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe Communication, type: :model do
+  it {
+    should define_enum_for(:recipients).
+      with_values(all: 0, selected: 1, new_users: 2, new_assignment: 3, selected_admins: 4, selected_assessors: 5).
+      with_suffix
+  }
+
   context 'Associations' do
     it { should have_many(:emails) }
     it { should belong_to(:assessment) }
@@ -50,6 +56,27 @@ RSpec.describe Communication, type: :model do
 
       expect(communication.selected_campaign_users).to include(campaign_user1)
       expect(communication.selected_campaign_users).not_to include(campaign_user2)
+    end
+  end
+
+  context '#create_communication_email_with_resources' do
+    let(:client) { create(:tenancy) }
+    let(:communication) { create(:communication, client: client) }
+    let(:membership) { create(:membership) }
+    let(:idp_plan) { create(:user_idp_plan) }
+
+    it 'creates the email with its resources when use_new_communication_center is disabled' do
+      expect do
+        communication.create_communication_email_with_resources({ membership_id: membership.id }, [idp_plan])
+      end.to change(CommunicationEmail, :count).by(1).and change(CommunicationEmailResource, :count).by(1)
+    end
+
+    it 'does not create the email when use_new_communication_center is enabled' do
+      client.client_feature.update!(use_new_communication_center: true)
+
+      expect do
+        communication.create_communication_email_with_resources({ membership_id: membership.id }, [idp_plan])
+      end.not_to change(CommunicationEmail, :count)
     end
   end
 

@@ -1,5 +1,5 @@
 import React, {
-  useState, useEffect, useRef, PropsWithChildren,
+  useState, PropsWithChildren,
 } from 'react'
 import _ from 'lodash'
 import {
@@ -14,8 +14,7 @@ import { ColorPicker } from '~/glint'
 import styles from './BlockSettingsModal.less'
 import LabelEditor from '~/modules/survey/components/LabelEditor'
 import utils from '~/modules/survey/utils'
-import Socket from '~/modules/survey/cable'
-import LibraryTransport from '~/modules/survey/cable/LibraryChannel'
+import BuilderLibraryTransport from '~/modules/survey/core/builder/libraryTransport'
 import { LibraryStore } from '~/libs/library'
 
 const { I18n } = window
@@ -54,13 +53,6 @@ interface State {
 
 export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
   const [state, setState] = useState<State>({ ...(model.props.background || defaultBackground) })
-
-  const librarySocket = useRef<ReturnType<typeof Socket.library> | null>(null)
-
-  useEffect(() => {
-    LibraryTransport.init()
-    librarySocket.current = Socket.library()
-  }, [])
 
   const save = () => {
     updateBlockProps(model, { background: state })
@@ -124,7 +116,7 @@ export const BlockSettingsModal = ({ model, close, updateBlockProps }) => {
 
   const openLibrary = (layer) => {
     LibraryStore.openPopup(
-      librarySocket.current,
+      BuilderLibraryTransport,
       item => handleImageSelect(layer, item),
       'image',
     )

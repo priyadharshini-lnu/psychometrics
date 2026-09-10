@@ -575,6 +575,10 @@ de:
       enabled: Aktiviert
       loading: Laden...
       save: Speichern Sie
+    communication_center:
+      errors:
+        terminal_state: Die Auslieferung befindet sich bereits im Endstadium.
+        update_translation: Die Übersetzung für dieses Gebietsschema konnte nicht aktualisiert werden.
     communication_settings: Einstellungen
     communications:
       create:

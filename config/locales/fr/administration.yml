@@ -575,6 +575,10 @@ fr:
       enabled: Activé
       loading: Chargement...
       save: Économiser
+    communication_center:
+      errors:
+        terminal_state: La livraison est déjà en phase terminale.
+        update_translation: Impossible de mettre à jour la traduction pour cette langue.
     communication_settings: Paramètres
     communications:
       create:

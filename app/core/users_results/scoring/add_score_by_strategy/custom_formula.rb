@@ -21,7 +21,8 @@ module UsersResults
             'raw_score' => proc { |factor_id| get_score(factor_id, 'score') },
             'zscore' => proc { |factor_id| get_score(factor_id, 'zscore') },
             'percentage_answered' => proc { |factor_id| get_score(factor_id, 'percentage') },
-            'answer' => proc { |json_path| answer_from_json_path(json_path) }
+            'answer' => proc { |json_path| answer_from_json_path(json_path) },
+            'external_result' => proc { |json_path| external_result_from_json_path(json_path) }
           }
           lua.helpers = {
             'round' => proc { |value, precision = 0| round_value(value, precision) },
@@ -56,6 +57,10 @@ module UsersResults
 
         def answer_from_json_path(json_path)
           JsonPath.new(json_path).on(answers).first
+        end
+
+        def external_result_from_json_path(json_path)
+          JsonPath.new(json_path).on(external_results).first
         end
 
         def round_value(value, precision)

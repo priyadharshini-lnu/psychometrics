@@ -72,6 +72,7 @@ const ImportUserModal: React.FC<OwnProps & PropsFromRedux> = ({
       ]}
     >
       <p>{I18n.t('user.modals.import.body')}</p>
+      <p>{I18n.t('admin.campaign_users_import_uat_hint')}</p>
       {errors.length ? (
         <Alert
           message={false}

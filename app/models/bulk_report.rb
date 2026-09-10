@@ -6,6 +6,7 @@ class BulkReport < ApplicationRecord
 
   belongs_to :user
   belongs_to :campaign, optional: true
+  has_one :bulk_report_job, dependent: :destroy
   include Tenantable
 
   has_many_attachments :files, service: Settings.storage.private_storage_service
@@ -28,6 +29,10 @@ class BulkReport < ApplicationRecord
   end
 
   def public_download_urls
+    if bulk_report_job&.project_bulk_report_job?
+      return [bulk_report_job.project_bulk_report_job_url]
+    end
+
     return [build_download_url] if files.length <= 1
 
     files.each_with_index.map { |_, i| build_download_url(index: i) }

@@ -3,10 +3,23 @@
 module Administration
   module Assessors
     class CampaignSerializer < Panko::Serializer
-      attributes :id, :name, :start_date, :end_date, :status, :evaluation_completion_status,
+      attributes :id, :name, :client_name, :project_name, :start_date, :end_date, :status,
+                 :total_subjects_count, :evaluation_completion_status,
                  :completed_subject_evaluation_count, :total_subject_evaluation_count,
                  :completed_subject_moderation_count, :total_subject_moderation_count,
                  :moderation_completion_status
+
+      def client_name
+        object.client.name
+      end
+
+      def project_name
+        object.project.name
+      end
+
+      def total_subjects_count
+        context.dig(:total_subjects_count, object.id) || 0
+      end
 
       def evaluation_completion_status
         ::Assessors::GetStatusFromCounts.call!(subject_evaluation_statuses_count)

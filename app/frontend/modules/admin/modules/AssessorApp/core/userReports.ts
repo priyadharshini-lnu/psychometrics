@@ -106,7 +106,7 @@ const ExternalReportDetailsTR = t.type({
   userId: t.number,
   reportName: t.string,
   userEmail: t.string,
-  pdfUrl: t.string,
+  pdfUrl: t.union([t.string, t.null]),
   canDownloadReport: t.boolean,
 })
 type ExternalReportDetails = t.TypeOf<typeof ExternalReportDetailsTR>

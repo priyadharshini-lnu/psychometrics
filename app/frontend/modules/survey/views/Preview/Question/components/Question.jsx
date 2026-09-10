@@ -55,13 +55,15 @@ class Question extends Component {
 
   renderPreview () {
     const {
-      model, result, randomseed, showEnhanceWithAI,
+      model, result, randomseed, showEnhanceWithAI, dispatch,
     } = this.props
     const View = Previews[`${model.type}Preview`] || Previews.MultipleChoice
+    const wrapped = QuestionSerializer.wrap(model, result.answers, result.not_applicable, randomseed)
+    wrapped.result.setDispatch(dispatch)
     return (
       <View
         {...this.props}
-        model={QuestionSerializer.wrap(model, result.answers, result.not_applicable, randomseed)}
+        model={wrapped}
         preview
         showEnhanceWithAI={showEnhanceWithAI}
       />

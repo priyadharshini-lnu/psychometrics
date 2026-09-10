@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 import { Button, Tabs, Space } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import cs from 'classnames'
 import { CloseOutlined, VideoCameraOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import ScoringTable from './ScoringTable'
@@ -41,6 +42,7 @@ const items = [
 ]
 
 const connecter = connect((state: RootState) => ({
+  loadedUserId: state.assessors.scoreModerate.userId,
   assessorResult: getLeadAssessorResult(state.assessors.scoreModerate),
   canModerateScore: state.assessors.scoreModerate.canModerateScore,
 }), {
@@ -48,7 +50,10 @@ const connecter = connect((state: RootState) => ({
 
 interface Props extends ConnectedProps<typeof connecter> {}
 
-export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerateScore }) => {
+export const ModerateScoringComponent: FC<Props> = ({ loadedUserId, assessorResult, canModerateScore }) => {
+  const { userId } = useParams<{ userId?: string }>()
+  const showsLoadedUser = loadedUserId === Number(userId)
+  const readOnly = !(canModerateScore && showsLoadedUser)
   const [tab, setTab] = useState<string>()
   const [refreshTab, setRefreshTab] = useState(false)
 
@@ -73,7 +78,7 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerat
   return (
     <div>
       <div className={styles.header}>
-        {assessorResult && (
+        {assessorResult && showsLoadedUser && (
           <Space>
             <Space>
               {assessorResult.subject.first_name}
@@ -85,8 +90,8 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerat
       </div>
       <div className={styles.main}>
         <div className={styles.evaluation}>
-          <ScoringTable onSave={handleSave} readOnly={!canModerateScore} />
-          <Evaluation readOnly={!canModerateScore} />
+          <ScoringTable onSave={handleSave} readOnly={readOnly} showsLoadedUser={showsLoadedUser} />
+          <Evaluation readOnly={readOnly} />
         </div>
         {tab && (
           <>

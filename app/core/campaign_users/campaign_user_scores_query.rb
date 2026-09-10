@@ -62,6 +62,7 @@ module CampaignUsers
       end
       base_query += "WHERE cu.active IN (#{campaign_users_active_in})"
       base_query += " AND cu.campaign_id = #{campaign_id} #{search_condition}"
+      base_query += ' AND u.is_uat = FALSE'
       base_query += " AND cu.id in(#{campaign_user_ids.join(',')})" if campaign_user_ids.present?
       base_query += sort_condition
       base_query += " LIMIT #{limit} OFFSET #{offset};"

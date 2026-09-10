@@ -37,8 +37,10 @@ bg:
     campaign: Кампания
     campaign_id: Идентификация на кампанията
     cancel: Отменете
+    candidates: Кандидати
     category: Категория
     change_password: Промяна на паролата
+    clear: Изчисти
     clear_filters: Изчистете филтрите
     client: Клиент
     close: Затвори
@@ -86,11 +88,15 @@ bg:
     end_date: Крайна дата
     ending_proctoring_session_msg: Завършваме сесията за наблюдение. <p>Моля, изчакайте, докато запишем отговорите ви и ви пренасочим обратно към началната страница.</p>
     error: Грешка
+    errors: Грешки
     export: Износ
     failed: Неуспешен
     'false': false
     file: Файл
     file_upload_button: Изберете файл
+    filename: Име на файл
+    files: Файлове
+    filters: Филтри
     first_name: Първо име
     formal_learning: Формално обучение
     generate: Генериране
@@ -105,6 +111,7 @@ bg:
     impersonation_banner_aria_label: Активна сесия за представяне под чужда самоличност
     impersonation_end_session: Изход
     import: Импортирам
+    in_progress: В процес на разработка
     inactive: Неактивен
     internet_disconnected_message: Опитвам се да възстановя връзката. Моля, проверете интернет връзката си.
     is_impersonating: се представя за
@@ -112,6 +119,7 @@ bg:
     issuer_claim_label: Емитент (iss)
     jwt_claims_details: Подробности за претенциите към JWT
     key_id_claim_label: Идентификационен номер на ключа (kid)
+    languages: Езици
     last_name: Фамилия
     last_updated: Последна актуализация
     learning_on_the_job_label: Учене на работа
@@ -151,6 +159,7 @@ bg:
     no_results_found: Няма намерени резултати
     none: Никой
     not_requested: Все още не е поискано
+    not_set: Не е зададено
     ok: Добре
     options: Опции
     overview: Общ преглед
@@ -215,12 +224,14 @@ bg:
     reset_password: Възстановете на паролата
     response_text: Текст на отговора
     return_url_not_whitelisted: URL адресът за връщане не е в белия списък за това приложение.
+    review: Преглед
     rte_paste_content_exceeds_char_limit: Текстът надвишава лимита на символите {{maxCharacterLimit}} и не може да бъде поставен.
     rte_paste_content_exceeds_word_limit: Текстът надвишава лимита на думите {{maxWordLimit}} и не може да бъде поставен.
     run: Бягам
     save: Запазете
     saving_video: Запазвам видео... Моля, не затваряйте и не обновявайте браузъра
     schedule_time: Време по график
+    scheduled: Планирано
     scoring_details: Подробности за точковата система
     search: Търсете
     select_camera: Изберете камера

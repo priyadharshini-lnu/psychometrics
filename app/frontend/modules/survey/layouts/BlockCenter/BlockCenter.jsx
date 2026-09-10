@@ -12,12 +12,12 @@ import styles from './BlockCenter.less'
 
 export class BlockCenter extends Component {
   componentDidMount () {
-    const { subscribeSocket, socketInitialized } = this.props
-    if (!socketInitialized) {
-      const urldata = location.pathname.match(/blocks\/(\d+)/)
-      const id = urldata && urldata[1]
-      subscribeSocket('Blocks::Channel', { block_id: id })
-    }
+    const { fetchBlockCenter, initFromBlock } = this.props
+    const urldata = location.pathname.match(/blocks\/(\d+)/)
+    const id = urldata && urldata[1]
+    fetchBlockCenter(id).then(({ response }) => {
+      initFromBlock(response)
+    })
   }
 
   disableClick = (e) => {

@@ -2,13 +2,14 @@
 
 module LicenseManager
   class Base
-    private_attr_reader :license, :campaign, :user, :project, :project_license, :client, :options
+    private_attr_reader :license, :campaign, :user, :project, :project_license, :client, :uat, :options
 
     def initialize(license:, campaign:, user:, **options)
       @license = license
       @project = campaign.project
       @campaign = campaign
       @user = user
+      @uat = options.fetch(:uat, false)
       @client = campaign.client
       @project_license = find_project_specific_license
       @options = options
@@ -16,6 +17,9 @@ module LicenseManager
 
     def available?
       return false unless common_checks?
+      # UAT participants draw from the licence's separate UAT pool. They never consume
+      # billable credits, and the project sub-cap does not apply to them.
+      return license.enough_uat_licenses?(credits_required) if uat
 
       if license.is_project_specific?
         main_license_available_for_use? && project_license_available_for_use?
@@ -52,6 +56,7 @@ module LicenseManager
         user: user,
         project: project,
         project_license: project_license,
+        is_uat: uat,
         extras: {
           subject_name: user.name,
           campaign_name: campaign.name,
@@ -63,6 +68,10 @@ module LicenseManager
     private
 
     def after_license_usage_created_callback
+      # UAT consumption is tracked by counting flagged usage rows, so there is no billable
+      # counter to bump and overuse can never apply.
+      return if uat
+
       license.increment!(:used_number, credits_required)
       project_license&.increment!(:used_number, credits_required)
 

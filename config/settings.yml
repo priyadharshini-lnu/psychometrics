@@ -95,6 +95,7 @@ features:
   dimensions_react_ui: <%= ENV.fetch('DIMENSIONS_REACT_UI', 'false') == 'true' %>
   question_center_react_ui: <%= ENV.fetch('QUESTION_CENTER_REACT_UI', 'false') == 'true' %>
   libraries_react_ui: <%= ENV.fetch('LIBRARIES_REACT_UI', 'false') == 'true' %>
+  communication_center_enabled: <%= ENV.fetch('COMMUNICATION_CENTER_ENABLED', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>

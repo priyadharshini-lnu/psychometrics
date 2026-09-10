@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Api::V2::Administration::Dimensions::FactorsSubFactorResource < Api::V2::Administration::BaseResource
-  attributes :id, :weight, :name, :sub_factor_id, :predicate, :value, :position,
+  attributes :weight, :name, :sub_factor_id, :predicate, :value, :position,
              :description, :what_to_look_for, :precision, :scale_min, :scale_max,
              :score_definitions
 

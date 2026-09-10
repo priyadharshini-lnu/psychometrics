@@ -18,6 +18,7 @@ describe('admin route table', () => {
       '/admin/clients/:clientId/admins',
       '/admin/clients/:clientId/assessors',
       '/admin/clients/:clientId/settings/*',
+      '/admin/clients/:clientId/communication_center',
       '/admin/clients/:clientId/audit_reports',
       '/admin/clients/:clientId/licenses',
       '/admin/clients/:clientId/data_reports',
@@ -50,6 +51,10 @@ describe('admin route table', () => {
       '/admin/projects/:projectId/settings/applications',
       '/admin/projects/:projectId/settings/applications/:applicationId',
       '/admin/projects/:projectId/settings/applications/:applicationId/*',
+      '/admin/projects/:projectId/communication_center/*',
+      '/admin/projects/:projectId/bulk_reports',
+      "/admin/projects/:projectId/bulk_reports/generate",
+      "/admin/projects/:projectId/bulk_reports/:jobId",
       '/admin/projects/:projectId/audit_reports',
       '/admin/projects/:projectId/idp',
       '/admin/projects/:projectId/idp/(index)',
@@ -121,6 +126,7 @@ describe('admin route table', () => {
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/options',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/audit_reports',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/user_idp_reports/:id/*',
+      '/admin/projects/:projectId/new_campaigns/:campaignId/*/communication_center/*',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages/(index)',
       '/admin/projects/:projectId/new_campaigns/:campaignId/*/messages/options',
@@ -172,7 +178,6 @@ describe('admin route table', () => {
       '/admin/assessments/trash',
       '/admin/assessments/:id/edit',
       '/admin/campaign_templates/*',
-      '/admin/dashboards/:dashboardId',
       '/admin/dashboards/*',
       '/admin/norms',
       '/admin/norms/:normId/editor',
@@ -203,6 +208,7 @@ describe('admin route table', () => {
       '/admin/libraries/*',
       '/admin/templates/questions',
       '/admin/templates/blocks',
+      '/admin/communication_center',
     ])
   })
 })
@@ -212,6 +218,9 @@ describe('admin full-screen route table', () => {
     expect(fullPaths(fullScreenRoutes)).toEqual([
       '/admin/meet/create',
       '/admin/meet/:roomId',
+      '/assessors/evaluation/campaigns/:campaignId/moderate_scoring/:userId',
+      '/assessors/evaluation/campaigns/:campaignId/evaluations/:userId',
+      '/admin/dashboards/:dashboardId',
     ])
   })
 })

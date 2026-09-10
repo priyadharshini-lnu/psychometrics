@@ -36,6 +36,8 @@ fr:
         ai_assisted_idp_feature_error: Ne peut pas être vrai si la fonction des assistants d’IA est désactivée
       client_sso_settings:
         sso_enforced_requires_enabled: Cette option ne peut pas être activée si l'authentification unique (SSO) n'est pas activée
+      communication_center:
+        invalid_locale: n'est pas une langue prise en charge
       create_superadmin:
         uniq_email: L'email doit être unique.
       development_actions:

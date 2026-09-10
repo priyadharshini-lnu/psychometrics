@@ -1,0 +1,35 @@
+@import '~/styles/antv4.variable.less';
+@import '~/styles/spacing.less';
+
+
+.recordingBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: @space-4;
+  max-height: 90%;
+}
+
+.recordingRow {
+  border-bottom: 1px solid var(--ant-color-border-secondary);
+  padding: @space-6 0;
+}
+
+.recordingPreview {
+  flex: 0 0 9rem;
+  height: 5rem;
+
+  &:disabled,
+  &[disabled] {
+    opacity: 0.6;
+  }
+}
+
+.recordingDetails {
+  flex: 1 1;
+}
+
+.transcriptionText {
+  max-height: 65vh;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}

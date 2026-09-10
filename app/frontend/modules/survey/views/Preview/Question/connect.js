@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { moduleConfig } from '~/modules/survey/core/builder/assessment/question/selectors'
 import { getQuestionErrors, getQuestionResults } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import {
@@ -21,7 +22,8 @@ export default connect(
       campaignFactorList: preview.campaignFactorList,
     })
   },
-  {
-    nextPage,
-  },
+  dispatch => ({
+    ...bindActionCreators({ nextPage }, dispatch),
+    dispatch,
+  }),
 )

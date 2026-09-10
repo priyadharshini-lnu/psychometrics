@@ -30,6 +30,7 @@ const Location = () => {
 const renderAssessments = (userAssessments: UserAssessment[]) => {
   const store = configureStore({
     reducer: () => ({
+      request: { requests: [] },
       assessors: {
         users: { current: { id: USER_ID, assessorCanModerateScores: false } },
         userAssessments,

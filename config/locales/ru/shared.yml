@@ -37,8 +37,10 @@ ru:
     campaign: Кампания
     campaign_id: Идентификатор кампании
     cancel: Отменить
+    candidates: Кандидаты
     category: Категория
     change_password: Изменить пароль
+    clear: Прозрачный
     clear_filters: Очистить фильтры
     client: Клиент
     close: Закрыть
@@ -86,11 +88,15 @@ ru:
     end_date: Дата окончания
     ending_proctoring_session_msg: Мы завершаем сеанс экзамена. <p>Пожалуйста, подождите, пока мы сохраним ваши ответы и перенаправим вас обратно на главную страницу.</p>
     error: Ошибка
+    errors: Ошибки
     export: Экспорт
     failed: Неудача
     'false': false
     file: Файл
     file_upload_button: Выбрать файл
+    filename: Имя файла
+    files: Файлы
+    filters: Фильтры
     first_name: Имя
     formal_learning: Формальное обучение
     generate: Генерировать
@@ -105,6 +111,7 @@ ru:
     impersonation_banner_aria_label: Активная сессия имитации
     impersonation_end_session: Выход
     import: Импорт
+    in_progress: В ходе выполнения
     inactive: Неактивный
     internet_disconnected_message: Попытка восстановить соединение. Проверьте подключение к Интернету.
     is_impersonating: выдает себя за другого.
@@ -112,6 +119,7 @@ ru:
     issuer_claim_label: Эмитент (iss)
     jwt_claims_details: Сведения о претензиях JWT
     key_id_claim_label: Идентификатор ключа (kid)
+    languages: Языки
     last_name: Фамилия
     last_updated: Последнее обновление
     learning_on_the_job_label: Обучение на рабочем месте
@@ -151,6 +159,7 @@ ru:
     no_results_found: Результаты не найдены
     none: Нет
     not_requested: Еще не запрошено
+    not_set: Не задано
     ok: Хорошо
     options: Параметры
     overview: Обзор
@@ -215,12 +224,14 @@ ru:
     reset_password: Сбросить пароль
     response_text: Текст ответа
     return_url_not_whitelisted: URL-адрес возврата не включен в белый список для данного приложения.
+    review: Обзор
     rte_paste_content_exceeds_char_limit: Текст превышает ограничение по количеству символов {{maxCharacterLimit}} и не может быть вставлен.
     rte_paste_content_exceeds_word_limit: Текст превышает ограничение по количеству слов {{maxWordLimit}} и не может быть вставлен.
     run: Запустить
     save: Сохранить
     saving_video: Сохранение видео... Пожалуйста, не закрывайте и не обновляйте браузер
     schedule_time: Расписание времени
+    scheduled: Запланировано
     scoring_details: Детали подсчета очков
     search: Поиск
     select_camera: Выберите камеру

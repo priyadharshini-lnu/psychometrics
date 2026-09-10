@@ -473,9 +473,6 @@ exports[`initializing base assessment > init action should init assessment data 
       "propertyPanel": {
         "firstBlockContentOffset": 0,
       },
-      "socket": {
-        "initialized": false,
-      },
     },
   },
 }
@@ -638,9 +635,6 @@ exports[`initializing base assessment > middleware should call next if is not NE
       },
       "propertyPanel": {
         "firstBlockContentOffset": 0,
-      },
-      "socket": {
-        "initialized": false,
       },
     },
   },

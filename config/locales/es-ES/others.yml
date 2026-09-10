@@ -214,6 +214,8 @@ es-ES:
               inclusion: Localización incorrecta
             password:
               too_short: La contraseña es demasiado corta. Se requiere un mínimo de %{count} caracteres
+            uat:
+              invalid: 'UAT debe ser uno de los siguientes: %{accepted_values} o estar en blanco.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ es-ES:
               invalid_reports_header: Cabecera no válida, tomar cabecera del fichero de ejemplo
               manager_not_found: 'Fila %{row_number}: Manager con email %{email} no está presente en la campaña o en CSV'
               not_enough_licenses: La importación requiere %{required_count} licencias, pero solo hay %{available_count} disponibles. Reduzca el número de usuarios nuevos o añada más licencias antes de importar.
+              not_enough_uat_licenses: La importación requiere %{required_count} licencias de prueba UAT, pero solo hay %{available_count} disponibles. Reduzca el número de nuevos usuarios UAT o aumente el límite de uso de UAT antes de importar.
               user_update_failed: Error de actualización de usuario para %{email} con error '%{error}'
             locale:
               inclusion: Localización incorrecta
@@ -943,7 +946,9 @@ es-ES:
         import_sms_invites: Importar invitación SMS
         import_users: Importar usuarios
         migrate_assessment_translations: Evaluación Traducción migración
+        migrate_communication_center: Migración del centro de comunicaciones
         normalize_factor_scores: Normalizar las puntuaciones de los factores
+        project_bulk_download_reports: Informes de descarga masiva del proyecto
         project_compact_completion_status_export: Exportación del estado de finalización compacto
         project_completion_status_export: Estado de finalización Exportar
         regenerate_assessment_transcriptions: Regenerar transcripciones de evaluaciones
@@ -986,6 +991,8 @@ es-ES:
     errors: Errores
     invalid_job: Esta notificación corresponde al registro suprimido
     mark_as_read: Marcar todo lo leído
+    migrate_communication_center:
+      client_not_found: Cliente con id=%{id} no encontrado
     more: Más
     results: Resultados
     super_admin:
@@ -2998,6 +3005,7 @@ es-ES:
     end_date: Fecha final
     not_enough_license: "%{client_name}' no tiene suficientes licencias para '%{report_name}'"
     not_enough_license_count: No hay suficientes licencias, póngase en contacto con el administrador
+    not_enough_uat_license: "'%{client_name}' no tiene suficientes licencias de prueba UAT para '%{report_name}'. Aumente el límite de uso de UAT en esa licencia o póngase en contacto con el administrador."
     number: Número
     overuse_number: Indemnización por exceso de uso
     project_specific: Proyecto específico
@@ -3012,6 +3020,11 @@ es-ES:
       idp: PDI
       proctoring: Proctoring
       threesixty: Threesixty
+    uat_usage_limit_credits: créditos de la prueba UAT
+    uat_usage_limit_credits_hint: La supervisión de exámenes se factura en créditos, por lo que este es el número máximo de créditos que los usuarios de las pruebas UAT pueden consumir con esta licencia (máximo 300).
+    uat_usage_limit_users: Usuarios de prueba UAT
+    uat_usage_limit_users_hint: Número máximo de usuarios de prueba UAT que se pueden crear con esta licencia (máximo 30). Los usuarios de prueba nunca consumen licencias facturables.
+    uat_used: Licencias utilizadas por UAT
     used_number: Licencias usadas
     used_out_of: "%{used} de %{total}"
   lti:

@@ -25,13 +25,18 @@ module LicenseManager
       unless license_usage_details
         raise Licenses::NotEnoughError,
               I18n.t(
-                'licenses.not_enough_license',
+                uat_user? ? 'licenses.not_enough_uat_license' : 'licenses.not_enough_license',
                 client_name: client.name,
                 report_name: report_family&.name || license_type.capitalize
               )
       end
 
       broadcast :ok, license_usage_details[:license_usage]
+    end
+
+    def uat_user?
+      subject = user.is_a?(CampaignUser) ? user.user : user
+      subject.respond_to?(:is_uat) && subject.is_uat
     end
 
     def already_used?
@@ -70,6 +75,7 @@ module LicenseManager
           license: license,
           campaign: campaign,
           user: user,
+          uat: uat_user?,
           **context
         ).deduct_license!(**context)
         return result if result

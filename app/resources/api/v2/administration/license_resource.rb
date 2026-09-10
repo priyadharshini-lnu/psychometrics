@@ -2,7 +2,8 @@
 
 class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseResource
   attributes :number, :overuse_number, :used_number, :client_id, :start_date, :end_date,
-             :report_family_id, :disabled, :type, :enabled, :is_project_specific, :project_license_details
+             :report_family_id, :disabled, :type, :enabled, :is_project_specific, :project_license_details,
+             :uat_usage_limit, :uat_used_number, :project_uat_used_number
 
   has_one :client
   has_one :report_family
@@ -11,6 +12,14 @@ class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseRe
                      report_name_or_type_cont type_in]
 
   before_create -> { @model.client_id = context[:client].id }
+
+  def self.creatable_fields(context)
+    super - %i[used_number uat_used_number]
+  end
+
+  def self.updatable_fields(context)
+    super - %i[used_number uat_used_number]
+  end
 
   def self.records(opts = {})
     ::Pundit.policy_scope!(opts[:context][:user], [:api, :administration, License]).where(
@@ -38,5 +47,11 @@ class Api::V2::Administration::LicenseResource < Api::V2::Administration::BaseRe
       used_number: project_license.used_number,
       enabled: project_license.enabled
     }
+  end
+
+  def project_uat_used_number
+    return unless context[:project]
+
+    @model.uat_used_number_for_project(context[:project])
   end
 end

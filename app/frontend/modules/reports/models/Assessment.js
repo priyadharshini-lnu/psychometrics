@@ -8,6 +8,9 @@ export const AGILE = 'agile'
 export const SAVILLE = 'saville'
 export const PEARSON = 'pearson'
 export const ASSESSOR_FORM = 'assessor_form'
+export const SIMULATION = 'simulation'
+export const MHS = 'mhs'
+export const LEAD_ASSESSOR_FORM = 'lead_assessor_form'
 
 class Assessment {}
 

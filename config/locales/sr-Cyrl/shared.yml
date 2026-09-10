@@ -37,8 +37,10 @@ sr-Cyrl:
     campaign: Кампања
     campaign_id: ИД кампање
     cancel: Откажи
+    candidates: Кандидати
     category: Категорија
     change_password: Промена лозинке
+    clear: Јасно
     clear_filters: Обриши филтере
     client: Клијент
     close: Затвори
@@ -86,11 +88,15 @@ sr-Cyrl:
     end_date: Датум завршетка
     ending_proctoring_session_msg: Завршавамо сесију надгледања. Молимо сачекајте док сачувамо ваше одговоре и преусмеримо вас на почетну страницу.
     error: Грешка
+    errors: Грешке
     export: Извоз
     failed: Неуспело
     'false': false
     file: Датотека
     file_upload_button: Изабери фајл
+    filename: Име датотеке
+    files: Датотеке
+    filters: Филтери
     first_name: Презиме
     formal_learning: Формално учење
     generate: Генериши
@@ -105,6 +111,7 @@ sr-Cyrl:
     impersonation_banner_aria_label: Активна сесија лажног представљања
     impersonation_end_session: Излаз
     import: Увоз
+    in_progress: У току
     inactive: Неактиван
     internet_disconnected_message: Покушавам поновно повезивање. Проверите интернет везу.
     is_impersonating: се лажно представља
@@ -112,6 +119,7 @@ sr-Cyrl:
     issuer_claim_label: Издавач (iss)
     jwt_claims_details: Детаљи тврдњи JWT
     key_id_claim_label: Кључни ИД (kid)
+    languages: Језици
     last_name: Презиме
     last_updated: Последње измене
     learning_on_the_job_label: Учење на послу
@@ -151,6 +159,7 @@ sr-Cyrl:
     no_results_found: Није пронађено ниједно резултат
     none: Нико
     not_requested: Још није затражено
+    not_set: Није подешено
     ok: У реду
     options: Опције
     overview: Преглед
@@ -215,12 +224,14 @@ sr-Cyrl:
     reset_password: Поништавање лозинке
     response_text: Текст одговора
     return_url_not_whitelisted: URL за повратак није на белој листи за ову апликацију.
+    review: Рецензија
     rte_paste_content_exceeds_char_limit: Текст прелази ограничење знакова {{маxЦхарацтерЛимит}} и не може се налепити.
     rte_paste_content_exceeds_word_limit: Текст прелази ограничење речи {{маxWордЛимит}} и не може се налепити.
     run: Трчати
     save: Сачувај
     saving_video: Сачувај видео... Молимо вас да не затварате или освежавате прегледач.
     schedule_time: Распоред Време
+    scheduled: Заказано
     scoring_details: Детаљи бодовања
     search: Претраге
     select_camera: Изаберите камеру

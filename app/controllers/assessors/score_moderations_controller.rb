@@ -59,13 +59,16 @@ class Assessors::ScoreModerationsController < Assessors::BaseController
     user_reports = campaign.user_reports.where(user_id: user.id, status: :prepared).
                    where.not(report_id: main_report&.report_id)
 
+    main_report_data = main_user_report_id ? ShortUserReportSerializer.new.serialize(main_user_report) : nil
+
     render json: {
       reports: Panko::ArraySerializer.new(
         user_reports,
         each_serializer: ShortUserReportSerializer,
         context: {}
       ).to_a,
-      main_report_id: main_user_report_id
+      main_report_id: main_user_report_id,
+      main_report: main_report_data
     }
   end
 

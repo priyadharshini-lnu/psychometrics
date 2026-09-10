@@ -32,6 +32,65 @@ export const UPDATE_LINKED_QUESTIONS = 'builder/assessment/UPDATE_LINKED_QUESTIO
 export const TOGGLE_ENABLE_SAVE = 'survey/assessment/TOGGLE_ENABLE_SAVE'
 export const SAVE_CAMPAIGN_FACTORS = 'builder/assessment/SAVE_CAMPAIGN_FACTORS'
 
+export const FETCH_NORMS = 'builder/assessment/FETCH_NORMS'
+export const fetchNorms = assessmentId => ({
+  type: FETCH_NORMS,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/norms`,
+    camelize: false,
+  },
+})
+
+export const FETCH_BLOCK_TEMPLATES = 'builder/assessment/FETCH_BLOCK_TEMPLATES'
+export const fetchBlockTemplates = (assessmentId, params) => ({
+  type: FETCH_BLOCK_TEMPLATES,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/block_templates`,
+    body: params,
+    camelize: false,
+  },
+})
+
+export const FETCH_QUESTION_TEMPLATES = 'builder/assessment/FETCH_QUESTION_TEMPLATES'
+export const fetchQuestionTemplates = (assessmentId, params) => ({
+  type: FETCH_QUESTION_TEMPLATES,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/question_templates`,
+    body: params,
+    camelize: false,
+  },
+})
+
+export const FETCH_BLOCK_TEMPLATE = 'builder/assessment/FETCH_BLOCK_TEMPLATE'
+export const fetchBlockTemplate = (assessmentId, templateId) => ({
+  type: FETCH_BLOCK_TEMPLATE,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/block_template`,
+    body: { template_id: templateId },
+    camelize: false,
+  },
+})
+
+export const FETCH_QUESTION_TEMPLATE = 'builder/assessment/FETCH_QUESTION_TEMPLATE'
+export const fetchQuestionTemplate = (assessmentId, templateId) => ({
+  type: FETCH_QUESTION_TEMPLATE,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/question_template`,
+    body: { template_id: templateId },
+    camelize: false,
+  },
+})
+
+export const FETCH_GEO = 'builder/assessment/FETCH_GEO'
+export const fetchGeo = (assessmentId, params) => ({
+  type: FETCH_GEO,
+  request: {
+    url: `/administration/assessments/${assessmentId}/builders/geo`,
+    body: params,
+    camelize: false,
+  },
+})
+
 export const fetch = (assessmentId, currentLocale) => ({
   type: FETCH,
   request: {
@@ -45,6 +104,14 @@ export const fetch = (assessmentId, currentLocale) => ({
 })
 
 export const init = data => ({ type: INIT, data: normalize(data, schema) })
+
+export const initFromBlock = blockData => init({
+  id: blockData.id,
+  blocks: [blockData],
+  factors: {},
+  question_recoding: [],
+  flow: {},
+})
 
 export const selectQuestion = (question, offset) => ({ type: SELECT_QUESTION, question, offset })
 

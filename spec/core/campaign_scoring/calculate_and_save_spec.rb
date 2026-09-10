@@ -233,6 +233,25 @@ describe CampaignScoring::CalculateAndSave do
     expect(cf_factor1.campaign_factor_values.find_by(user: user)).to be_nil
   end
 
+  it 'clears an existing auto factor value when recalculation has an error' do
+    campaign_user = create(:campaign_user, campaign: campaign, user: user)
+    campaign_factor = create(
+      :campaign_factor, code: 'factor1', campaign: campaign, factor_type: :formula,
+      output_type: :numeric, formula: 'return 1/0'
+    )
+    factor_value = create(
+      :campaign_factor_value, campaign_factor: campaign_factor, user: user, campaign: campaign,
+      numeric_value: 2, calculation_type: :auto
+    )
+
+    described_class.call!(campaign, user, force_recalculate: true)
+
+    expect(campaign_user.reload.campaign_scores_errors).to include(
+      hash_including('factor_id' => campaign_factor.id.to_s)
+    )
+    expect(factor_value.reload).to have_attributes(numeric_value: nil, string_value: nil, label: nil)
+  end
+
   it 'keeps a manual (lead assessor moderated) factor value when recalculation yields no value' do
     create(:campaign_user, campaign: campaign, user: user)
 

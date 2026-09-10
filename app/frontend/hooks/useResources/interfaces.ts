@@ -75,6 +75,7 @@ export interface Options<R, M> {
   stateManager?: StateManager<R, M>,
   responseType?: ResponseType,
   trackUrl?: boolean,
+  urlFilterNames?: string[],
   basePath?: string,
   initialFilter?: {[key:string]: unknown},
 }

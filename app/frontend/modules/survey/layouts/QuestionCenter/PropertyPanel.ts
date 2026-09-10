@@ -10,7 +10,6 @@ export default connect(
     return {
       loaded: survey.builder.questionCenter.loaded,
       disabled: survey.builder.questionCenter.disabled,
-      socketInitialized: survey.ui.socket.initialized,
       question: survey.builder.questions[survey.builder.questionCenter.id],
       offset: 20,
       allowChange: true,

@@ -575,6 +575,10 @@ zh-Hant:
       enabled: 已啟用
       loading: 載入中...
       save: 節省
+    communication_center:
+      errors:
+        terminal_state: 配送已進入最終狀態。
+        update_translation: 無法更新此語言環境的翻譯。
     communication_settings: 設定
     communications:
       create:

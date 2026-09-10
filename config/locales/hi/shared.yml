@@ -37,8 +37,10 @@ hi:
     campaign: अभियान
     campaign_id: अभियान आईडी
     cancel: रद्द करें
+    candidates: उम्मीदवारों
     category: श्रेणी
     change_password: पासवर्ड बदलें
+    clear: स्पष्ट
     clear_filters: फ़िल्टर साफ़ करें
     client: ग्राहक
     close: बंद करें
@@ -86,11 +88,15 @@ hi:
     end_date: अंतिम तिथि
     ending_proctoring_session_msg: हम निगरानी सत्र समाप्त कर रहे हैं। कृपया प्रतीक्षा करें, जब तक हम आपके उत्तरों को सहेज रहे हैं और आपको होम पेज पर वापस रीडायरेक्ट कर रहे हैं।
     error: त्रुटि
+    errors: त्रुटियाँ
     export: निर्यात
     failed: असफल
     'false': false
     file: फ़ाइल
     file_upload_button: फ़ाइल चुनें
+    filename: फ़ाइल नाम
+    files: फ़ाइलें
+    filters: फिल्टर
     first_name: पहला नाम
     formal_learning: औपचारिक अधिगम
     generate: उत्पन्न करें
@@ -105,6 +111,7 @@ hi:
     impersonation_banner_aria_label: सक्रिय प्रतिरूपण सत्र
     impersonation_end_session: बाहर निकलना
     import: आयात
+    in_progress: प्रगति पर है
     inactive: निष्क्रिय
     internet_disconnected_message: फिर से जुड़ने की कोशिश कर रहा हूँ। कृपया अपना इंटरनेट कनेक्शन जांचें।
     is_impersonating: प्रतिरूपण कर रहा है
@@ -112,6 +119,7 @@ hi:
     issuer_claim_label: जारीकर्ता (iss)
     jwt_claims_details: जेडब्ल्यूटी दावों का विवरण
     key_id_claim_label: मुख्य आईडी (kid)
+    languages: बोली
     last_name: आखिरी नाम
     last_updated: अंतिम अपडेट
     learning_on_the_job_label: काम करते हुए सीखना
@@ -151,6 +159,7 @@ hi:
     no_results_found: कोई परिणाम नहीं मिला
     none: कोई नहीं
     not_requested: अभी तक अनुरोध नहीं किया गया
+    not_set: सेट नहीं
     ok: ठीक है
     options: विकल्प
     overview: अवलोकन
@@ -215,12 +224,14 @@ hi:
     reset_password: पासवर्ड रीसेट करें
     response_text: प्रतिक्रिया पाठ
     return_url_not_whitelisted: यह रिटर्न यूआरएल इस एप्लिकेशन के लिए व्हाइटलिस्टेड नहीं है।
+    review: समीक्षा
     rte_paste_content_exceeds_char_limit: टेक्स्ट {{maxCharacterLimit}} की वर्ण सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     rte_paste_content_exceeds_word_limit: टेक्स्ट {{maxWordLimit}} शब्दों की सीमा से अधिक है और इसे पेस्ट नहीं किया जा सकता।
     run: दौड़ो
     save: बचाएँ
     saving_video: वीडियो सहेज रहा है... कृपया ब्राउज़र बंद न करें या रिफ्रेश न करें।
     schedule_time: समय निर्धारित करें
+    scheduled: अनुसूचित
     scoring_details: स्कोरिंग विवरण
     search: खोजें
     select_camera: एक कैमरा चुनें

@@ -9,10 +9,10 @@ import { UserAssessmentTR } from './userAssessments'
 import { UserReportTR } from './userReports'
 import { UserRecordingTR } from './userRecordings'
 
-const UserTR = t.type({
+const UserBaseTR = t.type({
   id: t.number,
-  fullName: t.string,
   email: t.string,
+  fullName: t.string,
   totalEvaluations: t.number,
   completedEvaluations: t.number,
   evaluationCompletionStatus: t.string,
@@ -21,17 +21,19 @@ const UserTR = t.type({
   moderationCompletionStatus: t.string,
 })
 
+const UserTR = UserBaseTR
+
 const UserListResponseTR = t.type({
   list: t.array(UserTR),
   total: t.number,
 })
 
-const SingleUserTR = t.type({
-  id: t.number,
-  email: t.string,
-  fullName: t.string,
-  assessorCanModerateScores: t.boolean,
-})
+const SingleUserTR = t.intersection([
+  UserBaseTR,
+  t.type({
+    assessorCanModerateScores: t.boolean,
+  }),
+])
 export type SingleUser = t.TypeOf<typeof SingleUserTR>
 
 const FetchSingleTR = t.type({
@@ -60,6 +62,7 @@ export const fetch = (campaignId: number, tableConfig: TableConfig): ApiAction<S
     method: 'get',
     url: `/assessors/campaigns/${campaignId}/users`,
     debounce: 500,
+    loader: true,
     tableConfig,
     typedResponse: UserListResponseTR,
   },
@@ -70,6 +73,7 @@ export const fetchSingle = (campaignId: number, userId: number): ApiAction<Fetch
   request: {
     method: 'get',
     url: `/assessors/campaigns/${campaignId}/users/${userId}`,
+    loader: true,
     typedResponse: FetchSingleTR,
   },
 })

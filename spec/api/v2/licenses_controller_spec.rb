@@ -37,10 +37,9 @@ RSpec.describe Api::V2::Administration::LicensesController, type: :request do
           attributes: {
             number: 100,
             overuse_number: 0,
-            used_number: 1,
-            start_date: '2017-05-01',
-            end_date: '2021-01-01',
-            report_family_id: 2,
+            start_date: Time.zone.today.to_s,
+            end_date: (Time.zone.today + 1.day).to_s,
+            report_family_id: license.report_family_id.to_s,
             disabled: false,
             type: 'common'
           },

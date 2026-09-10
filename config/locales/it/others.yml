@@ -214,6 +214,8 @@ it:
               inclusion: Localizzazione errata
             password:
               too_short: La password è troppo corta. È richiesto un minimo di %{count} caratteri
+            uat:
+              invalid: 'UAT deve essere uno dei seguenti: %{accepted_values}, oppure vuoto'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ it:
               invalid_reports_header: Intestazione non valida, prendere l'intestazione dal file di esempio
               manager_not_found: 'Riga %{row_number}: il gestore con email %{email} non è presente nella campagna o nel CSV'
               not_enough_licenses: L'importazione richiede %{required_count} licenze, ma sono disponibili solo %{available_count}. Si prega di ridurre il numero di nuovi utenti o di aggiungere altre licenze prima di procedere con l'importazione.
+              not_enough_uat_licenses: L'importazione richiede %{required_count} licenze di test UAT, ma sono disponibili solo %{available_count}. Si prega di ridurre il numero di nuovi utenti UAT o di aumentare il limite di utilizzo UAT prima dell'importazione.
               user_update_failed: Aggiorna utente fallito per %{email} con l'errore "%{error}"
             locale:
               inclusion: Localizzazione errata
@@ -943,7 +946,9 @@ it:
         import_sms_invites: Importazione di un invito via SMS
         import_users: Importazione di utenti
         migrate_assessment_translations: Valutazione Migrazione di traduzione
+        migrate_communication_center: Migrazione del centro di comunicazione
         normalize_factor_scores: Normalizzare i punteggi dei fattori
+        project_bulk_download_reports: Progetto Download in blocco dei report
         project_compact_completion_status_export: Stato di completamento compatto Esporta
         project_completion_status_export: Stato di completamento Esportazione
         regenerate_assessment_transcriptions: Rigenera le trascrizioni delle valutazioni
@@ -986,6 +991,8 @@ it:
     errors: Errori
     invalid_job: Questa notifica corrisponde al record cancellato
     mark_as_read: Segna come già letto
+    migrate_communication_center:
+      client_not_found: Cliente con ID=%{id} non trovato
     more: Di più
     results: Risultati
     super_admin:
@@ -2957,6 +2964,7 @@ it:
     end_date: Data di fine
     not_enough_license: "'%{client_name}' non dispone di licenze sufficienti per '%{report_name}'"
     not_enough_license_count: Non ci sono abbastanza licenze, contattare l'amministratore
+    not_enough_uat_license: "'%{client_name}' non dispone di un numero sufficiente di licenze di test UAT per '%{report_name}'. Aumentare il limite di utilizzo UAT per tale licenza oppure contattare l'amministratore."
     number: Numero
     overuse_number: Indennità di sovrautilizzo
     project_specific: Specifico del progetto
@@ -2971,6 +2979,11 @@ it:
       idp: IDP
       proctoring: Proctoring
       threesixty: Trecentosessanta
+    uat_usage_limit_credits: crediti per i test UAT
+    uat_usage_limit_credits_hint: Il servizio di sorveglianza viene fatturato in crediti, quindi questo è il numero massimo di crediti che gli utenti del test UAT possono utilizzare con questa licenza (max 300).
+    uat_usage_limit_users: utenti del test UAT
+    uat_usage_limit_users_hint: Numero massimo di utenti di test UAT che possono essere creati con questa licenza (max 30). Gli utenti di test non consumano mai licenze a pagamento.
+    uat_used: Licenze utilizzate per l'UAT
     used_number: Licenze usate
     used_out_of: "%{used} su %{total}"
   lti:

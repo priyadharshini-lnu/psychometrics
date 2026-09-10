@@ -1,5 +1,5 @@
-Active,First Name,Last Name,Email Address,Mobile number,Password,Overwrite password,Schedule start date,Schedule end date,Created Date,Manager email,Current job role,Target job role,Level,Age,Gender,ProfileLocale,Custom Field1,Custom Field2
-Yes,Fedor,Tar,fedor@gmail.com,+971111111111,,,14 Jul 2020 10:30 +04:00,14 Jul 2020 11:30 +04:00,11 Jul 2020 / 16:39,shuja@gmail.com,Developer,Senior dev,apply,5,,,c1,c2
-Yes,Vlad,Ata,vlad@gmail.com,,,,,,11 Jul 2020 / 17:25,shuja@gmail.com,Developer,Senior dev,,10,,,c1,c2
-Yes,Rohan,R,rohan@gmail.com,,,,,,22 Jul 2020 / 18:40,shuja@gmail.com,Developer,Senior dev,,20,,,c1,c2
-Yes,Shuja,S,shuja@gmail.com,,,,,,22 Jul 2020 / 19:03,,,,,30,,,c1,c2
+Active,UAT,First Name,Last Name,Email Address,Mobile number,Password,Overwrite password,Schedule start date,Schedule end date,Created Date,Manager email,Current job role,Target job role,Level,Age,Gender,ProfileLocale,Custom Field1,Custom Field2
+Yes,No,Fedor,Tar,fedor@gmail.com,+971111111111,,,14 Jul 2020 10:30 +04:00,14 Jul 2020 11:30 +04:00,11 Jul 2020 / 16:39,shuja@gmail.com,Developer,Senior dev,apply,5,,,c1,c2
+Yes,No,Vlad,Ata,vlad@gmail.com,,,,,,11 Jul 2020 / 17:25,shuja@gmail.com,Developer,Senior dev,,10,,,c1,c2
+Yes,No,Rohan,R,rohan@gmail.com,,,,,,22 Jul 2020 / 18:40,shuja@gmail.com,Developer,Senior dev,,20,,,c1,c2
+Yes,No,Shuja,S,shuja@gmail.com,,,,,,22 Jul 2020 / 19:03,,,,,30,,,c1,c2

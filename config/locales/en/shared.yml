@@ -37,8 +37,10 @@ en:
     campaign: Campaign
     campaign_id: Campaign ID
     cancel: Cancel
+    candidates: Candidates
     category: Category
     change_password: Change Password
+    clear: Clear
     clear_filters: Clear Filters
     client: Client
     close: Close
@@ -86,11 +88,15 @@ en:
     end_date: End Date
     ending_proctoring_session_msg: We are ending the proctoring session. <p>Please wait while we save your responses and redirect back to the home page.</p>
     error: Error
+    errors: Errors
     export: Export
     failed: Failed
     'false': false
     file: File
     file_upload_button: Select File
+    filename: File name
+    files: Files
+    filters: Filters
     first_name: First Name
     formal_learning: Formal Learning
     generate: Generate
@@ -105,6 +111,7 @@ en:
     impersonation_banner_aria_label: Active impersonation session
     impersonation_end_session: Exit
     import: Import
+    in_progress: In Progress
     inactive: Inactive
     internet_disconnected_message: Trying to reconnect. Please check your internet connection.
     is_impersonating: is impersonating
@@ -112,6 +119,7 @@ en:
     issuer_claim_label: Issuer (iss)
     jwt_claims_details: JWT Claims Details
     key_id_claim_label: Key ID (kid)
+    languages: Languages
     last_name: Last Name
     last_updated: Last Updated
     learning_on_the_job_label: Learning on the Job
@@ -151,6 +159,7 @@ en:
     no_results_found: No results found
     none: None
     not_requested: Not Yet Requested
+    not_set: Not Set
     ok: Ok
     options: Options
     overview: Overview
@@ -215,12 +224,14 @@ en:
     reset_password: Reset Password
     response_text: Response Text
     return_url_not_whitelisted: The return URL is not whitelisted for this application.
+    review: Review
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
     rte_paste_content_exceeds_word_limit: Text exceeds the word limit of {{maxWordLimit}} and cannot be pasted.
     run: Run
     save: Save
     saving_video: Saving Video... Please do not close or refresh the browser
     schedule_time: Schedule Time
+    scheduled: Scheduled
     scoring_details: Scoring Details
     search: Search
     select_camera: Select a Camera

@@ -575,6 +575,10 @@ id:
       enabled: Diaktifkan
       loading: Loading...
       save: Simpan
+    communication_center:
+      errors:
+        terminal_state: Pengiriman sudah dalam tahap akhir.
+        update_translation: Tidak dapat memperbarui terjemahan untuk wilayah ini.
     communication_settings: Pengaturan
     communications:
       create:

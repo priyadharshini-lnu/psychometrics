@@ -22,6 +22,7 @@ module Administration
           optional(:questionCenter).filled(:str?)
           optional(:libraries).filled(:str?)
           optional(:communicationCenter).filled(:str?)
+          optional(:newCommunicationCenter).filled(:str?)
           optional(:reports).filled(:str?)
           optional(:reportApprovals).filled(:str?)
           optional(:dataReports).filled(:str?)

@@ -214,6 +214,8 @@ hr:
               inclusion: Pogrešna lokacija
             password:
               too_short: Lozinka je prekratka. Minimalno potreban znak %{count}
+            uat:
+              invalid: 'UAT mora biti jedan od: %{accepted_values} ili prazno'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ hr:
               invalid_reports_header: Nevažeće zaglavlje, uzmite zaglavlje iz ogledne datoteke
               manager_not_found: 'Redak %{row_number}: upravitelj s e-poštom %{email} nije prisutan u kampanji ili u CSV-u'
               not_enough_licenses: Za uvoz je potrebno %{required_count} licenci, ali dostupno je samo %{available_count}. Molimo smanjite broj novih korisnika ili dodajte više licenci prije uvoza.
+              not_enough_uat_licenses: Za uvoz je potrebno %{required_count} UAT testnih licenci, ali dostupno je samo %{available_count}. Prije uvoza smanjite broj novih UAT korisnika ili povećajte ograničenje korištenja UAT-a.
               user_update_failed: Korisničko ažuriranje nije uspjelo za %{email} s pogreškom '%{error}'
             locale:
               inclusion: Pogrešna lokacija
@@ -943,7 +946,9 @@ hr:
         import_sms_invites: Uvoz SMS pozivnice
         import_users: Uvoz korisnika
         migrate_assessment_translations: Procjena Migracija prijevoda
+        migrate_communication_center: Migracija komunikacijskog centra
         normalize_factor_scores: Normalizirajte rezultate faktora
+        project_bulk_download_reports: Izvješća o skupnom preuzimanju projekta
         project_compact_completion_status_export: Izvoz statusa dovršetka kompaktno
         project_completion_status_export: Izvoz statusa dovršenosti
         regenerate_assessment_transcriptions: Obnovi transkripte procjene
@@ -986,6 +991,8 @@ hr:
     errors: Greške
     invalid_job: Ova obavijest odgovara izbrisanom zapisu
     mark_as_read: Označi sve kao pročitano
+    migrate_communication_center:
+      client_not_found: Klijent s id=%{id} nije pronađen
     more: Više
     results: Rezultati
     super_admin:
@@ -2984,6 +2991,7 @@ hr:
     end_date: Datum završetka
     not_enough_license: "'%{client_name}' nema dovoljno licenci za '%{report_name}'"
     not_enough_license_count: Nema dovoljno licenci, obratite se administratoru
+    not_enough_uat_license: "'%{client_name}' nema dovoljno UAT testnih licenci za '%{report_name}'. Povećajte ograničenje korištenja UAT-a na toj licenci ili se obratite administratoru."
     number: Broj
     overuse_number: Dopuštenje prekomjerne upotrebe
     project_specific: Specifično za projekte
@@ -2998,6 +3006,11 @@ hr:
       idp: IDP
       proctoring: Nadzor
       threesixty: Tristo šezdeset
+    uat_usage_limit_credits: UAT ispitni bodovi
+    uat_usage_limit_credits_hint: Nadzor se naplaćuje u kreditima, pa je ovo maksimalni broj kredita koje korisnici UAT testa mogu potrošiti iz ove licence (maksimalno 300).
+    uat_usage_limit_users: Korisnici UAT testa
+    uat_usage_limit_users_hint: Maksimalan broj UAT testnih korisnika koji se mogu kreirati s ovom licencom (maks. 30). Testni korisnici nikada ne koriste naplative licence.
+    uat_used: UAT korištene licence
     used_number: Korištene licence
     used_out_of: "%{used} od %{total}"
   lti:

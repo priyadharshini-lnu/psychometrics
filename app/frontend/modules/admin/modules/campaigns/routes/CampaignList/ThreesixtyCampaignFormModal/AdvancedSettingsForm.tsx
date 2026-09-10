@@ -103,7 +103,7 @@ const AdvancedSettingsForm = ({
         include: ['sub_factors', 'parent_factors', 'parent_factors.sub_factors'],
       },
     }).then((data: Factor[]) => {
-      if (data.length > 0 && data.length <= 20) {
+      if (data.length > 0) {
         setShowFactorsSelect(false)
         handleSelectAllFactors(data, assessmentId)
       } else {

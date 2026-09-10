@@ -43,9 +43,11 @@ module AdminJobs
                   LEFT JOIN campaign_options co ON co.campaign_id = cmp.id
                   LEFT JOIN clients p ON cmp.project_id = p.id
                   LEFT JOIN clients c ON c.id = p.tte_id
+                  LEFT JOIN users u ON u.id = user_assessments.subject_id
                 SQL
                 where('p.ancestry_depth = 1').
                 where('c.ancestry_depth = 0').
+                where('u.is_uat = false').
                 where(status: [2, 3, 4, 5])
 
         if geo_restricted_top_level_client_ids.any?

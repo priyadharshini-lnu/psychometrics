@@ -218,6 +218,15 @@ hu:
     assessor_assessments_reset_successfully: A téma kiértékelésének alaphelyzetbe állítása a "%{subjectEmail}" e-mail-címmel sikeres volt.
     assessor_assessments_subject_email: Tárgy e-mail
     assessor_assessments_subject_name: Tárgy neve
+    assessor_campaign_users_awaiting_moderation: Moderálásra vár
+    assessor_campaign_users_awaiting_moderation_subtitle: készen áll a konszolidációra
+    assessor_campaign_users_candidates_subtitle: hozzád rendelve
+    assessor_campaign_users_completed: Befejezve
+    assessor_campaign_users_completed_subtitle: kijelentkezve
+    assessor_campaign_users_in_progress: Folyamatban van
+    assessor_campaign_users_in_progress_subtitle: értékelés alatt áll
+    assessor_campaign_users_not_started: Nincs elkezdve
+    assessor_campaign_users_not_started_subtitle: értékelések
     assessor_campaigns_statuses_completed: Befejezett
     assessor_campaigns_statuses_in_progress: Folyamatban
     assessor_campaigns_statuses_not_started: Nincs elindítva
@@ -226,6 +235,20 @@ hu:
     assessor_create_assessor: Értékelő hozzáadása
     assessor_dashboard: Értékelő irányítópult
     assessor_email: Az értékelő e-mail címe
+    assessor_evaluation: Értékelői értékelés
+    assessor_evaluation_by_campaign: Kampány szerint
+    assessor_evaluation_by_participant: Résztvevő által
+    assessor_evaluation_candidate: Jelölt
+    assessor_evaluation_candidates: Jelöltek
+    assessor_evaluation_completed: Értékelés befejezve
+    assessor_evaluation_date_range: Kezdő dátum – Befejező dátum
+    assessor_evaluation_moderation_waiting: Moderálásra vár
+    assessor_evaluation_tour_profile_description: Fiókod, szerepköröd, nyelved és az új élmény engedélyezéséhez szükséges kapcsoló itt található. Nyisd meg az adataidat, vagy jelentkezz ki.
+    assessor_evaluation_tour_profile_title: Profilod és beállításaid
+    assessor_evaluation_tour_table_description: Nyisson meg bármelyik sort az értékeléseik megtekintéséhez, majd értékelje a válaszaikat, vagy moderálja a végeredményt.
+    assessor_evaluation_tour_table_title: Válassz egy jelöltet
+    assessor_evaluation_tour_tabs_description: Váltson a Résztvevőnként (egyszerre egy személy) és a Kampányonként lehetőségek között.
+    assessor_evaluation_tour_tabs_title: Kétféleképpen lehet dolgozni
     assessor_evaluations: Értékelő értékelések
     assessor_first_name: Az értékelő keresztneve
     assessor_form: Értékelő űrlap
@@ -233,18 +256,24 @@ hu:
     assessor_last_name: Az értékelő vezetékneve
     assessor_modals_import_body: Az exportálás funkcióban kinyerhet egy sablont, amely az importáláshoz használható.
     assessor_modals_import_title: Értékelők importálása
+    assessor_new_experience: Új élmény
     assessor_overview: Áttekintés
     assessor_placeholder: Értékelő keresése...
     assessor_remove_confirmation: Biztos vagy benne, hogy el akarod távolítani a(z) %{email} e-mail címmel rendelkező értékelőt ebből a kampányból?
     assessor_remove_has_evaluations: Ehhez az értékelőhöz %{evaluation_count} értékelői űrlap van hozzárendelve. Az összes kitöltött értékelése elvész.
     assessor_remove_in_assessment_centers: Ez az értékelő %{workshop_count} értékelőközpontban vesz részt. A folytatás az összes értékelőközpontból eltávolítja.
-    assessor_statuses_completed: Befejezett
-    assessor_statuses_not_completed: Nem fejeződött be
-    assessor_subjects_statuses_completed: Befejezett
-    assessor_subjects_statuses_in_progress: Folyamatban
-    assessor_subjects_statuses_not_started: Nincs elindítva
+    assessor_switch_to_classic: Váltás klasszikusra
     assessor_toolbar_export: Értékelők exportálása
     assessor_toolbar_import: Értékelők importálása
+    assessor_tour_button: Kirándulás
+    assessor_try_new_experience: Próbálja ki az új élményt
+    assessor_user_assessment_name: Értékelés neve
+    assessor_user_candidate_id: Jelölt azonosítója
+    assessor_user_evaluate: Értékelés
+    assessor_user_evaluation: Értékelés
+    assessor_user_evaluation_progress: Értékelési folyamat
+    assessor_user_moderate: Mérsékelt pontszámok
+    assessor_user_moderation: Moderálás
     assessor_workshops: Értékelési központ
     assessors: Értékelők
     assistant_toolbar_failed: Többszöri próbálkozás után sem sikerült érvényes kimenetet generálni.
@@ -312,6 +341,79 @@ hu:
     bulk_assets_modal_title: CSV és ZIP fájlok feltöltése
     bulk_export_assessments_file: Tömeges adómegállapítások exportfájlja
     bulk_export_invalid_params: Érvénytelen tömeges export paraméterek
+    bulk_reports: Tömeges jelentések
+    bulk_reports_all_of_year: "%{year} összes része"
+    bulk_reports_all_tags: Minden címke
+    bulk_reports_bundled_into_single: egyetlen csomagba csomagolva
+    bulk_reports_campaign_count_one: "%{count} kampány"
+    bulk_reports_campaign_count_other: "%{count} kampány"
+    bulk_reports_campaign_search_placeholder: Kampányok vagy projektek keresése...
+    bulk_reports_campaigns_shown_count: "%{selected} kiválasztva - %{shown} megjelenítve"
+    bulk_reports_campaigns_without_reports_warning: 'Kiválasztott kampányok konfigurált jelentések nélkül: %{count}. Ezek kimaradnak.'
+    bulk_reports_candidate_abbreviation: folypát.
+    bulk_reports_complete_every_step: Végezze el az összes lépést az engedélyezéshez
+    bulk_reports_date_range_required: A folytatáshoz kezdő és befejező dátum megadása is szükséges.
+    bulk_reports_date_range_summary: Az %{start} és %{end} között elvégzett értékelések beleszámítanak.
+    bulk_reports_description: Hozz létre egyetlen exportfeladatot több kampányra kiterjedően. Válaszd ki a kampányokat, válaszd ki a használni kívánt jelentéseket és nyelveket, állíts be egy dátumtartományt, majd küldd el.
+    bulk_reports_deselect_all_shown: Összes kijelölésének törlése
+    bulk_reports_download_notification_sent: Letöltési értesítés elküldve
+    bulk_reports_emailed_when_ready: és e-mailben elküldjük, amikor elkészült.
+    bulk_reports_end_date_placeholder: Válassza ki a befejezési dátumot és időpontot
+    bulk_reports_end_date_required: Kérjük, válasszon egy befejező dátumot.
+    bulk_reports_error_try_again: Hiba - próbálja újra
+    bulk_reports_files_estimated_across: becsült fájlok
+    bulk_reports_files_pending: A fájlok itt jelennek meg, miután a munka befejeződött.
+    bulk_reports_generate_export: Exportálás generálása
+    bulk_reports_invalid_date_range: A befejezési dátumnak a kezdő dátummal egyező vagy későbbinek kell lennie.
+    bulk_reports_job_details_title: 'Munka #%{id}'
+    bulk_reports_job_not_found: Ez az állás nem található.
+    bulk_reports_job_queued: Feladat várólistára helyezve
+    bulk_reports_languages_progress_one: "%{done} az %{total} jelentéskészletből"
+    bulk_reports_languages_progress_other: "%{done}/%{total} jelentéskészlet"
+    bulk_reports_languages_set_for_all_one: Beállítva minden %{count} jelentéshez
+    bulk_reports_languages_set_for_all_other: Beállítva az összes %{count} jelentéshez
+    bulk_reports_last_30_days: Utolsó 30 nap
+    bulk_reports_last_90_days: Utolsó 90 nap
+    bulk_reports_no_campaigns_found: Nem találhatók kampányok ehhez a projekthez.
+    bulk_reports_no_campaigns_match_filters: Egyetlen kampány sem felel meg a keresési vagy címkeszűrőknek.
+    bulk_reports_no_campaigns_selected: Nincsenek kiválasztott kampányok
+    bulk_reports_no_files_yet: Ehhez a feladathoz még nem állnak rendelkezésre fájlok.
+    bulk_reports_no_language_selected: nincs kiválasztva nyelv
+    bulk_reports_no_languages_available: Ehhez a jelentéshez nem érhetők el nyelvek.
+    bulk_reports_no_reports_configured: A kiválasztott kampányok egyikéhez sincsenek konfigurált jelentések. Lépjen vissza, és ellenőrizze a kampány konfigurációját.
+    bulk_reports_no_reports_selected: Nincsenek kiválasztott jelentések
+    bulk_reports_no_reports_selected_for_languages: Nincsenek kiválasztott jelentések. Menjen vissza, és válasszon ki legalább egy jelentést.
+    bulk_reports_no_tags_found: Nem található címkék
+    bulk_reports_none_selected: Nincs kiválasztva
+    bulk_reports_queued_by: 'Sorban állva:'
+    bulk_reports_queuing_jobs: Feladatok sorban állása...
+    bulk_reports_ready_to_generate: Készen áll a generálásra
+    bulk_reports_report_count_one: "%{count} jelentés"
+    bulk_reports_report_count_other: "%{count} jelentés"
+    bulk_reports_reports_and_languages: Jelentések és nyelvek
+    bulk_reports_review_submit: Ellenőrzés és beküldés
+    bulk_reports_review_submit_description: Ellenőrizd az alábbi feladatot. Visszaugorhatsz bármelyik lépéshez, hogy módosításokat végezz.
+    bulk_reports_select_all_shown: Összes megjelenítés kijelölése
+    bulk_reports_select_campaigns: Kampányok kiválasztása
+    bulk_reports_select_campaigns_description: Keressen név vagy projekt alapján, és szűkítse a listát címkeszűrőkkel. Ezután jelölje be a belefoglalni kívánt kampányokat.
+    bulk_reports_select_date_range: Dátumtartomány kiválasztása
+    bulk_reports_select_date_range_description: Csak az ebben a tartományban elvégzett értékeléseket vegye figyelembe. Hagyjon előre beállított értéket, vagy adjon meg pontos dátumokat.
+    bulk_reports_select_languages: Nyelvek kiválasztása
+    bulk_reports_select_languages_description: Minden jelentés más nyelveket támogat. Válasszon ki legalább egy nyelvet jelentésenként. A jelentés minden kiválasztott nyelven létrejön.
+    bulk_reports_select_reports: Jelentések kiválasztása
+    bulk_reports_select_reports_description: Minden kiválasztott jelentés az exportált fájlokban szereplő minden jelölthez vagy kampányhoz, minden kiválasztott nyelven létrejön.
+    bulk_reports_selected_tags_count_one: "%{count} címke kiválasztva"
+    bulk_reports_selected_tags_count_other: "%{count} címke kiválasztva"
+    bulk_reports_start_date_placeholder: Kezdő dátum és időpont kiválasztása
+    bulk_reports_start_date_required: Kérjük, válasszon egy kezdési dátumot.
+    bulk_reports_step_coming_soon: Ez a lépés hamarosan bekövetkezik.
+    bulk_reports_submit_error: Valami hiba történt. Próbáld újra.
+    bulk_reports_submit_success: Az exportálási feladat várólistára került. Értesítést kap, amikor a letöltés elkészült.
+    bulk_reports_summary_description: Frissítések a munka felépítése közben
+    bulk_reports_summary_title: Összefoglaló letöltése
+    bulk_reports_title: Tömeges jelentések
+    bulk_reports_view_downloads: Tömeges jelentésletöltések megtekintése
+    bulk_reports_year_to_date: Év eleje óta
     bulk_upload_ai_artifacts: Tömeges feltöltési AI tárgyak
     campaign: Kampány
     campaign_admin: Kampány adminisztrátora
@@ -383,6 +485,13 @@ hu:
     campaign_templates_remove_confirm_success: A(z) '%{name}'' kampánysablon sikeresen el lett távolítva.
     campaign_templates_remove_confirm_title: Kampánysablon eltávolítása
     campaign_user_job_roles_cannot_be_same: A célpozíció nem lehet azonos a jelenlegi pozícióval.
+    campaign_users_import_uat_hint: Állítsa az UAT oszlopot Igen értékre azoknál a tesztfelhasználóknál, akiket ki kell zárni a licencelésből, az elemzésből és a webhookokból.
+    campaign_users_uat_description: Jelölje meg ezt a résztvevőt UAT tesztfelhasználóként.
+    campaign_users_uat_label: UAT résztvevő
+    campaign_users_uat_license_non_billable: Nem számlázható
+    campaign_users_uat_locked_hint: Ez a résztvevő már létezik. Az UAT állapota a résztvevő létrehozásakor kerül beállításra, és nem módosítható.
+    campaign_users_uat_readonly_hint: Az UAT állapota létrehozáskor van beállítva, és nem módosítható.
+    campaign_users_uat_tooltip: Az UAT felhasználói valódi résztvevői a tesztelésnek. A szokásos módon részt vehetnek a felméréseken, de nem jogosultak a számlázható licencek használatára, az elemzésekre és a kimenő webhookokra.
     campaigns: Kampányok
     campaigns_convert_to_template: Átalakítás sablonba
     campaigns_extend_time_success_message: A kampány időzítője %{minutes} percre bővült
@@ -469,6 +578,7 @@ hu:
     clients_search_placeholder: Ügyfélkeresés
     closed: Zárt
     code_required: Kód szükséges
+    collapse_all: Összes összecsukása
     collapse_filters: Szűrők bezárása
     column_code: Kód
     column_invitation_status: Meghívás státusz
@@ -487,10 +597,130 @@ hu:
     common_type: Típus
     common_unselect_all: Az összes kijelölésének törlése
     communication_center: Kommunikációs központ
+    communication_center_manage_translations_action: Fordítások kezelése
+    communication_center_migration_enqueued: Migrációs feladat várólistára helyezve. A folyamat előrehaladását a naplókban ellenőrizheti.
+    communication_center_migration_error: A migrációs kérés sikertelen. Próbáld újra, vagy ellenőrizd a naplókat.
+    communication_center_migration_modal_intro: 'A következő módosítások lépnek életbe, amikor futtatja az ügyfél migrálását:'
+    communication_center_migration_modal_title: Kommunikációs központ migrálásának előzetese
+    communication_center_migration_preview_button: Előnézeti migráció
+    communication_center_migration_run_button: Futtassa az áttelepítést
+    communication_center_migration_skipped: Már migrálva (kihagyásra kerül)
+    communication_center_migration_would_assessments: Áttelepítendő értékelések
+    communication_center_migration_would_backfill: Kitöltésre váró e-mailek
+    communication_center_migration_would_cc_users: CC-felhasználók migrálása
+    communication_center_migration_would_migrate: Migrálandó kommunikáció
+    communication_center_migration_would_users: Kiválasztott felhasználók migrálásra
+    communication_center_translation_updated_success: A fordítás sikeresen frissítve
+    communication_center_translations_modal_title: Fordítások kezelése
+    communication_deliveries: Szállítások
+    communication_delivery: Kommunikáció kézbesítése
+    communication_delivery_assessment_group_label: Értékelő csoport
+    communication_delivery_at_label: Szállítási dátum és idő
+    communication_delivery_at_past_error: A szállítási dátumnak a jövőben kell lennie
+    communication_delivery_cancel_action: Mégsem
+    communication_delivery_cancel_error: Nem sikerült lemondani a kézbesítést
+    communication_delivery_cc_users_label: Másolatot kapók
+    communication_delivery_completion_status_hint: Ha meg van adva egy teljesítési kód, akkor az csak akkor kerül elküldésre, ha a felhasználó értékelése rendelkezik ezzel a teljesítési állapotkóddal.
+    communication_delivery_completion_status_label: Értékelés teljesítési állapotkódja
+    communication_delivery_delay_hours_label: Késés (órában)
+    communication_delivery_details_title: Szállítási részletek
+    communication_delivery_emails_sent_label: Küldött
+    communication_delivery_emails_total_label: Összes e-mail
+    communication_delivery_end_date_label: Befejezési dátum
+    communication_delivery_frequency_daily: Napi
+    communication_delivery_frequency_label: Frekvencia
+    communication_delivery_frequency_specific_weekdays: Meghatározott hétköznapok
+    communication_delivery_frequency_weekly: Heti
+    communication_delivery_interval_number_label: Intervallum
+    communication_delivery_interval_period_days: Napok
+    communication_delivery_interval_period_hours: Órák
+    communication_delivery_interval_period_label: Intervallum
+    communication_delivery_interval_period_months: Hónapok
+    communication_delivery_interval_period_weeks: Hetek
+    communication_delivery_new_button: Új szállítás
+    communication_delivery_recipients_all: Minden résztvevő
+    communication_delivery_recipients_label: Címzettek
+    communication_delivery_recipients_new_assignment: Új feladat
+    communication_delivery_recipients_new_users: Új felhasználók
+    communication_delivery_recipients_selected: Kiválasztott résztvevők
+    communication_delivery_rule_in_progress: Folyamatban van
+    communication_delivery_rule_label: Szállítási szabály
+    communication_delivery_rule_not_completed: Nincs befejezve
+    communication_delivery_rule_not_started: Nincs elkezdve
+    communication_delivery_rule_send_now: Küldés most
+    communication_delivery_rule_specific_datetime: Konkrét dátum és időpont
+    communication_delivery_search_users_placeholder: Keresés név vagy e-mail cím alapján
+    communication_delivery_selected_assessments_label: Értékelések
+    communication_delivery_selected_users_label: Felhasználók kiválasztása
+    communication_delivery_start_date_label: Kezdő dátum
+    communication_delivery_template_label: Sablon
+    communication_delivery_time_of_day_label: Napszak
+    communication_delivery_timezone_label: Időzóna
+    communication_delivery_trigger_type_label: Trigger típusa
+    communication_delivery_trigger_type_manual: Kézikönyv
+    communication_delivery_trigger_type_scheduled: Ütemezett
+    communication_delivery_weekday_fri: péntek
+    communication_delivery_weekday_mon: hétfő
+    communication_delivery_weekday_sat: szombat
+    communication_delivery_weekday_sun: vasárnap
+    communication_delivery_weekday_thu: csütörtök
+    communication_delivery_weekday_tue: kedd
+    communication_delivery_weekday_wed: szerda
+    communication_delivery_weekdays_label: Hétköznapok
+    communication_email_created_at_label: 'Létrehozva:'
+    communication_email_not_sent: Nincs elküldve
+    communication_email_preview_action: Előnézet
+    communication_email_preview_date_label: Dátum
+    communication_email_preview_from_label: Tól
+    communication_email_preview_title: E-mail előnézete
+    communication_email_preview_to_label: Címzett
+    communication_email_preview_warning: Ez a sablon újrarenderelt előnézete, és előfordulhat, hogy nem tükrözi a ténylegesen elküldött e-mail pontos tartalmát.
+    communication_email_recipient_email_label: Címzett e-mail címe
+    communication_email_recipient_name_label: Címzett neve
+    communication_email_retrigger_action: Újraindító
+    communication_email_retrigger_error: Nem sikerült újraindítani az e-mailt
+    communication_email_sent_at_label: 'Elküldve ekkor:'
+    communication_email_status_label: Állapot
+    communication_email_subject_label: Téma
+    communication_emails: E-mailek
+    communication_template: Kommunikációs sablon
+    communication_template_body_label: Üzenet
+    communication_template_create_new_action: Új létrehozása
+    communication_template_kind_label: Kommuníciós típus
+    communication_template_level_campaign: Kampány
+    communication_template_level_client: Ügyfél
+    communication_template_level_platform: Platform
+    communication_template_level_project: Projekt
+    communication_template_name_label: Sablon neve
+    communication_template_new_button: Új sablon
+    communication_template_override_inherited_action: Örökölt felülírás
+    communication_template_override_picker_search_placeholder: Felülírandó keresési sablonok
+    communication_template_override_picker_title: Örökölt sablon felülírása
+    communication_template_recipients_all: Minden
+    communication_template_recipients_label: Alapértelmezett címzettek
+    communication_template_recipients_new_assignment: Új feladat
+    communication_template_recipients_new_users: Új felhasználók
+    communication_template_recipients_selected: Kiválasztott
+    communication_template_source_created: Létrehozva
+    communication_template_source_label: Forrás
+    communication_template_source_override_of: "%{level} felülírása"
+    communication_template_status_active: Aktív
+    communication_template_status_archived: Archivált
+    communication_template_status_draft: Vázlat
+    communication_template_status_label: Állapot
+    communication_template_subject_label: Téma
+    communication_templates: Sablonok
     communications: Kommunikáció
     communications_form_insert_piped_text: Piped szöveg beillesztése
+    competency_indicator: Kompetencia / Mutató
     completed: Befejezett
     completed_tooltip: Minden értékelő benyújtotta az értékelést
+    completion_recipients_all: Minden tantárgy
+    completion_recipients_list: 'Címzettek listája:'
+    completion_recipients_selected: Kiválasztott témák
+    completion_recipients_selected_admins: Kiválasztott adminisztrátorok
+    completion_recipients_selected_assessors: Kiválasztott értékelők
+    completion_recipients_selected_assessors_hint: Csak a kitöltő tantárgyhoz tartozó értékelői űrlaphoz rendelt értékelő kap e-mailt, még akkor is, ha fent más értékelőket választott ki.
     components_input_duration_placeholder: Írja be "1d 2h 3m"
     concise: Tömör
     condition_sets: Feltételhalmazok
@@ -697,6 +927,8 @@ hu:
     disable_proctoring: A felügyelet letiltása
     disable_report_download: Jelentés letöltésének letiltása
     disable_transcript_download: Átirat letöltésének letiltása
+    disable_webhooks: Webhookok letiltása
+    disable_webhooks_hint: Ha ez be van kapcsolva, akkor a résztvevő típusától függetlenül nem küldenek webhook vagy downstream integrációs eseményeket az ügyfélnek ehhez a kampányhoz. Ezt csak a kiemelt adminisztrátorok módosíthatják.
     disallow_lead_assessor_moderation: A vezető értékelő moderálásának letiltása
     disallow_lead_assessor_moderation_info: A pontszámot a rendszer automatikusan kiszámítja az összes értékelői űrlap benyújtása alapján, és a vezető értékelő a moderálási képernyőn nem módosíthatja azt.
     discard_all_questions: Minden kérdés visszaállítása
@@ -795,6 +1027,7 @@ hu:
     evaluator_welcome_name: Értékelő üdvözlendő
     evaluators_title: Értékelők
     evidence_from_transcript: A jegyzőkönyvből származó bizonyíték
+    expand_all: Összes kibontása
     expand_filters: Szűrők kibontása
     export_admin_roles_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
     export_admins_with_permissions: Adminisztrátori szerepkörök és engedélyek exportálása
@@ -855,6 +1088,7 @@ hu:
     feature_not_available: Ez a funkció nem érhető el
     feature_sms_notification_description: SMS-értesítések engedélyezése kampánymeghívók és emlékeztetők esetén
     feature_superadmin_tenant_scoping_description: Ha le van tiltva, a szuperadminisztrátori lekérdezések hatóköre nem terjed ki az adott ügyfél adataira.
+    feature_use_new_communication_center_description: Csak az új Kommunikációs központot használja ehhez az ügyfélhez, és állítsa le a korábbi kommunikációk küldését.
     fields_level: Szint
     fields_level_description: Szint leírása
     fields_level_name: Szint neve
@@ -1121,6 +1355,7 @@ hu:
     import_title: Témák importálása a CSV-ből
     import_upload: Feltölt
     import_users: Importfelhasználók
+    in_progress: Folyamatban
     inactive: Inaktív
     include_locales_label: Fordítások belefoglalása
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ hu:
     model_params_thinking_effort_none: Egyik sem
     model_params_thinking_effort_tooltip: Azt szabályozza, hogy a modell mennyi érvelést alkalmazzon a válaszadás előtt. Nagyobb erőfeszítés esetén alaposabb válaszok jönnek létre, de ez tovább tart. A „Nincs” beállítással teljesen kikapcsolhatja az érvelést.
     model_params_title: Speciális modellkonfiguráció
+    moderate_scoring_lead_assessor_form: Vezető értékelői űrlap
     must_be_a_valid_url: Érvénytelen URL. Adja meg a teljes URL-címet, beleértve az http vagy https protokollt is
     name: Név
     name_max_length: A név nem haladhatja meg a %{length} karaktert.
@@ -1411,6 +1647,24 @@ hu:
     navigation_registration_codes: Regisztrációs kódok
     navigation_skills_taxonomy: Készségek taxonómiája
     navigation_users: Felhasználók
+    new_experience_badge: Új élmény
+    new_experience_bullet_brief_rest: A kompetencia-útmutató a képernyőn marad, miközben értékel.
+    new_experience_bullet_brief_strong: A pontozás melletti feladat
+    new_experience_bullet_candidate_rest: minden értékelői űrlapot az adott jelölthez, együtt.
+    new_experience_bullet_candidate_strong: Egy jelölt, egy nézet
+    new_experience_bullet_moderation_rest: minden értékelő pontszáma egymás mellett, egy utolsó döntés.
+    new_experience_bullet_moderation_strong: Moderálás percek alatt
+    new_experience_footer_note: Az új élmény hamarosan mindenki számára alapértelmezett lesz. A profilod adatainál bármikor válthatsz az Új élményre.
+    new_experience_headline: Egyetlen folyamat, az első felülvizsgálattól a végső jóváhagyásig.
+    new_experience_notice_body: Újraterveztük az értékelői felületet. Kipróbálhatja most, vagy később is engedélyezheti a profilbeállításaiban.
+    new_experience_notice_maybe_later: Talán később
+    new_experience_notice_title: Új értékelői élmény érhető el
+    new_experience_preview_alt: Az új értékelői élmény előzetese
+    new_experience_sub_copy: A jelölt, az értékelés, a moderálás és az értékelőközpont mostantól egyetlen összekapcsolt nézetként működnek, nem pedig öt, általad egyben tartott képernyőn.
+    new_experience_word_assessment_centre: Értékelőközpont Levezesd a foglalkozást és kövesd nyomon az összes tantárgyat.
+    new_experience_word_candidate: Jelölt Egy jelölt, az összes értékelése együtt.
+    new_experience_word_evaluate: Értékelje a feladatot és az értékelést egymás mellett.
+    new_experience_word_moderate: Mérsékelt Minden értékelő pontoz, egy utolsó döntés.
     new_folder: Új mappa
     new_score: Új pontszám
     no_assessments_found: Ellenőrzés azonosítója
@@ -1458,6 +1712,7 @@ hu:
     norms_title: Norma
     not_completed: Nem befejezve
     not_completed_tooltip: "%{completed} értékelőt osztanak ki, de csak %{submitted} fejezték be az értékeléseket"
+    not_started: Nincs elindítva
     notes: Megjegyzések
     nothing_assigned: Nincsenek értékelők kijelölve
     nothing_assigned_tooltip: Ehhez a felhasználóhoz nem rendeltek értékeléseket
@@ -1570,6 +1825,7 @@ hu:
         manage_messages: Üzenetek kezelése
         manage_options: Beállítások kezelése
         manage_report_approvals: Jelentések jóváhagyásának kezelése
+        manage_uat: UAT-felhasználók kezelése
         manage_users: Felhasználók kezelése
         participant_options: Résztvevői beállítások
         report_options: Jelentés beállításai
@@ -1898,6 +2154,7 @@ hu:
         title: Regisztrációs beállítások
       reports:
         manage: Kezel
+        project_bulk_reports: Projekt tömeges jelentések
         title: Jelentések
         view: Nézet
       responseMeta:
@@ -2055,6 +2312,7 @@ hu:
     project_admins: Projektadminisztrátorok
     project_assessor: Projektértékelő
     project_features: A projekt jellemzői
+    project_id: Projekt azonosítója
     project_ids: Projektazonosítók
     project_ids_required: A „project_ids” mező megadása kötelező ehhez a jelentéstípushoz
     project_licenses: Projektlicencek
@@ -2114,6 +2372,7 @@ hu:
     projects_form_project_number: Projekt száma
     projects_form_subdomain: Aldomain
     projects_form_title: Projekt
+    projects_general_settings_allow_data_access_to_bi: Powerbi-hozzáférés engedélyezése ehhez a projekthez
     projects_general_settings_live_chat: Élő csevegés engedélyezése
     projects_general_settings_locales_label: Helyszínek
     projects_general_settings_project_number_label: Projekt száma
@@ -2358,6 +2617,7 @@ hu:
     report_on_hold: A %{user} jelentése jelenleg szünetben van
     report_owner: Tulajdonos
     report_pdf_status: Jelentés PDF-formátumban
+    report_pdf_unavailable: A jelentés PDF-je még nem érhető el.
     report_review_abort_qc: Minőségellenőrzés megszakítása
     report_review_approve: Jóváhagy
     report_review_approve_changes: Módosítások jóváhagyása
@@ -2725,6 +2985,7 @@ hu:
     scoring_approval_score_approvals: AI pontszámok jóváhagyása
     scoring_assessment: Értékelés
     scoring_assessment_scoring_type: Értékelési pontozás típusa
+    scoring_assessor_number: Értékelő %{number}
     scoring_average: Átlagos
     scoring_campaign_scoring_variables: Kampánypontozási változók
     scoring_desc: Túllépte a(z) %{n} kampány tényezőinek maximális korlátját. További tényezők nem adhatók hozzá. Kérjük, tekintse át és kezelje meglévő tényezőit, mielőtt folytatná.
@@ -3115,15 +3376,19 @@ hu:
     status_details: Állapot részletei
     statuses_accepted: Elfogadott
     statuses_cancelled: Törölt
+    statuses_failed: Sikertelen
     statuses_late_cancelled: Késve törölték
     statuses_late_rescheduled: Későn átütemezett
     statuses_pending: Függő
+    statuses_queued: Sorban álló
     statuses_requested_cancellation: Kért lemondás
     statuses_requested_cancellation_rejected: Lemondás elutasítva
     statuses_requested_rescheduling: Kért átütemezés
     statuses_requested_rescheduling_rejected: Átütemezés elutasítva
     statuses_rescheduled: Átütemezve
     statuses_scheduled: Ütemezett
+    statuses_sent: Küldött
+    statuses_skipped: Kihagyva
     steps_basic_information: Alapinformációk
     steps_facilitators: Segítők
     steps_invite_options: Meghívási beállítások
@@ -3329,6 +3594,7 @@ hu:
     url_label: URL-cím
     url_name: URL-cím
     url_whitelisting: URL-engedélyezés
+    use_new_communication_center: Új kommunikációs központ használata
     used_tokens_input_tokens: Bemeneti tokenek
     used_tokens_output_tokens: Kimeneti tokenek
     used_tokens_thinking_tokens: Gondolkodó zsetonok

@@ -6,7 +6,7 @@ module Administration
     prepend_before_action :set_resource_class
     before_action :set_resource, only: %i[edit update destroy sidebar]
     before_action :skip_authorization, only: [:sidebar]
-    before_action :init_breadcrumbs, except: :index
+    before_action :init_breadcrumbs, except: %i[index builder_index]
     append_before_action :pundit_authorize, except: [:sidebar]
     skip_before_action :verify_authenticity_token
 
@@ -26,6 +26,20 @@ module Administration
         format.html
         format.js { render :index, formats: [:js] }
       end
+    end
+
+    def builder_index
+      libraries = policy_scope(resource_class)
+      folder = libraries.find(params[:with_parent]) unless params[:with_parent].to_i.zero?
+      libraries = libraries.
+                  with_parent(params[:with_parent]).
+                  search_query(params[:search_query]).
+                  with_type(params[:with_type]).
+                  order(type: :asc, created_at: :desc)
+      items = Panko::ArraySerializer.new(libraries, each_serializer: LibrarySerializer).to_a
+      breadcrumbs = Panko::ArraySerializer.new(folder&.path || [], each_serializer: LibrarySerializer).to_a
+
+      render json: { items: items, breadcrumbs: breadcrumbs }
     end
 
     def new

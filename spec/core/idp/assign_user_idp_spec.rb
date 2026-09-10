@@ -17,6 +17,19 @@ describe Idp::AssignUserIdp do
     expect(LicenseUsage.last.consumer).to eq(user_plan)
   end
 
+  it 'records UAT usage without touching billable counters' do
+    uat_user = create(:user, project: campaign.project, is_uat: true)
+    create(:campaign_user, user: uat_user, campaign: campaign)
+    license.update!(uat_usage_limit: 1)
+
+    user_plan = described_class.call!(uat_user, idp_template.id, campaign.id)
+
+    usage = LicenseUsage.find_by!(consumer: user_plan)
+    expect(usage.is_uat).to eq(true)
+    expect(license.reload.used_number).to eq(0)
+    expect(license.uat_used_number).to eq(1)
+  end
+
   it 'assign multiple idp plans to user' do
     user_plan = described_class.call!(user, idp_template.id, campaign.id)
     user_plan2 = described_class.call!(user, idp_template2.id, campaign.id)

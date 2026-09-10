@@ -575,6 +575,10 @@ hu:
       enabled: Engedélyezve
       loading: Berakás...
       save: Mentés
+    communication_center:
+      errors:
+        terminal_state: A kézbesítés már terminál állapotban van.
+        update_translation: Nem sikerült frissíteni a fordítást ehhez a területi beállításhoz.
     communication_settings: Beállítások
     communications:
       create:

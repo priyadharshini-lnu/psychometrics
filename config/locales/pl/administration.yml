@@ -575,6 +575,10 @@ pl:
       enabled: Włączone
       loading: Ładowania...
       save: Zapisać
+    communication_center:
+      errors:
+        terminal_state: Dostawa jest już w stanie końcowym.
+        update_translation: Nie można zaktualizować tłumaczenia dla tej lokalizacji.
     communication_settings: Ustawienia
     communications:
       create:

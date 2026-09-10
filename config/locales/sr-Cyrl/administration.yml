@@ -589,6 +589,10 @@ sr-Cyrl:
       enabled: Омогућено
       loading: Учитавање...
       save: Сачувај
+    communication_center:
+      errors:
+        terminal_state: Испорука је већ у терминалном стању.
+        update_translation: Није могуће ажурирати превод за овај локалитет.
     communication_settings: Подешавања
     communications:
       create:

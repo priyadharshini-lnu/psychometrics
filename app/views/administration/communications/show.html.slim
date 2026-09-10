@@ -39,12 +39,11 @@
     li.list-group-item
       strong.mrs = t('.recipients')
       = render_selected_recipient_users(@communication) || @communication.recipients_i18n
-    - if @communication.selected_recipients?
+    - communication = @communication.decorate
+    - if communication.show_recipient_users_list?
       li.list-group-item
-        strong.mrs = t('.users')
-        = select_tag :recipients,
-          options_from_collection_for_select(@communication.users.decorate, :display_name, :display_name),
-          class: 'form-control'
+        strong.mrs = communication.users_list_label
+        = @communication.users.decorate.map(&:display_name).join(', ')
     - if @communication.cc_users.any?
       li.list-group-item
         strong.mrs = t('.cc_recipients')

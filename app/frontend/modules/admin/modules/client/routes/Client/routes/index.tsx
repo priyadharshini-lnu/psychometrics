@@ -11,6 +11,7 @@ export const routes = [
   { path: 'assessors', lazy: lazyRoute(page, m => m.ClientAssessors) },
   // Settings matches its own permission dependent tabs with useRoutes, so it keeps the splat.
   { path: 'settings/*', lazy: lazyRoute(page, m => m.ClientSettings) },
+  { path: 'communication_center', lazy: lazyRoute(page, m => m.ClientCommunicationCenter) },
   { path: 'audit_reports', lazy: lazyRoute(page, m => m.ClientDataExports) },
   { path: 'licenses', lazy: lazyRoute(page, m => m.ClientLicenseList) },
   { path: 'data_reports', lazy: lazyRoute(page, m => m.ClientDataReports) },

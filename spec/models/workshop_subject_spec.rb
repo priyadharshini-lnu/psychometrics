@@ -168,6 +168,59 @@ describe WorkshopSubject, type: :model do
         end.not_to change(CommunicationEmail, :count)
       end
     end
+
+    context 'when an active CommunicationDelivery exists for the matching assessment group' do
+      let!(:delivery) do
+        create(:communication_delivery, :workshop_booked, client: campaign.project.parent,
+                                                              project: campaign.project, campaign: campaign,
+                                                              campaign_assessment_group: assessment_group)
+      end
+
+      context 'and use_new_communication_center is disabled for the client (default)' do
+        it 'sends the legacy email only -- the delivery is not usable without the flag' do
+          expect do
+            create(:workshop_subject, workshop: workshop, workshop_invite: workshop_invite, campaign: campaign,
+                                       user: user)
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+        end
+      end
+
+      context 'and use_new_communication_center is enabled for the client' do
+        before { campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+        it 'sends the delivery-sourced email only -- the flag suppresses the legacy send' do
+          expect do
+            create(:workshop_subject, workshop: workshop, workshop_invite: workshop_invite, campaign: campaign,
+                                       user: user)
+          end.to change(CommunicationEmail, :count).by(1)
+
+          delivery_email = CommunicationEmail.find_by(communication_delivery: delivery)
+          expect(delivery_email.workshop).to eq(workshop)
+          expect(delivery_email.workshop_invite).to eq(workshop_invite)
+          expect(communication.reload.emails).to be_empty
+        end
+      end
+    end
+
+    context 'when the active CommunicationDelivery is for a different assessment group' do
+      before { campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+      let!(:delivery) do
+        other_group = create(:campaign_assessment_group, campaign: campaign, group_type: 1)
+        create(:communication_delivery, :workshop_booked, client: campaign.project.parent,
+                                                              project: campaign.project, campaign: campaign,
+                                                              campaign_assessment_group: other_group)
+      end
+
+      it 'does not create a delivery-sourced email even with the flag enabled' do
+        create(:workshop_subject, workshop: workshop, workshop_invite: workshop_invite, campaign: campaign,
+                                   user: user)
+
+        expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+      end
+    end
   end
 
   describe '#send_workshop_cancelled_email' do
@@ -253,6 +306,53 @@ describe WorkshopSubject, type: :model do
         expect do
           workshop_subject.update!(scheduling_status: :cancelled)
         end.not_to change(CommunicationEmail, :count)
+      end
+    end
+
+    context 'when an active CommunicationDelivery exists for the matching assessment group' do
+      let!(:delivery) do
+        create(:communication_delivery, :workshop_cancelled, client: campaign.project.parent,
+                                                                 project: campaign.project, campaign: campaign,
+                                                                 campaign_assessment_group: assessment_group)
+      end
+
+      context 'and use_new_communication_center is enabled for the client' do
+        before { campaign.project.parent.client_feature.update!(use_new_communication_center: true) }
+
+        it 'sends the delivery-sourced email only -- the flag suppresses the legacy send' do
+          workshop_subject = create(:workshop_subject,
+                                    workshop: workshop,
+                                    workshop_invite: workshop_invite,
+                                    campaign: campaign,
+                                    user: user,
+                                    scheduling_status: :scheduled)
+
+          expect do
+            workshop_subject.update!(scheduling_status: :cancelled)
+          end.to change(CommunicationEmail, :count).by(1)
+
+          delivery_email = CommunicationEmail.find_by(communication_delivery: delivery)
+          expect(delivery_email.workshop).to eq(workshop)
+          expect(delivery_email.workshop_invite).to eq(workshop_invite)
+          expect(communication.reload.emails).to be_empty
+        end
+      end
+
+      context 'and use_new_communication_center is disabled for the client (default)' do
+        it 'sends the legacy email only -- the delivery is not usable without the flag' do
+          workshop_subject = create(:workshop_subject,
+                                    workshop: workshop,
+                                    workshop_invite: workshop_invite,
+                                    campaign: campaign,
+                                    user: user,
+                                    scheduling_status: :scheduled)
+
+          expect do
+            workshop_subject.update!(scheduling_status: :cancelled)
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.where(communication_delivery: delivery)).to be_empty
+        end
       end
     end
   end

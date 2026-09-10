@@ -429,8 +429,32 @@ const filtered = array.filter(x => x > 0)
 const sorted = sortBy(users, ['age', 'name'])
 ```
 
+### UI Component Imports
+
+**Always import UI components from `@thetalententerprise/glint`** when available, instead of importing directly from `antd`. This ensures consistent theming and curated API surfaces across the application.
+
+```typescript
+// ✅ Import from glint
+import { Table, Typography, Tag, Avatar, Button, Tabs, PageHeader } from '@thetalententerprise/glint'
+import { Icon } from '@thetalententerprise/glint/icons'
+
+// ❌ Do not import directly from antd when a glint equivalent exists
+import { Table } from 'antd'
+```
+
+**Available glint primitives:** Alert, Avatar, Button, Checkbox, Divider, Dropdown, Empty, Flex, Form, Grid, Input, InputNumber, Progress, Select, Spin, StatCounter, Steps, Table, Tag, Typography, Upload
+
+**Available glint compositions:** Card, LanguageSwitcher, Menu, PageHeader, Tabs, ThemeSwitcher
+
+**Available glint layouts:** AppShell, Layout, PageContainer, Sider
+
 **Circular dependencies:**
 To avoid circular dependencies, import component dependencies directly from their source files instead of from index files.
+
+**Layout Default (Mandatory):**
+- Use `Flex` from `@thetalententerprise/glint` for component layout containers by default.
+- For row/column alignment, distribution, wrapping, and gaps, prefer `Flex` props (`vertical`, `align`, `justify`, `wrap`, `gap`) over custom CSS wrappers.
+- Use plain `div` wrappers for layout only when `Flex` cannot express the requirement.
 
 ## Styling Guidelines
 
@@ -492,6 +516,44 @@ Use extensive utility class system from `app/frontend/styles/utils.less`:
 ```
 
 ### Styling Rules
+
+**Utility classes first — CSS Modules as a last resort:**
+
+Always prefer utility classes over writing CSS. Only write CSS in a `.less` module when utility classes cannot achieve the result.
+
+**Spacing rule (Mandatory):**
+- For margin and padding, use utility classes from `styles/utils.less` (`m*`, `p*`, `ms-*`, `me-*`, `mt-*`, `mb-*`, `ps-*`, `pe-*`, `pt-*`, `pb-*`).
+- Do not introduce new spacing-only CSS declarations in component `.less` files unless there is no utility equivalent.
+
+**Always check glint before writing custom CSS for a UI element:**
+
+Before adding any CSS for layout or UI elements (cards, grids, tabs, etc.), check whether glint already exports that component. Use `node_modules/@thetalententerprise/glint/dist/primitives/index.d.ts` and `compositions/index.d.ts` to verify. Only add custom CSS if glint has no equivalent.
+
+```typescript
+// ✅ Use glint Card — no custom border/border-radius/background CSS needed
+import { Card, Row, Col } from '@thetalententerprise/glint'
+<Card className="mb-6">...</Card>
+
+// ❌ Don't recreate what glint already provides
+// .card { border: 1px solid var(--ant-color-border); border-radius: 0.5rem; }
+```
+
+```typescript
+// ✅ Use utility classes for flex layout, spacing, and typography
+<div className="flex items-center justify-between mb-6">
+  <div className="flex flex-column">
+    <Typography.Text className="mb-1">{label}</Typography.Text>
+    <Typography.Text strong>{value}</Typography.Text>
+  </div>
+</div>
+
+// ❌ Don't write CSS for properties that have utility equivalents
+// .header { display: flex; align-items: center; margin-bottom: 1.5rem; }
+
+// ✅ Write CSS only for what utilities can't cover
+// .card { border: 1px solid var(--ant-color-border); border-radius: 0.5rem; }
+// .infoGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+```
 
 ```less
 // ✅ Use rem units for spacing and fonts

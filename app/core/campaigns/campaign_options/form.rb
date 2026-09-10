@@ -20,6 +20,7 @@ module Campaigns
       attribute :selective_proctoring_enabled, { String => Boolean }
       attribute :hide_participant_video, Boolean
       attribute :disable_transcript_download, Boolean
+      attribute :disable_webhooks, Boolean
       attribute :system_check_enabled, Boolean
       attribute :system_check_validity, Integer
       attribute :allow_continue_with_warning, Boolean

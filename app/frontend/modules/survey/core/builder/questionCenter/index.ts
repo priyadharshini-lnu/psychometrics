@@ -13,6 +13,20 @@ export const INIT_QUESTION_CENTER = 'survey/question_center/INIT_QUESTION_CENTER
 const SAVE = 'survey/question_center/SAVE'
 export const IMPORT_TRANSLATIONS = 'survey/question_center/IMPORT_TRANSLATIONS'
 
+export const FETCH_QUESTION_CENTER_DATA = 'survey/question_center/FETCH_DATA'
+export const fetchQuestionCenter = (id: string | number) => ({
+  type: FETCH_QUESTION_CENTER_DATA,
+  request: {
+    url: `/administration/templates/questions/${id}`,
+    camelize: false,
+  },
+})
+
+export const initQuestionCenter = (data: QuestionInerface) => ({
+  type: INIT_QUESTION_CENTER,
+  data,
+})
+
 export const save = (q: QuestionInerface) => {
   const question = QuestionSerializer(new Question(q))
 

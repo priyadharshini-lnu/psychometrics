@@ -10,14 +10,18 @@ class Assessors::CampaignsController < Assessors::BaseController
 
     campaigns = search.result
     paginated_campaigns = campaigns.page(params[:page])
+    campaign_ids = paginated_campaigns.pluck(:id)
     serialized_campaigns = Panko::ArraySerializer.new(
       paginated_campaigns, each_serializer: Administration::Assessors::CampaignSerializer,
       context: {
+        total_subjects_count: UserAssessment.where(campaign_id: campaign_ids, evaluator: current_user).
+                                            group(:campaign_id).
+                                            distinct.count(:subject_id),
         subject_evaluation_statuses_count: Assessors::SubjectStatusesCount.call!(
-          current_user, paginated_campaigns.pluck(:id)
+          current_user, campaign_ids
         ),
         subject_moderation_statuses_count: Assessors::SubjectStatusesCount.call!(
-          current_user, paginated_campaigns.pluck(:id), assessment_category: :lead_assessor_form
+          current_user, campaign_ids, assessment_category: :lead_assessor_form
         )
       }
     ).to_a

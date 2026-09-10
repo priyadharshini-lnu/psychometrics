@@ -36,6 +36,8 @@ de:
         ai_assisted_idp_feature_error: Kann nicht wahr sein, wenn die Funktion der KI-Assistenten deaktiviert ist
       client_sso_settings:
         sso_enforced_requires_enabled: Kann nicht aktiviert werden, ohne dass SSO aktiviert ist
+      communication_center:
+        invalid_locale: ist kein unterstütztes Gebietsschema
       create_superadmin:
         uniq_email: E-Mail sollte einheitlich sein.
       development_actions:

@@ -62,7 +62,8 @@ module AdminJobs
                     assessments: { category: Assessment::CATEGORIES[:hogan] },
                     r: { provider: Report.providers[:hogan] },
                     user_assessments: { status: UserAssessment.statuses[:completed] }
-                  )
+                  ).
+                  where('u.is_uat = false')
 
         records = records.where(p: { id: project_ids }) if project_ids.present?
 

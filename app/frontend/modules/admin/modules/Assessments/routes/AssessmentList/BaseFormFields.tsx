@@ -60,11 +60,12 @@ const BaseFormFieldsComp: React.FC<Props> = ({
     data: assessments, fetch: fetchAssessments, isLoading: isAssessmentsLoading,
   } = useResources<LinkedAssessment>('assessments')
 
+  const normalizeOwnerId = (value?: string | null): string => value ?? ''
 
   const type = Form.useWatch('type', form)
   const category = Form.useWatch('category', form)
   const ownerId = Form.useWatch('ownerId', form)
-  const selectedOwnerId = ownerId ?? assessment?.owner?.id
+  const selectedOwnerId = normalizeOwnerId(ownerId)
 
   const getDimensions = (): OptionsType[] => {
     if (!assessment || !assessment.dimension || dimensions.find(d => assessment?.dimension?.id === d.id)) {

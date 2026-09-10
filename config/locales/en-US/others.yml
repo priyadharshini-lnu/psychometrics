@@ -214,6 +214,8 @@ en-US:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+            uat:
+              invalid: 'UAT must be one of: %{accepted_values}, or blank'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ en-US:
               invalid_reports_header: Invalid header, take header from sample file
               manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
               not_enough_licenses: Import requires %{required_count} licenses, but only %{available_count} are available. Please reduce the number of new users or add more licenses before importing.
+              not_enough_uat_licenses: Import requires %{required_count} UAT test licenses, but only %{available_count} are available. Please reduce the number of new UAT users or raise the UAT usage limit before importing.
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
@@ -943,7 +946,9 @@ en-US:
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
+        migrate_communication_center: Communication Center Migration
         normalize_factor_scores: Normalize Factor Scores
+        project_bulk_download_reports: Project Bulk Download Reports
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
         regenerate_assessment_transcriptions: Regenerate Assessment Transcriptions
@@ -986,6 +991,8 @@ en-US:
     errors: Errors
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
+    migrate_communication_center:
+      client_not_found: Client with id=%{id} not found
     more: More
     results: Results
     super_admin:
@@ -2982,6 +2989,7 @@ en-US:
     end_date: End date
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'"
     not_enough_license_count: Not enough licenses, please contact administrator
+    not_enough_uat_license: "'%{client_name}' does not have enough UAT test licenses for '%{report_name}'. Increase the UAT usage limit on that license, or contact the administrator."
     number: Number
     overuse_number: Over use allowance
     project_specific: Project Specific
@@ -2996,6 +3004,11 @@ en-US:
       idp: IDP
       proctoring: Proctoring
       threesixty: Threesixty
+    uat_usage_limit_credits: UAT test credits
+    uat_usage_limit_credits_hint: Proctoring is billed in credits, so this is the maximum credits UAT test users may consume from this license (max 300).
+    uat_usage_limit_users: UAT test users
+    uat_usage_limit_users_hint: Maximum UAT test users that may be created against this license (max 30). Test users never consume billable licenses.
+    uat_used: UAT used licenses
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   lti:

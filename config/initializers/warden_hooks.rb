@@ -43,9 +43,13 @@ Warden::Manager.before_failure do |env, _opts|
   request = ActionDispatch::Request.new(env)
 
   project = GetProjectBySubdomain.call!(request.subdomain)
-  email = request.params.dig('user', 'email')
-  user = User.find_by(email: email, project_id: project&.id)
-  user&.update(last_unsuccessful_attempt: Time.now.utc)
+  begin
+    email = request.params.dig('user', 'email')
+    user = User.find_by(email: email, project_id: project&.id)
+    user&.update(last_unsuccessful_attempt: Time.now.utc)
+  rescue ActionController::BadRequest, Rack::Multipart::EmptyContentError
+    nil
+  end
 end
 
 Warden::Manager.before_failure do |env, opts|

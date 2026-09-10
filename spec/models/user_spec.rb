@@ -292,4 +292,14 @@ RSpec.describe User, type: :model do
       expect(results).not_to include(application_user)
     end
   end
+
+  describe 'is_uat immutability' do
+    it 'does not allow updates to is_uat after create' do
+      user = create(:user, is_uat: false)
+
+      expect(user.update(is_uat: true)).to eq(false)
+      expect(user.errors[:is_uat]).to be_present
+      expect(user.reload.is_uat).to eq(false)
+    end
+  end
 end

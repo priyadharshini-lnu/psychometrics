@@ -57,6 +57,19 @@ describe LicenseManager::Idp do
         expect(license_usage.extras['campaign_name']).to eq(campaign.name)
         expect(license_usage.extras['idp_template_name']).to eq(user_idp_plan.idp_template.name)
       end
+
+      it 'marks UAT usage rows as non-billable UAT usage' do
+        uat_manager = described_class.new(
+          campaign: campaign,
+          user: user,
+          license: license,
+          uat: true
+        )
+
+        usage = uat_manager.create_license_usage!(idp_plan: user_idp_plan)
+
+        expect(usage.is_uat).to eq(true)
+      end
     end
 
     context 'with different user_idp_plan' do

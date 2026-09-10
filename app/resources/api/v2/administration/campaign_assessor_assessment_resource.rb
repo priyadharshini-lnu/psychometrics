@@ -2,8 +2,7 @@
 
 class Api::V2::Administration::CampaignAssessorAssessmentResource < Api::V2::Administration::BaseResource
   attributes :assessment_name, :assessment_id, :campaign_id, :linked_assessment_name, :allow_multiple_responses,
-             :campaign_assessment_group_name, :campaign_assessment_group_id, :created_at, :owner,
-             :dimension_id, :tenant_id
+             :campaign_assessment_group_name, :campaign_assessment_group_id, :created_at, :owner, :dimension_id
 
   has_one :assessment
   has_many :factors

@@ -18,6 +18,7 @@ import DimensionsRoutes from '~/modules/admin/modules/Dimensions/routes'
 import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
 import MediaLibraryRoutes from '~/modules/admin/modules/MediaLibrary/routes'
 import QuestionRoutes from '~/modules/admin/modules/QuestionCenter'
+import CommunicationCenterRoutes from '~/modules/admin/modules/CommunicationTemplates/routes'
 
 const routes = [
   ...ProfileRoutes,
@@ -40,6 +41,7 @@ const routes = [
   ...SettingsRoutes,
   ...MediaLibraryRoutes,
   ...QuestionRoutes,
+  ...CommunicationCenterRoutes,
 ]
 
 export default routes

@@ -274,6 +274,19 @@ RSpec.describe AdminJobs::DataReportHandlers::CampaignUserCreationHandler do
       expect(row[5]).to include('2024-06-15')
       expect(row[5]).to match(/\d{2}:\d{2}:\d{2}/) # Any timestamp in HH:MM:SS format
     end
+
+    it 'excludes UAT users' do
+      uat_user = create(:user, :with_project_membership, project: project, is_uat: true)
+      create(:campaign_user, campaign: campaign, user: uat_user)
+
+      subject.generate_file
+
+      csv = CSV.read(file_path)
+      emails = csv.drop(1).pluck(2)
+
+      expect(emails).to include(user.email)
+      expect(emails).not_to include(uat_user.email)
+    end
   end
 
   describe 'HEADERS constant' do

@@ -100,6 +100,8 @@ export const routes = [
   { path: 'options', lazy: lazyRoute(page, m => m.CampaignOptions) },
   { path: 'audit_reports', lazy: lazyRoute(page, m => m.DataExports) },
   { path: 'user_idp_reports/:id/*', lazy: lazyRoute(idpReportPreview, m => m.IdpReportPreview) },
+  // CommunicationCenter mounts its own nested router via RouteList, so it keeps the splat.
+  { path: 'communication_center/*', lazy: lazyRoute(page, m => m.CommunicationCenter) },
   { path: 'messages', lazy: lazyRoute(threeSixty, m => m.Messages), children: threeSixtyMessagesRoutes },
   { path: 'reports', lazy: lazyRoute(threeSixty, m => m.Reports), children: threeSixtyReportsRoutes },
 ]

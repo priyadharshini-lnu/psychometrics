@@ -10,6 +10,7 @@ module LicenseManager
         client: client,
         project: project,
         project_license: project_license,
+        is_uat: uat == true,
         consumer: user_idp_plan,
         extras: {
           subject_name: user.name,

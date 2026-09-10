@@ -218,6 +218,15 @@ ar:
     assessor_assessments_reset_successfully: تم إعادة التقييم للمشارك بالبريد الإلكتروني "%{subjectEmail}" بنجاح.
     assessor_assessments_subject_email: البريد الإلكتروني للموضوع
     assessor_assessments_subject_name: اسم الموضوع
+    assessor_campaign_users_awaiting_moderation: في انتظار الموافقة
+    assessor_campaign_users_awaiting_moderation_subtitle: جاهزون للدمج
+    assessor_campaign_users_candidates_subtitle: تم تعيينك
+    assessor_campaign_users_completed: مكتمل
+    assessor_campaign_users_completed_subtitle: تم التوقيع
+    assessor_campaign_users_in_progress: في تَقَدم
+    assessor_campaign_users_in_progress_subtitle: يجري تقييمها
+    assessor_campaign_users_not_started: لم يبدأ بعد
+    assessor_campaign_users_not_started_subtitle: التقييمات
     assessor_campaigns_statuses_completed: تم اكماله
     assessor_campaigns_statuses_in_progress: قيد التنفيذ
     assessor_campaigns_statuses_not_started: لم يبدأ
@@ -226,6 +235,20 @@ ar:
     assessor_create_assessor: إضافة مقيم
     assessor_dashboard: لوحة معلومات المقيم
     assessor_email: بريد المقيم الإلكتروني
+    assessor_evaluation: تقييم المُقيِّم
+    assessor_evaluation_by_campaign: حملة انتخابية
+    assessor_evaluation_by_participant: بواسطة أحد المشاركين
+    assessor_evaluation_candidate: مُرَشَّح
+    assessor_evaluation_candidates: مرشحين
+    assessor_evaluation_completed: تم الانتهاء من التقييم
+    assessor_evaluation_date_range: تاريخ البدء – تاريخ الانتهاء
+    assessor_evaluation_moderation_waiting: انتظار الموافقة
+    assessor_evaluation_tour_profile_description: تجد هنا حسابك ودورك ولغتك، ويمكنك تفعيل التجربة الجديدة. افتحها لمراجعة بياناتك أو تسجيل الخروج.
+    assessor_evaluation_tour_profile_title: ملفك الشخصي والإعدادات
+    assessor_evaluation_tour_table_description: افتح أي صف للاطلاع على تقييماتهم، ثم قم بتقييم إجاباتهم أو تعديل الدرجات النهائية.
+    assessor_evaluation_tour_table_title: اختر مرشحًا
+    assessor_evaluation_tour_tabs_description: التبديل بين خيار "حسب المشارك" (شخص واحد في كل مرة) وخيار "حسب الحملة".
+    assessor_evaluation_tour_tabs_title: طريقتان للعمل
     assessor_evaluations: تقييمات المقيم
     assessor_first_name: الاسم الأول للمقيم
     assessor_form: نموذج المقيم
@@ -233,18 +256,24 @@ ar:
     assessor_last_name: الاسم الأخير للمقيم
     assessor_modals_import_body: الرجوع إلى وظيفة التصدير لاستخراج قالب يمكن استخدامه للاستيراد هنا.
     assessor_modals_import_title: استيراد المقيمين
+    assessor_new_experience: تجربة جديدة
     assessor_overview: لمحة عامة
     assessor_placeholder: البحث عن مقيم...
     assessor_remove_confirmation: هل أنت متأكد أنك تريد إزالة المقيم بالبريد الإلكتروني %{email} من هذه الحملة؟
     assessor_remove_has_evaluations: تم تخصيص %{evaluation_count} نموذج تقييم لهذا المُقيِّم. ستُفقد جميع التقييمات التي قام بتعبئتها.
     assessor_remove_in_assessment_centers: هذا المُقيِّم جزء من مركز (مراكز) التقييم %{workshop_count}. سيؤدي المتابعة إلى إزالته من جميع مراكز التقييم.
-    assessor_statuses_completed: تم اكماله
-    assessor_statuses_not_completed: لم يتم اكماله
-    assessor_subjects_statuses_completed: تم اكماله
-    assessor_subjects_statuses_in_progress: قيد التنفيذ
-    assessor_subjects_statuses_not_started: لم يبدأ
+    assessor_switch_to_classic: التبديل إلى الوضع الكلاسيكي
     assessor_toolbar_export: تصدير المقيمين
     assessor_toolbar_import: استيراد المقيمين
+    assessor_tour_button: رحلة
+    assessor_try_new_experience: جرب تجربة جديدة
+    assessor_user_assessment_name: اسم التقييم
+    assessor_user_candidate_id: رقم تعريف المرشح
+    assessor_user_evaluate: يقيم
+    assessor_user_evaluation: تقييم
+    assessor_user_evaluation_progress: التقدم المحرز في التقييم
+    assessor_user_moderate: درجات متوسطة
+    assessor_user_moderation: الاعتدال
     assessor_workshops: مركز التقييم
     assessors: المقيمون
     assistant_toolbar_failed: فشل في إنشاء مخرجات صالحة بعد عدة محاولات
@@ -312,6 +341,79 @@ ar:
     bulk_assets_modal_title: تحميل ملفات CSV و ZIP
     bulk_export_assessments_file: ملف تصدير التقييمات الجماعية
     bulk_export_invalid_params: معلمات تصدير مجمعة غير صالحة
+    bulk_reports: تقارير بالجملة
+    bulk_reports_all_of_year: كل شيء %{year}
+    bulk_reports_all_tags: جميع العلامات
+    bulk_reports_bundled_into_single: مجمعة في واحد
+    bulk_reports_campaign_count_one: حملة %{count}
+    bulk_reports_campaign_count_other: حملات %{count}
+    bulk_reports_campaign_search_placeholder: حملات البحث أو المشاريع...
+    bulk_reports_campaigns_shown_count: تم تحديد %{selected} - تم عرض %{shown}
+    bulk_reports_campaigns_without_reports_warning: 'الحملات المختارة بدون تقارير مُهيأة: %{count}. سيتم تخطيها.'
+    bulk_reports_candidate_abbreviation: مرشح.
+    bulk_reports_complete_every_step: أكمل جميع الخطوات لتمكين
+    bulk_reports_date_range_required: يلزم تحديد تاريخ بدء وتاريخ انتهاء للاستمرار.
+    bulk_reports_date_range_summary: سيتم تضمين التقييمات التي تم إكمالها من %{start} إلى %{end}.
+    bulk_reports_description: أنشئ مهمة تصدير واحدة تشمل حملات متعددة. اختر الحملات، وحدد التقارير واللغات التي تريد تضمينها، وحدد نطاقًا زمنيًا، ثم أرسل.
+    bulk_reports_deselect_all_shown: قم بإلغاء تحديد جميع العناصر المعروضة
+    bulk_reports_download_notification_sent: تم إرسال إشعار التنزيل
+    bulk_reports_emailed_when_ready: وسيتم إرسالها إليك عبر البريد الإلكتروني عندما تكون جاهزة.
+    bulk_reports_end_date_placeholder: حدد تاريخ ووقت الانتهاء
+    bulk_reports_end_date_required: يرجى تحديد تاريخ انتهاء.
+    bulk_reports_error_try_again: خطأ - حاول مرة أخرى
+    bulk_reports_files_estimated_across: الملفات المقدرة عبر
+    bulk_reports_files_pending: ستظهر الملفات هنا بمجرد اكتمال المهمة.
+    bulk_reports_generate_export: إنشاء تصدير
+    bulk_reports_invalid_date_range: يجب أن يكون تاريخ الانتهاء في تاريخ البدء أو بعده.
+    bulk_reports_job_details_title: الوظيفة C%{id}
+    bulk_reports_job_not_found: لم يتم العثور على هذه الوظيفة.
+    bulk_reports_job_queued: تمت إضافة المهمة إلى قائمة الانتظار
+    bulk_reports_languages_progress_one: مجموعة التقارير %{done} من %{total}
+    bulk_reports_languages_progress_other: تم تعيين %{done} من %{total} تقريرًا
+    bulk_reports_languages_set_for_all_one: تم ضبط جميع تقارير %{count}
+    bulk_reports_languages_set_for_all_other: تم ضبطه لجميع تقارير %{count}
+    bulk_reports_last_30_days: آخر 30 يومًا
+    bulk_reports_last_90_days: آخر 90 يومًا
+    bulk_reports_no_campaigns_found: لم يتم العثور على أي حملات لهذا المشروع.
+    bulk_reports_no_campaigns_match_filters: لا توجد حملات تتطابق مع نتائج البحث أو فلاتر الوسوم الخاصة بك.
+    bulk_reports_no_campaigns_selected: لم يتم تحديد أي حملات
+    bulk_reports_no_files_yet: الملفات غير متوفرة بعد لهذه الوظيفة.
+    bulk_reports_no_language_selected: لم يتم تحديد أي لغة
+    bulk_reports_no_languages_available: لا تتوفر لغات لهذا التقرير.
+    bulk_reports_no_reports_configured: لم يتم إعداد تقارير لأي من الحملات المختارة. ارجع وتحقق من إعدادات حملتك.
+    bulk_reports_no_reports_selected: لم يتم تحديد أي تقارير
+    bulk_reports_no_reports_selected_for_languages: لم يتم تحديد أي تقارير. ارجع واختر تقريرًا واحدًا على الأقل.
+    bulk_reports_no_tags_found: لم يتم العثور على أي علامات
+    bulk_reports_none_selected: لا شيء محدد
+    bulk_reports_queued_by: تمت إضافته إلى قائمة الانتظار بواسطة
+    bulk_reports_queuing_jobs: وظائف قيد الانتظار...
+    bulk_reports_ready_to_generate: جاهز للتوليد
+    bulk_reports_report_count_one: تقرير %{count}
+    bulk_reports_report_count_other: تقرير %{count}
+    bulk_reports_reports_and_languages: التقارير واللغات
+    bulk_reports_review_submit: مراجعة وإرسال
+    bulk_reports_review_submit_description: راجع المهمة أدناه. يمكنك الرجوع إلى أي خطوة لإجراء التغييرات.
+    bulk_reports_select_all_shown: حدد الكل المعروض
+    bulk_reports_select_campaigns: اختر الحملات
+    bulk_reports_select_campaigns_description: ابحث بالاسم أو المشروع، وقم بتضييق نطاق القائمة باستخدام عوامل تصفية العلامات. ثم حدد الحملات التي تريد تضمينها.
+    bulk_reports_select_date_range: حدد نطاق التاريخ
+    bulk_reports_select_date_range_description: قم بتضمين التقييمات التي تم إنجازها ضمن هذا النطاق فقط. اترك تاريخًا محددًا مسبقًا أو حدد تواريخًا دقيقة.
+    bulk_reports_select_languages: اختر اللغة
+    bulk_reports_select_languages_description: يدعم كل تقرير مجموعة مختلفة من اللغات. اختر لغة واحدة على الأقل لكل تقرير. سيتم إنشاء التقرير بكل لغة تختارها.
+    bulk_reports_select_reports: حدد التقرير
+    bulk_reports_select_reports_description: يتم إنشاء كل تقرير مختار لكل مرشح أو حملة في التصدير، وبكل لغة مختارة.
+    bulk_reports_selected_tags_count_one: تم تحديد علامة %{count}
+    bulk_reports_selected_tags_count_other: تم تحديد %{count} علامة
+    bulk_reports_start_date_placeholder: حدد تاريخ ووقت البدء
+    bulk_reports_start_date_required: يرجى تحديد تاريخ البدء.
+    bulk_reports_step_coming_soon: هذه الخطوة ستأتي قريباً.
+    bulk_reports_submit_error: حدث خطأ ما. يرجى المحاولة مرة أخرى.
+    bulk_reports_submit_success: تمت إضافة مهمة التصدير إلى قائمة الانتظار. ستتلقى إشعارًا عند اكتمال التنزيل.
+    bulk_reports_summary_description: تحديثات أثناء إنشاء المهمة
+    bulk_reports_summary_title: ملخص التنزيل
+    bulk_reports_title: التقارير المجمعة
+    bulk_reports_view_downloads: عرض تنزيلات التقارير المجمعة
+    bulk_reports_year_to_date: منذ بدلية العام ز حتى اليوم
     bulk_upload_ai_artifacts: التحف الذكاء الاصطناعي بالتحميل الجماعي
     campaign: الحملة
     campaign_admin: مسؤول الحملة
@@ -383,6 +485,13 @@ ar:
     campaign_templates_remove_confirm_success: تم إزالة قالب الحملة '%{name}' بنجاح.
     campaign_templates_remove_confirm_title: إزالة قالب الحملة
     campaign_user_job_roles_cannot_be_same: يجب أن تكون الوظيفة المستهدفة مختلفة عن الوظيفة الحالية
+    campaign_users_import_uat_hint: قم بتعيين عمود UAT إلى نعم لمستخدمي الاختبار الذين يجب استبعادهم من الترخيص والتحليلات وخطافات الويب.
+    campaign_users_uat_description: قم بتحديد هذا المشارك كمستخدم اختبار قبول المستخدم (UAT).
+    campaign_users_uat_label: مشارك في اختبار قبول المستخدم
+    campaign_users_uat_license_non_billable: غير قابل للفوترة
+    campaign_users_uat_locked_hint: هذا المشارك موجود بالفعل. يتم تحديد حالة اختبار قبول المستخدم (UAT) عند إنشاء المشارك لأول مرة ولا يمكن تغييرها.
+    campaign_users_uat_readonly_hint: يتم تحديد حالة اختبار قبول المستخدم (UAT) عند الإنشاء ولا يمكن تغييرها.
+    campaign_users_uat_tooltip: مستخدمو اختبار قبول المستخدم هم مشاركون حقيقيون في الاختبار. يمكنهم إجراء التقييمات بشكل طبيعي، ولكنهم مستبعدون من استخدام الترخيص المدفوع، والتحليلات، وخطافات الويب الصادرة.
     campaigns: الحملات
     campaigns_convert_to_template: التحويل إلى قالب
     campaigns_extend_time_success_message: تم تمديد مؤقت الحملة إلى %{minutes} دقيقة
@@ -469,6 +578,7 @@ ar:
     clients_search_placeholder: البحث عن العميل
     closed: مغلق
     code_required: الكود مطلوب
+    collapse_all: طي الكل
     collapse_filters: طي الفلاتر
     column_code: رمز
     column_invitation_status: حالة الدعوة
@@ -487,10 +597,130 @@ ar:
     common_type: نوع
     common_unselect_all: إلغاء تحديد الكل
     communication_center: مركز الاتصالات
+    communication_center_manage_translations_action: إدارة الترجمات
+    communication_center_migration_enqueued: تمت إضافة مهمة الترحيل إلى قائمة الانتظار. راجع السجلات للاطلاع على التقدم المحرز.
+    communication_center_migration_error: فشل طلب الترحيل. يرجى المحاولة مرة أخرى أو مراجعة السجلات.
+    communication_center_migration_modal_intro: 'سيتم تطبيق التغييرات التالية عند تشغيل عملية الترحيل لهذا العميل:'
+    communication_center_migration_modal_title: معاينة عملية نقل مركز الاتصالات
+    communication_center_migration_preview_button: معاينة عملية الترحيل
+    communication_center_migration_run_button: تشغيل عملية الترحيل
+    communication_center_migration_skipped: تمت عملية الترحيل بالفعل (سيتم تخطيها)
+    communication_center_migration_would_assessments: التقييمات اللازمة للهجرة
+    communication_center_migration_would_backfill: رسائل بريد إلكتروني لملء الفراغات
+    communication_center_migration_would_cc_users: سيتم نقل مستخدمي CC
+    communication_center_migration_would_migrate: الاتصالات اللازمة للهجرة
+    communication_center_migration_would_users: المستخدمون المختارون المراد نقلهم
+    communication_center_translation_updated_success: تم تحديث الترجمة بنجاح
+    communication_center_translations_modal_title: إدارة الترجمات
+    communication_deliveries: عمليات التسليم
+    communication_delivery: توصيل الاتصالات
+    communication_delivery_assessment_group_label: مجموعة التقييم
+    communication_delivery_at_label: تاريخ ووقت التسليم
+    communication_delivery_at_past_error: يجب أن يكون تاريخ التسليم في المستقبل
+    communication_delivery_cancel_action: يلغي
+    communication_delivery_cancel_error: فشل في إلغاء عملية التسليم
+    communication_delivery_cc_users_label: مستلمو نسخة إلى
+    communication_delivery_completion_status_hint: إذا تم تحديد رمز الإكمال، فسيتم إرساله فقط إذا كان تقييم المستخدم يحمل رمز حالة الإكمال هذا.
+    communication_delivery_completion_status_label: رمز حالة إكمال التقييم
+    communication_delivery_delay_hours_label: التأخير (ساعات)
+    communication_delivery_details_title: تفاصيل التوصيل
+    communication_delivery_emails_sent_label: مرسل
+    communication_delivery_emails_total_label: إجمالي رسائل البريد الإلكتروني
+    communication_delivery_end_date_label: تاريخ الانتهاء
+    communication_delivery_frequency_daily: يوميًا
+    communication_delivery_frequency_label: تكرار
+    communication_delivery_frequency_specific_weekdays: أيام محددة من أيام الأسبوع
+    communication_delivery_frequency_weekly: أسبوعي
+    communication_delivery_interval_number_label: فاصلة
+    communication_delivery_interval_period_days: أيام
+    communication_delivery_interval_period_hours: ساعات
+    communication_delivery_interval_period_label: فترة فاصلة
+    communication_delivery_interval_period_months: شهور
+    communication_delivery_interval_period_weeks: أسابيع
+    communication_delivery_new_button: توصيل جديد
+    communication_delivery_recipients_all: جميع المشاركين
+    communication_delivery_recipients_label: المستفيدون
+    communication_delivery_recipients_new_assignment: مهمة جديدة
+    communication_delivery_recipients_new_users: مستخدمون جدد
+    communication_delivery_recipients_selected: المشاركون المختارون
+    communication_delivery_rule_in_progress: في تَقَدم
+    communication_delivery_rule_label: قاعدة التسليم
+    communication_delivery_rule_not_completed: لم يكتمل
+    communication_delivery_rule_not_started: لم يبدأ بعد
+    communication_delivery_rule_send_now: أرسل الآن
+    communication_delivery_rule_specific_datetime: التاريخ والوقت المحدد
+    communication_delivery_search_users_placeholder: ابحث بالاسم أو البريد الإلكتروني
+    communication_delivery_selected_assessments_label: التقييمات
+    communication_delivery_selected_users_label: مستخدمون محددون
+    communication_delivery_start_date_label: تاريخ البدء
+    communication_delivery_template_label: نموذج
+    communication_delivery_time_of_day_label: وقت اليوم
+    communication_delivery_timezone_label: المنطقة الزمنية
+    communication_delivery_trigger_type_label: نوع الزناد
+    communication_delivery_trigger_type_manual: يدوي
+    communication_delivery_trigger_type_scheduled: مُجدول
+    communication_delivery_weekday_fri: جمعة
+    communication_delivery_weekday_mon: الاثنين
+    communication_delivery_weekday_sat: السبت
+    communication_delivery_weekday_sun: الأحد
+    communication_delivery_weekday_thu: يوم الخميس
+    communication_delivery_weekday_tue: يوم الثلاثاء
+    communication_delivery_weekday_wed: الأربعاء
+    communication_delivery_weekdays_label: أيام الأسبوع
+    communication_email_created_at_label: تم إنشاؤه في
+    communication_email_not_sent: لم يتم الإرسال
+    communication_email_preview_action: معاينة
+    communication_email_preview_date_label: تاريخ
+    communication_email_preview_from_label: من
+    communication_email_preview_title: معاينة البريد الإلكتروني
+    communication_email_preview_to_label: ل
+    communication_email_preview_warning: هذه معاينة معاد تصميمها للقالب وقد لا تعكس المحتوى الدقيق للبريد الإلكتروني الذي تم إرساله بالفعل.
+    communication_email_recipient_email_label: البريد الإلكتروني للمستلم
+    communication_email_recipient_name_label: اسم المستلم
+    communication_email_retrigger_action: إعادة التشغيل
+    communication_email_retrigger_error: فشل إعادة إرسال البريد الإلكتروني
+    communication_email_sent_at_label: أُرسل في
+    communication_email_status_label: حالة
+    communication_email_subject_label: موضوع
+    communication_emails: رسائل البريد الإلكتروني
+    communication_template: نموذج اتصال
+    communication_template_body_label: رسالة
+    communication_template_create_new_action: إنشاء جديد
+    communication_template_kind_label: نوع الاتصال
+    communication_template_level_campaign: حملة
+    communication_template_level_client: عميل
+    communication_template_level_platform: منصة
+    communication_template_level_project: مشروع
+    communication_template_name_label: أسماء القوالب
+    communication_template_new_button: قالب جديد
+    communication_template_override_inherited_action: تجاوز الموروث
+    communication_template_override_picker_search_placeholder: ابحث عن القوالب لتجاوزها
+    communication_template_override_picker_title: تجاوز القالب الموروث
+    communication_template_recipients_all: الجميع
+    communication_template_recipients_label: المستلمون الافتراضيون
+    communication_template_recipients_new_assignment: مهمة جديدة
+    communication_template_recipients_new_users: مستخدمون جدد
+    communication_template_recipients_selected: مختار
+    communication_template_source_created: مخلوق
+    communication_template_source_label: مصدر
+    communication_template_source_override_of: تجاوز %{level}
+    communication_template_status_active: نشيط
+    communication_template_status_archived: مؤرشف
+    communication_template_status_draft: مسودة
+    communication_template_status_label: حالة
+    communication_template_subject_label: موضوع
+    communication_templates: القوالب
     communications: الاتصالات
     communications_form_insert_piped_text: إدراج نص مكتوب بالأنابيب
+    competency_indicator: الكفاءة / المؤشر
     completed: اكمال
     completed_tooltip: جميع المقيمين قدموا التقييم
+    completion_recipients_all: جميع المواد
+    completion_recipients_list: 'قائمة المستلمين:'
+    completion_recipients_selected: مواضيع مختارة
+    completion_recipients_selected_admins: المسؤولون المختارون
+    completion_recipients_selected_assessors: المقيمون المختارون
+    completion_recipients_selected_assessors_hint: سيتم إرسال بريد إلكتروني فقط إلى المُقيِّم المُعيَّن لإكمال نموذج المُقيِّم المرتبط بالموضوع، حتى في حالة اختيار مُقيِّمين آخرين أعلاه.
     components_input_duration_placeholder: أدخل كـ '1d 2h 3m'
     concise: موجز
     condition_sets: مجموعات الشروط
@@ -697,6 +927,8 @@ ar:
     disable_proctoring: تعطيل المراقبة
     disable_report_download: تعطيل تنزيل التقرير
     disable_transcript_download: تعطيل تنزيل النص
+    disable_webhooks: تعطيل روابط الويب
+    disable_webhooks_hint: عند تفعيل هذا الخيار، لن يتم إرسال أي إشعارات ويب أو أحداث تكامل لاحقة إلى العميل لهذه الحملة، بغض النظر عن نوع المشارك. ولا يمكن تغيير هذا الإعداد إلا من قِبل المشرفين الرئيسيين.
     disallow_lead_assessor_moderation: منع المراقبة من قِبل المقيم الرئيسي
     disallow_lead_assessor_moderation_info: سيتم حساب النتيجة تلقائيًا استنادًا إلى جميع نماذج التقييم التي تم تقديمها، ولا يمكن للمقيم الرئيسي تغييرها من شاشة المراجعة
     discard_all_questions: إعادة تعيين جميع الأسئلة
@@ -795,6 +1027,7 @@ ar:
     evaluator_welcome_name: ترحيب المقيم
     evaluators_title: المقيّمون
     evidence_from_transcript: أدلة من النص
+    expand_all: عرض الكل
     expand_filters: توسيع الفلاتر
     export_admin_roles_permissions: تصدير أدوار وأذونات المسؤولين
     export_admins_with_permissions: تصدير أدوار وأذونات المسؤولين
@@ -855,6 +1088,7 @@ ar:
     feature_not_available: هذه الميزة غير متوفرة
     feature_sms_notification_description: تمكين إشعارات الرسائل القصيرة لدعوات الحملات والتذكيرات
     feature_superadmin_tenant_scoping_description: عند تعطيل هذه الميزة، لن يتم حصر استعلامات المشرف الرئيسي على بيانات هذا العميل.
+    feature_use_new_communication_center_description: استخدم مركز الاتصالات الجديد فقط لهذا العميل وتوقف عن إرسال الرسائل القديمة
     fields_level: المستوى
     fields_level_description: وصف المستوى
     fields_level_name: اسم المستوى
@@ -1121,6 +1355,7 @@ ar:
     import_title: المواد المستوردة من CSV
     import_upload: رفع
     import_users: استيراد المستخدمين
+    in_progress: قيد التنفيذ
     inactive: كسلان
     include_locales_label: صر مربع
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ ar:
     model_params_thinking_effort_none: لا أحد
     model_params_thinking_effort_tooltip: يتحكم هذا الخيار في مقدار الاستدلال الذي يطبقه النموذج قبل الاستجابة. كلما زاد الجهد المبذول، كانت الإجابات أكثر شمولاً، ولكن استغرقت وقتًا أطول. استخدم "بلا" لتعطيل الاستدلال تمامًا.
     model_params_title: تكوين النموذج المتقدم
+    moderate_scoring_lead_assessor_form: نموذج التقييم الرئيسي
     must_be_a_valid_url: عنوان URL غير صالح. يرجى تحديد عنوان URL الكامل مع تضمين بروتوكول http أو https فيه
     name: الاسم
     name_max_length: لا يمكن أن يتجاوز الاسم %{length} حرفًا
@@ -1411,6 +1647,24 @@ ar:
     navigation_registration_codes: رموز التسجيل
     navigation_skills_taxonomy: تصنيف المهارات
     navigation_users: المستخدمون
+    new_experience_badge: تجربة جديدة
+    new_experience_bullet_brief_rest: تبقى إرشادات الكفاءة معروضة على الشاشة أثناء قيامك بالتقييم.
+    new_experience_bullet_brief_strong: الموجز بجانب نتيجتك
+    new_experience_bullet_candidate_rest: جميع نماذج التقييم الخاصة بذلك المرشح، معًا.
+    new_experience_bullet_candidate_strong: مرشح واحد، وجهة نظر واحدة
+    new_experience_bullet_moderation_rest: نتائج كل مقيّم جنبًا إلى جنب، قرار نهائي واحد.
+    new_experience_bullet_moderation_strong: إدارة الجلسة بالدقائق
+    new_experience_footer_note: ستصبح التجربة الجديدة هي الوضع الافتراضي للجميع قريبًا. يمكنك التبديل إلى التجربة الجديدة في أي وقت من تفاصيل ملفك الشخصي.
+    new_experience_headline: مسار واحد، من المراجعة الأولى إلى الموافقة النهائية.
+    new_experience_notice_body: لقد قمنا بإعادة تصميم تجربة المُقيِّم. يمكنك تجربتها الآن أو تفعيلها لاحقًا من إعدادات ملفك الشخصي.
+    new_experience_notice_maybe_later: ربما لاحقا
+    new_experience_notice_title: تتوفر خبرة جديدة في مجال التقييم
+    new_experience_preview_alt: معاينة لتجربة المُقيِّم الجديدة
+    new_experience_sub_copy: أصبح المرشح والتقييم والمراجعة ومركز التقييم الآن بمثابة عرض واحد متصل، وليس خمس شاشات تقوم أنت بربطها بنفسك.
+    new_experience_word_assessment_centre: 'مركز التقييم: قم بإدارة الجلسة وتتبع كل موضوع.'
+    new_experience_word_candidate: مرشح واحد، جميع تقييماته مجتمعة.
+    new_experience_word_evaluate: قم بتقييم الموجز وتقييمك جنبًا إلى جنب.
+    new_experience_word_moderate: متوسط. كل تقييم من قبل المقيمين، مكالمة أخيرة.
     new_folder: مجلد جديد
     new_score: النتيجة الجديدة
     no_assessments_found: معرف التدقيق
@@ -1458,6 +1712,7 @@ ar:
     norms_title: المعيار
     not_completed: لم يكتمل
     not_completed_tooltip: يتم تعيين %{completed} المقيمين ولكن فقط %{submitted} أكمل التقييمات
+    not_started: لم يبدأ
     notes: ملاحظات
     nothing_assigned: لا يتم تعيين مقيمين
     nothing_assigned_tooltip: لم يتم تعيين أي تقييمات لهذا المستخدم
@@ -1570,6 +1825,7 @@ ar:
         manage_messages: إدارة الرسائل
         manage_options: إدارة الخيارات
         manage_report_approvals: إدارة موافقات التقارير
+        manage_uat: إدارة مستخدمي اختبار قبول المستخدم
         manage_users: إدارة المستخدمين
         participant_options: خيارات المشاركين
         report_options: خيارات التقارير
@@ -1898,6 +2154,7 @@ ar:
         title: إعدادات التسجيل
       reports:
         manage: إدارة
+        project_bulk_reports: تقارير المشاريع المجمعة
         title: التقارير
         view: عرض
       responseMeta:
@@ -2055,6 +2312,7 @@ ar:
     project_admins: مسؤولو المشاريع
     project_assessor: مقيم المشروع
     project_features: مميزات المشروع
+    project_id: معرف المشروع
     project_ids: معرّفات المشاريع
     project_ids_required: يُعد «project_ids» حقلًا إلزاميًا لهذا النوع من التقارير
     project_licenses: تراخيص المشاريع
@@ -2114,6 +2372,7 @@ ar:
     projects_form_project_number: رقم المشروع
     projects_form_subdomain: المجال الفرعي
     projects_form_title: مشروع
+    projects_general_settings_allow_data_access_to_bi: السماح بالوصول إلى Power BI لهذا المشروع
     projects_general_settings_live_chat: تمكين الدردشة الحية
     projects_general_settings_locales_label: اللغات
     projects_general_settings_project_number_label: رقم المشروع
@@ -2358,6 +2617,7 @@ ar:
     report_on_hold: تقرير %{user} معلق حاليا
     report_owner: مالك
     report_pdf_status: حالة ملف PDF
+    report_pdf_unavailable: لم يتم توفير ملف PDF لهذا التقرير بعد.
     report_review_abort_qc: إبطال ضمان الجودة
     report_review_approve: صدق
     report_review_approve_changes: موافقة على التغييرات
@@ -2728,6 +2988,7 @@ ar:
     scoring_approval_score_approvals: الموافقات على التقييمات باستخدام الذكاء الاصطناعي
     scoring_assessment: تقييم
     scoring_assessment_scoring_type: نوع تسجيل تقييم التقييم
+    scoring_assessor_number: المُقيِّم %{number}
     scoring_average: المتوسط
     scoring_campaign_scoring_variables: متغيرات تسجيل الحملة
     scoring_desc: لقد تجاوزت الحد الأقصى لعوامل الحملة وهو %{n}. لا يمكن إضافة عوامل إضافية. يرجى مراجعة وإدارة العوامل الحالية قبل المتابعة.
@@ -3118,15 +3379,19 @@ ar:
     status_details: تفاصيل الحالة
     statuses_accepted: قبلت
     statuses_cancelled: أُلغي
+    statuses_failed: فشل
     statuses_late_cancelled: تم الإلغاء في وقت متأخر
     statuses_late_rescheduled: إعادة الجدولة المتأخرة
     statuses_pending: قيد الانتظار
+    statuses_queued: في قائمة الانتظار
     statuses_requested_cancellation: طلب إلغاء
     statuses_requested_cancellation_rejected: تم رفض الإلغاء
     statuses_requested_rescheduling: طلب إعادة جدولة
     statuses_requested_rescheduling_rejected: تم رفض إعادة الجدولة
     statuses_rescheduled: أُعيدت جدولته
     statuses_scheduled: المقرر
+    statuses_sent: مرسل
+    statuses_skipped: تم التخطي
     steps_basic_information: المعلومات الأساسية
     steps_facilitators: الميسرين
     steps_invite_options: خيارات الدعوة
@@ -3332,6 +3597,7 @@ ar:
     url_label: الرابط
     url_name: الرابط
     url_whitelisting: قائمة عناوين المواقع المسموح بها
+    use_new_communication_center: استخدام مركز الاتصالات الجديد
     used_tokens_input_tokens: رموز الإدخال
     used_tokens_output_tokens: رموز الإخراج
     used_tokens_thinking_tokens: رموز التفكير

@@ -218,6 +218,15 @@ zh:
     assessor_assessments_reset_successfully: 使用电子邮件"%{subjectEmail}"对主题进行的重置评估成功。
     assessor_assessments_subject_email: 主题电子邮件
     assessor_assessments_subject_name: 主题名称
+    assessor_campaign_users_awaiting_moderation: 等待审核
+    assessor_campaign_users_awaiting_moderation_subtitle: 准备合并
+    assessor_campaign_users_candidates_subtitle: 分配给你
+    assessor_campaign_users_completed: 完全的
+    assessor_campaign_users_completed_subtitle: 签字
+    assessor_campaign_users_in_progress: 进行中
+    assessor_campaign_users_in_progress_subtitle: 正在评估
+    assessor_campaign_users_not_started: 未开始
+    assessor_campaign_users_not_started_subtitle: 评估
     assessor_campaigns_statuses_completed: 已完成
     assessor_campaigns_statuses_in_progress: 进行中
     assessor_campaigns_statuses_not_started: 未开始
@@ -226,6 +235,20 @@ zh:
     assessor_create_assessor: 添加评估员
     assessor_dashboard: 评估员仪表板
     assessor_email: 评估员电子邮件
+    assessor_evaluation: 评估员评估
+    assessor_evaluation_by_campaign: 竞选活动
+    assessor_evaluation_by_participant: 参与者
+    assessor_evaluation_candidate: 候选人
+    assessor_evaluation_candidates: 候选人
+    assessor_evaluation_completed: 评估已完成
+    assessor_evaluation_date_range: 开始日期 – 结束日期
+    assessor_evaluation_moderation_waiting: 审核等待
+    assessor_evaluation_tour_profile_description: 您的帐户、角色和语言以及启用新体验的开关都显示在此处。打开即可查看您的详细信息或退出登录。
+    assessor_evaluation_tour_profile_title: 您的个人资料和设置
+    assessor_evaluation_tour_table_description: 打开任意一行即可查看他们的评估结果，然后评估他们的回答或调整最终分数。
+    assessor_evaluation_tour_table_title: 选择一位候选人
+    assessor_evaluation_tour_tabs_description: 在“按参与者（一次一人）”和“按活动”之间切换。
+    assessor_evaluation_tour_tabs_title: 两种工作方式
     assessor_evaluations: 评估员评估
     assessor_first_name: 评估员姓名
     assessor_form: 评估员表格
@@ -233,18 +256,24 @@ zh:
     assessor_last_name: 评估员姓氏
     assessor_modals_import_body: 请参阅 "导出 "功能，提取可用于此处 "导入 "的模板。
     assessor_modals_import_title: 进口评估员
+    assessor_new_experience: 新体验
     assessor_overview: 概述
     assessor_placeholder: 搜索评估员...
     assessor_remove_confirmation: 您确定要将电子邮件地址为 %{email} 的评估员从该活动中删除吗？
     assessor_remove_has_evaluations: 该评估员已分配 %{evaluation_count} 份评估表。他们已填写的所有评估表都将丢失。
     assessor_remove_in_assessment_centers: 该评估员隶属于 %{workshop_count} 个评估中心。继续操作将使其从所有评估中心移除。
-    assessor_statuses_completed: 已完成
-    assessor_statuses_not_completed: 未完成
-    assessor_subjects_statuses_completed: 已完成
-    assessor_subjects_statuses_in_progress: 进行中
-    assessor_subjects_statuses_not_started: 未开始
+    assessor_switch_to_classic: 切换到经典模式
     assessor_toolbar_export: 出口评估员
     assessor_toolbar_import: 进口评估员
+    assessor_tour_button: 旅游
+    assessor_try_new_experience: 尝试新体验
+    assessor_user_assessment_name: 评估名称
+    assessor_user_candidate_id: 候选人编号
+    assessor_user_evaluate: 评价
+    assessor_user_evaluation: 评估
+    assessor_user_evaluation_progress: 评估进展
+    assessor_user_moderate: 中等分数
+    assessor_user_moderation: 适度
     assessor_workshops: 评估中心
     assessors: 评估员
     assistant_toolbar_failed: 多次尝试后仍未能生成有效输出
@@ -312,6 +341,79 @@ zh:
     bulk_assets_modal_title: 上传CSV和ZIP文件
     bulk_export_assessments_file: 批量评估导出文件
     bulk_export_invalid_params: 批量导出参数无效
+    bulk_reports: 批量报告
+    bulk_reports_all_of_year: "%{year} 全部"
+    bulk_reports_all_tags: 所有标签
+    bulk_reports_bundled_into_single: 捆绑成一个
+    bulk_reports_campaign_count_one: "%{count} 活动"
+    bulk_reports_campaign_count_other: "%{count} 活动"
+    bulk_reports_campaign_search_placeholder: 搜索活动或项目……
+    bulk_reports_campaigns_shown_count: "%{selected} 已选中 - %{shown} 显示"
+    bulk_reports_campaigns_without_reports_warning: 已选活动未配置报告：%{count}。这些活动将被跳过。
+    bulk_reports_candidate_abbreviation: 候选人。
+    bulk_reports_complete_every_step: 完成所有步骤以启用
+    bulk_reports_date_range_required: 要继续操作，必须同时提供开始日期和结束日期。
+    bulk_reports_date_range_summary: 已完成的 %{start} 至 %{end} 号评估将被纳入。
+    bulk_reports_description: 创建一个跨多个活动的导出作业。选择活动，选择要包含的报告和语言，设置日期范围，然后提交。
+    bulk_reports_deselect_all_shown: 取消选择所有显示内容
+    bulk_reports_download_notification_sent: 下载通知已发送
+    bulk_reports_emailed_when_ready: 准备就绪后，我们会通过电子邮件通知您。
+    bulk_reports_end_date_placeholder: 选择结束日期和时间
+    bulk_reports_end_date_required: 请选择结束日期。
+    bulk_reports_error_try_again: 错误 - 请重试
+    bulk_reports_files_estimated_across: 文件估计跨越
+    bulk_reports_files_pending: 作业完成后，文件将显示在此处。
+    bulk_reports_generate_export: 生成导出
+    bulk_reports_invalid_date_range: 结束日期必须等于或晚于开始日期。
+    bulk_reports_job_details_title: 工作编号：%{id}
+    bulk_reports_job_not_found: 找不到这份工作。
+    bulk_reports_job_queued: 作业已排队
+    bulk_reports_languages_progress_one: "%{done} 的 %{total} 报告集"
+    bulk_reports_languages_progress_other: "%{done} 的 %{total} 报告集"
+    bulk_reports_languages_set_for_all_one: 设置所有 %{count} 报告
+    bulk_reports_languages_set_for_all_other: 设置所有 %{count} 报告
+    bulk_reports_last_30_days: 过去30天
+    bulk_reports_last_90_days: 过去90天
+    bulk_reports_no_campaigns_found: 未找到该项目的推广活动。
+    bulk_reports_no_campaigns_match_filters: 没有广告系列符合您的搜索或标签筛选条件。
+    bulk_reports_no_campaigns_selected: 未选择任何活动
+    bulk_reports_no_files_yet: 该职位目前还没有相关文件。
+    bulk_reports_no_language_selected: 未选择语言
+    bulk_reports_no_languages_available: 本报告暂无其他语言版本。
+    bulk_reports_no_reports_configured: 所选广告系列均未配置报告。请返回并检查您的广告系列配置。
+    bulk_reports_no_reports_selected: 未选择任何报告
+    bulk_reports_no_reports_selected_for_languages: 未选择任何报告。请返回并至少选择一份报告。
+    bulk_reports_no_tags_found: 未找到标签
+    bulk_reports_none_selected: 未选择
+    bulk_reports_queued_by: 已排队
+    bulk_reports_queuing_jobs: 正在排队等待任务...
+    bulk_reports_ready_to_generate: 准备生成
+    bulk_reports_report_count_one: "%{count} 报告"
+    bulk_reports_report_count_other: "%{count} 报告"
+    bulk_reports_reports_and_languages: 报告和语言
+    bulk_reports_review_submit: 审核并提交
+    bulk_reports_review_submit_description: 请查看以下工作内容。您可以随时返回任何步骤进行修改。
+    bulk_reports_select_all_shown: 选择所有显示内容
+    bulk_reports_select_campaigns: 选择活动
+    bulk_reports_select_campaigns_description: 按名称或项目搜索，并使用标签筛选器缩小列表范围。然后勾选要包含的活动。
+    bulk_reports_select_date_range: 选择日期范围
+    bulk_reports_select_date_range_description: 仅包含在此范围内完成的评估。您可以预设日期或设置确切日期。
+    bulk_reports_select_languages: 选择语言
+    bulk_reports_select_languages_description: 每份报告支持的语言各不相同。每份报告至少选择一种语言。报告将以您选择的任何语言生成。
+    bulk_reports_select_reports: 选择报告
+    bulk_reports_select_reports_description: 每个选定的报告都会针对导出中的每个候选人或竞选活动，以每种选定的语言生成。
+    bulk_reports_selected_tags_count_one: "%{count} 标签已选中"
+    bulk_reports_selected_tags_count_other: 已选择 %{count} 个标签
+    bulk_reports_start_date_placeholder: 选择开始日期和时间
+    bulk_reports_start_date_required: 请选择开始日期。
+    bulk_reports_step_coming_soon: 这一步骤即将到来。
+    bulk_reports_submit_error: 出错了，请重试。
+    bulk_reports_submit_success: 导出任务已加入队列。下载完成后，您将收到通知。
+    bulk_reports_summary_description: 在您构建作业的过程中进行更新
+    bulk_reports_summary_title: 下载摘要
+    bulk_reports_title: 批量报告
+    bulk_reports_view_downloads: 查看批量报告下载
+    bulk_reports_year_to_date: 今年迄今为止
     bulk_upload_ai_artifacts: 批量上传AI伪影
     campaign: 项目
     campaign_admin: 活动管理
@@ -383,6 +485,13 @@ zh:
     campaign_templates_remove_confirm_success: 活动模板"%{name}"已成功删除。
     campaign_templates_remove_confirm_title: 删除活动模板
     campaign_user_job_roles_cannot_be_same: 目标职位必须与当前职位不同
+    campaign_users_import_uat_hint: 将 UAT 列设置为“是”，以便将测试用户排除在许可、分析和 Webhook 之外。
+    campaign_users_uat_description: 将此参与者标记为用户验收测试用户。
+    campaign_users_uat_label: 用户验收测试参与者
+    campaign_users_uat_license_non_billable: 不计费
+    campaign_users_uat_locked_hint: 该参与者已存在。UAT 状态在参与者首次创建时设置，无法更改。
+    campaign_users_uat_readonly_hint: UAT状态在创建时即已设定，无法更改。
+    campaign_users_uat_tooltip: UAT用户是真实的测试参与者。他们可以正常参加评估，但不会被纳入计费许可使用、分析和出站Webhook的范畴。
     campaigns: 活动
     campaigns_convert_to_template: 转换为模板
     campaigns_extend_time_success_message: 活动计时器延长至 %{minutes} 分钟
@@ -469,6 +578,7 @@ zh:
     clients_search_placeholder: 搜索客户
     closed: 关闭
     code_required: 需要规范
+    collapse_all: 全部收起
     collapse_filters: 折叠过滤器
     column_code: 代码
     column_invitation_status: 邀请状态
@@ -487,10 +597,130 @@ zh:
     common_type: 类型
     common_unselect_all: 全部取消选择
     communication_center: 通信中心
+    communication_center_manage_translations_action: 管理翻译
+    communication_center_migration_enqueued: 迁移任务已加入队列。请查看日志以了解进度。
+    communication_center_migration_error: 迁移请求失败。请重试或查看日志。
+    communication_center_migration_modal_intro: 运行此客户端的迁移时，将应用以下更改：
+    communication_center_migration_modal_title: 通信中心迁移预览
+    communication_center_migration_preview_button: 预览迁移
+    communication_center_migration_run_button: 运行迁移
+    communication_center_migration_skipped: 已迁移（将被跳过）
+    communication_center_migration_would_assessments: 迁移评估
+    communication_center_migration_would_backfill: 待补充的电子邮件
+    communication_center_migration_would_cc_users: CC 用户迁移
+    communication_center_migration_would_migrate: 迁移通信
+    communication_center_migration_would_users: 选定要迁移的用户
+    communication_center_translation_updated_success: 翻译已成功更新
+    communication_center_translations_modal_title: 管理翻译
+    communication_deliveries: 送货
+    communication_delivery: 沟通传递
+    communication_delivery_assessment_group_label: 评估小组
+    communication_delivery_at_label: 送货日期和时间
+    communication_delivery_at_past_error: 交货日期必须在未来。
+    communication_delivery_cancel_action: 取消
+    communication_delivery_cancel_error: 取消订单失败
+    communication_delivery_cc_users_label: CC收件人
+    communication_delivery_completion_status_hint: 如果指定了完成代码，则只有当用户的评估具有该完成状态代码时才会发送该代码。
+    communication_delivery_completion_status_label: 评估完成状态代码
+    communication_delivery_delay_hours_label: 延误（小时）
+    communication_delivery_details_title: 配送详情
+    communication_delivery_emails_sent_label: 发送
+    communication_delivery_emails_total_label: 邮件总数
+    communication_delivery_end_date_label: 结束日期
+    communication_delivery_frequency_daily: 日常的
+    communication_delivery_frequency_label: 频率
+    communication_delivery_frequency_specific_weekdays: 具体工作日
+    communication_delivery_frequency_weekly: 每周
+    communication_delivery_interval_number_label: 间隔
+    communication_delivery_interval_period_days: 天
+    communication_delivery_interval_period_hours: 小时
+    communication_delivery_interval_period_label: 间隔期
+    communication_delivery_interval_period_months: 月份
+    communication_delivery_interval_period_weeks: 周
+    communication_delivery_new_button: 新到货
+    communication_delivery_recipients_all: 所有参与者
+    communication_delivery_recipients_label: 收件人
+    communication_delivery_recipients_new_assignment: 新任务
+    communication_delivery_recipients_new_users: 新用户
+    communication_delivery_recipients_selected: 选定的参与者
+    communication_delivery_rule_in_progress: 进行中
+    communication_delivery_rule_label: 交付规则
+    communication_delivery_rule_not_completed: 未完成
+    communication_delivery_rule_not_started: 未开始
+    communication_delivery_rule_send_now: 立即发送
+    communication_delivery_rule_specific_datetime: 具体日期和时间
+    communication_delivery_search_users_placeholder: 按姓名或电子邮件搜索
+    communication_delivery_selected_assessments_label: 评估
+    communication_delivery_selected_users_label: 选择用户
+    communication_delivery_start_date_label: 开始日期
+    communication_delivery_template_label: 模板
+    communication_delivery_time_of_day_label: 一天中的时间
+    communication_delivery_timezone_label: 时区
+    communication_delivery_trigger_type_label: 触发器类型
+    communication_delivery_trigger_type_manual: 手动的
+    communication_delivery_trigger_type_scheduled: 已安排
+    communication_delivery_weekday_fri: 星期五
+    communication_delivery_weekday_mon: 周一
+    communication_delivery_weekday_sat: 周六
+    communication_delivery_weekday_sun: 星期日
+    communication_delivery_weekday_thu: 周四
+    communication_delivery_weekday_tue: 周二
+    communication_delivery_weekday_wed: 周三
+    communication_delivery_weekdays_label: 工作日
+    communication_email_created_at_label: 创建于
+    communication_email_not_sent: 未发送
+    communication_email_preview_action: 预览
+    communication_email_preview_date_label: 日期
+    communication_email_preview_from_label: 从
+    communication_email_preview_title: 电子邮件预览
+    communication_email_preview_to_label: 到
+    communication_email_preview_warning: 这是模板的重新渲染预览，可能与实际发送的电子邮件的确切内容不符。
+    communication_email_recipient_email_label: 收件人电子邮件
+    communication_email_recipient_name_label: 收件人姓名
+    communication_email_retrigger_action: 重新触发
+    communication_email_retrigger_error: 重新触发邮件失败
+    communication_email_sent_at_label: 发送于
+    communication_email_status_label: 地位
+    communication_email_subject_label: 主题
+    communication_emails: 电子邮件
+    communication_template: 沟通模板
+    communication_template_body_label: 信息
+    communication_template_create_new_action: 创建新的
+    communication_template_kind_label: 沟通类型
+    communication_template_level_campaign: 活动
+    communication_template_level_client: 客户
+    communication_template_level_platform: 平台
+    communication_template_level_project: 项目
+    communication_template_name_label: 模板名称
+    communication_template_new_button: 新模板
+    communication_template_override_inherited_action: 覆盖继承的
+    communication_template_override_picker_search_placeholder: 要覆盖的搜索模板
+    communication_template_override_picker_title: 覆盖继承的模板
+    communication_template_recipients_all: 全部
+    communication_template_recipients_label: 默认收件人
+    communication_template_recipients_new_assignment: 新任务
+    communication_template_recipients_new_users: 新用户
+    communication_template_recipients_selected: 已选
+    communication_template_source_created: 创建
+    communication_template_source_label: 来源
+    communication_template_source_override_of: 覆盖 %{level}
+    communication_template_status_active: 积极的
+    communication_template_status_archived: 已存档
+    communication_template_status_draft: 草稿
+    communication_template_status_label: 地位
+    communication_template_subject_label: 主题
+    communication_templates: 模板
     communications: 通信
     communications_form_insert_piped_text: 插入管道文字
+    competency_indicator: 能力/指标
     completed: 完成
     completed_tooltip: 所有评估人员均已提交评估
+    completion_recipients_all: 所有科目
+    completion_recipients_list: 收件人列表：
+    completion_recipients_selected: 选定主题
+    completion_recipients_selected_admins: 选定的管理员
+    completion_recipients_selected_assessors: 选定的评估员
+    completion_recipients_selected_assessors_hint: 即使上面选择了其他评估员，也只会向分配给正在填写该科目的评估员表格的评估员发送电子邮件。
     components_input_duration_placeholder: 输入 "1d 2h 3m
     concise: 简洁
     condition_sets: 条件集
@@ -697,6 +927,8 @@ zh:
     disable_proctoring: 禁用监考功能
     disable_report_download: 禁用报告下载
     disable_transcript_download: 禁用文字稿下载
+    disable_webhooks: 禁用 Webhook
+    disable_webhooks_hint: 启用此功能后，无论参与者类型如何，都不会向客户端发送此活动的 webhook 或下游集成事件。只有超级管理员才能更改此设置。
     disallow_lead_assessor_moderation: 禁止首席评估员进行审核
     disallow_lead_assessor_moderation_info: 评分将根据所有评估员提交的表格自动计算，首席评估员无法在审核界面中修改该评分
     discard_all_questions: 重置所有问题
@@ -795,6 +1027,7 @@ zh:
     evaluator_welcome_name: 欢迎评估员
     evaluators_title: 评估员
     evidence_from_transcript: 笔录证据
+    expand_all: 全部展开
     expand_filters: 扩展过滤器
     export_admin_roles_permissions: 导出管理员角色和权限
     export_admins_with_permissions: 导出管理员角色和权限
@@ -855,6 +1088,7 @@ zh:
     feature_not_available: 此功能不可用
     feature_sms_notification_description: 为活动邀请和提醒启用短信通知
     feature_superadmin_tenant_scoping_description: 禁用后，超级管理员查询将不再局限于此客户端的数据。
+    feature_use_new_communication_center_description: 请仅使用此客户端的新通信中心，并停止发送旧版通信内容。
     fields_level: 级别
     fields_level_description: 等级描述
     fields_level_name: 级别名称
@@ -1121,6 +1355,7 @@ zh:
     import_title: 从CSV导入主题
     import_upload: 上传
     import_users: 导入用户
+    in_progress: 进行中
     inactive: 不活动
     include_locales_label: 包括翻译
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ zh:
     model_params_thinking_effort_none: 没有任何
     model_params_thinking_effort_tooltip: 控制模型在做出响应前应用推理的程度。推理程度越高，生成的答案越详尽，但耗时也越长。使用“无”可完全禁用推理。
     model_params_title: 高级模型配置
+    moderate_scoring_lead_assessor_form: 首席评估员表格
     must_be_a_valid_url: URL 无效。请输入包含 http 或 https 协议的完整 URL
     name: 名称
     name_max_length: 名称不能超过%{length}个字符
@@ -1411,6 +1647,24 @@ zh:
     navigation_registration_codes: 注册码
     navigation_skills_taxonomy: 技能分类法
     navigation_users: 用户
+    new_experience_badge: 新体验
+    new_experience_bullet_brief_rest: 评分时，能力指导信息会一直显示在屏幕上。
+    new_experience_bullet_brief_strong: 评分旁边的简要说明
+    new_experience_bullet_candidate_rest: 该候选人的所有评估表汇总在一起。
+    new_experience_bullet_candidate_strong: 一位候选人，一种观点
+    new_experience_bullet_moderation_rest: 将所有评估员的分数并列，做出最终决定。
+    new_experience_bullet_moderation_strong: 几分钟内达到适度
+    new_experience_footer_note: 新体验很快将成为所有用户的默认设置。您也可以随时在个人资料详情中切换到新体验。
+    new_experience_headline: 一个流程，从初审到最终签字。
+    new_experience_notice_body: 我们重新设计了评估员体验。您可以立即试用，也可以稍后在个人资料设置中启用。
+    new_experience_notice_maybe_later: 也许以后
+    new_experience_notice_title: 新的评估员经验机会
+    new_experience_preview_alt: 新评估员体验预览
+    new_experience_sub_copy: 候选人、评估、审核和评估中心现在作为一个整体视图运作，而不是像以前那样需要你自己操作五个屏幕。
+    new_experience_word_assessment_centre: 评估中心负责运行课程并跟踪每个科目。
+    new_experience_word_candidate: 候选人一的所有评估结果汇总。
+    new_experience_word_evaluate: 对比评估简报内容和你的评分。
+    new_experience_word_moderate: 中等难度，每位评估员打分，最终决定。
     new_folder: 新建文件夹
     new_score: 新分数
     no_assessments_found: 审计编号
@@ -1458,6 +1712,7 @@ zh:
     norms_title: 常模
     not_completed: 未完成
     not_completed_tooltip: "%{completed}评估员被分配，但只有%{submitted}完成了评估"
+    not_started: 未开始
     notes: 说明
     nothing_assigned: 未指定评审员
     nothing_assigned_tooltip: 该用户尚未被分配任何评估
@@ -1570,6 +1825,7 @@ zh:
         manage_messages: 管理信息
         manage_options: 管理选项
         manage_report_approvals: 管理报告审批
+        manage_uat: 管理用户验收测试用户
         manage_users: 管理用户
         participant_options: 参与者选项
         report_options: 报告选项
@@ -1898,6 +2154,7 @@ zh:
         title: 注册设置
       reports:
         manage: 管理
+        project_bulk_reports: 项目批量报告
         title: 报告
         view: 查看
       responseMeta:
@@ -2055,6 +2312,7 @@ zh:
     project_admins: 项目管理员
     project_assessor: 项目评估员
     project_features: 项目特色
+    project_id: 项目 ID
     project_ids: 项目编号
     project_ids_required: 此报告类型必须包含 project_ids
     project_licenses: 项目许可证
@@ -2114,6 +2372,7 @@ zh:
     projects_form_project_number: 项目编号
     projects_form_subdomain: 子域
     projects_form_title: 项目
+    projects_general_settings_allow_data_access_to_bi: 允许此项目访问 Power BI
     projects_general_settings_live_chat: 启用即时聊天
     projects_general_settings_locales_label: 区域设置
     projects_general_settings_project_number_label: 项目编号
@@ -2358,6 +2617,7 @@ zh:
     report_on_hold: "%{user}报告目前处于暂停状态"
     report_owner: 所有者
     report_pdf_status: 报告 PDF 状态
+    report_pdf_unavailable: 本报告的PDF版本尚未提供。
     report_review_abort_qc: 中止质控
     report_review_approve: 批准
     report_review_approve_changes: 批准变更
@@ -2728,6 +2988,7 @@ zh:
     scoring_approval_score_approvals: AI评分审批
     scoring_assessment: 评估
     scoring_assessment_scoring_type: 评估评分类型
+    scoring_assessor_number: 评估员 %{number}
     scoring_average: 平均
     scoring_campaign_scoring_variables: 活动评分变量
     scoring_desc: 您已超过 %{n} 活动因素的最大限制。 无法添加其他因素。 请在继续之前检查并管理现有因素。
@@ -3118,15 +3379,19 @@ zh:
     status_details: 状态详情
     statuses_accepted: 已接受
     statuses_cancelled: 已取消
+    statuses_failed: 失败的
     statuses_late_cancelled: 延迟取消
     statuses_late_rescheduled: 改期
     statuses_pending: 待定
+    statuses_queued: 已排队
     statuses_requested_cancellation: 申请取消
     statuses_requested_cancellation_rejected: 拒绝取消
     statuses_requested_rescheduling: 要求改期
     statuses_requested_rescheduling_rejected: 重新安排 拒绝
     statuses_rescheduled: 改期
     statuses_scheduled: 计划
+    statuses_sent: 发送
+    statuses_skipped: 跳过
     steps_basic_information: 基本信息
     steps_facilitators: 主持人
     steps_invite_options: 邀请选项
@@ -3332,6 +3597,7 @@ zh:
     url_label: 网址
     url_name: 网址
     url_whitelisting: URL白名单
+    use_new_communication_center: 使用新的通讯中心
     used_tokens_input_tokens: 输入令牌
     used_tokens_output_tokens: 输出令牌
     used_tokens_thinking_tokens: 思维代币

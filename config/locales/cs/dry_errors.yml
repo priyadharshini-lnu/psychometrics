@@ -36,6 +36,8 @@ cs:
         ai_assisted_idp_feature_error: Nemůže to být pravda, pokud je funkce asistentů ai zakázána
       client_sso_settings:
         sso_enforced_requires_enabled: Nelze povolit, pokud není povoleno SSO
+      communication_center:
+        invalid_locale: není podporované národní prostředí
       create_superadmin:
         uniq_email: E-mail by měl být uniq.
       development_actions:

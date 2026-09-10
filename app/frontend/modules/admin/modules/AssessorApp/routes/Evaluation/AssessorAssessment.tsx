@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   Layout, Card, Progress, Space,
   Button, Modal,
 } from 'antd'
 import _ from 'lodash'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import cs from 'classnames'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
@@ -59,42 +59,41 @@ const AssessorAssessment: React.FC<Props> = ({
   updateAssessorAssessmentStatus,
   validateSession,
 }) => {
-  const { search } = useLocation()
+  const { search, pathname } = useLocation()
+  const navigate = useNavigate()
   const params = new URLSearchParams(search)
   const edit = params.get('edit')
   const read = params.get('read')
   const lang = params.get('lang')
-  const assessment = params.get('assessment')
+  const responseParam = allowMultipleResponses ? params.get('assessment') : null
 
-  const [isRead, setRead] = useState(read === 'true')
-  const [userAssessmentId, setUserAssessmentId] = useState(
-    (allowMultipleResponses && assessorAssessments.length > 1) ? assessment : userAssessmentIdProp,
-  )
+  const showsResponseList = responseParam === ''
+    || (responseParam === null && allowMultipleResponses && assessorAssessments.length > 1)
+  const userAssessmentId = showsResponseList ? null : (Number(responseParam) || userAssessmentIdProp)
+  const selectedAssessment = responseParam ? _.find(assessorAssessments, { id: Number(responseParam) }) : undefined
+  const isRead = read === 'true' || !!selectedAssessment?.completed_at
 
-  const viewAssessment = (id) => {
-    const url = new URL(location.href)
-    url.searchParams.set('assessment', id)
-    history.replaceState(null, '', url.href)
-    const assessorAssessment = _.find(assessorAssessments, { id })
-    setRead(!!assessorAssessment?.completed_at)
-    setUserAssessmentId(id)
+  const selectResponse = (id: number | null) => {
+    params.set('assessment', id ? `${id}` : '')
+    navigate(`${pathname}?${params.toString()}`, { replace: true })
   }
 
   useMessageBus('assessment:finished', (assessmentId) => {
     if (userAssessmentId) {
-      updateAssessorAssessmentStatus(assessmentId, +userAssessmentId)
+      updateAssessorAssessmentStatus(assessmentId, userAssessmentId)
     }
   })
 
   useEffect(() => {
     if (!userAssessmentId) { return }
 
-    const assessorAssessment = _.find(assessorAssessments, { id: +userAssessmentId })
+    const assessorAssessment = _.find(assessorAssessments, { id: userAssessmentId })
     if (assessorAssessment && assessorAssessment.assessment_id === +currentAssessorFormId) {
-      fetch(+userAssessmentId, { edit: edit === 'true', read: isRead, lang })
+      fetch(userAssessmentId, { edit: edit === 'true', read: isRead, lang })
     }
     if (edit === 'true') {
-      history.replaceState(null, '', location.href.replace('edit=true', 'edit=false'))
+      params.set('edit', 'false')
+      navigate(`${pathname}?${params.toString()}`, { replace: true })
     }
   }, [userAssessmentId, currentAssessorFormId])
 
@@ -139,9 +138,9 @@ const AssessorAssessment: React.FC<Props> = ({
       <Content className={cs('fluid-container', assessorForm?.result?.selected_locale?.code === 'ar' ? 'rtl' : 'ltr')}>
         {allowMultipleResponses && (
           !userAssessmentId
-            ? <MultipleResponseTable assessorAssessments={assessorAssessments} onView={viewAssessment} />
+            ? <MultipleResponseTable assessorAssessments={assessorAssessments} onView={selectResponse} />
             : (
-              <Button type="link" onClick={() => setUserAssessmentId(null)}>
+              <Button type="link" onClick={() => selectResponse(null)}>
                 {I18n.t('common.actions.back_to_responses')}
               </Button>
             )

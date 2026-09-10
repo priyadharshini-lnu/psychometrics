@@ -37,8 +37,10 @@ vi:
     campaign: Chiến dịch
     campaign_id: ID chiến dịch
     cancel: Hủy bỏ
+    candidates: Ứng viên
     category: Loại
     change_password: Thay đổi mật khẩu
+    clear: Thông thoáng
     clear_filters: Xóa bộ lọc
     client: Khách hàng
     close: Đóng
@@ -86,11 +88,15 @@ vi:
     end_date: Ngày kết thúc
     ending_proctoring_session_msg: Chúng tôi đang kết thúc phiên giám sát. <p>Vui lòng chờ trong giây lát để chúng tôi lưu lại câu trả lời của bạn và chuyển hướng trở lại trang chủ.</p>
     error: Lỗi
+    errors: Lỗi
     export: Xuất khẩu
     failed: Thất bại
     'false': false
     file: Tệp
     file_upload_button: Chọn tệp
+    filename: Tên tệp
+    files: Tệp
+    filters: Bộ lọc
     first_name: Tên đầu tiên
     formal_learning: Học chính thức
     generate: Tạo ra
@@ -105,6 +111,7 @@ vi:
     impersonation_banner_aria_label: Phiên giả mạo tích cực
     impersonation_end_session: Ra
     import: Nhập khẩu
+    in_progress: Đang tiến hành
     inactive: Không hoạt động
     internet_disconnected_message: Đang cố gắng kết nối lại. Vui lòng kiểm tra kết nối internet của bạn.
     is_impersonating: đang mạo danh
@@ -112,6 +119,7 @@ vi:
     issuer_claim_label: Tổ chức phát hành (iss)
     jwt_claims_details: Chi tiết yêu cầu bồi thường của JWT
     key_id_claim_label: Mã định danh (kid)
+    languages: Ngôn ngữ
     last_name: Họ
     last_updated: Cập nhật lần cuối
     learning_on_the_job_label: Học tập trong công việc
@@ -151,6 +159,7 @@ vi:
     no_results_found: Không tìm thấy kết quả nào.
     none: Không ai
     not_requested: Chưa được yêu cầu
+    not_set: Chưa được thiết lập
     ok: Được rồi
     options: Tùy chọn
     overview: Tổng quan
@@ -215,12 +224,14 @@ vi:
     reset_password: Đặt lại mật khẩu
     response_text: Nội dung phản hồi
     return_url_not_whitelisted: URL trả về không nằm trong danh sách cho phép đối với ứng dụng này.
+    review: Ôn tập
     rte_paste_content_exceeds_char_limit: Văn bản vượt quá giới hạn ký tự của {{maxCharacterLimit}} và không thể dán.
     rte_paste_content_exceeds_word_limit: Văn bản vượt quá giới hạn từ {{maxWordLimit}} và không thể dán.
     run: Chạy
     save: Cứu
     saving_video: Lưu video... Vui lòng không đóng hoặc làm mới trình duyệt
     schedule_time: Lịch trình thời gian
+    scheduled: Đã lên lịch
     scoring_details: Chi tiết điểm số
     search: Tìm kiếm
     select_camera: Chọn máy ảnh

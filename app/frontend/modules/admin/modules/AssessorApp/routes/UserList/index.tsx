@@ -6,7 +6,8 @@ import {
 } from 'antd'
 import { useNavigate, useParams } from 'react-router-dom'
 import settings from '~/modules/admin/settings'
-import { get as getUsers, fetch } from '~/modules/admin/modules/AssessorApp/core/users'
+import { get as getUsers, fetch, FETCH } from '~/modules/admin/modules/AssessorApp/core/users'
+import { isRequestInProgress } from '~/core/request'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import withEnhancedTable from '~/modules/admin/hoc/withEnhancedTable'
 import { TableProps } from '~/modules/admin/hoc/withEnhancedTable/interfaces'
@@ -17,6 +18,7 @@ import styles from './styles.less'
 const connecter = connect(
   (state: RootState) => ({
     users: getUsers(state),
+    loading: isRequestInProgress(state, FETCH),
   }),
   {
     fetch,
@@ -34,6 +36,7 @@ const { I18n } = window
 const UserList: React.FC<Props> = (
   {
     users: { list, total },
+    loading,
     fetch,
     tableConfig: {
       filters,
@@ -72,6 +75,7 @@ const UserList: React.FC<Props> = (
         ]}
       />
       <TableLayout
+        loading={loading}
         title={I18n.t('admin.navigation_users')}
         recordCount={total}
         pagination={{
@@ -135,7 +139,7 @@ const UserList: React.FC<Props> = (
               key="status"
               minWidth={150}
               render={({ evaluationCompletionStatus }) => (
-                I18n.t(`admin.assessor_subjects_statuses_${evaluationCompletionStatus}`)
+                I18n.t(`admin.${evaluationCompletionStatus}`)
               )}
             />
             <Column
@@ -149,7 +153,7 @@ const UserList: React.FC<Props> = (
               key="moderationStatus"
               minWidth={150}
               render={({ moderationCompletionStatus }) => (
-                I18n.t(`admin.assessor_subjects_statuses_${moderationCompletionStatus}`)
+                I18n.t(`admin.${moderationCompletionStatus}`)
               )}
             />
             <Column

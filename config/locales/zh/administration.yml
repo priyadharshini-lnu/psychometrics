@@ -575,6 +575,10 @@ zh:
       enabled: 已启用
       loading: 装载。。。
       save: 节省
+    communication_center:
+      errors:
+        terminal_state: 配送已进入最终状态。
+        update_translation: 无法更新此语言环境的翻译。
     communication_settings: 设置
     communications:
       create:

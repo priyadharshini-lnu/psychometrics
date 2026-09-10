@@ -100,6 +100,8 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
         allow(Settings.features).to receive(:[]).with(:ai_assistant_enabled).and_return(true)
         allow(Settings.features).to receive(:dimensions_react_ui).and_return(true)
         allow(Settings.features).to receive(:libraries_react_ui).and_return(true)
+        allow(Settings.features).to receive(:question_center_react_ui).and_return(true)
+        allow(Settings.features).to receive(:communication_center_enabled).and_return(true)
         get '/api/v2/administration/users/current_user_details'
         parsed_response = JSON.parse(response.body)['data']
         expect(parsed_response['id']).to eq(superadmin.id.to_s)
@@ -120,11 +122,12 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
             'developmentActions' => '/admin/development_actions',
             'dimensions' => '/admin/dimensions',
             'libraries' => '/admin/libraries',
+            'newCommunicationCenter' => '/admin/communication_center',
             'settings' => '/admin/settings',
             'norms' => '/admin/norms',
             'profile' => '/admin/profile',
             'profileDetails' => '/admin/profile/details',
-            'questionCenter' => '/administration/templates/questions',
+            'questionCenter' => '/admin/templates/questions',
             'reportApprovals' => '/admin/report_approvals/my_tasks',
             'reports' => '/admin/reports',
             'skillsTaxonomy' => '/admin/skills_taxonomy',

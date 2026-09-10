@@ -5,11 +5,11 @@ import {
   Flex, Button,
 } from 'antd'
 import { motion, useReducedMotion } from 'motion/react'
+import cs from 'classnames'
 import { WarningOutlined, CaretRightFilled, PauseOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useAudioLevelMonitoring } from '~/hooks/useAudioLevelMonitoring'
 import styles from '../styles.less'
 import DotAudioVisualizer from './DotAudioVisualizer'
-
 
 const { I18n } = window
 
@@ -27,6 +27,7 @@ interface BaseVideoPlayerProps {
   isTestMode?: boolean
   permissionError?: string;
   showVisualizer?: boolean;
+  isMirrored?: boolean;
 }
 
 interface VideoPlayerPropsWithCountdown extends BaseVideoPlayerProps {
@@ -57,6 +58,7 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
   isTestMode = true,
   permissionError,
   showVisualizer = true,
+  isMirrored = true,
 }) => {
   const { startMonitoring, cleanupMonitoring, showAudioWarning } = useAudioLevelMonitoring()
 
@@ -193,7 +195,7 @@ const VideoRecorder: React.FC<VideoPlayerProps> = ({
           playsInline
           muted={!mediaUrl}
           controls={false}
-          className={styles.video}
+          className={cs(styles.video, { [styles.mirrored]: isMirrored })}
           onPlay={onPlay}
           onLoadedMetadata={handleLoadedMetadata}
           disablePictureInPicture

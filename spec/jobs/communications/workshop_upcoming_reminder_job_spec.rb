@@ -118,6 +118,52 @@ campaign_assessment_group: other_assessment_group)
     expect(communication_email).to be_nil
   end
 
+  context 'when an active CommunicationDelivery exists for the matching assessment group' do
+    let!(:delivery) do
+      create(:communication_delivery, :workshop_upcoming_reminder, client: project.parent, project: project,
+                                                                       campaign: campaign,
+                                                                       campaign_assessment_group: assessment_group)
+    end
+
+    context 'and use_new_communication_center is disabled for the client (default)' do
+      it 'sends the legacy email only -- the delivery is not usable without the flag' do
+        workshop, = create_workshop__with_subject(2.days.from_now)
+        described_class.perform_now
+
+        expect(CommunicationEmail.where(communication_delivery: delivery, workshop: workshop)).to be_empty
+        expect(CommunicationEmail.find_by(campaign_user: campaign_user, workshop: workshop)).to be_present
+      end
+    end
+
+    context 'and use_new_communication_center is enabled for the client' do
+      before { project.parent.client_feature.update!(use_new_communication_center: true) }
+
+      it 'sends the delivery-sourced email only -- the flag suppresses the legacy send' do
+        workshop, = create_workshop__with_subject(2.days.from_now)
+        described_class.perform_now
+
+        delivery_email = CommunicationEmail.find_by(communication_delivery: delivery, campaign_user: campaign_user,
+                                                    workshop: workshop)
+        expect(delivery_email).to be_present
+        expect(communication.reload.emails).to be_empty
+      end
+
+      it 'does not create a delivery-sourced email for a workshop_subject in a different assessment group' do
+        other_assessment_group = create(:campaign_assessment_group, campaign: campaign, group_type: 1)
+        workshop = create(:workshop, start_time: 2.days.from_now, campaign: campaign, status: :open,
+campaign_assessment_group: other_assessment_group)
+        workshop_invite = create(:workshop_invite, workshops: [workshop], campaign: campaign,
+                               campaign_assessment_group: other_assessment_group)
+        create(:workshop_subject, workshop: workshop, user: user, campaign: campaign,
+               workshop_invite: workshop_invite, scheduling_status: :scheduled)
+
+        described_class.perform_now
+
+        expect(CommunicationEmail.where(communication_delivery: delivery, workshop: workshop)).to be_empty
+      end
+    end
+  end
+
   def create_workshop__with_subject(start_time)
     workshop = create(:workshop, start_time: start_time, campaign: campaign, status: :open,
 campaign_assessment_group: assessment_group)

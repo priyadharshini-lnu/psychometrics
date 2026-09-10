@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Card, Col, Row, Skeleton,
+  Card, Col, Row, Skeleton, theme,
 } from 'antd'
 import { DataTablePagination } from '@thetalententerprise/glint'
 import { useNavigate } from 'react-router-dom'
@@ -15,6 +15,7 @@ const { I18n } = window
 
 export const DashboardList = () => {
   const navigate = useNavigate()
+  const { token } = theme.useToken()
   const {
     data, fetch, isLoading, currentPage, pageSize, changePage, meta,
   } = useResources<DashboardType>('dashboards', { responseType: DashboardTR })
@@ -32,22 +33,24 @@ export const DashboardList = () => {
   if (isLoading('fetch')) return <Skeleton />
 
   return (
-    <div className="p-6">
+    <>
       <DocumentTitle text={I18n.t('admin.dashboards')} />
-      <h3>{I18n.t('admin.dashboards')}</h3>
-      <Row>
-        {data.map(dashboard => (
-          <Col xl={6} md={8} sm={12} xs={24} key={dashboard.id} className={styles.cardContainer}>
-            <Card
-              hoverable
-              cover={<CardCover imageUrl={dashboard.imageUrl} />}
-              onClick={() => navigate(`${settings.urlPrefix}/${dashboard.id}`)}
-            >
-              <Meta title={dashboard.name} description={dashboard.campaign?.name} />
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <div style={{ paddingInline: token.padding, paddingBlock: token.paddingSM }}>
+        <h3>{I18n.t('admin.dashboards')}</h3>
+        <Row>
+          {data.map(dashboard => (
+            <Col xl={6} md={8} sm={12} xs={24} key={dashboard.id} className={styles.cardContainer}>
+              <Card
+                hoverable
+                cover={<CardCover imageUrl={dashboard.imageUrl} />}
+                onClick={() => navigate(`${settings.urlPrefix}/${dashboard.id}`)}
+              >
+                <Meta title={dashboard.name} description={dashboard.campaign?.name} />
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </div>
       <DataTablePagination
         page={currentPage}
         pageSize={pageSize}
@@ -55,7 +58,7 @@ export const DashboardList = () => {
         onChange={changePage}
         showSizeChanger
       />
-    </div>
+    </>
   )
 }
 

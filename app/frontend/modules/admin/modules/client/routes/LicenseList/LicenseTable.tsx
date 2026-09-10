@@ -94,6 +94,15 @@ const ClientLicensesTableComponent: React.FC<Props> = ({
         width={300}
       />
       <Resource.Column<License>
+        title={I18n.t('licenses.uat_used')}
+        id="uat_usage"
+        render={(_, { uatUsedNumber, uatUsageLimit }) => I18n.t('licenses.used_out_of', {
+          used: uatUsedNumber,
+          total: uatUsageLimit,
+        })}
+        width={300}
+      />
+      <Resource.Column<License>
         title={I18n.t('licenses.overuse_number')}
         id="overuse_number"
         dataIndex="overuseNumber"

@@ -20,7 +20,11 @@ module Api
         }
       )
 
-      total_records = CampaignUser.where(active: campaign_users_active_in.split(','), campaign_id: campaign.id).count
+      total_records = CampaignUser.joins(:user).where(
+        active: campaign_users_active_in.split(','),
+        campaign_id: campaign.id,
+        users: { is_uat: false }
+      ).count
       total_pages = (total_records.to_f / limit).ceil
 
       campaign_factor_ids = campaign.campaign_factors.pluck(:id).map(&:to_s)

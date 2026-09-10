@@ -10,7 +10,7 @@ module Api
           attributes :skill_type, :level, :level_definition, :project_id, :skill_id, :proficiency_type
 
           has_one :project, class_name: 'Client'
-          belongs_to :skill
+          has_one :skill
         end
       end
     end

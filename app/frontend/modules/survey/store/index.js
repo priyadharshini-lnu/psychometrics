@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import api from '~/middleware/api'
-import socket from '../middleware/Socket'
 import flow from '../core/preview/FlowProcessor/middleware'
 import rootReducers from '../core/rootReducers'
 import rootSagas from '../core/rootSagas'
@@ -14,7 +13,7 @@ let composeEnhancers = compose
 const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
 
 
-let middleware = [api, socket, sagaMiddleware, flow, thunk]
+let middleware = [api, sagaMiddleware, flow, thunk]
 
 if (__TEST__) {
   middleware = []

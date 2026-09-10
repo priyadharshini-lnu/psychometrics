@@ -68,6 +68,7 @@ export const setApplication = (application: State['application']) => ({
 
 const HANDLERS = {
   [FETCH]: (state: State, { response }: ApiActionResponse<State>): State => ({
+    ...defaultState,
     ...response,
     application: state.application,
   }),

@@ -10,12 +10,12 @@ import styles from './QuestionCenter.less'
 
 export class Dashboard extends Component {
   componentDidMount () {
-    const { subscribeSocket, socketInitialized } = this.props
-    if (!socketInitialized) {
-      const urldata = location.pathname.match(/questions\/(\d+)/)
-      const id = urldata && urldata[1]
-      subscribeSocket('Questions::Channel', { question_id: id })
-    }
+    const { fetchQuestionCenter, initQuestionCenter } = this.props
+    const urldata = location.pathname.match(/questions\/(\d+)/)
+    const id = urldata && urldata[1]
+    fetchQuestionCenter(id).then(({ response }) => {
+      initQuestionCenter(response)
+    })
   }
 
   componentWillUnmount () {

@@ -19,6 +19,7 @@ RSpec.describe AdminJobs::ExportUsers, type: :job do
 
     expected_first_row = [
       'Active',
+      'UAT',
       'First Name',
       'Last Name',
       'Email Address',
@@ -46,6 +47,7 @@ RSpec.describe AdminJobs::ExportUsers, type: :job do
     actual_user_data_row = csv[1]
     expected_user_data_row = [
       'Yes',
+      'No',
       user.first_name,
       user.last_name,
       user.email,

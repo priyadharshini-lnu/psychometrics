@@ -4,23 +4,29 @@ class CommunicationEmailMailer < ApplicationMailer
   layout 'mailer/layouts/end_user_email_without_footer'
 
   def create(email_id)
-    @communication_email = CommunicationEmail.preload(:communication, :communication_email_resources).find(email_id)
+    @communication_email = CommunicationEmail.
+                           preload(:communication, :communication_delivery, :communication_email_resources).
+                           find(email_id)
+    @communication_email.increment!(:attempts)
     @resource = recipient
 
     user_locale = recipient&.locale || I18n.default_locale
-    template_has_ar = @communication_email.communication.
-                      body(locale: :ar, fallback: false).
-                      present?
-    @is_rtl = user_locale.to_s == 'ar' && template_has_ar
 
     I18n.with_locale(user_locale) do
-      prepare_and_send_email
+      prepare_and_send_email(user_locale)
     end
 
-    @communication_email.update(sent_at: Time.current)
+    @communication_email.update!(sent_at: Time.current, status: :sent)
+  rescue StandardError => e
+    @communication_email.update!(status: :failed, error_code: e.class.name, error_message: e.message)
+    raise
   end
 
   private
+
+  def content_source
+    @communication_email.content_source
+  end
 
   def communication
     @communication_email.communication
@@ -30,16 +36,17 @@ class CommunicationEmailMailer < ApplicationMailer
     recipient&.project || communication&.project
   end
 
-  def prepare_and_send_email
+  def prepare_and_send_email(user_locale)
     attach_ical
-    attach_booking_summary_excel if communication.kind == 'assessment_center_booking_summary'
-    data = build_template_data
-    body_content = process_body_content
-    @body = Mustache.render(replace_new_piped_texts(body_content), data)
-    subject = build_subject(data)
+    attach_booking_summary_excel if content_source.kind == 'assessment_center_booking_summary'
+
+    rendered = Communications::Emails::RenderContent.call!(
+      @communication_email, locale: user_locale, data: template_data
+    )
+    @body = rendered.body
 
     Rails.logger.info("Email has been sent. Email=#{recipient.email}, Body=#{@body}")
-    send_configured_email(subject)
+    send_configured_email(rendered.subject)
   end
 
   def attach_booking_summary_excel
@@ -50,7 +57,7 @@ class CommunicationEmailMailer < ApplicationMailer
     }
   end
 
-  def build_template_data
+  def template_data
     data = recipient.slice(:first_name, :last_name, :email)
     data[:user_link] = accept_invitation_link
     data[:user_url] = accept_invitation_url
@@ -66,41 +73,9 @@ class CommunicationEmailMailer < ApplicationMailer
     data
   end
 
-  def process_body_content
-    body_content = Mobility.with_locale(I18n.locale) do
-      communication.body
-    end
-
-    return body_content unless @is_rtl && body_content.present?
-
-    apply_rtl_styling(body_content)
-  end
-
-  def apply_rtl_styling(content)
-    unless content.include?('dir=')
-      content = %(<div dir="rtl" style="text-align: start; direction: rtl;">#{content}</div>)
-    end
-
-    content = content.gsub(/<p(?!\s[^>]*dir=)/i,
-                           '<p dir="rtl" style="text-align: start; direction: rtl;"')
-    content.gsub(/<div(?!\s[^>]*dir=)/i,
-                 '<div dir="rtl" style="text-align: start; direction: rtl;"')
-  end
-
-  def build_subject(data)
-    subject_content = Mobility.with_locale(I18n.locale) do
-      communication.subject
-    end
-
-    Mustache.render(
-      replace_new_piped_texts(subject_content),
-      data.slice(:first_name, :last_name)
-    )
-  end
-
   def send_configured_email(subject)
     smtp_setting = project&.smtp_setting
-    cc_emails = communication.cc_users.pluck(:email)
+    cc_emails = content_source.cc_emails
 
     send_email(
       recipient,
@@ -121,19 +96,6 @@ class CommunicationEmailMailer < ApplicationMailer
 
   def workshop
     @workshop ||= @communication_email.workshop
-  end
-
-  def replace_new_piped_texts(content)
-    Communications::PipedText::Perform.call!(
-      content,
-      {
-        workshop: @communication_email.workshop,
-        workshop_invite: @communication_email.workshop_invite,
-        user: @communication_email.user || @communication_email.campaign_user&.user,
-        campaign: campaign,
-        user_report: user_report
-      }.compact
-    )
   end
 
   def format_date(date, time_zone)
@@ -165,7 +127,7 @@ class CommunicationEmailMailer < ApplicationMailer
   end
 
   def accept_invitation_qrcode
-    return unless communication.body&.include?('{{{user_link_qrcode}}}')
+    return unless content_source.body&.include?('{{{user_link_qrcode}}}')
 
     png_file = RQRCode::QRCode.new(accept_invitation_url).as_png(:size => 600)
     attachments.inline['activation-qrcode.png'] = png_file.to_blob
@@ -179,13 +141,5 @@ class CommunicationEmailMailer < ApplicationMailer
       recipient.update_column(:invitation_sent_at, DateTime.current)
     end
     KeyRotation::InvitationTokenVerifier.verify(recipient.encrypted_invitation_raw)
-  end
-
-  def campaign
-    @communication_email.project_campaign
-  end
-
-  def user_report
-    @communication_email.communication_email_resources.find { |r| r.resource_type == 'UserReport' }&.resource
   end
 end

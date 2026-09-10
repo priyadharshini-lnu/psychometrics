@@ -218,6 +218,15 @@ bg:
     assessor_assessments_reset_successfully: Нулирането на оценката за темата с имейл "%{subjectEmail}" беше успешно.
     assessor_assessments_subject_email: Имейл с тема
     assessor_assessments_subject_name: Име на темата
+    assessor_campaign_users_awaiting_moderation: Очаква се модериране
+    assessor_campaign_users_awaiting_moderation_subtitle: готов за консолидиране
+    assessor_campaign_users_candidates_subtitle: възложено на вас
+    assessor_campaign_users_completed: Завършено
+    assessor_campaign_users_completed_subtitle: отписан
+    assessor_campaign_users_in_progress: В процес на разработка
+    assessor_campaign_users_in_progress_subtitle: оценява се
+    assessor_campaign_users_not_started: Не е започнато
+    assessor_campaign_users_not_started_subtitle: оценки
     assessor_campaigns_statuses_completed: Завършен
     assessor_campaigns_statuses_in_progress: В процес на изпълнение
     assessor_campaigns_statuses_not_started: Не е започнато
@@ -226,6 +235,20 @@ bg:
     assessor_create_assessor: Добавяне на оценител
     assessor_dashboard: Табло за управление на оценителя
     assessor_email: Имейл на оценителя
+    assessor_evaluation: Оценка от оценител
+    assessor_evaluation_by_campaign: По кампания
+    assessor_evaluation_by_participant: От участника
+    assessor_evaluation_candidate: Кандидат
+    assessor_evaluation_candidates: Кандидати
+    assessor_evaluation_completed: Оценката е завършена
+    assessor_evaluation_date_range: Начална дата – Крайна дата
+    assessor_evaluation_moderation_waiting: Чакане на модерация
+    assessor_evaluation_tour_profile_description: Вашият акаунт, роля и език, както и превключвател, за да активирате новото изживяване, са налични тук. Отворете го, за да прегледате данните си или да излезете.
+    assessor_evaluation_tour_profile_title: Вашият профил и настройки
+    assessor_evaluation_tour_table_description: Отворете произволен ред, за да видите техните оценки, след което оценете отговорите им или модерирайте крайните резултати.
+    assessor_evaluation_tour_table_title: Изберете кандидат
+    assessor_evaluation_tour_tabs_description: Превключване между „По участник“ (по един човек) и „По кампания“.
+    assessor_evaluation_tour_tabs_title: Два начина на работа
     assessor_evaluations: Оценки на оценителя
     assessor_first_name: Име на оценителя
     assessor_form: Формуляр за оценител
@@ -233,18 +256,24 @@ bg:
     assessor_last_name: Фамилно име на оценителя
     assessor_modals_import_body: Вижте функционалността за експортиране, за да извлечете шаблон, който може да се използва за импортиране тук.
     assessor_modals_import_title: Импортирам оценители
+    assessor_new_experience: Ново преживяване
     assessor_overview: Преглед
     assessor_placeholder: Търсене на оценител...
     assessor_remove_confirmation: Сигурни ли сте, че искате да премахнете оценителя с имейл %{email} от тази кампания?
     assessor_remove_has_evaluations: Този оценител има %{evaluation_count} формуляра за оценител. Всички оценки, които е попълнил, ще бъдат загубени.
     assessor_remove_in_assessment_centers: Този оценител е част от %{workshop_count} център(ове) за оценяване. Продължаването ще го премахне от всички центрове за оценяване.
-    assessor_statuses_completed: Завършен
-    assessor_statuses_not_completed: Не е завършено
-    assessor_subjects_statuses_completed: Завършен
-    assessor_subjects_statuses_in_progress: В процес на изпълнение
-    assessor_subjects_statuses_not_started: Не е започнато
+    assessor_switch_to_classic: Превключване към класически режим
     assessor_toolbar_export: Експортирам оценители
     assessor_toolbar_import: Импортирам оценители
+    assessor_tour_button: Турне
+    assessor_try_new_experience: Опитайте ново преживяване
+    assessor_user_assessment_name: Име на оценката
+    assessor_user_candidate_id: Идентификационен номер на кандидата
+    assessor_user_evaluate: Оценка
+    assessor_user_evaluation: Оценка
+    assessor_user_evaluation_progress: Напредък на оценката
+    assessor_user_moderate: Умерени резултати
+    assessor_user_moderation: Модерация
     assessor_workshops: Център за оценяване
     assessors: Оценители
     assistant_toolbar_failed: Не успях да генерирам валиден резултат след многократни опити
@@ -312,6 +341,79 @@ bg:
     bulk_assets_modal_title: Качване на CSV и ZIP файлове
     bulk_export_assessments_file: Файл за експортиране на масови оценки
     bulk_export_invalid_params: Невалидни параметри за масово експортиране
+    bulk_reports: Групови отчети
+    bulk_reports_all_of_year: Цялата част от %{year}
+    bulk_reports_all_tags: Всички тагове
+    bulk_reports_bundled_into_single: групирани в едно
+    bulk_reports_campaign_count_one: Кампания %{count}
+    bulk_reports_campaign_count_other: "%{count} кампании"
+    bulk_reports_campaign_search_placeholder: Търсене на кампании или проекти...
+    bulk_reports_campaigns_shown_count: Избрано е %{selected} - показано е %{shown}
+    bulk_reports_campaigns_without_reports_warning: 'Избрани кампании без конфигурирани отчети: %{count}. Те ще бъдат пропуснати.'
+    bulk_reports_candidate_abbreviation: канд.
+    bulk_reports_complete_every_step: Изпълнете всяка стъпка, за да активирате
+    bulk_reports_date_range_required: За да продължите, са необходими както начална, така и крайна дата.
+    bulk_reports_date_range_summary: Ще бъдат включени оценките, завършени от %{start} до %{end}.
+    bulk_reports_description: Създайте едно задание за експортиране в няколко кампании. Изберете кампаниите, посочете кои отчети и езици да включите, задайте период от време и след това го изпратете.
+    bulk_reports_deselect_all_shown: Премахнете избора от всички показани
+    bulk_reports_download_notification_sent: Изпратено е известие за изтегляне
+    bulk_reports_emailed_when_ready: и ще ви бъде изпратено по имейл, когато е готово.
+    bulk_reports_end_date_placeholder: Изберете крайна дата и час
+    bulk_reports_end_date_required: Моля, изберете крайна дата.
+    bulk_reports_error_try_again: Грешка - опитайте отново
+    bulk_reports_files_estimated_across: файлове, оценени в
+    bulk_reports_files_pending: Файловете ще се появят тук, след като задачата приключи.
+    bulk_reports_generate_export: Генериране на експорт
+    bulk_reports_invalid_date_range: Крайната дата трябва да е същата или по-късна от началната дата.
+    bulk_reports_job_details_title: Задание №%{id}
+    bulk_reports_job_not_found: Тази работа не можа да бъде намерена.
+    bulk_reports_job_queued: Задачата е в опашката
+    bulk_reports_languages_progress_one: "%{done} от %{total} набор от отчети"
+    bulk_reports_languages_progress_other: "%{done} от %{total} набор от отчети"
+    bulk_reports_languages_set_for_all_one: Зададено за всички отчети %{count}
+    bulk_reports_languages_set_for_all_other: Зададено за всички %{count} отчети
+    bulk_reports_last_30_days: Последните 30 дни
+    bulk_reports_last_90_days: Последните 90 дни
+    bulk_reports_no_campaigns_found: Не са намерени кампании за този проект.
+    bulk_reports_no_campaigns_match_filters: Няма кампании, които да отговарят на филтрите ви за търсене или етикети.
+    bulk_reports_no_campaigns_selected: Няма избрани кампании
+    bulk_reports_no_files_yet: Файловете все още не са налични за тази задача.
+    bulk_reports_no_language_selected: няма избран език
+    bulk_reports_no_languages_available: Няма налични езици за този отчет.
+    bulk_reports_no_reports_configured: Нито една от избраните кампании няма конфигурирани отчети. Върнете се и проверете конфигурацията на кампанията си.
+    bulk_reports_no_reports_selected: Няма избрани отчети
+    bulk_reports_no_reports_selected_for_languages: Няма избрани отчети. Върнете се и изберете поне един отчет.
+    bulk_reports_no_tags_found: Няма намерени етикети
+    bulk_reports_none_selected: Няма избрано
+    bulk_reports_queued_by: На опашка от
+    bulk_reports_queuing_jobs: Задачи на опашка...
+    bulk_reports_ready_to_generate: Готово за генериране
+    bulk_reports_report_count_one: Доклад за %{count}
+    bulk_reports_report_count_other: "%{count} доклади"
+    bulk_reports_reports_and_languages: Доклади и езици
+    bulk_reports_review_submit: Преглед и изпращане
+    bulk_reports_review_submit_description: Проверете заданието по-долу. Можете да се върнете към всяка стъпка, за да направите промени.
+    bulk_reports_select_all_shown: Избери всички показани
+    bulk_reports_select_campaigns: Изберете кампании
+    bulk_reports_select_campaigns_description: Търсете по име или проект и стеснете списъка с филтри по тагове. След това отбележете кампаниите, които да включите.
+    bulk_reports_select_date_range: Изберете период от дати
+    bulk_reports_select_date_range_description: Включете само оценки, завършени в този диапазон. Оставете предварително зададени или задайте точни дати.
+    bulk_reports_select_languages: Изберете езици
+    bulk_reports_select_languages_description: Всеки отчет поддържа различен набор от езици. Изберете поне един език за всеки отчет. Той се генерира на всеки избран от вас език.
+    bulk_reports_select_reports: Изберете отчети
+    bulk_reports_select_reports_description: Всеки избран отчет се генерира за всеки кандидат или кампания в експорта, на всеки избран език.
+    bulk_reports_selected_tags_count_one: Избран е етикет %{count}
+    bulk_reports_selected_tags_count_other: Избрани са %{count} етикета
+    bulk_reports_start_date_placeholder: Изберете начална дата и час
+    bulk_reports_start_date_required: Моля, изберете начална дата.
+    bulk_reports_step_coming_soon: Тази стъпка предстои скоро.
+    bulk_reports_submit_error: Нещо се обърка. Моля, опитайте отново.
+    bulk_reports_submit_success: Задачата за експортиране е поставена в опашка. Ще получите известие, когато изтеглянето е готово.
+    bulk_reports_summary_description: Актуализации, докато изграждате задачата
+    bulk_reports_summary_title: Изтегляне на резюме
+    bulk_reports_title: Групови отчети
+    bulk_reports_view_downloads: Преглед на изтеглянията на групови отчети
+    bulk_reports_year_to_date: Годината до момента
     bulk_upload_ai_artifacts: Масово качване на AI артефакти
     campaign: Кампания
     campaign_admin: Администратор на кампанията
@@ -383,6 +485,13 @@ bg:
     campaign_templates_remove_confirm_success: Шаблонът за кампания '%{name}'' беше успешно премахнат.
     campaign_templates_remove_confirm_title: Премахване на шаблон за кампания
     campaign_user_job_roles_cannot_be_same: Целевата длъжност трябва да е различна от настоящата длъжност.
+    campaign_users_import_uat_hint: Задайте колоната UAT на „Да“ за тестовите потребители, които трябва да бъдат изключени от лицензиране, анализи и уеб кукички.
+    campaign_users_uat_description: Маркирайте този участник като потребител на UAT тест.
+    campaign_users_uat_label: Участник в UAT
+    campaign_users_uat_license_non_billable: Не се фактурира
+    campaign_users_uat_locked_hint: Този участник вече съществува. Статусът на UAT се задава при първоначалното създаване на участник и не може да бъде променен.
+    campaign_users_uat_readonly_hint: Статусът на UAT се задава при създаването му и не може да бъде променян.
+    campaign_users_uat_tooltip: Потребителите на UAT са реални участници в тестовете. Те могат да се явяват на тестове по обичайния начин, но са изключени от използването на таксуеми лицензи, анализи и изходящи уеб куки.
     campaigns: Кампании
     campaigns_convert_to_template: Преобразуване в шаблон
     campaigns_extend_time_success_message: Таймерът на кампанията е удължен до %{minutes} минути
@@ -469,6 +578,7 @@ bg:
     clients_search_placeholder: Търсене на клиент
     closed: Затворен
     code_required: Изисква се код
+    collapse_all: Свиване на всички
     collapse_filters: Свиване на филтри
     column_code: Код
     column_invitation_status: Статус на поканата
@@ -487,10 +597,130 @@ bg:
     common_type: Вид
     common_unselect_all: Премахване на избора на всички
     communication_center: Комуникационен център
+    communication_center_manage_translations_action: Управление на преводи
+    communication_center_migration_enqueued: Задачата за миграция е поставена в опашка. Проверете лог файловете за напредък.
+    communication_center_migration_error: Заявката за миграция не бе успешна. Моля, опитайте отново или проверете лог файловете.
+    communication_center_migration_modal_intro: 'Следните промени ще бъдат приложени, когато изпълните миграцията за този клиент:'
+    communication_center_migration_modal_title: Преглед на миграцията на комуникационния център
+    communication_center_migration_preview_button: Преглед на миграцията
+    communication_center_migration_run_button: Изпълнете миграция
+    communication_center_migration_skipped: Вече мигрирано (ще бъде пропуснато)
+    communication_center_migration_would_assessments: Оценки за мигриране
+    communication_center_migration_would_backfill: Имейли за запълване
+    communication_center_migration_would_cc_users: Потребителите на кредитни карти да мигрират
+    communication_center_migration_would_migrate: Комуникации за мигриране
+    communication_center_migration_would_users: Избрани потребители за мигриране
+    communication_center_translation_updated_success: Преводът е актуализиран успешно
+    communication_center_translations_modal_title: Управление на преводи
+    communication_deliveries: Доставки
+    communication_delivery: Доставка на комуникация
+    communication_delivery_assessment_group_label: Група за оценка
+    communication_delivery_at_label: Дата и час на доставка
+    communication_delivery_at_past_error: Датата на доставка трябва да е в бъдещето
+    communication_delivery_cancel_action: Отказ
+    communication_delivery_cancel_error: Неуспешно отменяне на доставката
+    communication_delivery_cc_users_label: Получатели на кредитна карта
+    communication_delivery_completion_status_hint: Ако е посочен код за завършване, той ще бъде изпратен само ако оценката на потребителя има този код за състояние на завършване.
+    communication_delivery_completion_status_label: Код за състояние на завършване на оценката
+    communication_delivery_delay_hours_label: Закъснение (часове)
+    communication_delivery_details_title: Детайли за доставката
+    communication_delivery_emails_sent_label: Изпратено
+    communication_delivery_emails_total_label: Общо имейли
+    communication_delivery_end_date_label: Крайна дата
+    communication_delivery_frequency_daily: Ежедневно
+    communication_delivery_frequency_label: Честота
+    communication_delivery_frequency_specific_weekdays: Конкретни дни от седмицата
+    communication_delivery_frequency_weekly: Седмично
+    communication_delivery_interval_number_label: Интервал
+    communication_delivery_interval_period_days: Дни
+    communication_delivery_interval_period_hours: Часове
+    communication_delivery_interval_period_label: Интервален период
+    communication_delivery_interval_period_months: Месеци
+    communication_delivery_interval_period_weeks: Седмици
+    communication_delivery_new_button: Нова доставка
+    communication_delivery_recipients_all: Всички участници
+    communication_delivery_recipients_label: Получатели
+    communication_delivery_recipients_new_assignment: Нова задача
+    communication_delivery_recipients_new_users: Нови потребители
+    communication_delivery_recipients_selected: Избрани участници
+    communication_delivery_rule_in_progress: В процес на разработка
+    communication_delivery_rule_label: Правило за доставка
+    communication_delivery_rule_not_completed: Не е завършено
+    communication_delivery_rule_not_started: Не е започнато
+    communication_delivery_rule_send_now: Изпрати сега
+    communication_delivery_rule_specific_datetime: Конкретна дата и час
+    communication_delivery_search_users_placeholder: Търсене по име или имейл
+    communication_delivery_selected_assessments_label: Оценки
+    communication_delivery_selected_users_label: Изберете потребители
+    communication_delivery_start_date_label: Начална дата
+    communication_delivery_template_label: Шаблон
+    communication_delivery_time_of_day_label: Време на деня
+    communication_delivery_timezone_label: Часова зона
+    communication_delivery_trigger_type_label: Тип спусък
+    communication_delivery_trigger_type_manual: Ръчно
+    communication_delivery_trigger_type_scheduled: Планирано
+    communication_delivery_weekday_fri: петък
+    communication_delivery_weekday_mon: понеделник
+    communication_delivery_weekday_sat: Събота
+    communication_delivery_weekday_sun: Неделя
+    communication_delivery_weekday_thu: четвъртък
+    communication_delivery_weekday_tue: вторник
+    communication_delivery_weekday_wed: сряда
+    communication_delivery_weekdays_label: Делнични дни
+    communication_email_created_at_label: Създадено в
+    communication_email_not_sent: Не е изпратено
+    communication_email_preview_action: Преглед
+    communication_email_preview_date_label: Дата
+    communication_email_preview_from_label: От
+    communication_email_preview_title: Преглед на имейла
+    communication_email_preview_to_label: До
+    communication_email_preview_warning: Това е повторно изобразен преглед на шаблона и може да не отразява точното съдържание на действително изпратения имейл.
+    communication_email_recipient_email_label: Имейл адрес на получателя
+    communication_email_recipient_name_label: Име на получателя
+    communication_email_retrigger_action: Повторно задействане
+    communication_email_retrigger_error: Повторното задействане на имейла не бе успешно
+    communication_email_sent_at_label: Изпратено в
+    communication_email_status_label: Статус
+    communication_email_subject_label: Тема
+    communication_emails: Имейли
+    communication_template: Шаблон за комуникация
+    communication_template_body_label: Съобщение
+    communication_template_create_new_action: Създаване на ново
+    communication_template_kind_label: Тип комуникация
+    communication_template_level_campaign: Кампания
+    communication_template_level_client: Клиент
+    communication_template_level_platform: Платформа
+    communication_template_level_project: Проект
+    communication_template_name_label: Име на шаблона
+    communication_template_new_button: Нов шаблон
+    communication_template_override_inherited_action: Замяна на наследено
+    communication_template_override_picker_search_placeholder: Търсене на шаблони за презаписване
+    communication_template_override_picker_title: Замяна на наследен шаблон
+    communication_template_recipients_all: Всички
+    communication_template_recipients_label: Получатели по подразбиране
+    communication_template_recipients_new_assignment: Нова задача
+    communication_template_recipients_new_users: Нови потребители
+    communication_template_recipients_selected: Избрано
+    communication_template_source_created: Създадено
+    communication_template_source_label: Източник
+    communication_template_source_override_of: Презаписване на %{level}
+    communication_template_status_active: Активен
+    communication_template_status_archived: Архивирано
+    communication_template_status_draft: Чернова
+    communication_template_status_label: Статус
+    communication_template_subject_label: Тема
+    communication_templates: Шаблони
     communications: Комуникации
     communications_form_insert_piped_text: Вмъкване на текст с тръби
+    competency_indicator: Компетентност / Индикатор
     completed: Завършен
     completed_tooltip: Всички оценители са подали оценката
+    completion_recipients_all: Всички предмети
+    completion_recipients_list: 'Списък на получателите:'
+    completion_recipients_selected: Избрани теми
+    completion_recipients_selected_admins: Избрани администратори
+    completion_recipients_selected_assessors: Избрани оценители
+    completion_recipients_selected_assessors_hint: Само оценителят, назначен за свързания формуляр за оценител на попълващия субект, ще бъде уведомен по имейл, дори ако по-горе са избрани други оценители.
     components_input_duration_placeholder: Въведете като "1d 2h 3m"
     concise: Кратък
     condition_sets: Множества от условия
@@ -697,6 +927,8 @@ bg:
     disable_proctoring: Деактивиране на наблюдението
     disable_report_download: Деактивиране на изтеглянето на доклади
     disable_transcript_download: Деактивиране на изтеглянето на препис
+    disable_webhooks: Деактивиране на уебкукички
+    disable_webhooks_hint: Когато това е включено, към клиента не се изпращат събития за уеб куки или интеграция надолу по веригата за тази кампания, независимо от типа на участника. Само супер администраторите могат да променят това.
     disallow_lead_assessor_moderation: Да не се разрешава модерация от страна на главния оценител
     disallow_lead_assessor_moderation_info: Оценката ще се изчислява автоматично въз основа на подадените формуляри от оценителите, а главният оценител няма да може да я променя от екрана за модерация
     discard_all_questions: Изчисти всички въпроси
@@ -795,6 +1027,7 @@ bg:
     evaluator_welcome_name: Приветстване на оценителя
     evaluators_title: Оценители
     evidence_from_transcript: Доказателства от стенограмата
+    expand_all: Разгъване на всички
     expand_filters: Разширяване на филтрите
     export_admin_roles_permissions: Експортиране на администраторски роли и разрешения
     export_admins_with_permissions: Експортиране на администраторски роли и разрешения
@@ -855,6 +1088,7 @@ bg:
     feature_not_available: Тази функция не е налична
     feature_sms_notification_description: Активиране на SMS известия за покани и напомняния за кампании
     feature_superadmin_tenant_scoping_description: Когато е деактивирано, заявките на суперадминистратора няма да бъдат обхванати от данните на този клиент.
+    feature_use_new_communication_center_description: Използвайте само новия Комуникационен център за този клиент и спрете изпращането на стари съобщения
     fields_level: Ниво
     fields_level_description: Описание на нивото
     fields_level_name: Име на ниво
@@ -1121,6 +1355,7 @@ bg:
     import_title: Вносни теми от CSV
     import_upload: Качвам
     import_users: Импортиране на потребители
+    in_progress: В процес на изпълнение
     inactive: Неактивен
     include_locales_label: Включете преводи
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ bg:
     model_params_thinking_effort_none: Няма
     model_params_thinking_effort_tooltip: Контролира колко разсъждения прилага моделът, преди да отговори. По-големите усилия водят до по-задълбочени отговори, но отнемат повече време. Използвайте „Няма“, за да деактивирате напълно разсъжденията.
     model_params_title: Разширена конфигурация на модела
+    moderate_scoring_lead_assessor_form: Формуляр за водещ оценител
     must_be_a_valid_url: Невалиден URL адрес. Посочете пълния URL адрес, включващ протокола http или https
     name: Име
     name_max_length: Името не може да надвишава %{length} символа
@@ -1411,6 +1647,24 @@ bg:
     navigation_registration_codes: Регистрационни кодове
     navigation_skills_taxonomy: Таксономия на уменията
     navigation_users: Потребители
+    new_experience_badge: Ново преживяване
+    new_experience_bullet_brief_rest: Указанията за компетентност остават на екрана, докато оценявате.
+    new_experience_bullet_brief_strong: Краткият преглед до вашия резултат
+    new_experience_bullet_candidate_rest: всеки формуляр за оценител за този кандидат, заедно.
+    new_experience_bullet_candidate_strong: Един кандидат, едно мнение
+    new_experience_bullet_moderation_rest: оценката на всеки оценител една до друга, едно последно решение.
+    new_experience_bullet_moderation_strong: Модерация за минути
+    new_experience_footer_note: Новият интерфейс скоро ще стане стандартен за всички. Винаги можете да превключите към новия интерфейс от данните на вашия профил.
+    new_experience_headline: Един поток, от първия преглед до окончателното одобрение.
+    new_experience_notice_body: Преработихме интерфейса за оценяване. Можете да го изпробвате сега или да го активирате по-късно от настройките на вашия профил.
+    new_experience_notice_maybe_later: Може би по-късно
+    new_experience_notice_title: Наличен е нов опит като оценител
+    new_experience_preview_alt: Преглед на новия интерфейс за оценители
+    new_experience_sub_copy: Кандидатът, оценката, модерацията и центърът за оценяване вече работят като един свързан изглед, а не като пет екрана, които сами държите заедно.
+    new_experience_word_assessment_centre: Център за оценяване. Проведете сесията и проследете всеки предмет.
+    new_experience_word_candidate: Кандидат Един кандидат, всичките му оценки заедно.
+    new_experience_word_evaluate: Оценете заданието и оценката си едно до друго.
+    new_experience_word_moderate: Умерено Всеки оценител оценява, едно последно заявление.
     new_folder: Нова папка
     new_score: Нов резултат
     no_assessments_found: Идентификационен номер на одита
@@ -1458,6 +1712,7 @@ bg:
     norms_title: Норма
     not_completed: Не е завършено
     not_completed_tooltip: "%{completed} оценители са назначени, но само %{submitted} са завършени оценките"
+    not_started: Не е започнато
     notes: Бележки
     nothing_assigned: Няма назначени оценители
     nothing_assigned_tooltip: Не са възложени оценки на този потребител
@@ -1570,6 +1825,7 @@ bg:
         manage_messages: Управление на съобщенията
         manage_options: Управление на опциите
         manage_report_approvals: Управление на одобренията на отчети
+        manage_uat: Управление на потребители на UAT
         manage_users: Управление на потребителите
         participant_options: Опции за участници
         report_options: Опции за отчет
@@ -1898,6 +2154,7 @@ bg:
         title: Настройки за регистрация
       reports:
         manage: Управлявам
+        project_bulk_reports: Групови отчети за проекти
         title: Доклади
         view: Изглед
       responseMeta:
@@ -2055,6 +2312,7 @@ bg:
     project_admins: Администратори на проекти
     project_assessor: Оценител на проекта
     project_features: Характеристики на проекта
+    project_id: Идентификационен номер на проекта
     project_ids: Идентификационни номера на проектите
     project_ids_required: За този тип отчет е задължително да се посочи „project_ids“
     project_licenses: Лицензи за проекти
@@ -2114,6 +2372,7 @@ bg:
     projects_form_project_number: Номер на проекта
     projects_form_subdomain: Поддомейн
     projects_form_title: Проект
+    projects_general_settings_allow_data_access_to_bi: Разрешете достъп до Powerbi за този проект
     projects_general_settings_live_chat: Активиране на чат на живо
     projects_general_settings_locales_label: Локали
     projects_general_settings_project_number_label: Номер на проекта
@@ -2358,6 +2617,7 @@ bg:
     report_on_hold: Докладът за %{user} в момента е на пауза
     report_owner: Собственик
     report_pdf_status: Отчет за състоянието на PDF файла
+    report_pdf_unavailable: PDF файлът за този доклад все още не е наличен.
     report_review_abort_qc: Прекъсване на QC
     report_review_approve: Одобрявам
     report_review_approve_changes: Одобряване на промените
@@ -2725,6 +2985,7 @@ bg:
     scoring_approval_score_approvals: Одобрения на AI оценки
     scoring_assessment: Оценка
     scoring_assessment_scoring_type: Тип оценяване
+    scoring_assessor_number: Оценител %{number}
     scoring_average: Среден
     scoring_campaign_scoring_variables: Променливи за оценка на кампанията
     scoring_desc: Надвишили сте максималния лимит от %{n} фактори на кампанията. Не могат да се добавят допълнителни фактори. Моля, прегледайте и управлявайте съществуващите си фактори, преди да продължите.
@@ -3115,15 +3376,19 @@ bg:
     status_details: Детайли за статуса
     statuses_accepted: Приети
     statuses_cancelled: Отменени
+    statuses_failed: Неуспешно
     statuses_late_cancelled: Късно отменен
     statuses_late_rescheduled: Късно пренасрочени
     statuses_pending: Очакване
+    statuses_queued: На опашка
     statuses_requested_cancellation: Заявено анулиране
     statuses_requested_cancellation_rejected: Отхвърлянето е отхвърлено
     statuses_requested_rescheduling: Заявено разсрочване
     statuses_requested_rescheduling_rejected: Отхвърлено разсрочване
     statuses_rescheduled: Пренасрочен
     statuses_scheduled: Планирано
+    statuses_sent: Изпратено
+    statuses_skipped: Пропуснато
     steps_basic_information: Основна информация
     steps_facilitators: Фасилитатори
     steps_invite_options: Опции за покана
@@ -3329,6 +3594,7 @@ bg:
     url_label: URL адрес
     url_name: URL адрес
     url_whitelisting: URL адреси в бял списък
+    use_new_communication_center: Използвайте нов комуникационен център
     used_tokens_input_tokens: Входни токени
     used_tokens_output_tokens: Изходни токени
     used_tokens_thinking_tokens: Мислещи жетони

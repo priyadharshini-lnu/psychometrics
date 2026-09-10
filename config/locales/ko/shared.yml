@@ -37,8 +37,10 @@ ko:
     campaign: 캠페인
     campaign_id: 캠페인 ID
     cancel: 취소
+    candidates: 후보자들
     category: 카테고리
     change_password: 비밀번호 변경
+    clear: 분명한
     clear_filters: 필터 지우기
     client: 클라이언트
     close: 닫기
@@ -86,11 +88,15 @@ ko:
     end_date: 종료 날짜
     ending_proctoring_session_msg: 감독 세션을 종료합니다. <p>응답 내용을 저장하고 홈페이지로 돌아가는 동안 잠시만 기다려 주십시오.</p>
     error: 오류
+    errors: 오류
     export: 내보내기
     failed: 실패함
     'false': false
     file: 파일
     file_upload_button: 파일 선택
+    filename: 파일 이름
+    files: 파일
+    filters: 필터
     first_name: 이름
     formal_learning: 정식 학습
     generate: 생성
@@ -105,6 +111,7 @@ ko:
     impersonation_banner_aria_label: 능동적 사칭 세션
     impersonation_end_session: 출구
     import: 가져오기
+    in_progress: 진행 중
     inactive: 비활성
     internet_disconnected_message: 다시 연결하려고 합니다. 인터넷 연결을 확인하세요.
     is_impersonating: 사칭하고 있다
@@ -112,6 +119,7 @@ ko:
     issuer_claim_label: 발행자 (iss)
     jwt_claims_details: JWT 청구 내역
     key_id_claim_label: 키 ID (kid)
+    languages: 언어
     last_name: 성
     last_updated: 마지막 업데이트
     learning_on_the_job_label: 현장에서 배우기
@@ -151,6 +159,7 @@ ko:
     no_results_found: 검색 결과 없음
     none: 없음
     not_requested: 아직 요청되지 않음
+    not_set: 설정되지 않음
     ok: 확인
     options: 옵션
     overview: 개요
@@ -215,12 +224,14 @@ ko:
     reset_password: 비밀번호 재설정
     response_text: 응답 텍스트
     return_url_not_whitelisted: 반환 URL이 이 애플리케이션에 대해 허용 목록에 포함되어 있지 않습니다.
+    review: 검토
     rte_paste_content_exceeds_char_limit: 텍스트는 {{maxCharacterLimit}}의 문자 한도를 초과하며, 붙여넣을 수 없습니다.
     rte_paste_content_exceeds_word_limit: 텍스트가 {{maxWordLimit}}의 단어 수를 초과하여 붙여넣을 수 없습니다.
     run: 실행
     save: 저장
     saving_video: 비디오 저장 중... 브라우저를 닫거나 새로고침하지 마세요
     schedule_time: 스케줄 시간
+    scheduled: 예정된
     scoring_details: 점수 내역
     search: 검색
     select_camera: 카메라 선택

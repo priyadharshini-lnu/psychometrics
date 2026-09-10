@@ -37,8 +37,10 @@ hu:
     campaign: Kampány
     campaign_id: Kampányazonosító
     cancel: Törölje
+    candidates: Jelöltek
     category: Kategória
     change_password: Jelszó módosítása
+    clear: Világos
     clear_filters: Szűrők törlése
     client: Ügyfél
     close: Bezárás
@@ -86,11 +88,15 @@ hu:
     end_date: Befejezés dátuma
     ending_proctoring_session_msg: A vizsgafelügyeleti munkamenet véget ér. <p>Kérjük, várjon, amíg elmentjük a válaszait, és visszatereljük a kezdőlapra.</p>
     error: Hiba
+    errors: Hibák
     export: Kivitel
     failed: Sikertelen
     'false': false
     file: Fájl
     file_upload_button: Fájl kiválasztása
+    filename: Fájlnév
+    files: Fájlok
+    filters: Szűrők
     first_name: Keresztnév
     formal_learning: Formális tanulás
     generate: Generálás
@@ -105,6 +111,7 @@ hu:
     impersonation_banner_aria_label: Aktív megszemélyesítési munkamenet
     impersonation_end_session: Kijárat
     import: Importál
+    in_progress: Folyamatban van
     inactive: Inaktív
     internet_disconnected_message: Próbálok újra kapcsolódni. Kérjük, ellenőrizze az internetkapcsolatát.
     is_impersonating: személyes adatokkal rendelkezik
@@ -112,6 +119,7 @@ hu:
     issuer_claim_label: Kibocsátó (iss)
     jwt_claims_details: A JWT-igénylések részletei
     key_id_claim_label: Kulcsazonosító (kid)
+    languages: Nyelvek
     last_name: Vezetéknév
     last_updated: Utolsó frissítés
     learning_on_the_job_label: Tanulás munka közben
@@ -151,6 +159,7 @@ hu:
     no_results_found: Nincs találat
     none: Egyik sem
     not_requested: Még nem kért
+    not_set: Nincs beállítva
     ok: Oké
     options: Beállítások
     overview: Áttekintés
@@ -215,12 +224,14 @@ hu:
     reset_password: Jelszó visszaállítása
     response_text: Válasz szöveg
     return_url_not_whitelisted: A visszatérési URL nincs engedélyezőlistán ennél az alkalmazásnál.
+    review: Véleményezés
     rte_paste_content_exceeds_char_limit: A szöveg meghaladja a {{maxCharacterLimit}} karakterkorlátját, és nem lehet beilleszteni.
     rte_paste_content_exceeds_word_limit: A szöveg túllépi a {{maxWordLimit}} szóhatárát, és nem lehet beilleszteni.
     run: Fut
     save: Mentés
     saving_video: Videómentés... Kérjük, ne zárja be vagy frissítse a böngészőt
     schedule_time: Ütemezési idő
+    scheduled: Ütemezett
     scoring_details: Pontszámok részletei
     search: Keresés
     select_camera: Válasszon kamerát

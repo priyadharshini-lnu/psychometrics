@@ -39,5 +39,22 @@ describe Threesixty::Subjects::CreateAllForm do
 
       expect(form.errors.messages[:subjects].first).to include('Password is too short. Minimum 8 character required')
     end
+
+    it 'rejects an import row with an invalid UAT value naming the accepted values' do
+      campaign = create(:campaign)
+      form = described_class.new(subjects: [subject_attributes.merge(uat: 'maybe')]).
+             with_context(campaign: campaign, single_subject_form: Threesixty::Subjects::ImportOneForm)
+      form.validate
+
+      expect(form.errors.messages[:subjects].first).to include('UAT must be one of: Yes, No, or blank')
+    end
+
+    it 'accepts an import row with a valid UAT value' do
+      campaign = create(:campaign)
+      form = described_class.new(subjects: [subject_attributes.merge(uat: 'Yes')]).
+             with_context(campaign: campaign, single_subject_form: Threesixty::Subjects::ImportOneForm)
+
+      expect(form.validate).to be true
+    end
   end
 end

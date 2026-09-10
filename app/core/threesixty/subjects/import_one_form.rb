@@ -10,6 +10,7 @@ module Threesixty
       attribute :locale, String
       attribute :current_job_role, String
       attribute :target_job_role, String
+      attribute :uat, String
 
       validate :validate_password_policy
       validates :locale, inclusion: { in: I18n.available_locales.map(&:to_s), allow_blank: true }
@@ -18,8 +19,17 @@ module Threesixty
 
       validate :validate_job_roles
       validate :ensure_current_and_target_job_roles_are_different
+      validate :validate_uat_value
 
       private
+
+      def validate_uat_value
+        return if ParseUatValue.valid?(uat)
+
+        errors.add(:uat,
+                   I18n.t('activemodel.errors.models.import_one.attributes.uat.invalid',
+                          accepted_values: ParseUatValue::ACCEPTED_VALUES.join(', ')))
+      end
 
       def enable_strong_password?
         context.campaign.project.security_setting.enforce_strong_password

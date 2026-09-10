@@ -20,7 +20,7 @@ RSpec.describe Idp::DeadlineNotificationJob, type: :job do
 
     context 'when checking IDP deadlines' do
       let!(:idp_communication) do
-        create(:communication, campaign_id: campaign.id, kind: :idp_deadline_missed)
+        create(:communication, campaign_id: campaign.id, kind: :idp_deadline_missed, client: campaign.project.client)
       end
 
       it 'sends notification for expired plans' do
@@ -60,11 +60,39 @@ RSpec.describe Idp::DeadlineNotificationJob, type: :job do
           described_class.perform_now
         end.not_to change(CommunicationEmail, :count)
       end
+
+      context 'when an active CommunicationDelivery exists' do
+        let(:project) { campaign.project }
+        let(:client) { project.client }
+        let!(:delivery) do
+          create(:communication_delivery, :idp_deadline_missed, client: client, project: project, campaign: campaign)
+        end
+
+        before { client.client_feature.update!(use_new_communication_center: true) }
+
+        it 'sends a notification sourced from the delivery only -- the flag suppresses the legacy send' do
+          expect do
+            described_class.perform_now
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.where(communication_delivery: delivery).count).to eq(1)
+          expect(idp_communication.reload.emails).to be_empty
+        end
+
+        it 'does not send a duplicate delivery-sourced notification on a repeat run' do
+          described_class.perform_now
+
+          expect do
+            described_class.perform_now
+          end.not_to change(CommunicationEmail, :count)
+        end
+      end
     end
 
     context 'when checking development action deadlines' do
       let!(:development_action_communication) do
-        create(:communication, campaign_id: campaign.id, kind: :development_action_deadline_missed)
+        create(:communication, campaign_id: campaign.id, kind: :development_action_deadline_missed,
+                                client: campaign.project.client)
       end
 
       let!(:expired_action) do
@@ -120,6 +148,34 @@ RSpec.describe Idp::DeadlineNotificationJob, type: :job do
         expect do
           described_class.perform_now
         end.not_to change(CommunicationEmail, :count)
+      end
+
+      context 'when an active CommunicationDelivery exists' do
+        let(:project) { campaign.project }
+        let(:client) { project.client }
+        let!(:delivery) do
+          create(:communication_delivery, :development_action_deadline_missed,
+                 client: client, project: project, campaign: campaign)
+        end
+
+        before { client.client_feature.update!(use_new_communication_center: true) }
+
+        it 'sends a notification sourced from the delivery only -- the flag suppresses the legacy send' do
+          expect do
+            described_class.perform_now
+          end.to change(CommunicationEmail, :count).by(1)
+
+          expect(CommunicationEmail.where(communication_delivery: delivery).count).to eq(1)
+          expect(development_action_communication.reload.emails).to be_empty
+        end
+
+        it 'does not send a duplicate delivery-sourced notification on a repeat run' do
+          described_class.perform_now
+
+          expect do
+            described_class.perform_now
+          end.not_to change(CommunicationEmail, :count)
+        end
       end
     end
 

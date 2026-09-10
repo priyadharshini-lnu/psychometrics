@@ -218,6 +218,15 @@ hi:
     assessor_assessments_reset_successfully: ईमेल "%{subjectEmail}" वाले विषय के लिए मूल्यांकन रीसेट सफल रहा।
     assessor_assessments_subject_email: विषय ईमेल
     assessor_assessments_subject_name: विषय का नाम
+    assessor_campaign_users_awaiting_moderation: संयम का इंतजार कर रहा हूं
+    assessor_campaign_users_awaiting_moderation_subtitle: समेकन के लिए तैयार
+    assessor_campaign_users_candidates_subtitle: आपको सौंपा गया
+    assessor_campaign_users_completed: पुरा होना।
+    assessor_campaign_users_completed_subtitle: समाप्त किया
+    assessor_campaign_users_in_progress: प्रगति पर है
+    assessor_campaign_users_in_progress_subtitle: मूल्यांकन किया जा रहा है
+    assessor_campaign_users_not_started: शुरू नहीं
+    assessor_campaign_users_not_started_subtitle: मूल्यांकन
     assessor_campaigns_statuses_completed: पूर्ण
     assessor_campaigns_statuses_in_progress: प्रगति में
     assessor_campaigns_statuses_not_started: शुरू नहीं हुआ
@@ -226,6 +235,20 @@ hi:
     assessor_create_assessor: मूल्यांकनकर्ता जोड़ें
     assessor_dashboard: मूल्यांकनकर्ता डैशबोर्ड
     assessor_email: मूल्यांकनकर्ता का ईमेल
+    assessor_evaluation: मूल्यांकनकर्ता मूल्यांकन
+    assessor_evaluation_by_campaign: अभियान द्वारा
+    assessor_evaluation_by_participant: प्रतिभागी द्वारा
+    assessor_evaluation_candidate: उम्मीदवार
+    assessor_evaluation_candidates: उम्मीदवारों
+    assessor_evaluation_completed: मूल्यांकन पूरा हुआ
+    assessor_evaluation_date_range: प्रारंभ तिथि – समाप्ति तिथि
+    assessor_evaluation_moderation_waiting: मॉडरेशन की प्रतीक्षा है
+    assessor_evaluation_tour_profile_description: आपका खाता, भूमिका, भाषा और नया अनुभव सक्रिय करने का विकल्प यहाँ उपलब्ध है। अपनी जानकारी देखने या साइन आउट करने के लिए इसे खोलें।
+    assessor_evaluation_tour_profile_title: आपकी प्रोफ़ाइल और सेटिंग्स
+    assessor_evaluation_tour_table_description: किसी भी पंक्ति को खोलकर उनके आकलन देखें, फिर उनके उत्तरों का मूल्यांकन करें या अंतिम अंकों को संशोधित करें।
+    assessor_evaluation_tour_table_title: एक उम्मीदवार का चयन करें
+    assessor_evaluation_tour_tabs_description: प्रतिभागी के आधार पर (एक समय में एक व्यक्ति) और अभियान के आधार पर स्विच करें।
+    assessor_evaluation_tour_tabs_title: काम करने के दो तरीके
     assessor_evaluations: मूल्यांकनकर्ता मूल्यांकन
     assessor_first_name: आकलनकर्ता का पहला नाम
     assessor_form: मूल्यांकनकर्ता प्रपत्र
@@ -233,18 +256,24 @@ hi:
     assessor_last_name: मूल्यांकनकर्ता का अंतिम नाम
     assessor_modals_import_body: यहाँ आयात करने के लिए उपयोग किए जाने वाले टेम्पलेट को निकालने हेतु निर्यात कार्यक्षमता देखें।
     assessor_modals_import_title: आयात मूल्यांकनकर्ता
+    assessor_new_experience: नया अनुभव
     assessor_overview: अवलोकन
     assessor_placeholder: आकलनकर्ता खोजें...
     assessor_remove_confirmation: क्या आप सुनिश्चित हैं कि आप इस अभियान से %{email} ईमेल वाले आकलनकर्ता को हटाना चाहते हैं?
     assessor_remove_has_evaluations: इस मूल्यांकनकर्ता को %{evaluation_count} मूल्यांकनकर्ता प्रपत्र आवंटित किए गए हैं। उनके द्वारा भरे गए सभी मूल्यांकन नष्ट हो जाएंगे।
     assessor_remove_in_assessment_centers: यह मूल्यांकनकर्ता %{workshop_count} मूल्यांकन केंद्रों का हिस्सा है। आगे की कार्यवाही में इन्हें सभी मूल्यांकन केंद्रों से हटा दिया जाएगा।
-    assessor_statuses_completed: पूर्ण
-    assessor_statuses_not_completed: पूर्ण नहीं
-    assessor_subjects_statuses_completed: पूर्ण
-    assessor_subjects_statuses_in_progress: प्रगति में
-    assessor_subjects_statuses_not_started: शुरू नहीं हुआ
+    assessor_switch_to_classic: क्लासिक पर स्विच करें
     assessor_toolbar_export: निर्यात आकलनकर्ता
     assessor_toolbar_import: आयात मूल्यांकनकर्ता
+    assessor_tour_button: यात्रा
+    assessor_try_new_experience: नए अनुभव आजमाएं
+    assessor_user_assessment_name: मूल्यांकन का नाम
+    assessor_user_candidate_id: उम्मीदवार आईडी
+    assessor_user_evaluate: मूल्यांकन करना
+    assessor_user_evaluation: मूल्यांकन
+    assessor_user_evaluation_progress: मूल्यांकन प्रगति
+    assessor_user_moderate: मध्यम अंक
+    assessor_user_moderation: संयम
     assessor_workshops: मूल्यांकन केंद्र
     assessors: मूल्यांकनकर्ता
     assistant_toolbar_failed: कई प्रयासों के बाद भी मान्य आउटपुट उत्पन्न नहीं हो सका।
@@ -312,6 +341,79 @@ hi:
     bulk_assets_modal_title: CSV और ZIP फ़ाइलें अपलोड करें
     bulk_export_assessments_file: थोक मूल्यांकन निर्यात फ़ाइल
     bulk_export_invalid_params: अमान्य थोक निर्यात पैरामीटर
+    bulk_reports: थोक रिपोर्ट
+    bulk_reports_all_of_year: "%{year} के सभी"
+    bulk_reports_all_tags: सभी टैग
+    bulk_reports_bundled_into_single: एक ही में बंडल किया गया
+    bulk_reports_campaign_count_one: "%{count} अभियान"
+    bulk_reports_campaign_count_other: "%{count} अभियान"
+    bulk_reports_campaign_search_placeholder: खोज अभियान या परियोजनाएं...
+    bulk_reports_campaigns_shown_count: "%{selected} चयनित - %{shown} प्रदर्शित"
+    bulk_reports_campaigns_without_reports_warning: 'बिना कॉन्फ़िगर की गई रिपोर्टों वाले चयनित अभियान: %{count}. इन्हें छोड़ दिया जाएगा।'
+    bulk_reports_candidate_abbreviation: उम्मीदवार.
+    bulk_reports_complete_every_step: सक्षम करने के लिए प्रत्येक चरण को पूरा करें
+    bulk_reports_date_range_required: आगे बढ़ने के लिए प्रारंभ तिथि और समाप्ति तिथि दोनों आवश्यक हैं।
+    bulk_reports_date_range_summary: "%{start} से %{end} तक पूरे किए गए मूल्यांकन शामिल किए जाएंगे।"
+    bulk_reports_description: एक ही निर्यात प्रक्रिया में कई कैंपेन शामिल करें। कैंपेन चुनें, रिपोर्ट और भाषाओं का चयन करें, तिथि सीमा निर्धारित करें और फिर सबमिट करें।
+    bulk_reports_deselect_all_shown: दिखाए गए सभी विकल्पों को अचयनित करें
+    bulk_reports_download_notification_sent: डाउनलोड की सूचना भेज दी गई है
+    bulk_reports_emailed_when_ready: और तैयार होने पर आपको ईमेल कर दिया जाएगा।
+    bulk_reports_end_date_placeholder: समाप्ति तिथि और समय चुनें
+    bulk_reports_end_date_required: कृपया समाप्ति तिथि चुनें।
+    bulk_reports_error_try_again: त्रुटि - पुनः प्रयास करें
+    bulk_reports_files_estimated_across: फाइलों का अनुमान लगाया गया है
+    bulk_reports_files_pending: कार्य पूर्ण हो जाने पर फाइलें यहां दिखाई देंगी।
+    bulk_reports_generate_export: निर्यात उत्पन्न करें
+    bulk_reports_invalid_date_range: समाप्ति तिथि प्रारंभ तिथि के बराबर या उसके बाद होनी चाहिए।
+    bulk_reports_job_details_title: नौकरी क्रमांक %{id}
+    bulk_reports_job_not_found: यह नौकरी उपलब्ध नहीं हो सकी।
+    bulk_reports_job_queued: नौकरी कतार में है
+    bulk_reports_languages_progress_one: "%{done} का %{total} रिपोर्ट सेट"
+    bulk_reports_languages_progress_other: "%{done} में से %{total} रिपोर्ट सेट"
+    bulk_reports_languages_set_for_all_one: सभी %{count} रिपोर्ट के लिए सेट करें
+    bulk_reports_languages_set_for_all_other: सभी %{count} रिपोर्टों के लिए सेट करें
+    bulk_reports_last_30_days: पिछले 30 दिनों
+    bulk_reports_last_90_days: पिछले 90 दिनों
+    bulk_reports_no_campaigns_found: इस प्रोजेक्ट के लिए कोई अभियान नहीं मिला।
+    bulk_reports_no_campaigns_match_filters: आपके खोज या टैग फ़िल्टर से कोई अभियान मेल नहीं खाता।
+    bulk_reports_no_campaigns_selected: कोई अभियान चयनित नहीं
+    bulk_reports_no_files_yet: इस नौकरी के लिए फाइलें अभी उपलब्ध नहीं हैं।
+    bulk_reports_no_language_selected: कोई भाषा चयनित नहीं
+    bulk_reports_no_languages_available: इस रिपोर्ट के लिए कोई भाषा उपलब्ध नहीं है।
+    bulk_reports_no_reports_configured: चयनित कैंपेनों में से किसी में भी रिपोर्ट कॉन्फ़िगर नहीं की गई है। कृपया वापस जाकर अपने कैंपेन कॉन्फ़िगरेशन की जाँच करें।
+    bulk_reports_no_reports_selected: कोई रिपोर्ट चयनित नहीं
+    bulk_reports_no_reports_selected_for_languages: कोई रिपोर्ट चयनित नहीं है। वापस जाएं और कम से कम एक रिपोर्ट चुनें।
+    bulk_reports_no_tags_found: कोई टैग नहीं मिला
+    bulk_reports_none_selected: कोई चयनित नहीं
+    bulk_reports_queued_by: कतार में
+    bulk_reports_queuing_jobs: नौकरियों की कतार...
+    bulk_reports_ready_to_generate: उत्पन्न करने के लिए तैयार
+    bulk_reports_report_count_one: "%{count} रिपोर्ट"
+    bulk_reports_report_count_other: "%{count} रिपोर्ट"
+    bulk_reports_reports_and_languages: रिपोर्ट और भाषाएँ
+    bulk_reports_review_submit: समीक्षा करें और जमा करें
+    bulk_reports_review_submit_description: नीचे दिए गए कार्य की जाँच करें। आप किसी भी चरण पर वापस जाकर बदलाव कर सकते हैं।
+    bulk_reports_select_all_shown: दिखाए गए सभी का चयन करें
+    bulk_reports_select_campaigns: अभियान चुनें
+    bulk_reports_select_campaigns_description: नाम या प्रोजेक्ट के आधार पर खोजें और टैग फ़िल्टर का उपयोग करके सूची को छोटा करें। फिर शामिल करने के लिए कैंपेन चुनें।
+    bulk_reports_select_date_range: दिनांक सीमा चुनें
+    bulk_reports_select_date_range_description: इस अवधि के भीतर पूरी की गई केवल उन्हीं मूल्यांकनों को शामिल करें। आप पूर्व निर्धारित तिथियां छोड़ सकते हैं या सटीक तिथियां निर्धारित कर सकते हैं।
+    bulk_reports_select_languages: भाषाएँ चुनें
+    bulk_reports_select_languages_description: प्रत्येक रिपोर्ट अलग-अलग भाषाओं के समूह को सपोर्ट करती है। प्रत्येक रिपोर्ट के लिए कम से कम एक भाषा चुनें। यह आपके द्वारा चुनी गई सभी भाषाओं में तैयार की जाएगी।
+    bulk_reports_select_reports: रिपोर्ट चुनें
+    bulk_reports_select_reports_description: निर्यात में शामिल प्रत्येक उम्मीदवार या अभियान के लिए, चयनित प्रत्येक रिपोर्ट को चुनी गई प्रत्येक भाषा में तैयार किया जाता है।
+    bulk_reports_selected_tags_count_one: "%{count} टैग चयनित"
+    bulk_reports_selected_tags_count_other: "%{count} टैग चयनित"
+    bulk_reports_start_date_placeholder: प्रारंभ तिथि और समय चुनें
+    bulk_reports_start_date_required: कृपया प्रारंभ तिथि चुनें।
+    bulk_reports_step_coming_soon: यह कदम जल्द ही उठाया जाएगा।
+    bulk_reports_submit_error: कुछ गड़बड़ हुई है। कृपया दोबारा प्रयास करें।
+    bulk_reports_submit_success: एक्सपोर्ट प्रक्रिया कतार में है। डाउनलोड तैयार होने पर आपको सूचना प्राप्त होगी।
+    bulk_reports_summary_description: जैसे-जैसे आप जॉब बनाते हैं, अपडेट मिलते रहते हैं।
+    bulk_reports_summary_title: सारांश डाउनलोड करें
+    bulk_reports_title: बल्क रिपोर्ट
+    bulk_reports_view_downloads: बल्क रिपोर्ट डाउनलोड देखें
+    bulk_reports_year_to_date: चालू वर्ष की 1 जनवरी से आज तक
     bulk_upload_ai_artifacts: बल्क अपलोड एआई आर्टिफैक्ट्स
     campaign: अभियान
     campaign_admin: अभियान प्रशासक
@@ -383,6 +485,13 @@ hi:
     campaign_templates_remove_confirm_success: अभियान टेम्पलेट '%{name}' को सफलतापूर्वक हटा दिया गया।
     campaign_templates_remove_confirm_title: अभियान टेम्पलेट हटाएँ
     campaign_user_job_roles_cannot_be_same: लक्षित नौकरी की भूमिका वर्तमान नौकरी की भूमिका से भिन्न होनी चाहिए।
+    campaign_users_import_uat_hint: लाइसेंसिंग, एनालिटिक्स और वेबहुक्स से बाहर रखे जाने वाले परीक्षण उपयोगकर्ताओं के लिए UAT कॉलम को 'हां' पर सेट करें।
+    campaign_users_uat_description: इस प्रतिभागी को यूएटी टेस्ट उपयोगकर्ता के रूप में चिह्नित करें।
+    campaign_users_uat_label: यूएटी प्रतिभागी
+    campaign_users_uat_license_non_billable: बिल योग्य नहीं
+    campaign_users_uat_locked_hint: यह प्रतिभागी पहले से मौजूद है। प्रतिभागी के पहली बार बनाए जाने पर UAT स्थिति निर्धारित की जाती है और इसे बदला नहीं जा सकता।
+    campaign_users_uat_readonly_hint: यूएटी स्थिति निर्माण के समय निर्धारित की जाती है और इसे बदला नहीं जा सकता है।
+    campaign_users_uat_tooltip: यूएटी उपयोगकर्ता परीक्षण में वास्तविक भागीदार होते हैं। वे सामान्य रूप से मूल्यांकन में भाग ले सकते हैं, लेकिन उन्हें बिल योग्य लाइसेंस उपयोग, विश्लेषण और आउटबाउंड वेबहुक से बाहर रखा जाता है।
     campaigns: अभियान
     campaigns_convert_to_template: टेम्पलेट में बदलें
     campaigns_extend_time_success_message: अभियान टाइमर %{minutes} मिनट तक बढ़ाया गया।
@@ -469,6 +578,7 @@ hi:
     clients_search_placeholder: क्लाइंट खोजें
     closed: बंद
     code_required: कोड आवश्यक है
+    collapse_all: सभी को संकुचित करें
     collapse_filters: फ़िल्टर बंद करें
     column_code: कोड
     column_invitation_status: आमंत्रण स्थिति
@@ -487,10 +597,130 @@ hi:
     common_type: प्रकार
     common_unselect_all: सभी को असलेक्ट करें
     communication_center: संचार केंद्र
+    communication_center_manage_translations_action: अनुवाद प्रबंधित करें
+    communication_center_migration_enqueued: माइग्रेशन कार्य कतार में डाल दिया गया है। प्रगति के लिए लॉग देखें।
+    communication_center_migration_error: माइग्रेशन अनुरोध विफल हो गया। कृपया पुनः प्रयास करें या लॉग जांचें।
+    communication_center_migration_modal_intro: 'इस क्लाइंट के लिए माइग्रेशन चलाने पर निम्नलिखित परिवर्तन लागू होंगे:'
+    communication_center_migration_modal_title: संचार केंद्र प्रवासन पूर्वावलोकन
+    communication_center_migration_preview_button: माइग्रेशन का पूर्वावलोकन करें
+    communication_center_migration_run_button: माइग्रेशन चलाएँ
+    communication_center_migration_skipped: पहले ही माइग्रेट हो चुका है (इसे छोड़ दिया जाएगा)
+    communication_center_migration_would_assessments: प्रवास के लिए मूल्यांकन
+    communication_center_migration_would_backfill: रिक्त स्थान भरने के लिए ईमेल
+    communication_center_migration_would_cc_users: सीसी उपयोगकर्ताओं को माइग्रेट करना होगा
+    communication_center_migration_would_migrate: संचार को स्थानांतरित करने के लिए
+    communication_center_migration_would_users: माइग्रेट करने के लिए चयनित उपयोगकर्ता
+    communication_center_translation_updated_success: अनुवाद सफलतापूर्वक अपडेट हो गया
+    communication_center_translations_modal_title: अनुवाद प्रबंधित करें
+    communication_deliveries: वितरण
+    communication_delivery: संचार वितरण
+    communication_delivery_assessment_group_label: मूल्यांकन समूह
+    communication_delivery_at_label: डिलीवरी की तारीख और समय
+    communication_delivery_at_past_error: डिलीवरी की तारीख भविष्य में होनी चाहिए
+    communication_delivery_cancel_action: रद्द करना
+    communication_delivery_cancel_error: डिलीवरी रद्द करने में विफल
+    communication_delivery_cc_users_label: सीसी प्राप्तकर्ता
+    communication_delivery_completion_status_hint: यदि कोई पूर्णता कोड निर्दिष्ट किया गया है, तो इसे केवल तभी भेजा जाएगा जब उपयोगकर्ता के मूल्यांकन में यह पूर्णता स्थिति कोड हो।
+    communication_delivery_completion_status_label: मूल्यांकन पूर्णता स्थिति कोड
+    communication_delivery_delay_hours_label: विलंब (घंटे)
+    communication_delivery_details_title: वितरण विवरण
+    communication_delivery_emails_sent_label: भेजा
+    communication_delivery_emails_total_label: कुल ईमेल
+    communication_delivery_end_date_label: अंतिम तिथि
+    communication_delivery_frequency_daily: दैनिक
+    communication_delivery_frequency_label: आवृत्ति
+    communication_delivery_frequency_specific_weekdays: विशिष्ट कार्यदिवस
+    communication_delivery_frequency_weekly: साप्ताहिक
+    communication_delivery_interval_number_label: अंतराल
+    communication_delivery_interval_period_days: दिन
+    communication_delivery_interval_period_hours: घंटे
+    communication_delivery_interval_period_label: अंतराल अवधि
+    communication_delivery_interval_period_months: महीने
+    communication_delivery_interval_period_weeks: हफ्तों
+    communication_delivery_new_button: नई डिलीवरी
+    communication_delivery_recipients_all: सभी प्रतिभागी
+    communication_delivery_recipients_label: प्राप्तकर्ता
+    communication_delivery_recipients_new_assignment: नया कार्यभार
+    communication_delivery_recipients_new_users: नए उपयोगकर्ता
+    communication_delivery_recipients_selected: चयनित प्रतिभागी
+    communication_delivery_rule_in_progress: प्रगति पर है
+    communication_delivery_rule_label: वितरण नियम
+    communication_delivery_rule_not_completed: पूरा नहीं हुआ
+    communication_delivery_rule_not_started: शुरू नहीं
+    communication_delivery_rule_send_now: अब भेजें
+    communication_delivery_rule_specific_datetime: विशिष्ट तिथि और समय
+    communication_delivery_search_users_placeholder: नाम या ईमेल द्वारा खोजें
+    communication_delivery_selected_assessments_label: आकलन
+    communication_delivery_selected_users_label: उपयोगकर्ताओं का चयन करें
+    communication_delivery_start_date_label: आरंभ करने की तिथि
+    communication_delivery_template_label: खाका
+    communication_delivery_time_of_day_label: अपना समय
+    communication_delivery_timezone_label: समय क्षेत्र
+    communication_delivery_trigger_type_label: ट्रिगर प्रकार
+    communication_delivery_trigger_type_manual: नियमावली
+    communication_delivery_trigger_type_scheduled: अनुसूचित
+    communication_delivery_weekday_fri: शुक्रवार
+    communication_delivery_weekday_mon: सोमवार
+    communication_delivery_weekday_sat: शनिवार
+    communication_delivery_weekday_sun: रविवार
+    communication_delivery_weekday_thu: गुरुवार
+    communication_delivery_weekday_tue: मंगलवार
+    communication_delivery_weekday_wed: बुधवार
+    communication_delivery_weekdays_label: काम करने के दिन
+    communication_email_created_at_label: पर बनाया गया
+    communication_email_not_sent: भेजा नहीं गया
+    communication_email_preview_action: पूर्व दर्शन
+    communication_email_preview_date_label: तारीख
+    communication_email_preview_from_label: से
+    communication_email_preview_title: ईमेल पूर्वावलोकन
+    communication_email_preview_to_label: को
+    communication_email_preview_warning: यह टेम्पलेट का पुनः प्रस्तुत किया गया पूर्वावलोकन है और हो सकता है कि यह वास्तव में भेजे गए ईमेल की सटीक सामग्री को प्रतिबिंबित न करे।
+    communication_email_recipient_email_label: प्राप्तकर्ता का ईमेल
+    communication_email_recipient_name_label: प्राप्तकर्ता का नाम
+    communication_email_retrigger_action: पुनः ट्रिगर करें
+    communication_email_retrigger_error: ईमेल को पुनः ट्रिगर करने में विफल
+    communication_email_sent_at_label: भेजा गया
+    communication_email_status_label: स्थिति
+    communication_email_subject_label: विषय
+    communication_emails: ईमेल
+    communication_template: संचार टेम्पलेट
+    communication_template_body_label: संदेश
+    communication_template_create_new_action: नया निर्माण
+    communication_template_kind_label: संचार प्रकार
+    communication_template_level_campaign: अभियान
+    communication_template_level_client: ग्राहक
+    communication_template_level_platform: प्लैटफ़ॉर्म
+    communication_template_level_project: परियोजना
+    communication_template_name_label: टेम्पलेट नाम
+    communication_template_new_button: नया टेम्पलेट
+    communication_template_override_inherited_action: विरासत में मिली जानकारी को ओवरराइड करें
+    communication_template_override_picker_search_placeholder: ओवरराइड करने के लिए खोज टेम्पलेट
+    communication_template_override_picker_title: विरासत में मिले टेम्पलेट को ओवरराइड करें
+    communication_template_recipients_all: सभी
+    communication_template_recipients_label: डिफ़ॉल्ट प्राप्तकर्ता
+    communication_template_recipients_new_assignment: नया कार्यभार
+    communication_template_recipients_new_users: नए उपयोगकर्ता
+    communication_template_recipients_selected: चयनित
+    communication_template_source_created: बनाया था
+    communication_template_source_label: स्रोत
+    communication_template_source_override_of: "%{level} का ओवरराइड"
+    communication_template_status_active: सक्रिय
+    communication_template_status_archived: संग्रहीत
+    communication_template_status_draft: मसौदा
+    communication_template_status_label: स्थिति
+    communication_template_subject_label: विषय
+    communication_templates: टेम्पलेट्स
     communications: संचार
     communications_form_insert_piped_text: पाइप्ड टेक्स्ट डालें
+    competency_indicator: योग्यता / सूचक
     completed: पूर्ण
     completed_tooltip: सभी मूल्यांकनकर्ताओं ने मूल्यांकन जमा कर दिया है।
+    completion_recipients_all: सभी विषय
+    completion_recipients_list: 'प्राप्तकर्ताओं की सूची:'
+    completion_recipients_selected: चयनित विषय
+    completion_recipients_selected_admins: चयनित प्रशासक
+    completion_recipients_selected_assessors: चयनित मूल्यांकनकर्ता
+    completion_recipients_selected_assessors_hint: विषय से संबंधित मूल्यांकनकर्ता प्रपत्र को पूरा करने के लिए नियुक्त मूल्यांकनकर्ता को ही ईमेल भेजा जाएगा, भले ही ऊपर अन्य मूल्यांकनकर्ताओं का चयन किया गया हो।
     components_input_duration_placeholder: 1d 2h 3m के रूप में दर्ज करें
     concise: संक्षिप्त
     condition_sets: अवस्था सेट
@@ -699,6 +929,8 @@ hi:
     disable_proctoring: प्रॉक्टरिंग अक्षम करें
     disable_report_download: रिपोर्ट डाउनलोड अक्षम करें
     disable_transcript_download: ट्रांसक्रिप्ट डाउनलोड अक्षम करें
+    disable_webhooks: वेबहुक अक्षम करें
+    disable_webhooks_hint: जब यह विकल्प चालू होता है, तो प्रतिभागी के प्रकार की परवाह किए बिना, इस अभियान के लिए क्लाइंट को कोई वेबहुक या डाउनस्ट्रीम एकीकरण इवेंट नहीं भेजे जाते हैं। इसे केवल सुपर एडमिन ही बदल सकते हैं।
     disallow_lead_assessor_moderation: लीड आकलनकर्ता की मध्यस्थता निषेध करें
     disallow_lead_assessor_moderation_info: स्कोर सभी आकलनकर्ता फॉर्म जमा होने पर स्वचालित रूप से गणना किया जाएगा और मुख्य आकलनकर्ता इसे मॉडरेशन स्क्रीन से नहीं बदल सकता।
     discard_all_questions: सभी प्रश्नों को रीसेट करें
@@ -797,6 +1029,7 @@ hi:
     evaluator_welcome_name: मूल्यांकनकर्ता स्वागत है
     evaluators_title: मूल्यांकनकर्ता
     evidence_from_transcript: प्रतिलेख से साक्ष्य
+    expand_all: सभी का विस्तार
     expand_filters: फ़िल्टर विस्तार करें
     export_admin_roles_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
     export_admins_with_permissions: प्रशासन भूमिकाएँ और अनुमतियाँ निर्यात
@@ -857,6 +1090,7 @@ hi:
     feature_not_available: यह सुविधा उपलब्ध नहीं है
     feature_sms_notification_description: अभियान के निमंत्रणों और अनुस्मारकों के लिए एसएमएस सूचनाएं सक्षम करें
     feature_superadmin_tenant_scoping_description: अक्षम होने पर, सुपरएडमिन क्वेरी इस क्लाइंट के डेटा तक सीमित नहीं रहेंगी।
+    feature_use_new_communication_center_description: इस क्लाइंट के लिए केवल नए कम्युनिकेशन सेंटर का उपयोग करें और पुराने संचार भेजना बंद करें।
     fields_level: स्तर
     fields_level_description: स्तर का विवरण
     fields_level_name: स्तर का नाम
@@ -1123,6 +1357,7 @@ hi:
     import_title: CSV से विषय आयात करें
     import_upload: अपलोड
     import_users: उपयोगकर्ताओं को आयात करें
+    in_progress: प्रगति में
     inactive: निष्क्रिय
     include_locales_label: अनुवाद शामिल करें
     include_locales_name: लोकलाइज़ेशन शामिल करें
@@ -1401,6 +1636,7 @@ hi:
     model_params_thinking_effort_none: कोई नहीं
     model_params_thinking_effort_tooltip: यह नियंत्रित करता है कि मॉडल प्रतिक्रिया देने से पहले कितनी तर्कशक्ति का उपयोग करता है। अधिक प्रयास करने पर अधिक विस्तृत उत्तर मिलते हैं, लेकिन इसमें अधिक समय लगता है। तर्कशक्ति को पूरी तरह से निष्क्रिय करने के लिए 'None' का उपयोग करें।
     model_params_title: उन्नत मॉडल कॉन्फ़िगरेशन
+    moderate_scoring_lead_assessor_form: मुख्य मूल्यांकनकर्ता प्रपत्र
     must_be_a_valid_url: अमान्य URL। इसमें http या https प्रोटोकॉल के साथ पूरा URL निर्दिष्ट करें।
     name: नाम
     name_max_length: नाम %{length} वर्णों से अधिक नहीं हो सकता।
@@ -1413,6 +1649,24 @@ hi:
     navigation_registration_codes: पंजीकरण कोड
     navigation_skills_taxonomy: कौशल वर्गीकरण
     navigation_users: उपयोगकर्ता
+    new_experience_badge: नया अनुभव
+    new_experience_bullet_brief_rest: रेटिंग करते समय योग्यता संबंधी मार्गदर्शन स्क्रीन पर दिखाई देता रहता है।
+    new_experience_bullet_brief_strong: आपके स्कोर के बगल में संक्षिप्त जानकारी
+    new_experience_bullet_candidate_rest: उस उम्मीदवार के लिए सभी मूल्यांकन प्रपत्र, एक साथ।
+    new_experience_bullet_candidate_strong: एक उम्मीदवार, एक दृष्टिकोण
+    new_experience_bullet_moderation_rest: प्रत्येक मूल्यांकनकर्ता के अंक साथ-साथ, अंतिम निर्णय।
+    new_experience_bullet_moderation_strong: कुछ ही मिनटों में मॉडरेशन
+    new_experience_footer_note: यह नया अनुभव जल्द ही सभी के लिए डिफ़ॉल्ट हो जाएगा। आप अपनी प्रोफ़ाइल विवरण से कभी भी नए अनुभव पर स्विच कर सकते हैं।
+    new_experience_headline: पहली समीक्षा से लेकर अंतिम स्वीकृति तक एक ही प्रक्रिया।
+    new_experience_notice_body: हमने मूल्यांकनकर्ता के अनुभव को नया रूप दिया है। आप इसे अभी आज़मा सकते हैं या बाद में अपनी प्रोफ़ाइल सेटिंग से इसे सक्षम कर सकते हैं।
+    new_experience_notice_maybe_later: शायद बाद में
+    new_experience_notice_title: नए मूल्यांकनकर्ता अनुभव उपलब्ध हैं
+    new_experience_preview_alt: नए मूल्यांकनकर्ता अनुभव का पूर्वावलोकन
+    new_experience_sub_copy: अब उम्मीदवार, मूल्यांकन, मॉडरेशन और आकलन केंद्र एक साथ जुड़े हुए दृश्य के रूप में काम करते हैं, न कि पांच अलग-अलग स्क्रीन के रूप में जिन्हें आपको खुद एक साथ रखना पड़ता है।
+    new_experience_word_assessment_centre: 'मूल्यांकन केंद्र: सत्र का संचालन करें और प्रत्येक विषय पर नज़र रखें।'
+    new_experience_word_candidate: एक ही उम्मीदवार के सभी मूल्यांकन एक साथ।
+    new_experience_word_evaluate: संक्षिप्त विवरण और अपने स्कोर का साथ-साथ मूल्यांकन करें।
+    new_experience_word_moderate: सभी मूल्यांकनकर्ताओं के स्कोर मध्यम स्तर के होंगे, अंतिम निर्णय एक ही होगा।
     new_folder: नया फ़ोल्डर
     new_score: नया स्कोर
     no_assessments_found: ऑडिट आईडी
@@ -1460,6 +1714,7 @@ hi:
     norms_title: नॉर्म
     not_completed: पूर्ण नहीं
     not_completed_tooltip: "%{completed} मूल्यांकनकर्ता नियुक्त कर दिए गए हैं, लेकिन केवल %{submitted} ने ही मूल्यांकन पूरे किए हैं।"
+    not_started: शुरू नहीं हुआ
     notes: टिप्पणियाँ
     nothing_assigned: कोई मूल्यांकनकर्ता नियुक्त नहीं हैं
     nothing_assigned_tooltip: इस उपयोगकर्ता को कोई मूल्यांकन नहीं दिया गया है।
@@ -1574,6 +1829,7 @@ hi:
         manage_messages: संदेश प्रबंधित करें
         manage_options: विकल्प प्रबंधित करें
         manage_report_approvals: रिपोर्ट अनुमोदनों का प्रबंधन करें
+        manage_uat: UAT उपयोगकर्ताओं का प्रबंधन करें
         manage_users: उपयोगकर्ताओं का प्रबंधन करें
         participant_options: प्रतिभागी विकल्प
         report_options: रिपोर्ट विकल्प
@@ -1902,6 +2158,7 @@ hi:
         title: पंजीकरण सेटिंग्स
       reports:
         manage: प्रबंध करें
+        project_bulk_reports: प्रोजेक्ट बल्क रिपोर्ट
         title: रिपोर्टें
         view: देखें
       responseMeta:
@@ -2059,6 +2316,7 @@ hi:
     project_admins: परियोजना प्रशासक
     project_assessor: परियोजना मूल्यांकनकर्ता
     project_features: परियोजना की विशेषताएँ
+    project_id: प्रोजेक्ट आईडी
     project_ids: परियोजना आईडी
     project_ids_required: इस रिपोर्ट प्रकार के लिए project_ids आवश्यक है।
     project_licenses: परियोजना लाइसेंस
@@ -2118,6 +2376,7 @@ hi:
     projects_form_project_number: परियोजना संख्या
     projects_form_subdomain: उप-डोमेन
     projects_form_title: परियोजना
+    projects_general_settings_allow_data_access_to_bi: इस प्रोजेक्ट के लिए Powerbi तक पहुंच की अनुमति दें
     projects_general_settings_live_chat: लाइव चैट सक्षम करें
     projects_general_settings_locales_label: स्थानीय क्षेत्र
     projects_general_settings_project_number_label: परियोजना संख्या
@@ -2362,6 +2621,7 @@ hi:
     report_on_hold: "%{user} के लिए रिपोर्ट वर्तमान में रोक दी गई है।"
     report_owner: मालिक
     report_pdf_status: रिपोर्ट पीडीएफ स्थिति
+    report_pdf_unavailable: इस रिपोर्ट की पीडीएफ फाइल अभी उपलब्ध नहीं है।
     report_review_abort_qc: QC रद्द करें
     report_review_approve: अनुमोदित करें
     report_review_approve_changes: बदलावों को अनुमोदित करें
@@ -2732,6 +2992,7 @@ hi:
     scoring_approval_score_approvals: एआई स्कोरिंग अनुमोदन
     scoring_assessment: मूल्यांकन
     scoring_assessment_scoring_type: मूल्यांकन स्कोरिंग प्रकार
+    scoring_assessor_number: मूल्यांकनकर्ता %{number}
     scoring_average: औसत
     scoring_campaign_scoring_variables: अभियान स्कोरिंग चर
     scoring_desc: आपने %{n} अभियान कारकों की अधिकतम सीमा पार कर ली है। अतिरिक्त कारक नहीं जोड़े जा सकते। कृपया आगे बढ़ने से पहले अपने मौजूदा कारकों की समीक्षा करें और उनका प्रबंधन करें।
@@ -3122,15 +3383,19 @@ hi:
     status_details: स्थिति विवरण
     statuses_accepted: स्वीकार्य
     statuses_cancelled: रद्द
+    statuses_failed: असफल
     statuses_late_cancelled: देर से रद्द
     statuses_late_rescheduled: देर से पुनर्निर्धारित
     statuses_pending: लंबित
+    statuses_queued: कतारबद्ध
     statuses_requested_cancellation: रद्दीकरण का अनुरोध
     statuses_requested_cancellation_rejected: रद्दीकरण अस्वीकार कर दिया गया
     statuses_requested_rescheduling: अनुरोधित पुनर्निर्धारण
     statuses_requested_rescheduling_rejected: पुनः निर्धारित करने का अनुरोध अस्वीकार कर दिया गया
     statuses_rescheduled: पुनर्निर्धारित
     statuses_scheduled: निर्धारित
+    statuses_sent: भेजा
+    statuses_skipped: छोड़ा गया
     steps_basic_information: मूलभूत जानकारी
     steps_facilitators: सहायक
     steps_invite_options: आमंत्रण विकल्प
@@ -3336,6 +3601,7 @@ hi:
     url_label: यूआरएल
     url_name: यूआरएल
     url_whitelisting: यूआरएल श्वेतसूचीकरण
+    use_new_communication_center: नए संचार केंद्र का उपयोग करें
     used_tokens_input_tokens: इनपुट टोकन
     used_tokens_output_tokens: आउटपुट टोकन
     used_tokens_thinking_tokens: थिंकिंग टोकन

@@ -214,6 +214,8 @@ vi:
               inclusion: Sai ngôn ngữ
             password:
               too_short: Mật khẩu quá ngắn. Yêu cầu ký tự %{count} tối thiểu
+            uat:
+              invalid: 'UAT phải là một trong các giá trị sau: %{accepted_values} hoặc trống.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ vi:
               invalid_reports_header: Tiêu đề không hợp lệ, lấy tiêu đề từ tệp mẫu
               manager_not_found: 'Hàng %{row_number}: Người quản lý có email %{email} không có trong chiến dịch hoặc trong CSV'
               not_enough_licenses: Việc nhập khẩu yêu cầu %{required_count} giấy phép, nhưng chỉ có %{available_count} giấy phép khả dụng. Vui lòng giảm số lượng người dùng mới hoặc thêm giấy phép trước khi nhập khẩu.
+              not_enough_uat_licenses: Việc nhập khẩu yêu cầu giấy phép thử nghiệm UAT %{required_count}, nhưng chỉ có %{available_count} khả dụng. Vui lòng giảm số lượng người dùng UAT mới hoặc tăng giới hạn sử dụng UAT trước khi nhập khẩu.
               user_update_failed: Cập nhật người dùng không thành công cho %{email} với lỗi '%{error}'
             locale:
               inclusion: Sai ngôn ngữ
@@ -943,7 +946,9 @@ vi:
         import_sms_invites: Nhập lời mời SMS
         import_users: Nhập người dùng
         migrate_assessment_translations: Di chuyển dịch thuật đánh giá
+        migrate_communication_center: Di chuyển Trung tâm Truyền thông
         normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+        project_bulk_download_reports: Tải xuống báo cáo hàng loạt dự án
         project_compact_completion_status_export: Xuất trạng thái hoàn thành gọn nhẹ
         project_completion_status_export: Tình trạng hoàn thành xuất khẩu
         regenerate_assessment_transcriptions: Tạo lại bản ghi chép đánh giá
@@ -986,6 +991,8 @@ vi:
     errors: Lỗi
     invalid_job: Thông báo này tương ứng với bản ghi đã xóa
     mark_as_read: Đánh dấu tất cả đã đọc
+    migrate_communication_center:
+      client_not_found: Không tìm thấy máy khách có ID=%{id}
     more: Nhiều hơn
     results: Kết quả
     super_admin:
@@ -2978,6 +2985,7 @@ vi:
     end_date: Ngày kết thúc
     not_enough_license: "'%{client_name}' không có đủ giấy phép cho '%{report_name}'"
     not_enough_license_count: Không đủ giấy phép, vui lòng liên hệ với quản trị viên
+    not_enough_uat_license: "'%{client_name}' không có đủ giấy phép kiểm thử UAT cho '%{report_name}'. Hãy tăng giới hạn sử dụng UAT trên giấy phép đó hoặc liên hệ với quản trị viên."
     number: Số
     overuse_number: Phụ cấp sử dụng quá mức
     project_specific: Dự án cụ thể
@@ -2992,6 +3000,11 @@ vi:
       idp: IDP
       proctoring: Giám sát
       threesixty: Ba sáu mươi
+    uat_usage_limit_credits: tín chỉ kiểm thử UAT
+    uat_usage_limit_credits_hint: Việc giám sát được tính phí bằng tín chỉ, vì vậy đây là số tín chỉ tối đa mà người dùng bài kiểm tra UAT có thể sử dụng từ giấy phép này (tối đa 300).
+    uat_usage_limit_users: Người dùng thử nghiệm UAT
+    uat_usage_limit_users_hint: Số lượng người dùng thử nghiệm UAT tối đa có thể được tạo với giấy phép này (tối đa 30). Người dùng thử nghiệm không bao giờ sử dụng giấy phép có tính phí.
+    uat_used: UAT đã sử dụng giấy phép
     used_number: Giấy phép đã sử dụng
     used_out_of: "%{used} trong số %{total}"
   lti:

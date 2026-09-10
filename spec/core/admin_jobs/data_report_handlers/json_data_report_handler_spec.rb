@@ -161,6 +161,20 @@ RSpec.describe AdminJobs::DataReportHandlers::JsonDataReportHandler do
         emails = [worksheet[2][0]&.value, worksheet[3][0]&.value].compact
         expect(emails).to include(user.email, user2.email)
       end
+
+      it 'excludes UAT users' do
+        uat_user = create(:user, :with_project_membership, project: project, is_uat: true)
+        create(:campaign_user, campaign: campaign, user: uat_user)
+
+        subject.generate_file
+
+        workbook = RubyXL::Parser.parse(file_path)
+        worksheet = workbook.worksheets[0]
+        emails = (2..4).filter_map { |row| worksheet[row]&.[](0)&.value }
+
+        expect(emails).to include(user.email, user2.email)
+        expect(emails).not_to include(uat_user.email)
+      end
     end
   end
 

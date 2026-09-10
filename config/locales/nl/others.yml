@@ -214,6 +214,8 @@ nl:
               inclusion: Verkeerde locale
             password:
               too_short: Wachtwoord is te kort. Minimum %{count} teken vereist
+            uat:
+              invalid: 'UAT moet een van de volgende waarden zijn: %{accepted_values} of leeg.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ nl:
               invalid_reports_header: Ongeldige header, neem header uit voorbeeldbestand
               manager_not_found: 'Rij %{row_number}: Manager met e-mailadres %{email} is niet aanwezig in de campagne of in CSV'
               not_enough_licenses: Voor de import zijn %{required_count}-licenties vereist, maar er zijn alleen %{available_count}-licenties beschikbaar. Verminder het aantal nieuwe gebruikers of voeg meer licenties toe voordat u de import uitvoert.
+              not_enough_uat_licenses: Voor de import zijn %{required_count} UAT-testlicenties vereist, maar er zijn alleen %{available_count}-licenties beschikbaar. Verlaag het aantal nieuwe UAT-gebruikers of verhoog de UAT-gebruikslimiet voordat u de import uitvoert.
               user_update_failed: Update gebruiker mislukt voor %{email} met fout '%{error}'
             locale:
               inclusion: Verkeerde locale
@@ -943,7 +946,9 @@ nl:
         import_sms_invites: SMS-uitnodiging importeren
         import_users: Gebruikers importeren
         migrate_assessment_translations: Beoordeling Vertaalmigratie
+        migrate_communication_center: Migratie van het communicatiecentrum
         normalize_factor_scores: Factorscores normaliseren
+        project_bulk_download_reports: Projectrapporten批量 downloaden
         project_compact_completion_status_export: Compacte voltooiingsstatus exporteren
         project_completion_status_export: Export voltooiingsstatus
         regenerate_assessment_transcriptions: Transcripties van beoordelingen opnieuw genereren
@@ -986,6 +991,8 @@ nl:
     errors: Fouten
     invalid_job: Deze melding komt overeen met verwijderde record
     mark_as_read: Markeer alle gelezen
+    migrate_communication_center:
+      client_not_found: Client met id=%{id} niet gevonden
     more: Meer
     results: Resultaten
     super_admin:
@@ -2957,6 +2964,7 @@ nl:
     end_date: Einddatum
     not_enough_license: "%{client_name}' heeft niet genoeg licenties voor '%{report_name}'"
     not_enough_license_count: Niet genoeg licenties, neem contact op met beheerder
+    not_enough_uat_license: "'%{client_name}' heeft onvoldoende UAT-testlicenties voor '%{report_name}'. Verhoog de UAT-gebruikslimiet voor die licentie of neem contact op met de beheerder."
     number: Aantal
     overuse_number: Vergoeding voor overmatig gebruik
     project_specific: Projectspecifiek
@@ -2971,6 +2979,11 @@ nl:
       idp: IDP
       proctoring: Proctor
       threesixty: Driezestig
+    uat_usage_limit_credits: UAT-testcredits
+    uat_usage_limit_credits_hint: Het afnemen van examens onder toezicht gebeurt op basis van credits. Dit is dus het maximale aantal credits dat gebruikers van de UAT-test met deze licentie kunnen gebruiken (max. 300).
+    uat_usage_limit_users: UAT-testgebruikers
+    uat_usage_limit_users_hint: Maximaal 30 UAT-testgebruikers kunnen met deze licentie worden aangemaakt. Testgebruikers verbruiken nooit betaalde licenties.
+    uat_used: UAT gebruikte licenties
     used_number: Gebruikte licenties
     used_out_of: "%{used} van %{total}"
   lti:

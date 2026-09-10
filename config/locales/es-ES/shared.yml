@@ -37,8 +37,10 @@ es-ES:
     campaign: Campaña
     campaign_id: ID de campaña
     cancel: Cancelar
+    candidates: Candidatos
     category: Categoría
     change_password: Cambiar contraseña
+    clear: Claro
     clear_filters: Quitar filtros
     client: Cliente
     close: Cerrar
@@ -86,11 +88,15 @@ es-ES:
     end_date: Fecha final
     ending_proctoring_session_msg: Vamos a dar por finalizada la sesión de supervisión. <p>Por favor, espere mientras guardamos sus respuestas y le redirigimos a la página de inicio.</p>
     error: Error
+    errors: Errores
     export: Exportar
     failed: Fallido
     'false': false
     file: Archivo
     file_upload_button: Seleccionar archivo
+    filename: Nombre del archivo
+    files: Archivos
+    filters: Filtros
     first_name: Nombre
     formal_learning: Aprendizaje formal
     generate: Generar
@@ -105,6 +111,7 @@ es-ES:
     impersonation_banner_aria_label: Sesión de suplantación activa
     impersonation_end_session: Salida
     import: Importar
+    in_progress: En curso
     inactive: Inactivo
     internet_disconnected_message: Intentando volver a conectar. Compruebe su conexión a internet.
     is_impersonating: está suplantando la identidad
@@ -112,6 +119,7 @@ es-ES:
     issuer_claim_label: Emisor (iss)
     jwt_claims_details: Detalles de las reclamaciones de JWT
     key_id_claim_label: ID de clave (kid)
+    languages: Idiomas
     last_name: Apellido(s)
     last_updated: Última actualización
     learning_on_the_job_label: Aprendizaje sobre el terreno
@@ -151,6 +159,7 @@ es-ES:
     no_results_found: No se han encontrado resultados.
     none: Ninguno
     not_requested: Aún no solicitado
+    not_set: No establecido
     ok: De acuerdo
     options: Opciones
     overview: Resumen
@@ -215,12 +224,14 @@ es-ES:
     reset_password: Restablecer contraseña
     response_text: Texto de respuesta
     return_url_not_whitelisted: La URL de retorno no está incluida en la lista blanca de esta aplicación.
+    review: Revisar
     rte_paste_content_exceeds_char_limit: El texto supera el límite de caracteres {{maxCharacterLimit}} y no puede pegarse.
     rte_paste_content_exceeds_word_limit: El texto supera el límite de palabras {{maxWordLimit}} y no puede pegarse.
     run: Ejecutar
     save: Salvar
     saving_video: Guardando vídeo... Por favor, no cierres ni actualices el navegador
     schedule_time: Horario
+    scheduled: Programado
     scoring_details: Detalles de la puntuación
     search: Buscar
     select_camera: Selecciona una cámara
