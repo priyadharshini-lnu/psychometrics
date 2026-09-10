@@ -31,6 +31,7 @@ const CampaignSelectionStep: FC<Props> = ({
 }) => {
   const [searchText, setSearchText] = useState('')
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [tagSelectOpen, setTagSelectOpen] = useState(false)
 
   const {
     data: campaigns,
@@ -235,6 +236,8 @@ const CampaignSelectionStep: FC<Props> = ({
           <Select
             mode="multiple"
             value={selectedTags}
+            open={tagSelectOpen}
+            onOpenChange={setTagSelectOpen}
             onChange={handleTagsChange}
             style={{ minWidth: 300 }}
             placeholder={I18n.t('admin.bulk_reports_all_tags')}
@@ -283,9 +286,7 @@ const CampaignSelectionStep: FC<Props> = ({
                   </Button>
                   <Button
                     size="small"
-                    onClick={() => {
-                      document.activeElement instanceof HTMLElement && document.activeElement.blur()
-                    }}
+                    onClick={() => setTagSelectOpen(false)}
                   >
                     {I18n.t('common.actions.done')}
                   </Button>
