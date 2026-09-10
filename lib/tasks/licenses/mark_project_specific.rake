@@ -41,9 +41,10 @@ namespace :licenses do
     created_count = 0
     updated_count = 0
     linked_count  = 0
+    skipped_count = 0
 
     ActiveRecord::Base.transaction do
-      created_count, updated_count, linked_count = backfill_project_licenses(license, dry_run)
+      created_count, updated_count, linked_count, skipped_count = backfill_project_licenses(license, dry_run)
       finalize_project_specific_flag(license, dry_run)
 
       raise ActiveRecord::Rollback if dry_run
@@ -54,35 +55,44 @@ namespace :licenses do
     puts "  ProjectLicense records created : #{created_count}"
     puts "  ProjectLicense records updated : #{updated_count}"
     puts "  LicenseUsage rows linked       : #{linked_count}"
+    puts "  LicenseUsage rows skipped      : #{skipped_count} (no project_id)"
     puts "  is_project_specific flag       : #{dry_run ? 'would be set to true (dry run)' : 'set to true'}"
     puts dry_run ? '  (no changes were persisted — dry run)' : '  Done.'
   end
 
   def backfill_project_licenses(license, dry_run)
-    project_usage_counts = license.license_usages.where(status: :active).group(:project_id).count
+    usage_counts_by_project = license.license_usages.group(:project_id).count
+    active_usage_counts_by_project = license.license_usages.where(status: :active).group(:project_id).count
 
-    if project_usage_counts.blank?
+    skipped_count = usage_counts_by_project.delete(nil) || 0
+    report_usages_without_project(skipped_count)
+
+    if usage_counts_by_project.blank?
       puts 'No existing license_usages with a project_id were found for this license.'
-      return [0, 0, 0]
+      return [0, 0, 0, skipped_count]
     end
 
     created_count = 0
     updated_count = 0
     linked_count  = 0
 
-    project_usage_counts.each do |project_id, active_usage_count|
-      if project_id.nil?
-        puts 'Skipping usages with no project_id (cannot backfill a ProjectLicense for them).'
-        next
-      end
+    usage_counts_by_project.each_key do |project_id|
+      active_usage_count = active_usage_counts_by_project.fetch(project_id, 0)
 
-      project_license, was_new = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
-      was_new ? created_count += 1 : updated_count += 1
+      project_license, is_new_record = build_or_update_project_license(license, project_id, active_usage_count, dry_run)
+      is_new_record ? created_count += 1 : updated_count += 1
 
       linked_count += link_license_usages_to_project_license(license, project_id, project_license, dry_run)
     end
 
-    [created_count, updated_count, linked_count]
+    [created_count, updated_count, linked_count, skipped_count]
+  end
+
+  def report_usages_without_project(usages_without_project_count)
+    return unless usages_without_project_count.positive?
+
+    puts "Skipping #{usages_without_project_count} license_usage(s) with no project_id " \
+         '(cannot backfill a ProjectLicense for them).'
   end
 
   def finalize_project_specific_flag(license, dry_run)
