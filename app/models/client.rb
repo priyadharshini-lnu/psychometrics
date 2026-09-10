@@ -167,7 +167,7 @@ class Client < ApplicationRecord
   after_create :set_self_as_tenant, unless: -> { parent_id.present? }
   after_create :set_hogan_group_name, if: :project?
   after_create :create_smtp_setting, if: :project?
-  after_create :create_security_setting, if: :project?
+  after_create :create_default_security_setting, if: :project?
   after_create :create_design_setting, if: :project?
   after_create :create_profile_setting, if: :project?
   after_create :create_registration_setting, if: :project?
@@ -227,6 +227,21 @@ class Client < ApplicationRecord
       where("restricted_to_countries IS NOT NULL AND restricted_to_countries != '{}'").
       where('? != ALL(restricted_to_countries)', country)
   }
+
+  def create_default_security_setting
+    create_security_setting(
+      password_expiration: 90,
+      min_password_length: 8,
+      enforce_strong_password: true,
+      disable_password_reuse: true,
+      attempts_to_lock: 3,
+      auto_unlock_time: 15,
+      enable_recaptcha: true,
+      enforce_password_policy: true,
+      tfa_enabled: true,
+      restrict_sequences: true
+    )
+  end
 
   def self.scoped_by_client(restricted_client_subquery)
     return all if restricted_client_subquery.blank?
