@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 describe Users::AdminProfileEditForm do
-  let(:current_password) { Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true) }
-  let(:new_password) { Faker::Internet.password(min_length: 10, mix_case: true, special_characters: true) }
+  let(:current_password) { 'current_Password@13' }
+  let(:new_password) { 'new_Password@13' }
   let(:user) { create(:user, :with_project_membership, password: current_password) }
 
   let(:valid_params) do

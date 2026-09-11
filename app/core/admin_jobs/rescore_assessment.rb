@@ -10,21 +10,7 @@ module AdminJobs
 
       record.update(total_tasks: results.count)
 
-      results.find_each(batch_size: 200) do |res|
-        user_assessment = res.user_assessment
-        user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?
-
-        recompute = ::UsersResults::Recompute.new(
-          res,
-          owner,
-          admin_job_record_id: record.id,
-          allow_ai_rescore: record.data['allow_ai_rescore'],
-          force_ai_regenerate: false
-        )
-        recompute.on(:ok) { record.increment_completed_tasks! }
-        recompute.on(:waiting) { nil }
-        recompute.call
-      end
+      results.find_each(batch_size: 200) { |res| recompute_result(res) }
 
       remove_reports_pdf if campaign.threesixty?
       broadcast :waiting
@@ -48,6 +34,24 @@ module AdminJobs
     end
 
     private
+
+    def recompute_result(res)
+      ActiveRecord::Base.transaction do
+        user_assessment = res.user_assessment
+        user_assessment.update_norm!(record.data['norm_id']) if record.data['norm_id'].present?
+
+        recompute = ::UsersResults::Recompute.new(
+          res,
+          owner,
+          admin_job_record_id: record.id,
+          allow_ai_rescore: record.data['allow_ai_rescore'],
+          force_ai_regenerate: false
+        )
+        recompute.on(:ok) { record.increment_completed_tasks! }
+        recompute.on(:waiting) { nil }
+        recompute.call
+      end
+    end
 
     def handle_yoodli_import
       record.update(total_tasks: 1)
