@@ -273,7 +273,7 @@
     "braces": "^3.0.3",
     "micromatch": "^4.0.8",
     "flatted": "^3.4.2",
-    "@xmldom/xmldom": "^0.8.13",
+    "@xmldom/xmldom": "^0.8.15",
     "vite": "8.0.16"
   },
   "cssnano": {
