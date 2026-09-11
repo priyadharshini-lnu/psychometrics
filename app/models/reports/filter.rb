@@ -8,7 +8,7 @@ module Reports
 
     include Copyable
 
-    belongs_to :report
+    belongs_to :report, touch: true
 
     tenant_config has_global_records: true, optional: true
     include Tenantable

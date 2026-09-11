@@ -14,7 +14,7 @@ module Api
                            joins(:users_result, :assessment).
                            index_by(&:assessment_id)
 
-        render json: user_reports.includes(report: :modules).
+        render json: user_reports.includes(report: %i[modules published_snapshot]).
           map { |r|
                        Api::V1::UserReportSerializer.new(
                          context: {
@@ -34,11 +34,11 @@ module Api
           raise Api::Errors::AssessmentsNotCompleted, "Scorings for report #{report.id} are not calculated yet"
         end
 
-        if @user_report.report.data_only? && report_user_results.empty?
+        if effective_report.data_only? && report_user_results.empty?
           raise Api::Errors::AssessmentsNotCompleted, "Assessments for report #{report.id} are not completed"
         end
 
-        if @user_report.report.data_configuration.empty?
+        if effective_report.data_configuration.empty?
           raise Api::Errors::ResourceNotConfigured, no_config_message(params[:id])
         end
 
@@ -64,7 +64,7 @@ module Api
         render json: Api::V1::ReportDimensionsSerializer.new(
           context: {
             include: '**',
-            **serialization_params.merge(report: report)
+            **serialization_params.merge(report: report.effective_reader)
           }
         ).serialize(report)
       end
@@ -76,7 +76,7 @@ module Api
             raise Api::Errors::ResourceNotFound, "Report with id=#{params[:id]} was not found" unless r
 
             # TODO: (atanych): report should be directly checked with user membership
-            r
+            r.effective_reader
           end
       end
 
@@ -95,6 +95,10 @@ module Api
 
       private
 
+      def effective_report
+        @effective_report ||= @user_report.report.effective_reader
+      end
+
       def user_report_results
         @user_report.report.assessment_ids.present? ? @user_report.user_results : report_user_results
       end
@@ -102,7 +106,7 @@ module Api
       def report_user_results
         @report_user_results ||= begin
           user_result_ids = user.self_user_assessments.completed.where(
-            campaign_id: campaign_id, assessment_id: @user_report.report.data_configuration_assessment_ids
+            campaign_id: campaign_id, assessment_id: effective_report.data_configuration_assessment_ids
           ).pluck(:users_result_id)
           ::UsersResult.where(id: user_result_ids)
         end

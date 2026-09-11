@@ -7538,6 +7538,41 @@ ALTER SEQUENCE public.reports_pages_id_seq OWNED BY public.reports_pages.id;
 
 
 --
+-- Name: reports_published_snapshots; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports_published_snapshots (
+    id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    tenant_id bigint,
+    data jsonb DEFAULT '{}'::jsonb NOT NULL,
+    published_by_id bigint,
+    published_at timestamp(6) without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: reports_published_snapshots_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_published_snapshots_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_published_snapshots_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_published_snapshots_id_seq OWNED BY public.reports_published_snapshots.id;
+
+
+--
 -- Name: resource_hogan_credentials; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -11787,6 +11822,13 @@ ALTER TABLE ONLY public.reports_pages ALTER COLUMN id SET DEFAULT nextval('publi
 
 
 --
+-- Name: reports_published_snapshots id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_published_snapshots ALTER COLUMN id SET DEFAULT nextval('public.reports_published_snapshots_id_seq'::regclass);
+
+
+--
 -- Name: resource_hogan_credentials id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -13803,6 +13845,14 @@ ALTER TABLE ONLY public.reports_pages
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reports_published_snapshots reports_published_snapshots_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_published_snapshots
+    ADD CONSTRAINT reports_published_snapshots_pkey PRIMARY KEY (id);
 
 
 --
@@ -18806,6 +18856,13 @@ CREATE INDEX index_reports_pages_on_tenant_id ON public.reports_pages USING btre
 
 
 --
+-- Name: index_reports_published_snapshots_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reports_published_snapshots_on_report_id ON public.reports_published_snapshots USING btree (report_id);
+
+
+--
 -- Name: index_resource_hogan_credentials_on_hogan_credential_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -23738,6 +23795,14 @@ ALTER TABLE ONLY public.factors_sub_factors
 
 
 --
+-- Name: reports_published_snapshots fk_rails_902b6f2a17; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_published_snapshots
+    ADD CONSTRAINT fk_rails_902b6f2a17 FOREIGN KEY (report_id) REFERENCES public.reports(id);
+
+
+--
 -- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -24391,6 +24456,14 @@ ALTER TABLE ONLY public.communication_emails
 
 ALTER TABLE ONLY public.question_recoding
     ADD CONSTRAINT fk_rails_b15be6b218 FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_published_snapshots fk_rails_b1d0a2145a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_published_snapshots
+    ADD CONSTRAINT fk_rails_b1d0a2145a FOREIGN KEY (published_by_id) REFERENCES public.users(id);
 
 
 --
@@ -26032,6 +26105,8 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260910120001'),
+('20260910112450'),
 ('20260825000001'),
 ('20260903000001'),
 ('20260902081312'),

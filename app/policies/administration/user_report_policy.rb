@@ -127,6 +127,10 @@ module Administration
       has_permission?(:dashboards, :view)
     end
 
+    def view_draft?
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+    end
+
     def edit_qc?
       return true if @user.is?(:superadmin)
 

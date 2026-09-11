@@ -829,6 +829,7 @@ Rails.application.routes.draw do
             member do
               post :upload_campaign_factors
               post :upload_campaign_ai_artifacts
+              post :publish
             end
           end
         end

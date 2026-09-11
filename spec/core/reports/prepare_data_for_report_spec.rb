@@ -6,6 +6,28 @@ describe Reports::PrepareDataForReport do
   let!(:assessment) { create(:assessment, :with_report, name: 'first assessment') }
   let(:project) { create(:project) }
 
+  describe '#report' do
+    let(:current_user) { create(:superadmin) }
+    let(:draft_user_report) { create(:user_report) }
+    let(:draft_report) { draft_user_report.report }
+
+    context 'when the report has a published snapshot' do
+      before { Reports::PublishSnapshot.call!(draft_report, current_user) }
+
+      it 'uses the effective (published) report by default' do
+        instance = described_class.new(user_report: draft_user_report)
+
+        expect(instance.report).to be_a(Reports::PublishedReader)
+      end
+
+      it 'uses the live draft report when view_draft is true' do
+        instance = described_class.new(user_report: draft_user_report, view_draft: true)
+
+        expect(instance.report).to be_a(Reports::DraftReader)
+      end
+    end
+  end
+
   describe '#call' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
     let(:subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }

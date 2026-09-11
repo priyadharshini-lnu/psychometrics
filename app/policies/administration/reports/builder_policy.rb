@@ -18,6 +18,10 @@ module Administration
       def upload_campaign_ai_artifacts?
         @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
       end
+
+      def publish?
+        @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
+      end
     end
   end
 end

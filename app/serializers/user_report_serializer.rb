@@ -4,9 +4,7 @@ class UserReportSerializer < Panko::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status, :evalaution_completed_for_subject,
              :report_data, :permissions, :comments, :require_approval, :campaign_factor_results,
              :module_overrides, :user_report_events, :user, :options,
-             :threesixty_campaign_id, :campaign, :campaign_ai_artifact_results
-
-  has_one :report, serializer: ReportSerializer
+             :threesixty_campaign_id, :campaign, :campaign_ai_artifact_results, :report, :has_unpublished_changes
 
   def user
     ::Reports::UserSerializer.new(context: { campaign: object.campaign }).serialize(object.user)
@@ -85,7 +83,7 @@ class UserReportSerializer < Panko::Serializer
   end
 
   def report_data
-    UserReports::PrepareUserReportData.call!(object, view_report_as)
+    UserReports::PrepareUserReportData.call!(object, view_report_as, view_draft: view_draft?)
   end
 
   def options
@@ -124,6 +122,7 @@ class UserReportSerializer < Panko::Serializer
         manage_approval
         mark_ready
         translate
+        view_draft
       ],
       {
         project_id: object.campaign.project_id,
@@ -132,23 +131,34 @@ class UserReportSerializer < Panko::Serializer
     ).merge(can_mark_ready: object.can_mark_ready?)
   end
 
+  def has_unpublished_changes
+    snapshot = object.report.published_snapshot
+    return false unless snapshot
+
+    object.report.updated_at > snapshot.published_at
+  end
+
   private
 
   def view_report_as
     context[:view_report_as]
   end
 
+  def view_draft?
+    context[:view_draft].present?
+  end
+
   def report
     ReportSerializer.new(
       context: {
         module_overrides: TextModuleOverride.where(user_report_id: object.id),
-        user_results: results,
-        piped_text_context: context[:options],
+        user_results: context[:user_results],
+        piped_text_context: context[:piped_text_context],
         campaign: object.campaign,
         lang: context[:lang],
         campaign_user: context[:campaign_user]
       }
-    ).serialize(context[:report])
+    ).serialize(context[:report] || object.report.effective_reader)
   end
 
   def current_user

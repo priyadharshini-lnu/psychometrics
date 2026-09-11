@@ -67,7 +67,8 @@ module EndUser
             end.group_by { |result| result['assessment_id'] }
 
             user_dashboard = ::UserDashboardSerializer.new(
-              context: { scope: current_user, report: user_dashboard_report.report, results: results,
+              context: { scope: current_user, results: results,
+                         report: user_dashboard_report.report.effective_reader,
                          piped_text_context: piped_text_context, current_user: current_user, include: '**' }
             ).serialize(user_dashboard_report)
           end

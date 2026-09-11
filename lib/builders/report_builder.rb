@@ -49,13 +49,19 @@ module Builders
           modules = page_params.delete(:modules)
           page = @report.pages.find_or_initialize_by(id: id)
 
-          page.destroy && next if page_params.delete(:removed)
+          if page_params.delete(:removed)
+            page.mark_removed! if page.persisted?
+            next
+          end
 
           page.update!(page_params)
 
           modules.each do |module_params|
             mod = page.modules.find_or_initialize_by(id: module_params.delete(:id))
-            mod.destroy && next if module_params.delete(:removed)
+            if module_params.delete(:removed)
+              mod.mark_removed! if mod.persisted?
+              next
+            end
 
             mod.update!(module_params)
           end

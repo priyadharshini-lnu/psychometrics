@@ -196,7 +196,7 @@ module Administration
           format.json do
             render json: Administration::IndividualDashboardSerializer.new(
               context: {
-                report: user_dashboard.report,
+                report: user_dashboard.report.effective_reader,
                 results: UserReports::GroupedResultsByAssessment.call!(user_dashboard, view_report_as),
                 piped_text_context: {},
                 user_results: user_dashboard.user_results(view_report_as),
@@ -255,6 +255,13 @@ module Administration
 
       def view_report_as
         :admin
+      end
+
+      def view_draft?
+        return false unless ActiveModel::Type::Boolean.new.cast(params[:view_draft])
+
+        authorize(resource, :view_draft?, project_id: campaign.project_id, campaign_id: campaign.id)
+        true
       end
 
       def generate_report(user_report)

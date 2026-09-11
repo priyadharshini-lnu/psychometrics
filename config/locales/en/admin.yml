@@ -2611,6 +2611,21 @@ en:
     report_approval_submit_or_approve_all: Submit or Approve All
     report_approvals: Report Approvals
     report_availability: Report Availability
+    report_builder_publish_confirm_content: This will override the existing published report with the draft changes making it available to the users. Are you sure you want to publish the changes?
+    report_builder_publish_confirm_title: Publish this report?
+    report_builder_publish_failed: Report was saved, but publishing failed. Please try publishing again.
+    report_builder_publish_success: Report published successfully
+    report_builder_published_at: Last published on {{date}}
+    report_builder_published_by: Published by {{name}}
+    report_builder_save_and_publish: Save & Publish
+    report_builder_save_as_draft: Save as Draft
+    report_builder_save_failed: Failed to save report. Please try again.
+    report_builder_save_success: Report successfully saved
+    report_builder_unpublished_changes: Unpublished changes
+    report_builder_view_draft: View Draft
+    report_builder_view_published: View Published
+    report_builder_viewing_draft_message: You are viewing the draft version of the report. This is not what participants see until published.
+    report_builder_viewing_published_message: You are viewing the last published version of the report. Changes in the builder are not reflected here until published.
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
     report_denied: Report for %{user} has been denied
@@ -2626,6 +2641,10 @@ en:
     report_owner: Owner
     report_pdf_status: Report PDF Status
     report_pdf_unavailable: The PDF for this report is not available yet.
+    report_preview_draft_notice: You're viewing a draft version of the report which is not available to the participant unless draft changes are published from builder.
+    report_preview_draft_tag_tooltip: This report has draft changes available. Click to view the draft version.
+    report_preview_view_draft: Preview Draft
+    report_preview_view_published: Preview Published
     report_review_abort_qc: Abort QC
     report_review_approve: Approve
     report_review_approve_changes: Approve Changes

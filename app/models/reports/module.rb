@@ -21,9 +21,20 @@ module Reports
 
     acts_as_list scope: :page_id
 
+    scope :not_removed, -> { where(deleted_at: nil) }
+    scope :pending_removal, -> { where.not(deleted_at: nil) }
+
     validates :page, presence: true
 
     # Disables single column inheritance
     self.inheritance_column = :_type_disabled
+
+    def mark_removed!
+      update!(deleted_at: Time.zone.now)
+    end
+
+    def removed?
+      deleted_at.present?
+    end
   end
 end

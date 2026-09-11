@@ -65,4 +65,31 @@ describe ReportSerializer do
       expect(data[:category]).to eq 'threesixty'
     end
   end
+
+  describe '#has_unpublished_changes' do
+    let(:serialized) { described_class.new(context: { builder: true }).serialize(common_report).deep_symbolize_keys }
+
+    it 'returns false when there is no published snapshot' do
+      expect(serialized[:has_unpublished_changes]).to be false
+    end
+
+    it 'returns false when report is unchanged since last publish' do
+      create(:reports_published_snapshot, report: common_report, published_at: 1.minute.from_now)
+
+      expect(serialized[:has_unpublished_changes]).to be false
+    end
+
+    it 'returns true when report was updated after last publish' do
+      create(:reports_published_snapshot, report: common_report, published_at: 1.day.ago)
+      common_report.touch
+
+      expect(serialized[:has_unpublished_changes]).to be true
+    end
+
+    it 'returns nil when not in builder context' do
+      data = described_class.new(context: {}).serialize(common_report).deep_symbolize_keys
+
+      expect(data[:has_unpublished_changes]).to be_nil
+    end
+  end
 end

@@ -34,6 +34,18 @@ module Administration
         end
       end
 
+      def publish
+        ::Reports::PublishSnapshot.call!(@report, current_user)
+        audit! :publish, @report
+        @report = Report.includes(pages: :modules).find(@report.id)
+        render json: { data: ReportSerializer.new(
+          context: {
+            builder: true,
+            include: '**'
+          }
+        ).serialize(@report) }
+      end
+
       def upload_campaign_factors
         form = ::Administration::CampaignFactors::ImportForm.new(
           file: params[:file],

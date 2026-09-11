@@ -5,7 +5,7 @@ module Callbacks
     module AssessmentsReports
       class RemoveReportsModules
         def after_commit(record)
-          reports_modules(record.assessment_id, record.report_id).destroy_all
+          reports_modules(record.assessment_id, record.report_id).not_removed.find_each(&:mark_removed!)
         end
 
         private
