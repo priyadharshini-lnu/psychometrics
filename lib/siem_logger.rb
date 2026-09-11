@@ -85,10 +85,17 @@ module SiemLogger
       }
     end
 
+    def session_identifier(request)
+      request.session.id&.private_id
+    rescue StandardError
+      nil
+    end
+
     private
 
     def build_mmc_log_entry(event_name, options) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       {
+        'SiemApp' => 'SIEM-APP',
         'EventName' => event_name,
         'EventID' => EVENT_MAPPINGS[event_name],
         'EventType' => 'MMC-Security',
@@ -107,7 +114,7 @@ module SiemLogger
         'ActingAsUser' => options[:acting_as_user] || '',
         'AuthenticationChannel' => options[:authentication_channel] || '',
         'TrackingNumber' => options[:tracking_number] || '',
-        'SessionID' => (options[:session_id] || Current.user&.id || '').to_s,
+        'SessionID' => (options[:session_id] || Current.session_id || '').to_s,
         'CorrelationID' => options.dig(:request_details, :request_id) || Current.request_id || ''
       }
     end

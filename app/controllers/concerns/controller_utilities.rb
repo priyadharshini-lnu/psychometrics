@@ -6,7 +6,6 @@ module ControllerUtilities
   private
 
   def end_user_side?
-    project_subdomain = request.subdomain.gsub(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
-    project_subdomain.present?
+    !AdminSubdomain.admin?(request.subdomain)
   end
 end

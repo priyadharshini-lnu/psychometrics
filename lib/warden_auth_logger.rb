@@ -71,7 +71,7 @@ module WardenAuthLogger
                                      context: "User email: #{actor}",
                                      request_details: SiemLogger.build_request_details(request),
                                      msg: "User #{actor} signed out",
-                                     session_id: user.id)
+                                     session_id: SiemLogger.session_identifier(request))
     end
 
     private
@@ -125,7 +125,7 @@ module WardenAuthLogger
                                      request_details: SiemLogger.build_request_details(request, identity_provider),
                                      msg: "User #{actor} logged in",
                                      authentication_channel: auth_channel,
-                                     session_id: user.id,
+                                     session_id: SiemLogger.session_identifier(request),
                                      identity_provider: identity_provider)
     end
   end

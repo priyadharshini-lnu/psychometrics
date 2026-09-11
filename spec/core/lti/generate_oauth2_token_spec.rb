@@ -19,7 +19,8 @@ RSpec.describe Lti::GenerateOauth2Token do
            remote_ip: '127.0.0.1',
            user_agent: 'Test',
            url: 'http://test.host/lti/token',
-           env: { 'action_dispatch.request_id' => 'req-123' })
+           env: { 'action_dispatch.request_id' => 'req-123' },
+           session: double('session', id: nil))
   end
 
   before do

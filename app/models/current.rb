@@ -14,6 +14,7 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :request_url
   attribute :user_agent
   attribute :application_component
+  attribute :session_id
 
   def self.client_admin_context?
     admin_context == :client_admin && client.present?

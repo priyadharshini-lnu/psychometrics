@@ -18,9 +18,12 @@ RSpec.describe SiemLogger::ControllerHelper do
     end
   end
 
+  let(:session_id) { instance_double(Rack::Session::SessionId, private_id: 'fake-session-private-id') }
+  let(:session) { instance_double(ActionDispatch::Request::Session, id: session_id) }
   let(:request) do
     instance_double(ActionDispatch::Request, remote_ip: '127.0.0.1', user_agent: 'RSpec Agent',
-                                             env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host')
+                                             env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host',
+                                             session: session)
   end
   let(:controller) { dummy_class.new(request) }
   let(:user_email) { 'test@example.com' }
@@ -39,7 +42,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           context: "Test Context by #{user_email}",
           msg: "User #{user_email} performed action",
           actor_name: user_email,
-          session_id: 1,
+          session_id: 'fake-session-private-id',
           request_details: hash_including(
             action_type: 'Test Action',
             resource: 'Test Resource'
@@ -81,7 +84,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           context: 'Test Context by System',
           msg: 'User System performed action',
           actor_name: 'System',
-          session_id: nil
+          session_id: 'fake-session-private-id'
         )
       )
 

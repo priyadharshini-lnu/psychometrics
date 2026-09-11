@@ -39,7 +39,7 @@ module SiemLogger
         authentication_channel: channel,
         request_details: { identity_provider: auth_details[:identity_provider] || '' },
         actor_name: actor,
-        session_id: user.id
+        session_id: siem_session_id
       })
     end
 
@@ -56,7 +56,7 @@ module SiemLogger
         context: context,
         msg: message,
         acting_as_user: target_actor,
-        session_id: target_user.id
+        session_id: siem_session_id
       })
     end
 
@@ -69,7 +69,7 @@ module SiemLogger
         msg: "#{channel} token issued#{" for #{actor}" if actor}",
         authentication_channel: channel,
         request_details: { identity_provider: identity_provider },
-        session_id: user&.id
+        session_id: siem_session_id
       })
     end
 
@@ -98,13 +98,7 @@ module SiemLogger
     def siem_log_authorization_failure(resource:, action:, user: nil)
       user ||= (current_user if respond_to?(:current_user))
 
-      if user
-        actor = SiemLogger.user_identifier(user.email, user.id)
-        session_id = user.id
-      else
-        actor = 'Unknown'
-        session_id = nil
-      end
+      actor = user ? SiemLogger.user_identifier(user.email, user.id) : 'Unknown'
 
       context = "Authorization failed for #{actor}"
       msg = "User #{actor} was denied access to #{resource}"
@@ -114,7 +108,7 @@ module SiemLogger
         context: context,
         msg: msg,
         actor_name: actor,
-        session_id: session_id,
+        session_id: siem_session_id,
         tags: %w[authorization_failure security_event],
         request_details: {
           resource_type: resource.is_a?(Module) ? resource.name : resource.to_s,
@@ -133,7 +127,7 @@ module SiemLogger
         context: "#{context} by #{actor}",
         msg: message,
         actor_name: actor,
-        session_id: user&.id,
+        session_id: siem_session_id,
         request_details: {
           action_type: action_type,
           resource: resource
@@ -143,13 +137,7 @@ module SiemLogger
 
     def siem_log_session_management_exception(exception)
       user = (current_user if respond_to?(:current_user, true))
-      if user
-        actor = SiemLogger.user_identifier(user.email, user.id)
-        session_id = user.id
-      else
-        actor = 'Unknown'
-        session_id = nil
-      end
+      actor = user ? SiemLogger.user_identifier(user.email, user.id) : 'Unknown'
 
       context = "Session verification failed for #{actor}"
       error_message = exception&.message || 'Verification failed'
@@ -159,7 +147,7 @@ module SiemLogger
         context: context,
         msg: msg,
         actor_name: actor,
-        session_id: session_id,
+        session_id: siem_session_id,
         request_details: {
           exception_class: exception&.class&.name
         }
@@ -174,6 +162,10 @@ module SiemLogger
         when :sso then 'API Based SSO'
         else found_by.to_s.upcase
       end
+    end
+
+    def siem_session_id
+      SiemLogger.session_identifier(request) if respond_to?(:request)
     end
 
     def enrich_with_request_context(options)

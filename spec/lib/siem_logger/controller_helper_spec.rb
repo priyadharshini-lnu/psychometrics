@@ -18,9 +18,11 @@ RSpec.describe SiemLogger::ControllerHelper do
     end
   end
 
+  let(:session_id) { instance_double(Rack::Session::SessionId, private_id: 'fake-session-private-id') }
+  let(:session) { instance_double(ActionDispatch::Request::Session, id: session_id) }
   let(:request) do
     instance_double(ActionDispatch::Request, remote_ip: '127.0.0.1', user_agent: 'RSpec Agent',
-    env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host')
+    env: { 'action_dispatch.request_id' => 'req-123' }, url: 'http://test.host', session: session)
   end
   let(:controller) { dummy_class.new(request) }
   let(:user_email) { 'test@example.com' }
@@ -88,7 +90,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           context: 'Admin logged in as Admin',
           msg: "Admin #{user_email} Logged in as Admin target@example.com",
           acting_as_user: 'target@example.com',
-          session_id: 2
+          session_id: 'fake-session-private-id'
         )
       )
 
@@ -104,7 +106,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           context: 'Admin logged in as End User',
           msg: "Admin #{user_email} Logged in as End User target@example.com #123",
           acting_as_user: 'target@example.com',
-          session_id: 2
+          session_id: 'fake-session-private-id'
         )
       )
 
@@ -124,7 +126,7 @@ RSpec.describe SiemLogger::ControllerHelper do
             context: 'Admin logged in as Admin',
             msg: 'Admin 1 Logged in as Admin 2',
             acting_as_user: '2',
-            session_id: 2
+            session_id: 'fake-session-private-id'
           )
         )
 
@@ -144,7 +146,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           msg: "TestChannel token issued for #{user_email}",
           authentication_channel: 'TestChannel',
           request_details: hash_including(identity_provider: 'TestProvider'),
-          session_id: 1
+          session_id: 'fake-session-private-id'
         )
       )
 
@@ -185,7 +187,7 @@ RSpec.describe SiemLogger::ControllerHelper do
             context: "Authorization failed for #{user_email}",
             msg: "User #{user_email} was denied access to TestResource (Action: test_action)",
             actor_name: user_email,
-            session_id: 1,
+            session_id: 'fake-session-private-id',
             request_details: hash_including(
               resource_type: resource,
               action: action
@@ -254,7 +256,7 @@ RSpec.describe SiemLogger::ControllerHelper do
             context: 'Authorization failed for Unknown',
             msg: 'User Unknown was denied access to TestResource (Action: test_action)',
             actor_name: 'Unknown',
-            session_id: nil,
+            session_id: 'fake-session-private-id',
             tags: %w[authorization_failure security_event]
           )
         )
@@ -270,7 +272,7 @@ RSpec.describe SiemLogger::ControllerHelper do
           hash_including(
             context: "Authorization failed for #{user_email}",
             actor_name: user_email,
-            session_id: 1,
+            session_id: 'fake-session-private-id',
             tags: %w[authorization_failure security_event]
           )
         )
@@ -295,7 +297,7 @@ RSpec.describe SiemLogger::ControllerHelper do
             context: "Session verification failed for #{user_email}",
             msg: 'SessionManagementException: Invalid token',
             actor_name: user_email,
-            session_id: 1,
+            session_id: 'fake-session-private-id',
             request_details: hash_including(
               exception_class: 'StandardError'
             )
@@ -318,7 +320,7 @@ RSpec.describe SiemLogger::ControllerHelper do
             context: 'Session verification failed for Unknown',
             msg: 'SessionManagementException: Invalid token',
             actor_name: 'Unknown',
-            session_id: nil,
+            session_id: 'fake-session-private-id',
             request_details: hash_including(
               exception_class: 'StandardError'
             )

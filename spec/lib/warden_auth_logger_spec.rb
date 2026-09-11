@@ -25,7 +25,10 @@ RSpec.describe WardenAuthLogger do
 
   def build_action_dispatch_request(params: {})
     env = build_env(params: params)
-    env['rack.session'] = {}
+    fake_session = {}
+    session_id = instance_double(Rack::Session::SessionId, private_id: 'fake-session-private-id')
+    fake_session.define_singleton_method(:id) { session_id }
+    env['rack.session'] = fake_session
     ActionDispatch::Request.new(env)
   end
 

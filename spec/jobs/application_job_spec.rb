@@ -55,6 +55,45 @@ RSpec.describe ApplicationJob, type: :job do
     end
   end
 
+  context 'Current propagation into jobs' do
+    include ActiveJob::TestHelper
+
+    # rubocop:disable Lint/ConstantDefinitionInBlock
+    class SampleJobCapturingCurrent < ApplicationJob
+      cattr_accessor :captured_request_id
+      cattr_accessor :captured_session_id
+      cattr_accessor :captured_application_component
+      cattr_accessor :captured_ip_address
+
+      def perform
+        self.class.captured_request_id = Current.request_id
+        self.class.captured_session_id = Current.session_id
+        self.class.captured_application_component = Current.application_component
+        self.class.captured_ip_address = Current.ip_address
+      end
+    end
+    # rubocop:enable Lint/ConstantDefinitionInBlock
+
+    it 'carries request_id, session_id, application_component and ip_address from the enqueuing ' \
+       'context, through serialize/deserialize, into perform' do
+      Current.request_id = 'req-abc'
+      Current.session_id = 'sess-xyz'
+      Current.application_component = 'admin'
+      Current.ip_address = '10.0.0.1'
+
+      perform_enqueued_jobs do
+        SampleJobCapturingCurrent.perform_later
+      end
+
+      Current.reset
+
+      expect(SampleJobCapturingCurrent.captured_request_id).to eq('req-abc')
+      expect(SampleJobCapturingCurrent.captured_session_id).to eq('sess-xyz')
+      expect(SampleJobCapturingCurrent.captured_application_component).to eq('admin')
+      expect(SampleJobCapturingCurrent.captured_ip_address).to eq('10.0.0.1')
+    end
+  end
+
   context 'ControlException concern' do
     # rubocop:disable Lint/ConstantDefinitionInBlock
 

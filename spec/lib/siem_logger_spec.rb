@@ -4,6 +4,31 @@ require 'rails_helper'
 require Rails.root.join('lib/siem_logger')
 
 RSpec.describe SiemLogger do
+  describe '.session_identifier' do
+    it 'returns the session private_id, never the raw public_id (cookie value)' do
+      session_id_double = instance_double(Rack::Session::SessionId, private_id: '2::abc123hash',
+                                          public_id: 'raw-cookie-value')
+      session = instance_double(ActionDispatch::Request::Session, id: session_id_double)
+      request = instance_double(ActionDispatch::Request, session: session)
+
+      expect(described_class.session_identifier(request)).to eq('2::abc123hash')
+    end
+
+    it 'returns nil without raising when the request has no session' do
+      request = instance_double(ActionDispatch::Request)
+      allow(request).to receive(:session).and_raise(ActionDispatch::Request::Session::DisabledSessionError)
+
+      expect(described_class.session_identifier(request)).to be_nil
+    end
+
+    it 'returns nil when there is no session id yet' do
+      session = instance_double(ActionDispatch::Request::Session, id: nil)
+      request = instance_double(ActionDispatch::Request, session: session)
+
+      expect(described_class.session_identifier(request)).to be_nil
+    end
+  end
+
   describe '.scrub_url' do
     it 'returns empty string for nil or blank url' do
       expect(described_class.send(:scrub_url, nil)).to eq('')
