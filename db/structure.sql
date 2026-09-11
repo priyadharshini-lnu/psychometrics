@@ -9224,7 +9224,7 @@ CREATE TABLE public.translations (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
-    resource_id integer,
+    resource_id bigint,
     data jsonb DEFAULT '{}'::jsonb
 );
 
@@ -26105,6 +26105,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260911091456'),
 ('20260910120001'),
 ('20260910112450'),
 ('20260825000001'),
