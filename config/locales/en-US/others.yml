@@ -1326,7 +1326,6 @@ en-US:
     privacy_notice_link: <a href="%{privacy_url}">Privacy Notice</a>
     registration:
       description: Fill in the details below to register and create a new account
-      email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
       first_name: First Name
       first_name_placeholder: Enter First Name
       have_account: Already have an account?

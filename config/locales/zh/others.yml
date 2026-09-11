@@ -1329,7 +1329,6 @@ zh:
     privacy_notice_link: <a href="%{privacy_url}">隐私声明
     registration:
       description: 填写以下详细信息以注册并创建新账户
-      email_hint: 我们尊重你的私隐，绝不容忍垃圾信息。我们绝不会将你的信息提供给任何第三方
       first_name: 名
       first_name_placeholder: 输入名
       have_account: 已有账号？

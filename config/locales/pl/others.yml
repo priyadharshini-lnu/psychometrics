@@ -1326,7 +1326,6 @@ pl:
     privacy_notice_link: <a href="%{privacy_url}">Polityka prywatności
     registration:
       description: Wypełnij poniższe dane, aby się zarejestrować i utworzyć nowe konto
-      email_hint: Szanujemy twoją prywatność i nie tolerujemy spamu. Nigdy nie udostępnimy Twoich danych osobom trzecim
       first_name: Imię
       first_name_placeholder: Wprowadź imię
       have_account: Posiadasz już konto?

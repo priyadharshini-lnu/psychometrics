@@ -1326,7 +1326,6 @@ ko:
     privacy_notice_link: <a href="%{privacy_url}">개인정보 처리방침
     registration:
       description: 설명
-      email_hint: 당사는 사용자의 개인정보를 존중하며 스팸을 용납하지 않습니다. 당사는 사용자의 정보를 제3자에게 절대 제공하지 않습니다
       first_name: 이름
       first_name_placeholder: 이름 입력
       have_account: 이미 계정이 있으신가요?

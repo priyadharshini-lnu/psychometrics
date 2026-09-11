@@ -1329,7 +1329,6 @@ sr-Latn:
     privacy_notice_link: <a href="%{privacy_url}">Извештај о приватности
     registration:
       description: Popunite podatke ispod da biste se registrovali i kreirali novi nalog
-      email_hint: Poštujemo vašu privatnost i ne tolerišemo spam. Nikada nećemo dati vaše podatke bilo kojoj trećoj strani
       first_name: Ime
       first_name_placeholder: Unesite ime
       have_account: Već imate nalog?

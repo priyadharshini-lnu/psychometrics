@@ -1326,7 +1326,6 @@ th:
     privacy_notice_link: <a href="%{privacy_url}">ประกาศความเป็นส่วนตัว</a>
     registration:
       description: กรอกรายละเอียดด้านล่างเพื่อลงทะเบียนและสร้างบัญชีใหม่
-      email_hint: เราให้ความสำคัญกับความเป็นส่วนตัวของคุณ และจะไม่เปิดเผยข้อมูลของคุณแก่บุคคลที่สาม
       first_name: ชื่อจริง
       first_name_placeholder: กรอกชื่อจริง
       have_account: มีบัญชีอยู่แล้ว?

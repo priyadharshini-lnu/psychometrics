@@ -1329,7 +1329,6 @@ pt:
     privacy_notice_link: <a href="%{privacy_url}">Aviso de Privacidade
     registration:
       description: Preencha os dados abaixo para se registrar e criar uma nova conta
-      email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros
       first_name: Nome próprio
       first_name_placeholder: Insira o nome próprio
       have_account: Já tem uma conta?

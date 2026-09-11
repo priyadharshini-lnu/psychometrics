@@ -1331,7 +1331,6 @@ de:
     privacy_notice_link: <a href="%{privacy_url}">Datenschutzerklärung
     registration:
       description: Füllen Sie die nachstehenden Angaben aus, um sich zu registrieren und ein neues Konto zu erstellen
-      email_hint: Wir respektieren Ihre Privatsphäre und tolerieren keinen Spam. Wir werden Ihre Daten niemals an Dritte weitergeben
       first_name: Vorname
       first_name_placeholder: Vornamen eingeben
       have_account: Sie haben bereits ein Konto?

@@ -1326,7 +1326,6 @@ zh-Hant:
     privacy_notice_link: <a href="%{privacy_url}">隐私声明
     registration:
       description: 填寫以下詳細資料註冊並建立新帳戶
-      email_hint: 我們尊重您的隱私，絕不容忍垃圾郵件。 我們絕不會將您的資訊提供給任何第三方
       first_name: 姓名
       first_name_placeholder: 輸入名字
       have_account: 已經有一個帳戶？

@@ -1329,7 +1329,6 @@ id:
     privacy_notice_link: <a href="%{privacy_url}">Pernyataan Privasi
     registration:
       description: Isi detail di bawah ini untuk mendaftar dan membuat akun baru
-      email_hint: Kami menghormati privasi Anda dan tidak mentolerir spam. Kami tidak akan pernah memberikan informasi Anda kepada pihak ketiga mana pun
       first_name: Nama depan
       first_name_placeholder: Masukkan Nama Depan
       have_account: Sudah memiliki akun?

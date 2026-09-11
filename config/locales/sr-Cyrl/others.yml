@@ -1326,7 +1326,6 @@ sr-Cyrl:
     privacy_notice_link: <a href="%{privacy_url}">Извештај о приватности
     registration:
       description: Попуните податке испод да бисте се регистровали и креирали нови налог
-      email_hint: Поштујемо вашу приватност и не толеришемо спам. Никада нећемо дати ваше податке трећим лицима.
       first_name: Име
       first_name_placeholder: Унесите име
       have_account: Већ имате налог?

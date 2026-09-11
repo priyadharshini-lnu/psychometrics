@@ -1326,7 +1326,6 @@ hu:
     privacy_notice_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat
     registration:
       description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
-      email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek
       first_name: Keresztnév
       first_name_placeholder: Adja meg a keresztnevét
       have_account: Már van fiókja?

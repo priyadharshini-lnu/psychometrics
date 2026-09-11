@@ -1326,7 +1326,6 @@ it:
     privacy_notice_link: <a href="%{privacy_url}">Informativa sulla privacy
     registration:
       description: Compilare i dati sottostanti per registrarsi e creare un nuovo account
-      email_hint: Rispettiamo la vostra privacy e non tolleriamo lo spam. Non cederemo mai le vostre informazioni a terzi
       first_name: Nome
       first_name_placeholder: Inserire il nome
       have_account: Avete già un account?

@@ -1326,7 +1326,6 @@ vi:
     privacy_notice_link: <a href="%{privacy_url}">Thông báo về quyền riêng tư
     registration:
       description: Điền thông tin bên dưới để đăng ký và tạo tài khoản mới
-      email_hint: Chúng tôi tôn trọng quyền riêng tư của bạn và không chấp nhận thư rác. Chúng tôi sẽ không bao giờ cung cấp thông tin của bạn cho bất kỳ bên thứ ba nào
       first_name: Tên đầu tiên
       first_name_placeholder: Nhập Tên
       have_account: Bạn đã có tài khoản?

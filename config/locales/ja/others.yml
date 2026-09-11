@@ -1331,7 +1331,6 @@ ja:
     privacy_notice_link: <a href="%{privacy_url}">プライバシーポリシー
     registration:
       description: 登録して新規アカウントを作成するには、以下の詳細を入力してください
-      email_hint: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません
       first_name: 名
       first_name_placeholder: 名を入力してください
       have_account: すでにアカウントをお持ちですか？

@@ -142,7 +142,6 @@ const SignupPageComponent: React.FC<Props> = ({
               placeholder={I18n.t('auth.email_placeholder')}
               defaultValue={user.email}
               error={errors.email}
-              hint={I18n.t('auth.registration.email_hint')}
             />
             {showRegistrationCode ? (
               <AuthField

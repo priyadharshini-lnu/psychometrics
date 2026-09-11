@@ -1326,7 +1326,6 @@ sk:
     privacy_notice_link: <a href="%{privacy_url}">Oznámenie o ochrane osobných údajov
     registration:
       description: Vyplňte údaje nižšie a zaregistrujte sa a vytvorte si nové konto
-      email_hint: Rešpektujeme vaše súkromie a netolerujeme spam. Nikdy neposkytneme vaše informácie žiadnej tretej strane
       first_name: Kresťanské meno
       first_name_placeholder: Zadajte meno
       have_account: Už máte účet?
