@@ -12,6 +12,7 @@ import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer
 import { getProgress } from '~/modules/survey/core/preview/FlowProcessor/selectors'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
+import routeUtils from '~/utils/route'
 import styles from './styles.less'
 import {
   fetchAssessorAssessment, getAssessorForms, getCurrentAssessorForm,
@@ -60,6 +61,7 @@ const AssessorAssessment: React.FC<Props> = ({
   validateSession,
 }) => {
   const { search, pathname } = useLocation()
+  const safePathname = routeUtils.sanitizeRelativePath(pathname)
   const navigate = useNavigate()
   const params = new URLSearchParams(search)
   const edit = params.get('edit')
@@ -75,7 +77,7 @@ const AssessorAssessment: React.FC<Props> = ({
 
   const selectResponse = (id: number | null) => {
     params.set('assessment', id ? `${id}` : '')
-    navigate(`${pathname}?${params.toString()}`, { replace: true })
+    navigate(`${safePathname}?${params.toString()}`, { replace: true })
   }
 
   useMessageBus('assessment:finished', (assessmentId) => {
@@ -93,7 +95,7 @@ const AssessorAssessment: React.FC<Props> = ({
     }
     if (edit === 'true') {
       params.set('edit', 'false')
-      navigate(`${pathname}?${params.toString()}`, { replace: true })
+      navigate(`${safePathname}?${params.toString()}`, { replace: true })
     }
   }, [userAssessmentId, currentAssessorFormId])
 
