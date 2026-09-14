@@ -12,7 +12,7 @@ module Threesixty
       from_email ||= "no-reply@#{Settings.domain}"
       send_email(
         context[:recipient],
-        from: "#{from_name} <#{from_email}>",
+        from: Branding.mail_from(from_email, name: from_name),
         reply_to: schedule_email.reply_to_email,
         subject: get_subject(schedule_email, context),
         content_type: 'text/html',
