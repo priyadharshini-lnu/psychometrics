@@ -91,15 +91,14 @@ gem 'jquery-fileupload-rails', '~> 0.4.6'
 gem 'redis', '~> 4.7.1'
 gem 'redlock', '~> 1.2.2'
 
-# A workaround for `roo` since it requires an old version of rubyzip
-gem 'rubyzip', '~> 2.3'
+gem 'rubyzip', '~> 3.6'
 
 ### dependencies for XLS export (via templates)
 # gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
-gem 'caxlsx', '~> 3.2'
+gem 'caxlsx', '~> 4.5'
 gem 'caxlsx_rails', '~> 0.6'
 gem 'fast_excel', '~> 0.5.0'
-gem 'roo', '~> 2.9'
+gem 'roo', '~> 3.0'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 1.0.2'

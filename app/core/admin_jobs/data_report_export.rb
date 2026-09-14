@@ -70,7 +70,7 @@ module AdminJobs
 
     def zip_and_protect
       enc = Zip::TraditionalEncrypter.new(data_report_job.password)
-      buffer = Zip::OutputStream.write_buffer(::StringIO.new(+''), enc) do |output|
+      buffer = Zip::OutputStream.write_buffer(::StringIO.new(+''), encrypter: enc) do |output|
         output.put_next_entry(file_name)
         output.write File.read(file_path)
       end
