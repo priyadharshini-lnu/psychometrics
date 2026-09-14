@@ -24,6 +24,13 @@ const routeUtils = {
   parsedQueryString () {
     return qs.parse(location.search.substr(1))
   },
+  // Prevents open redirects by rejecting protocol-relative/absolute URLs, keeping navigation same-origin
+  sanitizeRelativePath (path) {
+    if (typeof path !== 'string' || !path.startsWith('/') || path.startsWith('//') || path.includes('://')) {
+      return '/'
+    }
+    return path
+  },
 }
 
 export default routeUtils
