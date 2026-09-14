@@ -8,7 +8,6 @@
 //= require bootstrap-colorpicker
 //= require bootstrap.file-input.js
 //= require multiselect
-//= require jquery.quicksearch
 //= require bootstrap-add-clear
 //= require jquery-serialize-object
 //= require Sortable.js
