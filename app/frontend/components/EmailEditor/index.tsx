@@ -24,12 +24,13 @@ interface Props {
   details?: string | null
   className?: string
   withPipedText?: boolean
+  scrollableContainer?: string
 }
 
 const { I18n } = window
 
 export const EmailEditor: React.FC<Props> = ({
-  content, handleContentChange, type, details, className, withPipedText = false,
+  content, handleContentChange, type, details, className, withPipedText = false, scrollableContainer,
 }) => {
   const direction = isRtl(I18n?.currentLocale()) ? 'rtl' : 'ltr'
 
@@ -112,6 +113,7 @@ export const EmailEditor: React.FC<Props> = ({
     },
     toolbarSticky: false,
     pasteDeniedAttrs: ['style'],
+    ...(scrollableContainer ? { scrollableContainer } : {}),
   }
 
   withPipedText && config.toolbarButtons.unshift('pipedText')
