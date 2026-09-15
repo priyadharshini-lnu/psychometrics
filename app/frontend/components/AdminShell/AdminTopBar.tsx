@@ -15,7 +15,7 @@ export const AdminTopBarEnd: FC = () => {
   const isMobile = useMedia({ maxWidth: 600 })
   const { features, adminLocales } = window.PsyGlobalState
   const { currentUser } = useCurrentUser()
-  const isAssessorOnly = currentUser?.roleTitle || currentUser?.role_title === 'Assessor'
+  const isAssessorOnly = currentUser?.roleTitle === 'Assessor' || currentUser?.role_title === 'Assessor'
 
   return (
     <Provider store={adminJobStore}>
