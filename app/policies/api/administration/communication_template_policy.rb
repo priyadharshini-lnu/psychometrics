@@ -11,6 +11,17 @@ module Api
         record_permitted?(:manage)
       end
 
+      def copy?
+        record_permitted?(:view)
+      end
+
+      def copy_to?
+        return false unless feature_enabled?(project_id: project_id, campaign_id: campaign_id)
+        return true if @user.is?(:superadmin)
+
+        has_permission?(:communications, :view)
+      end
+
       def destroy?
         record_permitted?(:manage)
       end
@@ -31,38 +42,29 @@ module Api
           return base_scope if user.is?(:superadmin)
           return base_scope.none unless user.has_grant?(:communications, :view)
 
-          permitted_client_ids = permitted_client_admin_client_ids
-          permitted_project_ids = project_admin_project_ids
-
+          permitted_client_ids = permitted_client_admin_client_ids.uniq & active_client_ids
+          permitted_project_ids = filter_projects_by_active_client(project_admin_project_ids.uniq)
+          campaigns = campaign_admin_campaign_ids
           scoped = base_scope.where(level: :platform)
-          scoped, permitted_client_ids, permitted_project_ids =
-            fold_in_campaign_admin_ancestry(base_scope, scoped, permitted_client_ids, permitted_project_ids)
-
-          permitted_client_ids = permitted_client_ids.uniq & active_client_ids
-          permitted_project_ids = filter_projects_by_active_client(permitted_project_ids.uniq)
-
           scoped = scoped.or(base_scope.where(client_id: permitted_client_ids)) if permitted_client_ids.any?
           scoped = scoped.or(base_scope.where(project_id: permitted_project_ids)) if permitted_project_ids.any?
 
-          scoped
+          expand_scope_for_campaign_admins(base_scope, scoped, campaigns)
         end
 
         private
 
-        # A campaign admin's own admin membership doesn't grant client/project admin rights, so
-        # has_permission? in #resolve never sees them -- fold in their campaigns' own ancestry
-        # directly, otherwise "include inherited" never shows the client/project templates they
-        # inherit from. Campaigns whose owning client has use_new_communication_center disabled are
-        # dropped here so they never reach the client_id/project_id/campaign_id scoping below.
-        def fold_in_campaign_admin_ancestry(base_scope, scoped, permitted_client_ids, permitted_project_ids)
-          return [scoped, permitted_client_ids, permitted_project_ids] unless user.is?(:campaign_admin)
+        def expand_scope_for_campaign_admins(base_scope, scoped, campaigns)
+          return scoped if campaigns.empty?
 
-          campaigns = campaign_admin_campaign_ids
-          client_ids = permitted_client_ids + campaigns.filter_map { |campaign| campaign.project&.parent_id }
-          project_ids = permitted_project_ids + campaigns.map(&:project_id)
-          scoped = scoped.or(base_scope.where(campaign_id: campaigns.map(&:id)))
+          client_ids = campaigns.filter_map { |campaign| campaign.project&.parent_id }.uniq
+          project_ids = campaigns.map(&:project_id).uniq
+          campaign_ids = campaigns.map(&:id)
 
-          [scoped, client_ids, project_ids]
+          scoped.
+            or(base_scope.where(level: :client, client_id: client_ids)).
+            or(base_scope.where(level: :project, project_id: project_ids)).
+            or(base_scope.where(level: :campaign, campaign_id: campaign_ids))
         end
       end
 
@@ -72,6 +74,27 @@ module Api
       # all, which Client.communication_center_active? deliberately treats as enabled.
       def record_scope
         { project_id: record&.project_id || record&.client_id, campaign_id: record&.campaign_id }
+      end
+
+      def record_feature_enabled?
+        return false unless Settings.features.communication_center_enabled
+        return true if record&.client_id.blank? && record&.project_id.blank? && record&.campaign_id.blank?
+
+        ActsAsTenant.without_tenant do
+          template_client&.feature_enabled?(:use_new_communication_center) || false
+        end
+      end
+
+      def template_client
+        ActsAsTenant.without_tenant do
+          if record&.client_id.present?
+            Client.find_by(id: record.client_id)
+          elsif record&.campaign_id.present?
+            Campaign.find_by(id: record.campaign_id)&.client
+          elsif record&.project_id.present?
+            Client.find_by(id: record.project_id)&.client
+          end
+        end
       end
     end
   end

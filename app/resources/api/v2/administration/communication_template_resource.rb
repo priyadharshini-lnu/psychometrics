@@ -22,6 +22,7 @@ class Api::V2::Administration::CommunicationTemplateResource < Api::V2::Administ
   filter :project_id_eq, apply: ->(records, _value, _options) { records }
   filter :campaign_id_eq, apply: ->(records, _value, _options) { records }
   filter :include_inherited, apply: ->(records, _value, _options) { records }
+  filter :only_copy_candidates, apply: ->(records, _value, _options) { records }
 
   # Ransack doesn't apply the model's enum type-casting for eq/in predicates (e.g. status_in: ['archived']
   # would compile to `status IN (0)`, matching `draft`, since 'archived'.to_i == 0) -- map to the underlying
@@ -66,10 +67,33 @@ class Api::V2::Administration::CommunicationTemplateResource < Api::V2::Administ
   def self.records(opts = {})
     scope = policy_scoped_records(opts)
     filter = opts.dig(:context, :params, 'filter') || {}
+    return source_candidates_for_copying(scope, filter) if only_copy_candidates?(filter)
+
     conditions = visible_scope_conditions(filter)
     return scope.none if conditions.empty?
 
     conditions.map { |condition| scope.where(condition) }.reduce(:or)
+  end
+
+  def self.source_candidates_for_copying(scope, filter)
+    return scope.none unless %w[project campaign].include?(filter['level_eq'])
+
+    client_id = client_id_for_copy_destination(filter)
+    return scope.none if client_id.blank?
+
+    scope.where(level: filter['level_eq'], client_id: client_id)
+  end
+
+  def self.client_id_for_copy_destination(filter)
+    ActsAsTenant.without_tenant do
+      case filter['level_eq']
+        when 'project'
+          Client.projects.find_by(id: filter['project_id_eq'])&.parent_id
+        when 'campaign'
+          project_id = Campaign.where(id: filter['campaign_id_eq']).pick(:project_id)
+          Client.projects.find_by(id: project_id)&.parent_id
+      end
+    end
   end
 
   def self.policy_scoped_records(opts)
@@ -88,6 +112,10 @@ class Api::V2::Administration::CommunicationTemplateResource < Api::V2::Administ
 
   def self.include_inherited?(filter)
     ActiveModel::Type::Boolean.new.cast(filter['include_inherited'])
+  end
+
+  def self.only_copy_candidates?(filter)
+    ActiveModel::Type::Boolean.new.cast(filter['only_copy_candidates'])
   end
 
   def self.scope_chain(filter)

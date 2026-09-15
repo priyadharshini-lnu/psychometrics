@@ -693,6 +693,11 @@ en:
     communication_emails: Emails
     communication_template: Communication Template
     communication_template_body_label: Message
+    communication_template_client_copy_unsupported: Client templates cannot be copied
+    communication_template_copy_action: Copy
+    communication_template_copy_from_existing_action: Copy an existing template
+    communication_template_copy_modal_title: Copy template
+    communication_template_copy_success: Template copied successfully
     communication_template_create_new_action: Create new
     communication_template_kind_label: Communication type
     communication_template_level_campaign: Campaign
@@ -704,6 +709,7 @@ en:
     communication_template_override_inherited_action: Override inherited
     communication_template_override_picker_search_placeholder: Search templates to override
     communication_template_override_picker_title: Override inherited template
+    communication_template_platform_copy_unsupported: Platform templates cannot be copied
     communication_template_recipients_all: All
     communication_template_recipients_label: Default recipients
     communication_template_recipients_new_assignment: New assignment
@@ -712,11 +718,16 @@ en:
     communication_template_source_created: Created
     communication_template_source_label: Source
     communication_template_source_override_of: Override of %{level}
+    communication_template_source_template_label: Source template
     communication_template_status_active: Active
     communication_template_status_archived: Archived
     communication_template_status_draft: Draft
     communication_template_status_label: Status
     communication_template_subject_label: Subject
+    communication_template_target_campaign_required: Target campaign is required
+    communication_template_target_client_mismatch: Templates can only be copied within the same client
+    communication_template_target_client_required: Target client is required
+    communication_template_target_project_required: Target project is required
     communication_templates: Templates
     communications: Communications
     communications_form_insert_piped_text: Insert Piped Text

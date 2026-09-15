@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Button, Dropdown, Tag } from 'antd'
+import {
+  App, Button, Dropdown, Tag,
+} from 'antd'
 import { PlusOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource, useResourceContext } from '~/modules/admin/components/Resource'
 import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
@@ -8,6 +10,8 @@ import { CommunicationTemplate } from './core/communicationTemplates'
 import { STATUSES, TemplateLevel, TemplateScope } from './constants'
 import { TemplateForm } from './TemplateForm'
 import { OverrideTemplatePicker } from './OverrideTemplatePicker'
+import { CopyTemplateModal } from './CopyTemplateModal'
+import { getTemplateActions, TemplateAction } from './templateActions'
 
 const { I18n } = window
 
@@ -24,16 +28,29 @@ export const buildScopeFilter = (level: TemplateLevel, scope: TemplateScope): Re
   return filter
 }
 
-const TemplatesFilter: React.FC<{ onCreate: () => void, onOverride: () => void }> = ({ onCreate, onOverride }) => {
+const TemplatesFilter: React.FC<{
+  level: TemplateLevel
+  onCreate: () => void
+  onCopy: () => void
+  onOverride: () => void
+}> = ({
+  level, onCreate, onCopy, onOverride,
+}) => {
   const { resource } = useResourceContext<CommunicationTemplate>()
   const tableLoading = resource.isLoading('fetch')
 
-  const menuItems = [
-    { key: 'create', label: I18n.t('admin.communication_template_create_new_action') },
-    { key: 'override', label: I18n.t('admin.communication_template_override_inherited_action') },
-  ]
+  const actionLabels: Record<TemplateAction, string> = {
+    create: I18n.t('admin.communication_template_create_new_action'),
+    copy: I18n.t('admin.communication_template_copy_from_existing_action'),
+    override: I18n.t('admin.communication_template_override_inherited_action'),
+  }
+  const menuItems = getTemplateActions(level).map(action => ({
+    key: action,
+    label: actionLabels[action],
+  }))
   const handleMenuClick = ({ key }: { key: string }) => {
     if (key === 'create') onCreate()
+    if (key === 'copy') onCopy()
     if (key === 'override') onOverride()
   }
 
@@ -117,7 +134,7 @@ const TemplatesTable: React.FC<TableProps> = ({ onEdit }) => {
         id="action"
         title={I18n.t('common.column.action')}
         hideable={false}
-        width={120}
+        width={180}
         fixed="right"
         render={(_value, template) => (
           <Button type="link" onClick={() => onEdit(template)}>
@@ -136,7 +153,9 @@ interface Props {
 
 export const CommunicationTemplatesList: React.FC<Props> = ({ level, scope = {} }) => {
   const [formState, setFormState] = useState<FormState | null>(null)
+  const [showCopyModal, setShowCopyModal] = useState(false)
   const [showOverridePicker, setShowOverridePicker] = useState(false)
+  const { message } = App.useApp()
 
   const config = {
     trackUrl: true,
@@ -157,7 +176,9 @@ export const CommunicationTemplatesList: React.FC<Props> = ({ level, scope = {} 
       settingsKey={TABLE_SETTINGS_KEYS.communicationCenterTemplates}
     >
       <TemplatesFilter
+        level={level}
         onCreate={() => setFormState({})}
+        onCopy={() => setShowCopyModal(true)}
         onOverride={() => setShowOverridePicker(true)}
       />
       <TemplatesTable
@@ -181,6 +202,17 @@ export const CommunicationTemplatesList: React.FC<Props> = ({ level, scope = {} 
           template={formState.template}
           sourceTemplate={formState.sourceTemplate}
           close={closeForm}
+        />
+      )}
+      {showCopyModal && (
+        <CopyTemplateModal
+          level={level}
+          scope={scope}
+          close={() => setShowCopyModal(false)}
+          onCopied={() => {
+            setShowCopyModal(false)
+            message.success(I18n.t('admin.communication_template_copy_success'))
+          }}
         />
       )}
     </Resource>

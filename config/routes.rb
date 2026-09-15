@@ -1484,6 +1484,7 @@ as: :simulation_progress_notification
           end
           jsonapi_resources :campaign_templates
           jsonapi_resources :communication_templates do
+            post :copy, on: :member
             post :update_translation, on: :member
           end
           jsonapi_resources :communication_deliveries do

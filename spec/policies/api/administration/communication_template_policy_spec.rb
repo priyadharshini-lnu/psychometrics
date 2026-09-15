@@ -33,6 +33,18 @@ RSpec.describe Api::Administration::CommunicationTemplatePolicy do
   let!(:other_client_template) do
     create(:communication_template, level: :client, client: other_client, project: nil, campaign: nil)
   end
+  let!(:other_project_template) do
+    create(:communication_template, level: :project, client: other_client, project: other_project, campaign: nil)
+  end
+  let!(:other_campaign_template) do
+    create(
+      :communication_template,
+      level: :campaign,
+      client: other_client,
+      project: other_project,
+      campaign: other_campaign
+    )
+  end
 
   describe '#create?' do
     let(:superadmin) { create(:superadmin) }
@@ -165,6 +177,74 @@ RSpec.describe Api::Administration::CommunicationTemplatePolicy do
     end
   end
 
+  describe '#copy?' do
+    it 'aliases #show? because copying does not mutate the source template' do
+      user = create(:client_admin, client: client)
+      user.memberships.first.grants.update!(
+        data: AllowedPermissions::CLIENT_ADMIN_PERMISSIONS.deep_merge(communications: ['view'])
+      )
+      policy = described_class.new(user, project_template)
+
+      expect(policy.copy?).to eq(policy.show?)
+    end
+
+    it 'checks the source template client without being limited to the request tenant' do
+      user = create(:superadmin)
+
+      ActsAsTenant.with_tenant(other_client) do
+        expect(described_class.new(user, project_template).copy?).to eq(true)
+      end
+    end
+  end
+
+  describe '#copy_to?' do
+    it 'allows scoped view access because the source remains unchanged' do
+      user = create(:client_admin, client: client)
+      user.memberships.first.grants.update!(
+        data: AllowedPermissions::CLIENT_ADMIN_PERMISSIONS.deep_merge(communications: ['view'])
+      )
+      policy = described_class.new(user, CommunicationTemplate, project_id: project.id)
+
+      expect(policy.copy_to?).to eq(true)
+    end
+
+    it 'denies targets outside the user communication scope' do
+      user = create(:project_admin, project: project)
+      policy = described_class.new(user, CommunicationTemplate, project_id: other_project.id)
+
+      expect(policy.copy_to?).to eq(false)
+    end
+
+    it 'allows a client admin to target another client they administer' do
+      user = create(:client_admin, client: client)
+      create(:client_admin_membership, user: user, client: other_client)
+      policy = described_class.new(user, CommunicationTemplate, project_id: other_client.id)
+
+      expect(policy.copy_to?).to eq(true)
+    end
+
+    it 'allows a project admin to target a project they administer under another client' do
+      user = create(:project_admin, project: project)
+      create(:project_admin_membership, user: user, client: other_project)
+      policy = described_class.new(user, CommunicationTemplate, project_id: other_project.id)
+
+      expect(policy.copy_to?).to eq(true)
+    end
+
+    it 'allows a campaign admin to target a campaign they administer under another client' do
+      user = create(:campaign_admin, campaign: campaign)
+      create(:campaign_admin_membership, user: user, campaign: other_campaign)
+      policy = described_class.new(
+        user,
+        CommunicationTemplate,
+        project_id: other_project.id,
+        campaign_id: other_campaign.id
+      )
+
+      expect(policy.copy_to?).to eq(true)
+    end
+  end
+
   describe '#destroy?' do
     it 'aliases #update?' do
       user = create(:client_admin, client: client)
@@ -191,6 +271,56 @@ RSpec.describe Api::Administration::CommunicationTemplatePolicy do
 
       it 'includes platform, client, and project ancestors of the campaign, plus the campaign template' do
         expect(resolved).to contain_exactly(platform_template, client_template, project_template, campaign_template)
+      end
+
+      context 'for an admin with campaigns across clients' do
+        let(:user) { create(:campaign_admin, campaign: campaign) }
+
+        before { create(:campaign_admin_membership, user: user, campaign: other_campaign) }
+
+        it 'includes templates in both campaign hierarchies' do
+          expect(resolved).to contain_exactly(
+            platform_template,
+            client_template,
+            project_template,
+            campaign_template,
+            other_client_template,
+            other_project_template,
+            other_campaign_template
+          )
+        end
+      end
+
+      context 'for an admin with projects across clients' do
+        let(:user) { create(:project_admin, project: project) }
+
+        before { create(:project_admin_membership, user: user, client: other_project) }
+
+        it 'includes templates under both projects' do
+          expect(resolved).to include(
+            project_template,
+            campaign_template,
+            other_project_template,
+            other_campaign_template
+          )
+        end
+      end
+
+      context 'for an admin with clients across tenants' do
+        let(:user) { create(:client_admin, client: client) }
+
+        before { create(:client_admin_membership, user: user, client: other_client) }
+
+        it 'includes templates under both clients' do
+          expect(resolved).to include(
+            client_template,
+            project_template,
+            campaign_template,
+            other_client_template,
+            other_project_template,
+            other_campaign_template
+          )
+        end
       end
 
       it 'excludes templates from an unrelated client' do
