@@ -12,7 +12,7 @@ module Threesixty
       from_email ||= "no-reply@#{Settings.domain}"
       # rubocop:disable CustomRubocops/AvoidDirectUseOfMailMethod
       mail(
-        from: "#{from_name} <#{from_email}>",
+        from: Branding.mail_from(from_email, name: from_name),
         to: to_email,
         reply_to: email_template.reply_to_email,
         subject: email_template.subject,
