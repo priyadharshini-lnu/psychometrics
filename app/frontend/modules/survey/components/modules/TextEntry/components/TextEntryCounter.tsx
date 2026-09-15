@@ -33,7 +33,7 @@ export const TextEntryCounter: FC<Props> = ({ model }) => {
 
   const answer: string = model?.result?.answers?.[0]?.value ?? ''
   const answerCount: number = characterTypes.includes(validationType)
-    ? answer?.trim()?.length
+    ? answer?.length
     : wordsCount(answer)
 
   const label = characterTypes.includes(validationType)
