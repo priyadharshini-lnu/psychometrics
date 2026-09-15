@@ -122,7 +122,8 @@ module Users
       end
 
       def session_inactivity_timeout
-        applicable_security_setting.session_inactivity_timeout_in_seconds&.seconds || 120.minutes
+        applicable_security_setting.session_inactivity_timeout_in_seconds&.seconds ||
+          Settings.admin_session_inactivity_timeout_minutes.minutes
       end
 
       def lock_account_enabled?
@@ -193,7 +194,7 @@ module Users
           attempts_to_lock: 3,
           password_expiration: 90,
           send_unlock_email: true,
-          session_inactivity_timeout_in_seconds: 120.minutes
+          session_inactivity_timeout_in_seconds: Settings.admin_session_inactivity_timeout_minutes.minutes
         )
       end
 

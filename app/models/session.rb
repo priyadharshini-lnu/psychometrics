@@ -20,7 +20,19 @@ class Session < ActiveRecord::SessionStore::Session
     where('updated_at < ?', older_than).delete_all
   end
 
+  # activerecord-session_store 2.3.0 compares against @data, which Rack mutates in
+  # place, so the row never dirties and Devise's last_request_at never persists.
+  # Upstream: https://github.com/rails/activerecord-session_store/issues/236
+  def data=(value)
+    attribute_will_change!(self.class.data_column_name) if value != persisted_data
+    @data = value
+  end
+
   private
+
+  def persisted_data
+    self.class.deserialize(self[self.class.data_column_name]) || {}
+  end
 
   def populate_queryable_columns
     return unless data.is_a?(Hash)

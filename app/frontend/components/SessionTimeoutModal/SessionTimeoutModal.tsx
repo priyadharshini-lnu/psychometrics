@@ -9,6 +9,7 @@ import { EXTEND_SESSION, extendSession } from '~/core/extendSession'
 import { get as getCurrentUser } from '~/core/currentUser'
 import { isRequestInProgress } from '~/core/request'
 import { CountdownTimer } from '~/glint/components/CountdownTimer'
+import { CreateSyncTimeoutChannel, SyncTimeoutMessage } from '~/utils/createSyncTimeoutChannel'
 import styles from './styles.less'
 import { RootState } from '~/core/reducers'
 import { SYNC_TIMEOUT_CHANNEL } from '~/constants/channelNames'
@@ -45,18 +46,23 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
   const syncTimeoutChannel = useMemo(() => new BroadcastChannel(SYNC_TIMEOUT_CHANNEL), [])
 
   useEffect(() => {
+    const applyNextTimeout = ({ userId, nextTimeout }: SyncTimeoutMessage) => {
+      if (!userId || !nextTimeout) return
+      setCurrentNextTimeout(prevState => (
+        prevState[userId] === nextTimeout ? prevState : { ...prevState, [userId]: nextTimeout }
+      ))
+    }
+
+    const handleBroadcast = (msgEvent: MessageEvent<SyncTimeoutMessage>) => applyNextTimeout(msgEvent.data)
+
     // deepcode ignore InsufficientPostmessageValidation: BroadcastChannel is inherently same-origin
-    syncTimeoutChannel.addEventListener('message', (msgEvent) => {
-      const { userId, nextTimeout } = msgEvent.data
-      if (userId && nextTimeout && (currentNextTimeout[userId] !== nextTimeout)) {
-        setCurrentNextTimeout(prevState => ({
-          ...prevState,
-          [userId]: nextTimeout,
-        }))
-      }
-    })
+    syncTimeoutChannel.addEventListener('message', handleBroadcast)
+    // BroadcastChannel skips the sender, so cover the same tab via a direct subscription.
+    const unsubscribe = CreateSyncTimeoutChannel.subscribe(applyNextTimeout)
 
     return () => {
+      unsubscribe()
+      syncTimeoutChannel.removeEventListener('message', handleBroadcast)
       syncTimeoutChannel.close()
       channel.close()
     }
@@ -64,7 +70,10 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
 
   useEffect(() => {
     originalTitle.current = document.title
-  }, [document.title])
+    // Capture the un-badged favicons once; re-capturing later would snapshot the badge as the original.
+    const links = document.querySelectorAll("link[rel*='icon']") as NodeListOf<HTMLLinkElement>
+    originalFavicons.current = Array.from(links).map(link => link.href)
+  }, [])
 
   useEffect(() => {
     let popupTimer: NodeJS.Timeout
@@ -72,10 +81,6 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
 
     const currentUserId = currentUser?.id
     if (!currentUserId) return undefined
-
-    const links = document.querySelectorAll("link[rel*='icon']") as NodeListOf<HTMLLinkElement>
-    const favicons = Array.from(links).map(link => link.href)
-    originalFavicons.current = favicons
 
     const apiTimeoutValue = currentNextTimeout[currentUserId] || ''
 
@@ -87,14 +92,27 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
     const delayUntilTimeout = (timeoutEpochValue - currentTime) * 1000
     const twoMinutesBeforeTimeout = delayUntilTimeout - 2 * 60 * 1000 // 2 minutes in milliseconds
 
+    // A fresh XHR pushed the expiry past the warning window while the popup is still open.
+    if (showPopup && !isSessionTimedOut && twoMinutesBeforeTimeout > 0) {
+      setShowPopup(false)
+      stopFlashing()
+      channel.postMessage('close_popup')
+    }
 
     // Show popup 2 minutes before timeout
     if (twoMinutesBeforeTimeout > 0) {
       popupTimer = setTimeout(() => {
         setShowPopup(true)
         setKey(prev => prev + 1)
+        setCountdownSeconds(Math.max(1, Math.floor((delayUntilTimeout - twoMinutesBeforeTimeout) / 1000)))
         setPopupMessage(`${I18n.t('frontend.session_timeout_modal.message')}`)
       }, twoMinutesBeforeTimeout)
+    } else if (delayUntilTimeout > 0 && !isSessionTimedOut) {
+      // Effect ran late (e.g. a background tab), so we're already inside the 2-minute window.
+      setShowPopup(true)
+      setKey(prev => prev + 1)
+      setCountdownSeconds(Math.max(1, Math.floor(delayUntilTimeout / 1000)))
+      setPopupMessage(`${I18n.t('frontend.session_timeout_modal.message')}`)
     }
 
     if (delayUntilTimeout > 0) {
@@ -151,6 +169,9 @@ export const SessionTimeoutModalComponent: FC<PropsFromRedux> = ({
 
 
       favicon.onload = () => {
+        // Bail out if stopFlashing already restored the originals while the image was loading.
+        if (!isFlashing.current) return
+
         const size = parseInt(faviconUrl.match(/(\d+)x(\d+)/)?.[0] || '32x32', 10) // Extract size from URL
         canvas.width = size
         canvas.height = size
