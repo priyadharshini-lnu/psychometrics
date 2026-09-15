@@ -130,9 +130,7 @@ const RegistrationComponent: React.FC<Props> = ({
           />
         )}
 
-        <Typography.Paragraph className={styles.hint}>
-          {I18n.t('auth.registration.email_hint')}
-        </Typography.Paragraph>
+
         {user.sms_invite_code ? (
           <Input
             type="hidden"

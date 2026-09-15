@@ -2,9 +2,12 @@ import { Component } from 'react'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
 import {
-  Space, Flex, Button, message, Dropdown,
+  Space, Flex, Button, message, Dropdown, Tag, Tooltip,
 } from 'antd'
-import { ArrowLeftOutlined, SettingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import {
+  ArrowLeftOutlined, SettingOutlined, DownOutlined,
+} from '~/glint/icons/AccessibleIconsAntDesign'
+import { ConfirmationModal } from '~/glint'
 import headerStore from '~/modules/reports/store/HeaderStore'
 import AppStore from '~/modules/reports/store/AppStore'
 import Module from '~/modules/reports/models/Module'
@@ -14,6 +17,7 @@ import schema from '~/modules/reports/store/schema'
 import { INIT } from '~/modules/reports/core/builder/actions'
 import styles from './FixedHeader.less'
 import { LangDropdown } from '~/components/LangDropdown'
+import dayjs from '~/utils/dayjs'
 
 const { $ } = window
 const defaultLocales = ['en']
@@ -37,6 +41,8 @@ export const LangDropdownWithChangeUrl = ({ locales = defaultLocales, defaultLan
 }
 
 export class FixedHeader extends Component {
+  state = { publishing: false, saving: false, confirmPublishOpen: false }
+
   componentDidMount () {
     $(document).on('scroll', _.debounce(e => this.bodyScroll(e), 200))
     $(document).on('keydown', this.bodyKeyDown)
@@ -198,23 +204,70 @@ export class FixedHeader extends Component {
     this.addModule('Table')
   }
 
-  save = (e) => {
+  save = () => {
     const { save, report, unselectModules } = this.props
-    const target = e.currentTarget
     unselectModules()
-    target.setAttribute('disabled', 'disabled')
+    this.setState({ saving: true })
 
     save(report).then(({ response: { data } }) => {
-      target.removeAttribute('disabled')
       const normalizedData = normalize(data, schema)
       unselectModules()
       AppStore.init(data.data)
       store.dispatch({ type: INIT, data: normalizedData })
-      message.success('Report successfully saved')
+      message.success(I18n.t('admin.report_builder_save_success'))
     }).catch(() => {
-      target.removeAttribute('disabled')
-      message.error('Something went wrong. Contact your administrator.')
+      message.error(I18n.t('admin.report_builder_save_failed'))
+    }).finally(() => {
+      this.setState({ saving: false })
     })
+  }
+
+  saveAndPublish = () => {
+    const { report: { builder: { published_at: publishedAt } } } = this.props
+
+    if (!publishedAt) {
+      this.publishReport()
+      return
+    }
+
+    this.setState({ confirmPublishOpen: true })
+  }
+
+  closeConfirmPublish = () => {
+    this.setState({ confirmPublishOpen: false })
+  }
+
+  publishReport = async () => {
+    const {
+      save, publish, report, unselectModules,
+    } = this.props
+    unselectModules()
+    this.setState({ publishing: true })
+
+    let saveResponse
+    try {
+      saveResponse = await save(report)
+    } catch {
+      message.error(I18n.t('admin.report_builder_save_failed'))
+      this.setState({ publishing: false })
+      return
+    }
+
+    const savedData = saveResponse.response.data
+    unselectModules()
+    AppStore.init(savedData.data)
+    store.dispatch({ type: INIT, data: normalize(savedData, schema) })
+
+    try {
+      const { response: { data } } = await publish(report)
+      AppStore.init(data.data)
+      store.dispatch({ type: INIT, data: normalize(data, schema) })
+      message.success(I18n.t('admin.report_builder_publish_success'))
+    } catch {
+      message.error(I18n.t('admin.report_builder_publish_failed'))
+    } finally {
+      this.setState({ publishing: false })
+    }
   }
 
   openSettingsModal = () => {
@@ -249,9 +302,16 @@ export class FixedHeader extends Component {
 
 
   render () {
+    const { publishing, saving, confirmPublishOpen } = this.state
     const {
       richEditorOpened, report: {
-        builder: { available_languages: availableLanguages, default_language: defaultLanguage },
+        builder: {
+          available_languages: availableLanguages,
+          default_language: defaultLanguage,
+          published_at: publishedAt,
+          published_by_name: publishedByName,
+          has_unpublished_changes: hasUnpublishedChanges,
+        },
       },
     } = this.props
     const style = {
@@ -262,6 +322,10 @@ export class FixedHeader extends Component {
       width: '100%',
     }
     const locales = availableLanguages?.map(l => l.code)
+    const publishedViewUrl = `/administration/reports/${_.result(AppStore.report, 'id')}/preview?published_view=true`
+    const publishLabel = publishedAt
+      ? I18n.t('admin.report_builder_published_at', { date: dayjs(publishedAt).format('D MMM YYYY, HH:mm') })
+      : null
 
     return (
       <div ref={(ref) => { this.menu = ref }} id="fixed_header" className={styles.header} style={style}>
@@ -302,11 +366,57 @@ export class FixedHeader extends Component {
             </Flex>
 
             <div className={`${styles.rightSet}`}>
-              <Space>
+              <Space align="center">
+                <Space size={4} align="center">
+                  {hasUnpublishedChanges && (
+                    <Tag color="warning" bordered={false}>
+                      {I18n.t('admin.report_builder_unpublished_changes')}
+                    </Tag>
+                  )}
+                  {publishLabel && (
+                    <Tooltip
+                      title={publishedByName
+                        ? I18n.t('admin.report_builder_published_by', { name: publishedByName })
+                        : undefined}
+                    >
+                      <span style={{ fontSize: 11, color: '#8c8c8c' }}>{publishLabel}</span>
+                    </Tooltip>
+                  )}
+                </Space>
                 <LangDropdownWithChangeUrl locales={locales} defaultLanguage={defaultLanguage.code} />
-                <Button onClick={this.save} type="primary">
-                  Save
-                </Button>
+                {publishedAt ? (
+                  <Dropdown.Button
+                    type="primary"
+                    onClick={this.save}
+                    loading={saving || publishing}
+                    trigger={['click']}
+                    icon={<DownOutlined />}
+                    menu={{
+                      items: [
+                        {
+                          key: 'save_and_publish',
+                          label: I18n.t('admin.report_builder_save_and_publish'),
+                          onClick: this.saveAndPublish,
+                        },
+                        {
+                          key: 'view_published',
+                          label: I18n.t('admin.report_builder_view_published'),
+                          onClick: () => window.open(publishedViewUrl, '_blank'),
+                        },
+                      ],
+                    }}
+                  >
+                    {I18n.t('admin.report_builder_save_as_draft')}
+                  </Dropdown.Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    onClick={this.saveAndPublish}
+                    loading={saving || publishing}
+                  >
+                    {I18n.t('admin.report_builder_save_and_publish')}
+                  </Button>
+                )}
                 <Dropdown
                   trigger={['click']}
                   menu={{
@@ -362,6 +472,15 @@ export class FixedHeader extends Component {
               </Space>
             </div>
           </div>
+        )}
+        {confirmPublishOpen && (
+          <ConfirmationModal
+            open
+            title={I18n.t('admin.report_builder_publish_confirm_title')}
+            message={I18n.t('admin.report_builder_publish_confirm_content')}
+            onConfirm={this.publishReport}
+            close={this.closeConfirmPublish}
+          />
         )}
       </div>
     )

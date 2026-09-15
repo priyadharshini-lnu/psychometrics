@@ -13,7 +13,7 @@ module UserReports
       @record = user_report
       @current_user = current_user
       @campaign = user_report.campaign
-      @report = user_report.report
+      @report = user_report.report.effective_reader(draft: options[:view_draft].present?)
       @user = user_report.user
       @options = options
     end
@@ -92,8 +92,13 @@ module UserReports
     end
 
     def report_file_name
-      @report_file_name ||=
-        "#{user.email}_#{report.decorate.display_name.parameterize(preserve_case: true)}_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf" # rubocop:disable Layout/LineLength
+      @report_file_name ||= begin
+        parts = [user.email, report.decorate.display_name.parameterize(preserve_case: true)]
+        parts << Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')
+
+        file_name = "#{parts.join('_')}.pdf"
+        options[:view_draft] ? "Draft_#{file_name}" : file_name
+      end
     end
 
     def report_directory
@@ -113,7 +118,8 @@ module UserReports
         port: Settings.port,
         protocol: Settings.protocol,
         id: user_report.id,
-        skip_logic: options[:skip_logic]
+        skip_logic: options[:skip_logic],
+        view_draft: options[:view_draft]
       }
     end
   end

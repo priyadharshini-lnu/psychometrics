@@ -1326,7 +1326,6 @@ ro:
     privacy_notice_link: <a href="%{privacy_url}">Politica de confidențialitate
     registration:
       description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
-      email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți
       first_name: Prenumele
       first_name_placeholder: Introduceți prenumele
       have_account: Aveți deja un cont?

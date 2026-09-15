@@ -12,12 +12,16 @@ class Translation < ApplicationRecord
   validates :translateable_type, uniqueness: { scope: %i[translateable_id locale resource_type resource_id] }
 
   after_commit :touch_assessment
+  after_commit :touch_report
 
   scope :for_assessment, lambda { |assessment_id|
     where(resource_type: Assessment::TYPES[:common], resource_id: assessment_id)
   }
   scope :for_report, lambda { |report_id|
     where(resource_type: 'Report', resource_id: report_id)
+  }
+  scope :for_snapshot, lambda { |snapshot_id|
+    where(resource_type: 'Reports::PublishedSnapshot', resource_id: snapshot_id)
   }
 
   class << self
@@ -55,11 +59,11 @@ class Translation < ApplicationRecord
       for_assessment(assessment_id).group(:locale).pluck(:locale)
     end
 
-    def to_hash_for_report(report_id, assessment_ids, locale)
+    def to_hash_for(scope, assessment_ids, locale)
       results = {}
       migration_status = Assessment.where(id: assessment_ids).pluck(:id, :translations_migrated).to_h
 
-      for_report(report_id).or(for_assessment(assessment_ids)).where(locale: locale).find_each do |t|
+      scope.or(for_assessment(assessment_ids)).where(locale: locale).find_each do |t|
         results[t.translateable_type.underscore] ||= {}
         results[t.translateable_type.underscore][t.translateable_id] ||= if migration_status[t.resource_id]
                                                                            t.data['props']
@@ -68,6 +72,10 @@ class Translation < ApplicationRecord
                                                                          end
       end
       results
+    end
+
+    def to_hash_for_report(report_id, assessment_ids, locale)
+      to_hash_for(for_report(report_id), assessment_ids, locale)
     end
 
     def available_translation_for_report(report_id, _assessment_id)
@@ -91,5 +99,12 @@ class Translation < ApplicationRecord
     if translateable_type.in?(%w[Question Block Instructions])
       resource&.touch
     end
+  end
+
+  def touch_report
+    return unless resource_type == 'Report'
+    return unless resource&.persisted?
+
+    resource.touch
   end
 end

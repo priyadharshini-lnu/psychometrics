@@ -2,12 +2,12 @@ import { useState, useEffect, useMemo } from 'react'
 import cs from 'classnames'
 import { PageHeader } from '@ant-design/pro-components'
 import {
-  Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag,
+  Layout, Button, Row, Col, Spin, Space, App, Affix, Dropdown, Tag, Alert, Tooltip,
 } from 'antd'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import _ from 'lodash'
 import { normalize } from 'normalizr'
-import { ArrowLeftOutlined, DownOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { ArrowLeftOutlined, DownOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { LangDropdownWithChangeUrl } from '~/components/LangDropdown'
 import Report from '~/modules/reports/report'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
@@ -77,8 +77,10 @@ export default function ReportPreview ({
   const { urlToPdfFaas: isUrlToPdfFaasFeatureEnabled } = camelizeKeys(features)
 
   const lang = new URLSearchParams(location.search).get('report_lang') || userReport.report.default_language?.code
+  const viewDraft = params.get('view_draft') === 'true'
+  const canSwitchToDraft = userReport.permissions.viewDraft && userReport.hasUnpublishedChanges
   useEffect(() => {
-    fetchReport(parsedCampaignId, parsedId, { reportLang: lang })
+    fetchReport(parsedCampaignId, parsedId, { reportLang: lang, viewDraft: viewDraft || undefined })
 
     return () => {
       clearUseReportDetails()
@@ -108,6 +110,13 @@ export default function ReportPreview ({
       direction: isRtl(lang) ? 'rtl' : 'ltr',
     } : defaultLanguage
 
+    const allowEdit = !viewDraft
+      && userReport.approvalStatus === ApprovalStatuses.QCInProgress
+      && userReport.permissions.editQc
+    const allowApprove = !viewDraft
+      && userReport.approvalStatus === ApprovalStatuses.QCCompleted
+      && userReport.permissions.manageApproval
+
     return (
       <Report
         data={report}
@@ -117,10 +126,8 @@ export default function ReportPreview ({
         locales={locales}
         selectedLocale={selectedLanguage}
         userReport={userReport}
-        allowEdit={userReport.approvalStatus === ApprovalStatuses.QCInProgress
-          && userReport.permissions.editQc}
-        allowApprove={userReport.approvalStatus === ApprovalStatuses.QCCompleted
-          && userReport.permissions.manageApproval}
+        allowEdit={allowEdit}
+        allowApprove={allowApprove}
         skipLogic={skipLogic}
         setPages={setPages}
       />
@@ -132,14 +139,20 @@ export default function ReportPreview ({
     navigate(`?${params.toString()}`, { replace: true })
   }
 
+  const onToggleDraftView = () => {
+    params.set('view_draft', `${!viewDraft}`)
+    window.location.search = params.toString()
+  }
+
   const onReportDownloadClick = () => {
     if (isUrlToPdfFaasFeatureEnabled) {
-      asyncDownload(parsedCampaignId, parsedId, { reportLang: lang })
+      asyncDownload(parsedCampaignId, parsedId, { reportLang: lang, viewDraft })
       message.success(I18n.t('user_reports.messages.async_generation'))
     } else {
       download(parsedCampaignId, parsedId, {
         skipLogic,
         reportLang: lang,
+        viewDraft,
       })
     }
   }
@@ -175,7 +188,7 @@ export default function ReportPreview ({
         </Button>
       </Dropdown>,
     ]
-    if (userReport.requireApproval) {
+    if (userReport.requireApproval && !viewDraft) {
       if (userReport.approvalStatus === ApprovalStatuses.NotReady
         && userReport.permissions.canMarkReady
         && userReport.permissions.markReady) {
@@ -327,6 +340,20 @@ export default function ReportPreview ({
             <Space>
               <span>{I18n.t('user_reports.preview_report')}</span>
               {!reportIsLoaded() && <Spin />}
+              {reportIsLoaded() && !viewDraft && canSwitchToDraft && (
+                <Tooltip title={I18n.t('admin.report_preview_draft_tag_tooltip')}>
+                  <Tag
+                    color="blue"
+                    className={styles.draftToggleTag}
+                    onClick={onToggleDraftView}
+                  >
+                    <Space size={4}>
+                      {I18n.t('admin.report_preview_view_draft')}
+                      <InfoCircleOutlined />
+                    </Space>
+                  </Tag>
+                </Tooltip>
+              )}
             </Space>
           )}
           backIcon={(
@@ -336,6 +363,21 @@ export default function ReportPreview ({
           )}
           extra={reportIsLoaded() && actions()}
         >
+          {reportIsLoaded() && viewDraft && (
+            <Alert
+              className={styles.draftNotice}
+              type="warning"
+              showIcon
+              title={(
+                <Space size={4}>
+                  {I18n.t('admin.report_preview_draft_notice')}
+                  <Button type="link" className={styles.draftNoticeAction} onClick={onToggleDraftView}>
+                    {I18n.t('admin.report_preview_view_published')}
+                  </Button>
+                </Space>
+              )}
+            />
+          )}
           {userReport.richEditorOpened && (
             <Affix className={styles.affix}>
               <div className={styles.toolbar} style={{ zIndex: 9999 }} key="editor" id="froala-editor-toolbar" />

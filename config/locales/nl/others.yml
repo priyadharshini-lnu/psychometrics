@@ -1326,7 +1326,6 @@ nl:
     privacy_notice_link: <a href="%{privacy_url}">Privacyverklaring
     registration:
       description: Vul de onderstaande gegevens in om te registreren en een nieuwe account aan te maken
-      email_hint: We respecteren je privacy en tolereren geen spam. We zullen je gegevens nooit doorgeven aan derden
       first_name: Voornaam
       first_name_placeholder: Voer uw voornaam in
       have_account: Heb je al een account?

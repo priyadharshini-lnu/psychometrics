@@ -1329,7 +1329,6 @@ cs:
     privacy_notice_link: <a href="%{privacy_url}">Zásady ochrany osobních údajů
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
-      email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.
       first_name: Jméno
       first_name_placeholder: Zadejte jméno
       have_account: Už máte účet?

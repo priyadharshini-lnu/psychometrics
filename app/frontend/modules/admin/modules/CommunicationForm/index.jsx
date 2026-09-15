@@ -16,7 +16,12 @@ export default function Form ({ elementId }) {
   return (
     <div className="ant-form-vertical">
       <Provider store={store}>
-        <EmailEditor handleContentChange={onChange} content={el.value} withPipedText />
+        <EmailEditor
+          handleContentChange={onChange}
+          content={el.value}
+          withPipedText
+          scrollableContainer="#modal-container .modal"
+        />
         <Modals modals={{ PipedTextModal }} />
       </Provider>
     </div>

@@ -14,13 +14,13 @@ module UserReports::PdfGeneration
                   if: -> { respond_to?(:enforce_admin_session_validity, true) }
   end
 
-  def show # rubocop:disable Metrics/AbcSize
+  def show
     @available_translations = ::Translation.available_translation_for_report(resource.id, nil)
     @selected_locale = params[:report_lang] || resource.report.default_language
 
     audit! :view_report, resource, campaign: resource.campaign, payload: params.merge(resource.details_to_log)
 
-    respond_to do |format| # rubocop:disable Metrics/BlockLength
+    respond_to do |format|
       format.json do
         if resource.external_report? || resource.provider_custom_upload?
           return render(
@@ -30,22 +30,8 @@ module UserReports::PdfGeneration
           )
         end
 
-        Mobility.with_locale(params[:report_lang] || resource.report.default_language) do
-          render json: ::UserReportSerializer.new(
-            context: {
-              report: resource.report,
-              results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
-              piped_text_context: resource.piped_text_context,
-              user_results: resource.user_results(view_report_as),
-              view_report_as: view_report_as,
-              current_user: current_user,
-              campaign: resource.campaign,
-              threesixty_campaign: resource.threesixty_campaign,
-              options: resource.threesixty_campaign&.option,
-              lang: params[:report_lang],
-              campaign_user: resource.campaign_user
-            }
-          ).serialize(resource)
+        Mobility.with_locale(@selected_locale) do
+          render json: ::UserReportSerializer.new(context: user_report_context).serialize(resource)
         end
       end
     end
@@ -58,7 +44,8 @@ module UserReports::PdfGeneration
       notify_user: true,
       update_record: false,
       skip_logic: params[:skip_logic],
-      view_report_as: view_report_as
+      view_report_as: view_report_as,
+      view_draft: view_draft?
     }
     respond_to do |format|
       format.json do
@@ -83,7 +70,9 @@ module UserReports::PdfGeneration
     I18n.locale = selected_locale
 
     Mobility.with_locale(selected_locale) do
-      @data = ::UserReports::PrepareDataForReportPreview.call!(resource, locale: selected_locale)
+      @data = ::UserReports::PrepareDataForReportPreview.call!(
+        resource, locale: selected_locale, view_draft: view_draft?
+      )
     end
     @pdf_export = true
 
@@ -94,5 +83,29 @@ module UserReports::PdfGeneration
 
   def view_report_as
     raise NoMethodError, 'view_report_as method not defined'
+  end
+
+  # Only admins may preview unpublished draft changes; overridden in Administration::Campaigns::UserReportsController
+  def view_draft?
+    false
+  end
+
+  def user_report_context
+    viewing_draft = view_draft?
+
+    {
+      report: resource.report.effective_reader(draft: viewing_draft),
+      view_draft: viewing_draft,
+      results: UserReports::GroupedResultsByAssessment.call!(resource, view_report_as, current_user),
+      piped_text_context: resource.piped_text_context,
+      user_results: resource.user_results(view_report_as),
+      view_report_as: view_report_as,
+      current_user: current_user,
+      campaign: resource.campaign,
+      threesixty_campaign: resource.threesixty_campaign,
+      options: resource.threesixty_campaign&.option,
+      lang: params[:report_lang],
+      campaign_user: resource.campaign_user
+    }
   end
 end

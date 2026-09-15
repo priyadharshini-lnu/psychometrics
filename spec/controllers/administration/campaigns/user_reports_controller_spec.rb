@@ -148,6 +148,96 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       expect(parsed_reponse.keys).to include('report', 'results', 'status', 'user')
     end
+
+    it 'renders successfully when the subject has a completed assessment result' do
+      create(:users_result, subject: user, evaluator: user, campaign: campaign, assessment: assessment,
+                             status: :completed, score_calculated: true)
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'includes the context for report rendering' do
+      expect(ReportSerializer).to receive(:new).at_least(:once).and_wrap_original do |original, *args, **kwargs|
+        if kwargs[:context]
+          expect(kwargs[:context][:user_results]).to be_a(ActiveRecord::Relation)
+          expect(kwargs[:context][:piped_text_context]).to eq(user_report.piped_text_context)
+        end
+        original.call(*args, **kwargs)
+      end
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'renders the published snapshot by default even when view_draft param is absent' do
+      report.update!(props: { 'sizes' => { 'width' => 700, 'height' => 800 } })
+      Reports::PublishSnapshot.call!(report, current_user)
+      report.update!(props: { 'sizes' => { 'width' => 999, 'height' => 999 } })
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      parsed_response = response.parsed_body
+      expect(parsed_response.dig('report', 'props', 'sizes', 'width')).to eq(700)
+    end
+
+    it 'renders the live draft report when view_draft param is true' do
+      report.update!(props: { 'sizes' => { 'width' => 700, 'height' => 800 } })
+      Reports::PublishSnapshot.call!(report, current_user)
+      report.update!(props: { 'sizes' => { 'width' => 999, 'height' => 999 } })
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id, view_draft: 'true' }, format: :json
+
+      parsed_response = response.parsed_body
+      expect(parsed_response.dig('report', 'props', 'sizes', 'width')).to eq(999)
+    end
+
+    it 'computes report_data from the draft when view_draft param is true' do
+      Reports::PublishSnapshot.call!(report, current_user)
+      expect(UserReports::PrepareUserReportData).to receive(:call!).
+        with(user_report, :admin, view_draft: true).and_return([])
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id, view_draft: 'true' }, format: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'computes report_data from the published snapshot by default' do
+      Reports::PublishSnapshot.call!(report, current_user)
+      expect(UserReports::PrepareUserReportData).to receive(:call!).
+        with(user_report, :admin, view_draft: false).and_return([])
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'forbids view_draft for a user without reports manage grant' do
+      campaign_admin = create(:campaign_admin, campaign: campaign)
+      sign_out(current_user)
+      login_user(campaign_admin)
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id, view_draft: 'true' }, format: :json
+
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it 'still serves the published snapshot to that user without the view_draft param' do
+      report.update!(props: { 'sizes' => { 'width' => 700, 'height' => 800 } })
+      Reports::PublishSnapshot.call!(report, current_user)
+      report.update!(props: { 'sizes' => { 'width' => 999, 'height' => 999 } })
+
+      campaign_admin = create(:campaign_admin, campaign: campaign)
+      sign_out(current_user)
+      login_user(campaign_admin)
+
+      get :show, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :json
+
+      parsed_response = response.parsed_body
+      expect(parsed_response.dig('report', 'props', 'sizes', 'width')).to eq(700)
+    end
   end
 
   describe 'GET pdf_preview' do
@@ -198,6 +288,24 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       expect(UserReports::GeneratePdf).to receive(:call!).and_return(file_path: file_path)
       expect(controller).to receive(:send_tmp_file).with(file_path, type: 'application/pdf')
+
+      get :download, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :pdf
+    end
+
+    it 'passes view_draft true to GeneratePdf when requested by a permitted user' do
+      expect(UserReports::GeneratePdf).to receive(:call!).
+        with(user_report, current_user, hash_including(view_draft: true)).
+        and_return(file_path: 'tmp/reports/user.pdf')
+      expect(controller).to receive(:send_tmp_file)
+
+      get :download, params: { new_campaign_id: campaign.id, id: user_report.id, view_draft: 'true' }, format: :pdf
+    end
+
+    it 'passes view_draft false to GeneratePdf by default' do
+      expect(UserReports::GeneratePdf).to receive(:call!).
+        with(user_report, current_user, hash_including(view_draft: false)).
+        and_return(file_path: 'tmp/reports/user.pdf')
+      expect(controller).to receive(:send_tmp_file)
 
       get :download, params: { new_campaign_id: campaign.id, id: user_report.id }, format: :pdf
     end
@@ -743,6 +851,23 @@ RSpec.describe Administration::Campaigns::UserReportsController, type: :controll
 
       parsed_response = response.parsed_body
       expect(parsed_response.keys).to include('report', 'results', 'status', 'user')
+    end
+
+    it 'serves the published snapshot even after the draft report props are changed' do
+      campaign_report = create(:campaign_report, user_dashboard: true)
+      campaign = campaign_report.campaign
+      campaign_user = create(:campaign_user, campaign: campaign)
+      user = campaign_user.user
+      create(:user_report, campaign_id: campaign.id, report_id: campaign_report.report_id, user_id: user.id)
+      report = campaign_report.report
+      report.update!(props: { 'sizes' => { 'width' => 700, 'height' => 800 } })
+      Reports::PublishSnapshot.call!(report, current_user)
+      report.update!(props: { 'sizes' => { 'width' => 999, 'height' => 999 } })
+
+      get :dashboard, params: { new_campaign_id: campaign.id, email: user.email }, format: :json
+
+      parsed_response = response.parsed_body
+      expect(parsed_response.dig('report', 'props', 'sizes', 'width')).to eq(700)
     end
   end
 

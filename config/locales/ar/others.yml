@@ -1330,7 +1330,6 @@ ar:
     privacy_notice_link: <a href="%{privacy_url}">إشعار الخصوصية
     registration:
       description: ".الرجاء قم بتعبئة بيانتك الشخصية لأنشاء حساب جديد"
-      email_hint: نحن نحترم خصوصيتكم و لا نتهاون مع البريد غير المرغوب فيه. لن نعطي معلوماتك لأي طرف ثالث.
       first_name: الاسم الاول
       first_name_placeholder: أدخل اسمك الأول
       have_account: مسجل بالفعل؟

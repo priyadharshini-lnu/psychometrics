@@ -17,7 +17,8 @@ module UserReports::GeneratePdfConcern
     Kernel.system("$(cd #{Rails.root} && npm run export_pdf -- #{args})")
     @job_record&.increment_completed_tasks!
 
-    if File.exist?(file_path)
+    # A draft pdf must never become the stored, participant-facing file.
+    if File.exist?(file_path) && !options[:view_draft]
       @record.report_pdfs.find_or_create_by!(locale: options[:lang]).pdf_file.attach(
         key: file_path,
         io: File.open(file_path),
@@ -31,7 +32,7 @@ module UserReports::GeneratePdfConcern
     { file_path: file_path }
   end
 
-  def export_pdf_using_faas(record) # rubocop:disable Metrics/AbcSize
+  def export_pdf_using_faas(record) # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
     update_record = options[:update_record] != false
     report_pdf = if record.is_a?(UserIdpPlan)
                    pdf = record.report_pdfs.find_or_create_by!(
@@ -42,6 +43,9 @@ module UserReports::GeneratePdfConcern
                    pdf
                  end
     report_pdf ||= record.report_pdfs.find_or_create_by!(locale: options[:lang])
+
+    # A draft pdf must never become the stored, participant-facing file.
+    update_record = false if options[:view_draft]
 
     file_path = if options[:file_path]
                   "#{options[:file_path]}/#{report_file_name}"

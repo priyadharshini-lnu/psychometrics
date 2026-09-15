@@ -37,7 +37,7 @@ module Api
       private
 
       def report
-        object.report
+        object.report.effective_reader
       end
     end
   end

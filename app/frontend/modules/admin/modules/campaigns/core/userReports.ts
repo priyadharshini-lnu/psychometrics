@@ -142,7 +142,9 @@ interface UserReportDetails {
     approversCanEdit: boolean
     translate: boolean
     markReady: boolean
+    viewDraft: boolean
   }
+  hasUnpublishedChanges: boolean
   possibleWebhookEvents?: string[]
 }
 
@@ -183,7 +185,9 @@ const defaultState: State = {
       approversCanEdit: false,
       translate: false,
       markReady: false,
+      viewDraft: false,
     },
+    hasUnpublishedChanges: false,
     possibleWebhookEvents: [],
   },
   selectedModule: null,

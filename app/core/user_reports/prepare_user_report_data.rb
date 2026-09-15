@@ -4,9 +4,9 @@ module UserReports
   class PrepareUserReportData < BaseCommand
     private_attr_reader :user_report, :report, :view_report_as
 
-    def initialize(user_report, view_report_as = nil)
+    def initialize(user_report, view_report_as = nil, view_draft: false)
       @user_report = user_report
-      @report = @user_report.report
+      @report = @user_report.report.effective_reader(draft: view_draft)
       @view_report_as = view_report_as
     end
 

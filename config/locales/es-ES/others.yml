@@ -1331,7 +1331,6 @@ es-ES:
     privacy_notice_link: ''
     registration:
       description: Introduzca a continuación la información necesaria para registrarse y crear una cuenta nueva
-      email_hint: Respetamos su privacidad y no toleramos el correo no deseado. En ningún caso facilitaremos su información a terceros
       first_name: Nombre
       first_name_placeholder: Introduzca su nombre
       have_account: "¿Ya tiene una cuenta?"

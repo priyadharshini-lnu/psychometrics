@@ -6,7 +6,7 @@ module UserReports
 
     def initialize(user_report, options)
       @user_report = user_report
-      @report = @user_report.report
+      @report = @user_report.report.effective_reader(draft: options[:view_draft].present?)
       @options = options
       @view_report_as = options[:view_report_as]
     end
@@ -16,7 +16,8 @@ module UserReports
                 user: Reports::UserSerializer.new(context: { campaign: user_report.campaign }).
                   serialize(user_report.user).to_json,
                 results: UserReports::GroupedResultsByAssessment.call!(user_report, view_report_as).to_json,
-                user_report_data: UserReports::PrepareUserReportData.call!(user_report).to_json,
+                user_report_data: UserReports::PrepareUserReportData.
+                  call!(user_report, view_draft: options[:view_draft].present?).to_json,
                 campaign_factor_results: campaign_factor_results.to_json,
                 campaign_ai_artifact_results: campaign_ai_artifact_results.to_json,
                 data: ReportSerializer.new(

@@ -77,6 +77,24 @@ describe Reports::UpdateCampaignFactors do
         report_module = report.modules.first
         expect(report_module.props['source']['codes']).to eq(['factor1'])
       end
+
+      it 'touches the report when factors change' do
+        report.update_column(:updated_at, 1.day.ago)
+        new_factors_params = [
+          { 'code' => 'factor1', 'name' => 'Updated Factor 1', 'output_type' => 'numeric' }
+        ]
+
+        expect { described_class.call(report, new_factors_params) }.to(change { report.reload.updated_at })
+      end
+
+      it 'does not touch the report when factors are unchanged' do
+        report.update_column(:updated_at, 1.day.ago)
+        unchanged_params = existing_factors.map do |factor|
+          { 'code' => factor.code, 'name' => factor.name, 'output_type' => factor.output_type }
+        end
+
+        expect { described_class.call(report, unchanged_params) }.not_to(change { report.reload.updated_at })
+      end
     end
 
     context 'with invalid parameters' do

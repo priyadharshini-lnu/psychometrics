@@ -1331,7 +1331,6 @@ zh-HK:
     privacy_notice_link: <a href="%{privacy_url}">隐私声明
     registration:
       description: 填寫以下詳情註冊並建立新帳戶
-      email_hint: 我們尊重您的私隱，絕不容忍垃圾郵件。我們絕不會將您的資料提供給任何第三方
       first_name: 名字
       first_name_placeholder: 輸入名字
       have_account: 已經有帳戶？

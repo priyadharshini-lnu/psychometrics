@@ -6,7 +6,7 @@ module Reports
 
     def modules
       Panko::ArraySerializer.new(
-        object.modules.order(:id),
+        object.modules.to_a.sort_by(&:id),
         each_serializer: ModuleSerializer,
         context: {
           piped_text_context: context[:piped_text_context],

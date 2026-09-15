@@ -1326,7 +1326,6 @@ hr:
     privacy_notice_link: <a href="%{privacy_url}">Obavijest o privatnosti
     registration:
       description: Ispunite podatke u nastavku kako biste se registrirali i kreirali novi račun
-      email_hint: Poštujemo vašu privatnost i ne toleriramo neželjenu poštu. Nikada nećemo dati Vaše podatke trećim stranama.
       first_name: Ime
       first_name_placeholder: Unesite ime
       have_account: Već imate račun?

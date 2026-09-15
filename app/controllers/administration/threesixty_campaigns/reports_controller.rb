@@ -25,7 +25,8 @@ module Administration
           user_report: @user_report,
           locale: campaign_report.effective_default_language,
           current_user: current_user,
-          lang: params[:lang]
+          lang: params[:lang],
+          view_draft: view_draft?
         )
 
         respond_to do |format|
@@ -97,6 +98,16 @@ module Administration
           threesixty_campaign: threesixty_campaign,
           project_id: params[:project_id] || threesixty_campaign&.campaign&.project_id
         }
+      end
+
+      def view_draft?
+        return false unless ActiveModel::Type::Boolean.new.cast(params[:view_draft])
+
+        authorize(
+          @user_report, :view_draft?,
+          project_id: threesixty_campaign.campaign.project_id, campaign_id: @user_report.campaign_id
+        )
+        true
       end
 
       def add_cookie_for_file_download
