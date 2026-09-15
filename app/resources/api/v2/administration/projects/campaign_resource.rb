@@ -20,12 +20,12 @@ class Api::V2::Administration::Projects::CampaignResource < Api::V2::Administrat
       report = cr.report
       next unless report
 
-      report_locales = ([report.default_language] + (report.other_languages || [])).compact.uniq
+      available_languages = [cr.effective_default_language, cr.available_languages].flatten.compact.uniq
 
       {
         id: cr.id.to_s,
         default_language: cr.effective_default_language,
-        available_languages: report_locales,
+        available_languages: available_languages,
         report: { id: report.id.to_s, name: report.name, description: report.description,
                   report_type: report_type_for(report) }
       }

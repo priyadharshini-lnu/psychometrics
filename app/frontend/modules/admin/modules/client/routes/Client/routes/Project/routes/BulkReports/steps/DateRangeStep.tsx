@@ -19,12 +19,12 @@ const PRESETS: Preset[] = [
   {
     id: 'last30',
     label: I18n.t('admin.bulk_reports_last_30_days'),
-    range: () => [dayjs().subtract(30, 'day').startOf('day'), dayjs().endOf('day')],
+    range: () => [dayjs().subtract(29, 'day').startOf('day'), dayjs().endOf('day')],
   },
   {
     id: 'last90',
     label: I18n.t('admin.bulk_reports_last_90_days'),
-    range: () => [dayjs().subtract(90, 'day').startOf('day'), dayjs().endOf('day')],
+    range: () => [dayjs().subtract(89, 'day').startOf('day'), dayjs().endOf('day')],
   },
   {
     id: 'ytd',
