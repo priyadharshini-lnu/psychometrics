@@ -19,7 +19,7 @@ gem 'panko_serializer', '~> 0.8.3'
 gem 'paper_trail'
 gem 'paper_trail-association_tracking'
 gem 'pg',                         '~> 1.4'
-gem 'rails',                      '~> 8.0.5', '>= 8.0.5.1'
+gem 'rails',                      '~> 8.1.3', '>= 8.1.3.1'
 gem 'rails-i18n',                 '~> 8.0'
 gem 'sassc-rails', '~> 2.1.2'
 gem 'sprockets-rails'
@@ -104,7 +104,7 @@ gem 'roo', '~> 3.0'
 gem 'acts_as_list', '~> 1.0.2'
 
 # Gem for implementing tagging functionality in Rails models
-gem 'acts-as-taggable-on', '~> 12.0'
+gem 'acts-as-taggable-on', '~> 13.0'
 
 ### add fake destroying logic for models
 
@@ -168,8 +168,8 @@ gem 'jsonapi-utils', git: 'https://github.com/livestorm/jsonapi-utils'
 gem 'rlua', git: 'https://github.com/TheTalentEnterprise/rlua', branch: 'tte-master'
 
 # Once rswag-api and rswag-ui is updated, check if we can remove config/initializers/rswag_override.rb
-gem 'rswag-api', '~> 2.16.0'
-gem 'rswag-ui', '~> 2.16.0'
+gem 'rswag-api', '~> 2.17.0'
+gem 'rswag-ui', '~> 2.17.0'
 gem 'tty-progressbar', '~> 0.10.1', require: false
 
 gem 'activerecord-import', '~> 1.7.0'
@@ -199,7 +199,7 @@ group :development, :test do
   gem 'deepl-rb'
   gem 'derailed_benchmarks', '~> 1.7.0'
   gem 'i18n-tasks', '~> 1.1.2'
-  gem 'rswag-specs', '~> 2.11'
+  gem 'rswag-specs', '~> 2.17.0'
   gem 'rubocop', '= 1.79.2', require: false
   gem 'rubocop-performance', '= 1.25.0'
   gem 'rubocop-rails', '= 2.33.4', require: false
@@ -213,7 +213,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet', '~> 8.0'
+  gem 'bullet', '~> 8.2'
   gem 'listen', '~> 3.7.1'
   gem 'spring-watcher-listen', '~> 2.1.0'
 

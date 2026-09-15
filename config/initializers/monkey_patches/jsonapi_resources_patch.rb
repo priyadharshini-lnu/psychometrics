@@ -18,3 +18,42 @@ if ActiveSupport::Deprecation.respond_to?(:warn) == false
     end
   end
 end
+
+module JsonapiResourcesRails82Compatibility
+  def jsonapi_resource(...)
+    with_jsonapi_route_keywords { super }
+  end
+
+  def jsonapi_resources(...)
+    with_jsonapi_route_keywords { super }
+  end
+
+  # rubocop:disable Style/SuperArguments
+  def resource(*arguments, **options, &)
+    options = route_options(arguments, options)
+    super(*arguments, **options, &)
+  end
+
+  def resources(*arguments, **options, &)
+    options = route_options(arguments, options)
+    super(*arguments, **options, &)
+  end
+  # rubocop:enable Style/SuperArguments
+
+  private
+
+  def with_jsonapi_route_keywords
+    @jsonapi_route_keywords = true
+    yield
+  ensure
+    @jsonapi_route_keywords = false
+  end
+
+  def route_options(arguments, options)
+    return options unless @jsonapi_route_keywords && options.empty? && arguments.last.is_a?(Hash)
+
+    arguments.pop
+  end
+end
+
+ActionDispatch::Routing::Mapper::Resources.prepend(JsonapiResourcesRails82Compatibility)

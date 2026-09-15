@@ -452,6 +452,7 @@ RSpec.describe UserReport, type: :model do
         ur_id = user_report.id
         worker_count = 5
         barrier = Concurrent::CyclicBarrier.new(worker_count)
+        ActiveRecord::Base.connection_handler.clear_active_connections!
 
         threads = Array.new(worker_count) do
           Thread.new do
@@ -462,7 +463,7 @@ RSpec.describe UserReport, type: :model do
           end
         end
 
-        threads.each(&:join)
+        threads.each(&:value)
 
         expect(UserReport.find(ur_id).approval_status).to eq('pending_qc')
         expect(notify_call_count.value).to eq(1)

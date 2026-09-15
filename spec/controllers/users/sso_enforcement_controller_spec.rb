@@ -37,7 +37,7 @@ enforced_domains: ['se.com'])
     context 'when email is nil' do
       it 'stores nil in session and redirects to standard login' do
         post :check_sso, params: { user: { email: nil } }
-        expect(session[:user_email]).to eq('')
+        expect(session[:user_email]).to eq(nil)
         expect(response).to redirect_to(new_user_session_path)
       end
     end

@@ -89,7 +89,6 @@ module Api
       if @user_idp_plan.blank?
         audit! :destroy, @model, payload: params, project: project
         super
-        head :no_content
       else
         render json: {
           error: 'Deletion not allowed because the IDP template is already associated with a user IDP plan.'

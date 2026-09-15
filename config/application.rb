@@ -81,9 +81,7 @@ module Psychometrics
     config.middleware.use(Middlewares::CheckSession)
     config.middleware.use(Middlewares::SetTimeoutHeaderMiddleware)
     config.middleware.use(Middlewares::SidekiqAuthMiddleware)
-    config.action_controller.raise_on_open_redirects = false
-
-    config.active_support.to_time_preserves_timezone = :zone
+    config.action_controller.action_on_open_redirect = :log
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
