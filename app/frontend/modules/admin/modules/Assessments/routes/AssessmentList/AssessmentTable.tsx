@@ -163,9 +163,11 @@ const AssessmentTableComponent: React.FC<Props> = ({
 export const AssessmentTable = connecter(AssessmentTableComponent)
 
 const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
+  const navigate = useNavigate()
+
   if (assessment.category === 'agile') {
     return (
-      <Button type="link" href={`/administration/assessments/${assessment.id}/agiles`}>
+      <Button type="link" onClick={() => navigate(`${settings.urlPrefix}/${assessment.id}/agiles`)}>
         {assessment.id}
       </Button>
     )
@@ -175,7 +177,7 @@ const AssessmentId = ({ assessment }: { assessment: Assessment }) => {
     return (
       <Button
         type="link"
-        href={`/administration/assessments/${assessment.id}?assessmentLang=${assessment.defaultLanguage}`}
+        onClick={() => navigate(`${settings.urlPrefix}/${assessment.id}?assessmentLang=${assessment.defaultLanguage}`)}
       >
         {assessment.id}
       </Button>

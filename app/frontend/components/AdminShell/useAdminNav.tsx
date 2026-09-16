@@ -1,4 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import {
+  useEffect, useMemo, useRef, useState,
+} from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppShellNav } from '@thetalententerprise/glint'
@@ -42,6 +44,7 @@ import { closeSubmenu, openSubmenu } from '~/modules/admin/core/ui/menu'
 import { isNewExperienceEnabled } from '~/modules/admin/modules/AssessorApp/context/useNewExperience'
 import { useSubnav } from './SubnavContext'
 import { isOwnedPath } from './ownedPaths'
+import { useIsSiderMinimized } from './useMinimizeSider'
 
 const { I18n } = window
 
@@ -119,13 +122,24 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
   const subnav = useSubnav()
   const hasSubmenu = subnav != null
   const dispatch = useDispatch()
+  const forceMinimized = useIsSiderMinimized()
 
   const routeParent = PARENT_OF[activeKeyFor(pathname, links) ?? ''] ?? undefined
   const [openKeys, setOpenKeys] = useState<string[]>(routeParent ? [routeParent] : [])
+  const wasForceMinimized = useRef(forceMinimized)
+
+  // On the transition into a forced-collapse, drop whatever was open rather than carry over a group
+  // that happens to own the active route - collapsed submenus are hover popups, not a persistent state,
+  // so from here on hover drives openKeys normally via onOpenChange below.
+  useEffect(() => {
+    if (forceMinimized && !wasForceMinimized.current) setOpenKeys([])
+    wasForceMinimized.current = forceMinimized
+  }, [forceMinimized])
 
   useEffect(() => {
+    if (forceMinimized) return
     if (routeParent) setOpenKeys(current => (current.includes(routeParent) ? current : [...current, routeParent]))
-  }, [routeParent])
+  }, [routeParent, forceMinimized])
 
   return useMemo(() => {
     const { idpEnabled, skillRaterEnabled } = camelizeKeys(features ?? {})

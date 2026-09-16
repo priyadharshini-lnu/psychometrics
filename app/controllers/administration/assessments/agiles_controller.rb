@@ -4,11 +4,15 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
   skip_before_action :enforce_geo_restriction
   prepend_before_action :set_resource_class
   before_action :set_resource
-  before_action :init_breadcrumbs
   append_before_action :pundit_authorize
 
   def show
-    add_breadcrumb resource.decorate.display_name
+    render json: {
+      assessmentId: resource.id,
+      config: resource.agile_config,
+      translations: resource.agile_translations,
+      extra: resource.extra
+    }
   end
 
   def update
@@ -31,11 +35,6 @@ class Administration::Assessments::AgilesController < Administration::BaseContro
               translations: {},
               extra: {}]
     )
-  end
-
-  def init_breadcrumbs
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[admin root]
-    add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), "#{admin_path}/assessments"
   end
 
   def set_resource

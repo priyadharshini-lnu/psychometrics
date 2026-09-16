@@ -17,6 +17,16 @@ const AssessmentRoutes = [
         ],
       },
       { path: ':id/edit', lazy: lazyRoute(page, m => m.EditAssessment) },
+      { path: ':id/agiles', lazy: lazyRoute(page, m => m.AgileAssessmentBuilder) },
+      {
+        path: ':id',
+        lazy: lazyRoute(page, m => m.BuilderLayout),
+        children: [
+          { index: true, lazy: lazyRoute(page, m => m.BuilderDashboard) },
+          { path: 'scoring', lazy: lazyRoute(page, m => m.BuilderScoring) },
+          { path: 'resources', lazy: lazyRoute(page, m => m.BuilderResources) },
+        ],
+      },
     ],
   },
 ]

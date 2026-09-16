@@ -25,7 +25,7 @@ module AdminJobs
       return {} unless assessment
 
       {
-        href: "/administration/assessments/#{assessment.id}",
+        href: "/admin/assessments/#{assessment.id}",
         label: assessment.name
       }
     end

@@ -57,7 +57,7 @@ export const CampaignTemplatesTable: React.FC<Props> = ({ openModal }) => {
         render={campaignTemplate => (campaignTemplate.assessment?.id ? (
           <Typography.Link
             copyable
-            href={`/administration/assessments/${campaignTemplate.assessment.id}`}
+            href={`/admin/assessments/${campaignTemplate.assessment.id}`}
             target="_blank"
           >
             {campaignTemplate.assessment?.name}

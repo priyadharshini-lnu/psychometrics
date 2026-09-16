@@ -11,7 +11,7 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
     td
       - questions_count.each do |ass_id, count|
         div
-          = link_to "#{@map_assessments[ass_id].try(:[], 0).try(:name)} - [#{count}]", administration_assessment_path(ass_id, scoring: 1, factor_id: resource.id)
+          = link_to "#{@map_assessments[ass_id].try(:[], 0).try(:name)} - [#{count}]", "#{admin_path}/assessments/#{ass_id}?scoring=1&factor_id=#{resource.id}"
   - else
     td.vertical_middle
   td.text-center.vertical_middle = t(".scoring_strategies.#{resource.scoring_strategy}")

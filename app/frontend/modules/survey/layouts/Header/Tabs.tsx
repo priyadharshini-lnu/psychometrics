@@ -14,13 +14,13 @@ export const Tabs: React.FC<Props> = ({ active }) => {
     const val = e.target.value
     if (val === active) { return }
     if (val === 'questions') {
-      return navigate(`/administration/assessments/${id}`)
+      return navigate(`/admin/assessments/${id}`)
     }
     if (val === 'scoring') {
-      return navigate(`/administration/assessments/${id}/scoring`)
+      return navigate(`/admin/assessments/${id}/scoring`)
     }
     if (val === 'resources') {
-      return navigate(`/administration/assessments/${id}/resources`)
+      return navigate(`/admin/assessments/${id}/resources`)
     }
   }
 

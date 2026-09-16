@@ -16,7 +16,7 @@ module AdminJobs
 
     def generate_title_link
       {
-        href: "/administration/assessments/#{assessment.id}",
+        href: "/admin/assessments/#{assessment.id}",
         label: assessment.name
       }
     end

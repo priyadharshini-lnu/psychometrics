@@ -89,7 +89,7 @@ export const FactorsTable: FC<Props> = ({ openModal }) => {
                     <div key={`${factor.id}-${assessmentId}`} style={{ marginBottom: '4px' }}>
                       <Button
                         type="link"
-                        href={`/administration/assessments/${assessmentId}/scoring?factor_id=${factor.id}`}
+                        href={`/admin/assessments/${assessmentId}/scoring?factor_id=${factor.id}`}
                         style={{ padding: 0 }}
                       >
                         {assessmentName ? `${assessmentName} - [${count}]` : `- [${count}]`}

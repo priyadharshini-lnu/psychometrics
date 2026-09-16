@@ -89,9 +89,9 @@ const getMenuProps = ({
     campaignPermissions.editAssessment && {
       key: 'assessment',
       label: (
-        <a href={`/administration/assessments/${assessmentId}`}>
+        <Link to={`/admin/assessments/${assessmentId}`}>
           {I18n.t('admin.threesixty_campaigns_manage_assessment')}
-        </a>),
+        </Link>),
     },
     campaignPermissions.manageRelationships && {
       key: 'manage_relationship',

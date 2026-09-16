@@ -1,6 +1,6 @@
 tr id=dom_id(resource)
   td = resource.name
-  td = resource.assessment ? link_to(resource.assessment.name, administration_assessment_path(resource.assessment)) : ""
+  td = resource.assessment ? link_to(resource.assessment.name, "#{admin_path}/assessments/#{resource.assessment.id}") : ""
   td = resource.report ? link_to(resource.report.name, administration_report_path(resource.report)) : ""
   td = resource.owner ? resource.owner.name : t('admin.platform_owner')
   td.text-center = resource.decorate.formatted_date_time(:created_at)

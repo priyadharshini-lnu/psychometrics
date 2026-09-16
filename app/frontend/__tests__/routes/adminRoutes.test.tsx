@@ -49,6 +49,12 @@ vi.mock('~/modules/admin/modules/Assessments/routes/AssessmentList/AssessmentLis
 vi.mock('~/modules/admin/modules/Assessments/routes/EditAssessment', () => ({
   default: stub('edit-assessment'),
 }))
+vi.mock('~/modules/admin/modules/AgileConfigBuilder/App', () => ({ default: stub('assessment-agiles') }))
+// Builder pages drag in react-dnd, whose ESM build isn't resolvable by Node's strict module loader.
+vi.mock('~/modules/survey/containers/BuilderLayout', () => ({ default: chrome('builder-chrome') }))
+vi.mock('~/modules/survey/layouts/Dashboard', () => ({ default: stub('builder-dashboard') }))
+vi.mock('~/modules/survey/layouts/Scoring', () => ({ default: stub('builder-scoring') }))
+vi.mock('~/modules/survey/layouts/ResourceManager', () => ({ default: stub('builder-resources') }))
 vi.mock('~/modules/admin/modules/ReportApprovals/pages', () => ({
   MyTasks: stub('report-approval-tasks'),
   Approved: stub('report-approvals-approved'),

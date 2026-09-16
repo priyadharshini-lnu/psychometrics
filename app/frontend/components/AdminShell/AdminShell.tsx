@@ -8,6 +8,7 @@ import { useAdminNav } from './useAdminNav'
 import { useSiderWidth } from './useSiderWidth'
 import { useSiderCollapsed } from './useSiderCollapsed'
 import { SubnavProvider } from './SubnavContext'
+import { MinimizeSiderProvider, useIsSiderMinimized } from './useMinimizeSider'
 import { OwnedPathsProvider, useIsOwnedPath } from './ownedPaths'
 import { AdminTopBarStart, AdminTopBarEnd } from './AdminTopBar'
 import { SignInNotice } from './SignInNotice'
@@ -140,9 +141,13 @@ const ShellBody: FC<Props> = ({
   const { width, save } = useSiderWidth(SIDER_WIDTH)
   const { collapsed: initialCollapsed, save: saveCollapsed } = useSiderCollapsed(collapsed)
   const showSubmenu = useSelector((state: RootState) => state.ui.menu.showSubmenu)
+  const forceMinimized = useIsSiderMinimized()
 
   return (
     <AppShell
+      // Remounting the rail is how an uncontrolled defaultCollapsed gets a new initial value: a page that
+      // calls useMinimizeSider flips this key, so the rail starts collapsed for it and reverts on leaving.
+      key={forceMinimized ? 'minimized' : 'normal'}
       brand={isCollapsed => <AdminBrand collapsed={isCollapsed} />}
       siderFooter={isCollapsed => <AdminSiderFooter collapsed={isCollapsed} />}
       resizableSider
@@ -153,9 +158,14 @@ const ShellBody: FC<Props> = ({
       topBarSize="small"
       topBarStart={topBarStart ?? <AdminTopBarStart />}
       topBarEnd={topBarEnd ?? <AdminTopBarEnd />}
-      defaultCollapsed={initialCollapsed}
-      // Only the user's own toggle reaches here, so this is the one collapse worth storing.
-      onCollapsedChange={(next) => { saveCollapsed(next); triggerCollapse() }}
+      defaultCollapsed={forceMinimized ? true : initialCollapsed}
+      // Only the user's own toggle reaches here - and not while a page is forcing the rail minimized,
+      // so a manual expand/collapse during that page never overwrites the user's real preference.
+      onCollapsedChange={(next) => {
+        if (forceMinimized) return
+        saveCollapsed(next)
+        triggerCollapse()
+      }}
       collapseLabel={I18n.t('frontend.aria.collapse_menu')}
       expandLabel={I18n.t('frontend.aria.expand_menu')}
       skipToContentLabel={I18n.t('frontend.aria.skip_to_content', { defaultValue: 'Skip to content' })}
@@ -172,7 +182,11 @@ const ConnectedAdminShell = connecter(AdminShellComponent)
 // Providers sit above the shell so routed pages can publish their own nav and read which paths the router owns.
 export const AdminShell: FC<Omit<Props, keyof PropsFromRedux>> = ({ ownedPathPrefixes, ...props }) => (
   <OwnedPathsProvider prefixes={ownedPathPrefixes}>
-    <SubnavProvider><ConnectedAdminShell ownedPathPrefixes={ownedPathPrefixes} {...props} /></SubnavProvider>
+    <SubnavProvider>
+      <MinimizeSiderProvider>
+        <ConnectedAdminShell ownedPathPrefixes={ownedPathPrefixes} {...props} />
+      </MinimizeSiderProvider>
+    </SubnavProvider>
   </OwnedPathsProvider>
 )
 

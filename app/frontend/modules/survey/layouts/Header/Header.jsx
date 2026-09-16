@@ -134,7 +134,7 @@ const Header = (props) => {
   }
 
   const changeLocale = (value) => {
-    navigate(`/administration/assessments/${id}?assessmentLang=${value}`)
+    navigate(`/admin/assessments/${id}?assessmentLang=${value}`)
   }
 
   const handleQuestionsExport = () => {
@@ -194,7 +194,7 @@ const Header = (props) => {
           style={{ display: 'none' }}
           ref={previewFormRef}
           target="_blank"
-          action={`${location.pathname}/preview?assessmentLang=${currentLocale}`}
+          action={`/administration/assessments/${id}/preview?assessmentLang=${currentLocale}`}
           method="POST"
         >
           <input

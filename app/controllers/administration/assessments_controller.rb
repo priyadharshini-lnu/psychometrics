@@ -6,7 +6,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   prepend_before_action :set_resource_class
   before_action :set_resource, only: %i[
-    show edit update destroy toggle_status sidebar copy import_questions
+    edit update destroy toggle_status sidebar copy import_questions
     import_questions_sample_file preview export toggle_archive questions soft_delete restore
     export_questions
   ]
@@ -18,10 +18,6 @@ class Administration::AssessmentsController < Administration::BaseController
   render_entrypoint :index, element: 'assessments', entry: 'admin/assessments'
 
   def index; end
-
-  def show
-    add_breadcrumb resource.decorate.display_name
-  end
 
   def update
     resource.updated_by = current_user

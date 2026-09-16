@@ -655,7 +655,7 @@ Rails.application.routes.draw do
       get '/assessments/archived' => 'assessments#index'
       get '/assessments/trash' => 'assessments#index'
       get '/assessments/:id/edit' => 'assessments#index'
-      resources :assessments do
+      resources :assessments, except: [:show] do
         member do
           get :copy
           get :sidebar
@@ -665,8 +665,6 @@ Rails.application.routes.draw do
           get :reports
           put :save
           patch :toggle_archive
-          get :scoring, to: 'assessments#show', constraints: { all: /.*/ }
-          get :resources, to: 'assessments#show', constraints: { all: /.*/ }
           get :assessments
           get :questions
           get :factors

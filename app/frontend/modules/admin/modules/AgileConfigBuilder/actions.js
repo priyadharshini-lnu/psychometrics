@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 export const SAVE_AGILE_CONFIG = 'SAVE_AGILE_CONFIG'
+export const FETCH_AGILE_CONFIG = 'FETCH_AGILE_CONFIG'
 
 export const saveConfig = (assessmentId, data) => ({
   type: SAVE_AGILE_CONFIG,
@@ -12,11 +13,21 @@ export const saveConfig = (assessmentId, data) => ({
   },
 })
 
+// camelize: false - config/translations are opaque JSON blobs edited verbatim in the JSON editor;
+// the api middleware's default recursive camelizeKeys would rewrite their nested keys on every load.
+export const fetchAgileConfig = assessmentId => ({
+  type: FETCH_AGILE_CONFIG,
+  request: {
+    url: `/administration/assessments/${assessmentId}/agiles`,
+    method: 'get',
+    camelize: false,
+  },
+})
+
 const settings = createSlice({
   name: 'settings',
   initialState: {
-    /* eslint no-underscore-dangle: 0 */
-    extra: window.__PROPS__?.extra || {},
+    extra: {},
   },
   reducers: {
     updateSettings (state, { payload }) {
