@@ -40,13 +40,15 @@ module Api
         end
 
         rule(data: { attributes: :min_value }) do
-          if %w[assessor_scoring].include?(values.dig(:data, :attributes, :factor_type)) && value.blank?
+          if values.dig(:data, :attributes, :factor_type) == 'assessor_scoring' &&
+             values.dig(:data, :attributes, :output_type) == 'numeric' && value.blank?
             key.failure(:filled?)
           end
         end
 
         rule(data: { attributes: :max_value }) do
-          if %w[assessor_scoring].include?(values.dig(:data, :attributes, :factor_type)) && value.blank?
+          if values.dig(:data, :attributes, :factor_type) == 'assessor_scoring' &&
+             values.dig(:data, :attributes, :output_type) == 'numeric' && value.blank?
             key.failure(:filled?)
           end
         end
