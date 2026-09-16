@@ -42,10 +42,8 @@ module AdminJobs
       ]
     end
 
-    def build_download_content(_bulk_report)
-      project_id         = record.data['project_id']
-      bulk_report_job_id = record.data['bulk_report_job_id']
-      url = "/admin/projects/#{project_id}/bulk_reports/#{bulk_report_job_id}"
+    def build_download_content(bulk_report)
+      url = bulk_report.public_download_urls
       content_tag(:a, I18n.t('admin.bulk_reports_view_downloads'), href: url)
     end
 
