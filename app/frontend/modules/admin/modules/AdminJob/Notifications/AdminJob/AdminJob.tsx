@@ -74,13 +74,18 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
           <Alert
             title={I18n.t('admin_jobs.details')}
             type="info"
-            description={job.details.map((detail, index) => (
-              <Flex key={index} gap={token.marginXXS}>
-                <Typography.Text strong>{`${detail[0]}:`}</Typography.Text>
-                {/* Typography carries word-break, so a long filename wraps instead of scrolling the panel sideways. */}
-                <Typography.Text><SafeHTML html={detail[1]} /></Typography.Text>
+            description={(
+              <Flex vertical gap={token.marginXXS}>
+                {job.details.map((detail, index) => (
+                  <Typography.Text key={index}>
+                    <Typography.Text strong>{`${detail[0]}: `}</Typography.Text>
+                    {/* SafeHTML defaults to a block <div>, which would force the value onto its
+                        own line; as="span" keeps it inline right after the label. */}
+                    <SafeHTML as="span" html={detail[1]} />
+                  </Typography.Text>
+                ))}
               </Flex>
-            ))}
+            )}
           />
         )}
         {expanded && job.content && (
