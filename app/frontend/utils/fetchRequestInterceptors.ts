@@ -13,8 +13,7 @@ import surveyStore from '~/modules/survey/store'
     const { currentUser } = window.PsyGlobalState
     const nextTimeout = response.headers.get('x-next-timeout')
 
-    CreateSyncTimeoutChannel.setChannel()
-    CreateSyncTimeoutChannel.channel?.postMessage({ userId: currentUser?.id, nextTimeout })
+    CreateSyncTimeoutChannel.publish({ userId: currentUser?.id, nextTimeout })
 
     if (CLIENT_ERRORS.includes(String(response.status))) {
       adminStore.dispatch(setRequestErrors('axios', String(response.status) as ClientErrorStatus))
