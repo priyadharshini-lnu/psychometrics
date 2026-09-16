@@ -78,6 +78,8 @@ export const FixedHeader = ({
   const { makeAsyncRequest: publishRequest } = useAsyncRequestResponse({
     url: `/administration/reports/${report.builder.id}/builders/publish`,
     responseType: AsyncRequestResponseTR,
+    // Report attributes must stay snake_case to match normalize/AppStore.init expectations
+    camelizeExcept: ['$.response.response_data.data'],
   })
 
   useEffect(() => {
