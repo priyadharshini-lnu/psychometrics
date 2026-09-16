@@ -3999,8 +3999,8 @@ ar:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:Z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: السماح للمستخدمين بإرسال ردود متعددة
     png: بابوا غينيا الجديدة
