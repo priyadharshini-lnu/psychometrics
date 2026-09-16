@@ -34,7 +34,6 @@ export const ADD_STYLE = 'report/ADD_STYLE'
 export const UPDATE_STYLE = 'report/UPDATE_STYLE'
 export const REMOVE_STYLE = 'report/REMOVE_STYLE'
 export const REMAP_ASSESSMENT = 'report/REMAP_ASSESSMENT'
-export const PUBLISH_REPORT = 'report/PUBLISH_REPORT'
 
 export enum SelectedTypes {
   'Module'= 'Module',
@@ -139,16 +138,6 @@ export const save = (report: any) => {
 export const addStyle = style => ({ type: ADD_STYLE, style })
 export const updateStyle = style => ({ type: UPDATE_STYLE, style })
 export const removeStyle = style => ({ type: REMOVE_STYLE, style })
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const publish = (report: any) => ({
-  type: PUBLISH_REPORT,
-  request: {
-    method: 'POST',
-    url: `/administration/reports/${report.builder.id}/builders/publish`,
-    camelize: false,
-  },
-})
 
 export type AddStyleType = ReturnType<typeof addStyle>
 export type UpdateStyleType = ReturnType<typeof updateStyle>
