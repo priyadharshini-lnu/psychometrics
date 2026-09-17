@@ -35,8 +35,7 @@ RSpec.describe AdminJobs::MigrateCommunicationCenter do
       record = job_record_for(-1)
 
       expect { described_class.new(record).call }.
-        to broadcast(:error, I18n.t('admin_jobs.migrate_communication_center.client_not_found',
-                                    id: -1))
+        to broadcast(:error, I18n.t('admin_jobs.client_not_found', id: -1))
     end
 
     it 'does not run the migration service' do

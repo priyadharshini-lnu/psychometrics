@@ -13,7 +13,7 @@ module AdminJobSteps
         user_ids = Campaign.find(job_record.data['campaign_id']).user_ids
         user_idp_plans = UserIdpPlan.active.where(campaign_id: job_record.data['campaign_id'], user_id: user_ids)
 
-        raise I18n.t('admin_jobs.bulk_download_reports.errors.no_plans') if user_idp_plans.empty?
+        raise I18n.t('admin_jobs.bulk_download_reports_errors_no_plans') if user_idp_plans.empty?
 
         job_record.update!(status: :in_progress, total_tasks: user_idp_plans.length)
         @bulk_report = ::Idp::BulkDownload.call!(user_idp_plans: user_idp_plans,
@@ -30,7 +30,7 @@ module AdminJobSteps
         download_urls = @bulk_report.public_download_urls
 
         [
-          content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
+          content_tag(:div, I18n.t('admin_jobs.bulk_download_reports_content_title')),
           content_tag(:ul) do
             @bulk_report.files.map.with_index do |file, index|
               content_tag(:li) do

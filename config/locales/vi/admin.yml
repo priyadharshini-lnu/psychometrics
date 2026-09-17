@@ -3652,3 +3652,127 @@ vi:
     yoodli_launch_url: URL khởi chạy
     yoodli_login_url: URL đăng nhập
     you_are_here: Bạn đang ở đây
+  admin_jobs:
+    add_campaign_reports: Thêm báo cáo chiến dịch
+    assessment_norm_export: Xuất kết quả theo tiêu chuẩn
+    assessment_raw_ai_factor_export: Xuất điểm số yếu tố AI thô
+    assessment_raw_factor_export: Xuất điểm yếu tố thô
+    assessment_raw_result_export: Xuất kết quả thô
+    assessment_scoring_export: Xuất kết quả tính điểm
+    assign_idp_to_users: Chỉ định IDP cho người dùng
+    assign_reports_and_assessments: Chỉ định báo cáo và đánh giá
+    bulk_create_workshop_invites: Gửi lời mời của Trung tâm Đánh giá Hàng loạt
+    bulk_download_idp_reports: Tải xuống hàng loạt báo cáo IDP
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: Tải xuống hàng loạt báo cáo
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: Tải xuống hàng loạt báo cáo người dùng
+    bulk_export_norm_factor_scores: Xuất điểm số Hệ số Tiêu chuẩn theo lô
+    bulk_export_raw_factor_scores: Xuất hàng loạt điểm số yếu tố thô
+    bulk_generate_user_campaign_ai_artifact_results: Tạo hàng loạt kết quả tạo tác AI chiến dịch
+    bulk_regenerate_reports: Tạo lại báo cáo chiến dịch
+    bulk_regenerate_threesixty_reports: Tái tạo Báo cáo Ba Sáu Mươi Chủ Đề
+    bulk_regenerate_user_reports: Tạo lại báo cáo người dùng
+    bulk_reports: Báo cáo hàng loạt
+    bulk_rescore_campaign_factors: Các yếu tố chiến dịch Bulk Rescore
+    bulk_update_evaluation_status: Cập nhật hàng loạt trạng thái đánh giá
+    campaign_report_extract_and_upload_bulk_assets: Báo cáo chiến dịch Tải lên tài sản hàng loạt
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: Xuất trạng thái hoàn thành nhỏ gọn
+    completion_status_export: Xuất trạng thái hoàn thành
+    copy_as_template_or_campaign: Sao chép chiến dịch làm mẫu
+    copy_assessment: Đánh giá bản sao
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: Sao chép kích thước
+    copy_report: Sao chép báo cáo
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Tạo chiến dịch Threesixty
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: Xuất báo cáo dữ liệu
+    export_admin_with_permissions: Xuất quản trị viên có quyền
+    export_assessment_questions: Câu hỏi đánh giá xuất khẩu
+    export_audit_logs: Xuất nhật ký kiểm toán
+    export_campaign_ai_artifacts: Xuất hiện vật AI của chiến dịch
+    export_campaign_ai_artifacts_results: Kết quả của Chiến dịch Xuất khẩu Các Tác phẩm Nghệ thuật Trí tuệ Nhân tạo
+    export_campaign_datasheet: Bảng dữ liệu chiến dịch xuất khẩu
+    export_campaign_factors: Các yếu tố chiến dịch xuất khẩu
+    export_campaign_scorings: Xuất chấm điểm chiến dịch
+    export_campaign_translations: Bản dịch chiến dịch xuất khẩu
+    export_dashboard_as_file: Xuất Bảng điều khiển dưới dạng tệp
+    export_development_action_translations: Bản dịch hành động phát triển xuất khẩu
+    export_development_actions: Hành động phát triển xuất khẩu
+    export_dimension_as_json: Xuất JSON thứ nguyên
+    export_factor_translations: Bản dịch yếu tố xuất khẩu
+    export_interview_questions: Xuất câu hỏi phỏng vấn
+    export_job_roles_translations: Dịch các vị trí công việc cho xuất khẩu
+    export_norm: Định mức xuất khẩu
+    export_occupations: Nghề nghiệp xuất khẩu
+    export_proficiency_level_translations: Bản dịch trình độ xuất khẩu
+    export_proficiency_levels: Cấp độ thành thạo xuất khẩu
+    export_reflection_questions: Xuất câu hỏi phản ánh
+    export_report_data: Xuất dữ liệu báo cáo
+    export_reports_and_assessments: Xuất báo cáo và đánh giá
+    export_skill_translations: Bản dịch kỹ năng xuất khẩu
+    export_skills: Kỹ năng xuất khẩu
+    export_user_report_events: Xuất sự kiện báo cáo người dùng
+    export_users: Xuất khẩu của người dùng chiến dịch
+    external_assessment_export: Xuất kết quả bên ngoài
+    generate_embedding_skills: Tạo nhúng cho các kỹ năng
+    generate_transcription: Tạo bản chép lời
+    import_accesssheet: Phụ kiện nhập khẩu
+    import_assessment_questions: Câu hỏi đánh giá nhập khẩu
+    import_assessment_translations: Bản dịch đánh giá nhập khẩu
+    import_assessors: Giám định viên nhập khẩu
+    import_campaign_ai_artifacts: Nhập hiện vật AI của chiến dịch
+    import_campaign_factors: Các yếu tố chiến dịch nhập khẩu
+    import_campaign_translations: Nhập bản dịch chiến dịch
+    import_client_assessors: Nhập danh sách các chuyên gia đánh giá khách hàng
+    import_datasheet: Bảng dữ liệu nhập
+    import_development_action_translations: Bản dịch hành động phát triển nhập khẩu
+    import_development_actions: Hành động phát triển nhập khẩu
+    import_dimension_from_json: Nhập thứ nguyên từ JSON
+    import_external_campaign_scoring: Nhập tính điểm chiến dịch bên ngoài
+    import_external_scoring_data: Nhập dữ liệu chấm điểm bên ngoài
+    import_factor_translations: Bản dịch yếu tố nhập khẩu
+    import_factors: Các yếu tố nhập khẩu
+    import_interview_questions: Nhập câu hỏi phỏng vấn
+    import_job_roles_translations: Nhập bản dịch các vai trò công việc
+    import_norm: Định mức nhập khẩu
+    import_proficiency_level_translations: Nhập bản dịch trình độ thông thạo
+    import_proficiency_levels: Mức độ thành thạo nhập khẩu
+    import_question_translations: Nhập bản dịch câu hỏi
+    import_raw_data: Nhập dữ liệu thô
+    import_reflection_questions: Nhập câu hỏi phản ánh
+    import_scoring_data: Nhập dữ liệu tính điểm
+    import_skill_rater_taxonomies: Nhập các phân loại đánh giá kỹ năng
+    import_skill_translations: Bản dịch kỹ năng nhập khẩu
+    import_skills: Kỹ năng nhập khẩu
+    import_sms_invites: Nhập lời mời SMS
+    import_users: Nhập người dùng
+    invalid_job: Thông báo này tương ứng với bản ghi đã xóa
+    mark_as_read: Đánh dấu tất cả đã đọc
+    migrate_assessment_translations: Di chuyển dịch thuật đánh giá
+    migrate_communication_center: Di chuyển Trung tâm Truyền thông
+    normalize_factor_scores: Chuẩn hóa điểm số yếu tố
+    project_bulk_download_reports: Tải xuống báo cáo hàng loạt dự án
+    project_compact_completion_status_export: Xuất trạng thái hoàn thành gọn nhẹ
+    project_completion_status_export: Tình trạng hoàn thành xuất khẩu
+    regenerate_assessment_transcriptions: Tạo lại bản ghi chép đánh giá
+    regenerate_campaign_reports: Tạo lại báo cáo chiến dịch
+    regenerate_report: Báo cáo tái tạo
+    regenerate_threesixty_report: Báo cáo tái tạo Threesixty
+    remap_report_assessment: Đánh giá báo cáo Remap
+    rescore_ai_scoring: Đánh giá lại bằng trí tuệ nhân tạo
+    rescore_assessment: Đánh giá điểm lại
+    rescore_user_assessment: Đánh giá người dùng lại
+    send_sms_invites: Gửi lời mời SMS
+    super_admin_assessment_norm_export: Xuất kết quả tiêu chuẩn siêu quản trị viên
+    super_admin_assessment_raw_factor_export: Xuất điểm yếu tố thô siêu quản trị viên
+    super_admin_assessment_raw_result_export: Xuất kết quả thô của Super Admin
+    super_admin_datasheet_export: Xuất bảng dữ liệu siêu quản trị viên
+    super_admin_external_assessment_export: Xuất đánh giá bên ngoài quản trị viên cấp cao
+    superadmin_record_change_history: Lịch sử thay đổi bản ghi
+    threesixty_campaign_export_completion_status: Trạng thái hoàn thành xuất dịch vụ của Threesixty
+    threesixty_campaign_export_scores: Xuất điểm chiến dịch Threesixty
+    workshop_status_export: Xuất trạng thái trung tâm đánh giá

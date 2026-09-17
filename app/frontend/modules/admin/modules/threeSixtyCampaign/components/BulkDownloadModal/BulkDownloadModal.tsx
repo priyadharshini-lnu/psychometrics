@@ -28,7 +28,7 @@ export default function BulkDownloadModal ({
   return (
     <Modal
       width={650}
-      title={I18n.t('admin_jobs.attrs.operations.bulk_download_reports')}
+      title={I18n.t('admin_jobs.bulk_download_reports')}
       open={visible}
       onCancel={close}
       footer={[

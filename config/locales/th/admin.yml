@@ -3652,3 +3652,127 @@ th:
     yoodli_launch_url: URL การเปิดตัว
     yoodli_login_url: URL เข้าสู่ระบบ
     you_are_here: คุณอยู่ที่นี่
+  admin_jobs:
+    add_campaign_reports: เพิ่มรายงานแคมเปญ
+    assessment_norm_export: การส่งออกผลลัพธ์ตามบรรทัดฐาน
+    assessment_raw_ai_factor_export: คะแนนปัจจัย AI ดิบ ส่งออก
+    assessment_raw_factor_export: การส่งออกคะแนนปัจจัยดิบ
+    assessment_raw_result_export: การส่งออกผลลัพธ์ดิบ
+    assessment_scoring_export: การส่งออกผลการให้คะแนน
+    assign_idp_to_users: กําหนด IDP ให้กับผู้ใช้
+    assign_reports_and_assessments: มอบหมายรายงานและการประเมิน
+    bulk_create_workshop_invites: ส่งคําเชิญจากศูนย์การประเมินจํานวนมาก
+    bulk_download_idp_reports: ดาวน์โหลดรายงาน IDP จำนวนมาก
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: รายงานการดาวน์โหลดจำนวนมาก
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: ดาวน์โหลดรายงานผู้ใช้จำนวนมาก
+    bulk_export_norm_factor_scores: คะแนนปัจจัยมาตรฐานแบบกลุ่ม ส่งออก
+    bulk_export_raw_factor_scores: การส่งออกคะแนนปัจจัยดิบแบบกลุ่ม
+    bulk_generate_user_campaign_ai_artifact_results: สร้างผลลัพธ์สิ่งประดิษฐ์ AI ของแคมเปญจํานวนมาก
+    bulk_regenerate_reports: สร้างรายงานแคมเปญใหม่
+    bulk_regenerate_threesixty_reports: สร้างรายงานเรื่อง Threesixty ใหม่
+    bulk_regenerate_user_reports: สร้างรายงานผู้ใช้ใหม่
+    bulk_reports: รายงานจํานวนมาก
+    bulk_rescore_campaign_factors: ให้คะแนนปัจจัยแคมเปญใหม่จำนวนมาก
+    bulk_update_evaluation_status: สถานะการประเมินการอัปเดตจํานวนมาก
+    campaign_report_extract_and_upload_bulk_assets: รายงานแคมเปญ อัปโหลดสินทรัพย์จำนวนมาก
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์แบบกะทัดรัด
+    completion_status_export: การส่งออกสถานะการเสร็จสมบูรณ์
+    copy_as_template_or_campaign: คัดลอกแคมเปญเป็นเทมเพลต
+    copy_assessment: การประเมินการคัดลอก
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: คัดลอกมิติ
+    copy_report: คัดลอกรายงาน
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: สร้างแคมเปญ Threesixty
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: การส่งออกรายงานข้อมูล
+    export_admin_with_permissions: ส่งออกผู้ดูแลระบบที่มีสิทธิ์
+    export_assessment_questions: คําถามการประเมินการส่งออก
+    export_audit_logs: ส่งออกบันทึกการตรวจสอบ
+    export_campaign_ai_artifacts: ส่งออกสิ่งประดิษฐ์ AI ของแคมเปญ
+    export_campaign_ai_artifacts_results: ผลลัพธ์ของแคมเปญส่งออก AI อาร์ติแฟกต์
+    export_campaign_datasheet: แผ่นข้อมูลแคมเปญการส่งออก
+    export_campaign_factors: ปัจจัยแคมเปญการส่งออก
+    export_campaign_scorings: ส่งออกการให้คะแนนแคมเปญ
+    export_campaign_translations: การแปลแคมเปญส่งออก
+    export_dashboard_as_file: ส่งออกแดชบอร์ดเป็นไฟล์
+    export_development_action_translations: การแปลการดําเนินการพัฒนาการส่งออก
+    export_development_actions: การดําเนินการพัฒนาการส่งออก
+    export_dimension_as_json: ส่งออกมิติ JSON
+    export_factor_translations: การแปลปัจจัยการส่งออก
+    export_interview_questions: ส่งออกคําถามสัมภาษณ์
+    export_job_roles_translations: ส่งออกคำแปลชื่อตำแหน่งงาน
+    export_norm: บรรทัดฐานการส่งออก
+    export_occupations: อาชีพการส่งออก
+    export_proficiency_level_translations: การแปลระดับความเชี่ยวชาญในการส่งออก
+    export_proficiency_levels: ส่งออกระดับความชำนาญ
+    export_reflection_questions: ส่งออกคําถามสะท้อน
+    export_report_data: ส่งออกข้อมูลรายงาน
+    export_reports_and_assessments: ส่งออกรายงานและการประเมิน
+    export_skill_translations: การแปลทักษะการส่งออก
+    export_skills: ทักษะการส่งออก
+    export_user_report_events: ส่งออกเหตุการณ์รายงานผู้ใช้
+    export_users: ส่งออกผู้ใช้แคมเปญ
+    external_assessment_export: ส่งออกผลลัพธ์ภายนอก
+    generate_embedding_skills: สร้างการฝังสําหรับทักษะ
+    generate_transcription: สร้างการถอดความ
+    import_accesssheet: นําเข้าอุปกรณ์เสริม
+    import_assessment_questions: คําถามการประเมินการนําเข้า
+    import_assessment_translations: การแปลการประเมินการนําเข้า
+    import_assessors: ผู้ประเมินนําเข้า
+    import_campaign_ai_artifacts: นําเข้าสิ่งประดิษฐ์ AI ของแคมเปญ
+    import_campaign_factors: นําเข้าปัจจัยแคมเปญ
+    import_campaign_translations: นำเข้าการแปลแคมเปญ
+    import_client_assessors: นำเข้าผู้ประเมินลูกค้า
+    import_datasheet: นําเข้าเอกสารข้อมูล
+    import_development_action_translations: การแปลการดําเนินการเพื่อการพัฒนานําเข้า
+    import_development_actions: การดําเนินการพัฒนาการนําเข้า
+    import_dimension_from_json: นําเข้ามิติจาก JSON
+    import_external_campaign_scoring: นําเข้าการให้คะแนนแคมเปญภายนอก
+    import_external_scoring_data: นําเข้าข้อมูลการให้คะแนนภายนอก
+    import_factor_translations: การแปลปัจจัยนําเข้า
+    import_factors: ปัจจัยการนําเข้า
+    import_interview_questions: นําเข้าคําถามสัมภาษณ์
+    import_job_roles_translations: นำเข้าคำแปลชื่อตำแหน่งงาน
+    import_norm: บรรทัดฐานการนําเข้า
+    import_proficiency_level_translations: นําเข้าการแปลระดับความชํานาญ
+    import_proficiency_levels: ระดับความเชี่ยวชาญในการนําเข้า
+    import_question_translations: นําเข้าคําแปลคําถาม
+    import_raw_data: นําเข้าข้อมูลดิบ
+    import_reflection_questions: นําเข้าคําถามสะท้อน
+    import_scoring_data: นําเข้าข้อมูลการให้คะแนน
+    import_skill_rater_taxonomies: นำเข้าระบบหมวดหมู่การให้คะแนนทักษะ
+    import_skill_translations: การแปลทักษะการนําเข้า
+    import_skills: ทักษะการนําเข้า
+    import_sms_invites: นําเข้าคําเชิญทาง SMS
+    import_users: นําเข้าผู้ใช้
+    invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
+    mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
+    migrate_assessment_translations: การโยกย้ายการแปลการประเมิน
+    migrate_communication_center: การย้ายศูนย์การสื่อสาร
+    normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
+    project_bulk_download_reports: รายงานการดาวน์โหลดโครงการจำนวนมาก
+    project_compact_completion_status_export: การส่งออกสถานะการทำงานที่เสร็จสมบูรณ์แบบกะทัดรัด
+    project_completion_status_export: สถานะการเสร็จสิ้น ส่งออก
+    regenerate_assessment_transcriptions: สร้างบันทึกการประเมินผลใหม่
+    regenerate_campaign_reports: สร้างรายงานแคมเปญใหม่
+    regenerate_report: สร้างรายงานใหม่
+    regenerate_threesixty_report: สร้างรายงาน Threesixty ใหม่
+    remap_report_assessment: การประเมินรายงาน Remap
+    rescore_ai_scoring: การให้คะแนนใหม่ด้วยปัญญาประดิษฐ์
+    rescore_assessment: การประเมินคะแนนใหม่
+    rescore_user_assessment: การประเมินคะแนนของผู้ใช้ใหม่
+    send_sms_invites: ส่งคําเชิญทาง SMS
+    super_admin_assessment_norm_export: การส่งออกผลลัพธ์บรรทัดฐานของผู้ดูแลระบบขั้นสูง
+    super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
+    super_admin_assessment_raw_result_export: การส่งออกผลลัพธ์ดิบของผู้ดูแลระบบขั้นสูง
+    super_admin_datasheet_export: การส่งออกเอกสารข้อมูลผู้ดูแลระบบขั้นสูง
+    super_admin_external_assessment_export: การส่งออกการประเมินภายนอกของผู้ดูแลระบบขั้นสูง
+    superadmin_record_change_history: ประวัติการเปลี่ยนแปลงบันทึก
+    threesixty_campaign_export_completion_status: สถานะการส่งออกแคมเปญที่เสร็จสมบูรณ์
+    threesixty_campaign_export_scores: การส่งออกคะแนนแคมเปญ Threesixty
+    workshop_status_export: การส่งออกสถานะศูนย์ประเมิน

@@ -114,7 +114,7 @@ module AdminJobs
       download_urls = bulk_report.public_download_urls
 
       [
-        content_tag(:div, I18n.t('admin_jobs.bulk_download_reports.content.title')),
+        content_tag(:div, I18n.t('admin_jobs.bulk_download_reports_content_title')),
         content_tag(:ul) do
           bulk_report.files.map.with_index do |file, index|
             content_tag(:li) do

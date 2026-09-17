@@ -3652,3 +3652,127 @@ ro:
     yoodli_launch_url: URL de lansare
     yoodli_login_url: URL de autentificare
     you_are_here: Vă aflați aici
+  admin_jobs:
+    add_campaign_reports: Adaugă rapoarte de campanie
+    assessment_norm_export: Exportul rezultatelor normate
+    assessment_raw_ai_factor_export: Export scoruri brute ale factorului AI
+    assessment_raw_factor_export: Exportul scorurilor factorului brut
+    assessment_raw_result_export: Exportul rezultatelor brute
+    assessment_scoring_export: Exportul rezultatelor punctajului
+    assign_idp_to_users: Atribuiți IDP utilizatorilor
+    assign_reports_and_assessments: Atribuiți rapoarte și evaluări
+    bulk_create_workshop_invites: Trimitere în bloc a invitațiilor la Centrul de evaluare
+    bulk_download_idp_reports: Descărcați în bloc rapoarte IDP
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: Rapoarte de descărcare în bloc
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: Descărcați în bloc rapoartele utilizatorilor
+    bulk_export_norm_factor_scores: Exportare scoruri factor normă în bloc
+    bulk_export_raw_factor_scores: Export în bloc al scorurilor factorilor bruti
+    bulk_generate_user_campaign_ai_artifact_results: Generați în bloc rezultate ale artefactelor AI ale campaniei
+    bulk_regenerate_reports: Regenerarea rapoartelor de campanie
+    bulk_regenerate_threesixty_reports: Regenerarea rapoartelor Three6ty Subject
+    bulk_regenerate_user_reports: Regenerarea rapoartelor utilizatorilor
+    bulk_reports: Rapoarte în bloc
+    bulk_rescore_campaign_factors: Factorii campaniei de reevaluare în bloc
+    bulk_update_evaluation_status: Stare evaluare actualizare în bloc
+    campaign_report_extract_and_upload_bulk_assets: Raport de campanie Încărcare active în bloc
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: Exportați compact al stării de finalizare
+    completion_status_export: Exportul stării de finalizare
+    copy_as_template_or_campaign: Copiați campania ca șablon
+    copy_assessment: Evaluarea copierii
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: Copiere parametru
+    copy_report: Copiere raport
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Creați campania Threesixty
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: Exportul raportului de date
+    export_admin_with_permissions: Exportați administratorul cu permisiuni
+    export_assessment_questions: Întrebări de evaluare a exporturilor
+    export_audit_logs: Exportarea jurnalelor de audit
+    export_campaign_ai_artifacts: Artefacte AI din campaniile de export
+    export_campaign_ai_artifacts_results: Exportați rezultatele campaniei AI Artifacts
+    export_campaign_datasheet: Fișă tehnică a campaniei de export
+    export_campaign_factors: Factorii campaniei de export
+    export_campaign_scorings: Exportați scorurile campaniei
+    export_campaign_translations: Exportați traducerile campaniei
+    export_dashboard_as_file: Exportați tabloul de bord ca fișier
+    export_development_action_translations: Traduceri pentru acțiuni de dezvoltare a exporturilor
+    export_development_actions: Acțiune de dezvoltare a exporturilor
+    export_dimension_as_json: Exportați dimensiunea JSON
+    export_factor_translations: Traduceri cu factor de export
+    export_interview_questions: Exportați întrebările interviului
+    export_job_roles_translations: Exportați Rolul postului Traduceri
+    export_norm: Norma de export
+    export_occupations: Ocupații Exportați
+    export_proficiency_level_translations: Traduceri la nivel de competență de export
+    export_proficiency_levels: Niveluri de competență pentru export
+    export_reflection_questions: Întrebări de reflecție pentru export
+    export_report_data: Exportați datele rapoartelor
+    export_reports_and_assessments: Exportați rapoarte și evaluări
+    export_skill_translations: Traduceri de abilități de export
+    export_skills: Abilități de export
+    export_user_report_events: Exportați evenimentele din rapoartele utilizatorilor
+    export_users: Exportul utilizatorilor campaniei
+    external_assessment_export: Exportați rezultate externe
+    generate_embedding_skills: Generează Embedding pentru abilități
+    generate_transcription: Generați transcrierea
+    import_accesssheet: Import Accessheet
+    import_assessment_questions: Întrebări de evaluare a importurilor
+    import_assessment_translations: Importați traduceri de evaluare
+    import_assessors: Evaluatori de import
+    import_campaign_ai_artifacts: Importul artefactelor AI din campanii
+    import_campaign_factors: Importați factori de campanie
+    import_campaign_translations: Importați traducerile campaniei
+    import_client_assessors: Importarea evaluatorilor clienților
+    import_datasheet: Fișa tehnică de import
+    import_development_action_translations: Importul de traduceri pentru acțiuni de dezvoltare
+    import_development_actions: Acțiune de dezvoltare a importurilor
+    import_dimension_from_json: Importați dimensiunea din JSON
+    import_external_campaign_scoring: Importați scorul campaniei externe
+    import_external_scoring_data: Importul datelor externe de notare
+    import_factor_translations: Traduceri cu factor de import
+    import_factors: Factori de import
+    import_interview_questions: Importați întrebări de interviu
+    import_job_roles_translations: Import Rolul postului Traduceri
+    import_norm: Norma de import
+    import_proficiency_level_translations: Importați traduceri la nivel de competență
+    import_proficiency_levels: Niveluri de competență de import
+    import_question_translations: Importați traduceri de întrebări
+    import_raw_data: Importați date brute
+    import_reflection_questions: Importați întrebări de reflecție
+    import_scoring_data: Importul datelor de scor
+    import_skill_rater_taxonomies: Importul taxonomiilor evaluatorilor de competențe
+    import_skill_translations: Traduceri de abilități de import
+    import_skills: Abilități de import
+    import_sms_invites: Importați invitația prin SMS
+    import_users: Importați utilizatori
+    invalid_job: Această notificare corespunde înregistrării șterse
+    mark_as_read: Marcați toate citite
+    migrate_assessment_translations: Migrarea traducerii de evaluare
+    migrate_communication_center: Migrarea Centrului de Comunicare
+    normalize_factor_scores: Normalizați scorurile factorilor
+    project_bulk_download_reports: Rapoarte de descărcare în bloc a proiectului
+    project_compact_completion_status_export: Exportare stare finalizare compactă
+    project_completion_status_export: Stare finalizare Export
+    regenerate_assessment_transcriptions: Regenerare transcrieri evaluări
+    regenerate_campaign_reports: Regenerarea rapoartelor de campanie
+    regenerate_report: Regenerarea raportului
+    regenerate_threesixty_report: Regenerarea raportului Threesixty
+    remap_report_assessment: Evaluarea raportului de remapare
+    rescore_ai_scoring: Reevaluarea cu ajutorul IA
+    rescore_assessment: Evaluarea rescorului
+    rescore_user_assessment: Rescorarea evaluării utilizatorului
+    send_sms_invites: Trimiteți invitații prin SMS
+    super_admin_assessment_norm_export: Exportul rezultatelor Super Admin Norm
+    super_admin_assessment_raw_factor_export: Exportul scorurilor Super Admin Raw Factor
+    super_admin_assessment_raw_result_export: Exportați rezultate brute Super Admin
+    super_admin_datasheet_export: Exportați fișă tehnică Super Admin
+    super_admin_external_assessment_export: Exportați de evaluare externă Super Admin
+    superadmin_record_change_history: Înregistrați istoricul modificărilor
+    threesixty_campaign_export_completion_status: Starea de finalizare a exportului campaniei Threesixty
+    threesixty_campaign_export_scores: Exportul scorurilor campaniei Threesixty
+    workshop_status_export: Exportul stării centrului de evaluare

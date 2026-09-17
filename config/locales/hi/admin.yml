@@ -3664,3 +3664,127 @@ hi:
     yoodli_launch_url: लॉन्च यूआरएल
     yoodli_login_url: लॉगिन यूआरएल
     you_are_here: आप यहाँ हैं
+  admin_jobs:
+    add_campaign_reports: अभियान रिपोर्ट जोड़ें
+    assessment_norm_export: मानकीकृत परिणाम निर्यात
+    assessment_raw_ai_factor_export: कच्चे एआई फैक्टर स्कोर निर्यात
+    assessment_raw_factor_export: कच्चे कारक स्कोर निर्यात
+    assessment_raw_result_export: कच्चे परिणाम निर्यात
+    assessment_scoring_export: स्कोरिंग परिणाम निर्यात
+    assign_idp_to_users: उपयोगकर्ताओं को IDP असाइन करें
+    assign_reports_and_assessments: रिपोर्ट और मूल्यांकन असाइन करें
+    bulk_create_workshop_invites: थोक मूल्यांकन केंद्र निमंत्रण भेजें
+    bulk_download_idp_reports: IDP रिपोर्ट्स थोक में डाउनलोड करें
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: थोक रिपोर्ट डाउनलोड करें
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: उपयोगकर्ता रिपोर्टों का थोक डाउनलोड
+    bulk_export_norm_factor_scores: बल्क नॉर्म फैक्टर स्कोर निर्यात
+    bulk_export_raw_factor_scores: थोक कच्चे कारक स्कोर निर्यात
+    bulk_generate_user_campaign_ai_artifact_results: बल्क में अभियान एआई कलाकृति परिणाम उत्पन्न करें
+    bulk_regenerate_reports: अभियान रिपोर्टें पुनः उत्पन्न करें
+    bulk_regenerate_threesixty_reports: थ्रीसिक्स्टी विषय रिपोर्टें पुनः उत्पन्न करें
+    bulk_regenerate_user_reports: उपयोगकर्ता रिपोर्टें पुनः उत्पन्न करें
+    bulk_reports: थोक रिपोर्टें
+    bulk_rescore_campaign_factors: थोक पुनः स्कोर अभियान कारक
+    bulk_update_evaluation_status: बल्क अपडेट मूल्यांकन स्थिति
+    campaign_report_extract_and_upload_bulk_assets: अभियान रिपोर्ट अपलोड करें, थोक संपत्तियाँ
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
+    completion_status_export: पूर्णता स्थिति निर्यात
+    copy_as_template_or_campaign: अभियान को टेम्पलेट के रूप में कॉपी करें
+    copy_assessment: मूल्यांकन की प्रतिलिपि
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: आयाम की प्रतिलिपि
+    copy_report: रिपोर्ट की प्रतिलिपि
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: थ्रीसिक्स्टी अभियान बनाएँ
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: डेटा रिपोर्ट निर्यात
+    export_admin_with_permissions: अनुमतिओं के साथ निर्यात प्रशासक
+    export_assessment_questions: निर्यात मूल्यांकन प्रश्न
+    export_audit_logs: ऑडिट लॉग्स निर्यात करें
+    export_campaign_ai_artifacts: निर्यात अभियान एआई कलाकृतियाँ
+    export_campaign_ai_artifacts_results: निर्यात अभियान एआई कलाकृतियों के परिणाम
+    export_campaign_datasheet: निर्यात अभियान डेटाशीट
+    export_campaign_factors: निर्यात अभियान कारक
+    export_campaign_scorings: अभियान स्कोरिंग्स का निर्यात करें
+    export_campaign_translations: निर्यात अभियान अनुवाद
+    export_dashboard_as_file: डैशबोर्ड को फ़ाइल के रूप में निर्यात करें
+    export_development_action_translations: निर्यात विकास कार्रवाई अनुवाद
+    export_development_actions: निर्यात विकास कार्यवाही
+    export_dimension_as_json: निर्यात आयाम JSON
+    export_factor_translations: निर्यात कारक अनुवाद
+    export_interview_questions: निर्यात साक्षात्कार प्रश्न
+    export_job_roles_translations: निर्यात जॉब भूमिका अनुवाद
+    export_norm: निर्यात मानक
+    export_occupations: व्यवसाय निर्यात
+    export_proficiency_level_translations: निर्यात प्रवीणता स्तर अनुवाद
+    export_proficiency_levels: निर्यात प्रवीणता स्तर
+    export_reflection_questions: निर्यात प्रतिबिंब प्रश्न
+    export_report_data: निर्यात रिपोर्ट डेटा
+    export_reports_and_assessments: निर्यात रिपोर्ट और आकलन
+    export_skill_translations: निर्यात कौशल अनुवाद
+    export_skills: निर्यात कौशल
+    export_user_report_events: उपयोगकर्ता रिपोर्ट घटनाएँ निर्यात करें
+    export_users: अभियान उपयोगकर्ताओं का निर्यात
+    external_assessment_export: बाहरी परिणाम निर्यात
+    generate_embedding_skills: कौशलों के लिए एम्बेडिंग उत्पन्न करें
+    generate_transcription: प्रतिलेखन उत्पन्न करें
+    import_accesssheet: एक्सेल शीट आयात करें
+    import_assessment_questions: आकलन प्रश्न आयात करें
+    import_assessment_translations: आयात मूल्यांकन अनुवाद
+    import_assessors: आयात मूल्यांकनकर्ता
+    import_campaign_ai_artifacts: अभियान अभियान एआई कलाकृतियाँ आयात करें
+    import_campaign_factors: अभियान कारक आयात करें
+    import_campaign_translations: आयात अभियान अनुवाद
+    import_client_assessors: क्लाइंट आकलनकर्ताओं को आयात करें
+    import_datasheet: डेटाशीट आयात करें
+    import_development_action_translations: विकास कार्रवाई अनुवादों का आयात करें
+    import_development_actions: आयात विकास क्रियाएँ
+    import_dimension_from_json: JSON से आयाम आयात करें
+    import_external_campaign_scoring: बाहरी अभियान स्कोरिंग आयात करें
+    import_external_scoring_data: बाहरी स्कोरिंग डेटा आयात करें
+    import_factor_translations: आयात कारक अनुवाद
+    import_factors: आयातक कारक
+    import_interview_questions: साक्षात्कार प्रश्न आयात करें
+    import_job_roles_translations: नौकरी भूमिकाओं का अनुवाद आयात करें
+    import_norm: आयात मानक
+    import_proficiency_level_translations: प्रवीणता स्तर अनुवाद आयात करें
+    import_proficiency_levels: प्रवीणता स्तर आयात करें
+    import_question_translations: प्रश्न अनुवाद आयात करें
+    import_raw_data: कच्चा डेटा आयात करें
+    import_reflection_questions: प्रतिबिंब प्रश्न आयात करें
+    import_scoring_data: स्कोरिंग डेटा आयात करें
+    import_skill_rater_taxonomies: कौशल रेटिंग वर्गीकरण आयात करें
+    import_skill_translations: कौशल अनुवाद आयात करें
+    import_skills: कौशल आयात करें
+    import_sms_invites: एसएमएस निमंत्रण आयात करें
+    import_users: उपयोगकर्ताओं को आयात करें
+    invalid_job: यह सूचना हटाए गए रिकॉर्ड से संबंधित है।
+    mark_as_read: सभी को पढ़ा हुआ चिह्नित करें
+    migrate_assessment_translations: मूल्यांकन अनुवाद प्रवासन
+    migrate_communication_center: संचार केंद्र प्रवासन
+    normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
+    project_bulk_download_reports: प्रोजेक्ट बल्क डाउनलोड रिपोर्ट
+    project_compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
+    project_completion_status_export: पूर्णता स्थिति निर्यात
+    regenerate_assessment_transcriptions: मूल्यांकन प्रतिलेखों को पुनः उत्पन्न करें
+    regenerate_campaign_reports: अभियान रिपोर्टें पुनः उत्पन्न करें
+    regenerate_report: रिपोर्ट पुनः उत्पन्न करें
+    regenerate_threesixty_report: थ्रीसिक्सी रिपोर्ट पुनः उत्पन्न करें
+    remap_report_assessment: रिमेप रिपोर्ट मूल्यांकन
+    rescore_ai_scoring: एआई पुनः स्कोरिंग
+    rescore_assessment: पुनः स्कोर मूल्यांकन
+    rescore_user_assessment: उपयोगकर्ता मूल्यांकन का पुनः स्कोर करें
+    send_sms_invites: एसएमएस निमंत्रण भेजें
+    super_admin_assessment_norm_export: सुपर एडमिन नॉर्म परिणाम निर्यात
+    super_admin_assessment_raw_factor_export: सुपर एडमिन रॉ फैक्टर स्कोर एक्सपोर्ट
+    super_admin_assessment_raw_result_export: सुपर एडमिन कच्चे परिणाम निर्यात
+    super_admin_datasheet_export: सुपर एडमिन डेटाशीट निर्यात
+    super_admin_external_assessment_export: सुपर एडमिन बाह्य मूल्यांकन निर्यात
+    superadmin_record_change_history: रिकॉर्ड परिवर्तन इतिहास
+    threesixty_campaign_export_completion_status: थ्रीसिक्स्टी अभियान निर्यात पूर्णता स्थिति
+    threesixty_campaign_export_scores: थ्रीसिक्स्टी अभियान ने एक्सपोर्ट हासिल किया
+    workshop_status_export: मूल्यांकन केंद्र स्थिति निर्यात

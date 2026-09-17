@@ -3660,3 +3660,127 @@ zh-HK:
     yoodli_launch_url: 启动网址
     yoodli_login_url: 登录网址
     you_are_here: 您当前所在的位置
+  admin_jobs:
+    add_campaign_reports: 新增戰役報告
+    assessment_norm_export: 標準化結果匯出
+    assessment_raw_ai_factor_export: 原始AI因子得分导出
+    assessment_raw_factor_export: 原始因子分數匯出
+    assessment_raw_result_export: 原始結果匯出
+    assessment_scoring_export: 計分結果匯出
+    assign_idp_to_users: 將 IDP 指派給使用者
+    assign_reports_and_assessments: 指派報告與評估
+    bulk_create_workshop_invites: 批量評估中心邀請函已發送
+    bulk_download_idp_reports: 大量下載IDP報告
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: 批量下載報告
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: 批量下載用戶報告
+    bulk_export_norm_factor_scores: 批量导出规范因子得分
+    bulk_export_raw_factor_scores: 批量导出原始因子得分
+    bulk_generate_user_campaign_ai_artifact_results: 批量生成活動 AI 成品結果
+    bulk_regenerate_reports: Regenerate Campaign 報告
+    bulk_regenerate_threesixty_reports: 重生三百六十主題報告
+    bulk_regenerate_user_reports: 重新產生使用者報告
+    bulk_reports: 批量報告
+    bulk_rescore_campaign_factors: 大規模重新評分活動因素
+    bulk_update_evaluation_status: 批量更新評估狀態
+    campaign_report_extract_and_upload_bulk_assets: 活动报告上传批量素材
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: 緊湊完工狀態匯出
+    completion_status_export: 完工狀態匯出
+    copy_as_template_or_campaign: 複製活動作為範本
+    copy_assessment: 抄写评估
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: 複製維度
+    copy_report: 复制报告
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Create Threesixty 運動
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: 資料報告匯出
+    export_admin_with_permissions: 帶權限的 Export 管理員
+    export_assessment_questions: 出口評估問題
+    export_audit_logs: 导出审计日志
+    export_campaign_ai_artifacts: 輸出戰役 AI 工件
+    export_campaign_ai_artifacts_results: 导出活动AI成果
+    export_campaign_datasheet: 导出活动数据表
+    export_campaign_factors: 出動因素
+    export_campaign_scorings: 出口運動得分
+    export_campaign_translations: 出口行銷活動翻譯
+    export_dashboard_as_file: 將儀表板匯出為檔案
+    export_development_action_translations: 出口發展行動翻譯
+    export_development_actions: 出口發展行動
+    export_dimension_as_json: Export Dimension JSON
+    export_factor_translations: 出口因子轉換
+    export_interview_questions: 出口面試問題
+    export_job_roles_translations: 匯出工作角色翻譯
+    export_norm: 出口標準
+    export_occupations: 職業 出口
+    export_proficiency_level_translations: 出口熟練度等級翻譯
+    export_proficiency_levels: 出口能力等級
+    export_reflection_questions: 出口反思問題
+    export_report_data: 出口報告資料
+    export_reports_and_assessments: 出口報告與評估
+    export_skill_translations: 出口技能翻譯
+    export_skills: 出口技能
+    export_user_report_events: 匯出使用者報告事件
+    export_users: 活動使用者匯出
+    external_assessment_export: 外部結果匯出
+    generate_embedding_skills: 生成技能嵌入
+    generate_transcription: 生成转录文本
+    import_accesssheet: Import Accessheet
+    import_assessment_questions: 進口評估問題
+    import_assessment_translations: 匯入評量翻譯
+    import_assessors: 顧問人數
+    import_campaign_ai_artifacts: 匯入戰役 AI 工件
+    import_campaign_factors: 進動因素
+    import_campaign_translations: 導入活動翻譯
+    import_client_assessors: 导入客户评估员
+    import_datasheet: 匯入資料表
+    import_development_action_translations: 進口開發行動翻譯
+    import_development_actions: 進口開發行動
+    import_dimension_from_json: 從 JSON 匯入維度
+    import_external_campaign_scoring: 匯入外部戰役評分
+    import_external_scoring_data: 匯入外部計分資料
+    import_factor_translations: 進口因子翻譯
+    import_factors: 進口因素
+    import_interview_questions: 導入面試問題
+    import_job_roles_translations: 匯入工作角色翻譯
+    import_norm: 進口標準
+    import_proficiency_level_translations: 進口能力等級翻譯
+    import_proficiency_levels: 進口熟練度等級
+    import_question_translations: 匯入問題翻譯
+    import_raw_data: 匯入原始資料
+    import_reflection_questions: 引進反思問題
+    import_scoring_data: 進口評分資料
+    import_skill_rater_taxonomies: 匯入技能評核員分類標準
+    import_skill_translations: 進口技能翻譯
+    import_skills: 外來技能
+    import_sms_invites: 匯入簡訊邀請
+    import_users: 匯入使用者
+    invalid_job: 此通知對應於已刪除紀錄
+    mark_as_read: 標記全部已讀
+    migrate_assessment_translations: 評估翻譯遷移
+    migrate_communication_center: 通信中心遷移
+    normalize_factor_scores: 標準化因子分數
+    project_bulk_download_reports: 專案批量下載報告
+    project_compact_completion_status_export: 紧凑型完成状态导出
+    project_completion_status_export: 完成状态导出
+    regenerate_assessment_transcriptions: 重新生成评估记录
+    regenerate_campaign_reports: Regenerate Campaign 報告
+    regenerate_report: 重生報告
+    regenerate_threesixty_report: 再生三百六十報告
+    remap_report_assessment: Remap 報告評估
+    rescore_ai_scoring: AI重新评分
+    rescore_assessment: 重新評分評估
+    rescore_user_assessment: 重新評分使用者評估
+    send_sms_invites: 發送簡訊邀請
+    super_admin_assessment_norm_export: 超級管理員 Norm 結果匯出
+    super_admin_assessment_raw_factor_export: 超級管理員原始因子分數匯出
+    super_admin_assessment_raw_result_export: 超級管理員原始結果匯出
+    super_admin_datasheet_export: 超級管理員資料表匯出
+    super_admin_external_assessment_export: 超級管理員外部評估匯出
+    superadmin_record_change_history: 記錄變更歷史
+    threesixty_campaign_export_completion_status: Threesixty 活動出口完成狀態
+    threesixty_campaign_export_scores: Threesixty 戰役分數輸出
+    workshop_status_export: 評估中心狀態匯出

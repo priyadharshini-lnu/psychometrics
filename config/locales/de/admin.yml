@@ -3660,3 +3660,127 @@ de:
     yoodli_launch_url: Start-URL
     yoodli_login_url: Login-URL
     you_are_here: Sie befinden sich hier
+  admin_jobs:
+    add_campaign_reports: Kampagnenberichte hinzufügen
+    assessment_norm_export: Export von normierten Ergebnissen
+    assessment_raw_ai_factor_export: Export der Rohwerte des KI-Faktors
+    assessment_raw_factor_export: Raw Factor Scores Export
+    assessment_raw_result_export: Export von Rohergebnissen
+    assessment_scoring_export: Export der Bewertungsergebnisse
+    assign_idp_to_users: IDP den Benutzern zuweisen
+    assign_reports_and_assessments: Berichte und Beurteilungen zuweisen
+    bulk_create_workshop_invites: Bulk Assessment Center Einladungen senden
+    bulk_download_idp_reports: Massendownload von IDP-Berichten
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: Bulk Download Berichte
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: Bulk-Download von Benutzerberichten
+    bulk_export_norm_factor_scores: Export von Normfaktorbewertungen in großen Mengen
+    bulk_export_raw_factor_scores: Export von Rohfaktorwerten in großen Mengen
+    bulk_generate_user_campaign_ai_artifact_results: Massengenerierung von KI-Artefaktergebnissen für Kampagnen
+    bulk_regenerate_reports: Kampagnenberichte neu generieren
+    bulk_regenerate_threesixty_reports: Dreißig Themenberichte neu generieren
+    bulk_regenerate_user_reports: Benutzerberichte neu generieren
+    bulk_reports: Bulk-Berichte
+    bulk_rescore_campaign_factors: Faktoren für Massenwiederholungskampagnen
+    bulk_update_evaluation_status: Evaluierungsstatus der Massenaktualisierung
+    campaign_report_extract_and_upload_bulk_assets: Kampagnenbericht Hochladen von Massen-Assets
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
+    completion_status_export: Fertigstellungsstatus Export
+    copy_as_template_or_campaign: Kampagne als Vorlage kopieren
+    copy_assessment: Kopierbewertung
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: Dimension kopieren
+    copy_report: Bericht kopieren
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Threesixty-Kampagne erstellen
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: Export von Datenberichten
+    export_admin_with_permissions: Admin mit Berechtigungen exportieren
+    export_assessment_questions: Fragen zur Exportbewertung
+    export_audit_logs: Export von Prüfprotokollen
+    export_campaign_ai_artifacts: Export-Kampagnen-KI-Artefakte
+    export_campaign_ai_artifacts_results: Exportieren Sie die Ergebnisse der KI-Artefakte der Kampagne
+    export_campaign_datasheet: Datenblatt zur Exportkampagne
+    export_campaign_factors: Faktoren der Exportkampagne
+    export_campaign_scorings: Kampagnenscorings exportieren
+    export_campaign_translations: Exportkampagnenübersetzungen
+    export_dashboard_as_file: Dashboard als Datei exportieren
+    export_development_action_translations: Exportentwicklung Aktion Übersetzungen
+    export_development_actions: Maßnahmen zur Exportentwicklung
+    export_dimension_as_json: Dimension JSON exportieren
+    export_factor_translations: Export-Faktor-Übersetzungen
+    export_interview_questions: Fragen im Vorstellungsgespräch exportieren
+    export_job_roles_translations: Exportieren von Job-Rollen-Übersetzungen
+    export_norm: Norm exportieren
+    export_occupations: Berufe Export
+    export_proficiency_level_translations: Exportieren von Übersetzungen der Sprachstufen
+    export_proficiency_levels: Leistungsniveaus exportieren
+    export_reflection_questions: Exportieren von Reflexionsfragen
+    export_report_data: Berichtsdaten exportieren
+    export_reports_and_assessments: Berichte und Beurteilungen exportieren
+    export_skill_translations: Exportkompetenzen Übersetzungen
+    export_skills: Exportfähigkeiten
+    export_user_report_events: Benutzerbericht Ereignisse exportieren
+    export_users: Kampagnenbenutzer exportieren
+    external_assessment_export: Export von externen Ergebnissen
+    generate_embedding_skills: Einbettung für Fertigkeiten generieren
+    generate_transcription: Transkription erstellen
+    import_accesssheet: Zugangsdatenblatt importieren
+    import_assessment_questions: Bewertungsfragen importieren
+    import_assessment_translations: Importieren von Assessment-Übersetzungen
+    import_assessors: Prüfer importieren
+    import_campaign_ai_artifacts: Import-Kampagnen-KI-Artefakte
+    import_campaign_factors: Faktoren der Kampagne importieren
+    import_campaign_translations: Importkampagnenübersetzungen
+    import_client_assessors: Importieren von Kundenprüfern
+    import_datasheet: Datenblatt importieren
+    import_development_action_translations: Entwicklung importieren Aktion Übersetzungen
+    import_development_actions: Entwicklungsmaßnahmen importieren
+    import_dimension_from_json: Dimension aus JSON importieren
+    import_external_campaign_scoring: Externes Kampagnen-Scoring importieren
+    import_external_scoring_data: Externe Wertungsdaten importieren
+    import_factor_translations: Import-Faktor-Übersetzungen
+    import_factors: Import-Faktoren
+    import_interview_questions: Importieren von Fragen im Vorstellungsgespräch
+    import_job_roles_translations: Importieren von Job-Rollen-Übersetzungen
+    import_norm: Norm importieren
+    import_proficiency_level_translations: Importieren von Übersetzungen der Proficiency Level
+    import_proficiency_levels: Importieren von Ausprägungsstufen
+    import_question_translations: Fragenübersetzungen importieren
+    import_raw_data: Rohdaten importieren
+    import_reflection_questions: Importieren von Reflexionsfragen
+    import_scoring_data: Scoring-Daten importieren
+    import_skill_rater_taxonomies: Taxonomien für Skill Rater importieren
+    import_skill_translations: Importfähigkeiten Übersetzungen
+    import_skills: Import-Fähigkeiten
+    import_sms_invites: SMS-Einladung importieren
+    import_users: Benutzer importieren
+    invalid_job: Diese Meldung entspricht einem gelöschten Datensatz
+    mark_as_read: Markieren Sie alle gelesenen
+    migrate_assessment_translations: Bewertung Übersetzung Migration
+    migrate_communication_center: Migration des Kommunikationszentrums
+    normalize_factor_scores: Faktorwerte normalisieren
+    project_bulk_download_reports: Berichte zum Massen-Download von Projekten
+    project_compact_completion_status_export: Kompakter Export des Fertigstellungsstatus
+    project_completion_status_export: Export des Fertigstellungsstatus
+    regenerate_assessment_transcriptions: Transkripte der Beurteilung neu generieren
+    regenerate_campaign_reports: Kampagnenberichte neu generieren
+    regenerate_report: Bericht "Regenerieren
+    regenerate_threesixty_report: Bericht über die Regenerierung von Threesixty
+    remap_report_assessment: Remap-Bericht Bewertung
+    rescore_ai_scoring: Neubewertung durch KI
+    rescore_assessment: Wiederholungsprüfung
+    rescore_user_assessment: Bewertung der Benutzer neu bewerten
+    send_sms_invites: SMS-Einladungen versenden
+    super_admin_assessment_norm_export: Super Admin Norm Ergebnis-Export
+    super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
+    super_admin_assessment_raw_result_export: Super Admin Rohergebnis-Export
+    super_admin_datasheet_export: Super-Admin-Datenblatt-Export
+    super_admin_external_assessment_export: Super Admin Externe Bewertung Export
+    superadmin_record_change_history: Änderungshistorie des Datensatzes
+    threesixty_campaign_export_completion_status: Abschlussstatus der Threesixty-Kampagne Export
+    threesixty_campaign_export_scores: Threesixty-Kampagne punktet beim Export
+    workshop_status_export: Assessment Center Status Export

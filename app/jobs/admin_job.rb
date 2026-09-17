@@ -10,7 +10,7 @@ class AdminJob < ApplicationJob
 
   class AlreadyExistsError < StandardError
     def initialize
-      super(I18n.t('admin_jobs.bulk_download_idp_reports.already_exists'))
+      super(I18n.t('admin_jobs.bulk_download_idp_reports_already_exists'))
     end
   end
 

@@ -3657,3 +3657,127 @@ bg:
     yoodli_launch_url: URL за стартиране
     yoodli_login_url: URL за вход
     you_are_here: Вие сте тук
+  admin_jobs:
+    add_campaign_reports: Добавяне на отчети за кампании
+    assessment_norm_export: Експортиране на нормирани резултати
+    assessment_raw_ai_factor_export: Експорт на суровите резултати по AI Factor
+    assessment_raw_factor_export: Експорт на сурови фактори
+    assessment_raw_result_export: Експортиране на необработени резултати
+    assessment_scoring_export: Експортиране на резултатите от оценяването
+    assign_idp_to_users: Присвояване на IDP на потребители
+    assign_reports_and_assessments: Присвояване на отчети и оценки
+    bulk_create_workshop_invites: Изпращане на покани за групово оценяване
+    bulk_download_idp_reports: Групово изтегляне на отчети за IDP
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: Групово изтегляне на отчети
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: Групово изтегляне на потребителски отчети
+    bulk_export_norm_factor_scores: Експорт на резултатите за фактора „Норма за обем“
+    bulk_export_raw_factor_scores: Експорт на сурови факторни резултати в масов формат
+    bulk_generate_user_campaign_ai_artifact_results: Групово генериране на резултати от AI артефакт на кампанията
+    bulk_regenerate_reports: Генериране на отчети за кампании
+    bulk_regenerate_threesixty_reports: Регенерирайте тришестдесет тематични доклада
+    bulk_regenerate_user_reports: Повторно генериране на потребителски отчети
+    bulk_reports: Групови отчети
+    bulk_rescore_campaign_factors: Фактори на кампанията за групово преоценяване
+    bulk_update_evaluation_status: Състояние на оценка на групово актуализиране
+    campaign_report_extract_and_upload_bulk_assets: Кампания Доклад Качване на масивно количество активи
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: Компактен износ на състоянието на завършване
+    completion_status_export: Експортиране на състоянието на завършване
+    copy_as_template_or_campaign: Копиране на кампанията като шаблон
+    copy_assessment: Оценка на копието
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: Копиране на величината
+    copy_report: Копиране на отчета
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Създайте кампания Threesixty
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: Експортиране на отчети за данни
+    export_admin_with_permissions: Експортиране на администратор с разрешения
+    export_assessment_questions: Въпроси за оценка на износа
+    export_audit_logs: Експортиране на аудиторски логове
+    export_campaign_ai_artifacts: Изкуствени артефакти от Експортната кампания
+    export_campaign_ai_artifacts_results: Експортиране на резултатите от AI артефактите на кампанията
+    export_campaign_datasheet: Технически спецификации на кампанията за износ
+    export_campaign_factors: Фактори на експортната кампания
+    export_campaign_scorings: Експортиране на оценки на кампании
+    export_campaign_translations: Експортиране на преводи на кампании
+    export_dashboard_as_file: Експортиране на табло като файл
+    export_development_action_translations: Преводи за развитие на износа
+    export_development_actions: Действия за развитие на износа
+    export_dimension_as_json: JSON за експортиране на измерения
+    export_factor_translations: Експортни фактори за преводи
+    export_interview_questions: Въпроси за интервю за експортиране
+    export_job_roles_translations: Експортирайте преводите на работните роли
+    export_norm: Норма за износ
+    export_occupations: Износ на професии
+    export_proficiency_level_translations: Експортиране на преводи на ниво на владеене
+    export_proficiency_levels: Експортирайте нивата на владеене
+    export_reflection_questions: Експортиране на въпроси за размисъл
+    export_report_data: Експортиране на данни от отчета
+    export_reports_and_assessments: Експортиране на отчети и оценки
+    export_skill_translations: Експортиране на преводи на умения
+    export_skills: Експортиране на умения
+    export_user_report_events: Експортиране на събития от потребителски отчет
+    export_users: Експортиране на потребители на кампанията
+    external_assessment_export: Експортиране на външни резултати
+    generate_embedding_skills: Генериране на вграждане за умения
+    generate_transcription: Генериране на транскрипция
+    import_accesssheet: Импортиране на accessheet
+    import_assessment_questions: Въпроси за оценка на импортиране
+    import_assessment_translations: Импортиране на преводи за оценяване
+    import_assessors: Оценители на вноса
+    import_campaign_ai_artifacts: Артефакти от AI за Import Campaign
+    import_campaign_factors: Импортиране на фактори на кампанията
+    import_campaign_translations: Импортиране на преводи на кампании
+    import_client_assessors: Импортиране на оценители на клиенти
+    import_datasheet: Лист с данни за импортиране
+    import_development_action_translations: Импортиране на преводи за действие за разработка
+    import_development_actions: Действия за развитие на вноса
+    import_dimension_from_json: Импортиране на измерение от JSON
+    import_external_campaign_scoring: Импортиране на оценка на външни кампании
+    import_external_scoring_data: Импортиране на външни данни за оценяване
+    import_factor_translations: Импортиране на факторни преводи
+    import_factors: Фактори за внос
+    import_interview_questions: Импортиране на въпроси за интервю
+    import_job_roles_translations: Импортирайте преведените работни роли
+    import_norm: Норма за внос
+    import_proficiency_level_translations: Импортиране на преводи на ниво на владеене
+    import_proficiency_levels: Импортиране на нива на владеене
+    import_question_translations: Импортиране на преводи на въпроси
+    import_raw_data: Импортиране на необработени данни
+    import_reflection_questions: Импортиране на въпроси за размисъл
+    import_scoring_data: Импортиране на данни за оценяване
+    import_skill_rater_taxonomies: Импортиране на таксономии за оценяване на уменията
+    import_skill_translations: Импортиране на преводи на умения
+    import_skills: Импортиране на умения
+    import_sms_invites: Импортиране на SMS покана
+    import_users: Импортиране на потребители
+    invalid_job: Това уведомление съответства на изтрит запис
+    mark_as_read: Маркиране на всички прочетени
+    migrate_assessment_translations: Оценяване Преводаческа миграция
+    migrate_communication_center: Миграция на комуникационния център
+    normalize_factor_scores: Нормализиране на факторните резултати
+    project_bulk_download_reports: Отчети за групово изтегляне на проекти
+    project_compact_completion_status_export: Експорт на състоянието на завършеност на компактния файл
+    project_completion_status_export: Статус на завършване Износ
+    regenerate_assessment_transcriptions: Възстановяване на транскрипциите от оценката
+    regenerate_campaign_reports: Генериране на отчети за кампании
+    regenerate_report: Регенериране на отчет
+    regenerate_threesixty_report: Регенерирайте доклад на Threesixty
+    remap_report_assessment: Оценка на доклада за пренасочване
+    rescore_ai_scoring: Преоценка с изкуствен интелект
+    rescore_assessment: Оценка за преоценка
+    rescore_user_assessment: Оценка на потребителите за преоценка
+    send_sms_invites: Изпращане на SMS покани
+    super_admin_assessment_norm_export: Експортиране на резултати от Super Admin Norm
+    super_admin_assessment_raw_factor_export: Super Admin Raw Factor Scores Export
+    super_admin_assessment_raw_result_export: Експортиране на необработени резултати от Super Admin
+    super_admin_datasheet_export: Експортиране на лист с данни на Super Admin
+    super_admin_external_assessment_export: Експортиране на външно оценяване на супер администратор
+    superadmin_record_change_history: История на промените в записа
+    threesixty_campaign_export_completion_status: Състояние на завършване на експорта на Threesixty
+    threesixty_campaign_export_scores: Експортиране на резултати от кампании Threesixty
+    workshop_status_export: Експортиране на състоянието на центъра за оценяване

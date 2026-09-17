@@ -6,8 +6,7 @@ module AdminJobs
       client = ActsAsTenant.without_tenant { Client.find_by(id: record.data['client_id']) }
 
       unless client
-        broadcast :error, I18n.t('admin_jobs.migrate_communication_center.client_not_found',
-                                 id: record.data['client_id'])
+        broadcast :error, I18n.t('admin_jobs.client_not_found', id: record.data['client_id'])
         return
       end
 

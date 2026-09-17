@@ -22,10 +22,10 @@ const statusOf = (job: AdminJobI, errorMessages: string[]): JobStatus => {
 
 const descriptionOf = (job: AdminJobI, errorMessages: string[]): string => {
   if (errorMessages.length && job.status === 'completed') {
-    return I18n.t('admin_jobs.attrs.statuses.completed_with_errors')
+    return I18n.t('shared.completed_with_errors')
   }
 
-  return I18n.t(`admin_jobs.attrs.statuses.${job.status}`)
+  return I18n.t(`shared.${job.status}`)
 }
 
 const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ job, read }) => {
@@ -40,7 +40,7 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
     <Flex vertical gap={token.marginXXS}>
       {/* One text flow, not two flex children: side by side each wraps alone and orphans the separator. */}
       <Typography.Text>
-        {I18n.t(`admin_jobs.attrs.operations.${job.operation}`)}
+        {I18n.t(`admin_jobs.${job.operation}`)}
         {' - '}
         <Typography.Text type="secondary">{dayjs(job.createdAt).fromNow()}</Typography.Text>
       </Typography.Text>
@@ -72,7 +72,7 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
 
         {expanded && !!job.details.length && (
           <Alert
-            title={I18n.t('admin_jobs.details')}
+            title={I18n.t('shared.details')}
             type="info"
             description={job.details.map((detail, index) => (
               <Flex key={index} gap={token.marginXXS}>
@@ -85,14 +85,14 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
         )}
         {expanded && job.content && (
           <Alert
-            title={I18n.t('admin_jobs.results')}
+            title={I18n.t('shared.results')}
             type="info"
             description={<SafeHTML html={job.content} />}
           />
         )}
         {expanded && !!errorMessages.length && (
           <Alert
-            title={I18n.t('admin_jobs.errors')}
+            title={I18n.t('shared.errors')}
             type="error"
             description={(
               <Flex vertical gap={token.marginXXS}>
@@ -106,7 +106,7 @@ const AdminJob: React.FC<{ job: AdminJobI, read: (id: number) => void }> = ({ jo
           <Flex justify="center">
             <Button type="link" onClick={() => setExpanded(!expanded)}>
               {expanded ? <ExpandLess /> : <ExpandMore />}
-              {expanded ? I18n.t('admin_jobs.close') : I18n.t('admin_jobs.more')}
+              {expanded ? I18n.t('shared.close') : I18n.t('shared.more')}
             </Button>
           </Flex>
         )}

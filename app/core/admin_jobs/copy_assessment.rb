@@ -16,7 +16,7 @@ module AdminJobs
         record.update(data: record.data.merge(new_assessment_id: result[:ok][:assessment].id))
         broadcast :ok
       else
-        broadcast :error, I18n.t('admin_jobs.copy_assessment.failed')
+        broadcast :error, I18n.t('admin_jobs.copy_assessment_failed')
       end
     end
 

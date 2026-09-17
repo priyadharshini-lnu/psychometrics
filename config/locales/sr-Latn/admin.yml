@@ -3652,3 +3652,127 @@ sr-Latn:
     yoodli_launch_url: Pokrenite URL adresu
     yoodli_login_url: URL adresa za prijavu
     you_are_here: Ви сте овде
+  admin_jobs:
+    add_campaign_reports: Dodajte izveštaje o kampanji
+    assessment_norm_export: Normed Rezultati Izvoz
+    assessment_raw_ai_factor_export: Извоз сирих факторских оцена вештачке интелигенције
+    assessment_raw_factor_export: Rav Factor Rezultati Izvoz
+    assessment_raw_result_export: Sirovi rezultati Izvoz
+    assessment_scoring_export: Bodovanje Rezultati Izvoz
+    assign_idp_to_users: Dodelite IDP korisnicima
+    assign_reports_and_assessments: Dodelite izveštaje i procene
+    bulk_create_workshop_invites: Bulk Assessment Center Pozivi Pošalji
+    bulk_download_idp_reports: Zbirno preuzimanje IDP izveštaji
+    bulk_download_idp_reports_already_exists: The Job to generate this IDP reports already in progress
+    bulk_download_reports: Zbirno preuzimanje Izveštaji
+    bulk_download_reports_content_title: Links to download reports
+    bulk_download_reports_errors_no_plans: No active IDP plans found
+    bulk_download_user_reports: Bulk Preuzimanje korisničkih izveštaja
+    bulk_export_norm_factor_scores: Масовни извоз резултата фактора норме
+    bulk_export_raw_factor_scores: Масовни извоз сирових факторских резултата
+    bulk_generate_user_campaign_ai_artifact_results: Bulk Generate Campaign AI Artifact Rezultati
+    bulk_regenerate_reports: Regenerišite izveštaje o kampanji
+    bulk_regenerate_threesixty_reports: Regenerišite Threesixty Subject Reports
+    bulk_regenerate_user_reports: Regenerišite korisničke izveštaje
+    bulk_reports: Bulk Izveštaji
+    bulk_rescore_campaign_factors: Bulk Rescore faktori kampanje
+    bulk_update_evaluation_status: Bulk Update Evaluation Status
+    campaign_report_extract_and_upload_bulk_assets: Повезивање извештаја кампање и масовни унос средстава
+    client_not_found: Client with id=%{id} not found
+    compact_completion_status_export: Kompaktan Završetak Status Izvoz
+    completion_status_export: Završetak Status Izvoz
+    copy_as_template_or_campaign: Kopiraj kampanju kao šablon
+    copy_assessment: Копирај процену
+    copy_assessment_failed: Assessment copy failed
+    copy_dimension: Kopiraj dimenziju
+    copy_report: Копирај извештај
+    copy_report_failed: Report copy failed
+    create_threesixty_campaign: Kreirajte Threesixty kampanju
+    data_processing_disabled: Data processing is disabled.
+    data_report_export: Izvoz izveštaja o podacima
+    export_admin_with_permissions: Izvoz administratora sa dozvolama
+    export_assessment_questions: Pitanja za procenu izvoza
+    export_audit_logs: Извоз логова ревизије
+    export_campaign_ai_artifacts: Izvozna kampanja AI artefakata
+    export_campaign_ai_artifacts_results: Извези резултате АИ артефаката кампање
+    export_campaign_datasheet: Радни лист кампање за извоз
+    export_campaign_factors: Faktori izvozne kampanje
+    export_campaign_scorings: Izvozna kampanja Scorings
+    export_campaign_translations: Извоз превода кампање
+    export_dashboard_as_file: Izvozi kontrolnu tablu kao datoteku
+    export_development_action_translations: Izvoz Razvoj Akcija Prevodi
+    export_development_actions: Izvozne razvojne akcije
+    export_dimension_as_json: Izvoz Dimenzija JSON
+    export_factor_translations: Izvozni faktor Prevodi
+    export_interview_questions: Pitanja za intervju za izvoz
+    export_job_roles_translations: Izvezi prevoda poslovnih uloga
+    export_norm: Izvozna norma
+    export_occupations: Zanimanja Izvoz
+    export_proficiency_level_translations: Prevodi na nivou stručnosti izvoza
+    export_proficiency_levels: Izvezi nivoe stručnosti
+    export_reflection_questions: Pitanja o izvozu refleksije
+    export_report_data: Izvoz podataka izveštaja
+    export_reports_and_assessments: Izvezi izveštaje i procene
+    export_skill_translations: Prevodi za izvoz veština
+    export_skills: Izvozne veštine
+    export_user_report_events: Izvoz događaja korisničkog izveštaja
+    export_users: Izvezi korisnike kampanje
+    external_assessment_export: Eksterni Rezultati Izvoz
+    generate_embedding_skills: Generišite ugradnju za veštine
+    generate_transcription: Генеришите транскрипцију
+    import_accesssheet: Uvoz Pristupa
+    import_assessment_questions: Pitanja za procenu uvoza
+    import_assessment_translations: Uvoz Procena Prevodi
+    import_assessors: Procenjivači uvoza
+    import_campaign_ai_artifacts: Uvoz kampanje AI artefakata
+    import_campaign_factors: Faktori uvozne kampanje
+    import_campaign_translations: Увези преводе кампање
+    import_client_assessors: Увоз клијентских процењивача
+    import_datasheet: Uvoz Datasheet
+    import_development_action_translations: Uvoz Razvoj Akcija Prevodi
+    import_development_actions: Uvoz razvojnih akcija
+    import_dimension_from_json: Uvoz dimenzija iz JSON
+    import_external_campaign_scoring: Uvoz eksterne kampanje Bodovanje
+    import_external_scoring_data: Uvoz eksternih podataka o bodovanju
+    import_factor_translations: Uvoz Faktor Prevodi
+    import_factors: Faktori uvoza
+    import_interview_questions: Uvoz pitanja za intervju
+    import_job_roles_translations: Uvezi prevode poslovnih uloga
+    import_norm: Uvoz norma
+    import_proficiency_level_translations: Uvoz prevoda na nivou stručnosti
+    import_proficiency_levels: Nivoi stručnosti uvoza
+    import_question_translations: Uvoz pitanja Prevodi
+    import_raw_data: Uvoz sirovih podataka
+    import_reflection_questions: Uvoz pitanja za refleksiju
+    import_scoring_data: Uvoz podataka o bodovanju
+    import_skill_rater_taxonomies: Uvezi taksonomije procene veština
+    import_skill_translations: Uvoz veština Prevodi
+    import_skills: Veštine uvoza
+    import_sms_invites: Uvoz SMS pozivnice
+    import_users: Uvezi korisnike
+    invalid_job: Ovo obaveštenje odgovara izbrisanom zapisu
+    mark_as_read: Označi sve pročitano
+    migrate_assessment_translations: Procena Prevod migracija
+    migrate_communication_center: Миграција комуникационог центра
+    normalize_factor_scores: Normalizujte rezultate faktora
+    project_bulk_download_reports: Извештаји о групном преузимању пројекта
+    project_compact_completion_status_export: Компактни извоз статуса завршетка
+    project_completion_status_export: Извоз статуса завршетка
+    regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
+    regenerate_campaign_reports: Regenerišite izveštaje o kampanji
+    regenerate_report: Regeneriši izveštaj
+    regenerate_threesixty_report: Regenerišite Threesixty izveštaj
+    remap_report_assessment: Procena izveštaja o ponovnoj mapi
+    rescore_ai_scoring: Поновно бодовање вештачке интелигенције
+    rescore_assessment: Rescore Procena
+    rescore_user_assessment: Ponovite procenu korisnika
+    send_sms_invites: Pošalji SMS pozivnice
+    super_admin_assessment_norm_export: Super Admin Norma Rezultati Izvoz
+    super_admin_assessment_raw_factor_export: Super Admin Rav Factor Rezultati Izvoz
+    super_admin_assessment_raw_result_export: Super Admin Rav Rezultati Izvoz
+    super_admin_datasheet_export: Super Admin Datasheet Izvoz
+    super_admin_external_assessment_export: Super Admin Eksterna procena Izvoz
+    superadmin_record_change_history: Историја промена записа
+    threesixty_campaign_export_completion_status: Status završetka izvoza kampanje Threesixty
+    threesixty_campaign_export_scores: Threesixty kampanja Rezultati izvoza
+    workshop_status_export: Procena Centar Status Izvoz

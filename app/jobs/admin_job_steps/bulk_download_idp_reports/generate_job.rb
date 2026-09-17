@@ -9,7 +9,7 @@ module AdminJobSteps
       def perform(job_record)
         user_ids = Campaign.find(job_record.data['campaign_id']).user_ids
         user_idp_plans = UserIdpPlan.active.where(campaign_id: job_record.data['campaign_id'], user_id: user_ids)
-        raise I18n.t('admin_jobs.bulk_download_reports.errors.no_plans') if user_idp_plans.empty?
+        raise I18n.t('admin_jobs.bulk_download_reports_errors_no_plans') if user_idp_plans.empty?
 
         job_record.update!(status: :in_progress, total_tasks: user_idp_plans.length)
         ::Idp::BulkGenerate.call(user_idp_plans: user_idp_plans, current_user: job_record.owner,

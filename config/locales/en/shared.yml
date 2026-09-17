@@ -47,6 +47,7 @@ en:
     code: Code
     collaborative_learning: Collaborative Learning
     completed: Completed
+    completed_with_errors: Completed with errors
     configurations: Configurations
     confirm: Confirm
     continue: Continue
@@ -75,6 +76,7 @@ en:
     description: Description
     desktop_or_laptop_recommended: Desktop or Laptop Recommended
     desktop_or_laptop_required: Desktop or Laptop Required
+    details: Details
     dimension: Dimension
     disabled: Disabled
     discard: Discard
@@ -147,6 +149,7 @@ en:
     mobile_proctoring_enabled_instructions: For the best experience, please switch to a desktop or laptop if you have one available. You can continue on your mobile device if needed.
     modified_by: Modified By
     modified_date: Modified Date
+    more: More
     more_actions: More actions
     mte_logo_alt_text: Mercer Talent Enterprise logo
     na_text: N/A
@@ -223,6 +226,7 @@ en:
     reset: Reset
     reset_password: Reset Password
     response_text: Response Text
+    results: Results
     return_url_not_whitelisted: The return URL is not whitelisted for this application.
     review: Review
     rte_paste_content_exceeds_char_limit: Text exceeds the character limit of {{maxCharacterLimit}} and cannot be pasted.
