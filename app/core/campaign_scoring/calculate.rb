@@ -6,12 +6,14 @@ module CampaignScoring
     PERMITTED_USER_FIELDS_IN_FORMULA = %w[first_name last_name email age gender timezone photo locale].freeze
 
     private_attr_reader :campaign, :user, :user_assessments, :campaign_user,
-                        :campaign_factor_values_to_reuse, :force_recalculate
+                        :campaign_factor_values_to_reuse, :force_recalculate,
+                        :campaign_factor_ids_to_recalculate
 
-    def initialize(campaign, user, force_recalculate: false)
+    def initialize(campaign, user, force_recalculate: false, campaign_factor_ids_to_recalculate: nil)
       @campaign = campaign
       @user = user
       @force_recalculate = force_recalculate
+      @campaign_factor_ids_to_recalculate = campaign_factor_ids_to_recalculate
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
       @user_assessments = campaign.user_assessments.includes(:users_result).where(
         subject_id: user.id
@@ -274,7 +276,14 @@ module CampaignScoring
     end
 
     def campaign_factors_sorted_by_formula_factors_at_end
-      campaign.campaign_factors.not_external_score.partition { |cf| cf.factor_type != 'formula' }.flatten
+      campaign_factors_to_calculate.partition { |cf| cf.factor_type != 'formula' }.flatten
+    end
+
+    def campaign_factors_to_calculate
+      campaign_factors = campaign.campaign_factors.not_external_score
+      return campaign_factors unless campaign_factor_ids_to_recalculate
+
+      campaign_factors.where(id: campaign_factor_ids_to_recalculate)
     end
 
     def relationships

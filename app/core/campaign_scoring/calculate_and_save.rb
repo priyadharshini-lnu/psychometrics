@@ -2,12 +2,16 @@
 
 module CampaignScoring
   class CalculateAndSave < BaseCommand
-    private_attr_reader :campaign, :user, :campaign_user, :force_recalculate
+    private_attr_reader :campaign, :user, :campaign_user, :force_recalculate,
+                        :campaign_factor_ids_to_recalculate, :update_campaign_user
 
-    def initialize(campaign, user, force_recalculate: false)
+    def initialize(campaign, user, force_recalculate: false, campaign_factor_ids_to_recalculate: nil,
+                   update_campaign_user: true)
       @campaign = campaign
       @user = user
       @force_recalculate = force_recalculate
+      @campaign_factor_ids_to_recalculate = campaign_factor_ids_to_recalculate
+      @update_campaign_user = update_campaign_user
       @campaign_user = campaign.campaign_users.find_by(user_id: user.id)
     end
 
@@ -27,19 +31,28 @@ module CampaignScoring
       existing_campaign_factor_values =
         campaign.campaign_factor_values.where(user_id: user.id).index_by(&:campaign_factor_id)
 
-      indexed_factor_values = CampaignScoring::Calculate.call!(campaign, user, force_recalculate: force_recalculate)
-      campaign_factor_values = indexed_factor_values.flat_map do |cf, factor_value|
+      indexed_factor_values = CampaignScoring::Calculate.call!(
+        campaign,
+        user,
+        force_recalculate: force_recalculate,
+        campaign_factor_ids_to_recalculate: campaign_factor_ids_to_recalculate
+      )
+      campaign_factor_values = factor_values_to_persist(indexed_factor_values).flat_map do |cf, factor_value|
         persist_factor_value(cf, factor_value, existing_campaign_factor_values[cf.id])
       end
 
+      update_campaign_user! if update_campaign_user
+
+      broadcast :ok, campaign_factor_values, indexed_factor_values
+    end
+
+    def update_campaign_user!
       campaign_user_attrs = { campaign_scores_calculated_date: Time.current }
       if ::CampaignUsers::CanAutoFinalizeCampaignScores.call!(campaign, campaign_user, user)
         campaign_user_attrs[:campaign_scores_finalized] = true
         campaign_user_attrs[:campaign_scores_finalized_date] = Time.current
       end
       campaign_user.update!(campaign_user_attrs)
-
-      broadcast :ok, campaign_factor_values, indexed_factor_values
     end
 
     def persist_factor_value(campaign_factor, factor_value, existing_campaign_factor_value)
@@ -65,6 +78,14 @@ module CampaignScoring
 
     def reuse_existing_value?(existing_campaign_factor_value)
       !force_recalculate && existing_campaign_factor_value&.value
+    end
+
+    def factor_values_to_persist(indexed_factor_values)
+      return indexed_factor_values unless campaign_factor_ids_to_recalculate
+
+      indexed_factor_values.select do |campaign_factor, _|
+        campaign_factor.id.in?(campaign_factor_ids_to_recalculate)
+      end
     end
 
     # When recalculation yields no value for a factor (e.g. the assessor / lead assessor

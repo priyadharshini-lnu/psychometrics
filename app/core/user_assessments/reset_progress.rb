@@ -37,6 +37,8 @@ module UserAssessments
         )
       end
 
+      ::Assessments::RescoreLinkedResults.call!(user_assessment)
+
       broadcast :ok
     end
 

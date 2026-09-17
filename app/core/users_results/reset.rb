@@ -26,6 +26,8 @@ module UsersResults
         Microsite::ResetAssessment.call!(user_assessment) if user_assessment.microsite?
       end
 
+      ::Assessments::RescoreLinkedResults.call!(user_assessment)
+
       broadcast :ok
     end
 
