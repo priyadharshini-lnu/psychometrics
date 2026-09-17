@@ -2603,6 +2603,21 @@ ar:
     report_approval_submit_or_approve_all: إرسال الكل أو الموافقة على الكل
     report_approvals: موافقات التقارير
     report_availability: توفر التقرير
+    report_builder_publish_confirm_content: سيؤدي هذا إلى استبدال التقرير المنشور حاليًا بالتغييرات المقترحة، مما يتيح للمستخدمين الاطلاع عليه. هل أنت متأكد من رغبتك في نشر هذه التغييرات؟
+    report_builder_publish_confirm_title: هل تنشر هذا التقرير؟
+    report_builder_publish_failed: تم حفظ التقرير، لكن عملية النشر فشلت. يرجى المحاولة مرة أخرى.
+    report_builder_publish_success: تم نشر التقرير بنجاح
+    report_builder_published_at: 'آخر تاريخ للنشر: {{date}}'
+    report_builder_published_by: نُشر بواسطة {{name}}
+    report_builder_save_and_publish: حفظ ونشر
+    report_builder_save_as_draft: حفظ كمسودة
+    report_builder_save_failed: فشل حفظ التقرير. يرجى المحاولة مرة أخرى.
+    report_builder_save_success: تم حفظ التقرير بنجاح
+    report_builder_unpublished_changes: تغييرات غير منشورة
+    report_builder_view_draft: عرض المسودة
+    report_builder_view_published: عرض المنشور
+    report_builder_viewing_draft_message: أنت تشاهد الآن مسودة التقرير. هذا ليس ما سيراه المشاركون حتى يتم نشره.
+    report_builder_viewing_published_message: أنت تشاهد آخر نسخة منشورة من التقرير. لن تظهر التغييرات في أداة الإنشاء هنا إلا بعد نشرها.
     report_condition_not_met: يحتاج %{required} %{relationship} تقييم(أو تقييمات)، لكنه لديه فقط %{actual}
     report_conditions_not_met_detailed: الإبلاغ عن %{user} لا يستوفي شروط التوفر. %{conditions}
     report_denied: تم رفض البلاغ %{user}
@@ -2618,6 +2633,10 @@ ar:
     report_owner: مالك
     report_pdf_status: حالة ملف PDF
     report_pdf_unavailable: لم يتم توفير ملف PDF لهذا التقرير بعد.
+    report_preview_draft_notice: أنت تشاهد نسخة مسودة من التقرير، وهي غير متاحة للمشارك إلا إذا تم نشر تغييرات المسودة من أداة الإنشاء.
+    report_preview_draft_tag_tooltip: يتوفر لهذا التقرير مسودة تعديلات. انقر لعرض نسخة المسودة.
+    report_preview_view_draft: مسودة معاينة
+    report_preview_view_published: معاينة منشورة
     report_review_abort_qc: إبطال ضمان الجودة
     report_review_approve: صدق
     report_review_approve_changes: موافقة على التغييرات

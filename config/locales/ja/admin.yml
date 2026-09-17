@@ -2603,6 +2603,21 @@ ja:
     report_approval_submit_or_approve_all: すべてを提出または承認する
     report_approvals: レポートの承認
     report_availability: 報告書入手可能性
+    report_builder_publish_confirm_content: これにより、既存の公開済みレポートが変更後のドラフト版で上書きされ、ユーザーが利用できるようになります。変更を公開してもよろしいですか？
+    report_builder_publish_confirm_title: このレポートを公開しますか？
+    report_builder_publish_failed: レポートは保存されましたが、公開に失敗しました。もう一度公開をお試しください。
+    report_builder_publish_success: レポートが正常に公開されました
+    report_builder_published_at: 最終更新日：{{date}}
+    report_builder_published_by: "{{name}}によって公開されました"
+    report_builder_save_and_publish: 保存して公開
+    report_builder_save_as_draft: 下書きとして保存
+    report_builder_save_failed: レポートの保存に失敗しました。もう一度お試しください。
+    report_builder_save_success: レポートが正常に保存されました
+    report_builder_unpublished_changes: 未公開の変更
+    report_builder_view_draft: 下書きを表示
+    report_builder_view_published: 公開済みを表示
+    report_builder_viewing_draft_message: これは報告書の草稿版です。公開されるまでは、参加者の皆様にはこのバージョンは表示されません。
+    report_builder_viewing_published_message: これはレポートの最新版です。作成ツールでの変更は、公開されるまでここには反映されません。
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
     report_denied: "%{user}の報告は却下されました"
@@ -2618,6 +2633,10 @@ ja:
     report_owner: 所有者
     report_pdf_status: レポートのPDFステータス
     report_pdf_unavailable: このレポートのPDF版はまだ入手できません。
+    report_preview_draft_notice: これはレポートのドラフト版であり、作成者からドラフト版の変更が公開されない限り、参加者は閲覧できません。
+    report_preview_draft_tag_tooltip: この報告書には変更案があります。クリックして変更案をご覧ください。
+    report_preview_view_draft: プレビュードラフト
+    report_preview_view_published: プレビュー版が公開されました
     report_review_abort_qc: QCを中止する
     report_review_approve: 承認
     report_review_approve_changes: 変更を承認する

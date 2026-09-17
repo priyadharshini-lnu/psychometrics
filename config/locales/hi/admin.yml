@@ -2607,6 +2607,21 @@ hi:
     report_approval_submit_or_approve_all: सभी जमा करें या अनुमोदित करें
     report_approvals: रिपोर्ट अनुमोदन
     report_availability: उपलब्धता रिपोर्ट
+    report_builder_publish_confirm_content: इससे मौजूदा प्रकाशित रिपोर्ट पर नए बदलाव लागू हो जाएंगे और यह उपयोगकर्ताओं के लिए उपलब्ध हो जाएगी। क्या आप वाकई बदलाव प्रकाशित करना चाहते हैं?
+    report_builder_publish_confirm_title: क्या इस रिपोर्ट को प्रकाशित करें?
+    report_builder_publish_failed: रिपोर्ट सहेज ली गई, लेकिन प्रकाशन विफल रहा। कृपया पुनः प्रकाशन का प्रयास करें।
+    report_builder_publish_success: रिपोर्ट सफलतापूर्वक प्रकाशित हो गई
+    report_builder_published_at: अंतिम प्रकाशन तिथि {{date}}
+    report_builder_published_by: "{{name}} द्वारा प्रकाशित"
+    report_builder_save_and_publish: सहेजें और प्रकाशित करें
+    report_builder_save_as_draft: ड्राफ्ट के रूप में सेव करें
+    report_builder_save_failed: रिपोर्ट सहेजने में विफल। कृपया पुनः प्रयास करें।
+    report_builder_save_success: रिपोर्ट सफलतापूर्वक सहेज ली गई
+    report_builder_unpublished_changes: अप्रकाशित परिवर्तन
+    report_builder_view_draft: मसौदा देखें
+    report_builder_view_published: प्रकाशित देखें
+    report_builder_viewing_draft_message: आप रिपोर्ट का मसौदा संस्करण देख रहे हैं। प्रकाशित होने तक प्रतिभागियों को यह संस्करण नहीं दिखेगा।
+    report_builder_viewing_published_message: आप रिपोर्ट का अंतिम प्रकाशित संस्करण देख रहे हैं। बिल्डर में किए गए परिवर्तन प्रकाशित होने तक यहां प्रतिबिंबित नहीं होते हैं।
     report_condition_not_met: "%{required}%{relationship} मूल्यांकन(ओं) की आवश्यकता है, लेकिन केवल %{actual} है।"
     report_conditions_not_met_detailed: "%{user} के लिए रिपोर्ट उपलब्धता की शर्तों को पूरा नहीं करता। %{conditions}"
     report_denied: "%{user} के लिए रिपोर्ट अस्वीकार कर दी गई है।"
@@ -2622,6 +2637,10 @@ hi:
     report_owner: मालिक
     report_pdf_status: रिपोर्ट पीडीएफ स्थिति
     report_pdf_unavailable: इस रिपोर्ट की पीडीएफ फाइल अभी उपलब्ध नहीं है।
+    report_preview_draft_notice: आप रिपोर्ट का एक ड्राफ्ट संस्करण देख रहे हैं जो प्रतिभागी के लिए तब तक उपलब्ध नहीं होगा जब तक बिल्डर से ड्राफ्ट में किए गए बदलाव प्रकाशित नहीं हो जाते।
+    report_preview_draft_tag_tooltip: इस रिपोर्ट में कुछ बदलाव उपलब्ध हैं। मसौदा संस्करण देखने के लिए क्लिक करें।
+    report_preview_view_draft: पूर्वावलोकन मसौदा
+    report_preview_view_published: पूर्वावलोकन प्रकाशित
     report_review_abort_qc: QC रद्द करें
     report_review_approve: अनुमोदित करें
     report_review_approve_changes: बदलावों को अनुमोदित करें

@@ -2603,6 +2603,21 @@ fr:
     report_approval_submit_or_approve_all: Soumettre ou approuver tous
     report_approvals: Approbation des rapports
     report_availability: Disponibilité du rapport
+    report_builder_publish_confirm_content: Cette action remplacera le rapport publié actuel par les modifications provisoires, le rendant ainsi accessible aux utilisateurs. Êtes-vous sûr de vouloir publier les modifications ?
+    report_builder_publish_confirm_title: Publier ce rapport ?
+    report_builder_publish_failed: Le rapport a été enregistré, mais la publication a échoué. Veuillez réessayer.
+    report_builder_publish_success: Rapport publié avec succès
+    report_builder_published_at: 'Dernière publication : {{date}}'
+    report_builder_published_by: Publié par {{name}}
+    report_builder_save_and_publish: Enregistrer et publier
+    report_builder_save_as_draft: Enregistrer comme brouillon
+    report_builder_save_failed: Impossible d'enregistrer le rapport. Veuillez réessayer.
+    report_builder_save_success: Rapport enregistré avec succès
+    report_builder_unpublished_changes: Modifications non publiées
+    report_builder_view_draft: Voir le brouillon
+    report_builder_view_published: Voir les publications
+    report_builder_viewing_draft_message: Vous consultez la version préliminaire du rapport. Les participants ne verront cette version qu'après sa publication.
+    report_builder_viewing_published_message: Vous consultez la dernière version publiée du rapport. Les modifications apportées dans l'outil de création ne sont visibles ici qu'après publication.
     report_condition_not_met: Nécessite %{required} %{relationship} évaluation(s), mais n’a que %{actual}
     report_conditions_not_met_detailed: Le rapport pour %{user} ne remplit pas les conditions de disponibilité. %{conditions}
     report_denied: Le rapport pour %{user} a été refusé
@@ -2618,6 +2633,10 @@ fr:
     report_owner: Propriétaire
     report_pdf_status: État du rapport PDF
     report_pdf_unavailable: Le fichier PDF de ce rapport n'est pas encore disponible.
+    report_preview_draft_notice: Vous consultez une version préliminaire du rapport, qui n'est pas accessible au participant tant que les modifications préliminaires ne sont pas publiées par l'outil de création.
+    report_preview_draft_tag_tooltip: Des modifications préliminaires sont disponibles pour ce rapport. Cliquez ici pour consulter la version préliminaire.
+    report_preview_view_draft: Aperçu du brouillon
+    report_preview_view_published: Aperçu publié
     report_review_abort_qc: Abandonner le CQ
     report_review_approve: Approuver
     report_review_approve_changes: Approuver les modifications

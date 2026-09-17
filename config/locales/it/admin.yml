@@ -2603,6 +2603,21 @@ it:
     report_approval_submit_or_approve_all: Invia o approva tutti
     report_approvals: Approvazione report
     report_availability: Disponibilità del rapporto
+    report_builder_publish_confirm_content: Questa operazione sovrascriverà il report pubblicato esistente con le modifiche in bozza, rendendolo disponibile agli utenti. Sei sicuro di voler pubblicare le modifiche?
+    report_builder_publish_confirm_title: Pubblicare questo rapporto?
+    report_builder_publish_failed: Il report è stato salvato, ma la pubblicazione non è riuscita. Riprova a pubblicare.
+    report_builder_publish_success: Rapporto pubblicato con successo
+    report_builder_published_at: Ultimo aggiornamento il {{date}}
+    report_builder_published_by: Pubblicato da {{name}}
+    report_builder_save_and_publish: Salva e pubblica
+    report_builder_save_as_draft: Salva come bozza
+    report_builder_save_failed: Impossibile salvare il report. Riprova.
+    report_builder_save_success: Report salvato correttamente
+    report_builder_unpublished_changes: Modifiche non pubblicate
+    report_builder_view_draft: Visualizza la bozza
+    report_builder_view_published: Visualizza pubblicato
+    report_builder_viewing_draft_message: Stai visualizzando la bozza del rapporto. Questa non è la versione che i partecipanti vedranno fino alla pubblicazione.
+    report_builder_viewing_published_message: Stai visualizzando l'ultima versione pubblicata del report. Le modifiche apportate nel generatore non saranno visibili qui fino alla pubblicazione.
     report_condition_not_met: Ha bisogno di %{required} %{relationship} valutazione, ma ha solo %{actual}
     report_conditions_not_met_detailed: Il rapporto per %{user} non soddisfa le condizioni di disponibilità. %{conditions}
     report_denied: La segnalazione per %{user} è stata respinta
@@ -2618,6 +2633,10 @@ it:
     report_owner: Proprietario
     report_pdf_status: Stato del report PDF
     report_pdf_unavailable: Il PDF di questo rapporto non è ancora disponibile.
+    report_preview_draft_notice: Stai visualizzando una bozza del report, che non sarà disponibile al partecipante a meno che le modifiche in bozza non vengano pubblicate dall'editor.
+    report_preview_draft_tag_tooltip: Sono disponibili delle bozze di modifica per questo rapporto. Clicca per visualizzare la versione in bozza.
+    report_preview_view_draft: Bozza di anteprima
+    report_preview_view_published: Anteprima pubblicata
     report_review_abort_qc: Interrompere il CQ
     report_review_approve: Approvare
     report_review_approve_changes: Approvare le modifiche

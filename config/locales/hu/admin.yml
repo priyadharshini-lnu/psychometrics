@@ -2603,6 +2603,21 @@ hu:
     report_approval_submit_or_approve_all: Elküldés vagy jóváhagyás Minden
     report_approvals: Jelentés jóváhagyása
     report_availability: Jelentés elérhetősége
+    report_builder_publish_confirm_content: Ez felülírja a meglévő közzétett jelentést a vázlatmódosításokkal, így az elérhetővé válik a felhasználók számára. Biztosan közzéteszi a módosításokat?
+    report_builder_publish_confirm_title: Közzéteszd ezt a jelentést?
+    report_builder_publish_failed: A jelentés mentésre került, de a közzététel sikertelen. Próbálja meg újra közzétenni.
+    report_builder_publish_success: Jelentés sikeresen közzétéve
+    report_builder_published_at: 'Utolsó közzététel dátuma: {{date}}'
+    report_builder_published_by: 'Közzétette: {{name}}'
+    report_builder_save_and_publish: Mentés és közzététel
+    report_builder_save_as_draft: Mentés piszkozatként
+    report_builder_save_failed: Nem sikerült menteni a jelentést. Próbáld újra.
+    report_builder_save_success: Jelentés sikeresen mentve
+    report_builder_unpublished_changes: Nem közzétett változtatások
+    report_builder_view_draft: Vázlat megtekintése
+    report_builder_view_published: Közzétéve megtekintése
+    report_builder_viewing_draft_message: A jelentés tervezetét tekinti meg. A résztvevők ezt csak közzététel után látják.
+    report_builder_viewing_published_message: A jelentés utolsó közzétett verzióját tekinti meg. A szerkesztőben végrehajtott módosítások csak közzététel után jelennek meg itt.
     report_condition_not_met: Értékelésre %{required} %{relationship} szüksége, de csak %{actual}
     report_conditions_not_met_detailed: A jelentés %{user} nem felel meg a rendelkezésre állási feltételeknek. %{conditions}
     report_denied: A %{user} jelentését elutasították
@@ -2618,6 +2633,10 @@ hu:
     report_owner: Tulajdonos
     report_pdf_status: Jelentés PDF-formátumban
     report_pdf_unavailable: A jelentés PDF-je még nem érhető el.
+    report_preview_draft_notice: A jelentés egy vázlatverzióját tekinti meg, amely nem érhető el a résztvevő számára, kivéve, ha a vázlat módosításait közzéteszik a Builderben.
+    report_preview_draft_tag_tooltip: Ehhez a jelentéshez tervezetváltoztatások érhetők el. Kattintson ide a vázlat megtekintéséhez.
+    report_preview_view_draft: Vázlat előnézete
+    report_preview_view_published: Előnézet közzétéve
     report_review_abort_qc: Minőségellenőrzés megszakítása
     report_review_approve: Jóváhagy
     report_review_approve_changes: Módosítások jóváhagyása

@@ -2603,6 +2603,21 @@ sr-Latn:
     report_approval_submit_or_approve_all: Pošalji ili odobri sve
     report_approvals: Odobrenja izveštaja
     report_availability: Dostupnost izveštaja
+    report_builder_publish_confirm_content: Овим ће се постојећи објављени извештај заменити нацртним променама, чинећи га доступним корисницима. Да ли сте сигурни да желите да објавите промене?
+    report_builder_publish_confirm_title: Објавити овај извештај?
+    report_builder_publish_failed: Извештај је сачуван, али објављивање није успело. Молимо вас да покушате поново да објавите.
+    report_builder_publish_success: Извештај је успешно објављен
+    report_builder_published_at: Последњи пут објављено {{date}}
+    report_builder_published_by: Објавио/ла {{name}}
+    report_builder_save_and_publish: Сачувај и објави
+    report_builder_save_as_draft: Сачувај као нацрт
+    report_builder_save_failed: Чување извештаја није успело. Молимо покушајте поново.
+    report_builder_save_success: Извештај је успешно сачуван
+    report_builder_unpublished_changes: Необјављене измене
+    report_builder_view_draft: Прикажи нацрт
+    report_builder_view_published: Прикажи објављено
+    report_builder_viewing_draft_message: Прегледате нацртну верзију извештаја. Учесници је неће видети док се не објави.
+    report_builder_viewing_published_message: Прегледате последњу објављену верзију извештаја. Промене у креатору се овде не приказују док се не објаве.
     report_condition_not_met: Potrebno %{required} %{relationship} evaluaciju, ali ima samo %{actual}
     report_conditions_not_met_detailed: Izveštaj za %{user} ne ispunjava uslove dostupnosti. %{conditions}
     report_denied: Izveštaj za %{user} je odbijen
@@ -2618,6 +2633,10 @@ sr-Latn:
     report_owner: Власник
     report_pdf_status: Пријави статус PDF-а
     report_pdf_unavailable: ПДФ за овај извештај још увек није доступан.
+    report_preview_draft_notice: Прегледате нацртну верзију извештаја која није доступна учеснику осим ако се измене нацрта не објаве из креатора.
+    report_preview_draft_tag_tooltip: Овај извештај има доступне измене у нацрту. Кликните да бисте видели нацртну верзију.
+    report_preview_view_draft: Преглед нацрта
+    report_preview_view_published: Преглед објављеног
     report_review_abort_qc: Prekini QC
     report_review_approve: Odobri
     report_review_approve_changes: Odobri izmene

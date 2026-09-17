@@ -2603,6 +2603,21 @@ sl:
     report_approval_submit_or_approve_all: Pošlji ali potrdi vse
     report_approvals: Odobritve poročil
     report_availability: Razpoložljivost poročila
+    report_builder_publish_confirm_content: S tem boste prepisali obstoječe objavljeno poročilo z osnutkom sprememb, s čimer boste omogočili dostop uporabnikom. Ali ste prepričani, da želite objaviti spremembe?
+    report_builder_publish_confirm_title: Objaviti to poročilo?
+    report_builder_publish_failed: Poročilo je bilo shranjeno, vendar objava ni uspela. Poskusite objaviti znova.
+    report_builder_publish_success: Poročilo je bilo uspešno objavljeno
+    report_builder_published_at: Nazadnje objavljeno {{date}}
+    report_builder_published_by: Objavil/a {{name}}
+    report_builder_save_and_publish: Shrani in objavi
+    report_builder_save_as_draft: Shrani kot osnutek
+    report_builder_save_failed: Shranjevanje poročila ni uspelo. Poskusite znova.
+    report_builder_save_success: Poročilo je bilo uspešno shranjeno
+    report_builder_unpublished_changes: Neobjavljene spremembe
+    report_builder_view_draft: Ogled osnutka
+    report_builder_view_published: Ogled objavljenega
+    report_builder_viewing_draft_message: Ogledate si osnutek poročila. Udeleženci ga ne vidijo, dokler ni objavljen.
+    report_builder_viewing_published_message: Ogledate si zadnjo objavljeno različico poročila. Spremembe v orodju za izdelavo poročil se tukaj ne odražajo, dokler ni objavljeno.
     report_condition_not_met: Potrebna je %{required} %{relationship} ocena, a ima le %{actual}
     report_conditions_not_met_detailed: Poročilo za %{user} ne izpolnjuje pogojev razpoložljivosti. %{conditions}
     report_denied: Poročilo za %{user} je bilo zavrnjeno
@@ -2618,6 +2633,10 @@ sl:
     report_owner: Lastnik
     report_pdf_status: Poročilo o stanju v obliki PDF
     report_pdf_unavailable: PDF za to poročilo še ni na voljo.
+    report_preview_draft_notice: Ogledate si osnutek poročila, ki udeležencu ni na voljo, razen če so spremembe osnutka objavljene iz orodja za izdelavo poročil.
+    report_preview_draft_tag_tooltip: Za to poročilo so na voljo spremembe osnutka. Kliknite za ogled osnutka.
+    report_preview_view_draft: Predogled osnutka
+    report_preview_view_published: Predogled objavljen
     report_review_abort_qc: Prekinitev QC
     report_review_approve: Odobriti
     report_review_approve_changes: Odobritev sprememb

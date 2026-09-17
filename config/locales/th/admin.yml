@@ -2603,6 +2603,21 @@ th:
     report_approval_submit_or_approve_all: ส่งหรืออนุมัติทั้งหมด
     report_approvals: การอนุมัติรายงาน
     report_availability: รายงานความพร้อมใช้งาน
+    report_builder_publish_confirm_content: การดำเนินการนี้จะแทนที่รายงานที่เผยแพร่ฉบับเดิมด้วยฉบับร่างที่แก้ไขแล้ว ทำให้ผู้ใช้สามารถเข้าถึงรายงานฉบับร่างได้ คุณแน่ใจหรือไม่ว่าต้องการเผยแพร่การเปลี่ยนแปลงนี้?
+    report_builder_publish_confirm_title: เผยแพร่รายงานฉบับนี้หรือไม่?
+    report_builder_publish_failed: รายงานถูกบันทึกแล้ว แต่การเผยแพร่ล้มเหลว โปรดลองเผยแพร่อีกครั้ง
+    report_builder_publish_success: รายงานได้รับการเผยแพร่เรียบร้อยแล้ว
+    report_builder_published_at: เผยแพร่ครั้งล่าสุดเมื่อ {{date}}
+    report_builder_published_by: จัดพิมพ์โดย {{name}}
+    report_builder_save_and_publish: บันทึกและเผยแพร่
+    report_builder_save_as_draft: บันทึกเป็นฉบับร่าง
+    report_builder_save_failed: ไม่สามารถบันทึกรายงานได้ โปรดลองใหม่อีกครั้ง
+    report_builder_save_success: รายงานถูกบันทึกเรียบร้อยแล้ว
+    report_builder_unpublished_changes: การเปลี่ยนแปลงที่ยังไม่ได้เผยแพร่
+    report_builder_view_draft: ดูฉบับร่าง
+    report_builder_view_published: ดูข้อมูลที่เผยแพร่แล้ว
+    report_builder_viewing_draft_message: คุณกำลังดูรายงานฉบับร่างอยู่ นี่คือฉบับที่ผู้เข้าร่วมจะเห็นก็ต่อเมื่อรายงานได้รับการเผยแพร่แล้ว
+    report_builder_viewing_published_message: คุณกำลังดูรายงานฉบับล่าสุดที่เผยแพร่แล้ว การเปลี่ยนแปลงใดๆ ในโปรแกรมสร้างรายงานจะไม่ปรากฏในรายงานฉบับนี้จนกว่าจะมีการเผยแพร่
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
     report_denied: รายงานสําหรับ %{user} ถูกปฏิเสธ
@@ -2618,6 +2633,10 @@ th:
     report_owner: เจ้าของ
     report_pdf_status: รายงานสถานะ PDF
     report_pdf_unavailable: ไฟล์ PDF ของรายงานฉบับนี้ยังไม่พร้อมใช้งานในขณะนี้
+    report_preview_draft_notice: คุณกำลังดูรายงานฉบับร่าง ซึ่งผู้เข้าร่วมจะไม่สามารถเข้าถึงได้เว้นแต่ผู้สร้างจะเผยแพร่การแก้ไขฉบับร่างแล้ว
+    report_preview_draft_tag_tooltip: รายงานฉบับนี้มีการแก้ไขร่างแล้ว โปรดคลิกเพื่อดูฉบับร่าง
+    report_preview_view_draft: ดูตัวอย่างฉบับร่าง
+    report_preview_view_published: ตัวอย่างที่เผยแพร่แล้ว
     report_review_abort_qc: ยกเลิก QC
     report_review_approve: อนุมัติ
     report_review_approve_changes: อนุมัติการเปลี่ยนแปลง

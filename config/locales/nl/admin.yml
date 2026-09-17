@@ -2603,6 +2603,21 @@ nl:
     report_approval_submit_or_approve_all: Alle indienen of goedkeuren
     report_approvals: Goedkeuringen
     report_availability: Rapport Beschikbaarheid
+    report_builder_publish_confirm_content: Hiermee wordt het bestaande, gepubliceerde rapport overschreven met de conceptwijzigingen, die vervolgens beschikbaar komen voor de gebruikers. Weet u zeker dat u de wijzigingen wilt publiceren?
+    report_builder_publish_confirm_title: Dit rapport publiceren?
+    report_builder_publish_failed: Het rapport is opgeslagen, maar het publiceren is mislukt. Probeer het opnieuw.
+    report_builder_publish_success: Rapport succesvol gepubliceerd
+    report_builder_published_at: Laatst gepubliceerd op {{date}}
+    report_builder_published_by: Uitgegeven door {{name}}
+    report_builder_save_and_publish: Opslaan en publiceren
+    report_builder_save_as_draft: Opslaan als concept
+    report_builder_save_failed: Het opslaan van het rapport is mislukt. Probeer het opnieuw.
+    report_builder_save_success: Rapport succesvol opgeslagen
+    report_builder_unpublished_changes: Niet-gepubliceerde wijzigingen
+    report_builder_view_draft: Bekijk concept
+    report_builder_view_published: Bekijk gepubliceerd
+    report_builder_viewing_draft_message: U bekijkt de conceptversie van het rapport. Dit is niet de versie die deelnemers te zien krijgen voordat het rapport is gepubliceerd.
+    report_builder_viewing_published_message: U bekijkt de laatst gepubliceerde versie van het rapport. Wijzigingen in de builder worden hier pas weergegeven na publicatie.
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
     report_denied: Melding voor %{user} is afgewezen
@@ -2618,6 +2633,10 @@ nl:
     report_owner: Eigenaar
     report_pdf_status: Status van het rapport (PDF)
     report_pdf_unavailable: De PDF van dit rapport is nog niet beschikbaar.
+    report_preview_draft_notice: U bekijkt een conceptversie van het rapport. Deze versie is niet beschikbaar voor de deelnemer, tenzij conceptwijzigingen vanuit de builder worden gepubliceerd.
+    report_preview_draft_tag_tooltip: Dit rapport bevat conceptversies. Klik hier om de conceptversie te bekijken.
+    report_preview_view_draft: Voorlopig concept
+    report_preview_view_published: Voorbeeld gepubliceerd
     report_review_abort_qc: QC afbreken
     report_review_approve: Goedkeuren
     report_review_approve_changes: Wijzigingen goedkeuren

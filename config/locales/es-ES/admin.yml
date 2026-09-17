@@ -2603,6 +2603,21 @@ es-ES:
     report_approval_submit_or_approve_all: Enviar o aprobar todo
     report_approvals: Aprobación de informes
     report_availability: Disponibilidad del informe
+    report_builder_publish_confirm_content: Esto sobrescribirá el informe publicado con los cambios preliminares, poniéndolo a disposición de los usuarios. ¿Está seguro de que desea publicar los cambios?
+    report_builder_publish_confirm_title: "¿Publicar este informe?"
+    report_builder_publish_failed: El informe se guardó, pero la publicación falló. Inténtelo de nuevo.
+    report_builder_publish_success: Informe publicado con éxito
+    report_builder_published_at: 'Última publicación: {{date}}'
+    report_builder_published_by: Publicado por {{name}}
+    report_builder_save_and_publish: Guardar y publicar
+    report_builder_save_as_draft: Guardar como borrador
+    report_builder_save_failed: No se pudo guardar el informe. Inténtelo de nuevo.
+    report_builder_save_success: Informe guardado correctamente
+    report_builder_unpublished_changes: Cambios no publicados
+    report_builder_view_draft: Ver borrador
+    report_builder_view_published: Ver publicado
+    report_builder_viewing_draft_message: Estás viendo la versión preliminar del informe. Esta no es la versión que verán los participantes hasta que se publique.
+    report_builder_viewing_published_message: Está viendo la última versión publicada del informe. Los cambios realizados en el generador no se reflejan aquí hasta su publicación.
     report_condition_not_met: Necesita %{required} %{relationship} evaluación(es), pero solo tiene %{actual}
     report_conditions_not_met_detailed: El informe para %{user} no cumple las condiciones de disponibilidad. %{conditions}
     report_denied: El informe de %{user} ha sido denegado
@@ -2618,6 +2633,10 @@ es-ES:
     report_owner: Dueño
     report_pdf_status: Estado del informe en PDF
     report_pdf_unavailable: El archivo PDF de este informe aún no está disponible.
+    report_preview_draft_notice: Estás viendo una versión preliminar del informe, que no está disponible para el participante a menos que el constructor publique los cambios preliminares.
+    report_preview_draft_tag_tooltip: Este informe incluye borradores de cambios. Haga clic para ver la versión preliminar.
+    report_preview_view_draft: Borrador de vista previa
+    report_preview_view_published: Vista previa publicada
     report_review_abort_qc: Abortar QC
     report_review_approve: Aprobar
     report_review_approve_changes: Aprobar cambios

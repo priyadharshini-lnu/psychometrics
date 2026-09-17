@@ -2603,6 +2603,21 @@ vi:
     report_approval_submit_or_approve_all: Gửi hoặc Phê duyệt tất cả
     report_approvals: Phê duyệt báo cáo
     report_availability: Tình trạng sẵn có của báo cáo
+    report_builder_publish_confirm_content: Thao tác này sẽ ghi đè lên báo cáo đã được công bố hiện có bằng các thay đổi dự thảo, giúp báo cáo mới có thể được hiển thị cho người dùng. Bạn có chắc chắn muốn công bố các thay đổi này không?
+    report_builder_publish_confirm_title: Công bố báo cáo này?
+    report_builder_publish_failed: Báo cáo đã được lưu, nhưng quá trình xuất bản thất bại. Vui lòng thử xuất bản lại.
+    report_builder_publish_success: Báo cáo đã được công bố thành công.
+    report_builder_published_at: Lần cuối xuất bản vào ngày {{date}}
+    report_builder_published_by: Được xuất bản bởi {{name}}
+    report_builder_save_and_publish: Lưu & Xuất bản
+    report_builder_save_as_draft: Lưu dưới dạng bản nháp
+    report_builder_save_failed: Không thể lưu báo cáo. Vui lòng thử lại.
+    report_builder_save_success: Báo cáo đã được lưu thành công.
+    report_builder_unpublished_changes: Những thay đổi chưa được công bố
+    report_builder_view_draft: Xem bản nháp
+    report_builder_view_published: Xem bài đăng
+    report_builder_viewing_draft_message: Bạn đang xem bản nháp của báo cáo. Đây không phải là bản mà các bên tham gia sẽ thấy cho đến khi được công bố chính thức.
+    report_builder_viewing_published_message: Bạn đang xem phiên bản báo cáo được công bố gần nhất. Các thay đổi trong trình biên tập sẽ không được phản ánh ở đây cho đến khi được công bố chính thức.
     report_condition_not_met: Cần %{required} %{relationship} đánh giá, nhưng chỉ có %{actual}
     report_conditions_not_met_detailed: Báo cáo cho %{user} không đáp ứng các điều kiện sẵn có. %{conditions}
     report_denied: Báo cáo cho %{user} đã bị từ chối
@@ -2618,6 +2633,10 @@ vi:
     report_owner: Người sở hữu
     report_pdf_status: Trạng thái báo cáo PDF
     report_pdf_unavailable: Hiện tại chưa có file PDF của báo cáo này.
+    report_preview_draft_notice: Bạn đang xem bản nháp của báo cáo, bản này sẽ không được cung cấp cho người tham gia trừ khi các thay đổi trong bản nháp được người xây dựng công bố.
+    report_preview_draft_tag_tooltip: Bản báo cáo này hiện có một số chỉnh sửa dự thảo. Vui lòng nhấp vào đây để xem bản dự thảo.
+    report_preview_view_draft: Bản xem trước
+    report_preview_view_published: Bản xem trước đã được xuất bản
     report_review_abort_qc: Hủy bỏ QC
     report_review_approve: Chấp nhận
     report_review_approve_changes: Phê duyệt thay đổi

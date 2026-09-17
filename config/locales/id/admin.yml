@@ -2603,6 +2603,21 @@ id:
     report_approval_submit_or_approve_all: Kirim atau Setujui Semua
     report_approvals: Laporan Persetujuan
     report_availability: Ketersediaan Laporan
+    report_builder_publish_confirm_content: Ini akan menimpa laporan yang sudah diterbitkan dengan perubahan draf sehingga tersedia untuk pengguna. Apakah Anda yakin ingin menerbitkan perubahannya?
+    report_builder_publish_confirm_title: Apakah laporan ini perlu dipublikasikan?
+    report_builder_publish_failed: Laporan telah disimpan, tetapi penerbitan gagal. Silakan coba menerbitkan lagi.
+    report_builder_publish_success: Laporan berhasil diterbitkan
+    report_builder_published_at: Terakhir diterbitkan pada {{date}}
+    report_builder_published_by: Diterbitkan oleh {{name}}
+    report_builder_save_and_publish: Simpan & Publikasikan
+    report_builder_save_as_draft: Simpan sebagai Draf
+    report_builder_save_failed: Laporan gagal disimpan. Silakan coba lagi.
+    report_builder_save_success: Laporan berhasil disimpan
+    report_builder_unpublished_changes: Perubahan yang belum dipublikasikan
+    report_builder_view_draft: Lihat Draf
+    report_builder_view_published: Lihat yang Dipublikasikan
+    report_builder_viewing_draft_message: Anda sedang melihat versi draf laporan. Ini bukan versi yang akan dilihat peserta sampai laporan tersebut diterbitkan.
+    report_builder_viewing_published_message: Anda sedang melihat versi laporan terakhir yang diterbitkan. Perubahan pada pembuat laporan tidak akan tercermin di sini sampai versi tersebut diterbitkan.
     report_condition_not_met: Membutuhkan evaluasi %{required} %{relationship}, tetapi hanya memiliki %{actual}
     report_conditions_not_met_detailed: Laporkan untuk %{user} tidak memenuhi persyaratan ketersediaan. %{conditions}
     report_denied: Laporan untuk %{user} telah ditolak
@@ -2618,6 +2633,10 @@ id:
     report_owner: Pemilik
     report_pdf_status: Laporan Status PDF
     report_pdf_unavailable: File PDF untuk laporan ini belum tersedia.
+    report_preview_draft_notice: Anda sedang melihat versi draf laporan yang tidak tersedia bagi peserta kecuali jika perubahan draf dipublikasikan oleh pembuat laporan.
+    report_preview_draft_tag_tooltip: Laporan ini memiliki draf perubahan yang tersedia. Klik untuk melihat versi draf.
+    report_preview_view_draft: Pratinjau Draf
+    report_preview_view_published: Pratinjau Diterbitkan
     report_review_abort_qc: Membatalkan QC
     report_review_approve: Setuju
     report_review_approve_changes: Setujui Perubahan

@@ -2603,6 +2603,21 @@ ro:
     report_approval_submit_or_approve_all: Trimiteți sau aprobați toate
     report_approvals: Aprobări de rapoarte
     report_availability: Disponibilitatea raportului
+    report_builder_publish_confirm_content: Aceasta va înlocui raportul publicat existent cu modificările în formă de schiță, punându-l la dispoziția utilizatorilor. Sigur doriți să publicați modificările?
+    report_builder_publish_confirm_title: Publicați acest raport?
+    report_builder_publish_failed: Raportul a fost salvat, dar publicarea a eșuat. Vă rugăm să încercați să publicați din nou.
+    report_builder_publish_success: Raportul a fost publicat cu succes
+    report_builder_published_at: Ultima publicare pe {{date}}
+    report_builder_published_by: Publicat de {{name}}
+    report_builder_save_and_publish: Salvați și publicați
+    report_builder_save_as_draft: Salvare ca schiță
+    report_builder_save_failed: Nu s-a putut salva raportul. Vă rugăm să încercați din nou.
+    report_builder_save_success: Raportul a fost salvat cu succes
+    report_builder_unpublished_changes: Modificări nepublicate
+    report_builder_view_draft: Vizualizare schiță
+    report_builder_view_published: Vizualizare Publicat
+    report_builder_viewing_draft_message: Vizualizați versiunea preliminară a raportului. Participanții nu văd aceasta până la publicare.
+    report_builder_viewing_published_message: Vizualizați ultima versiune publicată a raportului. Modificările aduse constructorului nu se reflectă aici până la publicare.
     report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
     report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
     report_denied: Raportul pentru %{user} a fost respins
@@ -2618,6 +2633,10 @@ ro:
     report_owner: Proprietar
     report_pdf_status: Raport privind starea fișierului PDF
     report_pdf_unavailable: PDF-ul pentru acest raport nu este încă disponibil.
+    report_preview_draft_notice: Vizualizați o versiune preliminară a raportului, care nu este disponibilă participantului decât dacă modificările preliminare sunt publicate din Builder.
+    report_preview_draft_tag_tooltip: Acest raport are modificări disponibile în versiune preliminară. Faceți clic pentru a vizualiza versiunea preliminară.
+    report_preview_view_draft: Previzualizare schiță
+    report_preview_view_published: Previzualizare Publicat
     report_review_abort_qc: Anulați QC
     report_review_approve: Aproba
     report_review_approve_changes: Aprobarea modificărilor
