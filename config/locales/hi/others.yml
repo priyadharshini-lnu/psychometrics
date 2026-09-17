@@ -214,6 +214,8 @@ hi:
               inclusion: गलत लोकेल
             password:
               too_short: पासवर्ड बहुत छोटा है। न्यूनतम %{count} वर्ण आवश्यक हैं।
+            uat:
+              invalid: 'UAT निम्नलिखित में से एक होना चाहिए: %{accepted_values}, या खाली'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ hi:
               invalid_reports_header: अमान्य हेडर, नमूना फ़ाइल से हेडर लें।
               manager_not_found: "%{row_number} पंक्ति: %{email} ईमेल वाले प्रबंधक अभियान में या CSV में मौजूद नहीं हैं।"
               not_enough_licenses: आयात के लिए %{required_count} लाइसेंस की आवश्यकता है, लेकिन केवल %{available_count} ही उपलब्ध हैं। कृपया आयात करने से पहले नए उपयोगकर्ताओं की संख्या कम करें या अधिक लाइसेंस जोड़ें।
+              not_enough_uat_licenses: आयात के लिए %{required_count} UAT परीक्षण लाइसेंस की आवश्यकता है, लेकिन केवल %{available_count} ही उपलब्ध हैं। कृपया आयात करने से पहले नए UAT उपयोगकर्ताओं की संख्या कम करें या UAT उपयोग सीमा बढ़ाएँ।
               user_update_failed: "%{email} के लिए उपयोगकर्ता अपडेट त्रुटि '%{error}' के साथ विफल हो गया।"
             locale:
               inclusion: गलत लोकेल
@@ -943,7 +946,9 @@ hi:
         import_sms_invites: एसएमएस निमंत्रण आयात करें
         import_users: उपयोगकर्ताओं को आयात करें
         migrate_assessment_translations: मूल्यांकन अनुवाद प्रवासन
+        migrate_communication_center: संचार केंद्र प्रवासन
         normalize_factor_scores: कारक स्कोर का सामान्यीकरण करें
+        project_bulk_download_reports: प्रोजेक्ट बल्क डाउनलोड रिपोर्ट
         project_compact_completion_status_export: संक्षिप्त समापन स्थिति निर्यात
         project_completion_status_export: पूर्णता स्थिति निर्यात
         regenerate_assessment_transcriptions: मूल्यांकन प्रतिलेखों को पुनः उत्पन्न करें
@@ -986,6 +991,8 @@ hi:
     errors: त्रुटियाँ
     invalid_job: यह सूचना हटाए गए रिकॉर्ड से संबंधित है।
     mark_as_read: सभी को पढ़ा हुआ चिह्नित करें
+    migrate_communication_center:
+      client_not_found: आईडी=%{id} वाला क्लाइंट नहीं मिला
     more: और
     results: परिणाम
     super_admin:
@@ -1322,7 +1329,6 @@ hi:
     privacy_notice_link: <a href="%{privacy_url}">गोपनीयता सूचना
     registration:
       description: पंजीकरण करने और नया खाता बनाने के लिए नीचे दिए गए विवरण भरें।
-      email_hint: हम आपकी गोपनीयता का सम्मान करते हैं और स्पैम को बर्दाश्त नहीं करते। हम कभी भी आपकी जानकारी किसी तीसरे पक्ष को नहीं देंगे।
       first_name: पहला नाम
       first_name_placeholder: पहला नाम दर्ज करें
       have_account: क्या आपके पास पहले से खाता है?
@@ -2989,6 +2995,7 @@ hi:
     end_date: अंतिम तिथि
     not_enough_license: "%{client_name} के पास %{report_name} के लिए पर्याप्त लाइसेंस नहीं हैं।"
     not_enough_license_count: पर्याप्त लाइसेंस नहीं हैं, कृपया प्रशासक से संपर्क करें
+    not_enough_uat_license: "'%{client_name}' के पास '%{report_name}' के लिए पर्याप्त UAT परीक्षण लाइसेंस नहीं हैं। कृपया उस लाइसेंस पर UAT उपयोग सीमा बढ़ाएँ या व्यवस्थापक से संपर्क करें।"
     number: संख्या
     overuse_number: अधिक उपयोग भत्ता
     project_specific: परियोजना-विशिष्ट
@@ -3003,6 +3010,11 @@ hi:
       idp: आईडीपी
       proctoring: निगरानी
       threesixty: थ्रीसिक्स्टी
+    uat_usage_limit_credits: यूएटी टेस्ट क्रेडिट
+    uat_usage_limit_credits_hint: प्रॉक्टरिंग का बिल क्रेडिट में लिया जाता है, इसलिए यह अधिकतम क्रेडिट है जिसका उपयोग यूएटी टेस्ट उपयोगकर्ता इस लाइसेंस से कर सकते हैं (अधिकतम 300)।
+    uat_usage_limit_users: यूएटी परीक्षण उपयोगकर्ता
+    uat_usage_limit_users_hint: इस लाइसेंस के तहत अधिकतम 30 यूएटी टेस्ट उपयोगकर्ता बनाए जा सकते हैं। टेस्ट उपयोगकर्ता कभी भी बिल योग्य लाइसेंस का उपयोग नहीं करते हैं।
+    uat_used: UAT ने लाइसेंस का उपयोग किया
     used_number: प्रयुक्त लाइसेंस
     used_out_of: "%{used} %{total} में से"
   lti:
@@ -3980,8 +3992,8 @@ hi:
       iso8601_without_seconds_and_timezone: "%वर्ष%-महीना%-दिनांक टी%घंटा:%मिनट"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: उपयोगकर्ताओं को कई प्रतिक्रियाएँ जमा करने की अनुमति दें
     png: पीएनजी

@@ -218,6 +218,15 @@ cs:
     assessor_assessments_reset_successfully: Vyhodnocení resetování předmětu s e-mailem "%{subjectEmail}" proběhlo úspěšně.
     assessor_assessments_subject_email: Předmět e-mailu
     assessor_assessments_subject_name: Název subjektu
+    assessor_campaign_users_awaiting_moderation: Čeká na moderování
+    assessor_campaign_users_awaiting_moderation_subtitle: připraveni ke konsolidaci
+    assessor_campaign_users_candidates_subtitle: přiděleno vám
+    assessor_campaign_users_completed: Dokončeno
+    assessor_campaign_users_completed_subtitle: odepsáno
+    assessor_campaign_users_in_progress: Probíhá
+    assessor_campaign_users_in_progress_subtitle: posuzován
+    assessor_campaign_users_not_started: Nezahájeno
+    assessor_campaign_users_not_started_subtitle: hodnocení
     assessor_campaigns_statuses_completed: Dokončeno
     assessor_campaigns_statuses_in_progress: Probíhá
     assessor_campaigns_statuses_not_started: Nebylo zahájeno
@@ -226,6 +235,20 @@ cs:
     assessor_create_assessor: Přidat hodnotitele
     assessor_dashboard: Přístrojový panel hodnotitele
     assessor_email: E-mail odhadce
+    assessor_evaluation: Hodnocení hodnotitelem
+    assessor_evaluation_by_campaign: Podle kampaně
+    assessor_evaluation_by_participant: Účastníkem
+    assessor_evaluation_candidate: Kandidát
+    assessor_evaluation_candidates: Kandidáti
+    assessor_evaluation_completed: Hodnocení dokončeno
+    assessor_evaluation_date_range: Datum zahájení – Datum ukončení
+    assessor_evaluation_moderation_waiting: Čekání na moderování
+    assessor_evaluation_tour_profile_description: Váš účet, role a jazyk a přepínač pro aktivaci nového rozhraní jsou zde k dispozici. Otevřete jej pro kontrolu údajů nebo se odhlaste.
+    assessor_evaluation_tour_profile_title: Váš profil a nastavení
+    assessor_evaluation_tour_table_description: Otevřete libovolný řádek a zobrazte jejich hodnocení, poté vyhodnoťte jejich odpovědi nebo moderujte konečné skóre.
+    assessor_evaluation_tour_table_title: Vyberte si kandidáta
+    assessor_evaluation_tour_tabs_description: Přepínejte mezi Podle účastníka (jedna osoba po druhé) a Podle kampaně.
+    assessor_evaluation_tour_tabs_title: Dva způsoby práce
     assessor_evaluations: Hodnocení hodnotitelů
     assessor_first_name: Křestní jméno posuzovatele
     assessor_form: Formulář pro hodnotitele
@@ -233,18 +256,24 @@ cs:
     assessor_last_name: Příjmení odhadce
     assessor_modals_import_body: Viz funkce Export pro získání šablony, kterou lze použít k importu.
     assessor_modals_import_title: Posuzovatelé dovozu
+    assessor_new_experience: Nová zkušenost
     assessor_overview: Přehled
     assessor_placeholder: Hledání Assessor...
     assessor_remove_confirmation: Jste si jisti, že chcete z této kampaně odstranit hodnotitele s e-mailem %{email}?
     assessor_remove_has_evaluations: Tento hodnotitel má přiřazen %{evaluation_count} formulářů hodnotitelů. Všechna hodnocení, která vyplnil, budou ztracena.
     assessor_remove_in_assessment_centers: Tento hodnotitel je součástí hodnotícího centra (center) %{workshop_count}. Pokračováním bude odstraněn ze všech hodnotících center.
-    assessor_statuses_completed: Dokončeno
-    assessor_statuses_not_completed: Nedokončeno
-    assessor_subjects_statuses_completed: Dokončeno
-    assessor_subjects_statuses_in_progress: Probíhá
-    assessor_subjects_statuses_not_started: Nebylo zahájeno
+    assessor_switch_to_classic: Přepnout na klasický režim
     assessor_toolbar_export: Hodnotitelé vývozu
     assessor_toolbar_import: Posuzovatelé dovozu
+    assessor_tour_button: Turné
+    assessor_try_new_experience: Vyzkoušejte nový zážitek
+    assessor_user_assessment_name: Název hodnocení
+    assessor_user_candidate_id: ID kandidáta
+    assessor_user_evaluate: Vyhodnotit
+    assessor_user_evaluation: Hodnocení
+    assessor_user_evaluation_progress: Průběh hodnocení
+    assessor_user_moderate: Střední skóre
+    assessor_user_moderation: Umírněnost
     assessor_workshops: Hodnotící centrum
     assessors: Posuzovatelé
     assistant_toolbar_failed: Po několika pokusech se nepodařilo vygenerovat platný výstup.
@@ -312,6 +341,79 @@ cs:
     bulk_assets_modal_title: Nahrát soubory CSV a ZIP
     bulk_export_assessments_file: Soubor pro export hromadných vyměření
     bulk_export_invalid_params: Neplatné parametry hromadného exportu
+    bulk_reports: Hromadné přehledy
+    bulk_reports_all_of_year: Celý %{year}
+    bulk_reports_all_tags: Všechny štítky
+    bulk_reports_bundled_into_single: sdružené do jednoho
+    bulk_reports_campaign_count_one: Kampaň %{count}
+    bulk_reports_campaign_count_other: "%{count} kampaní"
+    bulk_reports_campaign_search_placeholder: Hledat kampaně nebo projekty...
+    bulk_reports_campaigns_shown_count: Vybráno %{selected} - zobrazeno %{shown}
+    bulk_reports_campaigns_without_reports_warning: 'Vybrané kampaně bez nakonfigurovaných přehledů: %{count}. Budou přeskočeny.'
+    bulk_reports_candidate_abbreviation: kandid.
+    bulk_reports_complete_every_step: Dokončete všechny kroky k aktivaci
+    bulk_reports_date_range_required: Pro pokračování je nutné zadat datum zahájení i ukončení.
+    bulk_reports_date_range_summary: Budou zahrnuta dokončená hodnocení %{start} až %{end}.
+    bulk_reports_description: Vytvořte jednu exportní úlohu napříč více kampaněmi. Vyberte kampaně, zvolte, které reporty a jazyky chcete zahrnout, nastavte rozsah dat a poté ji odešlete.
+    bulk_reports_deselect_all_shown: Zrušit výběr všech zobrazených
+    bulk_reports_download_notification_sent: Oznámení o stažení bylo odesláno
+    bulk_reports_emailed_when_ready: a po dokončení vám bude zasláno e-mailem.
+    bulk_reports_end_date_placeholder: Vyberte datum a čas ukončení
+    bulk_reports_end_date_required: Vyberte prosím datum ukončení.
+    bulk_reports_error_try_again: Chyba - zkuste to znovu
+    bulk_reports_files_estimated_across: odhadované soubory napříč
+    bulk_reports_files_pending: Soubory se zde zobrazí po dokončení úlohy.
+    bulk_reports_generate_export: Generovat export
+    bulk_reports_invalid_date_range: Datum ukončení musí být stejné nebo po datu zahájení.
+    bulk_reports_job_details_title: Úloha č. %{id}
+    bulk_reports_job_not_found: Tuto práci se nepodařilo najít.
+    bulk_reports_job_queued: Úloha ve frontě
+    bulk_reports_languages_progress_one: Sada reportů %{done} z %{total}
+    bulk_reports_languages_progress_other: Sada reportů %{done} z %{total}
+    bulk_reports_languages_set_for_all_one: Nastaveno pro všechny hlášení %{count}
+    bulk_reports_languages_set_for_all_other: Nastaveno pro všechny reporty %{count}
+    bulk_reports_last_30_days: Posledních 30 dní
+    bulk_reports_last_90_days: Posledních 90 dní
+    bulk_reports_no_campaigns_found: Pro tento projekt nebyly nalezeny žádné kampaně.
+    bulk_reports_no_campaigns_match_filters: Žádné kampaně neodpovídají vašemu vyhledávání ani filtrům štítků.
+    bulk_reports_no_campaigns_selected: Žádné kampaně nejsou vybrány
+    bulk_reports_no_files_yet: Soubory pro tuto úlohu zatím nejsou k dispozici.
+    bulk_reports_no_language_selected: žádný jazyk nebyl vybrán
+    bulk_reports_no_languages_available: Pro tuto zprávu nejsou k dispozici žádné jazyky.
+    bulk_reports_no_reports_configured: Žádná z vybraných kampaní nemá nakonfigurované přehledy. Vraťte se zpět a zkontrolujte konfiguraci kampaně.
+    bulk_reports_no_reports_selected: Žádné vybrány reporty
+    bulk_reports_no_reports_selected_for_languages: Nebyly vybrány žádné zprávy. Vraťte se zpět a vyberte alespoň jednu zprávu.
+    bulk_reports_no_tags_found: Nenalezeny žádné štítky
+    bulk_reports_none_selected: Žádné vybráno
+    bulk_reports_queued_by: Zařazeno do fronty
+    bulk_reports_queuing_jobs: Zařazování úloh do fronty...
+    bulk_reports_ready_to_generate: Připraveno k vygenerování
+    bulk_reports_report_count_one: Zpráva %{count}
+    bulk_reports_report_count_other: "%{count} hlášení"
+    bulk_reports_reports_and_languages: Zprávy a jazyky
+    bulk_reports_review_submit: Zkontrolovat a odeslat
+    bulk_reports_review_submit_description: Zkontrolujte níže uvedenou úlohu. Můžete se vrátit k libovolnému kroku a provést změny.
+    bulk_reports_select_all_shown: Vybrat vše zobrazené
+    bulk_reports_select_campaigns: Vyberte kampaně
+    bulk_reports_select_campaigns_description: Vyhledávejte podle názvu nebo projektu a seznam zúžte pomocí filtrů štítků. Poté zaškrtněte kampaně, které chcete zahrnout.
+    bulk_reports_select_date_range: Vyberte rozsah dat
+    bulk_reports_select_date_range_description: Zahrňte pouze hodnocení dokončená v tomto rozsahu. Ponechte přednastavená data nebo nastavte přesná data.
+    bulk_reports_select_languages: Vyberte jazyky
+    bulk_reports_select_languages_description: Každá sestava podporuje jinou sadu jazyků. Vyberte alespoň jeden jazyk pro každou sestavu. Sestava se vygeneruje ve všech jazycích, které si vyberete.
+    bulk_reports_select_reports: Vyberte přehledy
+    bulk_reports_select_reports_description: Každá vybraná zpráva je vygenerována pro každého kandidáta nebo kampaň v exportu, v každém zvoleném jazyce.
+    bulk_reports_selected_tags_count_one: Vybrána značka %{count}
+    bulk_reports_selected_tags_count_other: Vybráno %{count} tagů
+    bulk_reports_start_date_placeholder: Vyberte datum a čas zahájení
+    bulk_reports_start_date_required: Vyberte prosím datum zahájení.
+    bulk_reports_step_coming_soon: Tento krok přijde brzy.
+    bulk_reports_submit_error: Něco se pokazilo. Zkuste to prosím znovu.
+    bulk_reports_submit_success: Úloha exportu je zařazena do fronty. Jakmile bude stahování připraveno, obdržíte oznámení.
+    bulk_reports_summary_description: Aktualizace během vytváření úlohy
+    bulk_reports_summary_title: Stáhnout souhrn
+    bulk_reports_title: Hromadné přehledy
+    bulk_reports_view_downloads: Zobrazit hromadné stahování přehledů
+    bulk_reports_year_to_date: Rok od začátku roku
     bulk_upload_ai_artifacts: Hromadné AI artefakty
     campaign: Kampaň
     campaign_admin: Správce kampaně
@@ -383,6 +485,13 @@ cs:
     campaign_templates_remove_confirm_success: Šablona kampaně '%{name}' byla úspěšně odstraněna.
     campaign_templates_remove_confirm_title: Odstranění šablony kampaně
     campaign_user_job_roles_cannot_be_same: Cílová pracovní pozice se musí lišit od současné pracovní pozice.
+    campaign_users_import_uat_hint: Pro testovací uživatele, kteří mají být vyloučeni z licencování, analýz a webhooků, nastavte sloupec UAT na hodnotu Ano.
+    campaign_users_uat_description: Označte tohoto účastníka jako uživatele testu UAT.
+    campaign_users_uat_label: Účastník UAT
+    campaign_users_uat_license_non_billable: Nefakturovatelné
+    campaign_users_uat_locked_hint: Tento účastník již existuje. Stav UAT se nastaví při prvním vytvoření účastníka a nelze jej změnit.
+    campaign_users_uat_readonly_hint: Stav UAT je nastaven při vytvoření a nelze jej změnit.
+    campaign_users_uat_tooltip: Uživatelé UAT jsou skuteční účastníci testování. Mohou skládat testy normálně, ale jsou vyloučeni z používání fakturovatelných licencí, analýz a odchozích webhooků.
     campaigns: Kampaně
     campaigns_convert_to_template: Převést na šablonu
     campaigns_extend_time_success_message: Časovač kampaně prodloužen na %{minutes} minut
@@ -469,6 +578,7 @@ cs:
     clients_search_placeholder: Vyhledávání klienta
     closed: Zavřeno
     code_required: Je vyžadován kód
+    collapse_all: Sbalit vše
     collapse_filters: Sbalit filtry
     column_code: Kód
     column_invitation_status: Stav pozvánky
@@ -487,10 +597,130 @@ cs:
     common_type: Typ
     common_unselect_all: Zrušit výběr všech
     communication_center: Komunikační centrum
+    communication_center_manage_translations_action: Správa překladů
+    communication_center_migration_enqueued: Úloha migrace je zařazena do fronty. Zkontrolujte průběh migrace v protokolech.
+    communication_center_migration_error: Požadavek na migraci selhal. Zkuste to prosím znovu nebo zkontrolujte protokoly.
+    communication_center_migration_modal_intro: 'Při spuštění migrace pro tohoto klienta se použijí následující změny:'
+    communication_center_migration_modal_title: Náhled migrace komunikačního centra
+    communication_center_migration_preview_button: Náhled migrace
+    communication_center_migration_run_button: Spustit migraci
+    communication_center_migration_skipped: Již migrováno (bude přeskočeno)
+    communication_center_migration_would_assessments: Hodnocení k migraci
+    communication_center_migration_would_backfill: E-maily k doplnění
+    communication_center_migration_would_cc_users: Uživatelé kreditních karet k migraci
+    communication_center_migration_would_migrate: Komunikace k migraci
+    communication_center_migration_would_users: Vybraní uživatelé k migraci
+    communication_center_translation_updated_success: Překlad byl úspěšně aktualizován
+    communication_center_translations_modal_title: Správa překladů
+    communication_deliveries: Dodávky
+    communication_delivery: Doručování komunikace
+    communication_delivery_assessment_group_label: Hodnotící skupina
+    communication_delivery_at_label: Datum a čas doručení
+    communication_delivery_at_past_error: Datum doručení musí být v budoucnosti
+    communication_delivery_cancel_action: Zrušit
+    communication_delivery_cancel_error: Nepodařilo se zrušit doručení
+    communication_delivery_cc_users_label: Příjemci kopie
+    communication_delivery_completion_status_hint: Pokud je zadán kód dokončení, bude odeslán pouze v případě, že hodnocení uživatele tento kód stavu dokončení obsahuje.
+    communication_delivery_completion_status_label: Kód stavu dokončení hodnocení
+    communication_delivery_delay_hours_label: Zpoždění (hodiny)
+    communication_delivery_details_title: Podrobnosti o doručení
+    communication_delivery_emails_sent_label: Odesláno
+    communication_delivery_emails_total_label: Celkový počet e-mailů
+    communication_delivery_end_date_label: Datum ukončení
+    communication_delivery_frequency_daily: Denní
+    communication_delivery_frequency_label: Frekvence
+    communication_delivery_frequency_specific_weekdays: Konkrétní dny v týdnu
+    communication_delivery_frequency_weekly: Týdně
+    communication_delivery_interval_number_label: Interval
+    communication_delivery_interval_period_days: Dny
+    communication_delivery_interval_period_hours: Hodiny
+    communication_delivery_interval_period_label: Intervalové období
+    communication_delivery_interval_period_months: Měsíce
+    communication_delivery_interval_period_weeks: Týdny
+    communication_delivery_new_button: Nová dodávka
+    communication_delivery_recipients_all: Všichni účastníci
+    communication_delivery_recipients_label: Příjemci
+    communication_delivery_recipients_new_assignment: Nový úkol
+    communication_delivery_recipients_new_users: Noví uživatelé
+    communication_delivery_recipients_selected: Vybraní účastníci
+    communication_delivery_rule_in_progress: Probíhá
+    communication_delivery_rule_label: Pravidlo doručení
+    communication_delivery_rule_not_completed: Nedokončeno
+    communication_delivery_rule_not_started: Nezahájeno
+    communication_delivery_rule_send_now: Odeslat nyní
+    communication_delivery_rule_specific_datetime: Konkrétní datum a čas
+    communication_delivery_search_users_placeholder: Hledat podle jména nebo e-mailu
+    communication_delivery_selected_assessments_label: Hodnocení
+    communication_delivery_selected_users_label: Vyberte uživatele
+    communication_delivery_start_date_label: Datum zahájení
+    communication_delivery_template_label: Šablona
+    communication_delivery_time_of_day_label: Denní doba
+    communication_delivery_timezone_label: Časové pásmo
+    communication_delivery_trigger_type_label: Typ spouštěče
+    communication_delivery_trigger_type_manual: Manuál
+    communication_delivery_trigger_type_scheduled: Naplánováno
+    communication_delivery_weekday_fri: pátek
+    communication_delivery_weekday_mon: pondělí
+    communication_delivery_weekday_sat: sobota
+    communication_delivery_weekday_sun: neděle
+    communication_delivery_weekday_thu: čtvrtek
+    communication_delivery_weekday_tue: úterý
+    communication_delivery_weekday_wed: středa
+    communication_delivery_weekdays_label: Všední dny
+    communication_email_created_at_label: Vytvořeno v
+    communication_email_not_sent: Neodesláno
+    communication_email_preview_action: Náhled
+    communication_email_preview_date_label: Datum
+    communication_email_preview_from_label: Z
+    communication_email_preview_title: Náhled e-mailu
+    communication_email_preview_to_label: Na
+    communication_email_preview_warning: Toto je znovu vykreslený náhled šablony a nemusí odrážet přesný obsah skutečně odeslaného e-mailu.
+    communication_email_recipient_email_label: E-mail příjemce
+    communication_email_recipient_name_label: Jméno příjemce
+    communication_email_retrigger_action: Opakované spuštění
+    communication_email_retrigger_error: Nepodařilo se znovu spustit e-mail
+    communication_email_sent_at_label: Odesláno v
+    communication_email_status_label: Postavení
+    communication_email_subject_label: Podrobit
+    communication_emails: E-maily
+    communication_template: Šablona komunikace
+    communication_template_body_label: Zpráva
+    communication_template_create_new_action: Vytvořit nové
+    communication_template_kind_label: Typ komunikace
+    communication_template_level_campaign: Kampaň
+    communication_template_level_client: Klient
+    communication_template_level_platform: Platforma
+    communication_template_level_project: Projekt
+    communication_template_name_label: Název šablony
+    communication_template_new_button: Nová šablona
+    communication_template_override_inherited_action: Přepsat zděděné
+    communication_template_override_picker_search_placeholder: Vyhledat šablony k přepsání
+    communication_template_override_picker_title: Přepsat zděděnou šablonu
+    communication_template_recipients_all: Vše
+    communication_template_recipients_label: Výchozí příjemci
+    communication_template_recipients_new_assignment: Nový úkol
+    communication_template_recipients_new_users: Noví uživatelé
+    communication_template_recipients_selected: Vybraný
+    communication_template_source_created: Vytvořeno
+    communication_template_source_label: Zdroj
+    communication_template_source_override_of: Přepsání %{level}
+    communication_template_status_active: Aktivní
+    communication_template_status_archived: Archivováno
+    communication_template_status_draft: Návrh
+    communication_template_status_label: Postavení
+    communication_template_subject_label: Podrobit
+    communication_templates: Šablony
     communications: Komunikace
     communications_form_insert_piped_text: Vložení textu s potrubím
+    competency_indicator: Kompetence / Ukazatel
     completed: Hotový
     completed_tooltip: Všichni hodnotitelé již podali hodnocení
+    completion_recipients_all: Všechny předměty
+    completion_recipients_list: 'Seznam příjemců:'
+    completion_recipients_selected: Vybrané předměty
+    completion_recipients_selected_admins: Vybraní administrátoři
+    completion_recipients_selected_assessors: Vybraní hodnotitelé
+    completion_recipients_selected_assessors_hint: E-mail bude zaslán pouze hodnotiteli přiřazenému k propojenému formuláři hodnotitele vyplňujícího subjektu, a to i v případě, že výše byli vybráni jiní hodnotitelé.
     components_input_duration_placeholder: Zadejte jako "1d 2h 3m"
     concise: Stručný
     condition_sets: Množiny podmínek
@@ -697,6 +927,8 @@ cs:
     disable_proctoring: Zrušit dohled
     disable_report_download: Zakázat stahování zpráv
     disable_transcript_download: Zakázat stahování přepisů
+    disable_webhooks: Zakázat webové hooky
+    disable_webhooks_hint: Pokud je tato možnost zapnutá, klientovi se pro tuto kampaň neodesílají žádné události webhooku ani integrace pro následné operace, bez ohledu na typ účastníka. Toto mohou změnit pouze superadministrátoři.
     disallow_lead_assessor_moderation: Zakázat moderování vedoucím hodnotitelem
     disallow_lead_assessor_moderation_info: Skóre se vypočítá automaticky na základě všech odeslaných formulářů hodnotitelů a vedoucí hodnotitel jej nemůže na obrazovce pro kontrolu změnit
     discard_all_questions: Vynulovat všechny otázky
@@ -795,6 +1027,7 @@ cs:
     evaluator_welcome_name: Vítání hodnotitelů
     evaluators_title: Hodnotitelé
     evidence_from_transcript: Důkazy z přepisu
+    expand_all: Rozbalit vše
     expand_filters: Rozbalit filtry
     export_admin_roles_permissions: Export rolí a oprávnění správce
     export_admins_with_permissions: Export rolí a oprávnění správce
@@ -855,6 +1088,7 @@ cs:
     feature_not_available: Tato funkce není k dispozici
     feature_sms_notification_description: Povolit SMS oznámení pro pozvánky a připomenutí kampaní
     feature_superadmin_tenant_scoping_description: Pokud je tato možnost zakázána, dotazy superadministrátora nebudou omezeny na data tohoto klienta.
+    feature_use_new_communication_center_description: Používejte pro tohoto klienta pouze nové Komunikační centrum a přestaňte odesílat starší komunikaci.
     fields_level: Úroveň
     fields_level_description: Popis úrovně
     fields_level_name: Název úrovně
@@ -1121,6 +1355,7 @@ cs:
     import_title: Importovat předměty z CSV
     import_upload: Upload
     import_users: Importovat uživatele
+    in_progress: Probíhá
     inactive: Neaktivní
     include_locales_label: Zahrnout překlady
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ cs:
     model_params_thinking_effort_none: Žádný
     model_params_thinking_effort_tooltip: Řídí, kolik uvažování model použije před odpovědí. Vyšší úsilí vede k důkladnějším odpovědím, ale trvá déle. Pro úplné vypnutí uvažování použijte možnost „Žádné“.
     model_params_title: Pokročilá konfigurace modelu
+    moderate_scoring_lead_assessor_form: Formulář pro hlavního hodnotitele
     must_be_a_valid_url: Neplatná adresa URL. Zadejte úplnou adresu URL včetně protokolu http nebo https.
     name: Jméno
     name_max_length: Název nesmí překročit %{length} znaků.
@@ -1411,6 +1647,24 @@ cs:
     navigation_registration_codes: Registrační kódy
     navigation_skills_taxonomy: Taxonomie dovedností
     navigation_users: Uživatelé
+    new_experience_badge: Nová zkušenost
+    new_experience_bullet_brief_rest: Pokyny k hodnocení zůstávají na obrazovce během hodnocení.
+    new_experience_bullet_brief_strong: Stručný popis vašeho bodování
+    new_experience_bullet_candidate_rest: každý formulář hodnotitele pro daného kandidáta společně.
+    new_experience_bullet_candidate_strong: Jeden kandidát, jeden názor
+    new_experience_bullet_moderation_rest: skóre každého hodnotitele vedle sebe, jedno závěrečné rozhodnutí.
+    new_experience_bullet_moderation_strong: Moderování v minutách
+    new_experience_footer_note: Nové prostředí se brzy stane výchozím pro všechny. Na nové prostředí můžete kdykoli přepnout v podrobnostech svého profilu.
+    new_experience_headline: Jeden proces, od první kontroly až po konečné schválení.
+    new_experience_notice_body: Přepracovali jsme rozhraní pro hodnotitele. Můžete si ho vyzkoušet hned teď nebo si ho později aktivovat v nastavení profilu.
+    new_experience_notice_maybe_later: Možná později
+    new_experience_notice_title: K dispozici je nová zkušenost s hodnocením
+    new_experience_preview_alt: Náhled nového prostředí pro hodnotitele
+    new_experience_sub_copy: Kandidát, hodnocení, moderování a hodnotící centrum nyní fungují jako jeden propojený pohled, nikoli jako pět obrazovek, které si sami držíte pohromadě.
+    new_experience_word_assessment_centre: Hodnotící centrum Spusťte lekci a sledujte každý předmět.
+    new_experience_word_candidate: Kandidát Jeden kandidát, všechna jeho hodnocení dohromady.
+    new_experience_word_evaluate: Vyhodnoťte zadání a své bodování vedle sebe.
+    new_experience_word_moderate: Střední Každý hodnotitel hodnotí, jeden závěrečný test.
     new_folder: Nová složka
     new_score: Nové skóre
     no_assessments_found: Nebyly nalezeny žádné hodnocení
@@ -1458,6 +1712,7 @@ cs:
     norms_title: Norm
     not_completed: Nedokončeno
     not_completed_tooltip: "%{completed} hodnotitelů je přiděleno, ale pouze %{submitted} hodnocení dokončili"
+    not_started: Nebylo zahájeno
     notes: Poznámky
     nothing_assigned: Žádní hodnotitelé nejsou přiděleni
     nothing_assigned_tooltip: Tomuto uživateli nebyly přiřazeny žádné hodnocení
@@ -1570,6 +1825,7 @@ cs:
         manage_messages: Správa zpráv
         manage_options: Správa možností
         manage_report_approvals: Správa schvalování zpráv
+        manage_uat: Správa uživatelů UAT
         manage_users: Správa uživatelů
         participant_options: Možnosti účastníků
         report_options: Možnosti hlášení
@@ -1898,6 +2154,7 @@ cs:
         title: Nastavení registrace
       reports:
         manage: Správa
+        project_bulk_reports: Hromadné zprávy projektu
         title: Zprávy
         view: Zobrazit
       responseMeta:
@@ -2055,6 +2312,7 @@ cs:
     project_admins: Správci projektů
     project_assessor: Hodnotitel projektu
     project_features: Vlastnosti projektu
+    project_id: ID projektu
     project_ids: Identifikační čísla projektů
     project_ids_required: Pro tento typ sestavy je pole „project_ids“ povinné
     project_licenses: Licence k projektům
@@ -2114,6 +2372,7 @@ cs:
     projects_form_project_number: Číslo projektu
     projects_form_subdomain: Subdoména
     projects_form_title: Projekt
+    projects_general_settings_allow_data_access_to_bi: Povolit přístup k Powerbi pro tento projekt
     projects_general_settings_live_chat: Povolení živého chatu
     projects_general_settings_locales_label: Lokality
     projects_general_settings_project_number_label: Číslo projektu
@@ -2344,6 +2603,21 @@ cs:
     report_approval_submit_or_approve_all: Odeslat nebo schválit vše
     report_approvals: Schvalování zpráv
     report_availability: Dostupnost zprávy
+    report_builder_publish_confirm_content: Tímto se stávající publikovaná zpráva přepíše změnami v konceptu, které budou k dispozici uživatelům. Jste si jisti, že chcete změny publikovat?
+    report_builder_publish_confirm_title: Publikovat tuto zprávu?
+    report_builder_publish_failed: Zpráva byla uložena, ale publikování se nezdařilo. Zkuste to prosím znovu.
+    report_builder_publish_success: Zpráva byla úspěšně publikována
+    report_builder_published_at: Naposledy publikováno {{date}}
+    report_builder_published_by: Publikoval/a {{name}}
+    report_builder_save_and_publish: Uložit a publikovat
+    report_builder_save_as_draft: Uložit jako koncept
+    report_builder_save_failed: Uložení přehledu se nezdařilo. Zkuste to prosím znovu.
+    report_builder_save_success: Zpráva byla úspěšně uložena
+    report_builder_unpublished_changes: Nepublikované změny
+    report_builder_view_draft: Zobrazit koncept
+    report_builder_view_published: Zobrazit publikované
+    report_builder_viewing_draft_message: Prohlížíte si koncept zprávy. Účastníci ji neuvidí, dokud nebude zveřejněna.
+    report_builder_viewing_published_message: Prohlížíte si poslední publikovanou verzi zprávy. Změny v nástroji pro tvorbu se zde neprojeví, dokud nebude publikována.
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
     report_denied: Zpráva o %{user} byla zamítnuta
@@ -2358,6 +2632,11 @@ cs:
     report_on_hold: Zpráva pro %{user} je momentálně pozastavena
     report_owner: Majitel
     report_pdf_status: Zpráva o stavu (PDF)
+    report_pdf_unavailable: PDF k této zprávě zatím není k dispozici.
+    report_preview_draft_notice: Zobrazujete si koncept zprávy, která není účastníkovi k dispozici, dokud nejsou změny konceptu publikovány z nástroje pro tvorbu.
+    report_preview_draft_tag_tooltip: Tato zpráva obsahuje změny v konceptu. Kliknutím zobrazíte koncept.
+    report_preview_view_draft: Náhled konceptu
+    report_preview_view_published: Náhled publikován
     report_review_abort_qc: Přerušení kontroly kvality
     report_review_approve: Schválit
     report_review_approve_changes: Schválení změn
@@ -2728,6 +3007,7 @@ cs:
     scoring_approval_score_approvals: Schvalování bodování AI
     scoring_assessment: Hodnocení
     scoring_assessment_scoring_type: Typ hodnocení
+    scoring_assessor_number: Odhadce %{number}
     scoring_average: Průměr
     scoring_campaign_scoring_variables: Proměnné pro hodnocení kampaně
     scoring_desc: Překročili jste maximální limit %{n} faktorů kampaně. Další faktory nelze přidat. Před pokračováním zkontrolujte a spravujte své stávající faktory.
@@ -3118,15 +3398,19 @@ cs:
     status_details: Podrobnosti o stavu
     statuses_accepted: Přijato
     statuses_cancelled: Zrušeno
+    statuses_failed: Selhalo
     statuses_late_cancelled: Pozdě zrušeno
     statuses_late_rescheduled: Zpožděný přesun termínu
     statuses_pending: Čeká se na
+    statuses_queued: Zařazeno do fronty
     statuses_requested_cancellation: Požadované zrušení
     statuses_requested_cancellation_rejected: Odmítnutí zrušení
     statuses_requested_rescheduling: Požadované přeplánování
     statuses_requested_rescheduling_rejected: Změna termínu Zamítnuto
     statuses_rescheduled: Přeloženo na
     statuses_scheduled: Plánované
+    statuses_sent: Odesláno
+    statuses_skipped: Přeskočeno
     steps_basic_information: Základní informace
     steps_facilitators: Zprostředkovatelé
     steps_invite_options: Možnosti pozvání
@@ -3332,6 +3616,7 @@ cs:
     url_label: ADRESA URL
     url_name: ADRESA URL
     url_whitelisting: Přidávání URL na seznam povolených adres
+    use_new_communication_center: Použít nové komunikační centrum
     used_tokens_input_tokens: Vstupní tokeny
     used_tokens_output_tokens: Výstupní tokeny
     used_tokens_thinking_tokens: Žetony myšlení

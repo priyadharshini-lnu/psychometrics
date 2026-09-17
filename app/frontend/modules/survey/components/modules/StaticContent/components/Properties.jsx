@@ -3,17 +3,11 @@ import PropTypes from 'prop-types'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 
 import { LibraryStore } from '~/libs/library'
-import Socket from '~/modules/survey/cable'
-import LibraryTransport from '~/modules/survey/cable/LibraryChannel'
+import BuilderLibraryTransport from '~/modules/survey/core/builder/libraryTransport'
 
 export class Properties extends Component {
   static propTypes = {
     model: PropTypes.object.isRequired,
-  }
-
-  componentDidMount () {
-    LibraryTransport.init()
-    this.librarySocket = Socket.library()
   }
 
   onSelectGraphic = (item) => {
@@ -22,11 +16,11 @@ export class Properties extends Component {
   }
 
   openGraphicsLibrary = () => {
-    LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
+    LibraryStore.openPopup(BuilderLibraryTransport, this.onSelectGraphic, 'image')
   }
 
   openFilesLibrary = () => {
-    LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic)
+    LibraryStore.openPopup(BuilderLibraryTransport, this.onSelectGraphic)
   }
 
   changeType = (e) => {

@@ -26,6 +26,9 @@ class WebhookSystemJob < WebhookSystem::Job
 
   def perform(subscription_id, event)
     return unless Settings.features.webhooks_enabled
+    # Re-evaluate suppression at delivery time so events queued before a campaign's
+    # disable_webhooks flag was toggled on are still blocked
+    return if WebhookSubscriptions::DeliverySuppressed.suppressed?(event)
 
     subscription = Webhook.active.not_deleted.find(subscription_id)
     super(subscription, event)

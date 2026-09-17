@@ -119,6 +119,24 @@ describe 'Reports' do
           expect(reports.first['assessments'].first['poster_url']).to eq assessment.poster.url
         end
       end
+
+      response '200', 'output_type reflects the published snapshot, not later draft changes' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+
+        before do
+          create(:module, page: create(:page, report: report))
+          Reports::PublishSnapshot.call!(report, membership.user)
+          report.reload.pages.each { |page| page.modules.destroy_all }
+        end
+
+        run_test! do |response|
+          reports = JSON.parse(response.body)
+          published_report = reports.find { |r| r['id'] == report.id }
+
+          expect(published_report['output_type']).to eq({ 'pdf' => true, 'results' => false })
+        end
+      end
     end
   end
 
@@ -224,6 +242,28 @@ describe 'Reports' do
             'more_info' => "Scorings for report #{report_id} are not calculated yet",
             'meta' => nil
           )
+        end
+      end
+
+      response '200', 'computed from the published snapshot even after the draft data_configuration is cleared' do
+        schema '$ref' => '#/definitions/ReportResults'
+
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:report_id) { report.id }
+
+        before do
+          Reports::PublishSnapshot.call!(report, membership.user)
+          report.update(data_configuration: {}, skip_owner_validation: true)
+          user_assessment.users_result.completed!
+          user_assessment.update(score_calculated: true)
+        end
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          expect(result['assessments']).to be_an_instance_of(Array)
+          expect(result).to have_key('user_data')
         end
       end
     end
@@ -516,6 +556,32 @@ describe 'Reports' do
           expect(interesting_dimension['factors']).to be_an_instance_of(Array)
           skip 'To be fixed with data configuration in report factory'
           expect(interesting_dimension['factors'].length).to eq(1)
+        end
+      end
+
+      response '200', 'factors come from the published snapshot even after the draft data_configuration changes' do
+        schema '$ref' => '#/definitions/Dimensions'
+
+        before do
+          Reports::PublishSnapshot.call!(report, membership.user)
+          report.update(
+            data_configuration: {
+              sections: [{
+                data: [{ type: 'normed_factor', factorId: dimension.factors.last.id, assessmentId: assessment.id }]
+              }]
+            },
+            skip_owner_validation: true
+          )
+        end
+
+        let(:report_id) { report.id }
+        let(:include_factors) { true }
+
+        run_test! do |response|
+          result = JSON.parse(response.body)
+
+          interesting_dimension = result['dimensions'].find { |d| d['id'] == dimension.id }
+          expect(interesting_dimension['factors'].length).to eq(2)
         end
       end
 

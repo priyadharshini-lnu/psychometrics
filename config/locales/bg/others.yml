@@ -214,6 +214,8 @@ bg:
               inclusion: Грешна езикова променлива
             password:
               too_short: Паролата е твърде кратка. Изисква се минимален знак %{count}
+            uat:
+              invalid: 'UAT трябва да бъде едно от: %{accepted_values} или празно'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ bg:
               invalid_reports_header: Невалидна заглавка, вземете заглавката от примерен файл
               manager_not_found: 'Ред %{row_number}: Мениджър с имейл %{email} не присъства в кампанията или в CSV файла'
               not_enough_licenses: Импортирането изисква %{required_count} лиценза, но са налични само %{available_count}. Моля, намалете броя на новите потребители или добавете още лицензи, преди да импортирате.
+              not_enough_uat_licenses: Импортирането изисква %{required_count} UAT тестови лиценза, но са налични само %{available_count}. Моля, намалете броя на новите UAT потребители или увеличете лимита за използване на UAT, преди да импортирате.
               user_update_failed: Неуспешна актуализация на потребителя за %{email} с грешка "%{error}"
             locale:
               inclusion: Грешна езикова променлива
@@ -943,7 +946,9 @@ bg:
         import_sms_invites: Импортиране на SMS покана
         import_users: Импортиране на потребители
         migrate_assessment_translations: Оценяване Преводаческа миграция
+        migrate_communication_center: Миграция на комуникационния център
         normalize_factor_scores: Нормализиране на факторните резултати
+        project_bulk_download_reports: Отчети за групово изтегляне на проекти
         project_compact_completion_status_export: Експорт на състоянието на завършеност на компактния файл
         project_completion_status_export: Статус на завършване Износ
         regenerate_assessment_transcriptions: Възстановяване на транскрипциите от оценката
@@ -986,6 +991,8 @@ bg:
     errors: Грешки
     invalid_job: Това уведомление съответства на изтрит запис
     mark_as_read: Маркиране на всички прочетени
+    migrate_communication_center:
+      client_not_found: Клиент с id=%{id} не е намерен
     more: Още
     results: Резултати
     super_admin:
@@ -1319,7 +1326,6 @@ bg:
     privacy_notice_link: <a href="%{privacy_url}">Декларация за поверителност
     registration:
       description: Попълнете данните по-долу, за да се регистрирате и да създадете нов акаунт
-      email_hint: Уважаваме поверителността Ви и не толерираме спам. Никога няма да предоставим информацията Ви на трета страна
       first_name: Първо име
       first_name_placeholder: Въведете първото име
       have_account: Вече имате акаунт?
@@ -2984,6 +2990,7 @@ bg:
     end_date: Крайна дата
     not_enough_license: "'%{client_name}' няма достатъчно лицензи за '%{report_name}'"
     not_enough_license_count: Няма достатъчно лицензи, моля, свържете се с администратора
+    not_enough_uat_license: "„%{client_name}“ няма достатъчно UAT тестови лицензи за „%{report_name}“. Увеличете лимита за използване на UAT за този лиценз или се свържете с администратора."
     number: Номер
     overuse_number: Надбавка за прекомерна употреба
     project_specific: Специфично за проекта
@@ -2998,6 +3005,11 @@ bg:
       idp: IDP
       proctoring: Прокторинг
       threesixty: Тришейсет
+    uat_usage_limit_credits: Кредити за теста UAT
+    uat_usage_limit_credits_hint: Таксуването за наблюдение се извършва в кредити, така че това е максималният брой кредити, които потребителите на UAT тест могат да използват от този лиценз (максимум 300).
+    uat_usage_limit_users: Потребители на UAT тест
+    uat_usage_limit_users_hint: Максимален брой потребители за тестване на UAT, които могат да бъдат създадени с този лиценз (максимум 30). Тестовите потребители никога не използват лицензи за таксуване.
+    uat_used: Използвани лицензи от UAT
     used_number: Използвани лицензи
     used_out_of: "%{used} от %{total}"
   lti:
@@ -3974,8 +3986,8 @@ bg:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Разрешаване на потребителите да изпращат няколко отговора
     png: PNG

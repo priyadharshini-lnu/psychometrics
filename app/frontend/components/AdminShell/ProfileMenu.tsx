@@ -123,7 +123,7 @@ export const ProfileMenu: FC<Props> = ({ isMobile }) => {
         trigger={['click']}
         placement="bottomRight"
       >
-        <Button type="text">
+        <Button data-tour="profile-dropdown" type="text">
           <Flex gap={token.marginXXS} align="center">
             <Avatar size={32} src={user?.photo || largeAvatar} icon={<Person />} />
             {!isMobile && user?.firstName ? (

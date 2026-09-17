@@ -214,6 +214,8 @@ fr:
               inclusion: Localité incorrecte
             password:
               too_short: Le mot de passe est trop court. %{count} caractères minimum requis
+            uat:
+              invalid: 'UAT doit être l''une des valeurs suivantes : %{accepted_values} ou vide.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ fr:
               invalid_reports_header: En-tête non valide, prendre l'en-tête du fichier d'exemple
               manager_not_found: 'Row %{row_number} : Manager with email %{email} is not present in the campaign or in CSV'
               not_enough_licenses: L'importation nécessite %{required_count} licences, mais seules %{available_count} sont disponibles. Veuillez réduire le nombre de nouveaux utilisateurs ou ajouter des licences avant d'importer.
+              not_enough_uat_licenses: L'importation nécessite %{required_count} licences de test UAT, mais seules %{available_count} sont disponibles. Veuillez réduire le nombre de nouveaux utilisateurs UAT ou augmenter la limite d'utilisation UAT avant l'importation.
               user_update_failed: La mise à jour de l'utilisateur a échoué pour %{email} avec l'erreur '%{error}'
             locale:
               inclusion: Localité incorrecte
@@ -943,7 +946,9 @@ fr:
         import_sms_invites: Importer une invitation par SMS
         import_users: Importer des utilisateurs
         migrate_assessment_translations: Évaluation Traduction migration
+        migrate_communication_center: Migration du centre de communication
         normalize_factor_scores: Normaliser les scores des facteurs
+        project_bulk_download_reports: Rapports de téléchargement groupé de projets
         project_compact_completion_status_export: Exportation compacte de l'état d'avancement
         project_completion_status_export: Exportation de l'état d'avancement
         regenerate_assessment_transcriptions: Recréer les transcriptions des évaluations
@@ -986,6 +991,8 @@ fr:
     errors: Erreurs
     invalid_job: Cette notification correspond à un enregistrement supprimé
     mark_as_read: Marquer toutes les lectures
+    migrate_communication_center:
+      client_not_found: Client avec l'identifiant %{id} introuvable
     more: Plus d'informations
     results: Résultats
     super_admin:
@@ -1319,7 +1326,6 @@ fr:
     privacy_notice_link: <a href="%{privacy_url}">Politique de confidentialité
     registration:
       description: Remplissez les détails ci-dessous pour vous inscrire et créer un nouveau compte
-      email_hint: Nous respectons votre vie privée et ne tolérons pas le spam. Nous ne communiquerons jamais vos informations à des tiers
       first_name: Prénom
       first_name_placeholder: Saisir le prénom
       have_account: Vous avez déjà un compte ?
@@ -2957,6 +2963,7 @@ fr:
     end_date: Date de fin
     not_enough_license: "'%{client_name}' n'a pas assez de licences pour '%{report_name}'"
     not_enough_license_count: Pas assez de licences, veuillez contacter l'administrateur
+    not_enough_uat_license: Le compte « %{client_name} » ne dispose pas d'un nombre suffisant de licences de test UAT pour le compte « %{report_name} ». Veuillez augmenter la limite d'utilisation UAT de cette licence ou contacter l'administrateur.
     number: Nombre
     overuse_number: Indemnité de dépassement
     project_specific: Projet spécifique
@@ -2971,6 +2978,11 @@ fr:
       idp: PDI
       proctoring: Test d'évaluation
       threesixty: Troisixty
+    uat_usage_limit_credits: crédits de test UAT
+    uat_usage_limit_credits_hint: La surveillance est facturée en crédits, il s'agit donc du nombre maximal de crédits que les utilisateurs de tests UAT peuvent consommer à partir de cette licence (max 300).
+    uat_usage_limit_users: utilisateurs de test UAT
+    uat_usage_limit_users_hint: Nombre maximal d'utilisateurs de test UAT pouvant être créés avec cette licence (30 maximum). Les utilisateurs de test ne consomment jamais de licences facturables.
+    uat_used: Licences utilisées par l'UAT
     used_number: Licences utilisées
     used_out_of: "%{used} sur %{total}"
   lti:
@@ -3947,8 +3959,8 @@ fr:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Permettre aux utilisateurs de soumettre plusieurs réponses
     png: PNG

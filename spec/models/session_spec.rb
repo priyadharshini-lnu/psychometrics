@@ -59,4 +59,47 @@ RSpec.describe Session do
       expect(Session.find_by(session_id: session_id)).to be_nil
     end
   end
+
+  # Reproduces the Devise idle-clock persistence regression: write_session short-circuits
+  # on record.changed?, so data= must dirty the row when the mutated hash differs from
+  # what is persisted.
+  describe 'in-place data mutations via Rack write_session semantics' do
+    def simulate_rack_write(record)
+      mutated = record.data
+      yield mutated
+      record.data = mutated
+    end
+
+    it 'marks the record dirty when the in-memory data hash is mutated in place' do
+      record = create(:session, user: user, client: client, data: { 'last_request_at' => 2.hours.ago.to_i })
+      reloaded = described_class.find(record.id)
+
+      simulate_rack_write(reloaded) { |data| data['last_request_at'] = Time.current.to_i }
+
+      expect(reloaded.changed?).to be(true)
+    end
+
+    it 'does not dirty the record when the incoming data equals the persisted data' do
+      record = create(:session, user: user, client: client, data: { 'foo' => 'bar' })
+      reloaded = described_class.find(record.id)
+
+      reloaded.data = { 'foo' => 'bar' }
+
+      expect(reloaded.changed?).to be(false)
+    end
+
+    it 'persists in-place mutations when the record is saved through the write_session gate' do
+      initial_time = 2.hours.ago.to_i
+      new_time = Time.current.to_i
+      record = create(:session, user: user, client: client, data: { 'last_request_at' => initial_time })
+
+      reloaded = described_class.find(record.id)
+      simulate_rack_write(reloaded) { |data| data['last_request_at'] = new_time }
+
+      expect(reloaded.changed?).to be(true)
+      reloaded.save!
+
+      expect(described_class.find(record.id).data['last_request_at']).to eq(new_time)
+    end
+  end
 end

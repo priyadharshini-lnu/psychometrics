@@ -82,6 +82,25 @@ describe Reports::UpdateCampaignAIArtifacts do
         report_module = report.modules.first
         expect(report_module.props['source']['codes']).to eq(['artifact1'])
       end
+
+      it 'touches the report when artifacts change' do
+        report.update_column(:updated_at, 1.day.ago)
+        new_artifacts_params = [
+          { 'code' => 'artifact1', 'name' => 'Updated Artifact 1', 'ai_assistant' => { 'id' => ai_assistant.id.to_s } }
+        ]
+
+        expect { described_class.call(report, new_artifacts_params) }.to(change { report.reload.updated_at })
+      end
+
+      it 'does not touch the report when artifacts are unchanged' do
+        report.update_column(:updated_at, 1.day.ago)
+        unchanged_params = existing_artifacts.map do |artifact|
+          { 'code' => artifact.code, 'name' => artifact.name,
+            'ai_assistant' => { 'id' => artifact.ai_assistant_id.to_s } }
+        end
+
+        expect { described_class.call(report, unchanged_params) }.not_to(change { report.reload.updated_at })
+      end
     end
 
     context 'with invalid parameters' do

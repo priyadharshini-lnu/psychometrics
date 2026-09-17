@@ -29,6 +29,7 @@ import {
   Settings,
   SettingsApplications,
   SmartToy,
+  FactCheck,
   SpaceDashboard,
 } from '@thetalententerprise/glint/icons'
 import compact from 'lodash/compact'
@@ -38,6 +39,7 @@ import { camelizeKeys } from '~/utils/object'
 import { getFeatures } from '~/core/config'
 import type { RootState } from '~/modules/admin/core/rootReducers'
 import { closeSubmenu, openSubmenu } from '~/modules/admin/core/ui/menu'
+import { isNewExperienceEnabled } from '~/modules/admin/modules/AssessorApp/context/useNewExperience'
 import { useSubnav } from './SubnavContext'
 import { isOwnedPath } from './ownedPaths'
 
@@ -74,6 +76,7 @@ const PARENT_OF: Record<string, string> = {
 const ROUTE_ALIASES: [RegExp, string][] = [
   [/^\/admin\/(clients|projects)(\/|$)/, 'clients'],
   [/^\/admin\/report_families(\/|$)/, 'reports'],
+  [/^\/assessors\/evaluation(\/|$)/, 'assessorEvaluation'],
 ]
 
 const segmentsOf = (path: string): string[] => (
@@ -94,6 +97,9 @@ const matchDepth = (link: string[], route: string[]): number => {
 }
 
 const activeKeyFor = (pathname: string, links: Permissions): string | undefined => {
+  const aliasMatch = ROUTE_ALIASES.find(([pattern]) => pattern.test(pathname))?.[1]
+  if (aliasMatch) return aliasMatch
+
   const route = segmentsOf(pathname)
 
   const scored = Object.entries(links).map(([key, path]) => ({
@@ -102,7 +108,7 @@ const activeKeyFor = (pathname: string, links: Permissions): string | undefined 
   }))
   const best = maxBy(scored, 'depth')
 
-  return (best?.depth ? best.key : undefined) ?? ROUTE_ALIASES.find(([pattern]) => pattern.test(pathname))?.[1]
+  return best?.depth ? best.key : undefined
 }
 
 export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
@@ -124,6 +130,7 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
   return useMemo(() => {
     const { idpEnabled, skillRaterEnabled } = camelizeKeys(features ?? {})
     const clientContext = window.PsyGlobalState?.clientContextData
+    const newExperience = isNewExperienceEnabled()
 
     const clientsPath = clientContext && links.clients
       ? `${links.clients}/${clientContext.id}/projects`
@@ -159,7 +166,12 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       entry({
         key: 'dashboards', path: links.dashboards, label: I18n.t('admin.dashboard'), icon: <Dashboard />,
       }),
-      entry({
+      newExperience ? entry({
+        key: 'assessorEvaluation',
+        path: links.assessorDashboard ? `${links.assessorDashboard}/evaluation` : undefined,
+        label: I18n.t('admin.assessor_evaluation'),
+        icon: <FactCheck />,
+      }) : entry({
         key: 'assessorDashboard',
         path: links.assessorDashboard,
         label: I18n.t('admin.assessor_dashboard'),
@@ -239,6 +251,12 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
       entry({
         key: 'communicationCenter',
         path: links.communicationCenter,
+        label: I18n.t('admin.communications'),
+        icon: <Mail />,
+      }),
+      entry({
+        key: 'newCommunicationCenter',
+        path: links.newCommunicationCenter,
         label: I18n.t('admin.communication_center'),
         icon: <Mail />,
       }),

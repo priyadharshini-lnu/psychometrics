@@ -24,8 +24,11 @@ export const ReportBundleReportFormModal: React.FC<Props> = ({ close, parent }) 
 
   const debouncedFetchReports = debounce((value: string) => {
     const tenantId = (parent && parent.tenantId) || undefined
-    const filter: Record<string, string> = { filterable_fields: value, category_eq: 'common' }
-    if (tenantId) filter.tenant_id = tenantId
+    const filter = {
+      filterable_fields: value,
+      category_eq: 'common',
+      tenant_id: tenantId || null,
+    } as unknown as Record<string, string | string[]>
 
     fetchReports({
       apiConfig: {

@@ -131,6 +131,50 @@ describe UserReports::GeneratePdf do
                           )
                         ))
     end
+
+    it 'includes view_draft in the preview url when requested' do
+      url = described_class.new(user_report, current_user, view_draft: true).send(:report_preview_url)
+
+      expect(url).to eq(
+        pdf_preview_administration_new_campaign_user_report_url(
+          common_url_params.merge(
+            subdomain: Settings.subdomain, new_campaign_id: user_report.campaign.id, view_draft: true
+          )
+        )
+      )
+    end
+  end
+
+  describe '#report' do
+    context 'when the report has a published snapshot' do
+      before { Reports::PublishSnapshot.call!(report, current_user) }
+
+      it 'uses the effective (published) report by default' do
+        instance = described_class.new(user_report, current_user)
+
+        expect(instance.send(:report)).to be_a(Reports::PublishedReader)
+      end
+
+      it 'uses the live draft report when view_draft option is true' do
+        instance = described_class.new(user_report, current_user, view_draft: true)
+
+        expect(instance.send(:report)).to be_a(Reports::DraftReader)
+      end
+    end
+  end
+
+  describe '#report_file_name' do
+    it 'marks the file as a draft when view_draft option is true' do
+      name = described_class.new(user_report, current_user, view_draft: true).send(:report_file_name)
+
+      expect(name).to match(/\ADraft_.+_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}\.pdf\z/)
+    end
+
+    it 'does not mark the file as a draft by default' do
+      name = described_class.new(user_report, current_user).send(:report_file_name)
+
+      expect(name).not_to start_with('Draft_')
+    end
   end
 
   context 'using local puppeter' do
@@ -159,6 +203,27 @@ describe UserReports::GeneratePdf do
         "tmp/reports/#{user.email}/#{user.email}_#{report.decorate.display_name.parameterize(preserve_case: true)}_#{Time.zone.now.strftime('%Y-%m-%d_%H-%M-%S')}.pdf"
       )
       # rubocop:enable Layout/LineLength
+    end
+
+    context 'when a pdf was produced' do
+      before(:each) do
+        allow(File).to receive(:exist?).and_call_original
+        allow(File).to receive(:exist?).with(a_string_including('tmp/reports')).and_return(true)
+        allow(File).to receive(:open).and_call_original
+        allow(File).to receive(:open).with(a_string_including('tmp/reports')).and_return(StringIO.new('pdf'))
+      end
+
+      it 'stores it against the record' do
+        expect_any_instance_of(ActiveStorage::Attached::One).to receive(:attach)
+
+        described_class.call!(user_report, current_user, lang: 'en')
+      end
+
+      it 'does not store a draft over the participant facing pdf' do
+        expect_any_instance_of(ActiveStorage::Attached::One).not_to receive(:attach)
+
+        described_class.call!(user_report, current_user, lang: 'en', view_draft: true)
+      end
     end
   end
 
@@ -200,6 +265,15 @@ describe UserReports::GeneratePdf do
       )
 
       described_class.call!(user_report, user, lang: 'en')
+    end
+
+    it 'tells the webhook not to store the record when generating a draft' do
+      allow_any_instance_of(described_class).to receive(:report_preview_url).and_return('https://cc.com/abc.pdf')
+      expect(Faas::UrlToPdf).to receive(:call!).with(
+        hash_including(webhook_message: hash_including(update_record: false))
+      )
+
+      described_class.call!(user_report, user, lang: 'en', view_draft: true)
     end
   end
 end

@@ -10,6 +10,12 @@ module Administration
       can_manage_block?
     end
 
+    def show?
+      # using edit? to match the old websocket permissions being used.
+      # is only cslled by templates/blocks_controller#show
+      edit?
+    end
+
     def create?
       super || @user.has_grant?(:questions, :manage)
     end

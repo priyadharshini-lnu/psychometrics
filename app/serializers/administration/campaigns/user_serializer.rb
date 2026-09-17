@@ -3,7 +3,7 @@
 module Administration
   module Campaigns
     class UserSerializer < Panko::Serializer
-      attributes :id, :first_name, :last_name, :email, :full_name, :created_by, :updated_by,
+      attributes :id, :first_name, :last_name, :email, :full_name, :is_uat, :created_by, :updated_by,
                  :created_at, :updated_at, :locale, :active, :completion_status,
                  :status, :permissions, :started_at, :completed_at
 
@@ -53,7 +53,8 @@ module Administration
       end
 
       def full_name
-        object.decorate.full_name
+        base_name = object.decorate.full_name
+        object.is_uat? ? "UAT - #{base_name}" : base_name
       end
 
       def campaign_user

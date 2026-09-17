@@ -214,6 +214,8 @@ id:
               inclusion: Lokasi yang salah
             password:
               too_short: Kata sandi terlalu pendek. Karakter minimum %{count} diperlukan
+            uat:
+              invalid: 'UAT harus berupa salah satu dari: %{accepted_values}, atau kosong'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ id:
               invalid_reports_header: Header tidak valid, ambil header dari file sampel
               manager_not_found: 'Baris %{row_number}: Pengelola dengan email %{email} tidak ada dalam kampanye atau di CSV'
               not_enough_licenses: Impor membutuhkan %{required_count} lisensi, tetapi hanya %{available_count} yang tersedia. Harap kurangi jumlah pengguna baru atau tambahkan lebih banyak lisensi sebelum melakukan impor.
+              not_enough_uat_licenses: Impor memerlukan lisensi uji UAT %{required_count}, tetapi hanya %{available_count} yang tersedia. Harap kurangi jumlah pengguna UAT baru atau tingkatkan batas penggunaan UAT sebelum melakukan impor.
               user_update_failed: Pembaruan pengguna gagal untuk %{email} dengan kesalahan '%{error}'
             locale:
               inclusion: Lokasi yang salah
@@ -943,7 +946,9 @@ id:
         import_sms_invites: Impor Undangan SMS
         import_users: Impor Pengguna
         migrate_assessment_translations: Migrasi Terjemahan Penilaian
+        migrate_communication_center: Migrasi Pusat Komunikasi
         normalize_factor_scores: Menormalkan Skor Faktor
+        project_bulk_download_reports: Unduh Laporan Proyek Secara Massal
         project_compact_completion_status_export: Ekspor Status Penyelesaian Kompak
         project_completion_status_export: Status Penyelesaian Ekspor
         regenerate_assessment_transcriptions: Buat Ulang Transkrip Penilaian
@@ -986,6 +991,8 @@ id:
     errors: Kesalahan
     invalid_job: Notifikasi ini sesuai dengan catatan yang dihapus
     mark_as_read: Tandai semua baca
+    migrate_communication_center:
+      client_not_found: Klien dengan id=%{id} tidak ditemukan
     more: Lebih
     results: Hasil
     super_admin:
@@ -1322,7 +1329,6 @@ id:
     privacy_notice_link: <a href="%{privacy_url}">Pernyataan Privasi
     registration:
       description: Isi detail di bawah ini untuk mendaftar dan membuat akun baru
-      email_hint: Kami menghormati privasi Anda dan tidak mentolerir spam. Kami tidak akan pernah memberikan informasi Anda kepada pihak ketiga mana pun
       first_name: Nama depan
       first_name_placeholder: Masukkan Nama Depan
       have_account: Sudah memiliki akun?
@@ -2988,6 +2994,7 @@ id:
     end_date: Tanggal akhir
     not_enough_license: "'%{client_name}' tidak memiliki cukup lisensi untuk '%{report_name}'"
     not_enough_license_count: Lisensi tidak cukup, silakan hubungi administrator
+    not_enough_uat_license: "'%{client_name}' tidak memiliki cukup lisensi pengujian UAT untuk '%{report_name}'. Tingkatkan batas penggunaan UAT pada lisensi tersebut, atau hubungi administrator."
     number: Angka
     overuse_number: Tunjangan penggunaan berlebih
     project_specific: Khusus Proyek
@@ -3002,6 +3009,11 @@ id:
       idp: IDP
       proctoring: Pengawasan
       threesixty: Tiga enam puluh
+    uat_usage_limit_credits: Kredit tes UAT
+    uat_usage_limit_credits_hint: Pengawasan ujian dikenakan biaya dalam kredit, jadi ini adalah jumlah kredit maksimum yang dapat digunakan pengguna pengujian UAT dari lisensi ini (maksimal 300).
+    uat_usage_limit_users: Pengguna uji UAT
+    uat_usage_limit_users_hint: Jumlah maksimum pengguna uji UAT yang dapat dibuat dengan lisensi ini (maksimal 30). Pengguna uji tidak pernah menggunakan lisensi yang dikenakan biaya.
+    uat_used: UAT menggunakan lisensi
     used_number: Lisensi bekas
     used_out_of: "%{used} dari %{total}"
   lti:
@@ -3978,8 +3990,8 @@ id:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Mengizinkan pengguna mengirimkan beberapa respons
     png: PNG

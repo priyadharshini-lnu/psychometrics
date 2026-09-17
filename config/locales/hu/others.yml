@@ -214,6 +214,8 @@ hu:
               inclusion: Rossz területi beállítás
             password:
               too_short: A jelszó túl rövid. Minimális %{count} karakter szükséges
+            uat:
+              invalid: 'Az UAT-nak a következők egyikének kell lennie: %{accepted_values}, vagy üres'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ hu:
               invalid_reports_header: Érvénytelen fejléc, fejléc a mintafájlból
               manager_not_found: 'A(z) %{row_number} sor: A(z) %{email} e-mail-címmel rendelkező kezelő nem szerepel a kampányban vagy a CSV-fájlban'
               not_enough_licenses: Az importáláshoz %{required_count} licenc szükséges, de csak %{available_count} érhető el. Kérjük, csökkentse az új felhasználók számát, vagy adjon hozzá több licencet az importálás előtt.
+              not_enough_uat_licenses: Az importáláshoz %{required_count} UAT tesztlicenc szükséges, de csak %{available_count} érhető el. Kérjük, csökkentse az új UAT-felhasználók számát, vagy emelje meg az UAT használati korlátját az importálás előtt.
               user_update_failed: '%{email} felhasználói frissítése sikertelen "%{error}" hibával'
             locale:
               inclusion: Rossz területi beállítás
@@ -943,7 +946,9 @@ hu:
         import_sms_invites: SMS meghívó importálása
         import_users: Felhasználók importálása
         migrate_assessment_translations: Értékelés Fordítás áttelepítése
+        migrate_communication_center: Kommunikációs központ migrációja
         normalize_factor_scores: Faktorpontszámok normalizálása
+        project_bulk_download_reports: Projekt tömeges letöltésű jelentések
         project_compact_completion_status_export: Kompakt befejezési állapot export
         project_completion_status_export: Befejezési állapot exportálása
         regenerate_assessment_transcriptions: Az értékelési jegyzetek újragenerálása
@@ -986,6 +991,8 @@ hu:
     errors: Hibák
     invalid_job: Ez az értesítés a törölt rekordnak felel meg
     mark_as_read: Összes megjelölése olvasottnak
+    migrate_communication_center:
+      client_not_found: Az %{id} azonosítójú ügyfél nem található
     more: Több
     results: Eredmények
     super_admin:
@@ -1319,7 +1326,6 @@ hu:
     privacy_notice_link: <a href="%{privacy_url}">Adatvédelmi nyilatkozat
     registration:
       description: Töltse ki az alábbi adatokat a regisztrációhoz és egy új fiók létrehozásához
-      email_hint: Tiszteletben tartjuk a magánéletét, és nem toleráljuk a spameket. Soha nem adjuk ki az adatait harmadik félnek
       first_name: Keresztnév
       first_name_placeholder: Adja meg a keresztnevét
       have_account: Már van fiókja?
@@ -2971,6 +2977,7 @@ hu:
     end_date: Befejezés dátuma
     not_enough_license: A(z) "%{client_name}" nem rendelkezik elegendő licenccel a(z) "%{report_name}"
     not_enough_license_count: Nincs elég licenc, forduljon az adminisztrátorhoz
+    not_enough_uat_license: Az „%{client_name}” nem rendelkezik elegendő UAT tesztlicenccel az „%{report_name}” számára. Növelje az adott licenc UAT-használati korlátját, vagy vegye fel a kapcsolatot a rendszergazdával.
     number: Szám
     overuse_number: Túlhasználati engedmény
     project_specific: Projektspecifikus
@@ -2985,6 +2992,11 @@ hu:
       idp: IDP
       proctoring: Ellenőrzés
       threesixty: Háromhatvan
+    uat_usage_limit_credits: UAT tesztkreditek
+    uat_usage_limit_credits_hint: A felügyeleti feladatok elszámolása kreditekben történik, tehát ez a maximális kredit, amelyet az UAT tesztfelhasználók felhasználhatnak ebből a licencből (maximum 300).
+    uat_usage_limit_users: UAT tesztfelhasználók
+    uat_usage_limit_users_hint: A licenccel létrehozható UAT tesztfelhasználók maximális száma (maximum 30). A tesztfelhasználók soha nem használnak számlázható licenceket.
+    uat_used: UAT által használt licencek
     used_number: Használt licencek
     used_out_of: "%{used} a(z) %{total} -ból"
   lti:
@@ -3961,8 +3973,8 @@ hu:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Több válasz beküldésének engedélyezése a felhasználók számára
     png: PNG

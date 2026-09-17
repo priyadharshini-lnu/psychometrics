@@ -1,14 +1,12 @@
 
 import React from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import {
-  Button,
-} from 'antd'
+import { Button } from 'antd'
 import { useParams } from 'react-router-dom'
 import { PlusOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { Resource } from '~/modules/admin/components/Resource'
-import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { LicenseTR } from '~/modules/admin/modules/client/core/licenses'
+import { TABLE_SETTINGS_KEYS } from '~/modules/admin/components/Resource/settingsKeys'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import Modals from '~/modules/admin/components/Modals'
 import { openModal } from '~/modules/admin/core/ui/modals'
@@ -33,6 +31,7 @@ const connecter = connect(
 
 export type PropsFromRedux = ConnectedProps<typeof connecter>
 type Props = PropsFromRedux
+
 
 const LicenseList: React.FC<Props> = ({
   currentUser, openModal,

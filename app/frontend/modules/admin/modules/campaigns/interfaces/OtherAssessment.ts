@@ -2,17 +2,18 @@ import * as t from 'io-ts'
 
 export const OtherAssessmentTR = t.type({
   id: t.number,
-  dimensionId: t.union([t.number, t.null]),
+  name: t.string,
+  category: t.string,
+  dimensionId: t.union([t.number, t.null, t.undefined]),
   owner: t.union([
     t.type({
       id: t.number,
       name: t.string,
     }),
+    t.null,
     t.undefined,
   ]),
-  name: t.string,
-  category: t.string,
-  permissions: t.type({
+  permissions: t.partial({
     exportRawResults: t.boolean,
     exportScoringResults: t.boolean,
     exportNormedResults: t.boolean,
@@ -21,7 +22,7 @@ export const OtherAssessmentTR = t.type({
     importResults: t.boolean,
     rescoreResponses: t.boolean,
   }),
-  tenantId: t.union([t.number, t.null]),
+  tenantId: t.union([t.number, t.null, t.undefined]),
 })
 
 export type OtherAssessment = t.TypeOf<typeof OtherAssessmentTR>

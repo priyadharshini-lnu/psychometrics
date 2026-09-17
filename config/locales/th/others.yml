@@ -214,6 +214,8 @@ th:
               inclusion: ตําแหน่งที่ตั้งไม่ถูกต้อง
             password:
               too_short: รหัสผ่านสั้นเกินไป อักขระขั้นต่ํา %{count} ที่จําเป็น
+            uat:
+              invalid: 'ค่า UAT ต้องเป็นหนึ่งในค่าต่อไปนี้: %{accepted_values} หรือค่าว่าง'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ th:
               invalid_reports_header: ส่วนหัวไม่ถูกต้อง นําส่วนหัวจากไฟล์ตัวอย่าง
               manager_not_found: 'แถว %{row_number}: ผู้จัดการที่มีอีเมล %{email} ไม่ปรากฏในแคมเปญหรือใน CSV'
               not_enough_licenses: การนำเข้าต้องใช้ใบอนุญาต %{required_count} แต่มีเพียง %{available_count} เท่านั้นที่ใช้งานได้ โปรดลดจำนวนผู้ใช้ใหม่หรือเพิ่มใบอนุญาตเพิ่มเติมก่อนนำเข้า
+              not_enough_uat_licenses: การนำเข้าจำเป็นต้องใช้ใบอนุญาตทดสอบ UAT รุ่น %{required_count} แต่มีเพียงรุ่น %{available_count} เท่านั้นที่พร้อมใช้งาน โปรดลดจำนวนผู้ใช้ UAT ใหม่หรือเพิ่มขีดจำกัดการใช้งาน UAT ก่อนทำการนำเข้า
               user_update_failed: การอัปเดตผู้ใช้ล้มเหลวสําหรับ %{email} โดยมีข้อผิดพลาด '%{error}'
             locale:
               inclusion: ตําแหน่งที่ตั้งไม่ถูกต้อง
@@ -943,7 +946,9 @@ th:
         import_sms_invites: นําเข้าคําเชิญทาง SMS
         import_users: นําเข้าผู้ใช้
         migrate_assessment_translations: การโยกย้ายการแปลการประเมิน
+        migrate_communication_center: การย้ายศูนย์การสื่อสาร
         normalize_factor_scores: ทําให้คะแนนปัจจัยเป็นมาตรฐาน
+        project_bulk_download_reports: รายงานการดาวน์โหลดโครงการจำนวนมาก
         project_compact_completion_status_export: การส่งออกสถานะการทำงานที่เสร็จสมบูรณ์แบบกะทัดรัด
         project_completion_status_export: สถานะการเสร็จสิ้น ส่งออก
         regenerate_assessment_transcriptions: สร้างบันทึกการประเมินผลใหม่
@@ -986,6 +991,8 @@ th:
     errors: ข้อ ผิด พลาด
     invalid_job: การแจ้งเตือนนี้สอดคล้องกับเรกคอร์ดที่ถูกลบ
     mark_as_read: ทําเครื่องหมายอ่านทั้งหมด
+    migrate_communication_center:
+      client_not_found: ไม่พบไคลเอ็นต์ที่มี id=%{id}
     more: อีก
     results: ผลลัพธ์
     super_admin:
@@ -1319,7 +1326,6 @@ th:
     privacy_notice_link: <a href="%{privacy_url}">ประกาศความเป็นส่วนตัว</a>
     registration:
       description: กรอกรายละเอียดด้านล่างเพื่อลงทะเบียนและสร้างบัญชีใหม่
-      email_hint: เราให้ความสำคัญกับความเป็นส่วนตัวของคุณ และจะไม่เปิดเผยข้อมูลของคุณแก่บุคคลที่สาม
       first_name: ชื่อจริง
       first_name_placeholder: กรอกชื่อจริง
       have_account: มีบัญชีอยู่แล้ว?
@@ -2981,6 +2987,7 @@ th:
     end_date: วันที่สิ้นสุด
     not_enough_license: "'%{client_name}' มีใบอนุญาตไม่เพียงพอสําหรับ '%{report_name}'"
     not_enough_license_count: ใบอนุญาตไม่เพียงพอ โปรดติดต่อผู้ดูแลระบบ
+    not_enough_uat_license: "'%{client_name}' ไม่มีสิทธิ์ใช้งานทดสอบ UAT เพียงพอสำหรับ '%{report_name}' โปรดเพิ่มขีดจำกัดการใช้งาน UAT ในสิทธิ์ใช้งานดังกล่าว หรือติดต่อผู้ดูแลระบบ"
     number: เลข
     overuse_number: ค่าเผื่อการใช้งานเกิน
     project_specific: เฉพาะโครงการ
@@ -2995,6 +3002,11 @@ th:
       idp: ผู้พลัดถิ่น
       proctoring: การคุมสอบ
       threesixty: สามหกสิบ
+    uat_usage_limit_credits: หน่วยกิตการทดสอบ UAT
+    uat_usage_limit_credits_hint: การกำกับดูแลการสอบจะคิดค่าบริการเป็นเครดิต ดังนั้นนี่คือจำนวนเครดิตสูงสุดที่ผู้ใช้การทดสอบ UAT สามารถใช้ได้จากใบอนุญาตนี้ (สูงสุด 300)
+    uat_usage_limit_users: ผู้ใช้ทดสอบ UAT
+    uat_usage_limit_users_hint: จำนวนผู้ใช้งานทดสอบ UAT สูงสุดที่สามารถสร้างได้ภายใต้ใบอนุญาตนี้ (สูงสุด 30 คน) ผู้ใช้งานทดสอบจะไม่ใช้ใบอนุญาตที่ต้องเสียค่าใช้จ่ายใดๆ
+    uat_used: UAT ใช้ใบอนุญาต
     used_number: ใบอนุญาตที่ใช้แล้ว
     used_out_of: "%{used} จาก %{total}"
   lti:
@@ -3971,8 +3983,8 @@ th:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: อนุญาตให้ผู้ใช้ส่งคําตอบหลายรายการ
     png: ภาพ PNG

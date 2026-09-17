@@ -5,7 +5,7 @@ import { eventChannel } from 'redux-saga'
 import { createReducer } from '~/utils/redux'
 import { ENABLE, DISABLE } from '~/modules/survey/core/builder/assessment/actions'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
-import { RequestsPool } from '~/modules/survey/middleware/Socket'
+import { RequestsPool } from '~/middleware/socket'
 import Socket from './cable'
 
 export const SUBSCRIBE_SOCKET = 'survey/temp/socket/SUBSCRIBE_SOCKET'

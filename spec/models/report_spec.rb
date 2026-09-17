@@ -153,4 +153,23 @@ skip_owner_validation: true)
       expect(report).to be_valid
     end
   end
+
+  describe '#effective_reader' do
+    let(:current_user) { create(:superadmin) }
+    let(:published_report) { create(:report) }
+
+    before { Reports::PublishSnapshot.call!(published_report, current_user) }
+
+    it 'returns the published version for a published report' do
+      expect(published_report.effective_reader).to be_a(Reports::PublishedReader)
+    end
+
+    it 'returns the draft version when the draft is asked for explicitly' do
+      expect(published_report.effective_reader(draft: true)).to be_a(Reports::DraftReader)
+    end
+
+    it 'returns the draft version for a report that was never published' do
+      expect(create(:report).effective_reader).to be_a(Reports::DraftReader)
+    end
+  end
 end

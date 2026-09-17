@@ -90,7 +90,7 @@ module Campaigns
       def update_user(user, attrs)
         pwd_to_be_not_changed = pwd_to_be_not_changed?(user, attrs)
         strong_attrs = attrs.except(:created_at, :active, :schedule_start_date, :schedule_end_date, :manager_email,
-                                    :current_job_role, :target_job_role, :level)
+                                    :current_job_role, :target_job_role, :level, :is_uat)
         strong_attrs = strong_attrs.except(:password) if pwd_to_be_not_changed
         strong_attrs = strong_attrs.merge(mobile_verified: false) if mobile_number_changed?(user, attrs)
 

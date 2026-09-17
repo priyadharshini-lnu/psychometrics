@@ -575,6 +575,10 @@ ko:
       enabled: 활성화됨
       loading: 로드...
       save: 저장
+    communication_center:
+      errors:
+        terminal_state: 배송은 이미 최종 단계에 접어들었습니다.
+        update_translation: 이 지역에 대한 번역을 업데이트할 수 없습니다.
     communication_settings: 설정
     communications:
       create:

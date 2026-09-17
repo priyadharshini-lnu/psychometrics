@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import styles from '~/modules/survey/views/PropertyPanel/components/PropertyPanel.less'
 
 import { LibraryStore } from '~/libs/library'
-import Socket from '~/modules/survey/cable'
-import LibraryTransport from '~/modules/survey/cable/LibraryChannel'
+import BuilderLibraryTransport from '~/modules/survey/core/builder/libraryTransport'
 import ValidationTypes from '~/modules/survey/components/ValidationTypes'
 
 export class Properties extends Component {
@@ -13,18 +12,13 @@ export class Properties extends Component {
     restricted: PropTypes.bool,
   }
 
-  componentDidMount () {
-    LibraryTransport.init()
-    this.librarySocket = Socket.library()
-  }
-
   onSelectGraphic = (item) => {
     const { model } = this.props
     model.changeProps({ graphicUrl: item.file })
   }
 
   openLibrary = () => {
-    LibraryStore.openPopup(this.librarySocket, this.onSelectGraphic, 'image')
+    LibraryStore.openPopup(BuilderLibraryTransport, this.onSelectGraphic, 'image')
   }
 
   update = () => {

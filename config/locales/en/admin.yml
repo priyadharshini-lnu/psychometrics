@@ -218,6 +218,15 @@ en:
     assessor_assessments_reset_successfully: Reset evaluation for the subject with the email "%{subjectEmail}" was successful.
     assessor_assessments_subject_email: Subject Email
     assessor_assessments_subject_name: Subject Name
+    assessor_campaign_users_awaiting_moderation: Awaiting moderation
+    assessor_campaign_users_awaiting_moderation_subtitle: ready to consolidate
+    assessor_campaign_users_candidates_subtitle: assigned to you
+    assessor_campaign_users_completed: Completed
+    assessor_campaign_users_completed_subtitle: signed off
+    assessor_campaign_users_in_progress: In progress
+    assessor_campaign_users_in_progress_subtitle: being assessed
+    assessor_campaign_users_not_started: Not started
+    assessor_campaign_users_not_started_subtitle: evaluations
     assessor_campaigns_statuses_completed: Completed
     assessor_campaigns_statuses_in_progress: In progress
     assessor_campaigns_statuses_not_started: Not started
@@ -226,6 +235,20 @@ en:
     assessor_create_assessor: Add Assessor
     assessor_dashboard: Assessor Dashboard
     assessor_email: Assessor's Email
+    assessor_evaluation: Assessor Evaluation
+    assessor_evaluation_by_campaign: By Campaign
+    assessor_evaluation_by_participant: By Participant
+    assessor_evaluation_candidate: Candidate
+    assessor_evaluation_candidates: Candidates
+    assessor_evaluation_completed: Evaluation completed
+    assessor_evaluation_date_range: Date Start – Date End
+    assessor_evaluation_moderation_waiting: Moderation waiting
+    assessor_evaluation_tour_profile_description: Your account, role and language and toggle to enable the new experience live here. Open it to review your details or sign out.
+    assessor_evaluation_tour_profile_title: Your profile & settings
+    assessor_evaluation_tour_table_description: Open any row to see their assessments, then Evaluate their responses or Moderate the final scores.
+    assessor_evaluation_tour_table_title: Pick a candidate
+    assessor_evaluation_tour_tabs_description: Switch between By Participant (one person at a time) and By Campaign.
+    assessor_evaluation_tour_tabs_title: Two ways to work
     assessor_evaluations: Assessor Evaluations
     assessor_first_name: Assessor's First Name
     assessor_form: Assessor Form
@@ -233,18 +256,24 @@ en:
     assessor_last_name: Assessor's Last Name
     assessor_modals_import_body: Refer to the Export functionality to extract a template that can be used to Import here.
     assessor_modals_import_title: Import Assessors
+    assessor_new_experience: New Experience
     assessor_overview: Overview
     assessor_placeholder: Search Assessor...
     assessor_remove_confirmation: Are you sure you want to remove assessor with email %{email} from this campaign?
     assessor_remove_has_evaluations: This assessor has %{evaluation_count} assessor form(s) assigned. All evaluations they have filled will be lost.
     assessor_remove_in_assessment_centers: This assessor is part of %{workshop_count} assessment center(s). Proceeding will remove them from all assessment centers.
-    assessor_statuses_completed: Completed
-    assessor_statuses_not_completed: Not Completed
-    assessor_subjects_statuses_completed: Completed
-    assessor_subjects_statuses_in_progress: In progress
-    assessor_subjects_statuses_not_started: Not started
+    assessor_switch_to_classic: Switch to Classic
     assessor_toolbar_export: Export Assessors
     assessor_toolbar_import: Import Assessors
+    assessor_tour_button: Tour
+    assessor_try_new_experience: Try New Experience
+    assessor_user_assessment_name: Assessment name
+    assessor_user_candidate_id: Candidate ID
+    assessor_user_evaluate: Evaluate
+    assessor_user_evaluation: Evaluation
+    assessor_user_evaluation_progress: Evaluation Progress
+    assessor_user_moderate: Moderate scores
+    assessor_user_moderation: Moderation
     assessor_workshops: Assessment Center
     assessors: Assessors
     assistant_toolbar_failed: Failed to generate valid output after multiple attempts
@@ -320,6 +349,79 @@ en:
     bulk_assets_modal_title: Upload CSV and ZIP files
     bulk_export_assessments_file: Bulk assessments export file
     bulk_export_invalid_params: Invalid bulk export parameters
+    bulk_reports: Bulk reports
+    bulk_reports_all_of_year: All of %{year}
+    bulk_reports_all_tags: All tags
+    bulk_reports_bundled_into_single: bundled into a single
+    bulk_reports_campaign_count_one: "%{count} campaign"
+    bulk_reports_campaign_count_other: "%{count} campaigns"
+    bulk_reports_campaign_search_placeholder: Search campaigns or projects...
+    bulk_reports_campaigns_shown_count: "%{selected} selected - %{shown} shown"
+    bulk_reports_campaigns_without_reports_warning: 'Selected campaigns without configured reports: %{count}. They will be skipped.'
+    bulk_reports_candidate_abbreviation: cand.
+    bulk_reports_complete_every_step: Complete every step to enable
+    bulk_reports_date_range_required: Both a start and end date are required to continue.
+    bulk_reports_date_range_summary: Assessments completed %{start} to %{end} will be included.
+    bulk_reports_description: Build one export job across multiple campaigns. Pick the campaigns, choose which reports and languages to include, set a date range, then submit.
+    bulk_reports_deselect_all_shown: Deselect all shown
+    bulk_reports_download_notification_sent: Download notification sent
+    bulk_reports_emailed_when_ready: and emailed to you when ready.
+    bulk_reports_end_date_placeholder: Select end date and time
+    bulk_reports_end_date_required: Please select an end date.
+    bulk_reports_error_try_again: Error - try again
+    bulk_reports_files_estimated_across: files estimated across
+    bulk_reports_files_pending: Files will appear here once the job has completed.
+    bulk_reports_generate_export: Generate export
+    bulk_reports_invalid_date_range: End date must be on or after the start date.
+    bulk_reports_job_details_title: 'Job #%{id}'
+    bulk_reports_job_not_found: This job could not be found.
+    bulk_reports_job_queued: Job queued
+    bulk_reports_languages_progress_one: "%{done} of %{total} report set"
+    bulk_reports_languages_progress_other: "%{done} of %{total} reports set"
+    bulk_reports_languages_set_for_all_one: Set for all %{count} report
+    bulk_reports_languages_set_for_all_other: Set for all %{count} reports
+    bulk_reports_last_30_days: Last 30 days
+    bulk_reports_last_90_days: Last 90 days
+    bulk_reports_no_campaigns_found: No campaigns found for this project.
+    bulk_reports_no_campaigns_match_filters: No campaigns match your search or tag filters.
+    bulk_reports_no_campaigns_selected: No campaigns selected
+    bulk_reports_no_files_yet: Files are not available yet for this job.
+    bulk_reports_no_language_selected: no language selected
+    bulk_reports_no_languages_available: No languages available for this report.
+    bulk_reports_no_reports_configured: None of the selected campaigns have reports configured. Go back and check your campaign configuration.
+    bulk_reports_no_reports_selected: No reports selected
+    bulk_reports_no_reports_selected_for_languages: No reports selected. Go back and choose at least one report.
+    bulk_reports_no_tags_found: No tags found
+    bulk_reports_none_selected: None selected
+    bulk_reports_queued_by: Queued by
+    bulk_reports_queuing_jobs: Queuing jobs...
+    bulk_reports_ready_to_generate: Ready to generate
+    bulk_reports_report_count_one: "%{count} report"
+    bulk_reports_report_count_other: "%{count} reports"
+    bulk_reports_reports_and_languages: Reports & languages
+    bulk_reports_review_submit: Review & submit
+    bulk_reports_review_submit_description: Check the job below. You can jump back to any step to make changes.
+    bulk_reports_select_all_shown: Select all shown
+    bulk_reports_select_campaigns: Select campaigns
+    bulk_reports_select_campaigns_description: Search by name or project, and narrow the list with tag filters. Then tick the campaigns to include.
+    bulk_reports_select_date_range: Select date range
+    bulk_reports_select_date_range_description: Include only assessments completed within this range. Leave a preset or set exact dates.
+    bulk_reports_select_languages: Select languages
+    bulk_reports_select_languages_description: Each report supports a different set of languages. Pick at least one language per report. It is generated in every language you choose.
+    bulk_reports_select_reports: Select reports
+    bulk_reports_select_reports_description: Each selected report is generated for every candidate or campaign in the export, in every chosen language.
+    bulk_reports_selected_tags_count_one: "%{count} tag selected"
+    bulk_reports_selected_tags_count_other: "%{count} tags selected"
+    bulk_reports_start_date_placeholder: Select start date and time
+    bulk_reports_start_date_required: Please select a start date.
+    bulk_reports_step_coming_soon: This step is coming soon.
+    bulk_reports_submit_error: Something went wrong. Please try again.
+    bulk_reports_submit_success: Export job queued. You will receive a notification when the download is ready.
+    bulk_reports_summary_description: Updates as you build the job
+    bulk_reports_summary_title: Download summary
+    bulk_reports_title: Bulk Reports
+    bulk_reports_view_downloads: View bulk report downloads
+    bulk_reports_year_to_date: Year to date
     bulk_upload_ai_artifacts: Bulk Upload AI Artifacts
     campaign: Campaign
     campaign_admin: Campaign Admin
@@ -384,13 +486,20 @@ en:
     campaign_templates_form_name_placeholder: Enter name
     campaign_templates_form_owner: Owner
     campaign_templates_form_owner_placeholder: Select an owner
-    campaign_templates_form_report: report
+    campaign_templates_form_report: Report
     campaign_templates_form_report_placeholder: Select a report
     campaign_templates_form_title: Campaign Template
     campaign_templates_remove_confirm_content: Are you sure you want to remove the campaign template '%{name}'?
     campaign_templates_remove_confirm_success: Campaing template '%{name}'' was successfully removed.
     campaign_templates_remove_confirm_title: Remove Campaign Template
     campaign_user_job_roles_cannot_be_same: Target job role must be different from current job role
+    campaign_users_import_uat_hint: Set the UAT column to Yes for test users that should be excluded from licensing, analytics, and webhooks.
+    campaign_users_uat_description: Mark this participant as a UAT test user.
+    campaign_users_uat_label: UAT Participant
+    campaign_users_uat_license_non_billable: Non-billable
+    campaign_users_uat_locked_hint: This participant already exists. UAT status is set when a participant is first created and cannot be changed.
+    campaign_users_uat_readonly_hint: UAT status is set at creation and cannot be changed.
+    campaign_users_uat_tooltip: UAT users are real participants for testing. They can take assessments normally, but are excluded from billable license usage, analytics, and outbound webhooks.
     campaigns: Campaigns
     campaigns_convert_to_template: Convert to Template
     campaigns_extend_time_success_message: Campaign timer extended to %{minutes} minutes
@@ -477,6 +586,7 @@ en:
     clients_search_placeholder: Search Client
     closed: Closed
     code_required: Code is required
+    collapse_all: Collapse all
     collapse_filters: Collapse Filters
     column_code: Code
     column_invitation_status: Invitation Status
@@ -495,10 +605,130 @@ en:
     common_type: Type
     common_unselect_all: Unselect all
     communication_center: Communication Center
+    communication_center_manage_translations_action: Manage translations
+    communication_center_migration_enqueued: Migration job enqueued. Check logs for progress.
+    communication_center_migration_error: Migration request failed. Please try again or check the logs.
+    communication_center_migration_modal_intro: 'The following changes will be applied when you run the migration for this client:'
+    communication_center_migration_modal_title: Communication Center Migration Preview
+    communication_center_migration_preview_button: Preview Migration
+    communication_center_migration_run_button: Run Migration
+    communication_center_migration_skipped: Already migrated (will be skipped)
+    communication_center_migration_would_assessments: Assessments to migrate
+    communication_center_migration_would_backfill: Emails to backfill
+    communication_center_migration_would_cc_users: CC users to migrate
+    communication_center_migration_would_migrate: Communications to migrate
+    communication_center_migration_would_users: Selected users to migrate
+    communication_center_translation_updated_success: Translation updated successfully
+    communication_center_translations_modal_title: Manage translations
+    communication_deliveries: Deliveries
+    communication_delivery: Communication Delivery
+    communication_delivery_assessment_group_label: Assessment group
+    communication_delivery_at_label: Delivery date & time
+    communication_delivery_at_past_error: Delivery date must be in the future
+    communication_delivery_cancel_action: Cancel
+    communication_delivery_cancel_error: Failed to cancel the delivery
+    communication_delivery_cc_users_label: CC recipients
+    communication_delivery_completion_status_hint: If a completion code is specified, it will only be sent if the user's assessment has this completion status code.
+    communication_delivery_completion_status_label: Assessment completion status code
+    communication_delivery_delay_hours_label: Delay (hours)
+    communication_delivery_details_title: Delivery details
+    communication_delivery_emails_sent_label: Sent
+    communication_delivery_emails_total_label: Total emails
+    communication_delivery_end_date_label: End date
+    communication_delivery_frequency_daily: Daily
+    communication_delivery_frequency_label: Frequency
+    communication_delivery_frequency_specific_weekdays: Specific weekdays
+    communication_delivery_frequency_weekly: Weekly
+    communication_delivery_interval_number_label: Interval
+    communication_delivery_interval_period_days: Days
+    communication_delivery_interval_period_hours: Hours
+    communication_delivery_interval_period_label: Interval period
+    communication_delivery_interval_period_months: Months
+    communication_delivery_interval_period_weeks: Weeks
+    communication_delivery_new_button: New delivery
+    communication_delivery_recipients_all: All participants
+    communication_delivery_recipients_label: Recipients
+    communication_delivery_recipients_new_assignment: New assignment
+    communication_delivery_recipients_new_users: New users
+    communication_delivery_recipients_selected: Selected participants
+    communication_delivery_rule_in_progress: In progress
+    communication_delivery_rule_label: Delivery rule
+    communication_delivery_rule_not_completed: Not completed
+    communication_delivery_rule_not_started: Not started
+    communication_delivery_rule_send_now: Send now
+    communication_delivery_rule_specific_datetime: Specific date & time
+    communication_delivery_search_users_placeholder: Search by name or email
+    communication_delivery_selected_assessments_label: Assessments
+    communication_delivery_selected_users_label: Select users
+    communication_delivery_start_date_label: Start date
+    communication_delivery_template_label: Template
+    communication_delivery_time_of_day_label: Time of day
+    communication_delivery_timezone_label: Timezone
+    communication_delivery_trigger_type_label: Trigger type
+    communication_delivery_trigger_type_manual: Manual
+    communication_delivery_trigger_type_scheduled: Scheduled
+    communication_delivery_weekday_fri: Friday
+    communication_delivery_weekday_mon: Monday
+    communication_delivery_weekday_sat: Saturday
+    communication_delivery_weekday_sun: Sunday
+    communication_delivery_weekday_thu: Thursday
+    communication_delivery_weekday_tue: Tuesday
+    communication_delivery_weekday_wed: Wednesday
+    communication_delivery_weekdays_label: Weekdays
+    communication_email_created_at_label: Created at
+    communication_email_not_sent: Not sent
+    communication_email_preview_action: Preview
+    communication_email_preview_date_label: Date
+    communication_email_preview_from_label: From
+    communication_email_preview_title: Email preview
+    communication_email_preview_to_label: To
+    communication_email_preview_warning: This is a re-rendered preview of the template and may not reflect the exact content of the email that was actually sent.
+    communication_email_recipient_email_label: Recipient email
+    communication_email_recipient_name_label: Recipient name
+    communication_email_retrigger_action: Retrigger
+    communication_email_retrigger_error: Failed to retrigger email
+    communication_email_sent_at_label: Sent at
+    communication_email_status_label: Status
+    communication_email_subject_label: Subject
+    communication_emails: Emails
+    communication_template: Communication Template
+    communication_template_body_label: Message
+    communication_template_create_new_action: Create new
+    communication_template_kind_label: Communication type
+    communication_template_level_campaign: Campaign
+    communication_template_level_client: Client
+    communication_template_level_platform: Platform
+    communication_template_level_project: Project
+    communication_template_name_label: Template name
+    communication_template_new_button: New template
+    communication_template_override_inherited_action: Override inherited
+    communication_template_override_picker_search_placeholder: Search templates to override
+    communication_template_override_picker_title: Override inherited template
+    communication_template_recipients_all: All
+    communication_template_recipients_label: Default recipients
+    communication_template_recipients_new_assignment: New assignment
+    communication_template_recipients_new_users: New users
+    communication_template_recipients_selected: Selected
+    communication_template_source_created: Created
+    communication_template_source_label: Source
+    communication_template_source_override_of: Override of %{level}
+    communication_template_status_active: Active
+    communication_template_status_archived: Archived
+    communication_template_status_draft: Draft
+    communication_template_status_label: Status
+    communication_template_subject_label: Subject
+    communication_templates: Templates
     communications: Communications
     communications_form_insert_piped_text: Insert Piped Text
+    competency_indicator: Competency / Indicator
     completed: Completed
     completed_tooltip: All evaluators have submitted the evaluation
+    completion_recipients_all: All Subjects
+    completion_recipients_list: 'Recipients List:'
+    completion_recipients_selected: Selected Subjects
+    completion_recipients_selected_admins: Selected Admins
+    completion_recipients_selected_assessors: Selected Assessors
+    completion_recipients_selected_assessors_hint: Only the assessor assigned to the completing subject's linked assessor form will be emailed, even if other assessors are selected above.
     components_input_duration_placeholder: Enter as '1d 2h 3m'
     concise: Concise
     condition_sets: Condition Sets
@@ -705,6 +935,8 @@ en:
     disable_proctoring: Disable Proctoring
     disable_report_download: Disable report download
     disable_transcript_download: Disable Transcript Download
+    disable_webhooks: Disable Webhooks
+    disable_webhooks_hint: When this is toggled on, no webhook or downstream integration events are sent to the client for this campaign, regardless of participant type. Only Super Admins can change this.
     disallow_lead_assessor_moderation: Disallow Lead Assessor Moderation
     disallow_lead_assessor_moderation_info: Score would be auto calculated based on all assessor form submission and lead assessor can't change it from moderation screen
     discard_all_questions: Reset All Questions
@@ -803,6 +1035,7 @@ en:
     evaluator_welcome_name: Evaluator welcome
     evaluators_title: Evaluators
     evidence_from_transcript: Evidence from Transcript
+    expand_all: Expand all
     expand_filters: Expand Filters
     export_admin_roles_permissions: Admin Roles and Permissions export
     export_admins_with_permissions: Admin Roles and Permissions export
@@ -863,6 +1096,7 @@ en:
     feature_not_available: This feature is not available
     feature_sms_notification_description: Enable SMS notifications for campaign invitations and reminders
     feature_superadmin_tenant_scoping_description: When disabled, superadmin queries will not be scoped to this client's data
+    feature_use_new_communication_center_description: Use only the new Communication Center for this client and stop sending legacy communications
     fields_level: Level
     fields_level_description: Level Description
     fields_level_name: Level Name
@@ -1129,6 +1363,7 @@ en:
     import_title: Import Subjects from CSV
     import_upload: Upload
     import_users: Import Users
+    in_progress: In Progress
     inactive: Inactive
     include_locales_label: Include Translations
     include_locales_name: include_locales
@@ -1407,6 +1642,7 @@ en:
     model_params_thinking_effort_none: None
     model_params_thinking_effort_tooltip: Controls how much reasoning the model applies before responding. Higher effort produces more thorough answers but takes longer. Use 'None' to disable reasoning entirely.
     model_params_title: Advanced Model Configuration
+    moderate_scoring_lead_assessor_form: Lead Assessor Form
     must_be_a_valid_url: Invalid URL. Specify the complete url with http or https protocol in it
     name: Name
     name_max_length: Name cannot exceed %{length} characters
@@ -1419,6 +1655,24 @@ en:
     navigation_registration_codes: Registration codes
     navigation_skills_taxonomy: Skills Taxonomy
     navigation_users: Users
+    new_experience_badge: New Experience
+    new_experience_bullet_brief_rest: competency guidance stays on screen while you rate.
+    new_experience_bullet_brief_strong: The brief beside your scoring
+    new_experience_bullet_candidate_rest: every assessor form for that candidate, together.
+    new_experience_bullet_candidate_strong: One candidate, one view
+    new_experience_bullet_moderation_rest: every assessor's score side by side, one final call.
+    new_experience_bullet_moderation_strong: Moderation in minutes
+    new_experience_footer_note: The new experience becomes the default for everyone soon. You can always switch to New Experience from your Profile details.
+    new_experience_headline: One flow, from first review to final sign-off.
+    new_experience_notice_body: We've redesigned the assessor experience. You can try it now or enable it later from your Profile settings.
+    new_experience_notice_maybe_later: Maybe Later
+    new_experience_notice_title: New Assessor Experience Available
+    new_experience_preview_alt: Preview of the new assessor experience
+    new_experience_sub_copy: Candidate, evaluation, moderation and the assessment centre now work as one connected view not five screens you hold together yourself.
+    new_experience_word_assessment_centre: Assessment Centre Run the session and track every subject.
+    new_experience_word_candidate: Candidate One candidate, all their assessments together.
+    new_experience_word_evaluate: Evaluate The brief and your scoring, side by side.
+    new_experience_word_moderate: Moderate Every assessors score, one final call.
     new_folder: New folder
     new_score: New Score
     no_assessments_found: No Assessments Found
@@ -1466,6 +1720,7 @@ en:
     norms_title: Norm
     not_completed: Not Completed
     not_completed_tooltip: "%{completed} evaluators are assigned but only %{submitted} have completed the evaluations"
+    not_started: Not started
     notes: Notes
     nothing_assigned: No Evaluators Assigned
     nothing_assigned_tooltip: No evaluations have been assigned to this user
@@ -1578,6 +1833,7 @@ en:
         manage_messages: Manage Messages
         manage_options: Manage Options
         manage_report_approvals: Manage Report Approvals
+        manage_uat: Manage UAT Users
         manage_users: Manage Users
         participant_options: Participant Options
         report_options: Report Options
@@ -1906,6 +2162,7 @@ en:
         title: Registration Settings
       reports:
         manage: Manage
+        project_bulk_reports: Project Bulk Reports
         title: Reports
         view: View
       responseMeta:
@@ -2063,6 +2320,7 @@ en:
     project_admins: Project Admins
     project_assessor: Project Assessor
     project_features: Project Features
+    project_id: Project ID
     project_ids: Project IDs
     project_ids_required: project_ids is required for this report type
     project_licenses: Project Licenses
@@ -2122,6 +2380,7 @@ en:
     projects_form_project_number: Project Number
     projects_form_subdomain: Subdomain
     projects_form_title: Project
+    projects_general_settings_allow_data_access_to_bi: Allow access to Powerbi for this project
     projects_general_settings_live_chat: Enable Live Chat
     projects_general_settings_locales_label: Locales
     projects_general_settings_project_number_label: Project Number
@@ -2352,6 +2611,21 @@ en:
     report_approval_submit_or_approve_all: Submit or Approve All
     report_approvals: Report Approvals
     report_availability: Report Availability
+    report_builder_publish_confirm_content: This will override the existing published report with the draft changes making it available to the users. Are you sure you want to publish the changes?
+    report_builder_publish_confirm_title: Publish this report?
+    report_builder_publish_failed: Report was saved, but publishing failed. Please try publishing again.
+    report_builder_publish_success: Report published successfully
+    report_builder_published_at: Last published on {{date}}
+    report_builder_published_by: Published by {{name}}
+    report_builder_save_and_publish: Save & Publish
+    report_builder_save_as_draft: Save as Draft
+    report_builder_save_failed: Failed to save report. Please try again.
+    report_builder_save_success: Report successfully saved
+    report_builder_unpublished_changes: Unpublished changes
+    report_builder_view_draft: View Draft
+    report_builder_view_published: View Published
+    report_builder_viewing_draft_message: You are viewing the draft version of the report. This is not what participants see until published.
+    report_builder_viewing_published_message: You are viewing the last published version of the report. Changes in the builder are not reflected here until published.
     report_condition_not_met: Needs %{required} %{relationship} evaluation(s), but only has %{actual}
     report_conditions_not_met_detailed: Report for %{user} does not meet availability conditions. %{conditions}
     report_denied: Report for %{user} has been denied
@@ -2366,6 +2640,11 @@ en:
     report_on_hold: Report for %{user} is currently on hold
     report_owner: Owner
     report_pdf_status: Report PDF Status
+    report_pdf_unavailable: The PDF for this report is not available yet.
+    report_preview_draft_notice: You're viewing a draft version of the report which is not available to the participant unless draft changes are published from builder.
+    report_preview_draft_tag_tooltip: This report has draft changes available. Click to view the draft version.
+    report_preview_view_draft: Preview Draft
+    report_preview_view_published: Preview Published
     report_review_abort_qc: Abort QC
     report_review_approve: Approve
     report_review_approve_changes: Approve Changes
@@ -2736,6 +3015,7 @@ en:
     scoring_approval_score_approvals: AI Scoring Approvals
     scoring_assessment: Assessment
     scoring_assessment_scoring_type: Assessment Scoring Type
+    scoring_assessor_number: Assessor %{number}
     scoring_average: Average
     scoring_campaign_scoring_variables: Campaign Scoring Variables
     scoring_desc: You have exceeded the maximum limit of %{n} campaign factors. Additional factors cannot be added. Please review and manage your existing factors before proceeding.
@@ -3126,15 +3406,19 @@ en:
     status_details: Status Details
     statuses_accepted: Accepted
     statuses_cancelled: Cancelled
+    statuses_failed: Failed
     statuses_late_cancelled: Late Cancelled
     statuses_late_rescheduled: Late Rescheduled
     statuses_pending: Pending
+    statuses_queued: Queued
     statuses_requested_cancellation: Requested Cancellation
     statuses_requested_cancellation_rejected: Cancellation Rejected
     statuses_requested_rescheduling: Requested Rescheduling
     statuses_requested_rescheduling_rejected: Rescheduling Rejected
     statuses_rescheduled: Rescheduled
     statuses_scheduled: Scheduled
+    statuses_sent: Sent
+    statuses_skipped: Skipped
     steps_basic_information: Basic Information
     steps_facilitators: Facilitators
     steps_invite_options: Invite Options
@@ -3340,6 +3624,7 @@ en:
     url_label: URL
     url_name: url
     url_whitelisting: URL Whitelisting
+    use_new_communication_center: Use New Communication Center
     used_tokens_input_tokens: Input Tokens
     used_tokens_output_tokens: Output Tokens
     used_tokens_thinking_tokens: Thinking Tokens

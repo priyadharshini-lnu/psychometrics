@@ -575,6 +575,10 @@ bg:
       enabled: Разрешено
       loading: Зареждане...
       save: Спасявам
+    communication_center:
+      errors:
+        terminal_state: Доставката вече е в терминално състояние.
+        update_translation: Не може да се актуализира преводът за този език.
     communication_settings: Настройки
     communications:
       create:

@@ -37,8 +37,10 @@ hr:
     campaign: Kampanja
     campaign_id: ID kampanje
     cancel: Otkazati
+    candidates: Kandidati
     category: Kategorija
     change_password: Promijeni lozinku
+    clear: Jasan
     clear_filters: Obriši filtere
     client: Klijent
     close: Zatvori
@@ -86,11 +88,15 @@ hr:
     end_date: Datum završetka
     ending_proctoring_session_msg: Završavamo nadzor sesije. Molimo pričekajte dok spremamo vaše odgovore i preusmjeravamo vas na početnu stranicu.
     error: Greška
+    errors: Pogreške
     export: Izvoz
     failed: Neuspjelo
     'false': false
     file: Datoteka
     file_upload_button: Odabir datoteke
+    filename: Naziv datoteke
+    files: Datoteke
+    filters: Filtri
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Generiraj
@@ -105,6 +111,7 @@ hr:
     impersonation_banner_aria_label: Aktivna sesija lažnog predstavljanja
     impersonation_end_session: 'Izlaz '
     import: Uvoz
+    in_progress: U tijeku
     inactive: Neaktivan
     internet_disconnected_message: Pokušavam ponovno povezivanje. Molimo, provjerite svoju internetsku vezu.
     is_impersonating: lažno se predstavlja
@@ -112,6 +119,7 @@ hr:
     issuer_claim_label: Izdavatelj (iss)
     jwt_claims_details: Detalji potraživanja JWT-a
     key_id_claim_label: Ključni ID (kid)
+    languages: Jezici
     last_name: Prezime
     last_updated: Posljednje ažuriranje
     learning_on_the_job_label: Učenje na poslu
@@ -151,6 +159,7 @@ hr:
     no_results_found: Nisu pronađeni rezultati
     none: Nijedan
     not_requested: Još nije zatraženo
+    not_set: Nije postavljeno
     ok: U redu
     options: Opcije
     overview: Pregled
@@ -215,12 +224,14 @@ hr:
     reset_password: Poništiti lozinku
     response_text: Tekst odgovora
     return_url_not_whitelisted: URL za povrat nije na bijeloj listi za ovu aplikaciju.
+    review: Pregled
     rte_paste_content_exceeds_char_limit: Tekst prelazi ograničenje znakova {{maxCharacterLimit}} i ne može se zalijepiti.
     rte_paste_content_exceeds_word_limit: Tekst prelazi ograničenje broja riječi {{maxWordLimit}} i ne može se zalijepiti.
     run: Trčati
     save: Spremiti
     saving_video: Spremanje videa... Molimo vas da ne zatvarate niti osvježavate preglednik
     schedule_time: Vrijeme rasporeda
+    scheduled: Zakazano
     scoring_details: Detalji bodovanja
     search: Pretražiti
     select_camera: Odaberite kameru

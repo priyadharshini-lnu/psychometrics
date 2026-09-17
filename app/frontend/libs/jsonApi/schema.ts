@@ -34,6 +34,11 @@ import {
   Schema as DataReportsSchema, JobSchema as DataReportJobsSchema,
 } from '~/modules/admin/modules/DataReports/core'
 import { Schema as CampaignTemplateSchema } from '~/modules/admin/core/types/campaignTemplates'
+import {
+  Schema as communicationTemplateSchema,
+  DeliverySchema as communicationDeliverySchema,
+  EmailSchema as communicationEmailSchema,
+} from '~/modules/admin/modules/CommunicationTemplates'
 import { Schema as normsSchema } from '~/modules/admin/modules/client/core/norms'
 import { Schema as developmentActionSchema } from '~/modules/admin/modules/client/core/developmentAction'
 
@@ -85,6 +90,9 @@ export const Schema = {
   data_reports: DataReportsSchema,
   data_report_jobs: DataReportJobsSchema,
   campaign_templates: CampaignTemplateSchema,
+  communication_templates: communicationTemplateSchema,
+  communication_deliveries: communicationDeliverySchema,
+  communication_emails: communicationEmailSchema,
   norms: normsSchema,
   development_actions: developmentActionSchema,
   skills: skillsSchema,

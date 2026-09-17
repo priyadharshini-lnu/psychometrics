@@ -36,6 +36,8 @@ th:
         ai_assisted_idp_feature_error: ไม่สามารถเป็นความจริงได้หากปิดใช้งานคุณสมบัติผู้ช่วย AI
       client_sso_settings:
         sso_enforced_requires_enabled: ไม่สามารถเปิดใช้งานได้หากไม่ได้เปิดใช้งาน SSO
+      communication_center:
+        invalid_locale: ไม่ใช่ภาษาที่รองรับ
       create_superadmin:
         uniq_email: อีเมลควรเป็น uniq
       development_actions:

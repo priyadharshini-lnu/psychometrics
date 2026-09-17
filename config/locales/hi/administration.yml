@@ -589,6 +589,10 @@ hi:
       enabled: सक्षम
       loading: लोड हो रहा है...
       save: बचाएँ
+    communication_center:
+      errors:
+        terminal_state: डिलीवरी पहले से ही अंतिम चरण में है।
+        update_translation: इस भाषा के लिए अनुवाद अपडेट करने में असमर्थ।
     communication_settings: सेटिंग्स
     communications:
       create:

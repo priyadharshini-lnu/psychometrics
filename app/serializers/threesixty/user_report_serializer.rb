@@ -102,7 +102,7 @@ module Threesixty
           lang: context[:lang],
           campaign_user: object.campaign_user
         }
-      ).serialize(context[:report] || object.report)
+      ).serialize(context[:report] || object.report.effective_reader)
     end
 
     def current_user

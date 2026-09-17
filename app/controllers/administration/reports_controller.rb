@@ -37,10 +37,24 @@ module Administration
 
     def preview
       add_breadcrumb resource.decorate.display_name, action: :show, id: resource
+      @viewing_published = params[:published_view] == 'true'
+      @toggle_preview_view_url = toggle_preview_view_url
       respond_to(&:html)
     end
 
     private
+
+    def toggle_preview_view_url
+      return nil unless resource.published?
+
+      query = if @viewing_published
+                request.query_parameters.except('published_view')
+              else
+                request.query_parameters.merge('published_view' => 'true')
+              end
+
+      [request.path, query.to_query.presence].compact.join('?')
+    end
 
     def pundit_authorize
       authorize(

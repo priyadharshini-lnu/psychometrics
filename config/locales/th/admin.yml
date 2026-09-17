@@ -218,6 +218,15 @@ th:
     assessor_assessments_reset_successfully: รีเซ็ตการประเมินสําหรับหัวเรื่องด้วยอีเมล "%{subjectEmail}" สําเร็จ
     assessor_assessments_subject_email: อีเมลเรื่อง
     assessor_assessments_subject_name: ชื่อเรื่อง
+    assessor_campaign_users_awaiting_moderation: กำลังรอการตรวจสอบ
+    assessor_campaign_users_awaiting_moderation_subtitle: พร้อมที่จะรวมเข้าด้วยกัน
+    assessor_campaign_users_candidates_subtitle: มอบหมายให้คุณ
+    assessor_campaign_users_completed: สมบูรณ์
+    assessor_campaign_users_completed_subtitle: ลงนามอนุมัติ
+    assessor_campaign_users_in_progress: กำลังดำเนินการ
+    assessor_campaign_users_in_progress_subtitle: กำลังได้รับการประเมิน
+    assessor_campaign_users_not_started: ยังไม่ได้เริ่ม
+    assessor_campaign_users_not_started_subtitle: การประเมินผล
     assessor_campaigns_statuses_completed: เสร็จสมบูรณ์
     assessor_campaigns_statuses_in_progress: อยู่ระหว่างดําเนินการ
     assessor_campaigns_statuses_not_started: ยังไม่ได้เริ่มต้น
@@ -226,6 +235,20 @@ th:
     assessor_create_assessor: เพิ่มผู้ประเมิน
     assessor_dashboard: แดชบอร์ดผู้ประเมิน
     assessor_email: อีเมลของผู้ประเมิน
+    assessor_evaluation: การประเมินของผู้ประเมิน
+    assessor_evaluation_by_campaign: โดยแคมเปญ
+    assessor_evaluation_by_participant: โดยผู้เข้าร่วม
+    assessor_evaluation_candidate: ผู้สมัคร
+    assessor_evaluation_candidates: ผู้สมัคร
+    assessor_evaluation_completed: การประเมินเสร็จสมบูรณ์แล้ว
+    assessor_evaluation_date_range: วันที่เริ่มต้น – วันที่สิ้นสุด
+    assessor_evaluation_moderation_waiting: กำลังรอการตรวจสอบ
+    assessor_evaluation_tour_profile_description: บัญชี บทบาท และภาษาของคุณ พร้อมตัวเลือกในการเปิดใช้งานประสบการณ์ใหม่ อยู่ที่นี่ เปิดเพื่อตรวจสอบรายละเอียดของคุณ หรือออกจากระบบ
+    assessor_evaluation_tour_profile_title: โปรไฟล์และการตั้งค่าของคุณ
+    assessor_evaluation_tour_table_description: เปิดดูแถวใดก็ได้เพื่อดูการประเมิน จากนั้นประเมินคำตอบของพวกเขา หรือปรับคะแนนสุดท้าย
+    assessor_evaluation_tour_table_title: เลือกผู้สมัคร
+    assessor_evaluation_tour_tabs_description: สลับระหว่างการเลือกตามผู้เข้าร่วม (ทีละคน) และการเลือกตามแคมเปญ
+    assessor_evaluation_tour_tabs_title: สองวิธีในการทำงาน
     assessor_evaluations: การประเมินผลผู้ประเมิน
     assessor_first_name: ชื่อผู้ประเมิน
     assessor_form: แบบฟอร์มผู้ประเมิน
@@ -233,18 +256,24 @@ th:
     assessor_last_name: นามสกุลของผู้ประเมิน
     assessor_modals_import_body: อ้างถึงฟังก์ชันการส่งออกเพื่อแยกเทมเพลตที่สามารถใช้เพื่อนําเข้าได้ที่นี่
     assessor_modals_import_title: ผู้ประเมินนําเข้า
+    assessor_new_experience: ประสบการณ์ใหม่
     assessor_overview: ภาพรวม
     assessor_placeholder: ค้นหาผู้ประเมิน...
     assessor_remove_confirmation: คุณแน่ใจหรือไม่ว่าต้องการลบผู้ประเมินที่มีอีเมล %{email} ออกจากแคมเปญนี้?
     assessor_remove_has_evaluations: ผู้ประเมินรายนี้ได้รับมอบหมายแบบฟอร์มประเมินจำนวน %{evaluation_count} แบบ การประเมินทั้งหมดที่ผู้ประเมินรายนี้ได้กรอกไว้จะสูญหายไป
     assessor_remove_in_assessment_centers: ผู้ประเมินรายนี้เป็นส่วนหนึ่งของศูนย์ประเมิน %{workshop_count} แห่ง การดำเนินการต่อไปจะลบผู้ประเมินรายนี้ออกจากศูนย์ประเมินทั้งหมด
-    assessor_statuses_completed: เสร็จสมบูรณ์
-    assessor_statuses_not_completed: ยังไม่เสร็จสมบูรณ์
-    assessor_subjects_statuses_completed: เสร็จสมบูรณ์
-    assessor_subjects_statuses_in_progress: อยู่ระหว่างดําเนินการ
-    assessor_subjects_statuses_not_started: ยังไม่ได้เริ่มต้น
+    assessor_switch_to_classic: เปลี่ยนไปใช้แบบคลาสสิก
     assessor_toolbar_export: ผู้ประเมินการส่งออก
     assessor_toolbar_import: ผู้ประเมินนําเข้า
+    assessor_tour_button: การท่องเที่ยว
+    assessor_try_new_experience: ลองสัมผัสประสบการณ์ใหม่
+    assessor_user_assessment_name: ชื่อการประเมิน
+    assessor_user_candidate_id: รหัสผู้สมัคร
+    assessor_user_evaluate: ประเมิน
+    assessor_user_evaluation: การประเมิน
+    assessor_user_evaluation_progress: ความคืบหน้าการประเมิน
+    assessor_user_moderate: คะแนนปานกลาง
+    assessor_user_moderation: ความพอดี
     assessor_workshops: ศูนย์ประเมินผล
     assessors: ผู้ประเมิน
     assistant_toolbar_failed: ไม่สามารถสร้างผลลัพธ์ที่ถูกต้องได้หลังจากพยายามหลายครั้ง
@@ -312,6 +341,79 @@ th:
     bulk_assets_modal_title: อัปโหลดไฟล์ CSV และ ZIP
     bulk_export_assessments_file: ไฟล์ส่งออกการประเมินจำนวนมาก
     bulk_export_invalid_params: พารามิเตอร์การส่งออกจำนวนมากไม่ถูกต้อง
+    bulk_reports: รายงานจำนวนมาก
+    bulk_reports_all_of_year: ทั้งหมดของ %{year}
+    bulk_reports_all_tags: แท็กทั้งหมด
+    bulk_reports_bundled_into_single: รวมเข้าเป็นหนึ่งเดียว
+    bulk_reports_campaign_count_one: แคมเปญ %{count}
+    bulk_reports_campaign_count_other: แคมเปญ %{count}
+    bulk_reports_campaign_search_placeholder: แคมเปญการค้นหาหรือโครงการ...
+    bulk_reports_campaigns_shown_count: "%{selected} ถูกเลือก - %{shown} แสดงอยู่"
+    bulk_reports_campaigns_without_reports_warning: 'แคมเปญที่เลือกโดยไม่ได้กำหนดค่ารายงาน: %{count} แคมเปญเหล่านี้จะถูกข้ามไป'
+    bulk_reports_candidate_abbreviation: ผู้สมัคร
+    bulk_reports_complete_every_step: ทำตามขั้นตอนทั้งหมดเพื่อเปิดใช้งาน
+    bulk_reports_date_range_required: จำเป็นต้องระบุทั้งวันเริ่มต้นและวันสิ้นสุดเพื่อดำเนินการต่อ
+    bulk_reports_date_range_summary: ผลการประเมินที่เสร็จสมบูรณ์ในช่วง %{start} ถึง %{end} จะถูกนำมารวมไว้ด้วย
+    bulk_reports_description: สร้างงานส่งออกเดียวสำหรับหลายแคมเปญ เลือกแคมเปญ เลือกรายงานและภาษาที่จะรวมไว้ กำหนดช่วงวันที่ จากนั้นส่งงาน
+    bulk_reports_deselect_all_shown: ยกเลิกการเลือกทั้งหมดที่แสดง
+    bulk_reports_download_notification_sent: ส่งการแจ้งเตือนการดาวน์โหลดแล้ว
+    bulk_reports_emailed_when_ready: และจะส่งอีเมลถึงคุณเมื่อพร้อมแล้ว
+    bulk_reports_end_date_placeholder: เลือกวันและเวลาสิ้นสุด
+    bulk_reports_end_date_required: โปรดเลือกวันที่สิ้นสุด
+    bulk_reports_error_try_again: เกิดข้อผิดพลาด - โปรดลองอีกครั้ง
+    bulk_reports_files_estimated_across: ไฟล์ที่ประมาณการไว้ทั่ว
+    bulk_reports_files_pending: ไฟล์จะปรากฏที่นี่เมื่อการดำเนินการเสร็จสมบูรณ์
+    bulk_reports_generate_export: สร้างการส่งออก
+    bulk_reports_invalid_date_range: วันสิ้นสุดต้องตรงกับวันเริ่มต้นหรือหลังจากนั้น
+    bulk_reports_job_details_title: 'งานหมายเลข #%{id}'
+    bulk_reports_job_not_found: ไม่พบงานนี้
+    bulk_reports_job_queued: งานอยู่ในคิว
+    bulk_reports_languages_progress_one: ชุดรายงาน %{done} จาก %{total}
+    bulk_reports_languages_progress_other: รายงาน %{done} จาก %{total} ถูกตั้งค่าไว้
+    bulk_reports_languages_set_for_all_one: ตั้งค่าสำหรับรายงาน %{count} ทั้งหมด
+    bulk_reports_languages_set_for_all_other: ตั้งค่าสำหรับรายงาน %{count} ทั้งหมด
+    bulk_reports_last_30_days: 30 วันที่ผ่านมา
+    bulk_reports_last_90_days: 90 วันที่ผ่านมา
+    bulk_reports_no_campaigns_found: ไม่พบแคมเปญใดๆ สำหรับโครงการนี้
+    bulk_reports_no_campaigns_match_filters: ไม่มีแคมเปญใดตรงกับการค้นหาหรือตัวกรองแท็กของคุณ
+    bulk_reports_no_campaigns_selected: ไม่มีการเลือกแคมเปญใดๆ
+    bulk_reports_no_files_yet: ยังไม่มีไฟล์สำหรับงานนี้ในขณะนี้
+    bulk_reports_no_language_selected: ไม่ได้เลือกภาษา
+    bulk_reports_no_languages_available: ไม่มีภาษาอื่นให้เลือกสำหรับรายงานฉบับนี้
+    bulk_reports_no_reports_configured: ไม่มีแคมเปญใดที่เลือกไว้และมีการตั้งค่ารายงานไว้ โปรดกลับไปตรวจสอบการตั้งค่าแคมเปญของคุณ
+    bulk_reports_no_reports_selected: ไม่มีรายงานใดถูกเลือก
+    bulk_reports_no_reports_selected_for_languages: ไม่มีรายงานใดถูกเลือก โปรดกลับไปเลือกรายงานอย่างน้อยหนึ่งรายการ
+    bulk_reports_no_tags_found: ไม่พบแท็ก
+    bulk_reports_none_selected: ไม่มีการเลือก
+    bulk_reports_queued_by: จัดคิวโดย
+    bulk_reports_queuing_jobs: กำลังจัดคิวงาน...
+    bulk_reports_ready_to_generate: พร้อมที่จะสร้าง
+    bulk_reports_report_count_one: รายงาน %{count}
+    bulk_reports_report_count_other: รายงาน %{count}
+    bulk_reports_reports_and_languages: รายงานและภาษา
+    bulk_reports_review_submit: ตรวจสอบและส่ง
+    bulk_reports_review_submit_description: ตรวจสอบรายละเอียดงานด้านล่าง คุณสามารถย้อนกลับไปยังขั้นตอนใดก็ได้เพื่อทำการแก้ไข
+    bulk_reports_select_all_shown: เลือกทั้งหมดที่แสดง
+    bulk_reports_select_campaigns: เลือกแคมเปญ
+    bulk_reports_select_campaigns_description: ค้นหาตามชื่อหรือโครงการ แล้วกรองรายการด้วยตัวกรองแท็ก จากนั้นเลือกแคมเปญที่ต้องการรวมไว้
+    bulk_reports_select_date_range: เลือกช่วงวันที่
+    bulk_reports_select_date_range_description: รวมเฉพาะการประเมินที่เสร็จสมบูรณ์ภายในช่วงเวลาที่กำหนดเท่านั้น เว้นช่วงวันที่ไว้ล่วงหน้าหรือกำหนดวันที่ที่แน่นอน
+    bulk_reports_select_languages: เลือกภาษา
+    bulk_reports_select_languages_description: รายงานแต่ละฉบับรองรับภาษาที่แตกต่างกัน โปรดเลือกอย่างน้อยหนึ่งภาษาต่อรายงานหนึ่งฉบับ โดยรายงานจะถูกสร้างขึ้นในทุกภาษาที่คุณเลือก
+    bulk_reports_select_reports: เลือกรายงาน
+    bulk_reports_select_reports_description: รายงานที่เลือกแต่ละรายการจะถูกสร้างขึ้นสำหรับผู้สมัครหรือแคมเปญทุกรายในการส่งออก โดยครอบคลุมทุกภาษาที่เลือกไว้
+    bulk_reports_selected_tags_count_one: เลือกแท็ก %{count} แล้ว
+    bulk_reports_selected_tags_count_other: เลือกแท็ก %{count}
+    bulk_reports_start_date_placeholder: เลือกวันที่และเวลาเริ่มต้น
+    bulk_reports_start_date_required: โปรดเลือกวันที่เริ่มต้น
+    bulk_reports_step_coming_soon: ขั้นตอนนี้จะเปิดตัวในเร็วๆ นี้
+    bulk_reports_submit_error: เกิดข้อผิดพลาดบางอย่าง โปรดลองใหม่อีกครั้ง
+    bulk_reports_submit_success: กำลังดำเนินการส่งออกข้อมูล คุณจะได้รับการแจ้งเตือนเมื่อการดาวน์โหลดเสร็จสมบูรณ์
+    bulk_reports_summary_description: การอัปเดตจะเกิดขึ้นขณะที่คุณกำลังสร้างงาน
+    bulk_reports_summary_title: ดาวน์โหลดสรุป
+    bulk_reports_title: รายงานจำนวนมาก
+    bulk_reports_view_downloads: ดูการดาวน์โหลดรายงานจำนวนมาก
+    bulk_reports_year_to_date: นับตั้งแต่ต้นปีจนถึงปัจจุบัน
     bulk_upload_ai_artifacts: อัปโหลดสิ่งประดิษฐ์ AI จํานวนมาก
     campaign: แคมเปญ
     campaign_admin: ผู้ดูแลระบบแคมเปญ
@@ -383,6 +485,13 @@ th:
     campaign_templates_remove_confirm_success: แม่แบบแคมป์ '%{name}'' ถูกลบออกเรียบร้อยแล้ว
     campaign_templates_remove_confirm_title: ลบเทมเพลตแคมเปญ
     campaign_user_job_roles_cannot_be_same: ตำแหน่งงานเป้าหมายต้องแตกต่างจากตำแหน่งงานปัจจุบัน
+    campaign_users_import_uat_hint: ตั้งค่าคอลัมน์ UAT เป็น Yes สำหรับผู้ใช้ทดสอบที่ควรได้รับการยกเว้นจากการออกใบอนุญาต การวิเคราะห์ และเว็บฮุค
+    campaign_users_uat_description: ระบุผู้เข้าร่วมรายนี้ว่าเป็นผู้ใช้งานทดสอบ UAT
+    campaign_users_uat_label: ผู้เข้าร่วม UAT
+    campaign_users_uat_license_non_billable: ไม่สามารถเรียกเก็บเงินได้
+    campaign_users_uat_locked_hint: ผู้เข้าร่วมรายนี้มีอยู่แล้ว สถานะ UAT จะถูกกำหนดเมื่อสร้างผู้เข้าร่วมครั้งแรกและไม่สามารถเปลี่ยนแปลงได้
+    campaign_users_uat_readonly_hint: สถานะ UAT จะถูกกำหนดเมื่อสร้างและไม่สามารถเปลี่ยนแปลงได้
+    campaign_users_uat_tooltip: ผู้ใช้ UAT คือผู้เข้าร่วมการทดสอบจริง พวกเขาสามารถทำแบบประเมินได้ตามปกติ แต่จะไม่สามารถใช้งานสิทธิ์การใช้งานที่คิดค่าบริการ การวิเคราะห์ข้อมูล และการส่งข้อมูลออกไปยังเว็บฮุคได้
     campaigns: แคมเปญ
     campaigns_convert_to_template: แปลงเป็นเทมเพลต
     campaigns_extend_time_success_message: ขยายเวลาแคมเปญเป็น %{minutes} นาที
@@ -469,6 +578,7 @@ th:
     clients_search_placeholder: ค้นหาลูกค้า
     closed: ปิด
     code_required: ต้องใช้รหัส
+    collapse_all: ยุบทั้งหมด
     collapse_filters: ยุบตัวกรอง
     column_code: รหัส
     column_invitation_status: สถานะคำเชิญ
@@ -487,10 +597,130 @@ th:
     common_type: ประเภท
     common_unselect_all: ยกเลิกการเลือกทั้งหมด
     communication_center: ศูนย์สื่อสาร
+    communication_center_manage_translations_action: จัดการงานแปล
+    communication_center_migration_enqueued: เริ่มกระบวนการย้ายข้อมูลแล้ว โปรดตรวจสอบบันทึกเพื่อดูความคืบหน้า
+    communication_center_migration_error: การร้องขอการย้ายข้อมูลล้มเหลว โปรดลองอีกครั้งหรือตรวจสอบบันทึก
+    communication_center_migration_modal_intro: 'การเปลี่ยนแปลงต่อไปนี้จะมีผลบังคับใช้เมื่อคุณทำการย้ายข้อมูลสำหรับลูกค้ารายนี้:'
+    communication_center_migration_modal_title: ตัวอย่างการย้ายศูนย์การสื่อสาร
+    communication_center_migration_preview_button: ดูตัวอย่างการย้ายข้อมูล
+    communication_center_migration_run_button: เรียกใช้การย้ายข้อมูล
+    communication_center_migration_skipped: ย้ายข้อมูลเสร็จแล้ว (จะถูกข้ามไป)
+    communication_center_migration_would_assessments: การประเมินเพื่อการย้ายถิ่นฐาน
+    communication_center_migration_would_backfill: อีเมลที่ต้องเติมเต็ม
+    communication_center_migration_would_cc_users: ผู้ใช้ CC ต้องทำการย้ายข้อมูล
+    communication_center_migration_would_migrate: การสื่อสารเพื่อการโยกย้าย
+    communication_center_migration_would_users: ผู้ใช้ที่ได้รับการคัดเลือกเพื่อย้ายข้อมูล
+    communication_center_translation_updated_success: การแปลได้รับการอัปเดตเรียบร้อยแล้ว
+    communication_center_translations_modal_title: จัดการงานแปล
+    communication_deliveries: การจัดส่ง
+    communication_delivery: การส่งมอบการสื่อสาร
+    communication_delivery_assessment_group_label: กลุ่มประเมินผล
+    communication_delivery_at_label: วันและเวลาจัดส่ง
+    communication_delivery_at_past_error: วันส่งมอบสินค้าต้องเป็นในอนาคต
+    communication_delivery_cancel_action: ยกเลิก
+    communication_delivery_cancel_error: ไม่สามารถยกเลิกการจัดส่งได้
+    communication_delivery_cc_users_label: ผู้รับ CC
+    communication_delivery_completion_status_hint: หากมีการระบุรหัสการเสร็จสิ้น ระบบจะส่งรหัสดังกล่าวเฉพาะเมื่อการประเมินของผู้ใช้มีสถานะเสร็จสิ้นตามรหัสนี้เท่านั้น
+    communication_delivery_completion_status_label: รหัสสถานะการประเมินเสร็จสมบูรณ์
+    communication_delivery_delay_hours_label: ความล่าช้า (ชั่วโมง)
+    communication_delivery_details_title: รายละเอียดการจัดส่ง
+    communication_delivery_emails_sent_label: ส่งแล้ว
+    communication_delivery_emails_total_label: อีเมลทั้งหมด
+    communication_delivery_end_date_label: วันสิ้นสุด
+    communication_delivery_frequency_daily: รายวัน
+    communication_delivery_frequency_label: ความถี่
+    communication_delivery_frequency_specific_weekdays: วันธรรมดาบางวัน
+    communication_delivery_frequency_weekly: รายสัปดาห์
+    communication_delivery_interval_number_label: ช่วงเวลา
+    communication_delivery_interval_period_days: วัน
+    communication_delivery_interval_period_hours: ชั่วโมง
+    communication_delivery_interval_period_label: ช่วงเวลา
+    communication_delivery_interval_period_months: เดือน
+    communication_delivery_interval_period_weeks: สัปดาห์
+    communication_delivery_new_button: การจัดส่งใหม่
+    communication_delivery_recipients_all: ผู้เข้าร่วมทั้งหมด
+    communication_delivery_recipients_label: ผู้รับ
+    communication_delivery_recipients_new_assignment: งานใหม่
+    communication_delivery_recipients_new_users: ผู้ใช้ใหม่
+    communication_delivery_recipients_selected: ผู้เข้าร่วมที่ได้รับการคัดเลือก
+    communication_delivery_rule_in_progress: กำลังดำเนินการ
+    communication_delivery_rule_label: กฎการส่งมอบ
+    communication_delivery_rule_not_completed: ยังไม่เสร็จสมบูรณ์
+    communication_delivery_rule_not_started: ยังไม่ได้เริ่ม
+    communication_delivery_rule_send_now: ส่งเลย
+    communication_delivery_rule_specific_datetime: วันและเวลาที่ระบุ
+    communication_delivery_search_users_placeholder: ค้นหาตามชื่อหรืออีเมล
+    communication_delivery_selected_assessments_label: การประเมินผล
+    communication_delivery_selected_users_label: เลือกผู้ใช้
+    communication_delivery_start_date_label: วันที่เริ่มต้น
+    communication_delivery_template_label: แม่แบบ
+    communication_delivery_time_of_day_label: ช่วงเวลาของวัน
+    communication_delivery_timezone_label: เขตเวลา
+    communication_delivery_trigger_type_label: ประเภททริกเกอร์
+    communication_delivery_trigger_type_manual: คู่มือ
+    communication_delivery_trigger_type_scheduled: กำหนดการ
+    communication_delivery_weekday_fri: วันศุกร์
+    communication_delivery_weekday_mon: วันจันทร์
+    communication_delivery_weekday_sat: วันเสาร์
+    communication_delivery_weekday_sun: วันอาทิตย์
+    communication_delivery_weekday_thu: วันพฤหัสบดี
+    communication_delivery_weekday_tue: วันอังคาร
+    communication_delivery_weekday_wed: วันพุธ
+    communication_delivery_weekdays_label: วันธรรมดา
+    communication_email_created_at_label: สร้างขึ้นเมื่อ
+    communication_email_not_sent: ไม่ได้ส่ง
+    communication_email_preview_action: ตัวอย่าง
+    communication_email_preview_date_label: วันที่
+    communication_email_preview_from_label: จาก
+    communication_email_preview_title: ดูตัวอย่างอีเมล
+    communication_email_preview_to_label: ถึง
+    communication_email_preview_warning: นี่คือภาพตัวอย่างที่แสดงผลใหม่ของเทมเพลต และอาจไม่ตรงกับเนื้อหาอีเมลที่ส่งจริงทุกประการ
+    communication_email_recipient_email_label: อีเมลผู้รับ
+    communication_email_recipient_name_label: ชื่อผู้รับ
+    communication_email_retrigger_action: กระตุ้นใหม่
+    communication_email_retrigger_error: ไม่สามารถส่งอีเมลซ้ำได้
+    communication_email_sent_at_label: ส่งเมื่อ
+    communication_email_status_label: สถานะ
+    communication_email_subject_label: เรื่อง
+    communication_emails: อีเมล
+    communication_template: แม่แบบการสื่อสาร
+    communication_template_body_label: ข้อความ
+    communication_template_create_new_action: สร้างใหม่
+    communication_template_kind_label: ประเภทการสื่อสาร
+    communication_template_level_campaign: แคมเปญ
+    communication_template_level_client: ลูกค้า
+    communication_template_level_platform: แพลตฟอร์ม
+    communication_template_level_project: โครงการ
+    communication_template_name_label: ชื่อแม่แบบ
+    communication_template_new_button: เทมเพลตใหม่
+    communication_template_override_inherited_action: แทนที่การสืบทอด
+    communication_template_override_picker_search_placeholder: เทมเพลตการค้นหาเพื่อแทนที่
+    communication_template_override_picker_title: แทนที่เทมเพลตที่สืบทอดมา
+    communication_template_recipients_all: ทั้งหมด
+    communication_template_recipients_label: ผู้รับเริ่มต้น
+    communication_template_recipients_new_assignment: งานใหม่
+    communication_template_recipients_new_users: ผู้ใช้ใหม่
+    communication_template_recipients_selected: เลือกแล้ว
+    communication_template_source_created: สร้าง
+    communication_template_source_label: แหล่งที่มา
+    communication_template_source_override_of: การแทนที่ %{level}
+    communication_template_status_active: คล่องแคล่ว
+    communication_template_status_archived: เก็บถาวร
+    communication_template_status_draft: ร่าง
+    communication_template_status_label: สถานะ
+    communication_template_subject_label: เรื่อง
+    communication_templates: แม่แบบ
     communications: การสื่อสาร
     communications_form_insert_piped_text: แทรกข้อความที่มีเส้นขอบ
+    competency_indicator: ความสามารถ / ตัวชี้วัด
     completed: เสร็จ สมบูรณ์
     completed_tooltip: ผู้ประเมินทั้งหมดได้ส่งการประเมินแล้ว
+    completion_recipients_all: ทุกวิชา
+    completion_recipients_list: 'รายชื่อผู้ได้รับรางวัล:'
+    completion_recipients_selected: วิชาที่เลือก
+    completion_recipients_selected_admins: ผู้ดูแลระบบที่เลือก
+    completion_recipients_selected_assessors: ผู้ประเมินที่ได้รับการคัดเลือก
+    completion_recipients_selected_assessors_hint: เฉพาะผู้ประเมินที่ได้รับมอบหมายให้ดูแลแบบฟอร์มผู้ประเมินที่เชื่อมโยงกับวิชาที่กรอกเสร็จสมบูรณ์เท่านั้นที่จะได้รับอีเมล แม้ว่าคุณจะเลือกผู้ประเมินคนอื่นไว้ด้านบนก็ตาม
     components_input_duration_placeholder: ป้อนเป็น '1d 2h 3m'
     concise: กระชับ
     condition_sets: ชุดเงื่อนไข
@@ -697,6 +927,8 @@ th:
     disable_proctoring: ปิดการใช้งานการตรวจสอบ
     disable_report_download: ปิดการดาวน์โหลดรายงาน
     disable_transcript_download: ปิดใช้งานการดาวน์โหลดเอกสารถอดเสียง
+    disable_webhooks: ปิดใช้งาน Webhooks
+    disable_webhooks_hint: เมื่อเปิดใช้งานตัวเลือกนี้ จะไม่มีการส่ง webhook หรือเหตุการณ์การผสานรวมปลายทางใดๆ ไปยังไคลเอ็นต์สำหรับแคมเปญนี้ ไม่ว่าจะเป็นประเภทผู้เข้าร่วมใดก็ตาม เฉพาะผู้ดูแลระบบระดับสูงสุดเท่านั้นที่สามารถเปลี่ยนแปลงการตั้งค่านี้ได้
     disallow_lead_assessor_moderation: ไม่อนุญาตให้ผู้ประเมินหลักเป็นผู้กลั่นกรอง
     disallow_lead_assessor_moderation_info: คะแนนจะถูกคำนวณโดยอัตโนมัติตามการส่งแบบฟอร์มของผู้ประเมินทั้งหมด และผู้ประเมินหลักไม่สามารถเปลี่ยนแปลงคะแนนจากหน้าจอการตรวจสอบได้
     discard_all_questions: รีเซ็ตคำถามทั้งหมด
@@ -795,6 +1027,7 @@ th:
     evaluator_welcome_name: ยินดีต้อนรับผู้ประเมิน
     evaluators_title: ผู้ประเมิน
     evidence_from_transcript: หลักฐานจากบันทึกการสนทนา
+    expand_all: ขยายทั้งหมด
     expand_filters: ขยายตัวกรอง
     export_admin_roles_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
     export_admins_with_permissions: ส่งออกหน้าที่และสิทธิ์ของผู้ดูแลระบบ
@@ -855,6 +1088,7 @@ th:
     feature_not_available: คุณสมบัตินี้ไม่สามารถใช้งานได้
     feature_sms_notification_description: เปิดใช้งานการแจ้งเตือนทาง SMS สำหรับคำเชิญและคำเตือนของแคมเปญ
     feature_superadmin_tenant_scoping_description: เมื่อปิดใช้งาน การสืบค้นข้อมูลโดยผู้ดูแลระบบสูงสุดจะไม่จำกัดเฉพาะข้อมูลของไคลเอ็นต์นี้
+    feature_use_new_communication_center_description: โปรดใช้เฉพาะศูนย์การสื่อสารใหม่สำหรับลูกค้ารายนี้ และหยุดส่งข้อความสื่อสารแบบเดิม
     fields_level: ระดับ
     fields_level_description: คําอธิบายระดับ
     fields_level_name: ชื่อระดับ
@@ -1121,6 +1355,7 @@ th:
     import_title: นําเข้าหัวเรื่องจาก CSV
     import_upload: อัปโหลด
     import_users: นําเข้าผู้ใช้
+    in_progress: อยู่ระหว่างดําเนินการ
     inactive: เกียจคร้าน
     include_locales_label: รวมคําแปล
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ th:
     model_params_thinking_effort_none: ไม่มี
     model_params_thinking_effort_tooltip: ควบคุมระดับการใช้เหตุผลของโมเดลก่อนตอบคำถาม ยิ่งใช้เหตุผลมากเท่าไหร่ คำตอบก็จะยิ่งละเอียดมากขึ้น แต่ก็จะใช้เวลานานขึ้น ใช้ 'None' เพื่อปิดการใช้งานเหตุผลโดยสมบูรณ์
     model_params_title: การกำหนดค่าโมเดลขั้นสูง
+    moderate_scoring_lead_assessor_form: แบบฟอร์มผู้ประเมินหลัก
     must_be_a_valid_url: URL ไม่ถูกต้อง กรุณาระบุ URL ที่สมบูรณ์พร้อมโปรโตคอล http หรือ https
     name: ชื่อ
     name_max_length: ชื่อไม่สามารถเกิน %{length} ตัวอักษร
@@ -1411,6 +1647,24 @@ th:
     navigation_registration_codes: รหัสการลงทะเบียน
     navigation_skills_taxonomy: อนุกรมวิธานทักษะ
     navigation_users: ผู้เข้าร่วม
+    new_experience_badge: ประสบการณ์ใหม่
+    new_experience_bullet_brief_rest: คำแนะนำเกี่ยวกับความสามารถจะยังคงแสดงอยู่บนหน้าจอขณะที่คุณให้คะแนน
+    new_experience_bullet_brief_strong: คำอธิบายโดยย่อที่อยู่ข้างๆ คะแนนของคุณ
+    new_experience_bullet_candidate_rest: แบบฟอร์มประเมินผลทุกฉบับสำหรับผู้สมัครคนนั้น รวมกันทั้งหมด
+    new_experience_bullet_candidate_strong: ผู้สมัครหนึ่งคน มุมมองเดียว
+    new_experience_bullet_moderation_rest: คะแนนของผู้ประเมินแต่ละคนแสดงเคียงข้างกัน การตัดสินใจครั้งสุดท้ายเพียงครั้งเดียว
+    new_experience_bullet_moderation_strong: ระยะเวลาการกลั่นกรองเป็นนาที
+    new_experience_footer_note: ประสบการณ์การใช้งานแบบใหม่จะกลายเป็นค่าเริ่มต้นสำหรับทุกคนในเร็วๆ นี้ คุณสามารถเปลี่ยนไปใช้ประสบการณ์การใช้งานแบบใหม่ได้ตลอดเวลาจากรายละเอียดโปรไฟล์ของคุณ
+    new_experience_headline: กระบวนการทำงานเดียว ตั้งแต่การตรวจสอบครั้งแรกจนถึงการอนุมัติขั้นสุดท้าย
+    new_experience_notice_body: เราได้ปรับปรุงประสบการณ์การใช้งานของผู้ประเมินใหม่ คุณสามารถทดลองใช้ได้เลย หรือเปิดใช้งานในภายหลังได้จากการตั้งค่าโปรไฟล์ของคุณ
+    new_experience_notice_maybe_later: อาจจะทีหลัง
+    new_experience_notice_title: รับสมัครผู้ประเมินที่มีประสบการณ์ใหม่
+    new_experience_preview_alt: ตัวอย่างประสบการณ์การประเมินแบบใหม่
+    new_experience_sub_copy: ตอนนี้ผู้สมัคร การประเมิน การตรวจสอบ และศูนย์ประเมินผลทำงานร่วมกันเป็นมุมมองเดียว ไม่ใช่การแยกดูจากห้าหน้าจอที่คุณต้องถือเองอีกต่อไป
+    new_experience_word_assessment_centre: ศูนย์ประเมินผล ดำเนินการประเมินและติดตามผลทุกรายวิชา
+    new_experience_word_candidate: ผู้สมัครหนึ่งคน ผลการประเมินทั้งหมดของผู้สมัครแต่ละคนรวมกัน
+    new_experience_word_evaluate: ประเมินโจทย์และคะแนนของคุณไปพร้อมๆ กัน
+    new_experience_word_moderate: ระดับปานกลาง คะแนนของผู้ประเมินทุกคน การตัดสินใจครั้งสุดท้าย
     new_folder: โฟลเดอร์ใหม่
     new_score: คะแนนใหม่
     no_assessments_found: รหัสการตรวจสอบ
@@ -1458,6 +1712,7 @@ th:
     norms_title: ค่ามาตรฐาน
     not_completed: ยังไม่เสร็จสมบูรณ์
     not_completed_tooltip: "%{completed} ผู้ประเมินได้รับมอบหมาย แต่มีเพียง %{submitted} เท่านั้นที่ทําการประเมินเสร็จสมบูรณ์"
+    not_started: ยังไม่ได้เริ่มต้น
     notes: หมายเหตุ
     nothing_assigned: ไม่มีการกําหนดผู้ประเมิน
     nothing_assigned_tooltip: ไม่มีการกําหนดการประเมินให้กับผู้ใช้รายนี้
@@ -1570,6 +1825,7 @@ th:
         manage_messages: จัดการข้อความ
         manage_options: จัดการตัวเลือก
         manage_report_approvals: จัดการรายงานการอนุมัติ
+        manage_uat: จัดการผู้ใช้ UAT
         manage_users: จัดการผู้ใช้
         participant_options: ตัวเลือกผู้เข้าร่วม
         report_options: ตัวเลือกรายงาน
@@ -1898,6 +2154,7 @@ th:
         title: การตั้งค่าการลงทะเบียน
       reports:
         manage: จัดการ
+        project_bulk_reports: รายงานโครงการจำนวนมาก
         title: รายงาน
         view: ดู
       responseMeta:
@@ -2055,6 +2312,7 @@ th:
     project_admins: ผู้ดูแลระบบโครงการ
     project_assessor: ผู้ประเมินโครงการ
     project_features: คุณสมบัติของโครงการ
+    project_id: รหัสโครงการ
     project_ids: รหัสโครงการ
     project_ids_required: จำเป็นต้องมี project_ids สำหรับประเภทรายงานนี้
     project_licenses: ใบอนุญาตโครงการ
@@ -2114,6 +2372,7 @@ th:
     projects_form_project_number: หมายเลขโครงการ
     projects_form_subdomain: โดเมนย่อย
     projects_form_title: โครงการ
+    projects_general_settings_allow_data_access_to_bi: อนุญาตให้เข้าถึง PowerBI สำหรับโปรเจ็กต์นี้
     projects_general_settings_live_chat: เปิดใช้งานแชทสด
     projects_general_settings_locales_label: ตำแหน่ง
     projects_general_settings_project_number_label: หมายเลขโครงการ
@@ -2344,6 +2603,21 @@ th:
     report_approval_submit_or_approve_all: ส่งหรืออนุมัติทั้งหมด
     report_approvals: การอนุมัติรายงาน
     report_availability: รายงานความพร้อมใช้งาน
+    report_builder_publish_confirm_content: การดำเนินการนี้จะแทนที่รายงานที่เผยแพร่ฉบับเดิมด้วยฉบับร่างที่แก้ไขแล้ว ทำให้ผู้ใช้สามารถเข้าถึงรายงานฉบับร่างได้ คุณแน่ใจหรือไม่ว่าต้องการเผยแพร่การเปลี่ยนแปลงนี้?
+    report_builder_publish_confirm_title: เผยแพร่รายงานฉบับนี้หรือไม่?
+    report_builder_publish_failed: รายงานถูกบันทึกแล้ว แต่การเผยแพร่ล้มเหลว โปรดลองเผยแพร่อีกครั้ง
+    report_builder_publish_success: รายงานได้รับการเผยแพร่เรียบร้อยแล้ว
+    report_builder_published_at: เผยแพร่ครั้งล่าสุดเมื่อ {{date}}
+    report_builder_published_by: จัดพิมพ์โดย {{name}}
+    report_builder_save_and_publish: บันทึกและเผยแพร่
+    report_builder_save_as_draft: บันทึกเป็นฉบับร่าง
+    report_builder_save_failed: ไม่สามารถบันทึกรายงานได้ โปรดลองใหม่อีกครั้ง
+    report_builder_save_success: รายงานถูกบันทึกเรียบร้อยแล้ว
+    report_builder_unpublished_changes: การเปลี่ยนแปลงที่ยังไม่ได้เผยแพร่
+    report_builder_view_draft: ดูฉบับร่าง
+    report_builder_view_published: ดูข้อมูลที่เผยแพร่แล้ว
+    report_builder_viewing_draft_message: คุณกำลังดูรายงานฉบับร่างอยู่ นี่คือฉบับที่ผู้เข้าร่วมจะเห็นก็ต่อเมื่อรายงานได้รับการเผยแพร่แล้ว
+    report_builder_viewing_published_message: คุณกำลังดูรายงานฉบับล่าสุดที่เผยแพร่แล้ว การเปลี่ยนแปลงใดๆ ในโปรแกรมสร้างรายงานจะไม่ปรากฏในรายงานฉบับนี้จนกว่าจะมีการเผยแพร่
     report_condition_not_met: ต้องการ %{required} %{relationship} การประเมิน แต่มีเพียง %{actual}
     report_conditions_not_met_detailed: รายงานสําหรับ %{user} ไม่ตรงตามเงื่อนไขความพร้อมใช้งาน %{conditions}
     report_denied: รายงานสําหรับ %{user} ถูกปฏิเสธ
@@ -2358,6 +2632,11 @@ th:
     report_on_hold: รายงานสําหรับ %{user} ถูกระงับในขณะนี้
     report_owner: เจ้าของ
     report_pdf_status: รายงานสถานะ PDF
+    report_pdf_unavailable: ไฟล์ PDF ของรายงานฉบับนี้ยังไม่พร้อมใช้งานในขณะนี้
+    report_preview_draft_notice: คุณกำลังดูรายงานฉบับร่าง ซึ่งผู้เข้าร่วมจะไม่สามารถเข้าถึงได้เว้นแต่ผู้สร้างจะเผยแพร่การแก้ไขฉบับร่างแล้ว
+    report_preview_draft_tag_tooltip: รายงานฉบับนี้มีการแก้ไขร่างแล้ว โปรดคลิกเพื่อดูฉบับร่าง
+    report_preview_view_draft: ดูตัวอย่างฉบับร่าง
+    report_preview_view_published: ตัวอย่างที่เผยแพร่แล้ว
     report_review_abort_qc: ยกเลิก QC
     report_review_approve: อนุมัติ
     report_review_approve_changes: อนุมัติการเปลี่ยนแปลง
@@ -2725,6 +3004,7 @@ th:
     scoring_approval_score_approvals: การอนุมัติคะแนนด้วยระบบปัญญาประดิษฐ์
     scoring_assessment: การประเมิน
     scoring_assessment_scoring_type: ประเภทการให้คะแนนการประเมิน
+    scoring_assessor_number: ผู้ประเมิน %{number}
     scoring_average: เฉลี่ย
     scoring_campaign_scoring_variables: ตัวแปรการให้คะแนนแคมเปญ
     scoring_desc: คุณใช้ปัจจัยแคมเปญเกินขีดจํากัดสูงสุดของ %{n} ตัวแปรแคมเปญ ไม่สามารถเพิ่มปัจจัยเพิ่มเติมได้ โปรดตรวจสอบและจัดการปัจจัยที่มีอยู่ของคุณก่อนดําเนินการต่อ
@@ -3110,15 +3390,19 @@ th:
     status_details: รายละเอียดสถานะ
     statuses_accepted: ยอม รับ
     statuses_cancelled: ยก เลิก
+    statuses_failed: ล้มเหลว
     statuses_late_cancelled: ยกเลิกในนาทีสุดท้าย
     statuses_late_rescheduled: เลื่อนกำหนดส่ง
     statuses_pending: รอ
+    statuses_queued: เข้าคิว
     statuses_requested_cancellation: การยกเลิกที่ร้องขอ
     statuses_requested_cancellation_rejected: การยกเลิกถูกปฏิเสธ
     statuses_requested_rescheduling: การขอเปลี่ยนกําหนดการ
     statuses_requested_rescheduling_rejected: การกําหนดเวลาใหม่ถูกปฏิเสธ
     statuses_rescheduled: เลื่อนกําหนดเวลา
     statuses_scheduled: ถึงกําหนด
+    statuses_sent: ส่งแล้ว
+    statuses_skipped: ข้ามไป
     steps_basic_information: ข้อมูลพื้นฐาน
     steps_facilitators: ผู้อํานวยความสะดวก
     steps_invite_options: ตัวเลือกคำเชิญ
@@ -3324,6 +3608,7 @@ th:
     url_label: URL
     url_name: URL
     url_whitelisting: การอนุญาต URL
+    use_new_communication_center: ใช้ศูนย์การสื่อสารแห่งใหม่
     used_tokens_input_tokens: โทเค็นอินพุต
     used_tokens_output_tokens: โทเค็นเอาต์พุต
     used_tokens_thinking_tokens: โทเค็นความคิด

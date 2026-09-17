@@ -71,6 +71,7 @@ module Administration
             required(:accessProjectTaxonomy).filled(:bool?)
             required(:viewDatasheets).filled(:bool?)
             required(:manageDatasheets).filled(:bool?)
+            required(:manageProjectBulkReports).filled(:bool?)
           end
           required(:name).filled(:str?)
           required(:email).maybe(:str?)

@@ -11,8 +11,8 @@ class Api::V2::Administration::UserResource < Api::V2::Administration::BaseResou
     @model.user_profile.update!(@user_profile_data)
   }
 
-  ransack_filters %i[admins search_query with_access_to_campaign with_campaign_user filterable_fields role_eq
-                     global_assessor_eq role_in]
+  ransack_filters %i[admins search_query with_access_to_campaign with_campaign_user admins_for_campaign
+                     filterable_fields role_eq global_assessor_eq role_in]
 
   audit_log_for :create, payload: '*'
   audit_log_for :update, payload: '*'

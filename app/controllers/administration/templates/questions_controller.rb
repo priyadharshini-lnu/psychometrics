@@ -22,6 +22,10 @@ module Administration
         end
       end
 
+      def show
+        render json: QuestionSerializer.new(context: { include: '**' }).serialize(resource)
+      end
+
       def new
         @_resource = resource_class.new
       end

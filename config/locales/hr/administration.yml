@@ -575,6 +575,10 @@ hr:
       enabled: Omogućeno
       loading: Učitavanje...
       save: Spremi
+    communication_center:
+      errors:
+        terminal_state: Dostava je već u terminalnom stanju.
+        update_translation: Nije moguće ažurirati prijevod za ovu lokaciju.
     communication_settings: Postavke
     communications:
       create:

@@ -218,6 +218,15 @@ ja:
     assessor_assessments_reset_successfully: 電子メール "%{subjectEmail}" による件名のリセット評価に成功しました。
     assessor_assessments_subject_email: 件名電子メール
     assessor_assessments_subject_name: 件名
+    assessor_campaign_users_awaiting_moderation: 審査待ち
+    assessor_campaign_users_awaiting_moderation_subtitle: 統合の準備が整いました
+    assessor_campaign_users_candidates_subtitle: あなたに割り当てられた
+    assessor_campaign_users_completed: 完了
+    assessor_campaign_users_completed_subtitle: 署名済み
+    assessor_campaign_users_in_progress: 進行中
+    assessor_campaign_users_in_progress_subtitle: 評価されている
+    assessor_campaign_users_not_started: 開始されていません
+    assessor_campaign_users_not_started_subtitle: 評価
     assessor_campaigns_statuses_completed: 完了済み
     assessor_campaigns_statuses_in_progress: 進行中
     assessor_campaigns_statuses_not_started: 未着手
@@ -226,6 +235,20 @@ ja:
     assessor_create_assessor: アセッサーの追加
     assessor_dashboard: 査定者ダッシュボード
     assessor_email: 査定者のEメール
+    assessor_evaluation: 評価者による評価
+    assessor_evaluation_by_campaign: キャンペーン別
+    assessor_evaluation_by_participant: 参加者による
+    assessor_evaluation_candidate: 候補者
+    assessor_evaluation_candidates: 候補者
+    assessor_evaluation_completed: 評価が完了しました
+    assessor_evaluation_date_range: 開始日 – 終了日
+    assessor_evaluation_moderation_waiting: 調整待ち
+    assessor_evaluation_tour_profile_description: アカウント、役割、言語設定、そして新しいエクスペリエンスを有効にするための切り替えスイッチはここにあります。ここを開いて詳細を確認したり、ログアウトしたりできます。
+    assessor_evaluation_tour_profile_title: プロフィールと設定
+    assessor_evaluation_tour_table_description: いずれかの行を開いて評価を確認し、回答を評価するか、最終スコアを調整してください。
+    assessor_evaluation_tour_table_title: 候補者を選択してください
+    assessor_evaluation_tour_tabs_description: 参加者別（一度に1人ずつ）とキャンペーン別を切り替えます。
+    assessor_evaluation_tour_tabs_title: 2つの働き方
     assessor_evaluations: アセッサー評価
     assessor_first_name: アセッサー名
     assessor_form: アセッサフォーム
@@ -233,18 +256,24 @@ ja:
     assessor_last_name: 査定者の姓
     assessor_modals_import_body: インポートに使用できるテンプレートを抽出するには、エクスポート機能を参照してください。
     assessor_modals_import_title: インポートアセッサー
+    assessor_new_experience: 新しい体験
     assessor_overview: 概要
     assessor_placeholder: アセッサーの検索...
     assessor_remove_confirmation: このキャンペーンから電子メール%{email}を持つ査定者を本当に削除しますか?
     assessor_remove_has_evaluations: この評価者には%{evaluation_count}件の評価フォームが割り当てられています。この評価者が記入したすべての評価は失われます。
     assessor_remove_in_assessment_centers: この評価担当者は%{workshop_count}評価センターに所属しています。この手続きにより、すべての評価センターから削除されます。
-    assessor_statuses_completed: 完了済み
-    assessor_statuses_not_completed: 未完了
-    assessor_subjects_statuses_completed: 完了済み
-    assessor_subjects_statuses_in_progress: 進行中
-    assessor_subjects_statuses_not_started: 未着手
+    assessor_switch_to_classic: クラシックに切り替える
     assessor_toolbar_export: 輸出アセッサ
     assessor_toolbar_import: インポートアセッサー
+    assessor_tour_button: ツアー
+    assessor_try_new_experience: 新しい体験に挑戦してみましょう
+    assessor_user_assessment_name: 評価名
+    assessor_user_candidate_id: 候補者ID
+    assessor_user_evaluate: 評価する
+    assessor_user_evaluation: 評価
+    assessor_user_evaluation_progress: 評価の進捗状況
+    assessor_user_moderate: 中程度のスコア
+    assessor_user_moderation: 節度
     assessor_workshops: アセスメント・センター
     assessors: アセッサ
     assistant_toolbar_failed: 複数回の試行後も有効な出力を生成できませんでした
@@ -312,6 +341,79 @@ ja:
     bulk_assets_modal_title: CSVファイルとZIPファイルをアップロード
     bulk_export_assessments_file: 一括査定のエクスポートファイル
     bulk_export_invalid_params: 無効な一括エクスポートパラメータ
+    bulk_reports: 一括レポート
+    bulk_reports_all_of_year: "%{year}のすべて"
+    bulk_reports_all_tags: すべてのタグ
+    bulk_reports_bundled_into_single: 1つにまとめられた
+    bulk_reports_campaign_count_one: "%{count}キャンペーン"
+    bulk_reports_campaign_count_other: "%{count}キャンペーン"
+    bulk_reports_campaign_search_placeholder: キャンペーンまたはプロジェクトを検索...
+    bulk_reports_campaigns_shown_count: "%{selected}が選択されました - %{shown}が表示されます"
+    bulk_reports_campaigns_without_reports_warning: 'レポートが設定されていない選択されたキャンペーン: %{count}。これらはスキップされます。'
+    bulk_reports_candidate_abbreviation: 候補生
+    bulk_reports_complete_every_step: すべてのステップを完了して有効化してください
+    bulk_reports_date_range_required: 継続するには、開始日と終了日の両方が必要です。
+    bulk_reports_date_range_summary: 完了した評価%{start}～%{end}が含まれます。
+    bulk_reports_description: 複数のキャンペーンを横断するエクスポートジョブを1つ作成します。キャンペーンを選択し、含めるレポートと言語を選択し、日付範囲を設定して送信するだけです。
+    bulk_reports_deselect_all_shown: 表示されているもの全て選択解除
+    bulk_reports_download_notification_sent: ダウンロード通知が送信されました
+    bulk_reports_emailed_when_ready: 準備が整い次第、メールでお送りします。
+    bulk_reports_end_date_placeholder: 終了日時を選択してください
+    bulk_reports_end_date_required: 終了日を選択してください。
+    bulk_reports_error_try_again: エラー - もう一度お試しください
+    bulk_reports_files_estimated_across: ファイル全体で推定
+    bulk_reports_files_pending: 作業が完了すると、ファイルがここに表示されます。
+    bulk_reports_generate_export: エクスポートを生成する
+    bulk_reports_invalid_date_range: 終了日は開始日以降でなければなりません。
+    bulk_reports_job_details_title: ジョブ番号%{id}
+    bulk_reports_job_not_found: この求人は見つかりませんでした。
+    bulk_reports_job_queued: ジョブがキューに追加されました
+    bulk_reports_languages_progress_one: "%{total} レポートセットの %{done}"
+    bulk_reports_languages_progress_other: "%{total} の %{done} がレポートセットを設定"
+    bulk_reports_languages_set_for_all_one: すべての%{count}レポートに設定
+    bulk_reports_languages_set_for_all_other: すべての%{count}レポートに設定されます。
+    bulk_reports_last_30_days: 過去30日間
+    bulk_reports_last_90_days: 過去90日間
+    bulk_reports_no_campaigns_found: このプロジェクトに関連するキャンペーンは見つかりませんでした。
+    bulk_reports_no_campaigns_match_filters: 検索条件またはタグフィルターに一致するキャンペーンはありません。
+    bulk_reports_no_campaigns_selected: キャンペーンは選択されていません
+    bulk_reports_no_files_yet: この求人に関するファイルはまだ入手できません。
+    bulk_reports_no_language_selected: 言語が選択されていません
+    bulk_reports_no_languages_available: このレポートには対応言語がありません。
+    bulk_reports_no_reports_configured: 選択されたキャンペーンには、レポートが設定されていません。キャンペーンの設定を再度確認してください。
+    bulk_reports_no_reports_selected: レポートは選択されていません
+    bulk_reports_no_reports_selected_for_languages: レポートが選択されていません。戻って、少なくとも1つのレポートを選択してください。
+    bulk_reports_no_tags_found: タグが見つかりません
+    bulk_reports_none_selected: 選択なし
+    bulk_reports_queued_by: キューに追加されました
+    bulk_reports_queuing_jobs: ジョブをキューに追加しています...
+    bulk_reports_ready_to_generate: 生成準備完了
+    bulk_reports_report_count_one: "%{count} レポート"
+    bulk_reports_report_count_other: "%{count} は報告します"
+    bulk_reports_reports_and_languages: レポートと言語
+    bulk_reports_review_submit: 確認して送信する
+    bulk_reports_review_submit_description: 以下の作業内容を確認してください。変更を加えるために、どのステップにも戻ることができます。
+    bulk_reports_select_all_shown: 表示されているものをすべて選択してください
+    bulk_reports_select_campaigns: キャンペーンを選択
+    bulk_reports_select_campaigns_description: 名前またはプロジェクトで検索し、タグフィルターでリストを絞り込みます。その後、含めるキャンペーンにチェックを入れます。
+    bulk_reports_select_date_range: 日付範囲を選択してください
+    bulk_reports_select_date_range_description: この期間内に完了した評価のみを含めてください。日付を事前に設定するか、正確な日付を設定してください。
+    bulk_reports_select_languages: 言語を選択
+    bulk_reports_select_languages_description: 各レポートはそれぞれ異なる言語セットに対応しています。レポートごとに少なくとも1つの言語を選択してください。選択したすべての言語でレポートが生成されます。
+    bulk_reports_select_reports: レポートを選択
+    bulk_reports_select_reports_description: 選択された各レポートは、エクスポート対象の候補者またはキャンペーンごとに、選択されたすべての言語で生成されます。
+    bulk_reports_selected_tags_count_one: "%{count}タグが選択されました"
+    bulk_reports_selected_tags_count_other: "%{count} タグが選択されました"
+    bulk_reports_start_date_placeholder: 開始日時を選択してください
+    bulk_reports_start_date_required: 開始日を選択してください。
+    bulk_reports_step_coming_soon: このステップは間もなく実施されます。
+    bulk_reports_submit_error: エラーが発生しました。もう一度お試しください。
+    bulk_reports_submit_success: エクスポート処理がキューに追加されました。ダウンロード準備が整い次第、通知が届きます。
+    bulk_reports_summary_description: ジョブの構築に伴う更新
+    bulk_reports_summary_title: ダウンロード概要
+    bulk_reports_title: 一括レポート
+    bulk_reports_view_downloads: 一括レポートダウンロードを表示
+    bulk_reports_year_to_date: 年初来
     bulk_upload_ai_artifacts: 大量アップロードAIアーティファクト
     campaign: キャンペーン
     campaign_admin: キャンペーン管理者
@@ -383,6 +485,13 @@ ja:
     campaign_templates_remove_confirm_success: キャンペーン・テンプレート '%{name}' は正常に削除されました。
     campaign_templates_remove_confirm_title: キャンペーンテンプレートの削除
     campaign_user_job_roles_cannot_be_same: 対象となる職務は現在の職務とは異なるものでなければならない
+    campaign_users_import_uat_hint: ライセンス、分析、およびウェブフックから除外する必要のあるテストユーザーについては、UAT列を「はい」に設定してください。
+    campaign_users_uat_description: この参加者をUATテストユーザーとしてマークしてください。
+    campaign_users_uat_label: UAT参加者
+    campaign_users_uat_license_non_billable: 請求対象外
+    campaign_users_uat_locked_hint: この参加者は既に存在します。UATステータスは参加者が最初に作成されたときに設定され、変更することはできません。
+    campaign_users_uat_readonly_hint: UATステータスは作成時に設定され、変更することはできません。
+    campaign_users_uat_tooltip: UATユーザーは、テストの実際の参加者です。通常どおり評価を受けることはできますが、課金対象となるライセンス使用量、分析、および送信Webhookからは除外されます。
     campaigns: キャンペーン
     campaigns_convert_to_template: テンプレートに変換
     campaigns_extend_time_success_message: キャンペーン・タイマーを%{minutes}分に延長
@@ -469,6 +578,7 @@ ja:
     clients_search_placeholder: クライアントを検索
     closed: クローズド
     code_required: コードが必要です
+    collapse_all: すべて折りたたむ
     collapse_filters: 折りたたみフィルター
     column_code: コード
     column_invitation_status: 招待状況
@@ -487,10 +597,130 @@ ja:
     common_type: タイプ
     common_unselect_all: すべて選択解除
     communication_center: コミュニケーション・センター
+    communication_center_manage_translations_action: 翻訳を管理する
+    communication_center_migration_enqueued: 移行ジョブがキューに追加されました。進捗状況はログを確認してください。
+    communication_center_migration_error: 移行リクエストが失敗しました。もう一度お試しいただくか、ログをご確認ください。
+    communication_center_migration_modal_intro: このクライアントの移行を実行すると、以下の変更が適用されます。
+    communication_center_migration_modal_title: コミュニケーションセンター移行プレビュー
+    communication_center_migration_preview_button: プレビュー移行
+    communication_center_migration_run_button: マイグレーションを実行する
+    communication_center_migration_skipped: 既に移行済み（スキップされます）
+    communication_center_migration_would_assessments: 移行に関する評価
+    communication_center_migration_would_backfill: バックフィルメール
+    communication_center_migration_would_cc_users: CCユーザーの移行
+    communication_center_migration_would_migrate: 移行に関する通信
+    communication_center_migration_would_users: 移行対象ユーザー
+    communication_center_translation_updated_success: 翻訳が正常に更新されました
+    communication_center_translations_modal_title: 翻訳を管理する
+    communication_deliveries: 配達
+    communication_delivery: コミュニケーション伝達
+    communication_delivery_assessment_group_label: 評価グループ
+    communication_delivery_at_label: 配達日時
+    communication_delivery_at_past_error: 配達日は未来の日付でなければなりません
+    communication_delivery_cancel_action: キャンセル
+    communication_delivery_cancel_error: 配達のキャンセルに失敗しました
+    communication_delivery_cc_users_label: CC受信者
+    communication_delivery_completion_status_hint: 完了コードが指定されている場合、ユーザーの評価にこの完了ステータスコードが付与されている場合にのみ送信されます。
+    communication_delivery_completion_status_label: 評価完了ステータスコード
+    communication_delivery_delay_hours_label: 遅延時間（時間）
+    communication_delivery_details_title: 配送の詳細
+    communication_delivery_emails_sent_label: 送信済み
+    communication_delivery_emails_total_label: 合計メール数
+    communication_delivery_end_date_label: 終了日
+    communication_delivery_frequency_daily: 毎日
+    communication_delivery_frequency_label: 頻度
+    communication_delivery_frequency_specific_weekdays: 特定の曜日
+    communication_delivery_frequency_weekly: 毎週
+    communication_delivery_interval_number_label: 間隔
+    communication_delivery_interval_period_days: 日
+    communication_delivery_interval_period_hours: 営業時間
+    communication_delivery_interval_period_label: 間隔期間
+    communication_delivery_interval_period_months: 数ヶ月
+    communication_delivery_interval_period_weeks: ウィークス
+    communication_delivery_new_button: 新着商品
+    communication_delivery_recipients_all: すべての参加者
+    communication_delivery_recipients_label: 受信者
+    communication_delivery_recipients_new_assignment: 新しい任務
+    communication_delivery_recipients_new_users: 新規ユーザー
+    communication_delivery_recipients_selected: 選ばれた参加者
+    communication_delivery_rule_in_progress: 進行中
+    communication_delivery_rule_label: 配達ルール
+    communication_delivery_rule_not_completed: 未完了
+    communication_delivery_rule_not_started: 開始されていません
+    communication_delivery_rule_send_now: 今すぐ送信
+    communication_delivery_rule_specific_datetime: 具体的な日時
+    communication_delivery_search_users_placeholder: 名前またはメールアドレスで検索
+    communication_delivery_selected_assessments_label: 評価
+    communication_delivery_selected_users_label: ユーザーを選択
+    communication_delivery_start_date_label: 開始日
+    communication_delivery_template_label: テンプレート
+    communication_delivery_time_of_day_label: 時間帯
+    communication_delivery_timezone_label: タイムゾーン
+    communication_delivery_trigger_type_label: トリガータイプ
+    communication_delivery_trigger_type_manual: マニュアル
+    communication_delivery_trigger_type_scheduled: 予定
+    communication_delivery_weekday_fri: 金曜日
+    communication_delivery_weekday_mon: 月曜日
+    communication_delivery_weekday_sat: 土曜日
+    communication_delivery_weekday_sun: 日曜日
+    communication_delivery_weekday_thu: 木曜日
+    communication_delivery_weekday_tue: 火曜日
+    communication_delivery_weekday_wed: 水曜日
+    communication_delivery_weekdays_label: 平日
+    communication_email_created_at_label: 作成場所
+    communication_email_not_sent: 送信されませんでした
+    communication_email_preview_action: プレビュー
+    communication_email_preview_date_label: 日付
+    communication_email_preview_from_label: から
+    communication_email_preview_title: メールプレビュー
+    communication_email_preview_to_label: に
+    communication_email_preview_warning: これはテンプレートを再レンダリングしたプレビューであり、実際に送信されたメールの内容を正確に反映しているとは限りません。
+    communication_email_recipient_email_label: 受信者のメールアドレス
+    communication_email_recipient_name_label: 受取人名
+    communication_email_retrigger_action: 再トリガー
+    communication_email_retrigger_error: メールの再送信に失敗しました
+    communication_email_sent_at_label: 送信日時
+    communication_email_status_label: 状態
+    communication_email_subject_label: 主題
+    communication_emails: メール
+    communication_template: コミュニケーションテンプレート
+    communication_template_body_label: メッセージ
+    communication_template_create_new_action: 新規作成
+    communication_template_kind_label: コミュニケーションタイプ
+    communication_template_level_campaign: キャンペーン
+    communication_template_level_client: クライアント
+    communication_template_level_platform: プラットフォーム
+    communication_template_level_project: プロジェクト
+    communication_template_name_label: テンプレート名
+    communication_template_new_button: 新しいテンプレート
+    communication_template_override_inherited_action: 継承を上書きする
+    communication_template_override_picker_search_placeholder: 上書きするテンプレートを検索
+    communication_template_override_picker_title: 継承したテンプレートを上書きする
+    communication_template_recipients_all: 全て
+    communication_template_recipients_label: デフォルトの受信者
+    communication_template_recipients_new_assignment: 新しい任務
+    communication_template_recipients_new_users: 新規ユーザー
+    communication_template_recipients_selected: 選ばれた
+    communication_template_source_created: 作成済み
+    communication_template_source_label: ソース
+    communication_template_source_override_of: "%{level} のオーバーライド"
+    communication_template_status_active: アクティブ
+    communication_template_status_archived: アーカイブ済み
+    communication_template_status_draft: 下書き
+    communication_template_status_label: 状態
+    communication_template_subject_label: 主題
+    communication_templates: テンプレート
     communications: コミュニケーション
     communications_form_insert_piped_text: パイプ付きテキストの挿入
+    competency_indicator: 能力／指標
     completed: 完了
     completed_tooltip: すべての評価者が評価を提出しました
+    completion_recipients_all: 全科目
+    completion_recipients_list: 受取人リスト：
+    completion_recipients_selected: 選択科目
+    completion_recipients_selected_admins: 選択された管理者
+    completion_recipients_selected_assessors: 選任された評価者
+    completion_recipients_selected_assessors_hint: 上記で他の評価者を選択した場合でも、回答を完了した対象者の評価者フォームに割り当てられた評価者のみにメールが送信されます。
     components_input_duration_placeholder: 1d 2h 3m」と入力する。
     concise: 簡潔
     condition_sets: 条件集合
@@ -697,6 +927,8 @@ ja:
     disable_proctoring: 監督機能を無効にする
     disable_report_download: レポートのダウンロードを無効にする
     disable_transcript_download: トランスクリプトのダウンロードを無効にする
+    disable_webhooks: Webhookを無効にする
+    disable_webhooks_hint: この設定をオンにすると、参加者の種類に関わらず、このキャンペーンに関するWebhookや下流連携イベントはクライアントに送信されません。この設定を変更できるのはスーパー管理者のみです。
     disallow_lead_assessor_moderation: 主任審査員の審査を無効にする
     disallow_lead_assessor_moderation_info: スコアは、すべての評価者フォームの提出内容に基づいて自動的に算出され、主任評価者はモデレーション画面からこれを変更することはできません。
     discard_all_questions: すべての質問をリセット
@@ -795,6 +1027,7 @@ ja:
     evaluator_welcome_name: 評価者歓迎
     evaluators_title: 評価者
     evidence_from_transcript: 記録からの証拠
+    expand_all: すべて展開
     expand_filters: フィルタの拡大
     export_admin_roles_permissions: 管理者の役割と権限のエクスポート
     export_admins_with_permissions: 管理者の役割と権限のエクスポート
@@ -855,6 +1088,7 @@ ja:
     feature_not_available: この機能はご利用いただけません
     feature_sms_notification_description: キャンペーンの招待状とリマインダーのSMS通知を有効にする
     feature_superadmin_tenant_scoping_description: 無効にすると、スーパー管理者クエリはこのクライアントのデータには適用されません。
+    feature_use_new_communication_center_description: このクライアントには新しいコミュニケーションセンターのみを使用し、従来の通信の送信を停止してください。
     fields_level: レベル
     fields_level_description: レベル説明
     fields_level_name: レベル名
@@ -1121,6 +1355,7 @@ ja:
     import_title: CSVから主題をインポートする
     import_upload: アップロード
     import_users: インポートユーザー
+    in_progress: 進行中
     inactive: 活動休止中
     include_locales_label: 翻訳を含む
     include_locales_name: インクルード・ローカル
@@ -1399,6 +1634,7 @@ ja:
     model_params_thinking_effort_none: なし
     model_params_thinking_effort_tooltip: モデルが応答する前にどの程度推論を行うかを制御します。推論の度合いが高いほど、より詳細な回答が得られますが、時間がかかります。「なし」を選択すると、推論が完全に無効になります。
     model_params_title: 高度なモデル構成
+    moderate_scoring_lead_assessor_form: 主任評価者フォーム
     must_be_a_valid_url: URLが無効です。http または https プロトコルを含む完全な URL を指定してください
     name: 名前
     name_max_length: 名前は%{length}文字を超えてはいけません
@@ -1411,6 +1647,24 @@ ja:
     navigation_registration_codes: 登録コード
     navigation_skills_taxonomy: スキル分類法
     navigation_users: ユーザー
+    new_experience_badge: 新しい体験
+    new_experience_bullet_brief_rest: 評価中は、能力評価に関するガイダンスが画面に表示されます。
+    new_experience_bullet_brief_strong: スコアの横にある概要
+    new_experience_bullet_candidate_rest: その候補者に関するすべての評価フォームをまとめて。
+    new_experience_bullet_candidate_strong: 候補者1人、見解1つ
+    new_experience_bullet_moderation_rest: すべての評価者のスコアを並べて、最終決定を下す。
+    new_experience_bullet_moderation_strong: 数分でできるモデレーション
+    new_experience_footer_note: 新しいエクスペリエンスはまもなくすべてのユーザーのデフォルト設定になります。プロフィールの詳細画面からいつでも新しいエクスペリエンスに切り替えることができます。
+    new_experience_headline: 最初のレビューから最終承認まで、一貫した流れで進められる。
+    new_experience_notice_body: 評価者向けエクスペリエンスを刷新しました。今すぐお試しいただくか、後からプロフィール設定から有効にすることもできます。
+    new_experience_notice_maybe_later: 後で
+    new_experience_notice_title: 新規査定担当者募集中
+    new_experience_preview_alt: 新しい評価者エクスペリエンスのプレビュー
+    new_experience_sub_copy: 候補者、評価、審査、アセスメントセンターは、以前のように5つの画面を個別に操作するのではなく、1つの統合されたビューとして機能するようになりました。
+    new_experience_word_assessment_centre: アセスメントセンター：セッションを実施し、すべての科目を追跡する。
+    new_experience_word_candidate: 候補者1名、その候補者全員の評価結果をまとめて表示します。
+    new_experience_word_evaluate: 課題内容とあなたの採点結果を並べて評価してください。
+    new_experience_word_moderate: 中程度。すべての評価者が採点し、最終決定を下します。
     new_folder: 新しいフォルダ
     new_score: 新スコア
     no_assessments_found: 監査ID
@@ -1458,6 +1712,7 @@ ja:
     norms_title: ノーム
     not_completed: 未完成
     not_completed_tooltip: "%{completed}評価者が割り当てられますが、評価を完了したのは%{submitted}だけです"
+    not_started: 未着手
     notes: 備考
     nothing_assigned: 評価者は割り当てられていません
     nothing_assigned_tooltip: このユーザーには評価が割り当てられていません
@@ -1570,6 +1825,7 @@ ja:
         manage_messages: メッセージの管理
         manage_options: オプションの管理
         manage_report_approvals: レポート承認の管理
+        manage_uat: UATユーザーの管理
         manage_users: ユーザー管理
         participant_options: 参加者オプション
         report_options: レポートオプション
@@ -1898,6 +2154,7 @@ ja:
         title: 登録設定
       reports:
         manage: 管理
+        project_bulk_reports: プロジェクト一括レポート
         title: レポート
         view: 表示
       responseMeta:
@@ -2055,6 +2312,7 @@ ja:
     project_admins: プロジェクト管理者
     project_assessor: プロジェクト評価担当者
     project_features: プロジェクトの特徴
+    project_id: プロジェクトID
     project_ids: プロジェクトID
     project_ids_required: このレポートタイプでは、project_ids の指定が必須です
     project_licenses: プロジェクトライセンス
@@ -2114,6 +2372,7 @@ ja:
     projects_form_project_number: プロジェクト番号
     projects_form_subdomain: サブドメイン
     projects_form_title: プロジェクト
+    projects_general_settings_allow_data_access_to_bi: このプロジェクトでPower BIへのアクセスを許可する
     projects_general_settings_live_chat: ライブチャットを有効にする
     projects_general_settings_locales_label: ロケール
     projects_general_settings_project_number_label: プロジェクト番号
@@ -2344,6 +2603,21 @@ ja:
     report_approval_submit_or_approve_all: すべてを提出または承認する
     report_approvals: レポートの承認
     report_availability: 報告書入手可能性
+    report_builder_publish_confirm_content: これにより、既存の公開済みレポートが変更後のドラフト版で上書きされ、ユーザーが利用できるようになります。変更を公開してもよろしいですか？
+    report_builder_publish_confirm_title: このレポートを公開しますか？
+    report_builder_publish_failed: レポートは保存されましたが、公開に失敗しました。もう一度公開をお試しください。
+    report_builder_publish_success: レポートが正常に公開されました
+    report_builder_published_at: 最終更新日：{{date}}
+    report_builder_published_by: "{{name}}によって公開されました"
+    report_builder_save_and_publish: 保存して公開
+    report_builder_save_as_draft: 下書きとして保存
+    report_builder_save_failed: レポートの保存に失敗しました。もう一度お試しください。
+    report_builder_save_success: レポートが正常に保存されました
+    report_builder_unpublished_changes: 未公開の変更
+    report_builder_view_draft: 下書きを表示
+    report_builder_view_published: 公開済みを表示
+    report_builder_viewing_draft_message: これは報告書の草稿版です。公開されるまでは、参加者の皆様にはこのバージョンは表示されません。
+    report_builder_viewing_published_message: これはレポートの最新版です。作成ツールでの変更は、公開されるまでここには反映されません。
     report_condition_not_met: 評価%{required} %{relationship}必要ですが、持っているのは%{actual}
     report_conditions_not_met_detailed: "%{user}の報告は利用可能条件を満たしていません。%{conditions}"
     report_denied: "%{user}の報告は却下されました"
@@ -2358,6 +2632,11 @@ ja:
     report_on_hold: "%{user}のレポートは現在保留中です"
     report_owner: 所有者
     report_pdf_status: レポートのPDFステータス
+    report_pdf_unavailable: このレポートのPDF版はまだ入手できません。
+    report_preview_draft_notice: これはレポートのドラフト版であり、作成者からドラフト版の変更が公開されない限り、参加者は閲覧できません。
+    report_preview_draft_tag_tooltip: この報告書には変更案があります。クリックして変更案をご覧ください。
+    report_preview_view_draft: プレビュードラフト
+    report_preview_view_published: プレビュー版が公開されました
     report_review_abort_qc: QCを中止する
     report_review_approve: 承認
     report_review_approve_changes: 変更を承認する
@@ -2728,6 +3007,7 @@ ja:
     scoring_approval_score_approvals: AIスコアリング承認
     scoring_assessment: アセスメント
     scoring_assessment_scoring_type: アセスメント採点タイプ
+    scoring_assessor_number: 評価者 %{number}
     scoring_average: 平均
     scoring_campaign_scoring_variables: キャンペーン・スコアリング変数
     scoring_desc: キャンペーン要因が %{n} 個の上限を超えました。 要因を追加することはできません。 先に進む前に既存の要因を確認し、管理してください。
@@ -3118,15 +3398,19 @@ ja:
     status_details: 状況詳細
     statuses_accepted: 受諾
     statuses_cancelled: キャンセル
+    statuses_failed: 失敗した
     statuses_late_cancelled: レイト・キャンセル
     statuses_late_rescheduled: レイト・リスケジュール
     statuses_pending: 申請中
+    statuses_queued: キューに追加済み
     statuses_requested_cancellation: キャンセルのお申し出
     statuses_requested_cancellation_rejected: キャンセル拒否
     statuses_requested_rescheduling: リスケジュールのリクエスト
     statuses_requested_rescheduling_rejected: リスケジュール却下
     statuses_rescheduled: 予定変更
     statuses_scheduled: 予定
+    statuses_sent: 送信済み
+    statuses_skipped: スキップしました
     steps_basic_information: 基本情報
     steps_facilitators: ファシリテーター
     steps_invite_options: 招待オプション
@@ -3332,6 +3616,7 @@ ja:
     url_label: URL
     url_name: URL
     url_whitelisting: URLホワイトリスト登録
+    use_new_communication_center: 新しいコミュニケーションセンターを使用する
     used_tokens_input_tokens: 入力トークン
     used_tokens_output_tokens: 出力トークン
     used_tokens_thinking_tokens: 思考トークン

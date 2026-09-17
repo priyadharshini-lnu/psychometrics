@@ -9,9 +9,9 @@ LibraryStore.prototype = new EventEmitter()
 
 _.extend(LibraryStore.prototype, {
 
-  openPopup (socket, onSelect, type = '') {
+  openPopup (transport, onSelect, type = '') {
     this.onSelect = onSelect
-    this.socket = socket
+    this.transport = transport
     this.type = type
     this.loadFolder(0)
   },
@@ -20,7 +20,7 @@ _.extend(LibraryStore.prototype, {
     const params = {
       without_notification: true, with_parent: parentId, search_query: searchQuery, with_type: this.type,
     }
-    this.socket.perform('library_index', params, (data) => {
+    this.transport.perform('library_index', params, (data) => {
       this.data = data
       this.show = true
       this.update()

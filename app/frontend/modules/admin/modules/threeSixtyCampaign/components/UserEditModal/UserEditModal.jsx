@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
-  Modal, Button, Form, Input, Select,
+  Modal, Button, Form, Input, Select, Checkbox, Space, Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import { LoadingOutlined, CheckOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { LoadingOutlined, CheckOutlined, InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { isSuperAdmin } from '~/core/currentUser'
 import ErrorAlertBox from '~/components/ErrorAlertBox'
 import { getFeatures } from '~/core/config'
@@ -24,6 +24,7 @@ function UserEditModal ({
     lastName,
     currentJobRole,
     targetJobRole,
+    isUat,
   },
   user,
   currentUser,
@@ -159,6 +160,23 @@ function UserEditModal ({
         </Form.Item>
         <Form.Item label="Last Name">
           <Input value={lastName} name="lastName" onChange={handleInputChange} />
+        </Form.Item>
+        <Form.Item
+          label={(
+            <Space size={4}>
+              <span>{I18n.t('admin.campaign_users_uat_label')}</span>
+              <Tooltip title={I18n.t('admin.campaign_users_uat_tooltip')}>
+                <span>
+                  <InfoCircleOutlined />
+                </span>
+              </Tooltip>
+            </Space>
+          )}
+          extra={I18n.t('admin.campaign_users_uat_readonly_hint')}
+        >
+          <Checkbox checked={Boolean(isUat)} disabled>
+            {I18n.t('admin.campaign_users_uat_description')}
+          </Checkbox>
         </Form.Item>
         {skillRaterEnabled && (
           <>

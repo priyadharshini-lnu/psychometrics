@@ -214,6 +214,8 @@ pt:
               inclusion: Localidade incorrecta
             password:
               too_short: A palavra-passe é demasiado curta. É necessário um mínimo de %{count} caracteres
+            uat:
+              invalid: 'O UAT deve ser um dos seguintes: %{accepted_values} ou em branco.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ pt:
               invalid_reports_header: Cabeçalho inválido, retirar cabeçalho do ficheiro de amostra
               manager_not_found: 'Linha %{row_number}: o gestor com o correio eletrónico %{email} não está presente na campanha ou no CSV'
               not_enough_licenses: A importação requer %{required_count} licenças, mas apenas %{available_count} estão disponíveis. Por favor, reduza o número de novos usuários ou adicione mais licenças antes de importar.
+              not_enough_uat_licenses: A importação requer %{required_count} licenças de teste UAT, mas apenas %{available_count} estão disponíveis. Por favor, reduza o número de novos usuários UAT ou aumente o limite de uso UAT antes de importar.
               user_update_failed: A atualização do utilizador falhou para %{email} com o erro "%{error}
             locale:
               inclusion: Localidade incorrecta
@@ -943,7 +946,9 @@ pt:
         import_sms_invites: Importar convite SMS
         import_users: Importar utilizadores
         migrate_assessment_translations: Avaliação Tradução migração
+        migrate_communication_center: Migração do Centro de Comunicações
         normalize_factor_scores: Normalizar as pontuações dos factores
+        project_bulk_download_reports: Relatórios de download em massa do projeto
         project_compact_completion_status_export: Exportação compacta do status de conclusão
         project_completion_status_export: Status de conclusão Exportar
         regenerate_assessment_transcriptions: Regenerar transcrições de avaliação
@@ -986,6 +991,8 @@ pt:
     errors: Erros
     invalid_job: Esta notificação corresponde a um registo eliminado
     mark_as_read: Marcar todas as leituras
+    migrate_communication_center:
+      client_not_found: Cliente com id=%{id} não encontrado
     more: Mais
     results: Resultados
     super_admin:
@@ -1322,7 +1329,6 @@ pt:
     privacy_notice_link: <a href="%{privacy_url}">Aviso de Privacidade
     registration:
       description: Preencha os dados abaixo para se registrar e criar uma nova conta
-      email_hint: Respeitamos a sua privacidade e não toleramos spam. Nunca forneceremos as suas informações a terceiros
       first_name: Nome próprio
       first_name_placeholder: Insira o nome próprio
       have_account: Já tem uma conta?
@@ -2969,6 +2975,7 @@ pt:
     end_date: Data final
     not_enough_license: "'%{client_name}' não tem licenças suficientes para '%{report_name}'"
     not_enough_license_count: Não existem licenças suficientes, contacte o administrador
+    not_enough_uat_license: "'%{client_name}' não possui licenças de teste UAT suficientes para '%{report_name}'. Aumente o limite de uso de UAT dessa licença ou entre em contato com o administrador."
     number: Número
     overuse_number: Subsídio por utilização excessiva
     project_specific: Projeto Específico
@@ -2983,6 +2990,11 @@ pt:
       idp: PDI
       proctoring: Controlo de qualidade
       threesixty: Três sessenta
+    uat_usage_limit_credits: créditos de teste UAT
+    uat_usage_limit_credits_hint: O monitoramento é cobrado em créditos, portanto, este é o número máximo de créditos que os usuários de testes UAT podem consumir desta licença (máximo de 300).
+    uat_usage_limit_users: usuários de teste UAT
+    uat_usage_limit_users_hint: Número máximo de usuários de teste UAT que podem ser criados com esta licença (máximo de 30). Usuários de teste nunca consomem licenças faturáveis.
+    uat_used: Licenças utilizadas no teste de aceitação do usuário (UAT)
     used_number: Licenças usadas
     used_out_of: "%{used} de %{total}"
   lti:
@@ -3959,8 +3971,8 @@ pt:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Permitir que os utilizadores enviem várias respostas
     png: PNG

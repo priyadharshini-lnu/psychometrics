@@ -33,7 +33,7 @@ module AdminJobs
       job_record.update(total_tasks: record_count)
       CsvUtf8.write(file_path) do |csv|
         write_csv_headers(csv)
-        max_count = campaign.campaign_users.count
+        max_count = campaign.campaign_users.joins(:user).where(users: { is_uat: false }).count
         limit = 100
         iterations = (max_count / limit) + 1
         iterations.times do |iteration|

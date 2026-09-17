@@ -214,6 +214,8 @@ en:
               inclusion: Wrong locale
             password:
               too_short: Password is too short. Minimum %{count} character required
+            uat:
+              invalid: 'UAT must be one of: %{accepted_values}, or blank'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ en:
               invalid_reports_header: Invalid header, take header from sample file
               manager_not_found: 'Row %{row_number}: Manager with email %{email} is not present in the campaign or in CSV'
               not_enough_licenses: Import requires %{required_count} licenses, but only %{available_count} are available. Please reduce the number of new users or add more licenses before importing.
+              not_enough_uat_licenses: Import requires %{required_count} UAT test licenses, but only %{available_count} are available. Please reduce the number of new UAT users or raise the UAT usage limit before importing.
               user_update_failed: User update failed for %{email} with error '%{error}'
             locale:
               inclusion: Wrong locale
@@ -943,7 +946,9 @@ en:
         import_sms_invites: Import SMS Invite
         import_users: Import Users
         migrate_assessment_translations: Assessment Translation migration
+        migrate_communication_center: Communication Center Migration
         normalize_factor_scores: Normalize Factor Scores
+        project_bulk_download_reports: Project Bulk Download Reports
         project_compact_completion_status_export: Compact Completion Status Export
         project_completion_status_export: Completion Status Export
         regenerate_assessment_transcriptions: Regenerate Assessment Transcriptions
@@ -986,6 +991,8 @@ en:
     errors: Errors
     invalid_job: This notification corresponds to deleted record
     mark_as_read: Mark all read
+    migrate_communication_center:
+      client_not_found: Client with id=%{id} not found
     more: More
     results: Results
     super_admin:
@@ -1322,7 +1329,6 @@ en:
     privacy_notice_link: <a href="%{privacy_url}">Privacy Notice</a>
     registration:
       description: Fill in the details below to register and create a new account
-      email_hint: We respect your privacy and do not tolerate spam. We will never give away your information to any third party
       first_name: First Name
       first_name_placeholder: Enter First Name
       have_account: Already have an account?
@@ -2996,6 +3002,7 @@ en:
     end_date: End date
     not_enough_license: "'%{client_name}' does not have enough licenses for '%{report_name}'. Please check if you have enough project or client licenses available, or contact the administrator."
     not_enough_license_count: Not enough licenses, please contact administrator
+    not_enough_uat_license: "'%{client_name}' does not have enough UAT test licenses for '%{report_name}'. Increase the UAT usage limit on that license, or contact the administrator."
     number: Number
     overuse_number: Over use allowance
     project_specific: Project Specific
@@ -3010,6 +3017,11 @@ en:
       idp: IDP
       proctoring: Proctoring
       threesixty: Threesixty
+    uat_usage_limit_credits: UAT test credits
+    uat_usage_limit_credits_hint: Proctoring is billed in credits, so this is the maximum credits UAT test users may consume from this license (max 300).
+    uat_usage_limit_users: UAT test users
+    uat_usage_limit_users_hint: Maximum UAT test users that may be created against this license (max 30). Test users never consume billable licenses.
+    uat_used: UAT used licenses
     used_number: Used licenses
     used_out_of: "%{used} out of %{total}"
   lti:
@@ -3986,8 +3998,8 @@ en:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Allow users to submit multiple responses
     png: PNG

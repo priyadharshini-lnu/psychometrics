@@ -575,6 +575,10 @@ es-ES:
       enabled: Activado
       loading: Carga...
       save: Salvar
+    communication_center:
+      errors:
+        terminal_state: La entrega ya se encuentra en fase terminal.
+        update_translation: No se pudo actualizar la traducción para esta configuración regional.
     communication_settings: Ajustes
     communications:
       create:

@@ -6,7 +6,7 @@ module Reports
 
     audited
 
-    belongs_to :report
+    belongs_to :report, touch: true
     belongs_to :ai_assistant, class_name: 'AI::Assistant'
 
     tenant_config has_global_records: true, optional: true

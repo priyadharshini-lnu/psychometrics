@@ -37,8 +37,10 @@ id:
     campaign: Kampanye
     campaign_id: ID Kampanye
     cancel: Batal
+    candidates: Kandidat
     category: Kategori
     change_password: Ubah Kata Sandi
+    clear: Jernih
     clear_filters: Hapus Filter
     client: Klien
     close: Tutup
@@ -86,11 +88,15 @@ id:
     end_date: Tanggal akhir
     ending_proctoring_session_msg: Kami akan mengakhiri sesi pengawasan ini. <p>Mohon tunggu sebentar sementara kami menyimpan jawaban Anda dan mengalihkan Anda kembali ke halaman beranda.</p>
     error: Kesalahan
+    errors: Kesalahan
     export: Ekspor
     failed: Gagal
     'false': false
     file: Berkas
     file_upload_button: Pilih Berkas
+    filename: Nama file
+    files: Berkas
+    filters: Filter
     first_name: Nama depan
     formal_learning: Pembelajaran Formal
     generate: Generate
@@ -105,6 +111,7 @@ id:
     impersonation_banner_aria_label: Sesi peniruan identitas aktif
     impersonation_end_session: KELUAR
     import: Mengimpor
+    in_progress: Sedang Berlangsung
     inactive: Aktif
     internet_disconnected_message: Mencoba menyambung kembali, periksa koneksi internet Anda.
     is_impersonating: sedang menyamar
@@ -112,6 +119,7 @@ id:
     issuer_claim_label: Penerbit (iss)
     jwt_claims_details: Rincian Klaim JWT
     key_id_claim_label: ID Kunci (kid)
+    languages: Bahasa
     last_name: Nama belakang
     last_updated: Terakhir Diperbarui
     learning_on_the_job_label: Belajar di Tempat Kerja
@@ -151,6 +159,7 @@ id:
     no_results_found: Tidak ditemukan hasil
     none: Tidak
     not_requested: Belum Diminta
+    not_set: Tidak Diatur
     ok: Ok
     options: Pilihan
     overview: Gambaran Umum
@@ -215,12 +224,14 @@ id:
     reset_password: Atur Ulang Kata Sandi
     response_text: Teks Tanggapan
     return_url_not_whitelisted: URL pengembalian tidak termasuk dalam daftar putih untuk aplikasi ini.
+    review: Tinjauan
     rte_paste_content_exceeds_char_limit: Teks melebihi batas karakter {{maxCharacterLimit}} dan tidak dapat ditempelkan.
     rte_paste_content_exceeds_word_limit: Teks melebihi batas kata {{maxWordLimit}} dan tidak dapat ditempelkan.
     run: Lari
     save: Simpan
     saving_video: Menyimpan Video... Tolong jangan tutup atau refresh browser
     schedule_time: Jadwal Waktu
+    scheduled: Terjadwal
     scoring_details: Rincian Skor
     search: Pencarian
     select_camera: Pilih Kamera

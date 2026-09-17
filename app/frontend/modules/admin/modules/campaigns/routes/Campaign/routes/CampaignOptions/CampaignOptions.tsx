@@ -655,24 +655,20 @@ const CampaignOptions: React.FC<Props> = ({
           {...parametersForWorkshopInviteRequiresPreworkCompletionField()}
         />
 
-        {!features?.disable_meeting_recording && (
-          options.allowVideoCallRecording && (
-            <>
-              <Option
-                label={I18n.t('admin.enable_video_call_recording')}
-                {...parametersForField('enableVideoCallRecording')}
-              />
-              <Option
-                label={I18n.t('admin.hide_participant_video')}
-                {...parametersForField('hideParticipantVideo')}
-              />
-              <Option
-                label={I18n.t('admin.disable_transcript_download')}
-                {...parametersForField('disableTranscriptDownload')}
-              />
-            </>
-          )
+        {!features?.disable_meeting_recording && options.allowVideoCallRecording && (
+          <Option
+            label={I18n.t('admin.enable_video_call_recording')}
+            {...parametersForField('enableVideoCallRecording')}
+          />
         )}
+        <Option
+          label={I18n.t('admin.hide_participant_video')}
+          {...parametersForField('hideParticipantVideo')}
+        />
+        <Option
+          label={I18n.t('admin.disable_transcript_download')}
+          {...parametersForField('disableTranscriptDownload')}
+        />
 
         <Option
           label={I18n.t('admin.show_watermark')}
@@ -717,6 +713,20 @@ const CampaignOptions: React.FC<Props> = ({
         />
 
         {options.instructionsEnabled && <Instructions projectId={parsedProjectId} campaignId={parsedCampaignId} />}
+
+        {options.manageWebhookSettings && (
+          <Option
+            label={I18n.t('admin.disable_webhooks')}
+            {...parametersForField('disableWebhooks')}
+            actionable={(
+              <Tooltip title={I18n.t('admin.disable_webhooks_hint')}>
+                <span>
+                  <InfoCircleOutlined />
+                </span>
+              </Tooltip>
+            )}
+          />
+        )}
 
         <div className="mb-8 mt-8">
           <h4>{I18n.t('shared.description')}</h4>

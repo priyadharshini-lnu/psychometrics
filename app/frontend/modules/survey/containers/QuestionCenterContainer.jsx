@@ -11,6 +11,7 @@ import { DisplayExceptionModal } from '~/components/DisplayExceptionModal'
 import { SessionTimeoutModal } from '~/components/SessionTimeoutModal'
 import { DefaultAntThemeWrapper } from '~/glint'
 import ErrorModal from '~/components/ErrorModal'
+import Library from '~/libs/library'
 
 class AppContainer extends Component {
   componentDidMount () {
@@ -43,6 +44,8 @@ class AppContainer extends Component {
             <DisplayExceptionModal />
             <SessionTimeoutModal />
             <ErrorModal />
+            {/* TODO: Check if library component is needed or why it was missing */}
+            <Library />
           </Provider>
         </DefaultAntThemeWrapper>
       </Router>

@@ -37,8 +37,10 @@ sl:
     campaign: Kampanja
     campaign_id: ID kampanje
     cancel: Prekliči
+    candidates: Kandidati
     category: Kategorija
     change_password: Spremeni geslo
+    clear: Jasno
     clear_filters: Počistite filtre
     client: Stranka
     close: Zapri
@@ -86,11 +88,15 @@ sl:
     end_date: Datum zaključka
     ending_proctoring_session_msg: Zaključujemo nadzorovano izpolnjevanje vprašalnika. <p>Prosimo, počakajte, medtem ko shranjujemo vaše odgovore in vas preusmerjamo nazaj na začetno stran.</p>
     error: Napaka
+    errors: Napake
     export: Izvoz
     failed: Neuspelo
     'false': false
     file: Datoteka
     file_upload_button: Izberi datoteko
+    filename: Ime datoteke
+    files: Datoteke
+    filters: Filtri
     first_name: Ime
     formal_learning: Formalno učenje
     generate: Ustvari
@@ -105,6 +111,7 @@ sl:
     impersonation_banner_aria_label: Aktivna seja poosebitve
     impersonation_end_session: Izhod
     import: Uvoz
+    in_progress: V teku
     inactive: Neaktiven
     internet_disconnected_message: Ponovno vzpostavljamo povezavo. Preverite internetno povezavo.
     is_impersonating: se izdaja za
@@ -112,6 +119,7 @@ sl:
     issuer_claim_label: Izdajatelj (iss)
     jwt_claims_details: Podrobnosti o zahtevkih JWT
     key_id_claim_label: ID ključa (kid)
+    languages: Jeziki
     last_name: Priimek
     last_updated: Zadnja posodobitev
     learning_on_the_job_label: Učenje na delovnem mestu
@@ -151,6 +159,7 @@ sl:
     no_results_found: Ni bilo najdenih rezultatov
     none: Nobena
     not_requested: Še ni zahtevano
+    not_set: Ni nastavljeno
     ok: Ok
     options: Možnosti
     overview: Pregled
@@ -215,12 +224,14 @@ sl:
     reset_password: Ponastavitev gesla
     response_text: Odgovor
     return_url_not_whitelisted: URL za vrnitev ni na belem seznamu za to aplikacijo.
+    review: Pregled
     rte_paste_content_exceeds_char_limit: Besedilo presega omejitev znakov {{maxCharacterLimit}} in ga ni mogoče prilepiti.
     rte_paste_content_exceeds_word_limit: Besedilo presega omejitev besed {{maxWordLimit}} in ga ni mogoče prilepiti.
     run: Teči
     save: Shrani
     saving_video: Shranjevanje videa... Prosimo, ne zapirajte ali osvežujte brskalnika
     schedule_time: Urnik časa
+    scheduled: Načrtovano
     scoring_details: Podrobnosti o točkovanju
     search: Iskanje
     select_camera: Izberite kamero

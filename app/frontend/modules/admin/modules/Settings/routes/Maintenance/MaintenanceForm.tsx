@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import {
   Form, Switch, DatePicker, Button, Flex,
-} from 'antd'
+} from '@thetalententerprise/glint'
 import dayjs from '~/utils/dayjs'
 import ResourceForm from '~/components/ResourceForm'
 import TimeZoneSelect from '~/components/TimeZoneSelect'
@@ -21,6 +21,7 @@ interface MaintenanceSetting {
 interface MaintenanceFormProps {
   subsystemKey: string
   maintenanceSetting?: MaintenanceSetting
+  isEditing: boolean
   onSuccess: () => void
   onCancel: () => void
 }
@@ -43,6 +44,7 @@ const formatTimeForApi = (time: dayjs.Dayjs | null, timezone: string) => {
 export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
   subsystemKey,
   maintenanceSetting,
+  isEditing,
   onSuccess,
   onCancel,
 }) => {
@@ -102,6 +104,7 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
           labelAlign: 'left',
           preserve: false,
           layout: 'vertical',
+          disabled: !isEditing,
         }}
         request={{
           createResource,
@@ -149,6 +152,7 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
                 style={{ width: '100%' }}
                 placeholder={I18n.t('admin.select_start_time')}
                 disabledDate={date => date.isBefore(dayjs(), 'day')}
+
               />
             </Form.Item>
             <Form.Item
@@ -188,22 +192,24 @@ export const MaintenanceForm: React.FC<MaintenanceFormProps> = ({
           </>
         )}
       </ResourceForm>
-      <Flex justify="end" gap="small">
-        <Button onClick={onCancel}>
-          {I18n.t('shared.cancel')}
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => form.submit()}
-          loading={
-            maintenanceSetting
-              ? isLoading(`update@${maintenanceSetting.id}`)
-              : false
-          }
-        >
-          {I18n.t('shared.save')}
-        </Button>
-      </Flex>
+      {isEditing && (
+        <Flex justify="end" gap="small">
+          <Button onClick={onCancel}>
+            {I18n.t('shared.cancel')}
+          </Button>
+          <Button
+            type="primary"
+            onClick={() => form.submit()}
+            loading={
+              maintenanceSetting
+                ? isLoading(`update@${maintenanceSetting.id}`)
+                : false
+            }
+          >
+            {I18n.t('shared.save')}
+          </Button>
+        </Flex>
+      )}
     </Flex>
   )
 }

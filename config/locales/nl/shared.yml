@@ -37,8 +37,10 @@ nl:
     campaign: Campagne
     campaign_id: Campagne-ID
     cancel: Annuleren
+    candidates: Kandidaten
     category: Categorie
     change_password: Wachtwoord wijzigen
+    clear: Duidelijk
     clear_filters: Filters wissen
     client: Klant
     close: Sluiten
@@ -86,11 +88,15 @@ nl:
     end_date: Einddatum
     ending_proctoring_session_msg: We ronden de toezichtsessie af. <p>Even geduld a.u.b. terwijl we uw antwoorden opslaan en u terugleiden naar de startpagina.</p>
     error: Fout
+    errors: Fouten
     export: Exporteer
     failed: Mislukt
     'false': false
     file: Bestand
     file_upload_button: Selecteer bestand
+    filename: Bestandsnaam
+    files: Bestanden
+    filters: Filters
     first_name: Voornaam
     formal_learning: Formeel Leren
     generate: Genereren
@@ -105,6 +111,7 @@ nl:
     impersonation_banner_aria_label: Actieve imitatiesessie
     impersonation_end_session: Uitgang
     import: Importeren
+    in_progress: In behandeling
     inactive: Inactief
     internet_disconnected_message: Probeer opnieuw verbinding te maken. Controleer uw internetverbinding.
     is_impersonating: is zich voordoen als
@@ -112,6 +119,7 @@ nl:
     issuer_claim_label: Emittent (iss)
     jwt_claims_details: Gegevens over de vorderingen van JWT
     key_id_claim_label: Sleutel-ID (kid)
+    languages: Talen
     last_name: Achternaam
     last_updated: Laatst bijgewerkt
     learning_on_the_job_label: Leren op de werkvloer
@@ -151,6 +159,7 @@ nl:
     no_results_found: Geen resultaten gevonden
     none: Geen
     not_requested: Nog niet aangevraagd
+    not_set: Niet ingesteld
     ok: Ok
     options: Opties
     overview: Overzicht
@@ -215,12 +224,14 @@ nl:
     reset_password: Wachtwoord opnieuw instellen
     response_text: Antwoordtekst
     return_url_not_whitelisted: De retour-URL staat niet op de whitelist voor deze applicatie.
+    review: Beoordeling
     rte_paste_content_exceeds_char_limit: Tekst overschrijdt de tekenlimiet van {{maxCharacterLimit}} en kan niet worden geplakt.
     rte_paste_content_exceeds_word_limit: Tekst overschrijdt de woordlimiet van {{maxWordLimit}} en kan niet worden geplakt.
     run: Ren
     save: Sla
     saving_video: Video opslaan... Sluit of ververs alstublieft de browser niet
     schedule_time: Tijd plannen
+    scheduled: Gepland
     scoring_details: Scoredetails
     search: Zoek op
     select_camera: Kies een camera

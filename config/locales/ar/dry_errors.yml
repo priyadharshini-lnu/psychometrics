@@ -36,6 +36,8 @@ ar:
         ai_assisted_idp_feature_error: لا يمكن أن يكون صحيحا إذا تم تعطيل ميزة مساعدي الذكاء الاصطناعي
       client_sso_settings:
         sso_enforced_requires_enabled: لا يمكن تفعيل هذه الميزة ما لم يتم تفعيل ميزة تسجيل الدخول الموحد (SSO)
+      communication_center:
+        invalid_locale: ليست لغة مدعومة
       create_superadmin:
         uniq_email: يجب أن يكون البريد الإلكتروني موحدا.
       development_actions:

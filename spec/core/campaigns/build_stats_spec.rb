@@ -16,6 +16,10 @@ describe Campaigns::BuildStats do
     create(:campaign_user, campaign: campaign, status: :completed, active: false)
   end
 
+  let!(:uat_campaign_user) do
+    create(:campaign_user, campaign: campaign, status: :completed, user: create(:user, is_uat: true))
+  end
+
   let!(:user_assessment) do
     create(
       :user_assessment,

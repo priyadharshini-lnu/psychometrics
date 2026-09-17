@@ -19,6 +19,9 @@ class LicenseUsage < ApplicationRecord
 
   enum :status, { active: 0, inactive: 1 }
 
+  scope :uat, -> { where(is_uat: true) }
+  scope :billable, -> { where(is_uat: false) }
+
   ransack_searchable_json_fields :subject_name, :campaign_name, :subject_email, column: :extras
   ransack_alias :subject, :subject_name_or_subject_email_or_campaign_name
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|

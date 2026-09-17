@@ -114,10 +114,25 @@ module Campaigns
                         find_by(campaign: campaign, kind: :invitation)
         return communication.emails.create(campaign_user_id: campaign_user.id) if communication
 
+        delivery = new_users_communication_delivery
+        if delivery
+          return CommunicationEmail.create!(communication_delivery: delivery, campaign_user: campaign_user,
+                                            user: user)
+        end
+
         if through_registration?
           raw_token = ::Users::FindOrCreateInvitationToken.call!(user)
           InvitationMailer.invite(user.id, user.project_id, raw_token).deliver_later
         end
+      end
+
+      def new_users_communication_delivery
+        return unless project.client.feature_enabled?(:use_new_communication_center)
+
+        CommunicationDelivery.joins(:communication_template).
+          where(campaign_id: campaign.id, recipients: :new_users, communication_templates: { kind: 'invitation' }).
+          where.not(status: %i[cancelled failed]).
+          order(created_at: :desc).first
       end
 
       def through_registration?

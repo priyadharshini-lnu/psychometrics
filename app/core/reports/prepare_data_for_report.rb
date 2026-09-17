@@ -9,7 +9,8 @@ module Reports
       @project      = args[:project]
       @membership   = args[:membership]
       @user_report = args[:user_report]
-      @report = args[:report] || @user_report.report
+      report = args[:report] || @user_report.report
+      @report = report.effective_reader(draft: args[:view_draft].present?)
       @locale = args[:locale]
       @current_user = args[:current_user]
       @lang = args[:lang] || @locale

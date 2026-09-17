@@ -27,6 +27,8 @@ module WebhookSubscriptions
     end
 
     def call
+      return broadcast(:ok) if campaign_webhooks_disabled?
+      return broadcast(:ok) if uat_event?
       return broadcast(:ok) unless project.webhooks.active.not_deleted.exists? || webhook
 
       if webhook
@@ -78,6 +80,34 @@ module WebhookSubscriptions
       return true unless assessment
 
       webhook.assessment_ids.exclude?(assessment.id.to_s)
+    end
+
+    # Fast path: skip enqueuing entirely when the campaign already has webhooks disabled.
+    # Delivery-time re-checks (WebhookSubscriptions::DeliverySuppressed) remain authoritative
+    # for events queued before the flag was toggled on.
+    def campaign_webhooks_disabled?
+      campaign = data[:campaign] || data['campaign']
+      campaign.respond_to?(:disable_webhooks?) && campaign.disable_webhooks?
+    end
+
+    def uat_event?
+      users_from_event.any?(&:is_uat?)
+    end
+
+    def users_from_event
+      users = []
+
+      users << record if record.is_a?(User)
+      users << record.user if record.respond_to?(:user)
+      users << record.subject if record.respond_to?(:subject)
+      users << record.evaluator if record.respond_to?(:evaluator)
+
+      users += %i[subject user evaluator].filter_map do |key|
+        value = data[key] || data[key.to_s]
+        value if value.is_a?(User)
+      end
+
+      users.compact.uniq
     end
   end
 end

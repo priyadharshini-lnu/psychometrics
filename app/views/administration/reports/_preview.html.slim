@@ -1,5 +1,6 @@
+- preview_report = resource.effective_reader(draft: !@viewing_published)
 #report_preview[class="#{params[:export] ? '' : 'html_preview'}"
-  data-data="#{ReportSerializer.new(context: { piped_text_context: {}, include: '**' }).serialize(resource).to_json}"
+  data-data="#{ReportSerializer.new(context: { piped_text_context: {}, include: '**', lang: params[:lang] }).serialize(preview_report).to_json}"
   data-user-report-data='{}']
 
 = vite_javascript_tag 'entrypoints/report/preview.jsx'

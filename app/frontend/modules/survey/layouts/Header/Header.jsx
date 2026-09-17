@@ -12,7 +12,6 @@ import {
 import { secondsToDayHoursAndMinutes } from '~/utils/time'
 import Block from '~/modules/survey/models/Block'
 import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
-import { perform } from '~/modules/survey/core/temp/socket'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './Header.less'
 import { Tabs } from './Tabs'
@@ -35,7 +34,7 @@ const Header = (props) => {
     blocksWithQuestions, instructions, openCampaignFactorsModal,
     saveAssessment, builder, openMapNorms, openCreateByTemplate,
     openDataSheetModal, openImportQuestionsModal, openSettings, openFlow, createBlock,
-    exportQuestions,
+    exportQuestions, fetchNorms,
     assessment, assessment: {
       extra, saving, defaultLanguage, translations_migrated, category,
     },
@@ -71,8 +70,8 @@ const Header = (props) => {
   }
 
   const showMappingNorms = () => {
-    perform('assessment_norms', { without_notification: true }, (data) => {
-      openMapNorms({ data })
+    fetchNorms(assessment.id).then(({ response }) => {
+      openMapNorms({ data: response })
     })
   }
 

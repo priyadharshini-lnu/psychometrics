@@ -218,6 +218,15 @@ id:
     assessor_assessments_reset_successfully: Mengatur ulang evaluasi untuk subjek dengan email "%{subjectEmail}" berhasil.
     assessor_assessments_subject_email: Email subjek
     assessor_assessments_subject_name: Nama subjek
+    assessor_campaign_users_awaiting_moderation: Menunggu moderasi
+    assessor_campaign_users_awaiting_moderation_subtitle: siap untuk konsolidasi
+    assessor_campaign_users_candidates_subtitle: ditugaskan kepada Anda
+    assessor_campaign_users_completed: Selesai
+    assessor_campaign_users_completed_subtitle: ditandatangani
+    assessor_campaign_users_in_progress: Sedang berlangsung
+    assessor_campaign_users_in_progress_subtitle: sedang dinilai
+    assessor_campaign_users_not_started: Belum dimulai
+    assessor_campaign_users_not_started_subtitle: evaluasi
     assessor_campaigns_statuses_completed: Selesai
     assessor_campaigns_statuses_in_progress: Sedang Berlangsung
     assessor_campaigns_statuses_not_started: Belum Dimulai
@@ -226,6 +235,20 @@ id:
     assessor_create_assessor: Tambahkan Penilai
     assessor_dashboard: Dasbor Penilai
     assessor_email: Email Penilai
+    assessor_evaluation: Evaluasi Penilai
+    assessor_evaluation_by_campaign: Oleh Kampanye
+    assessor_evaluation_by_participant: Oleh Peserta
+    assessor_evaluation_candidate: Calon
+    assessor_evaluation_candidates: Kandidat
+    assessor_evaluation_completed: Evaluasi selesai
+    assessor_evaluation_date_range: Tanggal Mulai – Tanggal Akhir
+    assessor_evaluation_moderation_waiting: Moderasi menunggu
+    assessor_evaluation_tour_profile_description: Akun, peran, dan bahasa Anda, serta tombol untuk mengaktifkan pengalaman baru, dapat dilihat di sini. Buka untuk meninjau detail Anda atau keluar.
+    assessor_evaluation_tour_profile_title: Profil & pengaturan Anda
+    assessor_evaluation_tour_table_description: Buka baris mana pun untuk melihat penilaian mereka, lalu Evaluasi tanggapan mereka atau Moderasi skor akhir.
+    assessor_evaluation_tour_table_title: Pilih seorang kandidat
+    assessor_evaluation_tour_tabs_description: Beralih antara Berdasarkan Peserta (satu orang dalam satu waktu) dan Berdasarkan Kampanye.
+    assessor_evaluation_tour_tabs_title: Dua cara untuk bekerja
     assessor_evaluations: Evaluasi Penilai
     assessor_first_name: Nama Depan Penilai
     assessor_form: Formulir Penilai
@@ -233,18 +256,24 @@ id:
     assessor_last_name: Nama Belakang Penilai
     assessor_modals_import_body: Lihat fungsionalitas Ekspor untuk mengekstrak templat yang dapat digunakan untuk Mengimpor di sini.
     assessor_modals_import_title: Impor Penilai
+    assessor_new_experience: Pengalaman Baru
     assessor_overview: Ikhtisar
     assessor_placeholder: Cari Penilai...
     assessor_remove_confirmation: Apakah Anda yakin ingin menghapus penilai dengan email %{email} dari kampanye ini?
     assessor_remove_has_evaluations: Penilai ini memiliki %{evaluation_count} formulir penilaian yang ditugaskan. Semua evaluasi yang telah mereka isi akan hilang.
     assessor_remove_in_assessment_centers: Penilai ini merupakan bagian dari pusat penilaian %{workshop_count}. Melanjutkan proses akan menghapus mereka dari semua pusat penilaian.
-    assessor_statuses_completed: Selesai
-    assessor_statuses_not_completed: Tidak Selesai
-    assessor_subjects_statuses_completed: Selesai
-    assessor_subjects_statuses_in_progress: Sedang Berlangsung
-    assessor_subjects_statuses_not_started: Belum Dimulai
+    assessor_switch_to_classic: Beralih ke Klasik
     assessor_toolbar_export: Ekspor Penilai
     assessor_toolbar_import: Impor Penilai
+    assessor_tour_button: Wisata
+    assessor_try_new_experience: Cobalah Pengalaman Baru
+    assessor_user_assessment_name: Nama penilaian
+    assessor_user_candidate_id: ID Kandidat
+    assessor_user_evaluate: Mengevaluasi
+    assessor_user_evaluation: Evaluasi
+    assessor_user_evaluation_progress: Kemajuan Evaluasi
+    assessor_user_moderate: Skor sedang
+    assessor_user_moderation: Moderasi
     assessor_workshops: Pusat Penilaian
     assessors: Asesor
     assistant_toolbar_failed: Gagal menghasilkan output yang valid setelah beberapa kali percobaan.
@@ -312,6 +341,79 @@ id:
     bulk_assets_modal_title: Unggah berkas CSV dan ZIP
     bulk_export_assessments_file: File ekspor penilaian massal
     bulk_export_invalid_params: Parameter ekspor massal tidak valid
+    bulk_reports: Laporan massal
+    bulk_reports_all_of_year: Semua %{year}
+    bulk_reports_all_tags: Semua tag
+    bulk_reports_bundled_into_single: dikemas menjadi satu
+    bulk_reports_campaign_count_one: Kampanye %{count}
+    bulk_reports_campaign_count_other: Kampanye %{count}
+    bulk_reports_campaign_search_placeholder: Cari kampanye atau proyek...
+    bulk_reports_campaigns_shown_count: "%{selected} dipilih - %{shown} ditampilkan"
+    bulk_reports_campaigns_without_reports_warning: 'Kampanye terpilih tanpa laporan yang dikonfigurasi: %{count}. Kampanye ini akan dilewati.'
+    bulk_reports_candidate_abbreviation: kandidat.
+    bulk_reports_complete_every_step: Selesaikan setiap langkah untuk mengaktifkan
+    bulk_reports_date_range_required: Baik tanggal mulai maupun tanggal akhir diperlukan untuk melanjutkan.
+    bulk_reports_date_range_summary: Penilaian yang telah diselesaikan %{start} hingga %{end} akan disertakan.
+    bulk_reports_description: Buat satu tugas ekspor untuk beberapa kampanye. Pilih kampanye, pilih laporan dan bahasa yang ingin disertakan, tetapkan rentang tanggal, lalu kirimkan.
+    bulk_reports_deselect_all_shown: Batalkan pilihan semua yang ditampilkan
+    bulk_reports_download_notification_sent: Notifikasi unduhan telah dikirim.
+    bulk_reports_emailed_when_ready: dan akan dikirimkan melalui email kepada Anda setelah siap.
+    bulk_reports_end_date_placeholder: Pilih tanggal dan waktu berakhir
+    bulk_reports_end_date_required: Silakan pilih tanggal akhir.
+    bulk_reports_error_try_again: Terjadi kesalahan - coba lagi
+    bulk_reports_files_estimated_across: file diperkirakan di seluruh
+    bulk_reports_files_pending: File akan muncul di sini setelah pekerjaan selesai.
+    bulk_reports_generate_export: Hasilkan ekspor
+    bulk_reports_invalid_date_range: Tanggal akhir harus sama atau setelah tanggal mulai.
+    bulk_reports_job_details_title: 'Pekerjaan #%{id}'
+    bulk_reports_job_not_found: Pekerjaan ini tidak dapat ditemukan.
+    bulk_reports_job_queued: Pekerjaan antre
+    bulk_reports_languages_progress_one: Kumpulan laporan %{done} dari %{total}
+    bulk_reports_languages_progress_other: "%{done} dari %{total} melaporkan set"
+    bulk_reports_languages_set_for_all_one: Ditetapkan untuk semua laporan %{count}
+    bulk_reports_languages_set_for_all_other: Ditetapkan untuk semua laporan %{count}
+    bulk_reports_last_30_days: 30 hari terakhir
+    bulk_reports_last_90_days: 90 hari terakhir
+    bulk_reports_no_campaigns_found: Tidak ditemukan kampanye untuk proyek ini.
+    bulk_reports_no_campaigns_match_filters: Tidak ada kampanye yang sesuai dengan pencarian atau filter tag Anda.
+    bulk_reports_no_campaigns_selected: Tidak ada kampanye yang dipilih
+    bulk_reports_no_files_yet: Berkas untuk pekerjaan ini belum tersedia.
+    bulk_reports_no_language_selected: tidak ada bahasa yang dipilih
+    bulk_reports_no_languages_available: Tidak ada bahasa yang tersedia untuk laporan ini.
+    bulk_reports_no_reports_configured: Tidak satu pun dari kampanye yang dipilih memiliki laporan yang dikonfigurasi. Silakan kembali dan periksa konfigurasi kampanye Anda.
+    bulk_reports_no_reports_selected: Tidak ada laporan yang dipilih
+    bulk_reports_no_reports_selected_for_languages: Tidak ada laporan yang dipilih. Kembali dan pilih setidaknya satu laporan.
+    bulk_reports_no_tags_found: Tidak ditemukan tag.
+    bulk_reports_none_selected: Tidak ada yang dipilih
+    bulk_reports_queued_by: Diantrekan oleh
+    bulk_reports_queuing_jobs: Mengantri pekerjaan...
+    bulk_reports_ready_to_generate: Siap untuk menghasilkan
+    bulk_reports_report_count_one: Laporan %{count}
+    bulk_reports_report_count_other: "%{count} melaporkan"
+    bulk_reports_reports_and_languages: Laporan & bahasa
+    bulk_reports_review_submit: Tinjau & kirim
+    bulk_reports_review_submit_description: Periksa pekerjaan di bawah ini. Anda dapat kembali ke langkah mana pun untuk melakukan perubahan.
+    bulk_reports_select_all_shown: Pilih semua yang ditampilkan
+    bulk_reports_select_campaigns: Pilih kampanye
+    bulk_reports_select_campaigns_description: Cari berdasarkan nama atau proyek, dan persempit daftar dengan filter tag. Kemudian centang kampanye yang ingin disertakan.
+    bulk_reports_select_date_range: Pilih rentang tanggal
+    bulk_reports_select_date_range_description: Hanya sertakan penilaian yang diselesaikan dalam rentang waktu ini. Biarkan tanggal yang sudah ditentukan sebelumnya atau tetapkan tanggal yang tepat.
+    bulk_reports_select_languages: Pilih bahasa
+    bulk_reports_select_languages_description: Setiap laporan mendukung kumpulan bahasa yang berbeda. Pilih setidaknya satu bahasa untuk setiap laporan. Laporan akan dihasilkan dalam setiap bahasa yang Anda pilih.
+    bulk_reports_select_reports: Pilih laporan
+    bulk_reports_select_reports_description: Setiap laporan yang dipilih dihasilkan untuk setiap kandidat atau kampanye dalam ekspor, dalam setiap bahasa yang dipilih.
+    bulk_reports_selected_tags_count_one: Tag %{count} dipilih
+    bulk_reports_selected_tags_count_other: "%{count} tag dipilih"
+    bulk_reports_start_date_placeholder: Pilih tanggal dan waktu mulai
+    bulk_reports_start_date_required: Silakan pilih tanggal mulai.
+    bulk_reports_step_coming_soon: Langkah ini akan segera dilakukan.
+    bulk_reports_submit_error: Terjadi kesalahan. Silakan coba lagi.
+    bulk_reports_submit_success: Proses ekspor sedang dalam antrian. Anda akan menerima pemberitahuan saat pengunduhan siap.
+    bulk_reports_summary_description: Pembaruan saat Anda membangun pekerjaan
+    bulk_reports_summary_title: Ringkasan unduhan
+    bulk_reports_title: Laporan Massal
+    bulk_reports_view_downloads: Lihat unduhan laporan massal
+    bulk_reports_year_to_date: Tahun berjalan
     bulk_upload_ai_artifacts: Unggah Artefak AI Massal
     campaign: Kampanye
     campaign_admin: Admin Kampanye
@@ -383,6 +485,13 @@ id:
     campaign_templates_remove_confirm_success: Templat Kampanye '%{name}'' berhasil dihapus.
     campaign_templates_remove_confirm_title: Hapus Template Kampanye
     campaign_user_job_roles_cannot_be_same: Posisi pekerjaan yang ditargetkan harus berbeda dari posisi pekerjaan saat ini.
+    campaign_users_import_uat_hint: Atur kolom UAT ke Ya untuk pengguna uji yang harus dikecualikan dari lisensi, analitik, dan webhook.
+    campaign_users_uat_description: Tandai peserta ini sebagai pengguna uji UAT.
+    campaign_users_uat_label: Peserta UAT
+    campaign_users_uat_license_non_billable: Tidak dapat ditagih
+    campaign_users_uat_locked_hint: Peserta ini sudah ada. Status UAT ditetapkan saat peserta pertama kali dibuat dan tidak dapat diubah.
+    campaign_users_uat_readonly_hint: Status UAT ditetapkan saat pembuatan dan tidak dapat diubah.
+    campaign_users_uat_tooltip: Pengguna UAT adalah peserta nyata dalam pengujian. Mereka dapat mengikuti penilaian seperti biasa, tetapi dikecualikan dari penggunaan lisensi yang dikenakan biaya, analitik, dan webhook keluar.
     campaigns: Kampanye
     campaigns_convert_to_template: Mengonversi ke Templat
     campaigns_extend_time_success_message: Timer kampanye diperpanjang menjadi %{minutes} menit
@@ -469,6 +578,7 @@ id:
     clients_search_placeholder: Cari Klien
     closed: Tertutup
     code_required: Kode diperlukan
+    collapse_all: Ciutkan semua
     collapse_filters: Ciutkan Filter
     column_code: Kode
     column_invitation_status: Status Undangan
@@ -487,10 +597,130 @@ id:
     common_type: Jenis
     common_unselect_all: Batalkan pilihan semua
     communication_center: Pusat Komunikasi
+    communication_center_manage_translations_action: Kelola terjemahan
+    communication_center_migration_enqueued: Proses migrasi telah dimasukkan ke dalam antrian. Periksa log untuk melihat perkembangannya.
+    communication_center_migration_error: Permintaan migrasi gagal. Silakan coba lagi atau periksa log.
+    communication_center_migration_modal_intro: 'Perubahan berikut akan diterapkan saat Anda menjalankan migrasi untuk klien ini:'
+    communication_center_migration_modal_title: Pratinjau Migrasi Pusat Komunikasi
+    communication_center_migration_preview_button: Pratinjau Migrasi
+    communication_center_migration_run_button: Jalankan Migrasi
+    communication_center_migration_skipped: Sudah dimigrasi (akan dilewati)
+    communication_center_migration_would_assessments: Penilaian untuk migrasi
+    communication_center_migration_would_backfill: Email untuk mengisi kekosongan
+    communication_center_migration_would_cc_users: Pengguna CC akan bermigrasi
+    communication_center_migration_would_migrate: Komunikasi untuk migrasi
+    communication_center_migration_would_users: Pengguna terpilih untuk dimigrasi
+    communication_center_translation_updated_success: Terjemahan berhasil diperbarui.
+    communication_center_translations_modal_title: Kelola terjemahan
+    communication_deliveries: Pengiriman
+    communication_delivery: Penyampaian Komunikasi
+    communication_delivery_assessment_group_label: Kelompok penilai
+    communication_delivery_at_label: Tanggal & waktu pengiriman
+    communication_delivery_at_past_error: Tanggal pengiriman harus di masa mendatang.
+    communication_delivery_cancel_action: Membatalkan
+    communication_delivery_cancel_error: Gagal membatalkan pengiriman
+    communication_delivery_cc_users_label: Penerima CC
+    communication_delivery_completion_status_hint: Jika kode penyelesaian ditentukan, kode tersebut hanya akan dikirim jika penilaian pengguna memiliki kode status penyelesaian tersebut.
+    communication_delivery_completion_status_label: Kode status penyelesaian penilaian
+    communication_delivery_delay_hours_label: Penundaan (jam)
+    communication_delivery_details_title: Rincian pengiriman
+    communication_delivery_emails_sent_label: Terkirim
+    communication_delivery_emails_total_label: Jumlah total email
+    communication_delivery_end_date_label: Tanggal berakhir
+    communication_delivery_frequency_daily: Sehari-hari
+    communication_delivery_frequency_label: Frekuensi
+    communication_delivery_frequency_specific_weekdays: Hari kerja tertentu
+    communication_delivery_frequency_weekly: Mingguan
+    communication_delivery_interval_number_label: Selang
+    communication_delivery_interval_period_days: Hari-hari
+    communication_delivery_interval_period_hours: Jam
+    communication_delivery_interval_period_label: Periode interval
+    communication_delivery_interval_period_months: Bulan
+    communication_delivery_interval_period_weeks: Minggu
+    communication_delivery_new_button: Pengiriman baru
+    communication_delivery_recipients_all: Semua peserta
+    communication_delivery_recipients_label: Penerima
+    communication_delivery_recipients_new_assignment: Tugas baru
+    communication_delivery_recipients_new_users: Pengguna baru
+    communication_delivery_recipients_selected: Peserta terpilih
+    communication_delivery_rule_in_progress: Sedang berlangsung
+    communication_delivery_rule_label: Aturan pengiriman
+    communication_delivery_rule_not_completed: Tidak selesai
+    communication_delivery_rule_not_started: Belum dimulai
+    communication_delivery_rule_send_now: Kirim sekarang
+    communication_delivery_rule_specific_datetime: Tanggal & waktu spesifik
+    communication_delivery_search_users_placeholder: Cari berdasarkan nama atau email
+    communication_delivery_selected_assessments_label: Penilaian
+    communication_delivery_selected_users_label: Pilih pengguna
+    communication_delivery_start_date_label: Tanggal mulai
+    communication_delivery_template_label: Templat
+    communication_delivery_time_of_day_label: Waktu dalam sehari
+    communication_delivery_timezone_label: Zona waktu
+    communication_delivery_trigger_type_label: Jenis pemicu
+    communication_delivery_trigger_type_manual: Manual
+    communication_delivery_trigger_type_scheduled: Terjadwal
+    communication_delivery_weekday_fri: Jumat
+    communication_delivery_weekday_mon: Senin
+    communication_delivery_weekday_sat: Sabtu
+    communication_delivery_weekday_sun: Minggu
+    communication_delivery_weekday_thu: Kamis
+    communication_delivery_weekday_tue: Selasa
+    communication_delivery_weekday_wed: Rabu
+    communication_delivery_weekdays_label: Hari kerja
+    communication_email_created_at_label: Dibuat pada
+    communication_email_not_sent: Tidak terkirim
+    communication_email_preview_action: Pratinjau
+    communication_email_preview_date_label: Tanggal
+    communication_email_preview_from_label: Dari
+    communication_email_preview_title: Pratinjau email
+    communication_email_preview_to_label: Ke
+    communication_email_preview_warning: Ini adalah pratinjau ulang dari templat dan mungkin tidak mencerminkan konten persis dari email yang sebenarnya dikirim.
+    communication_email_recipient_email_label: Email penerima
+    communication_email_recipient_name_label: Nama penerima
+    communication_email_retrigger_action: Pemicu ulang
+    communication_email_retrigger_error: Gagal memicu ulang email.
+    communication_email_sent_at_label: Dikirim pada
+    communication_email_status_label: Status
+    communication_email_subject_label: Subjek
+    communication_emails: Email
+    communication_template: Templat Komunikasi
+    communication_template_body_label: Pesan
+    communication_template_create_new_action: Buat yang baru
+    communication_template_kind_label: Jenis komunikasi
+    communication_template_level_campaign: Kampanye
+    communication_template_level_client: Klien
+    communication_template_level_platform: Platform
+    communication_template_level_project: Proyek
+    communication_template_name_label: Nama templat
+    communication_template_new_button: Templat baru
+    communication_template_override_inherited_action: Mengganti warisan
+    communication_template_override_picker_search_placeholder: Cari templat untuk menimpa
+    communication_template_override_picker_title: Timpa templat yang diwarisi.
+    communication_template_recipients_all: Semua
+    communication_template_recipients_label: Penerima default
+    communication_template_recipients_new_assignment: Tugas baru
+    communication_template_recipients_new_users: Pengguna baru
+    communication_template_recipients_selected: Terpilih
+    communication_template_source_created: Dibuat
+    communication_template_source_label: Sumber
+    communication_template_source_override_of: Penggantian %{level}
+    communication_template_status_active: Aktif
+    communication_template_status_archived: Diarsipkan
+    communication_template_status_draft: Draf
+    communication_template_status_label: Status
+    communication_template_subject_label: Subjek
+    communication_templates: Templat
     communications: Komunikasi
     communications_form_insert_piped_text: Menyisipkan Teks Berpipa
+    competency_indicator: Kompetensi / Indikator
     completed: Selesai
     completed_tooltip: Semua evaluator telah menyerahkan evaluasi
+    completion_recipients_all: Semua Mata Pelajaran
+    completion_recipients_list: 'Daftar Penerima:'
+    completion_recipients_selected: Mata Pelajaran Pilihan
+    completion_recipients_selected_admins: Admin Terpilih
+    completion_recipients_selected_assessors: Penilai Terpilih
+    completion_recipients_selected_assessors_hint: Hanya asesor yang ditugaskan pada formulir asesor terkait subjek yang diisi yang akan dihubungi melalui email, meskipun asesor lain dipilih di atas.
     components_input_duration_placeholder: Masukkan sebagai '1d 2h 3m'
     concise: Ringkas
     condition_sets: Himpunan Kondisi
@@ -697,6 +927,8 @@ id:
     disable_proctoring: Nonaktifkan Pengawasan
     disable_report_download: Menonaktifkan pengunduhan laporan
     disable_transcript_download: Nonaktifkan Unduhan Transkrip
+    disable_webhooks: Nonaktifkan Webhook
+    disable_webhooks_hint: Saat opsi ini diaktifkan, tidak ada webhook atau peristiwa integrasi hilir yang dikirim ke klien untuk kampanye ini, terlepas dari jenis peserta. Hanya Super Admin yang dapat mengubah pengaturan ini.
     disallow_lead_assessor_moderation: Larang Moderasi oleh Penilai Utama
     disallow_lead_assessor_moderation_info: Skor akan dihitung secara otomatis berdasarkan semua formulir yang dikirimkan oleh penilai, dan penilai utama tidak dapat mengubahnya dari layar moderasi
     discard_all_questions: Reset Semua Pertanyaan
@@ -795,6 +1027,7 @@ id:
     evaluator_welcome_name: Evaluator selamat datang
     evaluators_title: Evaluator
     evidence_from_transcript: Bukti dari Transkrip
+    expand_all: Perluas semua
     expand_filters: Perluas Filter
     export_admin_roles_permissions: Ekspor Peran dan Izin Admin
     export_admins_with_permissions: Ekspor Peran dan Izin Admin
@@ -855,6 +1088,7 @@ id:
     feature_not_available: Fitur ini tidak tersedia
     feature_sms_notification_description: Aktifkan pemberitahuan SMS untuk undangan kampanye dan pengingat.
     feature_superadmin_tenant_scoping_description: Saat dinonaktifkan, kueri superadmin tidak akan dibatasi pada data klien ini.
+    feature_use_new_communication_center_description: Gunakan hanya Pusat Komunikasi yang baru untuk klien ini dan hentikan pengiriman komunikasi versi lama.
     fields_level: Tingkat
     fields_level_description: Deskripsi Tingkat
     fields_level_name: Nama Tingkat
@@ -1121,6 +1355,7 @@ id:
     import_title: Impor Subjek dari CSV
     import_upload: Unggah
     import_users: Impor Pengguna
+    in_progress: Sedang Berlangsung
     inactive: Aktif
     include_locales_label: Sertakan Terjemahan
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ id:
     model_params_thinking_effort_none: Tidak ada
     model_params_thinking_effort_tooltip: Mengontrol seberapa banyak penalaran yang diterapkan model sebelum memberikan respons. Upaya yang lebih tinggi menghasilkan jawaban yang lebih menyeluruh tetapi membutuhkan waktu lebih lama. Gunakan 'Tidak Ada' untuk menonaktifkan penalaran sepenuhnya.
     model_params_title: Konfigurasi Model Lanjutan
+    moderate_scoring_lead_assessor_form: Formulir Penilai Utama
     must_be_a_valid_url: URL tidak valid. Cantumkan URL lengkap yang menyertakan protokol http atau https
     name: Nama
     name_max_length: Nama tidak boleh melebihi %{length} karakter
@@ -1411,6 +1647,24 @@ id:
     navigation_registration_codes: Kode Pendaftaran
     navigation_skills_taxonomy: Taksonomi Keterampilan
     navigation_users: Pengguna
+    new_experience_badge: Pengalaman Baru
+    new_experience_bullet_brief_rest: Panduan kompetensi tetap berada di layar saat Anda memberi peringkat.
+    new_experience_bullet_brief_strong: Penjelasan singkat di samping skor Anda
+    new_experience_bullet_candidate_rest: setiap formulir asesor untuk kandidat tersebut, secara bersamaan.
+    new_experience_bullet_candidate_strong: Satu kandidat, satu pandangan
+    new_experience_bullet_moderation_rest: Semua skor penilai berdampingan, satu keputusan akhir.
+    new_experience_bullet_moderation_strong: Moderasi dalam menit
+    new_experience_footer_note: Pengalaman baru ini akan segera menjadi pengaturan default untuk semua orang. Anda selalu dapat beralih ke Pengalaman Baru dari detail Profil Anda.
+    new_experience_headline: Satu alur, dari tinjauan pertama hingga persetujuan akhir.
+    new_experience_notice_body: Kami telah mendesain ulang pengalaman penilai. Anda dapat mencobanya sekarang atau mengaktifkannya nanti dari pengaturan Profil Anda.
+    new_experience_notice_maybe_later: Mungkin nanti
+    new_experience_notice_title: Tersedia Pengalaman sebagai Penilai Baru
+    new_experience_preview_alt: Gambaran sekilas tentang pengalaman penilai yang baru.
+    new_experience_sub_copy: Kandidat, evaluasi, moderasi, dan pusat penilaian kini bekerja sebagai satu tampilan yang terhubung, bukan lagi lima layar yang Anda pegang sendiri.
+    new_experience_word_assessment_centre: 'Pusat Penilaian: Jalankan sesi dan lacak setiap mata pelajaran.'
+    new_experience_word_candidate: Satu kandidat, semua penilaian mereka digabungkan.
+    new_experience_word_evaluate: Evaluasilah ringkasan tugas dan penilaian Anda secara berdampingan.
+    new_experience_word_moderate: Sedang. Setiap penilai memberikan skor, satu panggilan terakhir.
     new_folder: Folder baru
     new_score: Skor Baru
     no_assessments_found: Audit ID
@@ -1458,6 +1712,7 @@ id:
     norms_title: Norma
     not_completed: Belum Selesai
     not_completed_tooltip: "%{completed} evaluator ditugaskan tetapi hanya %{submitted} yang telah menyelesaikan evaluasi"
+    not_started: Belum Dimulai
     notes: Catatan
     nothing_assigned: Tidak Ada Evaluator yang Ditugaskan
     nothing_assigned_tooltip: Tidak ada evaluasi yang ditetapkan untuk pengguna ini
@@ -1570,6 +1825,7 @@ id:
         manage_messages: Mengelola Pesan
         manage_options: Kelola Opsi
         manage_report_approvals: Mengelola Persetujuan Laporan
+        manage_uat: Kelola Pengguna UAT
         manage_users: Kelola Pengguna
         participant_options: Opsi Peserta
         report_options: Opsi Laporan
@@ -1898,6 +2154,7 @@ id:
         title: Pengaturan Pendaftaran
       reports:
         manage: Kelola
+        project_bulk_reports: Laporan Massal Proyek
         title: Laporan
         view: Melihat
       responseMeta:
@@ -2055,6 +2312,7 @@ id:
     project_admins: Admin Proyek
     project_assessor: Penilai Proyek
     project_features: Fitur Proyek
+    project_id: ID Proyek
     project_ids: ID Proyek
     project_ids_required: project_ids wajib diisi untuk jenis laporan ini
     project_licenses: Lisensi Proyek
@@ -2114,6 +2372,7 @@ id:
     projects_form_project_number: Nomor Proyek
     projects_form_subdomain: Subdomain
     projects_form_title: Proyek
+    projects_general_settings_allow_data_access_to_bi: Izinkan akses ke PowerBI untuk proyek ini.
     projects_general_settings_live_chat: Aktifkan Obrolan Langsung
     projects_general_settings_locales_label: Lokal
     projects_general_settings_project_number_label: Nomor Proyek
@@ -2344,6 +2603,21 @@ id:
     report_approval_submit_or_approve_all: Kirim atau Setujui Semua
     report_approvals: Laporan Persetujuan
     report_availability: Ketersediaan Laporan
+    report_builder_publish_confirm_content: Ini akan menimpa laporan yang sudah diterbitkan dengan perubahan draf sehingga tersedia untuk pengguna. Apakah Anda yakin ingin menerbitkan perubahannya?
+    report_builder_publish_confirm_title: Apakah laporan ini perlu dipublikasikan?
+    report_builder_publish_failed: Laporan telah disimpan, tetapi penerbitan gagal. Silakan coba menerbitkan lagi.
+    report_builder_publish_success: Laporan berhasil diterbitkan
+    report_builder_published_at: Terakhir diterbitkan pada {{date}}
+    report_builder_published_by: Diterbitkan oleh {{name}}
+    report_builder_save_and_publish: Simpan & Publikasikan
+    report_builder_save_as_draft: Simpan sebagai Draf
+    report_builder_save_failed: Laporan gagal disimpan. Silakan coba lagi.
+    report_builder_save_success: Laporan berhasil disimpan
+    report_builder_unpublished_changes: Perubahan yang belum dipublikasikan
+    report_builder_view_draft: Lihat Draf
+    report_builder_view_published: Lihat yang Dipublikasikan
+    report_builder_viewing_draft_message: Anda sedang melihat versi draf laporan. Ini bukan versi yang akan dilihat peserta sampai laporan tersebut diterbitkan.
+    report_builder_viewing_published_message: Anda sedang melihat versi laporan terakhir yang diterbitkan. Perubahan pada pembuat laporan tidak akan tercermin di sini sampai versi tersebut diterbitkan.
     report_condition_not_met: Membutuhkan evaluasi %{required} %{relationship}, tetapi hanya memiliki %{actual}
     report_conditions_not_met_detailed: Laporkan untuk %{user} tidak memenuhi persyaratan ketersediaan. %{conditions}
     report_denied: Laporan untuk %{user} telah ditolak
@@ -2358,6 +2632,11 @@ id:
     report_on_hold: Laporan untuk %{user} saat ini ditangguhkan
     report_owner: Pemilik
     report_pdf_status: Laporan Status PDF
+    report_pdf_unavailable: File PDF untuk laporan ini belum tersedia.
+    report_preview_draft_notice: Anda sedang melihat versi draf laporan yang tidak tersedia bagi peserta kecuali jika perubahan draf dipublikasikan oleh pembuat laporan.
+    report_preview_draft_tag_tooltip: Laporan ini memiliki draf perubahan yang tersedia. Klik untuk melihat versi draf.
+    report_preview_view_draft: Pratinjau Draf
+    report_preview_view_published: Pratinjau Diterbitkan
     report_review_abort_qc: Membatalkan QC
     report_review_approve: Setuju
     report_review_approve_changes: Setujui Perubahan
@@ -2725,6 +3004,7 @@ id:
     scoring_approval_score_approvals: Persetujuan Penilaian AI
     scoring_assessment: Penilaian
     scoring_assessment_scoring_type: Jenis Penilaian Penilaian
+    scoring_assessor_number: Penilai %{number}
     scoring_average: Tengah
     scoring_campaign_scoring_variables: Variabel Penilaian Kampanye
     scoring_desc: Anda telah melampaui batas maksimum %{n} faktor kampanye. Faktor tambahan tidak dapat ditambahkan. Silakan tinjau dan kelola faktor yang ada sebelum melanjutkan.
@@ -3110,15 +3390,19 @@ id:
     status_details: Detail Status
     statuses_accepted: Diterima
     statuses_cancelled: Dibatalkan
+    statuses_failed: Gagal
     statuses_late_cancelled: Terlambat Dibatalkan
     statuses_late_rescheduled: Penjadwalan Ulang Terlambat
     statuses_pending: Tertunda
+    statuses_queued: Mengantri
     statuses_requested_cancellation: Pembatalan yang Diminta
     statuses_requested_cancellation_rejected: Pembatalan Ditolak
     statuses_requested_rescheduling: Diminta Penjadwalan Ulang
     statuses_requested_rescheduling_rejected: Penjadwalan Ulang Ditolak
     statuses_rescheduled: Dijadwalkan Ulang
     statuses_scheduled: Dijadwalkan
+    statuses_sent: Terkirim
+    statuses_skipped: Dilewati
     steps_basic_information: Informasi Dasar
     steps_facilitators: Fasilitator
     steps_invite_options: Opsi Undangan
@@ -3324,6 +3608,7 @@ id:
     url_label: URL
     url_name: URL
     url_whitelisting: Daftar Putih URL
+    use_new_communication_center: Gunakan Pusat Komunikasi Baru
     used_tokens_input_tokens: Token Masukan
     used_tokens_output_tokens: Token Keluaran
     used_tokens_thinking_tokens: Token Pemikiran

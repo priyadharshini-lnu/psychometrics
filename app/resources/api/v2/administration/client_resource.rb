@@ -58,6 +58,7 @@ class Api::V2::Administration::ClientResource < Api::V2::Administration::BaseRes
       %w[
         view_audit_reports
         view_data_reports
+        view_communication_center
       ],
       {
         project_id: @model.id

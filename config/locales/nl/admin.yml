@@ -218,6 +218,15 @@ nl:
     assessor_assessments_reset_successfully: Reset evaluatie voor het onderwerp met de e-mail "%{subjectEmail}" was succesvol.
     assessor_assessments_subject_email: Onderwerp e-mail
     assessor_assessments_subject_name: Naam onderwerp
+    assessor_campaign_users_awaiting_moderation: In afwachting van goedkeuring
+    assessor_campaign_users_awaiting_moderation_subtitle: klaar om te consolideren
+    assessor_campaign_users_candidates_subtitle: toegewezen aan jou
+    assessor_campaign_users_completed: Voltooid
+    assessor_campaign_users_completed_subtitle: ondertekend
+    assessor_campaign_users_in_progress: In behandeling
+    assessor_campaign_users_in_progress_subtitle: wordt beoordeeld
+    assessor_campaign_users_not_started: Nog niet begonnen
+    assessor_campaign_users_not_started_subtitle: evaluaties
     assessor_campaigns_statuses_completed: Voltooid
     assessor_campaigns_statuses_in_progress: In uitvoering
     assessor_campaigns_statuses_not_started: Niet gestart
@@ -226,6 +235,20 @@ nl:
     assessor_create_assessor: Assessor toevoegen
     assessor_dashboard: Dashboard voor beoordelaars
     assessor_email: E-mail van de beoordelaar
+    assessor_evaluation: Beoordeling door de assessor
+    assessor_evaluation_by_campaign: Door Campagne
+    assessor_evaluation_by_participant: Door deelnemer
+    assessor_evaluation_candidate: Kandidaat
+    assessor_evaluation_candidates: Kandidaten
+    assessor_evaluation_completed: Evaluatie voltooid
+    assessor_evaluation_date_range: Begindatum – Einddatum
+    assessor_evaluation_moderation_waiting: Moderatie in afwachting
+    assessor_evaluation_tour_profile_description: Je account, rol en taal, en de optie om de nieuwe ervaring in te schakelen, vind je hier. Open het venster om je gegevens te controleren of om uit te loggen.
+    assessor_evaluation_tour_profile_title: Je profiel en instellingen
+    assessor_evaluation_tour_table_description: Open een willekeurige rij om hun beoordelingen te bekijken en evalueer vervolgens hun antwoorden of modereer de eindscores.
+    assessor_evaluation_tour_table_title: Kies een kandidaat
+    assessor_evaluation_tour_tabs_description: Schakel tussen 'Per deelnemer' (één persoon tegelijk) en 'Per campagne'.
+    assessor_evaluation_tour_tabs_title: Twee manieren om te werken
     assessor_evaluations: Evaluaties van beoordelaars
     assessor_first_name: Voornaam beoordelaar
     assessor_form: Beoordelaarsformulier
@@ -233,18 +256,24 @@ nl:
     assessor_last_name: Achternaam taxateur
     assessor_modals_import_body: Raadpleeg de functie Exporteren om een sjabloon te extraheren dat kan worden gebruikt om hier te Importeren.
     assessor_modals_import_title: Importeurs
+    assessor_new_experience: Nieuwe ervaring
     assessor_overview: Overzicht
     assessor_placeholder: Assessor zoeken...
     assessor_remove_confirmation: Weet je zeker dat je de beoordelaar met e-mailadres %{email} uit deze campagne wilt verwijderen?
     assessor_remove_has_evaluations: Aan deze beoordelaar zijn %{evaluation_count} beoordelingsformulieren toegewezen. Alle door hem/haar ingevulde evaluaties gaan verloren.
     assessor_remove_in_assessment_centers: Deze beoordelaar maakt deel uit van beoordelingscentrum(s) %{workshop_count}. Door verder te gaan, wordt deze beoordelaar van alle beoordelingscentra verwijderd.
-    assessor_statuses_completed: Voltooid
-    assessor_statuses_not_completed: Niet voltooid
-    assessor_subjects_statuses_completed: Voltooid
-    assessor_subjects_statuses_in_progress: In uitvoering
-    assessor_subjects_statuses_not_started: Niet gestart
+    assessor_switch_to_classic: Schakel over naar Klassiek
     assessor_toolbar_export: Exporteurs
     assessor_toolbar_import: Importeurs
+    assessor_tour_button: Tour
+    assessor_try_new_experience: Probeer een nieuwe ervaring.
+    assessor_user_assessment_name: Naam van de beoordeling
+    assessor_user_candidate_id: Kandidaat-ID
+    assessor_user_evaluate: Evalueren
+    assessor_user_evaluation: Evaluatie
+    assessor_user_evaluation_progress: Evaluatievoortgang
+    assessor_user_moderate: Matige scores
+    assessor_user_moderation: Matiging
     assessor_workshops: Beoordelingscentrum
     assessors: Taxateurs
     assistant_toolbar_failed: Na meerdere pogingen is het niet gelukt om geldige uitvoer te genereren.
@@ -312,6 +341,79 @@ nl:
     bulk_assets_modal_title: CSV- en ZIP-bestanden uploaden
     bulk_export_assessments_file: Exportbestand met bulkbeoordelingen
     bulk_export_invalid_params: Ongeldige parameters voor bulkexport
+    bulk_reports: Bulkrapporten
+    bulk_reports_all_of_year: Alle %{year}
+    bulk_reports_all_tags: Alle tags
+    bulk_reports_bundled_into_single: gebundeld tot één
+    bulk_reports_campaign_count_one: "%{count} campagne"
+    bulk_reports_campaign_count_other: "%{count} campagnes"
+    bulk_reports_campaign_search_placeholder: Zoek naar campagnes of projecten...
+    bulk_reports_campaigns_shown_count: "%{selected} geselecteerd - %{shown} weergegeven"
+    bulk_reports_campaigns_without_reports_warning: 'Geselecteerde campagnes zonder geconfigureerde rapporten: %{count}. Deze worden overgeslagen.'
+    bulk_reports_candidate_abbreviation: kandid.
+    bulk_reports_complete_every_step: Voltooi alle stappen om dit mogelijk te maken.
+    bulk_reports_date_range_required: Om verder te gaan, zijn zowel een begin- als een einddatum vereist.
+    bulk_reports_date_range_summary: De assessments die zijn afgerond van %{start} tot en met %{end} worden meegenomen.
+    bulk_reports_description: Maak één exporttaak aan voor meerdere campagnes. Selecteer de campagnes, kies de rapporten en talen die u wilt opnemen, stel een datumbereik in en dien de taak in.
+    bulk_reports_deselect_all_shown: Deselecteer alles wat wordt weergegeven
+    bulk_reports_download_notification_sent: Downloadmelding verzonden
+    bulk_reports_emailed_when_ready: en naar u gemaild zodra het klaar is.
+    bulk_reports_end_date_placeholder: Selecteer de einddatum en -tijd.
+    bulk_reports_end_date_required: Selecteer een einddatum.
+    bulk_reports_error_try_again: Fout - probeer het opnieuw
+    bulk_reports_files_estimated_across: bestanden geschat over
+    bulk_reports_files_pending: De bestanden verschijnen hier zodra de taak is voltooid.
+    bulk_reports_generate_export: Export genereren
+    bulk_reports_invalid_date_range: De einddatum moet op of na de startdatum liggen.
+    bulk_reports_job_details_title: 'Taak #%{id}'
+    bulk_reports_job_not_found: Deze vacature kon niet worden gevonden.
+    bulk_reports_job_queued: Taak in wachtrij
+    bulk_reports_languages_progress_one: "%{done} van %{total} rapportset"
+    bulk_reports_languages_progress_other: "%{done} van %{total} rapporteert set"
+    bulk_reports_languages_set_for_all_one: Stel dit in voor alle %{count}-rapporten
+    bulk_reports_languages_set_for_all_other: Ingesteld voor alle %{count}-rapporten
+    bulk_reports_last_30_days: Afgelopen 30 dagen
+    bulk_reports_last_90_days: Afgelopen 90 dagen
+    bulk_reports_no_campaigns_found: Er zijn geen campagnes gevonden voor dit project.
+    bulk_reports_no_campaigns_match_filters: Er zijn geen campagnes gevonden die overeenkomen met uw zoekopdracht of tagfilters.
+    bulk_reports_no_campaigns_selected: Geen campagnes geselecteerd
+    bulk_reports_no_files_yet: Er zijn nog geen bestanden beschikbaar voor deze opdracht.
+    bulk_reports_no_language_selected: geen taal geselecteerd
+    bulk_reports_no_languages_available: Voor dit rapport zijn geen talen beschikbaar.
+    bulk_reports_no_reports_configured: Voor geen van de geselecteerde campagnes zijn rapporten geconfigureerd. Ga terug en controleer de configuratie van uw campagne.
+    bulk_reports_no_reports_selected: Geen rapporten geselecteerd
+    bulk_reports_no_reports_selected_for_languages: Er zijn geen rapporten geselecteerd. Ga terug en kies ten minste één rapport.
+    bulk_reports_no_tags_found: Geen tags gevonden
+    bulk_reports_none_selected: Geen geselecteerd
+    bulk_reports_queued_by: In de wachtrij geplaatst door
+    bulk_reports_queuing_jobs: Taken in de wachtrij...
+    bulk_reports_ready_to_generate: Klaar om te genereren
+    bulk_reports_report_count_one: "%{count} rapport"
+    bulk_reports_report_count_other: "%{count} rapporteert"
+    bulk_reports_reports_and_languages: Rapporten en talen
+    bulk_reports_review_submit: Beoordelen en indienen
+    bulk_reports_review_submit_description: Bekijk de onderstaande taak. Je kunt op elk gewenst moment teruggaan naar een eerdere stap om wijzigingen aan te brengen.
+    bulk_reports_select_all_shown: Selecteer alles wat wordt weergegeven
+    bulk_reports_select_campaigns: Selecteer campagnes
+    bulk_reports_select_campaigns_description: Zoek op naam of project en verfijn de lijst met tagfilters. Vink vervolgens de campagnes aan die u wilt opnemen.
+    bulk_reports_select_date_range: Selecteer een datumbereik
+    bulk_reports_select_date_range_description: Neem alleen beoordelingen mee die binnen dit tijdsbestek zijn afgerond. Laat een vooraf ingestelde datum staan of stel een exacte datum in.
+    bulk_reports_select_languages: Selecteer talen
+    bulk_reports_select_languages_description: Elk rapport ondersteunt een andere set talen. Kies ten minste één taal per rapport. Het rapport wordt gegenereerd in alle door u gekozen talen.
+    bulk_reports_select_reports: Selecteer rapporten
+    bulk_reports_select_reports_description: Voor elke geselecteerde kandidaat of campagne in de export wordt een rapport gegenereerd in elke gekozen taal.
+    bulk_reports_selected_tags_count_one: "%{count}-tag geselecteerd"
+    bulk_reports_selected_tags_count_other: "%{count}-tags geselecteerd"
+    bulk_reports_start_date_placeholder: Selecteer de startdatum en -tijd.
+    bulk_reports_start_date_required: Selecteer een startdatum.
+    bulk_reports_step_coming_soon: Deze stap volgt binnenkort.
+    bulk_reports_submit_error: Er is iets misgegaan. Probeer het opnieuw.
+    bulk_reports_submit_success: Exporttaak in de wachtrij geplaatst. U ontvangt een melding wanneer de download gereed is.
+    bulk_reports_summary_description: Updates tijdens het bouwen van de taak
+    bulk_reports_summary_title: Download samenvatting
+    bulk_reports_title: Bulkrapporten
+    bulk_reports_view_downloads: Bekijk bulkrapportdownloads
+    bulk_reports_year_to_date: Tot nu toe dit jaar
     bulk_upload_ai_artifacts: Bulk upload AI-artefacten
     campaign: Campagne
     campaign_admin: Campagne Admin
@@ -383,6 +485,13 @@ nl:
     campaign_templates_remove_confirm_success: Campagnesjabloon '%{name}' is succesvol verwijderd.
     campaign_templates_remove_confirm_title: Campagnesjabloon verwijderen
     campaign_user_job_roles_cannot_be_same: De beoogde functie moet verschillen van de huidige functie.
+    campaign_users_import_uat_hint: Stel de kolom UAT in op Ja voor testgebruikers die moeten worden uitgesloten van licenties, analyses en webhooks.
+    campaign_users_uat_description: Markeer deze deelnemer als een UAT-testgebruiker.
+    campaign_users_uat_label: UAT-deelnemer
+    campaign_users_uat_license_non_billable: Niet-factureerbaar
+    campaign_users_uat_locked_hint: Deze deelnemer bestaat al. De UAT-status wordt ingesteld wanneer een deelnemer voor het eerst wordt aangemaakt en kan niet worden gewijzigd.
+    campaign_users_uat_readonly_hint: De UAT-status wordt bij het aanmaken ingesteld en kan niet worden gewijzigd.
+    campaign_users_uat_tooltip: UAT-gebruikers zijn daadwerkelijke deelnemers aan de tests. Ze kunnen de assessments normaal afleggen, maar zijn uitgesloten van factureerbaar licentiegebruik, analyses en uitgaande webhooks.
     campaigns: Campagnes
     campaigns_convert_to_template: Omzetten naar sjabloon
     campaigns_extend_time_success_message: Campagnetimer verlengd tot %{minutes} minuten
@@ -469,6 +578,7 @@ nl:
     clients_search_placeholder: Zoek klant
     closed: Gesloten
     code_required: Code is vereist
+    collapse_all: Alles inklappen
     collapse_filters: Filters samenvouwen
     column_code: Code
     column_invitation_status: Status uitnodiging
@@ -487,10 +597,130 @@ nl:
     common_type: Type
     common_unselect_all: Alles deselecteren
     communication_center: Communicatiecentrum
+    communication_center_manage_translations_action: Vertalingen beheren
+    communication_center_migration_enqueued: Migratietaak is in de wachtrij geplaatst. Controleer de logbestanden voor de voortgang.
+    communication_center_migration_error: Migratieverzoek mislukt. Probeer het opnieuw of raadpleeg de logbestanden.
+    communication_center_migration_modal_intro: 'De volgende wijzigingen worden doorgevoerd wanneer u de migratie voor deze client uitvoert:'
+    communication_center_migration_modal_title: Voorbeeld van de migratie van het communicatiecentrum
+    communication_center_migration_preview_button: Migratievoorbeeld
+    communication_center_migration_run_button: Migratie uitvoeren
+    communication_center_migration_skipped: Reeds gemigreerd (wordt overgeslagen)
+    communication_center_migration_would_assessments: Beoordelingen voor migratie
+    communication_center_migration_would_backfill: E-mails ter aanvulling
+    communication_center_migration_would_cc_users: CC-gebruikers migreren
+    communication_center_migration_would_migrate: Communicatie om te migreren
+    communication_center_migration_would_users: Geselecteerde gebruikers voor migratie
+    communication_center_translation_updated_success: Vertaling succesvol bijgewerkt
+    communication_center_translations_modal_title: Vertalingen beheren
+    communication_deliveries: Leveringen
+    communication_delivery: Communicatie en levering
+    communication_delivery_assessment_group_label: Beoordelingsgroep
+    communication_delivery_at_label: Bezorgdatum en -tijd
+    communication_delivery_at_past_error: De leverdatum moet in de toekomst liggen.
+    communication_delivery_cancel_action: Annuleren
+    communication_delivery_cancel_error: Het annuleren van de levering is mislukt.
+    communication_delivery_cc_users_label: CC-ontvangers
+    communication_delivery_completion_status_hint: Als er een voltooiingscode is opgegeven, wordt deze alleen verzonden als de beoordeling van de gebruiker deze voltooiingsstatuscode heeft.
+    communication_delivery_completion_status_label: Statuscode voor voltooiing van de beoordeling
+    communication_delivery_delay_hours_label: Vertraging (uren)
+    communication_delivery_details_title: Leveringsdetails
+    communication_delivery_emails_sent_label: Verstuurd
+    communication_delivery_emails_total_label: Totaal aantal e-mails
+    communication_delivery_end_date_label: Einddatum
+    communication_delivery_frequency_daily: Dagelijks
+    communication_delivery_frequency_label: Frequentie
+    communication_delivery_frequency_specific_weekdays: Specifieke weekdagen
+    communication_delivery_frequency_weekly: Wekelijks
+    communication_delivery_interval_number_label: Interval
+    communication_delivery_interval_period_days: Dagen
+    communication_delivery_interval_period_hours: Uren
+    communication_delivery_interval_period_label: Intervalperiode
+    communication_delivery_interval_period_months: Maanden
+    communication_delivery_interval_period_weeks: Weken
+    communication_delivery_new_button: Nieuwe levering
+    communication_delivery_recipients_all: Alle deelnemers
+    communication_delivery_recipients_label: Ontvangers
+    communication_delivery_recipients_new_assignment: Nieuwe opdracht
+    communication_delivery_recipients_new_users: Nieuwe gebruikers
+    communication_delivery_recipients_selected: Geselecteerde deelnemers
+    communication_delivery_rule_in_progress: In behandeling
+    communication_delivery_rule_label: Bezorgingsregel
+    communication_delivery_rule_not_completed: Niet voltooid
+    communication_delivery_rule_not_started: Nog niet begonnen
+    communication_delivery_rule_send_now: Verzend nu
+    communication_delivery_rule_specific_datetime: Specifieke datum en tijd
+    communication_delivery_search_users_placeholder: Zoeken op naam of e-mailadres
+    communication_delivery_selected_assessments_label: Beoordelingen
+    communication_delivery_selected_users_label: Selecteer gebruikers
+    communication_delivery_start_date_label: Startdatum
+    communication_delivery_template_label: Sjabloon
+    communication_delivery_time_of_day_label: Tijdstip van de dag
+    communication_delivery_timezone_label: Tijdzone
+    communication_delivery_trigger_type_label: Triggertype
+    communication_delivery_trigger_type_manual: Handmatig
+    communication_delivery_trigger_type_scheduled: Gepland
+    communication_delivery_weekday_fri: Vrijdag
+    communication_delivery_weekday_mon: Maandag
+    communication_delivery_weekday_sat: Zaterdag
+    communication_delivery_weekday_sun: Zondag
+    communication_delivery_weekday_thu: Donderdag
+    communication_delivery_weekday_tue: Dinsdag
+    communication_delivery_weekday_wed: Woensdag
+    communication_delivery_weekdays_label: Weekdagen
+    communication_email_created_at_label: Gemaakt op
+    communication_email_not_sent: Niet verzonden
+    communication_email_preview_action: Voorbeeld
+    communication_email_preview_date_label: Datum
+    communication_email_preview_from_label: Van
+    communication_email_preview_title: E-mailvoorbeeld
+    communication_email_preview_to_label: Naar
+    communication_email_preview_warning: Dit is een opnieuw weergegeven voorbeeld van de sjabloon en geeft mogelijk niet de exacte inhoud weer van de e-mail die daadwerkelijk is verzonden.
+    communication_email_recipient_email_label: E-mailadres van de ontvanger
+    communication_email_recipient_name_label: Naam van de ontvanger
+    communication_email_retrigger_action: Opnieuw activeren
+    communication_email_retrigger_error: Het opnieuw verzenden van de e-mail is mislukt.
+    communication_email_sent_at_label: Verzonden op
+    communication_email_status_label: Status
+    communication_email_subject_label: Onderwerp
+    communication_emails: E-mails
+    communication_template: Communicatiesjabloon
+    communication_template_body_label: Bericht
+    communication_template_create_new_action: Maak een nieuwe aan
+    communication_template_kind_label: Communicatietype
+    communication_template_level_campaign: Campagne
+    communication_template_level_client: Cliënt
+    communication_template_level_platform: Platform
+    communication_template_level_project: Project
+    communication_template_name_label: Sjabloonnaam
+    communication_template_new_button: Nieuw sjabloon
+    communication_template_override_inherited_action: Overschrijf overgeërfde waarden
+    communication_template_override_picker_search_placeholder: Zoeksjablonen om te overschrijven
+    communication_template_override_picker_title: Overschrijf de overgeërfde sjabloon
+    communication_template_recipients_all: Alle
+    communication_template_recipients_label: Standaardontvangers
+    communication_template_recipients_new_assignment: Nieuwe opdracht
+    communication_template_recipients_new_users: Nieuwe gebruikers
+    communication_template_recipients_selected: Gekozen
+    communication_template_source_created: Gemaakt
+    communication_template_source_label: Bron
+    communication_template_source_override_of: Override van %{level}
+    communication_template_status_active: Actief
+    communication_template_status_archived: Gearchiveerd
+    communication_template_status_draft: Voorlopige versie
+    communication_template_status_label: Status
+    communication_template_subject_label: Onderwerp
+    communication_templates: Sjablonen
     communications: Communicatie
     communications_form_insert_piped_text: Tekst met pijpen invoegen
+    competency_indicator: Competentie / Indicator
     completed: Volbracht
     completed_tooltip: Alle beoordelaars hebben de evaluatie ingediend
+    completion_recipients_all: Alle onderwerpen
+    completion_recipients_list: 'Lijst met ontvangers:'
+    completion_recipients_selected: Geselecteerde onderwerpen
+    completion_recipients_selected_admins: Geselecteerde beheerders
+    completion_recipients_selected_assessors: Geselecteerde beoordelaars
+    completion_recipients_selected_assessors_hint: Alleen de beoordelaar die is toegewezen aan het bijbehorende beoordelingsformulier van de betreffende persoon ontvangt een e-mail, zelfs als er hierboven andere beoordelaars zijn geselecteerd.
     components_input_duration_placeholder: Invoeren als '1d 2h 3m'
     concise: Beknopt
     condition_sets: Voorwaardensets
@@ -697,6 +927,8 @@ nl:
     disable_proctoring: Toezicht uitschakelen
     disable_report_download: Downloaden van rapporten uitschakelen
     disable_transcript_download: Transcriptdownload uitschakelen
+    disable_webhooks: Webhooks uitschakelen
+    disable_webhooks_hint: Wanneer deze optie is ingeschakeld, worden er voor deze campagne geen webhook- of downstream-integratiegebeurtenissen naar de client verzonden, ongeacht het type deelnemer. Alleen superbeheerders kunnen dit wijzigen.
     disallow_lead_assessor_moderation: Moderatie door hoofdbeoordelaar uitschakelen
     disallow_lead_assessor_moderation_info: De score wordt automatisch berekend op basis van alle ingediende beoordelingsformulieren en de hoofdbeoordelaar kan deze niet wijzigen via het moderatiescherm
     discard_all_questions: Alle vragen resetten
@@ -795,6 +1027,7 @@ nl:
     evaluator_welcome_name: Welkom bij de beoordelaar
     evaluators_title: Evaluatoren
     evidence_from_transcript: Bewijs uit transcriptie
+    expand_all: Alles uitvouwen
     expand_filters: Filters uitbreiden
     export_admin_roles_permissions: Beheerdersrollen en -rechten exporteren
     export_admins_with_permissions: Beheerdersrollen en -rechten exporteren
@@ -855,6 +1088,7 @@ nl:
     feature_not_available: Deze functie is niet beschikbaar
     feature_sms_notification_description: SMS-meldingen inschakelen voor campagne-uitnodigingen en herinneringen
     feature_superadmin_tenant_scoping_description: Indien uitgeschakeld, zijn superadmin-query's niet van toepassing op de gegevens van deze client.
+    feature_use_new_communication_center_description: Gebruik voor deze klant uitsluitend het nieuwe communicatiecentrum en stop met het versturen van berichten via de oude methode.
     fields_level: Niveau
     fields_level_description: Niveau Beschrijving
     fields_level_name: Niveau Naam
@@ -1121,6 +1355,7 @@ nl:
     import_title: Importeer onderwerpen uit CSV
     import_upload: Uploaden
     import_users: Importgebruikers
+    in_progress: In uitvoering
     inactive: Inactief
     include_locales_label: Vertalingen opnemen
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ nl:
     model_params_thinking_effort_none: Geen
     model_params_thinking_effort_tooltip: Hiermee bepaalt u hoeveel redenering het model toepast voordat het antwoord geeft. Meer inspanning leidt tot grondigere antwoorden, maar duurt langer. Gebruik 'Geen' om de redenering volledig uit te schakelen.
     model_params_title: Geavanceerde modelconfiguratie
+    moderate_scoring_lead_assessor_form: Formulier hoofdbeoordelaar
     must_be_a_valid_url: Ongeldige URL. Voer de volledige URL in, inclusief het http- of https-protocol
     name: Naam
     name_max_length: De naam mag niet langer zijn dan %{length} tekens.
@@ -1411,6 +1647,24 @@ nl:
     navigation_registration_codes: Registratiecodes
     navigation_skills_taxonomy: Taxonomie van vaardigheden
     navigation_users: Gebruikers
+    new_experience_badge: Nieuwe ervaring
+    new_experience_bullet_brief_rest: Tijdens het beoordelen blijven de competentierichtlijnen op het scherm staan.
+    new_experience_bullet_brief_strong: De korte toelichting naast uw score
+    new_experience_bullet_candidate_rest: alle beoordelingsformulieren voor die kandidaat, samen.
+    new_experience_bullet_candidate_strong: Eén kandidaat, één standpunt
+    new_experience_bullet_moderation_rest: Alle beoordelingen van de assessoren naast elkaar, één definitieve beslissing.
+    new_experience_bullet_moderation_strong: Matiging in minuten
+    new_experience_footer_note: De nieuwe ervaring wordt binnenkort de standaard voor iedereen. Je kunt altijd overschakelen naar de nieuwe ervaring via je profielgegevens.
+    new_experience_headline: Eén doorlopend proces, van eerste beoordeling tot definitieve goedkeuring.
+    new_experience_notice_body: We hebben de gebruikerservaring voor beoordelaars opnieuw ontworpen. Je kunt het nu uitproberen of later inschakelen via je profielinstellingen.
+    new_experience_notice_maybe_later: Misschien later
+    new_experience_notice_title: Nieuwe ervaring als assessor beschikbaar
+    new_experience_preview_alt: Voorproefje van de nieuwe ervaring voor beoordelaars
+    new_experience_sub_copy: Kandidaat, evaluatie, moderatie en het assessmentcentrum vormen nu één samenhangend geheel, in plaats van vijf afzonderlijke schermen die u zelf moet bedienen.
+    new_experience_word_assessment_centre: 'Assessmentcentrum: Voer de sessie uit en houd elk onderwerp bij.'
+    new_experience_word_candidate: Kandidaat 1, alle beoordelingen van de kandidaten samen.
+    new_experience_word_evaluate: Evalueer de opdracht en je beoordeling, naast elkaar.
+    new_experience_word_moderate: Gemiddeld. Alle beoordelaars geven een score, één laatste beslissing.
     new_folder: Nieuwe map
     new_score: Nieuwe score
     no_assessments_found: Controle-id
@@ -1458,6 +1712,7 @@ nl:
     norms_title: Norm
     not_completed: Niet voltooid
     not_completed_tooltip: "%{completed} evaluators worden toegewezen, maar alleen %{submitted} de evaluaties hebben afgerond"
+    not_started: Niet gestart
     notes: Opmerkingen
     nothing_assigned: Geen beoordelaars toegewezen
     nothing_assigned_tooltip: Er zijn geen evaluaties aan deze gebruiker toegekend
@@ -1570,6 +1825,7 @@ nl:
         manage_messages: Berichten beheren
         manage_options: Opties beheren
         manage_report_approvals: Rapportgoedkeuringen beheren
+        manage_uat: Gebruikers van UAT beheren
         manage_users: Gebruikers beheren
         participant_options: Opties voor deelnemers
         report_options: Rapportopties
@@ -1898,6 +2154,7 @@ nl:
         title: Registratie-instellingen
       reports:
         manage: Beheer
+        project_bulk_reports: Projectrapporten in bulk
         title: Rapporten
         view: Bekijk
       responseMeta:
@@ -2055,6 +2312,7 @@ nl:
     project_admins: Projectbeheerders
     project_assessor: Projectbeoordelaar
     project_features: Kenmerken van het project
+    project_id: Project-ID
     project_ids: Project-ID's
     project_ids_required: project_ids is verplicht voor dit rapporttype
     project_licenses: Projectlicenties
@@ -2114,6 +2372,7 @@ nl:
     projects_form_project_number: Projectnummer
     projects_form_subdomain: Subdomein
     projects_form_title: Project
+    projects_general_settings_allow_data_access_to_bi: Geef PowerBI toegang tot dit project.
     projects_general_settings_live_chat: Live chat inschakelen
     projects_general_settings_locales_label: Landinstellingen
     projects_general_settings_project_number_label: Projectnummer
@@ -2344,6 +2603,21 @@ nl:
     report_approval_submit_or_approve_all: Alle indienen of goedkeuren
     report_approvals: Goedkeuringen
     report_availability: Rapport Beschikbaarheid
+    report_builder_publish_confirm_content: Hiermee wordt het bestaande, gepubliceerde rapport overschreven met de conceptwijzigingen, die vervolgens beschikbaar komen voor de gebruikers. Weet u zeker dat u de wijzigingen wilt publiceren?
+    report_builder_publish_confirm_title: Dit rapport publiceren?
+    report_builder_publish_failed: Het rapport is opgeslagen, maar het publiceren is mislukt. Probeer het opnieuw.
+    report_builder_publish_success: Rapport succesvol gepubliceerd
+    report_builder_published_at: Laatst gepubliceerd op {{date}}
+    report_builder_published_by: Uitgegeven door {{name}}
+    report_builder_save_and_publish: Opslaan en publiceren
+    report_builder_save_as_draft: Opslaan als concept
+    report_builder_save_failed: Het opslaan van het rapport is mislukt. Probeer het opnieuw.
+    report_builder_save_success: Rapport succesvol opgeslagen
+    report_builder_unpublished_changes: Niet-gepubliceerde wijzigingen
+    report_builder_view_draft: Bekijk concept
+    report_builder_view_published: Bekijk gepubliceerd
+    report_builder_viewing_draft_message: U bekijkt de conceptversie van het rapport. Dit is niet de versie die deelnemers te zien krijgen voordat het rapport is gepubliceerd.
+    report_builder_viewing_published_message: U bekijkt de laatst gepubliceerde versie van het rapport. Wijzigingen in de builder worden hier pas weergegeven na publicatie.
     report_condition_not_met: Heeft %{required} %{relationship} evaluatie(s) nodig, maar heeft alleen %{actual}
     report_conditions_not_met_detailed: Rapport voor %{user} voldoet niet aan de beschikbaarheidsvoorwaarden. %{conditions}
     report_denied: Melding voor %{user} is afgewezen
@@ -2358,6 +2632,11 @@ nl:
     report_on_hold: Rapport voor %{user} is momenteel in de wacht gezet
     report_owner: Eigenaar
     report_pdf_status: Status van het rapport (PDF)
+    report_pdf_unavailable: De PDF van dit rapport is nog niet beschikbaar.
+    report_preview_draft_notice: U bekijkt een conceptversie van het rapport. Deze versie is niet beschikbaar voor de deelnemer, tenzij conceptwijzigingen vanuit de builder worden gepubliceerd.
+    report_preview_draft_tag_tooltip: Dit rapport bevat conceptversies. Klik hier om de conceptversie te bekijken.
+    report_preview_view_draft: Voorlopig concept
+    report_preview_view_published: Voorbeeld gepubliceerd
     report_review_abort_qc: QC afbreken
     report_review_approve: Goedkeuren
     report_review_approve_changes: Wijzigingen goedkeuren
@@ -2728,6 +3007,7 @@ nl:
     scoring_approval_score_approvals: AI-scoring goedkeuringen
     scoring_assessment: Beoordeling
     scoring_assessment_scoring_type: Beoordeling Scoringstype
+    scoring_assessor_number: Beoordelaar %{number}
     scoring_average: Gemiddeld
     scoring_campaign_scoring_variables: Variabelen voor campagnescores
     scoring_desc: U hebt de maximale limiet van %{n} campagnefactoren overschreden. Er kunnen geen extra factoren worden toegevoegd. Controleer en beheer uw bestaande factoren voordat u verder gaat.
@@ -3118,15 +3398,19 @@ nl:
     status_details: Statusgegevens
     statuses_accepted: Geaccepteerd
     statuses_cancelled: Geannuleerd
+    statuses_failed: Mislukt
     statuses_late_cancelled: Te laat geannuleerd
     statuses_late_rescheduled: Laat Verpland
     statuses_pending: In afwachting van
+    statuses_queued: In de wachtrij
     statuses_requested_cancellation: Aangevraagde annulering
     statuses_requested_cancellation_rejected: Annulering Afgewezen
     statuses_requested_rescheduling: Aangevraagde herplanning
     statuses_requested_rescheduling_rejected: Herschikking Afgewezen
     statuses_rescheduled: Verpland
     statuses_scheduled: Gepland
+    statuses_sent: Verstuurd
+    statuses_skipped: Overgeslagen
     steps_basic_information: Basisinformatie
     steps_facilitators: Facilitatoren
     steps_invite_options: Opties uitnodigen
@@ -3332,6 +3616,7 @@ nl:
     url_label: URL
     url_name: URL
     url_whitelisting: URL-whitelisting
+    use_new_communication_center: Gebruik het nieuwe communicatiecentrum
     used_tokens_input_tokens: Invoertokens
     used_tokens_output_tokens: Uitvoertokens
     used_tokens_thinking_tokens: Denkende Tokens

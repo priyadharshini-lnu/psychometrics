@@ -100,6 +100,56 @@ RSpec.describe Forms::Communications::Simple do
     end
   end
 
+  describe 'completion recipient types' do
+    let(:assessment) { create(:assessment) }
+    let(:admin) { create(:user) }
+    let(:completion_params) do
+      {
+        client_id: campaign.client.id,
+        project_id: campaign.project.id,
+        campaign_id: campaign.id,
+        kind: 'completion',
+        assessment_id: assessment.id,
+        subject: 123,
+        body: '123'
+      }
+    end
+
+    before { create(:campaign_assessment, campaign: campaign, assessment: assessment) }
+
+    it 'accepts selected_admins as a recipients value for the completion kind' do
+      form.prepopulate!(current_user: superadmin)
+      params = completion_params.merge(recipients: 'selected_admins', user_ids: [admin.id])
+      form.validate(params)
+      expect(form.errors[:recipients]).to be_empty
+    end
+
+    it 'accepts selected_assessors as a recipients value for the completion kind' do
+      form.prepopulate!(current_user: superadmin)
+      params = completion_params.merge(recipients: 'selected_assessors', user_ids: [admin.id])
+      form.validate(params)
+      expect(form.errors[:recipients]).to be_empty
+    end
+
+    it 'is invalid with selected_admins recipients and no selected users' do
+      form.prepopulate!(current_user: superadmin)
+      params = completion_params.merge(recipients: 'selected_admins', user_ids: [])
+      expect(form.validate(params)).to be_falsey
+    end
+
+    it 'rejects selected_admins recipients for a non-completion kind' do
+      form.prepopulate!(current_user: superadmin)
+      params = valid_params.merge(recipients: 'selected_admins', user_ids: [admin.id])
+      expect(form.validate(params)).to be_falsey
+    end
+
+    it 'rejects new_users recipients for the completion kind' do
+      form.prepopulate!(current_user: superadmin)
+      params = completion_params.merge(recipients: 'new_users')
+      expect(form.validate(params)).to be_falsey
+    end
+  end
+
   describe 'prepopulate!' do
     let(:form_with_campaign_id_end) do
       Forms::Communications::Simple.new(Communication.new(client_id: 10, project_id: 15, campaign_id: 20))

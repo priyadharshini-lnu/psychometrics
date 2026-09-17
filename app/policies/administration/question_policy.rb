@@ -14,6 +14,12 @@ module Administration
       can_manage_question?
     end
 
+    def show?
+      # using edit? to match the old websocket permissions being used.
+      # is only cslled by templates/questions_controller#show
+      edit?
+    end
+
     def copy?
       can_manage_question?
     end

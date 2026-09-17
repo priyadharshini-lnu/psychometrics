@@ -15,6 +15,10 @@ module Administration
         can_mange_campaign_users?
       end
 
+      def manage_uat?
+        has_permission?(:campaigns, :manage_uat)
+      end
+
       def add_report?
         can_mange_campaign_users?
       end

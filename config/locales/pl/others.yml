@@ -214,6 +214,8 @@ pl:
               inclusion: Nieprawidłowe ustawienia regionalne
             password:
               too_short: Hasło jest za krótkie. Wymagana minimalna liczba znaków %{count}
+            uat:
+              invalid: 'UAT musi być jednym z: %{accepted_values} lub pusty'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ pl:
               invalid_reports_header: Nieprawidłowy nagłówek, weź nagłówek z przykładowego pliku
               manager_not_found: 'Wiersz %{row_number}: Menedżer z adresem e-mail %{email} nie jest obecny w kampanii ani w pliku CSV'
               not_enough_licenses: Import wymaga %{required_count} licencji, ale dostępnych jest tylko %{available_count}. Przed importem zmniejsz liczbę nowych użytkowników lub dodaj więcej licencji.
+              not_enough_uat_licenses: Import wymaga %{required_count} licencji testowych UAT, ale dostępnych jest tylko %{available_count}. Przed importem zmniejsz liczbę nowych użytkowników UAT lub zwiększ limit wykorzystania UAT.
               user_update_failed: Aktualizacja użytkownika nie powiodła się dla %{email} z powodu błędu "%{error}"
             locale:
               inclusion: Nieprawidłowe ustawienia regionalne
@@ -943,7 +946,9 @@ pl:
         import_sms_invites: Importowanie zaproszenia SMS
         import_users: Importowanie użytkowników
         migrate_assessment_translations: Migracja tłumaczenia oceny
+        migrate_communication_center: Migracja Centrum Komunikacyjnego
         normalize_factor_scores: Normalizowanie wyników czynników
+        project_bulk_download_reports: Raporty pobierania zbiorczego projektu
         project_compact_completion_status_export: Eksport stanu ukończenia kompaktowego
         project_completion_status_export: Status ukończenia Eksport
         regenerate_assessment_transcriptions: Odśwież transkrypcje ocen
@@ -986,6 +991,8 @@ pl:
     errors: Błędy
     invalid_job: To powiadomienie odpowiada usuniętemu rekordowi
     mark_as_read: Oznacz wszystko jako przeczytane
+    migrate_communication_center:
+      client_not_found: Klient o identyfikatorze %{id} nie został znaleziony
     more: Więcej
     results: Wyniki
     super_admin:
@@ -1319,7 +1326,6 @@ pl:
     privacy_notice_link: <a href="%{privacy_url}">Polityka prywatności
     registration:
       description: Wypełnij poniższe dane, aby się zarejestrować i utworzyć nowe konto
-      email_hint: Szanujemy twoją prywatność i nie tolerujemy spamu. Nigdy nie udostępnimy Twoich danych osobom trzecim
       first_name: Imię
       first_name_placeholder: Wprowadź imię
       have_account: Posiadasz już konto?
@@ -2988,6 +2994,7 @@ pl:
     end_date: Data zakończenia
     not_enough_license: '"%{client_name}" nie ma wystarczającej liczby licencji dla "%{report_name}"'
     not_enough_license_count: Za mało licencji, skontaktuj się z administratorem
+    not_enough_uat_license: "„%{client_name}” nie ma wystarczającej liczby licencji na testy UAT dla „%{report_name}”. Zwiększ limit użycia UAT dla tej licencji lub skontaktuj się z administratorem."
     number: Numer
     overuse_number: Dodatek za nadmierne zużycie
     project_specific: Specyficzne dla projektu
@@ -3002,6 +3009,11 @@ pl:
       idp: IDP
       proctoring: Nadzór
       threesixty: Trzysześćdziesiąt
+    uat_usage_limit_credits: Punkty za test UAT
+    uat_usage_limit_credits_hint: Nadzór rozliczany jest w kredytach, zatem jest to maksymalna liczba kredytów, jaką użytkownicy testu UAT mogą wykorzystać w ramach tej licencji (maks. 300).
+    uat_usage_limit_users: Użytkownicy testów UAT
+    uat_usage_limit_users_hint: Maksymalna liczba użytkowników testowych UAT, których można utworzyć w ramach tej licencji (maks. 30). Użytkownicy testowi nigdy nie zużywają licencji płatnych.
+    uat_used: Licencje używane przez UAT
     used_number: Używane licencje
     used_out_of: "%{used} z %{total}"
   lti:
@@ -3978,8 +3990,8 @@ pl:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Zezwalaj użytkownikom na przesyłanie wielu odpowiedzi
     png: Plik PNG

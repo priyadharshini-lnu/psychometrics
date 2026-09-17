@@ -76,6 +76,7 @@ saml_enforced_email_domains:
 data_reports:
   user_access_review:
     email_domains: <%= ENV.fetch('USER_ACCESS_REVIEW_EMAIL_DOMAINS', 'thetalententerprise.com,mercer.com,marsh.com').split(',').map(&:strip).reject(&:empty?) %>
+admin_session_inactivity_timeout_minutes: <%= ENV.fetch('ADMIN_SESSION_INACTIVITY_TIMEOUT_MINUTES', 120).to_i %>
 features:
   rails_log_to_json: <%= ENV.fetch('RAILS_LOG_TO_JSON', 'true') == 'true' %>
   two_factor_enabled: <%= ENV['TWO_FACTOR_AUTHENTICATION_ENABLED'] %>
@@ -95,6 +96,7 @@ features:
   dimensions_react_ui: <%= ENV.fetch('DIMENSIONS_REACT_UI', 'false') == 'true' %>
   question_center_react_ui: <%= ENV.fetch('QUESTION_CENTER_REACT_UI', 'false') == 'true' %>
   libraries_react_ui: <%= ENV.fetch('LIBRARIES_REACT_UI', 'false') == 'true' %>
+  communication_center_enabled: <%= ENV.fetch('COMMUNICATION_CENTER_ENABLED', 'false') == 'true' %>
   cache_serializer: <%= ENV.fetch('CACHE_SERIALIZER', 'false') == 'true' %>
   simulation_branding_enabled: <%= ENV.fetch('SIMULATION_BRANDING_ENABLED', 'false') == 'true' %>
   skip_session_limitable: <%= ENV.fetch('SKIP_SESSION_LIMITABLE', 'false') == 'true' %>

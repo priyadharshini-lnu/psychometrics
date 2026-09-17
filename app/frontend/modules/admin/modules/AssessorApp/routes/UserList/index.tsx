@@ -139,7 +139,7 @@ const UserList: React.FC<Props> = (
               key="status"
               minWidth={150}
               render={({ evaluationCompletionStatus }) => (
-                I18n.t(`admin.assessor_subjects_statuses_${evaluationCompletionStatus}`)
+                I18n.t(`admin.${evaluationCompletionStatus}`)
               )}
             />
             <Column
@@ -153,7 +153,7 @@ const UserList: React.FC<Props> = (
               key="moderationStatus"
               minWidth={150}
               render={({ moderationCompletionStatus }) => (
-                I18n.t(`admin.assessor_subjects_statuses_${moderationCompletionStatus}`)
+                I18n.t(`admin.${moderationCompletionStatus}`)
               )}
             />
             <Column

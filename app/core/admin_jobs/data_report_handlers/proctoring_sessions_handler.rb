@@ -41,7 +41,8 @@ module AdminJobs
                   joins('INNER JOIN users ON users.id = campaign_users.user_id').
                   joins('INNER JOIN campaigns ON campaigns.id = campaign_users.campaign_id').
                   joins('INNER JOIN clients AS projects ON projects.id = campaigns.project_id').
-                  joins('INNER JOIN clients ON clients.id = projects.tte_id')
+                  joins('INNER JOIN clients ON clients.id = projects.tte_id').
+                  where(users: { is_uat: false })
 
         records = records.where(projects: { id: project_ids }) if project_ids.present?
 

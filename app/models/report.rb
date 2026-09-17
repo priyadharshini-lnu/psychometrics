@@ -11,6 +11,7 @@ class Report < ApplicationRecord
   include OwnerCompatibility
   include ActiveStorageAttachable
   include Taggable
+  include Reports::DataConfigurationDerived
 
   PROVIDERS = {
     internal: 0,
@@ -38,8 +39,11 @@ class Report < ApplicationRecord
   belongs_to :owner, class_name: 'Client'
   has_many :report_families_reports, dependent: :destroy
   has_many :report_families, through: :report_families_reports, source: :report_family
-  has_many :pages, class_name: 'Reports::Page', dependent: :destroy
-  has_many :modules, through: :pages, dependent: :destroy
+  has_one :published_snapshot, class_name: 'Reports::PublishedSnapshot', dependent: :destroy
+
+  has_many :all_pages, class_name: 'Reports::Page', dependent: :destroy, inverse_of: :report
+  has_many :pages, -> { not_removed }, class_name: 'Reports::Page', inverse_of: :report
+  has_many :modules, through: :pages
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
   has_many :campaign_factors, class_name: 'Reports::CampaignFactor', dependent: :destroy
   has_many :campaign_ai_artifacts, class_name: 'Reports::CampaignAIArtifact', dependent: :destroy
@@ -193,6 +197,22 @@ class Report < ApplicationRecord
     @cloned_item
   end
 
+  def published?
+    published_snapshot.present?
+  end
+
+  # The version of the report that is in effect. The published snapshot,
+  # or the live rows when the report has never been published.
+  def effective_reader(draft: false)
+    return Reports::DraftReader.new(self) if draft || published_snapshot.blank?
+
+    Reports::PublishedReader.new(self)
+  end
+
+  def translation_scope
+    Translation.for_report(id)
+  end
+
   # Returns true if Report is external
   def external_report?
     !provider_internal?
@@ -220,10 +240,6 @@ class Report < ApplicationRecord
     FactorsAlias.where(report: self, factor_id: dimension.all_factor_ids).destroy_all
   end
 
-  def flat_data_configuration
-    (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
-  end
-
   def hogan?
     provider_hogan?
   end
@@ -234,41 +250,6 @@ class Report < ApplicationRecord
 
   def should_have_external_settings?
     provider_hogan? || provider_saville?
-  end
-
-  def has_data_configuration_occupations?
-    return false if data_configuration.blank?
-
-    data_configuration['sections'].each do |section|
-      return true if section['data'].find { |d| d['type'] == 'ranked_occupations' }
-    end
-
-    false
-  end
-
-  def data_configuration_factor_ids
-    data_configuration['sections'].map do |section|
-      section['data'].map do |d|
-        d['factorId'] if %w[normed_factor raw_factor].include? d['type']
-      end
-    end.flatten.compact
-  end
-
-  def data_configuration_assessment_ids
-    JsonPath.new('$..assessmentId').on(data_configuration).uniq
-  end
-
-  def pdf_dimension
-    height = props&.dig('sizes', 'height') || 1100
-    width = props&.dig('sizes', 'width') || 850
-    page_height_increment = 0
-    page_width_increment = 0
-    page_height_increment = 1 if [827].include?(height)
-    page_width_increment = -1 if [1169, 1100].include?(height)
-    {
-      width: "#{width + page_width_increment}px",
-      height: "#{height + page_height_increment}px"
-    }
   end
 
   def log_attribute_for_delete

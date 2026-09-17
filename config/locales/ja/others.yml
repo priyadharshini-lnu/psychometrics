@@ -214,6 +214,8 @@ ja:
               inclusion: 間違ったロケール
             password:
               too_short: パスワードが短すぎます。 最低 %{count} 文字が必要です。
+            uat:
+              invalid: UATは%{accepted_values}または空白のいずれかである必要があります。
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ ja:
               invalid_reports_header: 無効なヘッダーです。
               manager_not_found: '行 %{row_number}: 電子メール %{email} を持つマネージャがキャンペーンまたは CSV に存在しません。'
               not_enough_licenses: インポートには%{required_count}ライセンスが必要ですが、利用可能なライセンスは%{available_count}のみです。インポート前に新規ユーザー数を減らすか、ライセンスを追加してください。
+              not_enough_uat_licenses: インポートには%{required_count}のUATテストライセンスが必要ですが、利用可能なライセンスは%{available_count}のみです。インポート前に、新規UATユーザー数を減らすか、UATの使用制限を引き上げてください。
               user_update_failed: エラー '%{error}' で %{email} のユーザ更新に失敗しました。
             locale:
               inclusion: 間違ったロケール
@@ -943,7 +946,9 @@ ja:
         import_sms_invites: インポートSMS招待
         import_users: インポートユーザー
         migrate_assessment_translations: アセスメント 翻訳移行
+        migrate_communication_center: コミュニケーションセンターの移行
         normalize_factor_scores: 因子スコアを正規化する
+        project_bulk_download_reports: プロジェクトレポートの一括ダウンロード
         project_compact_completion_status_export: コンパクト完了状況エクスポート
         project_completion_status_export: 完了状況のエクスポート
         regenerate_assessment_transcriptions: 評価の文字起こしを再生成する
@@ -986,6 +991,8 @@ ja:
     errors: エラー
     invalid_job: この通知は削除されたレコードに対応する
     mark_as_read: すべて読む
+    migrate_communication_center:
+      client_not_found: ID=%{id} のクライアントが見つかりません
     more: もっと見る
     results: 結果
     super_admin:
@@ -1324,7 +1331,6 @@ ja:
     privacy_notice_link: <a href="%{privacy_url}">プライバシーポリシー
     registration:
       description: 登録して新規アカウントを作成するには、以下の詳細を入力してください
-      email_hint: 当社は利用者のプライバシーを尊重し、スパムを容認しません。当社が利用者の情報を第三者に提供することはありません
       first_name: 名
       first_name_placeholder: 名を入力してください
       have_account: すでにアカウントをお持ちですか？
@@ -2970,6 +2976,7 @@ ja:
     end_date: 終了日
     not_enough_license: '"%{client_name}" には "%{report_name}" 用の十分なライセンスがありません。'
     not_enough_license_count: ライセンスが足りません。
+    not_enough_uat_license: "「%{client_name}」には「%{report_name}」に必要なUATテストライセンスが不足しています。そのライセンスのUAT使用制限を増やすか、管理者にお問い合わせください。"
     number: 番号
     overuse_number: 超過使用手当
     project_specific: プロジェクト特有
@@ -2984,6 +2991,11 @@ ja:
       idp: アイディーピー
       proctoring: 試験監督
       threesixty: スリーシックスティ
+    uat_usage_limit_credits: UATテストクレジット
+    uat_usage_limit_credits_hint: 監視サービスはクレジット単位で課金されるため、これはUATテストのユーザーがこのライセンスから消費できる最大クレジット数です（最大300）。
+    uat_usage_limit_users: UATテストユーザー
+    uat_usage_limit_users_hint: このライセンスで作成できるUATテストユーザーの最大数（最大30人）。テストユーザーは課金対象ライセンスを消費しません。
+    uat_used: UATで使用したライセンス
     used_number: 中古ライセンス
     used_out_of: "%{total}のうち、%{used}"
   lti:
@@ -3960,8 +3972,8 @@ ja:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: ユーザーが複数の回答を提出できるようにする
     png: PNG

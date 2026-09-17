@@ -154,6 +154,10 @@ module Administration
       has_permission?(:campaigns, :manage_options)
     end
 
+    def manage_webhook_settings?
+      @user.is?(:superadmin)
+    end
+
     def manage_messages?
       @user.is?(:superadmin) || @user.has_permission?(:campaigns, :manage_messages, project_id: project_id)
     end

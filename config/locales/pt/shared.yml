@@ -37,8 +37,10 @@ pt:
     campaign: Campanha
     campaign_id: ID de campanha
     cancel: Cancelar
+    candidates: Candidatos
     category: Categoria
     change_password: Alterar a palavra-passe
+    clear: Claro
     clear_filters: Limpar filtros
     client: Cliente
     close: Fechar
@@ -86,11 +88,15 @@ pt:
     end_date: Data final
     ending_proctoring_session_msg: Estamos a encerrar a sessão de supervisão. <p>Por favor, aguarde enquanto guardamos as suas respostas e o redirecionamos para a página inicial.</p>
     error: Erro
+    errors: Erros
     export: Exportação
     failed: Falhou
     'false': false
     file: Ficheiro
     file_upload_button: Selecionar ficheiro
+    filename: Nome do arquivo
+    files: Arquivos
+    filters: Filtros
     first_name: Nome próprio
     formal_learning: Aprendizagem Formal
     generate: Gerar
@@ -105,6 +111,7 @@ pt:
     impersonation_banner_aria_label: Sessão de representação ativa
     impersonation_end_session: Saída
     import: Importação
+    in_progress: Em andamento
     inactive: Inativo
     internet_disconnected_message: A tentar restabelecer a ligação. Verifique a sua ligação à Internet.
     is_impersonating: está se passando por
@@ -112,6 +119,7 @@ pt:
     issuer_claim_label: Emitente (iss)
     jwt_claims_details: Detalhes das reclamações da JWT
     key_id_claim_label: ID da chave (kid)
+    languages: Línguas
     last_name: Apelido
     last_updated: Última atualização
     learning_on_the_job_label: Aprendendo no Trabalho
@@ -151,6 +159,7 @@ pt:
     no_results_found: Não foram encontrados resultados
     none: Nenhum
     not_requested: Ainda não solicitado
+    not_set: Não configurado
     ok: OK
     options: Opções
     overview: Visão geral
@@ -215,12 +224,14 @@ pt:
     reset_password: Redefinir a palavra-passe
     response_text: Texto de resposta
     return_url_not_whitelisted: O URL de retorno não está na lista de permissões para este aplicativo.
+    review: Análise
     rte_paste_content_exceeds_char_limit: O texto excede o limite de caracteres {{maxCharacterLimit}} e não pode ser colado.
     rte_paste_content_exceeds_word_limit: O texto excede o limite de palavras {{maxWordLimit}} e não pode ser colado.
     run: Correr
     save: Salvar
     saving_video: Salvando vídeo... Por favor, não feche nem atualize o navegador
     schedule_time: Horário
+    scheduled: Agendado
     scoring_details: Detalhes da pontuação
     search: Pesquisar
     select_camera: Selecione uma câmara

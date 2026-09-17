@@ -7,5 +7,6 @@ FactoryBot.define do
 
     workshops { [create(:workshop)] }
     campaign { create(:campaign) }
+    campaign_assessment_group { create(:campaign_assessment_group) }
   end
 end

@@ -3,6 +3,9 @@
 module Threesixty
   module Subjects
     class CreateAll < BaseCommand
+      # Attributes that live on associated records or the import payload, not on the User itself.
+      NON_USER_ATTRIBUTES = %i[locale current_job_role target_job_role uat is_uat].freeze
+
       def initialize(subjects, threesixty_campaign, current_user = nil)
         @subjects = subjects
         @threesixty_campaign = threesixty_campaign
@@ -32,7 +35,9 @@ module Threesixty
 
       def fetch_or_create_subject_user(subject)
         if (user = project_users_indexed[subject[:email].downcase])
-          user.update!(subject.except(:password, :locale, :current_job_role, :target_job_role))
+          # is_uat is only assigned on creation and is immutable thereafter, so
+          # it is never updated for an already existing subject.
+          user.update!(subject.except(:password, *NON_USER_ATTRIBUTES))
           user.user_profile.update!(locale: subject[:locale])
           @existing_subjects_whose_password_not_changed << user if subject[:password].present?
           AuditLogModule.audit!(:assign_existing_subject, user, campaign: threesixty_campaign.campaign,
@@ -40,8 +45,11 @@ module Threesixty
           user
         else
           new_user = ::Users::Regular.create!(
-            subject.merge(project: project, create_by_invite: subject[:password].blank?).
-            except(:locale, :current_job_role, :target_job_role)
+            subject.except(*NON_USER_ATTRIBUTES).merge(
+              project: project,
+              create_by_invite: subject[:password].blank?,
+              is_uat: uat?(subject)
+            )
           )
           new_user.user_profile.update!(locale: subject[:locale])
           AuditLogModule.audit!(:create, new_user, campaign: threesixty_campaign.campaign,
@@ -74,6 +82,14 @@ module Threesixty
       private
 
       attr_reader :subjects, :threesixty_campaign, :project
+
+      # Resolves the UAT flag from either the UI create payload (:is_uat boolean)
+      # or the CSV import payload (:uat "Yes"/"No"/blank string).
+      def uat?(subject)
+        return ParseUatValue.call(subject[:uat]) == true if subject.key?(:uat)
+
+        ActiveModel::Type::Boolean.new.cast(subject[:is_uat]) || false
+      end
 
       def assign_job_roles(campaign_user, subject)
         campaign_user.update!(

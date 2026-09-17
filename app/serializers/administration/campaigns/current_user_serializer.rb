@@ -45,7 +45,9 @@ module Administration
             'manage_project_privacy_setting',
             'manage_project_assessments',
             'view_audit_reports',
-            'access_project_taxonomy'
+            'view_communication_center',
+            'access_project_taxonomy',
+            'manage_project_bulk_reports'
           ],
           {
             project_id: context[:project_id],

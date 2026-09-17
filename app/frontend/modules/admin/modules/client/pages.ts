@@ -11,15 +11,24 @@ export { Settings as ClientSettings } from './routes/Client/routes/Settings'
 export { DataReports as ClientDataReports } from './routes/Client/routes/DataReports'
 export { DataExports as ClientDataExports } from './routes/Client/routes/DataExports'
 export { default as ClientLicenseList } from './routes/LicenseList'
+export { CommunicationCenter as ClientCommunicationCenter } from './routes/Client/routes/CommunicationCenter'
 
 export { Admins as ProjectAdmins } from './routes/Client/routes/Project/routes/Admins'
 export { Users as ProjectUsers } from './routes/Client/routes/Project/routes/Users'
 export { Datasheet as ProjectDatasheet } from './routes/Client/routes/Project/routes/Datasheet'
 export { Settings as ProjectSettings } from './routes/Client/routes/Project/routes/Settings'
 export { DataExports as ProjectDataExports } from './routes/Client/routes/Project/routes/DataExports'
+export {
+  BulkReports as ProjectBulkReports,
+  BulkReportJobDetail as ProjectBulkReportJobDetail,
+  GenerateExport as ProjectBulkReportsGenerate,
+} from './routes/Client/routes/Project/routes/BulkReports'
 export { Idp as ProjectIdp } from './routes/Client/routes/Project/routes/Idp'
 export { Taxonomy as ProjectTaxonomy } from './routes/Client/routes/Project/routes/Taxonomy'
 export { default as ProjectLicenseList } from './routes/Client/routes/Project/routes/LicenseList'
+export {
+  CommunicationCenter as ProjectCommunicationCenter,
+} from './routes/Client/routes/Project/routes/CommunicationCenter'
 
 export { Participants as ProjectParticipants } from './routes/Client/routes/Project/routes/Users/routes/Participants'
 export { Assessors as ProjectAssessors } from './routes/Client/routes/Project/routes/Users/routes/Assessors'

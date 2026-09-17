@@ -15,6 +15,10 @@ import { Dimension } from '~/modules/admin/modules/client/core/dimensions'
 
 const { I18n } = window
 
+type OwnerFormValues = Record<string, unknown> & {
+  ownerId?: string | null
+}
+
 const connector = connect(
   (state: RootState) => ({
     currentUser: getCurrentUser(state),
@@ -65,6 +69,18 @@ export const NormsFormModalComponent: React.FC<Props> = ({
     return [...dimensions, norm.dimension]
   }
 
+  const normalizeOwnerId = (ownerId?: string | null): string => ownerId ?? ''
+  const defaultOwnerId = norm?.owner?.id ?? (isSuperAdmin(currentUser) ? '' : null)
+
+  const normalizeOwnerValue = (values: OwnerFormValues = {}): OwnerFormValues => {
+    const { ownerId } = values
+
+    return {
+      ...values,
+      ownerId: ownerId === '' || ownerId == null ? null : ownerId,
+    }
+  }
+
   return (
     <ResourceFormModal
       resourceName="norms"
@@ -78,10 +94,11 @@ export const NormsFormModalComponent: React.FC<Props> = ({
         createResource: resource.createResource,
         updateResource: resource.updateResource,
       }}
+      transformValues={normalizeOwnerValue}
     >
       {(form) => {
         const ownerId = Form.useWatch('ownerId', form)
-        const selectedOwnerId = ownerId ?? norm?.owner?.id
+        const selectedOwnerId = normalizeOwnerId(ownerId ?? defaultOwnerId)
 
         return (
           <>
@@ -96,7 +113,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
             <Form.Item
               name="ownerId"
               label={I18n.t('shared.owner')}
-              initialValue={norm?.owner?.id || null}
+              initialValue={defaultOwnerId}
             >
               <Select
                 showSearch={{
@@ -117,7 +134,7 @@ export const NormsFormModalComponent: React.FC<Props> = ({
                 }
               >
                 {isSuperAdmin(currentUser) && (
-                  <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>
+                  <Select.Option value="">{I18n.t('admin.platform_owner')}</Select.Option>
                 )}
                 {getClients().map(({ id, name }) => (
                   <Select.Option key={id} value={id}>

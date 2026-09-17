@@ -14,7 +14,7 @@ module Administration
                  :calculated_minimum_upload_speed, :calculated_minimum_download_speed,
                  :skip_assessment_level_checks, :face_detection_enabled, :minimum_face_detection_ratio,
                  :phrase_verification_enabled, :selective_proctoring_enabled,
-                 :hide_participant_video, :disable_transcript_download
+                 :hide_participant_video, :disable_transcript_download, :disable_webhooks
       delegate :campaign, to: :object
       delegate :calculated_minimum_upload_speed, :calculated_minimum_download_speed, to: :campaign
     end

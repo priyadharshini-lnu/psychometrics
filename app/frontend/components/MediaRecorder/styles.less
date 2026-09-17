@@ -52,7 +52,6 @@
   object-fit: cover;
   background-color: black;
   border-radius: 8px 8px 0 0;
-  transform: scaleX(-1);
 
   &:focus-visible {
     outline: 3px solid var(--ant-primary-color);
@@ -63,6 +62,10 @@
     transition: none !important;
     animation: none !important;
   }
+}
+
+.mirrored {
+  transform: scaleX(-1);
 }
 
 .dummyMessageOverlay {

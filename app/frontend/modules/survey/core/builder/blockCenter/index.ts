@@ -11,6 +11,15 @@ import { QuestionSerializer, BlockSerializer } from '../assessment/SerializeAsse
 export const SAVE = 'survey/block_center/SAVE'
 const SAVE_REQUEST = 'survey/block_center/SAVE_REQUEST'
 
+export const FETCH_BLOCK_CENTER_DATA = 'survey/block_center/FETCH_DATA'
+export const fetchBlockCenter = (id: string | number) => ({
+  type: FETCH_BLOCK_CENTER_DATA,
+  request: {
+    url: `/administration/templates/blocks/${id}`,
+    camelize: false,
+  },
+})
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const save = (block: BlockInterface, builder: any) => {
   const denormolizedBlock = denormalize([block.id], [blocks], builder)[0]

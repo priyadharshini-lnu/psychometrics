@@ -179,7 +179,10 @@ const UserList: React.FC<Props> = ({
             />
             {permissions.create && (
               <div className={styles.newUserButton}>
-                <Button type="primary" onClick={() => openModal('UserFormModal', { campaignId })}>
+                <Button
+                  type="primary"
+                  onClick={() => openModal('UserFormModal', { campaignId, canManageUat: permissions.manageUat })}
+                >
                   <PlusOutlined />
                   <span>{I18n.t('admin.campaigns_users_add_user')}</span>
                 </Button>

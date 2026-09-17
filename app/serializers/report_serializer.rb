@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ClassLength
 class ReportSerializer < Panko::Serializer
   attributes :id, :name, :disabled, :created_at, :factors, :factor_norms, :occupations, :props, :pages, :category,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
              :innovation_styles, :result_completed_at, :norm_used, :result_locale, :default_language, :other_languages,
-             :locales, :module_overrides, :assessments, :styles, :flip_content, :available_languages
+             :locales, :module_overrides, :assessments, :styles, :flip_content, :available_languages, :published_at,
+             :published_by_name, :has_unpublished_changes
 
   has_many :filters, each_serializer: Reports::FilterSerializer
   has_many :campaign_factors, each_serializer: Reports::CampaignFactorSerializer
@@ -159,6 +161,27 @@ class ReportSerializer < Panko::Serializer
     end
   end
 
+  def published_at
+    return unless builder?
+
+    object.published_snapshot&.published_at
+  end
+
+  def published_by_name
+    return unless builder?
+
+    object.published_snapshot&.published_by&.decorate&.full_name
+  end
+
+  def has_unpublished_changes
+    return unless builder?
+
+    snapshot = object.published_snapshot
+    return false unless snapshot
+
+    object.updated_at > snapshot.published_at
+  end
+
   delegate :dimension_ids, to: :object
 
   def completed_assessments
@@ -209,6 +232,10 @@ class ReportSerializer < Panko::Serializer
 
   private
 
+  def builder?
+    context&.dig(:builder)
+  end
+
   def user_results_hash
     return {} if results.blank?
 
@@ -233,3 +260,4 @@ class ReportSerializer < Panko::Serializer
     context&.dig(:campaign)
   end
 end
+# rubocop:enable Metrics/ClassLength

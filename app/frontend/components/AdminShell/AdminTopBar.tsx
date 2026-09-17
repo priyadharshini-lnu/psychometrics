@@ -4,6 +4,7 @@ import { Flex, useGlintToken } from '@thetalententerprise/glint'
 import { useMedia } from 'use-media'
 import Notifications from '~/modules/admin/modules/AdminJob/Notifications'
 import adminJobStore from '~/modules/admin/modules/AdminJob/store'
+import { useCurrentUser } from '~/hooks/useCurrentUser'
 import { ClientSwitcher } from '~/components/ClientSwitcher'
 import { AdminLanguageSwitcher } from './AdminLanguageSwitcher'
 import { ProfileMenu } from './ProfileMenu'
@@ -13,6 +14,8 @@ export const AdminTopBarEnd: FC = () => {
   const token = useGlintToken()
   const isMobile = useMedia({ maxWidth: 600 })
   const { features, adminLocales } = window.PsyGlobalState
+  const { currentUser } = useCurrentUser()
+  const isAssessorOnly = currentUser?.roleTitle === 'Assessor' || currentUser?.role_title === 'Assessor'
 
   return (
     <Provider store={adminJobStore}>
@@ -20,7 +23,7 @@ export const AdminTopBarEnd: FC = () => {
         {features.enable_intl_for_admins && !isMobile
           ? <AdminLanguageSwitcher locales={adminLocales.split(',')} />
           : null}
-        <Notifications isMobile={isMobile} />
+        {!isAssessorOnly ? <Notifications isMobile={isMobile} /> : null}
         <ProfileMenu isMobile={isMobile} />
       </Flex>
     </Provider>

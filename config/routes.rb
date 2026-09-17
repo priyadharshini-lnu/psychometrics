@@ -144,6 +144,8 @@ Rails.application.routes.draw do
     resources :campaigns, only: [] do
       resources :user_reports, only: [:show]
     end
+
+    resources :participants, only: [:index]
   end
 
   # Administration panel
@@ -686,12 +688,19 @@ Rails.application.routes.draw do
           resource :builders, only: %i[show update] do
             member do
               post :upload_campaign_factors
+              get  :norms
+              get  :block_templates
+              get  :question_templates
+              get  :block_template
+              get  :question_template
+              get  :geo
             end
           end
           resource :scoring, only: [:update], controller: :scoring
           resource :agiles, only: %i[show update]
         end
       end
+      get '/builders/library', to: 'libraries#builder_index'
       ### END ASSESSMENTS
 
       ### DIMENSIONS
@@ -820,6 +829,7 @@ Rails.application.routes.draw do
             member do
               post :upload_campaign_factors
               post :upload_campaign_ai_artifacts
+              post :publish
             end
           end
         end
@@ -1361,7 +1371,11 @@ as: :simulation_progress_notification
                 post :parse_metadata
               end
             end
-            jsonapi_resources :client_features, only: %i[index update]
+            jsonapi_resources :client_features, only: %i[index update] do
+              collection do
+                post :migrate_communication_center
+              end
+            end
             jsonapi_resources :client_auditlog_export_settings, only: %i[update] do
               member do
                 post :test_connection
@@ -1437,6 +1451,15 @@ as: :simulation_progress_notification
               post :export_completion_status
               post :export_compact_completion_status
             end
+            jsonapi_resources :campaigns, only: %i[index], controller: 'projects/campaigns'
+            jsonapi_resources :bulk_report_jobs, only: %i[index show], controller: 'projects/bulk_report_jobs' do
+              collection do
+                post :bulk_download
+              end
+              member do
+                get :download_file
+              end
+            end
           end
           jsonapi_resources :memberships, only: %i[index create update show destroy] do
             get :spoof
@@ -1461,6 +1484,17 @@ as: :simulation_progress_notification
             end
           end
           jsonapi_resources :campaign_templates
+          jsonapi_resources :communication_templates do
+            post :update_translation, on: :member
+          end
+          jsonapi_resources :communication_deliveries do
+            post :cancel, on: :member
+            post :update_translation, on: :member
+          end
+          jsonapi_resources :communication_emails, except: %i[create update] do
+            get :preview, on: :member
+            post :retrigger, on: :member
+          end
           jsonapi_resources :assessments, concerns: :taggable do
             post :toggle_archive
             post :copy
@@ -1584,7 +1618,6 @@ only: %i[index create update]
               end
             end
             jsonapi_resources :threesixty_campaigns do
-              jsonapi_resource :report_approval_setting, only: %i[create update destroy]
               post :create_campaign, on: :collection
               post :convert_to_template, on: :member
               post :copy_as_template, on: :member

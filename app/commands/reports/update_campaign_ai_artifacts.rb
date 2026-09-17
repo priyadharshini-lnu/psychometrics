@@ -20,13 +20,23 @@ module Reports
 
     def call
       ActiveRecord::Base.transaction do
+        before = persisted_artifacts
         remove_unused_artifacts
         update_campaign_ai_artifacts!
         clean_module_references
+        touch_report_if_changed(before)
       end
     end
 
     private
+
+    def touch_report_if_changed(before)
+      report.touch if persisted_artifacts != before
+    end
+
+    def persisted_artifacts
+      report.campaign_ai_artifacts.reload.pluck(:code, :name, :ai_assistant_id).sort_by { |row| row.first.to_s }
+    end
 
     def validate_params!
       return if campaign_ai_artifacts_params.is_a?(Array) &&

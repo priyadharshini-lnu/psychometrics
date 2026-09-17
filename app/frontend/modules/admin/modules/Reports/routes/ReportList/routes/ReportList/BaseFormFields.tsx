@@ -77,7 +77,9 @@ const BaseFormFieldsComp: React.FC<Props> = ({
   const [assessmentCache, setAssessmentCache] = React.useState<Assessment[]>([])
   const [isCustomUpload, setIsCustomUpload] = React.useState(false || report?.provider === CUSTOM_UPLOAD)
   const ownerId = Form.useWatch('ownerId', form)
-  const selectedOwnerId = ownerId ?? report?.owner?.id
+  const normalizeOwnerId = (value?: string | null): string => value ?? ''
+  const defaultOwnerId = report?.owner?.id ?? (isSuperAdmin(currentUser) ? '' : null)
+  const selectedOwnerId = normalizeOwnerId(ownerId ?? defaultOwnerId)
 
   useEffect(() => {
     setAssessmentCache([...assessmentCache, ...assessments.filter(a => assessmentIds.includes(a.id))])
@@ -201,7 +203,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
       <Form.Item
         name="ownerId"
         label={I18n.t('common.column.owner')}
-        initialValue={report?.owner?.id || null}
+        initialValue={defaultOwnerId}
       >
         <Select
           showSearch={{
@@ -214,7 +216,7 @@ const BaseFormFieldsComp: React.FC<Props> = ({
           }}
           notFoundContent={isClientsLoading('fetch') ? <Spin size="small" /> : I18n.t('shared.no_results_found')}
         >
-          {isSuperAdmin(currentUser) && <Select.Option>{I18n.t('admin.platform_owner')}</Select.Option>}
+          {isSuperAdmin(currentUser) && <Select.Option value="">{I18n.t('admin.platform_owner')}</Select.Option>}
           {getClients().map(({ id, name }) => (
             <Select.Option key={id} value={id}>{name}</Select.Option>
           ))}

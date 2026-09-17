@@ -1,12 +1,11 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC } from 'react'
 import { Checkbox, Space } from 'antd'
 
 import {
   ImageChoiceBuilder,
   NotApplicableImageChoice,
 } from '~/modules/survey/components/modules/MultipleChoice/components/ImageChoiceBuilder'
-import Socket from '~/modules/survey/cable'
-import LibraryTransport from '~/modules/survey/cable/LibraryChannel'
+import BuilderLibraryTransport from '~/modules/survey/core/builder/libraryTransport'
 import { LibraryStore } from '~/libs/library'
 import useForceUpdate from '~/hooks/useUpdate'
 
@@ -33,13 +32,6 @@ const MultipleAnswer: FC<Props> = ({ model }) => {
 
   const forceUpdate = useForceUpdate()
 
-  const librarySocket = useRef<ReturnType<typeof Socket.library> | null>(null)
-
-  useEffect(() => {
-    LibraryTransport.init()
-    librarySocket.current = Socket.library()
-  }, [])
-
   const changeLabel = (i: number, text: string) => {
     model.changeArrayProps({ collection: 'choicesTexts', i, val: text })
     forceUpdate()
@@ -52,7 +44,7 @@ const MultipleAnswer: FC<Props> = ({ model }) => {
 
   const handleImageClick = (index: number) => {
     LibraryStore.openPopup(
-      librarySocket.current,
+      BuilderLibraryTransport,
       item => handleImageSelect(item, index),
       'image',
     )

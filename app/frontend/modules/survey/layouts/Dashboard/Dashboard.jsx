@@ -19,8 +19,6 @@ export const Dashboard = (props) => {
     disableMessage,
     fetch,
     init,
-    subscribeSocket,
-    socketInitialized,
     defaultLocale,
     isLoading,
     enableApp,
@@ -46,9 +44,6 @@ export const Dashboard = (props) => {
     !loadingAssessment && setLoadingAssessment(true)
     const urldata = location.pathname.match(/assessments\/(\d+)/)
     const id = urldata && urldata[1]
-    if (!socketInitialized) {
-      subscribeSocket('Assessments::Channel', { assessment_id: id })
-    }
     fetch(id, currentLocale)
       .then(({ response }) => {
         init(response)

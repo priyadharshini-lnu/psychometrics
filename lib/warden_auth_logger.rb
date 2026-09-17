@@ -34,6 +34,8 @@ module WardenAuthLogger
                                      request_details: SiemLogger.build_request_details(request, identity_provider),
                                      msg: "Failed login attempt for #{actor}, reason: #{reason}",
                                      authentication_channel: auth_channel, identity_provider: identity_provider)
+    rescue ActionController::BadRequest, Rack::Multipart::EmptyContentError
+      nil
     end
 
     def log_success(user, auth, opts = {})

@@ -7,7 +7,7 @@ import { Menu } from 'antd'
 import { connect, ConnectedProps } from 'react-redux'
 import {
   AdminPanelSettings, Analytics, AssignmentInd,
-  Key, ReceiptLong, Settings, Work,
+  Key, ReceiptLong, Settings, Work, MessageOutlined,
 } from '@thetalententerprise/glint/icons'
 import { MenuItem } from '~/interfaces/Antd'
 import { useResources } from '~/hooks/useResources'
@@ -78,6 +78,9 @@ export const Client: FC<Props> = ({ currentUser }) => {
     if (pathname.includes('/settings')) {
       return ['settings']
     }
+    if (pathname.includes('/communication_center')) {
+      return ['communication_center']
+    }
     if (pathname.includes('/data_reports')) {
       return ['data_reports']
     }
@@ -116,6 +119,8 @@ export const Client: FC<Props> = ({ currentUser }) => {
         if (pathname.includes('/applications')) return I18n.t('admin.applications')
         return I18n.t('admin.settings')
       }
+      case 'communication_center':
+        return I18n.t('admin.communication_center')
       case 'data_reports':
         return I18n.t('admin.data_reports')
       case 'audit_reports':
@@ -150,6 +155,12 @@ export const Client: FC<Props> = ({ currentUser }) => {
     key: 'settings',
     icon: <Settings />,
     label: I18n.t('admin.settings'),
+  })
+
+  client?.meta.permissions.viewCommunicationCenter && menuItems.push({
+    key: 'communication_center',
+    icon: <MessageOutlined />,
+    label: I18n.t('admin.communication_center'),
   })
 
   client?.meta.permissions.viewDataReports && menuItems.push({

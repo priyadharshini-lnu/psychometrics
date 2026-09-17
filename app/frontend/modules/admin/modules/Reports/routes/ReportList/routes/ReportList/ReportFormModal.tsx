@@ -10,11 +10,20 @@ interface Props {
 
 const { I18n } = window
 
+type OwnerFormValues = Record<string, unknown> & {
+  ownerId?: string | null
+}
+
 export const ReportFormModal: React.FC<Props> = ({ close }) => {
   const { resource } = useResourceContext()
   const [form] = Form.useForm()
 
   const createNewResource = data => resource.createResource(data)
+
+  const normalizeOwnerValue = (values: OwnerFormValues = {}): OwnerFormValues => ({
+    ...values,
+    ownerId: values.ownerId === '' ? null : values.ownerId,
+  })
 
   return (
     <ResourceFormModal
@@ -26,6 +35,7 @@ export const ReportFormModal: React.FC<Props> = ({ close }) => {
       scrollToFirstError
       modalProps={{ width: 720 }}
       request={{ createResource: createNewResource, updateResource: resource.updateResource }}
+      transformValues={normalizeOwnerValue}
       formProps={{
         initialValues: { defaultLanguage: 'en' },
       }}

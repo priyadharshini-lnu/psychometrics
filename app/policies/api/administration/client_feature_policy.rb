@@ -10,6 +10,10 @@ module Api
       def index?
         @user.is?(:superadmin) || @user.has_grant?(:project_settings, :feature_flags)
       end
+
+      def migrate_communication_center?
+        @user.support_admin?
+      end
     end
   end
 end

@@ -214,6 +214,8 @@ zh-Hant:
               inclusion: 錯誤的地區
             password:
               too_short: 密碼太短，需要最少 %{count} 字元
+            uat:
+              invalid: UAT 必須是下列其中一個值：%{accepted_values} 或空白
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ zh-Hant:
               invalid_reports_header: 無效標頭，從範例檔案取得標頭
               manager_not_found: 第 %{row_number} 行：電子郵件為 %{email} 的管理員不存在於活動或 CSV 中。
               not_enough_licenses: 匯入需要 %{required_count} 個許可證，但只有 %{available_count} 個可用許可證。請在匯入前減少新使用者數量或新增更多授權。
+              not_enough_uat_licenses: 匯入需要 %{required_count} 個 UAT 測試許可證，但只有 %{available_count} 個可用。請在匯入前減少新增 UAT 使用者數量或提高 UAT 使用限制。
               user_update_failed: "%{email} 的使用者更新失敗，並產生錯誤 '%{error}'"
             locale:
               inclusion: 錯誤的地區
@@ -943,7 +946,9 @@ zh-Hant:
         import_sms_invites: 匯入簡訊邀請
         import_users: 匯入使用者
         migrate_assessment_translations: 評估 翻譯轉移
+        migrate_communication_center: 通信中心遷移
         normalize_factor_scores: 標準化因子分數
+        project_bulk_download_reports: 項目批量下載報告
         project_compact_completion_status_export: 紧凑型完成状态导出
         project_completion_status_export: 完成状态导出
         regenerate_assessment_transcriptions: 重新生成评估记录
@@ -986,6 +991,8 @@ zh-Hant:
     errors: 錯誤
     invalid_job: 此通知對應已刪除的記錄
     mark_as_read: 標記所有讀取
+    migrate_communication_center:
+      client_not_found: 未找到 id=%{id} 的客戶端
     more: 更多資訊
     results: 結果
     super_admin:
@@ -1319,7 +1326,6 @@ zh-Hant:
     privacy_notice_link: <a href="%{privacy_url}">隐私声明
     registration:
       description: 填寫以下詳細資料註冊並建立新帳戶
-      email_hint: 我們尊重您的隱私，絕不容忍垃圾郵件。 我們絕不會將您的資訊提供給任何第三方
       first_name: 姓名
       first_name_placeholder: 輸入名字
       have_account: 已經有一個帳戶？
@@ -2957,6 +2963,7 @@ zh-Hant:
     end_date: 結束日期
     not_enough_license: "%{client_name}「 沒有足夠的 」%{report_name}' 授權。"
     not_enough_license_count: 許可證數量不足，請聯絡管理員
+    not_enough_uat_license: "'%{client_name}' 沒有足夠的 UAT 測試許可證來支援 '%{report_name}'。請增加該授權的 UAT 使用限制，或聯絡管理員。"
     number: 數量
     overuse_number: 超額使用免稅額
     project_specific: 專案專屬
@@ -2971,6 +2978,11 @@ zh-Hant:
       idp: IDP
       proctoring: 檢測
       threesixty: Threesixty
+    uat_usage_limit_credits: 用戶驗收測試積分
+    uat_usage_limit_credits_hint: 監考費用是按積分計費，因此這是 UAT 測試使用者可從該授權中消耗的最大積分（最多 300）。
+    uat_usage_limit_users: 用戶驗收測試用戶
+    uat_usage_limit_users_hint: 此授權最多可建立 30 個 UAT 測試使用者。測試使用者不會佔用任何計費許可證。
+    uat_used: UAT 使用的許可證
     used_number: 使用過的授權
     used_out_of: "%{used}中的%{total}。"
   lti:
@@ -3947,8 +3959,8 @@ zh-Hant:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: 允許使用者提交多個回覆
     png: PNG

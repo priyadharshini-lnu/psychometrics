@@ -226,7 +226,7 @@ module Administration
 
       def subjects_from_csv(file)
         csv_result = ::CsvFileParser.call!(file, headers: :first_row)
-        csv_result.map { |row| row.to_h.symbolize_keys }
+        csv_result.map { |row| row.to_h.symbolize_keys.transform_keys(UAT: :uat) }
       end
     end
   end

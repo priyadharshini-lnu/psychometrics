@@ -102,10 +102,9 @@ class Condition extends Component {
 
   renderConditionTypeSelect () {
     const { condition, model, assessments } = this.props
-    const { category } = _.find(assessments, { id: model.module.assessment_id })
-    if (!SOURCE_TYPES[category]) { return null }
-
-    const options = SOURCE_TYPES[category].filter(o => o.condition)
+    const assessment = _.find(assessments, { id: model.module.assessment_id }) || {}
+    const { category } = assessment
+    const options = (SOURCE_TYPES[category] || []).filter(o => o.condition)
     return (
       <select
         value={condition.getType() || ''}

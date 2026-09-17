@@ -9,6 +9,7 @@ import {
   MICROSITE,
   SIMULATION,
   MHS,
+  LEAD_ASSESSOR_FORM,
 } from '~/modules/reports/models/Assessment'
 import Filter from './Filter'
 
@@ -36,6 +37,10 @@ export const SOURCE_TYPES = {
   ],
   [MICROSITE]: [
     { value: 'Question', label: 'Question', condition: false },
+    { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
+    { value: 'Factor', label: 'Factors', condition: true },
+  ],
+  [LEAD_ASSESSOR_FORM]: [
     { value: 'EmbeddedData', label: 'Embedded Data', condition: true },
     { value: 'Factor', label: 'Factors', condition: true },
   ],

@@ -87,6 +87,14 @@ const ProjectLicensesTableComponent: React.FC<Props> = ({
           )}
         />
         <Resource.Column<License>
+          title={I18n.t('licenses.uat_used')}
+          id="project_uat_usage"
+          render={(_, { projectUatUsedNumber, uatUsageLimit }) => I18n.t('licenses.used_out_of', {
+            used: projectUatUsedNumber || 0,
+            total: uatUsageLimit,
+          })}
+        />
+        <Resource.Column<License>
           title={I18n.t('licenses.start_date')}
           id="start_date"
           dataIndex="startDate"

@@ -178,4 +178,43 @@ describe LicenseManager::Proctoring do
       end
     end
   end
+
+  describe '#deduct_license!' do
+    before do
+      allow(Campaigns::Proctoring::GetProctoringCredits).to receive(:call!).and_return(5)
+      license.update!(uat_usage_limit: 10)
+    end
+
+    it 'increments billable used number by credits for normal users' do
+      proctoring_manager = described_class.new(
+        campaign: campaign,
+        user: campaign_user,
+        license: license
+      )
+
+      expect do
+        proctoring_manager.deduct_license!
+      end.to change { license.reload.used_number }.by(5)
+
+      expect(LicenseUsage.last.is_uat).to eq(false)
+      expect(LicenseUsage.last.proctoring_credits_debited).to eq(5)
+    end
+
+    it 'records UAT credits without touching billable counters' do
+      proctoring_manager = described_class.new(
+        campaign: campaign,
+        user: campaign_user,
+        license: license,
+        uat: true
+      )
+
+      expect do
+        proctoring_manager.deduct_license!
+      end.not_to(change { license.reload.used_number })
+
+      expect(LicenseUsage.last.is_uat).to eq(true)
+      expect(LicenseUsage.last.proctoring_credits_debited).to eq(5)
+      expect(license.uat_used_number).to eq(5)
+    end
+  end
 end

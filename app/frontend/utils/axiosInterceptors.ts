@@ -12,8 +12,7 @@ axios.interceptors.response.use(
     const { headers } = response
     const { currentUser } = window.PsyGlobalState
 
-    CreateSyncTimeoutChannel.setChannel()
-    CreateSyncTimeoutChannel.channel?.postMessage({ userId: currentUser?.id, nextTimeout: headers['x-next-timeout'] })
+    CreateSyncTimeoutChannel.publish({ userId: currentUser?.id, nextTimeout: headers['x-next-timeout'] })
     return response
   },
   (error) => {

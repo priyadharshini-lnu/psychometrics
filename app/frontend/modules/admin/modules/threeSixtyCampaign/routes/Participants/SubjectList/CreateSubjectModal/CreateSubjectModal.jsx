@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
-  Modal, Button, Form, Input, Select, Alert,
+  Modal, Button, Form, Input, Select, Alert, Checkbox, Space, Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import debounce from 'lodash/debounce'
-import { CheckOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { CheckOutlined, InfoCircleOutlined, LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { useResources } from '~/hooks/useResources'
 import { getFeatures } from '~/core/config'
 import { getCategory } from '~/modules/admin/modules/threeSixtyCampaign/core/campaignDetails'
@@ -29,6 +29,8 @@ function CreateSubjectModal ({
   const { campaignId, projectId } = useParams()
   const [form] = Form.useForm()
   const [autocompletedUser, setAutocompletedUser] = useState('')
+
+  const [existingUserIsUat, setExistingUserIsUat] = useState(null)
 
   const [jobRoleFilter, setJobRoleFilter] = useState('')
   const {
@@ -81,7 +83,9 @@ function CreateSubjectModal ({
 
   const onSelectUser = (user) => {
     const data = JSON.parse(user)
+    const isUat = Boolean(data.is_uat ?? data.isUat)
     setAutocompletedUser(data.email)
+    setExistingUserIsUat(isUat)
 
     // Pre-populate form fields
     form.setFieldsValue({
@@ -89,8 +93,19 @@ function CreateSubjectModal ({
       firstName: data.firstName || data.first_name,
       lastName: data.lastName || data.last_name,
       locale: data.locale,
+      isUat,
     })
   }
+  const uatLabel = (
+    <Space size={4}>
+      <span>{I18n.t('admin.campaign_users_uat_label')}</span>
+      <Tooltip title={I18n.t('admin.campaign_users_uat_tooltip')}>
+        <span>
+          <InfoCircleOutlined />
+        </span>
+      </Tooltip>
+    </Space>
+  )
 
   const handleSubmit = async (values) => {
     // Validate for whitespace before submitting
@@ -168,6 +183,10 @@ function CreateSubjectModal ({
             value={autocompletedUser}
             onChange={(value) => {
               setAutocompletedUser(value)
+              if (existingUserIsUat !== null) {
+                setExistingUserIsUat(null)
+                form.setFieldsValue({ isUat: false })
+              }
               form.validateFields(['email'])
             }}
             onSelect={onSelectUser}
@@ -212,6 +231,19 @@ function CreateSubjectModal ({
           label={I18n.t('admin.locale')}
         >
           <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="isUat"
+          valuePropName="checked"
+          label={uatLabel}
+          extra={existingUserIsUat === null
+            ? undefined
+            : I18n.t('admin.campaign_users_uat_locked_hint')}
+        >
+          <Checkbox disabled={existingUserIsUat !== null}>
+            {I18n.t('admin.campaign_users_uat_description')}
+          </Checkbox>
         </Form.Item>
 
         {skillRaterEnabled && isSkillRater && (

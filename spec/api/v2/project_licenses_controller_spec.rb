@@ -27,6 +27,24 @@ RSpec.describe Api::V2::Administration::ProjectLicensesController, type: :reques
       expect(license_response['attributes']['project_license_details']['usage_limit']).
         to eq(project_license.usage_limit)
     end
+
+    it 'returns project scoped UAT usage for project license page' do
+      other_project = create(:project, parent: client)
+      uat_user = create(:user, project: project, is_uat: true)
+      other_uat_user = create(:user, project: other_project, is_uat: true)
+      create(:license_usage, license: license, project: project, user: uat_user, client: client, is_uat: true)
+      create(:license_usage, license: license, project: other_project, user: other_uat_user, client: client,
+                             is_uat: true)
+
+      get "/api/v2/administration/projects/#{project.id}/licenses",
+          headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+      expect(response).to have_http_status(:ok)
+      license_response = JSON.parse(response.body)['data'].find { |record| record['id'] == license.id.to_s }
+
+      expect(license_response['attributes']['uat_used_number']).to eq(2)
+      expect(license_response['attributes']['project_uat_used_number']).to eq(1)
+    end
   end
 
   describe 'POST /projects/:project_id/licenses' do

@@ -3,9 +3,14 @@
 module Administration
   module Reports
     class BuildersController < Administration::BaseController
+      include AsyncRequestHandler
+
       skip_before_action :enforce_geo_restriction
       before_action :set_report
       append_before_action :pundit_authorize
+
+      async_request :publish, handler: ::Reports::PublishSnapshotHandler,
+                    permit_params: ->(params) {}
 
       def show
         Mobility.with_locale(params[:lang] || @report.default_language) do
@@ -66,6 +71,10 @@ module Administration
 
       def set_report
         @report = policy_scope(::Report).find(params[:report_id])
+      end
+
+      def meta_data
+        { report_id: @report.id }
       end
 
       # Authorisation user

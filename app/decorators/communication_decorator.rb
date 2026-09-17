@@ -33,4 +33,20 @@ class CommunicationDecorator < BaseDecorator
   def kind
     object.kind_i18n
   end
+
+  def recipients
+    return I18n.t("admin.completion_recipients_#{object.recipients}") if object.completion?
+
+    object.recipients_i18n
+  end
+
+  def show_recipient_users_list?
+    object.selected_recipients? || object.selected_admins_recipients? || object.selected_assessors_recipients?
+  end
+
+  def users_list_label
+    return I18n.t('admin.completion_recipients_list') if object.completion?
+
+    I18n.t('administration.communications.show.users')
+  end
 end

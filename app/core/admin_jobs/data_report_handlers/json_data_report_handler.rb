@@ -43,7 +43,7 @@ module AdminJobs
         campaigns.each do |campaign|
           campaign_users = CampaignUser.includes({
             user: [:user_profile], campaign: %i[project campaign_factors]
-          }, :user_assessments).where(campaign_id: campaign.id)
+          }, :user_assessments).joins(:user).where(campaign_id: campaign.id, users: { is_uat: false })
           context = {}
 
           campaign_users.find_each(batch_size: LIMIT).with_index do |cu, row_num|

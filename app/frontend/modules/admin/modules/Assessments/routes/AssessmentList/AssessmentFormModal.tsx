@@ -12,6 +12,10 @@ interface Props {
 
 const { I18n } = window
 
+type OwnerFormValues = Record<string, unknown> & {
+  ownerId?: string | null
+}
+
 export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
   const [assessmentName, setAssessmentName] = useState('')
 
@@ -34,6 +38,11 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
     form.setFieldsValue({ name: assessmentName })
   }, [assessmentName])
 
+  const normalizeOwnerValue = (values: OwnerFormValues = {}): OwnerFormValues => ({
+    ...values,
+    ownerId: values.ownerId || null,
+  })
+
   return (
     <ResourceFormModal
       resourceName="assessments"
@@ -44,6 +53,7 @@ export const AssessmentFormModal: React.FC<Props> = ({ close }) => {
       scrollToFirstError
       modalProps={{ width: 720 }}
       request={{ createResource: resource.createResource, updateResource: resource.updateResource }}
+      transformValues={normalizeOwnerValue}
     >
       {() => (
         <>

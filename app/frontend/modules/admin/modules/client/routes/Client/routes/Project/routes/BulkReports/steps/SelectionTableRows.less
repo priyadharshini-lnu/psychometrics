@@ -1,0 +1,40 @@
+.selectionTable {
+  :global {
+    .ant-table table {
+      border-spacing: 0 8px;
+    }
+
+    .ant-table-tbody > tr > td {
+      border-top: 1px solid var(--ant-color-border);
+      border-bottom: 1px solid var(--ant-color-border);
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .ant-table-tbody > tr > td:first-child {
+      border-left: 1px solid var(--ant-color-border);
+      border-start-start-radius: 9px;
+      border-end-start-radius: 9px;
+    }
+
+    .ant-table-tbody > tr > td:last-child {
+      border-right: 1px solid var(--ant-color-border);
+      border-start-end-radius: 9px;
+      border-end-end-radius: 9px;
+    }
+
+    .ant-table-tbody > tr:hover > td {
+      border-color: var(--ant-color-primary);
+    }
+  }
+}
+
+.selectedRow {
+  :global {
+    td,
+    td:first-child,
+    td:last-child {
+      border-color: var(--ant-color-primary) !important;
+      background: var(--ant-color-primary-bg) !important;
+    }
+  }
+}

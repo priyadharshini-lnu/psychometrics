@@ -105,6 +105,11 @@ export const General: React.FC = () => {
               <Form.Item name="liveChatToken" label="Live Chat Token" hidden={!enableLiveChatChecked}>
                 <Input />
               </Form.Item>
+              <Form.Item name="allowDataAccessToBi" valuePropName="checked">
+                <Checkbox>
+                  {I18n.t('admin.projects_general_settings_allow_data_access_to_bi')}
+                </Checkbox>
+              </Form.Item>
 
               <Button type="primary" htmlType="submit" className="mb-16">
                 {I18n.t('admin.projects_general_settings_save_changes')}

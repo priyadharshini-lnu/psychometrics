@@ -22,21 +22,33 @@ module Builders
       end
 
       def update_translation(translation)
+        return if translation.data['props'].present?
+
         translations_data = translation.props
         question_props = translation.data['props'] || {}
 
-        update_generic_props(question_props, translations_data)
-        update_campaign_factor_feedback_props(question_props, translations_data)
-        update_gap_analysis_props(question_props, translations_data)
-        update_matrix_table_props(question_props, translations_data)
-        update_side_by_side_props(question_props, translations_data)
-        update_slider_props(question_props, translations_data)
-        update_text_entry_props(question_props, translations_data)
+        case translation.translateable_type
+          when 'Instructions'
+            update_instructions_props(question_props, translations_data)
+            translation.data = { 'props' => question_props }
+          when 'Block'
+            update_block_static_content_props(question_props, translations_data)
+            translation.data = { 'props' => question_props }
+          else
+            update_generic_props(question_props, translations_data)
+            update_campaign_factor_feedback_props(question_props, translations_data)
+            update_gap_analysis_props(question_props, translations_data)
+            update_matrix_table_props(question_props, translations_data)
+            update_side_by_side_props(question_props, translations_data)
+            update_slider_props(question_props, translations_data)
+            update_text_entry_props(question_props, translations_data)
 
-        custom_validations = extract_custom_validations(translations_data)
-        validation = { 'customValidations' => custom_validations.map { |message| { 'message' => message } } }
+            custom_validations = extract_custom_validations(translations_data)
+            validation = { 'customValidations' => custom_validations.map { |message| { 'message' => message } } }
 
-        translation.data = { 'props' => question_props, 'validation' => validation }
+            translation.data = { 'props' => question_props, 'validation' => validation }
+        end
+
         translation.save!
       end
 
@@ -45,6 +57,16 @@ module Builders
 
         choices_texts = extract_choices_texts(translations)
         props['choicesTexts'] = choices_texts if choices_texts.any?
+      end
+
+      def update_instructions_props(props, translations)
+        props['content'] = translations['content'] if translations['content'].present?
+      end
+
+      def update_block_static_content_props(props, translations)
+        if translations['staticContent'].present?
+          props['staticContent'] = { 'value' => translations['staticContent'] }
+        end
       end
 
       def update_campaign_factor_feedback_props(props, translations)

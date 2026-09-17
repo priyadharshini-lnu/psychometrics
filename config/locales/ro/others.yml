@@ -214,6 +214,8 @@ ro:
               inclusion: Localizare greșită
             password:
               too_short: Parola este prea scurtă. Caracterul minim %{count} necesar
+            uat:
+              invalid: 'UAT trebuie să fie unul dintre următoarele: %{accepted_values} sau gol.'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ ro:
               invalid_reports_header: Antet nevalid, preluați antetul din fișierul eșantion
               manager_not_found: 'Rândul %{row_number}: Managerul cu e-mail %{email} nu este prezent în campanie sau în CSV'
               not_enough_licenses: Importul necesită %{required_count} licențe, dar sunt disponibile doar %{available_count}. Vă rugăm să reduceți numărul de utilizatori noi sau să adăugați mai multe licențe înainte de import.
+              not_enough_uat_licenses: Importul necesită %{required_count} licențe de testare UAT, dar sunt disponibile doar %{available_count}. Vă rugăm să reduceți numărul de noi utilizatori UAT sau să creșteți limita de utilizare UAT înainte de import.
               user_update_failed: Actualizarea utilizatorului a eșuat pentru %{email} cu eroarea '%{error}'
             locale:
               inclusion: Localizare greșită
@@ -943,7 +946,9 @@ ro:
         import_sms_invites: Importați invitația prin SMS
         import_users: Importați utilizatori
         migrate_assessment_translations: Migrarea traducerii de evaluare
+        migrate_communication_center: Migrarea Centrului de Comunicare
         normalize_factor_scores: Normalizați scorurile factorilor
+        project_bulk_download_reports: Rapoarte de descărcare în bloc a proiectului
         project_compact_completion_status_export: Exportare stare finalizare compactă
         project_completion_status_export: Stare finalizare Export
         regenerate_assessment_transcriptions: Regenerare transcrieri evaluări
@@ -986,6 +991,8 @@ ro:
     errors: Erori
     invalid_job: Această notificare corespunde înregistrării șterse
     mark_as_read: Marcați toate citite
+    migrate_communication_center:
+      client_not_found: Clientul cu id=%{id} nu a fost găsit
     more: Mai mult
     results: Rezultatele
     super_admin:
@@ -1319,7 +1326,6 @@ ro:
     privacy_notice_link: <a href="%{privacy_url}">Politica de confidențialitate
     registration:
       description: Completați datele de mai jos pentru a vă înregistra și a crea un cont nou
-      email_hint: Vă respectăm confidențialitatea și nu tolerăm spam-ul. Nu vom da niciodată informațiile dvs. unei terțe părți
       first_name: Prenumele
       first_name_placeholder: Introduceți prenumele
       have_account: Aveți deja un cont?
@@ -2984,6 +2990,7 @@ ro:
     end_date: Data de încheiere
     not_enough_license: "'%{client_name}' nu are suficiente licențe pentru '%{report_name}'"
     not_enough_license_count: Nu sunt suficiente licențe, vă rugăm să contactați administratorul
+    not_enough_uat_license: "„%{client_name}” nu are suficiente licențe de testare UAT pentru „%{report_name}”. Măriți limita de utilizare UAT pentru acea licență sau contactați administratorul."
     number: Număr
     overuse_number: Suprautilizare
     project_specific: Proiect specific
@@ -2998,6 +3005,11 @@ ro:
       idp: IDP
       proctoring: Supravegherea
       threesixty: Treișaizeci
+    uat_usage_limit_credits: Credite de test UAT
+    uat_usage_limit_credits_hint: Supravegherea este facturată în credite, deci acesta este numărul maxim de credite pe care utilizatorii testului UAT le pot consuma din această licență (maxim 300).
+    uat_usage_limit_users: Utilizatori de teste UAT
+    uat_usage_limit_users_hint: Numărul maxim de utilizatori UAT care pot fi creați pentru această licență (maxim 30). Utilizatorii de testare nu consumă niciodată licențe facturabile.
+    uat_used: Licențe utilizate de UAT
     used_number: Licențe folosite
     used_out_of: "%{used} din %{total}"
   lti:
@@ -3974,8 +3986,8 @@ ro:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Permiteți utilizatorilor să trimită mai multe răspunsuri
     png: PNG

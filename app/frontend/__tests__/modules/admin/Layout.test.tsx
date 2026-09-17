@@ -27,6 +27,12 @@ vi.mock('~/components/IncorrectResponseErrorModal', () => ({ default: () => null
 vi.mock('~/components/ErrorModal', () => ({ default: () => null }))
 vi.mock('~/components/SessionTimeoutModal', () => ({ SessionTimeoutModal: () => null }))
 vi.mock('~/components/DisplayExceptionModal', () => ({ DisplayExceptionModal: () => null }))
+vi.mock('~/modules/admin/modules/AssessorApp/context/NewExperienceNotice', () => ({
+  NewExperienceNotice: () => null,
+}))
+vi.mock('~/modules/admin/modules/AssessorApp/newExperience/routes/AssessorAppTour', () => ({
+  AssessorAppTourProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
+}))
 
 vi.mock('~/modules/admin/modules/AssessorApp/routes/CampaignList', () => ({ default: stub('campaign-list') }))
 vi.mock('~/modules/admin/modules/AssessorApp/routes/UserList', () => ({ default: stub('user-list') }))
@@ -78,6 +84,19 @@ const findPage = async (testId: string, passes = 100): Promise<HTMLElement> => {
   return screen.getByTestId(testId)
 }
 
+// A redirect can chain (e.g. /assessors -> /admin -> /admin/clients), so each hop needs its own act to settle.
+type Router = Awaited<ReturnType<typeof renderAt>>
+
+const findPath = async (router: Router, pathname: string, passes = 100): Promise<string> => {
+  if (passes > 0 && router.state.location.pathname !== pathname) {
+    await act(async () => { await new Promise((resume) => { setTimeout(resume, 10) }) })
+
+    return findPath(router, pathname, passes - 1)
+  }
+
+  return router.state.location.pathname
+}
+
 describe('admin Layout router', () => {
   beforeEach(() => { globalThis.IS_REACT_ACT_ENVIRONMENT = true })
   afterEach(() => { cleanup() })
@@ -98,7 +117,7 @@ describe('admin Layout router', () => {
   it('redirects the admin root to clients', async () => {
     const router = await renderAt('/admin')
 
-    expect(router.state.location.pathname).toEqual('/admin/clients')
+    expect(await findPath(router, '/admin/clients')).toEqual('/admin/clients')
   })
 
   it('claims both prefixes so crossing the boundary stays client-side', async () => {
@@ -110,7 +129,7 @@ describe('admin Layout router', () => {
   it('sends a user without assessor permission from /assessors to the admin shell', async () => {
     const router = await renderAt('/assessors', { clients: '/admin/clients' })
 
-    expect(router.state.location.pathname).toEqual('/admin/clients')
+    expect(await findPath(router, '/admin/clients')).toEqual('/admin/clients')
     expect(screen.getByTestId('clients')).toBeInTheDocument()
   })
 })

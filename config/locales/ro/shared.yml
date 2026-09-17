@@ -37,8 +37,10 @@ ro:
     campaign: Campanie
     campaign_id: ID-ul campaniei
     cancel: Anulați
+    candidates: Candidați
     category: Categorie
     change_password: Schimbați parola
+    clear: Clar
     clear_filters: Ștergeți filtrele
     client: Client
     close: Închide
@@ -86,11 +88,15 @@ ro:
     end_date: Data de încheiere
     ending_proctoring_session_msg: Încheiem sesiunea de supraveghere. <p>Vă rugăm să așteptați până când vă salvăm răspunsurile și vă redirecționăm către pagina principală.</p>
     error: Eroare
+    errors: Erori
     export: Exportați
     failed: Eșuat
     'false': false
     file: Fișier
     file_upload_button: Selectează fișierul
+    filename: Nume de fișier
+    files: Fișiere
+    filters: Filtre
     first_name: Prenumele
     formal_learning: Învățământ formal
     generate: Generați
@@ -105,6 +111,7 @@ ro:
     impersonation_banner_aria_label: Sesiune activă de uzurpare a identității
     impersonation_end_session: Ieșire
     import: Importa
+    in_progress: În curs
     inactive: Inactivă
     internet_disconnected_message: Încercați să vă reconectați. Vă rugăm să verificați conexiunea la internet.
     is_impersonating: se preface
@@ -112,6 +119,7 @@ ro:
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Detalii privind cererile de despăgubire JWT
     key_id_claim_label: ID-ul cheii (kid)
+    languages: Limbi
     last_name: Numele de familie
     last_updated: Ultima actualizare
     learning_on_the_job_label: Învățarea la locul de muncă
@@ -151,6 +159,7 @@ ro:
     no_results_found: Nu s-au găsit rezultate
     none: Niciunul
     not_requested: Nu a fost încă solicitat
+    not_set: Nesetat
     ok: Bine
     options: Opțiuni
     overview: Prezentare generală
@@ -215,12 +224,14 @@ ro:
     reset_password: Resetați parola
     response_text: Textul răspunsului
     return_url_not_whitelisted: Adresa URL de retur nu este pe lista albă pentru această aplicație.
+    review: Recenzie
     rte_paste_content_exceeds_char_limit: Textul depășește limita de caractere {{maxCharacterLimit}} și nu poate fi lipit.
     rte_paste_content_exceeds_word_limit: Textul depășește limita de cuvinte a {{maxWordLimit}} și nu poate fi lipit.
     run: Alerga
     save: Salvați
     saving_video: Salvarea video... Vă rugăm să nu închideți sau să nu reîmprospătați browserul
     schedule_time: Timp de programare
+    scheduled: Programat
     scoring_details: Detalii privind punctajul
     search: Căutare
     select_camera: Alege o cameră

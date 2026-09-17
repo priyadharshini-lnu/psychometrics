@@ -214,6 +214,8 @@ cs:
               inclusion: Špatné umístění
             password:
               too_short: Heslo je příliš krátké. Je vyžadován minimální počet znaků %{count}
+            uat:
+              invalid: 'UAT musí být jeden z: %{accepted_values} nebo prázdný'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ cs:
               invalid_reports_header: Neplatná hlavička, převezměte hlavičku ze vzorového souboru
               manager_not_found: 'Řádek %{row_number}: Manažer s e-mailem %{email} není přítomen v kampani ani v CSV'
               not_enough_licenses: Import vyžaduje %{required_count} licencí, ale k dispozici je pouze %{available_count}. Před importem prosím snižte počet nových uživatelů nebo přidejte další licence.
+              not_enough_uat_licenses: Import vyžaduje %{required_count} testovacích licencí UAT, ale k dispozici je pouze %{available_count}. Před importem prosím snižte počet nových uživatelů UAT nebo zvyšte limit využití UAT.
               user_update_failed: Aktualizace uživatele se nezdařila pro %{email} s chybou '%{error}'
             locale:
               inclusion: Špatné umístění
@@ -943,7 +946,9 @@ cs:
         import_sms_invites: Importovat pozvánku SMS
         import_users: Import uživatelů
         migrate_assessment_translations: Hodnocení Překlad migrace
+        migrate_communication_center: Migrace komunikačního centra
         normalize_factor_scores: Normalizace skóre faktorů
+        project_bulk_download_reports: Hromadné stahování zpráv o projektu
         project_compact_completion_status_export: Export stavu dokončení kompaktního souboru
         project_completion_status_export: Stav dokončení Export
         regenerate_assessment_transcriptions: Obnovit přepisy hodnocení
@@ -986,6 +991,8 @@ cs:
     errors: Chyby
     invalid_job: Toto oznámení odpovídá smazanému záznamu
     mark_as_read: Označte všechny přečtené
+    migrate_communication_center:
+      client_not_found: Klient s id=%{id} nebyl nalezen
     more: Více na
     results: Výsledky
     super_admin:
@@ -1322,7 +1329,6 @@ cs:
     privacy_notice_link: <a href="%{privacy_url}">Zásady ochrany osobních údajů
     registration:
       description: Pro registraci a vytvoření nového účtu vyplňte níže uvedené údaje
-      email_hint: Respektujeme vaše soukromí a netolerujeme spam. Vaše údaje nikdy neposkytneme žádné třetí straně.
       first_name: Jméno
       first_name_placeholder: Zadejte jméno
       have_account: Už máte účet?
@@ -2969,6 +2975,7 @@ cs:
     end_date: Datum ukončení
     not_enough_license: "'%{client_name}' nemá dostatek licencí pro '%{report_name}'"
     not_enough_license_count: Nedostatek licencí, kontaktujte prosím správce
+    not_enough_uat_license: "„%{client_name}“ nemá dostatek testovacích licencí UAT pro „%{report_name}“. Zvyšte limit využití UAT pro danou licenci nebo kontaktujte administrátora."
     number: Číslo
     overuse_number: Příspěvek na nadměrné použití
     project_specific: Specifické pro projekt
@@ -2983,6 +2990,11 @@ cs:
       idp: IDP
       proctoring: Proctoring
       threesixty: Threesixty
+    uat_usage_limit_credits: Kredity za test UAT
+    uat_usage_limit_credits_hint: Dozor je účtován v kreditech, takže se jedná o maximální počet kreditů, které mohou uživatelé testu UAT z této licence spotřebovat (max. 300).
+    uat_usage_limit_users: Uživatelé testu UAT
+    uat_usage_limit_users_hint: Maximální počet testovacích uživatelů UAT, které lze s touto licencí vytvořit (max. 30). Testovací uživatelé nikdy nespotřebovávají fakturovatelné licence.
+    uat_used: Použité licence UAT
     used_number: Použité licence
     used_out_of: "%{used} z %{total}"
   lti:
@@ -3959,8 +3971,8 @@ cs:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %Y / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Umožnit uživatelům odeslat více odpovědí
     png: PNG

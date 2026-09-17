@@ -116,6 +116,20 @@ RSpec.describe User, type: :model do
       expect(project_admin.timeout_in).to eq(120.minutes)
     end
 
+    it 'honours the configured admin session timeout' do
+      allow(Settings).to receive(:admin_session_inactivity_timeout_minutes).and_return(5)
+
+      expect(create(:superadmin).timeout_in).to eq(5.minutes)
+    end
+
+    it 'keeps the project security setting ahead of the admin default' do
+      allow(Settings).to receive(:admin_session_inactivity_timeout_minutes).and_return(5)
+      project = create(:project)
+      project.security_setting.update(session_inactivity_timeout_in_seconds: 45.minutes.in_seconds)
+
+      expect(create(:user, project: project).timeout_in).to eq(45.minutes)
+    end
+
     it 'returns the configured timeout for normal user' do
       project = create(:project)
       project.security_setting.update(session_inactivity_timeout_in_seconds: 30.minutes.in_seconds)
@@ -290,6 +304,16 @@ RSpec.describe User, type: :model do
       results = User.not_application
       expect(results).to include(regular_admin)
       expect(results).not_to include(application_user)
+    end
+  end
+
+  describe 'is_uat immutability' do
+    it 'does not allow updates to is_uat after create' do
+      user = create(:user, is_uat: false)
+
+      expect(user.update(is_uat: true)).to eq(false)
+      expect(user.errors[:is_uat]).to be_present
+      expect(user.reload.is_uat).to eq(false)
     end
   end
 end

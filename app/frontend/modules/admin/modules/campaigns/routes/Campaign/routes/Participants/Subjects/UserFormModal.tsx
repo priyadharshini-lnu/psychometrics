@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import {
-  Form, FormInstance, Input, Radio, Space,
+  Checkbox, Form, FormInstance, Input, Radio, Space, Tooltip,
 } from 'antd'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import UserAutocomplete from '~/components/UserAutocomplete'
 import ResourceFormModal from '~/components/ResourceFormModal'
+import { InfoCircleOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { RootState } from '~/modules/admin/core/rootReducers'
 import { get as getAutocomplete } from '~/modules/admin/core/ui/autocomplete'
 
@@ -14,6 +15,7 @@ const { I18n } = window
 interface Props {
   campaignId: string
   close(): void
+  canManageUat?: boolean
   user?: {
     id: number
   }
@@ -25,21 +27,52 @@ const OPERATIONS_OPTIONS = [
   'add_and_allow_new_response',
 ]
 
-const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
+const uatLabel = (
+  <Space size={4}>
+    <span>{I18n.t('admin.campaign_users_uat_label')}</span>
+    <Tooltip title={I18n.t('admin.campaign_users_uat_tooltip')}>
+      <span>
+        <InfoCircleOutlined />
+      </span>
+    </Tooltip>
+  </Space>
+)
+
+const uatHint = (isEdit: boolean, existingUserIsUat: boolean | null): string | undefined => {
+  if (isEdit) return I18n.t('admin.campaign_users_uat_readonly_hint')
+  if (existingUserIsUat !== null) return I18n.t('admin.campaign_users_uat_locked_hint')
+
+  return undefined
+}
+
+const UserFormModal: React.FC<Props> = ({
+  campaignId, close, canManageUat, user,
+}) => {
   const [email, setEmail] = useState('')
+  const [existingUserIsUat, setExistingUserIsUat] = useState<boolean | null>(null)
   const { projectId } = useParams()
   const autocompletedUsers = useSelector((state: RootState) => getAutocomplete(state)?.users || [])
 
-
   const onSelectUser = (userValue: string, formInstance: FormInstance) => {
     const user = JSON.parse(userValue)
+    const isUat = Boolean(user.isUat ?? user.is_uat)
 
+    setExistingUserIsUat(isUat)
     formInstance.setFieldsValue({
       email: user.email,
       firstName: user.firstName || user.first_name,
       lastName: user.lastName || user.last_name,
       locale: user.locale,
+      isUat,
     })
+  }
+
+  const onEmailChange = (value: string, formInstance: FormInstance) => {
+    setEmail(value)
+    if (existingUserIsUat !== null) {
+      setExistingUserIsUat(null)
+      formInstance.setFieldsValue({ isUat: false })
+    }
   }
 
   return (
@@ -73,7 +106,7 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
             <UserAutocomplete
               onSelect={(userValue: string) => onSelectUser(userValue, form)}
               source="users"
-              onChange={setEmail}
+              onChange={(value: string) => onEmailChange(value, form)}
               value={email}
               users={autocompletedUsers}
               url={`/administration/projects/${projectId}/search_users`}
@@ -101,6 +134,18 @@ const UserFormModal: React.FC<Props> = ({ campaignId, close, user }) => {
           >
             <Input name="participant_locale" />
           </Form.Item>
+          {(isEdit || canManageUat) && (
+            <Form.Item
+              name="isUat"
+              valuePropName="checked"
+              label={uatLabel}
+              extra={uatHint(isEdit, existingUserIsUat)}
+            >
+              <Checkbox disabled={isEdit || (existingUserIsUat !== null)}>
+                {I18n.t('admin.campaign_users_uat_description')}
+              </Checkbox>
+            </Form.Item>
+          )}
           {!isEdit && (
             <Form.Item
               name="operation"

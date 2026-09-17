@@ -1,7 +1,25 @@
 .row
   .col-md-12
     .panel.panel-default
-      .panel-heading
+      .panel-heading style="display: flex; align-items: center; justify-content: space-between;"
         h3.panel-title = t('.title')
+        #report_preview_lang_switcher
+      - if @viewing_published
+        .alert.alert-warning style="margin: 0; border-radius: 0; padding: 8px 16px; display: flex; align-items: center; gap: 8px;"
+          i.fa.fa-info-circle
+          span
+            = t('admin.report_builder_viewing_published_message')
+            - if @toggle_preview_view_url
+              = ' '
+              a href=@toggle_preview_view_url
+                = t('admin.report_builder_view_draft')
+      - elsif @toggle_preview_view_url
+        .alert.alert-warning style="margin: 0; border-radius: 0; padding: 8px 16px; display: flex; align-items: center; gap: 8px;"
+          i.fa.fa-info-circle
+          span
+            = t('admin.report_builder_viewing_draft_message')
+            = ' '
+            a href=@toggle_preview_view_url
+              = t('admin.report_builder_view_published')
       .panel-body
         = render partial: 'preview'

@@ -211,6 +211,33 @@ RSpec.describe AdminJobs::DataReportHandlers::CampaignFactorScoresHandler do
         expect(csv.first).to eq(described_class::HEADERS)
       end
     end
+
+    it 'excludes UAT users' do
+      uat_user = create(:user, :with_project_membership, project: project, is_uat: true)
+      create(
+        :campaign_user,
+        campaign: campaign,
+        user: uat_user,
+        campaign_scores_finalized: true,
+        campaign_scores_finalized_date: Time.current
+      )
+      create(
+        :campaign_factor_value,
+        campaign: campaign,
+        campaign_factor: factor,
+        user: uat_user,
+        numeric_value: 9.5,
+        string_value: 'UAT'
+      )
+
+      subject.generate_file
+
+      csv = CSV.read(file_path)
+      emails = csv.drop(1).pluck(7)
+
+      expect(emails).to include(user.email)
+      expect(emails).not_to include(uat_user.email)
+    end
   end
 
   describe '#generate_file_geo_restriction' do

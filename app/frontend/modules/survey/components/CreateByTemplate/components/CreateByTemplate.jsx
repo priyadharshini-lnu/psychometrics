@@ -2,7 +2,6 @@ import _ from 'lodash'
 import { Component } from 'react'
 import { Modal } from 'react-bootstrap'
 import Async from 'react-select/async'
-import { perform } from '~/modules/survey/core/temp/socket'
 import Block from '~/modules/survey/models/Block'
 import Question from '~/modules/survey/models/Question'
 
@@ -17,31 +16,27 @@ export class CreateByTemplate extends Component {
   }
 
   createQuestion = () => {
-    const { addQuestion, block } = this.props
+    const {
+      addQuestion, block, assessmentId, fetchQuestionTemplate,
+    } = this.props
     const { template } = this.state
 
     if (template) {
-      perform('question_create_by_template', {
-        block_id: block.id,
-        template_id: template.value,
-      }, (templateData) => {
-        addQuestion(block, templateData)
-      })
       this.close()
+      fetchQuestionTemplate(assessmentId, template.value).then(({ response }) => {
+        addQuestion(block, response)
+      })
     }
   }
 
   createBlock = () => {
     const {
-      createBlock, createQuestions, position,
+      createBlock, createQuestions, position, assessmentId, fetchBlockTemplate,
     } = this.props
     const { template } = this.state
     if (template) {
-      perform('block_create_by_template', {
-        template_id: template.value,
-        position_before: position,
-      }, (templateData) => {
-        const block = new Block(Object.assign(templateData, { position }))
+      fetchBlockTemplate(assessmentId, template.value).then(({ response }) => {
+        const block = new Block(Object.assign(response, { position }))
         const questions = block.questions.map(q => new Question(q))
         block.questions = _.map(questions, 'id')
         createBlock(block)
@@ -63,12 +58,14 @@ export class CreateByTemplate extends Component {
     this[method]()
   }
 
-  loadOptions = (input, callback) => {
-    const { entityName, ownerId } = this.props
-    perform(`${entityName.toLowerCase()}_filter`,
-      { owner_id: ownerId, q: input, without_notification: true }, (data) => {
-        callback(data)
-      })
+  loadOptions = (input) => {
+    const {
+      entityName, ownerId, assessmentId, fetchBlockTemplates, fetchQuestionTemplates,
+    } = this.props
+    if (entityName === 'Block') {
+      return fetchBlockTemplates(assessmentId, { q: input, owner_id: ownerId }).then(({ response }) => response)
+    }
+    return fetchQuestionTemplates(assessmentId, { q: input }).then(({ response }) => response)
   }
 
   changeSelectValue = (template) => {

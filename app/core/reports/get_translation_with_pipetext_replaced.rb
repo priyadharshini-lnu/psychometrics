@@ -11,7 +11,7 @@ module Reports
     end
 
     def call
-      translations = Translation.to_hash_for_report(report.id, report.assessment_ids, locale)
+      translations = Translation.to_hash_for(report.translation_scope, report.assessment_ids, locale)
       broadcast :ok, {} if translations.empty?
 
       replace_pipetext_for_question(translations)

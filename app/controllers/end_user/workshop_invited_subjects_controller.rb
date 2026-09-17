@@ -20,6 +20,7 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
   def invites
     @resources = WorkshopInvitedSubject.
                  joins(workshop_invite: { campaign: :campaign_users }).
+                 includes(workshop_invite: %i[campaign_assessment_group workshops]).
                  where(
                    user_id: current_user.id,
                    campaign_users: {
@@ -35,7 +36,29 @@ class EndUser::WorkshopInvitedSubjectsController < ApplicationController
     ).to_a
 
     render json: {
-      list: serialized_resources
+      list: serialized_resources,
+      assessment_group: build_assessment_group(@resources)
     }
+  end
+
+  private
+
+  def build_assessment_group(resources)
+    groups = {}
+
+    resources.each do |invited_subject|
+      group = invited_subject.workshop_invite.campaign_assessment_group
+      next unless group
+
+      entry = groups[group.id] ||= {
+        id: group.id,
+        name: group.name,
+        invite_ids: []
+      }
+
+      entry[:invite_ids] << invited_subject.id
+    end
+
+    groups.values
   end
 end

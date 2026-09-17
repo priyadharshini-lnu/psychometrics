@@ -214,6 +214,8 @@ sr-Cyrl:
               inclusion: Погрешан локалитет
             password:
               too_short: Лозинка је прекратка. Потребан је минимални ИНТЕРПОЛАТИОН_ВАР_0 карактер
+            uat:
+              invalid: 'UAT мора бити један од: %{accepted_values} или празан'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ sr-Cyrl:
               invalid_reports_header: Неисправан заглавље, узети заглавље из датотеке узорка
               manager_not_found: 'Ред ИНТЕРПОЛАТИОН_ВАР_0: Менаџер са ИНТЕРПОЛАТИОН_ВАР_1 е-поште није присутан у кампањи или у ЦСВ-у'
               not_enough_licenses: За увоз је потребно %{required_count} лиценци, али је доступно само %{available_count}. Молимо вас да смањите број нових корисника или додате још лиценци пре увоза.
+              not_enough_uat_licenses: За увоз је потребно %{required_count} UAT тест лиценци, али је доступно само %{available_count}. Молимо вас да смањите број нових UAT корисника или повећате ограничење коришћења UAT-а пре увоза.
               user_update_failed: Ажурирање корисника није успело за ИНТЕРПОЛАТИОН_ВАР_0 са грешком "ИНТЕРПОЛАТИОН_ВАР_1"
             locale:
               inclusion: Погрешан локалитет
@@ -943,7 +946,9 @@ sr-Cyrl:
         import_sms_invites: Увоз СМС позив
         import_users: Увоз корисника
         migrate_assessment_translations: Процена Миграција превода
+        migrate_communication_center: Миграција комуникационог центра
         normalize_factor_scores: Нормализујте резултате фактора
+        project_bulk_download_reports: Извештаји о групном преузимању пројекта
         project_compact_completion_status_export: Компактни извоз статуса завршетка
         project_completion_status_export: Извоз статуса завршетка
         regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
@@ -986,6 +991,8 @@ sr-Cyrl:
     errors: Грешке
     invalid_job: Ово обавештење одговара избрисаном запису
     mark_as_read: Означи све прочитано
+    migrate_communication_center:
+      client_not_found: Клијент са id=%{id} није пронађен
     more: Виље
     results: Резултате
     super_admin:
@@ -1319,7 +1326,6 @@ sr-Cyrl:
     privacy_notice_link: <a href="%{privacy_url}">Извештај о приватности
     registration:
       description: Попуните податке испод да бисте се регистровали и креирали нови налог
-      email_hint: Поштујемо вашу приватност и не толеришемо спам. Никада нећемо дати ваше податке трећим лицима.
       first_name: Име
       first_name_placeholder: Унесите име
       have_account: Већ имате налог?
@@ -2978,6 +2984,7 @@ sr-Cyrl:
     end_date: Датум завршетка
     not_enough_license: "'ИНТЕРПОЛАТИОН_ВАР_0 ' нема довољно лиценци за 'ИНТЕРПОЛАТИОН_ВАР_1'"
     not_enough_license_count: Нема довољно дозвола, контактирајте администратора
+    not_enough_uat_license: "„%{client_name}“ нема довољно UAT тестних лиценци за „%{report_name}“. Повећајте ограничење коришћења UAT-а за ту лиценцу или контактирајте администратора."
     number: Број
     overuse_number: Додатак за прекомерну употребу
     project_specific: Специфично за пројекат
@@ -2992,6 +2999,11 @@ sr-Cyrl:
       idp: Претраживање
       proctoring: Претрага
       threesixty: Тришездесет
+    uat_usage_limit_credits: Кредити за UAT тест
+    uat_usage_limit_credits_hint: Надзор се наплаћује у кредитима, тако да је ово максимални број кредита које корисници UAT теста могу да потроше са ове лиценце (максимално 300).
+    uat_usage_limit_users: Корисници UAT теста
+    uat_usage_limit_users_hint: Максималан број UAT тест корисника који се могу креирати са овом лиценцом (максимално 30). Тест корисници никада не користе наплативе лиценце.
+    uat_used: Коришћене лиценце UAT-а
     used_number: Половне лиценце
     used_out_of: ИНТЕРПОЛАТИОН_ВАР_0 ван ИНТЕРПОЛАТИОН_ВАР_1
   lti:

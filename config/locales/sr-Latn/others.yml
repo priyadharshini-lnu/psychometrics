@@ -214,6 +214,8 @@ sr-Latn:
               inclusion: Pogrešan lokal
             password:
               too_short: je previse kratka . Minimalno %{count} karaktera je potrebno
+            uat:
+              invalid: 'UAT мора бити један од: %{accepted_values} или празан'
         job_roles_translations_form:
           attributes:
             file:
@@ -430,6 +432,7 @@ sr-Latn:
               invalid_reports_header: Neispravan zaglavlje, uzmite zaglavlje iz datoteke uzorka
               manager_not_found: 'Red %{row_number}: Menadžer sa e-poštom %{email} nije prisutan u kampanji ili u CSV-u'
               not_enough_licenses: За увоз је потребно %{required_count} лиценци, али је доступно само %{available_count}. Молимо вас да смањите број нових корисника или додате још лиценци пре увоза.
+              not_enough_uat_licenses: За увоз је потребно %{required_count} UAT тест лиценци, али је доступно само %{available_count}. Молимо вас да смањите број нових UAT корисника или повећате ограничење коришћења UAT-а пре увоза.
               user_update_failed: Ažuriranje korisnika nije uspelo za %{email} sa greškom '%{error}'
             locale:
               inclusion: Pogrešan lokal
@@ -943,7 +946,9 @@ sr-Latn:
         import_sms_invites: Uvoz SMS pozivnice
         import_users: Uvezi korisnike
         migrate_assessment_translations: Procena Prevod migracija
+        migrate_communication_center: Миграција комуникационог центра
         normalize_factor_scores: Normalizujte rezultate faktora
+        project_bulk_download_reports: Извештаји о групном преузимању пројекта
         project_compact_completion_status_export: Компактни извоз статуса завршетка
         project_completion_status_export: Извоз статуса завршетка
         regenerate_assessment_transcriptions: Поново генеришите транскрипте процене
@@ -986,6 +991,8 @@ sr-Latn:
     errors: Greške
     invalid_job: Ovo obaveštenje odgovara izbrisanom zapisu
     mark_as_read: Označi sve pročitano
+    migrate_communication_center:
+      client_not_found: Клијент са id=%{id} није пронађен
     more: Više
     results: Rezultate
     super_admin:
@@ -1322,7 +1329,6 @@ sr-Latn:
     privacy_notice_link: <a href="%{privacy_url}">Извештај о приватности
     registration:
       description: Popunite podatke ispod da biste se registrovali i kreirali novi nalog
-      email_hint: Poštujemo vašu privatnost i ne tolerišemo spam. Nikada nećemo dati vaše podatke bilo kojoj trećoj strani
       first_name: Ime
       first_name_placeholder: Unesite ime
       have_account: Već imate nalog?
@@ -2987,6 +2993,7 @@ sr-Latn:
     end_date: Datum završetka
     not_enough_license: "'%{client_name}' nema dovoljno licenci za '%{report_name}'"
     not_enough_license_count: Nema dovoljno dozvola, kontaktirajte administratora
+    not_enough_uat_license: "„%{client_name}“ нема довољно UAT тестних лиценци за „%{report_name}“. Повећајте ограничење коришћења UAT-а за ту лиценцу или контактирајте администратора."
     number: Broj
     overuse_number: Dodatak za prekomernu upotrebu
     project_specific: Specifično za projekat
@@ -3001,6 +3008,11 @@ sr-Latn:
       idp: IDP
       proctoring: Pretraživanje
       threesixty: Trišezdeset
+    uat_usage_limit_credits: Кредити за UAT тест
+    uat_usage_limit_credits_hint: Надзор се наплаћује у кредитима, тако да је ово максимални број кредита које корисници UAT теста могу да потроше са ове лиценце (максимално 300).
+    uat_usage_limit_users: Корисници UAT теста
+    uat_usage_limit_users_hint: Максималан број UAT тест корисника који се могу креирати са овом лиценцом (максимално 30). Тест корисници никада не користе наплативе лиценце.
+    uat_used: Коришћене лиценце UAT-а
     used_number: Korišćene licence
     used_out_of: "%{used} od %{total}"
   lti:
@@ -3977,8 +3989,8 @@ sr-Latn:
       iso8601_without_seconds_and_timezone: "%Y-%m-%dT%H:%M"
       short: "%d %b %I / %H:%M"
       short_date: "%-d %b %Y"
-      with_time_zone: "%d %b %Y %I:%M %p %:z"
-      workshop_date: "%e %B %Y, %l:%M %p %:z"
+      with_time_zone: "%d %b %Y %I:%M %p (GMT%:::z)"
+      workshop_date: "%e %B %Y, %l:%M %p (GMT%:::z)"
   universal_links:
     allow_multiple_respones: Dozvolite korisnicima da pošalju više odgovora
     png: Mapa sajta

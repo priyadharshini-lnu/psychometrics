@@ -19,13 +19,23 @@ module Reports
 
     def call
       ActiveRecord::Base.transaction do
+        before = persisted_factors
         remove_unused_factors
         update_campaign_factors!
         clean_module_references
+        touch_report_if_changed(before)
       end
     end
 
     private
+
+    def touch_report_if_changed(before)
+      report.touch if persisted_factors != before
+    end
+
+    def persisted_factors
+      report.campaign_factors.reload.pluck(:code, :name, :output_type, :description).sort_by { |row| row.first.to_s }
+    end
 
     def validate_params!
       return if campaign_factors_params.is_a?(Array) &&

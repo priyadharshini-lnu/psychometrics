@@ -32,7 +32,7 @@ module Threesixty
           }
           render json: ::Threesixty::UserReportSerializer.new(
             context: {
-              report: @user_report.report,
+              report: @user_report.report.effective_reader,
               results: results,
               piped_text_context: piped_text_context,
               current_option: @campaign.option,

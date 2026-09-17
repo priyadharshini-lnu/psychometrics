@@ -37,8 +37,10 @@ pl:
     campaign: Kampania
     campaign_id: Identyfikacja kampanii
     cancel: Anuluj
+    candidates: Kandydaci
     category: Kategoria
     change_password: Zmień hasło
+    clear: Jasne
     clear_filters: Wyczyść filtry
     client: Klient
     close: Zamknij
@@ -86,11 +88,15 @@ pl:
     end_date: Data zakończenia
     ending_proctoring_session_msg: Kończymy sesję nadzorowaną. <p>Proszę poczekać, aż zapiszemy Twoje odpowiedzi i przekierujemy Cię z powrotem na stronę główną.</p>
     error: Błąd
+    errors: Błędy
     export: Eksport
     failed: Niepowodzenie
     'false': false
     file: Plik
     file_upload_button: Wybierz plik
+    filename: Nazwa pliku
+    files: Akta
+    filters: Filtry
     first_name: Imię
     formal_learning: Uczenie się formalne
     generate: Generuj
@@ -105,6 +111,7 @@ pl:
     impersonation_banner_aria_label: Aktywna sesja podszywania się
     impersonation_end_session: Wyjście
     import: Import
+    in_progress: W toku
     inactive: Nieaktywny
     internet_disconnected_message: Próba ponownego połączenia. Sprawdź połączenie internetowe.
     is_impersonating: podszywa się
@@ -112,6 +119,7 @@ pl:
     issuer_claim_label: Emitent (iss)
     jwt_claims_details: Szczegóły roszczeń JWT
     key_id_claim_label: Identyfikator klucza (kid)
+    languages: Języki
     last_name: Nazwisko
     last_updated: Ostatnia aktualizacja
     learning_on_the_job_label: Nauka w pracy
@@ -151,6 +159,7 @@ pl:
     no_results_found: Nie znaleziono żadnych wyników
     none: Żaden
     not_requested: Jeszcze nie zgłoszone
+    not_set: Nie ustawiono
     ok: Ok
     options: Opcje
     overview: Przegląd
@@ -215,12 +224,14 @@ pl:
     reset_password: Zresetuj hasło
     response_text: Tekst odpowiedzi
     return_url_not_whitelisted: Adres URL zwrotny nie znajduje się na białej liście dla tej aplikacji.
+    review: Recenzja
     rte_paste_content_exceeds_char_limit: Tekst przekracza limit znaków {{maxCharacterLimit}} i nie może być wklejony.
     rte_paste_content_exceeds_word_limit: Tekst przekracza limit słów {{maxWordLimit}} i nie może być wklejony.
     run: Biegać
     save: Zapisz
     saving_video: Zapisywanie wideo... Prosimy nie zamykać ani nie odświeżać przeglądarki
     schedule_time: Zaplanuj czas
+    scheduled: Zaplanowany
     scoring_details: Szczegóły punktacji
     search: Szukaj
     select_camera: Wybierz aparat

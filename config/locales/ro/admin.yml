@@ -218,6 +218,15 @@ ro:
     assessor_assessments_reset_successfully: Resetarea evaluării pentru subiectul cu e-mailul "%{subjectEmail}" a avut succes.
     assessor_assessments_subject_email: Subiectul e-mailului
     assessor_assessments_subject_name: Numele subiectului
+    assessor_campaign_users_awaiting_moderation: În așteptarea moderării
+    assessor_campaign_users_awaiting_moderation_subtitle: gata de consolidare
+    assessor_campaign_users_candidates_subtitle: ți-a fost atribuit
+    assessor_campaign_users_completed: Finalizat
+    assessor_campaign_users_completed_subtitle: deconectat
+    assessor_campaign_users_in_progress: În curs
+    assessor_campaign_users_in_progress_subtitle: fiind evaluat
+    assessor_campaign_users_not_started: Neînceput
+    assessor_campaign_users_not_started_subtitle: evaluări
     assessor_campaigns_statuses_completed: Completat
     assessor_campaigns_statuses_in_progress: În curs de desfășurare
     assessor_campaigns_statuses_not_started: Neînceput
@@ -226,6 +235,20 @@ ro:
     assessor_create_assessor: Adăugați evaluator
     assessor_dashboard: Tabloul de bord al evaluatorului
     assessor_email: E-mailul evaluatorului
+    assessor_evaluation: Evaluarea evaluatorului
+    assessor_evaluation_by_campaign: După campanie
+    assessor_evaluation_by_participant: De către participant
+    assessor_evaluation_candidate: Candidat
+    assessor_evaluation_candidates: Candidați
+    assessor_evaluation_completed: Evaluare finalizată
+    assessor_evaluation_date_range: Data de început – Data de sfârșit
+    assessor_evaluation_moderation_waiting: Moderare în așteptare
+    assessor_evaluation_tour_profile_description: Contul, rolul și limba dvs. și comutatorul pentru a activa noua experiență sunt disponibile aici. Deschideți-l pentru a vă revizui detaliile sau pentru a vă deconecta.
+    assessor_evaluation_tour_profile_title: Profilul și setările dvs.
+    assessor_evaluation_tour_table_description: Deschideți orice rând pentru a vedea evaluările lor, apoi evaluați răspunsurile lor sau moderați scorurile finale.
+    assessor_evaluation_tour_table_title: Alegeți un candidat
+    assessor_evaluation_tour_tabs_description: Comutați între După participant (o persoană pe rând) și După campanie.
+    assessor_evaluation_tour_tabs_title: Două moduri de a lucra
     assessor_evaluations: Evaluări ale evaluatorilor
     assessor_first_name: Prenumele evaluatorului
     assessor_form: Formular evaluator
@@ -233,18 +256,24 @@ ro:
     assessor_last_name: Numele de familie al evaluatorului
     assessor_modals_import_body: Consultați funcționalitatea de export pentru a extrage un șablon care poate fi utilizat pentru a importa aici.
     assessor_modals_import_title: Evaluatori de import
+    assessor_new_experience: Experiență nouă
     assessor_overview: Prezentare generală
     assessor_placeholder: Căutați evaluator...
     assessor_remove_confirmation: Sigur doriți să eliminați evaluatorul cu e-mail %{email} din această campanie?
     assessor_remove_has_evaluations: Acest evaluator are %{evaluation_count} formular(e) de evaluator atribuit(e). Toate evaluările pe care le-a completat se vor pierde.
     assessor_remove_in_assessment_centers: Acest evaluator face parte din %{workshop_count} centre de evaluare. Continuarea procesului îl va elimina din toate centrele de evaluare.
-    assessor_statuses_completed: Completat
-    assessor_statuses_not_completed: Nefinalizat
-    assessor_subjects_statuses_completed: Completat
-    assessor_subjects_statuses_in_progress: În curs de desfășurare
-    assessor_subjects_statuses_not_started: Neînceput
+    assessor_switch_to_classic: Treceți la Clasic
     assessor_toolbar_export: Evaluatori de export
     assessor_toolbar_import: Evaluatori de import
+    assessor_tour_button: Tur
+    assessor_try_new_experience: Încearcă o experiență nouă
+    assessor_user_assessment_name: Numele evaluării
+    assessor_user_candidate_id: ID-ul candidatului
+    assessor_user_evaluate: Evalua
+    assessor_user_evaluation: Evaluare
+    assessor_user_evaluation_progress: Progresul evaluării
+    assessor_user_moderate: Scoruri moderate
+    assessor_user_moderation: Moderare
     assessor_workshops: Centrul de evaluare
     assessors: Evaluatori
     assistant_toolbar_failed: Nu s-a reușit generarea unei ieșiri valide după mai multe încercări
@@ -312,6 +341,79 @@ ro:
     bulk_assets_modal_title: Încărcați fișiere CSV și ZIP
     bulk_export_assessments_file: Fișier de export pentru evaluări în bloc
     bulk_export_invalid_params: Parametri de export în bloc nevalizi
+    bulk_reports: Rapoarte în bloc
+    bulk_reports_all_of_year: Toți din %{year}
+    bulk_reports_all_tags: Toate etichetele
+    bulk_reports_bundled_into_single: grupate într-un singur
+    bulk_reports_campaign_count_one: Campania %{count}
+    bulk_reports_campaign_count_other: Campanii %{count}
+    bulk_reports_campaign_search_placeholder: Campanii sau proiecte de căutare...
+    bulk_reports_campaigns_shown_count: "%{selected} selectat - %{shown} afișat"
+    bulk_reports_campaigns_without_reports_warning: 'Campanii selectate fără rapoarte configurate: %{count}. Acestea vor fi omise.'
+    bulk_reports_candidate_abbreviation: cand.
+    bulk_reports_complete_every_step: Finalizați fiecare pas pentru a activa
+    bulk_reports_date_range_required: Pentru a continua, este necesară atât o dată de început, cât și una de sfârșit.
+    bulk_reports_date_range_summary: Evaluările completate de la %{start} la %{end} vor fi incluse.
+    bulk_reports_description: Creați o singură lucrare de export pentru mai multe campanii. Selectați campaniile, alegeți rapoartele și limbile pe care să le includeți, setați un interval de date, apoi trimiteți.
+    bulk_reports_deselect_all_shown: Deselectați toate afișate
+    bulk_reports_download_notification_sent: Notificarea de descărcare a fost trimisă
+    bulk_reports_emailed_when_ready: și ți-a fost trimis prin e-mail când va fi gata.
+    bulk_reports_end_date_placeholder: Selectați data și ora de încheiere
+    bulk_reports_end_date_required: Vă rugăm să selectați o dată de încheiere.
+    bulk_reports_error_try_again: Eroare - încercați din nou
+    bulk_reports_files_estimated_across: fișiere estimate pe parcursul
+    bulk_reports_files_pending: Fișierele vor apărea aici după finalizarea lucrării.
+    bulk_reports_generate_export: Generați exportul
+    bulk_reports_invalid_date_range: Data de încheiere trebuie să fie aceeași cu data de început sau ulterioară.
+    bulk_reports_job_details_title: 'Locul de muncă #%{id}'
+    bulk_reports_job_not_found: Acest loc de muncă nu a putut fi găsit.
+    bulk_reports_job_queued: Lucrare pusă în coadă
+    bulk_reports_languages_progress_one: "%{done} din setul de rapoarte %{total}"
+    bulk_reports_languages_progress_other: "%{done} din %{total} rapoarte setate"
+    bulk_reports_languages_set_for_all_one: Setat pentru toate rapoartele %{count}
+    bulk_reports_languages_set_for_all_other: Setați pentru toate rapoartele %{count}
+    bulk_reports_last_30_days: Ultimele 30 de zile
+    bulk_reports_last_90_days: Ultimele 90 de zile
+    bulk_reports_no_campaigns_found: Nu au fost găsite campanii pentru acest proiect.
+    bulk_reports_no_campaigns_match_filters: Nicio campanie nu corespunde filtrelor de căutare sau de etichete.
+    bulk_reports_no_campaigns_selected: Nicio campanie selectată
+    bulk_reports_no_files_yet: Fișierele nu sunt încă disponibile pentru această lucrare.
+    bulk_reports_no_language_selected: nicio limbă selectată
+    bulk_reports_no_languages_available: Nu sunt disponibile limbi pentru acest raport.
+    bulk_reports_no_reports_configured: Niciuna dintre campaniile selectate nu are rapoarte configurate. Reveniți și verificați configurația campaniei.
+    bulk_reports_no_reports_selected: Niciun raport selectat
+    bulk_reports_no_reports_selected_for_languages: Niciun raport selectat. Reveniți și alegeți cel puțin un raport.
+    bulk_reports_no_tags_found: Nu au fost găsite etichete
+    bulk_reports_none_selected: Niciuna selectată
+    bulk_reports_queued_by: Pus în coadă de
+    bulk_reports_queuing_jobs: Joburi puse în coadă...
+    bulk_reports_ready_to_generate: Gata de generat
+    bulk_reports_report_count_one: Raport %{count}
+    bulk_reports_report_count_other: Rapoarte %{count}
+    bulk_reports_reports_and_languages: Rapoarte și limbi
+    bulk_reports_review_submit: Revizuire și trimitere
+    bulk_reports_review_submit_description: Verificați lucrarea de mai jos. Puteți reveni la orice pas pentru a face modificări.
+    bulk_reports_select_all_shown: Selectați toate afișate
+    bulk_reports_select_campaigns: Selectați campanii
+    bulk_reports_select_campaigns_description: Căutați după nume sau proiect și restrângeți lista cu filtre de etichete. Apoi bifați campaniile pe care doriți să le includeți.
+    bulk_reports_select_date_range: Selectați intervalul de date
+    bulk_reports_select_date_range_description: Includeți doar evaluările finalizate în acest interval. Lăsați o dată prestabilită sau setați date exacte.
+    bulk_reports_select_languages: Selectați limbile
+    bulk_reports_select_languages_description: Fiecare raport acceptă un set diferit de limbi. Alegeți cel puțin o limbă pentru fiecare raport. Acesta este generat în fiecare limbă pe care o alegeți.
+    bulk_reports_select_reports: Selectați rapoarte
+    bulk_reports_select_reports_description: Fiecare raport selectat este generat pentru fiecare candidat sau campanie din export, în fiecare limbă aleasă.
+    bulk_reports_selected_tags_count_one: Eticheta %{count} selectată
+    bulk_reports_selected_tags_count_other: "%{count} etichete selectate"
+    bulk_reports_start_date_placeholder: Selectați data și ora de începere
+    bulk_reports_start_date_required: Vă rugăm să selectați o dată de începere.
+    bulk_reports_step_coming_soon: Acest pas va veni în curând.
+    bulk_reports_submit_error: Ceva nu a mers bine. Vă rugăm să încercați din nou.
+    bulk_reports_submit_success: Lucrarea de export este în așteptare. Veți primi o notificare când descărcarea este gata.
+    bulk_reports_summary_description: Actualizări pe măsură ce construiți jobul
+    bulk_reports_summary_title: Descărcați rezumatul
+    bulk_reports_title: Rapoarte în bloc
+    bulk_reports_view_downloads: Vizualizați descărcările de rapoarte în bloc
+    bulk_reports_year_to_date: De la începutul anului
     bulk_upload_ai_artifacts: Artefacte AI cu încărcare în masă
     campaign: Campanie
     campaign_admin: Administratorul campaniei
@@ -383,6 +485,13 @@ ro:
     campaign_templates_remove_confirm_success: Șablonul de campanie '%{name}'' a fost eliminat cu succes.
     campaign_templates_remove_confirm_title: Eliminați șablonul de campanie
     campaign_user_job_roles_cannot_be_same: Funcția vizată trebuie să fie diferită de funcția actuală.
+    campaign_users_import_uat_hint: Setați coloana UAT la Da pentru utilizatorii de testare care ar trebui excluși din licențiere, analiză și webhook-uri.
+    campaign_users_uat_description: Marchează acest participant ca utilizator de test UAT.
+    campaign_users_uat_label: Participant UAT
+    campaign_users_uat_license_non_billable: Nefacturabil
+    campaign_users_uat_locked_hint: Acest participant există deja. Starea UAT este setată la prima creare a unui participant și nu poate fi modificată.
+    campaign_users_uat_readonly_hint: Starea UAT este setată la creare și nu poate fi modificată.
+    campaign_users_uat_tooltip: Utilizatorii UAT sunt participanți reali la testare. Aceștia pot susține evaluări în mod normal, dar sunt excluși de la utilizarea licențelor facturabile, analize și webhook-uri de ieșire.
     campaigns: Campanii
     campaigns_convert_to_template: Conversie în șablon
     campaigns_extend_time_success_message: Cronometrul campaniei a fost extins la %{minutes} minute
@@ -469,6 +578,7 @@ ro:
     clients_search_placeholder: Căutare client
     closed: Încheiată
     code_required: Este necesar codul
+    collapse_all: Restrângeți tot
     collapse_filters: Restrângeți filtrele
     column_code: Cod
     column_invitation_status: Starea invitației
@@ -487,10 +597,130 @@ ro:
     common_type: Tip
     common_unselect_all: Deselectați tot
     communication_center: Centrul de comunicare
+    communication_center_manage_translations_action: Gestionați traducerile
+    communication_center_migration_enqueued: Lucrare de migrare pusă în coadă. Verificați jurnalele pentru progres.
+    communication_center_migration_error: Cererea de migrare a eșuat. Vă rugăm să încercați din nou sau să verificați jurnalele.
+    communication_center_migration_modal_intro: 'Următoarele modificări vor fi aplicate atunci când executați migrarea pentru acest client:'
+    communication_center_migration_modal_title: Previzualizare migrare centru de comunicare
+    communication_center_migration_preview_button: Previzualizare migrare
+    communication_center_migration_run_button: Executare migrare
+    communication_center_migration_skipped: Deja migrat (va fi omis)
+    communication_center_migration_would_assessments: Evaluări de migrat
+    communication_center_migration_would_backfill: E-mailuri de completat
+    communication_center_migration_would_cc_users: Utilizatori CC să migreze
+    communication_center_migration_would_migrate: Comunicații care trebuie migrate
+    communication_center_migration_would_users: Utilizatori selectați pentru migrare
+    communication_center_translation_updated_success: Traducerea a fost actualizată cu succes
+    communication_center_translations_modal_title: Gestionați traducerile
+    communication_deliveries: Livrări
+    communication_delivery: Comunicare de livrare
+    communication_delivery_assessment_group_label: Grupul de evaluare
+    communication_delivery_at_label: Data și ora livrării
+    communication_delivery_at_past_error: Data livrării trebuie să fie în viitor
+    communication_delivery_cancel_action: Anula
+    communication_delivery_cancel_error: Nu s-a putut anula livrarea
+    communication_delivery_cc_users_label: Destinatari CC
+    communication_delivery_completion_status_hint: Dacă este specificat un cod de finalizare, acesta va fi trimis numai dacă evaluarea utilizatorului are acest cod de stare de finalizare.
+    communication_delivery_completion_status_label: Codul de stare a finalizării evaluării
+    communication_delivery_delay_hours_label: Întârziere (ore)
+    communication_delivery_details_title: Detalii livrare
+    communication_delivery_emails_sent_label: Trimis
+    communication_delivery_emails_total_label: Total e-mailuri
+    communication_delivery_end_date_label: Data de încheiere
+    communication_delivery_frequency_daily: Zilnic
+    communication_delivery_frequency_label: Frecvenţă
+    communication_delivery_frequency_specific_weekdays: Zile specifice ale săptămânii
+    communication_delivery_frequency_weekly: Săptămânal
+    communication_delivery_interval_number_label: Interval
+    communication_delivery_interval_period_days: Zile
+    communication_delivery_interval_period_hours: Ore
+    communication_delivery_interval_period_label: Perioada de interval
+    communication_delivery_interval_period_months: Luni
+    communication_delivery_interval_period_weeks: Săptămâni
+    communication_delivery_new_button: Livrare nouă
+    communication_delivery_recipients_all: Toți participanții
+    communication_delivery_recipients_label: Destinatari
+    communication_delivery_recipients_new_assignment: Sarcină nouă
+    communication_delivery_recipients_new_users: Utilizatori noi
+    communication_delivery_recipients_selected: Participanți selectați
+    communication_delivery_rule_in_progress: În curs
+    communication_delivery_rule_label: Regula de livrare
+    communication_delivery_rule_not_completed: Neterminat
+    communication_delivery_rule_not_started: Neînceput
+    communication_delivery_rule_send_now: Trimite acum
+    communication_delivery_rule_specific_datetime: Data și ora specifice
+    communication_delivery_search_users_placeholder: Căutare după nume sau e-mail
+    communication_delivery_selected_assessments_label: Evaluări
+    communication_delivery_selected_users_label: Selectați utilizatorii
+    communication_delivery_start_date_label: Data de începere
+    communication_delivery_template_label: Șablon
+    communication_delivery_time_of_day_label: Momentul zilei
+    communication_delivery_timezone_label: Fus orar
+    communication_delivery_trigger_type_label: Tip de declanșator
+    communication_delivery_trigger_type_manual: Manual
+    communication_delivery_trigger_type_scheduled: Programat
+    communication_delivery_weekday_fri: vineri
+    communication_delivery_weekday_mon: luni
+    communication_delivery_weekday_sat: sâmbătă
+    communication_delivery_weekday_sun: duminică
+    communication_delivery_weekday_thu: joi
+    communication_delivery_weekday_tue: marţi
+    communication_delivery_weekday_wed: miercuri
+    communication_delivery_weekdays_label: Zilele lucrătoare
+    communication_email_created_at_label: Creat la
+    communication_email_not_sent: Netrimis
+    communication_email_preview_action: Previzualizare
+    communication_email_preview_date_label: Data
+    communication_email_preview_from_label: Din
+    communication_email_preview_title: Previzualizare prin e-mail
+    communication_email_preview_to_label: La
+    communication_email_preview_warning: Aceasta este o previzualizare re-randată a șablonului și este posibil să nu reflecte conținutul exact al e-mailului care a fost trimis efectiv.
+    communication_email_recipient_email_label: Adresa de e-mail a destinatarului
+    communication_email_recipient_name_label: Numele destinatarului
+    communication_email_retrigger_action: Redeclanșare
+    communication_email_retrigger_error: Nu s-a putut reactiva e-mailul
+    communication_email_sent_at_label: Trimis la
+    communication_email_status_label: Stare
+    communication_email_subject_label: Subiect
+    communication_emails: E-mailuri
+    communication_template: Șablon de comunicare
+    communication_template_body_label: Mesaj
+    communication_template_create_new_action: Creați nou
+    communication_template_kind_label: Tip de comunicare
+    communication_template_level_campaign: Campanie
+    communication_template_level_client: Client
+    communication_template_level_platform: Platformă
+    communication_template_level_project: Proiect
+    communication_template_name_label: Numele șablonului
+    communication_template_new_button: Șablon nou
+    communication_template_override_inherited_action: Suprascriere moștenită
+    communication_template_override_picker_search_placeholder: Șabloane de căutare pentru a le înlocui
+    communication_template_override_picker_title: Suprascrie șablonul moștenit
+    communication_template_recipients_all: Toate
+    communication_template_recipients_label: Destinatari impliciti
+    communication_template_recipients_new_assignment: Sarcină nouă
+    communication_template_recipients_new_users: Utilizatori noi
+    communication_template_recipients_selected: Selectat
+    communication_template_source_created: Creat
+    communication_template_source_label: Sursă
+    communication_template_source_override_of: Suprascrierea lui %{level}
+    communication_template_status_active: Activ
+    communication_template_status_archived: Arhivat
+    communication_template_status_draft: Proiect
+    communication_template_status_label: Stare
+    communication_template_subject_label: Subiect
+    communication_templates: Șabloane
     communications: Comunicaţii
     communications_form_insert_piped_text: Inserarea textului cu conducte
+    competency_indicator: Competență / Indicator
     completed: Completat
     completed_tooltip: Toți evaluatorii au depus evaluarea
+    completion_recipients_all: Toate subiectele
+    completion_recipients_list: 'Lista destinatarilor:'
+    completion_recipients_selected: Subiecte selectate
+    completion_recipients_selected_admins: Administratori selectați
+    completion_recipients_selected_assessors: Evaluatori selectați
+    completion_recipients_selected_assessors_hint: Doar evaluatorul atribuit formularului de evaluator conectat al subiectului care completează va primi un e-mail, chiar dacă mai sus sunt selectați alți evaluatori.
     components_input_duration_placeholder: Introduceți ca "1d 2h 3m"
     concise: Concis
     condition_sets: Seturi de condiții
@@ -697,6 +927,8 @@ ro:
     disable_proctoring: Dezactivează supravegherea
     disable_report_download: Dezactivați descărcarea raportului
     disable_transcript_download: Dezactivați descărcarea transcrierii
+    disable_webhooks: Dezactivați Webhook-urile
+    disable_webhooks_hint: Când această opțiune este activată, niciun eveniment webhook sau de integrare downstream nu este trimis clientului pentru această campanie, indiferent de tipul de participant. Doar Super Administratorii pot modifica această opțiune.
     disallow_lead_assessor_moderation: Dezactivează moderarea evaluatorului principal
     disallow_lead_assessor_moderation_info: Scorul va fi calculat automat pe baza tuturor formularelor trimise de evaluatori, iar evaluatorul principal nu îl poate modifica din ecranul de moderare
     discard_all_questions: Resetează toate întrebările
@@ -795,6 +1027,7 @@ ro:
     evaluator_welcome_name: Bun venit evaluator
     evaluators_title: Evaluatori
     evidence_from_transcript: Dovezi din transcriere
+    expand_all: Extindeți tot
     expand_filters: Extindeți filtrele
     export_admin_roles_permissions: Exportul rolurilor și permisiunilor de administrator
     export_admins_with_permissions: Exportul rolurilor și permisiunilor de administrator
@@ -855,6 +1088,7 @@ ro:
     feature_not_available: Această funcție nu este disponibilă
     feature_sms_notification_description: Activați notificările SMS pentru invitații și mementouri legate de campanii
     feature_superadmin_tenant_scoping_description: Când sunt dezactivate, interogările superadmin nu vor fi limitate la datele acestui client.
+    feature_use_new_communication_center_description: Folosește doar noul Centru de comunicare pentru acest client și oprește trimiterea comunicărilor vechi
     fields_level: Nivel
     fields_level_description: Descrierea nivelului
     fields_level_name: Nume nivel
@@ -1121,6 +1355,7 @@ ro:
     import_title: Subiecte de import din CSV
     import_upload: Încărca
     import_users: Importă utilizatori
+    in_progress: În curs de desfășurare
     inactive: Inactivă
     include_locales_label: Includeți traduceri
     include_locales_name: include_locales
@@ -1399,6 +1634,7 @@ ro:
     model_params_thinking_effort_none: Nici unul
     model_params_thinking_effort_tooltip: Controlează cât de mult raționament aplică modelul înainte de a răspunde. Un efort mai mare produce răspunsuri mai complete, dar durează mai mult. Folosește „Niciunul” pentru a dezactiva complet raționamentul.
     model_params_title: Configurare avansată a modelului
+    moderate_scoring_lead_assessor_form: Formular Evaluator Principal
     must_be_a_valid_url: Adresă URL nevalidă. Introduceți adresa URL completă, incluzând protocolul http sau https
     name: Nume
     name_max_length: Numele nu poate depăși %{length} caractere
@@ -1411,6 +1647,24 @@ ro:
     navigation_registration_codes: Coduri de înregistrare
     navigation_skills_taxonomy: Taxonomia abilităților
     navigation_users: Utilizatorii
+    new_experience_badge: Experiență nouă
+    new_experience_bullet_brief_rest: Îndrumările privind competențele rămân pe ecran în timp ce evaluați.
+    new_experience_bullet_brief_strong: Rezumatul de lângă scorul tău
+    new_experience_bullet_candidate_rest: fiecare formular de evaluator pentru candidatul respectiv, împreună.
+    new_experience_bullet_candidate_strong: Un candidat, o singură opinie
+    new_experience_bullet_moderation_rest: scorul fiecărui evaluator alăturat, o singură decizie finală.
+    new_experience_bullet_moderation_strong: Moderare în minute
+    new_experience_footer_note: Noua experiență va deveni în curând implicită pentru toată lumea. Poți oricând să treci la Noua Experiență din detaliile Profilului tău.
+    new_experience_headline: Un singur flux, de la prima revizuire până la aprobarea finală.
+    new_experience_notice_body: Am reproiectat experiența evaluatorului. O puteți încerca acum sau o puteți activa ulterior din setările profilului.
+    new_experience_notice_maybe_later: Poate mai târziu
+    new_experience_notice_title: Experiență nouă pentru evaluatori disponibilă
+    new_experience_preview_alt: Previzualizare a noii experiențe pentru evaluatori
+    new_experience_sub_copy: Candidatul, evaluarea, moderarea și centrul de evaluare funcționează acum ca o singură vizualizare conectată, nu ca cinci ecrane pe care le țineți împreună.
+    new_experience_word_assessment_centre: Centru de evaluare Desfășoară sesiunea și urmărește fiecare subiect.
+    new_experience_word_candidate: Candidat Un candidat, toate evaluările lor la un loc.
+    new_experience_word_evaluate: Evaluează brief-ul și scorul tău, alăturate.
+    new_experience_word_moderate: Moderat Fiecare evaluator punctează, o singură decizie finală.
     new_folder: Dosar nou
     new_score: Scor nou
     no_assessments_found: Audit ID
@@ -1458,6 +1712,7 @@ ro:
     norms_title: Normă
     not_completed: Nefinalizat
     not_completed_tooltip: "%{completed} evaluatori sunt atribuiți, dar doar %{submitted} au finalizat evaluările"
+    not_started: Neînceput
     notes: Note
     nothing_assigned: Niciun evaluator desemnat
     nothing_assigned_tooltip: Nu au fost atribuite evaluări acestui utilizator
@@ -1570,6 +1825,7 @@ ro:
         manage_messages: Gestionați mesajele
         manage_options: Gestionați opțiunile
         manage_report_approvals: Gestionarea aprobărilor rapoartelor
+        manage_uat: Gestionați utilizatorii UAT
         manage_users: Gestionați utilizatorii
         participant_options: Opțiuni pentru participanți
         report_options: Opțiuni de raportare
@@ -1898,6 +2154,7 @@ ro:
         title: Setări de înregistrare
       reports:
         manage: Acțiuni
+        project_bulk_reports: Rapoarte în bloc de proiect
         title: Rapoarte
         view: Vedere
       responseMeta:
@@ -2055,6 +2312,7 @@ ro:
     project_admins: Administratori de proiect
     project_assessor: Evaluator de proiecte
     project_features: Caracteristicile proiectului
+    project_id: ID-ul proiectului
     project_ids: Coduri de proiect
     project_ids_required: "„project_ids” este obligatoriu pentru acest tip de raport"
     project_licenses: Licențe de proiect
@@ -2114,6 +2372,7 @@ ro:
     projects_form_project_number: Numărul proiectului
     projects_form_subdomain: Subdomeniu
     projects_form_title: Proiect
+    projects_general_settings_allow_data_access_to_bi: Permiteți accesul la Powerbi pentru acest proiect
     projects_general_settings_live_chat: Activați chatul live
     projects_general_settings_locales_label: Localizări
     projects_general_settings_project_number_label: Numărul proiectului
@@ -2344,6 +2603,21 @@ ro:
     report_approval_submit_or_approve_all: Trimiteți sau aprobați toate
     report_approvals: Aprobări de rapoarte
     report_availability: Disponibilitatea raportului
+    report_builder_publish_confirm_content: Aceasta va înlocui raportul publicat existent cu modificările în formă de schiță, punându-l la dispoziția utilizatorilor. Sigur doriți să publicați modificările?
+    report_builder_publish_confirm_title: Publicați acest raport?
+    report_builder_publish_failed: Raportul a fost salvat, dar publicarea a eșuat. Vă rugăm să încercați să publicați din nou.
+    report_builder_publish_success: Raportul a fost publicat cu succes
+    report_builder_published_at: Ultima publicare pe {{date}}
+    report_builder_published_by: Publicat de {{name}}
+    report_builder_save_and_publish: Salvați și publicați
+    report_builder_save_as_draft: Salvare ca schiță
+    report_builder_save_failed: Nu s-a putut salva raportul. Vă rugăm să încercați din nou.
+    report_builder_save_success: Raportul a fost salvat cu succes
+    report_builder_unpublished_changes: Modificări nepublicate
+    report_builder_view_draft: Vizualizare schiță
+    report_builder_view_published: Vizualizare Publicat
+    report_builder_viewing_draft_message: Vizualizați versiunea preliminară a raportului. Participanții nu văd aceasta până la publicare.
+    report_builder_viewing_published_message: Vizualizați ultima versiune publicată a raportului. Modificările aduse constructorului nu se reflectă aici până la publicare.
     report_condition_not_met: Are nevoie %{required} %{relationship} evaluare, dar are nevoie doar de %{actual}
     report_conditions_not_met_detailed: Raportul pentru %{user} nu îndeplinește condițiile de disponibilitate. %{conditions}
     report_denied: Raportul pentru %{user} a fost respins
@@ -2358,6 +2632,11 @@ ro:
     report_on_hold: Raportul pentru %{user} este în prezent în așteptare
     report_owner: Proprietar
     report_pdf_status: Raport privind starea fișierului PDF
+    report_pdf_unavailable: PDF-ul pentru acest raport nu este încă disponibil.
+    report_preview_draft_notice: Vizualizați o versiune preliminară a raportului, care nu este disponibilă participantului decât dacă modificările preliminare sunt publicate din Builder.
+    report_preview_draft_tag_tooltip: Acest raport are modificări disponibile în versiune preliminară. Faceți clic pentru a vizualiza versiunea preliminară.
+    report_preview_view_draft: Previzualizare schiță
+    report_preview_view_published: Previzualizare Publicat
     report_review_abort_qc: Anulați QC
     report_review_approve: Aproba
     report_review_approve_changes: Aprobarea modificărilor
@@ -2725,6 +3004,7 @@ ro:
     scoring_approval_score_approvals: Aprobări de scoruri AI
     scoring_assessment: Evaluare
     scoring_assessment_scoring_type: Tip de evaluare
+    scoring_assessor_number: Evaluator %{number}
     scoring_average: Medie
     scoring_campaign_scoring_variables: Variabile de evaluare a campaniei
     scoring_desc: Ați depășit limita maximă de %{n} factori de campanie. Nu se pot adăuga factori suplimentari. Vă rugăm să revizuiți și să gestionați factorii existenți înainte de a continua.
@@ -3110,15 +3390,19 @@ ro:
     status_details: Detalii despre stadiu
     statuses_accepted: Acceptate
     statuses_cancelled: Anulat
+    statuses_failed: Eșuat
     statuses_late_cancelled: Anulat cu întârziere
     statuses_late_rescheduled: Întârziat Reprogramat
     statuses_pending: Până
+    statuses_queued: În coadă
     statuses_requested_cancellation: Anulare solicitată
     statuses_requested_cancellation_rejected: Anulare respinsă
     statuses_requested_rescheduling: Reprogramare solicitată
     statuses_requested_rescheduling_rejected: Reprogramare respinsă
     statuses_rescheduled: Reprogramat
     statuses_scheduled: Programată
+    statuses_sent: Trimis
+    statuses_skipped: Omis
     steps_basic_information: Informații de bază
     steps_facilitators: Facilitatori
     steps_invite_options: Opțiuni de invitație
@@ -3324,6 +3608,7 @@ ro:
     url_label: Adresa URL
     url_name: Adresa URL
     url_whitelisting: Adăugarea URL-urilor pe lista albă
+    use_new_communication_center: Folosește noul Centru de Comunicare
     used_tokens_input_tokens: Jetoane de intrare
     used_tokens_output_tokens: Jetoane de ieșire
     used_tokens_thinking_tokens: Jetoane de gândire

@@ -136,7 +136,13 @@ module Forms
                 date: { after: proc { DateTime.current } },
                 if: :specified_date_and_time_invitation?
 
-      validates_with ::Validators::Forms::Communications::SelectedMembers, if: proc { recipients == 'selected' }
+      validates_with ::Validators::Forms::Communications::SelectedMembers,
+                     if: proc { %w[selected selected_admins selected_assessors].include?(recipients) }
+
+      validates :recipients,
+                inclusion: { in: ::Facades::Administration::Communication::CompletionRecipients::RECIPIENT_TYPES },
+                if: :completion?
+      validates :recipients, exclusion: { in: %w[selected_admins selected_assessors] }, unless: :completion?
 
       validate :body_content
       validate :selected_assessments_presence, if: -> { assessment_selection == 'selected' }
@@ -190,6 +196,10 @@ module Forms
         Mustache.render(body)
       rescue Mustache::Parser::SyntaxError
         errors.add(:body, I18n.t('enums.communication.body.error'))
+      end
+
+      def completion?
+        kind == 'completion'
       end
 
       def reminder?

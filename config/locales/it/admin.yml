@@ -218,6 +218,15 @@ it:
     assessor_assessments_reset_successfully: La valutazione del reset dell'oggetto con l'e-mail "%{subjectEmail}" ha avuto successo.
     assessor_assessments_subject_email: Oggetto e-mail
     assessor_assessments_subject_name: Nome del soggetto
+    assessor_campaign_users_awaiting_moderation: In attesa di moderazione
+    assessor_campaign_users_awaiting_moderation_subtitle: pronto a consolidare
+    assessor_campaign_users_candidates_subtitle: assegnato a te
+    assessor_campaign_users_completed: Completato
+    assessor_campaign_users_completed_subtitle: firmato
+    assessor_campaign_users_in_progress: In corso
+    assessor_campaign_users_in_progress_subtitle: in fase di valutazione
+    assessor_campaign_users_not_started: Non avviato
+    assessor_campaign_users_not_started_subtitle: valutazioni
     assessor_campaigns_statuses_completed: Completati
     assessor_campaigns_statuses_in_progress: In corso
     assessor_campaigns_statuses_not_started: Da iniziare
@@ -226,6 +235,20 @@ it:
     assessor_create_assessor: Aggiungere il valutatore
     assessor_dashboard: Dashboard valutatore
     assessor_email: Email del valutatore
+    assessor_evaluation: Valutazione del valutatore
+    assessor_evaluation_by_campaign: Per campagna
+    assessor_evaluation_by_participant: Per partecipante
+    assessor_evaluation_candidate: Candidato
+    assessor_evaluation_candidates: Candidati
+    assessor_evaluation_completed: Valutazione completata
+    assessor_evaluation_date_range: Data di inizio – Data di fine
+    assessor_evaluation_moderation_waiting: Moderazione in attesa
+    assessor_evaluation_tour_profile_description: Il tuo account, ruolo e lingua e l'interruttore per attivare la nuova esperienza sono disponibili qui. Aprilo per rivedere i tuoi dati o per disconnetterti.
+    assessor_evaluation_tour_profile_title: Il tuo profilo e le tue impostazioni
+    assessor_evaluation_tour_table_description: Apri una riga qualsiasi per visualizzare le loro valutazioni, quindi valuta le loro risposte oppure modera i punteggi finali.
+    assessor_evaluation_tour_table_title: Scegli un candidato
+    assessor_evaluation_tour_tabs_description: Passa dalla modalità "Per partecipante" (una persona alla volta) alla modalità "Per campagna".
+    assessor_evaluation_tour_tabs_title: Due modi di lavorare
     assessor_evaluations: Assessment dei valutatori
     assessor_first_name: Nome del valutatore
     assessor_form: Modulo per il valutatore
@@ -233,18 +256,24 @@ it:
     assessor_last_name: Cognome dell'assessore
     assessor_modals_import_body: Fare riferimento alla funzionalità Esporta per estrarre un modello che può essere utilizzato per Importare qui.
     assessor_modals_import_title: Valutatori di importazione
+    assessor_new_experience: Nuova esperienza
     assessor_overview: Panoramica
     assessor_placeholder: Cerca Assessor...
     assessor_remove_confirmation: Si è sicuri di voler rimuovere il valutatore con email %{email} da questa campagna?
     assessor_remove_has_evaluations: A questo valutatore sono stati assegnati %{evaluation_count} moduli di valutazione. Tutte le valutazioni da lui compilate andranno perse.
     assessor_remove_in_assessment_centers: Questo valutatore fa parte del/dei centro/i di valutazione %{workshop_count}. Procedendo, verrà rimosso da tutti i centri di valutazione.
-    assessor_statuses_completed: Completati
-    assessor_statuses_not_completed: Non completato
-    assessor_subjects_statuses_completed: Completati
-    assessor_subjects_statuses_in_progress: In corso
-    assessor_subjects_statuses_not_started: Da iniziare
+    assessor_switch_to_classic: Passa alla modalità Classica
     assessor_toolbar_export: Valutatori delle esportazioni
     assessor_toolbar_import: Valutatori di importazione
+    assessor_tour_button: Tour
+    assessor_try_new_experience: Prova una nuova esperienza
+    assessor_user_assessment_name: Nome della valutazione
+    assessor_user_candidate_id: ID candidato
+    assessor_user_evaluate: Valutare
+    assessor_user_evaluation: Valutazione
+    assessor_user_evaluation_progress: Base di valutazione
+    assessor_user_moderate: Punteggi moderati
+    assessor_user_moderation: Moderazione
     assessor_workshops: Centro di valutazione
     assessors: Valutatori
     assistant_toolbar_failed: Impossibile generare un output valido dopo diversi tentativi
@@ -312,6 +341,79 @@ it:
     bulk_assets_modal_title: Carica file CSV e ZIP
     bulk_export_assessments_file: File di esportazione delle valutazioni in blocco
     bulk_export_invalid_params: Parametri di esportazione in blocco non validi
+    bulk_reports: Rapporti di massa
+    bulk_reports_all_of_year: Tutto %{year}
+    bulk_reports_all_tags: Tutti i tag
+    bulk_reports_bundled_into_single: raggruppato in un unico
+    bulk_reports_campaign_count_one: Campagna %{count}
+    bulk_reports_campaign_count_other: Campagne %{count}
+    bulk_reports_campaign_search_placeholder: Cerca campagne o progetti...
+    bulk_reports_campaigns_shown_count: "%{selected} selezionato - %{shown} mostrato"
+    bulk_reports_campaigns_without_reports_warning: 'Campagne selezionate senza report configurati: %{count}. Verranno ignorate.'
+    bulk_reports_candidate_abbreviation: candida.
+    bulk_reports_complete_every_step: Completa ogni passaggio per abilitare
+    bulk_reports_date_range_required: Per procedere è necessario indicare sia una data di inizio che una data di fine.
+    bulk_reports_date_range_summary: Saranno incluse le valutazioni completate da %{start} a %{end}.
+    bulk_reports_description: Crea un unico processo di esportazione per più campagne. Seleziona le campagne, scegli i report e le lingue da includere, imposta un intervallo di date e invia.
+    bulk_reports_deselect_all_shown: Deseleziona tutto ciò che viene visualizzato
+    bulk_reports_download_notification_sent: Notifica di download inviata
+    bulk_reports_emailed_when_ready: e ti verrà inviata via email quando sarà pronta.
+    bulk_reports_end_date_placeholder: Seleziona la data e l'ora di fine
+    bulk_reports_end_date_required: Seleziona una data di fine.
+    bulk_reports_error_try_again: Errore - riprova
+    bulk_reports_files_estimated_across: file stimati su
+    bulk_reports_files_pending: I file appariranno qui una volta completata l'operazione.
+    bulk_reports_generate_export: Genera esportazione
+    bulk_reports_invalid_date_range: La data di fine deve essere uguale o successiva alla data di inizio.
+    bulk_reports_job_details_title: Lavoro n. %{id}
+    bulk_reports_job_not_found: Non è stato possibile trovare questa offerta di lavoro.
+    bulk_reports_job_queued: Lavoro in coda
+    bulk_reports_languages_progress_one: "%{done} di %{total} set di report"
+    bulk_reports_languages_progress_other: "%{done} di %{total} report impostati"
+    bulk_reports_languages_set_for_all_one: Imposta per tutti i report %{count}
+    bulk_reports_languages_set_for_all_other: Impostato per tutti i report %{count}
+    bulk_reports_last_30_days: Ultimi 30 giorni
+    bulk_reports_last_90_days: Ultimi 90 giorni
+    bulk_reports_no_campaigns_found: Nessuna campagna trovata per questo progetto.
+    bulk_reports_no_campaigns_match_filters: Nessuna campagna corrisponde ai filtri di ricerca o di tag.
+    bulk_reports_no_campaigns_selected: Nessuna campagna selezionata
+    bulk_reports_no_files_yet: I file relativi a questo lavoro non sono ancora disponibili.
+    bulk_reports_no_language_selected: nessuna lingua selezionata
+    bulk_reports_no_languages_available: Nessuna lingua disponibile per questo report.
+    bulk_reports_no_reports_configured: Nessuna delle campagne selezionate ha i report configurati. Torna indietro e verifica la configurazione delle tue campagne.
+    bulk_reports_no_reports_selected: Nessun report selezionato
+    bulk_reports_no_reports_selected_for_languages: Nessun report selezionato. Torna indietro e seleziona almeno un report.
+    bulk_reports_no_tags_found: Nessun tag trovato
+    bulk_reports_none_selected: Nessuna selezione
+    bulk_reports_queued_by: In coda per
+    bulk_reports_queuing_jobs: Lavori in coda...
+    bulk_reports_ready_to_generate: Pronto a generare
+    bulk_reports_report_count_one: Rapporto %{count}
+    bulk_reports_report_count_other: "%{count} segnala"
+    bulk_reports_reports_and_languages: Rapporti e lingue
+    bulk_reports_review_submit: Rivedi e invia
+    bulk_reports_review_submit_description: Controlla il lavoro qui sotto. Puoi tornare a qualsiasi passaggio per apportare modifiche.
+    bulk_reports_select_all_shown: Seleziona tutti gli elementi visualizzati
+    bulk_reports_select_campaigns: Seleziona le campagne
+    bulk_reports_select_campaigns_description: Cerca per nome o progetto e restringi l'elenco utilizzando i filtri per tag. Quindi seleziona le campagne da includere.
+    bulk_reports_select_date_range: Seleziona l'intervallo di date
+    bulk_reports_select_date_range_description: Includi solo le valutazioni completate in questo intervallo. Lascia un intervallo predefinito o imposta date precise.
+    bulk_reports_select_languages: Seleziona le lingue
+    bulk_reports_select_languages_description: Ogni report supporta un diverso set di lingue. Seleziona almeno una lingua per report. Il report verrà generato in tutte le lingue selezionate.
+    bulk_reports_select_reports: Seleziona i report
+    bulk_reports_select_reports_description: Ciascun report selezionato viene generato per ogni candidato o campagna nell'esportazione, in ogni lingua scelta.
+    bulk_reports_selected_tags_count_one: Etichetta %{count} selezionata
+    bulk_reports_selected_tags_count_other: "%{count} tag selezionati"
+    bulk_reports_start_date_placeholder: Seleziona la data e l'ora di inizio
+    bulk_reports_start_date_required: Seleziona una data di inizio.
+    bulk_reports_step_coming_soon: Questo passaggio arriverà presto.
+    bulk_reports_submit_error: Si è verificato un errore. Riprova.
+    bulk_reports_submit_success: L'esportazione è stata messa in coda. Riceverai una notifica quando il download sarà pronto.
+    bulk_reports_summary_description: Aggiornamenti man mano che sviluppi il progetto
+    bulk_reports_summary_title: Scarica il riepilogo
+    bulk_reports_title: Rapporti di massa
+    bulk_reports_view_downloads: Visualizza i download di report in blocco
+    bulk_reports_year_to_date: Da inizio anno
     bulk_upload_ai_artifacts: Artefatti AI con caricamento in massa
     campaign: Campagne
     campaign_admin: Admin della campagna
@@ -383,6 +485,13 @@ it:
     campaign_templates_remove_confirm_success: Il modello di campagna '%{name}' è stato rimosso con successo.
     campaign_templates_remove_confirm_title: Rimuovere il modello di campagna
     campaign_user_job_roles_cannot_be_same: Il ruolo lavorativo desiderato deve essere diverso da quello attuale.
+    campaign_users_import_uat_hint: Imposta la colonna UAT su Sì per gli utenti di test che devono essere esclusi da licenze, analisi e webhook.
+    campaign_users_uat_description: Contrassegna questo partecipante come utente del test UAT.
+    campaign_users_uat_label: Partecipante UAT
+    campaign_users_uat_license_non_billable: Non fatturabile
+    campaign_users_uat_locked_hint: Questo partecipante esiste già. Lo stato UAT viene impostato al momento della creazione del partecipante e non può essere modificato.
+    campaign_users_uat_readonly_hint: Lo stato UAT viene impostato al momento della creazione e non può essere modificato.
+    campaign_users_uat_tooltip: Gli utenti UAT sono partecipanti effettivi ai test. Possono svolgere le valutazioni normalmente, ma sono esclusi dall'utilizzo di licenze a pagamento, dalle analisi e dai webhook in uscita.
     campaigns: Campagne
     campaigns_convert_to_template: Convertire in modello
     campaigns_extend_time_success_message: Timer della campagna esteso a %{minutes} minuti
@@ -469,6 +578,7 @@ it:
     clients_search_placeholder: Ricerca cliente
     closed: Chiuso
     code_required: È necessario il codice
+    collapse_all: Comprimi tutto
     collapse_filters: Filtri di chiusura
     column_code: Codice
     column_invitation_status: Stato dell'invito
@@ -487,10 +597,130 @@ it:
     common_type: Tipo
     common_unselect_all: Deselezionare tutti
     communication_center: Centro di comunicazione
+    communication_center_manage_translations_action: Gestisci le traduzioni
+    communication_center_migration_enqueued: Lavoro di migrazione messo in coda. Controllare i log per verificarne lo stato.
+    communication_center_migration_error: La richiesta di migrazione non è andata a buon fine. Riprova o controlla i log.
+    communication_center_migration_modal_intro: 'Le seguenti modifiche verranno applicate quando si esegue la migrazione per questo client:'
+    communication_center_migration_modal_title: Anteprima della migrazione del centro di comunicazione
+    communication_center_migration_preview_button: Anteprima della migrazione
+    communication_center_migration_run_button: Eseguire la migrazione
+    communication_center_migration_skipped: Già migrato (verrà saltato)
+    communication_center_migration_would_assessments: Valutazioni per la migrazione
+    communication_center_migration_would_backfill: Indirizzi email da riempire
+    communication_center_migration_would_cc_users: Gli utenti CC dovranno migrare
+    communication_center_migration_would_migrate: Comunicazioni da migrare
+    communication_center_migration_would_users: Utenti selezionati da migrare
+    communication_center_translation_updated_success: Funzionalità aggiornate correttamente
+    communication_center_translations_modal_title: Gestisci le traduzioni
+    communication_deliveries: Consegne
+    communication_delivery: Consegna della comunicazione
+    communication_delivery_assessment_group_label: Gruppo di valutazione
+    communication_delivery_at_label: Data e ora di consegna
+    communication_delivery_at_past_error: La data di consegna deve essere futura.
+    communication_delivery_cancel_action: Cancellare
+    communication_delivery_cancel_error: Impossibile annullare la consegna
+    communication_delivery_cc_users_label: Destinatari CC
+    communication_delivery_completion_status_hint: Se viene specificato un codice di completamento, questo verrà inviato solo se la valutazione dell'utente presenta tale codice di stato di completamento.
+    communication_delivery_completion_status_label: Codice di stato di completamento della valutazione
+    communication_delivery_delay_hours_label: Ritardo (ore)
+    communication_delivery_details_title: Dettagli di consegna
+    communication_delivery_emails_sent_label: Inviato
+    communication_delivery_emails_total_label: Numero totale di email
+    communication_delivery_end_date_label: Data di fine
+    communication_delivery_frequency_daily: Quotidiano
+    communication_delivery_frequency_label: Frequenza
+    communication_delivery_frequency_specific_weekdays: Giorni feriali specifici
+    communication_delivery_frequency_weekly: Settimanale
+    communication_delivery_interval_number_label: Intervallo
+    communication_delivery_interval_period_days: Giorni
+    communication_delivery_interval_period_hours: Ore
+    communication_delivery_interval_period_label: Periodo di intervallo
+    communication_delivery_interval_period_months: Mesi
+    communication_delivery_interval_period_weeks: Settimane
+    communication_delivery_new_button: Nuova consegna
+    communication_delivery_recipients_all: Tutti i partecipanti
+    communication_delivery_recipients_label: Destinatari
+    communication_delivery_recipients_new_assignment: Nuovo incarico
+    communication_delivery_recipients_new_users: Nuovi utenti
+    communication_delivery_recipients_selected: Partecipanti selezionati
+    communication_delivery_rule_in_progress: In corso
+    communication_delivery_rule_label: Regola di consegna
+    communication_delivery_rule_not_completed: Non completato
+    communication_delivery_rule_not_started: Non avviato
+    communication_delivery_rule_send_now: Invia ora
+    communication_delivery_rule_specific_datetime: Data e ora specifiche
+    communication_delivery_search_users_placeholder: Cerca per nome o indirizzo email
+    communication_delivery_selected_assessments_label: Valutazioni
+    communication_delivery_selected_users_label: Seleziona utenti
+    communication_delivery_start_date_label: Data di inizio
+    communication_delivery_template_label: Modello
+    communication_delivery_time_of_day_label: ora del giorno
+    communication_delivery_timezone_label: Fuso orario
+    communication_delivery_trigger_type_label: Tipo di trigger
+    communication_delivery_trigger_type_manual: Manuale
+    communication_delivery_trigger_type_scheduled: Programmato
+    communication_delivery_weekday_fri: Venerdì
+    communication_delivery_weekday_mon: Lunedi
+    communication_delivery_weekday_sat: Sabato
+    communication_delivery_weekday_sun: Domenica
+    communication_delivery_weekday_thu: Giovedì
+    communication_delivery_weekday_tue: Martedì
+    communication_delivery_weekday_wed: Mercoledì
+    communication_delivery_weekdays_label: giorni feriali
+    communication_email_created_at_label: Creato a
+    communication_email_not_sent: Non inviato
+    communication_email_preview_action: Anteprima
+    communication_email_preview_date_label: Data
+    communication_email_preview_from_label: Da
+    communication_email_preview_title: Anteprima dell'e-mail
+    communication_email_preview_to_label: A
+    communication_email_preview_warning: Questa è un'anteprima rielaborata del modello e potrebbe non rispecchiare esattamente il contenuto dell'email effettivamente inviata.
+    communication_email_recipient_email_label: Indirizzo email del destinatario
+    communication_email_recipient_name_label: Nome del destinatario
+    communication_email_retrigger_action: Riattivare
+    communication_email_retrigger_error: Impossibile riattivare l'e-mail
+    communication_email_sent_at_label: Inviato a
+    communication_email_status_label: Stato
+    communication_email_subject_label: Soggetto
+    communication_emails: Email
+    communication_template: Modello di comunicazione
+    communication_template_body_label: Messaggio
+    communication_template_create_new_action: Crea nuovo
+    communication_template_kind_label: Tipo di comunicazione
+    communication_template_level_campaign: Campagna
+    communication_template_level_client: Cliente
+    communication_template_level_platform: Piattaforma
+    communication_template_level_project: Progetto
+    communication_template_name_label: Nome del modello
+    communication_template_new_button: Nuovo modello
+    communication_template_override_inherited_action: Sovrascrivi ereditato
+    communication_template_override_picker_search_placeholder: Modelli di ricerca da sovrascrivere
+    communication_template_override_picker_title: Sovrascrivi il modello ereditato
+    communication_template_recipients_all: Tutto
+    communication_template_recipients_label: Destinatari predefiniti
+    communication_template_recipients_new_assignment: Nuovo incarico
+    communication_template_recipients_new_users: Nuovi utenti
+    communication_template_recipients_selected: Selezionato
+    communication_template_source_created: Creato
+    communication_template_source_label: Fonte
+    communication_template_source_override_of: Sovrascrittura di %{level}
+    communication_template_status_active: Attivo
+    communication_template_status_archived: Archiviato
+    communication_template_status_draft: Bozza
+    communication_template_status_label: Stato
+    communication_template_subject_label: Soggetto
+    communication_templates: Modelli
     communications: Comunicazioni
     communications_form_insert_piped_text: Inserimento di testo con tubature
+    competency_indicator: Competenza / Indicatore
     completed: Finito
     completed_tooltip: Tutti i valutatori hanno inviato la valutazione
+    completion_recipients_all: Tutte le materie
+    completion_recipients_list: 'Elenco dei destinatari:'
+    completion_recipients_selected: Materie selezionate
+    completion_recipients_selected_admins: Amministratori selezionati
+    completion_recipients_selected_assessors: Valutatori selezionati
+    completion_recipients_selected_assessors_hint: Solo il valutatore assegnato al modulo di valutazione collegato del soggetto che ha completato il modulo riceverà l'e-mail, anche se in precedenza sono stati selezionati altri valutatori.
     components_input_duration_placeholder: Immettere come "1d 2h 3m"
     concise: Conciso
     condition_sets: Insiemi di condizioni
@@ -697,6 +927,8 @@ it:
     disable_proctoring: Disattiva la sorveglianza
     disable_report_download: Disabilita il download dei rapporti
     disable_transcript_download: Disabilita il download della trascrizione
+    disable_webhooks: Disabilita i webhook
+    disable_webhooks_hint: Quando questa opzione è attiva, nessun webhook o evento di integrazione a valle viene inviato al client per questa campagna, indipendentemente dal tipo di partecipante. Solo i Super Amministratori possono modificare questa impostazione.
     disallow_lead_assessor_moderation: Disabilita la moderazione da parte del valutatore principale
     disallow_lead_assessor_moderation_info: Il punteggio verrà calcolato automaticamente sulla base di tutti i moduli inviati dai valutatori e il valutatore capo non potrà modificarlo dalla schermata di moderazione
     discard_all_questions: Reimposta tutte le domande
@@ -795,6 +1027,7 @@ it:
     evaluator_welcome_name: Accoglienza del valutatore
     evaluators_title: Valutatori
     evidence_from_transcript: Prove tratte dalla trascrizione
+    expand_all: Espandi tutto
     expand_filters: Espandi filtri
     export_admin_roles_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
     export_admins_with_permissions: Esporta dei ruoli e delle autorizzazioni dell'amministratore
@@ -855,6 +1088,7 @@ it:
     feature_not_available: Questa funzione non è disponibile
     feature_sms_notification_description: Abilita le notifiche SMS per gli inviti alle campagne e i promemoria
     feature_superadmin_tenant_scoping_description: Quando disabilitata, l'opzione "superadmin query" non sarà limitata ai dati di questo client.
+    feature_use_new_communication_center_description: Utilizza il nuovo Centro comunicazioni solo per questo cliente e interrompi l'invio di comunicazioni obsolete.
     fields_level: Livello
     fields_level_description: Descrizione del livello
     fields_level_name: Nome del livello
@@ -1121,6 +1355,7 @@ it:
     import_title: Materie importate dal CSV
     import_upload: Caricare
     import_users: Importare utenti
+    in_progress: In corso
     inactive: Inattivo
     include_locales_label: Includere le traduzioni
     include_locales_name: include_locali
@@ -1399,6 +1634,7 @@ it:
     model_params_thinking_effort_none: Nessuno
     model_params_thinking_effort_tooltip: Controlla la quantità di ragionamento che il modello applica prima di rispondere. Un maggiore sforzo produce risposte più complete, ma richiede più tempo. Utilizzare 'Nessuno' per disabilitare completamente il ragionamento.
     model_params_title: Configurazione avanzata del modello
+    moderate_scoring_lead_assessor_form: Modulo di valutazione principale
     must_be_a_valid_url: URL non valido. Specificare l'URL completo, includendo il protocollo http o https
     name: Nome
     name_max_length: Il nome non può superare i caratteri %{length}
@@ -1411,6 +1647,24 @@ it:
     navigation_registration_codes: Codici di registrazione
     navigation_skills_taxonomy: Tassonomia delle competenze
     navigation_users: Utenti
+    new_experience_badge: Nuova esperienza
+    new_experience_bullet_brief_rest: Le linee guida sulle competenze rimangono visualizzate sullo schermo durante la valutazione.
+    new_experience_bullet_brief_strong: Il brief accanto al tuo punteggio
+    new_experience_bullet_candidate_rest: tutti i moduli di valutazione per quel candidato, insieme.
+    new_experience_bullet_candidate_strong: Un candidato, un punto di vista
+    new_experience_bullet_moderation_rest: I punteggi di ogni valutatore uno accanto all'altro, un ultimo appello.
+    new_experience_bullet_moderation_strong: Moderazione in minuti
+    new_experience_footer_note: La nuova esperienza diventerà presto l'impostazione predefinita per tutti. Puoi sempre passare alla nuova esperienza dalle impostazioni del tuo profilo.
+    new_experience_headline: Un unico flusso, dalla prima revisione all'approvazione finale.
+    new_experience_notice_body: Abbiamo riprogettato l'esperienza per i valutatori. Puoi provarla subito oppure attivarla in seguito dalle impostazioni del tuo profilo.
+    new_experience_notice_maybe_later: Forse più tardi
+    new_experience_notice_title: Nuova esperienza di valutazione disponibile
+    new_experience_preview_alt: Anteprima della nuova esperienza per i valutatori
+    new_experience_sub_copy: Candidatura, valutazione, moderazione e assessment center ora funzionano come un'unica visualizzazione integrata, non più come cinque schermate separate da gestire individualmente.
+    new_experience_word_assessment_centre: 'Assessment Centre: Gestire la sessione e monitorare ogni argomento.'
+    new_experience_word_candidate: Candidato Un candidato, tutte le sue valutazioni insieme.
+    new_experience_word_evaluate: Valuta il brief e il tuo punteggio, affiancandoli.
+    new_experience_word_moderate: Moderato Ogni punteggio dei valutatori, una chiamata finale.
     new_folder: Nuova cartella
     new_score: Nuovo punteggio
     no_assessments_found: ID audit
@@ -1458,6 +1712,7 @@ it:
     norms_title: Norma
     not_completed: Non completato
     not_completed_tooltip: "%{completed} valutatori vengono assegnati, ma solo %{submitted} hanno completato le valutazioni"
+    not_started: Da iniziare
     notes: Note
     nothing_assigned: Nessun valutatore assegnato
     nothing_assigned_tooltip: Non sono state assegnate valutazioni a questo utente
@@ -1570,6 +1825,7 @@ it:
         manage_messages: Gestione dei messaggi
         manage_options: Gestire le opzioni
         manage_report_approvals: Gestire le approvazioni dei rapporti
+        manage_uat: Gestione degli utenti UAT
         manage_users: Gestione degli utenti
         participant_options: Opzioni per i partecipanti
         report_options: Opzioni del rapporto
@@ -1898,6 +2154,7 @@ it:
         title: Impostazioni di registrazione
       reports:
         manage: Azioni
+        project_bulk_reports: Rapporti di progetto in blocco
         title: Report
         view: Vista
       responseMeta:
@@ -2055,6 +2312,7 @@ it:
     project_admins: Amministratori di progetto
     project_assessor: Valutatore del progetto
     project_features: Caratteristiche del progetto
+    project_id: ID progetto
     project_ids: ID progetto
     project_ids_required: Il campo "project_ids" è obbligatorio per questo tipo di report
     project_licenses: Licenze di progetto
@@ -2114,6 +2372,7 @@ it:
     projects_form_project_number: Numero del progetto
     projects_form_subdomain: Sottodominio
     projects_form_title: Progetto
+    projects_general_settings_allow_data_access_to_bi: Consenti l'accesso a Power BI per questo progetto
     projects_general_settings_live_chat: Abilitare la chat dal vivo
     projects_general_settings_locales_label: Località
     projects_general_settings_project_number_label: Numero del progetto
@@ -2344,6 +2603,21 @@ it:
     report_approval_submit_or_approve_all: Invia o approva tutti
     report_approvals: Approvazione report
     report_availability: Disponibilità del rapporto
+    report_builder_publish_confirm_content: Questa operazione sovrascriverà il report pubblicato esistente con le modifiche in bozza, rendendolo disponibile agli utenti. Sei sicuro di voler pubblicare le modifiche?
+    report_builder_publish_confirm_title: Pubblicare questo rapporto?
+    report_builder_publish_failed: Il report è stato salvato, ma la pubblicazione non è riuscita. Riprova a pubblicare.
+    report_builder_publish_success: Rapporto pubblicato con successo
+    report_builder_published_at: Ultimo aggiornamento il {{date}}
+    report_builder_published_by: Pubblicato da {{name}}
+    report_builder_save_and_publish: Salva e pubblica
+    report_builder_save_as_draft: Salva come bozza
+    report_builder_save_failed: Impossibile salvare il report. Riprova.
+    report_builder_save_success: Report salvato correttamente
+    report_builder_unpublished_changes: Modifiche non pubblicate
+    report_builder_view_draft: Visualizza la bozza
+    report_builder_view_published: Visualizza pubblicato
+    report_builder_viewing_draft_message: Stai visualizzando la bozza del rapporto. Questa non è la versione che i partecipanti vedranno fino alla pubblicazione.
+    report_builder_viewing_published_message: Stai visualizzando l'ultima versione pubblicata del report. Le modifiche apportate nel generatore non saranno visibili qui fino alla pubblicazione.
     report_condition_not_met: Ha bisogno di %{required} %{relationship} valutazione, ma ha solo %{actual}
     report_conditions_not_met_detailed: Il rapporto per %{user} non soddisfa le condizioni di disponibilità. %{conditions}
     report_denied: La segnalazione per %{user} è stata respinta
@@ -2358,6 +2632,11 @@ it:
     report_on_hold: Il rapporto per %{user} è attualmente in sospeso
     report_owner: Proprietario
     report_pdf_status: Stato del report PDF
+    report_pdf_unavailable: Il PDF di questo rapporto non è ancora disponibile.
+    report_preview_draft_notice: Stai visualizzando una bozza del report, che non sarà disponibile al partecipante a meno che le modifiche in bozza non vengano pubblicate dall'editor.
+    report_preview_draft_tag_tooltip: Sono disponibili delle bozze di modifica per questo rapporto. Clicca per visualizzare la versione in bozza.
+    report_preview_view_draft: Bozza di anteprima
+    report_preview_view_published: Anteprima pubblicata
     report_review_abort_qc: Interrompere il CQ
     report_review_approve: Approvare
     report_review_approve_changes: Approvare le modifiche
@@ -2728,6 +3007,7 @@ it:
     scoring_approval_score_approvals: Approvazioni dei punteggi AI
     scoring_assessment: Valutazione
     scoring_assessment_scoring_type: Tipo di valutazione
+    scoring_assessor_number: Valutatore %{number}
     scoring_average: Media
     scoring_campaign_scoring_variables: Variabili di valutazione della campagna
     scoring_desc: È stato superato il limite massimo di %{n} fattori di campagna. Non è possibile aggiungere altri fattori. Rivedere e gestire i fattori esistenti prima di procedere.
@@ -3118,15 +3398,19 @@ it:
     status_details: Dettagli di stato
     statuses_accepted: Accettato
     statuses_cancelled: Annullato
+    statuses_failed: Fallito
     statuses_late_cancelled: Annullato in ritardo
     statuses_late_rescheduled: Riprogrammazione tardiva
     statuses_pending: In attesa
+    statuses_queued: In coda
     statuses_requested_cancellation: Cancellazione richiesta
     statuses_requested_cancellation_rejected: Cancellazione Rifiutata
     statuses_requested_rescheduling: Ripianificazione Richiesta
     statuses_requested_rescheduling_rejected: Ripianificazione Rifiutata
     statuses_rescheduled: Ripianificato
     statuses_scheduled: In programma
+    statuses_sent: Inviato
+    statuses_skipped: Saltato
     steps_basic_information: Informazioni di base
     steps_facilitators: Facilitatori
     steps_invite_options: Opzioni di invito
@@ -3332,6 +3616,7 @@ it:
     url_label: URL
     url_name: URL
     url_whitelisting: Lista bianca degli URL
+    use_new_communication_center: Utilizzare il nuovo centro di comunicazione
     used_tokens_input_tokens: Token di ingresso
     used_tokens_output_tokens: Token di output
     used_tokens_thinking_tokens: Thinking Tokens

@@ -15,6 +15,8 @@ module LicenseManager
         project_id: campaign_user.campaign.project.id,
         license_id: license.id,
         project_license_id: project_license&.id,
+        is_uat: uat,
+        proctoring_credits_debited: credits_required,
         extras: {
           subject_name: campaign_user.user.name,
           subject_email: campaign_user.user.email,
