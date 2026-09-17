@@ -89,8 +89,8 @@ const UserList: React.FC<Props> = (
           <Search
             placeholder={I18n.t('common.actions.search')}
             className={styles.searchInput}
-            value={filters.filterableFields}
-            onChange={e => changeFilter('filterableFields', e.target.value)}
+            value={filters['user_full_name_or_user_email_cont']}
+            onChange={e => changeFilter('user_full_name_or_user_email_cont', e.target.value)}
           />
         )}
         table={(
