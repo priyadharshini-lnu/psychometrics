@@ -138,7 +138,7 @@ const AssessorList: React.FC<Props> = ({
             <Search
               placeholder={I18n.t('common.actions.search')}
               className={styles.searchInput}
-              value={filters['user_full_name_or_user_email_cont']}
+              value={filters.user_full_name_or_user_email_cont}
               onChange={e => changeFilter('user_full_name_or_user_email_cont', e.target.value)}
             />
             {permissions.add && (
