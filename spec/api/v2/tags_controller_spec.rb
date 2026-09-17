@@ -28,5 +28,37 @@ RSpec.describe Api::V2::Administration::TagsController, type: :request do
       expect(tag_response).to have_key('id')
       expect(tag_response).to have_attribute(:name).with_value(tag.name)
     end
+
+    context 'when query[taggable_resource_type] is missing entirely' do
+      it 'returns 400 Bad Request, not 500' do
+        get '/api/v2/administration/tags',
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:bad_request)
+
+        body = JSON.parse(response.body)
+        expect(body['errors'].first['detail']).to match(/taggable_resource_type/)
+      end
+    end
+
+    context 'when query is present but taggable_resource_type is blank' do
+      it 'returns 400 Bad Request' do
+        get '/api/v2/administration/tags',
+            params: { 'query[taggable_resource_type]' => '' },
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+    context 'when an unrelated query param is sent instead' do
+      it 'returns 400 Bad Request (matches ticket F-07 PoC)' do
+        get '/api/v2/administration/tags',
+            params: { 'filter[name_cont]' => 'test' },
+            headers: { 'Content-Type' => 'application/vnd.api+json' }
+
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
   end
 end
