@@ -6,7 +6,7 @@ module CampaignUsers
       CampaignUser.in_progress.
         joins(:campaign).
         merge(Campaign.fixed_time).
-        where('expiry_date < ?', Time.zone.now).
+        where('campaign_users.expiry_date < ?', Time.zone.now).
         update_all(attributes)
 
       broadcast :ok
