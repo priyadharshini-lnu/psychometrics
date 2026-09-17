@@ -120,6 +120,7 @@ features:
   client_scope_filter_disabled: <%= ENV.fetch('DISABLE_CLIENT_SCOPE_FILTER', 'false') == 'true' %>
   application_public_keys_settings_enabled: <%= ENV.fetch('APPLICATION_PUBLIC_KEYS_SETTINGS_ENABLED', 'false') == 'true' %>
   disable_project_branding: <%= ENV.fetch('DISABLE_PROJECT_BRANDING', 'false') == 'true' %>
+  enable_assessor_new_ui: <%= ENV.fetch('ENABLE_ASSESSOR_NEW_UI', 'false') == 'true' %>
 bulk_reports:
   size_limit: <%= ENV.fetch('BULK_REPORTS_ZIP_FILE_SIZE_LIMIT', 200_000_000).to_i %>
 agile_config:
