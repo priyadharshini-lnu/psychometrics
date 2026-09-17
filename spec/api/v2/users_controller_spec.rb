@@ -98,6 +98,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
 
       it 'check response' do
         allow(Settings.features).to receive(:[]).with(:ai_assistant_enabled).and_return(true)
+        allow(Settings.features).to receive(:[]).with(:voice_characters_enabled).and_return(true)
         allow(Settings.features).to receive(:dimensions_react_ui).and_return(true)
         allow(Settings.features).to receive(:libraries_react_ui).and_return(true)
         allow(Settings.features).to receive(:question_center_react_ui).and_return(true)
@@ -111,6 +112,7 @@ RSpec.describe Api::V2::Administration::UsersController, type: :request do
         expect(parsed_response['attributes']['navigation_links']['links']).to eq(
           {
             'aiAssistants' => '/admin/ai_assistants',
+            'aiVoiceCharacters' => '/admin/ai_voice_characters',
             'aiScoringApprovals' => '/admin/ai_scoring_approvals',
             'assessments' => '/admin/assessments',
             'auditLogs' => '/admin/audit_logs',

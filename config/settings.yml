@@ -106,6 +106,7 @@ features:
   disable_geo_restriction: <%= ENV.fetch('DISABLE_GEO_RESTRICTION', 'false') == 'true' %>
   enable_intl_for_admins: <%= ENV.fetch('ENABLE_INTL_FOR_ADMINS', 'false') == 'true' %>
   ai_assistant_enabled: <%= ENV.fetch('AI_ASSISTANT_ENABLED', 'false') == 'true' %>
+  voice_characters_enabled: <%= ENV.fetch('VOICE_CHARACTERS_ENABLED', 'false') == 'true' %>
   disable_recaptcha: <%= ENV.fetch('DISABLE_RECAPTCHA', 'false') == 'true' %>
   disable_meeting_recording: <%= ENV.fetch('DISABLE_MEETING_RECORDING', 'false') == 'true' %>
   digest_emails_enabled: <%= ENV.fetch('DIGEST_EMAILS_ENABLED', 'false') == 'true' %>

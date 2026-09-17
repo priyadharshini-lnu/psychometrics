@@ -71,6 +71,7 @@ const PARENT_OF: Record<string, string> = {
   skillsTaxonomy: 'configuration',
   developmentActions: 'configuration',
   aiAssistants: 'configuration',
+  aiVoiceCharacters: 'configuration',
   campaignTemplates: 'configuration',
   reportApprovals: 'approvals',
   aiScoringApprovals: 'approvals',
@@ -254,6 +255,12 @@ export const useAdminNav = (ownedPathPrefixes?: string[]): AppShellNav => {
           path: links.aiAssistants,
           label: I18n.t('admin.ai_assistants'),
           icon: <SmartToy />,
+        }),
+        entry({
+          key: 'aiVoiceCharacters',
+          path: links.aiVoiceCharacters,
+          label: I18n.t('admin.voice_characters'),
+          icon: <Campaign />,
         }),
         entry({
           key: 'campaignTemplates',

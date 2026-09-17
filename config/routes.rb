@@ -1987,6 +1987,14 @@ only: %i[index create update]
                 post :render_prompt_template
               end
             end
+
+            jsonapi_resources :voice_characters do
+              jsonapi_relationships
+              collection do
+                post :preview
+                get :voices
+              end
+            end
           end
         end
       end

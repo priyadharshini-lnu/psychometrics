@@ -6,7 +6,7 @@ module Administration
       Dry::Schema.JSON do # rubocop:disable Metrics/BlockLength
         config.validate_keys = true
 
-        required(:links).hash do
+        required(:links).hash do # rubocop:disable Metrics/BlockLength
           optional(:dashboards).filled(:str?)
           optional(:profileDetails).filled(:str?)
           optional(:profile).filled(:str?)
@@ -32,6 +32,7 @@ module Administration
           optional(:skillsTaxonomy).filled(:str?)
           optional(:developmentActions).filled(:str?)
           optional(:aiAssistants).filled(:str?)
+          optional(:aiVoiceCharacters).filled(:str?)
         end
       end
     end

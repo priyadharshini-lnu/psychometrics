@@ -16,6 +16,7 @@ import Skills from '~/modules/admin/modules/SkillsTaxonomy/routes'
 import DevelopmentActionRoutes from '~/modules/admin/modules/DevelopmentActions/routes'
 import DimensionsRoutes from '~/modules/admin/modules/Dimensions/routes'
 import AiAssitantRoutes from '~/modules/admin/modules/AiAssitant/routes'
+import VoiceCharacterRoutes from '~/modules/admin/modules/VoiceCharacter/routes'
 import MediaLibraryRoutes from '~/modules/admin/modules/MediaLibrary/routes'
 import QuestionRoutes from '~/modules/admin/modules/QuestionCenter'
 import CommunicationCenterRoutes from '~/modules/admin/modules/CommunicationTemplates/routes'
@@ -37,6 +38,7 @@ const routes = [
   ...Skills,
   ...DevelopmentActionRoutes,
   ...AiAssitantRoutes,
+  ...VoiceCharacterRoutes,
   ...DimensionsRoutes,
   ...SettingsRoutes,
   ...MediaLibraryRoutes,

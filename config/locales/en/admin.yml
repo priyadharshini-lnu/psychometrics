@@ -774,6 +774,7 @@ en:
     create_level_description_must_exist: Level description can't be blank
     create_level_name_must_exist: Level name can't be blank
     create_must_be_unique: Must be unique
+    create_voice_character: Create Voice Character
     created_successfully: AI Assistant was created successfully.
     current: Current
     current_job_role: Current Job Role
@@ -985,6 +986,7 @@ en:
     edit_permission_denied: You do not have permission to edit admin '%{name}'
     edit_project_admin: Edit Project Admin
     edit_threesixty_campaign_admin: Edit Campaign Admin
+    edit_voice_character: Edit Voice Character
     email_manager_when_report_is_ready_for_approval: Email Manager when report is ready for approval
     email_messages: Email Messages
     email_subject_when_report_becomes_available: Email subject when report becomes available
@@ -3617,6 +3619,30 @@ en:
       title: Translations
     translations_export_failure_msg: Error while exporting translations
     translations_export_success_msg: Exporting development actions in progress.
+    tts_blank_text: Cannot generate audio for empty text
+    tts_generate: Generate
+    tts_locale: Language
+    tts_owner_tooltip: Leave empty for a platform-level voice, or select a client to scope it.
+    tts_pitch: Pitch
+    tts_pitch_high: High
+    tts_pitch_low: Low
+    tts_pitch_medium: Medium
+    tts_pitch_x_high: Extra high
+    tts_pitch_x_low: Extra low
+    tts_preview: Preview
+    tts_preview_failed: Failed to generate the audio preview
+    tts_preview_hint: Edit the text above and press Generate to hear the selected voice and settings.
+    tts_rate: Speed
+    tts_rate_fast: Fast
+    tts_rate_medium: Medium
+    tts_rate_slow: Slow
+    tts_rate_x_fast: Extra fast
+    tts_rate_x_slow: Extra slow
+    tts_sample_text: This is a sample of how the selected voice sounds.
+    tts_style: Speaking style
+    tts_voice: Voice
+    tts_voice_required: Please select a voice first
+    tts_voices_load_failed: Failed to load the available voices
     type_by_skill: By Skill
     type_by_skill_type: By Skill Type
     type_default: Default
@@ -3667,6 +3693,9 @@ en:
     video_call_type_none: None
     view_licenses: View Licenses
     visual_header_visibility: Visual Header Visibility
+    voice_character_created_successfully: Voice Character was created successfully.
+    voice_character_updated_successfully: Voice Character was updated successfully.
+    voice_characters: Voice Characters
     wait_for_upload_completion: Please wait for all files to finish uploading
     waiting: Waiting
     warning_color: Warning Color

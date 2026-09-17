@@ -44,10 +44,22 @@ if Object.const_defined?('RuboCop::Cop::Cop')
 
       def has_tenant_id_column?(block_node)
         block_node.each_descendant(:send).any? do |send_node|
-          column_name = send_node.arguments.first
-          (column_name&.sym_type? && column_name.value == :tenant_id) ||
-            (column_name&.str_type? && column_name.value == 'tenant_id')
+          explicit_tenant_id_column?(send_node) || references_tenant?(send_node)
         end
+      end
+
+      def explicit_tenant_id_column?(send_node)
+        column_name = send_node.arguments.first
+        (column_name&.sym_type? && column_name.value == :tenant_id) ||
+          (column_name&.str_type? && column_name.value == 'tenant_id')
+      end
+
+      def references_tenant?(send_node)
+        return false unless send_node.method_name == :references
+
+        ref_name = send_node.arguments.first
+        (ref_name&.sym_type? && ref_name.value == :tenant) ||
+          (ref_name&.str_type? && ref_name.value == 'tenant')
       end
     end
   end

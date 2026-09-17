@@ -20,4 +20,6 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'AI'
   inflect.acronym 'CLI'
+  inflect.acronym 'TTS'
+  inflect.acronym 'SSML'
 end

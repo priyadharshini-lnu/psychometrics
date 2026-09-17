@@ -2,6 +2,7 @@
 // cannot quietly answer to the same key. A key drops its parent segment only when one table has two mount points.
 export const TABLE_SETTINGS_KEYS = {
   adminAiAssistants: 'admin.ai_assistants',
+  adminVoiceCharacters: 'admin.voice_characters',
   adminAssessments: 'admin.assessments',
   adminCampaignTemplates: 'admin.campaign_templates',
   adminDataReports: 'admin.data_reports',

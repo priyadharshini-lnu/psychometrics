@@ -1578,6 +1578,45 @@ ALTER SEQUENCE public.ai_translation_results_id_seq OWNED BY public.ai_translati
 
 
 --
+-- Name: ai_voice_characters; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ai_voice_characters (
+    id bigint NOT NULL,
+    name character varying NOT NULL,
+    provider integer DEFAULT 0 NOT NULL,
+    external_voice_id character varying NOT NULL,
+    locale character varying,
+    style character varying,
+    rate character varying,
+    pitch character varying,
+    tenant_id bigint,
+    last_modified_by_id bigint,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: ai_voice_characters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.ai_voice_characters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ai_voice_characters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.ai_voice_characters_id_seq OWNED BY public.ai_voice_characters.id;
+
+
+--
 -- Name: api_keys; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -10723,6 +10762,13 @@ ALTER TABLE ONLY public.ai_translation_results ALTER COLUMN id SET DEFAULT nextv
 
 
 --
+-- Name: ai_voice_characters id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_voice_characters ALTER COLUMN id SET DEFAULT nextval('public.ai_voice_characters_id_seq'::regclass);
+
+
+--
 -- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -12565,6 +12611,14 @@ ALTER TABLE ONLY public.ai_scoring_approval_settings
 
 ALTER TABLE ONLY public.ai_translation_results
     ADD CONSTRAINT ai_translation_results_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ai_voice_characters ai_voice_characters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_voice_characters
+    ADD CONSTRAINT ai_voice_characters_pkey PRIMARY KEY (id);
 
 
 --
@@ -15311,6 +15365,20 @@ CREATE INDEX index_ai_sessions_on_assistable_and_type ON public.ai_assisted_user
 --
 
 CREATE INDEX index_ai_translation_results_on_tenant_id ON public.ai_translation_results USING btree (tenant_id);
+
+
+--
+-- Name: index_ai_voice_characters_on_last_modified_by_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_voice_characters_on_last_modified_by_id ON public.ai_voice_characters USING btree (last_modified_by_id);
+
+
+--
+-- Name: index_ai_voice_characters_on_tenant_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ai_voice_characters_on_tenant_id ON public.ai_voice_characters USING btree (tenant_id);
 
 
 --
@@ -22203,6 +22271,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 
 --
+-- Name: ai_voice_characters fk_rails_3a8cf17b5d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_voice_characters
+    ADD CONSTRAINT fk_rails_3a8cf17b5d FOREIGN KEY (tenant_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: occupation_condition_sets fk_rails_3abfce3f69; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -22648,6 +22724,14 @@ ALTER TABLE ONLY public.workshop_assessors
 
 ALTER TABLE ONLY public.campaign_ai_artifact_dependencies
     ADD CONSTRAINT fk_rails_527a9ce116 FOREIGN KEY (tenant_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: ai_voice_characters fk_rails_5291c9d068; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ai_voice_characters
+    ADD CONSTRAINT fk_rails_5291c9d068 FOREIGN KEY (last_modified_by_id) REFERENCES public.users(id);
 
 
 --
@@ -26105,6 +26189,7 @@ ALTER TABLE ONLY public.users
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20260831000001'),
 ('20260911091456'),
 ('20260910120001'),
 ('20260910112450'),

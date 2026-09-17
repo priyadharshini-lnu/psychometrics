@@ -73,6 +73,9 @@ module Administration
         if policy(%i[api administration ai assistant]).index? && feature_enabled?(:ai_assistant_enabled)
           links['ai_assistants'] = "#{admin_path}/ai_assistants"
         end
+        if policy(%i[api administration ai voice_character]).index? && feature_enabled?(:voice_characters_enabled)
+          links['ai_voice_characters'] = "#{admin_path}/ai_voice_characters"
+        end
         links['settings'] = "#{admin_path}/settings" if policy(%i[api administration
                                                                   maintenance_setting]).index?
       end.transform_keys! { |k| k.camelcase(:lower) }

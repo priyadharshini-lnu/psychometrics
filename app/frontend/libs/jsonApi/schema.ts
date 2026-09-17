@@ -51,6 +51,7 @@ import { Schema as reflectionQuestionSchema } from '~/modules/admin/modules/clie
 import { Schema as interviewQuestionSchema } from '~/modules/admin/modules/client/core/interviewQuestion'
 import { Schema as questionSchema } from '~/modules/admin/modules/QuestionCenter/core/questions'
 import { Schema as aiAssistantSchema } from '~/modules/admin/modules/AiAssitant/core/aiAssistant'
+import { Schema as voiceCharacterSchema } from '~/modules/admin/modules/VoiceCharacter/core/voiceCharacter'
 import { Schema as userIdpPlanSchema } from '~/modules/admin/modules/campaigns/core/UserIdpPlan'
 import { Schema as AiArtifactsSchema } from '~/modules/admin/modules/campaigns/core/aiArtifacts'
 import { Schema as factorsSchema } from '~/modules/admin/modules/campaigns/core/factors'
@@ -105,6 +106,7 @@ export const Schema = {
   reflection_questions: reflectionQuestionSchema,
   interview_questions: interviewQuestionSchema,
   ai_assistants: aiAssistantSchema,
+  voice_characters: voiceCharacterSchema,
   user_idp_plans: userIdpPlanSchema,
   ai_artifacts: AiArtifactsSchema,
   factors: factorsSchema,
