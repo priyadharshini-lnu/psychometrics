@@ -2603,6 +2603,21 @@ hr:
     report_approval_submit_or_approve_all: Pošalji ili odobri sve
     report_approvals: Odobrenja izvješća
     report_availability: Dostupnost izvješća
+    report_builder_publish_confirm_content: Ovim će se postojeće objavljeno izvješće prebrisati nacrtom promjena, što će ga učiniti dostupnim korisnicima. Jeste li sigurni da želite objaviti promjene?
+    report_builder_publish_confirm_title: Objaviti ovo izvješće?
+    report_builder_publish_failed: Izvješće je spremljeno, ali objavljivanje nije uspjelo. Pokušajte ponovno objaviti.
+    report_builder_publish_success: Izvješće uspješno objavljeno
+    report_builder_published_at: Zadnje objavljeno {{date}}
+    report_builder_published_by: Objavio/la {{name}}
+    report_builder_save_and_publish: Spremi i objavi
+    report_builder_save_as_draft: Spremi kao skicu
+    report_builder_save_failed: Spremanje izvješća nije uspjelo. Pokušajte ponovno.
+    report_builder_save_success: Izvješće uspješno spremljeno
+    report_builder_unpublished_changes: Neobjavljene promjene
+    report_builder_view_draft: Prikaži skicu
+    report_builder_view_published: Prikaz objavljenog
+    report_builder_viewing_draft_message: Pregledavate nacrt izvješća. Sudionici to ne vide dok se ne objavi.
+    report_builder_viewing_published_message: Pregledavate posljednju objavljenu verziju izvješća. Promjene u alatu za izradu izvješća neće se ovdje odraziti dok se ne objave.
     report_condition_not_met: Treba %{required} %{relationship} evaluaciju, ali ima samo %{actual}
     report_conditions_not_met_detailed: Izvještaj za %{user} ne ispunjava uvjete dostupnosti. %{conditions}
     report_denied: Prijava za %{user} je odbijena
@@ -2618,6 +2633,10 @@ hr:
     report_owner: Vlasnik
     report_pdf_status: Prijavi PDF status
     report_pdf_unavailable: PDF za ovo izvješće još nije dostupan.
+    report_preview_draft_notice: Pregledavate nacrt izvješća koji nije dostupan sudioniku osim ako se promjene nacrta ne objave iz alata za izradu.
+    report_preview_draft_tag_tooltip: Ovo izvješće ima dostupne nacrte promjena. Kliknite za pregled nacrta.
+    report_preview_view_draft: Pregled skice
+    report_preview_view_published: Pregled objavljenog
     report_review_abort_qc: Prekinite kontrolu kvalitete
     report_review_approve: Odobriti
     report_review_approve_changes: Odobravanje promjena

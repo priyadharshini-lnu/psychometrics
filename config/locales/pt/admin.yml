@@ -2603,6 +2603,21 @@ pt:
     report_approval_submit_or_approve_all: Submeter ou aprovar todos
     report_approvals: Aprovações de relatórios
     report_availability: Disponibilidade do relatório
+    report_builder_publish_confirm_content: Isso substituirá o relatório publicado existente pelas alterações do rascunho, disponibilizando-o aos usuários. Tem certeza de que deseja publicar as alterações?
+    report_builder_publish_confirm_title: Publicar este relatório?
+    report_builder_publish_failed: O relatório foi salvo, mas a publicação falhou. Tente publicar novamente.
+    report_builder_publish_success: Relatório publicado com sucesso
+    report_builder_published_at: Última publicação em {{date}}
+    report_builder_published_by: Publicado por {{name}}
+    report_builder_save_and_publish: Salvar e publicar
+    report_builder_save_as_draft: Salvar como rascunho
+    report_builder_save_failed: Não foi possível salvar o relatório. Tente novamente.
+    report_builder_save_success: Relatório salvo com sucesso
+    report_builder_unpublished_changes: Alterações não publicadas
+    report_builder_view_draft: Ver rascunho
+    report_builder_view_published: Ver Publicado
+    report_builder_viewing_draft_message: Você está visualizando a versão preliminar do relatório. Esta versão não será exibida aos participantes até a publicação.
+    report_builder_viewing_published_message: Você está visualizando a última versão publicada do relatório. As alterações feitas no construtor não serão refletidas aqui até serem publicadas.
     report_condition_not_met: Precisa de avaliação %{required} %{relationship}, mas só tem %{actual}
     report_conditions_not_met_detailed: Reporte para %{user} não atende às condições de disponibilidade. %{conditions}
     report_denied: O relatório de %{user} foi negado
@@ -2618,6 +2633,10 @@ pt:
     report_owner: Proprietário
     report_pdf_status: Verificar o estado do relatório em PDF
     report_pdf_unavailable: O PDF deste relatório ainda não está disponível.
+    report_preview_draft_notice: Você está visualizando uma versão preliminar do relatório, que não está disponível para o participante a menos que as alterações preliminares sejam publicadas pelo construtor.
+    report_preview_draft_tag_tooltip: Este relatório contém alterações preliminares. Clique para visualizar a versão preliminar.
+    report_preview_view_draft: Prévia do rascunho
+    report_preview_view_published: Pré-visualização publicada
     report_review_abort_qc: Abortar QC
     report_review_approve: Aprovar
     report_review_approve_changes: Aprovar alterações

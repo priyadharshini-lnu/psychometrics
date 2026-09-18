@@ -2603,6 +2603,21 @@ pl:
     report_approval_submit_or_approve_all: Prześlij lub zatwierdź wszystko
     report_approvals: Zatwierdzanie raportów
     report_availability: Dostępność raportu
+    report_builder_publish_confirm_content: Spowoduje to zastąpienie istniejącego opublikowanego raportu wersją roboczą zmian i udostępnienie go użytkownikom. Czy na pewno chcesz opublikować zmiany?
+    report_builder_publish_confirm_title: Opublikować ten raport?
+    report_builder_publish_failed: Raport został zapisany, ale publikacja nie powiodła się. Spróbuj opublikować ponownie.
+    report_builder_publish_success: Raport opublikowany pomyślnie
+    report_builder_published_at: 'Ostatnia publikacja: {{date}}'
+    report_builder_published_by: Opublikowane przez {{name}}
+    report_builder_save_and_publish: Zapisz i opublikuj
+    report_builder_save_as_draft: Zapisz jako wersję roboczą
+    report_builder_save_failed: Nie udało się zapisać raportu. Spróbuj ponownie.
+    report_builder_save_success: Raport pomyślnie zapisany
+    report_builder_unpublished_changes: Nieopublikowane zmiany
+    report_builder_view_draft: Wyświetl wersję roboczą
+    report_builder_view_published: Wyświetl opublikowane
+    report_builder_viewing_draft_message: Przeglądasz wersję roboczą raportu. Uczestnicy nie zobaczą jej do momentu publikacji.
+    report_builder_viewing_published_message: Przeglądasz ostatnią opublikowaną wersję raportu. Zmiany w kreatorze nie zostaną tu uwzględnione do momentu opublikowania.
     report_condition_not_met: Potrzebuje %{required} %{relationship} oceny, ale ma tylko %{actual}
     report_conditions_not_met_detailed: Raport dla %{user} nie spełnia warunków dostępności. %{conditions}
     report_denied: Raport %{user} został odrzucony
@@ -2618,6 +2633,10 @@ pl:
     report_owner: Właściciel
     report_pdf_status: Raport o stanie pliku PDF
     report_pdf_unavailable: Plik PDF tego raportu nie jest jeszcze dostępny.
+    report_preview_draft_notice: Przeglądasz wersję roboczą raportu, która nie będzie dostępna dla uczestników, dopóki nie zostaną opublikowane zmiany w wersji roboczej z poziomu kreatora.
+    report_preview_draft_tag_tooltip: W tym raporcie dostępne są projekty zmian. Kliknij, aby wyświetlić wersję roboczą.
+    report_preview_view_draft: Podgląd wersji roboczej
+    report_preview_view_published: Podgląd opublikowany
     report_review_abort_qc: Przerwij kontrolę jakości
     report_review_approve: Zatwierdzić
     report_review_approve_changes: Zatwierdzanie zmian

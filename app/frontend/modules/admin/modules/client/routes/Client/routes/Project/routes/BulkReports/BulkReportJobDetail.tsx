@@ -177,7 +177,9 @@ const BulkReportJobDetail: FC = () => {
                   <li>
                     <Text style={{ fontFamily: 'monospace', fontSize: 13.5 }}>
                       {job.startDate}
-                      {' →'}
+                      {' '}
+                      →
+                      {' '}
                       {job.endDate}
                     </Text>
                   </li>

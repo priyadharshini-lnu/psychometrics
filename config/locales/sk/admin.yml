@@ -2603,6 +2603,21 @@ sk:
     report_approval_submit_or_approve_all: Odoslať alebo schváliť všetky
     report_approvals: Schválenia správ
     report_availability: Dostupnosť správy
+    report_builder_publish_confirm_content: Týmto sa existujúca publikovaná správa prepíše zmenami v koncepte, čím sa sprístupní používateľom. Naozaj chcete zmeny publikovať?
+    report_builder_publish_confirm_title: Zverejniť túto správu?
+    report_builder_publish_failed: Správa bola uložená, ale publikovanie zlyhalo. Skúste publikovať znova.
+    report_builder_publish_success: Správa bola úspešne publikovaná
+    report_builder_published_at: Naposledy publikované {{date}}
+    report_builder_published_by: Publikované používateľom {{name}}
+    report_builder_save_and_publish: Uložiť a publikovať
+    report_builder_save_as_draft: Uložiť ako koncept
+    report_builder_save_failed: Uloženie hlásenia zlyhalo. Skúste to znova.
+    report_builder_save_success: Správa bola úspešne uložená
+    report_builder_unpublished_changes: Nezverejnené zmeny
+    report_builder_view_draft: Zobraziť koncept
+    report_builder_view_published: Zobraziť publikované
+    report_builder_viewing_draft_message: Prezeráte si koncept správy. Účastníci ju neuvidia, kým nebude zverejnená.
+    report_builder_viewing_published_message: Prezeráte si poslednú publikovanú verziu prehľadu. Zmeny v nástroji na tvorbu sa tu neprejavia, kým nebudú publikované.
     report_condition_not_met: Potrebuje %{required} %{relationship} vyšetrenie, ale má len %{actual}
     report_conditions_not_met_detailed: Report for %{user} nespĺňa podmienky dostupnosti. %{conditions}
     report_denied: Správa o %{user} bola zamietnutá
@@ -2618,6 +2633,10 @@ sk:
     report_owner: Majiteľ
     report_pdf_status: Stav správy v PDF
     report_pdf_unavailable: PDF súbor pre túto správu zatiaľ nie je k dispozícii.
+    report_preview_draft_notice: Zobrazujete si koncept správy, ktorá nie je účastníkovi k dispozícii, pokiaľ sa zmeny konceptu nezverejnia z nástroja na tvorbu.
+    report_preview_draft_tag_tooltip: Táto správa obsahuje zmeny v koncepte. Kliknutím zobrazíte koncept verzie.
+    report_preview_view_draft: Náhľad konceptu
+    report_preview_view_published: Ukážka publikovaná
     report_review_abort_qc: Prerušte kontrolu kvality
     report_review_approve: Schváliť
     report_review_approve_changes: Schválenie zmien

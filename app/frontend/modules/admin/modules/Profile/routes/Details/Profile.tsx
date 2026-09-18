@@ -21,6 +21,7 @@ import { UserTR, User, UserProfile } from '~/modules/admin/modules/client/core/u
 import { useTimezones } from '~/hooks/useTimezones'
 
 const { I18n } = window
+const { enable_assessor_new_ui } = window.PsyGlobalState.features
 
 interface Image {
   type?: string
@@ -60,6 +61,7 @@ function Profile ({
 
   const details = useCurrentUserDetails()
   const { createResource: savePreference } = useResources<UserPreference>('user_preferences')
+  const canManageNewExperience = isAssessor && enable_assessor_new_ui
 
   const {
     fetchSingle, getResource, updateResource, isLoading,
@@ -96,7 +98,7 @@ function Profile ({
   const submitForm = (values) => {
     const promises: Promise<unknown>[] = []
 
-    if (isAssessor) {
+    if (canManageNewExperience) {
       promises.push(
         savePreference({
           category: 'workspace',
@@ -125,7 +127,7 @@ function Profile ({
         const currentPreference = findPreference(
           details?.preferences ?? [], 'workspace', 'new_experience',
         )?.enabled === true
-        if (isAssessor && values.newExperience !== currentPreference) {
+        if (canManageNewExperience && values.newExperience !== currentPreference) {
           const referrerPath = document.referrer
             ? new URL(document.referrer).pathname
             : null
@@ -257,7 +259,7 @@ function Profile ({
           >
             <Select options={timezoneOptions} showSearch />
           </Form.Item>
-          {isAssessor && (
+          {canManageNewExperience && (
             <Form.Item
               name="newExperience"
               label={I18n.t('admin.assessor_new_experience')}

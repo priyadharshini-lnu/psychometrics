@@ -5,7 +5,7 @@ import {
   Button, Modal,
 } from 'antd'
 import _ from 'lodash'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import cs from 'classnames'
 import { useMessageBus } from '~/hooks/useMessageBus'
 import AssessmentContainer from '~/modules/survey/containers/AssessmentContainer'
@@ -63,6 +63,7 @@ const AssessorAssessment: React.FC<Props> = ({
   const { search, pathname } = useLocation()
   const safePathname = routeUtils.sanitizeRelativePath(pathname)
   const navigate = useNavigate()
+  const { userId } = useParams<{ userId?: string }>()
   const params = new URLSearchParams(search)
   const edit = params.get('edit')
   const read = params.get('read')
@@ -101,6 +102,10 @@ const AssessorAssessment: React.FC<Props> = ({
 
 
   const assessorForm = assessorForms[userAssessmentId || 0]
+  const campaignId = _.get(assessorForm, ['result', 'campaign_id'])
+  const dashboardUrl = pathname.startsWith('/assessors/evaluation/')
+    ? `/assessors/evaluation/campaigns/${campaignId}/users/${userId}`
+    : `/assessors/campaigns/${campaignId}/users`
 
   const [showInvalidSession, setShowInvalidSession] = useAvoidMultipleEvaluation(
     userAssessmentId, assessorForm?.result, validateSession,
@@ -171,7 +176,7 @@ const AssessorAssessment: React.FC<Props> = ({
             type={isRead ? 'view_results' : 'pass_assessment'}
             data={assessorForm.assessment}
             result={assessorForm.result}
-            dashboardUrl={`/assessors/campaigns/${_.get(assessorForm, ['result', 'campaign_id'])}/users`}
+            dashboardUrl={dashboardUrl}
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${_.get(assessorForm, ['result', 'id'])}`}
             rstore={store}
             selectedLocale={assessorForm.result.selected_locale.code}

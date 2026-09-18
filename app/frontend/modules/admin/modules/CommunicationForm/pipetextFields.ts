@@ -4,24 +4,24 @@ import dayjs from '~/utils/dayjs'
 
 export const DATE_FORMATS = [
   {
-    name: dayjs().format('Do MMMM YYYY, hh:mm A Z'),
-    format: '%e %B %Y, %l:%M %p %:z',
+    name: dayjs().format('Do MMMM YYYY, hh:mm A [(GMT]Z[)]'),
+    format: '%e %B %Y, %l:%M %p (GMT%:::z)',
   },
   {
-    name: dayjs().format('YYYY-MM-DD hh:mm A Z'),
-    format: '%Y-%m-%d %I:%M %p %:z',
+    name: dayjs().format('YYYY-MM-DD hh:mm A [(GMT]Z[)]'),
+    format: '%Y-%m-%d %I:%M %p (GMT%:::z)',
   },
   {
-    name: dayjs().format('DD-MM-YYYY- hh:mm A Z'),
-    format: '%d-%m-%Y %I:%M %p %:z',
+    name: dayjs().format('DD-MM-YYYY- hh:mm A [(GMT]Z[)]'),
+    format: '%d-%m-%Y %I:%M %p (GMT%:::z)',
   },
   {
-    name: dayjs().format('YYYY/MM/DD hh:mm A Z'),
-    format: '%Y/%m/%d %I:%M %p %:z',
+    name: dayjs().format('YYYY/MM/DD hh:mm A [(GMT]Z[)]'),
+    format: '%Y/%m/%d %I:%M %p (GMT%:::z)',
   },
   {
-    name: dayjs().format('DD/MM/YYYY HH:mm:ss A Z'),
-    format: '%d/%m/%Y %I:%M %p %:z',
+    name: dayjs().format('DD/MM/YYYY HH:mm:ss A [(GMT]Z[)]'),
+    format: '%d/%m/%Y %I:%M %p (GMT%:::z)',
   },
 ]
 const { I18n } = window

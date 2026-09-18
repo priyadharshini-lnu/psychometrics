@@ -23,13 +23,19 @@ RSpec.describe Administration::Reports::BuildersController, type: :controller do
     end
 
     context 'when the current user is permitted to publish' do
-      it 'creates a published snapshot and returns it with no unpublished changes remaining' do
-        expect { subject }.to change { report.reload.published_snapshot }.from(nil)
+      it 'queues the publish request and creates a published snapshot with no unpublished changes remaining' do
+        perform_enqueued_jobs do
+          expect { subject }.to change { report.reload.published_snapshot }.from(nil)
+        end
 
         expect(response).to have_http_status(:ok)
-        parsed_response = response.parsed_body
-        expect(parsed_response).to have_key('data')
-        expect(parsed_response.dig('data', 'has_unpublished_changes')).to be false
+
+        async_request_uuid = assigns(:async_request_uuid)
+        _status, async_response = AsyncResponseRequest::GetAsyncResponse.call!(async_request_uuid)
+        expect(async_response.processing_status).to eq('completed')
+
+        response_data = async_response.response_data['data']
+        expect(response_data['has_unpublished_changes']).to be false
       end
     end
   end

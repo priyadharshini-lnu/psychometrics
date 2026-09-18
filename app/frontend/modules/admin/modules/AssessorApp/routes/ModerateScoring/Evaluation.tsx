@@ -92,6 +92,7 @@ const LeadAssessorAssessment: React.FC<Props> = ({
             resultsUrl={`/assessors/evaluations/${userAssessmentId}/results/${assessorResult.id}`}
             rstore={store}
             isAssessor
+            showEnhanceWithAI
           />
         )}
       </Content>

@@ -9,7 +9,6 @@ const { Text, Title } = Typography
 const { useBreakpoint } = Grid
 const { I18n } = window
 
-
 type Props = {
   selectedCampaigns: LocalCampaign[]
   selectedReportIds: Set<string>
@@ -111,6 +110,7 @@ const ReviewStep: FC<Props> = ({
                   {startDate}
                   {' '}
                   →
+                  {' '}
                   {endDate}
                 </Text>
               </li>

@@ -2603,6 +2603,21 @@ bg:
     report_approval_submit_or_approve_all: Подаване или одобрение на всички
     report_approvals: Докладване на одобрения
     report_availability: Наличност на доклада
+    report_builder_publish_confirm_content: Това ще замени съществуващия публикуван отчет с промените в черновата, което ще го направи достъпен за потребителите. Наистина ли искате да публикувате промените?
+    report_builder_publish_confirm_title: Да се публикува ли този доклад?
+    report_builder_publish_failed: Докладът беше запазен, но публикуването не бе успешно. Моля, опитайте да го публикувате отново.
+    report_builder_publish_success: Докладът е публикуван успешно
+    report_builder_published_at: Последна публикация на {{date}}
+    report_builder_published_by: Публикувано от {{name}}
+    report_builder_save_and_publish: Запазване и публикуване
+    report_builder_save_as_draft: Запазване като чернова
+    report_builder_save_failed: Запазването на отчета не бе успешно. Моля, опитайте отново.
+    report_builder_save_success: Докладът е успешно запазен
+    report_builder_unpublished_changes: Непубликувани промени
+    report_builder_view_draft: Преглед на черновата
+    report_builder_view_published: Преглед на публикуваното
+    report_builder_viewing_draft_message: Преглеждате черновата на доклада. Това не е нещо, което участниците виждат, докато не бъде публикувано.
+    report_builder_viewing_published_message: Преглеждате последната публикувана версия на отчета. Промените в конструктора не се отразяват тук, докато не бъдат публикувани.
     report_condition_not_met: Нуждае се %{required} %{relationship} оценка(и), но има само %{actual}
     report_conditions_not_met_detailed: Докладът за %{user} не отговаря на условията за наличност. %{conditions}
     report_denied: Докладът за %{user} е отхвърлен
@@ -2618,6 +2633,10 @@ bg:
     report_owner: Собственик
     report_pdf_status: Отчет за състоянието на PDF файла
     report_pdf_unavailable: PDF файлът за този доклад все още не е наличен.
+    report_preview_draft_notice: Преглеждате чернова на отчета, която не е достъпна за участника, освен ако промените в черновата не бъдат публикувани от конструктора.
+    report_preview_draft_tag_tooltip: Този отчет има налични промени в черновата. Кликнете, за да видите черновата.
+    report_preview_view_draft: Преглед на черновата
+    report_preview_view_published: Преглед на публикуваното
     report_review_abort_qc: Прекъсване на QC
     report_review_approve: Одобрявам
     report_review_approve_changes: Одобряване на промените

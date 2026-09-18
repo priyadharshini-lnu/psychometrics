@@ -21,7 +21,8 @@ export type Result = t.TypeOf<typeof ResultTR>
 interface UserInfo {
   user?: {
     id: number
-    name: string
+    first_name: string
+    last_name: string
     email: string
   }
 }

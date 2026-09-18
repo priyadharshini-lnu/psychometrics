@@ -2603,6 +2603,21 @@ ko:
     report_approval_submit_or_approve_all: 모두 제출 또는 승인
     report_approvals: 보고서 승인
     report_availability: 보고서 가용성
+    report_builder_publish_confirm_content: 이렇게 하면 기존에 게시된 보고서가 수정된 내용으로 덮어쓰여 사용자에게 공개됩니다. 변경 사항을 게시하시겠습니까?
+    report_builder_publish_confirm_title: 이 보고서를 게시하시겠습니까?
+    report_builder_publish_failed: 보고서가 저장되었지만 게시하는 데 실패했습니다. 다시 게시해 주세요.
+    report_builder_publish_success: 보고서가 성공적으로 게시되었습니다.
+    report_builder_published_at: '최종 게시일: {{date}}'
+    report_builder_published_by: "{{name}}님이 게시함"
+    report_builder_save_and_publish: 저장 및 게시
+    report_builder_save_as_draft: 초안으로 저장
+    report_builder_save_failed: 보고서 저장에 실패했습니다. 다시 시도해 주세요.
+    report_builder_save_success: 보고서가 성공적으로 저장되었습니다.
+    report_builder_unpublished_changes: 미공개 변경 사항
+    report_builder_view_draft: 초안 보기
+    report_builder_view_published: 게시된 내용 보기
+    report_builder_viewing_draft_message: 이 보고서는 초안 버전입니다. 참여자들에게 공개되는 버전은 최종 게시 후입니다.
+    report_builder_viewing_published_message: 현재 보고 계신 버전은 보고서의 최종 게시 버전입니다. 빌더에서 변경한 내용은 게시되기 전까지는 여기에 반영되지 않습니다.
     report_condition_not_met: 평가가 필요%{required} %{relationship} 있지만 %{actual}
     report_conditions_not_met_detailed: "%{user} 보고서가 가용성 조건을 충족하지 못합니다. %{conditions}"
     report_denied: "%{user} 신고가 거부되었습니다"
@@ -2618,6 +2633,10 @@ ko:
     report_owner: 소유자
     report_pdf_status: PDF 상태 보고
     report_pdf_unavailable: 이 보고서의 PDF 파일은 아직 제공되지 않습니다.
+    report_preview_draft_notice: 이 보고서는 초안 버전이며, 작성자가 초안 변경 사항을 게시하기 전까지는 참가자에게 제공되지 않습니다.
+    report_preview_draft_tag_tooltip: 이 보고서에는 수정 사항이 포함된 초안이 있습니다. 초안 버전을 보려면 클릭하세요.
+    report_preview_view_draft: 프리뷰 드래프트
+    report_preview_view_published: 미리보기 게시됨
     report_review_abort_qc: QC 중단
     report_review_approve: 승인
     report_review_approve_changes: 변경 사항 승인
