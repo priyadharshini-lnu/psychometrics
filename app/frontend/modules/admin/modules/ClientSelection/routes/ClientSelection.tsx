@@ -9,12 +9,11 @@ import { SearchOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { wordmarkCurrentColor, wordmarkHeightPx } from '~/utils/branding'
 import { consumeBootNotice } from '~/components/AdminShell/bootNotices'
 import { UserProfileDropdown } from '~/components/UserProfileDropdown'
+import { csrfToken } from '~/utils/csrf'
 import { ClientCard, ClientData } from './ClientCard'
 
 const { Title, Text } = Typography
 const { I18n } = window
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 interface Props {
   clients: ClientData[]

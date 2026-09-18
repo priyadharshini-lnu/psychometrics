@@ -15,6 +15,7 @@ import QuestionSerializer from '~/modules/survey/models/QuestionSerializer'
 import NotificationDispatcher from '~/modules/survey/dispatchers/NotificationDispatcher'
 import styles from './Header.less'
 import { Tabs } from './Tabs'
+import { csrfToken } from '~/utils/csrf'
 
 const { I18n } = window
 
@@ -200,7 +201,7 @@ const Header = (props) => {
           <input
             name="authenticity_token"
             type="hidden"
-            value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
+            value={csrfToken()}
           />
           <input name="data" ref={previewDataRef} />
         </form>
@@ -319,7 +320,7 @@ const Header = (props) => {
                   <input
                     name="authenticity_token"
                     type="hidden"
-                    value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
+                    value={csrfToken()}
                   />
                   <input name="data" ref={translationExportDataRef} />
                 </form>

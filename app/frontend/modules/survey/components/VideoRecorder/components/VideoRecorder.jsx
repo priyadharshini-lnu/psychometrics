@@ -11,6 +11,7 @@ import SparkMD5 from 'spark-md5'
 import * as Sentry from '@sentry/react'
 import { LoadingOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
+import { csrfToken } from '~/utils/csrf'
 import styles from './VideoRecorder.less'
 import 'videojs-record/dist/videojs.record'
 import StatusText from './controls/status_text'
@@ -21,7 +22,6 @@ import 'video.js/dist/video-js.css'
 import 'videojs-record/dist/css/videojs.record.css'
 import '~/modules/survey/utils/MediaRecorder'
 
-const { $ } = window
 const UPLOAD_CHUNK_SIZE = 5.5
 
 const axiosInstance = axiosWithRetry()
@@ -154,7 +154,7 @@ class VideoRecorder extends Component {
         axiosInstance({
           method: 'DELETE',
           url: `${mediaUrl}/remove_media`,
-          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          headers: { 'X-CSRF-Token': csrfToken() },
           data: { media_id: mediaId },
         }).then(() => {
           onDeleteMedia && onDeleteMedia()
@@ -442,7 +442,7 @@ class VideoRecorder extends Component {
           content_type: this.supportedMimeType,
         },
         {
-          headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+          headers: { 'X-CSRF-Token': csrfToken() },
         },
       )
 

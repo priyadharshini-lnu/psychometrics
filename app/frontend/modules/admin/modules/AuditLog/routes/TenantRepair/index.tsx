@@ -4,12 +4,11 @@ import {
 } from 'antd'
 import AuditLogTabs from '../../components/Tabs'
 import Breadcrumb from '~/modules/admin/modules/campaigns/components/Breadcrumb'
+import { csrfToken } from '~/utils/csrf'
 import { TENANT_REPAIR_PREVIEW_URL, TENANT_REPAIR_UPDATE_TENANT_URL, TENANT_REPAIR_SEARCH_MODELS_URL } from '../../core'
 
 const { Title, Text } = Typography
 const { I18n } = window
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 interface PreviewData {
   id: number

@@ -8,6 +8,7 @@ import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
 import { connect, ConnectedProps } from 'react-redux'
 import { AnimatePresence, motion } from 'motion/react'
+import { csrfToken } from '~/utils/csrf'
 import {
   RightOutlined, RedoOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -217,7 +218,7 @@ const VideoCheckComponent: React.FC<Props> = ({ nextStep, preSignUrl }) => {
       asset_key: blob.signed_id,
       media_type: 'video',
     }, {
-      headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' },
+      headers: { 'X-CSRF-Token': csrfToken() },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
       isRerunningRef.current = false

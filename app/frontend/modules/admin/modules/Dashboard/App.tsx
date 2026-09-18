@@ -7,12 +7,14 @@ import store from '~/modules/admin/store'
 import RouteList from '~/components/RouteList'
 import IncorrectResponseErrorModal from '~/components/IncorrectResponseErrorModal'
 import { Schema } from '~/libs/jsonApi/schema'
+import { csrfHeaders } from '~/utils/csrf'
 import routes from './routes'
 import { settings } from './settings'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
   schema: humps.decamelizeKeys(Schema),
+  headers: csrfHeaders(),
 })
 
 export const App: React.FC = () => (

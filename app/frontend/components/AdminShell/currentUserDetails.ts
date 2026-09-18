@@ -1,3 +1,5 @@
+import { csrfToken } from '~/utils/csrf'
+
 export type PreferenceRow = {
   category: string
   config_key: string
@@ -88,8 +90,6 @@ export const currentUserFromInitialState = (): CurrentUserDetails | null => {
     signInNotice: null,
   }
 }
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 let inflight: Promise<CurrentUserDetails | null> | null = null
 

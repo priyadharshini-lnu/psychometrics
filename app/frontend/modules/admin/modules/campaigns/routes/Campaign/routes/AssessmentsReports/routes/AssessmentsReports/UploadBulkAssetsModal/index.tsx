@@ -8,8 +8,9 @@ import axios from 'axios'
 import { DirectUpload } from '@rails/activestorage'
 
 import { CheckOutlined, LoadingOutlined, CloudDownloadOutlined } from '~/glint/icons/AccessibleIconsAntDesign'
+import { csrfToken } from '~/utils/csrf'
 
-const { I18n, $ } = window
+const { I18n } = window
 
 interface OwnProps {
   close(): void
@@ -110,7 +111,7 @@ const UploadBulkAssetsModal: React.FC<Props> = ({
         zip_signed_id: zipBlob.signed_id,
       },
       {
-        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+        headers: { 'X-CSRF-Token': csrfToken() },
       },
     )
   }

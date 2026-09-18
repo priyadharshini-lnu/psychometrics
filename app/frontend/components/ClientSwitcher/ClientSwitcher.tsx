@@ -6,6 +6,7 @@ import {
 } from 'antd'
 import DOMPurify from 'dompurify'
 import { CorporateFare } from '@thetalententerprise/glint/icons'
+import { csrfToken } from '~/utils/csrf'
 import {
   SwapOutlined, SearchOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -34,8 +35,6 @@ interface Props {
   switchableClients: SwitchableClient[]
   recentClientIds: number[]
 }
-
-const csrfToken = (): string => document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
 
 const getSafeUrl = (url?: string | null) => {
   if (!url) return undefined

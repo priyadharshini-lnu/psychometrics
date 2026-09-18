@@ -7,8 +7,9 @@ import { useRef, useState } from 'react'
 import { RootState } from '~/modules/reports/core/rootReducers'
 import I18nStore from '~/modules/reports/store/I18nStore'
 import { importTranslations } from '~/modules/reports/core/builder/actions'
+import { csrfToken } from '~/utils/csrf'
 
-const { I18n, $ } = window
+const { I18n } = window
 
 const TranslationsComponent = ({ report, importTranslations }) => {
   const form = useRef<HTMLFormElement>(null)
@@ -64,7 +65,7 @@ const TranslationsComponent = ({ report, importTranslations }) => {
         action={`/administration/translations/reports/${report.id}/export`}
         method="POST"
       >
-        <input name="authenticity_token" type="hidden" value={$('meta[name=csrf-token]').attr('content')} />
+        <input name="authenticity_token" type="hidden" value={csrfToken()} />
         <input ref={data} name="data" />
       </form>
       <Divider />

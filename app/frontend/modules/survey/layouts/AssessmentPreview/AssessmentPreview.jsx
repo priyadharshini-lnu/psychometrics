@@ -9,6 +9,7 @@ import SinglePage from '~/modules/survey/views/Preview/SinglePage'
 import { Instructions } from '~/modules/survey/views/Preview/Instructions'
 import ErrorWarning from '~/modules/survey/views/Preview/ErrorWarning'
 import { useUnloadCallback } from '~/hooks/useUnloadCallback'
+import { csrfToken } from '~/utils/csrf'
 
 const { I18n } = window
 
@@ -54,7 +55,7 @@ const AssessmentPreview = ({
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'X-CSRF-Token': document.querySelector("meta[name='csrf-token']").getAttribute('content'),
+          'X-CSRF-Token': csrfToken(),
         },
       },
       settings: {

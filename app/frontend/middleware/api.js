@@ -11,6 +11,7 @@ import { setIn } from '~/utils/immutable'
 import { camelizeKeys } from '~/utils/object'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 import { captureSchemaValidationError } from '~/utils/schemaValidationError'
+import { csrfToken } from '~/utils/csrf'
 
 const debounceTimers = {}
 const buildUrl = ({
@@ -61,7 +62,7 @@ const buildOptions = ({ options = {}, ...request }) => ({
     ...options.headers,
     'Content-Type': request.contentType || 'application/json',
     Accept: 'application/json',
-    'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
+    'X-CSRF-Token': csrfToken(),
   },
 })
 

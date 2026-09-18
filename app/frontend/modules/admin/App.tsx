@@ -6,11 +6,13 @@ import humps from 'humps'
 import { Layout as AdminLayout } from '~/modules/admin/Layout'
 import store from '~/modules/admin/store'
 import { Schema } from '~/libs/jsonApi/schema'
+import { csrfHeaders } from '~/utils/csrf'
 import '~/modules/admin/style.less'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
   schema: humps.decamelizeKeys(Schema),
+  headers: csrfHeaders(),
 })
 
 const { I18n } = window

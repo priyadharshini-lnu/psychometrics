@@ -11,8 +11,9 @@ import {
 import { connect, ConnectedProps } from 'react-redux'
 import { DirectUpload } from '@rails/activestorage'
 import axios from 'axios'
-
 import { Buffer } from 'buffer'
+import { csrfToken } from '~/utils/csrf'
+
 import {
   RedoOutlined, RightOutlined, StopOutlined, VideoCameraOutlined,
 } from '~/glint/icons/AccessibleIconsAntDesign'
@@ -212,7 +213,7 @@ const AudioCheckComponent: React.FC<Props> = ({
       asset_key: blob.signed_id,
       media_type: 'audio',
     }, {
-      headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '' },
+      headers: { 'X-CSRF-Token': csrfToken() },
     }).then(() => {
       dispatch(updateUploading(CheckListStatus.Done))
     }).catch(() => {
