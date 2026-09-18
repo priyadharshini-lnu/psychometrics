@@ -15,8 +15,17 @@ class Assessor < ApplicationRecord
   scope :sort_by_full_name_desc, -> { joins(:user).merge(User.sort_by_full_name_desc) }
 
   scope :filterable_fields, lambda { |query|
-    joins(:user).where('users.first_name ILIKE :query OR users.last_name ILIKE :query OR users.email ILIKE :query',
-                       query: "%#{query}%")
+    if (query !~ /\D/) && query.present?
+      joins(:user).where(
+        'users.id = ? OR users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ? OR CONCAT(users.first_name, \' \', users.last_name) ILIKE ?',
+        query, "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"
+      )
+    else
+      joins(:user).where(
+        'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ? OR CONCAT(users.first_name, \' \', users.last_name) ILIKE ?',
+        "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"
+      )
+    end
   }
 
   def self.ransackable_attributes(_auth_object = nil)

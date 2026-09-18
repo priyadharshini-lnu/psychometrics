@@ -104,11 +104,15 @@ class Membership < ApplicationRecord
   scope :user_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :filterable_fields, lambda { |query|
     if (query !~ /\D/) && query.present?
-      joins(:user).where('users.id = ? OR users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
-                         query, "%#{query}%", "%#{query}%", "%#{query}%")
+      joins(:user).where(
+        'users.id = ? OR users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ? OR CONCAT(users.first_name, \' \', users.last_name) ILIKE ?',
+        query, "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"
+      )
     else
-      joins(:user).where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?',
-                         "%#{query}%", "%#{query}%", "%#{query}%")
+      joins(:user).where(
+        'users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ? OR CONCAT(users.first_name, \' \', users.last_name) ILIKE ?',
+        "%#{query}%", "%#{query}%", "%#{query}%", "%#{query}%"
+      )
     end
   }
   scope :join_user, lambda {

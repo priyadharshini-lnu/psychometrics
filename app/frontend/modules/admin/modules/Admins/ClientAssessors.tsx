@@ -209,8 +209,8 @@ const ClientAssessorsComponent: React.FC<Props> = ({ currentUser, openModal }) =
     <Space>
       <Input.Search
         placeholder={I18n.t('admin.search_client_assessors')}
-        value={getFilteredValue('user_full_name_or_user_email_cont')}
-        onChange={e => changeFilter('user_full_name_or_user_email_cont', e.target.value)}
+        value={getFilteredValue('filterable_fields')}
+        onChange={e => changeFilter('filterable_fields', e.target.value)}
       />
       <ClientAssessorActionsDropdown
         onAdd={() => setIsAddModalOpen(true)}
