@@ -151,6 +151,10 @@ class Membership < ApplicationRecord
     %w[id name campaign_id project_id campaign_id client_id user_id]
   end
 
+  def self.ransackable_associations(_auth_object = nil)
+    %w[user]
+  end
+
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}

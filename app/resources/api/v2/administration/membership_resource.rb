@@ -7,7 +7,8 @@ class Api::V2::Administration::MembershipResource < Api::V2::Administration::Bas
   has_one :user
   has_many :admin_roles
 
-  ransack_filters %i[client_id_eq campaign_id_eq project_id_eq user_id_eq with_role filterable_fields]
+  ransack_filters %i[client_id_eq campaign_id_eq project_id_eq user_id_eq with_role filterable_fields
+                     user_full_name_or_user_email_cont]
 
   delegate :first_name, :first_name=, :last_name, :last_name=, :name, :email, :email=, to: :user, allow_nil: true
 
