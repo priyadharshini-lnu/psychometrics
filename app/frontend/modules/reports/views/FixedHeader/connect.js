@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { openModal } from '~/modules/admin/core/ui/modals'
 import {
-  save, publish, updateCurrentPage, copyModule, pasteModule,
+  save, updateCurrentPage, copyModule, pasteModule,
 } from '~/modules/reports/core/builder/actions'
 import { addModule } from '~/modules/reports/core/builder/page/actions'
 import { removeModule, updateModule } from '~/modules/reports/core/builder/module/actions'
@@ -25,7 +25,6 @@ export default connect(
   }),
   {
     save,
-    publish,
     copyModule,
     pasteModule,
     updateCurrentPage,

@@ -16,6 +16,7 @@ import {
   CheckCircleFilled,
 } from '~/glint/icons/AccessibleIconsAntDesign'
 import { axiosWithRetry } from '~/utils/axiosWithRetry'
+import { csrfToken } from '~/utils/csrf'
 import { MediaResponse } from '~/modules/survey/core/preview/FlowProcessor/interfaces'
 import { useReactMediaRecorder } from './components/MediaRecorder'
 import VideoRecorder from '~/components/MediaRecorder/components/VideoRecorder'
@@ -214,7 +215,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
           content_type: supportedMimeType,
         },
         {
-          headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
+          headers: { 'X-CSRF-Token': csrfToken() },
         },
       )
       const camelizedData = humps.camelizeKeys(data)
@@ -443,7 +444,7 @@ const MediaRecorderComponent: React.FC<Props> = ({
       if (existingMedia) {
         try {
           await axiosInstance.delete(`${mediaUrl}/remove_media`, {
-            headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') },
+            headers: { 'X-CSRF-Token': csrfToken() },
             data: { media_id: existingMedia.id },
           })
           setExistingVideoUrl(null)

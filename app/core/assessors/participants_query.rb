@@ -122,13 +122,7 @@ module Assessors
     end
 
     def base_query
-      UserAssessment.
-        joins(:assessment).
-        where(
-          evaluator: assessor_user,
-          relationship: Relationship.assessor_relationship,
-          assessments: { category: :assessor_form }
-        )
+      UserAssessment.where(evaluator: assessor_user)
     end
   end
 end

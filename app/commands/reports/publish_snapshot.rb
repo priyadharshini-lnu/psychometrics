@@ -40,58 +40,64 @@ module Reports
     end
 
     def update_matching_translations(snapshot)
-      execute_sql(<<~SQL.squish, snapshot.id, report.id)
-        UPDATE translations AS snapshot
-        SET props = draft.props, data = draft.data, updated_at = now()
-        FROM translations AS draft
-        WHERE snapshot.resource_type = 'Reports::PublishedSnapshot'
-          AND snapshot.resource_id = ?
-          AND draft.resource_type = 'Report'
-          AND draft.resource_id = ?
-          AND draft.translateable_type = snapshot.translateable_type
-          AND draft.translateable_id   = snapshot.translateable_id
-          AND draft.locale             = snapshot.locale
-          AND (draft.props::text IS DISTINCT FROM snapshot.props::text
-               OR draft.data IS DISTINCT FROM snapshot.data)
+      sql = <<~SQL.squish
+        UPDATE translations AS t_snapshot
+        SET props = t_draft.props, data = t_draft.data, updated_at = now()
+        FROM translations AS t_draft
+        WHERE t_snapshot.resource_type = 'Reports::PublishedSnapshot'
+          AND t_snapshot.resource_id = :snapshot_id
+          AND t_draft.resource_type = 'Report'
+          AND t_draft.resource_id = :report_id
+          AND t_draft.translateable_type = t_snapshot.translateable_type
+          AND t_draft.translateable_id   = t_snapshot.translateable_id
+          AND t_draft.locale             = t_snapshot.locale
+          AND (t_draft.props::text IS DISTINCT FROM t_snapshot.props::text
+               OR t_draft.data IS DISTINCT FROM t_snapshot.data)
       SQL
+
+      execute_sql(sql, snapshot_id: snapshot.id, report_id: report.id)
     end
 
     def insert_new_translations(snapshot)
-      execute_sql(<<~SQL.squish, snapshot.id, report.id, snapshot.id)
+      sql = <<~SQL.squish
         INSERT INTO translations (translateable_type, translateable_id, props, data, locale,
                                   resource_type, resource_id, created_at, updated_at)
-        SELECT draft.translateable_type, draft.translateable_id, draft.props, draft.data, draft.locale,
-               'Reports::PublishedSnapshot', ?, now(), now()
-        FROM translations AS draft
-        WHERE draft.resource_type = 'Report' AND draft.resource_id = ?
+        SELECT t_draft.translateable_type, t_draft.translateable_id, t_draft.props, t_draft.data, t_draft.locale,
+               'Reports::PublishedSnapshot', :snapshot_id, now(), now()
+        FROM translations AS t_draft
+        WHERE t_draft.resource_type = 'Report' AND t_draft.resource_id = :report_id
           AND NOT EXISTS (
-            SELECT 1 FROM translations AS snapshot
-            WHERE snapshot.resource_type = 'Reports::PublishedSnapshot'
-              AND snapshot.resource_id = ?
-              AND snapshot.translateable_type = draft.translateable_type
-              AND snapshot.translateable_id   = draft.translateable_id
-              AND snapshot.locale             = draft.locale
+            SELECT 1 FROM translations AS t_snapshot
+            WHERE t_snapshot.resource_type = 'Reports::PublishedSnapshot'
+              AND t_snapshot.resource_id = :snapshot_id
+              AND t_snapshot.translateable_type = t_draft.translateable_type
+              AND t_snapshot.translateable_id   = t_draft.translateable_id
+              AND t_snapshot.locale             = t_draft.locale
           )
       SQL
+
+      execute_sql(sql, snapshot_id: snapshot.id, report_id: report.id)
     end
 
     def delete_stale_translations(snapshot)
-      execute_sql(<<~SQL.squish, snapshot.id, report.id)
-        DELETE FROM translations AS snapshot
-        WHERE snapshot.resource_type = 'Reports::PublishedSnapshot'
-          AND snapshot.resource_id = ?
+      sql = <<~SQL.squish
+        DELETE FROM translations AS t_snapshot
+        WHERE t_snapshot.resource_type = 'Reports::PublishedSnapshot'
+          AND t_snapshot.resource_id = :snapshot_id
           AND NOT EXISTS (
-            SELECT 1 FROM translations AS draft
-            WHERE draft.resource_type = 'Report' AND draft.resource_id = ?
-              AND draft.translateable_type = snapshot.translateable_type
-              AND draft.translateable_id   = snapshot.translateable_id
-              AND draft.locale             = snapshot.locale
+            SELECT 1 FROM translations AS t_draft
+            WHERE t_draft.resource_type = 'Report' AND t_draft.resource_id = :report_id
+              AND t_draft.translateable_type = t_snapshot.translateable_type
+              AND t_draft.translateable_id   = t_snapshot.translateable_id
+              AND t_draft.locale             = t_snapshot.locale
           )
       SQL
+
+      execute_sql(sql, snapshot_id: snapshot.id, report_id: report.id)
     end
 
-    def execute_sql(sql, *binds)
-      ActiveRecord::Base.connection.execute(ApplicationRecord.sanitize_sql([sql, *binds]))
+    def execute_sql(sql, binds)
+      ActiveRecord::Base.connection.execute(ApplicationRecord.sanitize_sql([sql, binds]))
     end
 
     def upsert_snapshot

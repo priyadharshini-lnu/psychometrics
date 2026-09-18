@@ -13,13 +13,15 @@ import styles from './NewExperienceNotice.less'
 
 const { I18n } = window
 
+const { enable_assessor_new_ui } = window.PsyGlobalState.features
+
 const isNoticeNeeded = (): boolean => {
   const preferences = currentUserFromInitialState()?.preferences ?? []
   const noticeSeen = findPreference(preferences, WORKSPACE_CATEGORY, NOTICE_CONFIG_KEY)?.seen === true
   const newExperienceEnabled = findPreference(
     preferences, WORKSPACE_CATEGORY, NEW_EXPERIENCE_CONFIG_KEY,
   )?.enabled === true
-  return !noticeSeen && !newExperienceEnabled
+  return !noticeSeen && !newExperienceEnabled && enable_assessor_new_ui
 }
 
 const bullets = [

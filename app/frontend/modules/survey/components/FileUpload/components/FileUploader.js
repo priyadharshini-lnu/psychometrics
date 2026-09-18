@@ -2,6 +2,7 @@ import humps from 'humps'
 import { DirectUpload } from '@rails/activestorage'
 import { SET_UPLOAD_STATE, SET_ERRORS, SET_PERCENTAGE } from './reducer'
 import { UPLOAD_STATES } from './constants'
+import { csrfToken } from '~/utils/csrf'
 
 const { $ } = window
 
@@ -45,7 +46,7 @@ const onUploadDone = (blob, context) => {
     method: 'PUT',
     url: urls.callbackUrl,
     data: { media_id: blob.media_id, asset_key: blob.signed_id },
-    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+    headers: { 'X-CSRF-Token': csrfToken() },
   }).done((data) => {
     dispatch({ type: SET_UPLOAD_STATE, payload: { uploadState: UPLOAD_STATES.SAVED } })
     onSuccessUpload(humps.camelizeKeys(data))

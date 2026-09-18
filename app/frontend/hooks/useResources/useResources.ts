@@ -26,6 +26,7 @@ import {
 import { formatErrors, defaultState } from './utils'
 import { isLiveEnvironment } from '~/utils/isLiveEnvironment'
 import { captureSchemaValidationError } from '~/utils/schemaValidationError'
+import { csrfHeaders } from '~/utils/csrf'
 
 export function useResources<R extends {id: string}, M extends BaseMeta = BaseMeta> (
   resourceName: string, options: Options<R[], M> = {},
@@ -288,6 +289,7 @@ export function useResources<R extends {id: string}, M extends BaseMeta = BaseMe
       const response = await window.fetch(`${resourceUrl}/${action}`, {
         method,
         body,
+        headers: csrfHeaders(),
       })
 
       const result = await response.json()

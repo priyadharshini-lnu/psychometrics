@@ -1,8 +1,10 @@
+import { csrfToken } from '~/utils/csrf'
+
 export const validateImport = (validateEndpoint: string, content: string) => fetch(validateEndpoint, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'X-CSRF-Token': getCsrfToken(),
+    'X-CSRF-Token': csrfToken(),
   },
   body: JSON.stringify({ json_file_content: content }),
 })
@@ -16,7 +18,7 @@ export const submitImport = (
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'X-CSRF-Token': getCsrfToken(),
+    'X-CSRF-Token': csrfToken(),
   },
   body: JSON.stringify({
     json_file_content: jsonFileContent,
@@ -36,7 +38,7 @@ export const fetchClientsApi = (clientsEndpoint: string, searchValue: string) =>
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRF-Token': getCsrfToken(),
+      'X-CSRF-Token': csrfToken(),
     },
   })
     .then((response) => {
@@ -46,5 +48,3 @@ export const fetchClientsApi = (clientsEndpoint: string, searchValue: string) =>
       return response.json()
     })
 }
-
-const getCsrfToken = (): string => (document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement)?.content || ''

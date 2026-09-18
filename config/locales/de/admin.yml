@@ -2603,6 +2603,21 @@ de:
     report_approval_submit_or_approve_all: Einreichen oder Genehmigen Alle
     report_approvals: Bericht Genehmigungen
     report_availability: Verfügbarkeit des Berichts
+    report_builder_publish_confirm_content: Dadurch wird der bereits veröffentlichte Bericht mit den Entwurfsänderungen überschrieben und den Nutzern zur Verfügung gestellt. Möchten Sie die Änderungen wirklich veröffentlichen?
+    report_builder_publish_confirm_title: Soll dieser Bericht veröffentlicht werden?
+    report_builder_publish_failed: Der Bericht wurde gespeichert, aber die Veröffentlichung ist fehlgeschlagen. Bitte versuchen Sie es erneut.
+    report_builder_publish_success: Bericht erfolgreich veröffentlicht
+    report_builder_published_at: Zuletzt veröffentlicht am {{date}}
+    report_builder_published_by: Veröffentlicht von {{name}}
+    report_builder_save_and_publish: Speichern & Veröffentlichen
+    report_builder_save_as_draft: Als Entwurf speichern
+    report_builder_save_failed: Der Bericht konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.
+    report_builder_save_success: Bericht erfolgreich gespeichert
+    report_builder_unpublished_changes: Nicht veröffentlichte Änderungen
+    report_builder_view_draft: Entwurf anzeigen
+    report_builder_view_published: Veröffentlichte Ansicht
+    report_builder_viewing_draft_message: Sie sehen hier den Entwurf des Berichts. Dieser wird den Teilnehmern erst nach der Veröffentlichung angezeigt.
+    report_builder_viewing_published_message: Sie sehen die zuletzt veröffentlichte Version des Berichts. Änderungen im Builder werden hier erst nach der Veröffentlichung angezeigt.
     report_condition_not_met: Benötigt %{required} %{relationship} Bewertung(en), hat aber nur %{actual}
     report_conditions_not_met_detailed: Der Bericht für %{user} entspricht nicht den Verfügbarkeitsbedingungen. %{conditions}
     report_denied: Meldung für %{user} wurde abgelehnt
@@ -2618,6 +2633,10 @@ de:
     report_owner: Eigentümer
     report_pdf_status: Status des Berichts (PDF)
     report_pdf_unavailable: Die PDF-Datei dieses Berichts ist noch nicht verfügbar.
+    report_preview_draft_notice: Sie sehen eine Entwurfsversion des Berichts, die dem Teilnehmer erst dann zur Verfügung steht, wenn der Ersteller Entwurfsänderungen veröffentlicht.
+    report_preview_draft_tag_tooltip: Dieser Bericht enthält Entwurfsänderungen. Klicken Sie hier, um die Entwurfsversion anzuzeigen.
+    report_preview_view_draft: Vorschauentwurf
+    report_preview_view_published: Vorschau veröffentlicht
     report_review_abort_qc: QC abbrechen
     report_review_approve: Genehmigen Sie
     report_review_approve_changes: Änderungen genehmigen

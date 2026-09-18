@@ -111,11 +111,11 @@ export const ModerateScoringComponent: FC<Props> = ({ assessorResult, canModerat
                 name={`${assessorResult.subject.first_name ?? ''} ${assessorResult.subject.last_name ?? ''}`}
                 size={48}
               />
-              <Flex align="center" gap={16} wrap="wrap">
+              <Flex vertical>
                 <Typography.Title level={3} className="mb-0">
                   {`${assessorResult.subject.first_name} ${assessorResult.subject.last_name}`}
                 </Typography.Title>
-                <Typography.Text type="secondary" className="font-normal self-end">
+                <Typography.Text type="secondary" className="font-normal">
                   {assessorResult.subject.email}
                 </Typography.Text>
               </Flex>

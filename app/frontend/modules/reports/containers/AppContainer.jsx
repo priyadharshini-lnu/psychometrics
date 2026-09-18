@@ -19,6 +19,7 @@ import store from '../store'
 import { DefaultAntThemeWrapper } from '~/glint'
 import ErrorWarning from '~/modules/reports/views/Preview/ErrorWarning'
 import { Schema } from '~/libs/jsonApi/schema'
+import { csrfHeaders } from '~/utils/csrf'
 
 class AppContainer extends Component {
   undoListener = null
@@ -49,6 +50,7 @@ class AppContainer extends Component {
     const client = new ApiClient({
       url: `${window.location.origin}/api/v2/administration`,
       schema: humps.decamelizeKeys(Schema),
+      headers: csrfHeaders(),
     })
 
     return (

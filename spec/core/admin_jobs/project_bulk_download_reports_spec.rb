@@ -102,9 +102,7 @@ describe AdminJobs::ProjectBulkDownloadReports do
 
       it 'broadcasts :ok with content containing the job detail link' do
         result = described_class.call(job_record)
-        expect(result[:ok][:content]).to include(
-          "/admin/projects/#{project.id}/bulk_reports/#{bulk_report_job.id}"
-        )
+        expect(result[:ok][:content]).to include(bulk_report_job.project_bulk_report_job_url)
       end
     end
 

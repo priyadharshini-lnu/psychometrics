@@ -25,10 +25,9 @@ module Api
       :create_relationship_request, update_relationship: :update_relationship_request
     }.freeze
 
-    protect_from_forgery with: :null_session
+    protect_from_forgery with: :exception
     class_attribute :_crud_schema_class, :_request_schemas, :_cached_schema_or_contract
 
-    skip_before_action :verify_authenticity_token
     prepend_before_action :validate_requests_schema
     prepend_before_action :set_request_related_current_attributes
     before_action :set_current_attributes
@@ -56,6 +55,7 @@ module Api
     rescue_from JSONAPI::Exceptions::Error, with: :rescue_json_api_error
     rescue_from ActiveRecord::RecordNotFound, with: :rescue_record_not_found
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    rescue_from ActionController::InvalidAuthenticityToken, with: :handle_invalid_authenticity_token
 
     def self.validate_crud_requests(schema_class)
       self._crud_schema_class = schema_class
@@ -350,6 +350,17 @@ module Api
 
     def json_api_error_response?(options)
       options[:json].is_a?(Hash) && options[:json].key?(:errors)
+    end
+
+    def handle_invalid_authenticity_token(exception)
+      siem_log_session_management_exception(exception)
+
+      render json: {
+        errors: [{
+          title: I18n.t('errors.invalid_token'),
+          status: '422'
+        }]
+      }, status: :unprocessable_content
     end
   end
 end

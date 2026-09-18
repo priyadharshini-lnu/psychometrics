@@ -8,6 +8,7 @@ import { importTranslations, save } from '~/modules/survey/core/builder/question
 import ActionsHistory from '~/modules/survey/components/ActionsHistory'
 import styles from './Header.less'
 import { ImportModal } from './ImportTranslations'
+import { csrfToken } from '~/utils/csrf'
 
 const Header = ({ save, question, importTranslations }) => {
   const form = useRef()
@@ -79,7 +80,7 @@ const Header = ({ save, question, importTranslations }) => {
             <input
               name="authenticity_token"
               type="hidden"
-              value={document.querySelector('meta[name="csrf-token"]').getAttribute('content')}
+              value={csrfToken()}
             />
             <input ref={data} name="data" />
           </form>

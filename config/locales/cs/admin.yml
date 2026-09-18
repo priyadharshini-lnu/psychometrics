@@ -2603,6 +2603,21 @@ cs:
     report_approval_submit_or_approve_all: Odeslat nebo schválit vše
     report_approvals: Schvalování zpráv
     report_availability: Dostupnost zprávy
+    report_builder_publish_confirm_content: Tímto se stávající publikovaná zpráva přepíše změnami v konceptu, které budou k dispozici uživatelům. Jste si jisti, že chcete změny publikovat?
+    report_builder_publish_confirm_title: Publikovat tuto zprávu?
+    report_builder_publish_failed: Zpráva byla uložena, ale publikování se nezdařilo. Zkuste to prosím znovu.
+    report_builder_publish_success: Zpráva byla úspěšně publikována
+    report_builder_published_at: Naposledy publikováno {{date}}
+    report_builder_published_by: Publikoval/a {{name}}
+    report_builder_save_and_publish: Uložit a publikovat
+    report_builder_save_as_draft: Uložit jako koncept
+    report_builder_save_failed: Uložení přehledu se nezdařilo. Zkuste to prosím znovu.
+    report_builder_save_success: Zpráva byla úspěšně uložena
+    report_builder_unpublished_changes: Nepublikované změny
+    report_builder_view_draft: Zobrazit koncept
+    report_builder_view_published: Zobrazit publikované
+    report_builder_viewing_draft_message: Prohlížíte si koncept zprávy. Účastníci ji neuvidí, dokud nebude zveřejněna.
+    report_builder_viewing_published_message: Prohlížíte si poslední publikovanou verzi zprávy. Změny v nástroji pro tvorbu se zde neprojeví, dokud nebude publikována.
     report_condition_not_met: Potřebuje %{required} %{relationship} hodnocení, ale má jen %{actual}
     report_conditions_not_met_detailed: Report for %{user} nesplňuje podmínky dostupnosti. %{conditions}
     report_denied: Zpráva o %{user} byla zamítnuta
@@ -2618,6 +2633,10 @@ cs:
     report_owner: Majitel
     report_pdf_status: Zpráva o stavu (PDF)
     report_pdf_unavailable: PDF k této zprávě zatím není k dispozici.
+    report_preview_draft_notice: Zobrazujete si koncept zprávy, která není účastníkovi k dispozici, dokud nejsou změny konceptu publikovány z nástroje pro tvorbu.
+    report_preview_draft_tag_tooltip: Tato zpráva obsahuje změny v konceptu. Kliknutím zobrazíte koncept.
+    report_preview_view_draft: Náhled konceptu
+    report_preview_view_published: Náhled publikován
     report_review_abort_qc: Přerušení kontroly kvality
     report_review_approve: Schválit
     report_review_approve_changes: Schválení změn

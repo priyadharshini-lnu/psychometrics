@@ -60,7 +60,7 @@ const RichTextPreview: FC<Props> = ({
   return (
     <div>
       <Row>
-        <Col>
+        <Col span={24}>
           <Editor
             content={text}
             handleContentChange={value => saveContent(value)}

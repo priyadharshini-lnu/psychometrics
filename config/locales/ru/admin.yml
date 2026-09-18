@@ -2603,6 +2603,21 @@ ru:
     report_approval_submit_or_approve_all: Отправить или утвердить все
     report_approvals: Утверждение отчетов
     report_availability: Доступность отчета
+    report_builder_publish_confirm_content: Это заменит существующий опубликованный отчет черновиком, сделав его доступным для пользователей. Вы уверены, что хотите опубликовать изменения?
+    report_builder_publish_confirm_title: Опубликовать этот отчет?
+    report_builder_publish_failed: Отчет сохранен, но публикация не удалась. Пожалуйста, попробуйте опубликовать еще раз.
+    report_builder_publish_success: Отчет успешно опубликован.
+    report_builder_published_at: 'Последняя публикация: {{date}}'
+    report_builder_published_by: Опубликовано {{name}}
+    report_builder_save_and_publish: Сохранить и опубликовать
+    report_builder_save_as_draft: Сохранить как черновик
+    report_builder_save_failed: Не удалось сохранить отчет. Пожалуйста, попробуйте еще раз.
+    report_builder_save_success: Отчет успешно сохранен.
+    report_builder_unpublished_changes: Неопубликованные изменения
+    report_builder_view_draft: Просмотреть черновик
+    report_builder_view_published: Просмотреть опубликованное
+    report_builder_viewing_draft_message: Вы просматриваете черновой вариант отчета. Участники увидят его только после публикации.
+    report_builder_viewing_published_message: Вы просматриваете последнюю опубликованную версию отчета. Изменения в конструкторе не будут отражены здесь до момента публикации.
     report_condition_not_met: Требуется оценка %{required} %{relationship}, но имеется только %{actual}
     report_conditions_not_met_detailed: Отчет для %{user} не соответствует условиям доступности. %{conditions}
     report_denied: Отчет по делу «%{user}» был отклонен
@@ -2618,6 +2633,10 @@ ru:
     report_owner: Владелец
     report_pdf_status: Отчет о состоянии в формате PDF
     report_pdf_unavailable: PDF-версия этого отчета пока недоступна.
+    report_preview_draft_notice: Вы просматриваете черновую версию отчета, которая недоступна участнику, если черновые изменения не будут опубликованы из конструктора.
+    report_preview_draft_tag_tooltip: В этом отчете доступны черновые изменения. Нажмите, чтобы просмотреть черновую версию.
+    report_preview_view_draft: Предварительный черновик
+    report_preview_view_published: Предварительный просмотр опубликован
     report_review_abort_qc: Прервать контроль качества
     report_review_approve: Утвердить
     report_review_approve_changes: Утвердить изменения

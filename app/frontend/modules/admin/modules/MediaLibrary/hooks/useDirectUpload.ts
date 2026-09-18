@@ -3,6 +3,7 @@ import axios from 'axios'
 import { message, Upload } from 'antd'
 import type { UploadFile } from 'antd/es/upload'
 import { calculateMD5Checksum } from '~/utils/fileChecksum'
+import { csrfHeaders } from '~/utils/csrf'
 
 const { I18n } = window
 const MAX_DIRECT_UPLOAD_SIZE_MB = 100
@@ -85,7 +86,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
           byte_size: f.size,
           checksum: checksums[i],
         })),
-      })
+      }, { headers: csrfHeaders() })
       uploadResponses = data
     } catch (error) {
       const isSizeError = isFileSizeValidationError(error)
@@ -186,7 +187,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
           owner_id: ownerId,
           type: 'other',
           ...(parentId ? { parent_id: parentId } : {}),
-        })
+        }, { headers: csrfHeaders() })
       } else {
         await axios.post('/api/v2/administration/libraries', {
           data: {
@@ -199,7 +200,7 @@ export const useDirectUpload = ({ isUpload, parentId, onSuccess }: UseDirectUplo
               ...(parentId ? { parent_id: parentId } : {}),
             },
           },
-        })
+        }, { headers: csrfHeaders() })
       }
 
       onSuccess()

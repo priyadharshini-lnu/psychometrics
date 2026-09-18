@@ -17,6 +17,7 @@ interface UseAsyncRequestResponseProps<T> {
   numberOfTimesToPoll?: number,
   pollingInterval?: number,
   onFailure?: (response: any) => void, // eslint-disable-line @typescript-eslint/no-explicit-any
+  camelizeExcept?: string[],
 }
 
 const PostToQueueResponseTR = t.type({
@@ -40,6 +41,7 @@ const useAsyncRequestResponse = <T>({
   numberOfTimesToPoll = 20,
   pollingInterval = 5,
   onFailure,
+  camelizeExcept,
 }: UseAsyncRequestResponseProps<T>) => {
   const dispatch = useDispatch()
   const [asyncLoading, setAsyncLoading] = useState(false)
@@ -86,6 +88,7 @@ const useAsyncRequestResponse = <T>({
         url: `/async_requests/status?async_request_uuid=${asyncRequestUuid}`,
         method: 'GET',
         typedResponse: responseType,
+        camelizeExcept,
       },
     }
     const response = dispatch(action)

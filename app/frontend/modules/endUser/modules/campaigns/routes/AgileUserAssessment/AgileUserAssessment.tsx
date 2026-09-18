@@ -19,6 +19,7 @@ import {
 import styles from './styles.less'
 import { fetchCampaigns } from '~/modules/endUser/modules/campaigns/core/campaigns'
 import { DocumentTitle } from '~/components/DocumentTitle'
+import { csrfToken } from '~/utils/csrf'
 
 const InteractiveAssessmentsModule = () => import('@thetalententerprise/interactive-assessments')
 
@@ -80,7 +81,7 @@ const AgileUserAssessmentComponent: React.FC<Props> = ({
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'X-CSRF-Token': document.querySelector("meta[name='csrf-token']")?.getAttribute('content') as string,
+          'X-CSRF-Token': csrfToken(),
         },
       },
       settings: {

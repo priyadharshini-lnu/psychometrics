@@ -15,6 +15,7 @@ import ScoringTable from './components/ScoringTable'
 
 import styles from './styles.less'
 import { SafeHTML } from '~/components/SafeHTML'
+import { csrfToken } from '~/utils/csrf'
 
 const connector = connect(({ preview }: RootState) => ({
   isAnonymousAssessment: preview.isAnonymousAssessment,
@@ -133,7 +134,7 @@ const EndPage: FC<Props> = ({
                 <input
                   type="hidden"
                   name="authenticity_token"
-                  value={document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') as string}
+                  value={csrfToken()}
                 />
                 <a href="#" onClick={e => (e.currentTarget.parentNode as HTMLFormElement).submit()}>
                   {I18n.t('assessments.actions.submit_another_response', { locale: I18n.uiLocale })}

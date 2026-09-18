@@ -3,11 +3,13 @@ import humps from 'humps'
 import { ApiClient, ApiProvider } from '@thetalententerprise/jsonapi-react'
 import store from '~/modules/admin/store'
 import { Schema } from '~/libs/jsonApi/schema'
+import { csrfHeaders } from '~/utils/csrf'
 import { Layout } from './Layout'
 
 const client = new ApiClient({
   url: `${window.location.origin}/api/v2/administration`,
   schema: humps.decamelizeKeys(Schema),
+  headers: csrfHeaders(),
 })
 
 

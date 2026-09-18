@@ -1,5 +1,6 @@
 import humps from 'humps'
 import { BaseQueryApi, FetchArgs, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { csrfToken } from '~/utils/csrf'
 
 export type QueryReturnValue<T = unknown, E = unknown, M = unknown> = {
   error: E;
@@ -17,9 +18,9 @@ export const baseQuery = ({ baseUrl = '/', camelize = true, decamelize = true } 
     prepareHeaders: (headers) => {
       headers.set('Content-Type', 'application/json')
       headers.set('Accept', 'application/json')
-      const csrfToken = window.$('meta[name="csrf-token"]').attr('content')
-      if (csrfToken) {
-        headers.set('X-CSRF-Token', csrfToken)
+      const token = csrfToken()
+      if (token) {
+        headers.set('X-CSRF-Token', token)
       }
       return headers
     },

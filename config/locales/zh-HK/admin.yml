@@ -2603,6 +2603,21 @@ zh-HK:
     report_approval_submit_or_approve_all: 提交或批准全部
     report_approvals: 报告审批
     report_availability: 报告可用性
+    report_builder_publish_confirm_content: 這將用修改後的草稿覆蓋已發布的報告，並使其對用戶可見。您確定要發布這些變更嗎？
+    report_builder_publish_confirm_title: 是否發表這份報告？
+    report_builder_publish_failed: 報告已儲存，但發布失敗。請重試發布。
+    report_builder_publish_success: 報告已成功發布
+    report_builder_published_at: 最後發佈於 {{date}}
+    report_builder_published_by: 由 {{name}} 發布
+    report_builder_save_and_publish: 儲存並發布
+    report_builder_save_as_draft: 儲存為草稿
+    report_builder_save_failed: 報告保存失敗，請重試。
+    report_builder_save_success: 報告已成功儲存
+    report_builder_unpublished_changes: 未公開的更改
+    report_builder_view_draft: 查看草稿
+    report_builder_view_published: 查看已發佈內容
+    report_builder_viewing_draft_message: 您正在查看的是報告草稿版本。正式發布前，參與者看不到此版本。
+    report_builder_viewing_published_message: 您正在查看的是報告的最新發布版本。生成器中的變更要等到發布後才會反映在此。
     report_condition_not_met: 需要%{required}%{relationship}个评价，但仅有%{actual}个评价。
     report_conditions_not_met_detailed: "%{user} 的报告不符合可用性条件。%{conditions}"
     report_denied: "%{user}的报告已被拒绝"
@@ -2618,6 +2633,10 @@ zh-HK:
     report_owner: 擁有者
     report_pdf_status: 报告 PDF 状态
     report_pdf_unavailable: 本報告的PDF版本尚未提供。
+    report_preview_draft_notice: 您正在查看報告的草稿版本，除非建構器發布草稿更改，否則參與者無法查看該版本。
+    report_preview_draft_tag_tooltip: 本報告有修改稿可供查看。點選查看草稿版本。
+    report_preview_view_draft: 預覽稿
+    report_preview_view_published: 預覽版已發布
     report_review_abort_qc: 中止质量控制
     report_review_approve: 㔧
     report_review_approve_changes: 批准更改
