@@ -205,7 +205,7 @@ export const ScoringApprovalFormModal: React.FC<Props> = ({
             className="mb24"
             items={[{
               key: '1',
-              label: I18n.t('admin.report_approval_settings'),
+              label: I18n.t('admin.ai_approval_settings'),
               children: (
                 <Space direction="vertical" size="middle">
                   <Space align="center">
